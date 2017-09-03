@@ -1,7 +1,17 @@
 ---
-title: 
-description: 
-keywords: 
-author: 
+title: Development Environment
+description: How to set up your development environment to get started
+keywords: Development Environment
+author: einari
 ---
 # Development Environment
+
+## .NET Core
+
+### Visual Studio Code
+
+### Visual Studio 2017
+
+### Visual Studio for Mac
+
+## NodeJS
