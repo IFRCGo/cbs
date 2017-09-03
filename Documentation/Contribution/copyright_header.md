@@ -18,7 +18,7 @@ All code files **MUST** have the one of the following copyright headers accordin
 
 ```csharp
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Red Cross Federation. All rights reserved.
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 ```
@@ -27,7 +27,7 @@ All code files **MUST** have the one of the following copyright headers accordin
 
 ```css
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Red Cross Federation. All rights reserved.
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 ```
@@ -36,7 +36,7 @@ All code files **MUST** have the one of the following copyright headers accordin
 
 ```html
 <!--
-  Copyright (c) Red Cross Federation. All rights reserved.
+  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
   Licensed under the MIT License. See LICENSE in the project root for license information.
 -->
 ```
