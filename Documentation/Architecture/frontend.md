@@ -12,3 +12,5 @@ Since the application is broken up into smaller bounded contexts and these are a
 
 > [!Note]
 > This needs discussion...
+
+## WebSockets
