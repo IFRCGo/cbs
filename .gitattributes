@@ -1,0 +1,14 @@
+* text eol=lf
+
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.dll   binary
+*.exe   binary
+*.ttf   binary
+*.woff  binary
+*.woff2 binary
+*.eot   binary
+
+*.cs eol=lf diff=csharp 
+*.sln text eol=crlf
