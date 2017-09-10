@@ -63,7 +63,7 @@ All files **MUST** have a metadata header at the top of the file following the f
 title: About contributing to documentation
 description: Learn about how to contribute to documentation
 keywords: Contributing
-author: einari (your GitHub accountname)
+author: einari (your GitHub account-name)
 ---
 ```
 
@@ -72,13 +72,13 @@ other purposes and for future expansion.
 
 ## File names
 
-All files should be lower cased. In case of multiple words and concepts that would be in codefiles **CamelCase** you **MUST** seperate
+All files should be lower cased. In case of multiple words and concepts that would be in code-files **CamelCase** you **MUST** separate
 with underscore **_** instead. For instance: [*development_environment.md*](development_environment.md).
 
 ## DocFX
 
 For processing all the documentation we're using [DocFX](http://dotnet.github.io/docfx/).
-It takes the API documentation and all the markdown articles and genereates HTML for us and it gets published during
+It takes the API documentation and all the markdown articles and generates HTML for us and it gets published during
 the continuous build running.
 
 ** More details to come **.
