@@ -8,6 +8,6 @@ author:
 
 ## C# Serilog
 
-## Application Insight
+## LogStash
 
-## Kabana
+## Kibana
