@@ -9,6 +9,7 @@
 *.woff  binary
 *.woff2 binary
 *.eot   binary
+*.pptx  binary
 
 *.cs eol=lf diff=csharp 
 *.sln text eol=crlf
