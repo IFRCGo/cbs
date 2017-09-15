@@ -1,3 +1,5 @@
+using System;
+
 namespace Events.Shopping
 {
     public class ItemAddedToCart
