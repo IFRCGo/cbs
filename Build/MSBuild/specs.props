@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <DefaultItemExcludes>gulp\**\*;node_modules\**\*;jspm_packages\**\*;bower_components\**\*;wwwroot\**\*;bin\**\*;obj\**\*</DefaultItemExcludes>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Machine.Specifications.Runner.VisualStudio" Version="2.3.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+        <PackageReference Include="Machine.Specifications" Version="0.11.1" />
+        <PackageReference Include="Machine.Specifications.Should" Version="0.11.0" />
+        <PackageReference Include="moq" Version="4.7.8" />
+        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-*" />
+    </ItemGroup>
+</Project>
