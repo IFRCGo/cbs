@@ -38,7 +38,7 @@ Depend on abstractions, not upon the conrete implementations.
 Rather than a system knowing about concrete types and taking also on the responsibility of the lifecycle of its dependencies.
 We can quite easily define on a constructor level the dependencies it needs and let a consumer provide the dependencies.
 This is often dealt with by introducing an [IOC](https://en.wikipedia.org/wiki/Inversion_of_control) container into the system.
-You can read more about that [here](inversion_of_control.md).
+You can read more about that [here](./inversion_of_control.md).
 
 ## Seperation of Concerns
 
