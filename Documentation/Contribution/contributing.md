@@ -10,6 +10,11 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in
 [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+## Architecture
+
+You MUST get familiar with the [architecture](../Architecture/index.md) as that will be governing for any code
+developed for this project. Anything not adhering to the architecture will fail code reviews.
+
 ## Repository
 
 In order to contribute to this project, you will need to create your own [fork](https://help.github.com/articles/fork-a-repo/).
