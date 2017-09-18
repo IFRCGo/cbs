@@ -2,4 +2,4 @@
 
 ## Contributing
 
-Read more about how you can [contribute](./Documentation/Contribution.md).
+Read more about how you can [contribute](./Documentation/Contribution/contributing.md).

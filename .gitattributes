@@ -1,8 +1,11 @@
 * text eol=lf
 
 *.jpg   binary
+*.JPG   binary
 *.png   binary
+*.PNG   binary
 *.gif   binary
+*.GIF   binary
 *.dll   binary
 *.exe   binary
 *.ttf   binary
