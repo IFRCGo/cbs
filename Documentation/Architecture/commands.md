@@ -12,6 +12,11 @@ Its technical representation can be in the form of a method in the system with i
 parameters being the attributes of the command. But it could also be modelled as an
 object with a name and its attributes.
 
+## Actors
+
+Commands are performed by users of the system, these are referred to as actors.
+Read more about the actors defined in this system [here](../Projects/actors.md).
+
 ## Transactions
 
 A command is also the domain specific transactional boundary. The things one need to
