@@ -35,7 +35,7 @@ an API perspective.
 ```csharp
 public class Shopping : Controller
 {
-    [Route("/api/Shopping/Product"), HttpPut]
+    [Route("/api/Shopping/Cart"), HttpPut]
     public void AddProductToCart(Guid product, int quantity)
     {
         // Code to handle the command...
