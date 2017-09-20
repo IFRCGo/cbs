@@ -26,11 +26,16 @@ commit together should be on the command, or the parameters of the method.
 
 Below are a few examples.
 
-### Method
+### Controller Action
+
+An approach to representing a command would be to have it as a controller action.
+This would represent something that is very familiar to developers coming from
+an API perspective.
 
 ```csharp
-public class Shopping
+public class Shopping : Controller
 {
+    [Route("/api/Shopping/Product"), HttpPut]
     public void AddProductToCart(Guid product, int quantity)
     {
         // Code to handle the command...
@@ -38,9 +43,11 @@ public class Shopping
 }
 ```
 
-### Object
+### Separate Object with handler
 
-An object representing the command would look like below:
+The same command could be encapsulated as an object and having a handler that handles it.
+This would require you to secure the object and validate the properties on the object,
+which would cause you to have to implement infrastructure to deal with this.
 
 ```csharp
 public class AddProductToCart
