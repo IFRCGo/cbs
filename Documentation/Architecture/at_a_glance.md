@@ -8,6 +8,10 @@ author: einari
 
 This article describes at a high level without going into too much details how the architecture works.
 
+From a top level you'll find the different [bounded contexts](./bounded_contexts.md) (Concretely defined [here](../Projects/index.md).
+![](./images/top_level.png)
+
+Diving into the architecture within a bounded context, you'll find the following:
 ![](./images/at_a_glance.png)
 
 ## The details
