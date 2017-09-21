@@ -17,3 +17,5 @@ The most important topics to get familiar with:
 * [Bounded contexts](./bounded_contexts.md)
 * [Commands](./commands.md)
 * [Events](./events.md)
+
+To get a quick overview over the architecture, please read the "[at a glance](./at_a_glance.md)" article.
