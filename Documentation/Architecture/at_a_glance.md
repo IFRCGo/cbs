@@ -27,6 +27,7 @@ For more details on the different parts and design decisions behind and more imp
 * [Logging](./logging.md)
 * [Identity and access](./identity_and_access.md)
 * [Frontend](./frontend.md)
+* [Persistence](./persistence.md)
 * [Partitioning Strategy](./partition_strategy.md)
 * [Containers](./containers.md)
 * [Kubernetes](./kubernetes.md)
