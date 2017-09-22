@@ -11,11 +11,12 @@ Within the `Source` folder you'll find the different projects and its equivalent
 
 | Name | Description | Issues |
 | ---- | ----------- | ------ |
-| [Admin](./Admin/index.md) | Global coordinators must be able to register available risks and indicators. Users are created for the Local Health Coordinators. | [link](https://github.com/IFRCGo/cbs/projects/1?) |
-| [Volunteer Management](./Volunteer%20Management/index.md) | Local Health Coordinators create a project, tag it with risks and indicators, and register volunteers who will report on the selected indicators. | [link](https://github.com/IFRCGo/cbs/projects/2?) |
-| [Volunteer Engagement](./Volunteer%20Engagement/index.md) | To improve chances of sustained activity and motivation, the system must interact with the volunteers through regular and ad-hoc feedback. In situations where large outbreaks are on the rise, Red Cross quickly needs to send information to larger groups of volunteers in the affected areas. | [link](https://github.com/IFRCGo/cbs/projects/3?) |
-| [Volunteer Reporting](./Volunteer%20Reporting/index.md)  | Volunteers will report on any indicators they observe in their area. | [link](https://github.com/IFRCGo/cbs/projects/4?) |
-| [Reporting](./Reporting/index.md) | National Health Coordinators can see a  high-level overview on all reports received by volunteers, through the use of dashboards and reports.  | [link](https://github.com/IFRCGo/cbs/projects/5?) |
-| [Alerts](./Alerts/index.md) | If a report from a volunteer triggers an alert, the volunteer must be notified and the alert must be escalated. Reporting and cases related to the alert must be easily accessible to the Local Health Coordinator.  | [link](https://github.com/IFRCGo/cbs/projects/6?) |
+| [Admin](./Admin/index.md) | Web-based interface for Global coordinator to create new CBS project (per country). Based on "role", add/adapt/remove ALERTS, assign "role", add/update/remove user. | [link](https://github.com/IFRCGo/cbs/projects/1?) |
+| [Visualization](./Visualization/index.md) | Web-based visualization of SMS-reports, access/information varies based on user "role" (defined in VOLUNTEER MANAGEMENT).  | [link](https://github.com/IFRCGo/cbs/projects/5?) |
+| [Alerts](./Alerts/index.md) | Logic/structure behind SMS escalation such as Volunteer SMS receipt notifications/escalation, when to notify Coordinator for field validation (e.g. IF "disease"='cholera' AND "cases">10 AND "days"<7 AND "location"='PaP'), and manual SMS escalation to Ministry of Health by Coordinator.  | [link](https://github.com/IFRCGo/cbs/projects/6?) |
+| [Volunteer Engagement](./Volunteer%20Engagement/index.md) | To improve chances of sustained activity and motivation, the system must interact with the volunteers through ad-hoc and regular feedback such as ad hoc one-way push notifications (e.g. outbreak spread to new area), web-based one-on-one SMS conversation (e.g. follow-up on no reporting), and structured/timed one-way reports ("Thank you for submitting # of CBS report this week.  # reports have been submitted in you "location"."). | [link](https://github.com/IFRCGo/cbs/projects/3?) |
+| [User Management](./User%20Management/index.md) | Spreadsheet/database of CBS team (Volunteer, Coordinator, MOH, Global) demographic information including method for collection (SMS or web-based), entry/exit points, and linked to VOLUNTEER REPORTING and ALERTS spreadsheets/databases. | [link](https://github.com/IFRCGo/cbs/projects/2?) |
+| [SMS Reports](./SMS%20Reports/index.md)  | Spreadsheet/database of SMS reports, including API entry/exit points, and  linked to ALERTS.  | [link](https://github.com/IFRCGo/cbs/projects/4?) |
+
 | [Portal](./Portal/index.md) | | |
 
