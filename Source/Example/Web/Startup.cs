@@ -47,15 +47,9 @@ namespace Web
             var assemblySpecifiers = new AssemblySpecifiers(assembliesConfigurationBuilder.RuleBuilder, logger);
             assemblySpecifiers.SpecifyUsingSpecifiersFrom(executingAssembly);
 
-            var assemblyProviders = new List<ICanProvideAssemblies>
-            {
-                new DefaultAssemblyProvider(logger),
-                new FileSystemAssemblyProvider(new FileSystem(), logger)
-            };
-
             var assembliesConfiguration = new AssembliesConfiguration(assembliesConfigurationBuilder.RuleBuilder);
             var assemblyProvider = new AssemblyProvider(
-                assemblyProviders,
+                new ICanProvideAssemblies[] {new DefaultAssemblyProvider(logger)},
                 new AssemblyFilters(assembliesConfiguration),
                 new AssemblyUtility(),
                 assemblySpecifiers);
