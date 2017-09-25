@@ -1,16 +1,28 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Read.Shopping;
 
 namespace Web.Shopping
 {
-    [Route("/Cart")]
-    public class CartController
+    [Route("api/Shopping/[controller]")]
+    public class CartController : Controller
     {
-        [Route("Item")]
-        public void AddToCart(Guid productId, int quantity)
+        public CartController(ILogger<CartController> logger)
         {
-            
+        }
 
+        [HttpGet]
+        public Cart Get()
+        {
+            return new Cart();
+
+        }
+
+
+        [HttpPut("{product}")]
+        public void Put(Guid product, [FromBody]int quantity)
+        {
         }
     }
 }
