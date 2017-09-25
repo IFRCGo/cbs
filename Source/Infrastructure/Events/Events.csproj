@@ -1,16 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Infrastructure.Events</AssemblyName>
+  </PropertyGroup>
+  <Import Project="../../../Build/MSBuild/default.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="doLittle.Types" Version="2.0.0-alpha*"/>
-
+    <PackageReference Include="doLittle.Types" Version="2.0.0-*"/>
+    <PackageReference Include="doLittle.Concepts" Version="2.0.0-*"/>
   </ItemGroup>
 
 </Project>
