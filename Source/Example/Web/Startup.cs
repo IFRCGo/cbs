@@ -30,6 +30,7 @@ namespace Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -69,10 +70,7 @@ namespace Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseMvc();
         }
     }
 }
