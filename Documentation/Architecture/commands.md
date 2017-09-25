@@ -33,10 +33,11 @@ This would represent something that is very familiar to developers coming from
 an API perspective.
 
 ```csharp
-public class Shopping : Controller
+[Route("/api/Shopping/[controller])]
+public class CartController : Controller
 {
-    [Route("/api/Shopping/Cart"), HttpPut]
-    public void AddProductToCart(Guid product, int quantity)
+    [HttpPut("{product}")]
+    public void AddProductToCart(Guid product, [FromBody]int quantity)
     {
         // Code to handle the command...
     }
