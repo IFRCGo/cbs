@@ -6,8 +6,15 @@ using System.Collections.Generic;
 
 namespace Events
 {
+    /// <summary>
+    /// Defines a store for holding <see cref="IEvent">events</see>
+    /// </summary>
     public interface IEventStore
     {
+        /// <summary>
+        /// Save a collection of <see cref="IEvent">events</see>
+        /// </summary>
+        /// <param name="events"><see cref="IEvent">Events</see> to save</param>
         void Save(IEnumerable<EventEnvelope> events);
     }
 }

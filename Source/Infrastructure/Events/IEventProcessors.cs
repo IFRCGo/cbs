@@ -12,7 +12,7 @@ namespace Events
         /// <summary>
         /// Process an <see cref="IEvent"/> from a full <see cref="EventEnvelope"/>
         /// </summary>
-        /// <param name="@event"><see cref="EventEnvelope"/> holding the <see cref="IEvent"/> and more details</param>
+        /// <param name="event"><see cref="EventEnvelope"/> holding the <see cref="IEvent"/> and more details</param>
         void Process(EventEnvelope @event);
     }
 }
