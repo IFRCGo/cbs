@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Defines a system that is capable of publishing events
@@ -15,14 +15,14 @@ namespace Events
         /// Publish an event
         /// </summary>
         /// <param name="origin"></param>
-        /// <param name="@event"></param>
-        void Publish(EventOrigin origin, IEvent @event);
+        /// <param name="eventEnvelope"></param>
+        void Publish(EventOrigin origin, EventEnvelope eventEnvelope);
 
         /// <summary>
         /// Publish a set of events
         /// </summary>
         /// <param name="origin"></param>
-        /// <param name="@event"></param>
-        void Publish(EventOrigin origin, IEnumerable<IEvent> @event);
+        /// <param name="eventEnvelopes"></param>
+        void Publish(EventOrigin origin, IEnumerable<EventEnvelope> eventEnvelopes);
     }
 }

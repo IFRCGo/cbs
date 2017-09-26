@@ -27,6 +27,10 @@ packages
 node_modules
 yarn.lock
 
+# Other #
+#########
+Source/Artifacts
+
 # OS generated files #
 ######################
 .DS_Store

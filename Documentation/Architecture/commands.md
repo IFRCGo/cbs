@@ -33,10 +33,11 @@ This would represent something that is very familiar to developers coming from
 an API perspective.
 
 ```csharp
-public class Shopping : Controller
+[Route("/api/Shopping/[controller])]
+public class CartController : Controller
 {
-    [Route("/api/Shopping/Cart"), HttpPut]
-    public void AddProductToCart(Guid product, int quantity)
+    [HttpPut("{product}")]
+    public void AddProductToCart(Guid product, [FromBody]int quantity)
     {
         // Code to handle the command...
     }
@@ -50,7 +51,7 @@ This would require you to secure the object and validate the properties on the o
 which would cause you to have to implement infrastructure to deal with this.
 
 ```csharp
-public class AddProductToCart
+public class AddItemToCart
 {
     public Guid Product { get; set; }
     public int Quantity { get; set; }

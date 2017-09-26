@@ -4,20 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
-    /// An implementation of <see cref="IEventPublisher"/>
+    /// Represents a null impementation of <see cref="IEventPublisher"/>
     /// </summary>
-    public class EventPublisher : IEventPublisher
+    public class NullEventPublisher : IEventPublisher
     {
         /// <inheritdoc/>
-        public void Publish(EventOrigin origin, IEvent @event)
+        public void Publish(EventOrigin origin, EventEnvelope eventEnvelope)
         {
         }
 
         /// <inheritdoc/>
-        public void Publish(EventOrigin origin, IEnumerable<IEvent> @event)
+        public void Publish(EventOrigin origin, IEnumerable<EventEnvelope> eventEnvelopes)
         {
         }
     }

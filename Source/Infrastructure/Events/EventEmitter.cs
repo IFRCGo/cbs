@@ -7,14 +7,20 @@ using System.Collections.Generic;
 namespace Infrastructure.Events
 {
     /// <summary>
-    /// Defines a store for holding <see cref="IEvent">events</see>
+    /// Represents an implementation of <see cref="IEventEmitter"/>
     /// </summary>
-    public interface IEventStore
+    public class EventEmitter : IEventEmitter
     {
-        /// <summary>
-        /// Save a collection of <see cref="IEvent">events</see>
-        /// </summary>
-        /// <param name="events"><see cref="IEvent">Events</see> to save</param>
-        void Save(IEnumerable<EventEnvelope> events);
+        /// <inheritdoc/>
+        public void Emit(EventOrigin origin, IEvent @event)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public void Emit(EventOrigin origin, IEnumerable<IEvent> events)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
