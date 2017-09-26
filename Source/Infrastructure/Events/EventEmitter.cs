@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using doLittle.Collections;
 
 namespace Infrastructure.Events
@@ -12,24 +14,28 @@ namespace Infrastructure.Events
     /// </summary>
     public class EventEmitter : IEventEmitter
     {
-        readonly IEventSequenceNumberGenerator _eventSequenceNumberGenerator;
         readonly IEventPublisher _eventPublisher;
         readonly IEventProcessors _eventProcessors;
+        readonly IEventEnvelopeProducer _eventEnvelopeProducer;
+        private readonly IEventStore _eventStore;
 
         /// <summary>
         /// Initializes a new instance of <see cref="EventEmitter"/>
         /// </summary>
-        /// <param name="eventSequenceNumberGenerator"></param>
+        /// <param name="eventEnvelopeProducer"></param>
         /// <param name="eventPublisher"></param>
+        /// <param name="eventStore"></param>
         /// <param name="eventProcessors"></param>
         public EventEmitter(
-            IEventSequenceNumberGenerator eventSequenceNumberGenerator,
+            IEventEnvelopeProducer eventEnvelopeProducer,
             IEventPublisher eventPublisher,
+            IEventStore eventStore,
             IEventProcessors eventProcessors)
         {
-            _eventSequenceNumberGenerator = eventSequenceNumberGenerator;
             _eventPublisher = eventPublisher;
             _eventProcessors = eventProcessors;
+            _eventEnvelopeProducer = eventEnvelopeProducer;
+            _eventStore = eventStore;
         }
 
         /// <inheritdoc/>
@@ -41,12 +47,13 @@ namespace Infrastructure.Events
         /// <inheritdoc/>
         public void Emit(EventOrigin origin, IEnumerable<IEvent> events)
         {
-            events.ForEach(@event =>
-            {
-                var sequenceNumber = _eventSequenceNumberGenerator.NextFor(origin, @event);
-                
+            var envelopes = events.Select(@event => _eventEnvelopeProducer.CreateFor(origin, @event));
+            _eventStore.Save(envelopes);
 
-            });
+            Parallel.Invoke(
+                () => _eventPublisher.Publish(envelopes),
+                () => _eventProcessors.Process(envelopes)
+            );
         }
     }
 }
