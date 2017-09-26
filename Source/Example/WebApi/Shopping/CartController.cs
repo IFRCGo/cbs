@@ -13,7 +13,7 @@ using System;
 
 namespace WebApi.Shopping
 {
-    [Route("api/Shopping/[controller]")]
+    [Route("api/shopping/cart")]
     public class CartController : Controller
     {
         public static readonly EventOrigin Origin = EventOrigin.FromStrings("Shopping", "Cart");
@@ -26,7 +26,7 @@ namespace WebApi.Shopping
             ILogger<CartController> logger)
         {
             _eventEmitter = eventEmitter;
-            _logger = logger;   
+            _logger = logger;
         }
 
 
@@ -36,21 +36,22 @@ namespace WebApi.Shopping
             return new Cart();
         }
 
-        
-        [HttpPost, Route("Add")]
+
+        [HttpPost("items")]
         public void Add([FromBody]AddItemToCart command)
         {
             // Get the cart ID for current user 
 
             // Get current price for item
 
-            _eventEmitter.Emit(Origin, new ItemAddedToCart {
+            _eventEmitter.Emit(Origin, new ItemAddedToCart
+            {
                 Cart = Guid.NewGuid(),
                 Product = command.Product
             });
         }
 
-        [HttpPost, Route("Remove/{id}")]
+        [HttpDelete("items/{id}")]
         public void Remove(Guid id)
         {
 
