@@ -1,6 +1,6 @@
 using System;
 
-namespace Domain
+namespace Infrastructure.Domain
 {
     /// <summary>
     /// Exception that gets thrown when the format of a feature path is invalid

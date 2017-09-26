@@ -1,11 +1,12 @@
 using System;
+using Infrastructure.Events;
 
 namespace Events.Shopping
 {
-    public class ItemAddedToCart
+    public class ItemAddedToCart : IEvent
     {
-        public Guid CartId { get; set; }
-        public Guid ProductId { get; set; }
+        public Guid Cart { get; set; }
+        public Guid Product { get; set; }
         public int Quantity { get; set; }
         public decimal GrossPrice { get; set; }
         public decimal NetPrice { get; set; }

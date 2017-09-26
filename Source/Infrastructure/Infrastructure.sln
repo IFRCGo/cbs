@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{94B193E9-D91D-4100-82C5-BDA6D8B6BB74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Infrastructure.Events.csproj", "{94B193E9-D91D-4100-82C5-BDA6D8B6BB74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Specs", "Events.Specs\Events.Specs.csproj", "{03D6F7EF-79F9-401E-8504-FD7A6B654090}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Specs", "Events.Specs\Infrastructure.Events.Specs.csproj", "{03D6F7EF-79F9-401E-8504-FD7A6B654090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{FE55B5CE-1FB1-4DDA-8051-C8CAE0A269C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Infrastructure.Domain.csproj", "{FE55B5CE-1FB1-4DDA-8051-C8CAE0A269C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Specs", "Domain.Specs\Domain.Specs.csproj", "{71C7FF3B-D180-406C-8034-C1EA21EFBC89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Specs", "Domain.Specs\Infrastructure.Domain.Specs.csproj", "{71C7FF3B-D180-406C-8034-C1EA21EFBC89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.AspNetCore", "FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj", "{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +74,17 @@ Global
 		{71C7FF3B-D180-406C-8034-C1EA21EFBC89}.Release|x64.Build.0 = Release|x64
 		{71C7FF3B-D180-406C-8034-C1EA21EFBC89}.Release|x86.ActiveCfg = Release|x86
 		{71C7FF3B-D180-406C-8034-C1EA21EFBC89}.Release|x86.Build.0 = Release|x86
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|x64.ActiveCfg = Debug|x64
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|x64.Build.0 = Debug|x64
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|x86.ActiveCfg = Debug|x86
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Debug|x86.Build.0 = Debug|x86
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|x64.ActiveCfg = Release|x64
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|x64.Build.0 = Release|x64
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|x86.ActiveCfg = Release|x86
+		{9173C83E-7ECC-4EC8-807A-DAC34FA60DF7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,7 @@
 # CBS Example backend application
 
+[![Build status](https://ci.appveyor.com/api/projects/status/aymmq31lpjdsxk6v?svg=true)](https://ci.appveyor.com/project/karolikl/cbs) 
+
 ## Prerequisites
 
 .NET Core 2.0 SDK and runtime   

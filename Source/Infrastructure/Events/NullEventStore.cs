@@ -3,30 +3,19 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
+using Infrastructure.Events;
 
 namespace Infrastructure.Events
 {
     /// <summary>
-    /// Represents a null impementation of <see cref="IEventPublisher"/>
+    /// Represents an implementation of <see cref="IEventStore"/>
     /// </summary>
-    public class NullEventPublisher : IEventPublisher
+    public class NullEventStore : IEventStore
     {
         /// <inheritdoc/>
-        public void Publish(EventEnvelope eventEnvelope)
+        public void Save(IEnumerable<EventEnvelope> events)
         {
-        }
-
-        /// <inheritdoc/>
-        public void Publish(IEnumerable<EventEnvelope> eventEnvelopes)
-        {
+            
         }
     }
 }
-
-
-
-/*
-
-The doLittle Platform helps CDOs of larger enterprises to digitally transform and grow their business by reducing total cost of building software while
-gaining domain knowledge and meeting market requirements
- */

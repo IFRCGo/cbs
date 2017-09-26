@@ -1,7 +1,7 @@
 using System;
 using Machine.Specifications;
 
-namespace Domain.Specs.for_Feature
+namespace Infrastructure.Domain.Specs.for_Feature
 {
     public class when_creating_with_unwanted_separators
     {
