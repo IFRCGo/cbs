@@ -34,7 +34,7 @@ namespace Web.Shopping
         }
         
         [HttpPost, Route("Add")]
-        public void Add(AddItemToCart command)
+        public void Add([FromBody]AddItemToCart command)
         {
 
             //_eventEmitter.Emit()

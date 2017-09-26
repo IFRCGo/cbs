@@ -8,6 +8,7 @@ using doLittle.Collections;
 using doLittle.IO;
 using doLittle.Logging;
 using doLittle.Types;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +23,7 @@ namespace Web
     public class Startup
     {
         ILoggerFactory _loggerFactory;
+        IEnumerable<Assembly> _assemblies;
 
         public Startup(ILoggerFactory loggerFactory)
         {
@@ -29,11 +31,6 @@ namespace Web
         }
 
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
-
-        public void ConfigureContainer(ContainerBuilder builder)
         {
             var logAppenders = LoggingConfigurator.DiscoverAndConfigure(_loggerFactory);
             doLittle.Logging.ILogger logger = new Logger(logAppenders);
@@ -54,12 +51,24 @@ namespace Web
                 new AssemblyFilters(assembliesConfiguration),
                 new AssemblyUtility(),
                 assemblySpecifiers);
-            var assemblies = assemblyProvider.GetAll();
+            _assemblies = assemblyProvider.GetAll();
 
-            builder.RegisterInstance(assemblyProvider).As<IAssemblyProvider>();
-            builder.RegisterInstance(new Assemblies(assemblyProvider)).As<IAssemblies>();
+            services.AddSingleton<IAssemblyProvider>(assemblyProvider);
+            services.AddSingleton<IAssemblies>(new Assemblies(assemblyProvider));
 
-            assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
+            //builder.RegisterInstance(assemblyProvider).As<IAssemblyProvider>();
+            //builder.RegisterInstance(new Assemblies(assemblyProvider)).As<IAssemblies>();
+
+            services
+                .AddMvc()
+                .AddFluentValidation(_ => {
+                    _assemblies.ForEach(assembly => _.RegisterValidatorsFromAssembly(assembly));
+                });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            _assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -22,5 +22,6 @@
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Events\Events.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
   </ItemGroup>
 </Project>
