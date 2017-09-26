@@ -44,7 +44,7 @@ namespace Domain
 
         void ThrowIfInvalidFormat(string path)
         {
-            var regex = new Regex("([a-zA-Z/]+)+");
+            var regex = new Regex("([a-zA-Z/]+){1}");
             var result = regex.Match(path);
 
             Console.WriteLine("Result : "+result.Success);
