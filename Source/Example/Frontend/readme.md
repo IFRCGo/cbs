@@ -8,7 +8,7 @@
 
 ## Local build & run
 
-(Active path: `cbs\source\example-frontend`)
+(Active path: `cbs/Source/Example/Frontend`)
 
 Restore dependencies
 
@@ -20,7 +20,7 @@ Build and host locally
 
 ## Scaffold new Angular components
 
-(Active path: `cbs\source\example-frontend`)
+(Active path: `cbs/Source/Example/Frontend`)
 
 Create new component
 
