@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'cbs-root',
-  template: `
-    <p>
-      Welcome to CBS!
-    </p>
-  `,
-  styles: []
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'cbs';
