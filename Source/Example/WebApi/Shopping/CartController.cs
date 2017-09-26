@@ -5,19 +5,26 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read.Shopping;
 using Infrastructure.Events;
+using Domain.Shopping;
+using Read.Shopping;
 
 namespace Web.Shopping
 {
     [Route("api/Shopping/[controller]")]
     public class CartController : Controller
     {
+        //public static readonly EventOrigin Origin = EventOrigin.
+
+        readonly IEventEmitter _eventEmitter;
+        readonly ILogger<CartController> _logger;
+
         public CartController(
             IEventEmitter eventEmitter,
             ILogger<CartController> logger)
         {
-
+            _eventEmitter = eventEmitter;
+            _logger = logger;   
         }
 
         [HttpGet]
@@ -26,10 +33,11 @@ namespace Web.Shopping
             return new Cart();
         }
         
-        
         [HttpPost, Route("Add")]
         public void Add(AddItemToCart command)
         {
+
+            //_eventEmitter.Emit()
         }
 
         [HttpPost, Route("Remove/{id}")]
