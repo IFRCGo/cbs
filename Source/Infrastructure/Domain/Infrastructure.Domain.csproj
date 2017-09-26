@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Infrastructure.Domain</AssemblyName>
   </PropertyGroup>
+
+  <Import Project="../../../Build/MSBuild/default.props" />
 
 </Project>

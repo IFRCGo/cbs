@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Defines a system that is capable of publishing events

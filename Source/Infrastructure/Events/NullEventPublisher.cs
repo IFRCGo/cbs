@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents a null impementation of <see cref="IEventPublisher"/>

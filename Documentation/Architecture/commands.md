@@ -51,7 +51,7 @@ This would require you to secure the object and validate the properties on the o
 which would cause you to have to implement infrastructure to deal with this.
 
 ```csharp
-public class AddProductToCart
+public class AddItemToCart
 {
     public Guid Product { get; set; }
     public int Quantity { get; set; }

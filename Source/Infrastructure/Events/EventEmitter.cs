@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents an implementation of <see cref="IEventEmitter"/>

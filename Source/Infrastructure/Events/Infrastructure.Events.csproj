@@ -6,7 +6,7 @@
   <Import Project="../../../Build/MSBuild/default.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

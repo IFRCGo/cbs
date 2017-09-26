@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using Domain;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents the origin of an <see cref="IEvent"/>

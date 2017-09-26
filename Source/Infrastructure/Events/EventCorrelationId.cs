@@ -5,7 +5,7 @@
 using System;
 using doLittle.Concepts;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents the unique identifier for an event correlation

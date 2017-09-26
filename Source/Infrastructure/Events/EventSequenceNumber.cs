@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using doLittle.Concepts;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents a sequence number for an event

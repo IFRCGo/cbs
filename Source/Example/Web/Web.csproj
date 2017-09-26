@@ -20,5 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
   </ItemGroup>
 </Project>

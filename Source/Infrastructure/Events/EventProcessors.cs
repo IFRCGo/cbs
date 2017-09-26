@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using doLittle.Types;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents an implementation of <see cref="IEventProcessors"/>
