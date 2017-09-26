@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Infrastructure.Events;
 
 namespace Web
 {
@@ -68,6 +69,10 @@ namespace Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterType<NullEventStore>().As<IEventStore>();
+            builder.RegisterType<NullEventPublisher>().As<IEventPublisher>();
+            builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
+
             _assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
         }
 
