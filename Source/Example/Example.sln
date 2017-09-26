@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{E6F0A310-CAA3-46F0-88B5-8FD364554EE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Events", "..\Infrastructure\Events\Events.csproj", "{745C7A8B-AF47-40FD-A90B-43A315A5922D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Events", "..\Infrastructure\Events\Infrastructure.Events.csproj", "{745C7A8B-AF47-40FD-A90B-43A315A5922D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Domain", "..\Infrastructure\Domain\Domain.csproj", "{0473B6CE-71F6-4536-8CE8-FBC606029D20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Domain", "..\Infrastructure\Domain\Infrastructure.Domain.csproj", "{0473B6CE-71F6-4536-8CE8-FBC606029D20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D2CE4A3D-F053-4CE1-94F8-ED43460D3CEA}"
 EndProject

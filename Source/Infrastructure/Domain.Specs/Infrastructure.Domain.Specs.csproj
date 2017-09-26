@@ -8,7 +8,7 @@
     <Import Project="../../../Build/MSBuild/specs.props"/>
 
     <ItemGroup>
-        <ProjectReference Include="..\Domain\Domain.csproj" />
+        <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj" />
     </ItemGroup>
 
 </Project>
