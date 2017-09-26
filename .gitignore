@@ -38,3 +38,7 @@ Source/Artifacts
 ehthumbs.db
 Icon?
 Thumbs.db
+
+#Build tools #
+##############
+Build/tools/
