@@ -1,25 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Autofac;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
 using doLittle.Collections;
-using doLittle.IO;
 using doLittle.Logging;
 using doLittle.Types;
 using FluentValidation.AspNetCore;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.DotNet.PlatformAbstractions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
-using Serilog;
-using Infrastructure.Events;
+using System.Collections.Generic;
+using System.Reflection;
 
-namespace Web
+namespace WebApi
 {
     public class Startup
     {
