@@ -55,6 +55,7 @@ namespace WebApi
             //builder.RegisterInstance(new Assemblies(assemblyProvider)).As<IAssemblies>();
 
             services
+                .AddCors()
                 .AddMvc()
                 .AddFluentValidation(_ => {
                     _assemblies.ForEach(assembly => _.RegisterValidatorsFromAssembly(assembly));
@@ -78,6 +79,12 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            // Relaxed CORS policy for example only
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .AllowCredentials());
             app.UseMvc();
         }
     }
