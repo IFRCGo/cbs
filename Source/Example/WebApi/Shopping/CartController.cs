@@ -36,6 +36,7 @@ namespace Web.Shopping
         [HttpPost, Route("Add")]
         public void Add([FromBody]AddItemToCart command)
         {
+            // Get current price for item
 
             //_eventEmitter.Emit()
         }

@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
+using doLittle.Collections;
 
 namespace Infrastructure.Events
 {
@@ -11,16 +12,41 @@ namespace Infrastructure.Events
     /// </summary>
     public class EventEmitter : IEventEmitter
     {
+        readonly IEventSequenceNumberGenerator _eventSequenceNumberGenerator;
+        readonly IEventPublisher _eventPublisher;
+        readonly IEventProcessors _eventProcessors;
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="EventEmitter"/>
+        /// </summary>
+        /// <param name="eventSequenceNumberGenerator"></param>
+        /// <param name="eventPublisher"></param>
+        /// <param name="eventProcessors"></param>
+        public EventEmitter(
+            IEventSequenceNumberGenerator eventSequenceNumberGenerator,
+            IEventPublisher eventPublisher,
+            IEventProcessors eventProcessors)
+        {
+            _eventSequenceNumberGenerator = eventSequenceNumberGenerator;
+            _eventPublisher = eventPublisher;
+            _eventProcessors = eventProcessors;
+        }
+
         /// <inheritdoc/>
         public void Emit(EventOrigin origin, IEvent @event)
         {
-            throw new System.NotImplementedException();
+            Emit(origin, new[] { @event });
         }
 
         /// <inheritdoc/>
         public void Emit(EventOrigin origin, IEnumerable<IEvent> events)
         {
-            throw new System.NotImplementedException();
+            events.ForEach(@event =>
+            {
+                var sequenceNumber = _eventSequenceNumberGenerator.NextFor(origin, @event);
+                
+
+            });
         }
     }
 }

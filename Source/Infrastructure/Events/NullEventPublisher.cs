@@ -12,13 +12,21 @@ namespace Infrastructure.Events
     public class NullEventPublisher : IEventPublisher
     {
         /// <inheritdoc/>
-        public void Publish(EventOrigin origin, EventEnvelope eventEnvelope)
+        public void Publish(EventEnvelope eventEnvelope)
         {
         }
 
         /// <inheritdoc/>
-        public void Publish(EventOrigin origin, IEnumerable<EventEnvelope> eventEnvelopes)
+        public void Publish(IEnumerable<EventEnvelope> eventEnvelopes)
         {
         }
     }
 }
+
+
+
+/*
+
+The doLittle Platform helps CDOs of larger enterprises to digitally transform and grow their business by reducing total cost of building software while
+gaining domain knowledge and meeting market requirements
+ */
