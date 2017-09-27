@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Infrastructure.Events;
+using Autofac.Features.ResolveAnything;
 
 namespace Web
 {
@@ -47,23 +48,27 @@ namespace Web
             assemblySpecifiers.SpecifyUsingSpecifiersFrom(executingAssembly);
 
             var assembliesConfiguration = new AssembliesConfiguration(assembliesConfigurationBuilder.RuleBuilder);
+            var assemblyFilters = new AssemblyFilters(assembliesConfiguration);
             var assemblyProvider = new AssemblyProvider(
                 new ICanProvideAssemblies[] {new DefaultAssemblyProvider(logger)},
-                new AssemblyFilters(assembliesConfiguration),
+                assemblyFilters,
                 new AssemblyUtility(),
                 assemblySpecifiers);
             _assemblies = assemblyProvider.GetAll();
 
+            services.AddSingleton<IAssemblyFilters>(assemblyFilters);
+            services.AddSingleton<AssembliesConfiguration>(assembliesConfiguration);
             services.AddSingleton<IAssemblyProvider>(assemblyProvider);
             services.AddSingleton<IAssemblies>(new Assemblies(assemblyProvider));
+            services.AddSingleton(typeof(doLittle.DependencyInversion.IContainer), typeof(WebApi.Container));
 
             //builder.RegisterInstance(assemblyProvider).As<IAssemblyProvider>();
             //builder.RegisterInstance(new Assemblies(assemblyProvider)).As<IAssemblies>();
 
             services
                 .AddMvc()
-                .AddFluentValidation(_ => {
-                    _assemblies.ForEach(assembly => _.RegisterValidatorsFromAssembly(assembly));
+                .AddFluentValidation(fv => {
+                    _assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
                 });
         }
 
@@ -72,8 +77,11 @@ namespace Web
             builder.RegisterType<NullEventStore>().As<IEventStore>();
             builder.RegisterType<NullEventPublisher>().As<IEventPublisher>();
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
+            builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
 
             _assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
+
+            builder.RegisterSource(new WebApi.EventProcessorRegistrationSource());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
