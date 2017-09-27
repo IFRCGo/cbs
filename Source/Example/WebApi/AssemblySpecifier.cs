@@ -1,7 +1,7 @@
 using doLittle.Assemblies;
 using doLittle.Assemblies.Rules;
 
-namespace Web
+namespace WebApi
 {
     public class AssemblySpecifier : ICanSpecifyAssemblies
     {

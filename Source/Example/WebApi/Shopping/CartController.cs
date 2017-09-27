@@ -2,17 +2,18 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using System;
+
+using Domain.Shopping;
+using Events.Shopping;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Events;
-using Domain.Shopping;
 using Read.Shopping;
-using Events.Shopping;
+using System;
 
-namespace Web.Shopping
+namespace WebApi.Shopping
 {
-    [Route("api/Shopping/[controller]")]
+    [Route("api/shopping/cart")]
     public class CartController : Controller
     {
         public static readonly EventOrigin Origin = EventOrigin.FromStrings("Shopping", "Cart");
@@ -25,7 +26,7 @@ namespace Web.Shopping
             ILogger<CartController> logger)
         {
             _eventEmitter = eventEmitter;
-            _logger = logger;   
+            _logger = logger;
         }
 
 
@@ -35,21 +36,22 @@ namespace Web.Shopping
             return new Cart();
         }
 
-        
-        [HttpPost, Route("Add")]
+
+        [HttpPost("items")]
         public void Add([FromBody]AddItemToCart command)
         {
             // Get the cart ID for current user 
 
             // Get current price for item
 
-            _eventEmitter.Emit(Origin, new ItemAddedToCart {
+            _eventEmitter.Emit(Origin, new ItemAddedToCart
+            {
                 Cart = Guid.NewGuid(),
                 Product = command.Product
             });
         }
 
-        [HttpPost, Route("Remove/{id}")]
+        [HttpDelete("items/{id}")]
         public void Remove(Guid id)
         {
 

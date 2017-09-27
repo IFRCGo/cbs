@@ -1,26 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
 using doLittle.Collections;
-using doLittle.IO;
 using doLittle.Logging;
 using doLittle.Types;
 using FluentValidation.AspNetCore;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.DotNet.PlatformAbstractions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Infrastructure.Events;
-using Autofac.Features.ResolveAnything;
 
-namespace Web
+namespace WebApi
 {
     public class Startup
     {
@@ -66,6 +60,7 @@ namespace Web
             //builder.RegisterInstance(new Assemblies(assemblyProvider)).As<IAssemblies>();
 
             services
+                .AddCors()
                 .AddMvc()
                 .AddFluentValidation(fv => {
                     _assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
@@ -92,6 +87,12 @@ namespace Web
                 app.UseDeveloperExceptionPage();
             }
 
+            // Relaxed CORS policy for example only
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .AllowCredentials());
             app.UseMvc();
         }
     }

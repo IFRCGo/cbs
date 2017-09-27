@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Serilog;
-using System;
 using Serilog.Events;
+using System;
 
-namespace Web
+namespace WebApi
 {
     public class Program
     {
