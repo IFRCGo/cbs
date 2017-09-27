@@ -13,6 +13,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 ## .NET Core
 
 The backend code is written using C# and .NET. below are the best choices for getting up and running fast.
+Download and install the [.NET Core 2.0 SDK and runtime](https://www.microsoft.com/net/download/core).
 
 ### Visual Studio Code
 
@@ -29,3 +30,7 @@ production environment pretty easily as things are packaged up and ready to be u
 
 [MongoChef / Studio3T](https://studio3t.com) is a great tool - supports cross platform.
 For using this with Azure and CosmosDB, there is a write-up [here](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-mongochef)
+
+## Terminal
+
+Any terminal and git. To get quickly up and running, suggested options are [cmder]([http://cmder.net/]) on Windows and [iTerm2](https://www.iterm2.com/downloads.html) on Mac.
