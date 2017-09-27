@@ -24,3 +24,8 @@ The backend code is written using C# and .NET. below are the best choices for ge
 
 Everything is being developed with Docker in mind, and in fact you can get something that resembles the
 production environment pretty easily as things are packaged up and ready to be used.
+
+## MongoDB
+
+[MongoChef](https://studio3t.com) is a great tool - supports cross platform.
+For using this with Azure and CosmosDB, there is a write-up [here](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-mongochef)
