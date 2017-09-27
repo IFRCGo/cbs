@@ -2,6 +2,8 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+using System;
+
 namespace Infrastructure.Events
 {
     /// <summary>
@@ -12,7 +14,7 @@ namespace Infrastructure.Events
         /// <inheritdoc/>
         public EventEnvelope CreateFor(EventOrigin origin, IEvent @event)
         {
-            return new EventEnvelope();
+            return new EventEnvelope(0,Guid.NewGuid(), origin, @event);
         }
     }
 }
