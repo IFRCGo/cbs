@@ -2,7 +2,6 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using Domain.Shopping;
 using Events.Shopping;
 using Infrastructure.Events;
@@ -18,15 +17,22 @@ namespace WebApi.Shopping
     {
         public static readonly EventOrigin Origin = EventOrigin.FromStrings("Shopping", "Cart");
 
+        readonly ICarts _carts;
         readonly IEventEmitter _eventEmitter;
+        readonly IPricing _pricing;
         readonly ILogger<CartController> _logger;
 
         public CartController(
+            ICarts carts,
+            IPricing pricing,
             IEventEmitter eventEmitter,
             ILogger<CartController> logger)
         {
+            _carts = carts;
             _eventEmitter = eventEmitter;
+            _pricing = pricing;
             _logger = logger;
+            _pricing = pricing;
         }
 
 
@@ -40,14 +46,16 @@ namespace WebApi.Shopping
         [HttpPost("items")]
         public void Add([FromBody]AddItemToCart command)
         {
-            // Get the cart ID for current user 
-
-            // Get current price for item
+            var cartId = _carts.GetCartIdForCurrentUser();
+            var price = _pricing.GetForProduct(command.Product);
 
             _eventEmitter.Emit(Origin, new ItemAddedToCart
             {
-                Cart = Guid.NewGuid(),
-                Product = command.Product
+                Cart = cartId,
+                Product = command.Product,
+                Quantity = command.Quantity,
+                NetItemPrice = price.Net,
+                GrossItemPrice = price.Gross
             });
         }
 

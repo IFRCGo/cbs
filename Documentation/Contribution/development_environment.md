@@ -27,5 +27,5 @@ production environment pretty easily as things are packaged up and ready to be u
 
 ## MongoDB
 
-[MongoChef](https://studio3t.com) is a great tool - supports cross platform.
+[MongoChef / Studio3T](https://studio3t.com) is a great tool - supports cross platform.
 For using this with Azure and CosmosDB, there is a write-up [here](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-mongochef)

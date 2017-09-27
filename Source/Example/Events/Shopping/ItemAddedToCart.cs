@@ -8,7 +8,7 @@ namespace Events.Shopping
         public Guid Cart { get; set; }
         public Guid Product { get; set; }
         public int Quantity { get; set; }
-        public decimal GrossPrice { get; set; }
-        public decimal NetPrice { get; set; }
+        public decimal GrossItemPrice { get; set; }
+        public decimal NetItemPrice { get; set; }
     }
 }
