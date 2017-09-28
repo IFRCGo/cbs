@@ -1,6 +1,7 @@
 using doLittle.Collections;
 using FluentValidation.AspNetCore;
 using Infrastructure.AspNet;
+using Infrastructure.AspNet.ConnectionStrings;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -21,7 +22,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Internals.Assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
                 });
-
+;
+            services.Configure<ConnectionStringsOptions>(Internals.Configuration);
                 
             services.AddSwaggerGen(c => 
                 {

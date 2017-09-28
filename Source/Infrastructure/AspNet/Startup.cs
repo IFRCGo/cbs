@@ -5,6 +5,8 @@ using doLittle.Collections;
 using doLittle.Types;
 using Infrastructure.Application;
 using Infrastructure.Events;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.AspNet
@@ -12,8 +14,14 @@ namespace Infrastructure.AspNet
     public class Startup
     {
 
-        public Startup(ILoggerFactory loggerFactory)
+        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            Internals.Configuration = builder.Build();
+            
             Internals.LoggerFactory = loggerFactory;
         }
         
