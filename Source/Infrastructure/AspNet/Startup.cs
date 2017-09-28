@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Reflection;
+using AspNet.MongoDB;
 using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
@@ -14,17 +13,12 @@ namespace Infrastructure.AspNet
     public class Startup
     {
 
-        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env)
+        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            Internals.Configuration = builder.Build();
-            
+            Internals.Configuration = configuration;
             Internals.LoggerFactory = loggerFactory;
         }
-        
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterInstance<ApplicationInformation>(new ApplicationInformation(Internals.BoundedContext));
@@ -36,18 +30,8 @@ namespace Infrastructure.AspNet
 
             Internals.Assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
 
-            /*
-            var settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://127.0.0.1:27017/shopping"));
-            var mongoClient = new MongoClient(settings);
-            var database = mongoClient.GetDatabase("test");
-            var collection = database.GetCollection<Cart>("Cart");
-            
-            collection.InsertOne(new Cart {
-                Id = System.Guid.NewGuid()
-            });
-            */
-
             builder.RegisterSource(new EventProcessorRegistrationSource());
+            builder.RegisterSource(new MongoDBRegistrationSource());
         }
     }
 }
