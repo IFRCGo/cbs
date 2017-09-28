@@ -16,7 +16,7 @@ Diving into the architecture within a bounded context, you'll find the following
 
 ## The details
 
-For more details on the different parts and design decisions behind and more importanly; **the why**, please read the following:
+For more details on the different parts and design decisions behind and more importantly; **the why**, please read the following:
 
 * [Glossary](./glossary.md)
 * [Principles](./principles.md)
@@ -36,3 +36,4 @@ For more details on the different parts and design decisions behind and more imp
 * [Partitioning Strategy](./partitioning_strategy.md)
 * [Containers](./containers.md)
 * [Kubernetes](./kubernetes.md)
+* [APIs](./apis.md)
