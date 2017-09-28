@@ -5,14 +5,14 @@
    "version": "0.2.0",
    "configurations": [
         {
-            "name": ".NET Core Launch (WebApi)",
+            "name": ".NET Core Launch (Web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/Catalog/WebApi/bin/Debug/netcoreapp2.0/WebApi.dll",
+            "program": "${workspaceRoot}/Catalog/Web/bin/Debug/netcoreapp2.0/Web.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/Catalog/WebApi",
+            "cwd": "${workspaceRoot}/Catalog/Web",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

@@ -1,12 +1,12 @@
 using Infrastructure.AspNet;
 
-namespace WebApi
+namespace Web
 {
     public class Program
     {
         public static int Main(string[] args)
         {
-            return Initialization.BuildAndRun<Startup>("Shopping", args);
+            return Initialization.BuildAndRun<Startup>("Catalog", args);
         }
     }
 }

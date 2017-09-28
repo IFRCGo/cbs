@@ -30,6 +30,8 @@ namespace Microsoft.AspNetCore.Builder
                 });
             }
 
+            app.UseStaticFiles();
+
 
             return app;
         }
