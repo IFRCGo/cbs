@@ -1,6 +1,6 @@
-using Events.Shopping;
+using Events;
 
-namespace Read.Shopping
+namespace Read
 {
     public class CartEventProcessors : Infrastructure.Events.IEventProcessor
     {

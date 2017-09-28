@@ -2,16 +2,16 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Domain.Shopping;
-using Events.Shopping;
-using Infrastructure.Events;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read.Shopping;
-using System;
 using Infrastructure.Application;
+using Infrastructure.Events;
+using Read;
+using Domain;
+using Events;
 
-namespace WebApi.Shopping
+namespace WebApi
 {
     [Route("api/shopping/cart")]
     public class CartController : Controller

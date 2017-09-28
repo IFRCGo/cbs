@@ -1,4 +1,4 @@
-namespace Read.Shopping
+namespace Read
 {
     public class Price
     {

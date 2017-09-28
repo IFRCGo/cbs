@@ -1,7 +1,7 @@
 using System;
 using Infrastructure.Events;
 
-namespace Events.Shopping
+namespace Events
 {
     public class ItemAddedToCart : IEvent
     {

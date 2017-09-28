@@ -1,6 +1,6 @@
 using System;
 
-namespace Read.Shopping
+namespace Read
 {
     public class CartLine
     {

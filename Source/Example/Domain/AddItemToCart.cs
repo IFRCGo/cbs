@@ -1,6 +1,6 @@
 using System;
 
-namespace Domain.Shopping
+namespace Domain
 {
     public class AddItemToCart
     {

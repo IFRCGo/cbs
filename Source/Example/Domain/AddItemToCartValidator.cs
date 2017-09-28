@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Domain.Shopping
+namespace Domain
 {
     public class AddItemToCartValidator : AbstractValidator<AddItemToCart>
     {

@@ -1,7 +1,7 @@
 using System;
 using MongoDB.Driver;
 
-namespace Read.Shopping
+namespace Read
 {
     public class Carts : ICarts
     {
