@@ -1,4 +1,4 @@
-import { AddItemToCart } from '../domain/shopping/addItemToCart';
+import { AddItemToCart } from '../domain/addItemToCart';
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
