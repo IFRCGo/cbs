@@ -14,4 +14,6 @@ To learn more about the different project to contribute to, read [here](./Docume
 
 Below are the steps you need to do to get started:
 
-1. [Development Tools](./Documentation/Contribution/development_environment.md)
+1. Get familiar with the [Architecture](./Documentation/Architecture/at_a_glance.md)
+1. Learn what [development tools](./Documentation/Contribution/development_environment.md) to use
+1. Follow the [getting started](./Documentation/Contribution/getting_started.md)
