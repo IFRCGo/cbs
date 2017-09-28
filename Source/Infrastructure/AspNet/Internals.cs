@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using Infrastructure.Application;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.AspNet
@@ -8,5 +9,6 @@ namespace Infrastructure.AspNet
     {
         public static ILoggerFactory LoggerFactory;
         public static IEnumerable<Assembly> Assemblies;
+        public static BoundedContext BoundedContext;
     }
 }

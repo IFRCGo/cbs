@@ -1,6 +1,10 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using System;
 
-namespace Infrastructure.Domain
+namespace Infrastructure.Application
 {
     /// <summary>
     /// Exception that gets thrown when the format of a feature path is invalid

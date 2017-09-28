@@ -9,13 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.Shopping;
 using System;
+using Infrastructure.Application;
 
 namespace WebApi.Shopping
 {
     [Route("api/shopping/cart")]
     public class CartController : Controller
     {
-        public static readonly EventOrigin Origin = EventOrigin.FromStrings("Shopping", "Cart");
+        public static readonly Feature Feature = "Cart";
 
         readonly ICarts _carts;
         readonly IEventEmitter _eventEmitter;
@@ -49,7 +50,7 @@ namespace WebApi.Shopping
             var cartId = _carts.GetCartIdForCurrentUser();
             var price = _pricing.GetForProduct(command.Product);
 
-            _eventEmitter.Emit(Origin, new ItemAddedToCart
+            _eventEmitter.Emit(Feature, new ItemAddedToCart
             {
                 Cart = cartId,
                 Product = command.Product,

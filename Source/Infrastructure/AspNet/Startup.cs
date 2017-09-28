@@ -3,6 +3,7 @@ using System.Reflection;
 using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
+using Infrastructure.Application;
 using Infrastructure.Events;
 using Microsoft.Extensions.Logging;
 
@@ -18,6 +19,8 @@ namespace Infrastructure.AspNet
         
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterInstance<ApplicationInformation>(new ApplicationInformation(Internals.BoundedContext));
+
             builder.RegisterType<NullEventStore>().As<IEventStore>();
             builder.RegisterType<NullEventPublisher>().As<IEventPublisher>();
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));

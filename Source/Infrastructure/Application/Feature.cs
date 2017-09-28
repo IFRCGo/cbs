@@ -5,7 +5,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Infrastructure.Domain
+namespace Infrastructure.Application
 {
     /// <summary>
     /// Represents a location within a <see cref="BoundedContext"/>

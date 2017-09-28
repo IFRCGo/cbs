@@ -17,6 +17,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0"/>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Infrastructure.Application.csproj"/>
     <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj"/>
     <ProjectReference Include="..\Events\Infrastructure.Events.csproj"/>
     <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj"/>

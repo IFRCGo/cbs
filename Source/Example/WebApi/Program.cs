@@ -6,7 +6,7 @@ namespace WebApi
     {
         public static int Main(string[] args)
         {
-            return Initialization.BuildAndRun<Startup>(args);
+            return Initialization.BuildAndRun<Startup>("Shopping", args);
         }
     }
 }
