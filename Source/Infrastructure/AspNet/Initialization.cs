@@ -10,7 +10,7 @@ namespace Infrastructure.AspNet
     public class Initialization
     {
         public static int BuildAndRun<TStartup>(string boundedContext, string[] args, Action<IWebHostBuilder> builderCallback = null, Action<LoggerConfiguration> loggerConfigurationCallback = null)
-            where TStartup:class
+            where TStartup : class
         {
             Internals.BoundedContext = boundedContext;
 
@@ -20,7 +20,7 @@ namespace Infrastructure.AspNet
                 .Enrich.FromLogContext()
                 .WriteTo.Console();
 
-            if( loggerConfigurationCallback != null ) loggerConfigurationCallback(loggerConfiguration);
+            if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 
             var logger = loggerConfiguration.CreateLogger();
 
@@ -34,8 +34,8 @@ namespace Infrastructure.AspNet
                     .UseStartup<TStartup>()
                     .UseSerilog();
 
-                if( builderCallback != null ) builderCallback(builder);
-                
+                if (builderCallback != null) builderCallback(builder);
+
                 var host = builder.Build();
                 host.Run();
                 return 0;

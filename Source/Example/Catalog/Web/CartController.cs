@@ -11,7 +11,7 @@ using Read;
 using Domain;
 using Events;
 
-namespace WebApi
+namespace Web
 {
     [Route("api/shopping/cart")]
     public class CartController : Controller

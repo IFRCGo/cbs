@@ -10,7 +10,7 @@ pull_requests:
 image: Visual Studio 2017
 
 environment:
-  CleanFolder: ../Source/Example/Catalog/WebApi/bin
+  CleanFolder: ../Source/Example/Catalog/Web/bin
   SolutionFolder: ../Source/Example/Catalog/Catalog.sln
 
 only_commits:
