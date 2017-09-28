@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Events\Events.csproj"/>
-    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj"/>
+    <ProjectReference Include="..\..\..\Infrastructure\Events\Infrastructure.Events.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4"/>

@@ -8,7 +8,7 @@
             "command": "dotnet",
             "args": [
                 "build",
-                "./WebApi",
+                "./Catalog/WebApi",
                 "--no-restore"
             ],
             "type": "process",

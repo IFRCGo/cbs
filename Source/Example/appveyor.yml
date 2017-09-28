@@ -10,12 +10,12 @@ pull_requests:
 image: Visual Studio 2017
 
 environment:
-  CleanFolder: ../Source/Example/Web/bin
-  SolutionFolder: ../Source/Example/Example.sln
+  CleanFolder: ../Source/Example/Catalog/WebApi/bin
+  SolutionFolder: ../Source/Example/Catalog/Catalog.sln
 
 only_commits:
   files:
-    - Source/Example/
+    - Source/Example/Catalog
 
 build_script:
 - ps: ./Build/build.ps1
