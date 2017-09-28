@@ -21,7 +21,8 @@ namespace Infrastructure.AspNet
                 "Serilog",
                 "WindowsBase",
                 "netstandard",
-                "MongoDB"
+                "MongoDB",
+                "Swashbuckle"
             );
         }
     }

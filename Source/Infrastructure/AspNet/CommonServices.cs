@@ -1,6 +1,7 @@
 using doLittle.Collections;
 using FluentValidation.AspNetCore;
 using Infrastructure.AspNet;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -19,6 +20,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddFluentValidation(fv =>
                 {
                     Internals.Assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
+                });
+
+                
+            services.AddSwaggerGen(c => 
+                {
+                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
                 });
 
             return services;

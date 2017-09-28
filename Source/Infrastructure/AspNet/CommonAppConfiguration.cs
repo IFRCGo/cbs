@@ -7,14 +7,10 @@ namespace Microsoft.AspNetCore.Builder
 {
     public static class CommonAppConfiguration
     {
-        
+
 
         public static IApplicationBuilder UseCommon(this IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             // Relaxed CORS policy for example only
             app.UseCors(builder => builder
@@ -23,9 +19,20 @@ namespace Microsoft.AspNetCore.Builder
                 .AllowAnyOrigin()
                 .AllowCredentials());
             app.UseMvc();
+            app.UseSwagger();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
+            }
+
 
             return app;
         }
-        
+
     }
 }
