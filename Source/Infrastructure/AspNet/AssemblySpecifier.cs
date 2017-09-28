@@ -1,7 +1,7 @@
 using doLittle.Assemblies;
 using doLittle.Assemblies.Rules;
 
-namespace WebApi
+namespace Infrastructure.AspNet
 {
     public class AssemblySpecifier : ICanSpecifyAssemblies
     {
@@ -20,7 +20,8 @@ namespace WebApi
                 "SOS",
                 "Serilog",
                 "WindowsBase",
-                "netstandard"
+                "netstandard",
+                "MongoDB"
             );
         }
     }

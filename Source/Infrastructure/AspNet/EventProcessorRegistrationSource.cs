@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac.Builder;
 using Autofac.Core;
-using Autofac.Core.Registration;
 using Infrastructure.Events;
 
-namespace WebApi
+namespace Infrastructure.AspNet
 {
     public class EventProcessorRegistrationSource : IRegistrationSource
     {

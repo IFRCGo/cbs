@@ -1,9 +1,16 @@
 using System;
+using MongoDB.Driver;
 
 namespace Read.Shopping
 {
     public class Carts : ICarts
     {
+        public Carts() //IMongoDatabase database)
+        {
+
+        }
+
+
         public Cart GetById(Guid id)
         {
             throw new NotImplementedException();

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using doLittle.DependencyInversion;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApi
+namespace Infrastructure.AspNet
 {
     public class Container : IContainer
     {
