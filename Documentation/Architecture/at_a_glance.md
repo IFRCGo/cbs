@@ -20,6 +20,7 @@ For more details on the different parts and design decisions behind and more imp
 
 * [Glossary](./glossary.md)
 * [Principles](./principles.md)
+* [DDD at a glance](./ddd.md)
 * [Bounded Contexts](./bounded_contexts.md)
 * [Commands](./commands.md)
 * [Event Driven](./event_driven.md)
@@ -32,6 +33,6 @@ For more details on the different parts and design decisions behind and more imp
 * [Identity and access](./identity_and_access.md)
 * [Frontend](./frontend.md)
 * [Persistence](./persistence.md)
-* [Partitioning Strategy](./partition_strategy.md)
+* [Partitioning Strategy](./partitioning_strategy.md)
 * [Containers](./containers.md)
 * [Kubernetes](./kubernetes.md)
