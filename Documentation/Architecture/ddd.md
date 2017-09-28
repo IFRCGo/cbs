@@ -11,7 +11,7 @@ Eric Evans wrote in 2004 the book [Domain Driven Design - Tackling Complexity in
 
 Vaughn Vernon followed up in 2013 with the book [Implementing Domain Driven Design](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577/ref=sr_1_4?s=books&ie=UTF8&qid=1506262653&sr=1-4&keywords=domain+driven+design). Here he goes into depth on how to take the tools and ideas and implement them.
 
-For a quick introduction to DDD, see: [https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420/ref=pd_sim_14_2?_encoding=UTF8&pd_rd_i=0134434420&pd_rd_r=45FW5DFQNS81CFCYJ981&pd_rd_w=mHc0j&pd_rd_wg=14tZB&psc=1&refRID=45FW5DFQNS81CFCYJ981](https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420/ref=pd_sim_14_2?_encoding=UTF8&pd_rd_i=0134434420&pd_rd_r=45FW5DFQNS81CFCYJ981&pd_rd_w=mHc0j&pd_rd_wg=14tZB&psc=1&refRID=45FW5DFQNS81CFCYJ981)
+For a quick introduction to DDD, you should read [this](https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420/ref=pd_sim_14_2?_encoding=UTF8&pd_rd_i=0134434420&pd_rd_r=45FW5DFQNS81CFCYJ981&pd_rd_w=mHc0j&pd_rd_wg=14tZB&psc=1&refRID=45FW5DFQNS81CFCYJ981)
 
 # Implementation
 
