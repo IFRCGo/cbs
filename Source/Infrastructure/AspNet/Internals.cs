@@ -8,7 +8,7 @@ namespace Infrastructure.AspNet
 {
     internal class Internals
     {
-        public static IConfigurationRoot Configuration;
+        public static IConfiguration Configuration;
         public static ILoggerFactory LoggerFactory;
         public static IEnumerable<Assembly> Assemblies;
         public static BoundedContext BoundedContext;
