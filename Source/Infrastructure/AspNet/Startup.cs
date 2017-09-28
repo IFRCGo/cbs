@@ -28,7 +28,11 @@ namespace Infrastructure.AspNet
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
             builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
 
-            Internals.Assemblies.ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces());
+            Internals.Assemblies.ForEach(assembly => 
+            {
+                builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
+                builder.RegisterAssemblyModules(assembly);
+            });
 
             builder.RegisterSource(new EventProcessorRegistrationSource());
             builder.RegisterSource(new MongoDBRegistrationSource());
