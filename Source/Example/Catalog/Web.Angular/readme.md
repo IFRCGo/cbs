@@ -8,7 +8,7 @@
 
 ## Local build & run
 
-(Active path: `cbs/Source/Example/Frontend`)
+(Active path: `cbs/Source/Example/Web.Angular`)
 
 Restore dependencies
 
