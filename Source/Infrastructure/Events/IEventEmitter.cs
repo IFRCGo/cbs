@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
+using Infrastructure.Application;
 
 namespace Infrastructure.Events
 {
@@ -14,15 +15,15 @@ namespace Infrastructure.Events
         /// <summary>
         /// Emit an <see cref="IEvent"/>
         /// </summary>
-        /// <param name="origin">Origin of the <see cref="IEvent"/>></param>
+        /// <param name="feature">Feature the <see cref="IEvent"/> originates from</param>
         /// <param name="event"><see cref="IEvent">Events</see> to emit</param>
-        void Emit(EventOrigin origin, IEvent @event);
+        void Emit(Feature feature, IEvent @event);
 
         /// <summary>
         /// Emit a collection of <see cref="IEvent">events</see>
         /// </summary>
-        /// <param name="origin">Origin of the <see cref="IEvent"/>></param>
+        /// <param name="feature">Feature the <see cref="IEvent">events</see> originates from</param>
         /// <param name="events"><see cref="IEvent">Events</see> to emit</param>
-        void Emit(EventOrigin origin, IEnumerable<IEvent> events);
+        void Emit(Feature feature, IEnumerable<IEvent> events);
     }
 }

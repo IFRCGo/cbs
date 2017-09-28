@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using doLittle.Collections;
+using Infrastructure.Application;
 
 namespace Infrastructure.Events
 {
@@ -14,24 +15,29 @@ namespace Infrastructure.Events
     /// </summary>
     public class EventEmitter : IEventEmitter
     {
+        readonly ApplicationInformation _applicationInformation;
         readonly IEventPublisher _eventPublisher;
         readonly IEventProcessors _eventProcessors;
         readonly IEventEnvelopeProducer _eventEnvelopeProducer;
-        private readonly IEventStore _eventStore;
+        readonly IEventStore _eventStore;
+        
 
         /// <summary>
         /// Initializes a new instance of <see cref="EventEmitter"/>
         /// </summary>
+        /// <param name="applicationInformation"></param>
         /// <param name="eventEnvelopeProducer"></param>
         /// <param name="eventPublisher"></param>
         /// <param name="eventStore"></param>
         /// <param name="eventProcessors"></param>
         public EventEmitter(
+            ApplicationInformation applicationInformation,
             IEventEnvelopeProducer eventEnvelopeProducer,
             IEventPublisher eventPublisher,
             IEventStore eventStore,
             IEventProcessors eventProcessors)
         {
+            _applicationInformation = applicationInformation;
             _eventPublisher = eventPublisher;
             _eventProcessors = eventProcessors;
             _eventEnvelopeProducer = eventEnvelopeProducer;
@@ -39,14 +45,16 @@ namespace Infrastructure.Events
         }
 
         /// <inheritdoc/>
-        public void Emit(EventOrigin origin, IEvent @event)
+        public void Emit(Feature feature, IEvent @event)
         {
-            Emit(origin, new[] { @event });
+            Emit(feature, new[] { @event });
         }
 
         /// <inheritdoc/>
-        public void Emit(EventOrigin origin, IEnumerable<IEvent> events)
+        public void Emit(Feature feature, IEnumerable<IEvent> events)
         {
+            var origin = new EventOrigin(_applicationInformation.BoundedContext, feature);
+
             var envelopes = events.Select(@event => _eventEnvelopeProducer.CreateFor(origin, @event));
             _eventStore.Save(envelopes);
 
