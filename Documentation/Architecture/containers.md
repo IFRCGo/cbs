@@ -1,18 +1,18 @@
 ---
 title: About container usage
-description: 
-keywords: 
-author: 
+description: Details about container usage
+keywords: Docker, Container
+author: fredrkl, einari
 ---
 # Containers
 
-Containers bring to the industry a new way of building and deploying applications. Whereas before you had a clear seperation between developers and operation, containers often bring these to togheter to form devops people. In addition containers eliminite to a large extend the "it works on my machine" problem. Or "it builds on my machine" type problems.
+Containers bring to the industry a new way of building and deploying applications. Whereas before you had a clear separation between developers and operation, containers often bring these to together to form DevOps people. In addition containers eliminate to a large extend the "it works on my machine" problem. Or "it builds on my machine" type problems.
 
-Whereas we before shipped code in packages we now move towards shipping containers. You can look at a containers as a placeholder for you code with instructions on how to setup the environment for the code to run. A container does not have any dependencies besides the container runtime. Using docker that will be the docker engine. The corrollary is a development practise where we ship self describing containers where we can be confident that it will run in any environment as long as docker engine is installed.
+Whereas we before shipped code in packages we now move towards shipping containers. You can look at a containers as a placeholder for you code with instructions on how to setup the environment for the code to run. A container does not have any dependencies besides the container runtime. Using docker that will be the docker engine. The corollary is a development practice where we ship self describing containers where we can be confident that it will run in any environment as long as docker engine is installed.
 
 Docker is the de-facto standard for building images, and starting/stopping containers. There are other standards such as rkt, but we will be using Docker.
 
-As VMWare significantly reduced the IT costs by running several OS´s on single hardware, Containers take this a step further. Containers use virtualisation on the OS level to create user spaces. So for a container it will look like it is running on a seperate machine. Containers are significantly faster to spin up compared to Virtual machines, you only pay for one OS license instead of one per VM, and you use your expensive hardware to a greater degree on running your applications instead of Operating Systems.
+As VMWare significantly reduced the IT costs by running several OS´s on single hardware, Containers take this a step further. Containers use virtualization on the OS level to create user spaces. So for a container it will look like it is running on a separate machine. Containers are significantly faster to spin up compared to Virtual machines, you only pay for one OS license instead of one per VM, and you use your expensive hardware to a greater degree on running your applications instead of Operating Systems.
 
 Containers is used strategically in the project as a means of having both flexibility but also clear boundaries for what is deployable units.
 
@@ -20,9 +20,9 @@ Containers is used strategically in the project as a means of having both flexib
 
 Just go to docker store and [download it](https://store.docker.com/search?type=edition&offering=community) for your OS.
 
-## Miniguide to using Docker
+## Mini-guide to using Docker
 
-Once Docker is installed you bring up your favourite Terminal. Run
+Once Docker is installed you bring up your favorite Terminal. Run
 
 ```
 $ docker version
@@ -42,7 +42,7 @@ As you can see from the output docker first tries to find the image locally, the
 
 ## Registry
 
-Registries are a sentral concept in docker. This is where you store your images. The ones you create yourself and others. When we ran the example above we pulled the image from the sentral docker hub, stored it our local registry and ran it. Run
+Registries are a central concept in docker. This is where you store your images. The ones you create yourself and others. When we ran the example above we pulled the image from the centralized docker hub, stored it our local registry and ran it. Run
 
 ```
 $ docker images
@@ -71,12 +71,12 @@ docker run -it --name teamcity-server-instance  \
     -v <path to data directory>:/data/teamcity_server/datadir \
     -v <path to logs directory>:/opt/teamcity/logs  \
     -p <port on host>:8111 \
-    jetbrains/teamcity-server  
+    jetbrains/teamcity-server
 ```
 
 Here we see that we specify the directories using the -v parameter.
 
-Another approach is to send in as a parameter to the container a seperate service that store the data, e.g., Azure SQL Connection string.
+Another approach is to send in as a parameter to the container a separate service that store the data, e.g., Azure SQL Connection string.
 
 ## Versioning
 
@@ -90,12 +90,12 @@ Minor is increased when introducing new features.
 
 revision is used to indicate bug fixes.
 
-build is an autoincremented number that comes from the build server.
+build is an auto-incremented number that comes from the build server.
 
 To tag an image you simply use the tag command:
 
 ```
-docker tag 0e5574283393 fedora/httpd:version1.0 
+docker tag 0e5574283393 fedora/httpd:version1.0
 ```
 
 Here we tag a local image 0e5574283393 intro the fedora repository with version1.0. However the most usual is to tag an image during build:
@@ -108,8 +108,12 @@ So build a new image from the Dockerfile in the current directory with the repos
 
 ## Deployment
 
-Deployment of containers is done in CBS with kubernetes .yaml files. See kubernetes for more documentation.
+Deployment of containers is done in CBS with Kubernetes .yaml files. See [Kubernetes](./kubernetes.md) for more documentation.
 
 ## Reference
 
 * [https://docs.docker.com/reference/](https://docs.docker.com/reference/)
+
+## Hand on lab
+
+If you want to get more familiar with Docker, there is a set of labs you can find [here](http://github.com/msdevno/docker-on-azure-hol).

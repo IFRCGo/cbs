@@ -10,6 +10,11 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in
 [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+## Git
+
+Everything is Git based. Some Ideas have it installed, some operating systems as well. If you need the
+basic CLI client - download it from [here](https://git-scm.com/downloads).
+
 ## .NET Core
 
 The backend code is written using C# and .NET. below are the best choices for getting up and running fast.
@@ -17,14 +22,19 @@ Download and install the [.NET Core 2.0 SDK and runtime](https://www.microsoft.c
 
 ### Visual Studio Code
 
-### Visual Studio 2017
+Open source, cross platform editor:
+[Visual Studio Code](https://code.visualstudio.com/) - Code editor. More info [here](./visual_studio_code.md).
 
-### Visual Studio for Mac
+### Visual Studio 2017 or for Mac
+
+You can use the free, community edition as an IDE if you like - download it from [here](https://www.visualstudio.com/vs/community/).
 
 ## Docker
 
 Everything is being developed with Docker in mind, and in fact you can get something that resembles the
 production environment pretty easily as things are packaged up and ready to be used.
+
+Download the Community Edition from [here](https://store.docker.com/search?type=edition&offering=community).
 
 ## MongoDB
 

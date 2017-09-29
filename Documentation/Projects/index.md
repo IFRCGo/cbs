@@ -17,6 +17,4 @@ Within the `Source` folder you'll find the different projects and its equivalent
 | [Volunteer Engagement](./Volunteer%20Engagement/index.md) | To improve chances of sustained activity and motivation, the system must interact with the volunteers through ad-hoc and regular feedback such as ad hoc one-way push notifications (e.g. outbreak spread to new area), web-based one-on-one SMS conversation (e.g. follow-up on no reporting), and structured/timed one-way reports ("Thank you for submitting # of CBS report this week.  # reports have been submitted in you "location"."). | [link](https://github.com/IFRCGo/cbs/projects/3?) |
 | [User Management](./User%20Management/index.md) | Spreadsheet/database of CBS team (Volunteer, Coordinator, MOH, Global) demographic information including method for collection (SMS or web-based), entry/exit points, and linked to VOLUNTEER REPORTING and ALERTS spreadsheets/databases. | [link](https://github.com/IFRCGo/cbs/projects/2?) |
 | [SMS Reports](./SMS%20Reports/index.md)  | Spreadsheet/database of SMS reports, including API entry/exit points, and  linked to ALERTS.  | [link](https://github.com/IFRCGo/cbs/projects/4?) |
-
 | [Portal](./Portal/index.md) | | |
-

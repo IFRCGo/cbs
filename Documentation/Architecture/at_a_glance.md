@@ -16,14 +16,15 @@ Diving into the architecture within a bounded context, you'll find the following
 
 ## The details
 
-For more details on the different parts and design decisions behind and more importanly; **the why**, please read the following:
+For more details on the different parts and design decisions behind and more importantly; **the why**, please read the following:
 
 * [Glossary](./glossary.md)
 * [Principles](./principles.md)
+* [DDD at a glance](./ddd.md)
 * [Bounded Contexts](./bounded_contexts.md)
 * [Commands](./commands.md)
-* [Event Driven](./event_driven.md)
 * [Events](./events.md)
+* [Event Driven](./event_driven.md)
 * [Event Processor](./event_processor.md)
 * [Event Store](./event_store.md)
 * [Inversion of control](./inversion_of_control.md)
@@ -32,6 +33,7 @@ For more details on the different parts and design decisions behind and more imp
 * [Identity and access](./identity_and_access.md)
 * [Frontend](./frontend.md)
 * [Persistence](./persistence.md)
-* [Partitioning Strategy](./partition_strategy.md)
+* [Partitioning Strategy](./partitioning_strategy.md)
 * [Containers](./containers.md)
 * [Kubernetes](./kubernetes.md)
+* [APIs](./apis.md)
