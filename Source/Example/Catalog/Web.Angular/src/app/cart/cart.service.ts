@@ -15,7 +15,7 @@ export class CartService {
   saveToCart(item: GroceryItem): Promise<void> {
     const url = `http://localhost:5000/api/shopping/cart/items`;
 
-    let addItemToCart = new AddItemToCart();
+    const addItemToCart = new AddItemToCart();
     addItemToCart.product = item.id;
     addItemToCart.quantity = 1;
 
