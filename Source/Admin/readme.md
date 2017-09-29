@@ -1,4 +1,4 @@
-# CBS Example backend application
+# CBS Admin backend application
 
 [![Build status](https://ci.appveyor.com/api/projects/status/aymmq31lpjdsxk6v?svg=true)](https://ci.appveyor.com/project/karolikl/cbs)
 
@@ -19,7 +19,7 @@ The datadir option will give you a persistent storage for any data you put in.
 
 ## Local build
 
-(Active path: `cbs\source\example`)
+(Active path: `cbs\source\admin`)
 
 Download nuget dependencies
 > `dotnet restore`
@@ -28,7 +28,7 @@ Build
 > `dotnet build`
 
 Run locally
-(Active path: `cbs\source\example\web`)
+(Active path: `cbs\source\admin\web`)
 
 > `dotnet run`
 
