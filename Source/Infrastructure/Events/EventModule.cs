@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using Autofac;
 
-namespace Events
+namespace Infrastructure.Events
 {
     /// <summary>
     /// Represents the Autofac module for dealing with events infrastructure
@@ -14,9 +14,8 @@ namespace Events
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            var i=0;
-            i++;
-
+            builder.RegisterType<NullEventStore>().As<IEventStore>();
+            builder.RegisterType<NullEventPublisher>().As<IEventPublisher>();
         }
     }
 }
