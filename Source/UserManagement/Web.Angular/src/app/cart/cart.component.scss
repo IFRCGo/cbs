@@ -1,0 +1,8 @@
+.item {
+    cursor: pointer;
+    margin-right: 1rem;
+
+    &:hover {
+        border-color: black;
+    }
+}
