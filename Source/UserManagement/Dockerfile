@@ -4,8 +4,8 @@ WORKDIR /src
 COPY ./NuGet.Config ./
 COPY ./Build/MSBuild ./Build/MSBuild
 COPY ./Source/Infrastructure ./Source/Infrastructure
-COPY ./Source/Example/Catalog ./Source/Example/Catalog
-WORKDIR /src/Source/Example/Catalog/Web
+COPY ./Source/UserManagement ./Source/UserManagement
+WORKDIR /src/Source/UserManagement/Web
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
@@ -15,15 +15,15 @@ WORKDIR /src
 RUN ["npm", "install", "-g", "yarn"]
 RUN ["yarn","global", "add", "typescript"]
 RUN ["yarn","global", "add", "@angular/cli@latest"]
-COPY ./Source/Example/Catalog/Web.Angular ./Source/Example/Catalog/Web.Angular
-WORKDIR /src/Source/Example/Catalog/Web.Angular
+COPY ./Source/UserManagement/Web.Angular ./Source/UserManagement/Web.Angular
+WORKDIR /src/Source/UserManagement/Web.Angular
 RUN ["yarn", "install"]
 RUN ["ng", "build", "--prod"]
 
 # Build runtime image
 FROM microsoft/aspnetcore:2.0.0
 WORKDIR /app
-COPY --from=dotnet-build /src/Source/Example/Catalog/Web/out ./
-COPY --from=angular-build /src/Source/Example/Catalog/Web/wwwroot ./wwwroot
+COPY --from=dotnet-build /src/Source/UserManagement/Web/out ./
+COPY --from=angular-build /src/Source/UserManagement/Web/wwwroot ./wwwroot
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "Web.dll"]

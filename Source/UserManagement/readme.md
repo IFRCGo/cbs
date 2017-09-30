@@ -1,4 +1,4 @@
-# Catalog
+# UserManagement
 
 Building the Docker image:
 
