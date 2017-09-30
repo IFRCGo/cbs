@@ -1,30 +1,29 @@
-using Events.External;
-using Read;
-
-public class VolunteerEventProcessors : Infrastructure.Events.IEventProcessor
+ using Events.External;
+ 
+ namespace Read
 {
-    readonly IVolunteers _volunteers;
-
-    public VolunteerEventProcessors(IVolunteers volunteers)
+ public class VolunteerEventProcessors : Infrastructure.Events.IEventProcessor
     {
-        _volunteers = volunteers;
-    }
+        readonly IVolunteers _volunteers;
 
-    public void Process(VolunteerRegistered @event)
-    {
-        var volunteer = _volunteers.GetById(@event.Id);
-        if (volunteer == null)
+        public VolunteerEventProcessors(IVolunteers volunteers)
         {
-            volunteer = new Volunteer
-            {
-                Id = @event.Id
-            };
-            _volunteers.Create(volunteer);
+            _volunteers = volunteers;
         }
-        else
+
+        public void Process(VolunteerRegistered @event)
         {
-            //TODO: Update properties of volunteer here
-            _volunteers.Update(volunteer);
+            var volunteer = _volunteers.GetById(@event.Id);
+            if (volunteer == null){
+                volunteer = new Volunteer{
+                    Id = @event.Id
+                };
+                _volunteers.Create(volunteer);
+                }
+            else {
+                //TODO: Update volunteer properties
+                _volunteers.Update(volunteer);
+                }
         }
     }
 }
