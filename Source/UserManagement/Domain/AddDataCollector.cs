@@ -3,7 +3,7 @@ using Concepts.enums;
 
 namespace Domain
 {
-    public class AddVolunteerUser
+    public class AddDataCollector
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

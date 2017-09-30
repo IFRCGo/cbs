@@ -8,13 +8,13 @@ namespace Read
     {
         readonly IMongoDatabase _database;
         readonly IMongoCollection<StaffUser> _staffUserCollection;
-        readonly IMongoCollection<VolunteerUser> _volunteerUserCollection;
+        readonly IMongoCollection<DataCollector> _dataCollectorCollection;
 
         public Users(IMongoDatabase database)
         {
             _database = database;
             _staffUserCollection = database.GetCollection<StaffUser>("StaffUser");
-            _volunteerUserCollection = database.GetCollection<VolunteerUser>("VolunteerUser");
+            _dataCollectorCollection = database.GetCollection<DataCollector>("DataCollector");
         }
 
         public IEnumerable<StaffUser> GetAllStaffUsers()
@@ -22,9 +22,9 @@ namespace Read
             return _staffUserCollection.FindSync(_ => true).ToList();
         }
 
-        public IEnumerable<VolunteerUser> GetAllVolunteerUsers()
+        public IEnumerable<DataCollector> GetAllDataCollectors()
         {
-            return _volunteerUserCollection.FindSync(_ => true).ToList();
+            return _dataCollectorCollection.FindSync(_ => true).ToList();
         }
 
         public StaffUser GetStaffUserById(Guid id)
@@ -39,13 +39,13 @@ namespace Read
             return user;
         }
 
-        public VolunteerUser GetVolunteerUserById(Guid id)
+        public DataCollector GetDataCollectorById(Guid id)
         {
-            var user = _volunteerUserCollection.Find(c => c.Id == id).SingleOrDefault();
+            var user = _dataCollectorCollection.Find(c => c.Id == id).SingleOrDefault();
             if (user == null)
             {
-                user = new VolunteerUser { Id = id };
-                _volunteerUserCollection.InsertOne(user);
+                user = new DataCollector { Id = id };
+                _dataCollectorCollection.InsertOne(user);
             }
 
             return user;
@@ -56,9 +56,9 @@ namespace Read
             _staffUserCollection.InsertOne(user);
         }
 
-        public void Save(VolunteerUser user)
+        public void Save(DataCollector user)
         {
-            _volunteerUserCollection.InsertOne(user);
+            _dataCollectorCollection.InsertOne(user);
         }
     }
 }

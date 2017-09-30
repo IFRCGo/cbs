@@ -18,9 +18,9 @@ namespace Read
             _users.Save(user);
         }
 
-        public void Process(VolunteerUserAdded @event)
+        public void Process(DataCollectorAdded @event)
         {
-            var user = new VolunteerUser(@event);
+            var user = new DataCollector(@event);
 
             _users.Save(user);
         }

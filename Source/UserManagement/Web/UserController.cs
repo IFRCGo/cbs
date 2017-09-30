@@ -49,10 +49,10 @@ namespace Web
             });
         }
 
-        [HttpPost("volunteeruser")]
-        public void Add([FromBody] AddVolunteerUser command)
+        [HttpPost("datacollector")]
+        public void Add([FromBody] AddDataCollector command)
         {
-            _eventEmitter.Emit(Feature, new VolunteerUserAdded
+            _eventEmitter.Emit(Feature, new DataCollectorAdded
             {
                 Id = command.Id,
                 FirstName = command.FirstName,
@@ -73,10 +73,10 @@ namespace Web
             return users;
         }
 
-        [HttpGet("volunteerusers")]
-        public IEnumerable<VolunteerUser> GetAllVolunteerUsers()
+        [HttpGet("datacollectors")]
+        public IEnumerable<DataCollector> GetAllDataCollectors()
         {
-            var users = _users.GetAllVolunteerUsers();
+            var users = _users.GetAllDataCollectors();
             return users;
         }
 

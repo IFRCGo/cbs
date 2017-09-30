@@ -1,4 +1,4 @@
-export class Volunteer {
+export class DataCollector {
     firstName: string;
     lastName: string;
     age: number;

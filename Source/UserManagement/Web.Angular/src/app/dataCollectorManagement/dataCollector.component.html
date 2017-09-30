@@ -1,8 +1,8 @@
-<h2>Volunteer User management</h2>
+<h2>DataCollector User management</h2>
 
-<p>Click button to add a volunteer user</p>
+<p>Click button to add a dataCollector user</p>
 
-<form [formGroup]='volunteerUserForm' novalidate>
+<form [formGroup]='dataCollectorForm' novalidate>
     <md-form-field class="input-field">
         <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
     </md-form-field>
@@ -25,7 +25,7 @@
         <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
     </md-form-field>
     
-    <md-select formControlName="language" placeholder="Preferred language" [formGroup]="volunteerUserForm" ngDefaultControl>
+    <md-select formControlName="language" placeholder="Preferred language" [formGroup]="dataCollectorForm" ngDefaultControl>
         <md-option mdInput *ngFor="let language of languages" [value]="language.value">
             {{ language.viewValue }}
         </md-option>
@@ -37,5 +37,5 @@
 </form>
 
 <button md-raised-button color="primary" type="submit" class="btn" 
-    (click)="addVolunteerUser(volunteerUserForm.value, volunteerUserForm.valid)" >Klikk på meg</button>
+    (click)="adddataCollector(dataCollectorForm.value, dataCollectorForm.valid)" >Klikk på meg</button>
 
