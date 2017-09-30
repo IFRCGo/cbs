@@ -3,7 +3,13 @@
 <p>Click button to add a staff user</p>
 
 <form [formGroup]='staffUserForm' novalidate>
-    <input formControlName='fullName'>
+    <input class="form-field" formControlName='firstName' placeholder="First name" />
+    <input class="form-field" formControlName='lastName' placeholder="Last name" />
+    <input class="form-field" formControlName='sex' placeholder="Sex" />    
+    <input class="form-field" formControlName='birthDate' placeholder="Birth date" />
+    <input class="form-field" formControlName='nationalSociety' placeholder="National society" />
+    <input class="form-field" formControlName='preferredLanguage' placeholder="Preferred language" />
+    <input class="form-field" formControlName='mobilePhoneNumber' placeholder="Mobile phone number" />
 </form>
 
 <button type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Klikk på meg</button>

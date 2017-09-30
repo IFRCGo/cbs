@@ -18,17 +18,24 @@ export class StaffUserComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.staffUserService.getAllUsers();
   }
 
   buildForm() {
     this.staffUserForm = this.formBuilder.group({
-      fullName: [ '', [ Validators.required ] ]
-    });
+        firstName: [ '', [ Validators.required ] ],
+        lastName: [ '', [ Validators.required ] ],
+        sex: ['', [ Validators.required ] ],
+        birthDate: ['', [ Validators.required ] ],
+        nationalSociety: ['', [ Validators.required ] ],
+        preferredLanguage: ['', [ Validators.required ] ],
+        mobilePhoneNumber: ['', [ Validators.required ] ]
+      });
   }
 
   async addStaffUser(staffUser) {
     const newStaffUser: StaffUser = {
-      name: staffUser.fullName
+      name: `${staffUser.firstName} ${staffUser.lastName}`
     };
 
     this.staffUserService.saveUser(newStaffUser);
