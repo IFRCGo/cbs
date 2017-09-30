@@ -51,7 +51,8 @@ export class UiTestComponent implements OnInit {
   }
 
   public sortDistricts() {
-    this.districts = this.districtsOrig.filter(district => district.countryCode == this.selectedCountryCode);
+    this.districts = this.districtsOrig
+      .filter(district => district.countryCode.toString() === this.selectedCountryCode.toString());
   }
   public setPosition(position) {
     this.location = position.coords;
