@@ -14,6 +14,8 @@ export class AddProjectComponent implements OnInit {
     name: string;
     societies: NationalSociety[];
     owners: User[];
+    selectedSociety: string;
+    selectedOwner: string;
 
     constructor(
         private projectService: ProjectService,
