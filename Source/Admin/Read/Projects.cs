@@ -2,6 +2,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Read
 {
@@ -36,6 +37,14 @@ namespace Read
         public IEnumerable<Project> GetAll()
         {
             return _collection.Find(_ => true).ToList();
+        }
+
+        public async Task<IEnumerable<Project>> GetAllASync()
+        {
+            var filter = Builders<Project>.Filter.Eq(v => true, true);
+            var list = await _collection.FindAsync(filter);
+            return await list.ToListAsync();
+
         }
     }
 }
