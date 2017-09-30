@@ -24,4 +24,4 @@
         <input formControlName='mobilePhoneNumber' placeholder='Mobile phone number' [formGroup]='userForm' ngDefaultControl>
     </div>
 </form>
-<button (click)="addForm(userForm.value, userForm.valid)" >Send form!!</button>
+<button type='submit' class='btn' (click)="addForm(userForm.value, userForm.valid)" >Send form!!</button>

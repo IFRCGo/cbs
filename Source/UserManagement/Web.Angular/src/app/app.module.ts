@@ -9,13 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
-
+import { InputFieldComponent } from './input-field/input-field.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaffUserComponent,
-    VolunteerFormComponent
+    VolunteerFormComponent,
+    InputFieldComponent
   ],
   imports: [
     BrowserModule,

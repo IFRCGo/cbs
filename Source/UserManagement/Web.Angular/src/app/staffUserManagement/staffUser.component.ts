@@ -1,7 +1,7 @@
 import { StaffUserService } from './staffUser.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { StaffUser } from './staffUser';
+import { StaffUser } from '../domain/staffUser';
 
 @Component({
   selector: 'cbs-user',
