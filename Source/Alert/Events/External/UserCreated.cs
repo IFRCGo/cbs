@@ -3,7 +3,7 @@ using Infrastructure.Events;
 
 namespace Events.External
 {
-    public class UserCreatedEvent : IEvent
+    public class UserCreated : IEvent
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

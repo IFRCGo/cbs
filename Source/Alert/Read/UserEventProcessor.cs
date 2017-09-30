@@ -15,7 +15,7 @@ namespace Read
             _users = users;
         }
 
-        public void Process(UserCreatedEvent @event)
+        public void Process(UserCreated @event)
         {
             var user = _users.GetById(@event.Id);
             if (user == null)
@@ -39,7 +39,7 @@ namespace Read
                 user.Geo = @event.Geo;
                 user.RecipientType = @event.UserType;
             }
-            _users.Save(user);
+           _users.Save(user);
         }
 
         public void Process(UserUpdatedEvent @event)
