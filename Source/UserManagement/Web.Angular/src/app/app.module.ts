@@ -1,4 +1,4 @@
-import { CartService } from './cart/cart.service';
+import { UserService } from './userManagement/user.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -6,19 +6,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CartComponent } from './cart/cart.component';
+import { UserComponent } from './userManagement/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpModule
   ],
-  providers: [CartService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
