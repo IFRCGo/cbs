@@ -35,14 +35,21 @@ export class StaffUserComponent implements OnInit {
         age: ['', [ Validators.required ] ],
         nationalSociety: ['', [ Validators.required ] ],
         preferredLanguage: ['', [ Validators.required ] ],
-        mobilePhoneNumber: ['', [ Validators.required ] ]
+        mobilePhoneNumber: ['', [ Validators.required ] ],
+        email: ['', [ Validators.required ] ]
       });
   }
 
   async addStaffUser(staffUser) {
     const newStaffUser: StaffUser = {
-      name: `${staffUser.firstName} ${staffUser.lastName}`,
-      sex: staffUser.sex
+        firstName: staffUser.firstName,
+        lastName: staffUser.lastName,
+        sex: staffUser.sex,
+        age: staffUser.age,
+        nationalSociety: staffUser.nationalSociety,
+        preferredLanguage: staffUser.preferredLanguage,
+        mobilePhoneNumber: staffUser.mobilePhoneNumber,
+        email: staffUser.email
     };
 
     this.staffUserService.saveUser(newStaffUser);

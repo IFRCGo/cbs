@@ -36,7 +36,11 @@
     <md-form-field class="example-full-width input-field">
         <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl>
     </md-form-field>
+
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='email' placeholder="E-mail Address" ngDefaultControl>
+    </md-form-field>
 </form>
 
-<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Add staff user</button>
+<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)">Add staff user</button>
 
