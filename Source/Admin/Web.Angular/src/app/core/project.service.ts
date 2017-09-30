@@ -31,5 +31,11 @@ export class ProjectService {
             { id: '3', name: 'My third project'}
         );
         return Promise.resolve(projects);
+
+        // return this.http
+        //     .get('http://localhost:5000/api/project', { headers: this.headers })
+        //     .toPromise()
+        //     .then((result) => { return result.json(); })
+        //     .catch((error) => console.error(error));
     }
 }
