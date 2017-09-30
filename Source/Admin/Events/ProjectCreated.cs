@@ -5,7 +5,7 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class CreatedProject:IEvent
+    public class ProjectCreated:IEvent
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
