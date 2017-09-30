@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
+import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaffUserComponent,
-    VolunteerFormComponent
+    VolunteerFormComponent,
+    UiTestComponent
   ],
   imports: [
     BrowserModule,

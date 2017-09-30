@@ -8,7 +8,7 @@ import { VolunteerService } from './volunteerUser.service';
   styles: [ 'volunteerUser.component.scss' ]
 })
 export class VolunteerFormComponent implements OnInit {
-  userForm: FormGroup;
+  volunteerUserForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private userService: VolunteerService
@@ -19,7 +19,7 @@ export class VolunteerFormComponent implements OnInit {
   }
 
   buildForm() {
-    this.userForm = this.formBuilder.group({
+    this.volunteerUserForm = this.formBuilder.group({
       firstName: [ '', [ Validators.required ] ],
       lastName: [ '', [ Validators.required ] ],
       age: ['', [ Validators.required ] ],
@@ -31,7 +31,7 @@ export class VolunteerFormComponent implements OnInit {
     });
   }
 
-  addForm(form, isValidForm) {
+  addVolunteerUser(form, isValidForm) {
     if (isValidForm) {
       console.log(form)
     }

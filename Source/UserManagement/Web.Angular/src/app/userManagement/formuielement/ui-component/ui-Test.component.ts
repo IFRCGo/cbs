@@ -9,7 +9,7 @@ import {FormElementServiceService} from './form-element-service.service';
   providers: [FormElementServiceService],
   styles: []
 })
-export class UiComponentComponent implements OnInit {
+export class UiTestComponent implements OnInit {
 
   nations: NationalSociety[];
   districtsOrig: DistrictSociety[];
