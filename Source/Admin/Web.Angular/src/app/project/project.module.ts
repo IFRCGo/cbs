@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ProjectRouting } from './project-routing.module';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { ProjectlistComponent } from './projectlist/projectlist.component';
 
 @NgModule({
     imports: [
@@ -11,7 +12,10 @@ import { AddProjectComponent } from './add-project/add-project.component';
         FormsModule,
         ProjectRouting
     ],
-    declarations: [AddProjectComponent]
+    declarations: [
+        AddProjectComponent, 
+        ProjectlistComponent
+    ]
 })
 
 export class ProjectModule { }
