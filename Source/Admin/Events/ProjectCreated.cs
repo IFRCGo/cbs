@@ -6,6 +6,9 @@
 using System;
 using Infrastructure.Events;
 
+// Her legger jeg inn en testkommentar
+// en gang til
+
 namespace Events
 {
     public class ProjectCreated : IEvent
