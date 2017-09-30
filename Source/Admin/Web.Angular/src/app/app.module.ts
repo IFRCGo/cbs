@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 import { ProjectModule } from './project/project.module';
 import { Routes, RouterModule } from '@angular/router';
+import { CoreModule } from './core/core.module';
 
 const routes: Routes = [
     {
@@ -27,8 +28,8 @@ const routes: Routes = [
         BrowserModule,
         CommonModule,
         HttpModule,
+        CoreModule,
         RouterModule.forRoot(routes),
-
         ProjectModule
     ],
     providers: [CartService],
