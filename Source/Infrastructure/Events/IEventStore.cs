@@ -16,5 +16,11 @@ namespace Infrastructure.Events
         /// </summary>
         /// <param name="events"><see cref="IEvent">Events</see> to save</param>
         void Save(IEnumerable<EventEnvelope> events);
+
+        /// <summary>
+        /// Replay all events from eventstore
+        /// </summary>
+        /// <returns>events</returns>
+        IEnumerable<EventEnvelope> Replay();
     }
 }
