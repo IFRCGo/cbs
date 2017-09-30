@@ -14,7 +14,7 @@ export class ProjectService {
         const url = `http://localhost:5000/api/project`;
 
         let project = new AddProject();
-        project = item; // Simple assignment, will 
+        project = item; // Simple assignment, will probably handle values differently later
 
         return this.http
             .post(url, JSON.stringify(project), { headers: this.headers })
