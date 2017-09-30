@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
