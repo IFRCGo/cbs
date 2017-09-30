@@ -8,18 +8,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './userManagement/user.component';
+import { VolunteerFormComponent } from './volunteerForm/volunteer-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    VolunteerFormComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
