@@ -18,12 +18,12 @@ namespace Read
         public IEnumerable<CartLine> Lines
         {
             get { return _lines; }
-            set { _lines = new List<CartLine>(value); }
+            set { _lines = new List<CartLine>(value); }
         }
 
         public void Add(Guid product, int quantity, Price price)
         {
-            var existing = Lines.Where(p => p.Product == product).Single();
+            var existing = Lines.Where(p => p.Product == product).SingleOrDefault();
             if (existing != null)
             {
                 existing.Quantity += quantity;
