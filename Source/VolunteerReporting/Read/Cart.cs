@@ -18,7 +18,7 @@ namespace Read
         public IEnumerable<CartLine> Lines
         {
             get { return _lines; }
-            set { _lines = new List<CartLine>(value); }
+            set { _lines = new List<CartLine>(value); }
         }
 
         public void Add(Guid product, int quantity, Price price)
