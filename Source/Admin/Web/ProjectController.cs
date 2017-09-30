@@ -13,27 +13,24 @@ using Events;
 
 namespace Web
 {
-    [Route("api/shopping/cart")]
-    public class CartController : Controller
+    [Route("api/project")]
+    public class ProjectController : Controller
     {
-        public static readonly Feature Feature = "Cart";
+        public static readonly Feature Feature = "Project";
 
-        readonly ICarts _carts;
+        readonly IProjects _projects;
         readonly IEventEmitter _eventEmitter;
-        readonly IPricing _pricing;
-        readonly ILogger<CartController> _logger;
+        readonly ILogger<ProjectController> _logger;
 
-        public CartController(
-            ICarts carts,
+        public ProjectController(
+            IProjects projects,
             IPricing pricing,
             IEventEmitter eventEmitter,
-            ILogger<CartController> logger)
+            ILogger<ProjectController> logger)
         {
-            _carts = carts;
             _eventEmitter = eventEmitter;
-            _pricing = pricing;
             _logger = logger;
-            _pricing = pricing;
+            _projects = projects;
         }
 
 
@@ -44,19 +41,15 @@ namespace Web
         }
 
 
-        [HttpPost("items")]
-        public void Add([FromBody]AddItemToCart command)
+        [HttpPost]
+        public void Post([FromBody]CreateProject command)
         {
-            var cartId = _carts.GetCartIdForCurrentUser();
-            var price = _pricing.GetForProduct(command.Product);
+           
 
-            _eventEmitter.Emit(Feature, new ItemAddedToCart
+            _eventEmitter.Emit(Feature, new CreatedProject
             {
-                Cart = cartId,
-                Product = command.Product,
-                Quantity = command.Quantity,
-                NetItemPrice = price.Net,
-                GrossItemPrice = price.Gross
+              Name = command.Name,
+              Id = Guid.NewGuid()
             });
         }
 
