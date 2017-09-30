@@ -3,10 +3,10 @@
 //  *  Licensed under the MIT License. See LICENSE in the project root for license information.
 //  *--------------------------------------------------------------------------------------------*/
 
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 
 namespace Read
 {
@@ -28,18 +28,24 @@ namespace Read
 
             if (project == null)
             {
-                project = new User { Firstname = "Dummy implementation"};
+                project = new User { Firstname = "Dummy implementation" };
                 _collection.InsertOne(project);
             }
 
             return project;
         }
 
-        public void Save(User project)
+        public async Task<IEnumerable<User>> GetByNationalSocietyId(Guid id)
         {
-            var filter = Builders<User>.Filter.Eq(v => v.Id, project.Id);
+            var userList = await _collection.FindAsync(_ => _.NationalSocietyId == id);
+            return await userList.ToListAsync();
+        }
 
-            _collection.ReplaceOne(filter, project);
+        public void Save(User user)
+        {
+            var filter = Builders<User>.Filter.Eq(v => v.Id, user.Id);
+
+            _collection.ReplaceOne(filter, user);
         }
 
         public IEnumerable<User> GetAll()

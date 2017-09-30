@@ -13,6 +13,8 @@ namespace Read
     {
         User GetById(Guid id);
 
+        Task<IEnumerable<User>> GetByNationalSocietyId(Guid id);
+
         void Save(User user);
 
         IEnumerable<User> GetAll();
