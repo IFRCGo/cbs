@@ -3,12 +3,16 @@
 //  *  Licensed under the MIT License. See LICENSE in the project root for license information.
 //  *--------------------------------------------------------------------------------------------*/
 
+using Domain;
+using Events;
+using Infrastructure.Application;
+using Infrastructure.Events;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Read;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MongoDB.Driver.Core.Misc;
 
 namespace Web
 {
