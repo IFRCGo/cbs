@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 @Component({
   selector: 'cbs-volunteer-form',
-  templateUrl: 'volunteer-form.html',
-  styles: [ 'volunteer-form.scss' ]
+  templateUrl: 'volunteerUser.component.html',
+  styles: [ 'volunteerUser.component.scss' ]
 })
 export class VolunteerFormComponent implements OnInit {
   userForm: FormGroup;

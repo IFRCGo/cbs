@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
-import { VolunteerFormComponent } from './volunteerForm/volunteer-form.component';
+import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
 
 
 @NgModule({
