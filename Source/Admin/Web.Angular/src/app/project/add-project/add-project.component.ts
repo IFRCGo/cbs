@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AddProject, NationalSociety, User } from '../../shared/models';
+import { NationalSocietyService } from '../../core/nationalsociety.service';
 import { ProjectService } from '../../core/project.service';
 import { UtilityService } from '../../core/utility.service';
+import { AddProject, NationalSociety, User } from '../../shared/models';
 
 @Component({
     selector: 'cbs-add-project',
@@ -12,17 +13,21 @@ import { UtilityService } from '../../core/utility.service';
 
 export class AddProjectComponent implements OnInit {
     name: string;
-    societies: NationalSociety[];
-    owners: User[];
+    societies: Array<NationalSociety>;
+    owners: Array<User>;
     selectedSociety: string;
     selectedOwner: string;
 
     constructor(
         private projectService: ProjectService,
-        private utilityService: UtilityService
+        private utilityService: UtilityService,
+        private nationalSocietyService: NationalSocietyService
     ) { }
 
     ngOnInit() {
+        this.nationalSocietyService.getNationalSocieties()
+            .then((result) => this.societies = result)
+            .catch((error) => console.error(error));
     }
 
     async addProject() {

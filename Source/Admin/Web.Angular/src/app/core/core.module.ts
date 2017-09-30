@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NationalSocietyService } from './nationalsociety.service';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { ProjectService } from './project.service';
 import { UtilityService } from './utility.service';
 
@@ -9,7 +11,8 @@ import { UtilityService } from './utility.service';
     ],
     providers: [
         ProjectService,
-        UtilityService
+        UtilityService,
+        NationalSocietyService
     ],
     declarations: [
     ]

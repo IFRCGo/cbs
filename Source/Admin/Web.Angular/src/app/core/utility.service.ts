@@ -20,4 +20,3 @@ export class UtilityService {
             segment() + '-' + segment() + segment() + segment();
     }
 }
-
