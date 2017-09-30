@@ -8,5 +8,7 @@ namespace Read
     {
         Project GetById(Guid id);
         void Save(Project project);
+
+        IEnumerable<Project> GetAll();
     }
 }

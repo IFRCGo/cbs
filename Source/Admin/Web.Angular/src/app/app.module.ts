@@ -32,7 +32,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         ProjectModule
     ],
-    providers: [CartService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 
