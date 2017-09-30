@@ -5,10 +5,15 @@ import { VolunteerService } from './volunteerUser.service';
 @Component({
   selector: 'cbs-volunteer-form',
   templateUrl: 'volunteerUser.component.html',
-  styles: [ 'volunteerUser.component.scss' ]
+  styleUrls: [ 'volunteerUser.component.scss' ]
 })
 export class VolunteerFormComponent implements OnInit {
-  userForm: FormGroup;
+  volunteerUserForm: FormGroup;
+  languages = [
+    { value: 'lang-1', viewValue: 'English'},
+    { value: 'lang-2', viewValue: 'French'},
+    { value: 'lang-3', viewValue: 'Chechewa'}
+  ];
 
   constructor(private formBuilder: FormBuilder,
               private userService: VolunteerService
@@ -19,19 +24,19 @@ export class VolunteerFormComponent implements OnInit {
   }
 
   buildForm() {
-    this.userForm = this.formBuilder.group({
+    this.volunteerUserForm = this.formBuilder.group({
       firstName: [ '', [ Validators.required ] ],
       lastName: [ '', [ Validators.required ] ],
       age: ['', [ Validators.required ] ],
       sex: ['', [ Validators.required ] ],
       nationalSociety: ['', [ Validators.required ] ],
-      preferredLanguage: ['', [ Validators.required ] ],
+      language: ['', [ Validators.required ] ],
       gpsLocation: ['', [ Validators.required ] ],
       mobilePhoneNumber: ['', [ Validators.required ] ]
     });
   }
 
-  addForm(form, isValidForm) {
+  addVolunteerUser(form, isValidForm) {
     if (isValidForm) {
       console.log(form)
     }
