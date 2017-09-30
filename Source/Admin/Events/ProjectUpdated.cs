@@ -8,7 +8,7 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class ProjectCreated : IEvent
+    public class ProjectUpdated : IEvent
     {
         public Guid Id { get; set; }
 
