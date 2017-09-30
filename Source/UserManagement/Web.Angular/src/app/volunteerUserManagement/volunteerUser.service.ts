@@ -1,31 +1,27 @@
-import { AddUser } from '../domain/addUser';
+import { Volunteer } from './../domain/volunteer';
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { User } from './user';
 
 
 @Injectable()
-export class UserService {
+export class VolunteerService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
-  saveUser(user: User): Promise<void> {
+  saveVolunteer(volunteer: Volunteer): Promise<void> {
     const url = `http://localhost:5000/api/usermanagement/user`;
 
-    const addUser = new AddUser();
-    addUser.name = user.name;
-
     return this.http
-      .post(url, JSON.stringify(addUser), { headers: this.headers })
+      .post(url, JSON.stringify(volunteer), { headers: this.headers })
       .toPromise()
-      .then(() => { console.log('user added successfully'); })
+      .then(() => { console.log('staff user added successfully'); })
       .catch((error) => console.error(error));
   }
 
-  getAllUsers(): Promise<void> {
+  getAllVolunteers(): Promise<void> {
     const url = 'http://localhost:5000/api/usermanagement/users';
 
     return this.http
