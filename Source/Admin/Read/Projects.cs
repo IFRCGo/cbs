@@ -18,12 +18,19 @@ namespace Read
 
         public Project GetById(Guid id)
         {
-            return new Project() { Name = "Dummy implementation", Id = Guid.Empty };
+            var project = _collection.Find(v => v.Id == id).SingleOrDefault();
+            if (project == null)
+            {
+                project = new Project() { Name = "Dummy implementation", Id = Guid.Empty };
+                _collection.InsertOne(project);
+            }
+            return project;
         }
 
         public void Save(Project project)
         {
-            
+            var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
+            _collection.ReplaceOne(filter, project);
         }
     }
 }
