@@ -8,18 +8,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
+import { VolunteerFormComponent } from './volunteerForm/volunteer-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StaffUserComponent
+    StaffUserComponent,
+    VolunteerFormComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [StaffUserService],
   bootstrap: [AppComponent]
