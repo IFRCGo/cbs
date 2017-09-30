@@ -10,7 +10,7 @@ namespace Domain
         public int Age { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
-        public Language PrefferedLanguage { get; set; }
+        public Language PreferredLanguage { get; set; }
         //public string Location { get; set; } //TODO: fix when location strucutre is known
         //public GeoCoordinate GeoLocation { get; set; } //TODO: use GeoCoordinate
         public string MobilePhoneNumber { get; set; }

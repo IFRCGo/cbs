@@ -12,7 +12,7 @@ namespace Read
         public int Age { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
-        public Language PrefferedLanguage { get; set; }
+        public Language PreferredLanguage { get; set; }
         public string Location { get; set; } //TODO: fix when location strucutre is known
         public string GeoLocation { get; set; } //TODO: use GeoCoordinate
         public string MobileNumber { get; set; }
@@ -30,7 +30,7 @@ namespace Read
             Age = @event.Age;
             Sex = @event.Sex;
             NationalSociety = @event.NationalSociety;
-            PrefferedLanguage = @event.PrefferedLanguage;
+            PreferredLanguage = @event.PreferredLanguage;
             Location = @event.Location;
             GeoLocation = @event.GeoLocation;
             MobileNumber = @event.MobileNumber;

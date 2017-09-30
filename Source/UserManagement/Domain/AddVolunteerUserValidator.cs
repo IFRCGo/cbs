@@ -4,7 +4,7 @@ namespace Domain
 {
     public class AddVolunteerUserValidator : AbstractValidator<AddVolunteerUser>
     {
-        AddVolunteerUserValidator()
+        public AddVolunteerUserValidator()
         {
             RuleFor(_ => _.FirstName)
                 .NotEmpty()

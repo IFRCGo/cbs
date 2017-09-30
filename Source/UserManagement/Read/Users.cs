@@ -14,6 +14,7 @@ namespace Read
         {
             _database = database;
             _staffUserCollection = database.GetCollection<StaffUser>("StaffUser");
+            _volunteerUserCollection = database.GetCollection<VolunteerUser>("VolunteerUser");
         }
 
         public IEnumerable<StaffUser> GetAllStaffUsers()

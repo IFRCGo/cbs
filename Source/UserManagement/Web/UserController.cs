@@ -43,7 +43,7 @@ namespace Web
                 Age = command.Age,
                 Sex = command.Sex,
                 NationalSociety = command.NationalSociety,
-                PrefferedLanguage = command.PrefferedLanguage,
+                PreferredLanguage = command.PreferredLanguage,
                 MobileNumber = command.MobilePhoneNumber,
                 Email = command.Email
             });

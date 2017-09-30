@@ -26,9 +26,9 @@ namespace Domain
                 .NotEmpty()
                 .WithMessage("National Society is not correct - Has to be a IRC Society");
 
-            RuleFor(_ => _.PrefferedLanguage)
+            RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum()
-                .WithMessage("Preffered language is not correct - Has to be a supported languge");
+                .WithMessage("Preferred language is not correct - Has to be a supported languge");
 
             //TODO: Validate mobilenumber based on localization
             RuleFor(_ => _.MobilePhoneNumber)

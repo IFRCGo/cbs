@@ -10,9 +10,8 @@ import { VolunteerService } from './volunteerUser.service';
 export class VolunteerFormComponent implements OnInit {
   volunteerUserForm: FormGroup;
   languages = [
-    { value: 'lang-1', viewValue: 'English'},
-    { value: 'lang-2', viewValue: 'French'},
-    { value: 'lang-3', viewValue: 'Chechewa'}
+    { value: '0', viewValue: 'English'},
+    { value: '1', viewValue: 'French'}
   ];
 
   constructor(private formBuilder: FormBuilder,

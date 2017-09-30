@@ -12,7 +12,7 @@ namespace Events
         public int Age { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
-        public Language PrefferedLanguage { get; set; }
+        public Language PreferredLanguage { get; set; }
         public string Location { get; set; }
         public string GeoLocation { get; set; }
         public string MobileNumber { get; set; }
