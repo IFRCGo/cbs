@@ -1,0 +1,5 @@
+<h2>Shopping cart</h2>
+
+<p>Click item to add to cart</p>
+
+<i *ngFor="let item of availableItems" class="item fa fa-3x fa-border" (click)="addItem(item)" [ngClass]="'fa-'+item.image"></i>
