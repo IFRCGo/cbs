@@ -13,12 +13,14 @@ import { VolunteerService } from './volunteerUserManagement/volunteerUser.servic
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
+import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaffUserComponent,
-    VolunteerFormComponent
+    VolunteerFormComponent,
+    UiTestComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.
     MatRadioModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSelectModule
   ],
   providers: [StaffUserService, VolunteerService],
   bootstrap: [AppComponent]

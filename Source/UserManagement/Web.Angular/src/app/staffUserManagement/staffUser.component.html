@@ -10,11 +10,17 @@
     <md-form-field class="example-full-width input-field">
         <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
     </md-form-field>
-    
+    <!--
     <md-form-field class="example-full-width input-field">
         <input mdInput formControlName='sex' placeholder="Sex" ngDefaultControl/>
-    </md-form-field>
-        
+    </md-form-field>-->
+
+    <md-select formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
+        <md-option *ngFor="let sex of sexOptions" [value]="sex.value">
+            {{ sex.viewValue }}
+        </md-option>
+    </md-select>
+ 
     <md-form-field class="example-full-width input-field">
         <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
     </md-form-field>
@@ -32,5 +38,5 @@
     </md-form-field>
 </form>
 
-<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Klikk på meg</button>
+<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Add staff user</button>
 

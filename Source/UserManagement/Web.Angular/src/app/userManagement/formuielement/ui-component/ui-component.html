@@ -1,15 +1,20 @@
 <!-- <select #c (change)="getDistricts($event.target.value)">
     <option *ngFor="let nation of nations">{{nation.country}}</option> 
 </select> -->
+<h1>Here is location select tests</h1>
+<p>
 
+</p>
 <select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode">
     <option *ngFor="let nation of nations" [value]="nation.countryCode" [ngValue]="nation.countryCode">{{nation.country}}</option> 
 </select>
 
-<select name="select2" >
-     
+<select name="select2">
     <option *ngFor="let district of districts">{{district.place}}</option>
 </select>
-
+<p></p>
+<h2>{{location.latitude}}</h2>
+<h2>{{location.longitude}}</h2>
+<button (click)="getPosition()">Fetch my geo location</button>
 
 
