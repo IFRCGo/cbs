@@ -20,12 +20,7 @@ namespace Read
 
         public void Process(VolunteerUserAdded @event)
         {
-            var user = new VolunteerUser
-            {
-                Id = @event.Id,
-                FirstName = @event.FirstName,
-                LastName = @event.LastName
-            };
+            var user = new VolunteerUser(@event);
 
             _users.Save(user);
         }

@@ -17,7 +17,7 @@ export class VolunteerService {
     return this.http
       .post(url, JSON.stringify(volunteer), { headers: this.headers })
       .toPromise()
-      .then(() => { console.log('staff user added successfully'); })
+      .then(() => { console.log('Volunteer user added successfully'); })
       .catch((error) => console.error(error));
   }
 

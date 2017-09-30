@@ -30,7 +30,7 @@ namespace Domain
                 .IsInEnum()
                 .WithMessage("Preferred language is not correct - Has to be a supported languge");
 
-            //TODO: Validate mobilenumber based on localization
+            //TODO: Validate MobilePhoneNumber based on localization
             RuleFor(_ => _.MobilePhoneNumber)
                 .NotEmpty()
                 //.Matches(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")

@@ -44,7 +44,7 @@ namespace Web
                 Sex = command.Sex,
                 NationalSociety = command.NationalSociety,
                 PreferredLanguage = command.PreferredLanguage,
-                MobileNumber = command.MobilePhoneNumber,
+                MobilePhoneNumber = command.MobilePhoneNumber,
                 Email = command.Email
             });
         }
@@ -56,7 +56,13 @@ namespace Web
             {
                 Id = command.Id,
                 FirstName = command.FirstName,
-                LastName = command.LastName
+                LastName = command.LastName,
+                Age = command.Age,
+                Sex = command.Sex,
+                NationalSociety = command.NationalSociety,
+                PreferredLanguage = command.PreferredLanguage,
+                MobilePhoneNumber = command.MobilePhoneNumber,
+                Email = command.Email
             });
         }
 

@@ -15,7 +15,7 @@ namespace Read
         public Language PreferredLanguage { get; set; }
         public string Location { get; set; } //TODO: fix when location strucutre is known
         public string GeoLocation { get; set; } //TODO: use GeoCoordinate
-        public string MobileNumber { get; set; }
+        public string MobilePhoneNumber { get; set; }
         public string Email { get; set; }
 
         public StaffUser()
@@ -33,7 +33,7 @@ namespace Read
             PreferredLanguage = @event.PreferredLanguage;
             Location = @event.Location;
             GeoLocation = @event.GeoLocation;
-            MobileNumber = @event.MobileNumber;
+            MobilePhoneNumber = @event.MobilePhoneNumber;
             Email = @event.Email;
         }
     }
