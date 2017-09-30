@@ -1,3 +1,8 @@
+// /*---------------------------------------------------------------------------------------------
+//  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+//  *  Licensed under the MIT License. See LICENSE in the project root for license information.
+//  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using MongoDB.Driver;
 
@@ -5,8 +10,9 @@ namespace Read
 {
     public class Carts : ICarts
     {
-        readonly IMongoDatabase _database;
         readonly IMongoCollection<Cart> _collection;
+
+        readonly IMongoDatabase _database;
 
         public Carts(IMongoDatabase database)
         {
@@ -17,9 +23,9 @@ namespace Read
         public Cart GetById(Guid id)
         {
             var cart = _collection.Find(c => c.Id == id).SingleOrDefault();
-            if( cart == null ) 
+            if (cart == null)
             {
-                cart = new Cart { Id = id };
+                cart = new Cart {Id = id};
                 _collection.InsertOne(cart);
             }
             return cart;

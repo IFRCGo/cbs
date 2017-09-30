@@ -1,3 +1,8 @@
+// /*---------------------------------------------------------------------------------------------
+//  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+//  *  Licensed under the MIT License. See LICENSE in the project root for license information.
+//  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +23,7 @@ namespace Read
         public IEnumerable<CartLine> Lines
         {
             get { return _lines; }
-            set { _lines = new List<CartLine>(value); }
+            set { _lines = new List<CartLine>(value); }
         }
 
         public void Add(Guid product, int quantity, Price price)

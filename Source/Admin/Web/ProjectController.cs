@@ -1,17 +1,14 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+// /*---------------------------------------------------------------------------------------------
+//  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+//  *  Licensed under the MIT License. See LICENSE in the project root for license information.
+//  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Application;
-using Infrastructure.Events;
-using Read;
-using Domain;
-using Events;
+using MongoDB.Driver.Core.Misc;
 
 namespace Web
 {
@@ -20,9 +17,11 @@ namespace Web
     {
         public static readonly Feature Feature = "Project";
 
-        readonly IProjects _projects;
         readonly IEventEmitter _eventEmitter;
+
         readonly ILogger<ProjectController> _logger;
+
+        readonly IProjects _projects;
 
         public ProjectController(
             IProjects projects,
@@ -33,7 +32,6 @@ namespace Web
             _logger = logger;
             _projects = projects;
         }
-
 
         [HttpGet]
         public async Task<IEnumerable<Project>> Get()
@@ -47,21 +45,19 @@ namespace Web
             return _projects.GetById(id);
         }
 
-
         [HttpPost]
-        public void Post([FromBody]CreateProject command)
+        public void Post([FromBody] CreateProject command)
         {
             _eventEmitter.Emit(Feature, new ProjectCreated
             {
-              Name = command.Name,
-              Id = command.Id
+                Name = command.Name,
+                Id = command.Id
             });
         }
 
         [HttpDelete("items/{id}")]
         public void Remove(Guid id)
         {
-
         }
     }
 }
