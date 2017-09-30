@@ -23,7 +23,7 @@ public class VolunteerEventProcessors : Infrastructure.Events.IEventProcessor
         }
         else
         {
-            //Update properties of volunteer here
+            //TODO: Update properties of volunteer here
             _volunteers.Update(volunteer);
         }
     }
