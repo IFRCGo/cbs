@@ -24,7 +24,6 @@ namespace Web
 
         public ProjectController(
             IProjects projects,
-            IPricing pricing,
             IEventEmitter eventEmitter,
             ILogger<ProjectController> logger)
         {
@@ -35,9 +34,9 @@ namespace Web
 
 
         [HttpGet]
-        public Cart Get()
+        public Project Get()
         {
-            return new Cart();
+            return new Project();;
         }
 
 
