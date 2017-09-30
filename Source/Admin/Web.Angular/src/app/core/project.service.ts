@@ -11,7 +11,7 @@ export class ProjectService {
     constructor(private http: Http) { }
 
     saveProject(item: AddProject): Promise<void> {
-        const url = `http://localhost:5000/api/project`;
+        const url = `/api/project`;
 
         let project = new AddProject();
         project = item; // Simple assignment, will probably handle values differently later
@@ -24,18 +24,18 @@ export class ProjectService {
     }
 
     getProjects(): Promise<Array<Project>> {
-        let projects = new Array<Project>();
-        projects.push(
-            { id: '1', name: 'My first project'},
-            { id: '2', name: 'My second project'},
-            { id: '3', name: 'My third project'}
-        );
-        return Promise.resolve(projects);
+        // let projects = new Array<Project>();
+        // projects.push(
+        //     { id: '1', name: 'My first project'},
+        //     { id: '2', name: 'My second project'},
+        //     { id: '3', name: 'My third project'}
+        // );
+        // return Promise.resolve(projects);
 
-        // return this.http
-        //     .get('http://localhost:5000/api/project', { headers: this.headers })
-        //     .toPromise()
-        //     .then((result) => { return result.json(); })
-        //     .catch((error) => console.error(error));
+        return this.http
+            .get('/api/project', { headers: this.headers })
+            .toPromise()
+            .then((result) => { return result.json(); })
+            .catch((error) => console.error(error));
     }
 }
