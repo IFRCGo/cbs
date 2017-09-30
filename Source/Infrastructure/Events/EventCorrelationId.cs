@@ -13,6 +13,11 @@ namespace Infrastructure.Events
     public class EventCorrelationId : ConceptAs<Guid>
     {
         /// <summary>
+        /// The value when the <see cref="EventCorrelationId"/> is not set
+        /// </summary>
+        public static readonly EventCorrelationId NotSet = new EventCorrelationId { Value = Guid.Empty };
+
+        /// <summary>
         /// Implicitly convert from <see cref="Guid"/> to <see cref="EventCorrelationId"/>
         /// </summary>
         /// <param name="id">Id in the form of a <see cref="Guid"/></param>
