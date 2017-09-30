@@ -16,24 +16,19 @@ namespace Read
 
         public User GetById(Guid id)
         {
-            var cart = _collection.Find(c => c.Id == id).SingleOrDefault();
-            if( cart == null ) 
+            var user = _collection.Find(c => c.Id == id).SingleOrDefault();
+            if( user == null ) 
             {
-                cart = new User { Id = id };
-                _collection.InsertOne(cart);
+                user = new User { Id = id };
+                _collection.InsertOne(user);
             }
-            return cart;
+            return user;
         }
 
         public void Save(User user)
         {
-            //var filter = Builders<User>.Filter.Eq(c => c.Id == user.Id);
-            //_collection.ReplaceOne(filter, user);
-        }
-
-        public Guid GetCartIdForCurrentUser()
-        {
-            return Guid.NewGuid();
+            //var filter = Builders<User>.Filter.Eq(c => c.Id, user.Id);
+            _collection.InsertOne(user);
         }
     }
 }

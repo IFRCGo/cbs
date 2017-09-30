@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using Domain;
+using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Infrastructure.Application;
@@ -12,7 +14,7 @@ using MongoDB.Driver.Core.Misc;
 
 namespace Web
 {
-    [Route("api/usermanagement/user")]
+    [Route("api/usermanagement/")]
     public class UserController : Controller
     {
         public static readonly Infrastructure.Application.Feature Feature = "User";
@@ -31,6 +33,15 @@ namespace Web
             _logger = logger;
         }
 
+        [HttpPost("user")]
+        public void Add([FromBody] AddUser command)
+        {
+            _eventEmitter.Emit(Feature, new UserAdded
+            {
+                Id = new Guid(),
+                Name = command.Name
+            });
+        }
 
         [HttpGet]
         public User Get()

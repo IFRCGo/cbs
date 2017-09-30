@@ -1,8 +1,9 @@
 using System;
+using Infrastructure.Events;
 
-namespace Read
+namespace Events
 {
-    public class User
+    public class UserAdded : IEvent
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
