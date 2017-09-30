@@ -3,31 +3,35 @@
 <p>Click button to add a volunteer user</p>
 
 <form [formGroup]='volunteerUserForm' novalidate>
-    <md-form-field class="example-full-width input-field">
+    <md-form-field class="input-field">
         <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
     </md-form-field>
     
-    <md-form-field class="example-full-width input-field">
+    <md-form-field class="input-field">
         <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
     </md-form-field>
     
-    <md-form-field class="example-full-width input-field">
-        <input mdInput formControlName='sex' placeholder="Sex" ngDefaultControl/>
-    </md-form-field>
+    <md-radio-group formControlName='sex' placeholder="Sex" ngDefaultControl class="input-field">
+        <md-radio-button value="male">male</md-radio-button>
+        <md-radio-button value="female">female</md-radio-button>
+        <md-radio-button value="other">other</md-radio-button>
+      </md-radio-group>
         
-    <md-form-field class="example-full-width input-field">
-        <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
-    </md-form-field>
+    <md-input-container class="input-field">
+        <input mdInput type="number" formControlName="age" placeholder="age">
+    </md-input-container>   
     
-    <md-form-field class="example-full-width input-field">
+    <md-form-field class="input-field">
         <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
     </md-form-field>
     
-    <md-form-field class="example-full-width input-field">
-        <input mdInput formControlName='preferredLanguage' placeholder="Preferred language" ngDefaultControl>
-    </md-form-field>
+    <md-select formControlName="language" placeholder="Preferred language" [formGroup]="volunteerUserForm" ngDefaultControl>
+        <md-option mdInput *ngFor="let language of languages" [value]="language.value">
+            {{ language.viewValue }}
+        </md-option>
+    </md-select>
     
-    <md-form-field class="example-full-width input-field">
+    <md-form-field class="input-field">
         <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl>
     </md-form-field>
 </form>
