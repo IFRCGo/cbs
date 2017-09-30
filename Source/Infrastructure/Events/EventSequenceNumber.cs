@@ -12,6 +12,11 @@ namespace Infrastructure.Events
     public class EventSequenceNumber : ConceptAs<int>
     {
         /// <summary>
+        /// The Zero in the sequence
+        /// </summary>
+        public static readonly EventSequenceNumber Zero = new EventSequenceNumber { Value = 0 };
+
+        /// <summary>
         /// Implicitly convert from an <see cref="int"/> representation to <see cref="EventSequenceNumber"/>
         /// </summary>
         /// <param name="number">Sequence number as <see cref="int"/></param>
