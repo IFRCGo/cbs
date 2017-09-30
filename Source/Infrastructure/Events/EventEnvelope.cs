@@ -2,6 +2,8 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+using System;
+
 namespace Infrastructure.Events
 {
     /// <summary>
@@ -35,6 +37,16 @@ namespace Infrastructure.Events
         public EventSequenceNumber SequenceNumber { get; }
 
         /// <summary>
+        /// Gets the global sequence number for the specific <see cref="IEvent">event type</see>
+        /// </summary>
+        public EventSequenceNumber SequenceNumberForEventType { get; }
+
+        /// <summary>
+        /// Gets the type of the event
+        /// </summary>
+        public EventType EventType { get; }
+
+        /// <summary>
         /// Gets the <see cref="EventCorrelationId"/> for the <see cref="IEvent"/>
         /// </summary>
         public EventCorrelationId CorrelationId { get; }
@@ -43,6 +55,18 @@ namespace Infrastructure.Events
         /// Gets the <see cref="EventOrigin"/> for the <see cref="IEvent"/>
         /// </summary>
         public EventOrigin Origin { get; }
+
+        /// <summary>
+        /// Gets who or what the event was caused by.
+        /// 
+        /// Typically this would be the name of the user or system causing it
+        /// </summary>
+        public CausedBy CausedBy { get; }
+
+        /// <summary>
+        /// Gets the time the event occurred
+        /// </summary>
+        public DateTimeOffset Occurred { get; }        
 
         /// <summary>
         /// Gets the actual <see cref="IEvent"/>

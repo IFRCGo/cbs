@@ -8,7 +8,7 @@
             "command": "dotnet",
             "args": [
                 "build",
-                "./AspNet",
+                "./Events",
                 "--no-restore"
             ],
             "type": "process",
