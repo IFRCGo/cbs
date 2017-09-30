@@ -12,7 +12,7 @@ export class VolunteerService {
   constructor(private http: Http) { }
 
   saveVolunteer(volunteer: Volunteer): Promise<void> {
-    const url = `http://localhost:5000/api/usermanagement/user`;
+    const url = `http://localhost:5000/api/usermanagement/volunteeruser`;
 
     return this.http
       .post(url, JSON.stringify(volunteer), { headers: this.headers })
@@ -22,7 +22,7 @@ export class VolunteerService {
   }
 
   getAllVolunteers(): Promise<void> {
-    const url = 'http://localhost:5000/api/usermanagement/users';
+    const url = 'http://localhost:5000/api/usermanagement/volunteerusers';
 
     return this.http
       .get(url, { headers: this.headers })

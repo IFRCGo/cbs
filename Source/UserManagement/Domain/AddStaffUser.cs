@@ -13,7 +13,7 @@ namespace Domain
         public Language PrefferedLanguage { get; set; }
         //public string Location { get; set; } //TODO: fix when location strucutre is known
         //public GeoCoordinate GeoLocation { get; set; } //TODO: use GeoCoordinate
-        public string MobileNumber { get; set; }
+        public string MobilePhoneNumber { get; set; }
         public string Email { get; set; }
     }
 }

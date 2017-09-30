@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 const API_URL = 'http://localhost:5000/api/usermanagement';
-const API_USER = API_URL + '/user';
-const API_USERS = API_URL + '/users';
+const API_USER = API_URL + '/staffuser';
+const API_USERS = API_URL + '/staffusers';
 
 @Injectable()
 export class StaffUserService {
