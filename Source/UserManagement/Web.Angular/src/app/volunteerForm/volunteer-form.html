@@ -1,0 +1,27 @@
+<form novalidate [formGroup]='userForm'>
+    <div>
+        <input formControlName='firstName' placeholder='First name' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='lastName' placeholder='Last name' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='age' placeholder='Age' type='number' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='sex' placeholder='Sex' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='nationalSociety' placeholder='National Society' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='preferredLanguage' placeholder='Preferred Language' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='gpsLocation' placeholder='GPS Location' [formGroup]='userForm' ngDefaultControl>
+    </div>
+    <div>
+        <input formControlName='mobilePhoneNumber' placeholder='Mobile phone number' [formGroup]='userForm' ngDefaultControl>
+    </div>
+</form>
+<button (click)="addForm(userForm.value, userForm.valid)" >Send form!!</button>
