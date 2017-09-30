@@ -5,9 +5,9 @@ using MongoDB.Driver;
 
 namespace Read
 {
-    public class Users : Repository<User>, IUsers
+    public class Diseases : Repository<Disease>
     {
-        public Users(IMongoCollection<User> collection) : base(collection)
+        public Diseases(IMongoCollection<Disease> collection) : base(collection)
         {
         }
     }
