@@ -3,14 +3,34 @@
 <p>Click button to add a staff user</p>
 
 <form [formGroup]='staffUserForm' novalidate>
-    <input class="form-field" formControlName='firstName' placeholder="First name" />
-    <input class="form-field" formControlName='lastName' placeholder="Last name" />
-    <input class="form-field" formControlName='sex' placeholder="Sex" />    
-    <input class="form-field" formControlName='birthDate' placeholder="Birth date" />
-    <input class="form-field" formControlName='nationalSociety' placeholder="National society" />
-    <input class="form-field" formControlName='preferredLanguage' placeholder="Preferred language" />
-    <input class="form-field" formControlName='mobilePhoneNumber' placeholder="Mobile phone number" />
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='sex' placeholder="Sex" ngDefaultControl/>
+    </md-form-field>
+        
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='preferredLanguage' placeholder="Preferred language" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl>
+    </md-form-field>
 </form>
 
-<button type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Klikk på meg</button>
+<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Klikk på meg</button>
 

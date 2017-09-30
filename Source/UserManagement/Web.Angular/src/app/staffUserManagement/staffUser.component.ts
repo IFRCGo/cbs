@@ -26,7 +26,7 @@ export class StaffUserComponent implements OnInit {
         firstName: [ '', [ Validators.required ] ],
         lastName: [ '', [ Validators.required ] ],
         sex: ['', [ Validators.required ] ],
-        birthDate: ['', [ Validators.required ] ],
+        age: ['', [ Validators.required ] ],
         nationalSociety: ['', [ Validators.required ] ],
         preferredLanguage: ['', [ Validators.required ] ],
         mobilePhoneNumber: ['', [ Validators.required ] ]
