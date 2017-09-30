@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AddProject } from '../../shared/models/add-project.model';
+import { AddProject, NationalSociety, User } from '../../shared/models';
 import { ProjectService } from '../../core/project.service';
 import { UtilityService } from '../../core/utility.service';
 
@@ -12,6 +12,8 @@ import { UtilityService } from '../../core/utility.service';
 
 export class AddProjectComponent implements OnInit {
     name: string;
+    societies: NationalSociety[];
+    owners: User[];
 
     constructor(
         private projectService: ProjectService,
