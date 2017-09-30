@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Domain;
 using Events;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +49,13 @@ namespace Web
         public User Get()
         {
             return new User();
+        }
+
+        [HttpGet]
+        public IEnumerable<User> GetAll()
+        {
+            var users = _users.GetAll();
+            return users;
         }
 
         [HttpDelete("items/{id}")]

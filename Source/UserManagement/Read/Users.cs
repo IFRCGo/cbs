@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using MongoDB.Driver;
 
 namespace Read
@@ -23,6 +25,12 @@ namespace Read
                 _collection.InsertOne(user);
             }
             return user;
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            var users = _collection.FindSync(_ => true).ToList();
+            return users;
         }
 
         public void Save(User user)
