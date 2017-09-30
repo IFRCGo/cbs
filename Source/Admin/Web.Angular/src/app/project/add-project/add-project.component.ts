@@ -12,6 +12,8 @@ import { UtilityService } from '../../core/utility.service';
 
 export class AddProjectComponent implements OnInit {
     name: string;
+    selectedSociety: string;
+    selectedOwner: string;
 
     constructor(
         private projectService: ProjectService,
