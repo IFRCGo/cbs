@@ -32,5 +32,10 @@ namespace Read
             var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
             _collection.ReplaceOne(filter, project);
         }
+
+        public IEnumerable<Project> GetAll()
+        {
+            return _collection.Find(_ => true).ToList();
+        }
     }
 }
