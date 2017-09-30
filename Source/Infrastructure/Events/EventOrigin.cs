@@ -12,6 +12,11 @@ namespace Infrastructure.Events
     public class EventOrigin
     {
         /// <summary>
+        /// The unknown origin
+        /// </summary>
+        public static readonly EventOrigin Unknown = EventOrigin.FromStrings("Unknown", "Unknown");
+
+        /// <summary>
         /// Create an <see cref="EventOrigin"/> from string representations
         /// </summary>
         /// <param name="boundedContext"><see cref="BoundedContext"/> string representation</param>
