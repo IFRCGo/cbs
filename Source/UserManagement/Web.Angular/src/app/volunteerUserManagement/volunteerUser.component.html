@@ -1,27 +1,37 @@
-<form novalidate [formGroup]='userForm'>
-    <div>
-        <input formControlName='firstName' placeholder='First name' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='lastName' placeholder='Last name' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='age' placeholder='Age' type='number' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='sex' placeholder='Sex' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='nationalSociety' placeholder='National Society' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='preferredLanguage' placeholder='Preferred Language' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='gpsLocation' placeholder='GPS Location' [formGroup]='userForm' ngDefaultControl>
-    </div>
-    <div>
-        <input formControlName='mobilePhoneNumber' placeholder='Mobile phone number' [formGroup]='userForm' ngDefaultControl>
-    </div>
+<h2>Volunteer User management</h2>
+
+<p>Click button to add a volunteer user</p>
+
+<form [formGroup]='volunteerUserForm' novalidate>
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='sex' placeholder="Sex" ngDefaultControl/>
+    </md-form-field>
+        
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='preferredLanguage' placeholder="Preferred language" ngDefaultControl>
+    </md-form-field>
+    
+    <md-form-field class="example-full-width input-field">
+        <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl>
+    </md-form-field>
 </form>
-<button type='submit' class='btn' (click)="addForm(userForm.value, userForm.valid)" >Send form!!</button>
+
+<button md-raised-button color="primary" type="submit" class="btn" 
+    (click)="addVolunteerUser(volunteerUserForm.value, volunteerUserForm.valid)" >Klikk på meg</button>
+
