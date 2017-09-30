@@ -2,27 +2,23 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-using Infrastructure.Events;
+using doLittle.Concepts;
 
 namespace Infrastructure.Events
 {
-    /// <inheritdoc />
     /// <summary>
-    /// Represents an implementation of <see cref="T:Infrastructure.Events.IEventStore" />
+    /// Represents the specific type of an event
     /// </summary>
-    public class NullEventStore : IEventStore
+    public class EventType : ConceptAs<string>
     {
-        /// <inheritdoc/>
-        public void Save(IEnumerable<EventEnvelope> events)
-        {
-            
-        }
 
-        /// <inheritdoc />
-        public IEnumerable<EventEnvelope> Replay()
+        /// <summary>
+        /// Implicitly convert from a string representation of an type of event to <see cref="EventType"/>
+        /// </summary>
+        /// <param name="type">String representation of an event type</param>
+        public static implicit operator EventType(string type)
         {
-            return new List<EventEnvelope>();
+            return new EventType { Value = type };
         }
     }
 }
