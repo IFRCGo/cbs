@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Read
 {
@@ -10,5 +11,6 @@ namespace Read
         void Save(Project project);
 
         IEnumerable<Project> GetAll();
+        Task<IEnumerable<Project>> GetAllASync();
     }
 }
