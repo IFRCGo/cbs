@@ -27,7 +27,7 @@ namespace Read
 
         public void Save(Cart cart)
         {
-            var filter = Builders<Cart>.Filter.Eq(c => c.Id == cart.Id);
+            var filter = Builders<Cart>.Filter.Eq(c => c.Id, cart.Id);
             _collection.ReplaceOne(filter, cart);
         }
 
