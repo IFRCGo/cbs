@@ -1,21 +1,21 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { VolunteerService } from './volunteerUser.service';
+import { DataCollectorService } from './dataCollector.service';
 
 @Component({
-  selector: 'cbs-volunteer-form',
-  templateUrl: 'volunteerUser.component.html',
-  styleUrls: [ 'volunteerUser.component.scss' ]
+  selector: 'cbs-dataCollector-form',
+  templateUrl: 'dataCollector.component.html',
+  styleUrls: [ 'dataCollector.component.scss' ]
 })
-export class VolunteerFormComponent implements OnInit {
-  volunteerUserForm: FormGroup;
+export class DataCollectorFormComponent implements OnInit {
+  dataCollectorForm: FormGroup;
   languages = [
     { value: '0', viewValue: 'English'},
     { value: '1', viewValue: 'French'}
   ];
 
   constructor(private formBuilder: FormBuilder,
-              private userService: VolunteerService
+              private userService: DataCollectorService
   ) {}
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class VolunteerFormComponent implements OnInit {
   }
 
   buildForm() {
-    this.volunteerUserForm = this.formBuilder.group({
+    this.dataCollectorForm = this.formBuilder.group({
       firstName: [ '', [ Validators.required ] ],
       lastName: [ '', [ Validators.required ] ],
       age: ['', [ Validators.required ] ],
@@ -35,7 +35,7 @@ export class VolunteerFormComponent implements OnInit {
     });
   }
 
-  addVolunteerUser(form, isValidForm) {
+  adddataCollector(form, isValidForm) {
     if (isValidForm) {
       console.log(form)
     }
@@ -43,7 +43,7 @@ export class VolunteerFormComponent implements OnInit {
   }
 
   async addUser(form) {
-    this.userService.saveVolunteer(form);
+    this.userService.saveDataCollector(form);
     console.log('Clicked button');
   }
 }

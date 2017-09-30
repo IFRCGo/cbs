@@ -9,11 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material';
 
 import { StaffUserService } from './staffUserManagement/staffUser.service';
-import { VolunteerService } from './volunteerUserManagement/volunteerUser.service';
+import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
 
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
-import { VolunteerFormComponent } from './volunteerUserManagement/volunteerUser.component';
+import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
 import { HomeComponent } from './homeComponent/home.component';
 import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Test.component';
 
@@ -21,7 +21,7 @@ import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Te
   declarations: [
     AppComponent,
     StaffUserComponent,
-    VolunteerFormComponent,
+    DataCollectorFormComponent,
     HomeComponent,
     UiTestComponent
   ],
@@ -40,7 +40,7 @@ import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Te
     MatTabsModule,
     MatSelectModule
   ],
-  providers: [StaffUserService, VolunteerService],
+  providers: [StaffUserService, DataCollectorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

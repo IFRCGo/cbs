@@ -1,4 +1,4 @@
-import { Volunteer } from './../domain/volunteer';
+import { DataCollector } from './../domain/dataCollector';
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
@@ -6,23 +6,23 @@ import { Headers, Http } from '@angular/http';
 
 
 @Injectable()
-export class VolunteerService {
+export class DataCollectorService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
-  saveVolunteer(volunteer: Volunteer): Promise<void> {
-    const url = `http://localhost:5000/api/usermanagement/volunteeruser`;
+  saveDataCollector(dataCollector: DataCollector): Promise<void> {
+    const url = `http://localhost:5000/api/usermanagement/dataCollector`;
 
     return this.http
-      .post(url, JSON.stringify(volunteer), { headers: this.headers })
+      .post(url, JSON.stringify(dataCollector), { headers: this.headers })
       .toPromise()
-      .then(() => { console.log('Volunteer user added successfully'); })
+      .then(() => { console.log('DataCollector user added successfully'); })
       .catch((error) => console.error(error));
   }
 
-  getAllVolunteers(): Promise<void> {
-    const url = 'http://localhost:5000/api/usermanagement/volunteerusers';
+  getAllDataCollectors(): Promise<void> {
+    const url = 'http://localhost:5000/api/usermanagement/dataCollectors';
 
     return this.http
       .get(url, { headers: this.headers })
