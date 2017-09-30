@@ -14,11 +14,13 @@ namespace Read
             _projects = projects;
         }
 
-        public void Process(CreatedProject @event)
+        public void Process(ProjectCreated @event)
         {
             var project = _projects.GetById(@event.Id);
             project.Name = @event.Name;
             _projects.Save(project);
+
+
         }
     }
 }

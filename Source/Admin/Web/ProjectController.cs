@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Infrastructure.Application;
@@ -34,9 +36,17 @@ namespace Web
 
 
         [HttpGet]
-        public Project Get()
+        public async  Task<IEnumerable<Project>> Get()
         {
-            return new Project();;
+            return  await _projects.GetAllASync();
+       
+        }
+
+        [HttpGet]
+        public Project Get(Guid id)
+        {
+            return _projects.GetById(id);
+
         }
 
 
@@ -44,11 +54,10 @@ namespace Web
         public void Post([FromBody]CreateProject command)
         {
            
-
-            _eventEmitter.Emit(Feature, new CreatedProject
+            _eventEmitter.Emit(Feature, new ProjectCreated
             {
               Name = command.Name,
-              Id = Guid.NewGuid()
+              Id = command.Id
             });
         }
 
