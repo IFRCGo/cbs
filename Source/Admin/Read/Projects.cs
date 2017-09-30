@@ -1,15 +1,20 @@
-using MongoDB.Driver;
+// /*---------------------------------------------------------------------------------------------
+//  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+//  *  Licensed under the MIT License. See LICENSE in the project root for license information.
+//  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read
 {
     public class Projects : IProjects
     {
-        readonly IMongoDatabase _database;
         readonly IMongoCollection<Project> _collection;
+
+        readonly IMongoDatabase _database;
 
         public Projects(IMongoDatabase database)
         {
@@ -22,7 +27,7 @@ namespace Read
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
             if (project == null)
             {
-                project = new Project() { Name = "Dummy implementation" };
+                project = new Project {Name = "Dummy implementation"};
                 _collection.InsertOne(project);
             }
             return project;
