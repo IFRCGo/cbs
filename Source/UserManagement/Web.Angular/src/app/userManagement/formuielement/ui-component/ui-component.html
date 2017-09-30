@@ -5,16 +5,16 @@
 <p>
 
 </p>
-<select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode">
-    <option *ngFor="let nation of nations" [value]="nation.countryCode" [ngValue]="nation.countryCode">{{nation.country}}</option> 
-</select>
+<md-select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode">
+    <md-option *ngFor="let nation of nations" [value]="nation.countryCode">{{nation.country}}</md-option> 
+</md-select>
 
-<select name="select2">
-    <option *ngFor="let district of districts">{{district.place}}</option>
-</select>
+<md-select name="select2">
+    <md-option *ngFor="let district of districts" [value]="district.countryCode">{{district.place}}</md-option>
+</md-select>
 <p></p>
-<h2>{{location.latitude}}</h2>
-<h2>{{location.longitude}}</h2>
-<button (click)="getPosition()">Fetch my geo location</button>
+Latitude: <h2>{{location.latitude}}</h2>
+Longitude: <h2>{{location.longitude}}</h2>
+<button md-raised-button color="primary" class="btn" (click)="getPosition()">Fetch my geo location</button>
 
 
