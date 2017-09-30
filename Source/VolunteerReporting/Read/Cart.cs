@@ -23,7 +23,7 @@ namespace Read
 
         public void Add(Guid product, int quantity, Price price)
         {
-            var existing = Lines.Where(p => p.Product == product).Single();
+            var existing = Lines.Where(p => p.Product == product).SingleOrDefault();
             if (existing != null)
             {
                 existing.Quantity += quantity;
