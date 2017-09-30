@@ -1,15 +1,18 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { VolunteerService } from './volunteerUser.service';
 
 @Component({
   selector: 'cbs-volunteer-form',
-  templateUrl: 'volunteer-form.html',
-  styles: [ 'volunteer-form.scss' ]
+  templateUrl: 'volunteerUser.component.html',
+  styles: [ 'volunteerUser.component.scss' ]
 })
 export class VolunteerFormComponent implements OnInit {
   userForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private userService: VolunteerService
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -32,5 +35,11 @@ export class VolunteerFormComponent implements OnInit {
     if (isValidForm) {
       console.log(form)
     }
+    this.addUser(form)
+  }
+
+  async addUser(form) {
+    this.userService.saveVolunteer(form);
+    console.log('Clicked button');
   }
 }
