@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AddProject } from '../../shared/models/add-project.model';
-import { ProjectService, UtilityService } from '../../shared/services';
+import { ProjectService } from '../../core/project.service';
+import { UtilityService } from '../../shared/services/index';
 
 @Component({
     selector: 'cbs-add-project',
