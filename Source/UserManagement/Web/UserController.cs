@@ -45,13 +45,7 @@ namespace Web
             });
         }
 
-        [HttpGet]
-        public User Get()
-        {
-            return new User();
-        }
-
-        [HttpGet]
+        [HttpGet("users")]
         public IEnumerable<User> GetAll()
         {
             var users = _users.GetAll();

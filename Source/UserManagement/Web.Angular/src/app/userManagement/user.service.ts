@@ -24,4 +24,14 @@ export class UserService {
       .then(() => { console.log('user added successfully'); })
       .catch((error) => console.error(error));
   }
+
+  getAllUsers(): Promise<void> {
+    const url = 'http://localhost:5000/api/usermanagement/users';
+
+    return this.http
+      .get(url, { headers: this.headers })
+      .toPromise()
+      .then((users) => { console.log(users); })
+      .catch((error) => console.error(error));
+  }
 }
