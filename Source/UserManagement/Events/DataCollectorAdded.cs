@@ -4,7 +4,7 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class VolunteerUserAdded : IEvent
+    public class DataCollectorAdded : IEvent
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

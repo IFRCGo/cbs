@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { DataCollectorService } from './dataCollector.service';
 
 @Component({
-  selector: 'cbs-dataCollector-form',
+  selector: 'cbs-data-collector-form',
   templateUrl: 'dataCollector.component.html',
   styleUrls: [ 'dataCollector.component.scss' ]
 })

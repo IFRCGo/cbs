@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace Domain
 {
-    public class AddVolunteerUserValidator : AbstractValidator<AddVolunteerUser>
+    public class AddDataCollectorValidator : AbstractValidator<AddDataCollector>
     {
-        public AddVolunteerUserValidator()
+        public AddDataCollectorValidator()
         {
             RuleFor(_ => _.FirstName)
                 .NotEmpty()

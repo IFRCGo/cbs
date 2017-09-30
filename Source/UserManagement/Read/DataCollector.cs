@@ -4,7 +4,7 @@ using Events;
 
 namespace Read
 {
-    public class VolunteerUser{
+    public class DataCollector{
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
@@ -17,9 +17,9 @@ namespace Read
         public string MobilePhoneNumber{ get; set; }
         public string Email { get; set; }
 
-        public VolunteerUser() { }
+        public DataCollector() { }
 
-        public VolunteerUser(VolunteerUserAdded @event)
+        public DataCollector(DataCollectorAdded @event)
         {
             Id = @event.Id;
             FirstName = @event.FirstName;

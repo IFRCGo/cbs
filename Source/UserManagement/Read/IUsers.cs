@@ -6,10 +6,10 @@ namespace Read
     public interface IUsers
     {
         StaffUser GetStaffUserById(Guid id);
-        VolunteerUser GetVolunteerUserById(Guid id);
+        DataCollector GetDataCollectorById(Guid id);
         IEnumerable<StaffUser> GetAllStaffUsers();
-        IEnumerable<VolunteerUser> GetAllVolunteerUsers();
+        IEnumerable<DataCollector> GetAllDataCollectors();
         void Save(StaffUser user);
-        void Save(VolunteerUser user);
+        void Save(DataCollector user);
     }
 }
