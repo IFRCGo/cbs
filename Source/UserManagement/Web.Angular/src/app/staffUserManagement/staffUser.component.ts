@@ -10,6 +10,12 @@ import { StaffUser } from '../domain/staffUser';
 })
 export class StaffUserComponent implements OnInit {
   staffUserForm: FormGroup;
+  selectedSex: string;
+  sexOptions = [
+    {value: 'male', viewValue: 'Male'},
+    {value: 'female', viewValue: 'Female'},
+    {value: 'other', viewValue: 'Other'}
+  ];
 
   constructor(
     private staffUserService: StaffUserService,
@@ -35,7 +41,8 @@ export class StaffUserComponent implements OnInit {
 
   async addStaffUser(staffUser) {
     const newStaffUser: StaffUser = {
-      name: `${staffUser.firstName} ${staffUser.lastName}`
+      name: `${staffUser.firstName} ${staffUser.lastName}`,
+      sex: staffUser.sex
     };
 
     this.staffUserService.saveUser(newStaffUser);
