@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using System.Text;
 using MongoDB.Driver;
 
-namespace Read
+namespace Read.Disease
 {
     public class Diseases : Repository<Disease>, IDiseases
     {
-        public Diseases(IMongoCollection<Disease> collection) : base(collection)
+        public Diseases(IMongoDatabase database) : base(database, "Disease")
         {
         }
     }

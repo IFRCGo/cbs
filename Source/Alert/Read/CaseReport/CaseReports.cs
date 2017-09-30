@@ -6,11 +6,8 @@ namespace Read
 {
     public class CaseReports : Repository<CaseReport>, ICaseReports
     {
-        private readonly IMongoCollection<CaseReport> _collection;
-
-        public CaseReports(IMongoCollection<CaseReport> collection) : base(collection)
+        public CaseReports(IMongoDatabase database) : base(database, "CaseReport")
         {
-            _collection = collection;
         }
 
         public IEnumerable<CaseReport> GetCaseReportsAfterDate(DateTime date)

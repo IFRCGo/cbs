@@ -7,7 +7,7 @@ namespace Read
 {
     public class Users : Repository<User>, IUsers
     {
-        public Users(IMongoCollection<User> collection) : base(collection)
+        public Users(IMongoDatabase database) : base(database, "User")
         {
         }
     }

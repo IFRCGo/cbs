@@ -7,11 +7,11 @@ namespace Read
 {
     public class Repository<T> where T : Entity
     {
-        private readonly IMongoCollection<T> _collection;
+        internal readonly IMongoCollection<T> _collection;
 
-        public Repository(IMongoCollection<T> collection)
+        public Repository(IMongoDatabase database, string collectionName)
         {
-            _collection = collection;
+            _collection = database.GetCollection<T>(collectionName);
         }
 
         public T GetById(Guid id)
@@ -22,7 +22,7 @@ namespace Read
         public void Save(T entity)
         {
             var filter = Builders<T>.Filter.Eq(c => c.Id, entity.Id);
-            _collection.ReplaceOne(filter, entity);
+            _collection.ReplaceOne(filter, entity, new UpdateOptions(){IsUpsert = true});
         }
     }
 }

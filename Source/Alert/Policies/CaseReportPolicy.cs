@@ -4,6 +4,7 @@ using Events;
 using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
+using MongoDB.Driver;
 using Read;
 
 namespace Policies
