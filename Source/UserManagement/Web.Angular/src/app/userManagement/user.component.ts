@@ -1,5 +1,6 @@
 import { UserService } from './user.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { User } from './user';
 
 @Component({
@@ -8,14 +9,26 @@ import { User } from './user';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  userForm: FormGroup;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.buildForm();
+  }
 
-  async addUser() {
+  buildForm() {
+    this.userForm = this.formBuilder.group({
+      fullName: [ '', [ Validators.required ] ]
+    });
+  }
+
+  async addUser(user) {
     const newUser: User = {
-      name: 'Steven Hicks'
+      name: user.fullName
     };
 
     this.userService.saveUser(newUser);

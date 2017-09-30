@@ -2,4 +2,9 @@
 
 <p>Click button to add a user</p>
 
-<button style="width: 100px; height: 50px;" (click)="addUser(item)" >Klikk på meg</button>
+<form [formGroup]='userForm' novalidate>
+    <input formControlName='fullName'>
+</form>
+
+<button type="submit" class="btn" (click)="addUser(userForm.value)" >Klikk på meg</button>
+
