@@ -1,4 +1,4 @@
-import { UserService } from './userManagement/user.service';
+import { StaffUserService } from './staffUserManagement/staffUser.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -7,13 +7,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './userManagement/user.component';
+import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    StaffUserComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,7 @@ import { UserComponent } from './userManagement/user.component';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [StaffUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

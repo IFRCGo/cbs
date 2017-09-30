@@ -1,0 +1,10 @@
+<h2>Staff User management</h2>
+
+<p>Click button to add a staff user</p>
+
+<form [formGroup]='staffUserForm' novalidate>
+    <input formControlName='fullName'>
+</form>
+
+<button type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)" >Klikk på meg</button>
+
