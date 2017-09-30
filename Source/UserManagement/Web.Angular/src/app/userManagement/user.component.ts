@@ -1,5 +1,6 @@
 import { UserService } from './user.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from './user';
 
 @Component({
   selector: 'cbs-user',
@@ -12,7 +13,12 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {}
 
-  async addItem() {
-    console.log('Clicked item');
+  async addUser() {
+    const newUser: User = {
+      name: 'Steven Hicks'
+    };
+
+    this.userService.saveUser(newUser);
+    console.log('Clicked button');
   }
 }
