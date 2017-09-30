@@ -17,4 +17,7 @@
     <ProjectReference Include="..\..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
 </Project>
