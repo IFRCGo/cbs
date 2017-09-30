@@ -1,0 +1,15 @@
+<!-- <select #c (change)="getDistricts($event.target.value)">
+    <option *ngFor="let nation of nations">{{nation.country}}</option> 
+</select> -->
+
+<select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode">
+    <option *ngFor="let nation of nations" [value]="nation.countryCode" [ngValue]="nation.countryCode">{{nation.country}}</option> 
+</select>
+
+<select name="select2" >
+     
+    <option *ngFor="let district of districts">{{district.place}}</option>
+</select>
+
+
+
