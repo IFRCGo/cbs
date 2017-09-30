@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.AspNetCore", "..\Infrastructure\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj", "{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concepts.csproj", "{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,18 @@ Global
 		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x64.Build.0 = Release|Any CPU
 		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x86.ActiveCfg = Release|Any CPU
 		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x86.Build.0 = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|x64.Build.0 = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|x86.Build.0 = Debug|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|x64.ActiveCfg = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|x64.Build.0 = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|x86.ActiveCfg = Release|Any CPU
+		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

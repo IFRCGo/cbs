@@ -3,16 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Domain;
 using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Application;
 using Infrastructure.Events;
 using Read;
-using MongoDB.Driver.Core.Misc;
 
 namespace Web
 {
@@ -35,20 +32,45 @@ namespace Web
             _logger = logger;
         }
 
-        [HttpPost("user")]
-        public void Add([FromBody] AddUser command)
+        [HttpPost("staffuser")]
+        public void Add([FromBody] AddStaffUser command)
         {
-            _eventEmitter.Emit(Feature, new UserAdded
+            _eventEmitter.Emit(Feature, new StaffUserAdded
             {
                 Id = new Guid(),
-                Name = command.Name
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Age = command.Age,
+                Sex = command.Sex,
+                NationalSociety = command.NationalSociety,
+                PrefferedLanguage = command.PrefferedLanguage,
+                MobileNumber = command.MobileNumber,
+                Email = command.Email
             });
         }
 
-        [HttpGet("users")]
-        public IEnumerable<User> GetAll()
+        [HttpPost("volunteeruser")]
+        public void Add([FromBody] AddVolunteerUser command)
         {
-            var users = _users.GetAll();
+            _eventEmitter.Emit(Feature, new VolunteerUserAdded
+            {
+                Id = command.Id,
+                FirstName = command.FirstName,
+                LastName = command.LastName
+            });
+        }
+
+        [HttpGet("staffusers")]
+        public IEnumerable<StaffUser> GetAllStaffUsers()
+        {
+            var users = _users.GetAllStaffUsers();
+            return users;
+        }
+
+        [HttpGet("volunteerusers")]
+        public IEnumerable<VolunteerUser> GetAllVolunteerUsers()
+        {
+            var users = _users.GetAllVolunteerUsers();
             return users;
         }
 

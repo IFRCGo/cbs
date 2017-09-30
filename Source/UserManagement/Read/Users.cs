@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using MongoDB.Driver;
 
@@ -8,35 +7,57 @@ namespace Read
     public class Users : IUsers
     {
         readonly IMongoDatabase _database;
-        readonly IMongoCollection<User> _collection;
+        readonly IMongoCollection<StaffUser> _staffUserCollection;
+        readonly IMongoCollection<VolunteerUser> _volunteerUserCollection;
 
         public Users(IMongoDatabase database)
         {
             _database = database;
-            _collection = database.GetCollection<User>("User");
+            _staffUserCollection = database.GetCollection<StaffUser>("StaffUser");
         }
 
-        public User GetById(Guid id)
+        public IEnumerable<StaffUser> GetAllStaffUsers()
         {
-            var user = _collection.Find(c => c.Id == id).SingleOrDefault();
-            if( user == null ) 
+            return _staffUserCollection.FindSync(_ => true).ToList();
+        }
+
+        public IEnumerable<VolunteerUser> GetAllVolunteerUsers()
+        {
+            return _volunteerUserCollection.FindSync(_ => true).ToList();
+        }
+
+        public StaffUser GetStaffUserById(Guid id)
+        {
+            var user = _staffUserCollection.Find(c => c.Id == id).SingleOrDefault();
+            if (user == null)
             {
-                user = new User { Id = id };
-                _collection.InsertOne(user);
+                user = new StaffUser { Id = id };
+                _staffUserCollection.InsertOne(user);
             }
+
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public VolunteerUser GetVolunteerUserById(Guid id)
         {
-            var users = _collection.FindSync(_ => true).ToList();
-            return users;
+            var user = _volunteerUserCollection.Find(c => c.Id == id).SingleOrDefault();
+            if (user == null)
+            {
+                user = new VolunteerUser { Id = id };
+                _volunteerUserCollection.InsertOne(user);
+            }
+
+            return user;
         }
 
-        public void Save(User user)
+        public void Save(StaffUser user)
         {
-            //var filter = Builders<User>.Filter.Eq(c => c.Id, user.Id);
-            _collection.InsertOne(user);
+            _staffUserCollection.InsertOne(user);
+        }
+
+        public void Save(VolunteerUser user)
+        {
+            _volunteerUserCollection.InsertOne(user);
         }
     }
 }

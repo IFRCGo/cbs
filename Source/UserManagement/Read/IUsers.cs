@@ -5,8 +5,11 @@ namespace Read
 {
     public interface IUsers
     {
-        User GetById(Guid id);
-        IEnumerable<User> GetAll();
-        void Save(User user);
+        StaffUser GetStaffUserById(Guid id);
+        VolunteerUser GetVolunteerUserById(Guid id);
+        IEnumerable<StaffUser> GetAllStaffUsers();
+        IEnumerable<VolunteerUser> GetAllVolunteerUsers();
+        void Save(StaffUser user);
+        void Save(VolunteerUser user);
     }
 }

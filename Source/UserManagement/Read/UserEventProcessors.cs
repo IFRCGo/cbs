@@ -11,12 +11,20 @@ namespace Read
             _users = users;
         }
 
-        public void Process(UserAdded @event)
+        public void Process(StaffUserAdded @event)
         {
-            var user = new User
+            var user = new StaffUser(@event);
+
+            _users.Save(user);
+        }
+
+        public void Process(VolunteerUserAdded @event)
+        {
+            var user = new VolunteerUser
             {
-                Name = @event.Name,
-                Id = @event.Id
+                Id = @event.Id,
+                FirstName = @event.FirstName,
+                LastName = @event.LastName
             };
 
             _users.Save(user);
