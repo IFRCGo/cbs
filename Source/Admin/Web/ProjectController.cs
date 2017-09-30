@@ -36,24 +36,21 @@ namespace Web
 
 
         [HttpGet]
-        public async  Task<IEnumerable<Project>> Get()
+        public async Task<IEnumerable<Project>> Get()
         {
-            return  await _projects.GetAllASync();
-       
+            return await _projects.GetAllASync();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public Project Get(Guid id)
         {
             return _projects.GetById(id);
-
         }
 
 
         [HttpPost]
         public void Post([FromBody]CreateProject command)
         {
-           
             _eventEmitter.Emit(Feature, new ProjectCreated
             {
               Name = command.Name,

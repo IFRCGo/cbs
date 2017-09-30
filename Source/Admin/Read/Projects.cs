@@ -22,7 +22,7 @@ namespace Read
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
             if (project == null)
             {
-                project = new Project() { Name = "Dummy implementation", Id = Guid.Empty };
+                project = new Project() { Name = "Dummy implementation" };
                 _collection.InsertOne(project);
             }
             return project;
@@ -41,10 +41,9 @@ namespace Read
 
         public async Task<IEnumerable<Project>> GetAllASync()
         {
-            var filter = Builders<Project>.Filter.Eq(v => true, true);
+            var filter = Builders<Project>.Filter.Empty;
             var list = await _collection.FindAsync(filter);
             return await list.ToListAsync();
-
         }
     }
 }
