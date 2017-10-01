@@ -13,10 +13,10 @@ namespace Read.HealthRiskObjects
 
         public void Process(HealthRiskCreatedEvent @event)
         {
-            var user = _healthRisks.GetById(@event.Id);
-            if (user == null)
+            var healthRisk = _healthRisks.GetById(@event.Id);
+            if (healthRisk == null)
             {
-                user = new HealthRisk()
+                healthRisk = new HealthRisk()
                 {
                     Id = @event.Id,
                     Name = @event.Name,
@@ -25,11 +25,11 @@ namespace Read.HealthRiskObjects
             }
             else
             {
-                user.Id = @event.Id;
-                user.Name = @event.Name;
-                user.Code = @event.Code;
+                healthRisk.Id = @event.Id;
+                healthRisk.Name = @event.Name;
+                healthRisk.Code = @event.Code;
             }
-            _healthRisks.Save(user);
+            _healthRisks.Save(healthRisk);
         }
     }
 }
