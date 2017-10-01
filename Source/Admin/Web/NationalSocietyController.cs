@@ -2,14 +2,15 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
+using System;
+using System.Collections.Generic;
 using Events;
 using Infrastructure.Application;
 using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read;
-using System;
-using System.Collections.Generic;
 
 namespace Web
 {
@@ -17,16 +18,16 @@ namespace Web
     public class NationalSocietyController : Controller
     {
         public static readonly Feature Feature = "NationalSociety";
+        private readonly IEventEmitter _eventEmitter;
+        private readonly ILogger<ProjectController> _logger;
 
-        readonly INationalSocieties _nationalSociety;
-        readonly IEventEmitter _eventEmitter;
-        readonly ILogger<ProjectController> _logger;
+        private readonly INationalSocieties _nationalSociety;
 
         public NationalSocietyController(
             INationalSocieties nationalSociety,
             IEventEmitter eventEmitter,
             ILogger<ProjectController> logger
-            )
+        )
         {
             _logger = logger;
             _eventEmitter = eventEmitter;

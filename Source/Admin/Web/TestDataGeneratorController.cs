@@ -43,18 +43,18 @@ namespace Web
             var _collection = _database.GetCollection<NationalSociety>("NationalSociety");
             _collection.DeleteMany(v => true);
 
-            int i = 1;
-            foreach (var id in _nationalSocietyIds)
-                _eventEmitter.Emit("NationalSecurity", new NationalSocietyCreated() { Id = id, Name = $"National Society #{i++}" });
+            var societies = JsonConvert.DeserializeObject<NationalSocietyCreated[]>(File.ReadAllText("./TestData/NationalSocieties.json"));
+			foreach (var society in societies)
+				_eventEmitter.Emit("NationalSociety", society);
         }
 
         [HttpGet("users")]
         public void CreateUsers()
         {
-            var _collection = _database.GetCollection<NationalSociety>("Users");
+            var _collection = _database.GetCollection<User>("Users");
             _collection.DeleteMany(v => true);
             
-            var users = JsonConvert.DeserializeObject<UserCreated[]>(File.ReadAllText(".\\TestData\\Names.json"));
+            var users = JsonConvert.DeserializeObject<UserCreated[]>(File.ReadAllText("./TestData/Names.json"));
             foreach (var user in users)
                 _eventEmitter.Emit("User", user);
         }

@@ -23,8 +23,10 @@ namespace Read
 		{
             var nationalSociety = new NationalSociety()
 			{
+                Id = @event.Id,
 				Name = @event.Name,
-				Id = @event.Id
+                Country = @event.Country
+				
 			};
 			_nationalSocieties.Save(nationalSociety);
 		}
