@@ -26,7 +26,7 @@ namespace Domain
                     Age = numbers[2]
                 };
             }
-            throw new Exception("Sms should only have 3 numbers");
+            throw new Exception("Text message should only contain 3 numbers");
         }
 
         private static bool IsNum(string input)
