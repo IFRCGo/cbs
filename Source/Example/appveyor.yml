@@ -10,12 +10,12 @@ pull_requests:
 image: Visual Studio 2017
 
 environment:
-  SlnFile: <path to the solution file>
-  WebBinFolder: <path to ther bin folder of the web project>
+  SlnFile: ../Source/Example/Catalog/Catalog.sln
+  WebBinFolder: ../Source/Example/Catalog/Web/bin
 
-only_commits:
-  files:
-    - <baseSourceforlder>
+#only_commits:
+#  files:
+#    - Source/Example
 
 build_script:
 - ps: ./Build/build.ps1
