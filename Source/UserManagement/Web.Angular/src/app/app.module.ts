@@ -6,7 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MdButtonModule, MatInputModule, MatDatepickerModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTabsModule} from '@angular/material';
+import { MatTabsModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StaffUserService } from './staffUserManagement/staffUser.service';
 import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
@@ -38,7 +39,8 @@ import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Te
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule.forRoot()
   ],
   providers: [StaffUserService, DataCollectorService],
   bootstrap: [AppComponent]
