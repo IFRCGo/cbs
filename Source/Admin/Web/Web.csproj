@@ -18,8 +18,8 @@
     <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="TestData\Names.txt">
+    <Content Update="TestData\Names.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 </Project>

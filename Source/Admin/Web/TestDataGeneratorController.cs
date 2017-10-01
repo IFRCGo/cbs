@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Read;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 namespace Web
 {
@@ -52,18 +53,10 @@ namespace Web
         {
             var _collection = _database.GetCollection<NationalSociety>("Users");
             _collection.DeleteMany(v => true);
-
-
-            var names = File.ReadAllLines(".\\TestData\\Names.txt");
-
-            int i = 0;
-            foreach (var name in names)
-            {
-                var firstName = name.Split(" ")[0];
-                var lastName = name.Split(" ")[1];
-                var nationalSociety = _nationalSocietyIds[i++ % _nationalSocietyIds.Length];
-                _eventEmitter.Emit("User", new UserCreated() { Id = Guid.NewGuid(), Firstname = firstName, Lastname = lastName, NationalSocietyId = nationalSociety, Country = "Norway" });
-            }
+            
+            var users = JsonConvert.DeserializeObject<UserCreated[]>(File.ReadAllText(".\\TestData\\Names.json"));
+            foreach (var user in users)
+                _eventEmitter.Emit("User", user);
         }
     }
 }
