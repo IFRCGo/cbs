@@ -27,6 +27,8 @@ jobs:
             bash ${PWD}/build.sh
       - store_artifacts:
           path: Source/Infrastructure/Application/bin/Release/netstandard2.0/
+      # - store_artifacts:
+      #     path: Source/Infrastructure/AspNet/bin/Release/netstandard2.0/
   test:
     docker:
       - image: dranoel/cbs-devel:latest
@@ -55,6 +57,9 @@ jobs:
       - store_artifacts:
           path: Source/Infrastructure/Application/bin/Release/netstandard2.0/
           destination: infrastructure-application-bin-release-netstandard2
+      # - store_artifacts:
+      #     path: Source/Infrastructure/AspNet/bin/Release/netstandard2.0/
+      #     destination: infrastructure-AspNet-bin-release-netstandard2
 workflows:
   version: 2
   build_and_test:
