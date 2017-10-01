@@ -17,4 +17,9 @@
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="TestData\Names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
