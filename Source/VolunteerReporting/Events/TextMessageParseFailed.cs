@@ -3,7 +3,7 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class SMSParseFailed : IEvent
+    public class TextMessageParseFailed : IEvent
     {
     }
 }
