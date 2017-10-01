@@ -77,5 +77,61 @@ namespace Web
             foreach (var risk in risks)
                 _eventEmitter.Emit("HealthRisk", risk);
         }
+
+        [HttpGet("createhealthrisksjson")]
+        public void CreateHealthRisksJson()
+        {
+            ConvertSeparatedFileWithHeadersToJson(
+                "./TestData/CBS Diseases - Events.tsv",
+                "./TestData/HealthRisks.json",
+                "\t",
+                (columnNames, values) =>
+                {
+                    var threshold = values[Array.IndexOf(columnNames, "Threshold")];
+                    return new HealthRiskCreated()
+                    {
+                        Id = Guid.NewGuid(),
+                        ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
+                        Name = values[Array.IndexOf(columnNames, "Health Risk")],
+                        Threshold = string.IsNullOrEmpty(threshold) ? (int?)null : int.Parse(threshold),
+                        ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
+                        ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
+                        SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
+                        CommunityCase = values[Array.IndexOf(columnNames, "Community Case")],
+                        Note = values[Array.IndexOf(columnNames, "Note")],
+                    };
+                });
+
+            //var lines = File.ReadAllLines("./TestData/CBS Diseases - Events.tsv");
+            //string[] columnNames = lines.First().Split("\t");
+            //List<HealthRiskCreated> risks = new List<HealthRiskCreated>();
+            //foreach (var line in lines.Skip(1))
+            //{
+            //    string[] values = line.Split("\t");
+            //    var risk = new HealthRiskCreated()
+            //    {
+            //        Id = Guid.NewGuid(),
+            //        ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
+            //        Name = values[Array.IndexOf(columnNames, "Health Risk")],
+            //        Threshold = values[Array.IndexOf(columnNames, "Threshold")]
+            //    };
+            //    risks.Add(risk);
+            //}
+            //File.WriteAllText("./TestData/HealthRisks.json", JsonConvert.SerializeObject(risks));
+
+        }
+
+        private void ConvertSeparatedFileWithHeadersToJson<T>(string inputFilePath, string outputFilePath, string separator, Func<string[], string[], T> callback)
+        {
+            var lines = File.ReadAllLines(inputFilePath);
+            string[] columnNames = lines.First().Split(separator);
+            var list = new List<T>();
+            foreach (string line in lines.Skip(1))
+            {
+                string[] values = line.Split(separator);
+                list.Add(callback(columnNames, values));
+            }
+            File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(list.ToArray()));
+        }
     }
 }
