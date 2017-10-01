@@ -36,18 +36,9 @@ Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild(slnFile, settings =>
-        settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild(slnFile, settings =>
-        settings.SetConfiguration(configuration));
-    }
+    // Use MSBuild
+    MSBuild(slnFile, settings =>
+    settings.SetConfiguration(configuration));
 });
 
 Task("Run-Unit-Tests")
