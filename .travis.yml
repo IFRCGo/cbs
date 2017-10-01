@@ -1,16 +1,26 @@
-language: cpp
+sudo: required
 
-compiler:
-  - clang
-  - gcc
+# blocklist
+branches:
+  except:
+  - master
+
+# safelist
+branches:
+  only:
+  - ci
 
 notifications:
   email:
     on_success: never # default: change
     on_failure: change # default: always
 
+services:
+  - docker
+
 before_install:
-  - sudo apt-get update --quiet
+- docker pull dranoel/cbs-devel
 
 script:
-  - cat /etc/*-releases
+# - ls -al ${PWD}
+- docker run --rm --workdir=/workspace --volume ${PWD}:/workspace dranoel/cbs-devel:latest ./build.sh
