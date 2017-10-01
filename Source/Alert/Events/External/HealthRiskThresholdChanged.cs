@@ -5,7 +5,7 @@ using Infrastructure.Events;
 
 namespace Events.External
 {
-    public class ProjectDiseaseThresholdChanged : IEvent
+    public class HealthRiskThresholdChanged : IEvent
     {
         /// <summary>
         /// The id of project wo which threshold is related to.
@@ -14,7 +14,7 @@ namespace Events.External
         /// <summary>
         /// The id of disease wo which threshold is related to.
         /// </summary>
-        public Guid DiseaseId { get; set; }
+        public Guid HealthRiskId { get; set; }
         /// <summary>
         /// Number of cases per alert period that will trigger an alert.
         /// </summary>

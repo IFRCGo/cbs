@@ -1,6 +1,6 @@
-namespace Read.Disease
+namespace Read.HealthRiskObjects
 {
-    public class Disease : Entity
+    public class HealthRisk : Entity
     {
         public string Code { get; set; }
         public string Name { get; set; }

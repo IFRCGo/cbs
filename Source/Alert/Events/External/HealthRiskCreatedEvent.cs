@@ -5,7 +5,7 @@ using Infrastructure.Events;
 
 namespace Events.External
 {
-    public class DiseaseCreatedEvent : IEvent 
+    public class HealthRiskCreatedEvent : IEvent 
     {
         public Guid Id { get; set; }
         public string Code { get; set; }
