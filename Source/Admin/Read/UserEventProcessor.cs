@@ -23,6 +23,7 @@ namespace Read
             user.Firstname = @event.Firstname;
             user.Lastname = @event.Lastname;
             user.Country = @event.Country;
+            user.NationalSocietyId = @event.NationalSocietyId;
 
             _users.Save(user);
         }
