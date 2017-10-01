@@ -4,7 +4,6 @@ using Events;
 using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
-using MongoDB.Driver;
 using Read;
 using Read.HealthRisk;
 
@@ -24,7 +23,7 @@ namespace Policies
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
         }
-        public void Process(SingleCaseReported @event)
+        public void Process(CaseReported @event)
         {
             var caseReport = _caseReports.GetById(@event.Id);
             if (caseReport == null)
@@ -67,24 +66,6 @@ namespace Policies
                 {
                 });
             }
-        }
-
-        public void Process(AggregateCaseReported @event)
-        {
-            var caseReport = _caseReports.GetById(@event.Id);
-            if (caseReport == null)
-            {
-                caseReport = new CaseReport
-                {
-                    Id = @event.Id
-                };
-            }
-            else
-            {
-                caseReport.Id = @event.Id;
-            }
-
-            _caseReports.Save(caseReport);
         }
     }
 }

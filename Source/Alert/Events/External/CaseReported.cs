@@ -3,7 +3,7 @@ using Infrastructure.Events;
 
 namespace Events.External
 {
-    public class SingleCaseReported : IEvent
+    public class CaseReported : IEvent
     {
         public Guid Id { get; set; }
         public Guid HealthRiskId { get; set; }
