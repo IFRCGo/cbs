@@ -5,8 +5,8 @@ namespace Read
 {
     public interface IReceivedSmsMessages
     {
-        ReceivedSmsMessage GetById(Guid id);
-        IEnumerable<ReceivedSmsMessage> ListByPhonenumber(PhoneNumber phoneNumber);
-        void Save(ReceivedSmsMessage receivedSmsMessage);
+        Message GetById(Guid id);
+        IEnumerable<Message> ListByPhonenumber(PhoneNumber phoneNumber);
+        void Save(Message receivedSmsMessage);
     }
 }
