@@ -66,12 +66,19 @@ namespace Policies
             var latestReports = _caseReports.GetCaseReportsAfterDate(
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(disease.ThresholdTimePeriodInDays)), caseReport.HealthRiskId);
 
-            if (latestReports.Count() > disease.ThresholdNumberOfCases)
+            if (latestReports.Count > disease.ThresholdNumberOfCases)
             {
-                var alert = new Alert
+                var alert = _alerts.Get(caseReport.HealthRiskId, caseReport.Location);
+                if (alert == null)
                 {
-                    Id = Guid.NewGuid()
-                };
+                    alert = new Alert
+                    {
+                        Id = Guid.NewGuid(),
+                        HealthRiskId = caseReport.HealthRiskId,
+                        Location = caseReport.Location,
+                    };
+                }
+                alert.CaseReports.Add(caseReport);
                 _alerts.Save(alert);
 
                 _eventEmitter.Emit(Feature, new AlertRaised
