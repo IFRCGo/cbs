@@ -10,8 +10,8 @@ pull_requests:
 image: Visual Studio 2017
 
 environment:
-  SlnFile: Source/Example/Catalog/Catalog.sln
-  WebBinFolder: Source/Example/Catalog/Web/bin
+  SlnFile: ../Source/Example/Catalog/Catalog.sln
+  WebBinFolder: ../Source/Example/Catalog/Web/bin
 
 #only_commits:
 #  files:
