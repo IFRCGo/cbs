@@ -17,6 +17,7 @@ Solution uses Mongo - run it with the following:
 The datadir option will give you a persistent storage for any data you put in.
 
 ## Local build
+This can also be done automatically by runnin the solution in ie Visual Studio. Make sure that you are running the project as "Web" and not "IIS Express".
 
 (Active path: `cbs\source\usermanagement\`)
 
