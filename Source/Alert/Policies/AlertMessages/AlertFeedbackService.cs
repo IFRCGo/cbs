@@ -50,12 +50,6 @@ namespace Domain
         }
     }
 
-    public enum EMessageTemplateNames
-    {
-        AlertRaisedFeedbackToDataCollectors,
-        AlertRaisedFeedbackToDataVerifiers
-    }
-
     /*
      * 
      * Trigger escalation due to threshold 	
