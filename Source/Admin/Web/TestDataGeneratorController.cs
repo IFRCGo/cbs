@@ -28,8 +28,6 @@ namespace Web
             _database = database;
         }
 
-
-
         [HttpGet("all")]
         public void CreateAll()
         {
@@ -53,10 +51,19 @@ namespace Web
         {
             var _collection = _database.GetCollection<User>("Users");
             _collection.DeleteMany(v => true);
-            
+
+            var societies = JsonConvert.DeserializeObject<NationalSocietyCreated[]>(File.ReadAllText("./TestData/NationalSocieties.json"));
             var users = JsonConvert.DeserializeObject<UserCreated[]>(File.ReadAllText("./TestData/Names.json"));
+            int i = 0;
+
             foreach (var user in users)
+            {
+                // Make sure we have a valid National Society ID
+                if (!societies.Any(v=>v.Id == user.NationalSocietyId))
+                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
+
                 _eventEmitter.Emit("User", user);
+            }
         }
     }
 }
