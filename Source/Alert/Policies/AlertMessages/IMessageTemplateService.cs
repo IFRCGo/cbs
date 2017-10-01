@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Domain;
 using MongoDB.Bson;
+using Policies.AlertMessages;
 
 namespace Policies
 {

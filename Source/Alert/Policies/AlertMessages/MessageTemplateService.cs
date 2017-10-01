@@ -1,5 +1,5 @@
-﻿using System;
-using Domain;
+using System;
+using Policies.AlertMessages;
 
 namespace Policies
 {

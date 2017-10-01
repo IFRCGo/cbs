@@ -5,6 +5,7 @@ using Infrastructure.Application;
 using Infrastructure.Events;
 using Read;
 using Read.Disease;
+using Policies.AlertMessages;
 
 namespace Policies
 {

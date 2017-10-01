@@ -1,4 +1,4 @@
-﻿namespace Domain
+namespace Policies.AlertMessages
 {
     public enum EMessageTemplateNames
     {
