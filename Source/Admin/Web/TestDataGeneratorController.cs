@@ -67,7 +67,7 @@ namespace Web
             }
         }
 
-        [HttpGet("createrisks")]
+        [HttpGet("createhealthrisks")]
         public void CreateHealthRisks()
         {
             var _collection = _database.GetCollection<NationalSociety>("HealthRisk");
