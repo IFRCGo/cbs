@@ -10,10 +10,10 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("CleanFolder") ?? "../Source/Example/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Catalog/Web/bin";
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnDir = Environment.GetEnvironmentVariable("SolutionFolder") ??"../Source/Example/Example.sln";
+var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -29,7 +29,7 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetCoreRestore(slnDir);
+    DotNetCoreRestore(slnFile);
 });
 
 Task("Build")
@@ -39,13 +39,13 @@ Task("Build")
     if(IsRunningOnWindows())
     {
       // Use MSBuild
-      MSBuild(slnDir, settings =>
+      MSBuild(slnFile, settings =>
         settings.SetConfiguration(configuration));
     }
     else
     {
       // Use XBuild
-      XBuild(slnDir, settings =>
+      XBuild(slnFile, settings =>
         settings.SetConfiguration(configuration));
     }
 });
