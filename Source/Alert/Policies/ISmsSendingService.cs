@@ -8,12 +8,4 @@ namespace Policies
     {
         void SendSMS(IEnumerable<string> phones, string message);
     }
-
-    public class SmsSendingServiceStub : ISmsSendingService
-    {
-        public void SendSMS(IEnumerable<string> phones, string message)
-        {
-            
-        }
-    }
 }
