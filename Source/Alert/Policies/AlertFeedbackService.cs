@@ -28,7 +28,8 @@ namespace Policies
         public void SendFeedbackToDataCollecorsAndVerifiers(IEnumerable<CaseReport> latestReports)
         {
             var dataCollectors = _dataCollectors.Get(latestReports.Select(o => o.DataCollectorId).ToArray());
-            var dataVerifiers = dataCollectors.GroupBy(o => o.DataVerifier.UserId).Select(o => o.First().DataVerifier).ToArray();
+            var collectors = dataCollectors as DataCollector[] ?? dataCollectors.ToArray();
+            var dataVerifiers = collectors.GroupBy(o => o.DataVerifier.UserId).Select(o => o.First().DataVerifier).ToArray();
             var healthRisk = latestReports.First().HealthRiskId;
 
             // send sms to all data verifiers
@@ -40,7 +41,7 @@ namespace Policies
             }
 
             // send sms to all data collecors
-            foreach (DataCollector dataCollector in dataCollectors)
+            foreach (DataCollector dataCollector in collectors)
             {
                 string text = _messageTemplateService.ComposeMessage("AlertRaisedFeedbackToDataVerifiers", healthRisk);
                 _smsSendingService.SendSMS(new[] { dataCollector.Phone }, "");
