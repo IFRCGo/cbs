@@ -6,6 +6,7 @@ using Infrastructure.Application;
 using Infrastructure.Events;
 using MongoDB.Driver;
 using Read;
+using Read.Disease;
 
 namespace Policies
 {
@@ -13,13 +14,15 @@ namespace Policies
     {
         public static readonly Feature Feature = "CaseReport";
 
-        readonly ICaseReports _caseReports;
-        readonly IEventEmitter _eventEmitter;
+        private readonly ICaseReports _caseReports;
+        private readonly IEventEmitter _eventEmitter;
+        private readonly IDiseases _diseases;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter)
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IDiseases diseases)
         {
             _caseReports = caseReports;
             _eventEmitter = eventEmitter;
+            _diseases = diseases;
         }
         public void Process(SingleCaseReported @event)
         {
@@ -28,26 +31,38 @@ namespace Policies
             {
                 caseReport = new CaseReport
                 {
-                    Id = @event.Id
+                    Id = @event.Id,
+                    DataCollectorId = @event.DataCollectorId,
+                    DiseaseId = @event.DiseaseId,
+                    Location = @event.Location,
+                    SubmissionTimestamp = @event.CaseOccured
                 };
             }
             else
             {
                 caseReport.Id = @event.Id;
+                caseReport.DataCollectorId = @event.DataCollectorId;
+                caseReport.DiseaseId = @event.DiseaseId;
+                caseReport.Location = @event.Location;
+                caseReport.SubmissionTimestamp = @event.CaseOccured;
             }
             _caseReports.Save(caseReport);
 
-            var timeWindowInDays = 7;
-            var alertThreshold = 3;
+            var disease = _diseases.GetById(caseReport.DiseaseId) ?? new Disease()
+            {
+                Id = @event.DiseaseId,
+                ThresholdTimePeriodInDays = 7,
+                ThresholdNumberOfCases = 3
+            };
 
-            var latestReports = _caseReports.GetCaseReportsAfterDate(DateTime.UtcNow.Subtract(TimeSpan.FromDays(timeWindowInDays)));
+            var latestReports = _caseReports.GetCaseReportsAfterDate(
+                DateTime.UtcNow.Subtract(TimeSpan.FromDays(disease.ThresholdTimePeriodInDays)), caseReport.DiseaseId);
 
             // Number of reports last n days for area and health risk above threshold
 
-            if (latestReports.Count() > alertThreshold)
+            if (latestReports.Count() > disease.ThresholdNumberOfCases)
             {
                 // Raise alert, send form
-
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
