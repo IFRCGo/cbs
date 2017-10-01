@@ -5,6 +5,7 @@ using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
 using Read;
+using Read.Alert;
 using Read.HealthRiskObjects;
 
 namespace Policies
@@ -16,12 +17,14 @@ namespace Policies
         private readonly ICaseReports _caseReports;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
+        private readonly IAlerts _alerts;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks)
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlerts alerts)
         {
             _caseReports = caseReports;
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
+            _alerts = alerts;
         }
         public void Process(CaseReported @event)
         {
@@ -47,7 +50,7 @@ namespace Policies
             }
             _caseReports.Save(caseReport);
 
-            var disease = _healthRisks.GetById(caseReport.HealthRiskId) ?? new HealthRisk()
+            var disease = _healthRisks.GetById(caseReport.HealthRiskId) ?? new HealthRisk
             {
                 Id = @event.HealthRiskId,
                 ThresholdTimePeriodInDays = 7,
@@ -57,11 +60,14 @@ namespace Policies
             var latestReports = _caseReports.GetCaseReportsAfterDate(
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(disease.ThresholdTimePeriodInDays)), caseReport.HealthRiskId);
 
-            // Number of reports last n days for area and health risk above threshold
-
             if (latestReports.Count() > disease.ThresholdNumberOfCases)
             {
-                // Raise alert, send form
+                var alert = new Alert
+                {
+                    Id = Guid.NewGuid()
+                };
+                _alerts.Save(alert);
+
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
