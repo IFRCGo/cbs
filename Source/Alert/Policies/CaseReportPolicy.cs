@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Domain;
 using Events;
 using Events.External;
 using Infrastructure.Application;
@@ -15,17 +17,23 @@ namespace Policies
         public static readonly Feature Feature = "CaseReport";
 
         private readonly ICaseReports _caseReports;
+        private readonly IDataCollectors _dataCollectors;
+        private readonly ISmsSendingService _smsSendingService;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
         private readonly IAlerts _alerts;
+        private readonly IAlertFeedbackService _feedbackService;
 
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlertFeedbackService feedbackService)
         public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlerts alerts)
         {
             _caseReports = caseReports;
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
+            _feedbackService = feedbackService;
             _alerts = alerts;
         }
+
         public void Process(CaseReported @event)
         {
             var caseReport = _caseReports.GetById(@event.Id);
@@ -71,7 +79,10 @@ namespace Policies
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
+                _feedbackService.SendFeedbackToDataCollecorsAndVerifiers(latestReports);
             }
         }
+
+        
     }
 }
