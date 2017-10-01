@@ -13,7 +13,7 @@ export class UserService {
 
     getProjectOwners(nationalSocietyId: string): Promise<Array<User>> {
         return this.http
-            .get('/api/user', { headers: this.headers })
+            .get(`/api/user?nationalSocietyId=${nationalSocietyId}`, { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));
