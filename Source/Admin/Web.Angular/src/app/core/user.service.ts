@@ -11,7 +11,7 @@ export class UserService {
 
     constructor(private http: Http) { }
 
-    getProjectOwners(nationalSocietyId: number): Promise<Array<User>> {
+    getProjectOwners(nationalSocietyId: string): Promise<Array<User>> {
         return this.http
             .get('/api/user', { headers: this.headers })
             .toPromise()

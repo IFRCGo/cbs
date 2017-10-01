@@ -33,7 +33,11 @@ export class AddProjectComponent implements OnInit {
             .catch((error) => console.error(error));
     }
 
-    getProjectOwners(nationalSocietyId: number) {
+    onSocietyChange(selectedNationalSocietyId: string) {
+        this.getProjectOwners(selectedNationalSocietyId);
+    }
+
+    getProjectOwners(nationalSocietyId: string) {
         this.userService.getProjectOwners(nationalSocietyId).then(
             (users) => {
                 this.projectOwners = users;

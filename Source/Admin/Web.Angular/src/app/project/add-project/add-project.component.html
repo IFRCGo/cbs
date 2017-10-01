@@ -4,7 +4,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                <select id="society" class="form-control" [(ngModel)]="selectedSociety" name="society">
+                <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society">
                         <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                 </select>
             </div>
