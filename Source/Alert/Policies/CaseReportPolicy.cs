@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain;
 using Events;
 using Events.External;
 using Infrastructure.Application;
@@ -12,7 +11,7 @@ using Read.HealthRiskObjects;
 
 namespace Policies
 {
-    public class CaseReportPolicy : Infrastructure.Events.IEventProcessor
+    public class CaseReportPolicy : IEventProcessor
     {
         public static readonly Feature Feature = "CaseReport";
 
