@@ -1,210 +1,574 @@
 [
-    {
-        "Id": "5758353f-8dc4-4d77-8f9b-088955146f2f",
-        "Name": "Acute haemorrhagic fever syndrome"
-    },
-    {
-        "Id": "d066dba5-daaa-408e-b01a-dd9fe99f9c36",
-        "Name": "Acute viral hepatitis"
-    },
-    {
-        "Id": "79eb8a7d-226a-4806-b37d-6b6cdb893460",
-        "Name": "Adverse events following immunization (AEFI)"
-    },
-    {
-        "Id": "eb2e0744-a093-4f7b-8f37-6c94f5bca9bb",
-        "Name": "Anthrax"
-    },
-    {
-        "Id": "eaad81c6-a21d-454d-a277-f85c8a1add04",
-        "Name": "Buruli ulcer (Mycobacterium ulcerans disease)"
-    },
-    {
-        "Id": "b5c7a377-79cc-4043-8013-bbc0cbf005e7",
-        "Name": "Chikungunya "
-    },
-    {
-        "Id": "5285be2d-a193-4574-8f09-09bfe13c1b05",
-        "Name": "Cholera "
-    },
-    {
-        "Id": "65fe8b26-702a-4fba-9ab7-211c36fd7c3d",
-        "Name": "Dengue Fever"
-    },
-    {
-        "Id": "2f30f2e4-49eb-457f-af27-2357eebc6c08",
-        "Name": "Dengue Haemorrhagic Fever"
-    },
-    {
-        "Id": "38702f26-bf85-48b8-ab63-8e8824bbc42a",
-        "Name": "Dengue Shock Syndrome"
-    },
-    {
-        "Id": "5026c366-71e3-434a-8872-8a6f5045f33a",
-        "Name": "Diabetes"
-    },
-    {
-        "Id": "7e24a3b2-7ef3-4438-a444-80828e23addc",
-        "Name": "Diarrhoea with blood (dysentery/Shigella) "
-    },
-    {
-        "Id": "861f1bf9-ed15-4663-b21c-ff5aa7281ebf",
-        "Name": "Dracunculiasis"
-    },
-    {
-        "Id": "07922d08-db9b-4476-9f57-25c3f5a9e0de",
-        "Name": "Ebola or Marburg viral hemorrhagic Fevers"
-    },
-    {
-        "Id": "b6c5afab-c60e-4cdc-8996-617ba0a0eb53",
-        "Name": "Foodborne Illnesses"
-    },
-    {
-        "Id": "8fe732c8-9780-4b8b-914f-a956b0ced9c6",
-        "Name": "Human influenza (caused by a new subtype) "
-    },
-    {
-        "Id": "440d0e0a-b1da-4ff4-9fe9-a766bee2c9b1",
-        "Name": "Pandemic (H1N1) 2009 virus infection"
-    },
-    {
-        "Id": "b8b6d064-689e-4f5c-90a3-2a3179683ada",
-        "Name": "Hypertension"
-    },
-    {
-        "Id": "12a0f6d4-d4c3-4d89-8512-f4e77ea496b2",
-        "Name": "Influenza-like Illness (ILI)"
-    },
-    {
-        "Id": "ed449823-e9d0-4971-96de-94e3e653343c",
-        "Name": "Crimean-Congo Haemorrhagic Fever (CCHF)"
-    },
-    {
-        "Id": "32ff8a28-507e-44e0-8ce6-888917209a0b",
-        "Name": "Lassa Fever"
-    },
-    {
-        "Id": "015bde39-5b1b-44be-9c67-99545c248bad",
-        "Name": "Leprosy"
-    },
-    {
-        "Id": "60225a87-ff2a-4ed7-aefd-64629d77b54f",
-        "Name": "Lymphatic Filariasis"
-    },
-    {
-        "Id": "073a810b-49f0-4dc2-81c0-1348d8e73f2d",
-        "Name": "Malaria (uncomplicated)"
-    },
-    {
-        "Id": "1d9efe68-54ea-4ce2-a0d3-2351e38cea8e",
-        "Name": "Malaria (severe)"
-    },
-    {
-        "Id": "159f397c-23d2-4035-8eef-d4bfc71b859c",
-        "Name": "Malnutrition (newborns)"
-    },
-    {
-        "Id": "1db7407f-e25d-417d-a83f-d8c4a161bc38",
-        "Name": "Malnutrition (children)"
-    },
-    {
-        "Id": "a0401d80-52fb-4cee-9e3a-169b3ff80f14",
-        "Name": "Malnutrition (pregnant women)"
-    },
-    {
-        "Id": "f0f904c8-6ef5-40c3-8896-07abb881b536",
-        "Name": "Maternal Deaths"
-    },
-    {
-        "Id": "ec681761-976d-49e3-8268-72ef0781960a",
-        "Name": "Measles"
-    },
-    {
-        "Id": "bf39fe66-6433-4c0b-94a3-9da6d6847487",
-        "Name": "Meningococcal Meningitis"
-    },
-    {
-        "Id": "3d332a74-fc2c-4f52-b5a8-f45b73c47f2e",
-        "Name": "Neonatal tetanus"
-    },
-    {
-        "Id": "ab9a3082-a72e-4932-b2cd-8ff13d10cbb7",
-        "Name": "New AIDS Cases"
-    },
-    {
-        "Id": "d8c35318-204c-433e-9206-7777f45afb28",
-        "Name": "Noma"
-    },
-    {
-        "Id": "07339bfb-b3d6-4152-9ffb-b280c4926c9a",
-        "Name": "Onchocerciasis"
-    },
-    {
-        "Id": "4bdda5c6-b637-4724-8f1b-a4abe7e7a284",
-        "Name": "Plague"
-    },
-    {
-        "Id": "1b8051e3-87e3-4268-99f1-e5762d9565af",
-        "Name": "Poliomyelitis (Acute flaccid paralysis)"
-    },
-    {
-        "Id": "d581acea-992d-4de9-87a6-85004c2d17fd",
-        "Name": "Rabies"
-    },
-    {
-        "Id": "39a62316-2f5c-443a-ad19-65a7ba4cd02f",
-        "Name": "Rift Valley Fever (RVF)"
-    },
-    {
-        "Id": "c2894763-cf93-4c1e-bd61-9f42509a5eab",
-        "Name": "Severe Acute Respiratory Infections (SARIs) (persons ≥ 5 years old)"
-    },
-    {
-        "Id": "af60949f-8529-438b-b28c-9f4d7f122a08",
-        "Name": "Severe Acute Respiratory Syndrome (SARS)"
-    },
-    {
-        "Id": "e516190c-3de3-4f51-a2bf-2593bfc7ed4c",
-        "Name": "Pneumonia (Children under 5)"
-    },
-    {
-        "Id": "b8cdabac-292d-4c88-806b-93d09b32eb63",
-        "Name": "Severe Pneumonia (Children under 5)"
-    },
-    {
-        "Id": "ebab2e63-ac2b-488c-b085-1d9caf6cb5cf",
-        "Name": "Genital ulcer syndrome (non-vesicular)"
-    },
-    {
-        "Id": "3509f0a0-a097-42f2-b166-a55037d2a764",
-        "Name": "Urethral discharge syndrome"
-    },
-    {
-        "Id": "c0d66b6f-bd2b-4bbc-8fc8-39d43881bc6f",
-        "Name": "Smallpox (Variola)"
-    },
-    {
-        "Id": "1a28a7ab-aa2f-44d4-b292-b4bc18b6f175",
-        "Name": "Trachoma"
-    },
-    {
-        "Id": "e8b9a2c8-1414-459a-b14d-b96d86863000",
-        "Name": "Trypanosomiasis"
-    },
-    {
-        "Id": "3495740d-5306-49f6-8a47-d2d7bfcfa604",
-        "Name": "Tuberculosis"
-    },
-    {
-        "Id": "20e69964-d02a-498f-8463-1634eb3fef0c",
-        "Name": "Typhoid Fever"
-    },
-    {
-        "Id": "afaa88f1-653f-4eb0-be6a-b691a032a093",
-        "Name": "West Nile Fever"
-    },
-    {
-        "Id": "699ac680-8852-4080-8986-cb017c044eda",
-        "Name": "Yellow fever"
-    }
+  {
+    "Id": "901fbe65-a832-446a-8733-5d59b7d007de",
+    "Name": "Acute haemorrhagic fever syndrome",
+    "ReadableId": 1,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with laboratory confirmation or epidemiologic link to confirmed cases or outbreak. ",
+    "Note": "During an outbreak, case definitions may be changed to correspond to the local event.",
+    "SuspectedCase": "Acute onset of fever of less than 3 weeks duration in a severely ill patient AND any 2 of the following; a) haemorrhagic or purpuric rash; b) epistaxis (nose bleed); c) haematemesis (blood in vomit); d) haemoptysis (blood in sputum); e) blood in stool; f) other haemorrhagic symptoms and no known predisposing factors for haemorrhagic manifestations. ",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "bea1b320-1143-4d6e-883b-47b59b9be37b",
+    "Name": "Acute viral hepatitis",
+    "ReadableId": 2,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case that is laboratory confirmed",
+    "Note": "Infected children are often asymptomatic.",
+    "SuspectedCase": "Any person with acute illness typically including: a) acute jaundice; b) dark urine; c) anorexia; d) malaise; e) extreme fatigue; f) right upper quadrant tenderness.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with fever and yellowing in the white part of the eyes or yellowing of the skin within two weeks of onset of first symptoms"
+  },
+  {
+    "Id": "88971ca0-65d0-4f93-9a9a-49826f50a560",
+    "Name": "Adverse events following immunization (AEFI)",
+    "ReadableId": 3,
+    "Threshold": null,
+    "ConfirmedCase": "",
+    "Note": "",
+    "SuspectedCase": "A medical incident that takes place after immunization, causes concern and is believed to be caused by the immunization",
+    "ProbableCase": "",
+    "CommunityCase": "Any unusual event that follows immunization that is thought to be caused by the vaccine"
+  },
+  {
+    "Id": "545643df-d82b-4a81-b951-6fe1cd671c28",
+    "Name": "Anthrax",
+    "ReadableId": 4,
+    "Threshold": null,
+    "ConfirmedCase": "Clinically compatible case of cutaneous, inhalational or gastrointestinal illness that is laboratory-confirmed by: a) isolation of B. anthracis from an affected tissue or site; or b) Other laboratory evidence of B. anthracis infection based on at least two supportive laboratory tests.",
+    "Note": "It may not be possible to demonstrate B. anthracis in clinical specimens if the patient has been treated with antimicrobial agents.",
+    "SuspectedCase": "Any person with acute onset characterized by several clinical forms which are: a) Cutaneous form: Any person with skin lesion evolving over 1 to 6 days from a papular through a vesicular stage, to a depressed black eschar invariably accompanied by oedema that may be mild to extensive 44 Anthrax, continued; b) Gastro-intestinal: Any person with abdominal distress characterized by nausea, vomiting, anorexia and followed by fever; c) Pulmonary (inhalation): any person with brief prodrome resembling acute viral respiratory illness, followed by rapid onset of hypoxia, dyspnoea and high temperature, with X-ray evidence of mediastinal widening; d) Meningeal: Any person with acute onset of high fever possibly with convulsions, loss of consciousness, meningeal signs and symptoms; commonly noted in all systemic infections, but may present without any other clinical symptoms of anthrax. AND has an epidemiological link to confirmed or suspected animal cases or contaminated animal products ",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "80f3aecd-fead-4abb-8a17-7fb81d3b9dcb",
+    "Name": "Buruli ulcer (Mycobacterium ulcerans disease)",
+    "ReadableId": 5,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case confirmed by at least one laboratory test (ZN for AFB, PCR, culture or histology)",
+    "Note": "",
+    "SuspectedCase": "A person presenting a painless skin nodule, plaque or ulcer, living or having visited a BU endemic area ",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "f4758b9b-aee8-40f6-9ee7-ab14899e6bd5",
+    "Name": "Chikungunya ",
+    "ReadableId": 6,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with laboratory confirmation. ",
+    "Note": "",
+    "SuspectedCase": "Any person with acute onset of fever >38.5°C and severe arthralgia/arthritis not explained by other medical conditions.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "d95aa084-7da9-4041-8de0-2d217171c3ab",
+    "Name": "Cholera ",
+    "ReadableId": 7,
+    "Threshold": 1,
+    "ConfirmedCase": "A suspected case in which Vibrio cholerae O1 or O139 has been isolated in the stool.",
+    "Note": "",
+    "SuspectedCase": "In a patient age 5 years or more, severe dehydration or death from acute watery diarrhoea. If there is a cholera epidemic, a suspected case is any person age 5 years or more with acute watery diarrhoea, with or without vomiting.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person 5 years of age or more with lots of watery diarrhoea"
+  },
+  {
+    "Id": "78701341-ccba-4b72-abe1-21ce98288f92",
+    "Name": "Dengue Fever",
+    "ReadableId": 8,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with laboratory confirmation (positive IgM antibody, rise in IgG antibody titres, positive PCR or viral isolation). ",
+    "Note": "",
+    "SuspectedCase": "Any person with acute febrile illness of 2-7 days duration with 2 or more of the following: a) headache; b) retro-orbital pain; c) myalgia; d) arthralgia; e) rash; f) haemorrhagic manifestations; g) leucopenia.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "1fb06679-6b8c-415d-af8e-c171a75636e7",
+    "Name": "Dengue Haemorrhagic Fever",
+    "ReadableId": 9,
+    "Threshold": null,
+    "ConfirmedCase": "One or more of the following: a) positive tourniquet test; b) petechieae, ecchymoses or purpura; c) bleeding: mucosa, gastrointestinal tract, injection sites or other; d) haematemesis or melaena; e) thrombocytopenia (100,000 cells or less per mm3) AND evidence of plasma leakage due to increased vascular permeability, manifested by one or more of the following: a) 20% rise in average haematocrit for age and sex; b) 20% drop in haematocrit following volume replacement therapy compared to baseline; c) signs of plasma leakage (pleural effusion, ascites, hypo-proteinaemia).",
+    "Note": "",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "fe9fc14e-7b7a-4ed5-a848-42035fc65bda",
+    "Name": "Dengue Shock Syndrome",
+    "ReadableId": 10,
+    "Threshold": null,
+    "ConfirmedCase": "All Dengue Haemorrhagic Fever symptoms AND a) evidence of circulatory failure manifested by rapid and weak pulse; b) narrow pulse pressure (≤ 20 mm Hg); OR a) hypotension for age; b) cold, clammy skin; c) altered mental status.",
+    "Note": "",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "70191f0f-4f53-42b8-9dd1-7da0940e892f",
+    "Name": "Diabetes",
+    "ReadableId": 11,
+    "Threshold": null,
+    "ConfirmedCase": "Any person with a fasting venous plasma glucose measurement of ≥ 7 mmol/L (126 mg/dl) or capillary glucose ≥ 6.1 mmol/L (110 mg/dl) OR any person with a non-fasting venous plasma glucose measurement of ≥ 11.1mmol/L (200 mg/dl) or capillary glucose ≥ 11,1 nnik>k (200 mg/dl)",
+    "Note": "Report only the first lab-confirmed diagnosis of the patient.",
+    "SuspectedCase": "Any person presenting with the following symptoms: a) increased thirst; b) increased hunger; c) frequent urination",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "9081393f-d08a-4a9a-bfda-5fab3ff67051",
+    "Name": "Diarrhoea with blood (dysentery/Shigella) ",
+    "ReadableId": 12,
+    "Threshold": 1,
+    "ConfirmedCase": "Suspected case with stool culture positive for Shigella dysenteriae type 1.",
+    "Note": "",
+    "SuspectedCase": "A person with diarrhoea with visible blood in stool. ",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with diarrhoea and visible blood in the stool"
+  },
+  {
+    "Id": "2097b833-1d89-48d8-897a-65e077a7e6da",
+    "Name": "Dracunculiasis",
+    "ReadableId": 13,
+    "Threshold": null,
+    "ConfirmedCase": "At the last phase of the programme, confirmation of last cases by knowledgeable health staff is required. Follow national guidelines for definition of confirmed case.",
+    "Note": "",
+    "SuspectedCase": "A person presenting a skin lesion with itching or blister living in endemic area of Guinea worm.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person exhibiting or having a history of a skin lesion with the emergence of a worm"
+  },
+  {
+    "Id": "b73dc2fe-0a6e-4ce7-b397-142a29cec000",
+    "Name": "Ebola or Marburg viral hemorrhagic Fevers",
+    "ReadableId": 14,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with laboratory confirmation (positive IgM antibody, positive PCR or viral isolation), or epidemiologic link to confirmed cases or outbreak.",
+    "Note": "During an outbreak, these case definitions may be changed to correspond to the local event.",
+    "SuspectedCase": "Illness with onset of fever and no response to usual causes of fever in the area, and at least one of the following signs: a) bloody diarrhoea; b) bleeding from gums; c) bleeding into skin (purpura); c) bleeding into eyes and urine.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person who has an unexplained illness with fever and bleeding or who died after an unexplained severe illness with fever and bleeding"
+  },
+  {
+    "Id": "cbd2f3be-014d-4001-b181-23548b86bb53",
+    "Name": "Foodborne Illnesses",
+    "ReadableId": 15,
+    "Threshold": null,
+    "ConfirmedCase": "A laboratory confirmed case of a specific agent with a link to a common food or drink source.",
+    "Note": "A foodborne illness is defined according to the specific agent causing the disease (for example, cholera, hepatitis A, salmonellosis, shigellosis).",
+    "SuspectedCase": "2 or more people present with similar symptoms who consumed common food or drink",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "51bf2378-bf31-43e1-9ab0-64828ad6dc4c",
+    "Name": "Human influenza (caused by a new subtype) ",
+    "ReadableId": 16,
+    "Threshold": 1,
+    "ConfirmedCase": "A person meeting the criteria for a suspected case AND positive laboratory results from a laboratory whose H5N1 test results are accepted by WHO as confirmatory.",
+    "Note": "",
+    "SuspectedCase": "Any person presenting with unexplained acute lower respiratory illness with fever (>38 ºC) and cough, shortness of breath or difficulty breathing AND one or more of the following exposures within the 7 days prior to symptom onset: a) Close contact (within 1 meter) with a person (e.g. caring for, speaking with, or touching) who is a suspected, probable, or confirmed H5N1 case; b) Exposure (e.g. handling, slaughtering, de-feathering, butchering, preparation for consumption) to poultry or wild birds or their remains or to environments contaminated by their faeces in an area where H5N1 infections in animals or humans have been suspected or confirmed in the last month; c) Consumption of raw or undercooked poultry products in an area where H5N1 infections in animals or humans have been suspected or confirmed in the last month; d) Close contact with a confirmed H5N1 infected animal other than poultry or wild birds; e) Handling samples (animal or human) suspected of containing H5N1 virus in a laboratory or other setting.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "ac81ab3f-2a6f-4bec-8de3-8bd582f1e3f5",
+    "Name": "Pandemic (H1N1) 2009 virus infection",
+    "ReadableId": 17,
+    "Threshold": null,
+    "ConfirmedCase": "An individual with a laboratory-confirmed pandemic (H1N1) 2009 virus infection by one or more of the following tests: a) PCR; b) viral culture; c) 4-fold rise in pandemic (H1N1) 2009 virus-specific neutralizing antibodies.",
+    "Note": "",
+    "SuspectedCase": "An individual presenting with influenza-like-illness (sudden onset of fever > 38 °C and cough or sore throat in the absence of another diagnosis) with a history of exposure to a pandemic (H1N1) 2009 virus.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "529425a9-0d7e-4088-9e29-1067ebb71d8a",
+    "Name": "Hypertension",
+    "ReadableId": 18,
+    "Threshold": null,
+    "ConfirmedCase": "Any individual presenting on at least two occasions with a resting blood pressure measurement (based on the average of 3 readings) at or above 140 mm Hg for systolic pressure, or greater than or equal to 90 mm Hg for diastolic pressure.",
+    "Note": "",
+    "SuspectedCase": "Any individual presenting with a resting blood pressure measurement (based on the average of 3 readings) at or above 140 mm Hg for systolic pressure, OR greater than or equal to 90 mm Hg for diastolic pressure.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "f2d41a9b-ee8d-4b94-9590-fbe83bd34b98",
+    "Name": "Influenza-like Illness (ILI)",
+    "ReadableId": 19,
+    "Threshold": null,
+    "ConfirmedCase": "Meets the clinical case definition and is laboratory confirmed (laboratory results must be positive for influenza virus).",
+    "Note": "",
+    "SuspectedCase": "A person, child or adult with: Sudden onset of fever > 38 ºC AND Cough or sore throat in the absence of other diagnoses.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with fever and cough or sore throat or nasal discharge"
+  },
+  {
+    "Id": "a3d009aa-7377-4eb5-9df0-e87539de2de9",
+    "Name": "Crimean-Congo Haemorrhagic Fever (CCHF)",
+    "ReadableId": 20,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with laboratory confirmation (positive IgM antibody, PCR, viral isolation or IgG seroconversion by ELISA or IFA) OR epidemiologic link to confirmed cases or outbreak.",
+    "Note": "",
+    "SuspectedCase": "Illness with sudden onset of fever, malaise, weakness, irritability, headache, severe pain in limbs and loins and marked anorexia. Early development of flush on face and chest and conjunctival infection, haemorrhagic enanthem of soft palate, uvula and pharynx, and often fine petechial rash spreading from the chest and abdomen to the rest of the body, sometimes with large purpuric areas.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "a66b7706-db15-4f18-a59d-e5bd3644a8b5",
+    "Name": "Lassa Fever",
+    "ReadableId": 21,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case that is laboratory confirmed (positive IgM antibody, PCR or virus isolation) or epidemiologically linked to a laboratory confirmed case.",
+    "Note": "",
+    "SuspectedCase": "Illness with gradual onset with one or more of the following: a) malaise; b) fever; c) headache; d) sore throat; e) cough; f) nausea; g) vomiting; h) diarrhoea; i) myalgia; j) chest pain hearing loss AND a history of contact with excreta of rodents or with a case of Lassa Fever.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "d781df3c-701a-4055-a463-001ea334c0f6",
+    "Name": "Leprosy",
+    "ReadableId": 22,
+    "Threshold": null,
+    "ConfirmedCase": "A person showing at least two cardinal signs of leprosy and who has not completed a full course of treatment with Multi Drug Therapy (MDT).",
+    "Note": "",
+    "SuspectedCase": "A person showing one of three cardinal signs of leprosy: a) hypo-pigmented or reddish skin lesion; b) loss or decrease of sensations in skin patch; c) enlargement or peripheral nerve.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with light or reddish skin lesions with definite loss of sensation"
+  },
+  {
+    "Id": "88bb82d0-025f-4d9f-8f14-383c41847689",
+    "Name": "Lymphatic Filariasis",
+    "ReadableId": 23,
+    "Threshold": null,
+    "ConfirmedCase": "A person with positive laboratory diagnosis of microfilaremia in blood smear, filarial antigenaemia or positive ultrasound test.",
+    "Note": "",
+    "SuspectedCase": "Resident of an endemic area with a clinical sign of hydrocoele or lymphoedema for which other causes of these findings have been excluded.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "3c18ad70-fa8a-4788-b589-d744924e2569",
+    "Name": "Malaria (uncomplicated)",
+    "ReadableId": 24,
+    "Threshold": null,
+    "ConfirmedCase": "Any person with fever or history of fever within 24 hours; AND with laboratory confirmation of diagnosis by malaria blood film or other diagnostic test for malaria parasites.",
+    "Note": "",
+    "SuspectedCase": "Any person with fever or history of fever within 24 hours; without signs of severe disease (vital organ dysfunction) is diagnosed clinically as malaria.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with fever in a malaria endemic area. Any under five child who has an illness with high fever and a danger sign: a) lethargy; b) unconsciousness; c) vomits everything; d) convulsions; e) unable to drink or breast-feed)"
+  },
+  {
+    "Id": "611c60be-9e49-479a-aaf6-264b186a3202",
+    "Name": "Malaria (severe)",
+    "ReadableId": 25,
+    "Threshold": null,
+    "ConfirmedCase": "Any patient hospitalized with P. falciparumasexual parasitaemia as confirmed by laboratory tests with accompanying symptoms and signs of severe disease (vital organ dysfunction) diagnosed through laboratory.",
+    "Note": "",
+    "SuspectedCase": "Any patient hospitalised with severe febrile disease with accompanying vital organ dysfunction diagnosed clinically.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "7df1f141-42d0-4d89-aa9c-3691c261a6f4",
+    "Name": "Malnutrition (newborns)",
+    "ReadableId": 26,
+    "Threshold": null,
+    "ConfirmedCase": "Any new born with a birth weight less than 2500 grams (or 5.5 lbs).",
+    "Note": "",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "12e64ba5-e7a3-4845-963e-4268993f7310",
+    "Name": "Malnutrition (children)",
+    "ReadableId": 27,
+    "Threshold": null,
+    "ConfirmedCase": "a) Children under five who are underweight (indicator: weight for age<-2 ZScore); b) Children 6 to 59 months with MUAC<11.5 cm (high risk of mortality); c) Bilateral pitting oedema",
+    "Note": "",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "20716851-4c4c-4f5a-8b5a-d71601d17584",
+    "Name": "Malnutrition (pregnant women)",
+    "ReadableId": 28,
+    "Threshold": null,
+    "ConfirmedCase": "Pregnant women given birth to low birth weight babies (birth weight < 2.5 Kg).",
+    "Note": "Poor nutritional and health status of the women, can predict which population groups may benefit from improved antenatal care of women and neonatal care for infants.",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "4ff18d85-f63c-4037-b205-6e3a72a4389e",
+    "Name": "Maternal Deaths",
+    "ReadableId": 29,
+    "Threshold": null,
+    "ConfirmedCase": "The death of a woman while pregnant or within 42 days of the delivery or termination of pregnancy, irrespective of the duration and site of the pregnancy, from any cause related to or aggravated by the pregnancy or its management but not from accidental or incidental causes.",
+    "Note": "",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "d28d194c-5bfc-4d33-a44a-2e8f71a6ab82",
+    "Name": "Measles",
+    "ReadableId": 30,
+    "Threshold": 1,
+    "ConfirmedCase": "A suspected case with laboratory confirmation (positive IgM antibody) or epidemiological link to confirmed cases in an outbreak.",
+    "Note": "",
+    "SuspectedCase": "Any person with fever and maculopapular (non-vesicular) generalized rash and cough, coryza or conjunctivitis (red eyes) or any person in whom a clinician suspects measles.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with fever and rash"
+  },
+  {
+    "Id": "c890823e-73a6-4258-a670-52fd56eb7b8c",
+    "Name": "Meningococcal Meningitis",
+    "ReadableId": 31,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case confirmed by isolation ofN. meningitidisfrom CSF or blood.",
+    "Note": "",
+    "SuspectedCase": "Any person with sudden onset of fever (>38.5oC rectal or 38.0oC axillary) and one of the following signs: neck stiffness, altered consciousness or other meningeal signs.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with fever and neck stiffness"
+  },
+  {
+    "Id": "848d884f-9f12-4bd8-b7f5-d90bd8eef053",
+    "Name": "Neonatal tetanus",
+    "ReadableId": 32,
+    "Threshold": null,
+    "ConfirmedCase": "No laboratory confirmation recommended.",
+    "Note": "",
+    "SuspectedCase": "Any newborn with a normal ability to suck and cry during the first two days of life, and who, between the 3rd and 28th day of age, cannot suck normally, and becomes stiff or has convulsions or both.",
+    "ProbableCase": "",
+    "CommunityCase": "Any newborn who is normal at birth, and then after 2 days, becomes stiff and unable to suck or feed or has convulsions."
+  },
+  {
+    "Id": "770fac9a-21d9-4857-b33d-322c4cf2943f",
+    "Name": "New AIDS Cases",
+    "ReadableId": 33,
+    "Threshold": null,
+    "ConfirmedCase": "A positive ELISA for confirming HIV and a rapid test for confirming the positive results are sufficient for an epidemiologic case definition for HIV Infection.",
+    "Note": "WHO/AFRO recommends that countries use either Bangui or Abidjan HIV/AIDSR case definitions.",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "ddf863bd-9bff-4b7a-b8b2-475124bb9f3f",
+    "Name": "Noma",
+    "ReadableId": 34,
+    "Threshold": null,
+    "ConfirmedCase": "Any person with a gangrenous disease which starts as gingival ulceration and spreads rapidly through the tissues of the mouth and face, destroying the soft and hard tissues.",
+    "Note": "",
+    "SuspectedCase": "Any child with a mouth ulcer and other warning signs such as: a) malnutrition; b) poor hygiene; c) recent illness from: measles, persistent diarrhoea or malaria should be regarded as a potential noma case.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "3baa2f43-d6de-4192-a233-7a0f6b32ccce",
+    "Name": "Onchocerciasis",
+    "ReadableId": 35,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case that is laboratory confirmed by presence of one or more of the following: a) microfilariae in skin snips; b) adult worms in excised nodules; c) typical ocular manifestations (such as slit-lamp observations of microfilariae in the cornea, the anterior chamber, or the vitreous body).",
+    "Note": "",
+    "SuspectedCase": "In an endemic area, any person with fibrous nodules in subcutaneous tissues.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person in an endemic area with fibrous nodules under the skin"
+  },
+  {
+    "Id": "a6d83322-9478-49eb-adfc-29d6b2e2d321",
+    "Name": "Plague",
+    "ReadableId": 36,
+    "Threshold": null,
+    "ConfirmedCase": "Suspected case confirmed by isolation of Yersinia pestisfrom blood or aspiration of buboes, OR epidemiologic link to confirmed cases or outbreak.",
+    "Note": "",
+    "SuspectedCase": "Any person with a) sudden onset of fever; b) chills; c) headache; d) severe malaise; e) prostration; f) very painful swelling of lymph nodes; OR a) cough with blood stained sputum; b) chest pain; c) difficulty in breathing.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with painful swelling under the arms or in the groin area. In an area known to have plague, any person with cough, chest pain and fever."
+  },
+  {
+    "Id": "88e8fa9e-754f-404c-96f8-c881b4ba10c9",
+    "Name": "Poliomyelitis (Acute flaccid paralysis)",
+    "ReadableId": 37,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case with virus isolation in stool.",
+    "Note": "",
+    "SuspectedCase": "Any child under 15 years of age with acute flaccid paralysis or any person with paralytic illness at any age in whom the clinician suspects poliomyelitis.",
+    "ProbableCase": "",
+    "CommunityCase": "Any child with a sudden onset of acute paralytic disease"
+  },
+  {
+    "Id": "836c9365-cf0c-4a94-86fb-5ae3b4179a06",
+    "Name": "Rabies",
+    "ReadableId": 38,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case that is laboratory confirmed.",
+    "Note": "",
+    "SuspectedCase": "A person with one or more of the following: a) headache; b) neck pain; c) nausea; d) fever; e) fear of water; f) anxiety; g) agitation; h) abnormal tingling sensations; i) pain at the wound site; when contact with a rabid animal is suspected.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with a sense of apprehension, headache, fever, malaise and indefinitive sensory changes often referred to the site of a preceding animal bite. Excitability and hydrophobia are frequent symptoms."
+  },
+  {
+    "Id": "3965799b-8bd6-4647-aee8-24705d7ab161",
+    "Name": "Rift Valley Fever (RVF)",
+    "ReadableId": 39,
+    "Threshold": null,
+    "ConfirmedCase": "Any patient who, after clinical screening, is positive for anti- RVF IgM ELISA antibodies (typically appear from fourth to sixth day after onset of symptoms) or tests positive on Reverse Transcriptase Polymerase Chain Reaction (RT-PCR).",
+    "Note": "",
+    "SuspectedCase": "Early disease: Acute febrile illness (axillary temperature >37.5 oC or oral temperature of >38.0oC) of more than 48 hours duration that does not respond to antibiotic or antimalarial therapy, and is associated with: a) direct contact with sick or dead animal or its products; b) recent travel (during last week) to, or living in an area where, after heavy rains, livestock die or abort, and where RVF virus activity is suspected/confirmed; c) abrupt onset of any 1 or more of the following: exhaustion, backache, muscle pains, headache (often severe), discomfort when exposed to light, and nausea/vomiting; d) nausea/vomiting, diarrhoea OR abdominal pain with 1 or more of the following: a) severe pallor (or Hb < 8 gm/dL); b) low platelets (thrombocytopenia) as evidence by presence of small skin and mucous membrane haemorrhages (petechiae) (or platelet count < 100x109 / dL); c) evidence of kidney failure (edema, reduced urine output) (or creatinine > 150 mol/L); d) evidence of bleeding into skin, bleeding from puncture wounds, from mucous membranes or nose, from gastrointestinal tract and unnatural bleeding from vagina; e) clinical jaundice (3-fold increase above normal of transaminases) Late stages of diseases or complications (2-3 weeks after onset): Patients who have experienced, in the preceding month a flu-like illness, with clinical criteria, who additionally develop the following: a) CNS manifestations which resemble meningo-encephalitis; b) unexplained visual loss; c) unexplained death following sudden onset of acute flu-like illness with haemorrhage, meningo-ecephalitis, or visual loss during the preceding month.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "960a84ea-7aad-4dae-ace4-99892a3d94ed",
+    "Name": "Severe Acute Respiratory Infections (SARIs) (persons ≥ 5 years old)",
+    "ReadableId": 40,
+    "Threshold": null,
+    "ConfirmedCase": "",
+    "Note": "",
+    "SuspectedCase": "Any severely ill person presenting with manifestations of acute lower respiratory infection with: a) sudden onset of fever (>38 °C); b) cough or sore throat; c) shortness of breath, or difficulty breathing; d) with or without Clinical or radiographic findings of pneumonia OR any person who died of an unexplained respiratory illness.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "bb5f119c-5cca-4039-af3c-f624fea922b6",
+    "Name": "Severe Acute Respiratory Syndrome (SARS)",
+    "ReadableId": 41,
+    "Threshold": 1,
+    "ConfirmedCase": "An individual who tests positive for SARS-CoV infection by the WHO recommended testing procedures.",
+    "Note": "",
+    "SuspectedCase": "An individual with: a) A history of fever, or documented fever ≥ 38 °C; b) One or more symptoms of lower respiratory tract illness (cough, difficulty breathing, shortness of breath); c) Radiographic evidence of lung infiltrates consistent with pneumonia or ARDS or autopsy findings consistent with the pathology of pneumonia or ARDS without an identifiable cause; d) No alternative diagnosis can fully explain the illness.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "dc2f9433-5f62-43cb-923d-8497171dc853",
+    "Name": "Pneumonia (Children under 5)",
+    "ReadableId": 42,
+    "Threshold": null,
+    "ConfirmedCase": "A child presenting with cough or difficult breathing and: a) 50 or more breaths per minute for infant age 2 months up to 1 year; b) 40 or more breaths per minute for young child 1 year up to 5 years.",
+    "Note": "A young infant age 0 up to 2 months with cough and fast breathing is classified in IMCI as “serious bacterial infection” and is referred for further evaluation.",
+    "SuspectedCase": "",
+    "ProbableCase": "",
+    "CommunityCase": "Any child less than 5 years of age with cough and fast breathing or difficulty in breathing."
+  },
+  {
+    "Id": "cf7fb6df-b266-4e3c-ac2c-8688e9d273e3",
+    "Name": "Severe Pneumonia (Children under 5)",
+    "ReadableId": 43,
+    "Threshold": null,
+    "ConfirmedCase": "Radiographic or laboratory confirmation of pneumonia may not be feasible in most districts.",
+    "Note": "",
+    "SuspectedCase": "A child presenting with a) cough; b) difficult breathing and any general danger sign; c) chest indrawing; d) stridor in a calm child. General danger signs for children 2 months to 5 years are: a) unable to drink or breast feed; b) vomits everything; c) convulsions; d) lethargy; e) unconsciousness. ",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "c95529f5-5ef4-4421-a55c-5b943a4ada20",
+    "Name": "Genital ulcer syndrome (non-vesicular)",
+    "ReadableId": 44,
+    "Threshold": null,
+    "ConfirmedCase": "Any suspected case confirmed by a laboratory method.",
+    "Note": "Sexually Transmitted Infection (STI)",
+    "SuspectedCase": "Any male with an ulcer on the penis, scrotum, or rectum, with or without inguinal adenopathy, or any female with ulcer on labia, vagina, or rectum, with or without inguinal adenopathy.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person male or female who has an urethral/vaginal discharge or genital ulcer"
+  },
+  {
+    "Id": "a93f2cfc-b17d-4ae2-9fc5-a2de93b37f59",
+    "Name": "Urethral discharge syndrome",
+    "ReadableId": 45,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case confirmed by a laboratory method (for example Gram stain showing intracellular Gram- negative diplococci).",
+    "Note": "Sexually Transmitted Infection (STI)",
+    "SuspectedCase": "Any male with urethral discharge with or without dysuria.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person male or female who has an urethral/vaginal discharge or genital ulcer"
+  },
+  {
+    "Id": "5e35f0c0-55a8-4c44-ab67-904206023c7c",
+    "Name": "Smallpox (Variola)",
+    "ReadableId": 46,
+    "Threshold": 1,
+    "ConfirmedCase": "A clinically compatible case that is laboratory confirmed.",
+    "Note": "",
+    "SuspectedCase": "An illness with acute onset of fever > 38.3 C (101 F) followed by a rash characterized by vesicles or firm pustules in the same stage of development without other apparent cause.",
+    "ProbableCase": "A case that meets the clinical case definition, is not laboratory confirmed, but has an epidemiological link to a confirmed or probable case.",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "263caae7-4539-4bcb-b2e8-32eebc07b45b",
+    "Name": "Trachoma",
+    "ReadableId": 47,
+    "Threshold": null,
+    "ConfirmedCase": "Any patient with red sticky eyes who complains of pain and itchiness of the eyes where examination of the eyes confirms one of the stages of Trachoma infection according to the WHO Simplified Trachoma Grading System.",
+    "Note": "",
+    "SuspectedCase": "Any patient with red sticky eyes who complains of pain and itchiness of the eyes.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "d130c466-03df-4a4e-be05-8573b5b3ee2d",
+    "Name": "Trypanosomiasis",
+    "ReadableId": 48,
+    "Threshold": null,
+    "ConfirmedCase": "A suspected case confirmed by card agglutination trypanosomal test (CATT) or by isolation of trypanosomes in blood lymph nodes or cerebrospinal fluid.",
+    "Note": "",
+    "SuspectedCase": "Early stage: a painful chancre originating as a papule and then evolving into a nodule at the primary fly bite site. There may be a) fever; b) intense headache; c) insomnia; d) painless lymphadenopathy; e) anaemia; f) local oedema; g) rash.  Late stage: a) cachexia; b) somnolence; c) central nervous system signs.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "b9f227da-9e1e-405e-bb21-6c84f6bf5c5a",
+    "Name": "Tuberculosis",
+    "ReadableId": 49,
+    "Threshold": null,
+    "ConfirmedCase": "Smear-positive pulmonary TB: a) a suspected patient with at least 2 sputum specimens positive for acid-fast bacilli (AFB); b) one sputum specimen positive for AFB by microscopy and radiographic abnormalities consistent with active PTB as determined by the treating medical officer; c) one positive sputum smear by microscopy and one sputum specimen positive on culture for AFB. Smear negative PTB: a patient who fulfils all the following criteria: a) two sets taken at least 2 weeks apart of at least two sputum specimens negative for AFB on microscopy, radiographic abnormalities consistent with PTB and a lack of clinical response despite one week of a broad spectrum antibiotic, a decision by a physician to treat with a full course of anti-TB chemotherapy; b) a patient who fulfils all the following criteria: severely ill, at least two sputum specimens negative for AFB by microscopy, radiographic abnormalities consistent with extensive pulmonary TB (interstitial and miliary), a decision by a physician to treat with a full course of anti-TB chemotherapy; c) a patient whose initial sputum smears were negative, who had sputum sent for culture initially, and whose subsequent sputum culture result is positive.",
+    "Note": "",
+    "SuspectedCase": "Any person with a cough of 3 weeks or more.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with cough for 3 weeks or more"
+  },
+  {
+    "Id": "ca15a03d-91cd-43af-9508-19644dd95b07",
+    "Name": "Typhoid Fever",
+    "ReadableId": 50,
+    "Threshold": null,
+    "ConfirmedCase": "Suspected case confirmed by isolation of Salmonella typhifrom blood, bone marrow, bowel fluid or stool.",
+    "Note": "",
+    "SuspectedCase": "Any person with gradual onset of steadily increasing and then persistently a) high fever; b) chills; c) malaise; d) headache; e) sore throat; f) cough; g) abdominal pain and constipation; h) diarrhoea.",
+    "ProbableCase": "",
+    "CommunityCase": "Any person with a prolonged fever during the previous 3 weeks or more"
+  },
+  {
+    "Id": "e5b88f48-bdb4-42d1-b49b-673198988d11",
+    "Name": "West Nile Fever",
+    "ReadableId": 51,
+    "Threshold": null,
+    "ConfirmedCase": "Confirmation of West Nile Fever is through laboratory diagnostics to identify WNV-specific IgM.",
+    "Note": "",
+    "SuspectedCase": "A hospitalized case of encephalitis due to unknown cause.",
+    "ProbableCase": "",
+    "CommunityCase": ""
+  },
+  {
+    "Id": "7b3f3613-0568-4c37-9edf-0541065fa712",
+    "Name": "Yellow fever",
+    "ReadableId": 52,
+    "Threshold": null,
+    "ConfirmedCase": "A probable case AND one of the following: a) Detection of YF-specific* IgM; b) Detection of four-fold increase in YF IgM and/or IgG antibody titres between acute and convalescent serum samples; c) Detection of YFV-specific* neutralizing antibodies; OR one of the following: a) Detection of YF virus genome in blood or other organs by PCR; b) Detection of yellow fever antigen in blood, liver or other organs by immunoassays; OR Isolation of the yellow fever virus.",
+    "Note": "*YF-specific means that antibody tests (such as IgM or neutralizing antibody) for other prevalent flavivirus are negative. This testing should include at least IgM for Dengue and West Nile and may include other flavivirus depending on local epidemiology.",
+    "SuspectedCase": "Any person with acute onset of fever, with jaundice appearing within 14 days of onset of the first symptoms.",
+    "ProbableCase": "A suspected case AND one of the following: a) epidemiological link to a confirmed case or an outbreak; b) positive post-mortem liver histopathology.",
+    "CommunityCase": ""
+  }
 ]
