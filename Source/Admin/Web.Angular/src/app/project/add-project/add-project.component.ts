@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NationalSocietyService } from '../../core/nationalsociety.service';
 import { ProjectService } from '../../core/project.service';
+import { UserService } from '../../core/user.service';
 import { UtilityService } from '../../core/utility.service';
 import { AddProject, NationalSociety, User } from '../../shared/models';
 
@@ -17,10 +18,12 @@ export class AddProjectComponent implements OnInit {
     owners: Array<User>;
     selectedSociety: string;
     selectedOwner: string;
+    projectOwners: Array<User>;
 
     constructor(
         private projectService: ProjectService,
         private utilityService: UtilityService,
+        private userService: UserService,
         private nationalSocietyService: NationalSocietyService
     ) { }
 
@@ -28,6 +31,17 @@ export class AddProjectComponent implements OnInit {
         this.nationalSocietyService.getNationalSocieties()
             .then((result) => this.societies = result)
             .catch((error) => console.error(error));
+    }
+
+    getProjectOwners(nationalSocietyId: number) {
+        this.userService.getProjectOwners(nationalSocietyId).then(
+            (users) => {
+                this.projectOwners = users;
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 
     async addProject() {
