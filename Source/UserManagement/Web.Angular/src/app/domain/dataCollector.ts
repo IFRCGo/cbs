@@ -8,6 +8,9 @@ export class DataCollector {
     gpsLocation: string;
     mobilePhoneNumber: string;
     email: string;
+    longitude: number;
+    latitude: number;
+
 
     constructor(o: any) {
         this.firstName = o.name;
@@ -19,5 +22,7 @@ export class DataCollector {
         this.gpsLocation = o.gpsLocation;
         this.mobilePhoneNumber = o.mobilePhoneNumber;
         this.email = o.email;
+        this.longitude = o.longitude;
+        this.latitude = o.latittude;
     }
 }

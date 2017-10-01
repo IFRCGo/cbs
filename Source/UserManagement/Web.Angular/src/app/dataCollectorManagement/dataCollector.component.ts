@@ -9,9 +9,17 @@ import { DataCollectorService } from './dataCollector.service';
 })
 export class DataCollectorFormComponent implements OnInit {
   dataCollectorForm: FormGroup;
+  selectedSex: string;
+  latitude: number;
+  longitude: number;
   languages = [
     { value: '0', viewValue: 'English'},
     { value: '1', viewValue: 'French'}
+  ];
+  sexOptions = [
+    {value: 'male', viewValue: 'Male'},
+    {value: 'female', viewValue: 'Female'},
+    {value: 'other', viewValue: 'Other'}
   ];
 
   constructor(private formBuilder: FormBuilder,
@@ -22,6 +30,16 @@ export class DataCollectorFormComponent implements OnInit {
     this.buildForm();
   }
 
+
+  public getPosition() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(location => {
+            this.longitude = location.coords.longitude;
+            this.latitude = location.coords.latitude;
+        });
+      };
+  }
+
   buildForm() {
     this.dataCollectorForm = this.formBuilder.group({
       firstName: [ '', [ Validators.required ] ],
@@ -30,8 +48,9 @@ export class DataCollectorFormComponent implements OnInit {
       sex: ['', [ Validators.required ] ],
       nationalSociety: ['', [ Validators.required ] ],
       language: ['', [ Validators.required ] ],
-      gpsLocation: ['', [ Validators.required ] ],
-      mobilePhoneNumber: ['', [ Validators.required ] ]
+      mobilePhoneNumber: ['', [ Validators.required ] ],
+      longitude: ['', [ Validators.required ] ],
+      latitude: ['', [ Validators.required ] ]
     });
   }
 

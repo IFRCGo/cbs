@@ -16,7 +16,6 @@ import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
 import { HomeComponent } from './homeComponent/home.component';
-import {UiTestComponent} from './userManagement/formuielement/ui-component/ui-Test.component';
 import { MatIconModule } from '@angular/material';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { MatIconModule } from '@angular/material';
     AppComponent,
     StaffUserComponent,
     DataCollectorFormComponent,
-    HomeComponent,
-    UiTestComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

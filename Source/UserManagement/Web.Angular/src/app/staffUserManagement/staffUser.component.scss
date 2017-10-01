@@ -1,17 +1,29 @@
-.item {
-    cursor: pointer;
-    margin-right: 1rem;
-
-    &:hover {
-        border-color: black;
-    }
+.register-staff-form {
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .input-field {
     display: block;
-    padding: 10px
+    padding: 10px 0px;
 }
 
 .full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: 49%;
+    padding: 10px 0px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.submit-button {
     width: 100%;
 }

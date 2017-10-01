@@ -69,6 +69,7 @@ namespace Web
         [HttpGet("staffusers")]
         public IEnumerable<StaffUser> GetAllStaffUsers()
         {
+            Console.WriteLine("in staffusers");
             var users = _users.GetAllStaffUsers();
             return users;
         }
@@ -76,6 +77,7 @@ namespace Web
         [HttpGet("datacollectors")]
         public IEnumerable<DataCollector> GetAllDataCollectors()
         {
+              Console.WriteLine("in datacollectors");
             var users = _users.GetAllDataCollectors();
             return users;
         }
