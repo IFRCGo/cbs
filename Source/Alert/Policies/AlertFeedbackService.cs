@@ -35,7 +35,7 @@ namespace Domain
             // send sms to all data verifiers
             foreach (DataVerifier dataVerifier in dataVerifiers)
             {
-                string text = _messageTemplateService.ComposeMessage("AlertRaisedFeedbackToDataCollectors", healthRisk);
+                string text = _messageTemplateService.ComposeMessage(EMessageTemplateNames.AlertRaisedFeedbackToDataVerifiers, healthRisk);
                 _smsSendingService.SendSMS(new [] { dataVerifier.Phone }, "");
                 _eventEmitter.Emit(Feature, new SmsSentEvent() { RecipientName = dataVerifier.Name, RecipientPhoneNumber = dataVerifier.Phone, SmsText = text});
             }
@@ -43,13 +43,18 @@ namespace Domain
             // send sms to all data collecors
             foreach (DataCollector dataCollector in dataCollectors)
             {
-                string text = _messageTemplateService.ComposeMessage("AlertRaisedFeedbackToDataVerifiers", healthRisk);
+                string text = _messageTemplateService.ComposeMessage(EMessageTemplateNames.AlertRaisedFeedbackToDataCollectors, healthRisk);
                 _smsSendingService.SendSMS(new[] { dataCollector.Phone }, "");
                 _eventEmitter.Emit(Feature, new SmsSentEvent() { RecipientName = dataCollector.Name, RecipientPhoneNumber = dataCollector.Phone, SmsText = text });
             }
         }
     }
 
+    public enum EMessageTemplateNames
+    {
+        AlertRaisedFeedbackToDataCollectors,
+        AlertRaisedFeedbackToDataVerifiers
+    }
 
     /*
      * 
