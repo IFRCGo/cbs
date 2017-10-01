@@ -18,6 +18,11 @@ The folowing steps has to be done by a person with access to to CBS`s appveyor a
 Done by a developer
 1. Create the entry for the new bonding context in the `Build status` table on to of this page.
 
+### Build Using Docker Container
+
+* Build image: `./dockerize.sh`
+* Run container: `./containerize.sh`
+* Build example (inside container): `./build.sh`
 
 ## Contributing
 
