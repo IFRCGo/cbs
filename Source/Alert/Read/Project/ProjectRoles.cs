@@ -7,7 +7,7 @@ namespace Read
 {
     public class ProjectRoles : Repository<ProjectRole>, IProjectRoles
     {
-        public ProjectRoles(IMongoCollection<ProjectRole> collection) : base(collection)
+        public ProjectRoles(IMongoDatabase database) : base(database, "ProjectRole")
         {
         }
     }
