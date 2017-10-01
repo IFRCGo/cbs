@@ -1,0 +1,32 @@
+﻿[
+  {
+    "guid": "917b98f2-1435-4b0d-88f1-f177a926e374",
+    "name": "Jamaica Red Cross",
+    "country": "Jamaica"
+  },
+  {
+    "guid": "e13b1996-11a5-4d55-a04c-0cc1962cb0a9",
+    "name": "Japanese Red Cross Society",
+    "country": "Japan"
+  },
+  {
+    "guid": "267f83bf-fbe0-4fa7-a356-15fe478348b8",
+    "name": "Jordan National Red Crescent Society",
+    "country": "Jordan"
+  },
+  {
+    "guid": "099a5bae-c8cd-472c-9a98-dc15c770598c",
+    "name": "Kazakh Red Crescent",
+    "country": "Kazakhstan"
+  },
+  {
+    "guid": "4405540c-78bc-4484-ae06-e00be468770c",
+    "name": "Kenya Red Cross Society",
+    "country": "Kenya"
+  },
+  {
+    "guid": "53a5712c-663a-41f8-bbb1-bc4fd834646e",
+    "name": "Kiribati Red Cross Society",
+    "country": "Kiribati"
+  }
+]
