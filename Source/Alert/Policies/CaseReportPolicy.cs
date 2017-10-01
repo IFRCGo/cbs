@@ -17,13 +17,15 @@ namespace Policies
 
         private readonly ICaseReports _caseReports;
         private readonly IDataCollectors _dataCollectors;
+        private readonly ISmsSendingService _smsSendingService;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
 
-        public CaseReportPolicy(ICaseReports caseReports, IDataCollectors dataCollectors, IEventEmitter eventEmitter, IHealthRisks healthRisks)
+        public CaseReportPolicy(ICaseReports caseReports, IDataCollectors dataCollectors, ISmsSendingService smsSendingService, IEventEmitter eventEmitter, IHealthRisks healthRisks)
         {
             _caseReports = caseReports;
             _dataCollectors = dataCollectors;
+            _smsSendingService = smsSendingService;
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
         }
@@ -81,7 +83,7 @@ namespace Policies
             // send sms to all data verifiers
             foreach (DataVerifier dataVerifier in dataVerifiers)
             {
-                // TODO: send
+                
             }
 
             // send sms to all data collecors
