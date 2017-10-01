@@ -41,7 +41,6 @@ export class StaffUserComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.staffUserService.getAllUsers();
     this.staffUserService.getNationalSocieties()
       .then(this.processNationalSocieties)
       .then(societies => {
@@ -61,13 +60,10 @@ export class StaffUserComponent implements OnInit {
         sex: ['', [ Validators.required ] ],
         age: ['', [ Validators.required, Validators.min(10), Validators.max(100) ] ],
         nationalSociety: ['', [ Validators.required ] ],
-        projectName: ['', [ Validators.required ] ],
         preferredLanguage: ['', [ Validators.required ] ],
         mobilePhoneNumber: ['', [ Validators.required ] ],
         email: this.emailFormControl
       });
-
-    console.warn('USER FORM:', this.staffUserForm);
   }
 
   async addStaffUser(staffUser) {
@@ -77,7 +73,6 @@ export class StaffUserComponent implements OnInit {
         sex: staffUser.sex,
         age: staffUser.age,
         nationalSociety: staffUser.nationalSociety,
-        projectName: staffUser.projectName,
         preferredLanguage: staffUser.preferredLanguage,
         mobilePhoneNumber: staffUser.mobilePhoneNumber,
         email: staffUser.email
