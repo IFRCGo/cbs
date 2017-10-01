@@ -9,9 +9,13 @@ pull_requests:
 
 image: Visual Studio 2017
 
+environment:
+  SlnFile: <path to the solution file>
+  WebBinFolder: <path to ther bin folder of the web project>
+
 only_commits:
   files:
-    - Source/VolunteerReporting/
+    - <baseSourceforlder>
 
 build_script:
 - ps: ./Build/build.ps1

@@ -1,0 +1,13 @@
+.input-field {
+    display: block;
+}
+
+md-select,
+md-input-container,
+md-form-field,
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;  
+    margin: 15px;
+  }
