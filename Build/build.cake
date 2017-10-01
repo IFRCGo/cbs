@@ -10,10 +10,10 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("CleanFolder") ?? "../Source/Example/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Web/bin";
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnDir = Environment.GetEnvironmentVariable("SolutionFolder") ??"../Source/Example/Example.sln";
+var slnFile = Environment.GetEnvironmentVariable("SlnFile") ??"../Source/Example/Example.sln";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS

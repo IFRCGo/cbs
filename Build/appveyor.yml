@@ -11,7 +11,7 @@ image: Visual Studio 2017
 
 only_commits:
   files:
-    - Source/VolunteerReporting/
+    - <baseSourceforlder>
 
 build_script:
 - ps: ./Build/build.ps1
