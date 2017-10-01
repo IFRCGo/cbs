@@ -11,6 +11,7 @@ namespace Events
     public class NationalSocietyCreated : IEvent
     {
         public String Name { get; set; }
+        public String Country { get; set; }
         public Guid Id { get; set; }
     }
 }
