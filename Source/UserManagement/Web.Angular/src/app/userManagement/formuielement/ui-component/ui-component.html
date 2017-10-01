@@ -5,11 +5,11 @@
 <p>
 
 </p>
-<md-select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode">
-    <md-option *ngFor="let nation of nations" [value]="nation.countryCode">{{nation.country}}</md-option> 
+<md-select (change)="sortDistricts()" [(ngModel)]="selectedCountryCode" placeholder="Country">
+    <md-option *ngFor="let nation of nations" [value]="nation.countryCode" >{{nation.country}}</md-option> 
 </md-select>
 
-<md-select name="select2">
+<md-select *ngIf="countrySelected" name="select2" placeholder="District">
     <md-option *ngFor="let district of districts" [value]="district.countryCode">{{district.place}}</md-option>
 </md-select>
 <p></p>

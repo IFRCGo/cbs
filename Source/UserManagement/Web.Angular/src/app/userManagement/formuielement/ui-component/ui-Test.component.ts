@@ -16,6 +16,7 @@ export class UiTestComponent implements OnInit {
   districts: DistrictSociety[];
   location = {};
   selectedCountryCode: number;
+  countrySelected: boolean;
   constructor(
     private formElementServiceService: FormElementServiceService
   ) { }
@@ -51,6 +52,7 @@ export class UiTestComponent implements OnInit {
   }
 
   public sortDistricts() {
+    this.countrySelected = true;
     this.districts = this.districtsOrig
       .filter(district => district.countryCode.toString() === this.selectedCountryCode.toString());
   }
