@@ -16,13 +16,13 @@ namespace Policies
 
         private readonly ICaseReports _caseReports;
         private readonly IEventEmitter _eventEmitter;
-        private readonly IDiseases _diseases;
+        private readonly IHealthRisks _healthRisks;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IDiseases diseases)
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks)
         {
             _caseReports = caseReports;
             _eventEmitter = eventEmitter;
-            _diseases = diseases;
+            _healthRisks = healthRisks;
         }
         public void Process(SingleCaseReported @event)
         {
@@ -48,7 +48,7 @@ namespace Policies
             }
             _caseReports.Save(caseReport);
 
-            var disease = _diseases.GetById(caseReport.DiseaseId) ?? new Disease()
+            var disease = _healthRisks.GetById(caseReport.DiseaseId) ?? new HealthRisk()
             {
                 Id = @event.DiseaseId,
                 ThresholdTimePeriodInDays = 7,

@@ -2,21 +2,21 @@ using Events.External;
 
 namespace Read.Disease
 {
-    public class DiseaseEventProcessor : Infrastructure.Events.IEventProcessor
+    public class HealthRiskEventProcessor : Infrastructure.Events.IEventProcessor
     {
-        private readonly IDiseases _diseases;
+        private readonly IHealthRisks _healthRisks;
 
-        public DiseaseEventProcessor(IDiseases diseases)
+        public HealthRiskEventProcessor(IHealthRisks healthRisks)
         {
-            _diseases = diseases;
+            _healthRisks = healthRisks;
         }
 
         public void Process(DiseaseCreatedEvent @event)
         {
-            var user = _diseases.GetById(@event.Id);
+            var user = _healthRisks.GetById(@event.Id);
             if (user == null)
             {
-                user = new Read.Disease.Disease()
+                user = new Read.Disease.HealthRisk()
                 {
                     Id = @event.Id,
                     Name = @event.Name,
@@ -29,7 +29,7 @@ namespace Read.Disease
                 user.Name = @event.Name;
                 user.Code = @event.Code;
             }
-            _diseases.Save(user);
+            _healthRisks.Save(user);
         }
     }
 }
