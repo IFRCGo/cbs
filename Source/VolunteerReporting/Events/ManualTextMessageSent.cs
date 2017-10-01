@@ -3,7 +3,7 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class ManualSMSSent : IEvent
+    public class ManualTextMessageSent : IEvent
     {
     }
 }
