@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Events.External;
@@ -15,12 +16,14 @@ namespace Policies
         public static readonly Feature Feature = "CaseReport";
 
         private readonly ICaseReports _caseReports;
+        private readonly IDataCollectors _dataCollectors;
         private readonly IEventEmitter _eventEmitter;
         private readonly IDiseases _diseases;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IDiseases diseases)
+        public CaseReportPolicy(ICaseReports caseReports, IDataCollectors dataCollectors, IEventEmitter eventEmitter, IDiseases diseases)
         {
             _caseReports = caseReports;
+            _dataCollectors = dataCollectors;
             _eventEmitter = eventEmitter;
             _diseases = diseases;
         }
@@ -66,9 +69,30 @@ namespace Policies
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
+
+                SendFeedbackToDataCollecorsAndVerifiers(latestReports);
             }
         }
 
+        private void SendFeedbackToDataCollecorsAndVerifiers(IEnumerable<CaseReport> latestReports)
+        {
+            var dataCollectors = _dataCollectors.Get(latestReports.Select(o => o.DataCollectorId).ToArray());
+            var dataVerifiers = dataCollectors.GroupBy(o => o.DataVerifier.UserId).Select(o => o.First().DataVerifier).ToArray();
+
+            // send sms to all data verifiers
+            foreach (DataVerifier dataVerifier in dataVerifiers)
+            {
+               // TODO: send
+            }
+
+            // send sms to all data collecors
+            foreach (DataCollector dataCollector in dataCollectors)
+            {
+                // TODO: send
+            }
+        }
+
+        
         public void Process(AggregateCaseReported @event)
         {
             var caseReport = _caseReports.GetById(@event.Id);
