@@ -3,12 +3,12 @@ sudo: required
 # blocklist
 branches:
   except:
-  - master
+  - ci
 
 # safelist
 branches:
   only:
-  - ci
+  - master
 
 notifications:
   email:

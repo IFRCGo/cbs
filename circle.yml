@@ -67,10 +67,10 @@ workflows:
       - build:
           filters:
             branches:
-              only: ci
+              only: master
       - test:
           requires:
             - build
           filters:
             branches:
-              only: ci
+              only: master
