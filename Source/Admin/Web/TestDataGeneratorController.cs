@@ -45,7 +45,7 @@ namespace Web
 
             int i = 1;
             foreach (var id in _nationalSocietyIds)
-                _eventEmitter.Emit("NationalSecurity", new NationalSocietyCreated() { Id = id, Name = $"National Sociity #{i++}" });
+                _eventEmitter.Emit("NationalSecurity", new NationalSocietyCreated() { Id = id, Name = $"National Society #{i++}" });
         }
 
         [HttpGet("users")]
