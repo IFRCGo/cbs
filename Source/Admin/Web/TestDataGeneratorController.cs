@@ -33,6 +33,7 @@ namespace Web
         {
             CreateNationalSociety();
             CreateUsers();
+            CreateHealthRisks();
         }
 
         [HttpGet("nationalsocieties")]
@@ -64,6 +65,17 @@ namespace Web
 
                 _eventEmitter.Emit("User", user);
             }
+        }
+
+        [HttpGet("createrisks")]
+        public void CreateHealthRisks()
+        {
+            var _collection = _database.GetCollection<NationalSociety>("HealthRisk");
+            _collection.DeleteMany(v => true);
+
+            var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
+            foreach (var risk in risks)
+                _eventEmitter.Emit("HealthRisk", risk);
         }
     }
 }
