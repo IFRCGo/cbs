@@ -19,14 +19,26 @@ namespace Domain
 
             if (numbers.Count == 3)
             {
-                return new CaseReport
+                return new SingleCaseReport
                 {
                     HealthRiskId = numbers[0],
                     Sex = (Sex)numbers[1],
                     Age = numbers[2]
                 };
             }
-            throw new Exception("Text message should only contain 3 numbers");
+            else if (numbers.Count == 5)
+            {
+                return new MultipleCaseReport
+                {
+                    HealthRiskId = numbers[0],
+                    MalesUnder5 = numbers[1],
+                    MalesOver5 = numbers[2],
+                    FemalesUnder5 = numbers[3],
+                    FemalesOver5 = numbers[4]
+                };
+            }
+
+            throw new Exception("Text message should contain 3 or 5 numbers");
         }
 
         private static bool IsNum(string input)
@@ -40,9 +52,22 @@ namespace Domain
         }
     }
 
-    public class CaseReport
+    public abstract class CaseReport
     {
         public int HealthRiskId { get; set; }
+    }
+
+    public class MultipleCaseReport : CaseReport
+    {
+        public int FemalesUnder5 { get; set; }
+        public int FemalesOver5 { get; set; }
+
+        public int MalesUnder5 { get; set; }
+        public int MalesOver5 { get; set; }
+    }
+
+    public class SingleCaseReport : CaseReport
+    {
         public Sex Sex { get; set; }
         public int Age { get; set; }
     }
