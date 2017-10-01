@@ -3,7 +3,7 @@
 ## Build status
 | Project  | AppVeyor Status  |
 |---|---|
-| Example  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/somthing)  |
+| Example  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)  |
 | VolunteerReporting  | [![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs/build/1.1.0-30-nsotvffx)  |
 
 ## Setup Ci build for as new bounding context
