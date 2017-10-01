@@ -55,7 +55,9 @@ namespace Web
             _eventEmitter.Emit(Feature, new ProjectCreated
             {
                 Name = command.Name,
-                Id = command.Id
+                Id = command.Id,
+                NationalSocietyId = command.NationalSocietyId,
+                OwnerUserId = command.OwnerUserId
             });
         }
 
