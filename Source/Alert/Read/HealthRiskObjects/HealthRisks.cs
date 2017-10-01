@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace Read.Disease
+namespace Read.HealthRiskObjects
 {
     public class HealthRisks : Repository<HealthRisk>, IHealthRisks
     {

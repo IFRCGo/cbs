@@ -6,7 +6,7 @@ using Infrastructure.Application;
 using Infrastructure.Events;
 using MongoDB.Driver;
 using Read;
-using Read.HealthRisk;
+using Read.HealthRiskObjects;
 
 namespace Policies
 {

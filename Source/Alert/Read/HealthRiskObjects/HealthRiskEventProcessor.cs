@@ -1,6 +1,6 @@
 using Events.External;
 
-namespace Read.Disease
+namespace Read.HealthRiskObjects
 {
     public class HealthRiskEventProcessor : Infrastructure.Events.IEventProcessor
     {
@@ -16,7 +16,7 @@ namespace Read.Disease
             var user = _healthRisks.GetById(@event.Id);
             if (user == null)
             {
-                user = new Read.Disease.HealthRisk()
+                user = new HealthRisk()
                 {
                     Id = @event.Id,
                     Name = @event.Name,

@@ -1,6 +1,6 @@
 using System;
 
-namespace Read.HealthRisk
+namespace Read.HealthRiskObjects
 {
     public interface IHealthRisks
     {
