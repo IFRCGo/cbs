@@ -1,0 +1,41 @@
+.input-field {
+    display: block;
+}
+
+md-select,
+md-input-container,
+md-form-field,
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;  
+    margin: 15px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.geo-btn {
+    margin: 0 10px;
+}
+
+.geo-button {
+    height: 50%;
+}
+
+.submit-button {
+    margin: 15px;
+}
