@@ -39,13 +39,13 @@ Task("Build")
     if(IsRunningOnWindows())
     {
       // Use MSBuild
-      MSBuild(slnDir, settings =>
+      MSBuild(slnFile, settings =>
         settings.SetConfiguration(configuration));
     }
     else
     {
       // Use XBuild
-      XBuild(slnDir, settings =>
+      XBuild(slnFile, settings =>
         settings.SetConfiguration(configuration));
     }
 });
