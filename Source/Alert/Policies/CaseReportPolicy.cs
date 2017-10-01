@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain;
 using Events;
 using Events.External;
 using Infrastructure.Application;
@@ -20,15 +21,16 @@ namespace Policies
         private readonly ISmsSendingService _smsSendingService;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
+        private readonly IAlertFeedbackService _feedbackService;
 
-        public CaseReportPolicy(ICaseReports caseReports, IDataCollectors dataCollectors, ISmsSendingService smsSendingService, IEventEmitter eventEmitter, IHealthRisks healthRisks)
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlertFeedbackService feedbackService)
         {
             _caseReports = caseReports;
-            _dataCollectors = dataCollectors;
-            _smsSendingService = smsSendingService;
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
+            _feedbackService = feedbackService;
         }
+
         public void Process(CaseReported @event)
         {
             var caseReport = _caseReports.GetById(@event.Id);
@@ -71,26 +73,10 @@ namespace Policies
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
-                SendFeedbackToDataCollecorsAndVerifiers(latestReports);
+                _feedbackService.SendFeedbackToDataCollecorsAndVerifiers(latestReports);
             }
         }
 
-        private void SendFeedbackToDataCollecorsAndVerifiers(IEnumerable<CaseReport> latestReports)
-        {
-            var dataCollectors = _dataCollectors.Get(latestReports.Select(o => o.DataCollectorId).ToArray());
-            var dataVerifiers = dataCollectors.GroupBy(o => o.DataVerifier.UserId).Select(o => o.First().DataVerifier).ToArray();
-
-            // send sms to all data verifiers
-            foreach (DataVerifier dataVerifier in dataVerifiers)
-            {
-                
-            }
-
-            // send sms to all data collecors
-            foreach (DataCollector dataCollector in dataCollectors)
-            {
-                // TODO: send
-            }
-        }
+        
     }
 }
