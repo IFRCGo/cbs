@@ -24,8 +24,7 @@ namespace Policies
         private readonly IAlerts _alerts;
         private readonly IAlertFeedbackService _feedbackService;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlertFeedbackService feedbackService)
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlerts alerts)
+        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlertFeedbackService feedbackService, IAlerts alerts)
         {
             _caseReports = caseReports;
             _eventEmitter = eventEmitter;
