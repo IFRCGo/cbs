@@ -3,13 +3,12 @@ using System.Linq;
 using Events;
 using Infrastructure.Application;
 using Infrastructure.Events;
-using Policies;
 using Read;
 using Read.Disease;
 
-namespace Domain
+namespace Policies
 {
-    public class AlertFeedbackService
+    public class AlertFeedbackService : IAlertFeedbackService
     {
         public static readonly Feature Feature = "Alert";
 
