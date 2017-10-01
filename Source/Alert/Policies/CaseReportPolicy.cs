@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
 using Read;
+using Read.Disease;
 using Read.HealthRiskObjects;
 
 namespace Policies
@@ -14,12 +16,14 @@ namespace Policies
         public static readonly Feature Feature = "CaseReport";
 
         private readonly ICaseReports _caseReports;
+        private readonly IDataCollectors _dataCollectors;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks)
+        public CaseReportPolicy(ICaseReports caseReports, IDataCollectors dataCollectors, IEventEmitter eventEmitter, IHealthRisks healthRisks)
         {
             _caseReports = caseReports;
+            _dataCollectors = dataCollectors;
             _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
         }
@@ -65,6 +69,25 @@ namespace Policies
                 _eventEmitter.Emit(Feature, new AlertRaised
                 {
                 });
+                SendFeedbackToDataCollecorsAndVerifiers(latestReports);
+            }
+        }
+
+        private void SendFeedbackToDataCollecorsAndVerifiers(IEnumerable<CaseReport> latestReports)
+        {
+            var dataCollectors = _dataCollectors.Get(latestReports.Select(o => o.DataCollectorId).ToArray());
+            var dataVerifiers = dataCollectors.GroupBy(o => o.DataVerifier.UserId).Select(o => o.First().DataVerifier).ToArray();
+
+            // send sms to all data verifiers
+            foreach (DataVerifier dataVerifier in dataVerifiers)
+            {
+                // TODO: send
+            }
+
+            // send sms to all data collecors
+            foreach (DataCollector dataCollector in dataCollectors)
+            {
+                // TODO: send
             }
         }
     }

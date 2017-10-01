@@ -12,7 +12,7 @@ namespace Read
 
         public List<CaseReport> GetCaseReportsAfterDate(DateTime date, Guid diseaseId)
         {
-            return _collection.FindSync(report => report.SubmissionTimestamp > date && report.DiseaseId == diseaseId).ToList();
+            return _collection.FindSync(report => report.SubmissionTimestamp > date && report.HealthRiskId == diseaseId).ToList();
         }
     }
 }
