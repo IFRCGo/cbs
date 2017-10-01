@@ -15,5 +15,6 @@ namespace Read
         public string SuspectedCase { get; set; }
         public string ProbableCase { get; set; }
         public string CommunityCase { get; set; }
+        public string KeyMessage { get; internal set; }
     }
 }
