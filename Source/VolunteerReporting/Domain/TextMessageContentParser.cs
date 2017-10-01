@@ -9,7 +9,7 @@ namespace Domain
     /// summary
     public class TextMessageContentParser
     {
-        public static CaseReport Parse(string text)
+        public static CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
             var fragments = text.Split(' ');
@@ -19,7 +19,7 @@ namespace Domain
 
             if (numbers.Count == 3)
             {
-                return new SingleCaseReport
+                return new SingleCaseReportContent
                 {
                     HealthRiskId = numbers[0],
                     Sex = (Sex)numbers[1],
@@ -28,7 +28,7 @@ namespace Domain
             }
             else if (numbers.Count == 5)
             {
-                return new MultipleCaseReport
+                return new MultipleCaseReportContent
                 {
                     HealthRiskId = numbers[0],
                     MalesUnder5 = numbers[1],
@@ -52,12 +52,12 @@ namespace Domain
         }
     }
 
-    public abstract class CaseReport
+    public abstract class CaseReportContent
     {
         public int HealthRiskId { get; set; }
     }
 
-    public class MultipleCaseReport : CaseReport
+    public class MultipleCaseReportContent : CaseReportContent
     {
         public int FemalesUnder5 { get; set; }
         public int FemalesOver5 { get; set; }
@@ -66,7 +66,7 @@ namespace Domain
         public int MalesOver5 { get; set; }
     }
 
-    public class SingleCaseReport : CaseReport
+    public class SingleCaseReportContent : CaseReportContent
     {
         public Sex Sex { get; set; }
         public int Age { get; set; }
