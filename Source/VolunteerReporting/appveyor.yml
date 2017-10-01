@@ -13,9 +13,9 @@ environment:
   SlnFile: Source/VolunteerReporting/VolunteerReporting.sln
   WebBinFolder: Source/VolunteerReporting/Web/bin
 
-only_commits:
-  files:
-    - Source/VolunteerReporting/
+#only_commits:
+#  files:
+#    - Source/VolunteerReporting/
 
 build_script:
 - ps: ./Build/build.ps1
