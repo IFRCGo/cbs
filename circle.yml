@@ -1,0 +1,63 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: dranoel/cbs-devel:latest
+    working_directory: /workspace
+    steps:
+      - checkout
+      - run:
+          name: Interpolating Environment Variables to Set Other Environment Variables
+          # If you need to interpolate other environment variables to set an environment variable, the only place to do this at the moment is in bash.
+          # CircleCI 2.0 automatically sets a $BASH_ENV variable to a random name in /tmp, and will source this file for each step.
+          # https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables
+          command: |
+            echo 'export DEBIAN_FRONTEND=noninteractive' >> $BASH_ENV
+            echo 'export WORKSPACE_DIR=/workspace' >> $BASH_ENV
+      - run:
+          name: Version
+          command: |
+            set -x
+            cat /etc/*release
+      - run:
+          name: Build
+          command: |
+            set -x
+            cd ${WORKSPACE_DIR}
+            bash ${PWD}/build.sh
+  test:
+    docker:
+      - image: dranoel/cbs-devel:latest
+    working_directory: /workspace
+    steps:
+      - checkout
+      - run:
+          name: Interpolating Environment Variables to Set Other Environment Variables
+          # If you need to interpolate other environment variables to set an environment variable, the only place to do this at the moment is in bash.
+          # CircleCI 2.0 automatically sets a $BASH_ENV variable to a random name in /tmp, and will source this file for each step.
+          # https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables
+          command: |
+            echo 'export DEBIAN_FRONTEND=noninteractive' >> $BASH_ENV
+            echo 'export WORKSPACE_DIR=/workspace' >> $BASH_ENV
+      - run:
+          name: Check Version
+          command: |
+            set -x
+            cat /etc/*release
+      - run:
+          name: Build
+          command: |
+            set -x
+            cd ${WORKSPACE_DIR}
+            bash ${PWD}/build.sh
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: ci

@@ -1,0 +1,16 @@
+language: cpp
+
+compiler:
+  - clang
+  - gcc
+
+notifications:
+  email:
+    on_success: never # default: change
+    on_failure: change # default: always
+
+before_install:
+  - sudo apt-get update --quiet
+
+script:
+  - cat /etc/*-releases
