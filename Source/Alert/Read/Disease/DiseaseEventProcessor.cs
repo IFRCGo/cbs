@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Events.External;
 
-namespace Read
+namespace Read.Disease
 {
     public class DiseaseEventProcessor : Infrastructure.Events.IEventProcessor
     {
@@ -19,7 +16,7 @@ namespace Read
             var user = _diseases.GetById(@event.Id);
             if (user == null)
             {
-                user = new Disease()
+                user = new Read.Disease.Disease()
                 {
                     Id = @event.Id,
                     Name = @event.Name,

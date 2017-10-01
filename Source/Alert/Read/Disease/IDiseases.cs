@@ -1,10 +1,10 @@
 using System;
 
-namespace Read
+namespace Read.Disease
 {
     public interface IDiseases
     {
-        Disease GetById(Guid id);
-        void Save(Disease entity);
+        Read.Disease.Disease GetById(Guid id);
+        void Save(Read.Disease.Disease entity);
     }
 }
