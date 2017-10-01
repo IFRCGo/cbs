@@ -19,7 +19,14 @@ namespace Read
             var healthRisk = new HealthRisk()
             {
                 Id = @event.Id,
-                Name = @event.Name
+                Name = @event.Name,
+                ReadableId = @event.ReadableId,
+                Threshold = @event.Threshold,
+                ConfirmedCase = @event.ConfirmedCase,
+                Note = @event.Note,
+                ProbableCase = @event.ProbableCase,
+                CommunityCase = @event.CommunityCase,
+                SuspectedCase = @event.SuspectedCase
             };
             _healthRisks.Save(healthRisk);
         }
