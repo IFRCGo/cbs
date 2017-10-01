@@ -4,6 +4,7 @@ export class StaffUser {
     age: number;
     sex: string;
     nationalSociety: string;
+    projectName: string;
     preferredLanguage: string;
     mobilePhoneNumber: string;
     email: string;
@@ -14,6 +15,7 @@ export class StaffUser {
         this.age = o.age;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
+        this.projectName = o.projectName;
         this.preferredLanguage = o.preferredLanguage;
         this.mobilePhoneNumber = o.mobilePhoneNumber;
         this.email = o.email;

@@ -1,4 +1,5 @@
 import { StaffUser } from '../domain/staffUser';
+import { NationalSociety } from '../domain/nationalSociety';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
@@ -30,5 +31,14 @@ export class StaffUserService {
       .toPromise()
       .then((users) => { console.log(users); })
       .catch((error) => console.error(error));
+  }
+
+  // TOOD: Pull societies from FDRS
+  getNationalSocieties(): Promise<Array<NationalSociety>> {
+    return Promise.resolve([
+      { id: 'nrx', displayName: 'Norwegian Red Cross (NRX)' },
+      { id: 'drx', displayName: 'Danish Red Cross (DRX)' },
+      { id: 'srx', displayName: 'Spanish Red Cross (SRX)' }
+    ]);
   }
 }
