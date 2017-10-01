@@ -14,7 +14,7 @@ using Read;
 
 namespace Web
 {
-    [Route("api/[HealthRisk]")]
+    [Route("api/healthRisk")]
     public class HealthRiskController : Controller
     {
         public static readonly Feature Feature = "HealthRisk";
