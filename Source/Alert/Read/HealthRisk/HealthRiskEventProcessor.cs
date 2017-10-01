@@ -11,7 +11,7 @@ namespace Read.Disease
             _healthRisks = healthRisks;
         }
 
-        public void Process(DiseaseCreatedEvent @event)
+        public void Process(HealthRiskCreatedEvent @event)
         {
             var user = _healthRisks.GetById(@event.Id);
             if (user == null)

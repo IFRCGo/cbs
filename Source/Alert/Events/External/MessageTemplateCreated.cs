@@ -8,7 +8,7 @@ namespace Events.External
     {
         public Guid Id { get; set; }
 
-        public Guid? DiseaseId { get; set; }
+        public Guid? HealthRiskId { get; set; }
 
         public string EventTriggerType { get; set; }
 

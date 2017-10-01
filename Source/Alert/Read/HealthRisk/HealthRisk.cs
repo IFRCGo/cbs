@@ -1,4 +1,4 @@
-namespace Read.Disease
+namespace Read.HealthRisk
 {
     public class HealthRisk : Entity
     {

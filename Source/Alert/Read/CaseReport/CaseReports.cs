@@ -12,7 +12,7 @@ namespace Read
 
         public IEnumerable<CaseReport> GetCaseReportsAfterDate(DateTime date, Guid diseaseId)
         {
-            return _collection.FindSync(report => report.SubmissionTimestamp > date && report.DiseaseId == diseaseId).ToEnumerable();
+            return _collection.FindSync(report => report.SubmissionTimestamp > date && report.HealthRiskId == diseaseId).ToEnumerable();
         }
     }
 }

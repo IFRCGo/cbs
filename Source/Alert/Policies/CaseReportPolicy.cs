@@ -6,7 +6,7 @@ using Infrastructure.Application;
 using Infrastructure.Events;
 using MongoDB.Driver;
 using Read;
-using Read.Disease;
+using Read.HealthRisk;
 
 namespace Policies
 {
@@ -33,7 +33,7 @@ namespace Policies
                 {
                     Id = @event.Id,
                     DataCollectorId = @event.DataCollectorId,
-                    DiseaseId = @event.DiseaseId,
+                    HealthRiskId = @event.HealthRiskId,
                     Location = @event.Location,
                     SubmissionTimestamp = @event.CaseOccured
                 };
@@ -42,21 +42,21 @@ namespace Policies
             {
                 caseReport.Id = @event.Id;
                 caseReport.DataCollectorId = @event.DataCollectorId;
-                caseReport.DiseaseId = @event.DiseaseId;
+                caseReport.HealthRiskId = @event.HealthRiskId;
                 caseReport.Location = @event.Location;
                 caseReport.SubmissionTimestamp = @event.CaseOccured;
             }
             _caseReports.Save(caseReport);
 
-            var disease = _healthRisks.GetById(caseReport.DiseaseId) ?? new HealthRisk()
+            var disease = _healthRisks.GetById(caseReport.HealthRiskId) ?? new HealthRisk()
             {
-                Id = @event.DiseaseId,
+                Id = @event.HealthRiskId,
                 ThresholdTimePeriodInDays = 7,
                 ThresholdNumberOfCases = 3
             };
 
             var latestReports = _caseReports.GetCaseReportsAfterDate(
-                DateTime.UtcNow.Subtract(TimeSpan.FromDays(disease.ThresholdTimePeriodInDays)), caseReport.DiseaseId);
+                DateTime.UtcNow.Subtract(TimeSpan.FromDays(disease.ThresholdTimePeriodInDays)), caseReport.HealthRiskId);
 
             // Number of reports last n days for area and health risk above threshold
 
