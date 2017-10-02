@@ -16,13 +16,6 @@
 ![](https://img.shields.io/github/release/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/issues/ifrcgo/cbs.svg)
 
-### Build Using Docker Container
-
-* Build image: `./dockerize.sh`
-* Run container: `./containerize.sh`
-* Build example (inside container): `./build.sh`
-
-See [Overview](Documentation/Continuous Integration/overview.md) of Continous Integration for more information.
 ## Contributing
 
 Read more about how you can [contribute](./Documentation/Contribution/contributing.md).
