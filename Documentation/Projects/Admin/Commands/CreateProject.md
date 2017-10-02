@@ -12,10 +12,17 @@ author: roarfred
 >effort. As such, the project is first created in a *draft* state, such as several actors can perform their individual
 >actions. When enough data is collected and provided into the system, the project will be published.
 
+## Description
+This command is used for the step of defining a project in the draft state. It must be done by a 
+[CBS coordinator (global level)](../../actors.md), who provides the following information:
+Field|Description|Input Type|Required
+-----|-----------|----------|--------
+Name | A name of project | Free text | [x]
+NationalSociety | The national Society responsible for the project, e.g. Kenya Red Cross | From list of all national Red Cross and Red Cresent movement sosieties | [x]
+DataOwner | The [Coordinator](../../actors.md) of the project after the initial setup | List of eligible users inside chosen National Society | [x] 
+
 ## Actors
 * [CBS coordinator (global level)](../../actors.md)
-* [CBS coordinator (national level)](../../actors.md)
-* [Coordinator / Supervisor](../../actors.md)
 
 ## Affected data
 * [Project](../Aggregates/Project.md)
