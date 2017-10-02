@@ -16,7 +16,7 @@ _Eager to get started right away? Have a look at the [included example](../../So
 * Run container: `./containerize.sh`
 * Build example (inside container): `./build.sh`
 
-See [Overview](../Continuous Integration/overview.md) of Continous Integration for more information.
+See [Overview](../Continuous Integration/overview.md) of Continuous Integration for more information.
 
 ## Tools
 
