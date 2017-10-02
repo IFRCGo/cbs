@@ -7,7 +7,7 @@ author: roarfred
 # Aggregate: Project
 
 ## Abstract
-> **Project** is a CBS Project, which defines under whom and under which rules various health risks are being surveiled in an area. 
+> A CBS **Project**, which defines under whom and under which rules various health risks are being surveiled in an area. 
 > There will never be more than one ongoing project per country, and the national red cross or red cresent association will be the owner,
 > refered as National Society.
 >
@@ -31,3 +31,25 @@ author: roarfred
 * Project
   * Health Risks
   * Locations
+
+
+## Health Risks
+> A Health Risk is a contagious disease, or other health related problem with a potential of causing an outbreak. People in the
+> area becomes in immediate need for healthcare, which is possibly scarce or not available
+
+A global list of defined healt risks exists. From this, 5 is selected for the project. The health risk in the global list will have
+suggestions on cases and thresholds, but these attributes might be overridden within the project. There will however be a reference 
+back to the list for reporting purposes.
+
+## Locations
+> The term **Locations** is a breakdown structure of the area within a country. There are a fixed number of admin levels, 7. The 
+> first level (Admin Level 0) is always the country. Depending on the size of the country and it's maturity within GIS, there might be  
+> just a few levels available. One single location in the structure is a name and a geospatial area. This area will have a relation 
+> to a parent location on the level above it, unless the area represents the whole country. The geospatial area might be unavailable
+> while the name and the parent location is known.
+
+Locations are fully defined within the bounds of the project. During the initial stage of the project, GIS data is imported into the
+project. As administrative boundaries might change, this setup can vary for two successive projects within the same country.
+
+The project owner determines at which admin level a Data Validator is to be assigned and then assigns one data validator to each 
+location on that level.
