@@ -20,7 +20,7 @@ author: roarfred
         {...},
         {...}                                        
     ],
-    "Locations": [
+    "Locations": [                      // The geographical, hierarchial structure of admin levels and data verifiers
         "Name": "Kenya",
         "GeographicalArea": { ... },
         "Locations" : [
