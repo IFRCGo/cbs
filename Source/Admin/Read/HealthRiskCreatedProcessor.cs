@@ -26,7 +26,8 @@ namespace Read
                 Note = @event.Note,
                 ProbableCase = @event.ProbableCase,
                 CommunityCase = @event.CommunityCase,
-                SuspectedCase = @event.SuspectedCase
+                SuspectedCase = @event.SuspectedCase,
+                KeyMessage = @event.KeyMessage
             };
             _healthRisks.Save(healthRisk);
         }

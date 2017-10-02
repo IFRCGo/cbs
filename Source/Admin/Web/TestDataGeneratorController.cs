@@ -99,6 +99,7 @@ namespace Web
                         SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
                         CommunityCase = values[Array.IndexOf(columnNames, "Community Case")],
                         Note = values[Array.IndexOf(columnNames, "Note")],
+                        KeyMessage = values[Array.IndexOf(columnNames, "Key Message")]
                     };
                 });
 
