@@ -1,11 +1,7 @@
 # CBS Example backend application
 
 ## Build status
-| Project  | AppVeyor Status  |
-|---|---|
-| Example  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/tksoftware/cbs)  |
-| VolunteerReporting  | [![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs/build/1.1.0-30-nsotvffx)  |
-
+[![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)
 
 ## Prerequisites
 
