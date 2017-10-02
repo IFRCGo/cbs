@@ -37,6 +37,12 @@ Done by a developer
 * Run container: `./containerize.sh`
 * Build example (inside container): `./build.sh`
 
+After running `./dockerize.sh` script, you have a `<user/organization>/cbs-devel` image for building the project.
+Folks with access to CBS's official accounts can publish the Docker images to Docker Hub.
+Please remember to update the CI/CD pipeline to reflect the official Docker images.
+Use `./containerize.sh` to access the terminal inside the container, created from `<user/organization>/cbs-devel` image.
+On the terminal inside the container, use `./build.sh` to build the project.
+
 Folks with access to CBS's official accounts can now add CI/CD builds to CircleCI/TravisCI.
 Please remember to update the above links in the CI/CD status.
 
