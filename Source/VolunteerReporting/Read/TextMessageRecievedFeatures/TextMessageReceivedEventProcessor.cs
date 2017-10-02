@@ -19,7 +19,7 @@ namespace Read.SmsRecievedFeatures
 
         public void Process(TextMessageReceived @event)
         {
-            var message = _receivedTextMessages.GetById(@event.Id);
+            var message = _receivedTextMessages.GetById(@event.Id) ?? new RecievedTextMessage(@event.Id);
             message.Keyword = @event.Keyword;
             message.Message = @event.Message;
             message.OriginNumber = @event.OriginNumber;

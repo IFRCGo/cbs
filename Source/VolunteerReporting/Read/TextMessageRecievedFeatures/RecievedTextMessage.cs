@@ -9,6 +9,16 @@ namespace Read.TextMessageRecievedFeatures
 {
     public class RecievedTextMessage
     {
+        public RecievedTextMessage()
+        {
+            
+        }
+
+        public RecievedTextMessage(Guid id)
+        {
+            Id = id;
+        }
+
         public Guid Id { get; set; }
         public DateTimeOffset Sent { get; set; }
         public string OriginNumber { get; set; }
