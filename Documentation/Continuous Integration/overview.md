@@ -30,7 +30,9 @@ Setup Appveyor services for developer folks:
 After running `./dockerize.sh` script, you have a `<image-owner>/cbs-devel` image for building the project.
 Folks with access to CBS's official accounts can publish the Docker images to Docker Hub.
 Please remember to update the CI/CD pipeline to reflect the official Docker images.
+
 Use `./containerize.sh` to access the terminal inside the container, created from `<image-owner>/cbs-devel` image.
+
 On the terminal inside the container, use `./build.sh` to build the project.
 
 ## AppVeyor
