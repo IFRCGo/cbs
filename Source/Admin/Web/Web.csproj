@@ -17,4 +17,9 @@
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="TestData\Names.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

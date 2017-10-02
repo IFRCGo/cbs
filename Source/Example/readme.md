@@ -1,6 +1,7 @@
 # CBS Example backend application
 
-[![Build status](https://ci.appveyor.com/api/projects/status/aymmq31lpjdsxk6v?svg=true)](https://ci.appveyor.com/project/karolikl/cbs)
+## Build status
+[![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)
 
 ## Prerequisites
 
