@@ -19,15 +19,10 @@ namespace Read
            return _collection.Find(d => d.Id == id).SingleOrDefault();
         }
 
-        public void Create(DataCollector dataCollector)
-        {
-            _collection.InsertOne(dataCollector);
-        }
-
-        public void Update(DataCollector dataCollector)
+        public void Save(DataCollector dataCollector)
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
-            _collection.ReplaceOne(filter, dataCollector);
+            _collection.ReplaceOne(filter, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
 }

@@ -2,7 +2,7 @@
 title: Overview of continuous integration
 description: 
 keywords: CI
-author: einari
+author: sheeng
 ---
 # Overview
 
