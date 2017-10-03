@@ -7,14 +7,10 @@ export WORKSPACE_DIR=/workspace
 export BUILD_DIR=${WORKSPACE_DIR}/Build
 
 if [ "$PWD" != "$WORKSPACE_DIR" ]; then
-  # Control will enter here if $DIRECTORY doesn't exists.
-  echo "Go to /workspace directory before running this script."
+  echo "Build helper script to be run inside a container."
+  echo "Go to $WORKSPACE_DIR directory before running this script."
   exit 1
 fi
 
-cd $BUILD_DIR
-# curl -Lsfo build.sh \
-#   https://cakebuild.net/download/bootstrapper/linux \
-#   && chmod +x build.sh \
-#   && ${PWD}/build.sh
-${PWD}/build.sh
+cd $BUILD_DIR \
+  && ${PWD}/build.sh
