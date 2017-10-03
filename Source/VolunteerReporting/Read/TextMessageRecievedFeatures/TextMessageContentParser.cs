@@ -41,7 +41,7 @@ namespace Read.TextMessageRecievedFeatures
                     FemalesOver5 = numbers[4]
                 };
             }
-
+            //TODO: Should it throw exception or emit TextMessageParseFailed event? Create specific exception and catch that in processor which then emits the event
             throw new Exception("Text message should contain 3 or 5 numbers");
         }
 

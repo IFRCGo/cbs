@@ -5,5 +5,6 @@ namespace Events
 {
     public class CaseReportReceived : IEvent
     {
+        //TODO: Add content to event 
     }
 }
