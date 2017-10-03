@@ -1,8 +1,12 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Domain
+namespace Web.Features.CaseReportReceptionFeatures
 {
     /// summary
     /// Parse the content of Case Reports sent by SMS
@@ -39,7 +43,7 @@ namespace Domain
             }
 
             throw new Exception("Text message should contain 3 or 5 numbers");
-        }
+        }        
 
         private static bool IsNum(string input)
         {
@@ -76,5 +80,5 @@ namespace Domain
     {
         Male = 1,
         Female = 2
-    }
+    }     
 }
