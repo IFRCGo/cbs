@@ -14,6 +14,10 @@ using Read;
 
 namespace Web
 {
+
+    /// <summary>
+    /// API for NationalSociety
+    /// </summary>
     [Route("api/nationalsociety")]
     public class NationalSocietyController : Controller
     {

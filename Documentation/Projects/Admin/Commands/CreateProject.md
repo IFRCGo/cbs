@@ -7,10 +7,7 @@ author: roarfred
 # Command: CreateProject
 
 ## Abstract
->Whenever *someone* determines there is need for action, a [CBS coordinator (global level)](../../actors.md#cbs-coordinator---global-level) will create 
->a new CBS project. The process of creating the project is rather simple, but getting it started might take quite some 
->effort. As such, the project is first created in a *draft* state, such as several actors can perform their individual
->actions. When enough data is collected and provided into the system, the project will be published.
+> Whenever *someone* determines there is need for action, a [CBS coordinator (global level)](../../actors.md#cbs-coordinator---global-level) will create a new CBS project. The process of creating the project is rather simple, but getting it started might take quite some effort. As such, the project is first created in a *draft* state, such as several actors can perform their individual actions. When enough data is collected and provided into the system, the project will be published.
 
 ## Description
 This command is used for the step of defining a project in the draft state. It must be done by a 
