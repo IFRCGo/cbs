@@ -4,37 +4,39 @@ description: Detailed description about how to get started contributing
 keywords: Contributing
 author: einari
 ---
-# Contributing
+# Contributor Guide
 
+Join the world’s largest humanitarian organisation and code for good!
+
+We welcome contributions to this project whether they are bug fixes, new features or documentation. To ensure we build CBS according to the needs and wishes of the product owners at the Red Cross and to ensure the application created will be sustainable, we kindly ask you to adhere to the guidelines below as closely as possible.  
+
+## Interpretation
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”,
 “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in
 [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
+## Code of Conduct
+
+You MUST familiarize yourself with our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Architecture
 
-You MUST get familiar with the [architecture](../Architecture/index.md) as that will be governing for any code
-developed for this project. Anything not adhering to the architecture will fail code reviews.
+You MUST familiarize yourself with the intended [architecture](../Architecture/index.md) of this project. Any changes not adhering to the architecture will be rejected in code reviews.
 
-## Repository
+## Code
 
-In order to contribute to this project, you will need to create your own [fork](https://help.github.com/articles/fork-a-repo/).
-Whenever you create something or fix something that you want to have included you will need to do a [pull requests](./pull_requests.md).
-Synchronizing the repository is something that becomes very important, to get from the upstream - read more [here](https://help.github.com/articles/syncing-a-fork/).
+- Normal .NET coding guidelines apply. 
+- Adhere to the [editor settings](./editor.md) defined.
+- All code files MUST contain a [Copyright header](./copyright_headers.md).
+- Exceptions MUST NOT ever be used to control program flow, as described in [Runtime Exceptions](./runtime_Exceptions.md).
 
-## Other things
+## Process
 
-Below are things you need to get familiar with for contributing:
-
-1. [Copyright headers](./copyright_headers.md)
-1. [Editor](./editor.md)
-1. [Copyright headers](./copyright_headers.md)
-1. [Logging](./logging.md)
-1. [Committing](./committing.md)
-1. [Pull Requests](./pull_requests.md)
-1. [Issues](./issues.md)
-1. [Runtime Exceptions](./runtime_Exceptions.md)
-1. [Testing](./testing.md)
+1. Create fork. In order to contribute to this project, you will need to [fork](https://help.github.com/articles/fork-a-repo/) this repository.
+1. Make changes, test them and ensure the documentation is up to date. All commits SHOULD be related to an [issue](./issues.md) by adding a #{number of issue} to the comment.
+1. Synchronize your fork. Keep your fork synchronized with the CBS repository to avoid conflicts, as described [here](https://help.github.com/articles/syncing-a-fork/).
+1. Create a pull request. Once your changes are ready, create a [pull request](https://help.github.com/articles/creating-a-pull-request/) and reference the issues you have worked on.
 
 ## Getting started
 
-Go to the [getting started section](./getting_started.md) for more details on getting started.
+Are you ready to save lives? Go to the [getting started](./getting_started.md) section for more information.
