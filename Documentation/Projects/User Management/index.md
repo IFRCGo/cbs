@@ -4,7 +4,7 @@ description:
 keywords: 
 author: einari
 ---
-# Volunteer Management
+# User Management
 
 All issues for this project can be found [here](https://github.com/IFRCGo/cbs/projects/2).
 
