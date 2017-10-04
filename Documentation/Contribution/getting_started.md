@@ -21,12 +21,12 @@ Make sure you have the required [development tools](./development_tools.md) inst
 CBS has been divided into 5 [bounded contexts](../Architecture/bounded_contexts.md) (or projects). Each bounded context is isolated from the others, and the communication between them is event-driven. This means that the bounded context you are working in will process incoming [events](../Architecture/events.md) from other bounded contexts and emit events for other bounded contexts to process. 
 
 ### Source code
-Each bounded context has its own subfolder in the [Source](https://github.com/IFRCGo/cbs/tree/master/Source) folder. Everything you need to build and run the application within a bounded context can be found within the specified folder for that bounded context. 
+Each bounded context has its own subfolder in the [Source](https://github.com/IFRCGo/cbs/tree/master/Source) folder. Everything you need to build and run the application within a bounded context can be found within the specified folder for that bounded context.   
 For example: Everything you need to build and run the "Volunteer Reporting" bounded context, can be found in the [Volunteer Reporting](https://github.com/IFRCGo/cbs/tree/master/Source/VolunteerReporting) folder under Source. 
 
 ### Documentation and backlog
-In addition to this, each bounded context has its own documentation and its own backlog. The documentation can be found in the [Documentation/Projects](https://github.com/IFRCGo/cbs/tree/master/Documentation/Projects) folder while the backlog can be found on the [GitHub project page](https://github.com/IFRCGo/cbs/projects).
-For example: The documentation for the "Volunteer Reporting" bounded context can be found in the [Volunteer Reporting](../Projects/Volunteer Reporting/index.md) folder. The backlog can be found on the "Volunteer Reporting" [project page](https://github.com/IFRCGo/cbs/projects/4). 
+In addition to this, each bounded context has its own documentation and its own backlog. The documentation can be found in the [Documentation/Projects](../Projects) folder while the backlog can be found on the [GitHub project page](https://github.com/IFRCGo/cbs/projects).  
+For example: The documentation for the "Volunteer Reporting" bounded context can be found in the [Volunteer Reporting](../Projects/Volunteer%20Reporting/index.md) folder. The backlog can be found on the "Volunteer Reporting" [project page](https://github.com/IFRCGo/cbs/projects/4). 
 
 ## Build
 
