@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-Read up on the [development environment](../../Documentation/Contribution/development_environment.md)
+Make sure the required [development environment](../../Documentation/Contribution/development_environment.md) is set up.
 
 ## Mongo Database
 
