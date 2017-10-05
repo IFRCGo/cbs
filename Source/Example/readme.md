@@ -1,4 +1,4 @@
-# CBS Example backend application
+# Example application
 
 ## Build status
 [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)
