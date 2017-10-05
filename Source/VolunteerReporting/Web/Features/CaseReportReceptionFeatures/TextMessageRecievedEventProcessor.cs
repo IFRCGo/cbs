@@ -54,7 +54,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-            if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
+            if (caseReportContent.GetType() == typeof(MultipleCaseReportContent))
             {
                 throw new NotImplementedException();
             }
