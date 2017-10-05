@@ -14,7 +14,7 @@ This example application consists of the following:
 - A .NET Core backend
 - A Node.js/Angular.js frontend
 
-If you want to try the example application end-to-end (from interacting with the UI to seeing data being stored in the database), you will need to build and run all these three components. If you are a frontend developer and you don't really care if data is persisted, you can ignore the database step. If you are a backend developer who is happy with trying out APIs through Swagger, you can ignore the frontend step.
+If you want to try the example application end-to-end (from interacting with the UI to seeing data being stored in the database), you will need to build and run all three components above. If you are a frontend developer and you don't really care if data is persisted, you can ignore the database step. If you are a backend developer who is happy with trying out APIs through Swagger, you can ignore the frontend step.
 
 Let's take a look at how to build and run each part of the application! 
 
@@ -34,10 +34,11 @@ Download nuget dependencies
 > `dotnet restore`
 
 Build
-> `dotnet build`
+> `dotnet build`   
+
+(Active path: `cbs\source\example\web`)  
 
 Run locally
-(Active path: `cbs\source\example\web`)
 > `dotnet run`
 
 Open browser at address http://localhost:5000/swagger to access Swagger.
