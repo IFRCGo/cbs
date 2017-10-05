@@ -14,7 +14,7 @@ _Eager to get started right away? Have a look at the [example application](../..
 
 ## Setting up your development environment
 
-Make sure you have the required [development tools](./development_tools.md) installed. 
+Make sure you have the required [development environment](./development_environment.md) setup. 
 
 ## Understanding the project structure
 
@@ -38,5 +38,5 @@ You can build either locally or using a Docker container.
 * Run container: `./containerize.sh`
 * Build example (inside container): `./build.sh`
 
-See [Overview](../Continuous Integration/overview.md) of Continuous Integration for more information.
+See [Overview](../Continuous%20Integration/overview.md) of Continuous Integration for more information.
 

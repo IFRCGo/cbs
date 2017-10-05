@@ -32,7 +32,7 @@ Choose the editor or IDE you prefer.
 
 ### Editor: Visual Studio Code
 
-Visual Studio code is a free, open source, cross platform editor:'
+Visual Studio code is a free, open source, cross platform editor:
 Download it [here](https://code.visualstudio.com/).
 
 ### IDE: Visual Studio 2017 or for Mac
@@ -42,4 +42,4 @@ Download it [here](https://www.visualstudio.com/vs/community/).
 
 ## Terminal
 
-You will need any terminal and git. To get quickly up and running, suggested options are [cmder]([http://cmder.net/]) on Windows and [iTerm2](https://www.iterm2.com/downloads.html) on Mac.
+You will need any terminal and git. To get quickly up and running, suggested options are [cmder](http://cmder.net/) on Windows and [iTerm2](https://www.iterm2.com/downloads.html) on Mac.
