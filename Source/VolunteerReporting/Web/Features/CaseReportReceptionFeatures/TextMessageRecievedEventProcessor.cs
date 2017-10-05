@@ -21,6 +21,7 @@ namespace Web.Features.CaseReportReceptionFeatures
             _eventEmitter = eventEmitter;
         }
 
+        //TODO: Add a test that ensure that the right count is put in the right property
         public void Process(TextMessageReceived @event)
         {
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
@@ -36,8 +37,18 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Id = Guid.NewGuid(),
                     DataCollectorId = Guid.NewGuid(), //TODO: Find datacollector. Should we suppoort unkown? Optional?
                     HealthRiskId = Guid.NewGuid(), //TODO: Must map from code to Guid
-                    Age = singlecaseReport.Age,
-                    Gender = singlecaseReport.Sex.ToString(),
+                    NumberOfFemalesUnder5 = 
+                    singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
+                    NumberOfFemalesOver5 =
+                    singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
+                    NumberOfMalesUnder5 =
+                    singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
+                    NumberOfMalesOver5 =
+                    singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
+                    NumberOfOthersUnder5 =
+                    singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Other ? 1 : 0,
+                    NumberOfOthersOver5 =
+                    singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Other ? 1 : 0,
                     Latitude = @event.Latitude,
                     Longitude = @event.Longitude,
                     Timestamp = @event.Sent
