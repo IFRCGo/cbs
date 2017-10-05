@@ -10,9 +10,9 @@ If you haven't already familiarized yourself with the [contributor guide](../../
 ## Running the application
 
 This example application consists of the following: 
-- A Node.js/Angular.js frontend
-- A .NET Core backend
 - MongoDB storage
+- A .NET Core backend
+- A Node.js/Angular.js frontend
 
 If you want to try the example application end-to-end (from interacting with the UI to seeing data being stored in the database), you will need to build and run all these three components. If you are a frontend developer and you don't really care if data is persisted, you can ignore the database step. If you are a backend developer who is happy with trying out APIs through Swagger, you can ignore the frontend step.
 
