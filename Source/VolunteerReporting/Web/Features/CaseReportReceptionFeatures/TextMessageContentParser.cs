@@ -13,6 +13,7 @@ namespace Web.Features.CaseReportReceptionFeatures
     /// summary
     public class TextMessageContentParser
     {
+        //TODO: Add tests that verify the parsing
         public static CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
