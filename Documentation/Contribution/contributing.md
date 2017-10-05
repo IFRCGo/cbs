@@ -25,14 +25,17 @@ You MUST familiarize yourself with the intended [architecture](../Architecture/i
 
 ## Code
 
-- Normal .NET coding guidelines apply. 
+- (For backend) Normal .NET coding guidelines apply. 
+- (For frontend) The [Angular style guidelines](https://angular.io/guide/styleguide) apply.
 - Adhere to the [editor settings](./editor.md) defined.
 - All code files MUST contain a [Copyright header](./copyright_headers.md).
 - Exceptions MUST NOT ever be used to control program flow, as described in [Runtime Exceptions](./runtime_Exceptions.md).
 
 ## Process
 
-1. Create fork. In order to contribute to this project, you will need to [fork](https://help.github.com/articles/fork-a-repo/) this repository.
+1. Find an issue you want to work on. Issues labeled "UpforGrabs" are issues that should be relatively easy to get started on without too much background information.   
+[![GitHub issues by-label](https://img.shields.io/github/issues/ifrcgo/cbs/upforgrabs.svg)](https://github.com/IFRCGo/cbs/labels/UpForGrabs)
+1. Create a fork. In order to contribute to this project, you will need to [fork](https://help.github.com/articles/fork-a-repo/) this repository.
 1. Make changes, test them and ensure the documentation is up to date. All commits SHOULD be related to an [issue](./issues.md) by adding a #{number of issue} to the comment.
 1. Synchronize your fork. Keep your fork synchronized with the CBS repository to avoid conflicts, as described [here](https://help.github.com/articles/syncing-a-fork/).
 1. Create a pull request. Once your changes are ready, create a [pull request](https://help.github.com/articles/creating-a-pull-request/) and reference the issues you have worked on.

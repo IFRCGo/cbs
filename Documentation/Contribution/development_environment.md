@@ -11,6 +11,12 @@ author: einari, karolikl
 We use Git for version control. If you need the basic CLI client - download it from [here](https://git-scm.com/downloads).  
 If you an unfamiliar with Git, this e-book is a great way to get started: [Pro Git book, written by Scott Chacon and Ben Straub](https://git-scm.com/book/en/v2).  
 
+## Frontend: Node.js & Angular.js
+
+- Node.js (download at [nodejs.org](https://nodejs.org/en/)). This may include an older version of NPM. Update NPM using `npm install npm@latest -g`
+- Typescript (`npm install -g typescript`)
+- Angular CLI (`npm install -g @angular/cli@latest`)
+
 ## Backend: .NET Core
 
 The backend code is written using C# and .NET.  

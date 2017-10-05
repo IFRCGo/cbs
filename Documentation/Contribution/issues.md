@@ -12,9 +12,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## Backlog
 
-Any issues MUST be associated with a [project](../Projects/index.md). Every project has its own
-backlog and is the thing that the products owners prioritize from. It is also the thing that product
-owners will fill out all the details and have discussions around.
+Any issues MUST be associated with a [project](../Projects/index.md). Every project has its own backlog and is the thing that the products owners prioritize from. It is also the thing that product owners will fill out all the details and have discussions around.
 
 ## Ready
 
