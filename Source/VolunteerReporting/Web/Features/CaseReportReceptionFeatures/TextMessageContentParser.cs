@@ -13,6 +13,7 @@ namespace Web.Features.CaseReportReceptionFeatures
     /// summary
     public class TextMessageContentParser
     {
+        //TODO: Add tests that verify the parsing
         public static CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
@@ -41,6 +42,19 @@ namespace Web.Features.CaseReportReceptionFeatures
                     FemalesOver5 = numbers[4]
                 };
             }
+            else if (numbers.Count == 7)
+            {
+                return new MultipleCaseReportContent
+                {
+                    HealthRiskId = numbers[0],
+                    MalesUnder5 = numbers[1],
+                    MalesOver5 = numbers[2],
+                    FemalesUnder5 = numbers[3],
+                    FemalesOver5 = numbers[4],
+                    OthersUnder5 = numbers[5],
+                    OthersOver5 = numbers[6]
+                };
+            }
 
             throw new Exception("Text message should contain 3 or 5 numbers");
         }        
@@ -65,9 +79,10 @@ namespace Web.Features.CaseReportReceptionFeatures
     {
         public int FemalesUnder5 { get; set; }
         public int FemalesOver5 { get; set; }
-
         public int MalesUnder5 { get; set; }
         public int MalesOver5 { get; set; }
+        public int OthersUnder5 { get; set; }
+        public int OthersOver5 { get; set; }
     }
 
     public class SingleCaseReportContent : CaseReportContent
@@ -79,6 +94,7 @@ namespace Web.Features.CaseReportReceptionFeatures
     public enum Sex
     {
         Male = 1,
-        Female = 2
+        Female = 2,
+        Other = 3
     }     
 }
