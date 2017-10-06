@@ -45,10 +45,6 @@ namespace Web.Features.CaseReportReceptionFeatures
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
                     NumberOfMalesOver5 =
                     singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
-                    NumberOfOthersUnder5 =
-                    singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Other ? 1 : 0,
-                    NumberOfOthersOver5 =
-                    singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Other ? 1 : 0,
                     Latitude = @event.Latitude,
                     Longitude = @event.Longitude,
                     Timestamp = @event.Sent
