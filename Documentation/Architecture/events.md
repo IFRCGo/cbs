@@ -132,7 +132,8 @@ This does not mean that you should be keeping full entities on the event - still
 Be aware of this and model accordingly.
 
 Important to keep in mind that the snapshot of a state is a series of events, these together form
-the snapshot. This should reduce what you keep on them but as a whole they help guarantee the
+the snapshot. This should reduce what you keep on them but as a whole they help guarantee the result
+when a replay would occur.
 
 In addition to events being modelled correctly and the processor doing it right, ordering is an important
 aspect of dealing with events. The underlying system guarantees ordering of events when replaying and also
