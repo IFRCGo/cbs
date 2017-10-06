@@ -6,6 +6,8 @@ using Events;
 using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
+using Read;
+using Read.HealthRiskFeatures;
 using System;
 
 namespace Web.Features.CaseReportReceptionFeatures
@@ -15,10 +17,17 @@ namespace Web.Features.CaseReportReceptionFeatures
     {
         public static readonly Feature Feature = "CaseReportReception";
         private readonly IEventEmitter _eventEmitter;
+        private readonly IDataCollectors _dataCollectors;
+        private readonly IHealthRisks _healthRisks;
 
-        public TextMessageRecievedEventProcessor(IEventEmitter eventEmitter)
+        public TextMessageRecievedEventProcessor(
+            IEventEmitter eventEmitter,
+            IDataCollectors dataCollectors,
+            IHealthRisks healthRisks)
         {
             _eventEmitter = eventEmitter;
+            _dataCollectors = dataCollectors;
+            _healthRisks = healthRisks;
         }
 
         //TODO: Add a test that ensure that the right count is put in the right property
@@ -26,8 +35,6 @@ namespace Web.Features.CaseReportReceptionFeatures
         {
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
-            //TODO: Determine which properties are needed on event CaseReportReceived
-            //TODO: Should all cases be converted to single cases or sepperate event for multiple cases?
             
             if(caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
@@ -35,8 +42,8 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = Guid.NewGuid(), //TODO: Find datacollector. Should we suppoort unkown? Optional?
-                    HealthRiskId = Guid.NewGuid(), //TODO: Must map from code to Guid
+                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
                     NumberOfFemalesOver5 =
@@ -56,8 +63,8 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = Guid.NewGuid(), //TODO: Find datacollector. Should we suppoort unkown? Optional?
-                    HealthRiskId = Guid.NewGuid(), //TODO: Must map from code to Guid
+                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
                     NumberOfMalesUnder5 = report.MalesUnder5,
