@@ -120,16 +120,32 @@ precision on using [primitive types](#Primitive Types).
 In mathematics you find the concept of [idempotence](https://en.wikipedia.org/wiki/Idempotence);
 you should be able to apply operations multiple times without it changing the result. In an event based
 system with an [event store](./event_store.md) you'll find this concept mentioned as well.
-With an [event store](./event_store.md) you enable the possibility to replay events at any given point
-in time. It is therefor important that events have enough information on them to enable this in
-conjunction with the [event processors](./event_processor.md). This does not mean that you should be
-keeping full entities on the event - still follow the rule of [complexity](#Complexity) as mentioned and
-remember to model the actual state change. Be aware of this and model accordingly.
+With an [event store](./event_store.md) you enable the possibility to replay events. You do this
+for instance if you want to get rid of all your read models, for instance if you're changing storage mechanism.
+To be able to get to the same result, you must have enough information on your events that the
+[event processors](./event_processor.md) make use of. This means that your event processor should not
+be looking up data somewhere else to get to the result. Looking something up to be able to produce the
+result creates a dependency making it impossible to guarantee the result.
 
-In addition to events being modelled correctly and the processor doing it right, the system
-must guarantee ordering of events when replaying and also that your [event processor](./event_processor.md)
-can assume that events are being delivered once and once only. This is built into the underlying
-system being used. You as a developer do not have to worry about this.
+This does not mean that you should be keeping full entities on the event - still follow the rule of
+[complexity](#Complexity) as mentioned and remember to model the actual state change.
+Be aware of this and model accordingly.
+
+Important to keep in mind that the snapshot of a state is a series of events, these together form
+the snapshot. This should reduce what you keep on them but as a whole they help guarantee the
+
+In addition to events being modelled correctly and the processor doing it right, ordering is an important
+aspect of dealing with events. The underlying system guarantees ordering of events when replaying and also
+that your [event processor](./event_processor.md) can assume that events are being delivered once and once only.
+This is built into the underlying system being used. You as a developer do not have to worry about this.
+
+Simple rules of thumb:
+
+1. Keep enough information on an event so that an event processor don't need to do a look up
+1. You **SHOULD** keep complexity down - don't put full entities on the event. The sequence of events is eventually the state.
+1. Events are delivered to your event processors in order
+1. Events are delivered once and once only
+1. If replayed, typically manually - the system overrides the once and once only rule. This is an edge-case
 
 ## Event Store & data
 
@@ -156,10 +172,11 @@ it when needed - until then there will be no guidance. (When there is guidance, 
 
 ## Processing
 
-Every event that gets published needs to be processed.
+Every event that gets published needs to be processed. This is done by dropping a class into for instance
+the Read project. You **MUST NOT** put one into the Domain project, as this is dealing with other aspects.
 
 ```csharp
-public class CartEventProcessors
+public class CartEventProcessors : IEventProcessor
 {
     public void Process(ItemAddedToCart @event)
     {
@@ -167,6 +184,25 @@ public class CartEventProcessors
     }
 }
 ```
+
+### Processing once
+
+For some things you don't want to have the processor be called more than once, even when replaying.
+Good examples of this is when you're sending out communication through email, sms, push notifications or similar.
+Even though you replay events for a particular reason, you don't want to resend all the communication.
+
+```csharp
+public class CampaignProcessors  : IEventProcessor
+{
+    public void ProcessOnce(CampaignInformationSent @event)
+    {
+
+    }
+}
+```
+
+> [!Note]
+> This is not introduced yet - you **SHOULD** therefor not use this, as it would never be called right now.
 
 ## Versioning
 
