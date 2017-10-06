@@ -50,14 +50,24 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-            if (caseReportContent.GetType() == typeof(MultipleCaseReportContent))
-            {
-                throw new NotImplementedException();
-            }
             else
             {
-                //TODO: Should we throw exception for unknown type? Should not happen. Log it?
-            }            
+                var report = caseReportContent as MultipleCaseReportContent;
+                _eventEmitter.Emit(Feature, new CaseReportReceived
+                {
+                    Id = Guid.NewGuid(),
+                    DataCollectorId = Guid.NewGuid(), //TODO: Find datacollector. Should we suppoort unkown? Optional?
+                    HealthRiskId = Guid.NewGuid(), //TODO: Must map from code to Guid
+                    NumberOfFemalesUnder5 = report.FemalesUnder5,                    
+                    NumberOfFemalesOver5 = report.FemalesOver5,
+                    NumberOfMalesUnder5 = report.MalesUnder5,
+                    NumberOfMalesOver5 = report.MalesOver5,
+                    Latitude = @event.Latitude,
+                    Longitude = @event.Longitude,
+                    Timestamp = @event.Sent
+                });
+            }
+           
         }
     }    
 }
