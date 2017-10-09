@@ -12,6 +12,7 @@ image: Visual Studio 2017
 environment:
   SlnFile: ../Source/VolunteerReporting/VolunteerReporting.sln
   WebBinFolder: ../Source/VolunteerReporting/Web/bin
+  AngularFolder: ../Source/VolunteerReporting/Web.Angular
 
 #only_commits:
 #  files:
