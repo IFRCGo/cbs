@@ -9,6 +9,9 @@ pull_requests:
 
 image: Visual Studio 2017
 
+install:
+  - ps: Install-Product node 8.6.0 x64
+
 environment:
   SlnFile: <path to the solution file>
   WebBinFolder: <path to the bin folder of the web project>

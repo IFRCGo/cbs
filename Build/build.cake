@@ -84,7 +84,7 @@ Task("Run-Frontend-Tests")
     .IsDependentOn("Build-Frontend")
     .Does(() =>
 {
-    // TODO: Set up Jasmine + Karme + Headless Chrome properly
+    // TODO: Set up Jasmine + Karma + Headless Chrome properly
     Information("Frontend testing framework not yet configured. Skipping this step.");
 });
 
@@ -93,7 +93,7 @@ Task("Run-Frontend-Tests")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    //.IsDependentOn("Run-Backend-Tests")
+    .IsDependentOn("Run-Backend-Tests")
     .IsDependentOn("Run-Frontend-Tests");
 
 //////////////////////////////////////////////////////////////////////
