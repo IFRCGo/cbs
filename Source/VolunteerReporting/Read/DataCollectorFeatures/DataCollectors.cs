@@ -19,6 +19,11 @@ namespace Read
            return _collection.Find(d => d.Id == id).SingleOrDefault();
         }
 
+        public DataCollector GetByMobilePhoneNumber(string mobilePhoneNumber)
+        {
+            return _collection.Find(d => d.MobilePhoneNumber == mobilePhoneNumber).FirstOrDefault();
+        }
+
         public void Save(DataCollector dataCollector)
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
