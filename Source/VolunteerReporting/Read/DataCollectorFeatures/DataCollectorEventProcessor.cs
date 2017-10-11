@@ -16,7 +16,9 @@ namespace Read
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
-            dataCollector.MobilePhoneNumber = @event.MobilePhoneNumber;
+            dataCollector.MobilePhoneNumbers = @event.MobilePhoneNumbers;
+            dataCollector.LocationLatitude = @event.LocationLatitude;
+            dataCollector.LocationLongitude = @event.LocationLongitude;
             _dataCollectors.Save(dataCollector);
         }
     }

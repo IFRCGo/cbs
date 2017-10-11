@@ -21,7 +21,8 @@ namespace Read
 
         public DataCollector GetByMobilePhoneNumber(string mobilePhoneNumber)
         {
-            return _collection.Find(d => d.MobilePhoneNumber == mobilePhoneNumber).FirstOrDefault();
+            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.MobilePhoneNumbers, mobilePhoneNumber);
+            return _collection.Find(filter).FirstOrDefault();
         }
 
         public void Save(DataCollector dataCollector)

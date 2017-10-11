@@ -35,14 +35,22 @@ namespace Web.Features.CaseReportReceptionFeatures
         {
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
-            
-            if(caseReportContent.GetType() == typeof(SingleCaseReportContent))
+            var dataCollector = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber);
+            //TODO: emit AnonymousCaseReportRecieved
+            //Or should both events be emitted?
+            //if (dataCollector == null)
+            //{
+                
+            //    return;
+            //}
+
+            if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
                 var singlecaseReport = caseReportContent as SingleCaseReportContent;
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    DataCollectorId = dataCollector?.Id,
                     HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
@@ -63,7 +71,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    DataCollectorId = dataCollector?.Id,
                     HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
