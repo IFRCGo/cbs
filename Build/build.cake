@@ -55,7 +55,8 @@ Task("Build-Frontend")
     //Install NPM packages
     var npmInstallSettings = new NpmInstallSettings {
       WorkingDirectory = angularFolder,
-      LogLevel = NpmLogLevel.Warn
+      LogLevel = NpmLogLevel.Warn,
+      ArgumentCustomization = args => args.Append("--no-save")
     };
     NpmInstall(npmInstallSettings);
 
