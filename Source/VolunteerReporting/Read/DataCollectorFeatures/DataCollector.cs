@@ -10,6 +10,7 @@ namespace Read
 
         public string LastName { get; set; }
 
+        //TODO: Should a datacollector have more than one phone number?
         public string MobilePhoneNumber { get; set; }
 
         public DataCollector(Guid id)

@@ -7,5 +7,6 @@ namespace Events.External
     {
         public Guid Id { get; set; }
         public int ReadableId { get; set; }
+        public string Name { get; set; }
     }
 }

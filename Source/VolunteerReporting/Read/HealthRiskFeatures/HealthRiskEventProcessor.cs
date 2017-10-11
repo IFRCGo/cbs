@@ -15,6 +15,7 @@ namespace Read.HealthRiskFeatures
         {
             var healthRisk = _healthRisks.GetById(@event.Id) ?? new HealthRisk(@event.Id);
             healthRisk.ReadableId = @event.ReadableId;
+            healthRisk.Name = @event.Name;
             _healthRisks.Save(healthRisk);
         }
     }
