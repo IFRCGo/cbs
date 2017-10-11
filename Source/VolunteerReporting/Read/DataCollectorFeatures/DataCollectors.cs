@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using System;
 using MongoDB.Driver;
 
@@ -19,9 +23,9 @@ namespace Read
            return _collection.Find(d => d.Id == id).SingleOrDefault();
         }
 
-        public DataCollector GetByMobilePhoneNumber(string mobilePhoneNumber)
+        public DataCollector GetByPhoneNumber(string phoneNumber)
         {
-            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.MobilePhoneNumbers, mobilePhoneNumber);
+            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, phoneNumber);
             return _collection.Find(filter).FirstOrDefault();
         }
 
