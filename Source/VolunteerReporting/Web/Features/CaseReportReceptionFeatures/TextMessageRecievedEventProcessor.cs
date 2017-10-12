@@ -37,6 +37,7 @@ namespace Web.Features.CaseReportReceptionFeatures
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
             var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
+            var healthRisk = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId);
             if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
                 var singlecaseReport = caseReportContent as SingleCaseReportContent;
@@ -44,7 +45,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 {
                     Id = Guid.NewGuid(),
                     DataCollectorId = dataCollector?.Id,
-                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
+                    HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
                     NumberOfFemalesOver5 =
@@ -65,7 +66,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 {
                     Id = Guid.NewGuid(),
                     DataCollectorId = dataCollector?.Id,
-                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
+                    HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
                     NumberOfMalesUnder5 = report.MalesUnder5,
