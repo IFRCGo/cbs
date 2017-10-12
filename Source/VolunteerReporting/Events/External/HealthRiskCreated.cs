@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using Infrastructure.Events;
 using System;
 
@@ -7,5 +11,6 @@ namespace Events.External
     {
         public Guid Id { get; set; }
         public int ReadableId { get; set; }
+        public string Name { get; set; }
     }
 }

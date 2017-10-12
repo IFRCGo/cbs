@@ -31,18 +31,19 @@ namespace Web.Features.CaseReportReceptionFeatures
         }
 
         //TODO: Add a test that ensure that the right count is put in the right property
+        //TODO: This should possibly be process once, since it should only happen the first time a text message is recieved
         public void Process(TextMessageReceived @event)
         {
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
-            
-            if(caseReportContent.GetType() == typeof(SingleCaseReportContent))
+            var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
+            if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
                 var singlecaseReport = caseReportContent as SingleCaseReportContent;
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    DataCollectorId = dataCollector?.Id,
                     HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
@@ -63,7 +64,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
+                    DataCollectorId = dataCollector?.Id,
                     HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
@@ -74,7 +75,14 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-           
+            //TODO: emit AnonymousCaseReportRecieved
+            //Or should both events be emitted?
+            //if (dataCollector == null)
+            //{
+
+            //    return;
+            //}
+
         }
     }    
 }
