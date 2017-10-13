@@ -31,19 +31,43 @@ namespace Web.Features.CaseReportReceptionFeatures
         }
 
         //TODO: Add a test that ensure that the right count is put in the right property
+        //TODO: This should possibly be process once, since it should only happen the first time a text message is recieved
         public void Process(TextMessageReceived @event)
         {
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
+            var healthRisk = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId);
+            var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
             
-            if(caseReportContent.GetType() == typeof(SingleCaseReportContent))
+            if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
                 var singlecaseReport = caseReportContent as SingleCaseReportContent;
+                if (dataCollector == null)
+                {
+                    _eventEmitter.Emit(Feature, new AnonymousCaseReportRecieved
+                    {
+                        Id = Guid.NewGuid(),
+                        PhoneNumber = @event.OriginNumber,
+                        HealthRiskId = healthRisk.Id,
+                        NumberOfFemalesUnder5 =
+                        singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
+                        NumberOfFemalesOver5 =
+                        singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
+                        NumberOfMalesUnder5 =
+                        singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
+                        NumberOfMalesOver5 =
+                        singlecaseReport.Age > 5 && singlecaseReport.Sex == Sex.Male ? 1 : 0,
+                        Latitude = @event.Latitude,
+                        Longitude = @event.Longitude,
+                        Timestamp = @event.Sent
+                    });
+                    return;
+                }
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
-                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
+                    DataCollectorId = dataCollector.Id,
+                    HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
                     NumberOfFemalesOver5 =
@@ -60,11 +84,28 @@ namespace Web.Features.CaseReportReceptionFeatures
             else
             {
                 var report = caseReportContent as MultipleCaseReportContent;
+                if (dataCollector == null)
+                {
+                    _eventEmitter.Emit(Feature, new AnonymousCaseReportRecieved
+                    {
+                        Id = Guid.NewGuid(),
+                        PhoneNumber = @event.OriginNumber,
+                        HealthRiskId = healthRisk.Id,
+                        NumberOfFemalesUnder5 = report.FemalesUnder5,
+                        NumberOfFemalesOver5 = report.FemalesOver5,
+                        NumberOfMalesUnder5 = report.MalesUnder5,
+                        NumberOfMalesOver5 = report.MalesOver5,
+                        Latitude = @event.Latitude,
+                        Longitude = @event.Longitude,
+                        Timestamp = @event.Sent
+                    });
+                    return;
+                }
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = _dataCollectors.GetByMobilePhoneNumber(@event.OriginNumber)?.Id,
-                    HealthRiskId = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId).Id,
+                    DataCollectorId = dataCollector.Id,
+                    HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
                     NumberOfMalesUnder5 = report.MalesUnder5,
@@ -74,7 +115,6 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-           
         }
     }    
 }

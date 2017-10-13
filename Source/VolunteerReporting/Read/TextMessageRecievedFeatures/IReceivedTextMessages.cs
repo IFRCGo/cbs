@@ -11,6 +11,6 @@ namespace Read.TextMessageRecievedFeatures
     {
         RecievedTextMessage GetById(Guid id);
         IEnumerable<RecievedTextMessage> ListByPhonenumber(PhoneNumber phoneNumber);
-        void Save(RecievedTextMessage receivedSmsMessage);
+        void Save(RecievedTextMessage receivedTextMessage);
     }
 }
