@@ -24,5 +24,26 @@ namespace Web.Features.CaseReportReceptionFeatures
             Assert.AreEqual(expectedGender, result.Sex.ToString());
             Assert.AreEqual(expectedAge, result.Age);            
         }
+
+        [DataTestMethod]
+        [DataRow("0 # 1 # 15 # 0 # 2", 0, 1, 15, 0, 2)]
+        [DataRow("1#2#4#0#5", 1, 2, 4, 0, 5)]
+        [DataRow("  3    #  1# 20     #3#6", 3, 1, 20, 3, 6)]
+        public void GivenValidTextMessageWithSeveralCaseReports_MessageParsedToMultipleCaseReport(
+            string inputText,
+            int expectedHealthRiskId,
+            int expectedMaleFiveOrUnder,
+            int expectedMaleOverFive,
+            int expectedFemaleFiveOrUnder,
+            int expectedFemaleOverFive
+            )
+        {
+            var result = TextMessageContentParser.Parse(inputText) as MultipleCaseReportContent;
+            Assert.AreEqual(expectedHealthRiskId, result.HealthRiskId);
+            Assert.AreEqual(expectedMaleFiveOrUnder, result.MalesUnder5);
+            Assert.AreEqual(expectedMaleOverFive, result.MalesOver5);
+            Assert.AreEqual(expectedFemaleFiveOrUnder, result.FemalesUnder5);
+            Assert.AreEqual(expectedFemaleOverFive, result.FemalesOver5);
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace Web.Features.CaseReportReceptionFeatures
         public static CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
+            //or Event	# Number of male cases five or under # Number of male cases over 5	# Number of female cases five or under # Number of female cases over five
             var fragments = text.Replace(" ", string.Empty).Split('#');
 
             // pick out numbers in textMessage content
@@ -44,6 +45,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 };
             }
 
+            //TODO: Change from exception to checking input and returning something controlled
             throw new Exception("Text message should contain 3 or 5 numbers");
         }        
 
