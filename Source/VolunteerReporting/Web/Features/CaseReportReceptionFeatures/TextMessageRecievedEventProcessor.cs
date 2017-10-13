@@ -37,6 +37,7 @@ namespace Web.Features.CaseReportReceptionFeatures
             //TODO: Handle if parsing fails and send TextMessageParseFailed event  
             var caseReportContent = TextMessageContentParser.Parse(@event.Message);
             var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
+            //TODO: If datacollector is null, emit AnonymousCaseReportRecieved instead
             var healthRisk = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId);
             if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
@@ -44,7 +45,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector?.Id,
+                    DataCollectorId = dataCollector.Id,
                     HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
@@ -65,7 +66,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector?.Id,
+                    DataCollectorId = dataCollector.Id,
                     HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,
@@ -76,14 +77,6 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-            //TODO: emit AnonymousCaseReportRecieved
-            //Or should both events be emitted?
-            //if (dataCollector == null)
-            //{
-
-            //    return;
-            //}
-
         }
     }    
 }

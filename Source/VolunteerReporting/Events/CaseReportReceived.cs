@@ -11,7 +11,7 @@ namespace Events
     {
         public Guid Id { get; set; }
         public Guid HealthRiskId { get; set; }
-        public Guid? DataCollectorId { get; set; }
+        public Guid DataCollectorId { get; set; }
         public DateTimeOffset Timestamp { get; set; }
         public int NumberOfMalesUnder5 { get; set; }
         public int NumberOfMalesOver5 { get; set; }
