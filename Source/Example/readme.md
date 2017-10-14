@@ -73,3 +73,11 @@ Build Example application (inside container)
 > `./build.sh`
 
 See  the [continuous integration](../../Documentation/Continuous%20Integration/overview.md) overview for more information.
+
+### Building a Docker image:
+
+Unix:
+> `docker build -t <repo>/<image>:<version> -f ./Dockerfile ../../../`
+
+Windows (Docker Linux Mode):
+> `docker build -t <repo>/<image>:<version> -f ./Dockerfile ..\..\..\`
