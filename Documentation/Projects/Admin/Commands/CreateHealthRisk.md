@@ -29,7 +29,7 @@ KeyMessage | | Free text |
 * [CBS coordinator (global level)](../../actors.md#cbs-coordinator---global-level)
 
 ## Affected data
-* [Health Risk](../Aggregates/HealthRisk.md)
+* [Health Risk](../ReadModels/HealthRisk.md)
 
 ## Events raised
 * [Health Risk Created](../Events/HealthRiskCreated.md)

@@ -23,7 +23,7 @@ DataOwner | The [Coordinator](../../actors.md#coordinator--supervisor) of the pr
 * [CBS coordinator (global level)](../../actors.md#cbs-coordinator---global-level)
 
 ## Affected data
-* [Project](../Aggregates/Project.md)
+* [Project](../ReadModels/Project.md)
 
 ## Events raised
 * [Project Created](../Events/ProjectCreated.md)

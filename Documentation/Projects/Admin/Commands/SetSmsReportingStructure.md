@@ -22,7 +22,7 @@ SmsReportingStructure | The structure to use for reporting | Choice: Single or A
 * [CBS coordinator (national level)](../../actors.md#cbs-coordinator---national-level)
 
 ## Affected data
-* [Project](../Aggregates/Project.md)
+* [Project](../ReadModels/Project.md)
 
 ## Events raised
 * [ProjectSmsReportingStructureChanged](../Events/ProjectSmsReportingStructureChanged.md)
