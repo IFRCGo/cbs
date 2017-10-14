@@ -11,4 +11,5 @@
 ## External Events
 
 ## Read Model
+* __[Health Risk](../ReadModels/HealthRisk.md)__
 
