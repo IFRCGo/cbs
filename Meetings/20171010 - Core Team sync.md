@@ -27,7 +27,7 @@ In the two weeks after the codeathon, there were 54 commits by 7 contributors (o
 
 We do believe are missing code from the SMS gateway and the Alert team, karolikl will follow up and ensure a pull request is submitted. 
 
-A lot of focus after the codeathon has been on simplifying the "Getting started" documentation and the contributors guide. We have introduced a "UpForGrabs" label to issues, intended for new contributors who don't have any experience with the solution and its purpose. karolikl has 3 developers "on hold" who will receive an "upForGrabs" issue each, and try to get the application up and running (without further information than the documentation in the repository). This will be the test on whether we are ready to onboard new contributors. 
+A lot of focus after the codeathon has been on simplifying the "Getting started" documentation and the contributors guide. We have introduced a ["good first issue"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) label to issues, intended for new contributors who don't have any experience with the solution and its purpose. karolikl has 3 developers "on hold" who will receive a "good first issue" each, and try to get the application up and running (without further information than the documentation in the repository). This will be the test on whether we are ready to onboard new contributors. 
 
 The UX team has documented [UX stories](https://github.com/IFRCGo/cbs/projects/11) outlining the actors involved in the system and their requirements.  
 The admin team has set the standard for documenting a project, the other teams will follow their lead.   
@@ -35,7 +35,7 @@ The build scripts have been extended to also include frontend.
 
 ### Plans ahead
 
-The MVP (minimum viable product) has been defined to be the Volunteer Reporting (including SMS gateway), with a simple view of the incoming text message reports. This simplifies the scope of the project and any additional functionality will be added later (alerts, admin, prjects, users etc.). The UpForGrabs issues will all be centered around the MVP. 
+The MVP (minimum viable product) has been defined to be the Volunteer Reporting (including SMS gateway), with a simple view of the incoming text message reports. This simplifies the scope of the project and any additional functionality will be added later (alerts, admin, prjects, users etc.). The ["good first issue"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) issues will all be centered around the MVP. 
 
 On October 18th, we will begin our bi-weekly community stand ups. They will be live-streamed on the Red Cross YouTube channel with community engagements through chat. The goal of the community standups is to enable contributors to ask the domain experts questions directly, make the contributors feel less lonely in the project and encourage new contributors to join in. 
 
@@ -50,5 +50,5 @@ Azure subscription (einari+karolikl)
 MVP (eprom will document needs)  
 Publish documentation to cbsrc.org (anderaus)  
 Merging Admin & User Management (Anine, Tonje etc)    
-karolikl: Test out UpForGrabs on 3 devs  
+karolikl: Test out ["good first issue"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) on 3 devs  
 einari: Set up everything needed for the Live Community Standup, October 18th. Run test on the 17th?  
