@@ -2,7 +2,7 @@
 title: Overview of continuous integration
 description: 
 keywords: CI
-author: einari
+author: sheeng
 ---
 # Overview
 
@@ -23,13 +23,18 @@ Setup Appveyor services for developer folks:
 
 ### Build Using Docker Container
 
-* Build image: `./dockerize.sh`
-* Run container: `./containerize.sh`
-* Build example (inside container): `./build.sh`
+(Active path: `cbs`)
 
-After running `./dockerize.sh` script, you have a `<image-owner>/cbs-devel` image for building the project.
-Folks with access to CBS's official accounts can publish the Docker images to Docker Hub.
-Please remember to update the CI/CD pipeline to reflect the official Docker images.
+Build image
+> `./dockerize.sh`
+
+Run container: 
+> `./containerize.sh`
+
+Build Example application (inside container)
+> `./build.sh`
+
+After running the `./dockerize.sh` script, you will have a `<image-owner>/cbs-devel` image for building the project. This image can be published to DockerHub. 
 
 Use `./containerize.sh` to access the terminal inside the container, created from `<image-owner>/cbs-devel` image.
 
