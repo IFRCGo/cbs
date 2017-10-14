@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using System;
 using Infrastructure.Events;
 
@@ -13,8 +17,6 @@ namespace Events
         public int NumberOfMalesOver5 { get; set; }
         public int NumberOfFemalesUnder5 { get; set; }
         public int NumberOfFemalesOver5 { get; set; }
-        public int NumberOfOthersUnder5 { get; set; }
-        public int NumberOfOthersOver5 { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
     }

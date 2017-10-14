@@ -9,13 +9,17 @@ pull_requests:
 
 image: Visual Studio 2017
 
+install:
+  - ps: Install-Product node 8.6.0 x64
+
 environment:
   CleanFolder: ../Source/Admin/Catalog/Web/bin
   SolutionFolder: ../Source/Admin/Catalog/Catalog.sln
+  AngularFolder: ../Source/Admin/Catalog/Web.Angular
 
-only_commits:
-  files:
-    - Source/Admin/Catalog
+# only_commits:
+#   files:
+#     - Source/Admin/Catalog
 
 build_script:
 - ps: ./Build/build.ps1

@@ -17,9 +17,9 @@ namespace Read.SmsRecievedFeatures
             _receivedTextMessages = receivedTextMessages;
         }
 
+        //TODO: Add test that sends TextMessageReceived events and verifies that the correct events are emitted
         public void Process(TextMessageReceived @event)
-        {
-            //TODO: Add test that sends TextMessageReceived events and verifies that the correct events are emitted
+        {            
             var message = _receivedTextMessages.GetById(@event.Id) ?? new RecievedTextMessage(@event.Id);
             message.Keyword = @event.Keyword;
             message.Message = @event.Message;
@@ -28,12 +28,7 @@ namespace Read.SmsRecievedFeatures
             message.Sent = @event.Sent;
             message.Latitude = @event.Latitude;
             message.Longitude = @event.Longitude;
-            _receivedTextMessages.Save(message);
-            //TODO: Handle if parsing fails and send TextMessageParseFailed event  
-            var caseReportContent = TextMessageContentParser.Parse(message.Message);
-            //TODO: Determine which properties are needed on event CaseReportReceived
-            //TODO: Should all cases be converted to single cases or sepperate event for multiple cases?
-            //TODO: Emit event CaseReportReceived
+            _receivedTextMessages.Save(message);            
         }
     }
 }
