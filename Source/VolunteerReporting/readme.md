@@ -56,3 +56,7 @@ Build and host locally
 > `ng serve` or `npm start`
 
 Open http://localhost:4200/ in your browser to access the UI. 
+
+## Populating the database with test data
+
+To populate the database with test data, go to http://localhost:5000/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
