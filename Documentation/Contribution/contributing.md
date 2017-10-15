@@ -28,8 +28,8 @@ You MUST familiarize yourself with the intended [architecture](../Architecture/i
 - (For backend) Normal .NET coding guidelines apply. 
 - (For frontend) The [Angular style guidelines](https://angular.io/guide/styleguide) apply.
 - Adhere to the [editor settings](./editor.md) defined.
-- All code files MUST contain a [Copyright header](./copyright_headers.md).
-- Exceptions MUST NOT ever be used to control program flow, as described in [Runtime Exceptions](./runtime_Exceptions.md).
+- All code files MUST contain a [Copyright header](./copyright_header.md).
+- Exceptions MUST NOT ever be used to control program flow, as described in [Runtime Exceptions](./runtime_exceptions.md).
 
 ## Process
 
