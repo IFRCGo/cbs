@@ -7,7 +7,11 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class TextMessageParseFailed : IEvent
+    public class TextMessageParsingFailed : IEvent
     {
+        public Guid Id { get; set; }
+        public Guid DataCollectorId { get; set; }
+        public string Message { get; set; }
+        public string ParsingErrorMessage { get; set; }
     }
 }

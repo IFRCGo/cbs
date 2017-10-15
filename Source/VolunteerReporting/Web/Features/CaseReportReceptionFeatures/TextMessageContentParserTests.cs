@@ -26,6 +26,19 @@ namespace Web.Features.CaseReportReceptionFeatures
         }
 
         [DataTestMethod]
+        [DataRow(" #  # ")]
+        [DataRow("#1#2#4")]
+        [DataRow("1#2#4#")]
+        [DataRow("1#2##4")]
+        [DataRow("hello world!")]
+        [DataRow("123")]
+        public void GivenInvalidTextMessageWithSingleCaseReport_InvalidContenReturned(string inputText)
+        {
+            var result = TextMessageContentParser.Parse(inputText) as InvalidCaseReportContent;
+            Assert.IsTrue(result.GetType() == typeof(InvalidCaseReportContent));
+        }
+
+        [DataTestMethod]
         [DataRow("0 # 1 # 15 # 0 # 2", 0, 1, 15, 0, 2)]
         [DataRow("1#2#4#0#5", 1, 2, 4, 0, 5)]
         [DataRow("  3    #  1# 20     #3#6", 3, 1, 20, 3, 6)]

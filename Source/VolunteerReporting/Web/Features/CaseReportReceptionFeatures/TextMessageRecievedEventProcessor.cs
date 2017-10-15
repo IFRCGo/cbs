@@ -33,15 +33,26 @@ namespace Web.Features.CaseReportReceptionFeatures
         //TODO: Add a test that ensure that the right count is put in the right property
         //TODO: This should possibly be process once, since it should only happen the first time a text message is recieved
         public void Process(TextMessageReceived @event)
-        {
-            //TODO: Handle if parsing fails and send TextMessageParseFailed event  
-            var caseReportContent = TextMessageContentParser.Parse(@event.Message);
-            var healthRisk = _healthRisks.GetByReadableId(caseReportContent.HealthRiskId);
+        {            
+            var caseReportContent = TextMessageContentParser.Parse(@event.Message);            
             var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
             
-            if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
+            if(caseReportContent.GetType() == typeof(InvalidCaseReportContent))
+            {
+                //TODO: Handle if datacollector is unknown also. Different event?
+                var invalidCaseReport = caseReportContent as InvalidCaseReportContent;
+                _eventEmitter.Emit(Feature, new TextMessageParsingFailed
+                {
+                    Id = Guid.NewGuid(),
+                    DataCollectorId = dataCollector.Id,
+                    Message = @event.Message,
+                    ParsingErrorMessage = invalidCaseReport.ErrorMessage
+                });
+            }
+            else if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
                 var singlecaseReport = caseReportContent as SingleCaseReportContent;
+                var healthRisk = _healthRisks.GetByReadableId(singlecaseReport.HealthRiskId);
                 if (dataCollector == null)
                 {
                     _eventEmitter.Emit(Feature, new AnonymousCaseReportRecieved
@@ -84,6 +95,7 @@ namespace Web.Features.CaseReportReceptionFeatures
             else
             {
                 var report = caseReportContent as MultipleCaseReportContent;
+                var healthRisk = _healthRisks.GetByReadableId(report.HealthRiskId);
                 if (dataCollector == null)
                 {
                     _eventEmitter.Emit(Feature, new AnonymousCaseReportRecieved
@@ -115,6 +127,6 @@ namespace Web.Features.CaseReportReceptionFeatures
                     Timestamp = @event.Sent
                 });
             }
-        }
+        }        
     }    
 }
