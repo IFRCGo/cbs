@@ -20,7 +20,7 @@ namespace Read.SmsRecievedFeatures
         //TODO: Add test that sends TextMessageReceived events and verifies that the correct events are emitted
         public void Process(TextMessageReceived @event)
         {            
-            var message = _receivedTextMessages.GetById(@event.Id) ?? new RecievedTextMessage(@event.Id);
+            var message = _receivedTextMessages.GetById(@event.Id) ?? new ReceivedTextMessage(@event.Id);
             message.Keyword = @event.Keyword;
             message.Message = @event.Message;
             message.OriginNumber = @event.OriginNumber;

@@ -7,16 +7,16 @@
 
 If you haven't already familiarized yourself with the [contributor guide](../../Documentation/Contribution/contributing.md), please do so before proceeding. Make sure the required [development environment](../../Documentation/Contribution/development_environment.md) has been set up.
 
-See if you can find an "UpForGrabs" issue relating to this project [here.](https://github.com/IFRCGo/cbs/issues?utf8=%E2%9C%93&q=is%3Aopen%20label%3AUpForGrabs%20project%3AIFRCGo%2Fcbs%2F4)
+See if you can find an issue labeled "good first issue" relating to this project [here.](https://github.com/IFRCGo/cbs/issues?utf8=%E2%9C%93&q=is%3Aopen%20label%3A%22good%20first%20issue%22%20project%3AIFRCGo%2Fcbs%2F4%20)
 
 ## Running the application
 
-This example application consists of the following: 
+The Volunteer Reporting application consists of the following: 
 - MongoDB storage
 - A .NET Core backend
 - A Node.js/Angular.js frontend
 
-If you want to try the example application end-to-end (from interacting with the UI to seeing data being stored in the database), you will need to build and run all three components above. If you are a frontend developer and you don't really care if data is persisted, you can ignore the database step. If you are a backend developer who is happy with trying out APIs through Swagger, you can ignore the frontend step.
+If you want to try the application end-to-end (from interacting with the UI to seeing data being stored in the database), you will need to build and run all three components above. If you are a frontend developer and you don't really care if data is persisted, you can ignore the database step. If you are a backend developer who is happy with trying out APIs through Swagger, you can ignore the frontend step.
 
 Let's take a look at how to build and run each part of the application! 
 
@@ -30,7 +30,7 @@ If you want to persist the data created, add a volume to the container:
 
 ### Step 2: Building and running the .NET Core backend on your local machine
 
-(Active path: `cbs\source\example`)
+(Active path: `cbs\source\VolunteerReporting`)
 
 Download nuget dependencies
 > `dotnet restore`
@@ -38,7 +38,7 @@ Download nuget dependencies
 Build
 > `dotnet build`   
 
-(Active path: `cbs\source\example\web`)  
+(Active path: `cbs\source\VolunteerReporting\web`)  
 
 Run locally
 > `dotnet run`
@@ -47,7 +47,7 @@ Open browser at address http://localhost:5000/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
-(Active path: `cbs/Source/Example/Web.Angular`)
+(Active path: `cbs/Source/VolunteerReporting/Web.Angular`)
 
 Restore dependencies
 > `npm install`
@@ -57,29 +57,6 @@ Build and host locally
 
 Open http://localhost:4200/ in your browser to access the UI. 
 
-## Alternative ways of building and running the application
+## Populating the database with test data
 
-The above guide assumes you will build and run the backend on your local machine. If you prefer building and running it in a Docker container, you can do so by following the steps below.
-
-### Building and running the .NET Core backend in a Docker container
-
-(Active path: `cbs`)
-
-Build image
-> `./dockerize.sh`
-
-Run container: 
-> `./containerize.sh`
-
-Build Example application (inside container)
-> `./build.sh`
-
-See  the [continuous integration](../../Documentation/Continuous%20Integration/overview.md) overview for more information.
-
-### Building a Docker image:
-
-Unix:
-> `docker build -t <repo>/<image>:<version> -f ./Dockerfile ../../../`
-
-Windows (Docker Linux Mode):
-> `docker build -t <repo>/<image>:<version> -f ./Dockerfile ..\..\..\`
+To populate the database with test data, go to http://localhost:5000/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 

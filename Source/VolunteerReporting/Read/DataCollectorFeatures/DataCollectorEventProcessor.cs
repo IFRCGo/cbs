@@ -16,7 +16,7 @@ namespace Read
         }
 
         public void Process(DataCollectorAdded @event)
-        {
+        {           
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
