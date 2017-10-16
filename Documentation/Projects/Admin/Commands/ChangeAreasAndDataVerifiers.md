@@ -24,7 +24,7 @@ ChildAreas | An array of a similar structure as this | Tree control |
 * [CBS coordinator (national level)](../../actors.md#cbs-coordinator---national-level)
 
 ## Affected data
-* [Project](../Aggregates/Project.md)
+* [Project](../ReadModels/Project.md)
 
 ## Events raised
 * [Project Areas Changed](../Events/ProjectAreasChanged.md)
