@@ -13,8 +13,8 @@ namespace Read
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
-        public string LocationLongitude { get; set; }
-        public string LocationLatitude { get; set; }
+        public double LocationLongitude { get; set; }
+        public double LocationLatitude { get; set; }
 
         public DataCollector(Guid id)
         {
