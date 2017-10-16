@@ -9,8 +9,8 @@ namespace Read.TextMessageRecievedFeatures
 {
     public interface IReceivedTextMessages
     {
-        RecievedTextMessage GetById(Guid id);
-        IEnumerable<RecievedTextMessage> ListByPhonenumber(PhoneNumber phoneNumber);
-        void Save(RecievedTextMessage receivedSmsMessage);
+        ReceivedTextMessage GetById(Guid id);
+        IEnumerable<ReceivedTextMessage> ListByPhonenumber(PhoneNumber phoneNumber);
+        void Save(ReceivedTextMessage receivedTextMessage);
     }
 }

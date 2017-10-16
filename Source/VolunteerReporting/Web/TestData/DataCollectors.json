@@ -1,38 +1,23 @@
 [
-
-  {
-
-    "Id": "c50dcc5e-5c04-455d-a3e3-d8aaefeafe8b",
-
-    "Firstname": "Vanessa",
-
-    "Lastname": "Wallace",
-
-    "MobilePhoneNumber": "999999999"
-
-  },
-
-  {
-
-    "Id": "c9d3a4d8-f5b4-40a9-83c8-3a021a6f9262",
-
-    "Firstname": "Billie",
-
-    "Lastname": "Mclaughlin",
-
-    "MobilePhoneNumber": "888888888"
-
-  },
-
-  {
-
-    "Id": "a2106176-4186-4e94-9606-bc78ad26072c",
-
-    "Firstname": "Abraham",
-
-    "Lastname": "Watson",
-
-    "MobilePhoneNumber": "777777777"
-
-  }
+    {
+        "Id": "c50dcc5e-5c04-455d-a3e3-d8aaefeafe8b",
+        "Firstname": "Vanessa",
+        "Lastname": "Wallace",
+        "LocationLatitude": "59.913869",
+        "LocationLongitude": "10.752245"
+    },
+    {
+        "Id": "c9d3a4d8-f5b4-40a9-83c8-3a021a6f9262",
+        "Firstname": "Billie",
+        "Lastname": "Mclaughlin",
+        "LocationLatitude": "59.913869",
+        "LocationLongitude": "10.752245"
+    },
+    {
+        "Id": "a2106176-4186-4e94-9606-bc78ad26072c",
+        "Firstname": "Abraham",
+        "Lastname": "Watson",
+        "LocationLatitude": "59.913869",
+        "LocationLongitude": "10.752245"
+    }
 ]

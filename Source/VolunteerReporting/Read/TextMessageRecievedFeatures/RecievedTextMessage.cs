@@ -7,14 +7,14 @@ using System;
 
 namespace Read.TextMessageRecievedFeatures
 {
-    public class RecievedTextMessage
+    public class ReceivedTextMessage
     {
-        public RecievedTextMessage()
+        public ReceivedTextMessage()
         {
             
         }
 
-        public RecievedTextMessage(Guid id)
+        public ReceivedTextMessage(Guid id)
         {
             Id = id;
         }

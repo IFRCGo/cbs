@@ -28,6 +28,5 @@ For example: Everything you need to build and run the "Volunteer Reporting" modu
 In addition to this, each module has its own documentation and its own backlog. The documentation can be found in the [Documentation/Projects](../Projects) folder while the backlog can be found on the [GitHub project page](https://github.com/IFRCGo/cbs/projects).  
 For example: The documentation for the "Volunteer Reporting" module can be found in the [Volunteer Reporting](../Projects/Volunteer%20Reporting/index.md) folder. The backlog can be found on the "Volunteer Reporting" [project page](https://github.com/IFRCGo/cbs/projects/4). 
 
-[![GitHub issues by-label](https://img.shields.io/github/issues/ifrcgo/cbs/upforgrabs.svg)](https://github.com/IFRCGo/cbs/labels/UpForGrabs)
-Any issue labeled "UpForGrabs" will be linked to a project/module so that you will be able to find the source code and documentation for the module as explained above. 
+Any issue labeled ["good first issue"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) will be linked to a project/module so that you will be able to find the source code and documentation for the module as explained above. 
 
