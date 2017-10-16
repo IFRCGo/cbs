@@ -4,7 +4,7 @@ description:
 keywords: 
 author: roarfred
 ---
-# Aggregate: Project
+# Read Model: Project
 
 ## Abstract
 > A CBS **Project**, which defines under whom and under which rules various health risks are being surveiled in an area. 
