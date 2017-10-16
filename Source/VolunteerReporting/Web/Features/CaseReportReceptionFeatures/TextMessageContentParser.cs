@@ -84,7 +84,7 @@ namespace Web.Features.CaseReportReceptionFeatures
 
     public class InvalidCaseReportContent : CaseReportContent
     {
-        public string ErrorMessage { get; set; } = "Text message should contain 3 or 5 numbers sepperated by hashes (#). Ex: 1#3#5 or 1#3#0#4#4";
+        public string ErrorMessage { get; set; } = "Text message should contain 3 or 5 numbers, separated by hashes (#). Ex: 1#3#5 or 1#3#0#4#4";
     }
 
     public enum Sex
