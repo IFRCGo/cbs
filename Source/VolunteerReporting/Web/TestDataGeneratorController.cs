@@ -5,6 +5,7 @@ using Read;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Events.External;
+using Read.HealthRiskFeatures;
 
 namespace Web
 {
@@ -24,6 +25,7 @@ namespace Web
         public void CreateAll()
         {
             CreateDataCollectors();
+            CreateHealthRisks();
         }
 
         [HttpGet("datacollectors")]
@@ -35,6 +37,17 @@ namespace Web
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(File.ReadAllText("./TestData/DataCollectors.json"));
             foreach (var dataCollector in dataCollectors)
                 _eventEmitter.Emit("DataCollectorAdded", dataCollector);
+        }
+
+        [HttpGet("healthrisks")]
+        public void CreateHealthRisks()
+        {
+            var _collection = _database.GetCollection<HealthRisk>("HealthRisks");
+            _collection.DeleteMany(v => true);
+
+            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
+            foreach (var healthRisk in healthRisks)
+                _eventEmitter.Emit("HealthRiskCreated", healthRisk);
         }
     }
 }
