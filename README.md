@@ -25,6 +25,16 @@ For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 | Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)  | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
 | Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs)  |
 
+## Our next milestone
+
+We are currently working on the MVP (minimum viable product) of CBS. At the moment there is a plague outbreak in Madagascar, with 57 deaths and more than 680 cases reported, and it keeps spreading. The sooner we can test CBS in the field, the more lives will be saved. 
+
+The MVP will enable: 
+- Data collectors in the field to report health events by SMS
+- Data managers to view the incoming reports
+
+Ideally, we wish to extend the MVP to also include the creation of "projects" and a way of defining and editing health events, but this will depend on how active our contributors are. Our main priority is getting the MVP tested in the field so that the Red Cross can identify and respond to outbreaks in an even more efficient manner. 
+
 ## Contributing
 
 We would love your help in taking CBS to the next level. 
