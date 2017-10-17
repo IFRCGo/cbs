@@ -106,7 +106,18 @@ namespace Web
         private string CreateValidMessage(int[] healthRiskIds)
         {
             Random randomizer = new Random();
-            return string.Join("#", healthRiskIds.Select(v => $"{v}#{randomizer.Next(3)}#{randomizer.Next(3)}"));
+
+            if (randomizer.NextDouble() > 0.7)
+            {
+                // Aggregate event: health risk # males under 5 # males over 5 # female under 5 # female over 5
+                var incidents = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3 };
+                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{incidents[randomizer.Next(incidents.Length)]}#{incidents[randomizer.Next(incidents.Length)]}#{incidents[randomizer.Next(incidents.Length)]}#{incidents[randomizer.Next(incidents.Length)]}";
+            }
+            else
+            {
+                // Single event: healt risk # sex # age
+                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{randomizer.Next(2) + 1}#{randomizer.Next(70) + 1}";
+            }
         }
 
 
