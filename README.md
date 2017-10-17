@@ -10,7 +10,6 @@ Community Based Surveillance (CBS) allows communities, volunteers and the Red Cr
 
 For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 
-
 ![](https://img.shields.io/github/stars/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/forks/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/watchers/ifrcgo/cbs.svg)
@@ -44,4 +43,7 @@ Read more about how you can [contribute](./Documentation/Contribution/contributi
 
 If you need help, please take a look at our [documentation](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions. 
 
+## Media coverage
 
+- October 5th, 2017. Bistandsaktuelt: ["Røde Kors-dugnad for å varsle epidemier – kan redde liv"](https://www.bistandsaktuelt.no/nyheter/2017/dugnad-for-epidemi-varsling/)
+- September 12th, 2017. Digi.no: ["Røde Kors i Norge med IT-prosjekt som kan redde liv: Nå inviterer de IT-bransjen til dugnad"](https://www.digi.no/artikler/rode-kors-i-norge-med-it-prosjekt-som-kan-redde-liv-na-inviterer-de-it-bransjen-til-dugnad/405602)
