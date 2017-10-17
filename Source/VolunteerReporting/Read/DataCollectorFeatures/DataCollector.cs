@@ -13,12 +13,12 @@ namespace Read
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
-        public double LocationLongitude { get; set; }
-        public double LocationLatitude { get; set; }
+        public Location Location { get; set; }
 
         public DataCollector(Guid id)
         {
             Id = id;
+            Location = Location.NotSet;
         }
     }
 }

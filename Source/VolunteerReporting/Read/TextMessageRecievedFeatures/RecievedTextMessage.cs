@@ -11,10 +11,10 @@ namespace Read.TextMessageRecievedFeatures
     {
         public ReceivedTextMessage()
         {
-            
+            Location = Location.NotSet;
         }
 
-        public ReceivedTextMessage(Guid id)
+        public ReceivedTextMessage(Guid id) : this()
         {
             Id = id;
         }
@@ -25,7 +25,6 @@ namespace Read.TextMessageRecievedFeatures
         public string Message { get; set; }
         public string Keyword { get; set; }
         public string ReceivedAtGatewayNumber { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public Location Location { get; set; }
     }
 }
