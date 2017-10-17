@@ -1,4 +1,10 @@
 //////////////////////////////////////////////////////////////////////
+// FETCH TOOLS
+//////////////////////////////////////////////////////////////////////
+
+#addin "Cake.Npm"
+
+//////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
@@ -10,10 +16,11 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("CleanFolder") ?? "../Source/Example/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Catalog/Web/bin";
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnDir = Environment.GetEnvironmentVariable("SolutionFolder") ??"../Source/Example/Example.sln";
+var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
+var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Example/Catalog/Web.Angular";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -29,33 +36,57 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetCoreRestore(slnDir);
+    DotNetCoreRestore(slnFile);
 });
 
-Task("Build")
+Task("Build-Backend")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild(slnDir, settings =>
-        settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild(slnDir, settings =>
-        settings.SetConfiguration(configuration));
-    }
+    // Use MSBuild
+    MSBuild(slnFile, settings =>
+    settings.SetConfiguration(configuration));
 });
 
-Task("Run-Unit-Tests")
-    .IsDependentOn("Build")
+Task("Build-Frontend")
+    .IsDependentOn("Clean")
     .Does(() =>
 {
- Information("Not quite sure which unit testing framework we're using yet?");
+    //Install NPM packages
+    var npmInstallSettings = new NpmInstallSettings {
+      WorkingDirectory = angularFolder,
+      LogLevel = NpmLogLevel.Warn,
+      ArgumentCustomization = args => args.Append("--no-save")
+    };
+    NpmInstall(npmInstallSettings);
 
+    //Build Angular frontend project using Angular cli
+    var runSettings = new NpmRunScriptSettings {
+      ScriptName = "ng",
+      WorkingDirectory = angularFolder,
+      LogLevel = NpmLogLevel.Warn
+    };
+    runSettings.Arguments.Add("build");
+    runSettings.Arguments.Add("--prod");
+    runSettings.Arguments.Add("--build-optimizer");
+    runSettings.Arguments.Add("--progress false");
+    
+    NpmRunScript(runSettings);
+});
+
+Task("Run-Backend-Tests")
+    .IsDependentOn("Build-Backend")
+    .Does(() =>
+{
+    Information("Not quite sure which unit testing framework we're using yet?");
+});
+
+Task("Run-Frontend-Tests")
+    .IsDependentOn("Build-Frontend")
+    .Does(() =>
+{
+    // TODO: Set up Jasmine + Karma + Headless Chrome properly
+    Information("Frontend testing framework not yet configured. Skipping this step.");
 });
 
 //////////////////////////////////////////////////////////////////////
@@ -63,7 +94,8 @@ Task("Run-Unit-Tests")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Run-Unit-Tests");
+    .IsDependentOn("Run-Backend-Tests")
+    .IsDependentOn("Run-Frontend-Tests");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

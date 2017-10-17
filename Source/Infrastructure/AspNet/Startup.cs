@@ -23,8 +23,6 @@ namespace Infrastructure.AspNet
         {
             builder.RegisterInstance<ApplicationInformation>(new ApplicationInformation(Internals.BoundedContext));
 
-            builder.RegisterType<NullEventStore>().As<IEventStore>();
-            builder.RegisterType<NullEventPublisher>().As<IEventPublisher>();
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
             builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
 

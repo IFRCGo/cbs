@@ -9,13 +9,17 @@ pull_requests:
 
 image: Visual Studio 2017
 
-environment:
-  CleanFolder: ../Source/Example/Catalog/Web/bin
-  SolutionFolder: ../Source/Example/Catalog/Catalog.sln
+install:
+  - ps: Install-Product node 8.6.0 x64
 
-only_commits:
-  files:
-    - Source/Example/Catalog
+environment:
+  SlnFile: ../Source/Example/Catalog/Catalog.sln
+  WebBinFolder: ../Source/Example/Catalog/Web/bin
+  AngularFolder: ../Source/Example/Catalog/Web.Angular
+
+#only_commits:
+#  files:
+#    - Source/Example
 
 build_script:
 - ps: ./Build/build.ps1

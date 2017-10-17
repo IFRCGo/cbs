@@ -7,8 +7,9 @@ using Infrastructure.Events;
 
 namespace Infrastructure.Events
 {
+    /// <inheritdoc />
     /// <summary>
-    /// Represents an implementation of <see cref="IEventStore"/>
+    /// Represents an implementation of <see cref="T:Infrastructure.Events.IEventStore" />
     /// </summary>
     public class NullEventStore : IEventStore
     {
@@ -16,6 +17,12 @@ namespace Infrastructure.Events
         public void Save(IEnumerable<EventEnvelope> events)
         {
             
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<EventEnvelope> Replay()
+        {
+            return new List<EventEnvelope>();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace AspNet.MongoDB
                 new DelegateActivator(serviceWithType.ServiceType, (c, p) =>
                 {
                     var connectionStrings = c.Resolve<IOptions<ConnectionStringsOptions>>().Value;
-                    var connectionString = connectionStrings.ConnectionStrings.Where(t => t.Type == ConnectionStringType.MongoDB).SingleOrDefault();
+                    var connectionString = connectionStrings.ConnectionStrings.SingleOrDefault(t => t.Type == ConnectionStringType.MongoDB);
                     if (connectionString == null) throw new MissingConnectionStringForDatabaseType(ConnectionStringType.MongoDB);
 
                     var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString.Value));

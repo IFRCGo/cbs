@@ -1,0 +1,25 @@
+version: 1.1.0-{build}
+
+branches:
+  only:
+    - master
+
+pull_requests:
+  do_not_increment_build_number: true
+
+image: Visual Studio 2017
+
+install:
+  - ps: Install-Product node 8.6.0 x64
+
+environment:
+  SlnFile: <path to the solution file>
+  WebBinFolder: <path to the bin folder of the web project>
+  AngularFolder: <path to the Angular folder of the web project>
+
+only_commits:
+  files:
+    - <baseSourceforlder>
+
+build_script:
+- ps: ./Build/build.ps1
