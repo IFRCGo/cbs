@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Events.External;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Web
 {
@@ -67,7 +68,7 @@ namespace Web
 
             for (int i=0; i<100; i++)
             {
-                var message = "";
+                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
                 var textMessage = new TextMessageReceived()
                 {
@@ -89,7 +90,22 @@ namespace Web
                 events.Add(textMessage);
             }
 
-            File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events));
+            File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+        private string CreateInvalidMessage()
+        {
+            Random randomizer = new Random();
+            if (randomizer.NextDouble() < 0.5)
+                return "1#2#1#1#2#1";
+            else
+                return "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0";
+        }
+
+        private string CreateValidMessage(int[] healthRiskIds)
+        {
+            Random randomizer = new Random();
+            return string.Join("#", healthRiskIds.Select(v => $"{v}#{randomizer.Next(3)}#{randomizer.Next(3)}"));
         }
     }
 }
