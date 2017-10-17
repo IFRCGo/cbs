@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj" />
+  </ItemGroup>
+</Project>
