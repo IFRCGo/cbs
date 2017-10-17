@@ -8,6 +8,7 @@ using Events.External;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Read.TextMessageRecievedFeatures;
 
 namespace Web
 {
@@ -106,6 +107,18 @@ namespace Web
         {
             Random randomizer = new Random();
             return string.Join("#", healthRiskIds.Select(v => $"{v}#{randomizer.Next(3)}#{randomizer.Next(3)}"));
+        }
+
+
+        [HttpGet("textmessages")]
+        public void CreateTextMessages()
+        {
+            var _collection = _database.GetCollection<ReceivedTextMessage>("TextMessages");
+            _collection.DeleteMany(v => true);
+
+            var textMessagesEvents = JsonConvert.DeserializeObject<TextMessageReceived[]>(File.ReadAllText("./TestData/TextMessagesReceived.json"));
+            foreach (var @event in textMessagesEvents)
+                _eventEmitter.Emit("TextMessageReceived", @event);
         }
     }
 }
