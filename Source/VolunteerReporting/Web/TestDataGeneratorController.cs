@@ -5,6 +5,8 @@ using Read;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Events.External;
+using System.Collections.Generic;
+using System;
 
 namespace Web
 {
@@ -35,6 +37,59 @@ namespace Web
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(File.ReadAllText("./TestData/DataCollectors.json"));
             foreach (var dataCollector in dataCollectors)
                 _eventEmitter.Emit("DataCollectorAdded", dataCollector);
+        }
+
+
+        [HttpGet("producejsonfortextmessages")]
+        public void ProduceJsonForTextMessages()
+        {
+            var events = new List<TextMessageReceived>();
+            var randomizer = new Random();
+
+            var keywords = new[] { "" };
+
+            var numbers = new[] {
+                "",         // missing
+                "11111111", // DataCollector #1
+                "22222222", // DataCollector #2
+                "33333333", // DataCollector #3
+                "00000000"  // Non existing data collector
+            };
+
+            var healthRiskIds = new[]
+            {
+                1,
+                5,
+                8,
+                24,
+                37
+            };
+
+            for (int i=0; i<100; i++)
+            {
+                var message = "";
+
+                var textMessage = new TextMessageReceived()
+                {
+                    Id = Guid.NewGuid(),
+                    Keyword = keywords[randomizer.Next(keywords.Length)],
+                    OriginNumber = numbers[randomizer.Next(keywords.Length)],
+                    Sent = DateTimeOffset.Now.AddSeconds(-randomizer.NextDouble() * 60 * 60 * 24 * 7 * 26), // last 26 weeks
+                    ReceivedAtGatewayNumber = "0123456789",
+                    Message = message
+                };
+
+                // Create location for half the messages
+                if (randomizer.NextDouble() > 0.5)
+                {
+                    textMessage.Latitude = (-80 + randomizer.NextDouble() * 80).ToString(System.Globalization.CultureInfo.InvariantCulture);    // Latitude between -80 and 80 degrees
+                    textMessage.Longitude = (randomizer.NextDouble() * 360).ToString(System.Globalization.CultureInfo.InvariantCulture);        // Longitude between 0 and 360 degrees
+                }
+
+                events.Add(textMessage);
+            }
+
+            File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events));
         }
     }
 }
