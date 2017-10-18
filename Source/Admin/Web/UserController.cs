@@ -7,6 +7,7 @@ using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read;
+using Read.UserFeatures;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
