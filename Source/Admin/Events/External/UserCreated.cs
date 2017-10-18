@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Infrastructure.Events;
 
-namespace Read
+namespace Events.External
 {
-    public class User
+    public class UserCreated : IEvent
     {
         public Guid Id { get; set; }
 
@@ -16,6 +17,7 @@ namespace Read
         public string Lastname { get; set; }
 
         public string Country { get; set; }
+
         public Guid NationalSocietyId { get; set; }
     }
 }

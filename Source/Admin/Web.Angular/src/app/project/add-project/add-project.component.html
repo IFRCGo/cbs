@@ -16,7 +16,7 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
                 <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner">
-                    <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.firstname}} / {{owner.country}}</option>
+                    <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}</option>
                 </select>
             </div>
         </div>

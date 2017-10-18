@@ -4,13 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Read
+namespace Read.UserFeatures
 {
-    public class Project
+    public interface IUsers
     {
-        public Guid Id { get; set; }
+        User GetById(Guid id);
 
-        public string Name { get; set; }
+        Task<IEnumerable<User>> GetByNationalSocietyId(Guid id);
+
+        void Save(User user);
+
+        IEnumerable<User> GetAll();
+
+        Task<IEnumerable<User>> GetAllASync();
     }
 }

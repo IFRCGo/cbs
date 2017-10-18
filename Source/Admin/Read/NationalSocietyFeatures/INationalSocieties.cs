@@ -3,20 +3,14 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Read
+namespace Read.NationalSocietyFeatures
 {
-    public interface IProjects
+    public interface INationalSocieties
     {
-        Project GetById(Guid id);
+		IEnumerable<NationalSociety> GetAll();
 
-        void Save(Project project);
-
-        IEnumerable<Project> GetAll();
-
-        Task<IEnumerable<Project>> GetAllASync();
+        void Save(NationalSociety nationalSociety);
     }
 }
