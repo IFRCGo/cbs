@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Read.TextMessageRecievedFeatures;
+using Read.HealthRiskFeatures;
 
 namespace Web
 {
@@ -28,6 +29,8 @@ namespace Web
         public void CreateAll()
         {
             CreateDataCollectors();
+            CreateHealthRisks();
+            CreateTextMessages();
         }
 
         [HttpGet("datacollectors")]
@@ -67,7 +70,7 @@ namespace Web
                 37
             };
 
-            for (int i=0; i<100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
@@ -130,6 +133,17 @@ namespace Web
             var textMessagesEvents = JsonConvert.DeserializeObject<TextMessageReceived[]>(File.ReadAllText("./TestData/TextMessagesReceived.json"));
             foreach (var @event in textMessagesEvents)
                 _eventEmitter.Emit("TextMessageReceived", @event);
+        }
+
+        [HttpGet("healthrisks")]
+        public void CreateHealthRisks()
+        {
+            var _collection = _database.GetCollection<HealthRisk>("HealthRisks");
+            _collection.DeleteMany(v => true);
+
+            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
+            foreach (var healthRisk in healthRisks)
+                _eventEmitter.Emit("HealthRiskCreated", healthRisk);
         }
     }
 }
