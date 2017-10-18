@@ -39,15 +39,21 @@ namespace Web.Features.CaseReportReceptionFeatures
             
             if(caseReportContent.GetType() == typeof(InvalidCaseReportContent))
             {
-                //TODO: Handle if datacollector is unknown also. Different event?
-                var invalidCaseReport = caseReportContent as InvalidCaseReportContent;
-                _eventEmitter.Emit(Feature, new TextMessageParsingFailed
+                if (dataCollector == null)
                 {
-                    Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector.Id,
-                    Message = @event.Message,
-                    ParsingErrorMessage = invalidCaseReport.ErrorMessage
-                });
+                    //TODO: Handle if datacollector is unknown also. Different event?
+                }
+                else
+                {
+                    var invalidCaseReport = caseReportContent as InvalidCaseReportContent;
+                    _eventEmitter.Emit(Feature, new TextMessageParsingFailed
+                    {
+                        Id = Guid.NewGuid(),
+                        DataCollectorId = dataCollector.Id,
+                        Message = @event.Message,
+                        ParsingErrorMessage = invalidCaseReport.ErrorMessage
+                    });
+                }
             }
             else if (caseReportContent.GetType() == typeof(SingleCaseReportContent))
             {
