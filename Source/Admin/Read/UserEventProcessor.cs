@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Events;
+using Events.External;
 using Infrastructure.Events;
 
 namespace Read

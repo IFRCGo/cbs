@@ -6,7 +6,7 @@
 using System;
 using Infrastructure.Events;
 
-namespace Events
+namespace Events.External
 {
     public class UserCreated : IEvent
     {
