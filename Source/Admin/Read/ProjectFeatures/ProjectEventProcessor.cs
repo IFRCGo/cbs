@@ -6,7 +6,7 @@
 using Events;
 using Infrastructure.Events;
 
-namespace Read
+namespace Read.ProjectFeatures
 {
     public class ProjectEventProcessor : IEventProcessor
     {

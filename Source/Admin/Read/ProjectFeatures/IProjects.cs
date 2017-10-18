@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Read
+namespace Read.ProjectFeatures
 {
     public interface IProjects
     {

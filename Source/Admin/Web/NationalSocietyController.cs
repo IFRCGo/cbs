@@ -11,6 +11,7 @@ using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read;
+using Read.NationalSocietyFeatures;
 
 namespace Web
 {

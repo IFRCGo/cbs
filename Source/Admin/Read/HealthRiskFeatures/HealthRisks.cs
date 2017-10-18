@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Read
+namespace Read.HealthRiskFeatures
 {
     public class HealthRisks : IHealthRisks
     {
