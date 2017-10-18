@@ -18,8 +18,6 @@
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Alert\Policies\Policies.csproj" />
-    <ProjectReference Include="..\..\Alert\Read\Read.csproj" />
     <ProjectReference Include="..\Application\Infrastructure.Application.csproj" />
     <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj" />
     <ProjectReference Include="..\Events\Infrastructure.Events.csproj" />

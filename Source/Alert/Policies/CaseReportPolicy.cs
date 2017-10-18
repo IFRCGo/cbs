@@ -16,8 +16,6 @@ namespace Policies
         public static readonly Feature Feature = "CaseReport";
 
         private readonly ICaseReports _caseReports;
-        private readonly IDataCollectors _dataCollectors;
-        private readonly ISmsSendingService _smsSendingService;
         private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
         private readonly IAlerts _alerts;
