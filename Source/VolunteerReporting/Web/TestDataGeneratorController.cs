@@ -67,7 +67,7 @@ namespace Web
                 37
             };
 
-            for (int i=0; i<100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
@@ -84,8 +84,8 @@ namespace Web
                 // Create location for half the messages
                 if (randomizer.NextDouble() > 0.5)
                 {
-                    textMessage.Latitude = (-80 + randomizer.NextDouble() * 80).ToString(System.Globalization.CultureInfo.InvariantCulture);    // Latitude between -80 and 80 degrees
-                    textMessage.Longitude = (randomizer.NextDouble() * 360).ToString(System.Globalization.CultureInfo.InvariantCulture);        // Longitude between 0 and 360 degrees
+                    textMessage.Latitude = -80d + randomizer.NextDouble() * 80d;    // Latitude between -80 and 80 degrees
+                    textMessage.Longitude = randomizer.NextDouble() * 360d;         // Longitude between 0 and 360 degrees
                 }
 
                 events.Add(textMessage);

@@ -26,8 +26,7 @@ namespace Read.SmsRecievedFeatures
             message.OriginNumber = @event.OriginNumber;
             message.ReceivedAtGatewayNumber = @event.ReceivedAtGatewayNumber;
             message.Sent = @event.Sent;
-            message.Latitude = @event.Latitude;
-            message.Longitude = @event.Longitude;
+            message.Location = new Location(@event.Latitude, @event.Longitude);
             _receivedTextMessages.Save(message);            
         }
     }
