@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Read
+namespace Read.HealthRiskFeatures
 {
     public class HealthRiskCreatedProcessor : Infrastructure.Events.IEventProcessor
     {

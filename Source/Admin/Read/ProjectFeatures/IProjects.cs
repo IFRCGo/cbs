@@ -4,20 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Infrastructure.Events;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Events
+namespace Read.ProjectFeatures
 {
-    public class ItemAddedToCart : IEvent
+    public interface IProjects
     {
-        public Guid Cart { get; set; }
+        Project GetById(Guid id);
 
-        public Guid Product { get; set; }
+        void Save(Project project);
 
-        public int Quantity { get; set; }
+        IEnumerable<Project> GetAll();
 
-        public decimal GrossItemPrice { get; set; }
-
-        public decimal NetItemPrice { get; set; }
+        Task<IEnumerable<Project>> GetAllASync();
     }
 }

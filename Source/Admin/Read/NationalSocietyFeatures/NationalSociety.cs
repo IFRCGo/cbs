@@ -4,15 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace Read
+namespace Read.NationalSocietyFeatures
 {
-    public interface ICarts
+    public class NationalSociety
     {
-        Cart GetById(Guid id);
-
-        void Save(Cart cart);
-
-        Guid GetCartIdForCurrentUser();
+		public Guid Id { get; set; }
+		public string Name { get; set; }
+        public string Country { get; set; }
     }
 }

@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Events;
+using Events.External;
 using Infrastructure.Events;
 
-namespace Read
+namespace Read.UserFeatures
 {
     public class UserEventProcessor : IEventProcessor
     {

@@ -3,51 +3,61 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 
-namespace Read
+namespace Read.UserFeatures
 {
-    public class Projects : IProjects
+    public class Users : IUsers
     {
-        readonly IMongoCollection<Project> _collection;
+        readonly IMongoCollection<User> _collection;
 
         readonly IMongoDatabase _database;
 
-        public Projects(IMongoDatabase database)
+        public Users(IMongoDatabase database)
         {
             _database = database;
-            _collection = database.GetCollection<Project>("Project");
+            _collection = database.GetCollection<User>("User");
         }
 
-        public Project GetById(Guid id)
+        public User GetById(Guid id)
         {
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
+
             if (project == null)
             {
-                project = new Project {Name = "Dummy implementation"};
+                project = new User { Firstname = "Dummy implementation" };
                 _collection.InsertOne(project);
             }
+
             return project;
         }
 
-        public void Save(Project project)
+        public async Task<IEnumerable<User>> GetByNationalSocietyId(Guid id)
         {
-            var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
-            _collection.ReplaceOne(filter, project);
+            var userList = await _collection.FindAsync(_ => _.NationalSocietyId == id);
+            return await userList.ToListAsync();
         }
 
-        public IEnumerable<Project> GetAll()
+        public void Save(User user)
+        {
+            var filter = Builders<User>.Filter.Eq(v => v.Id, user.Id);
+
+            _collection.ReplaceOne(filter, user);
+        }
+
+        public IEnumerable<User> GetAll()
         {
             return _collection.Find(_ => true).ToList();
         }
 
-        public async Task<IEnumerable<Project>> GetAllASync()
+        public async Task<IEnumerable<User>> GetAllASync()
         {
-            var filter = Builders<Project>.Filter.Empty;
+            var filter = Builders<User>.Filter.Empty;
             var list = await _collection.FindAsync(filter);
+
             return await list.ToListAsync();
         }
     }
