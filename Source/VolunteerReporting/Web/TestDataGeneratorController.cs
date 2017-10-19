@@ -167,16 +167,5 @@ namespace Web
             }
                 
         }
-
-        [HttpGet("healthrisks")]
-        public void CreateHealthRisks()
-        {
-            var _collection = _database.GetCollection<HealthRisk>("HealthRisks");
-            _collection.DeleteMany(v => true);
-
-            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
-            foreach (var healthRisk in healthRisks)
-                _eventEmitter.Emit("HealthRiskCreated", healthRisk);
-        }
     }
 }
