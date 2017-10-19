@@ -9,7 +9,7 @@ namespace Read
 {
     public class DataCollector
     {
-        public Guid DataCollectorId { get; set; }
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
@@ -18,7 +18,7 @@ namespace Read
 
         public DataCollector(Guid id)
         {
-            DataCollectorId = id;
+            Id = id;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new TextMessageParsingFailed
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector.DataCollectorId,
+                    DataCollectorId = dataCollector.Id,
                     Message = @event.Message,
                     ParsingErrorMessage = invalidCaseReport.ErrorMessage
                 });
@@ -77,7 +77,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector.DataCollectorId,
+                    DataCollectorId = dataCollector.Id,
                     HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = 
                     singlecaseReport.Age <= 5 && singlecaseReport.Sex == Sex.Female ? 1 : 0,
@@ -116,7 +116,7 @@ namespace Web.Features.CaseReportReceptionFeatures
                 _eventEmitter.Emit(Feature, new CaseReportReceived
                 {
                     Id = Guid.NewGuid(),
-                    DataCollectorId = dataCollector.DataCollectorId,
+                    DataCollectorId = dataCollector.Id,
                     HealthRiskId = healthRisk.Id,
                     NumberOfFemalesUnder5 = report.FemalesUnder5,                    
                     NumberOfFemalesOver5 = report.FemalesOver5,

@@ -20,7 +20,7 @@ namespace Read
 
         public DataCollector GetById(Guid id)
         {
-           return _collection.Find(d => d.DataCollectorId == id).SingleOrDefault();
+           return _collection.Find(d => d.Id == id).SingleOrDefault();
         }
 
         public DataCollector GetByPhoneNumber(string phoneNumber)
@@ -31,7 +31,7 @@ namespace Read
 
         public void Save(DataCollector dataCollector)
         {
-            var filter = Builders<DataCollector>.Filter.Eq(c => c.DataCollectorId, dataCollector.DataCollectorId);
+            var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
             _collection.ReplaceOne(filter, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
