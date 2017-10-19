@@ -9,7 +9,7 @@ namespace Events.External
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string LocationLongitude { get; set; }
-        public string LocationLatitude { get; set; }
+        public double LocationLongitude { get; set; }
+        public double LocationLatitude { get; set; }
     }
 }
