@@ -20,8 +20,7 @@ namespace Read
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
-            dataCollector.LocationLatitude = @event.LocationLatitude;
-            dataCollector.LocationLongitude = @event.LocationLongitude;
+            dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             _dataCollectors.Save(dataCollector);
         }
 

@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Infrastructure.AspNet</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0"/>
-    <PackageReference Include="Autofac" Version="4.6.1"/>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0"/>
-    <PackageReference Include="doLittle.Assemblies" Version="2.0.0-alpha*"/>
-    <PackageReference Include="doLittle.Types" Version="2.0.0-alpha*"/>
-    <PackageReference Include="Serilog" Version="2.5.0"/>
-    <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0"/>
-    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2"/>
-    <PackageReference Include="Serilog.AspNetCore" Version="2.0.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0"/>
-    <PackageReference Include="MongoDB.Driver" Version="2.4.4"/>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Autofac" Version="4.6.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="doLittle.Assemblies" Version="2.0.0-alpha*" />
+    <PackageReference Include="doLittle.Types" Version="2.0.0-alpha*" />
+    <PackageReference Include="Serilog" Version="2.5.0" />
+    <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\Infrastructure.Application.csproj"/>
-    <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj"/>
-    <ProjectReference Include="..\Events\Infrastructure.Events.csproj"/>
-    <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj"/>
+    <ProjectReference Include="..\Application\Infrastructure.Application.csproj" />
+    <ProjectReference Include="..\Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\Events\Infrastructure.Events.csproj" />
+    <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
   </ItemGroup>
 </Project>
