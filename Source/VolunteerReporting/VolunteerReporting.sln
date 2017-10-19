@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{39FC4632-3667-463D-96E6-3F274B0C0163}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Application", "..\Infrastructure\Application\Infrastructure.Application.csproj", "{CB35BBED-E267-4411-A652-CAE74F0A6C4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Events.Web", "..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj", "{6FF9D704-4BEF-4612-BC70-E537144D42F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Tests", "Tests\Web.Tests\Web.Tests.csproj", "{0286766C-80C7-4494-8791-BC8ABE83E33E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,6 +154,18 @@ Global
 		{6FF9D704-4BEF-4612-BC70-E537144D42F7}.Release|x64.Build.0 = Release|Any CPU
 		{6FF9D704-4BEF-4612-BC70-E537144D42F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{6FF9D704-4BEF-4612-BC70-E537144D42F7}.Release|x86.Build.0 = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|x64.Build.0 = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Debug|x86.Build.0 = Debug|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|x64.ActiveCfg = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|x64.Build.0 = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|x86.ActiveCfg = Release|Any CPU
+		{0286766C-80C7-4494-8791-BC8ABE83E33E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
