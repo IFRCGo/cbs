@@ -39,16 +39,25 @@ namespace Web.Features.CaseReportReceptionFeatures
             
             if(caseReportContent.GetType() == typeof(InvalidCaseReportContent))
             {
+                var invalidCaseReport = caseReportContent as InvalidCaseReportContent;
                 if (dataCollector == null)
                 {
-                    //TODO: Handle if datacollector is unknown also. Different event?
+                    _eventEmitter.Emit(Feature, new AnonymousTextMessageParsingFailed
+                    {
+                        Id = Guid.NewGuid(),
+                        TextMessageId = @event.Id,
+                        PhoneNumber = @event.OriginNumber,
+                        Timestamp = @event.Sent,
+                        Message = @event.Message,
+                        ParsingErrorMessage = invalidCaseReport.ErrorMessage
+                    });
                 }
                 else
-                {
-                    var invalidCaseReport = caseReportContent as InvalidCaseReportContent;
+                {                    
                     _eventEmitter.Emit(Feature, new TextMessageParsingFailed
                     {
                         Id = Guid.NewGuid(),
+                        TextMessageId = @event.Id,
                         DataCollectorId = dataCollector.Id,
                         Message = @event.Message,
                         ParsingErrorMessage = invalidCaseReport.ErrorMessage
