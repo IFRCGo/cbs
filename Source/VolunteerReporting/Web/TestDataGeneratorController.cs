@@ -19,6 +19,24 @@ namespace Web
         private IEventEmitter _eventEmitter;
         private IMongoDatabase _database;
 
+        private int[] _healthRiskIds = new[]
+        {
+            1,
+            5,
+            8,
+            24,
+            37
+        };
+
+        private string[] _phoneNumbers = new[] {
+            "",         // missing
+            "11111111", // DataCollector #1
+            "22222222", // DataCollector #2
+            "33333333", // DataCollector #3
+            "00000000"  // Non existing data collector
+        };
+
+
         public TestDataGeneratorController(IEventEmitter eventEmitter, IMongoDatabase database)
         {
             _eventEmitter = eventEmitter;
@@ -28,9 +46,18 @@ namespace Web
         [HttpGet("all")]
         public void CreateAll()
         {
-            CreateDataCollectors();
             CreateHealthRisks();
+            CreateDataCollectors();
             CreateTextMessages();
+        }
+
+        private void CreateHealthRisks()
+        {
+            var _collection = _database.GetCollection<DataCollector>("HealthRisk");
+            _collection.DeleteMany(v => true);
+
+            foreach (var id in _healthRiskIds)
+                _eventEmitter.Emit("HealthRisk", new HealthRiskCreated() { Id = Guid.NewGuid(), ReadableId = id });
         }
 
         [HttpGet("datacollectors")]
@@ -40,8 +67,16 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(File.ReadAllText("./TestData/DataCollectors.json"));
+
+            int i = 0;
             foreach (var dataCollector in dataCollectors)
+            {
                 _eventEmitter.Emit("DataCollectorAdded", dataCollector);
+                _eventEmitter.Emit("PhoneNumberAdded", new PhoneNumberAdded() {
+                    DataCollectorId = dataCollector.Id,
+                    PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
+                });
+            }
         }
 
 
@@ -52,33 +87,17 @@ namespace Web
             var randomizer = new Random();
 
             var keywords = new[] { "" };
-
-            var numbers = new[] {
-                "",         // missing
-                "11111111", // DataCollector #1
-                "22222222", // DataCollector #2
-                "33333333", // DataCollector #3
-                "00000000"  // Non existing data collector
-            };
-
-            var healthRiskIds = new[]
-            {
-                1,
-                5,
-                8,
-                24,
-                37
-            };
+            var numbers = _phoneNumbers;
 
             for (int i = 0; i < 100; i++)
             {
-                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
+                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(_healthRiskIds) : CreateInvalidMessage();
 
                 var textMessage = new TextMessageReceived()
                 {
                     Id = Guid.NewGuid(),
                     Keyword = keywords[randomizer.Next(keywords.Length)],
-                    OriginNumber = numbers[randomizer.Next(keywords.Length)],
+                    OriginNumber = numbers[randomizer.Next(numbers.Length)],
                     Sent = DateTimeOffset.Now.AddSeconds(-randomizer.NextDouble() * 60 * 60 * 24 * 7 * 26), // last 26 weeks
                     ReceivedAtGatewayNumber = "0123456789",
                     Message = message
@@ -130,9 +149,23 @@ namespace Web
             var _collection = _database.GetCollection<ReceivedTextMessage>("TextMessages");
             _collection.DeleteMany(v => true);
 
+            var _caseReportsCollection = _database.GetCollection<ReceivedTextMessage>("CaseReport");
+            _caseReportsCollection.DeleteMany(v => true);
+
+
             var textMessagesEvents = JsonConvert.DeserializeObject<TextMessageReceived[]>(File.ReadAllText("./TestData/TextMessagesReceived.json"));
             foreach (var @event in textMessagesEvents)
-                _eventEmitter.Emit("TextMessageReceived", @event);
+            {
+                try
+                {
+                    _eventEmitter.Emit("TextMessageReceived", @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+                
         }
 
         [HttpGet("healthrisks")]
