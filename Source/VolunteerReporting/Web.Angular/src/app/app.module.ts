@@ -9,16 +9,6 @@ import { AppComponent } from './app.component';
 import { CaseReportModule } from './casereport/casereport.module';
 import { CoreModule } from './core/core.module';
 
-const routes: Routes = [
-/*
-  {
-      path: '',
-      redirectTo: 'casereport',
-      pathMatch: 'full'
-  }
-*/
-];
-
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +18,7 @@ const routes: Routes = [
     CommonModule,
     HttpModule,
     CoreModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot([]),
     CaseReportModule
   ],
   providers: [],
