@@ -16,7 +16,7 @@ Restore dependencies
 
 Build and host locally
 
-> `ng serve` or `npm start`
+> `npm start`
 
 ## Scaffold new Angular components
 
