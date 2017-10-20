@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CaseReportService } from '../../core/casereport.service';
-import { CaseReport } from '../../shared/models/casereport.model';
-import { AnonymousCaseReportService } from '../../core/anonymouscasereport.service';
-import { AnonymousCaseReport } from '../../shared/models/anonymouscasereport.model';
+import { CaseReportService } from '../../core/case-report.service';
+import { CaseReport } from '../../shared/models/case-report.model';
+import { AnonymousCaseReportService } from '../../core/anonymous-case-report.service';
+import { AnonymousCaseReport } from '../../shared/models/anonymous-case-report.model';
 
 @Component({
     selector: 'cbs-case-report-list',
