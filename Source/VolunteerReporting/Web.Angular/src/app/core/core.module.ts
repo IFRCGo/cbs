@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CaseReportService } from './casereport.service';
-import { AnonymousCaseReportService } from './anonymouscasereport.service';
+import { CaseReportService } from './case-report.service';
+import { AnonymousCaseReportService } from './anonymous-case-report.service';
 
 @NgModule({
     imports: [

@@ -5,9 +5,9 @@ import { AnonymousCaseReportService } from '../../core/anonymouscasereport.servi
 import { AnonymousCaseReport } from '../../shared/models/anonymouscasereport.model';
 
 @Component({
-    selector: 'cbs-casereportlist',
-    templateUrl: './casereportlist.component.html',
-    styleUrls: ['./casereportlist.component.scss']
+    selector: 'cbs-case-report-list',
+    templateUrl: './case-report-list.component.html',
+    styleUrls: ['./case-report-list.component.scss']
 })
 export class CaseReportListComponent implements OnInit {
 
