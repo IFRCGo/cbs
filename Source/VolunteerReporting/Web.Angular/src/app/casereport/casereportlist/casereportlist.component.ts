@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CaseReportService } from '../../core/casereport.service';
 import { CaseReport } from '../../shared/models/casereport.model';
+import { AnonymousCaseReportService } from '../../core/anonymouscasereport.service';
+import { AnonymousCaseReport } from '../../shared/models/anonymouscasereport.model';
 
 @Component({
     selector: 'cbs-casereportlist',
@@ -10,12 +12,20 @@ import { CaseReport } from '../../shared/models/casereport.model';
 export class CaseReportListComponent implements OnInit {
 
     caseReports: Array<CaseReport>;
-
-    constructor(private caseReportService: CaseReportService) { }
+    anonymousCaseReports: Array<AnonymousCaseReport>;
+    
+    constructor(
+        private caseReportService: CaseReportService,
+        private anonymousCaseReportService: AnonymousCaseReportService
+    ) { }
 
     ngOnInit() {
         this.caseReportService.getCaseReports()
             .then((result) => this.caseReports = result)
+            .catch((error) => console.error(error));
+        
+        this.anonymousCaseReportService.getAnonymousCaseReports()
+            .then((result) => this.anonymousCaseReports = result)
             .catch((error) => console.error(error));
     }
 }
