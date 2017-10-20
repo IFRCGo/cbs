@@ -3,7 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import { AnonymousCaseReport } from '../shared/models/anonymouscasereport.model';
+import { AnonymousCaseReport } from '../shared/models/anonymous-case-report.model';
 
 @Injectable()
 export class AnonymousCaseReportService {

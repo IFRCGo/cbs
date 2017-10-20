@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CaseReportModule } from './casereport/casereport.module';
+import { CaseReportModule } from './case-report/case-report.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
