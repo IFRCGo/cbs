@@ -2,17 +2,26 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
+using Events;
 using Events.External;
+using Infrastructure.Application;
+using Infrastructure.Events;
+using Read;
+using Read.HealthRiskFeatures;
+using System;
 using Read.TextMessageRecievedFeatures;
 
-namespace Read.SmsRecievedFeatures
+namespace Read.TextMessageRecievedFeatures
 {
-    public class TextMessageReceivedEventProcessor : Infrastructure.Events.IEventProcessor
+    public class TextMessageReceivedStorageProcessor : Infrastructure.Events.IEventProcessor
     {
         readonly IReceivedTextMessages _receivedTextMessages;
 
-        public TextMessageReceivedEventProcessor(IReceivedTextMessages receivedTextMessages)
+        public TextMessageReceivedStorageProcessor(
+            IReceivedTextMessages receivedTextMessages,
+            IEventEmitter eventEmitter,
+            IDataCollectors dataCollectors,
+            IHealthRisks healthRisks)
         {
             _receivedTextMessages = receivedTextMessages;
         }
@@ -29,5 +38,7 @@ namespace Read.SmsRecievedFeatures
             message.Location = new Location(@event.Latitude, @event.Longitude);
             _receivedTextMessages.Save(message);            
         }
+
+
     }
 }

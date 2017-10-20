@@ -1,10 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Events;
+using Events.External;
+using Infrastructure.Application;
+using Infrastructure.Events;
+using Read.HealthRiskFeatures;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Web.Features.CaseReportReceptionFeatures
+namespace Read.TextMessageRecievedFeatures
 {
     [TestClass]
     public class TextMessageContentParserTests
