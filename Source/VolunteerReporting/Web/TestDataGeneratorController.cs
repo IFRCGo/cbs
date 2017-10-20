@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Read.TextMessageRecievedFeatures;
+using Read.HealthRiskFeatures;
 
 namespace Web
 {

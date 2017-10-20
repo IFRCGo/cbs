@@ -1,0 +1,32 @@
+<p>
+    case report list works!
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Data&nbsp;Collector</th>
+            <th>Health&nbsp;Risk</th>
+            <th>Females&nbsp;&gt;&nbsp;5</th>
+            <th>Females&nbsp;&lt;&nbsp;5</th>
+            <th>Males&nbsp;&gt;&nbsp;5</th>
+            <th>Males&nbsp;&lt;&nbsp;5</th>
+            <th>Lat&nbsp;/&nbsp;Long</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let caseReport of caseReports">
+            <td>{{caseReport.timestamp}}</td>
+            <td>{{caseReport.dataCollectorId}}</td>
+            <td>{{caseReport.healthRiskId}}</td>
+            <td>{{caseReport.numberOfFemalesOver5}}</td>
+            <td>{{caseReport.numberOfFemalesUnder5}}</td>
+            <td>{{caseReport.numberOfMalesOver5}}</td>
+            <td>{{caseReport.numberOfMalesUnder5}}</td>
+            <td>
+                <span *ngIf="caseReport.location">{{caseReport.location.latitude}} / {{caseReport.location.longitude}}</span>
+            </td>
+        </tr>    
+    </tbody>
+</table>
