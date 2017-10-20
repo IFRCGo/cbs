@@ -8,13 +8,15 @@ namespace Read.CaseReportFeatures
 {
     public class CaseReports : ICaseReports
     {
+        public const string CollectionName = "CaseReport";
+
         private IMongoDatabase _database;
         private IMongoCollection<CaseReport> _collection;
 
         public CaseReports(IMongoDatabase database)
         {
             _database = database;
-            _collection = database.GetCollection<CaseReport>("CaseReport");
+            _collection = database.GetCollection<CaseReport>(CollectionName);
         }
 
         public async Task<IEnumerable<CaseReport>> GetAllAsync()
