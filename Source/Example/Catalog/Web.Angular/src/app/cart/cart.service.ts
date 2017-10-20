@@ -13,7 +13,7 @@ export class CartService {
   constructor(private http: Http) { }
 
   saveToCart(item: GroceryItem): Promise<void> {
-    const url = `http://localhost:5000/api/shopping/cart/items`;
+    const url = `/api/shopping/cart/items`;
 
     const addItemToCart = new AddItemToCart();
     addItemToCart.product = item.id;
