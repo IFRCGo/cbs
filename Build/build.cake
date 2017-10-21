@@ -82,6 +82,7 @@ Task("Run-Backend-Tests")
         var projects = GetFiles(testsFolder + "/**/*.csproj");
         foreach(var project in projects)
         {
+            Information("Running tests for " + project.FullPath);
             DotNetCoreTest(
                 project.FullPath,
                 new DotNetCoreTestSettings()
