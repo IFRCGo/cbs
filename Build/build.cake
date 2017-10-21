@@ -3,6 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #addin "Cake.Npm"
+#tool "nuget:?package=xunit.runner.console"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -78,7 +79,7 @@ Task("Run-Backend-Tests")
     .IsDependentOn("Build-Backend")
     .Does(() =>
 {
-    Information("Not quite sure which unit testing framework we're using yet?");
+    XUnit(buildDir + "/*.Tests.dll");
 });
 
 Task("Run-Frontend-Tests")
