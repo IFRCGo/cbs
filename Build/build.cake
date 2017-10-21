@@ -79,18 +79,19 @@ Task("Run-Backend-Tests")
     .IsDependentOn("Build-Backend")
     .Does(() =>
 {
-        var projects = GetFiles(testsFolder + "/**/*.csproj");
-        foreach(var project in projects)
-        {
-            Information("Running tests for " + project.FullPath);
-            DotNetCoreTest(
-                project.FullPath,
-                new DotNetCoreTestSettings()
-                {
-                    Configuration = configuration,
-                    NoBuild = true
-                });
-        }
+    Information("Looking for tests in folder: " + testsFolder);
+    var projects = GetFiles(testsFolder + "/**/*.csproj");
+    foreach(var project in projects)
+    {
+        Information("Running tests for " + project.FullPath);
+        DotNetCoreTest(
+            project.FullPath,
+            new DotNetCoreTestSettings()
+            {
+                Configuration = configuration,
+                NoBuild = true
+            });
+    }
 });
 
 Task("Run-Frontend-Tests")
