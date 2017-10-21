@@ -53,7 +53,7 @@ Restore dependencies
 > `npm install`
 
 Build and host locally
-> `ng serve` or `npm start`
+> `npm start`
 
 Open http://localhost:4200/ in your browser to access the UI. 
 

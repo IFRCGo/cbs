@@ -30,3 +30,11 @@ For example: The documentation for the "Volunteer Reporting" module can be found
 
 Any issue labeled ["good first issue"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) will be linked to a project/module so that you will be able to find the source code and documentation for the module as explained above. 
 
+## Next steps
+
+1. Find an issue you want to work on. Issues labeled ["good first issues"](https://github.com/IFRCGo/cbs/labels/good%20first%20issue) are issues that should be relatively easy to get started on without too much background information. 
+1. Create a fork. In order to contribute to this project, you will need to [fork](https://help.github.com/articles/fork-a-repo/) this repository.
+1. Make changes, test them and ensure the documentation is up to date. All commits SHOULD be related to an [issue](./issues.md) by adding a #{number of issue} to the comment.
+1. Synchronize your fork. Keep your fork synchronized with the CBS repository to avoid conflicts, as described [here](https://help.github.com/articles/syncing-a-fork/).
+1. Create a pull request. Once your changes are ready, create a [pull request](https://help.github.com/articles/creating-a-pull-request/) and reference the issues you have worked on.
+
