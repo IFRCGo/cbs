@@ -7,11 +7,12 @@ using Infrastructure.Events;
 
 namespace Events
 {
-    public class TextMessageParsingFailed : IEvent
+    public class AnonymousTextMessageParsingFailed : IEvent
     {
         public Guid Id { get; set; }
         public Guid TextMessageId { get; set; }
-        public Guid DataCollectorId { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
         public string Message { get; set; }
         public string ParsingErrorMessage { get; set; }
     }
