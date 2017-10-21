@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using doLittle.Runtime.Events;
 using doLittle.Types;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -9,12 +10,10 @@ namespace Infrastructure.Events.Web
     [Route("/api/events")]
     public class EventsController
     {
-        readonly IEventProcessors _eventProcessors;
         readonly ITypeFinder _typeFinder;
 
-        public EventsController(IEventProcessors eventProcessors, ITypeFinder typeFinder)
+        public EventsController(ITypeFinder typeFinder)
         {
-            _eventProcessors = eventProcessors;
             _typeFinder = typeFinder;
         }
 
@@ -27,8 +26,7 @@ namespace Infrastructure.Events.Web
             var serialized = JsonConvert.SerializeObject(@event.Content);
             var typed = JsonConvert.DeserializeObject(serialized,eventType) as IEvent;
 
-            var envelope = new EventEnvelope(EventSequenceNumber.Zero, EventCorrelationId.NotSet, EventOrigin.Unknown, typed);
-            _eventProcessors.Process(envelope);
+            throw new NotImplementedException();
         }
     }
 }

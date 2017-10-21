@@ -12,8 +12,6 @@ namespace Infrastructure.AspNet
         public static int BuildAndRun<TStartup>(string boundedContext, string[] args, Action<IWebHostBuilder> builderCallback = null, Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
-            Internals.BoundedContext = boundedContext;
-
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
@@ -28,7 +26,6 @@ namespace Infrastructure.AspNet
 
             try
             {
-
                 var builder = WebHost.CreateDefaultBuilder(args)
                     .ConfigureServices(services => services.AddAutofac())
                     .UseStartup<TStartup>()

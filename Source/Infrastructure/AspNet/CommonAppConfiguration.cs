@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -11,6 +12,7 @@ namespace Microsoft.AspNetCore.Builder
 
         public static IApplicationBuilder UseCommon(this IApplicationBuilder app, IHostingEnvironment env)
         {
+            Internals.ServiceProvider = app.ApplicationServices;
 
             // Relaxed CORS policy for example only
             app.UseCors(builder => builder

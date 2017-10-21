@@ -1,12 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
 using doLittle.Logging;
+using doLittle.Runtime.Applications;
+using doLittle.Runtime.Events;
+using doLittle.Runtime.Events.Coordination;
+using doLittle.Runtime.Events.Processing;
+using doLittle.Runtime.Events.Storage;
+using doLittle.Runtime.Execution;
+using doLittle.Runtime.Tenancy;
+using doLittle.Strings;
 using doLittle.Types;
 using Infrastructure.AspNet;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+
     public static class doLittleServices
     {
 
@@ -33,12 +47,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 new AssemblyUtility(),
                 assemblySpecifiers);
             Internals.Assemblies = assemblyProvider.GetAll();
-
+            
             services.AddSingleton<IAssemblyFilters>(assemblyFilters);
             services.AddSingleton<AssembliesConfiguration>(assembliesConfiguration);
             services.AddSingleton<IAssemblyProvider>(assemblyProvider);
             services.AddSingleton<IAssemblies>(new Assemblies(assemblyProvider));
-            services.AddSingleton(typeof(doLittle.DependencyInversion.IContainer), typeof(Container));
+            
             return services;
         }
     }
