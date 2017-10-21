@@ -81,7 +81,7 @@ public class ItemAddedToCart
 ## Representing with multiple events
 
 As mentioned, there is no correlation between commands and events. When handling the command, this could
-then result in multiple events. If you look at dealing with [versioning](#Versioning), you'll see that
+then result in multiple events. If you look at dealing with [versioning](#versioning), you'll see that
 over time you might add new meaning to the system and this is introduced naturally with new events.
 One **SHOULD** try to capture new insight into the domain explicitly with new events rather than implicitly
 adding in a property and losing the meaning.
