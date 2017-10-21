@@ -28,7 +28,7 @@ If you want to persist the data created, add a volume to the container:
 
 ### Step 2: Building and running the .NET Core backend on your local machine
 
-(Active path: `cbs\source\example`)
+(Active path: `cbs\source\example\catalog`)
 
 Download nuget dependencies
 > `dotnet restore`
@@ -36,7 +36,7 @@ Download nuget dependencies
 Build
 > `dotnet build`   
 
-(Active path: `cbs\source\example\web`)  
+(Active path: `cbs\source\example\catalog\web`)  
 
 Run locally
 > `dotnet run`
@@ -45,13 +45,13 @@ Open browser at address http://localhost:5000/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
-(Active path: `cbs/Source/Example/Web.Angular`)
+(Active path: `cbs\source\example\catalog\web.angular`)
 
 Restore dependencies
 > `npm install`
 
 Build and host locally
-> `ng serve` or `npm start`
+> `npm start`
 
 Open http://localhost:4200/ in your browser to access the UI. 
 
