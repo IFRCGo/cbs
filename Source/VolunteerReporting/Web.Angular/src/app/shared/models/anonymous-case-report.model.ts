@@ -1,8 +1,8 @@
-import { Location } from './index';
+import { Location, HealthRisk } from './index';
 
 export class AnonymousCaseReport {
     id: string;
-    healthRiskId: string;
+    healthRisk: HealthRisk;
     numberOfFemalesOver5: number;
     numberOfFemalesUnder5: number;
     numberOfMalesOver5: number;

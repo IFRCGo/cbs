@@ -18,14 +18,14 @@
     <tbody>
         <tr *ngFor="let caseReport of caseReports">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
-            <td>{{caseReport.dataCollectorId}}</td>
-            <td>{{caseReport.healthRiskId}}</td>
+            <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
+            <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
             <td>{{caseReport.numberOfFemalesOver5}}</td>
             <td>{{caseReport.numberOfFemalesUnder5}}</td>
             <td>{{caseReport.numberOfMalesOver5}}</td>
             <td>{{caseReport.numberOfMalesUnder5}}</td>
             <td>
-                <span *ngIf="caseReport.location">{{caseReport.location.latitude}} / {{caseReport.location.longitude}}</span>
+                <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
             </td>
         </tr>    
     </tbody>
@@ -50,13 +50,13 @@
     <tbody>
         <tr *ngFor="let anonymousCaseReport of anonymousCaseReports">
             <td>{{anonymousCaseReport.timestamp | date:'medium'}}</td>
-            <td>{{anonymousCaseReport.healthRiskId}}</td>
+            <td>{{anonymousCaseReport.healthRisk?.readableId}}: {{anonymousCaseReport.healthRisk?.name}}</td>
             <td>{{anonymousCaseReport.numberOfFemalesOver5}}</td>
             <td>{{anonymousCaseReport.numberOfFemalesUnder5}}</td>
             <td>{{anonymousCaseReport.numberOfMalesOver5}}</td>
             <td>{{anonymousCaseReport.numberOfMalesUnder5}}</td>
             <td>
-                <span *ngIf="anonymousCaseReport.location">{{anonymousCaseReport.location.latitude}} / {{anonymousCaseReport.location.longitude}}</span>
+                <span *ngIf="anonymousCaseReport.location">{{anonymousCaseReport.location.latitude | number}} / {{anonymousCaseReport.location.longitude | number}}</span>
             </td>
         </tr>    
     </tbody>
