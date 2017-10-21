@@ -16,12 +16,12 @@ capability to only build those projects that are changed for the different proje
 
 1. The Build folder contains a [template appveyor.yml](../../Build/appveyor.yml) file that is used for all projects. 
 1. Each project contains an appveyor.yml file in the root folder of the project.
-1. The template appveyor.yml file contains parameters in the format '<parametername>' which have to be updated according to the project in question. You should not need to update anything but the following: 
-    1. '<TestFolder>' - The path to the folder in your project containing unit tests
-    1. '<SlnFile>' - The path to the projects solution file
-    1. '<WebBinFolder>' - The path to the bin folder of the web project
-    1. '<AngularFolder>' - The path to the Angular folder of the web project
-    1. '<baseSourceforlder>' - The path to the project folder
+1. The template appveyor.yml file contains parameters in the format `<parametername>` which have to be updated according to the project in question. You should not need to update anything but the following:   
+    `<TestFolder>` - The path to the folder in your project containing unit tests  
+    `<SlnFile>` - The path to the projects solution file  
+    `<WebBinFolder>` - The path to the bin folder of the web project  
+    `<AngularFolder>` - The path to the Angular folder of the web project  
+    `<baseSourceforlder>` - The path to the project folder  
 
 ### AppVeyor configuration
 
