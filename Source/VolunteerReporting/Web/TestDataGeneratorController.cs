@@ -19,15 +19,6 @@ namespace Web
         private IEventEmitter _eventEmitter;
         private IMongoDatabase _database;
 
-        private int[] _healthRiskIds = new[]
-        {
-            1,
-            5,
-            8,
-            24,
-            37
-        };
-
         private string[] _phoneNumbers = new[] {
             "",         // missing
             "11111111", // DataCollector #1
@@ -51,14 +42,16 @@ namespace Web
             CreateTextMessages();
         }
 
-        private void CreateHealthRisks()
-        {
-            var _collection = _database.GetCollection<DataCollector>("HealthRisk");
-            _collection.DeleteMany(v => true);
-
-            foreach (var id in _healthRiskIds)
-                _eventEmitter.Emit("HealthRisk", new HealthRiskCreated() { Id = Guid.NewGuid(), ReadableId = id });
-        }
+         [HttpGet("healthrisks")]
+         public void CreateHealthRisks()
+         {
+             var _collection = _database.GetCollection<HealthRisk>("HealthRisk");
+             _collection.DeleteMany(v => true);
+ 
+             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
+             foreach (var healthRisk in healthRisks)
+                 _eventEmitter.Emit("HealthRiskCreated", healthRisk);
+         }
 
         [HttpGet("datacollectors")]
         public void CreateDataCollectors()
@@ -85,13 +78,14 @@ namespace Web
         {
             var events = new List<TextMessageReceived>();
             var randomizer = new Random();
-
             var keywords = new[] { "" };
+            var healthRisks = _database.GetCollection<HealthRisk>("HealthRisk").Find(Builders<HealthRisk>.Filter.Empty).ToList();
+            var healthRiskIds = healthRisks.Take(5).Select(v => v.ReadableId).ToArray();
             var numbers = _phoneNumbers;
 
             for (int i = 0; i < 100; i++)
             {
-                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(_healthRiskIds) : CreateInvalidMessage();
+                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
                 var textMessage = new TextMessageReceived()
                 {

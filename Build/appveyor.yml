@@ -23,3 +23,5 @@ only_commits:
 
 build_script:
 - ps: ./Build/build.ps1
+
+test: off
