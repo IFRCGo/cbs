@@ -56,8 +56,9 @@ namespace Web
             var _collection = _database.GetCollection<DataCollector>("HealthRisk");
             _collection.DeleteMany(v => true);
 
+            int i = 0;
             foreach (var id in _healthRiskIds)
-                _eventEmitter.Emit("HealthRisk", new HealthRiskCreated() { Id = Guid.NewGuid(), ReadableId = id });
+                _eventEmitter.Emit("HealthRisk", new HealthRiskCreated() { Id = Guid.NewGuid(), ReadableId = id, Name = $"Risk #{i++}" });
         }
 
         [HttpGet("datacollectors")]
