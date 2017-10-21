@@ -1,9 +1,7 @@
 //////////////////////////////////////////////////////////////////////
 // FETCH TOOLS
 //////////////////////////////////////////////////////////////////////
-
 #addin "Cake.Npm"
-#tool "nuget:?package=xunit.runner.console"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -22,6 +20,8 @@ var buildDir = Directory(cleanFolder) + Directory(configuration);
 
 var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
 var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Example/Catalog/Web.Angular";
+var testsFolder = Environment.GetEnvironmentVariable("TestsFolder") ?? "../Source/Example/Catalog/Tests";
+
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -79,7 +79,17 @@ Task("Run-Backend-Tests")
     .IsDependentOn("Build-Backend")
     .Does(() =>
 {
-    XUnit(buildDir + "/*.Tests.dll");
+        var projects = GetFiles(testsFolder + "/**/*.csproj");
+        foreach(var project in projects)
+        {
+            DotNetCoreTest(
+                project.FullPath,
+                new DotNetCoreTestSettings()
+                {
+                    Configuration = configuration,
+                    NoBuild = true
+                });
+        }
 });
 
 Task("Run-Frontend-Tests")
