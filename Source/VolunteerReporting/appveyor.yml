@@ -18,9 +18,9 @@ environment:
   WebBinFolder: ../Source/VolunteerReporting/Web/bin
   AngularFolder: ../Source/VolunteerReporting/Web.Angular
 
-#only_commits:
-#  files:
-#    - Source/VolunteerReporting/
+only_commits:
+  files:
+    - Source/VolunteerReporting/
 
 build_script:
 - ps: ./Build/build.ps1

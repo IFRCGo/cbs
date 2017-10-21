@@ -18,9 +18,9 @@ environment:
   WebBinFolder: ../Source/Example/Catalog/Web/bin
   AngularFolder: ../Source/Example/Catalog/Web.Angular
 
-#only_commits:
-#  files:
-#    - Source/Example
+only_commits:
+  files:
+    - Source/Example/
 
 build_script:
 - ps: ./Build/build.ps1
