@@ -6,22 +6,36 @@ author: sheeng
 ---
 # Overview
 
-## Configuring CI for your project
+## AppVeyor
 
-1. Copy the `appveyor.yml` file from (Build/appveyor.yml) into the root source folder for the bounding context.
-1. Change the `<BaseSourceFolder>` part under the `only_commits` section to the root source folder for the bounding context.
-1. Change the two variable under the section `environment` with the relative path to the `bin` folder of the `web project` relative from `Build\build.cake`. the relative path to the solution file of the new bounding context relative from `Build\build.cake`.
+AppVeyor is our primary build platform. This is the build that generates deployables and governs [versioning](../Deployment/versioning.mg).
+Even though our project only has one repository, we utilize AppVeyors [filtering](https://www.appveyor.com/docs/how-to/filtering-commits/)
+capability to only build those projects that are changed for the different projects.
 
-Setup Appveyor services for folks with access to CBS's official accounts:
+### Setting up continuous integration for a project with AppVeyor
 
-1. Create a new Project on `https://ci.appveyor.com`.
-1. Add the path to the newly created yml file in the field `Custom configuration .yml file name` under the `General` tab.
+1. The Build folder contains a [template appveyor.yml](../../Build/appveyor.yml) file that is used for all projects. 
+1. Each project contains an appveyor.yml file in the root folder of the project.
+1. The template appveyor.yml file contains parameters in the format '<parametername>' which have to be updated according to the project in question. You should not need to update anything but the following: 
+    1. '<TestFolder>' - The path to the folder in your project containing unit tests
+    1. '<SlnFile>' - The path to the projects solution file
+    1. '<WebBinFolder>' - The path to the bin folder of the web project
+    1. '<AngularFolder>' - The path to the Angular folder of the web project
+    1. '<baseSourceforlder>' - The path to the project folder
 
-Setup Appveyor services for developer folks:
+### AppVeyor configuration
 
-1. Create the entry for the new bonding context in the `Build status` table on to of this page.
+If you would like to set up a build towards your own fork in AppVeyor, follow the following steps: 
+1. Create a new Project on `https://ci.appveyor.com` (you will need one project in AppVeyor per project build).
+1. Add the path to the newly created yml file in the field `Custom configuration .yml file name` under the `General` tab. Do not edit any other settings, these are picked up from the appveyor.yml file. 
 
-### Build Using Docker Container
+## TravisCI / CircleCI
+
+Our TravisCI/CircleCI builds used to validate on other platforms such as Linux, which is the runtime environment.
+
+Folks with access to CBS's official accounts can now add CI/CD builds to CircleCI/TravisCI.
+
+## Build Using Docker Container
 
 (Active path: `cbs`)
 
@@ -39,18 +53,6 @@ After running the `./dockerize.sh` script, you will have a `<image-owner>/cbs-de
 Use `./containerize.sh` to access the terminal inside the container, created from `<image-owner>/cbs-devel` image.
 
 On the terminal inside the container, use `./build.sh` to build the project.
-
-## AppVeyor
-
-AppVeyor is our primary build platform. This is the build that generates deployables and governs [versioning](../Deployment/versioning.mg).
-Even though our project only has one repository, we utilize AppVeyors [filtering](https://www.appveyor.com/docs/how-to/filtering-commits/)
-capability to only build those projects that are changed for the different projects.
-
-## TravisCI / CircleCI
-
-Our TravisCI/CircleCI builds used to validate on other platforms such as Linux, which is the runtime environment.
-
-Folks with access to CBS's official accounts can now add CI/CD builds to CircleCI/TravisCI.
 
 ## Documentation
 
