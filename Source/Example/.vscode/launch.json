@@ -11,12 +11,15 @@
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "dotnet",
-            "args": ["test","--no-build"],
-            "cwd": "${workspaceRoot}/Specifications/Concepts.Serialization.Json",
+            "program": "${workspaceRoot}/Catalog/Web/bin/Debug/netcoreapp2.0/Web.dll",
+            "cwd": "${workspaceRoot}/Catalog/Web",
             "externalConsole": false,
             "stopAtEntry": false,
+            "justMyCode": false,
+            "sourceFileMap": {
+                "C:\\projects\\dotnet-runtime\\Source\\Events.Coordination\\UncommittedEventStreamCoordinator.cs": "/Users/einari/Projects/doLittle/Runtime/Source/Events.Coordination/UncommittedEventStreamCoordinator.cs",
+                "C:\\projects\\dotnet-runtime\\Source\\Events.Storage\\EventEnvelopes.cs": "/Users/einari/Projects/doLittle/Runtime/Source/Events.Storage/EventEnvelopes.cs"
+            },
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
