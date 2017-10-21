@@ -21,8 +21,11 @@ For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 
 | Projects  | AppVeyor status (Windows)  | CircleCI status (Linux) | TravisCI status (Linux)
 |---|---|---|---|
-| Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)  | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
-| Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs)  |
+| Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/3s33gey8y08ynu4s/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-hjk90/branch/master)  | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
+| Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master)  |
+| Admin  | [![Build status](https://ci.appveyor.com/api/projects/status/117990iba2ie13lp/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-xxsg0/branch/master)  |
+| User Management  | [![Build status](https://ci.appveyor.com/api/projects/status/yyxiq56hy52iyv50/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master)  |
+| Alert  | [![Build status](https://ci.appveyor.com/api/projects/status/2lab71gqtq8hkxn8/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master)  |
 
 ## Our next milestone
 

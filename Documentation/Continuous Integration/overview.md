@@ -6,7 +6,7 @@ author: sheeng
 ---
 # Overview
 
-## Setup Ci Build with Bounding Context
+## Configuring CI for your project
 
 1. Copy the `appveyor.yml` file from (Build/appveyor.yml) into the root source folder for the bounding context.
 1. Change the `<BaseSourceFolder>` part under the `only_commits` section to the root source folder for the bounding context.

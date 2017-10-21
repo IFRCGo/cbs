@@ -1,7 +1,7 @@
 # Example application
 
 ## Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)
+[![Build status](https://ci.appveyor.com/api/projects/status/3s33gey8y08ynu4s/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-hjk90/branch/master)
 
 ## Prerequisites
 
