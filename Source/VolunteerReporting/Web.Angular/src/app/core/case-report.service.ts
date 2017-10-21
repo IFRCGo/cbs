@@ -3,7 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import { CaseReport } from '../shared/models/casereport.model';
+import { CaseReport } from '../shared/models/case-report.model';
 
 @Injectable()
 export class CaseReportService {
