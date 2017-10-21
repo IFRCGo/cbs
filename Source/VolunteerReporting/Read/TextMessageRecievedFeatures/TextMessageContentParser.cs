@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Linq;
 
-namespace Web.Features.CaseReportReceptionFeatures
+namespace Read.TextMessageRecievedFeatures
 {
     /// summary
     /// Parse the content of Case Reports sent by SMS

@@ -6,21 +6,21 @@ using Events;
 using Events.External;
 using Infrastructure.Application;
 using Infrastructure.Events;
-using Read;
 using Read.HealthRiskFeatures;
 using System;
 
-namespace Web.Features.CaseReportReceptionFeatures
+namespace Read.TextMessageRecievedFeatures
 {
     //TODO: Is the web project the right places for this? Processing the TextMessageReceived event is kinda like a command, and an event is only emited if its a valid message
-    public class TextMessageRecievedEventProcessor : Infrastructure.Events.IEventProcessor
+    public class TextMessageRecievedRaiseCaseReportsEventsProcessor : Infrastructure.Events.IEventProcessor
     {
         public static readonly Feature Feature = "CaseReportReception";
+
         private readonly IEventEmitter _eventEmitter;
         private readonly IDataCollectors _dataCollectors;
         private readonly IHealthRisks _healthRisks;
 
-        public TextMessageRecievedEventProcessor(
+        public TextMessageRecievedRaiseCaseReportsEventsProcessor(
             IEventEmitter eventEmitter,
             IDataCollectors dataCollectors,
             IHealthRisks healthRisks)
@@ -33,11 +33,11 @@ namespace Web.Features.CaseReportReceptionFeatures
         //TODO: Add a test that ensure that the right count is put in the right property
         //TODO: This should possibly be process once, since it should only happen the first time a text message is recieved
         public void Process(TextMessageReceived @event)
-        {            
-            var caseReportContent = TextMessageContentParser.Parse(@event.Message);            
+        {
+            var caseReportContent = TextMessageContentParser.Parse(@event.Message);
             var dataCollector = _dataCollectors.GetByPhoneNumber(@event.OriginNumber);
-            
-            switch(caseReportContent)
+
+            switch (caseReportContent)
             {
                 case InvalidCaseReportContent invalidCaseReport:
                     if (dataCollector != null)
@@ -150,5 +150,5 @@ namespace Web.Features.CaseReportReceptionFeatures
                 ParsingErrorMessage = invalidCaseReport.ErrorMessage
             });
         }
-    }    
+    }
 }
