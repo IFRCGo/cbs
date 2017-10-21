@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "bootstrap-sass": "^3.3.7",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
@@ -29,7 +30,7 @@
     "@angular/cli": "1.4.3",
     "@angular/compiler-cli": "^4.2.4",
     "@angular/language-service": "^4.2.4",
-    "codelyzer": "~3.0.1",        
+    "codelyzer": "~3.0.1",
     "typescript": "~2.3.3",
     "tslint": "~5.3.2"
   }
