@@ -18,7 +18,7 @@ environment:
   WebBinFolder: ../Source/Admin/Web/bin
   AngularFolder: ../Source/Admin/Web.Angular
 
- only_commits:
+only_commits:
    files:
      - Source/Admin/
 
