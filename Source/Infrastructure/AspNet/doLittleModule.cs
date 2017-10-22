@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
 using System.Security.Claims;
 using Autofac;
 using doLittle.Assemblies;
@@ -10,11 +8,11 @@ using doLittle.Logging;
 using doLittle.Runtime.Applications;
 using doLittle.Runtime.Events.Coordination;
 using doLittle.Runtime.Events.Processing;
+using doLittle.Runtime.Events.Publishing;
+using doLittle.Runtime.Events.Publishing.InProcess;
 using doLittle.Runtime.Events.Storage;
 using doLittle.Runtime.Execution;
 using doLittle.Runtime.Tenancy;
-using doLittle.Strings;
-using doLittle.Types;
 
 namespace Infrastructure.AspNet
 {
@@ -23,15 +21,29 @@ namespace Infrastructure.AspNet
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var logAppenders = LoggingConfigurator.DiscoverAndConfigure(Internals.LoggerFactory);
+            doLittle.Logging.ILogger logger = new Logger(logAppenders);
+            builder.RegisterType<Logger>().As<doLittle.Logging.ILogger>().SingleInstance();
+            
+            builder.RegisterInstance(Internals.AssemblyFilters).As<IAssemblyFilters>();
+            builder.RegisterInstance(Internals.AssembliesConfiguration).As<AssembliesConfiguration>();
+            builder.RegisterInstance(Internals.AssemblyProvider).As<IAssemblyProvider>();
+            builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
+
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>().SingleInstance();
-            builder.RegisterType<NullEventProcessors>().As<IEventProcessors>().SingleInstance();
+            builder.RegisterType<EventProcessors>().As<IEventProcessors>().SingleInstance();
             builder.RegisterType<NullEventProcessorLog>().As<IEventProcessorLog>().SingleInstance();
             builder.RegisterType<NullEventProcessorStates>().As<IEventProcessorStates>().SingleInstance();
             builder.RegisterType<NullEventStore>().As<IEventStore>().SingleInstance();
             builder.RegisterType<NullEventSourceVersions>().As<IEventSourceVersions>().SingleInstance();
             builder.RegisterType<NullEventSequenceNumbers>().As<IEventSequenceNumbers>().SingleInstance();
-            builder.RegisterType<ProcessMethodEventProcessors>().AsSelf();
+
+            builder.RegisterType<CommittedEventStreamSender>().As<ICanSendCommittedEventStream>().SingleInstance();
+            builder.RegisterType<CommittedEventStreamReceiver>().As<ICanReceiveCommittedEventStream>().SingleInstance();
+            builder.RegisterType<CommittedEventStreamBridge>().As<ICommittedEventStreamBridge>().SingleInstance();
+            builder.RegisterType<CommittedEventStreamCoordinator>().As<ICommittedEventStreamCoordinator>().SingleInstance();
+            builder.RegisterType<ProcessMethodEventProcessors>().AsSelf().SingleInstance();
 
             var applicationStructureBuilder = 
                 new ApplicationStructureConfigurationBuilder()
@@ -58,8 +70,6 @@ namespace Infrastructure.AspNet
                     application,
                     new Tenant("IFRC"))
             ).As<IExecutionContext>();
-
-            
         }
     }
 }
