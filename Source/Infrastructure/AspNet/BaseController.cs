@@ -28,7 +28,6 @@ namespace Infrastructure.AspNet
         /// </summary>
         public BaseController()
         {
-            
             _uncommittedEventStreamCoordinator = Internals.ServiceProvider.GetService(typeof(IUncommittedEventStreamCoordinator)) as IUncommittedEventStreamCoordinator;
         }
 
@@ -39,7 +38,6 @@ namespace Infrastructure.AspNet
         /// <param name="@event"></param>
         public void Apply(EventSourceId eventSourceId, IEvent @event)
         {
-            var applicationResourceTypes = Internals.ServiceProvider.GetService(typeof(IInstancesOf<IApplicationResourceType>));
             var transactionCorrelationId = TransactionCorrelationId.New();
             var eventSource = GetEventSourceForThisController(eventSourceId);
             eventSource.Apply(@event);
