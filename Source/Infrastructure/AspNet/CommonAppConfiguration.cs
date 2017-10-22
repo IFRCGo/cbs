@@ -14,6 +14,8 @@ namespace Microsoft.AspNetCore.Builder
         {
             Internals.ServiceProvider = app.ApplicationServices;
 
+            app.UsedoLittle(env);
+
             // Relaxed CORS policy for example only
             app.UseCors(builder => builder
                 .AllowAnyHeader()
