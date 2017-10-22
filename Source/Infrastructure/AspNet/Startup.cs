@@ -22,13 +22,14 @@ namespace Infrastructure.AspNet
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
             builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
 
-            Internals.Assemblies.ForEach(assembly => 
+            Internals.AllAssemblies.ForEach(assembly => 
             {
                 builder.RegisterAssemblyModules(assembly);
                 builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
             });
 
             builder.RegisterSource(new MongoDBRegistrationSource());
+            builder.RegisterSource(new EventProcessorRegistrationSource());
         }
     }
 }
