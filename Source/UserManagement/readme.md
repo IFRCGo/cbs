@@ -1,5 +1,8 @@
 # User management
 
+## Build status
+[![Build status](https://ci.appveyor.com/api/projects/status/yyxiq56hy52iyv50/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master)
+
 ## Prerequisites
 
 Read up on the [development environment](../../Documentation/Contribution/development_environment.md)

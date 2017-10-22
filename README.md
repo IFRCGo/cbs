@@ -10,7 +10,6 @@ Community Based Surveillance (CBS) allows communities, volunteers and the Red Cr
 
 For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 
-
 ![](https://img.shields.io/github/stars/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/forks/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/watchers/ifrcgo/cbs.svg)
@@ -22,8 +21,21 @@ For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 
 | Projects  | AppVeyor status (Windows)  | CircleCI status (Linux) | TravisCI status (Linux)
 |---|---|---|---|
-| Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/verl69fxww1xi5l3?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs-c5ssa)  | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
-| Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs)  |
+| Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/3s33gey8y08ynu4s/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-hjk90/branch/master)  | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
+| Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master)  |
+| Admin  | [![Build status](https://ci.appveyor.com/api/projects/status/5u26suwgd9co1rgp/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-0ntrh/branch/master)  |
+| User Management  | [![Build status](https://ci.appveyor.com/api/projects/status/yyxiq56hy52iyv50/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master)  |
+| Alert  | [![Build status](https://ci.appveyor.com/api/projects/status/2lab71gqtq8hkxn8/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master)  |
+
+## Our next milestone
+
+We are currently working on the MVP (minimum viable product) of CBS. At the moment there is a plague outbreak in Madagascar, with 57 deaths and more than 680 cases reported, and it keeps spreading. The sooner we can test CBS in the field, the more lives will be saved. 
+
+The MVP will enable: 
+- Data collectors in the field to report health events by SMS
+- Data managers to view the incoming reports
+
+Ideally, we wish to extend the MVP to also include the creation of "projects" and a way of defining and editing health events, but this will depend on how active our contributors are. Our main priority is getting the MVP tested in the field so that the Red Cross can identify and respond to outbreaks in an even more efficient manner. 
 
 ## Contributing
 
@@ -34,4 +46,7 @@ Read more about how you can [contribute](./Documentation/Contribution/contributi
 
 If you need help, please take a look at our [documentation](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions. 
 
+## Media coverage
 
+- October 5th, 2017. Bistandsaktuelt: ["Røde Kors-dugnad for å varsle epidemier – kan redde liv"](https://www.bistandsaktuelt.no/nyheter/2017/dugnad-for-epidemi-varsling/)
+- September 12th, 2017. Digi.no: ["Røde Kors i Norge med IT-prosjekt som kan redde liv: Nå inviterer de IT-bransjen til dugnad"](https://www.digi.no/artikler/rode-kors-i-norge-med-it-prosjekt-som-kan-redde-liv-na-inviterer-de-it-bransjen-til-dugnad/405602)

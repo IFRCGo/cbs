@@ -2,9 +2,7 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Read.TextMessageRecievedFeatures
 {
@@ -12,12 +10,20 @@ namespace Read.TextMessageRecievedFeatures
     /// Parse the content of Case Reports sent by SMS
     /// summary
     public class TextMessageContentParser
-    {
+    {    
         public static CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
-            var fragments = text.Split(' ');
+            //or Event	# Number of male cases five or under # Number of male cases over 5	# Number of female cases five or under # Number of female cases over five
+            var fragments = text.Replace(" ", string.Empty).Split('#');
 
+            if(fragments.Any(x => string.IsNullOrEmpty(x)))
+            {
+                return new InvalidCaseReportContent
+                {
+                    ErrorMessage = "Message contain one or more hashes with missing number in front or after"
+                };
+            }
             // pick out numbers in textMessage content
             var numbers = fragments.Where(f => IsNum(f)).Select(o => ToNum(o)).ToList();
 
@@ -41,9 +47,9 @@ namespace Read.TextMessageRecievedFeatures
                     FemalesOver5 = numbers[4]
                 };
             }
-            //TODO: Should it throw exception or emit TextMessageParseFailed event? Create specific exception and catch that in processor which then emits the event
-            throw new Exception("Text message should contain 3 or 5 numbers");
-        }
+
+            return new InvalidCaseReportContent();
+        }        
 
         private static bool IsNum(string input)
         {
@@ -57,28 +63,33 @@ namespace Read.TextMessageRecievedFeatures
     }
 
     public abstract class CaseReportContent
-    {
-        public int HealthRiskId { get; set; }
+    {        
     }
 
     public class MultipleCaseReportContent : CaseReportContent
     {
+        public int HealthRiskId { get; set; }
         public int FemalesUnder5 { get; set; }
         public int FemalesOver5 { get; set; }
-
         public int MalesUnder5 { get; set; }
         public int MalesOver5 { get; set; }
     }
 
     public class SingleCaseReportContent : CaseReportContent
     {
+        public int HealthRiskId { get; set; }
         public Sex Sex { get; set; }
         public int Age { get; set; }
+    }
+
+    public class InvalidCaseReportContent : CaseReportContent
+    {
+        public string ErrorMessage { get; set; } = "Text message should contain 3 or 5 numbers, separated by hashes (#). Ex: 1#3#5 or 1#3#0#4#4";
     }
 
     public enum Sex
     {
         Male = 1,
         Female = 2
-    }
+    }     
 }

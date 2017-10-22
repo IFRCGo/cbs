@@ -7,14 +7,14 @@ using System;
 
 namespace Read.TextMessageRecievedFeatures
 {
-    public class RecievedTextMessage
+    public class ReceivedTextMessage
     {
-        public RecievedTextMessage()
+        public ReceivedTextMessage()
         {
-            
+            Location = Location.NotSet;
         }
 
-        public RecievedTextMessage(Guid id)
+        public ReceivedTextMessage(Guid id) : this()
         {
             Id = id;
         }
@@ -25,7 +25,6 @@ namespace Read.TextMessageRecievedFeatures
         public string Message { get; set; }
         public string Keyword { get; set; }
         public string ReceivedAtGatewayNumber { get; set; }
-        public string Longitude { get; set; }
-        public string Latitude { get; set; }
+        public Location Location { get; set; }
     }
 }
