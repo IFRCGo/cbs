@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Xunit;
 using Read.TextMessageRecievedFeatures;
-using Read.Tests.Mockups;
 using Events;
 using FakeItEasy;
 using Infrastructure.Application;
