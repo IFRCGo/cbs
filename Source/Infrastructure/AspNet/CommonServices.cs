@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 })
                 .AddFluentValidation(fv =>
                 {
-                    Internals.Assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
+                    Internals.AllAssemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
                 });
 ;
             services.Configure<ConnectionStringsOptions>(Internals.Configuration);
