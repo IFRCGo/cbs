@@ -13,8 +13,9 @@ namespace Infrastructure.AspNet
             where TStartup : class
         {
             var loggerConfiguration = new LoggerConfiguration()
-                .MinimumLevel.Debug()
+                .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("System", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console();
 
