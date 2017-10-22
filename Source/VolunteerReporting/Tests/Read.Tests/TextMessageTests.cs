@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using Xunit;
 using Read.TextMessageRecievedFeatures;
 using Read.Tests.Mockups;
 using Events;
+using FakeItEasy;
+using Infrastructure.Application;
 
 namespace Read.Tests
 {
@@ -11,16 +14,15 @@ namespace Read.Tests
         [Fact]
         public void ZeroReportShouldResultInStandardCaseReport()
         {
-            var eventEmitter = new MockupEventEmitter();
-            var dataCollectors = new MockupDataCollectors();
-            var healthRiskFeatures = new MockupHealthRiskFeatures();
+            // arrange
+            var eventEmitter = A.Fake<Infrastructure.Events.IEventEmitter>();
+            var dataCollectors = A.Fake<IDataCollectors>();
+            var healthRiskFeatures = A.Fake<HealthRiskFeatures.IHealthRisks>();
 
-            int healthRiskReadableId = 41;
-            string textMessage = $"{healthRiskReadableId}#0#0";
-
-            TextMessageRecievedRaiseCaseReportsEventsProcessor procesor = new TextMessageRecievedRaiseCaseReportsEventsProcessor(eventEmitter, dataCollectors, healthRiskFeatures);
-
-            procesor.Process(new Events.External.TextMessageReceived()
+            // act
+            string textMessage = $"41#0#0";
+            TextMessageRecievedRaiseCaseReportsEventsProcessor processor = new TextMessageRecievedRaiseCaseReportsEventsProcessor(eventEmitter, dataCollectors, healthRiskFeatures);
+            processor.Process(new Events.External.TextMessageReceived()
             {
                 Id = Guid.NewGuid(),
                 Keyword = "",
@@ -32,20 +34,26 @@ namespace Read.Tests
                 Sent = DateTimeOffset.Now
             });
 
-            var result = eventEmitter.PopFirst();
+            // Assert we have one CaseReportReceived event emitted, for the zero report
+            A.CallTo(eventEmitter)
+                .Where(call => call.Method.Name == "Emit")
+                .WhenArgumentsMatch(x => {
+                    var @event = x.Get<CaseReportReceived>("event") as CaseReportReceived;
+                    return
+                        x.Get<Feature>("feature") == TextMessageRecievedRaiseCaseReportsEventsProcessor.Feature &&
+                        @event != null &&
+                        @event.NumberOfFemalesOver5 == 0 &&
+                        @event.NumberOfFemalesUnder5 == 0 &&
+                        @event.NumberOfMalesOver5 == 0 &&
+                        @event.NumberOfMalesUnder5 == 0;
+                })
+                .MustHaveHappened();
 
-            
-            // There should not be any other events
-            Assert.Throws<InvalidOperationException>(() => eventEmitter.PopFirst());
-
-            Assert.Equal(result.feature, TextMessageRecievedRaiseCaseReportsEventsProcessor.Feature);
-            Assert.IsType<CaseReportReceived>(result.@event);
-
-            var caseReport = (CaseReportReceived)result.@event;
-            Assert.Equal(0, caseReport.NumberOfFemalesOver5);
-            Assert.Equal(0, caseReport.NumberOfFemalesUnder5);
-            Assert.Equal(0, caseReport.NumberOfMalesOver5);
-            Assert.Equal(0, caseReport.NumberOfMalesUnder5);
+            // Assert there are no other events
+            A.CallTo(eventEmitter)
+                .Where(call => call.Method.Name == "Emit")
+                .WhenArgumentsMatch(x => x.Get<Feature>("feature") != TextMessageRecievedRaiseCaseReportsEventsProcessor.Feature)
+                .MustNotHaveHappened();
         }
     }
 }
