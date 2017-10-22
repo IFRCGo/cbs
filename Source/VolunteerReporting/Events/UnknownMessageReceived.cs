@@ -2,20 +2,17 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Events;
 using System;
+using doLittle.Events;
 
-namespace Events.External
+namespace Events
 {
-    public class TextMessageReceived : IEvent
+    public class UnknownMessageReceived : IEvent
     {
         public Guid Id { get; set; }
-        public DateTimeOffset Sent { get; set; }
-        public string OriginNumber { get; set; }
+        public Guid TextMessageId { get; set; }
+        public Guid DataCollectorId { get; set; }
         public string Message { get; set; }
-        public string Keyword { get; set; }
-        public string ReceivedAtGatewayNumber { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public string ParsingErrorMessage { get; set; }
     }
 }

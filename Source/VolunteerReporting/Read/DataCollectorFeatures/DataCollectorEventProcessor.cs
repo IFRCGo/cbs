@@ -3,10 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Events.External;
+using doLittle.Events.Processing;
 
 namespace Read
 {
-    public class DataCollectorEventProcessor : Infrastructure.Events.IEventProcessor
+    public class DataCollectorEventProcessor : ICanProcessEvents
     {
         readonly IDataCollectors _dataCollectors;
 

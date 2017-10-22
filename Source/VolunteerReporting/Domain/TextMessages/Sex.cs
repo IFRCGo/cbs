@@ -2,15 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 
-namespace Read.TextMessageRecievedFeatures
+namespace Domain.TextMessages
 {
-    public interface IReceivedTextMessages
+    public enum Sex
     {
-        ReceivedTextMessage GetById(Guid id);
-        IEnumerable<ReceivedTextMessage> ListByPhonenumber(PhoneNumber phoneNumber);
-        void Save(ReceivedTextMessage receivedTextMessage);
-    }
+        Male = 1,
+        Female = 2
+    }     
 }

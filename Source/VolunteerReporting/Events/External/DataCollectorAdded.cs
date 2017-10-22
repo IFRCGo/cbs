@@ -1,5 +1,5 @@
 using System;
-using Infrastructure.Events;
+using doLittle.Events;
 using System.Collections.Generic;
 
 namespace Events.External

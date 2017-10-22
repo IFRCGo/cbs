@@ -2,10 +2,11 @@ using Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events.Processing;
 
 namespace Read.AnonymousCaseReportFeatures
 {
-    public class AnonymousCaseReportProcessor : Infrastructure.Events.IEventProcessor
+    public class AnonymousCaseReportProcessor : ICanProcessEvents
     {
         readonly IAnonymousCaseReports _anonymousCaseReports;
 

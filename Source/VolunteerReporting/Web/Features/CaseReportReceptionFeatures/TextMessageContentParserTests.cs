@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Events;
 using Events.External;
 using Infrastructure.Application;
-using Infrastructure.Events;
+using doLittle.Events;
 using Read.HealthRiskFeatures;
 using System;
 

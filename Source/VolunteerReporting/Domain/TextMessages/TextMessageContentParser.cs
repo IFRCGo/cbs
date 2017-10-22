@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Linq;
 
-namespace Read.TextMessageRecievedFeatures
+namespace Domain.TextMessages
 {
     /// summary
     /// Parse the content of Case Reports sent by SMS
     /// summary
-    public class TextMessageContentParser
+    public class TextMessageContentParser : ITextMessageContentParser
     {    
-        public static CaseReportContent Parse(string text)
+        public CaseReportContent Parse(string text)
         {
             // expected format of sms content: Event # sex of case # Age of case #
             //or Event	# Number of male cases five or under # Number of male cases over 5	# Number of female cases five or under # Number of female cases over five
@@ -61,35 +61,4 @@ namespace Read.TextMessageRecievedFeatures
             return int.Parse(input);
         }
     }
-
-    public abstract class CaseReportContent
-    {        
-    }
-
-    public class MultipleCaseReportContent : CaseReportContent
-    {
-        public int HealthRiskId { get; set; }
-        public int FemalesUnder5 { get; set; }
-        public int FemalesOver5 { get; set; }
-        public int MalesUnder5 { get; set; }
-        public int MalesOver5 { get; set; }
-    }
-
-    public class SingleCaseReportContent : CaseReportContent
-    {
-        public int HealthRiskId { get; set; }
-        public Sex Sex { get; set; }
-        public int Age { get; set; }
-    }
-
-    public class InvalidCaseReportContent : CaseReportContent
-    {
-        public string ErrorMessage { get; set; } = "Text message should contain 3 or 5 numbers, separated by hashes (#). Ex: 1#3#5 or 1#3#0#4#4";
-    }
-
-    public enum Sex
-    {
-        Male = 1,
-        Female = 2
-    }     
 }

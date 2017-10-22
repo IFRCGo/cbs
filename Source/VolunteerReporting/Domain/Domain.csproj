@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="7.1.1"/>
+    <PackageReference Include="FluentValidation" Version="7.1.1" />
+    <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
 </Project>

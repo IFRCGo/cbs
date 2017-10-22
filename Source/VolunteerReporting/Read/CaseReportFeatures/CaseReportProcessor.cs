@@ -2,10 +2,11 @@ using Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events.Processing;
 
 namespace Read.CaseReportFeatures
 {
-    public class CaseReportProcessor : Infrastructure.Events.IEventProcessor
+    public class CaseReportProcessor : ICanProcessEvents
     {
         readonly ICaseReports _caseReports;
 
