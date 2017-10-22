@@ -1,11 +1,9 @@
 using Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using doLittle.Events.Processing;
 
 namespace Read.HealthRiskFeatures
 {
-    public class HealthRiskCreatedProcessor : Infrastructure.Events.IEventProcessor
+    public class HealthRiskCreatedProcessor : ICanProcessEvents
     {
         readonly IHealthRisks _healthRisks;
 

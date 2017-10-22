@@ -2,11 +2,8 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read;
 using Read.UserFeatures;
 using System;
 using System.Collections.Generic;
@@ -18,16 +15,13 @@ namespace Web
     public class UserController : Controller
     {
         readonly IUsers _users;
-        readonly IEventEmitter _eventEmitter;
         readonly ILogger<ProjectController> _logger;
 
         public UserController(
             IUsers users,
-            IEventEmitter eventEmitter,
             ILogger<ProjectController> logger)
         {
             _users = users;
-            _eventEmitter = eventEmitter;
             _logger = logger;
         }
 

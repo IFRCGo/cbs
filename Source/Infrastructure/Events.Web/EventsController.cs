@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using doLittle.Runtime.Events;
+using doLittle.Events;
 using doLittle.Types;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
