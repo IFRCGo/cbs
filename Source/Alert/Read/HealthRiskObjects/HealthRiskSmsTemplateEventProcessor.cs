@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Events.External;
+using doLittle.Events.Processing;
 
 namespace Read.HealthRiskObjects
 {
-    public class HealthRiskSmsTemplateEventProcessor : Infrastructure.Events.IEventProcessor
+    public class HealthRiskSmsTemplateEventProcessor : ICanProcessEvents
     {
         private readonly IHealthRiskSmsTemplates _healthRiskSmsTemplates;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using Events;
 using Events.External;
 using Infrastructure.Application;
-using Infrastructure.Events;
+using doLittle.Events;
 using Read;
 using Read.Alert;
 using Read.HealthRiskObjects;

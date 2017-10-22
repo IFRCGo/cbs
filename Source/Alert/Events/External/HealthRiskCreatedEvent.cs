@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Infrastructure.Events;
+using doLittle.Events;
 
 namespace Events.External
 {

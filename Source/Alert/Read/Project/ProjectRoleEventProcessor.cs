@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Events;
 using Events.External;
+using doLittle.Events.Processing;
 
 namespace Read
 {
-    public class ProjectRoleEventProcessor : Infrastructure.Events.IEventProcessor
+    public class ProjectRoleEventProcessor : ICanProcessEvents
     {
         private readonly IProjectRoles _projectRoles;
 

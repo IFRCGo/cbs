@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Events;
 using Events.External;
-using Infrastructure.Events;
+using doLittle.Events;
 using Newtonsoft.Json;
+using doLittle.Events.Processing;
 
 namespace Read
 {
-    public class OutgoingEventProcessor : Infrastructure.Events.IEventProcessor
+    public class OutgoingEventProcessor : ICanProcessEvents
     {
         private readonly IOutgoingEvents _outgoingEvents;
 
