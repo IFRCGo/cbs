@@ -23,6 +23,6 @@ only_commits:
     - <baseSourceforlder>
 
 build_script:
-- ps: ./Build/build.ps1
+  - ps: ./Build/build.ps1
 
 test: off
