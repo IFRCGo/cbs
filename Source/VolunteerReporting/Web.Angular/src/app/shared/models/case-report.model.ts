@@ -1,9 +1,9 @@
-import { Location } from './index';
+import { Location, DataCollector, HealthRisk } from './index';
 
 export class CaseReport {
     id: string;
-    dataCollectorId: string;
-    healthRiskId: string;
+    dataCollector: DataCollector;
+    healthRiskId: HealthRisk;
     numberOfFemalesOver5: number;
     numberOfFemalesUnder5: number;
     numberOfMalesOver5: number;
