@@ -15,6 +15,5 @@
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
   </ItemGroup>
 </Project>

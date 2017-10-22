@@ -1,6 +1,6 @@
 using System;
 using Concepts.enums;
-using Infrastructure.Events;
+using doLittle.Events;
 
 namespace Events
 {

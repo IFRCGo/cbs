@@ -1,8 +1,9 @@
 using Events;
+using doLittle.Events.Processing;
 
 namespace Read
 {
-    public class UserEventProcessors : Infrastructure.Events.IEventProcessor
+    public class UserEventProcessors : ICanProcessEvents
     {
         readonly IUsers _users;
 
