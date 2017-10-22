@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using doLittle.Assemblies;
+using doLittle.Assemblies.Configuration;
 using doLittle.DependencyInversion;
 using doLittle.Runtime.Applications;
 using Microsoft.Extensions.Configuration;
@@ -24,8 +26,12 @@ namespace Infrastructure.AspNet
     {
         public static IConfiguration Configuration;
         public static ILoggerFactory LoggerFactory;
-        public static IEnumerable<Assembly> Assemblies;
-        public static BoundedContext BoundedContext;
+        public static IEnumerable<Assembly> AllAssemblies;
         public static IServiceProvider ServiceProvider;
+
+        public static IAssemblyFilters AssemblyFilters;
+        public static AssembliesConfiguration AssembliesConfiguration; 
+        public static IAssemblyProvider AssemblyProvider;
+        public static IAssemblies Assemblies;
     }
 }
