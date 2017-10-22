@@ -5,7 +5,7 @@ namespace Read
 {
     public class CartEventProcessors : ICanProcessEvents
     {
-        readonly ICarts _carts;
+        private readonly ICarts _carts;
 
         public CartEventProcessors(ICarts carts)
         {
@@ -15,7 +15,7 @@ namespace Read
         public void Process(ItemAddedToCart @event)
         {
             var cart = _carts.GetById(@event.Cart);
-            cart.Add(@event.Product, @event.Quantity, new Price 
+            cart.Add(@event.Product, @event.Quantity, new Price
             {
                 Net = @event.NetItemPrice,
                 Gross = @event.GrossItemPrice
