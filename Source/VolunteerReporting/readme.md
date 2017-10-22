@@ -1,7 +1,7 @@
 # Volunteer Reporting
 
 ## Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/o77909lns7ubfxdl?svg=true)](https://ci.appveyor.com/project/RFMoore/cbs)
+[![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master)
 
 ## Prerequisites
 
