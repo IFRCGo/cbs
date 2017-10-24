@@ -5,14 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FakeItEasy" Version="4.1.1" />
     <PackageReference Include="xunit" Version="2.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Read\Read.csproj" />
+    <ProjectReference Include="..\..\Web\Web.csproj" />
   </ItemGroup>
-
+  
 </Project>
