@@ -16,10 +16,6 @@
             "externalConsole": false,
             "stopAtEntry": false,
             "justMyCode": false,
-            "sourceFileMap": {
-                "C:\\projects\\dotnet-runtime\\Source\\Events.Coordination\\UncommittedEventStreamCoordinator.cs": "/Users/einari/Projects/doLittle/Runtime/Source/Events.Coordination/UncommittedEventStreamCoordinator.cs",
-                "C:\\projects\\dotnet-runtime\\Source\\Events.Storage\\EventEnvelopes.cs": "/Users/einari/Projects/doLittle/Runtime/Source/Events.Storage/EventEnvelopes.cs"
-            },
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
