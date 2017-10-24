@@ -17,7 +17,14 @@ let forTests = false;
 let ignoreRewriteFolder = false;
 
 let settings = {
-    workingDir: ""
+    "build": {
+        "workingDir": ""
+    },
+    "test": {
+        "workingDir": ""
+    },
+    "workingDir": ""
+    
 };
 
 
