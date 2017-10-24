@@ -1,10 +1,11 @@
 using Read;
-using Read.AnonymousCaseReportFeatures;
-using Read.HealthRiskFeatures;
+using Read.AnonymousCaseReports;
+using Read.HealthRisks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Concepts;
 
 namespace Web.Models
 {

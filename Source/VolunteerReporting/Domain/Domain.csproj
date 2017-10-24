@@ -8,6 +8,7 @@
     <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha*" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
 </Project>

@@ -1,23 +1,25 @@
-using doLittle.Events;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using Read;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using Events.External;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using Read.TextMessageRecievedFeatures;
-using Read.HealthRiskFeatures;
+using Read.HealthRisks;
+using Infrastructure.AspNet;
+using Events;
+using Events.External;
+using Infrastructure.TextMessaging;
+using Read.CaseReports;
+using Read.DataCollectors;
 
 namespace Web
 {
     [Route("api/testdatagenerator")]
-    public class TestDataGeneratorController
+    public class TestDataGeneratorController : BaseController
     {
-        private IEventEmitter _eventEmitter;
-        private IMongoDatabase _database;
+        private readonly IMongoDatabase _database;
+        private readonly ITextMessageProcessors _textMessageProcessors;
 
         private string[] _phoneNumbers = new[] {
             "",         // missing
@@ -27,10 +29,11 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
+        
 
-        public TestDataGeneratorController(IEventEmitter eventEmitter, IMongoDatabase database)
+        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
         {
-            _eventEmitter = eventEmitter;
+            _textMessageProcessors = textMessageProcessors;
             _database = database;
         }
 
@@ -42,16 +45,16 @@ namespace Web
             CreateTextMessages();
         }
 
-         [HttpGet("healthrisks")]
-         public void CreateHealthRisks()
-         {
-             var _collection = _database.GetCollection<HealthRisk>("HealthRisk");
-             _collection.DeleteMany(v => true);
- 
-             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(File.ReadAllText("./TestData/HealthRisks.json"));
-             foreach (var healthRisk in healthRisks)
-                 _eventEmitter.Emit("HealthRiskCreated", healthRisk);
-         }
+        [HttpGet("healthrisks")]
+        public void CreateHealthRisks()
+        {
+            var _collection = _database.GetCollection<HealthRisk>("HealthRisk");
+            _collection.DeleteMany(v => true);
+
+            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
+            foreach (var healthRisk in healthRisks)
+                Apply(healthRisk.Id, healthRisk);
+        }
 
         [HttpGet("datacollectors")]
         public void CreateDataCollectors()
@@ -59,13 +62,14 @@ namespace Web
             var _collection = _database.GetCollection<DataCollector>("DataCollector");
             _collection.DeleteMany(v => true);
 
-            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(File.ReadAllText("./TestData/DataCollectors.json"));
+            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
             foreach (var dataCollector in dataCollectors)
             {
-                _eventEmitter.Emit("DataCollectorAdded", dataCollector);
-                _eventEmitter.Emit("PhoneNumberAdded", new PhoneNumberAdded() {
+                Apply(dataCollector.Id, dataCollector);
+                Apply(Guid.NewGuid(), new PhoneNumberAdded
+                {
                     DataCollectorId = dataCollector.Id,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
                 });
@@ -76,7 +80,7 @@ namespace Web
         [HttpGet("producejsonfortextmessages")]
         public void ProduceJsonForTextMessages()
         {
-            var events = new List<TextMessageReceived>();
+            var events = new List<TextMessage>();
             var randomizer = new Random();
             var keywords = new[] { "" };
             var healthRisks = _database.GetCollection<HealthRisk>("HealthRisk").Find(Builders<HealthRisk>.Filter.Empty).ToList();
@@ -87,7 +91,7 @@ namespace Web
             {
                 var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
-                var textMessage = new TextMessageReceived()
+                var textMessage = new TextMessage()
                 {
                     Id = Guid.NewGuid(),
                     Keyword = keywords[randomizer.Next(keywords.Length)],
@@ -107,7 +111,7 @@ namespace Web
                 events.Add(textMessage);
             }
 
-            File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+            System.IO.File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events, Formatting.Indented));
         }
 
         private string CreateInvalidMessage()
@@ -140,26 +144,22 @@ namespace Web
         [HttpGet("textmessages")]
         public void CreateTextMessages()
         {
-            var _collection = _database.GetCollection<ReceivedTextMessage>("TextMessages");
-            _collection.DeleteMany(v => true);
-
-            var _caseReportsCollection = _database.GetCollection<ReceivedTextMessage>("CaseReport");
+            var _caseReportsCollection = _database.GetCollection<CaseReport>("CaseReport");
             _caseReportsCollection.DeleteMany(v => true);
 
-
-            var textMessagesEvents = JsonConvert.DeserializeObject<TextMessageReceived[]>(File.ReadAllText("./TestData/TextMessagesReceived.json"));
-            foreach (var @event in textMessagesEvents)
+            var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
+            foreach (var message in textMessagesEvents)
             {
                 try
                 {
-                    _eventEmitter.Emit("TextMessageReceived", @event);
+                    _textMessageProcessors.Process(message);
                 }
                 catch (Exception ex)
                 {
                     Console.Error.WriteLine(ex.ToString());
                 }
             }
-                
+
         }
     }
 }
