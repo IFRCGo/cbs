@@ -68,10 +68,11 @@ if (rootDir.length == 0) {
 if (type == "build" && forTests) {
     currentDir = currentDir.replace("Source", "Specifications");
 } else {
+    /*
     if (!ignoreRewriteFolder) {
         if (type == "test" && currentDir.indexOf("Source") >= 0) specsFor = true;
         if (type == "build" && currentDir.indexOf("Specifications") >= 0) currentDir = currentDir.replace("Specifications", "Source");
-    }
+    }*/
 }
 
 

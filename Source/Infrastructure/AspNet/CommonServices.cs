@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddMvc(config =>
                 {
                     config.Filters.Add(new ValidationFilter());
+                    config.Filters.Add(new CommandFilter());
 
                 })
                 .AddFluentValidation(fv =>

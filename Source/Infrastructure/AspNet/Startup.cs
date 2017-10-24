@@ -19,9 +19,6 @@ namespace Infrastructure.AspNet
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
-            builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
-
             Internals.AllAssemblies.ForEach(assembly => 
             {
                 builder.RegisterAssemblyModules(assembly);
@@ -29,7 +26,6 @@ namespace Infrastructure.AspNet
             });
 
             builder.RegisterSource(new MongoDBRegistrationSource());
-            builder.RegisterSource(new EventProcessorRegistrationSource());
         }
     }
 }

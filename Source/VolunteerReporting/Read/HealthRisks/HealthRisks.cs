@@ -24,6 +24,12 @@ namespace Read.HealthRisks
             return _collection.Find(d => d.ReadableId == readableId).Single();
         }
 
+        public Guid GetIdFromReadableId(int readbleId)
+        {
+            var healthRiskId = _collection.Find(d => d.ReadableId == readbleId).Project(_ => _.Id).FirstOrDefault();
+            return healthRiskId;
+        }
+
         public void Save(HealthRisk healthRisk)
         {
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);

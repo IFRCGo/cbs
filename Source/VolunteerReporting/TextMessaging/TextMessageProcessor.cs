@@ -2,171 +2,146 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Events;
 using Infrastructure.TextMessaging;
-using doLittle.Runtime.Events;
-using doLittle.Events;
 using Concepts;
 using Domain;
 using Read.DataCollectors;
 using Read.HealthRisks;
+using doLittle.Domain;
+using System;
 
 namespace TextMessaging
 {
+    /// <summary>
+    /// Represents an implementation of <see cref="ICanProcessTextMessage"/>
+    /// </summary>
     public class TextMessageProcessor : ICanProcessTextMessage
     {
         readonly IDataCollectors _dataCollectors;
         readonly IHealthRisks _healthRisks;
-        readonly ITextMessageContentParser _textMessageContentParser;
+        readonly ITextMessageParser _textMessageParser;
+        private readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="TextMessageProcessor"/>
+        /// </summary>
+        /// <param name="dataCollectors"><see cref="IDataCollectors"/></param>
+        /// <param name="healthRisks"><see cref="IHealthRisks"/></param>
+        /// <param name="textMessageParser"><see cref="ITextMessageContentParser"/></param>
+        /// <param name="caseReportingRepository"><see cref="IAggregateRootRepository<CaseReporting>"/></param>
         public TextMessageProcessor(
-            IDataCollectors dataCollectors, 
+            IDataCollectors dataCollectors,
             IHealthRisks healthRisks,
-            ITextMessageContentParser textMessageContentParser)
+            ITextMessageParser textMessageParser,
+            IAggregateRootRepositoryFor<CaseReporting> caseReportingRepository)
         {
             _dataCollectors = dataCollectors;
             _healthRisks = healthRisks;
-            _textMessageContentParser = textMessageContentParser;
+            _textMessageParser = textMessageParser;
+            _caseReportingRepository = caseReportingRepository;
         }
 
+        /// <inheritdoc/>
         public void Process(TextMessage message)
         {
-            var caseReportContent = _textMessageContentParser.Parse(message.Message);
+            var parsingResult = _textMessageParser.Parse(message);
             var dataCollectorId = _dataCollectors.GetIdByPhoneNumber(message.OriginNumber);
+            var unknown = dataCollectorId == DataCollectorId.NotSet;
 
-            var caseReporting = new CaseReporting(EventSourceId.New());
-
-
-            switch (caseReportContent)
+            var caseReportId = Guid.NewGuid();
+            var caseReporting = _caseReportingRepository.Get(caseReportId);
+            if (!parsingResult.IsValid)
             {
-                case InvalidCaseReportContent invalidCaseReport:
-                    caseReporting.RegisterInvalidCaseReport(dataCollectorId, message.Message, invalidCaseReport.ErrorMessage);
-                    break;
+                ReportInvalidMessage(message, parsingResult, dataCollectorId, unknown, caseReporting);
+                return;
+            }
 
-                case SingleCaseReportContent singleCaseReport:
-                    if (dataCollectorId == DataCollectorId.NotSet)
-                        caseReporting.RegisterAnonymousCaseReport()
-                    else
-                        caseReporting.RegisterCaseReport()
-                    break;
+            // Todo: Should we have a validation check if we actually get a health risk id
+            var healthRiskId = _healthRisks.GetIdFromReadableId(parsingResult.Numbers[0]);
+            if (!parsingResult.HasMultipleCases)
+            {
+                var sex = (Sex)parsingResult.Numbers[1];
+                var age = parsingResult.Numbers[2];
+                ReportSingle(message, dataCollectorId, caseReporting, healthRiskId, sex, age, unknown);
+            }
+            else
+            {
+                var malesUnder5 = parsingResult.Numbers[1];
+                var malesOver5 = parsingResult.Numbers[2];
+                var femalesUnder5 = parsingResult.Numbers[3];
+                var femalesOver5 = parsingResult.Numbers[4];
 
-                case MultipleCaseReportContent multiCaseReport:
-                    if (dataCollectorId == DataCollectorId.NotSet)
-                        EmitAnonymousCaseReportReceived(multiCaseReport, message);
-                    else
-                        EmitCaseReportReceived(multiCaseReport, dataCollector, message);
-                    break;
+                ReportMultiple(message, dataCollectorId, unknown, caseReporting, healthRiskId, malesUnder5, malesOver5, femalesUnder5, femalesOver5);
             }
         }
 
-        private void EmitCaseReportReceived(MultipleCaseReportContent multiCaseReport, DataCollector dataCollector, TextMessage message)
+        void ReportInvalidMessage(TextMessage message, TextMessageParsingResult parsingResult, DataCollectorId dataCollectorId, bool unknown, CaseReporting caseReporting)
         {
-            var healthRisk = _healthRisks.GetByReadableId(multiCaseReport.HealthRiskId);
+            if (!unknown) caseReporting.ReportInvalidReport(dataCollectorId, message.Message, parsingResult.ErrorMessages);
+            else caseReporting.ReportInvalidReportFromUnknownDataCollector(message.OriginNumber, message.Message, parsingResult.ErrorMessages);
+        }
 
-            var eventSourceId = EventSourceId.New();
-
-            Apply(eventSourceId, new CaseReportReceived
+        void ReportSingle(
+            TextMessage message,
+            DataCollectorId dataCollectorId,
+            CaseReporting caseReporting,
+            Guid healthRiskId,
+            Sex sex,
+            int age,
+            bool unknown)
+        {
+            if (!unknown)
             {
-                Id = eventSourceId,
-                DataCollectorId = dataCollector.Id,
-                HealthRiskId = healthRisk.Id,
-                NumberOfFemalesUnder5 = multiCaseReport.FemalesUnder5,
-                NumberOfFemalesOver5 = multiCaseReport.FemalesOver5,
-                NumberOfMalesUnder5 = multiCaseReport.MalesUnder5,
-                NumberOfMalesOver5 = multiCaseReport.MalesOver5,
-                Latitude = message.Latitude,
-                Longitude = message.Longitude,
-                Timestamp = message.Sent
-            });
-        }
-
-        private void EmitAnonymousCaseReportReceived(MultipleCaseReportContent report, TextMessage message)
-        {
-            var healthRisk = _healthRisks.GetByReadableId(report.HealthRiskId);
-
-            var eventSourceId = EventSourceId.New();
-
-            Apply(eventSourceId, new AnonymousCaseReportRecieved
+                caseReporting.Report(
+                    dataCollectorId,
+                    healthRiskId,
+                    sex,
+                    age,
+                    message.Longitude,
+                    message.Latitude);
+            }
+            else
             {
-                Id = eventSourceId,
-                PhoneNumber = message.OriginNumber,
-                HealthRiskId = healthRisk.Id,
-                NumberOfFemalesUnder5 = report.FemalesUnder5,
-                NumberOfFemalesOver5 = report.FemalesOver5,
-                NumberOfMalesUnder5 = report.MalesUnder5,
-                NumberOfMalesOver5 = report.MalesOver5,
-                Latitude = message.Latitude,
-                Longitude = message.Longitude,
-                Timestamp = message.Sent
-            });
+                caseReporting.ReportFromUnknownDataCollector(
+                    message.OriginNumber,
+                    healthRiskId,
+                    sex,
+                    age,
+                    message.Longitude,
+                    message.Latitude);
+
+            }
         }
 
-        private void EmitCaseReportReceived(SingleCaseReportContent singleCaseReport, DataCollector dataCollector, TextMessage message)
+
+        void ReportMultiple(TextMessage message, DataCollectorId dataCollectorId, bool unknown, CaseReporting caseReporting, Guid healthRiskId, int malesUnder5, int malesOver5, int femalesUnder5, int femalesOver5)
         {
-            var healthRisk = _healthRisks.GetByReadableId(singleCaseReport.HealthRiskId);
-
-            var eventSourceId = EventSourceId.New();
-
-            Apply(eventSourceId, new CaseReportReceived
+            if (!unknown)
             {
-                Id = eventSourceId,
-                DataCollectorId = dataCollector.Id,
-                HealthRiskId = healthRisk.Id,
-                NumberOfFemalesUnder5 =
-                singleCaseReport.Age <= 5 && singleCaseReport.Sex == Sex.Female ? 1 : 0,
-                NumberOfFemalesOver5 =
-                singleCaseReport.Age > 5 && singleCaseReport.Sex == Sex.Female ? 1 : 0,
-                NumberOfMalesUnder5 =
-                singleCaseReport.Age <= 5 && singleCaseReport.Sex == Sex.Male ? 1 : 0,
-                NumberOfMalesOver5 =
-                singleCaseReport.Age > 5 && singleCaseReport.Sex == Sex.Male ? 1 : 0,
-                Latitude = message.Latitude,
-                Longitude = message.Longitude,
-                Timestamp = message.Sent
-            });
-        }
-
-        private void EmitAnonymousCaseReportReceived(SingleCaseReportContent singleCaseReport, TextMessage message)
-        {
-            var healthRisk = _healthRisks.GetByReadableId(singleCaseReport.HealthRiskId);
-            var eventSourceId = EventSourceId.New();
-            
-            Apply(eventSourceId, new AnonymousCaseReportRecieved
+                caseReporting.ReportMultiple(
+                    dataCollectorId,
+                    healthRiskId,
+                    malesUnder5,
+                    malesOver5,
+                    femalesUnder5,
+                    femalesOver5,
+                    message.Longitude,
+                    message.Latitude
+                );
+            }
+            else
             {
-                Id = eventSourceId,
-                PhoneNumber = message.OriginNumber,
-                HealthRiskId = healthRisk.Id,
-                NumberOfFemalesUnder5 =
-                singleCaseReport.Age <= 5 && singleCaseReport.Sex == Sex.Female ? 1 : 0,
-                NumberOfFemalesOver5 =
-                singleCaseReport.Age > 5 && singleCaseReport.Sex == Sex.Female ? 1 : 0,
-                NumberOfMalesUnder5 =
-                singleCaseReport.Age <= 5 && singleCaseReport.Sex == Sex.Male ? 1 : 0,
-                NumberOfMalesOver5 =
-                singleCaseReport.Age > 5 && singleCaseReport.Sex == Sex.Male ? 1 : 0,
-                Latitude = message.Latitude,
-                Longitude = message.Longitude,
-                Timestamp = message.Sent
-            });
+                caseReporting.ReportMultipleFromUnknownDataCollector(
+                    message.OriginNumber,
+                    healthRiskId,
+                    malesUnder5,
+                    malesOver5,
+                    femalesUnder5,
+                    femalesOver5,
+                    message.Longitude,
+                    message.Latitude
+                );
+            }
         }
-
-        private void EmitTextMessageParsingFailed(InvalidCaseReportContent invalidCaseReport, DataCollector dataCollector, TextMessage message)
-        {
-            var eventSourceId = EventSourceId.New();
-            Apply(eventSourceId, new TextMessageParsingFailed
-            {
-                Id = eventSourceId,
-                DataCollectorId = dataCollector.Id,
-                Message = message.Message,
-                ParsingErrorMessage = invalidCaseReport.ErrorMessage
-            });
-        }
-
-
-        private void Apply(EventSourceId eventSourceId, IEvent @event)
-        {
-
-        }
-        
     }
 }

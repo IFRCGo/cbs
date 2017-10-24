@@ -36,7 +36,7 @@ namespace Infrastructure.AspNet
         /// </summary>
         /// <param name="eventSourceId"></param>
         /// <param name="@event"></param>
-        public void Apply(EventSourceId eventSourceId, IEvent @event)
+        protected void Apply(EventSourceId eventSourceId, IEvent @event)
         {
             var transactionCorrelationId = TransactionCorrelationId.New();
             var eventSource = GetEventSourceForThisController(eventSourceId);

@@ -1,5 +1,5 @@
 using Read;
-using Read.AnonymousCaseReports;
+using Read.CaseReports;
 using Read.HealthRisks;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Concepts;
 
 namespace Web.Models
 {
-    public class AnonymousCaseReportExpanded
+    public class CaseReportForUnknownDataCollectorExpanded
     {
         public Guid Id { get; private set; }
         public HealthRisk HealthRisk { get; private set; }
@@ -20,7 +20,7 @@ namespace Web.Models
         public DateTimeOffset Timestamp { get; private set; }
         public Location Location { get; private set; }
 
-        public AnonymousCaseReportExpanded(AnonymousCaseReport caseReport, IHealthRisks healthRisks)
+        public CaseReportForUnknownDataCollectorExpanded(CaseReportFromUnknownDataCollector caseReport, HealthRisk healthRisk)
         {
             Id = caseReport.Id;
             NumberOfFemalesOver5 = caseReport.NumberOfFemalesOver5;
@@ -29,7 +29,7 @@ namespace Web.Models
             NumberOfMalesUnder5 = caseReport.NumberOfMalesUnder5;
             Timestamp = caseReport.Timestamp;
             Location = caseReport.Location;
-            HealthRisk = healthRisks.GetById(caseReport.HealthRiskId);
+            HealthRisk = healthRisk;
         }
 
     }

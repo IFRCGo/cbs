@@ -6,7 +6,8 @@ namespace Infrastructure.TextMessaging
     public class TextMessageProcessors : ITextMessageProcessors
     {
         readonly IInstancesOf<ICanProcessTextMessage> _processors;
-        public TextMessageProcessors(IInstancesOf<ICanProcessTextMessage> processors, int blah)
+        
+        public TextMessageProcessors(IInstancesOf<ICanProcessTextMessage> processors)
         {
             _processors = processors;
         }

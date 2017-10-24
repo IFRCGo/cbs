@@ -1,13 +1,17 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+/*
 using Events;
 using Events.External;
 using Infrastructure.Application;
 using doLittle.Events;
 using Read.HealthRiskFeatures;
 using System;
+*/
+
 
 namespace TextMessaging.Tests
 {
+    /*
     [TestClass]
     public class TextMessageContentParserTests
     {        
@@ -61,4 +65,5 @@ namespace TextMessaging.Tests
             Assert.AreEqual(expectedFemaleOverFive, result.FemalesOver5);
         }
     }
+    */
 }
