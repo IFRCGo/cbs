@@ -50,9 +50,6 @@ namespace Web
             var cartId = _carts.GetCartIdForCurrentUser();
             var price = _pricing.GetForProduct(command.Product);
 
-            var eventProcessors = _serviceProvider.GetService(typeof(IInstancesOf<IKnowAboutEventProcessors>)) as IInstancesOf<IKnowAboutEventProcessors>;
-            var es = eventProcessors.ToArray();
-
             Apply(cartId, new ItemAddedToCart
             {
                 Cart = cartId,
