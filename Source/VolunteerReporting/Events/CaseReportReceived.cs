@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using doLittle.Events;
-using Concepts;
 
 namespace Events
 {
@@ -13,7 +12,7 @@ namespace Events
         public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
         public Guid HealthRiskId { get; set; }
-        public Sex Sex { get; set; }
+        public int Sex { get; set; }
         public int Age { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

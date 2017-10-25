@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using Concepts;
 using doLittle.Events;
 
 namespace Events

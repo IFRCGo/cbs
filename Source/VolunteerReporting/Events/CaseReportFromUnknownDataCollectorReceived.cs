@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using doLittle.Events;
-using Concepts;
 
 namespace Events
 {
@@ -14,7 +13,7 @@ namespace Events
         public Guid HealthRiskId { get; set; }
         public string Origin { get; set; }
         public DateTimeOffset Timestamp { get; set; }
-        public Sex Sex { get; set; }
+        public int Sex { get; set; }
         public int Age { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

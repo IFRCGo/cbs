@@ -7,8 +7,4 @@
     <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-  </ItemGroup>
-
 </Project>
