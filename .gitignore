@@ -43,3 +43,4 @@ Thumbs.db
 #Build tools #
 ##############
 Build/tools/
+.buildsettings

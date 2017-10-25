@@ -2,13 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
+using doLittle.Events.Processing;
 using Events;
-using Infrastructure.Events;
 
 namespace Read.ProjectFeatures
 {
-    public class ProjectEventProcessor : IEventProcessor
+    public class ProjectEventProcessor : ICanProcessEvents
     {
         readonly IProjects _projects;
 

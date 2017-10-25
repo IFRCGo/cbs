@@ -1,8 +1,9 @@
+using doLittle.Events.Processing;
 using Events;
 
 namespace Read
 {
-    public class CartEventProcessors : Infrastructure.Events.IEventProcessor
+    public class CartEventProcessors : ICanProcessEvents
     {
         private readonly ICarts _carts;
 

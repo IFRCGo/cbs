@@ -5,35 +5,35 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Application;
-using Infrastructure.Events;
+using Infrastructure.AspNet;
 using Read;
 using Domain;
 using Events;
+using doLittle.Types;
+using doLittle.Runtime.Events.Processing;
+using System.Linq;
 
 namespace Web
 {
     [Route("api/shopping/cart")]
-    public class CartController : Controller
+    public class CartController : BaseController
     {
-        public static readonly Feature Feature = "Cart";
-
         readonly ICarts _carts;
-        readonly IEventEmitter _eventEmitter;
         readonly IPricing _pricing;
         readonly ILogger<CartController> _logger;
+        readonly IServiceProvider _serviceProvider;
 
         public CartController(
             ICarts carts,
             IPricing pricing,
-            IEventEmitter eventEmitter,
-            ILogger<CartController> logger)
+            ILogger<CartController> logger,
+            IServiceProvider serviceProvider)
         {
             _carts = carts;
-            _eventEmitter = eventEmitter;
             _pricing = pricing;
             _logger = logger;
             _pricing = pricing;
+            _serviceProvider = serviceProvider;
         }
 
 
@@ -50,7 +50,7 @@ namespace Web
             var cartId = _carts.GetCartIdForCurrentUser();
             var price = _pricing.GetForProduct(command.Product);
 
-            _eventEmitter.Emit(Feature, new ItemAddedToCart
+            Apply(cartId, new ItemAddedToCart
             {
                 Cart = cartId,
                 Product = command.Product,

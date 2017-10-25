@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Events\Events.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha*"/>
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha*"/>
+  </ItemGroup>
+  
+
+</Project>

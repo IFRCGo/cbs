@@ -14,7 +14,6 @@
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Application\Infrastructure.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj" />
   </ItemGroup>
 </Project>

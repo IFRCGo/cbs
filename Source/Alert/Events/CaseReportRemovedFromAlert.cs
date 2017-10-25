@@ -1,4 +1,4 @@
-using Infrastructure.Events;
+using doLittle.Events;
 
 namespace Events
 {

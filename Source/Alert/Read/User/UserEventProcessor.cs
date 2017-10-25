@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Events;
 using Events.External;
+using doLittle.Events.Processing;
 
 namespace Read
 {
-    public class UserEventProcessor : Infrastructure.Events.IEventProcessor
+    public class UserEventProcessor : ICanProcessEvents
     {
         private readonly IUsers _users;
 

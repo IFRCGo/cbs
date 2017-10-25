@@ -3,20 +3,17 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using Infrastructure.Events;
+using doLittle.Events;
 
 namespace Events
 {
     public class CaseReportReceived : IEvent
     {
-        public Guid Id { get; set; }
-        public Guid HealthRiskId { get; set; }
+        public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
-        public DateTimeOffset Timestamp { get; set; }
-        public int NumberOfMalesUnder5 { get; set; }
-        public int NumberOfMalesOver5 { get; set; }
-        public int NumberOfFemalesUnder5 { get; set; }
-        public int NumberOfFemalesOver5 { get; set; }
+        public Guid HealthRiskId { get; set; }
+        public int Sex { get; set; }
+        public int Age { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
     }
