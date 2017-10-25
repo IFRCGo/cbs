@@ -6,11 +6,9 @@
 using System;
 using System.Collections.Generic;
 using Events;
-using Infrastructure.Application;
-using Infrastructure.Events;
+using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read;
 using Read.NationalSocietyFeatures;
 
 namespace Web
@@ -20,22 +18,17 @@ namespace Web
     /// API for NationalSociety
     /// </summary>
     [Route("api/nationalsociety")]
-    public class NationalSocietyController : Controller
+    public class NationalSocietyController : BaseController
     {
-        public static readonly Feature Feature = "NationalSociety";
-        private readonly IEventEmitter _eventEmitter;
         private readonly ILogger<ProjectController> _logger;
-
         private readonly INationalSocieties _nationalSociety;
 
         public NationalSocietyController(
             INationalSocieties nationalSociety,
-            IEventEmitter eventEmitter,
             ILogger<ProjectController> logger
         )
         {
             _logger = logger;
-            _eventEmitter = eventEmitter;
             _nationalSociety = nationalSociety;
         }
 
@@ -48,7 +41,8 @@ namespace Web
         [HttpPost]
         public void AddNationalSociety()
         {
-            _eventEmitter.Emit(Feature, new NationalSocietyCreated
+            var id = Guid.NewGuid();
+            Apply(id, new NationalSocietyCreated
             {
                 Name = Guid.NewGuid().ToString(),
                 Id = Guid.NewGuid()

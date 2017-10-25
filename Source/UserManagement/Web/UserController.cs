@@ -8,36 +8,33 @@ using Domain;
 using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Infrastructure.Events;
+using doLittle.Events;
 using Read;
+using Infrastructure.AspNet;
 
 namespace Web
 {
     [Route("api/usermanagement/")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        public static readonly Infrastructure.Application.Feature Feature = "User";
-
         readonly IUsers _users;
-        readonly IEventEmitter _eventEmitter;
         readonly ILogger<UserController> _logger;
 
         public UserController(
             IUsers users,
-            IEventEmitter eventEmitter,
             ILogger<UserController> logger)
         {
             _users = users;
-            _eventEmitter = eventEmitter;
             _logger = logger;
         }
 
         [HttpPost("staffuser")]
         public void Add([FromBody] AddStaffUser command)
         {
-            _eventEmitter.Emit(Feature, new StaffUserAdded
+            var id = Guid.NewGuid();
+            Apply(id, new StaffUserAdded
             {
-                Id = new Guid(),
+                Id = id,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 Age = command.Age,
@@ -52,7 +49,7 @@ namespace Web
         [HttpPost("datacollector")]
         public void Add([FromBody] AddDataCollector command)
         {
-            _eventEmitter.Emit(Feature, new DataCollectorAdded
+            Apply(command.Id, new DataCollectorAdded
             {
                 Id = command.Id,
                 FirstName = command.FirstName,
@@ -77,7 +74,7 @@ namespace Web
         [HttpGet("datacollectors")]
         public IEnumerable<DataCollector> GetAllDataCollectors()
         {
-              Console.WriteLine("in datacollectors");
+            Console.WriteLine("in datacollectors");
             var users = _users.GetAllDataCollectors();
             return users;
         }

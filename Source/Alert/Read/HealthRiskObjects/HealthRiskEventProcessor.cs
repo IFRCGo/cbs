@@ -1,8 +1,9 @@
 using Events.External;
+using doLittle.Events.Processing;
 
 namespace Read.HealthRiskObjects
 {
-    public class HealthRiskEventProcessor : Infrastructure.Events.IEventProcessor
+    public class HealthRiskEventProcessor : ICanProcessEvents
     {
         private readonly IHealthRisks _healthRisks;
 

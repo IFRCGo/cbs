@@ -1,10 +1,11 @@
 {
     "files.exclude": {
         "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
         "**/.DS_Store": true,
-        "**/bin": true,
-        "**/obj": true,
-        "**/node_modules": true,
-        "**/package-lock.json": true
+        "**/bin/**/*": true,
+        "**/obj/**/*": true
     }
 }

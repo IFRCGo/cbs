@@ -16,11 +16,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddMvc(config =>
                 {
                     config.Filters.Add(new ValidationFilter());
+                    config.Filters.Add(new CommandFilter());
 
                 })
                 .AddFluentValidation(fv =>
                 {
-                    Internals.Assemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
+                    Internals.AllAssemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
                 });
 ;
             services.Configure<ConnectionStringsOptions>(Internals.Configuration);

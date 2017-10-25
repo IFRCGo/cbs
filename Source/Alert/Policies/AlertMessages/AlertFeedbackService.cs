@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Infrastructure.Application;
-using Infrastructure.Events;
+using doLittle.Events;
 using Read;
 using Read.Disease;
 using Policies.AlertMessages;

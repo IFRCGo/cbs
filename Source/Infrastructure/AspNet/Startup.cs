@@ -2,8 +2,6 @@ using AspNet.MongoDB;
 using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
-using Infrastructure.Application;
-using Infrastructure.Events;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -21,18 +19,12 @@ namespace Infrastructure.AspNet
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterInstance<ApplicationInformation>(new ApplicationInformation(Internals.BoundedContext));
-
-            builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
-            builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
-
-            Internals.Assemblies.ForEach(assembly => 
+            Internals.AllAssemblies.ForEach(assembly => 
             {
-                builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
                 builder.RegisterAssemblyModules(assembly);
+                builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
             });
 
-            builder.RegisterSource(new EventProcessorRegistrationSource());
             builder.RegisterSource(new MongoDBRegistrationSource());
         }
     }

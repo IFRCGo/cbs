@@ -2,15 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using doLittle.Events.Processing;
 
 namespace Read.NationalSocietyFeatures
 {
-	public class NationalSocietyCreatedProcessor : Infrastructure.Events.IEventProcessor
+    public class NationalSocietyCreatedProcessor : ICanProcessEvents
 	{
         readonly INationalSocieties _nationalSocieties;
 

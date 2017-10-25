@@ -6,10 +6,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeoCoordinate" Version="2.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha*"/>
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha*"/>
   </ItemGroup>
 </Project>

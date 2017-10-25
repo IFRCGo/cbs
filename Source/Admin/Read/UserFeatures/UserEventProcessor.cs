@@ -3,13 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using doLittle.Events.Processing;
 using Events;
 using Events.External;
-using Infrastructure.Events;
 
 namespace Read.UserFeatures
 {
-    public class UserEventProcessor : IEventProcessor
+    public class UserEventProcessor : ICanProcessEvents
     {
         readonly IUsers _users;
 

@@ -1,6 +1,7 @@
-using Read;
-using Read.CaseReportFeatures;
-using Read.HealthRiskFeatures;
+using Concepts;
+using Read.DataCollectors;
+using Read.CaseReports;
+using Read.HealthRisks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Web.Models
         public DateTimeOffset Timestamp { get; private set; }
         public Location Location { get; private set; }
 
-        public CaseReportExpanded(CaseReport caseReport, IDataCollectors dataCollectors, IHealthRisks healthRisks)
+        public CaseReportExpanded(CaseReport caseReport, DataCollector dataCollector, HealthRisk healthRisk)
         {
             Id = caseReport.Id;
             NumberOfFemalesOver5 = caseReport.NumberOfFemalesOver5;
@@ -29,8 +30,8 @@ namespace Web.Models
             NumberOfMalesUnder5 = caseReport.NumberOfMalesUnder5;
             Timestamp = caseReport.Timestamp;
             Location = caseReport.Location;
-            DataCollector = dataCollectors.GetById(caseReport.DataCollectorId);
-            HealthRisk = healthRisks.GetById(caseReport.HealthRiskId);
+            DataCollector = dataCollector;
+            HealthRisk = healthRisk;
         }
 
     }
