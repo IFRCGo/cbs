@@ -56,7 +56,7 @@ namespace Domain
                 CaseReportId = EventSourceId,
                 DataCollectorId = dataCollectorId,
                 HealthRiskId = healthRiskId,
-                Sex = sex,
+                Sex = (int)sex,
                 Age = age,
                 Longitude = longitude,
                 Latitude = latitude
@@ -99,7 +99,7 @@ namespace Domain
                 CaseReportId = EventSourceId,
                 Origin = origin,
                 HealthRiskId = healthRiskId,
-                Sex = sex,
+                Sex = (int)sex,
                 Age = age,
                 Longitude = longitude,
                 Latitude = latitude
