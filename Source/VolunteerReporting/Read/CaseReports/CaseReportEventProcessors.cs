@@ -29,10 +29,10 @@ namespace Read.CaseReports
             var caseReport = new CaseReport(@event.CaseReportId);
             caseReport.DataCollectorId = @event.DataCollectorId;
             caseReport.HealthRiskId = @event.HealthRiskId;
-            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && @event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && @event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && @event.Sex == Sex.Male ? 1 : 0;
-            caseReport.NumberOfMalesOver5 = @event.Age > 5 && @event.Sex == Sex.Male ? 1 : 0;
+            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
+            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
+            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
+            caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             _caseReports.Save(caseReport);
         }
@@ -56,10 +56,10 @@ namespace Read.CaseReports
             var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId);
             caseReport.Origin = @event.Origin;
             caseReport.HealthRiskId = @event.HealthRiskId;
-            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && @event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && @event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && @event.Sex == Sex.Male ? 1 : 0;
-            caseReport.NumberOfMalesOver5 = @event.Age > 5 && @event.Sex == Sex.Male ? 1 : 0;
+            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
+            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
+            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
+            caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
             caseReport.Timestamp = _systemClock.GetCurrentTime();
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
