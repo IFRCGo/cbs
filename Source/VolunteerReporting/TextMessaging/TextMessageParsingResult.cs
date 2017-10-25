@@ -15,8 +15,9 @@ namespace TextMessaging
             Fragments = fragments;
             Numbers = fragments.Where(fragment => fragment.IsNumber).Select(fragment => fragment.AsNumber).ToArray();
             HasMultipleCases = Numbers.Length == 5;
-            if( Numbers.Length != 3 || Numbers.Length != 5 ) 
-                _errorMessages.Add("Message is in incorrect format - it should have 3 numbers for single case reporting and 5 for multiple cases");
+
+            ValidateAllFragmentsHasValue();
+            ValidateThatIsCorrectMessage();
         }
 
         public IEnumerable<TextMessageFragment> Fragments { get; }
@@ -33,6 +34,12 @@ namespace TextMessaging
         {
             if( Fragments.Any(fragment => !fragment.HasValue) )
                 _errorMessages.Add("Message contain one or more hashes with missing number in front or after");
+        }
+
+        void ValidateThatIsCorrectMessage()
+        {
+            if( !(Numbers.Length == 3 || Numbers.Length == 5) ) 
+                _errorMessages.Add("Message is in incorrect format - it should have 3 numbers for single case reporting and 5 for multiple cases");
         }
     }
 }
