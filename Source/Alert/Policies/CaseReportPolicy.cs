@@ -1,30 +1,28 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Events;
 using Events.External;
-using Infrastructure.Application;
-using doLittle.Events;
 using Read;
 using Read.Alert;
 using Read.HealthRiskObjects;
+using doLittle.Events.Processing;
+using doLittle.Runtime.Events.Coordination;
+using doLittle.Runtime.Transactions;
+using doLittle.Runtime.Events;
 
 namespace Policies
 {
-    public class CaseReportPolicy : IEventProcessor
+    public class CaseReportPolicy : ICanProcessEvents
     {
-        public static readonly Feature Feature = "CaseReport";
-
         private readonly ICaseReports _caseReports;
-        private readonly IEventEmitter _eventEmitter;
         private readonly IHealthRisks _healthRisks;
         private readonly IAlerts _alerts;
         private readonly IAlertFeedbackService _feedbackService;
+        private readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
 
-        public CaseReportPolicy(ICaseReports caseReports, IEventEmitter eventEmitter, IHealthRisks healthRisks, IAlertFeedbackService feedbackService, IAlerts alerts)
+        public CaseReportPolicy(ICaseReports caseReports, IHealthRisks healthRisks, IAlertFeedbackService feedbackService, IAlerts alerts, IUncommittedEventStreamCoordinator uncommittedEventStreamCoordinator)
         {
+            _uncommittedEventStreamCoordinator = uncommittedEventStreamCoordinator;
             _caseReports = caseReports;
-            _eventEmitter = eventEmitter;
             _healthRisks = healthRisks;
             _feedbackService = feedbackService;
             _alerts = alerts;
@@ -79,13 +77,16 @@ namespace Policies
                 alert.CaseReports.Add(caseReport);
                 _alerts.Save(alert);
 
-                _eventEmitter.Emit(Feature, new AlertRaised
-                {
-                });
+
+                // Todo: Temporary fix - we're not supposed to do this, awaiting the new Policy building block in doLittle to be ready
+                var stream = new UncommittedEventStream(null);
+                stream.Append(new AlertRaised(), EventSourceVersion.Zero.NextCommit());
+                _uncommittedEventStreamCoordinator.Commit(TransactionCorrelationId.New(), stream);
+
                 _feedbackService.SendFeedbackToDataCollecorsAndVerifiers(latestReports);
             }
         }
 
-        
+
     }
 }

@@ -1,28 +1,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using Events;
-using Infrastructure.Application;
 using doLittle.Events;
 using Read;
 using Read.Disease;
 using Policies.AlertMessages;
+using doLittle.Runtime.Events.Coordination;
+using doLittle.Runtime.Events;
+using doLittle.Runtime.Transactions;
 
 namespace Policies
 {
     public class AlertFeedbackService : IAlertFeedbackService
     {
-        public static readonly Feature Feature = "Alert";
-
         private readonly ISmsSendingService _smsSendingService;
         private readonly IDataCollectors _dataCollectors;
-        private readonly IEventEmitter _eventEmitter;
         private readonly IMessageTemplateService _messageTemplateService;
+        private readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
 
-        public AlertFeedbackService(ISmsSendingService smsSendingService, IDataCollectors dataCollectors, IEventEmitter eventEmitter, IMessageTemplateService messageTemplateService)
+        public AlertFeedbackService(ISmsSendingService smsSendingService, IDataCollectors dataCollectors, IMessageTemplateService messageTemplateService, IUncommittedEventStreamCoordinator uncommittedEventStreamCoordinator)
         {
             _smsSendingService = smsSendingService;
             _dataCollectors = dataCollectors;
-            _eventEmitter = eventEmitter;
+            _uncommittedEventStreamCoordinator = uncommittedEventStreamCoordinator;
             _messageTemplateService = messageTemplateService;
         }
 
@@ -38,7 +38,7 @@ namespace Policies
             {
                 string text = _messageTemplateService.ComposeMessage(EMessageTemplateNames.AlertRaisedFeedbackToDataVerifiers, healthRisk);
                 _smsSendingService.SendSMS(new [] { dataVerifier.Phone }, "");
-                _eventEmitter.Emit(Feature, new SmsSentEvent() { RecipientName = dataVerifier.Name, RecipientPhoneNumber = dataVerifier.Phone, SmsText = text});
+                ApplyEvent(new SmsSentEvent() { RecipientName = dataVerifier.Name, RecipientPhoneNumber = dataVerifier.Phone, SmsText = text});
             }
 
             // send sms to all data collecors
@@ -46,8 +46,17 @@ namespace Policies
             {
                 string text = _messageTemplateService.ComposeMessage(EMessageTemplateNames.AlertRaisedFeedbackToDataCollectors, healthRisk);
                 _smsSendingService.SendSMS(new[] { dataCollector.Phone }, "");
-                _eventEmitter.Emit(Feature, new SmsSentEvent() { RecipientName = dataCollector.Name, RecipientPhoneNumber = dataCollector.Phone, SmsText = text });
+                ApplyEvent(new SmsSentEvent() { RecipientName = dataCollector.Name, RecipientPhoneNumber = dataCollector.Phone, SmsText = text });
             }
+        }
+
+
+        void ApplyEvent(IEvent @event)
+        {
+            // Todo: Temporary fix - we're not supposed to do this, awaiting the new Policy building block in doLittle to be ready
+            var stream = new UncommittedEventStream(null);
+            stream.Append(@event, EventSourceVersion.Zero.NextCommit());
+            _uncommittedEventStreamCoordinator.Commit(TransactionCorrelationId.New(), stream);
         }
     }
 
