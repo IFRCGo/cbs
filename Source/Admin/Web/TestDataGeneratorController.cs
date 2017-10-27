@@ -10,6 +10,8 @@ using Events.External;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 using Infrastructure.AspNet;
+using Newtonsoft.Json.Linq;
+using Read.ProjectFeatures;
 
 namespace Web
 {
@@ -33,6 +35,18 @@ namespace Web
             CreateNationalSociety();
             CreateUsers();
             CreateHealthRisks();
+            CreateProjects();
+        }
+
+        [HttpGet("projects")]
+        public void CreateProjects()
+        {
+            var _collection = _database.GetCollection<Project>("Project");
+            _collection.DeleteMany(v => true);
+
+            var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+            foreach (var project in projects)
+                Apply(project.Id, project);
         }
 
         [HttpGet("nationalsocieties")]
@@ -119,6 +133,35 @@ namespace Web
             //}
             //File.WriteAllText("./TestData/HealthRisks.json", JsonConvert.SerializeObject(risks));
 
+        }
+
+        [HttpGet("createprojectsjson")]
+        public void CreateProjecstJson()
+        {
+            List<ProjectCreated> list = new List<ProjectCreated>();
+
+            var client = new System.Net.WebClient();
+            var jsonString = client.DownloadString("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freliefweb.int%2Fupdates%2Frss.xml%3Fsource%3D1242%26theme%3D4591.4604.4602");
+            var items = JsonConvert.DeserializeObject<JToken>(jsonString).SelectToken("items");
+            int i = 0;
+            foreach (var item in items)
+            {
+
+                var title = item.SelectToken("title").ToString();
+                title = title.Split(':').Select(v => v.Trim()).Last();
+
+                list.Add(new ProjectCreated()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = title,
+                    NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
+                    OwnerUserId = _userIds[i % _userIds.Length]
+                });
+
+                i++;
+            }
+
+            System.IO.File.WriteAllText("./TestData/Projects.json", JsonConvert.SerializeObject(list.ToArray()));
         }
 
         private void ConvertSeparatedFileWithHeadersToJson<T>(string inputFilePath, string outputFilePath, string separator, Func<string[], string[], T> callback)
