@@ -40,7 +40,9 @@ Ideally, we wish to extend the MVP to also include the creation of "projects" an
 ## Contributing
 
 We would love your help in taking CBS to the next level. 
-Read more about how you can [contribute](./Documentation/Contribution/contributing.md) and the different [projects](./Documentation/Projects/index.md) you can contribute to.
+Read more about how you can [contribute](./Documentation/Contribution/contributing.md) and the different [projects](./Documentation/Projects/index.md) you can contribute to. 
+
+Our biggest shortage at the moment is designers and frond-end developers, but that does not mean we don't need your if you are a backend developer, project manager, tester, etc. Reach out to us if you're unsure about how your expertise can be of use to this project!
 
 ## Questions?
 
