@@ -22,5 +22,12 @@ namespace Read.ProjectFeatures
             project.Name = @event.Name;
             _projects.Save(project);
         }
+
+        public void Process(HealthRisksSetForProject @event)
+        {
+            var project = _projects.GetById(@event.ProjectId);
+            project.HealthRiskIds = @event.HealthRiskIds;
+            _projects.Save(project);
+        }
     }
 }

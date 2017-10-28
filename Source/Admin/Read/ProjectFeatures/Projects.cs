@@ -27,7 +27,7 @@ namespace Read.ProjectFeatures
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
             if (project == null)
             {
-                project = new Project {Name = "Dummy implementation"};
+                project = new Project { Name = "Dummy implementation", Id = id };
                 _collection.InsertOne(project);
             }
             return project;
