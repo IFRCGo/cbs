@@ -52,14 +52,14 @@ namespace Web
                 for (int i=0; i<5; i++)
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
-                    var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).Select(v => v.Id).First();
-                    healthRiskIds.Add(risk);
+                    var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
+                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdSet()
+                    {
+                        ProjectId = project.Id,
+                        HealthRiskId = risk.Id,
+                        Threshold = risk.Threshold ?? 1
+                    });
                 }
-                Apply(Guid.NewGuid(), new HealthRisksSetForProject()
-                {
-                    ProjectId = project.Id,
-                    HealthRiskIds = healthRiskIds.ToArray()
-                });
             }
         }
 
@@ -131,7 +131,7 @@ namespace Web
                         Id = Guid.NewGuid(),
                         ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
                         Name = values[Array.IndexOf(columnNames, "Health Risk")],
-                        Threshold = string.IsNullOrEmpty(threshold) ? (int?)null : int.Parse(threshold),
+                        Threshold = int.Parse(threshold),
                         ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
                         ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
                         SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],

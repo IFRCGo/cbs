@@ -9,9 +9,10 @@ using doLittle.Events;
 
 namespace Events
 {
-    public class HealthRisksSetForProject : IEvent
+    public class ProjectHealthRiskThresholdSet : IEvent
     {
         public Guid ProjectId { get; set; }
-        public Guid[] HealthRiskIds { get; set; }
+        public Guid HealthRiskId { get; set; }
+        public int Threshold { get; set; }
     }
 }

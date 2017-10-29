@@ -12,6 +12,7 @@ namespace Read.ProjectFeatures
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-        public Guid[] HealthRiskIds { get; set; }
+
+        public ProjectHealthRisk[] HealthRisks { get; set; }
     }
 }
