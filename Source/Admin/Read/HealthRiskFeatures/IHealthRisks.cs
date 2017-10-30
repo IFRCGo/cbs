@@ -12,5 +12,7 @@ namespace Read.HealthRiskFeatures
         IEnumerable<HealthRisk> GetAll();
 
         Task<IEnumerable<HealthRisk>> GetAllAsync();
+
+        HealthRisk GetById(Guid id);
     }
 }

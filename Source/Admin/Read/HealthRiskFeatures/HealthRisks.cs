@@ -22,6 +22,10 @@ namespace Read.HealthRiskFeatures
         {
             return _collection.Find(_ => true).ToList();
         }
+        public HealthRisk GetById(Guid id)
+        {
+            return _collection.Find(v => v.Id == id).Single();
+        }
 
         public async Task<IEnumerable<HealthRisk>> GetAllAsync()
         {

@@ -31,10 +31,18 @@ namespace Web
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Project>> Get()
+        public IEnumerable<Project> Get()
         {
-            return await _projects.GetAllASync();
+            return _projects.GetAll();
         }
+
+        //// Ref #288, we're not supporting async methods yet
+        //// We'll take this back when this issue is solved
+        //[HttpGet]
+        //public async Task<IEnumerable<Project>> Get()
+        //{
+        //    return await _projects.GetAllASync();
+        //}
 
         [HttpGet("{id}")]
         public Project Get(Guid id)

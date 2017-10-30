@@ -36,6 +36,31 @@ namespace Web
             CreateUsers();
             CreateHealthRisks();
             CreateProjects();
+            CreateProjectsHealthRisks();
+        }
+
+        [HttpGet("projectshealthrisks")]
+        public void CreateProjectsHealthRisks()
+        {
+            var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
+            var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+            
+            foreach (var project in projects)
+            {
+                List<Guid> healthRiskIds = new List<Guid>();
+                Random randomizer = new Random();
+                for (int i=0; i<5; i++)
+                {
+                    var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
+                    var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
+                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdSet()
+                    {
+                        ProjectId = project.Id,
+                        HealthRiskId = risk.Id,
+                        Threshold = risk.Threshold ?? 1
+                    });
+                }
+            }
         }
 
         [HttpGet("projects")]
@@ -106,7 +131,7 @@ namespace Web
                         Id = Guid.NewGuid(),
                         ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
                         Name = values[Array.IndexOf(columnNames, "Health Risk")],
-                        Threshold = string.IsNullOrEmpty(threshold) ? (int?)null : int.Parse(threshold),
+                        Threshold = int.Parse(threshold),
                         ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
                         ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
                         SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
@@ -114,25 +139,8 @@ namespace Web
                         Note = values[Array.IndexOf(columnNames, "Note")],
                         KeyMessage = values[Array.IndexOf(columnNames, "Key Message")]
                     };
-                });
-
-            //var lines = File.ReadAllLines("./TestData/CBS Diseases - Events.tsv");
-            //string[] columnNames = lines.First().Split("\t");
-            //List<HealthRiskCreated> risks = new List<HealthRiskCreated>();
-            //foreach (var line in lines.Skip(1))
-            //{
-            //    string[] values = line.Split("\t");
-            //    var risk = new HealthRiskCreated()
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
-            //        Name = values[Array.IndexOf(columnNames, "Health Risk")],
-            //        Threshold = values[Array.IndexOf(columnNames, "Threshold")]
-            //    };
-            //    risks.Add(risk);
-            //}
-            //File.WriteAllText("./TestData/HealthRisks.json", JsonConvert.SerializeObject(risks));
-
+                }
+            );
         }
 
         [HttpGet("createprojectsjson")]
