@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using doLittle.Events;
 using doLittle.Runtime.Events;
 using doLittle.Runtime.Events.Coordination;
@@ -24,7 +25,7 @@ namespace Infrastructure.Events.Web
         }
 
         [HttpPost]
-        public void Post([FromBody]Event @event)
+        public async Task Post([FromBody]Event @event)
         {
             var eventType = _typeFinder.All.Where(type => type.Name == @event.Name).SingleOrDefault();
             if (eventType == null) throw new ArgumentException("Cannot resolve Event Type from Name - please check the name again");
@@ -37,6 +38,8 @@ namespace Infrastructure.Events.Web
             _uncommittedEventStreamCoordinator.Commit(
                 TransactionCorrelationId.New(),
                 eventSource.UncommittedEvents);
+
+            await Task.CompletedTask;
         }
     }
 }
