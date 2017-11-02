@@ -1,7 +1,5 @@
-using System;
 using System.Globalization;
 using System.Security.Claims;
-using System.Threading;
 using Autofac;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
@@ -21,71 +19,6 @@ using doLittle.Types;
 
 namespace Infrastructure.AspNet
 {
-    public class ControllerActionCommandContextManager : ICommandContextManager
-    {
-        readonly ICommandContextFactory _factory;
-
-        [ThreadStatic] static ICommandContext _currentContext;
-
-
-        static ICommandContext CurrentContext
-        {
-            get { return _currentContext;  }
-            set { _currentContext = value; }
-        }
-
-        /// <summary>
-        /// Reset context
-        /// </summary>
-        public static void ResetContext()
-        {
-            CurrentContext = null;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="CommandContextManager">CommandContextManager</see>
-        /// </summary>
-        /// <param name="factory">A <see cref="ICommandContextFactory"/> to use for building an <see cref="ICommandContext"/></param>
-        public ControllerActionCommandContextManager(ICommandContextFactory factory)
-        {
-            _factory = factory;
-        }
-
-        private static bool IsInContext(CommandRequest command)
-        {
-            var inContext = null != CurrentContext && CurrentContext.Command.Equals(command);
-            return inContext;
-        }
-
-        /// <inheritdoc/>
-        public bool HasCurrent
-        {
-            get { return CurrentContext != null; }
-        }
-
-        /// <inheritdoc/>
-        public ICommandContext GetCurrent()
-        {
-            if (!HasCurrent)
-            {
-                throw new InvalidOperationException("Command not established");
-            }
-            return CurrentContext;
-        }
-
-        /// <inheritdoc/>
-        public ICommandContext EstablishForCommand(CommandRequest command)
-        {
-            if (!IsInContext(command))
-            {
-                var commandContext = _factory.Build(command);
-                CurrentContext = commandContext;
-            }
-            return CurrentContext;
-        }
-    }
-
-
     public class doLittleModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
