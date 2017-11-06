@@ -2,17 +2,23 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Xunit;
+using FakeItEasy;
 
-namespace Domain
+namespace Web.Tests
 {
-    public class SetProjectHealthRiskThreshold
+    public class Test
     {
-        public Guid ProjectId { get; set; }
-        public Guid HealthRiskId { get; set; }
-        public int Threshold { get; set; } 
+        [Fact]
+        public void DummyTest()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+            Assert.True(true);
+        }
     }
 }
