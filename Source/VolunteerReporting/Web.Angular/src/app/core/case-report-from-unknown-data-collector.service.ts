@@ -3,17 +3,17 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import { AnonymousCaseReport } from '../shared/models/anonymous-case-report.model';
+import { CaseReportFromUnknownDataCollector } from '../shared/models/case-report-from-unknown-data-collector.model';
 
 @Injectable()
-export class AnonymousCaseReportService {
+export class CaseReportFromUnknownDataCollectorService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
 
-    getAnonymousCaseReports(): Promise<Array<AnonymousCaseReport>> {
+    getAnonymousCaseReports(): Promise<Array<CaseReportFromUnknownDataCollector>> {
         return this.http
-            .get('/api/anonymouscasereports', { headers: this.headers })
+            .get('/api/casereportsfromunknowndatacollectors', { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));

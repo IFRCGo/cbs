@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CaseReportService } from '../../core/case-report.service';
-import { CaseReport } from '../../shared/models/case-report.model';
-import { AnonymousCaseReportService } from '../../core/anonymous-case-report.service';
-import { AnonymousCaseReport } from '../../shared/models/anonymous-case-report.model';
+import { AggregatedCaseReportService } from '../../core/aggregated-case-report.service';
+import { Report } from '../../shared/models/report.model';
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -11,21 +9,17 @@ import { AnonymousCaseReport } from '../../shared/models/anonymous-case-report.m
 })
 export class CaseReportListComponent implements OnInit {
 
-    caseReports: Array<CaseReport>;
-    anonymousCaseReports: Array<AnonymousCaseReport>;
+    reports: Array<Report>;
     
     constructor(
-        private caseReportService: CaseReportService,
-        private anonymousCaseReportService: AnonymousCaseReportService
+        private caseReportService: AggregatedCaseReportService
     ) { }
 
     ngOnInit() {
-        this.caseReportService.getCaseReports()
-            .then((result) => this.caseReports = result)
-            .catch((error) => console.error(error));
-        
-        this.anonymousCaseReportService.getAnonymousCaseReports()
-            .then((result) => this.anonymousCaseReports = result)
+        this.caseReportService.getReports()
+            .then((result) => 
+                this.reports = result || [] 
+            )
             .catch((error) => console.error(error));
     }
 }

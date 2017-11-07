@@ -1,6 +1,8 @@
 import { Location, DataCollector, HealthRisk } from './index';
+import { Report } from './report.model';
 
-export class CaseReport {
+export class CaseReport implements Report {
+    success(): boolean { return true; }
     id: string;
     dataCollector: DataCollector;
     healthRiskId: HealthRisk;
