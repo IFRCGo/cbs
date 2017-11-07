@@ -14,5 +14,6 @@ namespace Events
         public Guid DataCollectorId { get; set; }
         public string Message { get; set; }
         public IEnumerable<string> ErrorMessages { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
     }
 }

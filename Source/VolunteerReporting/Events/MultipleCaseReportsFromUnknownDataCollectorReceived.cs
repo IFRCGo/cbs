@@ -18,5 +18,6 @@ namespace Events
         public int NumberOfFemalesOver5 { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
     }
 }
