@@ -10,25 +10,25 @@ using Web.Models;
 
 namespace Web
 {
-    [Route("api/casereportsforunknowndatacollectors")]
-    public class CaseReportsForUnknownDataCollectorsController
+    [Route("api/casereportsfromunknowndatacollectors")]
+    public class CaseReportsFromUnknownDataCollectorsController
     {
-        private readonly ICaseReportsFromUnknownDataCollectors _caseReportsForUnknownDataCollectors;
+        private readonly ICaseReportsFromUnknownDataCollectors _caseReportsFromUnknownDataCollectors;
         private readonly IHealthRisks _healthRisks;
 
-        public CaseReportsForUnknownDataCollectorsController(
-            ICaseReportsFromUnknownDataCollectors caseReportsForUnknownDataCollectors,
+        public CaseReportsFromUnknownDataCollectorsController(
+            ICaseReportsFromUnknownDataCollectors caseReportsFromUnknownDataCollectors,
             IHealthRisks healthRisks)
             
         {
-            _caseReportsForUnknownDataCollectors = caseReportsForUnknownDataCollectors;
+            _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
             _healthRisks = healthRisks;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CaseReportForUnknownDataCollectorExpanded>> Get()
+        public async Task<IEnumerable<CaseReportFromUnknownDataCollectorExpanded>> Get()
         {
-            var anonymousCaseReports = await _caseReportsForUnknownDataCollectors.GetAllAsync();
+            var anonymousCaseReports = await _caseReportsFromUnknownDataCollectors.GetAllAsync();
             // Comment from review; einari - 23rd of October 2017
             // Todo: This is a N+1 query - potentially incredibly slow
             // an optimization would be to get all healthrisks and then
@@ -36,7 +36,7 @@ namespace Web
             // object - as it should not be having a relationship to repositories
             return anonymousCaseReports.Select(caseReport => {
                 var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-                return new CaseReportForUnknownDataCollectorExpanded(caseReport, healthRisk);
+                return new CaseReportFromUnknownDataCollectorExpanded(caseReport, healthRisk);
             });
         }
     }

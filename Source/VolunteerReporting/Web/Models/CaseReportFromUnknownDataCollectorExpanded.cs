@@ -9,7 +9,7 @@ using Concepts;
 
 namespace Web.Models
 {
-    public class CaseReportForUnknownDataCollectorExpanded
+    public class CaseReportFromUnknownDataCollectorExpanded
     {
         public Guid Id { get; private set; }
         public HealthRisk HealthRisk { get; private set; }
@@ -20,7 +20,7 @@ namespace Web.Models
         public DateTimeOffset Timestamp { get; private set; }
         public Location Location { get; private set; }
 
-        public CaseReportForUnknownDataCollectorExpanded(CaseReportFromUnknownDataCollector caseReport, HealthRisk healthRisk)
+        public CaseReportFromUnknownDataCollectorExpanded(CaseReportFromUnknownDataCollector caseReport, HealthRisk healthRisk)
         {
             Id = caseReport.Id;
             NumberOfFemalesOver5 = caseReport.NumberOfFemalesOver5;
