@@ -10,12 +10,12 @@ using Web.Models;
 
 namespace Web
 {
-    [Route("api/invalidcasereportsforunknowndatacollectors")]
-    public class InvalidCaseReportsForUnknownDataCollectorsController
+    [Route("api/invalidcasereportsfromunknowndatacollectors")]
+    public class InvalidCaseReportsFromUnknownDataCollectorsController
     {
         private readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
 
-        public InvalidCaseReportsForUnknownDataCollectorsController(
+        public InvalidCaseReportsFromUnknownDataCollectorsController(
             IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors)
             
         {
