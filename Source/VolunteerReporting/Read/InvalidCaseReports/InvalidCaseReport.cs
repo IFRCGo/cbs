@@ -11,6 +11,7 @@ namespace Read.InvalidCaseReports
         public Guid DataCollectorId { get; internal set; }
         public string Message { get; set; }
         public IEnumerable<string> ParsingErrorMessage { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public InvalidCaseReport(Guid id) => Id = id;
     }

@@ -33,7 +33,7 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
-        
+
 
         public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
         {
@@ -162,6 +162,87 @@ namespace Web
                 {
                     Console.Error.WriteLine(ex.ToString());
                 }
+            }
+
+        }
+
+        /*
+         * Added while waiting for the infrastructure to correctly raise these events
+         */
+        [HttpGet("temp_textmessages")]
+        public void temp_CreateTextMessages()
+        {
+            foreach (var collectionName in new [] { "CaseReport", "InvalidCaseReport", "CaseReportFromUnknownDataCollector", "InvalidCaseReportFromUnknownDataCollector" })
+            {
+                var c = _database.GetCollection<CaseReport>(collectionName);
+                c.DeleteMany(v => true);
+            }
+
+            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
+
+            Random r = new Random();
+
+            for (int i=0; i<10; i++)
+            {
+                Guid id = Guid.NewGuid();
+                Apply(id, new CaseReportReceived() {
+                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
+                    DataCollectorId = dataCollectors[i % dataCollectors.Length].Id,
+                    HealthRiskId = healthRisks[i % healthRisks.Length].Id,
+                    Latitude = 59,
+                    Longitude = 6,
+                    Age = 5,
+                    CaseReportId = id,
+                    Sex = i % 1
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                Guid id = Guid.NewGuid();
+                Apply(id, new InvalidReportReceived()
+                {
+                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
+                    DataCollectorId = dataCollectors[i % dataCollectors.Length].Id,
+                    CaseReportId = id,
+                    Message = "Hi! This is your data collector. We're all happy shiny people!",
+                    ErrorMessages = new string[]
+                    {
+                        "Error #1",
+                        "Error #2"
+                    },
+                    
+                });
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Guid id = Guid.NewGuid();
+                Apply(id, new CaseReportFromUnknownDataCollectorReceived()
+                {
+                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
+                    HealthRiskId = healthRisks[i % healthRisks.Length].Id,
+                    Latitude = 59,
+                    Longitude = 6,
+                    Age = 5,
+                    CaseReportId = id,
+                    Sex = i % 1
+                });
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Guid id = Guid.NewGuid();
+                Apply(id, new InvalidReportFromUnknownDataCollectorReceived()
+                {
+                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
+                    CaseReportId = id,
+                    ErrorMessages = new string[]
+                    {
+                        "Error #1",
+                        "Error #2"
+                    },
+                    Message = "Hi! We have a big opportunity for you, please call me!"
+                });
             }
 
         }

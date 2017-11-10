@@ -9,6 +9,7 @@ namespace Events
 {
     public class CaseReportReceived : IEvent
     {
+        public DateTimeOffset Timestamp { get; set; }
         public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
         public Guid HealthRiskId { get; set; }

@@ -17,10 +17,12 @@ namespace Web.Models
         public string Message { get; set; }
         public IEnumerable<string> ParsingErrorMessage { get; set; }
         public DataCollector DataCollector { get; private set; }
+        public DateTimeOffset Timestamp { get; private set; }
 
         public InvalidCaseReportExpanded(InvalidCaseReport invalidCaseReport, DataCollector dataCollector)
         {
             Id = invalidCaseReport.Id;
+            Timestamp = invalidCaseReport.Timestamp;
             Message = invalidCaseReport.Message;
             ParsingErrorMessage = invalidCaseReport.ParsingErrorMessage;
             DataCollector = dataCollector;

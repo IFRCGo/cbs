@@ -16,48 +16,24 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let caseReport of caseReports">
+        <tr *ngFor="let caseReport of reports">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
-            <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
-            <td>{{caseReport.numberOfFemalesOver5}}</td>
-            <td>{{caseReport.numberOfFemalesUnder5}}</td>
-            <td>{{caseReport.numberOfMalesOver5}}</td>
-            <td>{{caseReport.numberOfMalesUnder5}}</td>
-            <td>
-                <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
-            </td>
-        </tr>    
-    </tbody>
-</table>
-
-<h3>
-    Anonymous Case Reports
-</h3>
-
-<table class="table table-bordered table-striped" >
-    <thead>
-        <tr>
-            <th>Time</th>
-            <th>Health&nbsp;Risk</th>
-            <th>Females&nbsp;&gt;&nbsp;5</th>
-            <th>Females&nbsp;&lt;&nbsp;5</th>
-            <th>Males&nbsp;&gt;&nbsp;5</th>
-            <th>Males&nbsp;&lt;&nbsp;5</th>
-            <th>Lat&nbsp;/&nbsp;Long</th>
+            <ng-container *ngIf="caseReport.healthRisk">
+                <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
+                <td>{{caseReport.numberOfFemalesOver5}}</td>
+                <td>{{caseReport.numberOfFemalesUnder5}}</td>
+                <td>{{caseReport.numberOfMalesOver5}}</td>
+                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>
+                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="!caseReport.healthRisk">
+                <td colspan="6">
+                    {{caseReport.message}}
+                </td>
+            </ng-container>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let anonymousCaseReport of anonymousCaseReports">
-            <td>{{anonymousCaseReport.timestamp | date:'medium'}}</td>
-            <td>{{anonymousCaseReport.healthRisk?.readableId}}: {{anonymousCaseReport.healthRisk?.name}}</td>
-            <td>{{anonymousCaseReport.numberOfFemalesOver5}}</td>
-            <td>{{anonymousCaseReport.numberOfFemalesUnder5}}</td>
-            <td>{{anonymousCaseReport.numberOfMalesOver5}}</td>
-            <td>{{anonymousCaseReport.numberOfMalesUnder5}}</td>
-            <td>
-                <span *ngIf="anonymousCaseReport.location">{{anonymousCaseReport.location.latitude | number}} / {{anonymousCaseReport.location.longitude | number}}</span>
-            </td>
-        </tr>    
     </tbody>
 </table>

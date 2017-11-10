@@ -30,6 +30,7 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.DataCollectorId = @event.DataCollectorId;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
+            invalidCaseReport.Timestamp = @event.Timestamp;
             _invalidCaseReports.Save(invalidCaseReport);
         }
 
@@ -39,7 +40,7 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.PhoneNumber = @event.Origin;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
-            invalidCaseReport.Timestamp = _systemClock.GetCurrentTime();
+            invalidCaseReport.Timestamp = @event.Timestamp;
             _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
         }
     }

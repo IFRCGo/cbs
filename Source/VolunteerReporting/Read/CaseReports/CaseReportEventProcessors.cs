@@ -34,6 +34,7 @@ namespace Read.CaseReports
             caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
             caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
+            caseReport.Timestamp = @event.Timestamp;
             _caseReports.Save(caseReport);
         }
 
@@ -47,6 +48,7 @@ namespace Read.CaseReports
             caseReport.NumberOfMalesUnder5 = @event.NumberOfFemalesUnder5;
             caseReport.NumberOfMalesOver5 = @event.NumberOfMalesOver5;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
+            caseReport.Timestamp = @event.Timestamp;
             _caseReports.Save(caseReport);
         }
 
@@ -60,7 +62,7 @@ namespace Read.CaseReports
             caseReport.NumberOfFemalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
             caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
             caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
-            caseReport.Timestamp = _systemClock.GetCurrentTime();
+            caseReport.Timestamp = @event.Timestamp;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
         }
@@ -76,6 +78,7 @@ namespace Read.CaseReports
             caseReport.NumberOfMalesUnder5 = @event.NumberOfFemalesUnder5;
             caseReport.NumberOfMalesOver5 = @event.NumberOfMalesOver5;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
+            caseReport.Timestamp = @event.Timestamp;
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
         }
     }
