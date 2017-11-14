@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Events.External;
+using System.Threading.Tasks;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -15,6 +16,13 @@ namespace Read.AutomaticReplyMessages
         {
             _database = database;
             _collection = database.GetCollection<DefaultAutomaticReply>("DefaultAutomaticReply");
+        }
+
+        public async Task<IEnumerable<DefaultAutomaticReply>> GetAllAsync()
+        {
+            var filter = Builders<DefaultAutomaticReply>.Filter.Empty;
+            var list = await _collection.FindAsync(filter);
+            return await list.ToListAsync();
         }
 
         public DefaultAutomaticReply GetByTypeAndLanguage(DefaultAutomaticReplyType type, string language)

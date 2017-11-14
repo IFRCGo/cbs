@@ -8,11 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Models;
 using Read.InvalidCaseReports;
+using Infrastructure.AspNet;
 
 namespace Web
 {
     [Route("api/invalidcasereports")]
-    public class InvalidCaseReportsController
+    public class InvalidCaseReportsController : BaseController
     {
         private readonly IInvalidCaseReports _invalidCaseReports;
         private readonly IDataCollectors _dataCollectors;
