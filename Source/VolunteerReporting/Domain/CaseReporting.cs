@@ -117,8 +117,9 @@ namespace Domain
             double longitude,
             double latitude)
         {
-            Apply(new MultipleCaseReportsReceived
+            Apply(new MultipleCaseReportsFromUnknownDataCollectorReceived
             {
+                Origin = origin,
                 CaseReportId = EventSourceId,
                 HealthRiskId = healthRiskId,
                 NumberOfFemalesUnder5 = numberOfFemalesUnder5,
