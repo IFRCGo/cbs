@@ -15,10 +15,12 @@ namespace Web.Controllers
     public class AutomaticRepliesController : BaseController
     {
         private readonly IDefaultAutomaticReplies _defaultAutomaticReplies;
+        private readonly IAutomaticReplies _automaticReplies;
 
-        public AutomaticRepliesController(IDefaultAutomaticReplies defaultAutomaticReplies)
+        public AutomaticRepliesController(IDefaultAutomaticReplies defaultAutomaticReplies, IAutomaticReplies automaticReplies)
         {
             _defaultAutomaticReplies = defaultAutomaticReplies;
+            _automaticReplies = automaticReplies;
         }
 
         [HttpGet("automaticreplytypes")]
@@ -34,16 +36,26 @@ namespace Web.Controllers
         [HttpGet("{projectId}")]
         public async Task<IEnumerable<AutomaticReply>> GetAutomaticRepliesForProject(Guid projectId)
         {
+            var projectDefined = await _automaticReplies.GetByProjectAsync(projectId);
             var defaults = await _defaultAutomaticReplies.GetAllAsync();
 
-            // TODO: Get replies for project and filter any custom from the default list
-
-            return defaults.Select(c => new AutomaticReply() {
-                IsDefault = true,
+            return projectDefined.Select(c => new AutomaticReply()
+            {
+                IsDefault = false,
                 Language = c.Language,
                 Type = c.Type,
                 Message = c.Message
-            });
+            })
+            .Union(defaults
+                .Where(c => !projectDefined.Any(p => p.Type == c.Type && p.Language == c.Language))
+                .Select(c => new AutomaticReply()
+                {
+                    IsDefault = true,
+                    Language = c.Language,
+                    Type = c.Type,
+                    Message = c.Message
+                })
+            );
         }
     }
 }

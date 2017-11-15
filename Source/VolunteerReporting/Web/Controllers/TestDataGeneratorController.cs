@@ -35,6 +35,8 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
+        // There's no projects in the system yet, let this be the only reference for now
+        private Guid _projectId = new Guid("5ff0622a-9b9e-42aa-b004-40b8545be832");
 
 
         public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
@@ -50,6 +52,7 @@ namespace Web
             CreateDataCollectors();
             CreateTextMessages();
             CreateDefaultAutomaticReplyMessages();
+            CreateAutomaticReplyMessages();
         }
 
         [HttpGet("healthrisks")]
@@ -233,5 +236,64 @@ namespace Web
 
             System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
         }
+
+
+        [HttpGet("automaticreplymessages")]
+        public void CreateAutomaticReplyMessages()
+        {
+            var _collection = _database.GetCollection<AutomaticReply>("AutomaticReply");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplies.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+
+        }
+        [HttpGet("producejsonforautomaticreplymessages")]
+        public void ProduceJsonForAutomaticReplyMessages()
+        {
+            var events = new List<AutomaticReplyDefined>();
+            var randomizer = new Random();
+
+            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
+            {
+                ["nb"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.UnknownSender, "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"},
+                    { AutomaticReplyType.KeyMessage, "Det er elefanter i rommet, vær forsiktig!" }
+                },
+                ["en"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.InvalidReport, "Your report was incorrectly formatted. It should be RiskID#Incidents#Gender" }
+                }
+            };
+
+            foreach (var language in messages.Keys)
+            {
+                foreach (var type in messages[language].Keys)
+                {
+                    events.Add(new AutomaticReplyDefined()
+                    {
+                        Id = Guid.NewGuid(),
+                        ProjectId = _projectId,
+                        Language = language,
+                        Message = messages[language][type],
+                        Type = (int)type
+                    });
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/AutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
     }
 }
