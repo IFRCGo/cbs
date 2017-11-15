@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Events.External;
 using System.Threading.Tasks;
+using Concepts;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -25,7 +26,7 @@ namespace Read.AutomaticReplyMessages
             return await list.ToListAsync();
         }
 
-        public DefaultAutomaticReply GetByTypeAndLanguage(DefaultAutomaticReplyType type, string language)
+        public DefaultAutomaticReply GetByTypeAndLanguage(AutomaticReplyType type, string language)
         {
             var filter = Builders<DefaultAutomaticReply>.Filter.Where(v => v.Type == type && v.Language == language);
             return _collection.Find(filter).FirstOrDefault();

@@ -17,6 +17,7 @@ using Infrastructure.TextMessaging;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
+using Concepts;
 
 namespace Web
 {
@@ -196,23 +197,23 @@ namespace Web
             var events = new List<DefaultAutomaticReplyDefined>();
             var randomizer = new Random();
 
-            var messages = new Dictionary<string, Dictionary<DefaultAutomaticReplyType, string>>
+            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
             {
-                ["nb"] = new Dictionary<DefaultAutomaticReplyType, string>()
+                ["nb"] = new Dictionary<AutomaticReplyType, string>()
                 {
-                    { DefaultAutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
-                    { DefaultAutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
-                    { DefaultAutomaticReplyType.ZeroIncidents, "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen" },
-                    { DefaultAutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
-                    { DefaultAutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
+                    { AutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
+                    { AutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
+                    { AutomaticReplyType.ZeroIncidents, "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen" },
+                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
+                    { AutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
                 },
-                ["en"] = new Dictionary<DefaultAutomaticReplyType, string>()
+                ["en"] = new Dictionary<AutomaticReplyType, string>()
                 {
-                    { DefaultAutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
-                    { DefaultAutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
-                    { DefaultAutomaticReplyType.ZeroIncidents, "Thank you for letting us know there have been no health events detected" },
-                    { DefaultAutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" },
-                    { DefaultAutomaticReplyType.KeyMessage, "Remember clean hands and clean water are the most important in fighting epidemics" }
+                    { AutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
+                    { AutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
+                    { AutomaticReplyType.ZeroIncidents, "Thank you for letting us know there have been no health events detected" },
+                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" },
+                    { AutomaticReplyType.KeyMessage, "Remember clean hands and clean water are the most important in fighting epidemics" }
                 }
             };
 
@@ -225,7 +226,7 @@ namespace Web
                         Id = Guid.NewGuid(),
                         Language = language,
                         Message = messages[language][type],
-                        Type = type
+                        Type = (int)type
                     });
                 }
             }

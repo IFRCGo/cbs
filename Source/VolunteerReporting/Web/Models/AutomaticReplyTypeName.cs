@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Web.Models
 {
-    public class AutomaticReplyTypeModel
+    public class AutomaticReplyTypeName
     {
         public int Id { get; set; }
         public string Name { get; set; }

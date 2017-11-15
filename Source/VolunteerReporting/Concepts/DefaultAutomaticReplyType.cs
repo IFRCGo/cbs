@@ -1,6 +1,6 @@
-namespace Events.External
+namespace Concepts
 {
-    public enum DefaultAutomaticReplyType
+    public enum AutomaticReplyType
     {
         UnknownSender,
         InvalidReport,
