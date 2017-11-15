@@ -18,4 +18,4 @@ author: karolikl
 ```
 
 ## Raised by
-* Raised when [Receiving a text message](../Processes/ReceivingTextMessage.md) with an invalid format.
+* Raised when [receiving a text message](../Processes/ReceivingTextMessage.md) with an invalid format.

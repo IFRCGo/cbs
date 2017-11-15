@@ -4,14 +4,14 @@ description:
 keywords: 
 author: karolikl
 ---
-# Event: CaseReportReceived
+# Event: CaseReportFromUnknownDataCollectorReceived
 
 ## Structure
 ```javascript
 {
     "Timestamp"                         // Timestamp of when the report was received
     "CaseReportId": "000...0000",       // Guid, global identifier of the case report
-    "DataCollectorId": "00...000",      // A pointer to the global identifier of the data collector who submitted the report
+    "Origin",                           // The origin of the report (eg. the phone number of the sender)
     "HealthRiskId",                     // A pointer to the global identifier of the health risk reported
     "Sex",                              // Sex of the health risk subject. 1 = Male, 2 = Female
     "Age",                              // Age of the health risk subject.
@@ -21,4 +21,4 @@ author: karolikl
 ```
 
 ## Raised by
-* Raised when [receiving a text message](../Processes/ReceivingTextMessage.md) with a valid format from a known data collector.
+* Raised when [receiving a text message](../Processes/ReceivingTextMessage.md) with a valid format from an unknown data collector.

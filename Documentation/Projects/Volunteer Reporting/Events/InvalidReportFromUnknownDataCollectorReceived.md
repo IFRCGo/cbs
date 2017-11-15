@@ -16,6 +16,5 @@ author: karolikl
     "Timestamp"                         // Timestamp for when the report was received
 }
 ```
-
 ## Raised by
-* Raised when [Receiving a text message](../Processes/ReceivingTextMessage.md) with an invalid format from an unknown data collector.
+* Raised when [receiving a text message](../Processes/ReceivingTextMessage.md) with an invalid format from an unknown data collector.
