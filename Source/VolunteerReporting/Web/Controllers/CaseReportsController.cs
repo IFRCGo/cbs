@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Models;
+using Infrastructure.AspNet;
 
 namespace Web
 {
     [Route("api/casereports")]
-    public class CaseReportsController
+    public class CaseReportsController : BaseController
     {
         private readonly ICaseReports _caseReports;
         private readonly IHealthRisks _healthRisks;

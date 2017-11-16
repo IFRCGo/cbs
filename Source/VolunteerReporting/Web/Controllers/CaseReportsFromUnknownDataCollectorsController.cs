@@ -7,11 +7,12 @@ using Read.CaseReports;
 using Read.DataCollectors;
 using Read.HealthRisks;
 using Web.Models;
+using Infrastructure.AspNet;
 
 namespace Web
 {
     [Route("api/casereportsfromunknowndatacollectors")]
-    public class CaseReportsFromUnknownDataCollectorsController
+    public class CaseReportsFromUnknownDataCollectorsController : BaseController
     {
         private readonly ICaseReportsFromUnknownDataCollectors _caseReportsFromUnknownDataCollectors;
         private readonly IHealthRisks _healthRisks;

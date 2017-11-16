@@ -5,7 +5,6 @@
     <StartupObject>Web.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="TestData\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

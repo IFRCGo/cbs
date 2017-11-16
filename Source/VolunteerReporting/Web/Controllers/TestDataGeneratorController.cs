@@ -16,6 +16,8 @@ using Events.External;
 using Infrastructure.TextMessaging;
 using Read.CaseReports;
 using Read.DataCollectors;
+using Read.AutomaticReplyMessages;
+using Concepts;
 
 namespace Web
 {
@@ -33,6 +35,8 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
+        // There's no projects in the system yet, let this be the only reference for now
+        private Guid _projectId = new Guid("5ff0622a-9b9e-42aa-b004-40b8545be832");
 
 
         public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
@@ -47,6 +51,8 @@ namespace Web
             CreateHealthRisks();
             CreateDataCollectors();
             CreateTextMessages();
+            CreateDefaultAutomaticReplyMessages();
+            CreateAutomaticReplyMessages();
         }
 
         [HttpGet("healthrisks")]
@@ -166,85 +172,128 @@ namespace Web
 
         }
 
-        /*
-         * Added while waiting for the infrastructure to correctly raise these events
-         */
-        [HttpGet("temp_textmessages")]
-        public void temp_CreateTextMessages()
+
+
+        [HttpGet("defaultautomaticreplymessages")]
+        public void CreateDefaultAutomaticReplyMessages()
         {
-            foreach (var collectionName in new [] { "CaseReport", "InvalidCaseReport", "CaseReportFromUnknownDataCollector", "InvalidCaseReportFromUnknownDataCollector" })
+            var _collection = _database.GetCollection<DefaultAutomaticReply>("DefaultAutomaticReply");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplies.json"));
+            foreach (var @event in events)
             {
-                var c = _database.GetCollection<CaseReport>(collectionName);
-                c.DeleteMany(v => true);
-            }
-
-            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-
-            Random r = new Random();
-
-            for (int i=0; i<10; i++)
-            {
-                Guid id = Guid.NewGuid();
-                Apply(id, new CaseReportReceived() {
-                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
-                    DataCollectorId = dataCollectors[i % dataCollectors.Length].Id,
-                    HealthRiskId = healthRisks[i % healthRisks.Length].Id,
-                    Latitude = 59,
-                    Longitude = 6,
-                    Age = 5,
-                    CaseReportId = id,
-                    Sex = i % 1
-                });
-            }
-
-            for (int i = 0; i < 10; i++)
-            {
-                Guid id = Guid.NewGuid();
-                Apply(id, new InvalidReportReceived()
+                try
                 {
-                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
-                    DataCollectorId = dataCollectors[i % dataCollectors.Length].Id,
-                    CaseReportId = id,
-                    Message = "Hi! This is your data collector. We're all happy shiny people!",
-                    ErrorMessages = new string[]
-                    {
-                        "Error #1",
-                        "Error #2"
-                    },
-                    
-                });
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                Guid id = Guid.NewGuid();
-                Apply(id, new CaseReportFromUnknownDataCollectorReceived()
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
                 {
-                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
-                    HealthRiskId = healthRisks[i % healthRisks.Length].Id,
-                    Latitude = 59,
-                    Longitude = 6,
-                    Age = 5,
-                    CaseReportId = id,
-                    Sex = i % 1
-                });
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                Guid id = Guid.NewGuid();
-                Apply(id, new InvalidReportFromUnknownDataCollectorReceived()
-                {
-                    Timestamp = DateTimeOffset.Now.AddDays(-7).AddDays(r.NextDouble() * 7.0),
-                    CaseReportId = id,
-                    ErrorMessages = new string[]
-                    {
-                        "Error #1",
-                        "Error #2"
-                    },
-                    Message = "Hi! We have a big opportunity for you, please call me!"
-                });
+                    Console.Error.WriteLine(ex.ToString());
+                }
             }
 
         }
+        [HttpGet("producejsonfordefaultautomaticreplymessages")]
+        public void ProduceJsonForDefaultAutomaticReplyMessages()
+        {
+            var events = new List<DefaultAutomaticReplyDefined>();
+            var randomizer = new Random();
+
+            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
+            {
+                ["nb"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
+                    { AutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
+                    { AutomaticReplyType.ZeroIncidents, "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen" },
+                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
+                    { AutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
+                },
+                ["en"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
+                    { AutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
+                    { AutomaticReplyType.ZeroIncidents, "Thank you for letting us know there have been no health events detected" },
+                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" },
+                    { AutomaticReplyType.KeyMessage, "Remember clean hands and clean water are the most important in fighting epidemics" }
+                }
+            };
+
+            foreach (var language in messages.Keys)
+            {
+                foreach(var type in messages[language].Keys)
+                {
+                    events.Add(new DefaultAutomaticReplyDefined()
+                    {
+                        Id = Guid.NewGuid(),
+                        Language = language,
+                        Message = messages[language][type],
+                        Type = (int)type
+                    });
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+
+        [HttpGet("automaticreplymessages")]
+        public void CreateAutomaticReplyMessages()
+        {
+            var _collection = _database.GetCollection<AutomaticReply>("AutomaticReply");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplies.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+
+        }
+        [HttpGet("producejsonforautomaticreplymessages")]
+        public void ProduceJsonForAutomaticReplyMessages()
+        {
+            var events = new List<AutomaticReplyDefined>();
+            var randomizer = new Random();
+
+            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
+            {
+                ["nb"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.UnknownSender, "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"},
+                    { AutomaticReplyType.KeyMessage, "Det er elefanter i rommet, vær forsiktig!" }
+                },
+                ["en"] = new Dictionary<AutomaticReplyType, string>()
+                {
+                    { AutomaticReplyType.InvalidReport, "Your report was incorrectly formatted. It should be RiskID#Incidents#Gender" }
+                }
+            };
+
+            foreach (var language in messages.Keys)
+            {
+                foreach (var type in messages[language].Keys)
+                {
+                    events.Add(new AutomaticReplyDefined()
+                    {
+                        Id = Guid.NewGuid(),
+                        ProjectId = _projectId,
+                        Language = language,
+                        Message = messages[language][type],
+                        Type = (int)type
+                    });
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/AutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
     }
 }

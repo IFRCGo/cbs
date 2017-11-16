@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "7e546c4b-cf0a-44f8-821b-79bb8adbabfd",
+    "Type": 0,
+    "Language": "nb",
+    "Message": "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"
+  },
+  {
+    "Id": "db08f443-6319-43da-9e46-0c39620e3fd6",
+    "Type": 1,
+    "Language": "nb",
+    "Message": "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny"
+  },
+  {
+    "Id": "21589cbf-0170-4b2d-ba8e-08ec503707f1",
+    "Type": 2,
+    "Language": "nb",
+    "Message": "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen"
+  },
+  {
+    "Id": "fe7e5744-4435-45a9-a185-528d23bbbe83",
+    "Type": 3,
+    "Language": "nb",
+    "Message": "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}"
+  },
+  {
+    "Id": "2ef0ff3c-4e9c-4ca8-87bb-578a88eacce1",
+    "Type": 4,
+    "Language": "nb",
+    "Message": "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier"
+  },
+  {
+    "Id": "cbf8c3e1-6432-4bf1-9cf7-85ff365af9da",
+    "Type": 0,
+    "Language": "en",
+    "Message": "Your phone number is not registered with us, please register"
+  },
+  {
+    "Id": "2d5a5328-378a-478a-994d-f2cc785b0e4a",
+    "Type": 1,
+    "Language": "en",
+    "Message": "Your report was not correctly formatted and could not be read. Please check and resend"
+  },
+  {
+    "Id": "46de44d8-da0a-4684-8920-644b73f7e901",
+    "Type": 2,
+    "Language": "en",
+    "Message": "Thank you for letting us know there have been no health events detected"
+  },
+  {
+    "Id": "30b93c5f-9ee6-4101-bc4e-a986e72875fd",
+    "Type": 3,
+    "Language": "en",
+    "Message": "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}"
+  },
+  {
+    "Id": "e5e75e02-41c1-4d25-9c03-eca24c25b5be",
+    "Type": 4,
+    "Language": "en",
+    "Message": "Remember clean hands and clean water are the most important in fighting epidemics"
+  }
+]
