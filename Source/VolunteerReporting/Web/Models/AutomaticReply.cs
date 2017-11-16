@@ -1,6 +1,6 @@
 using Concepts;
 
-namespace Web.Controllers
+namespace Web.Controllers.Models
 {
     public class AutomaticReply
     {
