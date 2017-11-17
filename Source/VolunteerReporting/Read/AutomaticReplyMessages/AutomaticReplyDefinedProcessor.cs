@@ -20,7 +20,6 @@ namespace Read.AutomaticReplyMessages
         public async Task Process(AutomaticReplyDefined @event)
         {
             var automaticReply = await _automaticReplies.GetByProjectTypeAndLanguageAsync(@event.ProjectId, (AutomaticReplyType)@event.Type, @event.Language) ?? new AutomaticReply(@event.Id);
-            automaticReply.Id = @event.Id;
             automaticReply.ProjectId = @event.ProjectId;
             automaticReply.Type = (AutomaticReplyType)@event.Type;
             automaticReply.Message = @event.Message;

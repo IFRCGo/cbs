@@ -32,12 +32,15 @@ namespace Read.AutomaticReplyMessages
             // or, we might want to make a global change for the way MongoDB handles Guids?
             // (without this conversion, the Find call will return no records)
             // ref: https://stackoverflow.com/questions/45738423/get-a-document-by-luuid
+            // -----
+            // Update on 2017-11-17: This works now without this hack. I am leaving this here, just in case this
+            // turns out to be a problem again, but it can be removed if it is not seen in the near future
             /////////////////////
-            var luuid = projectId;
-            var bytes = MongoDB.Bson.GuidConverter.ToBytes(luuid, MongoDB.Bson.GuidRepresentation.PythonLegacy);
-            var csuuid = new Guid(bytes);
+            //var luuid = projectId;
+            //var bytes = MongoDB.Bson.GuidConverter.ToBytes(luuid, MongoDB.Bson.GuidRepresentation.PythonLegacy);
+            //var csuuid = new Guid(bytes);
 
-            var filter = Builders<AutomaticReply>.Filter.Eq(c => c.ProjectId, csuuid);
+            var filter = Builders<AutomaticReply>.Filter.Eq(c => c.ProjectId, projectId);
             var list = await _collection.FindAsync(filter);
             return await list.ToListAsync();
         }
