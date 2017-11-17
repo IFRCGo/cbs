@@ -50,6 +50,7 @@ If you need help, please take a look at our [documentation](https://github.com/I
 
 ## Media coverage
 
+- November 16th, 2017. NRK P2 Studio 2: ["Helseapper"](https://radio.nrk.no/serie/studio-2-p2/MKRV20017917/16-11-2017#t=57m14s)
 - Telenor Norge: ["Koder for en bedre klode"](https://www.telenor.no/om/samfunnsansvar/artikler/codeathon.jsp)
 - October 5th, 2017. Bistandsaktuelt: ["Røde Kors-dugnad for å varsle epidemier – kan redde liv"](https://www.bistandsaktuelt.no/nyheter/2017/dugnad-for-epidemi-varsling/)
 - September 12th, 2017. Digi.no: ["Røde Kors i Norge med IT-prosjekt som kan redde liv: Nå inviterer de IT-bransjen til dugnad"](https://www.digi.no/artikler/rode-kors-i-norge-med-it-prosjekt-som-kan-redde-liv-na-inviterer-de-it-bransjen-til-dugnad/405602)
