@@ -50,5 +50,6 @@ If you need help, please take a look at our [documentation](https://github.com/I
 
 ## Media coverage
 
+- Telenor Norge: ["Koder for en bedre klode"](https://www.telenor.no/om/samfunnsansvar/artikler/codeathon.jsp)
 - October 5th, 2017. Bistandsaktuelt: ["Røde Kors-dugnad for å varsle epidemier – kan redde liv"](https://www.bistandsaktuelt.no/nyheter/2017/dugnad-for-epidemi-varsling/)
 - September 12th, 2017. Digi.no: ["Røde Kors i Norge med IT-prosjekt som kan redde liv: Nå inviterer de IT-bransjen til dugnad"](https://www.digi.no/artikler/rode-kors-i-norge-med-it-prosjekt-som-kan-redde-liv-na-inviterer-de-it-bransjen-til-dugnad/405602)
