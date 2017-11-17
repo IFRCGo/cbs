@@ -36,10 +36,6 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
-        // There's no projects in the system yet, let this be the only reference for now
-        private Guid _projectId = new Guid("5ff0622a-9b9e-42aa-b004-40b8545be832");
-
-
         public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
         {
             _textMessageProcessors = textMessageProcessors;
@@ -278,6 +274,9 @@ namespace Web
                 }
             };
 
+            // Make som reply messages for the first project only
+            var project = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json")).First();
+
             foreach (var language in messages.Keys)
             {
                 foreach (var type in messages[language].Keys)
@@ -285,7 +284,7 @@ namespace Web
                     events.Add(new AutomaticReplyDefined()
                     {
                         Id = Guid.NewGuid(),
-                        ProjectId = _projectId,
+                        ProjectId = project.Id,
                         Language = language,
                         Message = messages[language][type],
                         Type = (int)type
