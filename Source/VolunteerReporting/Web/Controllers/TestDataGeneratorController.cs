@@ -18,6 +18,7 @@ using Read.CaseReports;
 using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
 using Concepts;
+using Read.Projects;
 
 namespace Web
 {
@@ -293,6 +294,18 @@ namespace Web
             }
 
             System.IO.File.WriteAllText("./TestData/AutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+
+        [HttpGet("createprojects")]
+        public void CreateProjects()
+        {
+            var _collection = _database.GetCollection<Project>("Project");
+            _collection.DeleteMany(v => true);
+
+            var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+            foreach (var project in projects)
+                Apply(project.Id, project);
         }
 
     }
