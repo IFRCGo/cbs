@@ -202,7 +202,7 @@ namespace Web
 
             var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
             {
-                ["nb"] = new Dictionary<AutomaticReplyType, string>()
+                ["nb-NO"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
                     { AutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
@@ -210,7 +210,7 @@ namespace Web
                     { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
                     { AutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
                 },
-                ["en"] = new Dictionary<AutomaticReplyType, string>()
+                ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
                     { AutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
@@ -266,12 +266,12 @@ namespace Web
 
             var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
             {
-                ["nb"] = new Dictionary<AutomaticReplyType, string>()
+                ["nb-NO"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"},
                     { AutomaticReplyType.KeyMessage, "Det er elefanter i rommet, vær forsiktig!" }
                 },
-                ["en"] = new Dictionary<AutomaticReplyType, string>()
+                ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.InvalidReport, "Your report was incorrectly formatted. It should be RiskID#Incidents#Gender" }
                 }
