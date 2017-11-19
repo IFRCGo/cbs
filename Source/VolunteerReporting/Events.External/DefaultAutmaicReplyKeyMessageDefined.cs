@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Events.External
 {
-    public class DefaultAutmaicReplyKeyMessageDefined : IEvent
+    public class DefaultAutomaticReplyKeyMessageDefined : IEvent
     {
         public Guid Id { get; set; }
         public Guid HealthRiskId { get; set; }

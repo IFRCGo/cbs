@@ -28,7 +28,7 @@ namespace Read.AutomaticReplyMessages
             _defaultAutomaticReplies.Save(automaticReply);
         }
 
-        public void Process(DefaultAutmaicReplyKeyMessageDefined @event)
+        public void Process(DefaultAutomaticReplyKeyMessageDefined @event)
         {
             var keyMessage = _defaultKeyMessages.GetByTypeLanguageAndHealthRisk((AutomaticReplyKeyMessageType)@event.Type, @event.Language, @event.HealthRiskId) ?? new DefaultAutomaticReplyKeyMessage(@event.Id);
             keyMessage.Id = @event.Id;
