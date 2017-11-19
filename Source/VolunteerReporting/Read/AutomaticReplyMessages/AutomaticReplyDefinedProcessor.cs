@@ -26,5 +26,10 @@ namespace Read.AutomaticReplyMessages
             automaticReply.Language = @event.Language;
             _automaticReplies.Save(automaticReply);
         }
+
+        public async Task Process(AutomaticReplyKeyMessageDefined @event)
+        {
+
+        }
     }
 }

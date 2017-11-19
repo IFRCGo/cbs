@@ -207,16 +207,14 @@ namespace Web
                     { AutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
                     { AutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
                     { AutomaticReplyType.ZeroIncidents, "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen" },
-                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
-                    { AutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
+                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" }
                 },
                 ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
                     { AutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
                     { AutomaticReplyType.ZeroIncidents, "Thank you for letting us know there have been no health events detected" },
-                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" },
-                    { AutomaticReplyType.KeyMessage, "Remember clean hands and clean water are the most important in fighting epidemics" }
+                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" }
                 }
             };
 
@@ -269,7 +267,6 @@ namespace Web
                 ["nb-NO"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"},
-                    { AutomaticReplyType.KeyMessage, "Det er elefanter i rommet, vær forsiktig!" }
                 },
                 ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
