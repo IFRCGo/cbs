@@ -9,11 +9,13 @@ namespace Read.AutomaticReplyMessages
 {
     public class DefaultAutomaticReplyDefinedProcessor : ICanProcessEvents
     {
-        readonly IDefaultAutomaticReplies _defaultAutomaticReplies;
+        private readonly IDefaultAutomaticReplies _defaultAutomaticReplies;
+        private readonly IDefaultAutomaticReplyKeyMessages _defaultKeyMessages;
 
-        public DefaultAutomaticReplyDefinedProcessor(IDefaultAutomaticReplies defaultAutomaticReplies)
+        public DefaultAutomaticReplyDefinedProcessor(IDefaultAutomaticReplies defaultAutomaticReplies, IDefaultAutomaticReplyKeyMessages defaultKeyMessages)
         {
             _defaultAutomaticReplies = defaultAutomaticReplies;
+            _defaultKeyMessages = defaultKeyMessages;
         }
 
         public void Process(DefaultAutomaticReplyDefined @event)
@@ -24,6 +26,16 @@ namespace Read.AutomaticReplyMessages
             automaticReply.Message = @event.Message;
             automaticReply.Language = @event.Language;
             _defaultAutomaticReplies.Save(automaticReply);
+        }
+
+        public void Process(DefaultAutmaicReplyKeyMessageDefined @event)
+        {
+            var keyMessage = _defaultKeyMessages.GetByTypeLanguageAndHealthRisk((AutomaticReplyKeyMessageType)@event.Type, @event.Language, @event.HealthRiskId) ?? new DefaultAutomaticReplyKeyMessage(@event.Id);
+            keyMessage.Id = @event.Id;
+            keyMessage.Type = (AutomaticReplyKeyMessageType)@event.Type;
+            keyMessage.Message = @event.Message;
+            keyMessage.Language = @event.Language;
+            _defaultKeyMessages.Save(keyMessage);
         }
 
     }
