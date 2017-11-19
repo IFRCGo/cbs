@@ -18,6 +18,7 @@ using Read.CaseReports;
 using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
 using Concepts;
+using Read.Projects;
 using doLittle.Events;
 
 namespace Web
@@ -35,10 +36,6 @@ namespace Web
             "33333333", // DataCollector #3
             "00000000"  // Non existing data collector
         };
-
-        // There's no projects in the system yet, let this be the only reference for now
-        private Guid _projectId = new Guid("5ff0622a-9b9e-42aa-b004-40b8545be832");
-
 
         public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
         {
@@ -284,7 +281,7 @@ namespace Web
                     events.Add(new AutomaticReplyDefined()
                     {
                         Id = Guid.NewGuid(),
-                        ProjectId = _projectId,
+                        ProjectId = project.Id,
                         Language = language,
                         Message = replies[language][type],
                         Type = (int)type
@@ -443,6 +440,18 @@ namespace Web
                     Console.Error.WriteLine(ex.ToString());
                 }
             }
+        }
+
+
+        [HttpGet("createprojects")]
+        public void CreateProjects()
+        {
+            var _collection = _database.GetCollection<Project>("Project");
+            _collection.DeleteMany(v => true);
+
+            var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+            foreach (var project in projects)
+                Apply(project.Id, project);
         }
 
     }
