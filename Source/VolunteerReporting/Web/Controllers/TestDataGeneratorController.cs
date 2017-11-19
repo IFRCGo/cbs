@@ -51,6 +51,7 @@ namespace Web
             CreateTextMessages();
             CreateDefaultAutomaticReplyMessages();
             CreateDefaultAutomaticReplyKeyMessages();
+            CreateProjects();
             CreateAutomaticReplyMessages();
             CreateAutomaticReplyKeyMessages();
         }
@@ -274,6 +275,9 @@ namespace Web
                 }
             };
 
+            // Make some reply messages for the first project only
+            var project = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json")).First();
+
             foreach (var language in replies.Keys)
             {
                 foreach (var type in replies[language].Keys)
@@ -319,6 +323,9 @@ namespace Web
                 }
             };
 
+            // Make some reply messages for the first project only
+            var project = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json")).First();
+
             foreach (var language in keymessages.Keys)
             {
                 foreach (var healthRiskId in keymessages[language].Keys)
@@ -329,7 +336,7 @@ namespace Web
                         {
                             Id = Guid.NewGuid(),
                             HealthRiskId = healthRiskId,
-                            ProjectId = _projectId,
+                            ProjectId = project.Id,
                             Language = language,
                             Message = keymessages[language][healthRiskId][type],
                             Type = (int)type
