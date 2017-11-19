@@ -18,16 +18,23 @@ namespace Web.Controllers
     public class AutomaticRepliesController : BaseController
     {
         private readonly IDefaultAutomaticReplies _defaultAutomaticReplies;
+        private readonly IDefaultAutomaticReplyKeyMessages _defaultAutomaticReplyKeyMessages;
         private readonly IAutomaticReplies _automaticReplies;
-        public IAggregateRootRepositoryFor<AutomaticReplyDefinition> _automaticReplyRepository;
+        private readonly IAutomaticReplyKeyMessages _automaticReplyKeyMessages;
+        private readonly IAggregateRootRepositoryFor<AutomaticReplyDefinition> _automaticReplyRepository;
 
         public AutomaticRepliesController(
-            IDefaultAutomaticReplies defaultAutomaticReplies, 
+            IDefaultAutomaticReplies defaultAutomaticReplies,
+            IDefaultAutomaticReplyKeyMessages defaultAutomaticReplyKeyMessages,
             IAutomaticReplies automaticReplies,
-            IAggregateRootRepositoryFor<AutomaticReplyDefinition> automaticReplyRepository)
+            IAutomaticReplyKeyMessages automaticReplyKeyMessages,
+            IAggregateRootRepositoryFor<AutomaticReplyDefinition> automaticReplyRepository
+            )
         {
             _defaultAutomaticReplies = defaultAutomaticReplies;
+            _defaultAutomaticReplyKeyMessages = defaultAutomaticReplyKeyMessages;
             _automaticReplies = automaticReplies;
+            _automaticReplyKeyMessages = automaticReplyKeyMessages;
             _automaticReplyRepository = automaticReplyRepository;
         }
 
@@ -47,7 +54,7 @@ namespace Web.Controllers
             var projectDefined = await _automaticReplies.GetByProjectAsync(projectId);
             var defaults = await _defaultAutomaticReplies.GetAllAsync();
 
-            return projectDefined.Select(c => new Models.AutomaticReply()
+            return projectDefined.Select(c => new Web.Models.AutomaticReply()
             {
                 IsDefault = false,
                 Language = c.Language,
@@ -56,8 +63,35 @@ namespace Web.Controllers
             })
             .Union(defaults
                 .Where(c => !projectDefined.Any(p => p.Type == c.Type && p.Language == c.Language))
-                .Select(c => new Models.AutomaticReply()
+                .Select(c => new Web.Models.AutomaticReply()
                 {
+                    IsDefault = true,
+                    Language = c.Language,
+                    Type = c.Type,
+                    Message = c.Message
+                })
+            );
+        }
+
+        [HttpGet("keymessages/{projectId}")]
+        public async Task<IEnumerable<Web.Models.AutomaticReplyKeyMessage>> GetAutomaticReplyKeyMessagesForProject(Guid projectId)
+        {
+            var projectDefined = await _automaticReplyKeyMessages.GetByProjectAsync(projectId);
+            var defaults = await _defaultAutomaticReplyKeyMessages.GetAllAsync();
+
+            return projectDefined.Select(c => new Web.Models.AutomaticReplyKeyMessage()
+            {
+                HealthRiskId = c.HealthRiskId, 
+                IsDefault = false,
+                Language = c.Language,
+                Type = c.Type,
+                Message = c.Message
+            })
+            .Union(defaults
+                .Where(c => !projectDefined.Any(p => p.Type == c.Type && p.Language == c.Language))
+                .Select(c => new Web.Models.AutomaticReplyKeyMessage()
+                {
+                    HealthRiskId = c.HealthRiskId,
                     IsDefault = true,
                     Language = c.Language,
                     Type = c.Type,
@@ -76,6 +110,21 @@ namespace Web.Controllers
                 automaticReply.Type,
                 automaticReply.Language,
                 automaticReply.Message
+                );
+            return Ok();
+        }
+
+        [HttpPut("keymessage")]
+        public IActionResult CreateOrUpdateAutomaticReplyKeyMessage([FromBody]DefineAutomaticReplyKeyMessageForProject automaticReplyKeyMessage)
+        {
+            var eventId = Guid.NewGuid();
+            var repository = _automaticReplyRepository.Get(eventId);
+            repository.DefineKeyMessage(
+                automaticReplyKeyMessage.HealthRiskId,
+                automaticReplyKeyMessage.ProjectId,
+                automaticReplyKeyMessage.Type,
+                automaticReplyKeyMessage.Language,
+                automaticReplyKeyMessage.Message
                 );
             return Ok();
         }
