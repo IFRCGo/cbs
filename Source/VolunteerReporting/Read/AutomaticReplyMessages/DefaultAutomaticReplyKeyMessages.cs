@@ -34,7 +34,7 @@ namespace Read.AutomaticReplyMessages
 
         public void Save(DefaultAutomaticReplyKeyMessage keyMessage)
         {
-            var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language);
+            var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
             _collection.ReplaceOne(filter, keyMessage, new UpdateOptions { IsUpsert = true });
        }
     }

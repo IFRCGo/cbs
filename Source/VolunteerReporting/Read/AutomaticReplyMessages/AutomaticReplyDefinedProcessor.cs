@@ -33,6 +33,7 @@ namespace Read.AutomaticReplyMessages
         {
             var keyMessage = await _keyMessages.GetByProjectTypeLanguageAndHealthRiskAsync(@event.ProjectId, (AutomaticReplyKeyMessageType)@event.Type, @event.Language, @event.HealthRiskId) ?? new AutomaticReplyKeyMessage(@event.Id);
             keyMessage.ProjectId = @event.ProjectId;
+            keyMessage.HealthRiskId = @event.HealthRiskId;
             keyMessage.Type = (AutomaticReplyKeyMessageType)@event.Type;
             keyMessage.Message = @event.Message;
             keyMessage.Language = @event.Language;

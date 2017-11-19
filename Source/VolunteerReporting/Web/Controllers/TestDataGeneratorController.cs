@@ -18,6 +18,7 @@ using Read.CaseReports;
 using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
 using Concepts;
+using doLittle.Events;
 
 namespace Web
 {
@@ -52,7 +53,9 @@ namespace Web
             CreateDataCollectors();
             CreateTextMessages();
             CreateDefaultAutomaticReplyMessages();
+            CreateDefaultAutomaticReplyKeyMessages();
             CreateAutomaticReplyMessages();
+            CreateAutomaticReplyKeyMessages();
         }
 
         [HttpGet("healthrisks")]
@@ -254,15 +257,15 @@ namespace Web
                     Console.Error.WriteLine(ex.ToString());
                 }
             }
-
         }
+
         [HttpGet("producejsonforautomaticreplymessages")]
         public void ProduceJsonForAutomaticReplyMessages()
         {
-            var events = new List<AutomaticReplyDefined>();
+            var events = new List<IEvent>();
             var randomizer = new Random();
 
-            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
+            var replies = new Dictionary<string, Dictionary<AutomaticReplyType, string>>()
             {
                 ["nb-NO"] = new Dictionary<AutomaticReplyType, string>()
                 {
@@ -274,22 +277,172 @@ namespace Web
                 }
             };
 
-            foreach (var language in messages.Keys)
+            foreach (var language in replies.Keys)
             {
-                foreach (var type in messages[language].Keys)
+                foreach (var type in replies[language].Keys)
                 {
                     events.Add(new AutomaticReplyDefined()
                     {
                         Id = Guid.NewGuid(),
                         ProjectId = _projectId,
                         Language = language,
-                        Message = messages[language][type],
+                        Message = replies[language][type],
                         Type = (int)type
                     });
                 }
             }
 
             System.IO.File.WriteAllText("./TestData/AutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+        [HttpGet("producejsonforautomaticreplykeymessages")]
+        public void ProduceJsonForAutomaticReplyKeyMessages()
+        {
+            var events = new List<IEvent>();
+
+            var CholeraHealthRiskId = new Guid("51b92f4d-f14f-4ce9-9134-d766db5c3f80");
+
+            var keymessages = new Dictionary<string, Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>>()
+            {
+                ["nb-NO"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Flom i kloakk har forurenset drikkevann og forårsaker Kolera" },
+                        { AutomaticReplyKeyMessageType.Action, "Prioriter stasjoner for testing ut utlevering av rent vann" }
+                    }
+                },
+                ["en-US"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Flooding in sewer systems is causing contaminated drinking water and causes Cholera" },
+                        { AutomaticReplyKeyMessageType.Action, "Prioritize stations for testing and distribution of drinking water" }
+                    }
+                }
+            };
+
+            foreach (var language in keymessages.Keys)
+            {
+                foreach (var healthRiskId in keymessages[language].Keys)
+                {
+                    foreach (var type in keymessages[language][healthRiskId].Keys)
+                    {
+                        events.Add(new AutomaticReplyKeyMessageDefined()
+                        {
+                            Id = Guid.NewGuid(),
+                            HealthRiskId = healthRiskId,
+                            ProjectId = _projectId,
+                            Language = language,
+                            Message = keymessages[language][healthRiskId][type],
+                            Type = (int)type
+                        });
+                    }
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/AutomaticReplyKeyMessages.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+
+        [HttpGet("producejsonfordefaultautomaticreplykeymessages")]
+        public void ProduceJsonFordefaultAutomaticReplyKeyMessages()
+        {
+            var events = new List<IEvent>();
+
+            var CholeraHealthRiskId = new Guid("51b92f4d-f14f-4ce9-9134-d766db5c3f80");
+            var PlagueHealthRiskId = new Guid("40d28dcb-b423-4e9d-ac83-690227f9da72");
+
+            var keymessages = new Dictionary<string, Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>>()
+            {
+                ["nb-NO"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Mat og drikke forurenset av menneskers avføring er største kilde til Kolera" },
+                        { AutomaticReplyKeyMessageType.Action, "Sørg for rikelig tilgang til rent vann for å hindre dehydrering" }
+                    },
+                    [PlagueHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Pest spres bakterielt mellom mennesker og dyr via lopper" },
+                        { AutomaticReplyKeyMessageType.Action, "Sørg for snarlig behandling med anibiotika" }
+                    }
+                },
+                ["en-US"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Food and water contaminated by human waste is the main source for Cholera" },
+                        { AutomaticReplyKeyMessageType.Action, "Ensure good access to clean water to prevent dehydration" }
+                    },
+                    [PlagueHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Pleague is caused by bacterias and transmitted between people and animals via fleas" },
+                        { AutomaticReplyKeyMessageType.Action, "Ensure early treatment by antibiotics" }
+                    }
+                }
+            };
+
+            foreach (var language in keymessages.Keys)
+            {
+                foreach (var healthRiskId in keymessages[language].Keys)
+                {
+                    foreach (var type in keymessages[language][healthRiskId].Keys)
+                    {
+                        events.Add(new DefaultAutomaticReplyKeyMessageDefined()
+                        {
+                            Id = Guid.NewGuid(),
+                            HealthRiskId = healthRiskId,
+                            Language = language,
+                            Message = keymessages[language][healthRiskId][type],
+                            Type = (int)type
+                        });
+                    }
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplyKeyMessages.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+        [HttpGet("automaticreplykeymessages")]
+        public void CreateAutomaticReplyKeyMessages()
+        {
+            var _collection = _database.GetCollection<AutomaticReplyKeyMessage>("AutomaticReplyKeyMessage");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<AutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyKeyMessages.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+
+        [HttpGet("defaultautomaticreplykeymessages")]
+        public void CreateDefaultAutomaticReplyKeyMessages()
+        {
+            var _collection = _database.GetCollection<DefaultAutomaticReplyKeyMessage>("DefaultAutomaticReplyKeyMessage");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplyKeyMessages.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
         }
 
     }

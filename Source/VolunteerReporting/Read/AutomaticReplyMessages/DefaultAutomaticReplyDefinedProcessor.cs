@@ -32,6 +32,7 @@ namespace Read.AutomaticReplyMessages
         {
             var keyMessage = _defaultKeyMessages.GetByTypeLanguageAndHealthRisk((AutomaticReplyKeyMessageType)@event.Type, @event.Language, @event.HealthRiskId) ?? new DefaultAutomaticReplyKeyMessage(@event.Id);
             keyMessage.Id = @event.Id;
+            keyMessage.HealthRiskId = @event.HealthRiskId;
             keyMessage.Type = (AutomaticReplyKeyMessageType)@event.Type;
             keyMessage.Message = @event.Message;
             keyMessage.Language = @event.Language;
