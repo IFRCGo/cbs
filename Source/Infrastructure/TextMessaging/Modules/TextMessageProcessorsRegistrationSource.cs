@@ -4,7 +4,7 @@ using System.Linq;
 using Autofac.Builder;
 using Autofac.Core;
 
-namespace Infrastructure.TextMessaging
+namespace Infrastructure.TextMessaging.Modules
 {
     public class TextMessageProcessorsRegistrationSource : IRegistrationSource
     {
