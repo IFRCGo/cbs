@@ -2,15 +2,15 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Events;
-using System;
 
-namespace Events.External
+using System;
+using doLittle.Events;
+
+namespace Events
 {
-    public class PhoneNumberRemoved : IEvent
+    public class CaseReportIdentified : IEvent
     {
-        public Guid Id { get; set; }
+        public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }
