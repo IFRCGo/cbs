@@ -19,6 +19,7 @@ using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
 using Concepts;
 using Read.Projects;
+using doLittle.Events;
 
 namespace Web
 {
@@ -49,7 +50,10 @@ namespace Web
             CreateDataCollectors();
             CreateTextMessages();
             CreateDefaultAutomaticReplyMessages();
+            CreateDefaultAutomaticReplyKeyMessages();
+            CreateProjects();
             CreateAutomaticReplyMessages();
+            CreateAutomaticReplyKeyMessages();
         }
 
         [HttpGet("healthrisks")]
@@ -204,16 +208,14 @@ namespace Web
                     { AutomaticReplyType.UnknownSender, "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"},
                     { AutomaticReplyType.InvalidReport, "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny" },
                     { AutomaticReplyType.ZeroIncidents, "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen" },
-                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" },
-                    { AutomaticReplyType.KeyMessage, "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier" }
+                    { AutomaticReplyType.Incidents, "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}" }
                 },
                 ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Your phone number is not registered with us, please register"},
                     { AutomaticReplyType.InvalidReport, "Your report was not correctly formatted and could not be read. Please check and resend" },
                     { AutomaticReplyType.ZeroIncidents, "Thank you for letting us know there have been no health events detected" },
-                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" },
-                    { AutomaticReplyType.KeyMessage, "Remember clean hands and clean water are the most important in fighting epidemics" }
+                    { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" }
                 }
             };
 
@@ -253,20 +255,19 @@ namespace Web
                     Console.Error.WriteLine(ex.ToString());
                 }
             }
-
         }
+
         [HttpGet("producejsonforautomaticreplymessages")]
         public void ProduceJsonForAutomaticReplyMessages()
         {
-            var events = new List<AutomaticReplyDefined>();
+            var events = new List<IEvent>();
             var randomizer = new Random();
 
-            var messages = new Dictionary<string, Dictionary<AutomaticReplyType, string>>
+            var replies = new Dictionary<string, Dictionary<AutomaticReplyType, string>>()
             {
                 ["nb-NO"] = new Dictionary<AutomaticReplyType, string>()
                 {
                     { AutomaticReplyType.UnknownSender, "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"},
-                    { AutomaticReplyType.KeyMessage, "Det er elefanter i rommet, vær forsiktig!" }
                 },
                 ["en-US"] = new Dictionary<AutomaticReplyType, string>()
                 {
@@ -274,25 +275,178 @@ namespace Web
                 }
             };
 
-            // Make som reply messages for the first project only
+            // Make some reply messages for the first project only
             var project = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json")).First();
 
-            foreach (var language in messages.Keys)
+            foreach (var language in replies.Keys)
             {
-                foreach (var type in messages[language].Keys)
+                foreach (var type in replies[language].Keys)
                 {
                     events.Add(new AutomaticReplyDefined()
                     {
                         Id = Guid.NewGuid(),
                         ProjectId = project.Id,
                         Language = language,
-                        Message = messages[language][type],
+                        Message = replies[language][type],
                         Type = (int)type
                     });
                 }
             }
 
             System.IO.File.WriteAllText("./TestData/AutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+        [HttpGet("producejsonforautomaticreplykeymessages")]
+        public void ProduceJsonForAutomaticReplyKeyMessages()
+        {
+            var events = new List<IEvent>();
+
+            var CholeraHealthRiskId = new Guid("51b92f4d-f14f-4ce9-9134-d766db5c3f80");
+
+            var keymessages = new Dictionary<string, Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>>()
+            {
+                ["nb-NO"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Flom i kloakk har forurenset drikkevann og forårsaker Kolera" },
+                        { AutomaticReplyKeyMessageType.Action, "Prioriter stasjoner for testing ut utlevering av rent vann" }
+                    }
+                },
+                ["en-US"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Flooding in sewer systems is causing contaminated drinking water and causes Cholera" },
+                        { AutomaticReplyKeyMessageType.Action, "Prioritize stations for testing and distribution of drinking water" }
+                    }
+                }
+            };
+
+            // Make some reply messages for the first project only
+            var project = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json")).First();
+
+            foreach (var language in keymessages.Keys)
+            {
+                foreach (var healthRiskId in keymessages[language].Keys)
+                {
+                    foreach (var type in keymessages[language][healthRiskId].Keys)
+                    {
+                        events.Add(new AutomaticReplyKeyMessageDefined()
+                        {
+                            Id = Guid.NewGuid(),
+                            HealthRiskId = healthRiskId,
+                            ProjectId = project.Id,
+                            Language = language,
+                            Message = keymessages[language][healthRiskId][type],
+                            Type = (int)type
+                        });
+                    }
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/AutomaticReplyKeyMessages.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+
+        [HttpGet("producejsonfordefaultautomaticreplykeymessages")]
+        public void ProduceJsonFordefaultAutomaticReplyKeyMessages()
+        {
+            var events = new List<IEvent>();
+
+            var CholeraHealthRiskId = new Guid("51b92f4d-f14f-4ce9-9134-d766db5c3f80");
+            var PlagueHealthRiskId = new Guid("40d28dcb-b423-4e9d-ac83-690227f9da72");
+
+            var keymessages = new Dictionary<string, Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>>()
+            {
+                ["nb-NO"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Mat og drikke forurenset av menneskers avføring er største kilde til Kolera" },
+                        { AutomaticReplyKeyMessageType.Action, "Sørg for rikelig tilgang til rent vann for å hindre dehydrering" }
+                    },
+                    [PlagueHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Pest spres bakterielt mellom mennesker og dyr via lopper" },
+                        { AutomaticReplyKeyMessageType.Action, "Sørg for snarlig behandling med anibiotika" }
+                    }
+                },
+                ["en-US"] = new Dictionary<Guid, Dictionary<AutomaticReplyKeyMessageType, string>>()
+                {
+                    [CholeraHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Food and water contaminated by human waste is the main source for Cholera" },
+                        { AutomaticReplyKeyMessageType.Action, "Ensure good access to clean water to prevent dehydration" }
+                    },
+                    [PlagueHealthRiskId] = new Dictionary<AutomaticReplyKeyMessageType, string>()
+                    {
+                        { AutomaticReplyKeyMessageType.KeyMessage, "Pleague is caused by bacterias and transmitted between people and animals via fleas" },
+                        { AutomaticReplyKeyMessageType.Action, "Ensure early treatment by antibiotics" }
+                    }
+                }
+            };
+
+            foreach (var language in keymessages.Keys)
+            {
+                foreach (var healthRiskId in keymessages[language].Keys)
+                {
+                    foreach (var type in keymessages[language][healthRiskId].Keys)
+                    {
+                        events.Add(new DefaultAutomaticReplyKeyMessageDefined()
+                        {
+                            Id = Guid.NewGuid(),
+                            HealthRiskId = healthRiskId,
+                            Language = language,
+                            Message = keymessages[language][healthRiskId][type],
+                            Type = (int)type
+                        });
+                    }
+                }
+            }
+
+            System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplyKeyMessages.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+        }
+
+        [HttpGet("automaticreplykeymessages")]
+        public void CreateAutomaticReplyKeyMessages()
+        {
+            var _collection = _database.GetCollection<AutomaticReplyKeyMessage>("AutomaticReplyKeyMessage");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<AutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyKeyMessages.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+
+        [HttpGet("defaultautomaticreplykeymessages")]
+        public void CreateDefaultAutomaticReplyKeyMessages()
+        {
+            var _collection = _database.GetCollection<DefaultAutomaticReplyKeyMessage>("DefaultAutomaticReplyKeyMessage");
+            _collection.DeleteMany(v => true);
+
+            var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplyKeyMessages.json"));
+            foreach (var @event in events)
+            {
+                try
+                {
+                    this.Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
         }
 
 

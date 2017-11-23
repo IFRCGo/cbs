@@ -5,7 +5,6 @@ namespace Concepts
         UnknownSender,
         InvalidReport,
         ZeroIncidents,
-        Incidents,
-        KeyMessage
+        Incidents
     }
 }
