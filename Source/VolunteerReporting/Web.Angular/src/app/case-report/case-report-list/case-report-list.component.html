@@ -1,0 +1,39 @@
+<h3>
+    Case Reports
+</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Data&nbsp;Collector</th>
+            <th>Health&nbsp;Risk</th>
+            <th>Females&nbsp;&gt;&nbsp;5</th>
+            <th>Females&nbsp;&lt;&nbsp;5</th>
+            <th>Males&nbsp;&gt;&nbsp;5</th>
+            <th>Males&nbsp;&lt;&nbsp;5</th>
+            <th>Lat&nbsp;/&nbsp;Long</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let caseReport of reports">
+            <td>{{caseReport.timestamp | date:'medium'}}</td>
+            <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
+            <ng-container *ngIf="caseReport.healthRisk">
+                <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
+                <td>{{caseReport.numberOfFemalesOver5}}</td>
+                <td>{{caseReport.numberOfFemalesUnder5}}</td>
+                <td>{{caseReport.numberOfMalesOver5}}</td>
+                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>
+                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="!caseReport.healthRisk">
+                <td colspan="6">
+                    {{caseReport.message}}
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

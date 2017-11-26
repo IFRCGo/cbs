@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AddProject, NationalSociety, User } from '../../shared/models';
+import { NationalSocietyService } from '../../core/nationalsociety.service';
 import { ProjectService } from '../../core/project.service';
+import { UserService } from '../../core/user.service';
 import { UtilityService } from '../../core/utility.service';
+import { AddProject, NationalSociety, User } from '../../shared/models';
 
 @Component({
     selector: 'cbs-add-project',
@@ -12,17 +14,38 @@ import { UtilityService } from '../../core/utility.service';
 
 export class AddProjectComponent implements OnInit {
     name: string;
-    societies: NationalSociety[];
-    owners: User[];
+    societies: Array<NationalSociety>;
+    owners: Array<User>;
     selectedSociety: string;
     selectedOwner: string;
+    projectOwners: Array<User>;
 
     constructor(
         private projectService: ProjectService,
-        private utilityService: UtilityService
+        private utilityService: UtilityService,
+        private userService: UserService,
+        private nationalSocietyService: NationalSocietyService
     ) { }
 
     ngOnInit() {
+        this.nationalSocietyService.getNationalSocieties()
+            .then((result) => this.societies = result)
+            .catch((error) => console.error(error));
+    }
+
+    onSocietyChange(selectedNationalSocietyId: string) {
+        this.getProjectOwners(selectedNationalSocietyId);
+    }
+
+    getProjectOwners(nationalSocietyId: string) {
+        this.userService.getProjectOwners(nationalSocietyId).then(
+            (users) => {
+                this.projectOwners = users;
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 
     async addProject() {

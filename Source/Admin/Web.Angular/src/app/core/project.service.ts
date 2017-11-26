@@ -1,6 +1,8 @@
+import 'rxjs/add/operator/toPromise';
+
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+
 import { AddProject } from '../shared/models/add-project.model';
 import { Project } from '../shared/models/project.model';
 
@@ -24,14 +26,6 @@ export class ProjectService {
     }
 
     getProjects(): Promise<Array<Project>> {
-        // let projects = new Array<Project>();
-        // projects.push(
-        //     { id: '1', name: 'My first project'},
-        //     { id: '2', name: 'My second project'},
-        //     { id: '3', name: 'My third project'}
-        // );
-        // return Promise.resolve(projects);
-
         return this.http
             .get('/api/project', { headers: this.headers })
             .toPromise()

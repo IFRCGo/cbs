@@ -1,43 +1,52 @@
-<h2>Staff User management</h2>
+<h2>Register staff</h2>
 
-<p>Click button to add a staff user</p>
+<form [formGroup]='staffUserForm' class="register-staff-form" novalidate>
 
-<form [formGroup]='staffUserForm' novalidate>
-    <md-form-field class="full-width input-field">
-        <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
-    </md-form-field>
-    
-    <md-form-field class="full-width input-field">
-        <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
-    </md-form-field>
+    <mat-select class="full-width input-field" formControlName='nationalSociety' [(ngModel)]="selectedNationalSociety" placeholder="National Society">
+        <mat-option *ngFor="let society of nationalSocieties" [value]="society.value">
+            {{ society.viewValue }}
+        </mat-option>
+    </mat-select>
 
-    <md-select class="full-width input-field" formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
-        <md-option *ngFor="let sex of sexOptions" [value]="sex.value">
-            {{ sex.viewValue }}
-        </md-option>
-    </md-select>
- 
-    <md-form-field class="full-width input-field">
+    <div class="flex-row">
+        <mat-form-field class="half-width">
+            <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+            <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width input-field">
         <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
-    </md-form-field>
+    </mat-form-field>
     
-    <md-form-field class="full-width input-field">
-        <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
-    </md-form-field>
-    
-    <md-form-field class="full-width input-field">
-        <input mdInput formControlName='preferredLanguage' placeholder="Preferred language" ngDefaultControl>
-    </md-form-field>
-    
-    <md-form-field class="full-width input-field">
-        <input type="tel" mdInput placeholder="Telephone">
-        <md-icon (click)="clickevent()" mdSuffix>mode_edit</md-icon>
-    </md-form-field>
+    <mat-select class="full-width input-field" formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
+        <mat-option *ngFor="let sex of sexOptions" [value]="sex.value">
+            {{ sex.viewValue }}
+        </mat-option>
+    </mat-select>
 
-    <md-form-field class="example-full-width input-field">
-        <input mdInput formControlName='email' placeholder="E-mail Address" ngDefaultControl>
-    </md-form-field>
+    <mat-select class="full-width input-field" formControlName='preferredLanguage' [(ngModel)]="selectedLanguage" placeholder="Preferred Language">
+        <mat-option *ngFor="let language of languageOptions" [value]="language.value">
+            {{ language.viewValue }}
+        </mat-option>
+    </mat-select>
+
+    <mat-form-field class="full-width input-field">
+        <input type="tel" mdInput formControlName='mobilePhoneNumber' placeholder="Telephone">
+    </mat-form-field>
+
+    <mat-form-field class="full-width input-field">
+        <input mdInput type="email" formControlName='email' placeholder="E-mail Address" ngDefaultControl>
+        <mat-error *ngIf="staffUserForm.controls.email.hasError('pattern')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="staffUserForm.controls.email.hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
 </form>
 
-<button md-raised-button color="primary" type="submit" class="btn" (click)="addStaffUser(staffUserForm.value)">Add staff user</button>
+<button mat-raised-button color="primary" type="submit" class="btn submit-button" (click)="addStaffUser(staffUserForm.value)">Register</button>
 

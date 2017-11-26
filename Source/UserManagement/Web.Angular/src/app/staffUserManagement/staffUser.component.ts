@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { StaffUser } from '../domain/staffUser';
 
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 @Component({
   selector: 'cbs-user',
   templateUrl: './staffUser.component.html',
@@ -10,12 +12,27 @@ import { StaffUser } from '../domain/staffUser';
 })
 export class StaffUserComponent implements OnInit {
   staffUserForm: FormGroup;
+
   selectedSex: string;
   sexOptions = [
-    {value: 'male', viewValue: 'Male'},
-    {value: 'female', viewValue: 'Female'},
-    {value: 'other', viewValue: 'Other'}
+    { value: 'male', viewValue: 'Male' },
+    { value: 'female', viewValue: 'Female' }
   ];
+
+  selectedNationalSociety: string;
+  nationalSocieties = [
+    { value: 'placeholder', viewValue: 'Placeholder Society (PHS)'}
+  ];
+
+  selectedLanguage: string;
+  languageOptions = [
+    { value: 'en', viewValue: 'English' },
+    { value: 'fr', viewValue: 'French' }
+  ];
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(EMAIL_REGEX)]);
 
   constructor(
     private staffUserService: StaffUserService,
@@ -24,19 +41,28 @@ export class StaffUserComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.staffUserService.getAllUsers();
+    this.staffUserService.getNationalSocieties()
+      .then(this.processNationalSocieties)
+      .then(societies => {
+        this.nationalSocieties = societies;
+      });
   }
+
+  processNationalSocieties = societies => societies.map(society => ({
+    value: society.id,
+    viewValue: society.displayName
+  }));
 
   buildForm() {
     this.staffUserForm = this.formBuilder.group({
         firstName: [ '', [ Validators.required ] ],
         lastName: [ '', [ Validators.required ] ],
         sex: ['', [ Validators.required ] ],
-        age: ['', [ Validators.required ] ],
+        age: ['', [ Validators.required, Validators.min(10), Validators.max(100) ] ],
         nationalSociety: ['', [ Validators.required ] ],
         preferredLanguage: ['', [ Validators.required ] ],
         mobilePhoneNumber: ['', [ Validators.required ] ],
-        email: ['', [ Validators.required ] ]
+        email: this.emailFormControl
       });
   }
 

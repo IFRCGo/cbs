@@ -1,0 +1,23 @@
+[
+  {
+    "Id": "730b7bfc-3188-4e27-b86e-2a5e50bd13fc",
+    "ProjectId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+    "Type": 0,
+    "Language": "nb-NO",
+    "Message": "Din henvendelse kunne ikke behandles, vennligst kontakt Norges Røde Kors for assistanse. {keymessage}"
+  },
+  {
+    "Id": "5478989e-bd3a-4892-ab0c-55c7bb33c95a",
+    "ProjectId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+    "Type": 4,
+    "Language": "nb-NO",
+    "Message": "Det er elefanter i rommet, vær forsiktig!"
+  },
+  {
+    "Id": "9459498b-c76b-4f0d-8f3d-ada18da8642d",
+    "ProjectId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+    "Type": 1,
+    "Language": "en-US",
+    "Message": "Your report was incorrectly formatted. It should be RiskID#Incidents#Gender"
+  }
+]

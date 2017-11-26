@@ -1,41 +1,78 @@
 <h2>DataCollector User management</h2>
 
-<p>Click button to add a dataCollector user</p>
+<form [formGroup]='dataCollectorForm' novalidate class="flex-container">
 
-<form [formGroup]='dataCollectorForm' novalidate>
-    <md-form-field class="input-field">
-        <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
-    </md-form-field>
-    
-    <md-form-field class="input-field">
-        <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
-    </md-form-field>
-    
-    <md-radio-group formControlName='sex' placeholder="Sex" ngDefaultControl class="input-field">
-        <md-radio-button value="male">male</md-radio-button>
-        <md-radio-button value="female">female</md-radio-button>
-        <md-radio-button value="other">other</md-radio-button>
-      </md-radio-group>
+    <div class="flex-row">
+        <mat-form-field class="input-field full-width">
+            <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl  />
+        </mat-form-field>
+    </div>
+
+    <div class="flex-row">
+        <mat-form-field class="input-field full-width">
+            <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl  />
+        </mat-form-field>
         
-    <md-input-container class="input-field">
-        <input mdInput type="number" formControlName="age" placeholder="age">
-    </md-input-container>   
+        <mat-form-field class="input-field full-width">
+            <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl  />
+        </mat-form-field>
+    </div>
     
-    <md-form-field class="input-field">
-        <input mdInput formControlName='nationalSociety' placeholder="National society" ngDefaultControl>
-    </md-form-field>
+    <div class="flex-row">
+            <mat-input-container class="input-field full-width">
+                <input mdInput type="number" formControlName="age" placeholder="Age"  />
+            </mat-input-container>
     
-    <md-select formControlName="language" placeholder="Preferred language" [formGroup]="dataCollectorForm" ngDefaultControl>
-        <md-option mdInput *ngFor="let language of languages" [value]="language.value">
-            {{ language.viewValue }}
-        </md-option>
-    </md-select>
-    
-    <md-form-field class="input-field">
-        <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl>
-    </md-form-field>
+            <mat-form-field class="input-field full-width">
+                <input mdInput formControlName='mobilePhoneNumber' placeholder="Mobile phone number" ngDefaultControl  />
+            </mat-form-field>
+    </div>
+
+    <div class="flex-row">
+        <mat-select class="full-width input-field" formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
+            <mat-option *ngFor="let sex of sexOptions" [value]="sex.value">
+                {{ sex.viewValue }}
+            </mat-option>
+        </mat-select>
+
+        <mat-select formControlName="language" class="full-width" placeholder="Preferred language" [formGroup]="dataCollectorForm" ngDefaultControl>
+            <mat-option mdInput *ngFor="let language of languages" [value]="language.value">
+                {{ language.viewValue }}
+            </mat-option>
+        </mat-select>
+    </div>
+
+
+    <div class="flex-row">
+        <div class="flex-row"> 
+            <mat-form-field class="input-field full-width">
+                <input mdInput formControlName='longitude' placeholder="Longitude" ngDefaultControl value={{longitude}} />
+            </mat-form-field>
+
+            <mat-form-field class="input-field full-width">
+                <input mdInput formControlName='latitude' placeholder="Latitude" ngDefaultControl value={{latitude}} />
+            </mat-form-field>
+        </div>
+
+        <div class="flex-row center"> 
+            <div>
+                <button mat-raised-button color="primary" type="submit" class="btn geo-btn" (click)="getPosition()">
+                    Get current location
+                </button>   
+            </div>
+            
+            <div>
+                <button mat-raised-button color="primary" type="submit" class="btn geo-btn">
+                    Get map location
+                </button>
+            </div>
+        </div>
+    </div>
 </form>
 
-<button md-raised-button color="primary" type="submit" class="btn" 
-    (click)="adddataCollector(dataCollectorForm.value, dataCollectorForm.valid)" >Klikk på meg</button>
+<button mat-raised-button color="primary" type="submit" class="btn submit-button full-width" 
+    (click)="adddataCollector(dataCollectorForm.value, dataCollectorForm.valid)" >
+    Add Data Collector
+</button>
+
 

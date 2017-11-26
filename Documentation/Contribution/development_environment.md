@@ -2,45 +2,50 @@
 title: Development Environment
 description: How to set up your development environment to get started
 keywords: Development Environment
-author: einari
+author: einari, karolikl
 ---
 # Development Environment
 
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”,
-“RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in
-[RFC 2119](https://tools.ietf.org/html/rfc2119).
+## Source Control: Git
 
-## Git
+We use Git for version control. If you need the basic CLI client - download it from [here](https://git-scm.com/downloads).  
+If you an unfamiliar with Git, this e-book is a great way to get started: [Pro Git book, written by Scott Chacon and Ben Straub](https://git-scm.com/book/en/v2).  
 
-Everything is Git based. Some Ideas have it installed, some operating systems as well. If you need the
-basic CLI client - download it from [here](https://git-scm.com/downloads).
+## Frontend: Node.js & Angular.js
 
-## .NET Core
+- Node.js (download at [nodejs.org](https://nodejs.org/en/)). This may include an older version of NPM. Update NPM using `npm install npm@latest -g`
+- Typescript (`npm install -g typescript`)
+- Angular CLI (`npm install -g @angular/cli@latest`)
 
-The backend code is written using C# and .NET. below are the best choices for getting up and running fast.
+## Backend: .NET Core
+
+The backend code is written using C# and .NET.  
 Download and install the [.NET Core 2.0 SDK and runtime](https://www.microsoft.com/net/download/core).
 
-### Visual Studio Code
+## Storage: MongoDB
 
-Open source, cross platform editor:
-[Visual Studio Code](https://code.visualstudio.com/) - Code editor. More info [here](./visual_studio_code.md).
-
-### Visual Studio 2017 or for Mac
-
-You can use the free, community edition as an IDE if you like - download it from [here](https://www.visualstudio.com/vs/community/).
+MongoDB is used for storage, and we recommend installing [MongoChef / Studio3T](https://studio3t.com) which has cross platform support.  
+For using this with Azure and CosmosDB, there is a write-up [here](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-mongochef)
 
 ## Docker
 
-Everything is being developed with Docker in mind, and in fact you can get something that resembles the
-production environment pretty easily as things are packaged up and ready to be used.
+We use Docker to build and distribute the applications.
+Download the Docker Community Edition [here](https://store.docker.com/search?type=edition&offering=community).
 
-Download the Community Edition from [here](https://store.docker.com/search?type=edition&offering=community).
+## Code editor / IDE
 
-## MongoDB
+Choose the editor or IDE you prefer.
 
-[MongoChef / Studio3T](https://studio3t.com) is a great tool - supports cross platform.
-For using this with Azure and CosmosDB, there is a write-up [here](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-mongochef)
+### Editor: Visual Studio Code
+
+Visual Studio code is a free, open source, cross platform editor:
+Download it [here](https://code.visualstudio.com/).
+
+### IDE: Visual Studio 2017 or for Mac
+
+The Community edition of Visual Studio 2017 and Visual Studio 2017 for Mac can be used for free in open source development: 
+Download it [here](https://www.visualstudio.com/vs/community/).
 
 ## Terminal
 
-Any terminal and git. To get quickly up and running, suggested options are [cmder]([http://cmder.net/]) on Windows and [iTerm2](https://www.iterm2.com/downloads.html) on Mac.
+You will need any terminal and git. To get quickly up and running, suggested options are [cmder](http://cmder.net/) on Windows and [iTerm2](https://www.iterm2.com/downloads.html) on Mac.

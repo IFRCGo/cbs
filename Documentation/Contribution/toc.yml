@@ -1,0 +1,10 @@
+- name: Contributing
+  href: contributing.md
+- name: Development environment
+  href: development_environment.md
+- name: Documenting
+  href: documentation.md
+- name: Getting started
+  href: getting_started.md
+- name: Issues
+  href: issues.md  

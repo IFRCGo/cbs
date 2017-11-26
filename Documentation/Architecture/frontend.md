@@ -6,11 +6,18 @@ author:
 ---
 # Frontend
 
-## Composition
+## Scaffold new Angular components
 
-Since the application is broken up into smaller bounded contexts and these are autonomous one needs a way to compose it all back together.
+(Active path: `cbs/Source/Example/Frontend`)
 
-> [!Note]
-> This needs discussion...
+Create new component
 
-## WebSockets
+> `ng g c folder/componentname`
+
+Creat new service
+
+> `ng g s core/services/servicename`
+
+Creat new pipe
+
+> `ng g p shared/pipes/pipename`
