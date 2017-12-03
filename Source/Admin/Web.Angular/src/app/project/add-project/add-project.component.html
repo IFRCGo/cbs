@@ -4,8 +4,8 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                <select id="society" class="form-control" [(ngModel)]="selectedSociety" name="society">
-                        <option *ngFor="let society of societies" [value]="society">{{society}}</option>
+                <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society">
+                        <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                 </select>
             </div>
         </div>
@@ -16,7 +16,7 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
                 <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner">
-                    <option *ngFor="let owner of owners" [value]="owner">{{owner}}</option>
+                    <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}</option>
                 </select>
             </div>
         </div>

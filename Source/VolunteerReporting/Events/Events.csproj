@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha*" />
+  </ItemGroup>
 
 </Project>

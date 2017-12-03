@@ -7,6 +7,7 @@ using Infrastructure.AspNet;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+
     public static class doLittleServices
     {
 
@@ -19,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             assembliesConfigurationBuilder.IncludeAll();
 
             var contractToImplementorsMap = new ContractToImplementorsMap();
-            var executingAssembly = typeof(doLittleServices).GetTypeInfo().Assembly;
+            var executingAssembly = typeof(doLittleModule).GetTypeInfo().Assembly;
             contractToImplementorsMap.Feed(executingAssembly.GetTypes());
 
             var assemblySpecifiers = new AssemblySpecifiers(assembliesConfigurationBuilder.RuleBuilder, logger);
@@ -32,13 +33,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 assemblyFilters,
                 new AssemblyUtility(),
                 assemblySpecifiers);
-            Internals.Assemblies = assemblyProvider.GetAll();
-
-            services.AddSingleton<IAssemblyFilters>(assemblyFilters);
-            services.AddSingleton<AssembliesConfiguration>(assembliesConfiguration);
-            services.AddSingleton<IAssemblyProvider>(assemblyProvider);
-            services.AddSingleton<IAssemblies>(new Assemblies(assemblyProvider));
-            services.AddSingleton(typeof(doLittle.DependencyInversion.IContainer), typeof(Container));
+            Internals.AllAssemblies = assemblyProvider.GetAll();
+            Internals.AssemblyFilters = assemblyFilters;
+            Internals.AssembliesConfiguration = assembliesConfiguration;
+            Internals.AssemblyProvider = assemblyProvider;
+            Internals.Assemblies = new Assemblies(assemblyProvider);
+            
             return services;
         }
     }

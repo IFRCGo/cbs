@@ -4,22 +4,199 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
+            "taskName": "restore",
             "command": "dotnet",
             "args": [
-                "build",
-                "./Events",
-                "--no-restore"
+                "restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:build)"
             ],
-            "type": "process",
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "type": "shell",
+            "group": "none",
+            "options": {
+                "cwd": "${fileDirname}"
             },
             "presentation": {
                 "reveal": "always"
             },
             "problemMatcher": "$msCompile"
+        },
+        
+        {
+            "taskName": "build",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:build)"
+            ],
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "build current",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "--no-dependencies",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:build /ignoreRewriteFolder)"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "build current for tests",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "--no-dependencies",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:build)"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "build tests",
+            "command": "dotnet",
+            "dependsOn": "build current for tests",
+            "args": [
+                "build",
+                "--no-dependencies",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:build /forTests)"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        
+        {
+            "taskName": "test",
+            "command": "dotnet",
+            "dependsOn": "build",
+            "args": [
+                "test",
+                "--no-build",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:test)"
+            ],
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "tests rerun",
+            "command": "dotnet",
+            "dependsOn": "build",
+            "args": [
+                "test",
+                "--no-build",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:test /rerun)"
+            ],
+            "type": "shell",
+            "group": "test",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+
+        {
+            "taskName": "tests no dependencies",
+            "dependsOn": "build tests",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "--no-build",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:test)"
+            ],
+            "type": "shell",
+            "group": "test",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            
+            "problemMatcher": "$msCompile"
+        },
+        
+        {
+            "taskName": "test debug",
+            "command": "dotnet",
+            "dependsOn": "build",
+            "args": [
+                "test",
+                "--no-build",
+                "--no-restore",
+                "$(node ${workspaceFolder}/../../resolveProject.js /root:${workspaceFolder} /type:test /forTests)"
+            ],
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "always"
+            },
+            "options": {
+                "cwd": "${fileDirname}",
+                "env": {
+                    "VSTEST_HOST_DEBUG": "1"
+                }
+            },
+            
+            "problemMatcher": "$msCompile"
         }
+        
     ]
 }

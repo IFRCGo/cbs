@@ -5,42 +5,35 @@
 
 using Domain;
 using Events;
-using Infrastructure.Application;
-using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read;
+using Read.ProjectFeatures;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.AspNet;
 
 namespace Web
 {
     [Route("api/project")]
-    public class ProjectController : Controller
+    public class ProjectController : BaseController
     {
-        public static readonly Feature Feature = "Project";
-
-        readonly IEventEmitter _eventEmitter;
-
         readonly ILogger<ProjectController> _logger;
 
         readonly IProjects _projects;
 
         public ProjectController(
             IProjects projects,
-            IEventEmitter eventEmitter,
             ILogger<ProjectController> logger)
         {
-            _eventEmitter = eventEmitter;
             _logger = logger;
             _projects = projects;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Project>> Get()
+        public Task<IEnumerable<Project>> Get()
         {
-            return await _projects.GetAllASync();
+            return _projects.GetAllASync();
         }
 
         [HttpGet("{id}")]
@@ -52,10 +45,12 @@ namespace Web
         [HttpPost]
         public void Post([FromBody] CreateProject command)
         {
-            _eventEmitter.Emit(Feature, new ProjectCreated
+            Apply(command.Id, new ProjectCreated
             {
                 Name = command.Name,
-                Id = command.Id
+                Id = command.Id,
+                NationalSocietyId = command.NationalSocietyId,
+                OwnerUserId = command.OwnerUserId
             });
         }
 

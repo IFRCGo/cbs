@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "a9780e68-692c-4047-bbf0-9cbf956caa69",
+    "Type": 0,
+    "Language": "nb-NO",
+    "Message": "Ditt telefonnummer er ikke registrert som en frivillig hos oss, vennligst registrer deg"
+  },
+  {
+    "Id": "58bc508e-7827-45f4-a5af-b711544f6584",
+    "Type": 1,
+    "Language": "nb-NO",
+    "Message": "Rapporten var ikke korrekt formatert, vennligst kontroller og send på ny"
+  },
+  {
+    "Id": "9a97c0b4-9313-49c6-865c-31e685c88a00",
+    "Type": 2,
+    "Language": "nb-NO",
+    "Message": "Takk for din rapport! Vi er glad for å høre at det ikke har vært observert noen"
+  },
+  {
+    "Id": "56aac6df-feaf-4af6-be94-44d61d58ceba",
+    "Type": 3,
+    "Language": "nb-NO",
+    "Message": "Takk for du rapporterer om {event} i {location}. {nationalsociety} følger situasjonen. {keymessage}"
+  },
+  {
+    "Id": "1328607f-f9e6-4149-a2fe-72c124d113d6",
+    "Type": 4,
+    "Language": "nb-NO",
+    "Message": "Husk at god håndhygiene og rent vann er det viktigste middelet mot epidemier"
+  },
+  {
+    "Id": "5925185d-9efd-4d52-9783-feeab6ddb6d7",
+    "Type": 0,
+    "Language": "en-US",
+    "Message": "Your phone number is not registered with us, please register"
+  },
+  {
+    "Id": "1bc54563-bac3-4582-86d2-ee395fa65c1d",
+    "Type": 1,
+    "Language": "en-US",
+    "Message": "Your report was not correctly formatted and could not be read. Please check and resend"
+  },
+  {
+    "Id": "b5768490-3393-4421-b263-57a2bbdabf8f",
+    "Type": 2,
+    "Language": "en-US",
+    "Message": "Thank you for letting us know there have been no health events detected"
+  },
+  {
+    "Id": "c3c74554-e043-43d2-b0e4-74beaa2aead4",
+    "Type": 3,
+    "Language": "en-US",
+    "Message": "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}"
+  },
+  {
+    "Id": "ee8ade45-257d-42ba-bd7d-4323424b1ac5",
+    "Type": 4,
+    "Language": "en-US",
+    "Message": "Remember clean hands and clean water are the most important in fighting epidemics"
+  }
+]

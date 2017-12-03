@@ -12,5 +12,8 @@ namespace Domain
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public Guid NationalSocietyId { get; set; }
+        public Guid OwnerUserId { get; set; }
     }
 }

@@ -14,12 +14,12 @@ aspects. Not all users have access to everything.
 
 ## User
 
-## Volunteer
+## Data Collector
 
-Volunteers are trained to detect events that pose a risk to public health to the system. The volunteer is a community-based data collector, who submits structured data on events occuring in their defined geographical area to the system. The volunteer receives automated confirmation of receipt, or an error-report if the report could not be validated. If a report exceeds the threshold for any one event or triggers the initiation of an alert the volunteer will receive information that an alert has been triggered, with prompts for actions that may be required, and who is the designated person to follow up the alert (next level escalation. In the event of nothing to report, the volunteer will send a zero-report according to project SOP. The volunteers have access to their own data/ aggregated data from their own community. 
+Data collectors are trained to observe and report events that pose a risk to public health. The data collector is a community-based volunteer, who submits a text message case report on events occuring in their defined geographical area to the system. The data collector receives an automatic receipt message when submitting a case report, or an error message if the report could not be validated. If a report exceeds the threshold for any one event or triggers the initiation of an alert the data collector will receive information that an alert has been triggered, with prompts for actions that may be required, and who is the designated person to follow up the alert (next level escalation). In the event of nothing to report, the data collector will send a zero-report according to project SOP. The data collectors have access to their own data/ aggregated data from their own community. 
 
 ## Coordinator / Supervisor
-The supervisor has direct supervision responsibility for volunteers in their area (district or region) and is the first level of escalation. They receive alerts based on the volunteers' reports, and are tasked to verify the alert, assess and decided action (dismiss, community response, or escalation to next level).  
+The supervisor has direct supervision responsibility for data collector in their area (district or region) and is the first level of escalation. They receive alerts based on the data collectors' reports, and are tasked to verify the alert, assess and decided action (dismiss, community response, or escalation to next level).  
 
 ## CBS Coordinator - national level 
 
