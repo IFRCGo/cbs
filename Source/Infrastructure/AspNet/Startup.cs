@@ -3,6 +3,7 @@ using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
 using Infrastructure.Application;
+using Infrastructure.AspNet.LocalizedStrings;
 using Infrastructure.Events;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +26,7 @@ namespace Infrastructure.AspNet
 
             builder.RegisterGeneric(typeof(InstancesOf<>)).As(typeof(IInstancesOf<>));
             builder.RegisterGeneric(typeof(ImplementationsOf<>)).As(typeof(IImplementationsOf<>));
-
+            
             Internals.Assemblies.ForEach(assembly => 
             {
                 builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
@@ -34,6 +35,11 @@ namespace Infrastructure.AspNet
 
             builder.RegisterSource(new EventProcessorRegistrationSource());
             builder.RegisterSource(new MongoDBRegistrationSource());
+            builder.RegisterSource(new LocalizedStringsRegistrationsSource(new LocalizedStringsParser()));
+
+            // TODO: Fix auto discovery for generics
+            builder.RegisterGeneric(typeof(LocalizedStringsManagerFactory<>))
+                .As(typeof(ILocalizedStringsManagerFactory<>));
         }
     }
 }
