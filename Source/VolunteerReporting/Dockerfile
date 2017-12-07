@@ -25,5 +25,6 @@ FROM microsoft/aspnetcore:2.0.0
 WORKDIR /app
 COPY --from=dotnet-build /src/Source/VolunteerReporting/Web/out ./
 COPY --from=angular-build /src/Source/VolunteerReporting/Web/wwwroot ./wwwroot
-EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:8083
+EXPOSE 5000 8083
 ENTRYPOINT ["dotnet", "Web.dll"]

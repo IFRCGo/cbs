@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/toPromise';
-import { forkJoin } from 'rxjs/observable/forkJoin';
-import 'rxjs/rx';
+import 'rxjs/add/observable/forkJoin';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
