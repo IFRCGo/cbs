@@ -9,6 +9,7 @@ namespace Infrastructure.TextMessaging
         public string OriginNumber { get; set; }
         public string Message { get; set; }
         public string Keyword { get; set; }
+        public string FullMessage { get; set; }
         public string ReceivedAtGatewayNumber { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

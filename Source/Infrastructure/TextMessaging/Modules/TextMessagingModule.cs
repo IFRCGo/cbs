@@ -1,6 +1,6 @@
 using Autofac;
 
-namespace Infrastructure.TextMessaging
+namespace Infrastructure.TextMessaging.Modules
 {
     public class TextMessagingModule : Module
     {
