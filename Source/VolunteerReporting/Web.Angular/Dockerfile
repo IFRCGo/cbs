@@ -1,14 +1,3 @@
-# Build the .NET part
-FROM microsoft/dotnet:2.0.0-sdk AS dotnet-build
-WORKDIR /src
-COPY ./NuGet.Config ./
-COPY ./Build/MSBuild ./Build/MSBuild
-COPY ./Source/Infrastructure ./Source/Infrastructure
-COPY ./Source/VolunteerReporting ./Source/VolunteerReporting
-WORKDIR /src/Source/VolunteerReporting/Web
-RUN dotnet restore
-RUN dotnet publish -c Release -o out
-
 # Build the static content part
 FROM node:latest AS angular-build
 WORKDIR /src
@@ -23,8 +12,6 @@ RUN ["ng", "build", "--prod"]
 # Build runtime image
 FROM microsoft/aspnetcore:2.0.0
 WORKDIR /app
-COPY --from=dotnet-build /src/Source/VolunteerReporting/Web/out ./
 COPY --from=angular-build /src/Source/VolunteerReporting/Web/wwwroot ./wwwroot
-ENV ASPNETCORE_URLS=http://+:8083
-EXPOSE 5000 8083
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "Web.dll"]
