@@ -28,6 +28,7 @@ namespace Web
     {
         private readonly IMongoDatabase _database;
         private readonly ITextMessageProcessors _textMessageProcessors;
+        private readonly IConfiguration _configuration;
 
         private string[] _phoneNumbers = new[] {
             "",         // missing
@@ -37,10 +38,11 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
-        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
+        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IConfiguration configuration)
         {
             _textMessageProcessors = textMessageProcessors;
             _database = database;
+            _configuration = configuration;
         }
 
         [HttpGet("all")]
@@ -59,6 +61,8 @@ namespace Web
         [HttpGet("healthrisks")]
         public void CreateHealthRisks()
         {
+            Console.Debug(_configuration.Get("ConnectionString").Value)
+
             var _collection = _database.GetCollection<HealthRisk>("HealthRisk");
             _collection.DeleteMany(v => true);
 
