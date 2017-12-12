@@ -1,10 +1,7 @@
-using Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using doLittle.Events.Processing;
 using Concepts;
+using doLittle.Events.Processing;
 using doLittle.Time;
+using Events;
 
 namespace Read.CaseReports
 {
@@ -29,57 +26,26 @@ namespace Read.CaseReports
             var caseReport = new CaseReport(@event.CaseReportId);
             caseReport.DataCollectorId = @event.DataCollectorId;
             caseReport.HealthRiskId = @event.HealthRiskId;
-            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
-            caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
-            caseReport.Location = new Location(@event.Latitude, @event.Longitude);
-            caseReport.Timestamp = @event.Timestamp;
-            _caseReports.Save(caseReport);
-        }
-
-        public void Process(MultipleCaseReportsReceived @event)
-        {
-            var caseReport = new CaseReport(@event.CaseReportId);
-            caseReport.DataCollectorId = @event.DataCollectorId;
-            caseReport.HealthRiskId = @event.HealthRiskId;
             caseReport.NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5;
             caseReport.NumberOfFemalesOver5 = @event.NumberOfFemalesOver5;
-            caseReport.NumberOfMalesUnder5 = @event.NumberOfFemalesUnder5;
+            caseReport.NumberOfMalesUnder5 = @event.NumberOfMalesUnder5;
             caseReport.NumberOfMalesOver5 = @event.NumberOfMalesOver5;
             caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             caseReport.Timestamp = @event.Timestamp;
             _caseReports.Save(caseReport);
         }
-
-
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
             var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId);
             caseReport.Origin = @event.Origin;
             caseReport.HealthRiskId = @event.HealthRiskId;
-            caseReport.NumberOfFemalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfFemalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Female ? 1 : 0;
-            caseReport.NumberOfMalesUnder5 = @event.Age <= 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
-            caseReport.NumberOfMalesOver5 = @event.Age > 5 && (Sex)@event.Sex == Sex.Male ? 1 : 0;
-            caseReport.Timestamp = @event.Timestamp;
-            caseReport.Location = new Location(@event.Latitude, @event.Longitude);
-            _caseReportsFromUnknownDataCollectors.Save(caseReport);
-        }
-
-
-        public void Process(MultipleCaseReportsFromUnknownDataCollectorReceived @event)
-        {
-            var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId);
-            caseReport.Origin = @event.Origin;
-            caseReport.HealthRiskId = @event.HealthRiskId;
             caseReport.NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5;
             caseReport.NumberOfFemalesOver5 = @event.NumberOfFemalesOver5;
-            caseReport.NumberOfMalesUnder5 = @event.NumberOfFemalesUnder5;
+            caseReport.NumberOfMalesUnder5 = @event.NumberOfMalesUnder5;
             caseReport.NumberOfMalesOver5 = @event.NumberOfMalesOver5;
-            caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             caseReport.Timestamp = @event.Timestamp;
+            caseReport.Location = new Location(@event.Latitude, @event.Longitude);
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
-        }
+        }        
     }
 }
