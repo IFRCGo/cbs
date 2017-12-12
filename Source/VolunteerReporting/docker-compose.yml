@@ -1,0 +1,18 @@
+version: '3'
+services:
+  cbs-volunteerreporting-db:
+    image: mongo
+    container_name: cbs-volunteerreporting-db
+    ports:
+        - "27017:27017"
+
+  cbs-volunteerreporting-backend:
+    build: ./Web
+    image: karolikl/cbs-vr-backend
+    container_name: cbs-volunteerreporting-backend
+    links:
+        - cbs-volunteerreporting-db
+    depends_on:
+        - cbs-volunteerreporting-db
+    ports:
+        - "8080:80"
