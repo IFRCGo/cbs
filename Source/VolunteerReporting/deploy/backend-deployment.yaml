@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: cbs-volunteerreporting-db
@@ -27,7 +27,7 @@ spec:
   selector:
     app: cbs-volunteerreporting-db
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: cbs-volunteerreporting-backend
