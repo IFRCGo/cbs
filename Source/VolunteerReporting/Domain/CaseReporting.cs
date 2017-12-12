@@ -45,7 +45,7 @@ namespace Domain
             });
 
         }
-        //TODO: Add timestamp
+
         public void Report(
             Guid dataCollectorId,
             Guid healthRiskId,
