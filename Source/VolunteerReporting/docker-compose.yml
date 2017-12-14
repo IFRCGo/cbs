@@ -6,7 +6,7 @@ services:
         - "27017:27017"
 
   cbs-volunteerreporting-backend:
-    image: karolikl/cbs-vr-backend:1168
+    image: karolikl/cbs-vr-backend:latest
     links:
         - cbs-volunteerreporting-db
     depends_on:
