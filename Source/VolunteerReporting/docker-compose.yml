@@ -7,7 +7,7 @@ services:
 
   backend:
     build: ./Web
-    image: karolikl/cbs-vr-backendert
+    image: karolikl/cbs-vr-backend
     links:
         - vrmongo
     depends_on:

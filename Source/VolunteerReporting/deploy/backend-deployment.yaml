@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: cbs-volunteerreporting-backend
-        image: karolikl/cbs-vr-backend:1157
+        image: karolikl/cbs-vr-backend:$BUILD_ID
         ports:
         - containerPort: 80
 ---
