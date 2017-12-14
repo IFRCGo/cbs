@@ -1,16 +1,16 @@
 version: '3'
 services:
-  mongo:
+  vrmongo:
     image: mongo
     ports:
         - "27017:27017"
 
   backend:
     build: ./Web
-    image: karolikl/cbs-vr-backend
+    image: karolikl/cbs-vr-backendert
     links:
-        - mongo
+        - vrmongo
     depends_on:
-        - mongo
+        - vrmongo
     ports:
         - "8080:80"

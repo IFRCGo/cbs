@@ -20,6 +20,7 @@ using Read.AutomaticReplyMessages;
 using Concepts;
 using Read.Projects;
 using doLittle.Events;
+using Microsoft.Extensions.Configuration;
 
 namespace Web
 {
@@ -58,11 +59,16 @@ namespace Web
             CreateAutomaticReplyKeyMessages();
         }
 
+        [HttpGet("connection")]
+        public string Connection()
+        {
+            return _database.Client.Settings.Server.Host;
+        }
+
+
         [HttpGet("healthrisks")]
         public void CreateHealthRisks()
         {
-            Console.Debug(_configuration.Get("ConnectionString").Value)
-
             var _collection = _database.GetCollection<HealthRisk>("HealthRisk");
             _collection.DeleteMany(v => true);
 
