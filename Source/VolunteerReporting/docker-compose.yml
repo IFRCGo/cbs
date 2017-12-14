@@ -1,16 +1,15 @@
 version: '3'
 services:
-  vrmongo:
+  cbs-volunteerreporting-db:
     image: mongo
     ports:
         - "27017:27017"
 
-  backend:
-    build: ./Web
-    image: karolikl/cbs-vr-backend
+  cbs-volunteerreporting-backend:
+    image: karolikl/cbs-vr-backend:1168
     links:
-        - vrmongo
+        - cbs-volunteerreporting-db
     depends_on:
-        - vrmongo
+        - cbs-volunteerreporting-db
     ports:
         - "8080:80"
