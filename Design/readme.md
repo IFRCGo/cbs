@@ -1,10 +1,10 @@
 # CBS Design
-The MVP design guide is made using [Balsamq mockups](https://balsamiq.com) 
+The MVP design guide is made using [Balsamiq mockups](https://balsamiq.com) 
 
 Here you can find the source file and a clickable pdf
 
-notes:
+Notes:
 * The top bar is not active
-* Dashboards not added jet
-* Self-signup not added jet
+* Dashboards not added yet
+* Self-signup not added yet
 
