@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th>Time</th>
+            <th>Status</th>
             <th>Data&nbsp;Collector</th>
             <th>Health&nbsp;Risk</th>
             <th>Females&nbsp;&gt;&nbsp;5</th>
@@ -18,6 +19,10 @@
     <tbody>
         <tr *ngFor="let caseReport of reports">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
+            <td>
+                <span  *ngIf="caseReport.healthRisk" class="label label-success">Success</span>
+                <span  *ngIf="!caseReport.healthRisk" class="label label-danger">Error</span>
+            </td>
             <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
             <ng-container *ngIf="caseReport.healthRisk">
                 <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
