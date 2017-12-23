@@ -7,12 +7,14 @@ namespace Infrastructure.AspNet.LocalizedStrings
 {
     internal class UnparsedLocalizedStrings
     {
-        public UnparsedLocalizedStrings(string locale, string json)
+        public UnparsedLocalizedStrings(string locale, string name, string json)
         {
             Locale = locale;
+            Name = name;
             StringsJson = json;
         }
         public string Locale { get; set; }
+        public string Name { get; set; }
         public string StringsJson { get; set; }
     }
 }

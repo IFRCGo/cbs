@@ -11,20 +11,23 @@ using Castle.DynamicProxy;
 
 namespace Infrastructure.AspNet.LocalizedStrings
 {
-    internal class LocalizedStringsManagerFactory<T> : ILocalizedStringsManagerFactory<T>
+    internal class LocalizedStringsFactory<T> : ILocalizedStringsFactory<T>
             where T : class, new()
     {
         private readonly IEnumerable<LocalizedStringsProvider> _providers;
+        private readonly string _featureName;
 
-        public LocalizedStringsManagerFactory(IEnumerable<LocalizedStringsProvider> providers)
+        public LocalizedStringsFactory(IEnumerable<LocalizedStringsProvider> providers)
         {
             _providers = providers;
+            _featureName = typeof(T).Name.ToLower().Replace("strings", "");
         }
 
         public T GetLocalizedStringManager(CultureInfo culture)
         {
             var provider = _providers.SingleOrDefault(p =>
-                p.Locale.Equals(culture.TwoLetterISOLanguageName, StringComparison.InvariantCultureIgnoreCase));
+                p.Locale.Equals(culture.TwoLetterISOLanguageName, StringComparison.InvariantCultureIgnoreCase) &&
+                p.Name.Equals(_featureName, StringComparison.InvariantCultureIgnoreCase));
 
             if (provider != null)
             {

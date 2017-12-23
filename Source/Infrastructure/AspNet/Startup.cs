@@ -31,8 +31,8 @@ namespace Infrastructure.AspNet
                 new UnparsedStringsProvider()));
 
             // TODO: Fix auto discovery for generics
-            builder.RegisterGeneric(typeof(LocalizedStringsManagerFactory<>))
-                .As(typeof(ILocalizedStringsManagerFactory<>));
+            builder.RegisterGeneric(typeof(LocalizedStringsFactory<>))
+                .As(typeof(ILocalizedStringsFactory<>));
         }
     }
 }

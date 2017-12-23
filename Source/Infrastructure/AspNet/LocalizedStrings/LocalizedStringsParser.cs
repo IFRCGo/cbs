@@ -14,7 +14,7 @@ namespace Infrastructure.AspNet.LocalizedStrings
         public LocalizedStringsProvider ParseStrings(UnparsedLocalizedStrings strings)
         {
             var parsedStrings = JsonConvert.DeserializeObject<IDictionary<string, string>>(strings.StringsJson);
-            return new LocalizedStringsProvider(strings.Locale, parsedStrings);
+            return new LocalizedStringsProvider(strings.Locale, strings.Name, parsedStrings);
         }
     }
 }

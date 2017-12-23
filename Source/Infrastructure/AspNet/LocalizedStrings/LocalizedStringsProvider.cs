@@ -9,13 +9,15 @@ namespace Infrastructure.AspNet.LocalizedStrings
 {
     internal class LocalizedStringsProvider
     {
-        public LocalizedStringsProvider(string locale, IDictionary<string, string> localizedStrings)
+        public LocalizedStringsProvider(string locale, string name, IDictionary<string, string> localizedStrings)
         {
             Locale = locale;
+            Name = name;
             LocalizedStrings = localizedStrings;
         }
 
         public string Locale { get; }
+        public string Name { get; set; }
         public IDictionary<string, string> LocalizedStrings { get; }
     }
 }
