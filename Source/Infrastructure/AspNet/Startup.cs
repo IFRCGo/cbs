@@ -20,14 +20,15 @@ namespace Infrastructure.AspNet
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            Internals.AllAssemblies.ForEach(assembly => 
+            Internals.AllAssemblies.ForEach(assembly =>
             {
                 builder.RegisterAssemblyModules(assembly);
                 builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
             });
 
             builder.RegisterSource(new MongoDBRegistrationSource());
-            builder.RegisterSource(new LocalizedStringsRegistrationsSource(new LocalizedStringsParser()));
+            builder.RegisterSource(new LocalizedStringsRegistrationsSource(new LocalizedStringsParser(),
+                new UnparsedStringsProvider()));
 
             // TODO: Fix auto discovery for generics
             builder.RegisterGeneric(typeof(LocalizedStringsManagerFactory<>))

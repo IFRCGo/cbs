@@ -5,8 +5,14 @@
 
 namespace Infrastructure.AspNet.LocalizedStrings
 {
-    internal interface ILocalizedStringsParser
+    internal class UnparsedLocalizedStrings
     {
-        LocalizedStringsProvider ParseStrings(UnparsedLocalizedStrings strings);
+        public UnparsedLocalizedStrings(string locale, string json)
+        {
+            Locale = locale;
+            StringsJson = json;
+        }
+        public string Locale { get; set; }
+        public string StringsJson { get; set; }
     }
 }
