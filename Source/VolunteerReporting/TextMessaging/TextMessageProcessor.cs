@@ -52,7 +52,7 @@ namespace TextMessaging
             var caseReporting = _caseReportingRepository.Get(caseReportId);
             if (!parsingResult.IsValid)
             {
-                ReportInvalidMessage(message, parsingResult, dataCollectorId, unknown, caseReporting);
+                ReportInvalidMessage(message, parsingResult, dataCollectorId, unknown, caseReporting, message.Sent);
                 return;
             }
 
@@ -62,7 +62,21 @@ namespace TextMessaging
             {
                 var sex = (Sex)parsingResult.Numbers[1];
                 var age = parsingResult.Numbers[2];
-                ReportSingle(message, dataCollectorId, caseReporting, healthRiskId, sex, age, unknown);
+                var malesUnder5 = age <= 5 && sex == Sex.Male ? 1 : 0;
+                var malesOver5 = age > 5 && sex == Sex.Male ? 1 : 0;
+                var femalesUnder5 = age <= 5 && sex == Sex.Female ? 1 : 0;
+                var femalesOver5 = age > 5 && sex == Sex.Female ? 1 : 0;
+                Report(
+                    message,
+                    dataCollectorId,
+                    unknown,
+                    caseReporting,
+                    healthRiskId,
+                    malesUnder5,
+                    malesOver5,
+                    femalesUnder5,
+                    femalesOver5,
+                    message.Sent);
             }
             else
             {
@@ -70,76 +84,78 @@ namespace TextMessaging
                 var malesOver5 = parsingResult.Numbers[2];
                 var femalesUnder5 = parsingResult.Numbers[3];
                 var femalesOver5 = parsingResult.Numbers[4];
-
-                ReportMultiple(message, dataCollectorId, unknown, caseReporting, healthRiskId, malesUnder5, malesOver5, femalesUnder5, femalesOver5);
+                Report(
+                    message,
+                    dataCollectorId,
+                    unknown,
+                    caseReporting,
+                    healthRiskId,
+                    malesUnder5,
+                    malesOver5,
+                    femalesUnder5,
+                    femalesOver5,
+                    message.Sent);
             }
         }
 
-        void ReportInvalidMessage(TextMessage message, TextMessageParsingResult parsingResult, DataCollectorId dataCollectorId, bool unknown, CaseReporting caseReporting)
+        void ReportInvalidMessage(
+            TextMessage message,
+            TextMessageParsingResult parsingResult,
+            DataCollectorId dataCollectorId,
+            bool unknown,
+            CaseReporting caseReporting,
+            DateTimeOffset timestamp)
         {
-            if (!unknown) caseReporting.ReportInvalidReport(dataCollectorId, message.Message, parsingResult.ErrorMessages);
-            else caseReporting.ReportInvalidReportFromUnknownDataCollector(message.OriginNumber, message.Message, parsingResult.ErrorMessages);
+            if (!unknown) caseReporting.ReportInvalidReport(
+                dataCollectorId,
+                message.Message,
+                parsingResult.ErrorMessages,
+                timestamp);
+            else caseReporting.ReportInvalidReportFromUnknownDataCollector(
+                message.OriginNumber,
+                message.Message,
+                parsingResult.ErrorMessages,
+                timestamp);
         }
 
-        void ReportSingle(
+        void Report(
             TextMessage message,
             DataCollectorId dataCollectorId,
+            bool unknown,
             CaseReporting caseReporting,
             Guid healthRiskId,
-            Sex sex,
-            int age,
-            bool unknown)
+            int malesUnder5,
+            int malesOver5,
+            int femalesUnder5,
+            int femalesOver5,
+            DateTimeOffset timestamp)
         {
             if (!unknown)
             {
                 caseReporting.Report(
                     dataCollectorId,
                     healthRiskId,
-                    sex,
-                    age,
+                    malesUnder5,
+                    malesOver5,
+                    femalesUnder5,
+                    femalesOver5,
                     message.Longitude,
-                    message.Latitude);
+                    message.Latitude,
+                    timestamp
+                );
             }
             else
             {
                 caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
                     healthRiskId,
-                    sex,
-                    age,
-                    message.Longitude,
-                    message.Latitude);
-
-            }
-        }
-
-
-        void ReportMultiple(TextMessage message, DataCollectorId dataCollectorId, bool unknown, CaseReporting caseReporting, Guid healthRiskId, int malesUnder5, int malesOver5, int femalesUnder5, int femalesOver5)
-        {
-            if (!unknown)
-            {
-                caseReporting.ReportMultiple(
-                    dataCollectorId,
-                    healthRiskId,
                     malesUnder5,
                     malesOver5,
                     femalesUnder5,
                     femalesOver5,
                     message.Longitude,
-                    message.Latitude
-                );
-            }
-            else
-            {
-                caseReporting.ReportMultipleFromUnknownDataCollector(
-                    message.OriginNumber,
-                    healthRiskId,
-                    malesUnder5,
-                    malesOver5,
-                    femalesUnder5,
-                    femalesOver5,
-                    message.Longitude,
-                    message.Latitude
+                    message.Latitude,
+                    timestamp
                 );
             }
         }

@@ -49,7 +49,7 @@ Our biggest shortage at the moment is designers and frond-end developers, but th
 If you need help, please take a look at our [documentation](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions. 
 
 ## Media coverage
-
+- December 6th, 2017. Microsoft press release: ["Recoding the Red Cross"](https://news.microsoft.com/europe/features/recoding-the-red-cross/), ["Koding hjelper Røde Kors redde liv"](http://www.mynewsdesk.com/no/microsoft-norge/pressreleases/omkoding-av-roede-kors-2317982)
 - November 16th, 2017. NRK P2 Studio 2: ["Helseapper"](https://radio.nrk.no/serie/studio-2-p2/MKRV20017917/16-11-2017#t=57m14s)
 - Telenor Norge: ["Koder for en bedre klode"](https://www.telenor.no/om/samfunnsansvar/artikler/codeathon.jsp)
 - October 5th, 2017. Bistandsaktuelt: ["Røde Kors-dugnad for å varsle epidemier – kan redde liv"](https://www.bistandsaktuelt.no/nyheter/2017/dugnad-for-epidemi-varsling/)
