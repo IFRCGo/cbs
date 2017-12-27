@@ -5,7 +5,7 @@
 
 using System.Globalization;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     /// <summary>
     /// Factory for generating string manager proxies. See Example project for a demonstration of usage.
@@ -15,7 +15,7 @@ namespace Infrastructure.AspNet.LocalizedStrings
     /// of the feature. The default strings must be placed in this folder with the name "[feature]Strings.cs".
     /// The strings must be declared as virtual properties with a default get value (no setters). Localized strings
     /// must be placed in this folder as json files with key-value pairs, where the key is the property name. The 
-    /// name of the file must me the ISO 639-1 two-letter code for the locale.
+    /// name of the file must be the ISO 639-1 two-letter code for the locale.
     /// </typeparam>
     public interface ILocalizedStringsFactory<out TFeatureStrings>
         where TFeatureStrings : class, new()

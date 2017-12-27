@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsProvider
     {

@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Castle.DynamicProxy;
 using System.Collections.Generic;
 using System.Reflection;
+using Castle.DynamicProxy;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class OverwriteStringInterceptor : IInterceptor
     {

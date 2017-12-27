@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Linq;
 using Castle.DynamicProxy;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsFactory<T> : ILocalizedStringsFactory<T>
             where T : class, new()

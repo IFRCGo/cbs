@@ -5,9 +5,8 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class UnparsedStringsProvider : IUnparsedStringsProvider
     {

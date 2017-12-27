@@ -5,13 +5,13 @@
 
 using System;
 using System.Collections.Generic;
-using Autofac.Core;
 using System.Linq;
-using Autofac.Core.Registration;
+using Autofac.Core;
 using Autofac.Core.Activators.Delegate;
 using Autofac.Core.Lifetime;
+using Autofac.Core.Registration;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsRegistrationsSource : IRegistrationSource
     {

@@ -2,7 +2,7 @@ using AspNet.MongoDB;
 using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
-using Infrastructure.AspNet.LocalizedStrings;
+using Infrastructure.AspNet.StringLocalization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

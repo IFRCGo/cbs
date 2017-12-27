@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Globalization;
-using Infrastructure.AspNet.LocalizedStrings;
+using Infrastructure.AspNet.StringLocalization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Localization.Customer;
 

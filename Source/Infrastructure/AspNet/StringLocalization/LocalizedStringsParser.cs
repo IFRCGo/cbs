@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Infrastructure.AspNet.LocalizedStrings
+namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsParser : ILocalizedStringsParser
     {
