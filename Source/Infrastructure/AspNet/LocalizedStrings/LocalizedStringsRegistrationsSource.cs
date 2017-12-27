@@ -16,10 +16,12 @@ namespace Infrastructure.AspNet.LocalizedStrings
     internal class LocalizedStringsRegistrationsSource : IRegistrationSource
     {
         private readonly ILocalizedStringsParser _parser;
+        private readonly IUnparsedStringsProvider _provider;
 
-        public LocalizedStringsRegistrationsSource(ILocalizedStringsParser parser)
+        public LocalizedStringsRegistrationsSource(ILocalizedStringsParser parser, IUnparsedStringsProvider provider)
         {
             _parser = parser;
+            _provider = provider;
         }
 
         public bool IsAdapterForIndividualComponents => false;
@@ -29,7 +31,8 @@ namespace Infrastructure.AspNet.LocalizedStrings
             if (!(service is IServiceWithType serviceWithType) || serviceWithType.ServiceType != typeof(LocalizedStringsProvider))
                 return Enumerable.Empty<IComponentRegistration>();
 
-            var stringProviders = _parser.GetAllProviders();
+            var unparsed = _provider.GetUnparsedLocalizedStrings();
+            var stringProviders = unparsed.Select(_parser.ParseStrings);
 
             var registrations = stringProviders.Select(provider =>
                 new ComponentRegistration(

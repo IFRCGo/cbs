@@ -2,11 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-namespace Infrastructure.AspNet.LocalizedStrings
+ 
+ namespace Web.Localization.Cart
 {
-    internal interface ILocalizedStringsParser
+    public class CartStrings
     {
-        LocalizedStringsProvider ParseStrings(UnparsedLocalizedStrings strings);
+        public virtual string AddToCart => "Add to cart";
+        public virtual string RemoveFromCart => "Remove from cart";
     }
 }

@@ -3,18 +3,18 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
 namespace Infrastructure.AspNet.LocalizedStrings
 {
-    internal class LocalizedStringsParser : ILocalizedStringsParser
+    internal class UnparsedLocalizedStrings
     {
-
-        public LocalizedStringsProvider ParseStrings(UnparsedLocalizedStrings strings)
+        public UnparsedLocalizedStrings(string locale, string name, string json)
         {
-            var parsedStrings = JsonConvert.DeserializeObject<IDictionary<string, string>>(strings.StringsJson);
-            return new LocalizedStringsProvider(strings.Locale, strings.Name, parsedStrings);
+            Locale = locale;
+            Name = name;
+            StringsJson = json;
         }
+        public string Locale { get; set; }
+        public string Name { get; set; }
+        public string StringsJson { get; set; }
     }
 }
