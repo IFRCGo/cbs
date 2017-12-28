@@ -7,6 +7,7 @@ import { Headers, Http } from '@angular/http';
 import { Report } from '../shared/models/report.model';
 import { CaseReport } from '../shared/models/index';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'; 
 
 @Injectable()
 export class AggregatedCaseReportService {
