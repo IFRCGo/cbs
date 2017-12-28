@@ -6,7 +6,9 @@ services:
         - "27017:27017"
 
   cbs-volunteerreporting-backend:
-    image: karolikl/cbs-vr-backend:latest
+    build:
+        context: ../../
+        dockerfile: Source/VolunteerReporting/Web/Dockerfile
     links:
         - cbs-volunteerreporting-db
     depends_on:

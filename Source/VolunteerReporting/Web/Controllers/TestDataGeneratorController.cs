@@ -29,7 +29,6 @@ namespace Web
     {
         private readonly IMongoDatabase _database;
         private readonly ITextMessageProcessors _textMessageProcessors;
-        private readonly IConfiguration _configuration;
 
         private string[] _phoneNumbers = new[] {
             "",         // missing
@@ -39,11 +38,10 @@ namespace Web
             "00000000"  // Non existing data collector
         };
 
-        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IConfiguration configuration)
+        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
         {
             _textMessageProcessors = textMessageProcessors;
             _database = database;
-            _configuration = configuration;
         }
 
         [HttpGet("all")]
@@ -59,7 +57,7 @@ namespace Web
             CreateAutomaticReplyKeyMessages();
         }
 
-        [HttpGet("connection")]
+        [HttpGet("serverhost")]
         public string Connection()
         {
             return _database.Client.Settings.Server.Host;
