@@ -10,8 +10,8 @@ namespace Read.HealthRiskFeatures
         public string Name { get; set; }
         public int ReadableId { get; set; }
         public int? Threshold { get; set; }
-        public string ConfirmedCase { get; set; }
-        public string Note { get; set; }
+        public string ConfirmedCase { get; set; } //TODO: Should this be removed?
+        public string Note { get; set; } //TODO: Should this be removed?
         public string SuspectedCase { get; set; }
         public string ProbableCase { get; set; }
         public string CommunityCase { get; set; }
