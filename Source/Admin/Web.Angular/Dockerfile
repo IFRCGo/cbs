@@ -9,5 +9,5 @@ WORKDIR /src
 RUN ["yarn", "install"]
 RUN ["ng", "build", "--prod"]
 
-FROM nginx:1.11-alpine
+FROM nginx:1.13-alpine
 COPY --from=angular-build /src/dist /usr/share/nginx/html

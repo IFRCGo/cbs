@@ -23,4 +23,4 @@ services:
         - cbs-admin-db
         - cbs-admin-backend
     ports:
-        - "4200:4200"
+        - "4200:80"
