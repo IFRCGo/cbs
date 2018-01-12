@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://cbs-admin-backend'
+  api: 'http://13.95.169.89'
 };
