@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: cbs-admin-frontend
-        image: karolikl/cbs-admin-frontend:$BUILD_ID
+        image: karolikl/cbs-admin-frontend:latest
         ports:
         - containerPort: 80
 ---
