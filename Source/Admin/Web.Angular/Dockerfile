@@ -1,11 +1,13 @@
 # Build the static content part
-FROM node:latest
+FROM node:latest AS angular-build
 WORKDIR /src
-COPY package.json /src
-RUN npm install
+RUN ["npm", "install", "-g", "yarn"]
+RUN ["yarn","global", "add", "typescript"]
+RUN ["yarn","global", "add", "@angular/cli@latest"]
 COPY . /src
+WORKDIR /src
+RUN ["yarn", "install"]
+RUN ["ng", "build", "--prod"]
 
-EXPOSE 4200
-CMD ["npm", "start"]
-
-#https://stackoverflow.com/questions/45525227/different-proxy-config-based-on-environment-in-angular-2-cli?noredirect=1&lq=1
+FROM nginx:1.11-alpine
+COPY --from=angular-build /src/dist /usr/share/nginx/html
