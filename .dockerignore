@@ -8,6 +8,7 @@ Documentation
 Meetings
 Design
 **/Example
+**/node_modules
 
 # ignore markdown files
 *.md

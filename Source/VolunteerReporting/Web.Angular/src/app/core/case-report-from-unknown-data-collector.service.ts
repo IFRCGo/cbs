@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { CaseReportFromUnknownDataCollector } from '../shared/models/case-report-from-unknown-data-collector.model';
+import { environment } from '../../environments/environment'; 
 
 @Injectable()
 export class CaseReportFromUnknownDataCollectorService {
@@ -13,7 +14,7 @@ export class CaseReportFromUnknownDataCollectorService {
 
     getAnonymousCaseReports(): Promise<Array<CaseReportFromUnknownDataCollector>> {
         return this.http
-            .get('/api/casereportsfromunknowndatacollectors', { headers: this.headers })
+            .get(environment.api + '/api/casereportsfromunknowndatacollectors', { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));
