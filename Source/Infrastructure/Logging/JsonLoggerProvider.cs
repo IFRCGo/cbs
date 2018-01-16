@@ -1,5 +1,5 @@
 using System;
-using doLittle.Commands;
+using doLittle.Runtime.Commands;
 using Microsoft.Extensions.Logging;
 
 namespace Logging
@@ -18,14 +18,10 @@ namespace Logging
         public ILogger CreateLogger(string categoryName)
         {
             ICommandContextManager commandContextManager = null;
-            try
-            {
-                commandContextManager = doLittle.Configuration.Configure.Instance.Container.Get<ICommandContextManager>();
-            }
-            catch
-            {
-                commandContextManager = new NullCommandContextManager();
-            }
+            // Todo: Needs a proper correlation Id from real / current command context manager 
+            // find a way to retrieve this
+            commandContextManager = new NullCommandContextManager();
+
             return new JsonLogger(_source, categoryName, _filter, commandContextManager);
         }
 
