@@ -16,13 +16,15 @@ import { StaffUserComponent } from './staffUserManagement/staffUser.component';
 import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
 import { HomeComponent } from './homeComponent/home.component';
 import { MatIconModule } from '@angular/material';
+import { UserListComponent } from './userListComponent/userList.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaffUserComponent,
     DataCollectorFormComponent,
-    HomeComponent
+    HomeComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
