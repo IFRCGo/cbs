@@ -1,88 +1,105 @@
-﻿[
+[
   {
     "id": "3ac370f4-ce0b-44a7-844f-0688043b258a",
     "name": "Afghan Red Crescent",
-    "country": "Afghanistan"
+    "country": "Afghanistan",
+    "timezoneOffsetFromUtcInMinutes": 270
   },
   {
     "id": "53a5712c-663a-41f8-bbb1-bc4fd834646e",
     "name": "Albanian Red Cross",
-    "country": "Albania"
+    "country": "Albania",
+    "timezoneOffsetFromUtcInMinutes": 60
   },
   {
     "id": "4405540c-78bc-4484-ae06-e00be468770c",
     "name": "Algerian Red Crescent",
-    "country": "Algeria"
+    "country": "Algeria",
+    "timezoneOffsetFromUtcInMinutes": 60
   },
   {
     "id": "267f83bf-fbe0-4fa7-a356-15fe478348b8",
-    "name": "American Red Cross",
-    "country": "United States"
+    "name": "NYC Red Cross",
+    "country": "United States",
+    "timezoneOffsetFromUtcInMinutes": -300
   },
   {
     "id": "40b21a4f-8abf-4216-aebb-632710f74d60",
     "name": "Andorran Red Cross",
-    "country": "Andora"
+    "country": "Andora",
+    "timezoneOffsetFromUtcInMinutes": 60
   },
   {
     "id": "4220b129-f6fa-452c-a358-bc9ae2579e9e",
     "name": "Angola Red Cross",
-    "country": "Angola"
+    "country": "Angola",
+    "timezoneOffsetFromUtcInMinutes": 60
   },
   {
     "id": "a1f3836f-7fc5-43ba-adb8-6ba2471d02df",
     "name": "Antigua and Barbuda Red Cross",
-    "country": "Antingua and Barbuda"
+    "country": "Antingua and Barbuda",
+    "timezoneOffsetFromUtcInMinutes": -240
   },
   {
     "id": "b816a0f5-b22b-4c5d-9328-d8951ba7b277",
     "name": "Argentine Red Cross",
-    "country": "Argentina"
+    "country": "Argentina",
+    "timezoneOffsetFromUtcInMinutes": -180
   },
   {
     "id": "36d7b332-e8b2-4628-8f90-eccb3a3dc8d0",
     "name": "Armenian Red Cross Society",
-    "country": "Armenia"
+    "country": "Armenia",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "a2ea23e1-96af-4b92-99bd-ceb75f6dd1de",
     "name": "Australian Red Cross",
-    "country": "Australia"
+    "country": "Australia",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "05bbe6ca-4d8e-4dca-8b96-6febdae8cfa3",
     "name": "Austrian Red Cross",
-    "country": "Austria"
+    "country": "Austria",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "8ce2c2c5-eee2-4f04-9911-89c500f9df9b",
     "name": "Bahrain Red Crescent Society",
-    "country": "Bahrain"
+    "country": "Bahrain",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "83a01410-092c-4ac4-8559-39e8b290a702",
     "name": "Bangladesh Red Crescent Society",
-    "country": "Bangladesh"
+    "country": "Bangladesh",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "d6bc9e90-6ad8-4755-a6a4-192fe4a48519",
     "name": "Baphalali Swaziland Red Cross Society",
-    "country": "Swaziland"
+    "country": "Swaziland",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "53d08d70-7ca9-4289-9c81-f287ab9f53bf",
     "name": "Belarus Red Cross",
-    "country": "Belarus"
+    "country": "Belarus",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "ab9ffcb8-c192-4987-8e09-1b2e98038914",
     "name": "Belgian Red Cross",
-    "country": "Belgium"
+    "country": "Belgium",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "f5d5fbfe-f868-448f-a043-8a01d33d43a1",
     "name": "Belize Red Cross Society",
-    "country": "Belize"
+    "country": "Belize",
+    "timezoneOffsetFromUtcInMinutes": 0
   },
   {
     "id": "69b01017-cfb5-4a42-b96d-4de58b5df750",
