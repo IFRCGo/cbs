@@ -7,5 +7,6 @@ namespace Read.CaseReports
     {
         void Save(CaseReportFromUnknownDataCollector anonymousCaseReport);
         Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync();
+        Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetByPhoneNumber(string phoneNumber);
     }
 }
