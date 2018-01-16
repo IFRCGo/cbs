@@ -1,5 +1,6 @@
 import { DataCollector } from './../domain/dataCollector';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment'; 
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -12,7 +13,7 @@ export class DataCollectorService {
   constructor(private http: Http) { }
 
   saveDataCollector(dataCollector: DataCollector): Promise<void> {
-    const url = `http://localhost:5000/api/usermanagement/dataCollector`;
+    const url = environment.api + '/api/usermanagement/dataCollector';
 
     return this.http
       .post(url, JSON.stringify(dataCollector), { headers: this.headers })
@@ -22,7 +23,7 @@ export class DataCollectorService {
   }
 
   getAllDataCollectors(): Promise<void> {
-    const url = 'http://localhost:5000/api/usermanagement/dataCollectors';
+    const url = environment.api + '/api/usermanagement/dataCollectors';
 
     return this.http
       .get(url, { headers: this.headers })
