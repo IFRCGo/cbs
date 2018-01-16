@@ -20,6 +20,7 @@ using Read.AutomaticReplyMessages;
 using Concepts;
 using Read.Projects;
 using doLittle.Events;
+using Microsoft.Extensions.Configuration;
 
 namespace Web
 {
@@ -55,6 +56,13 @@ namespace Web
             CreateAutomaticReplyMessages();
             CreateAutomaticReplyKeyMessages();
         }
+
+        [HttpGet("serverhost")]
+        public string Connection()
+        {
+            return _database.Client.Settings.Server.Host;
+        }
+
 
         [HttpGet("healthrisks")]
         public void CreateHealthRisks()
