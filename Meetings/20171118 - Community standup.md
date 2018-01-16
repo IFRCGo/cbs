@@ -10,7 +10,7 @@
 
 ### Status from the Red Cross
 
-The Red Cross have had a busy autumn with both Tonje and Roxanne deployed to Madagasacar, where there is an ongoing plague outbreak, and with the deployment of a large field hospital in Bangladesh. Anine has conducted CBS training in Zimbabwe and worked with NorCross Africa regional office to identify the first CBSv2 project, which will be a field-test in Somalia where the population´s access to health care is limited, and humanitarian needs are great. The interest in, and the need for, CBSv2 is large both locally and globally, we aim for a field test in February/March of 2018. 
+The Red Cross have had a busy autumn with both Tonje and Roxanne deployed to Madagasacar, where there is an ongoing plague outbreak, and with the deployment of a large field hospital in Bangladesh. Anine has conducted CBS training in Zimbabwe and worked with NorCross Africa regional office to identify the first CBSv2 project. The interest in, and the need for, CBSv2 is large both locally and globally, we aim for a field test in February/March of 2018. 
 
 Ole, who is the innovation coordinator in the Norwegian Red Cross, will be further involved in CBSv2 going forward. 
 CBS has been granted support from Innovation Norway for (among others) Codeathons, testing, field testing, which the project will benefit greatly from in the next 6 months.
