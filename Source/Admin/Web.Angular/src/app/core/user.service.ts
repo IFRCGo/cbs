@@ -2,6 +2,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 import { User } from '../shared/models/index';
 
@@ -13,7 +14,7 @@ export class UserService {
 
     getProjectOwners(nationalSocietyId: string): Promise<Array<User>> {
         return this.http
-            .get(`/api/user?nationalSocietyId=${nationalSocietyId}`, { headers: this.headers })
+            .get(environment.api + '/api/user?nationalSocietyId=${nationalSocietyId}', { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));
