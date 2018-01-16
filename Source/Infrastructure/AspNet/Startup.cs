@@ -2,6 +2,7 @@ using AspNet.MongoDB;
 using Autofac;
 using doLittle.Collections;
 using doLittle.Types;
+using Infrastructure.AspNet.StringLocalization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -19,13 +20,19 @@ namespace Infrastructure.AspNet
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            Internals.AllAssemblies.ForEach(assembly => 
+            Internals.AllAssemblies.ForEach(assembly =>
             {
                 builder.RegisterAssemblyModules(assembly);
                 builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces();
             });
 
             builder.RegisterSource(new MongoDBRegistrationSource());
+            builder.RegisterSource(new LocalizedStringsRegistrationsSource(new LocalizedStringsParser(),
+                new UnparsedStringsProvider()));
+
+            // TODO: Fix auto discovery for generics
+            builder.RegisterGeneric(typeof(LocalizedStringsFactory<>))
+                .As(typeof(ILocalizedStringsFactory<>));
         }
     }
 }
