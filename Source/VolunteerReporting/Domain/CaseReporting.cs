@@ -96,7 +96,17 @@ namespace Domain
                 Latitude = latitude,
                 Timestamp = timestamp
             });
-
-        }        
+        }      
+        
+        public void ReportFromUnknownDataCollectorIdentiefied(
+            Guid DataCollectorId
+            )
+        {
+            Apply(new CaseReportIdentified
+            {
+                CaseReportId = EventSourceId,
+                DataCollectorId = DataCollectorId
+            });
+        }
     }
 }
