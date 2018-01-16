@@ -33,10 +33,16 @@ namespace Read.CaseReports
             return await list.ToListAsync();
         }
 
-        public void Save(CaseReportFromUnknownDataCollector anonymousCaseReport)
+        public async Task Save(CaseReportFromUnknownDataCollector anonymousCaseReport)
         {
             var filter = Builders<CaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, anonymousCaseReport.Id);
-            _collection.ReplaceOne(filter, anonymousCaseReport, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, anonymousCaseReport, new UpdateOptions { IsUpsert = true });
+        }
+
+        public async Task Remove(Guid id)
+        {
+            var filter = Builders<CaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, id);
+            await _collection.DeleteOneAsync(filter);
         }
     }
 }

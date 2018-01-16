@@ -10,22 +10,33 @@ namespace Policy
     public class CaseReportIdentification : ICanProcessEvents
     {
         private readonly IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository;
-        private readonly ICaseReportsFromUnknownDataCollectors unknownCollectors;
+        private readonly ICaseReportsFromUnknownDataCollectors unknownReports;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
-            ICaseReportsFromUnknownDataCollectors unknownCollectors)
+            ICaseReportsFromUnknownDataCollectors unknownReports)
         {
             this.caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
-            this.unknownCollectors = unknownCollectors;
+            this.unknownReports = unknownReports;
         }
 
         public async Task Process(PhoneNumberAdded @event)
         {
-            var unknownReports = await unknownCollectors.GetByPhoneNumber(@event.PhoneNumber);
+            var unknownReports = await this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in unknownReports)
             {
                 var repo = caseReportingAggregateRootRepository.Get(item.Id);
+                repo.Report(
+                    @event.DataCollectorId,
+                    item.HealthRiskId,
+                    item.NumberOfMalesUnder5,
+                    item.NumberOfMalesOver5,
+                    item.NumberOfFemalesUnder5,
+                    item.NumberOfFemalesOver5,
+                    item.Location.Longitude,
+                    item.Location.Latitude,
+                    item.Timestamp
+                    );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             }            
         }
