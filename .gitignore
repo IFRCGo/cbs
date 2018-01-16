@@ -31,6 +31,7 @@ yarn.lock
 #########
 Source/Artifacts
 wwwroot
+Source/Navigation/Web/dist/
 
 # OS generated files #
 ######################
@@ -44,3 +45,4 @@ Thumbs.db
 ##############
 Build/tools/
 .buildsettings
+
