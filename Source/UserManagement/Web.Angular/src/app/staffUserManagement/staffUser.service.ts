@@ -1,6 +1,6 @@
 import { StaffUser } from '../domain/staffUser';
 import { NationalSociety } from '../domain/nationalSociety';
-import { environment } from '../../environments/environment'; 
+import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
@@ -25,12 +25,15 @@ export class StaffUserService {
       .catch((error) => console.error(error));
   }
 
-  getAllUsers(): Promise<void> {
+  getAllUsers(): Promise<Array<StaffUser>> {
     return this.http
       .get(API_USERS, { headers: this.headers })
       .map(response => response.json())
       .toPromise()
-      .then((users) => { console.log(users); })
+      .then((users) => {
+        console.log(users);
+        return users;
+      })
       .catch((error) => console.error(error));
   }
 

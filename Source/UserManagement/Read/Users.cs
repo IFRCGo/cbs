@@ -19,7 +19,26 @@ namespace Read
 
         public IEnumerable<StaffUser> GetAllStaffUsers()
         {
-            return _staffUserCollection.FindSync(_ => true).ToList();
+            return new List<StaffUser>
+            {
+                new StaffUser
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Ola",
+                    LastName = "Olsen",
+                    Age = 80,
+                    Email = "test@test.no"
+                },
+                new StaffUser
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Ola",
+                    LastName = "Olsen",
+                    Age = 70,
+                    Email = "test_70@test.no"
+                }
+            };
+            //return _staffUserCollection.FindSync(_ => true).ToList();
         }
 
         public IEnumerable<DataCollector> GetAllDataCollectors()
