@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/toPromise';
-import { forkJoin } from 'rxjs/observable/forkJoin';
-import 'rxjs/rx';
+import 'rxjs/add/observable/forkJoin';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
@@ -9,6 +8,7 @@ import { Report } from '../shared/models/report.model';
 import { CaseReport } from '../shared/models/index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin'; 
+import { environment } from '../../environments/environment'; 
 
 @Injectable()
 export class AggregatedCaseReportService {
@@ -25,10 +25,10 @@ export class AggregatedCaseReportService {
         *  skilled javascript programmer than me // 2017-11-07 roarfred //
         */ 
 
-        var caseReports = this.http.get('/api/casereports', { headers: this.headers });
-        var caseReportsFromUnknownDataCollectors = this.http.get('/api/casereportsfromunknowndatacollectors', { headers: this.headers });
-        var invalidCaseReports = this.http.get('/api/invalidcasereports', { headers: this.headers });
-        var invalidCaseReportsFromUnknownDataCollectors = this.http.get('/api/invalidcasereportsfromunknowndatacollectors', { headers: this.headers });
+        var caseReports = this.http.get(environment.api + '/api/casereports', { headers: this.headers });
+        var caseReportsFromUnknownDataCollectors = this.http.get(environment.api + '/api/casereportsfromunknowndatacollectors', { headers: this.headers });
+        var invalidCaseReports = this.http.get(environment.api + '/api/invalidcasereports', { headers: this.headers });
+        var invalidCaseReportsFromUnknownDataCollectors = this.http.get(environment.api + '/api/invalidcasereportsfromunknowndatacollectors', { headers: this.headers });
         
         return Observable.forkJoin(
             caseReports, 

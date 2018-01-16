@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { InvalidCaseReport } from '../shared/models/invalid-case-report.model';
+import { environment } from '../../environments/environment'; 
 
 @Injectable()
 export class InvalidCaseReportService {
@@ -13,7 +14,7 @@ export class InvalidCaseReportService {
 
     getCaseReports(): Promise<Array<InvalidCaseReport>> {
         return this.http
-            .get('/api/invalidcasereports', { headers: this.headers })
+            .get(environment.api + '/api/invalidcasereports', { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));

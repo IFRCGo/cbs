@@ -1,12 +1,13 @@
 import { StaffUser } from '../domain/staffUser';
 import { NationalSociety } from '../domain/nationalSociety';
+import { environment } from '../../environments/environment'; 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-const API_URL = 'http://localhost:5000/api/usermanagement';
+const API_URL = environment.api + '/api/usermanagement';
 const API_USER = API_URL + '/staffuser';
 const API_USERS = API_URL + '/staffusers';
 

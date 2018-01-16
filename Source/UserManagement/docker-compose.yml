@@ -1,0 +1,26 @@
+version: '3'
+services:
+  cbs-usermgmt-db:
+    image: mongo
+    ports:
+        - "27017:27017"
+
+  cbs-usermgmt-backend:
+    build:
+        context: ../../
+        dockerfile: Source/UserManagement/Web/Dockerfile
+    links:
+        - cbs-usermgmt-db
+    depends_on:
+        - cbs-usermgmt-db
+    ports:
+        - "5000:80"
+
+  cbs-usermgmt-frontend:
+    build:
+        context: ./Web.Angular
+    depends_on:
+        - cbs-usermgmt-db
+        - cbs-usermgmt-backend
+    ports:
+        - "4200:80"

@@ -11,6 +11,12 @@ See if you can find an issue labeled "good first issue" relating to this project
 
 ## Running the application
 
+You have a few options when running the application: 
+- Run locally
+- Run locally using docker-compose
+
+### Run locally
+
 The User Management application consists of the following: 
 - MongoDB storage
 - A .NET Core backend
@@ -20,7 +26,7 @@ If you want to try the application end-to-end (from interacting with the UI to s
 
 Let's take a look at how to build and run each part of the application! 
 
-### Step 1: Run MongoDB in a Docker container
+#### Step 1: Run MongoDB in a Docker container
 
 If you don't mind losing all your data when the container is shut down: 
 > docker run -p 27017:27017 mongo
@@ -28,7 +34,7 @@ If you don't mind losing all your data when the container is shut down:
 If you want to persist the data created, add a volume to the container:
 > docker run -p 27017:27017 -v /my/own/datadir:/data/db mongo
 
-### Step 2: Building and running the .NET Core backend on your local machine
+#### Step 2: Building and running the .NET Core backend on your local machine
 
 This can also be done automatically by running the solution in Visual Studio. Make sure that you are running the project as "Web" and not "IIS Express".
 
@@ -47,7 +53,7 @@ Run locally
 
 Open browser at address http://localhost:5000/swagger to access Swagger.
 
-### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
+#### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
 (Active path: `cbs/Source/Admin/Web.Angular`)
 
@@ -58,6 +64,18 @@ Build and host locally
 > `npm start`
 
 Open http://localhost:4200/ in your browser to access the UI. 
+
+### Run locally using docker-compose
+
+Note: Make sure you have [docker-compose](https://docs.docker.com/compose/) installed.
+
+(Active path: 'cbs/Source/Admin')
+
+Build the images: 'docker-compose build'
+Run the images: 'docker-compose up'
+
+Open http://localhost:4200/ in your browser to access the UI. 
+The backend APIs are available on http://localhost:5000/ (Swagger is unavailable, use Postman or a similar tool)
 
 ## Populating the database with test data
 
