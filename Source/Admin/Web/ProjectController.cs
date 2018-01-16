@@ -50,7 +50,8 @@ namespace Web
                 Name = command.Name,
                 Id = command.Id,
                 NationalSocietyId = command.NationalSocietyId,
-                OwnerUserId = command.OwnerUserId
+                DataOwnerId = command.DataOwnerId,
+                SurveillanceContex = command.SurveillanceContex
             });
         }
 

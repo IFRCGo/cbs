@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using MongoDB.Driver;
 using System.Collections.Generic;
 
@@ -23,6 +24,13 @@ namespace Read.NationalSocietyFeatures
 		{
 			return _collection.Find(_ => true).ToList();
 		}
+
+	    public NationalSociety GetById(Guid id)
+	    {
+	        var natiaSociety = _collection.Find(v => v.Id == id).SingleOrDefault();
+
+	        return natiaSociety;
+        }
 
         public void Save(NationalSociety nationalSociety)
 		{            			
