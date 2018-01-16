@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 
+import {throwIfAlreadyLoaded} from './module-import-guard';
 import { NationalSocietyService } from './nationalsociety.service';
 import { ProjectService } from './project.service';
 import { UserService } from './user.service';
 import { UtilityService } from './utility.service';
+import { ApiService } from './api.service';
 
 @NgModule({
     imports: [
         CommonModule
     ],
     providers: [
+        ApiService,
         ProjectService,
         UtilityService,
         NationalSocietyService,
@@ -20,4 +23,8 @@ import { UtilityService } from './utility.service';
     ]
 })
 
-export class CoreModule { }
+export class CoreModule {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+        throwIfAlreadyLoaded(parentModule, 'CoreModule');
+      }
+}
