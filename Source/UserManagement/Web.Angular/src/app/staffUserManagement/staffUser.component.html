@@ -1,8 +1,11 @@
 <h2>Register staff</h2>
 
-<form [formGroup]='staffUserForm' class="register-staff-form" novalidate>
+TODO: THIS IS TO BE REPLACED BY USERFORM
 
-    <mat-select class="full-width input-field" formControlName='nationalSociety' [(ngModel)]="selectedNationalSociety" placeholder="National Society">
+<form class="register-staff-form">
+
+
+    <!-- <mat-select class="full-width input-field" formControlName='nationalSociety' [(ngModel)]="selectedNationalSociety" placeholder="National Society">
         <mat-option *ngFor="let society of nationalSocieties" [value]="society.value">
             {{ society.viewValue }}
         </mat-option>
@@ -45,8 +48,8 @@
         <mat-error *ngIf="staffUserForm.controls.email.hasError('required')">
             Email is <strong>required</strong>
         </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 </form>
 
-<button mat-raised-button color="primary" type="submit" class="btn submit-button" (click)="addStaffUser(staffUserForm.value)">Register</button>
+<!-- <button mat-raised-button color="primary" type="submit" class="btn submit-button" (click)="addStaffUser(staffUserForm.value)">Register</button> -->
 
