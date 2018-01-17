@@ -26,6 +26,7 @@ If you want to try the application end-to-end (from interacting with the UI to s
 
 Let's take a look at how to build and run each part of the application! 
 
+
 #### Step 1: Run MongoDB in a Docker container
 
 If you don't mind losing all your data when the container is shut down: 
