@@ -13,5 +13,6 @@ namespace Read.NationalSocietyFeatures
 		public Guid Id { get; set; }
 		public string Name { get; set; }
         public string Country { get; set; }
+        public int TimezoneOffsetFromUtcInMinutes { get; set; }
     }
 }

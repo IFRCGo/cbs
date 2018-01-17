@@ -5,24 +5,36 @@
 using doLittle.Events.Processing;
 using Events;
 using System.Linq;
+using Read.NationalSocietyFeatures;
+using Read.UserFeatures;
 
 namespace Read.ProjectFeatures
 {
     public class ProjectEventProcessor : ICanProcessEvents
     {
         private readonly IProjects _projects;
+        private readonly IUsers _users;
+        private readonly INationalSocieties _nationalSocieties;
         private readonly IProjectHealthRiskVersions _projectHealthRiskVersions;
 
-        public ProjectEventProcessor(IProjects projects, IProjectHealthRiskVersions projectHealthRiskVersions)
+        public ProjectEventProcessor(IProjects projects
+            , IUsers users
+            , INationalSocieties nationalSocieties
+            , IProjectHealthRiskVersions projectHealthRiskVersions)
         {
             _projects = projects;
+            _users = users;
+            _nationalSocieties = nationalSocieties;
             _projectHealthRiskVersions = projectHealthRiskVersions;
         }
 
         public void Process(ProjectCreated @event)
         {
             var project = _projects.GetById(@event.Id);
+            project.NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId);
+            project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
+            project.SurveillanceContex = @event.SurveillanceContex;
             _projects.Save(project);
         }
 
