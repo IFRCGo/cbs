@@ -6,7 +6,6 @@ import { NationalSociety } from '../shared/models/index';
 
 @Injectable()
 export class NationalSocietyService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private apiService: ApiService) { }
 

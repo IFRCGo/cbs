@@ -7,7 +7,6 @@ import { Project } from '../shared/models/project.model';
 
 @Injectable()
 export class ProjectService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private apiService: ApiService) { }
 

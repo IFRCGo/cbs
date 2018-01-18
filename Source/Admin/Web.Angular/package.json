@@ -24,7 +24,6 @@
         "bootstrap-sass": "^3.3.7",
         "core-js": "^2.5.1",
         "ngx-bootstrap": "^2.0.0-rc.0",
-        "node-sass": "^4.7.2",
         "rxjs": "^5.4.3",
         "zone.js": "^0.8.18"
     },

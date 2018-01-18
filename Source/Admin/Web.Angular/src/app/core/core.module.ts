@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import {throwIfAlreadyLoaded} from './module-import-guard';
+import { ApiService } from './api.service';
+import { throwIfAlreadyLoaded } from './module-import-guard';
 import { NationalSocietyService } from './nationalsociety.service';
 import { ProjectService } from './project.service';
 import { UserService } from './user.service';
 import { UtilityService } from './utility.service';
-import { ApiService } from './api.service';
 
 @NgModule({
     imports: [
@@ -19,8 +19,7 @@ import { ApiService } from './api.service';
         NationalSocietyService,
         UserService
     ],
-    declarations: [
-    ]
+    declarations: []
 })
 
 export class CoreModule {

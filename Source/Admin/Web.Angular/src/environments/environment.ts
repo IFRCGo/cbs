@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api: 'http://13.95.169.89'
+  api: 'http://localhost:5000'
 };

@@ -11,6 +11,6 @@ export class UserService {
 
     getProjectOwners(nationalSocietyId: string): Observable<Array<User>> {
         return this.apiService
-            .get('/api/user?nationalSocietyId=${nationalSocietyId}');
+            .get(`/api/user?nationalSocietyId=${nationalSocietyId}`);
     }
 }
