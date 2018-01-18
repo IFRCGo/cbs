@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using doLittle.Events;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Events
 {
@@ -13,6 +15,8 @@ namespace Events
 
         public string Name { get; set; }
         public Guid NationalSocietyId { get; set; }
-        public Guid OwnerUserId { get; set; }
+        public Guid DataOwnerId { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public EProjectSurveillanceContex SurveillanceContex { get; set; }
     }
 }

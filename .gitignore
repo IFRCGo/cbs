@@ -1,3 +1,4 @@
+
 # .NET #
 ########
 bin
@@ -31,6 +32,7 @@ yarn.lock
 #########
 Source/Artifacts
 wwwroot
+Source/Navigation/Web/dist/
 
 # OS generated files #
 ######################

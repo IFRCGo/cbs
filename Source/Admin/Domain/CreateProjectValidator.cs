@@ -14,6 +14,15 @@ namespace Domain
             RuleFor(_ => _.Name)
                 .NotEmpty()
                 .WithMessage("Name is mandatory");
+            RuleFor(_ => _.DataOwnerId)
+                .NotEmpty()
+                .WithMessage("Data owner id is mandatory");
+            RuleFor(_ => _.NationalSocietyId)
+                .NotEmpty()
+                .WithMessage("National society id is mandatory");
+            RuleFor(_ => _.SurveillanceContex)
+                .NotEmpty()
+                .WithMessage("Surveillance contex is mandatory");
         }
     }
 }

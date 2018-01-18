@@ -39,6 +39,7 @@ namespace Web
                 LastName = command.LastName,
                 Age = command.Age,
                 Sex = command.Sex,
+                Location = command.Location,
                 NationalSociety = command.NationalSociety,
                 PreferredLanguage = command.PreferredLanguage,
                 MobilePhoneNumber = command.MobilePhoneNumber,
