@@ -1,20 +1,20 @@
-using System;
 using doLittle.Runtime.Commands;
 
 namespace Logging
 {
     public class NullCommandContextManager : ICommandContextManager
     {
+        static readonly NullCommandContext NullCommandContext = new NullCommandContext();
         public bool HasCurrent => false;
 
         public ICommandContext EstablishForCommand(CommandRequest command)
         {
-            throw new NotImplementedException();
+            return NullCommandContext;
         }
 
         public ICommandContext GetCurrent()
         {
-            throw new NotImplementedException();
+            return NullCommandContext;
         }
     }
 }
