@@ -11,12 +11,18 @@ import { StaffUserService } from './staffUserManagement/staffUser.service';
 import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
 
 import { AppComponent } from './app.component';
+import { StaffUserComponent } from './staffUserManagement/staffUser.component';
+import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
+import { UserListComponent } from './userListComponent/userList.component';
 import { AddUserComponent } from './addUser/addUser.component';
 import { UserFormComponent } from './addUser/userForm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    StaffUserComponent,
+    DataCollectorFormComponent,
+    UserListComponent,
     AddUserComponent,
     UserFormComponent
   ],

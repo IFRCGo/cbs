@@ -1,0 +1,26 @@
+version: '3'
+services:
+  cbs-volunteerreporting-db:
+    image: mongo
+    ports:
+        - "27017:27017"
+
+  cbs-volunteerreporting-backend:
+    build:
+        context: ../../
+        dockerfile: Source/VolunteerReporting/Web/Dockerfile
+    links:
+        - cbs-volunteerreporting-db
+    depends_on:
+        - cbs-volunteerreporting-db
+    ports:
+        - "5000:80"
+
+  cbs-volunteerreporting-frontend:
+    build:
+        context: ./Web.Angular
+    depends_on:
+        - cbs-volunteerreporting-db
+        - cbs-volunteerreporting-backend
+    ports:
+        - "4200:80"
