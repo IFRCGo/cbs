@@ -80,10 +80,10 @@ namespace Web
             return users;
         }
 
-        [HttpDelete("items/{id}")]
-        public void Remove(Guid id)
+        [HttpDelete("delete/{id}")]
+        public bool Delete(Guid id)
         {
-
+            return _users.DeleteUserById(id);
         }
     }
 }

@@ -10,6 +10,7 @@ import { Headers, Http } from '@angular/http';
 const API_URL = environment.api + '/api/usermanagement';
 const API_USER = API_URL + '/staffuser';
 const API_USERS = API_URL + '/staffusers';
+const DELETE_USER = API_URL + '/delete/';
 
 @Injectable()
 export class StaffUserService {
@@ -35,6 +36,21 @@ export class StaffUserService {
         return users;
       })
       .catch((error) => console.error(error));
+  }
+
+  //TODO: Use result from api
+  deleteUser(id: string): Promise<boolean> {
+    return this.http
+      .delete(DELETE_USER + id, { headers: this.headers })
+      .toPromise()
+      .then((res) => { 
+        console.log('User deleted' + id);
+        return true;
+      })
+      .catch((error) => {
+        console.error(error);
+        return false;
+      });
   }
 
   // TOOD: Pull societies from FDRS

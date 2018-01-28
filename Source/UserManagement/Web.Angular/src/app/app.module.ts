@@ -16,6 +16,7 @@ import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollec
 import { UserListComponent } from './userListComponent/userList.component';
 import { AddUserComponent } from './addUser/addUser.component';
 import { UserFormComponent } from './addUser/userForm.component';
+import { DeleteUserComponent } from './deleteUser/deleteUser.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserFormComponent } from './addUser/userForm.component';
     DataCollectorFormComponent,
     UserListComponent,
     AddUserComponent,
-    UserFormComponent
+    UserFormComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,
