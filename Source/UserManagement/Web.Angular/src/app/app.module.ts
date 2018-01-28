@@ -12,7 +12,6 @@ import { DataCollectorService } from './dataCollectorManagement/dataCollector.se
 
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
-import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
 import { UserListComponent } from './userListComponent/userList.component';
 import { AddUserComponent } from './addUser/addUser.component';
 import { UserFormComponent } from './addUser/userForm.component';
@@ -21,7 +20,6 @@ import { UserFormComponent } from './addUser/userForm.component';
   declarations: [
     AppComponent,
     StaffUserComponent,
-    DataCollectorFormComponent,
     UserListComponent,
     AddUserComponent,
     UserFormComponent
