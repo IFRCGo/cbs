@@ -22,8 +22,8 @@ namespace Read.NationalSocietyFeatures
 			{
                 Id = @event.Id,
 				Name = @event.Name,
-                Country = @event.Country
-				
+                Country = @event.Country,
+                TimezoneOffsetFromUtcInMinutes = @event.TimezoneOffsetFromUtcInMinutes
 			};
 			_nationalSocieties.Save(nationalSociety);
 		}

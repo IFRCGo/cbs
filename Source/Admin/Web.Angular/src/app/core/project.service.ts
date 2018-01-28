@@ -1,34 +1,24 @@
-import 'rxjs/add/operator/toPromise';
-
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
 
+import { ApiService } from './api.service';
 import { AddProject } from '../shared/models/add-project.model';
 import { Project } from '../shared/models/project.model';
 
 @Injectable()
 export class ProjectService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
 
-    constructor(private http: Http) { }
+    constructor(private apiService: ApiService) { }
 
-    saveProject(item: AddProject): Promise<void> {
+    saveProject(item: AddProject): Observable<void> {
         let project = new AddProject();
         project = item; // Simple assignment, will probably handle values differently later
 
-        return this.http
-            .post(environment.api + '/api/project', JSON.stringify(project), { headers: this.headers })
-            .toPromise()
-            .then(() => { console.log('success'); })
-            .catch((error) => console.error(error));
+        return this.apiService.post('/api/project', project);
     }
 
-    getProjects(): Promise<Array<Project>> {
-        return this.http
-            .get(environment.api + '/api/project', { headers: this.headers })
-            .toPromise()
-            .then((result) => { return result.json(); })
-            .catch((error) => console.error(error));
+    getProjects(): Observable<Array<Project>> {
+        return this.apiService
+            .get('/api/project');
     }
 }

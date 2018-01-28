@@ -152,6 +152,7 @@ namespace Web
             var jsonString = client.DownloadString("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freliefweb.int%2Fupdates%2Frss.xml%3Fsource%3D1242%26theme%3D4591.4604.4602");
             var items = JsonConvert.DeserializeObject<JToken>(jsonString).SelectToken("items");
             int i = 0;
+            Random r = new Random();
             foreach (var item in items)
             {
 
@@ -163,7 +164,8 @@ namespace Web
                     Id = Guid.NewGuid(),
                     Name = title,
                     NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
-                    OwnerUserId = _userIds[i % _userIds.Length]
+                    DataOwnerId = _userIds[i % _userIds.Length],
+                    SurveillanceContex = (EProjectSurveillanceContex)(r.Next(0, Enum.GetValues(typeof(EProjectSurveillanceContex)).Length - 1))
                 });
 
                 i++;

@@ -45,7 +45,8 @@ namespace Web
             Apply(id, new NationalSocietyCreated
             {
                 Name = Guid.NewGuid().ToString(),
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                TimezoneOffsetFromUtcInMinutes = (int)TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes
             });
         }
     }

@@ -29,8 +29,8 @@ export class AddProjectComponent implements OnInit {
 
     ngOnInit() {
         this.nationalSocietyService.getNationalSocieties()
-            .then((result) => this.societies = result)
-            .catch((error) => console.error(error));
+            .subscribe((result) => this.societies = result,
+            (error) => { console.log(error) });
     }
 
     onSocietyChange(selectedNationalSocietyId: string) {
@@ -38,7 +38,7 @@ export class AddProjectComponent implements OnInit {
     }
 
     getProjectOwners(nationalSocietyId: string) {
-        this.userService.getProjectOwners(nationalSocietyId).then(
+        this.userService.getProjectOwners(nationalSocietyId).subscribe(
             (users) => {
                 this.projectOwners = users;
             },
