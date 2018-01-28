@@ -81,9 +81,12 @@ namespace Web
         }
 
         [HttpDelete("delete/{id}")]
-        public bool Delete(Guid id)
+        public void Delete(Guid id)
         {
-            return _users.DeleteUserById(id);
+            Apply(id, new UserDeleted
+            {
+                Id = id
+            });
         }
     }
 }

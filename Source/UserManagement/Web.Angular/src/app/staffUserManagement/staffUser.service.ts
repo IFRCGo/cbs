@@ -39,18 +39,12 @@ export class StaffUserService {
   }
 
   //TODO: Use result from api
-  deleteUser(id: string): Promise<boolean> {
+  deleteUser(id: string): Promise<void> {
     return this.http
       .delete(DELETE_USER + id, { headers: this.headers })
       .toPromise()
-      .then((res) => { 
-        console.log('User deleted' + id);
-        return true;
-      })
-      .catch((error) => {
-        console.error(error);
-        return false;
-      });
+      .then(() => console.log('User deleted' + id))
+      .catch((error) => console.error(error));
   }
 
   // TOOD: Pull societies from FDRS
