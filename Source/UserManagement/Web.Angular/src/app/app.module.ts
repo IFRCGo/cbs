@@ -4,27 +4,25 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatInputModule, MatDatepickerModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { StaffUserService } from './staffUserManagement/staffUser.service';
 import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
 
 import { AppComponent } from './app.component';
 import { StaffUserComponent } from './staffUserManagement/staffUser.component';
-import { DataCollectorFormComponent } from './dataCollectorManagement/dataCollector.component';
-import { HomeComponent } from './homeComponent/home.component';
-import { MatIconModule } from '@angular/material';
 import { UserListComponent } from './userListComponent/userList.component';
+import { AddUserComponent } from './addUser/addUser.component';
+import { UserFormComponent } from './addUser/userForm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaffUserComponent,
-    DataCollectorFormComponent,
-    HomeComponent,
-    UserListComponent
+    UserListComponent,
+    AddUserComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -32,14 +30,8 @@ import { UserListComponent } from './userListComponent/userList.component';
     HttpModule,
     ReactiveFormsModule,
     FormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatTabsModule,
-    MatSelectModule
+    ModalModule.forRoot()
   ],
   providers: [StaffUserService, DataCollectorService],
   bootstrap: [AppComponent]
