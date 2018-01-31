@@ -51,6 +51,21 @@ namespace Read
             return user;
         }
 
+        public bool DeleteUserById(Guid id)
+        {
+            try
+            {
+                var user = _staffUserCollection.DeleteOne(c => c.Id == id);
+                return user != null;
+
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Something went wron when deleting {0}. Exception: {1}", id, exp);
+            }
+            return false;
+        }
+
         public void Save(StaffUser user)
         {
             _staffUserCollection.InsertOne(user);

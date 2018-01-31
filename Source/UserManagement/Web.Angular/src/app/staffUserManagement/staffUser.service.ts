@@ -10,6 +10,7 @@ import { Headers, Http } from '@angular/http';
 const API_URL = environment.api + '/api/usermanagement';
 const API_USER = API_URL + '/staffuser';
 const API_USERS = API_URL + '/staffusers';
+const DELETE_USER = API_URL + '/delete/';
 
 @Injectable()
 export class StaffUserService {
@@ -34,6 +35,15 @@ export class StaffUserService {
         console.log(users);
         return users;
       })
+      .catch((error) => console.error(error));
+  }
+
+  //TODO: Use result from api
+  deleteUser(id: string): Promise<void> {
+    return this.http
+      .delete(DELETE_USER + id, { headers: this.headers })
+      .toPromise()
+      .then(() => console.log('User deleted' + id))
       .catch((error) => console.error(error));
   }
 
