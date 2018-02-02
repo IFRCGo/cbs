@@ -1,0 +1,45 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: grafana
+  labels:
+    type: azure-file
+    name: grafana
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: azure-storage-secret
+    shareName: grafana
+    readOnly: false
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000    
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  labels:
+    type: azure-file
+    name: elasticsearch
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: azure-storage-secret
+    shareName: elasticsearch
+    readOnly: false
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000    
