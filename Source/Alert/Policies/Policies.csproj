@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha*"/>
-    <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha*"/>
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70"/>
+    <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha2.70"/>
   </ItemGroup>
  
 
