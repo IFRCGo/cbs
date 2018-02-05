@@ -79,5 +79,6 @@ export class UserFormComponent {
     };
 
     this.staffUserService.saveUser(newStaffUser);
+    //TODO: reload userList and close modal
   }
 }

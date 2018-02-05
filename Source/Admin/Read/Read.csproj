@@ -8,6 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha*"/>
+    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194"/>
   </ItemGroup>
 </Project>

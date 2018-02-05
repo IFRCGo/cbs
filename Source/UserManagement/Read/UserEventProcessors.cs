@@ -25,5 +25,10 @@ namespace Read
 
             _users.Save(user);
         }
+
+        public void Process(UserDeleted @event)
+        {
+            _users.DeleteUserById(@event.Id);
+        }
     }
 }
