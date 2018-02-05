@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
 using Autofac.Extensions.DependencyInjection;
-using Serilog.Formatting.Json;
-using Serilog.Core;
-using Logging;
 
 namespace Infrastructure.AspNet
 {
@@ -20,7 +17,7 @@ namespace Infrastructure.AspNet
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .MinimumLevel.Override("System", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.JsonConsole();
+                .WriteTo.Console();
 
             if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 

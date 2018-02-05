@@ -26,6 +26,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
-    <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
 </Project>
