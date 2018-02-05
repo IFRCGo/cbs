@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "This will provide a navigation bar for CBS web apps",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "devServer": "webpack-dev-server"
+  },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.8",

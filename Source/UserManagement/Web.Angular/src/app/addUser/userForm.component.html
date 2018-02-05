@@ -1,18 +1,18 @@
 <form [formGroup]='userForm' class="register-staff-form" novalidate>
-    <div class="flex-row">
+    <div class="form-group">
         <label for="first_name">First name</label>
-        <input id="first_name" type="text" formControlName='firstName' placeholder="First name" ngDefaultControl>
+        <input id="first_name" class="form-control"  type="text" formControlName='firstName' placeholder="First name" ngDefaultControl>
     </div>
-    <div class="flex-row">
+    <div class="form-group">
         <label>Last name</label>
-        <input id="last_name" type="text" formControlName='lastName' placeholder="Last name" ngDefaultControl>
+        <input id="last_name" class="form-control"  type="text" formControlName='lastName' placeholder="Last name" ngDefaultControl>
         
     </div>
-    <div class="flex-row">
+    <div class="form-group">
         <label>Age</label>
-        <input id="age" type="number" formControlName='age' placeholder="Age" ngDefaultControl>
+        <input  class="form-control" id="age"  type="number" formControlName='age' placeholder="Age" ngDefaultControl>
     </div>
-    <div class="flex-row">
+    <div class="form-group">
         <label for="sex">Sex</label>
         <select id="sex" class="full-width input-field" formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
             <option *ngFor="let sex of sexOptions" [value]="sex.value">
@@ -20,28 +20,29 @@
             </option>
         </select>
     </div>
-    <div class="flex-row">            
+    <div class="form-group">            
         <label>Preferred language</label>
-        <select class="full-width input-field" formControlName='preferredLanguage' [(ngModel)]="selectedLanguage" placeholder="Preferred Language">
+        <select formControlName='preferredLanguage' [(ngModel)]="selectedLanguage" placeholder="Preferred Language">
             <option *ngFor="let language of languageOptions" [value]="language.value">
                 {{ language.viewValue }}
             </option>
         </select>
     </div>
-    <div class="flex-row">            
-        <label>GPS location</label>
-        <label for="lat">lat</label>
-        <input id="lat"/>
-        <label for="long">long</label>
-        <input/>
+    <div class="form-group">      
+            <label>GPS location</label>
+            <fieldset class="form-inline">
+                    <label for="lat">lat</label>
+                    <input class="input-mini form-control" id="lat"/>
+                    <label for="long">long</label>
+                    <input id="long"class="input-mini form-control" />
+            </fieldset>      
     </div>
-    <div class="flex-row">            
+    <div class="form-group">            
         <label for="mobile_number">Mobile phone number(s)</label>
-        <input id="mobile_number" type="tel" formControlName='mobilePhoneNumber' placeholder="Telephone">
+        <input id="mobile_number" type="tel" class="form-control"  formControlName='mobilePhoneNumber' placeholder="Telephone">
     </div>
-    <div class="flex-row">            
+    <div class="form-group">            
         <label for="email">Email address</label>
-        <input id="email" type="email" formControlName='email' placeholder="E-mail Address" ngDefaultControl>
+        <input id="email" type="email" formControlName='email' class="form-control"  placeholder="E-mail Address" ngDefaultControl>
     </div>
 </form>
-<button type="submit" class="btn submit-button" (click)="addUser(userForm.value)">Register</button>

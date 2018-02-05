@@ -15,17 +15,3 @@ export class AddUserComponent {
     this.modalRef = this.modalService.show(template)
   }
 }
-
- 
-// @Component({
-//   selector: 'demo-modal-service-static',
-//   templateUrl: './service-template.html'
-// })
-// export class DemoModalServiceStaticComponent {
-//   modalRef: BsModalRef;
-//   constructor(private modalService: BsModalService) {}
- 
-//   openModal(template: TemplateRef<any>) {
-//     this.modalRef = this.modalService.show(template);
-//   }
-// }

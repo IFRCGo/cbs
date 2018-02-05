@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  labels:
+    app: logging
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+    name: grafana-port
+    protocol: TCP
+  selector:
+    app: logging
+    name: grafana
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-service
+  labels:
+    app: logging
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 9200
+    name: elasticsearch-port
+    protocol: TCP
+  selector:
+    app: logging
+    name: elasticsearch
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-service
+  labels:
+    app: logging
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5601
+    name: kibana-port
+    protocol: TCP
+  selector:
+    app: logging
+    name: kibana
