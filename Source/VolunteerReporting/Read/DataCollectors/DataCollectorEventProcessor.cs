@@ -26,7 +26,7 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberAdded @event)
+        public void Process(PhoneNumberAddedToDataCollector @event)
         {
             //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
@@ -34,7 +34,7 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberRemoved @event)
+        public void Process(PhoneNumberRemovedFromDataColletor @event)
         {
             //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
