@@ -59,8 +59,8 @@ namespace Web
                 Sex = command.Sex,
                 NationalSociety = command.NationalSociety,
                 PreferredLanguage = command.PreferredLanguage,
-                MobilePhoneNumber = command.MobilePhoneNumber,
-                Email = command.Email
+                //MobilePhoneNumber = command.MobilePhoneNumber,
+                //Email = command.Email
             });
         }
 

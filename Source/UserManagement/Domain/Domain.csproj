@@ -4,10 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="doLittle" Version="2.0.0-alpha2.165" />
     <PackageReference Include="FluentValidation" Version="7.1.1" />
     <PackageReference Include="GeoCoordinate" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
 </Project>
