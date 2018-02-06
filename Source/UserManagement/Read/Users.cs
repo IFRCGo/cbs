@@ -39,17 +39,17 @@ namespace Read
             return user;
         }
 
-        public DataCollector GetDataCollectorById(Guid id)
-        {
-            var user = _dataCollectorCollection.Find(c => c.Id == id).SingleOrDefault();
-            if (user == null)
-            {
-                user = new DataCollector { Id = id };
-                _dataCollectorCollection.InsertOne(user);
-            }
+        //public DataCollector GetDataCollectorById(Guid id)
+        //{
+        //    var user = _dataCollectorCollection.Find(c => c.Id == id).SingleOrDefault();
+        //    if (user == null)
+        //    {
+        //        user = new DataCollector { Id = id };
+        //        _dataCollectorCollection.InsertOne(user);
+        //    }
 
-            return user;
-        }
+        //    return user;
+        //}
 
         public bool DeleteUserById(Guid id)
         {
@@ -71,9 +71,9 @@ namespace Read
             _staffUserCollection.InsertOne(user);
         }
 
-        public void Save(DataCollector user)
-        {
-            _dataCollectorCollection.InsertOne(user);
-        }
+        //public void Save(DataCollector user)
+        //{
+        //    _dataCollectorCollection.InsertOne(user);
+        //}
     }
 }

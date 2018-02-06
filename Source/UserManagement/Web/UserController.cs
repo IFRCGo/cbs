@@ -76,8 +76,9 @@ namespace Web
         public IEnumerable<DataCollector> GetAllDataCollectors()
         {
             Console.WriteLine("in datacollectors");
-            var users = _users.GetAllDataCollectors();
-            return users;
+            //var users = _users.GetAllDataCollectors();
+            //return users;
+            throw new NotImplementedException("Not implemented yet since datacollector is moved from user");
         }
 
         [HttpDelete("delete/{id}")]
