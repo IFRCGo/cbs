@@ -34,7 +34,7 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberRemovedFromDataColletor @event)
+        public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
