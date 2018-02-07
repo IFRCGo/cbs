@@ -1,4 +1,4 @@
-using Concepts.enums;
+using Concepts;
 using doLittle.Events.Processing;
 using Events;
 using System;
@@ -26,6 +26,20 @@ namespace Read.DataCollectors
             dataCollector.NationalSociety = @event.NationalSociety;
             dataCollector.PreferredLanguage = @event.PreferredLanguage;
             dataCollector.Sex = @event.Sex;
+            _dataCollectors.Save(dataCollector);
+        }
+
+        public void Process(PhoneNumberAddedToDataCollector @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.PhoneNumbers.Add(@event.PhoneNumber);
+            _dataCollectors.Save(dataCollector);
+        }
+
+        public void Process(PhoneNumberRemovedFromDataCollector @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.PhoneNumbers.Remove(@event.PhoneNumber);
             _dataCollectors.Save(dataCollector);
         }
     }

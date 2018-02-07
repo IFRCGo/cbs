@@ -16,6 +16,11 @@ namespace Read.DataCollectors
             _collection = database.GetCollection<DataCollector>("DataCollector");
         }
 
+        public IEnumerable<DataCollector> GetAllDataCollectors()
+        {
+            return _collection.FindSync(_ => true).ToList();
+        }
+
         public DataCollector GetById(Guid id)
         {
             return _collection.Find(d => d.Id == id).SingleOrDefault();

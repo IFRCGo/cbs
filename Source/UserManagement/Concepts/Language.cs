@@ -1,4 +1,4 @@
-namespace Concepts.enums
+namespace Concepts
 {
     public enum Language
     {

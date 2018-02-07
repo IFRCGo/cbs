@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Concepts.enums;
+using Concepts;
 using Events;
 
 namespace Read
@@ -16,22 +16,11 @@ namespace Read
         public Location Location { get; set; }
         public List<string> PhoneNumbers { get; set; }
         public string Email { get; set; }
-
+        
         public DataCollector(Guid id) {
             Id = id;
-        }
-
-        //public DataCollector(DataCollectorAdded @event)
-        //{
-        //    Id = @event.Id;
-        //    FirstName = @event.FirstName;
-        //    LastName = @event.LastName;
-        //    Age = @event.Age;
-        //    Sex = @event.Sex;
-        //    NationalSociety = @event.NationalSociety;
-        //    PreferredLanguage = @event.PreferredLanguage;
-        //    //GpsLocation = @event.GpsLocation;
-        //    //Email = @event.Email;
-        //}
+        }       
     }
+
+    
 }

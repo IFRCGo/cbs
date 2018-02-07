@@ -1,9 +1,6 @@
 using doLittle.Concepts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Concepts.enums
+namespace Concepts
 {
     public class Location : Value<Location>
     {
