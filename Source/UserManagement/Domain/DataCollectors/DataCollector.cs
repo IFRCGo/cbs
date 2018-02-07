@@ -13,8 +13,9 @@ namespace Domain.DataCollectors
         public DataCollector(Guid id) : base(id) { }
 
         //TODO: Add method to apply data collector added events
-        //public void AddDataCollector(
-
+        //TODO: RegisteredAt should be set in the apply method
+            //public void AddDataCollector(
+        
         //    )
 
         //TODO: Add business validation that checks if number is already added

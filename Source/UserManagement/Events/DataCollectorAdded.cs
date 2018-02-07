@@ -15,6 +15,7 @@ namespace Events
         public Language PreferredLanguage { get; set; } //TODO: Should not use enum in events. Only primitive types
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; } = DateTimeOffset.UtcNow;
         //public string GpsLocation { get; set; }
         //public string MobilePhoneNumber { get; set; }
         //public string Email { get; set; }     

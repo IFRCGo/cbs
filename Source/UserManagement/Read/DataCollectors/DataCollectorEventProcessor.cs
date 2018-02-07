@@ -1,9 +1,6 @@
 using Concepts;
 using doLittle.Events.Processing;
 using Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Read.DataCollectors
 {
@@ -26,21 +23,24 @@ namespace Read.DataCollectors
             dataCollector.NationalSociety = @event.NationalSociety;
             dataCollector.PreferredLanguage = @event.PreferredLanguage;
             dataCollector.Sex = @event.Sex;
+            dataCollector.RegisteredAt = @event.RegisteredAt;
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Add(@event.PhoneNumber);
+            dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Remove(@event.PhoneNumber);
+            dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
+
+        //TODO: Process CaseReportRecieved to find the time for last report recieved
     }
 }

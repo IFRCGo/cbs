@@ -14,13 +14,42 @@ namespace Read
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        public List<string> PhoneNumbers { get; set; }
+        public List<PhoneNumber> PhoneNumbers { get; set; }
         public string Email { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; }
+        public DateTimeOffset LastReportRecievedAt { get; set; }
         
         public DataCollector(Guid id) {
             Id = id;
         }       
     }
 
+    public class PhoneNumber
+    {
+        public PhoneNumber(string value)
+        {
+            Value = value;
+        }
+        public string Value { get; set; }
+        //TODO: This value should default to false after the MVP and when there is logic for phone number confirmation
+        public bool Confirmed { get; set; } = true;
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as PhoneNumber;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Value.Equals(item.Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
+    }
     
 }
