@@ -7,3 +7,5 @@ Unix:
 
 Windows (Docker Linux Mode):
 > `docker build -t <repo>/<image>:<version> -f ./Dockerfile ..\..\..\`
+
+How the User Management works? 
