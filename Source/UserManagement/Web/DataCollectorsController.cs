@@ -11,26 +11,28 @@ using System.Collections.Generic;
 
 namespace Web
 {
-    public class DataCollectorController : BaseController
+    [Route("api/datacollectors/")]
+    public class DataCollectorsController : BaseController
     {
         readonly IDataCollectors _dataCollectors;
 
-        public DataCollectorController(
+        public DataCollectorsController(
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;
         }
 
-        [HttpGet("datacollectors")]
-        public IEnumerable<DataCollector> GetAllDataCollectors()
+        [HttpGet]
+        public IActionResult Get()
         {
+            //TODO: This should limit nr of items somehow
             Console.WriteLine("in datacollectors");
             var items = _dataCollectors.GetAllDataCollectors();
-            return items;
+            return Ok(items);
         }
 
-        [HttpPost("datacollector")]
-        public void Add([FromBody] AddDataCollector command)
+        [HttpPost]
+        public IActionResult Post([FromBody] AddDataCollector command)
         {
             //TODO: This should be moved to domain project
             Apply(command.Id, new DataCollectorAdded
@@ -45,6 +47,7 @@ namespace Web
                 //MobilePhoneNumber = command.MobilePhoneNumber,
                 //Email = command.Email
             });
+            return Ok();
         }
     }
 }

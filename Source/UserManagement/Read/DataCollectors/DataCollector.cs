@@ -17,7 +17,8 @@ namespace Read
         public List<PhoneNumber> PhoneNumbers { get; set; }
         public string Email { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
-        public DateTimeOffset LastReportRecievedAt { get; set; }
+        //TODO: Should this be nullable before first report is sent? Construct a concept?
+        //public DateTimeOffset LastReportRecievedAt { get; set; }
         
         public DataCollector(Guid id) {
             Id = id;
