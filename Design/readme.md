@@ -1,7 +1,7 @@
-# CBS Design
-The MVP design guide is made using [Balsamiq mockups](https://balsamiq.com) 
+# CBS Mockup
+The MVP mockup is made using [Balsamiq mockups](https://balsamiq.cloud/s977i/p2itz/rDB87): 
 
-Here you can find the source file and a clickable PDF.
+You can also find the source file and a clickable PDF in this folder, but please note that the PDF contains a couple of blank pages. Refer to the Balsamiq mockup above to view these. 
 
 ## Project mappings
 
