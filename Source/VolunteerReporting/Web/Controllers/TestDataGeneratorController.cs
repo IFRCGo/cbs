@@ -87,7 +87,7 @@ namespace Web
             foreach (var dataCollector in dataCollectors)
             {
                 Apply(dataCollector.Id, dataCollector);
-                Apply(Guid.NewGuid(), new PhoneNumberAdded
+                Apply(Guid.NewGuid(), new PhoneNumberAddedToDataCollector
                 {
                     DataCollectorId = dataCollector.Id,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers

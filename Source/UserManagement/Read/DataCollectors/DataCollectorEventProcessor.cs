@@ -1,14 +1,10 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-using Events.External;
-using doLittle.Events.Processing;
 using Concepts;
+using doLittle.Events.Processing;
+using Events;
 
 namespace Read.DataCollectors
 {
-    public class DataCollectorEventProcessor : ICanProcessEvents
+    public class DataCollectorEventProcessor : ICanProcessEvents 
     {
         readonly IDataCollectors _dataCollectors;
 
@@ -18,28 +14,33 @@ namespace Read.DataCollectors
         }
 
         public void Process(DataCollectorAdded @event)
-        {           
+        {
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+            dataCollector.Age = @event.Age;
+            dataCollector.NationalSociety = @event.NationalSociety;
+            dataCollector.PreferredLanguage = @event.PreferredLanguage;
+            dataCollector.Sex = @event.Sex;
+            dataCollector.RegisteredAt = @event.RegisteredAt;
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Add(@event.PhoneNumber);            
+            dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Remove(@event.PhoneNumber);
+            dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
+
+        //TODO: Process CaseReportRecieved to find the time for last report recieved
     }
 }

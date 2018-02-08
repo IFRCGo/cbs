@@ -23,7 +23,7 @@ namespace Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCommon();
+            services.AddCommon();            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,7 +39,7 @@ namespace Web
                 }
             });
 
-            app.UseCommon(env);
+            app.UseCommon(env);            
         }
     }
 }
