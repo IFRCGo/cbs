@@ -1,40 +1,96 @@
 <h3>
-  Projects
+    Projects
 </h3>
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    This is a modal.
-  </div>
+<button type="button" class="btn btn-primary pull-right" (click)="openModal(addProjectTemplate)">Add project</button>
+<ng-template #addProjectTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add project</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="society">National society:</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                        <select id="society" class="form-control" [(ngModel)]="selectedSociety"
+                                (change)="onSocietyChange(selectedSociety)" name="society">
+                            <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="owner">Project / data owner:</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                        <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner">
+                            <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}}
+                                {{owner.lastname}} / {{owner.country}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="project">Name of project:</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                        <input type="text" [(ngModel)]="name" name="project" id="project" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="surveillance">Surveillance context:</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <label class="radio-inline">
+                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="1">Single
+                            Reports
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="2">Aggregated
+                            Reports
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="3">Both
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="addProject()" type="submit" class="btn btn-primary pull-right">Create</button>
+            </div>
+        </form>
+    </div>
+
 </ng-template>
 
 <table class="table table-bordered table-striped">
-  <thead>
+    <thead>
     <tr>
-      <th>Name</th>
-      <th>National Society</th>
-      <th>Data Owner</th>
-      <th>Surveillance Context</th>
-      <th>Actions</th>
+        <th>Name</th>
+        <th>National Society</th>
+        <th>Data Owner</th>
+        <th>Surveillance Context</th>
+        <th>Actions</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let project of projects">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-        <a>Edit</a>
-      </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <a>Edit</a>
+        </td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
