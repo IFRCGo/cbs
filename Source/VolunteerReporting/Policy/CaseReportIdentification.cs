@@ -20,7 +20,7 @@ namespace Policy
             this.unknownReports = unknownReports;
         }
 
-        public async Task Process(PhoneNumberAdded @event)
+        public async Task Process(PhoneNumberAddedToDataCollector @event)
         {
             var unknownReports = await this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in unknownReports)

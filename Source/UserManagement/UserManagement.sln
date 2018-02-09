@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{39FC4632-3667-463D-96E6-3F274B0C0163}"
 EndProject
@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.AspNet", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.AspNetCore", "..\Infrastructure\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj", "{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concepts.csproj", "{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concepts", "Concepts\Concepts.csproj", "{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "..\Infrastructure\Logging\Logging.csproj", "{01DFB3EF-93C2-42EE-887A-CF4F63F567B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "..\Infrastructure\Logging\Logging.csproj", "{01DFB3EF-93C2-42EE-887A-CF4F63F567B4}"
 EndProject

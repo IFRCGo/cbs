@@ -7,7 +7,7 @@ using System;
 
 namespace Events.External
 {
-    public class PhoneNumberRemoved : IEvent
+    public class PhoneNumberRemovedFromDataCollector : IEvent
     {
         public Guid Id { get; set; }
         public Guid DataCollectorId { get; set; }
