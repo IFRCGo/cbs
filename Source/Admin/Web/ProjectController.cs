@@ -51,7 +51,7 @@ namespace Web
                 Id = command.Id,
                 NationalSocietyId = command.NationalSocietyId,
                 DataOwnerId = command.DataOwnerId,
-                SurveillanceContex = command.SurveillanceContex
+                //SurveillanceContex = command.SurveillanceContex
             });
         }
 
