@@ -1,6 +1,7 @@
 using Concepts;
 using doLittle.Events.Processing;
 using Events;
+using Events.External;
 
 namespace Read.DataCollectors
 {
@@ -41,6 +42,18 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        //TODO: Process CaseReportRecieved to find the time for last report recieved
+        public void Process(CaseReportReceived @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.LastReportRecievedAt = @event.Timestamp;
+            _dataCollectors.Save(dataCollector);
+        }
+
+        public void Process(InvalidReportReceived @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.LastReportRecievedAt = @event.Timestamp;
+            _dataCollectors.Save(dataCollector);
+        }
     }
 }
