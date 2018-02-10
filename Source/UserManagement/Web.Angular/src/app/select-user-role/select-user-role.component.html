@@ -1,0 +1,20 @@
+<h3> SELECT USER ROLE COMPONENT</h3>
+<div class="user-select-container">
+    <a [routerLink]="['/add-user', selectedUserType]" routerLinkActive="active">
+        <button type="button" class="btn btn-primary" (click)="selectUserType('admin')">
+            Admin
+        </button>
+    </a>
+
+    <a [routerLink]="['/add-user', selectedUserType]" routerLinkActive="active">
+        <button type="button" class="btn btn-primary" (click)="selectUserType('dataCoordinator')">
+            Data Coordinator
+        </button>
+    </a>
+
+    <a [routerLink]="['/add-user', selectedUserType]" routerLinkActive="active">
+        <button type="button" class="btn btn-primary" (click)="selectUserType('systemCoordinator')">
+            System Coordinator
+        </button>
+    </a>
+</div>
