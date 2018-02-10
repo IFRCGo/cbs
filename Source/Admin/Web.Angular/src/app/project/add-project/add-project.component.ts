@@ -7,7 +7,7 @@ import { UtilityService } from '../../core/utility.service';
 import { AddProject, NationalSociety, User } from '../../shared/models';
 
 @Component({
-    selector: 'cbs-add-project',
+    selector: 'add-project',
     templateUrl: './add-project.component.html',
     styleUrls: ['./add-project.component.scss']
 })
