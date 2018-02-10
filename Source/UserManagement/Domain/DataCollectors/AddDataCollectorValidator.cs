@@ -1,9 +1,9 @@
+using doLittle.FluentValidation.Commands;
 using FluentValidation;
 
 namespace Domain
 {
-    //QUESTION: Should we use CommandInputValidator or AbstractValidator?
-    public class AddDataCollectorValidator : AbstractValidator<AddDataCollector>
+    public class AddDataCollectorValidator : CommandInputValidator<AddDataCollector>
     {
         public AddDataCollectorValidator()
         {
