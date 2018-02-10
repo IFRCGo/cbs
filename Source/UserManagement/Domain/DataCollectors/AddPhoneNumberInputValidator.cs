@@ -15,9 +15,9 @@ namespace Domain.DataCollectors
     {
         public AddPhoneNumberInputValidator()
         {
-            //TODO: Add validation for valid phone number
             RuleFor(c => c.PhoneNumber)
                 .NotEmpty();
+
             RuleFor(c => c.DataCollectorId)
                 .NotEmpty();                
         }
