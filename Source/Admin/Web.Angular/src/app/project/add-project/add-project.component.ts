@@ -61,15 +61,14 @@ export class AddProjectComponent implements OnInit {
     }
 
     async addProject() {
-        console.log("Name: " + this.name);
         const projectId = this.utilityService.createGuid();
 
         let project = new AddProject();
         project.name = this.name;
         project.id = projectId;
         project.nationalSocietyId = this.selectedSociety;
-        project.ownerUserId = this.selectedOwner;
-        project. surveillanceId = this.selectedSurveillanceOptionId;
+        project.dataOwnerId = this.selectedOwner;
+        project.surveillanceId = this.selectedSurveillanceOptionId;
 
         await this.projectService.saveProject(project);
     }
