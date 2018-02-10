@@ -7,7 +7,8 @@ using System;
 
 namespace Events.External
 {
-    class DefaultAutomaticReplyKeyMessageDeleted : IEvent
+    // TODO: Probably not needded
+    public class DefaultAutomaticReplyKeyMessageRemoved : IEvent
     {
         public Guid Id { get; set; }
     }

@@ -1,5 +1,6 @@
 using System;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace Read.HealthRisks
 {
@@ -31,15 +32,16 @@ namespace Read.HealthRisks
             return healthRiskId;
         }
 
-        public void Save(HealthRisk healthRisk)
+        public async Task Save(HealthRisk healthRisk)
         {
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
-            _collection.ReplaceOne(filter, healthRisk, new UpdateOptions { IsUpsert = true });
+            await  _collection.ReplaceOneAsync(filter, healthRisk, new UpdateOptions { IsUpsert = true });
         }
-        public void Remove(HealthRisk healthRisk)
+
+        public async Task Remove(Guid healthRiskId)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
-            _collection.DeleteOne(filter);
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
+            await _collection.DeleteOneAsync(filter);
         }
 
     }

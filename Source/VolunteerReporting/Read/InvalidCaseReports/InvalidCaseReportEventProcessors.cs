@@ -4,6 +4,7 @@ using Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Read.InvalidCaseReports
 {
@@ -24,24 +25,24 @@ namespace Read.InvalidCaseReports
         }
 
 
-        public void Process(InvalidReportReceived @event)
+        public async Task Process(InvalidReportReceived @event)
         {
             var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId);
             invalidCaseReport.DataCollectorId = @event.DataCollectorId;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
-            _invalidCaseReports.Save(invalidCaseReport);
+            await _invalidCaseReports.Save(invalidCaseReport);
         }
 
-        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
             var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId);
             invalidCaseReport.PhoneNumber = @event.Origin;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
-            _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
+            await _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
         }
     }
 }

@@ -56,15 +56,16 @@ namespace Read.AutomaticReplyMessages
             return automaticReply.FirstOrDefault();
         }
 
-        public void Save(AutomaticReply automaticReply)
+        public async Task Save(AutomaticReply automaticReply)
         {
             var filter = Builders<AutomaticReply>.Filter.Where(v => v.Type == automaticReply.Type && v.Language == automaticReply.Language);
-            _collection.ReplaceOne(filter, automaticReply, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, automaticReply, new UpdateOptions { IsUpsert = true });
         }
-        public void Remove(AutomaticReply automaticReply)
+
+        public async Task Remove(Guid automaticReplyId)
         {
-            var filter = Builders<AutomaticReply>.Filter.Eq(c => c.Id, automaticReply.Id);
-            _collection.DeleteOne(filter);
+            var filter = Builders<AutomaticReply>.Filter.Eq(c => c.Id, automaticReplyId);
+            await _collection.DeleteOneAsync(filter);
         }
     }
 }

@@ -21,8 +21,8 @@ namespace Read.CaseReports
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
             _systemClock = systemClock;
         }
-
-        public void Process(CaseReportReceived @event)
+        
+        public async Task Process(CaseReportReceived @event)
         {
             var caseReport = new CaseReport(@event.CaseReportId)
             {
@@ -35,7 +35,7 @@ namespace Read.CaseReports
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp
             };
-            _caseReports.Save(caseReport);
+            await _caseReports.Save(caseReport);
         }
         public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
@@ -56,6 +56,9 @@ namespace Read.CaseReports
         public async Task Process(CaseReportIdentified @event)
         {
             await _caseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);
+
+            //Todo: Not for MVP: Handle the case that an datacollecter has been identified. As I understood it, if that's the case then move every 
+            // CaseReport that the DataCollector has reported and transfer them from 
         }
     }
 }

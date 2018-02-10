@@ -1,6 +1,7 @@
 using Events.External;
 using doLittle.Events.Processing;
-
+using System.Threading.Tasks;
+using System;
 namespace Read.HealthRisks
 {
     public class HealthRiskEventProcessor : ICanProcessEvents
@@ -12,12 +13,14 @@ namespace Read.HealthRisks
             _healthRisks = healthRisks;
         }
 
-        public void Process(HealthRiskCreated @event)
+        public async Task Process(HealthRiskCreated @event)
         {
+            Console.WriteLine("Processing HealthRiskCreated");
             var healthRisk = _healthRisks.GetById(@event.Id) ?? new HealthRisk(@event.Id);
             healthRisk.ReadableId = @event.ReadableId;
             healthRisk.Name = @event.Name;
-            _healthRisks.Save(healthRisk);
+            await _healthRisks.Save(healthRisk);
+            Console.WriteLine("Done Processing HealthRiskCreated");
         }
     }
 }

@@ -44,16 +44,16 @@ namespace Read.AutomaticReplyMessages
             return automaticReply.FirstOrDefault();
         }
 
-        public void Save(AutomaticReplyKeyMessage keyMessage)
+        public async Task Save(AutomaticReplyKeyMessage keyMessage)
         {
             var filter = Builders<AutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
-            _collection.ReplaceOne(filter, keyMessage, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, keyMessage, new UpdateOptions { IsUpsert = true });
         }
 
-        public void Remove(AutomaticReplyKeyMessage keyMessage)
+        public async Task Remove(Guid keyMessageId)
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(v => v.Id, keyMessage.Id);
-            _collection.DeleteOne(filter);
+            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(v => v.Id, keyMessageId);
+            await _collection.DeleteOneAsync(filter);
         }
     }
 }
