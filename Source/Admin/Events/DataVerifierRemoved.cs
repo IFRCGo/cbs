@@ -4,19 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using doLittle.Events;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Events
 {
-    public class ProjectCreated : IEvent
+    public class DataVerifierRemoved : IEvent
     {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
-        public Guid NationalSocietyId { get; set; }
-        public Guid DataOwnerId { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public Guid ProjectId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

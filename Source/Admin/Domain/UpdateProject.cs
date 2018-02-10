@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Domain
 {
-    public class CreateProject
+    public class UpdateProject
     {
         public Guid Id { get; set; }
 
@@ -23,5 +23,7 @@ namespace Domain
         public Guid DataOwnerId { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
+
+        public string SMSGateWay { get; set; }
     }
 }

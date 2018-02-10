@@ -7,16 +7,13 @@ using FluentValidation;
 
 namespace Domain
 {
-    public class CreateProjectValidator : AbstractValidator<CreateProject>
+    public class UpdateProjectValidator : AbstractValidator<UpdateProject>
     {
-        public CreateProjectValidator(IProjectRules projectRules)
+        public UpdateProjectValidator()
         {
             RuleFor(_ => _.Name)
                 .NotEmpty()
                 .WithMessage("Name is mandatory");
-            RuleFor(_ => _)
-                .Must(p => projectRules.IsProjectNameUnique(p.Name))
-                .WithMessage("Project name is already in use");
             RuleFor(_ => _.DataOwnerId)
                 .NotEmpty()
                 .WithMessage("Data owner id is mandatory");

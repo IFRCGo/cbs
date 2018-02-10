@@ -6,9 +6,7 @@ using Microsoft.Extensions.Logging;
 using Read.HealthRiskFeatures;
 using Read.ProjectFeatures;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Web
 {
@@ -85,15 +83,40 @@ namespace Web
             return Ok(_healthRiskVersions.GetByProjectIdAndHealthRiskId(projectId, healthRiskId));
         }
 
-        [HttpPost("healthRisks/{healthRiskId}")]
-        public IActionResult SetHealthRisk(Guid projectId, Guid healthRiskId, [FromBody] SetProjectHealthRiskThreshold setProjectHealthRiskThreshold)
+        [HttpPut("healthRisks/{healthRiskId}")]
+        public IActionResult UpdateHealthRisk(Guid projectId, Guid healthRiskId, [FromBody] UpdateProjectHealthRiskThreshold updateProjectHealthRiskThreshold)
         {
             var id = Guid.NewGuid();
-            Apply(id, new ProjectHealthRiskThresholdSet()
+            Apply(id, new ProjectHealthRiskThresholdUpdate()
             {
                 ProjectId = projectId,
                 HealthRiskId = healthRiskId,
-                Threshold = setProjectHealthRiskThreshold.Threshold
+                Threshold = updateProjectHealthRiskThreshold.Threshold
+            });
+            return Ok();
+        }
+
+        [HttpDelete("healthRisks/{healthRiskId}")]
+        public IActionResult RemoveHealthRisk(Guid projectId, Guid healthRiskId)
+        {
+            var id = Guid.NewGuid();
+            Apply(id, new ProjectHealthRiskRemoved()
+            {
+                ProjectId = projectId,
+                HealthRiskId = healthRiskId,
+            });
+            return Ok();
+        }
+
+        [HttpPost("healthRisks")]
+        public IActionResult AddHealthRisk(Guid projectId, Guid healthRiskId, [FromBody] AddProjectHealthRisk addProjectHealthRisk)
+        {
+            var id = Guid.NewGuid();
+            Apply(id, new ProjectHealthRiskAdded
+            {
+                ProjectId = projectId,
+                HealthRiskId = healthRiskId,
+                Threshold = addProjectHealthRisk.Threshold
             });
             return Ok();
         }

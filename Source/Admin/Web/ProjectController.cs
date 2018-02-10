@@ -31,9 +31,9 @@ namespace Web
         }
 
         [HttpGet]
-        public Task<IEnumerable<Project>> Get()
+        public async Task<IEnumerable<Project>> Get()
         {
-            return _projects.GetAllASync();
+            return await _projects.GetAllASync();
         }
 
         [HttpGet("{id}")]
@@ -51,13 +51,47 @@ namespace Web
                 Id = command.Id,
                 NationalSocietyId = command.NationalSocietyId,
                 DataOwnerId = command.DataOwnerId,
-                SurveillanceContex = command.SurveillanceContex
+                SurveillanceContext = command.SurveillanceContext
             });
         }
 
-        [HttpDelete("items/{id}")]
+        [HttpPut("{id}")]
+        public void Put(Guid id, [FromBody] UpdateProject command)
+        {
+            Apply(id, new ProjectUpdated
+            {
+                Id = command.Id = id,
+                Name = command.Name,
+                NationalSocietyId = command.NationalSocietyId,
+                DataOwnerId = command.DataOwnerId,
+                SurveillanceContext = command.SurveillanceContext
+            });
+        }
+
+        [HttpPost("{id}/dataverifiers")]
+        public void AddDataVerifier(Guid id, [FromBody]AddDataVerifier command)
+        {
+            Apply(id, new DataVerifierAdded
+            {
+                ProjectId = command.ProjectId = id,
+                UserId = command.UserId
+            });
+        }
+
+        [HttpDelete("{id}/dataverifiers/{userId}")]
+        public void RemoveDataVerifier(Guid id, Guid userId)
+        {
+            Apply(id, new DataVerifierRemoved
+            {
+                ProjectId = id,
+                UserId = userId
+            });
+        }
+
+        [HttpDelete("{id}")]
         public void Remove(Guid id)
         {
+           
         }
     }
 }

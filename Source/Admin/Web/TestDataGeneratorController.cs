@@ -53,7 +53,7 @@ namespace Web
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdSet()
+                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdUpdate()
                     {
                         ProjectId = project.Id,
                         HealthRiskId = risk.Id,
@@ -165,7 +165,7 @@ namespace Web
                     Name = title,
                     NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
                     DataOwnerId = _userIds[i % _userIds.Length],
-                    SurveillanceContex = (EProjectSurveillanceContex)(r.Next(0, Enum.GetValues(typeof(EProjectSurveillanceContex)).Length - 1))
+                    SurveillanceContext = (ProjectSurveillanceContext)(r.Next(0, Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1))
                 });
 
                 i++;

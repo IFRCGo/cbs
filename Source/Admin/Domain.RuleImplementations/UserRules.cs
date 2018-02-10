@@ -2,17 +2,23 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Domain
+using System;
+using Read.UserFeatures;
+
+namespace Domain.RuleImplementations
 {
-    public class SetProjectHealthRiskThreshold
+    public class UserRules : IUserRules
     {
-        public Guid ProjectId { get; set; }
-        public Guid HealthRiskId { get; set; }
-        public int Threshold { get; set; } 
+        private readonly IUsers _users;
+
+        public UserRules(IUsers users)
+        {
+            _users = users;
+        }
+        public bool IsUserExisting(Guid userId)
+        {
+            return _users.GetById(userId) != null;
+        }
     }
 }

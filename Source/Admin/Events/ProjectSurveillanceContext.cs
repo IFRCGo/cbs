@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Events
 {
-    public enum EProjectSurveillanceContex
+    public enum ProjectSurveillanceContext
     {
         SingleReports,
         AggregateReports,
