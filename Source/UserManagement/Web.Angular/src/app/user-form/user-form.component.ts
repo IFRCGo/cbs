@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'cbs-user-form',
@@ -10,7 +9,6 @@ import { NgForm } from '@angular/forms';
 export class UserFormComponent implements OnInit {
 
   selectedUserRole;
-
 
   constructor(private route: ActivatedRoute) {
   }
