@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { SystemConfigurator } from '../domain/system-configurator';
 
 @Component({
   selector: 'cbs-user-form-system-configurator',
@@ -8,7 +8,7 @@ import { User } from '../domain/user';
 })
 export class UserFormSystemConfiguratorComponent implements OnInit {
 
-  user = new User({});
+  user = new SystemConfigurator({});
 
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];

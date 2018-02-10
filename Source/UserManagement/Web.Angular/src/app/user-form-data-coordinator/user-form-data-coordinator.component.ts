@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { DataCoordinator } from '../domain/data-coordinator';
 
 @Component({
   selector: 'cbs-user-form-data-coordinator',
@@ -7,7 +7,7 @@ import { User } from '../domain/user';
   styleUrls: ['./user-form-data-coordinator.component.scss']
 })
 export class UserFormDataCoordinatorComponent implements OnInit {
-  user = new User({});
+  user = new DataCoordinator({});
 
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
