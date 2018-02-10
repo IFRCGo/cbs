@@ -1,0 +1,112 @@
+<div>
+    {{user | json}}
+    <hr>
+</div>
+<div class="form-group">
+    <label for="first_name">First name</label>
+    <input type="text" class="form-control" id="first_name"
+           required
+           [(ngModel)]="user.firstName" name="first_name"
+           #first_name="ngModel">
+</div>
+
+
+<div class="form-group">
+    <label for="last_name">Last name</label>
+    <input type="text" class="form-control" id="last_name"
+           required
+           [(ngModel)]="user.lastName" name="last_name"
+           #last_name="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email"
+           required
+           [(ngModel)]="user.email" name="email"
+           #email="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age"
+           required
+           [(ngModel)]="user.age" name="age"
+           #age="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="sex">Sex</label>
+    <input type="text" class="form-control" id="sex"
+           required
+           [(ngModel)]="user.sex" name="sex"
+           #sex="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="nationalSociety">National Society</label>
+    <input type="text" class="form-control" id="nationalSociety"
+           required
+           [(ngModel)]="user.nationalSociety" name="nationalSociety"
+           #nationalSociety="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="project">Project</label>
+    <input type="text" class="form-control" id="project"
+           required
+           [(ngModel)]="user.project" name="project"
+           #project="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="preferredLanguage">Preferred Language</label>
+    <select class="form-control" id="preferredLanguage"
+            required
+            [(ngModel)]="user.preferredLanguage" name="preferredLanguage"
+            #preferredLanguage="ngModel">
+        <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage">{{preferredLanguage}}</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label>GPS location</label>
+    <fieldset class="form-inline">
+        <label for="lat">lat</label>
+        <input class="input-mini form-control" id="lat"
+               required
+               [(ngModel)]="user.lat" name="lat"
+               #lat="ngModel">
+        <label for="long">long</label>
+        <input class="input-mini form-control" id="long"
+               required
+               [(ngModel)]="user.long" name="long"
+               #long="ngModel">
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <label for="mobilePhoneNumber">Phone Number</label>
+    <input type="text" class="form-control" id="mobilePhoneNumber"
+           required
+           [(ngModel)]="user.mobilePhoneNumber" name="mobilePhoneNumber"
+           #mobilePhoneNumber="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="position">Posistion</label>
+    <input type="text" class="form-control" id="position"
+           required
+           [(ngModel)]="user.position" name="position"
+           #position="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="dutyStation">Duty Station</label>
+    <input type="text" class="form-control" id="dutyStation"
+           required
+           [(ngModel)]="user.dutyStation" name="dutyStation"
+           #dutyStation="ngModel">
+</div>
+
+<button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
