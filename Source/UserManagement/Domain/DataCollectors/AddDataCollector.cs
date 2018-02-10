@@ -9,7 +9,7 @@ namespace Domain
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
