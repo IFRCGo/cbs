@@ -15,12 +15,12 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Catalog/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder");
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
-var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Example/Catalog/Web.Angular";
-var testsFolder = Environment.GetEnvironmentVariable("TestsFolder") ?? "../Source/Example/Catalog/Tests";
+var slnFile = Environment.GetEnvironmentVariable("SlnFile");
+var angularFolder = Environment.GetEnvironmentVariable("AngularFolder");
+var testsFolder = Environment.GetEnvironmentVariable("TestsFolder");
 
 
 //////////////////////////////////////////////////////////////////////
