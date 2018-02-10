@@ -1,7 +1,10 @@
-<h3> SELECT USER ROLE COMPONENT</h3>
-<div class="user-select-container">
+<div class="select-user-role">
+    <a href="/" class="select-user-role__back-button">
+        <button class="btn btn-primary select-user-role__back-button">Back</button>
+    </a>
+    <h1 class="select-user-role__header">Select User Role</h1>
     <a *ngFor="let link of links" [routerLink]="['/add-user', link.href]" routerLinkActive="active">
-        <button type="button" class="btn btn-primary" (click)="selectUserType('systemCoordinator')">
+        <button class="btn btn-primary select-user-role__link">
             {{link.label}}
         </button>
     </a>
