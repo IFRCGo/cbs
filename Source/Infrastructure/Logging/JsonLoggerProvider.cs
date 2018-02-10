@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Logging
 {
+    #if(false)
     public class JsonLoggerProvider : ILoggerProvider
     {
         readonly Func<string, LogLevel, bool> _filter;
@@ -27,4 +28,5 @@ namespace Logging
 
         public void Dispose() { }
     }
+    #endif
 }
