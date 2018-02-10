@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { DataOwner } from '../domain/data-owner';
 
 @Component({
   selector: 'cbs-user-form-data-owner',
@@ -8,7 +8,7 @@ import { User } from '../domain/user';
 })
 export class UserFormDataOwnerComponent implements OnInit {
 
-  user = new User({});
+  user = new DataOwner({});
 
   languageOptions = ['English', 'French'];
 
