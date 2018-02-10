@@ -61,7 +61,6 @@ export class AddProjectComponent implements OnInit {
     }
 
     async addProject() {
-        console.log("Name: " + this.name);
         const projectId = this.utilityService.createGuid();
 
         let project = new AddProject();
