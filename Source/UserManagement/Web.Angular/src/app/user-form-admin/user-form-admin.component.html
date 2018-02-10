@@ -1,0 +1,24 @@
+<div class="form-group">
+    <label for="first_name">First name</label>
+    <input type="text" class="form-control" id="first_name"
+           required
+           [(ngModel)]="user.firstName" name="first_name"
+           #first_name="ngModel">
+</div>
+
+
+<div class="form-group">
+    <label for="last_name">Last name</label>
+    <input type="text" class="form-control" id="last_name"
+           required
+           [(ngModel)]="user.lastName" name="last_name"
+           #last_name="ngModel">
+</div>
+
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email"
+           required
+           [(ngModel)]="user.email" name="email"
+           #email="ngModel">
+</div>
