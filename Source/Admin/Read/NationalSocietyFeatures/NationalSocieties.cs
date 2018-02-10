@@ -4,37 +4,37 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using MongoDB.Driver;
 using System.Collections.Generic;
+using MongoDB.Driver;
 
 namespace Read.NationalSocietyFeatures
 {
     public class NationalSocieties : INationalSocieties
-	{
-		readonly IMongoDatabase _database;
-		readonly IMongoCollection<NationalSociety> _collection;
+    {
+        readonly IMongoDatabase _database;
+        readonly IMongoCollection<NationalSociety> _collection;
 
-		public NationalSocieties(IMongoDatabase database)
-		{
-			_database = database;
+        public NationalSocieties(IMongoDatabase database)
+        {
+            _database = database;
             _collection = database.GetCollection<NationalSociety>("NationalSociety");
-		}
+        }
 
         public IEnumerable<NationalSociety> GetAll()
-		{
-			return _collection.Find(_ => true).ToList();
-		}
+        {
+            return _collection.Find(_ => true).ToList();
+        }
 
-	    public NationalSociety GetById(Guid id)
-	    {
-	        var natiaSociety = _collection.Find(v => v.Id == id).SingleOrDefault();
+        public NationalSociety GetById(Guid id)
+        {
+            var natiaSociety = _collection.Find(v => v.Id == id).SingleOrDefault();
 
-	        return natiaSociety;
+            return natiaSociety;
         }
 
         public void Save(NationalSociety nationalSociety)
-		{            			
+        {
             _collection.InsertOne(nationalSociety);
-		}
-	}
+        }
+    }
 }

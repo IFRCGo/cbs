@@ -11,7 +11,6 @@ namespace Domain
     {
         public AddDataVerifierValidator(IUserRules userRules, IProjectRules projectRules)
         {
-
             RuleFor(_ => _.ProjectId)
                 .NotEmpty()
                 .WithMessage("Project must be specified");
@@ -24,6 +23,6 @@ namespace Domain
             RuleFor(_ => _)
                 .Must(p => projectRules.IsUserNotAVerifier(p.ProjectId, p.UserId))
                 .WithMessage("User is already a verifier");
-    }
         }
+    }
 }

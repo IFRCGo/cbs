@@ -3,15 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Domain;
-using Events;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Read.ProjectFeatures;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain;
+using Events;
 using Infrastructure.AspNet;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Read.ProjectFeatures;
 
 namespace Web
 {
@@ -69,7 +69,7 @@ namespace Web
         }
 
         [HttpPost("{id}/dataverifiers")]
-        public void AddDataVerifier(Guid id, [FromBody]AddDataVerifier command)
+        public void AddDataVerifier(Guid id, [FromBody] AddDataVerifier command)
         {
             Apply(id, new DataVerifierAdded
             {
@@ -89,9 +89,12 @@ namespace Web
         }
 
         [HttpDelete("{id}")]
-        public void Remove(Guid id)
+        public void Delete(Guid id)
         {
-           
+            Apply(id, new ProjectDeleted
+            {
+                ProjectId = id
+            });
         }
     }
 }

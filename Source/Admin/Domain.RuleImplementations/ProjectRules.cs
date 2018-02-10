@@ -17,6 +17,7 @@ namespace Domain.RuleImplementations
         {
             _projects = projects;
         }
+
         public bool IsProjectNameUnique(string name)
         {
             return _projects.GetAll().All(p => !p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));

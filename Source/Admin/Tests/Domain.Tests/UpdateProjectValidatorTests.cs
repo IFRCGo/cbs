@@ -2,10 +2,11 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Linq;
-using Xunit;
 using Events;
+using Xunit;
 
 namespace Domain.Tests
 {
@@ -29,19 +30,17 @@ namespace Domain.Tests
         [Fact]
         public void DataOwnerIsNotSet_ShouldNotValidate()
         {
-            
             var validator = new UpdateProjectValidator();
             var validationResult = validator.Validate(new UpdateProject
             {
                 Name = "name"
             });
-            Assert.Contains(validationResult.Errors, e =>e.ErrorMessage.Equals("Data owner id is mandatory"));
+            Assert.Contains(validationResult.Errors, e => e.ErrorMessage.Equals("Data owner id is mandatory"));
         }
 
         [Fact]
         public void DataOwnerIsEmpty_ShouldNotValidate()
         {
-
             var validator = new UpdateProjectValidator();
             var validationResult = validator.Validate(new UpdateProject
             {
@@ -54,7 +53,6 @@ namespace Domain.Tests
         [Fact]
         public void NationalSocietyIdIsEmpty_ShouldNotValidate()
         {
-
             var validator = new UpdateProjectValidator();
             var validationResult = validator.Validate(new UpdateProject
             {
@@ -68,7 +66,6 @@ namespace Domain.Tests
         [Fact]
         public void SurveillanceContextIsEmpty_ShouldNotValidate()
         {
-
             var validator = new UpdateProjectValidator();
             var validationResult = validator.Validate(new UpdateProject
             {
@@ -82,7 +79,6 @@ namespace Domain.Tests
         [Fact]
         public void UpdateProject_ShouldValidate()
         {
-
             var validator = new UpdateProjectValidator();
             var validationResult = validator.Validate(new UpdateProject
             {
@@ -93,6 +89,5 @@ namespace Domain.Tests
             });
             Assert.False(validationResult.Errors.Any());
         }
-
     }
 }

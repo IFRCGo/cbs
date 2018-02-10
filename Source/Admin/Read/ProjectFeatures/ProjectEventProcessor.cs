@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
+using System.Linq;
 using doLittle.Events.Processing;
 using Events;
-using System.Linq;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 
@@ -54,6 +54,11 @@ namespace Read.ProjectFeatures
             _projects.Save(project);
         }
 
+        public void Process(ProjectDeleted @event)
+        {
+            _projects.Delete(@event.ProjectId);
+        }
+
         public void Process(ProjectHealthRiskAdded @event)
         {
             var project = _projects.GetById(@event.ProjectId);
@@ -76,7 +81,8 @@ namespace Read.ProjectFeatures
             if (healthRisk == null)
             {
                 healthRisk = new ProjectHealthRisk();
-                project.HealthRisks = (project.HealthRisks ?? new ProjectHealthRisk[0]).Union(new[] { healthRisk }).ToArray();
+                project.HealthRisks = (project.HealthRisks ?? new ProjectHealthRisk[0]).Union(new[] {healthRisk})
+                    .ToArray();
             }
 
             healthRisk.HealthRiskId = @event.HealthRiskId;
@@ -90,7 +96,7 @@ namespace Read.ProjectFeatures
         {
             var project = _projects.GetById(@event.ProjectId);
             var user = _users.GetById(@event.UserId);
-            project.DataVerifiers = new List<User>(project.DataVerifiers) { user }.ToArray();
+            project.DataVerifiers = new List<User>(project.DataVerifiers) {user}.ToArray();
             _projects.Save(project);
         }
 

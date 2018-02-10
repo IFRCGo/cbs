@@ -16,6 +16,7 @@ namespace Domain.RuleImplementations
         {
             _users = users;
         }
+
         public bool IsUserExisting(Guid userId)
         {
             return _users.GetById(userId) != null;

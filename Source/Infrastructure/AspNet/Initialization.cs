@@ -1,18 +1,23 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
+using Autofac.Extensions.DependencyInjection;
+using Logging;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
-using Autofac.Extensions.DependencyInjection;
-using Serilog.Formatting.Json;
-using Serilog.Core;
-using Logging;
 
 namespace Infrastructure.AspNet
 {
     public class Initialization
     {
-        public static int BuildAndRun<TStartup>(string boundedContext, string[] args, Action<IWebHostBuilder> builderCallback = null, Action<LoggerConfiguration> loggerConfigurationCallback = null)
+        public static int BuildAndRun<TStartup>(string boundedContext, string[] args,
+            Action<IWebHostBuilder> builderCallback = null,
+            Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
             var loggerConfiguration = new LoggerConfiguration()

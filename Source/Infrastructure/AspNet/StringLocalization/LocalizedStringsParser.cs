@@ -10,7 +10,6 @@ namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsParser : ILocalizedStringsParser
     {
-
         public LocalizedStringsProvider ParseStrings(UnparsedLocalizedStrings strings)
         {
             var parsedStrings = JsonConvert.DeserializeObject<IDictionary<string, string>>(strings.StringsJson);

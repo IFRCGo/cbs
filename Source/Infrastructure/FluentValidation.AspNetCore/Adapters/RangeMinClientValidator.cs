@@ -1,56 +1,67 @@
-namespace FluentValidation.AspNetCore {
-	using Internal;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-	using Resources;
-	using Validators;
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-	internal class RangeMinClientValidator : ClientValidatorBase {
-		GreaterThanOrEqualValidator RangeValidator {
-			get { return (GreaterThanOrEqualValidator)Validator; }
-		}
+namespace FluentValidation.AspNetCore
+{
+    internal class RangeMinClientValidator : ClientValidatorBase
+    {
+        GreaterThanOrEqualValidator RangeValidator
+        {
+            get { return (GreaterThanOrEqualValidator) Validator; }
+        }
 
-		public RangeMinClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
+        public RangeMinClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
 
-		}
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            var compareValue = RangeValidator.ValueToCompare;
 
-		public override void AddValidation(ClientModelValidationContext context) {
-			var compareValue = RangeValidator.ValueToCompare;
-
-			if (compareValue != null) {
-				MergeAttribute(context.Attributes, "data-val", "true");
-				MergeAttribute(context.Attributes, "data-val-range", GetErrorMessage(context));
+            if (compareValue != null)
+            {
+                MergeAttribute(context.Attributes, "data-val", "true");
+                MergeAttribute(context.Attributes, "data-val-range", GetErrorMessage(context));
 //				MergeAttribute(context.Attributes, "data-val-range-max", "-1");
-				MergeAttribute(context.Attributes, "data-val-range-min", compareValue.ToString());
-			}
-		}
+                MergeAttribute(context.Attributes, "data-val-range-min", compareValue.ToString());
+            }
+        }
 
-		private string GetErrorMessage(ClientModelValidationContext context) {
-			var formatter = new MessageFormatter()
-				.AppendPropertyName(Rule.GetDisplayName())
-				.AppendArgument("ComparisonValue", RangeValidator.ValueToCompare);
+        private string GetErrorMessage(ClientModelValidationContext context)
+        {
+            var formatter = new MessageFormatter()
+                .AppendPropertyName(Rule.GetDisplayName())
+                .AppendArgument("ComparisonValue", RangeValidator.ValueToCompare);
 
-			var messageNeedsSplitting = RangeValidator.ErrorMessageSource.ResourceType == typeof(LanguageManager);
+            var messageNeedsSplitting = RangeValidator.ErrorMessageSource.ResourceType == typeof(LanguageManager);
 
-			string message;
+            string message;
 
-			try {
-				message = RangeValidator.ErrorMessageSource.GetString(null);
-			} catch (FluentValidationMessageFormatException) {
-				message = ValidatorOptions.LanguageManager.GetStringForValidator<GreaterThanOrEqualValidator>();
-				messageNeedsSplitting = true;
-			}
+            try
+            {
+                message = RangeValidator.ErrorMessageSource.GetString(null);
+            }
+            catch (FluentValidationMessageFormatException)
+            {
+                message = ValidatorOptions.LanguageManager.GetStringForValidator<GreaterThanOrEqualValidator>();
+                messageNeedsSplitting = true;
+            }
 
-			if (messageNeedsSplitting) {
-				// If we're using the default resources then the mesage for length errors will have two parts, eg:
-				// '{PropertyName}' must be between {From} and {To}. You entered {Value}.
-				// We can't include the "Value" part of the message because this information isn't available at the time the message is constructed.
-				// Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
+            if (messageNeedsSplitting)
+            {
+                // If we're using the default resources then the mesage for length errors will have two parts, eg:
+                // '{PropertyName}' must be between {From} and {To}. You entered {Value}.
+                // We can't include the "Value" part of the message because this information isn't available at the time the message is constructed.
+                // Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
 
-				message = message.Substring(0, message.IndexOf(".") + 1);
-			}
-			message = formatter.BuildMessage(message);
+                message = message.Substring(0, message.IndexOf(".") + 1);
+            }
 
-			return message;
-		}
-	}
+            message = formatter.BuildMessage(message);
+
+            return message;
+        }
+    }
 }

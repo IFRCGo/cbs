@@ -21,6 +21,7 @@ namespace Domain.RuleImplementations
             _projects = projects;
             _healthRisks = healthRisks;
         }
+
         public bool IsWithinNumberOfHealthRisksLimit(Guid projectId)
         {
             var project = _projects.GetById(projectId);
@@ -32,7 +33,7 @@ namespace Domain.RuleImplementations
         public bool IsHealthRiskUniqueWithinProject(Guid healthRiskId, Guid projectId)
         {
             var project = _projects.GetById(projectId);
-            return project.HealthRisks?.All(p => p.HealthRiskId != healthRiskId)?? true;
+            return project.HealthRisks?.All(p => p.HealthRiskId != healthRiskId) ?? true;
         }
 
         public bool IsHealthRiskExisting(Guid healthRiskId)

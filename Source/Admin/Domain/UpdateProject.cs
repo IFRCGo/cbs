@@ -17,10 +17,12 @@ namespace Domain
         public string Name { get; set; }
 
         public Guid NationalSocietyId { get; set; }
+
         /// <summary>
         /// Data owner user id.
         /// </summary>
         public Guid DataOwnerId { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 

@@ -2,6 +2,7 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using FluentValidation;
 
 namespace Domain
@@ -10,7 +11,6 @@ namespace Domain
     {
         public AddProjectHealthRiskValidator(IProjectHealthRiskRules projectHealthRiskRules)
         {
-
             RuleFor(_ => _.ProjectId)
                 .Must(projectHealthRiskRules.IsWithinNumberOfHealthRisksLimit)
                 .WithMessage("Project does not allow health risks to be added");

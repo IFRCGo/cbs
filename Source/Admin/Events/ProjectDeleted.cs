@@ -4,14 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using doLittle.Events;
 
-namespace Read.NationalSocietyFeatures
+namespace Events
 {
-    public class NationalSociety
+    public class ProjectDeleted : IEvent
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Country { get; set; }
-        public int TimezoneOffsetFromUtcInMinutes { get; set; }
+        public Guid ProjectId { get; set; }
     }
 }

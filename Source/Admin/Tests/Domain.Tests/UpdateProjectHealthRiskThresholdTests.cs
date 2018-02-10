@@ -19,7 +19,7 @@ namespace Domain.Tests
         public void OnlyPositiveThresholdShouldValidate(int threshold, bool shouldValidate)
         {
             var validator = new UpdateProjectHealthRiskThresholdValidator();
-            var validationResult = validator.Validate(new UpdateProjectHealthRiskThreshold() { Threshold = threshold });
+            var validationResult = validator.Validate(new UpdateProjectHealthRiskThreshold() {Threshold = threshold});
             Assert.Equal(shouldValidate, !validationResult.Errors.Any());
         }
     }

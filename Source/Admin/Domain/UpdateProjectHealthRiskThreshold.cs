@@ -7,6 +7,6 @@ namespace Domain
 {
     public class UpdateProjectHealthRiskThreshold
     {
-        public int Threshold { get; set; } 
+        public int Threshold { get; set; }
     }
 }

@@ -1,7 +1,11 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Threading;
 using doLittle.Runtime.Commands;
-using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.AspNet
 {
@@ -13,7 +17,7 @@ namespace Infrastructure.AspNet
 
         static ICommandContext CurrentContext
         {
-            get { return _currentContext.Value;  }
+            get { return _currentContext.Value; }
             set { _currentContext.Value = value; }
         }
 
@@ -53,6 +57,7 @@ namespace Infrastructure.AspNet
             {
                 throw new InvalidOperationException("Command not established");
             }
+
             return CurrentContext;
         }
 
@@ -64,6 +69,7 @@ namespace Infrastructure.AspNet
                 var commandContext = _factory.Build(command);
                 CurrentContext = commandContext;
             }
+
             return CurrentContext;
         }
     }

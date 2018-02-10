@@ -19,6 +19,7 @@ namespace Read.ProjectFeatures
         public string Name { get; set; }
         public User DataOwner { get; set; }
         public NationalSociety NationalSociety { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 

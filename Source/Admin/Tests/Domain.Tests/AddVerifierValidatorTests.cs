@@ -5,10 +5,10 @@
 
 using System;
 using Domain.RuleImplementations;
-using Xunit;
 using FakeItEasy;
 using Read.ProjectFeatures;
 using Read.UserFeatures;
+using Xunit;
 
 namespace Domain.Tests
 {
@@ -19,7 +19,7 @@ namespace Domain.Tests
         {
             var users = A.Fake<IUsers>();
             A.CallTo(() => users.GetById(A<Guid>._)).Returns(
-                  new User()
+                new User()
             );
 
             var projects = A.Fake<IProjects>();
@@ -28,7 +28,7 @@ namespace Domain.Tests
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
                 new Project
                 {
-                    DataVerifiers = new[] { new User { Id = Guid.NewGuid() } },
+                    DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }
             );
 
@@ -54,7 +54,7 @@ namespace Domain.Tests
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
                 new Project
                 {
-                    DataVerifiers = new[] { new User { Id = Guid.NewGuid() } },
+                    DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }
             );
 
@@ -73,7 +73,7 @@ namespace Domain.Tests
             var userId = Guid.NewGuid();
             var users = A.Fake<IUsers>();
             A.CallTo(() => users.GetById(A<Guid>._)).Returns(
-                new User { Id = userId}
+                new User {Id = userId}
             );
 
             var projects = A.Fake<IProjects>();
@@ -82,10 +82,10 @@ namespace Domain.Tests
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
                 new Project
                 {
-                    DataVerifiers = new []{new User{Id = userId}},
+                    DataVerifiers = new[] {new User {Id = userId}},
                 }
             );
-        
+
             var validator = new AddDataVerifierValidator(new UserRules(users), new ProjectRules(projects));
             var validationResult = validator.Validate(new AddDataVerifier
             {
@@ -110,7 +110,7 @@ namespace Domain.Tests
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
                 new Project
                 {
-                    DataVerifiers = new[] { new User { Id = Guid.NewGuid() } },
+                    DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }
             );
 
@@ -121,6 +121,5 @@ namespace Domain.Tests
             });
             Assert.False(validationResult.IsValid);
         }
-
     }
 }

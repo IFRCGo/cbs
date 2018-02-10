@@ -31,7 +31,10 @@ namespace Domain.Tests
                 new Project
                 {
                     Id = projectId,
-                    HealthRisks = new List<ProjectHealthRisk>(Enumerable.Repeat(new ProjectHealthRisk {HealthRiskId = Guid.NewGuid()}, numberOfRisks)).ToArray()
+                    HealthRisks =
+                        new List<ProjectHealthRisk>(
+                                Enumerable.Repeat(new ProjectHealthRisk {HealthRiskId = Guid.NewGuid()}, numberOfRisks))
+                            .ToArray()
                 }
             );
 
@@ -50,24 +53,25 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             var projectId = Guid.NewGuid();
-            Guid healthRiskId = Guid.NewGuid();
+            var healthRiskId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
                 new Project
                 {
                     Id = projectId,
-                    HealthRisks = new[] { new ProjectHealthRisk() { HealthRiskId = healthRiskId }, }
+                    HealthRisks = new[] {new ProjectHealthRisk() {HealthRiskId = healthRiskId},}
                 }
             );
 
             var healthRisks = A.Fake<IHealthRisks>();
             A.CallTo(() => healthRisks.GetById(A<Guid>._)).Returns(
-                 new HealthRisk()
+                new HealthRisk()
             );
 
             IProjectHealthRiskRules projectHealthRiskRules = new ProjectHealthRiskRules(projects, healthRisks);
             var validator = new AddProjectHealthRiskValidator(projectHealthRiskRules);
-            var validationResult = validator.Validate(new AddProjectHealthRisk { HealthRiskId = healthRiskId, ProjectId = projectId });
+            var validationResult =
+                validator.Validate(new AddProjectHealthRisk {HealthRiskId = healthRiskId, ProjectId = projectId});
             Assert.False(validationResult.IsValid);
         }
 
@@ -91,7 +95,8 @@ namespace Domain.Tests
 
             IProjectHealthRiskRules projectHealthRiskRules = new ProjectHealthRiskRules(projects, healthRisks);
             var validator = new AddProjectHealthRiskValidator(projectHealthRiskRules);
-            var validationResult = validator.Validate(new AddProjectHealthRisk { HealthRiskId = Guid.NewGuid(), ProjectId = projectId });
+            var validationResult =
+                validator.Validate(new AddProjectHealthRisk {HealthRiskId = Guid.NewGuid(), ProjectId = projectId});
             Assert.False(validationResult.IsValid);
         }
     }

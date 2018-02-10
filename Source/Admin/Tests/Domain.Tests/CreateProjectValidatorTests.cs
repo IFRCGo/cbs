@@ -5,10 +5,10 @@
 
 using System;
 using Domain.RuleImplementations;
-using Xunit;
 using Events;
 using FakeItEasy;
 using Read.ProjectFeatures;
+using Xunit;
 
 namespace Domain.Tests
 {
@@ -23,7 +23,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -39,7 +39,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -47,7 +47,7 @@ namespace Domain.Tests
             {
                 Name = "name"
             });
-            Assert.Contains(validationResult.Errors, e =>e.ErrorMessage.Equals("Data owner id is mandatory"));
+            Assert.Contains(validationResult.Errors, e => e.ErrorMessage.Equals("Data owner id is mandatory"));
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -72,7 +72,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -90,7 +90,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -108,7 +108,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] { new Project { Name = "name" } }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -127,7 +127,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project { Name = "name"} }
+                new[] {new Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -141,6 +141,5 @@ namespace Domain.Tests
             Assert.False(validationResult.IsValid);
             Assert.Contains(validationResult.Errors, e => e.ErrorMessage.Equals("Project name is already in use"));
         }
-
     }
 }
