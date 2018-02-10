@@ -1,4 +1,4 @@
-﻿/*#region License
+/*#region License
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -57,3 +57,4 @@ namespace FluentValidation.AspNetCore {
 	    protected abstract string GetDefaultMessage();
     }
 }*/
+

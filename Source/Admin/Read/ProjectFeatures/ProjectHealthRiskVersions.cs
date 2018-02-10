@@ -1,7 +1,11 @@
-using MongoDB.Driver;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
-using System.Text;
+using MongoDB.Driver;
 
 namespace Read.ProjectFeatures
 {
@@ -30,7 +34,8 @@ namespace Read.ProjectFeatures
         public IEnumerable<ProjectHealthRiskVersion> GetByProjectIdAndHealthRiskId(Guid projectId, Guid healthRiskId)
         {
             var projectFilter = Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.ProjectId, projectId);
-            var healthRiskFilter = Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.HealthRisk.HealthRiskId, healthRiskId);
+            var healthRiskFilter =
+                Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.HealthRisk.HealthRiskId, healthRiskId);
             var filter = Builders<ProjectHealthRiskVersion>.Filter.And(projectFilter, healthRiskFilter);
             return _collection.Find(filter).ToEnumerable();
         }

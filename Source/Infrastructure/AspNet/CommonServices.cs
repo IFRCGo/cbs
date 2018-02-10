@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using doLittle.Collections;
 using FluentValidation.AspNetCore;
 using Infrastructure.AspNet;
@@ -17,19 +22,15 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     config.Filters.Add(new ValidationFilter());
                     config.Filters.Add(new CommandFilter());
-
                 })
                 .AddFluentValidation(fv =>
                 {
                     Internals.AllAssemblies.ForEach(assembly => fv.RegisterValidatorsFromAssembly(assembly));
                 });
-;
+            ;
             services.Configure<ConnectionStringsOptions>(Internals.Configuration);
-                
-            services.AddSwaggerGen(c => 
-                {
-                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-                });
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
 
             return services;
         }

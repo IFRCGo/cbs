@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Security.Cryptography.X509Certificates;
 using Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -20,9 +19,13 @@ namespace Read.ProjectFeatures
         public string Name { get; set; }
         public User DataOwner { get; set; }
         public NationalSociety NationalSociety { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
-        public EProjectSurveillanceContex SurveillanceContex { get; set; }
+        public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
         public ProjectHealthRisk[] HealthRisks { get; set; }
+
+        public User[] DataVerifiers { get; set; }
+        public string SMSGateWay { get; set; }
     }
 }

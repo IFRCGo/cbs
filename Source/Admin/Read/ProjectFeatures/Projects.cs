@@ -7,6 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
 namespace Read.ProjectFeatures
 {
@@ -27,10 +31,16 @@ namespace Read.ProjectFeatures
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
             if (project == null)
             {
-                project = new Project {Name = "Dummy implementation", Id = id };
+                project = new Project {Name = "Dummy implementation", Id = id};
                 _collection.InsertOne(project);
             }
+
             return project;
+        }
+
+        public void Delete(Guid id)
+        {
+            _collection.FindOneAndDelete(p => p.Id == id);
         }
 
         public void Save(Project project)

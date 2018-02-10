@@ -13,6 +13,7 @@ namespace Infrastructure.AspNet.StringLocalization
             Name = name;
             StringsJson = json;
         }
+
         public string Locale { get; set; }
         public string Name { get; set; }
         public string StringsJson { get; set; }

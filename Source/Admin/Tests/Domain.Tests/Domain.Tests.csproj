@@ -5,13 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FakeItEasy" Version="4.1.1" />
-    <PackageReference Include="xunit" Version="2.3.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
+    <PackageReference Include="FakeItEasy" Version="4.4.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\Domain.RuleImplementations\Domain.RuleImplementations.csproj" />
     <ProjectReference Include="..\..\Read\Read.csproj" />
     <ProjectReference Include="..\..\Domain\Domain.csproj" />
   </ItemGroup>
