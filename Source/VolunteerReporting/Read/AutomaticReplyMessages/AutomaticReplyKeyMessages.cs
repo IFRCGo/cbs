@@ -50,7 +50,7 @@ namespace Read.AutomaticReplyMessages
             _collection.ReplaceOne(filter, keyMessage, new UpdateOptions { IsUpsert = true });
         }
 
-        public void Delete(AutomaticReplyKeyMessage keyMessage)
+        public void Remove(AutomaticReplyKeyMessage keyMessage)
         {
             var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(v => v.Id, keyMessage.Id);
             _collection.DeleteOne(filter);

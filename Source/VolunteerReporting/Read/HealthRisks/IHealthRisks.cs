@@ -10,6 +10,6 @@ namespace Read.HealthRisks
         HealthRisk GetByReadableId(int readableId);
         Guid GetIdFromReadableId(int readbleId);
         void Save(HealthRisk dataCollector);
-        void Delete(HealthRisk healthRisk);
+        void Remove(HealthRisk healthRisk);
     }
 }

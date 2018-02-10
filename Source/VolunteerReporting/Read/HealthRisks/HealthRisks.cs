@@ -36,7 +36,7 @@ namespace Read.HealthRisks
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
             _collection.ReplaceOne(filter, healthRisk, new UpdateOptions { IsUpsert = true });
         }
-        public void Delete(HealthRisk healthRisk)
+        public void Remove(HealthRisk healthRisk)
         {
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
             _collection.DeleteOne(filter);

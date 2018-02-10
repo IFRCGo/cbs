@@ -10,7 +10,7 @@ namespace Read.AutomaticReplyMessages
     {
         Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(Guid projectId, AutomaticReplyKeyMessageType type, string language, Guid healthRiskId);
         void Save(AutomaticReplyKeyMessage keyMessage);
-        void Delete(AutomaticReplyKeyMessage keyMessage);
+        void Remove(AutomaticReplyKeyMessage keyMessage);
         Task<IEnumerable<AutomaticReplyKeyMessage>> GetAllAsync();
         Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(Guid projectId);
     }
