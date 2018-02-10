@@ -10,6 +10,7 @@ namespace Read.AutomaticReplyMessages
     {
         Task<AutomaticReply> GetByProjectTypeAndLanguageAsync(Guid projectId, AutomaticReplyType type, string language);
         void Save(AutomaticReply automaticReply);
+        void Delete(AutomaticReply automaticReply);
         Task<IEnumerable<AutomaticReply>> GetAllAsync();
         Task<IEnumerable<AutomaticReply>> GetByProjectAsync(Guid projectId);
     }

@@ -14,6 +14,7 @@ namespace Read.HealthRisks
             _collection = database.GetCollection<HealthRisk>("HealthRisk");
         }
 
+        
         public HealthRisk GetById(Guid id)
         {
             return _collection.Find(d => d.Id == id).SingleOrDefault();
@@ -35,5 +36,11 @@ namespace Read.HealthRisks
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
             _collection.ReplaceOne(filter, healthRisk, new UpdateOptions { IsUpsert = true });
         }
+        public void Delete(HealthRisk healthRisk)
+        {
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
+            _collection.DeleteOne(filter);
+        }
+
     }
 }

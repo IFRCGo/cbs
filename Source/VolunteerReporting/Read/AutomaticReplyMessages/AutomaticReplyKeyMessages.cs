@@ -49,5 +49,11 @@ namespace Read.AutomaticReplyMessages
             var filter = Builders<AutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
             _collection.ReplaceOne(filter, keyMessage, new UpdateOptions { IsUpsert = true });
         }
+
+        public void Delete(AutomaticReplyKeyMessage keyMessage)
+        {
+            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(v => v.Id, keyMessage.Id);
+            _collection.DeleteOne(filter);
+        }
     }
 }

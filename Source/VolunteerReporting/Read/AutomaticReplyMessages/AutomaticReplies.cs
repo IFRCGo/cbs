@@ -61,5 +61,10 @@ namespace Read.AutomaticReplyMessages
             var filter = Builders<AutomaticReply>.Filter.Where(v => v.Type == automaticReply.Type && v.Language == automaticReply.Language);
             _collection.ReplaceOne(filter, automaticReply, new UpdateOptions { IsUpsert = true });
         }
+        public void Delete(AutomaticReply automaticReply)
+        {
+            var filter = Builders<AutomaticReply>.Filter.Eq(c => c.Id, automaticReply.Id);
+            _collection.DeleteOne(filter);
+        }
     }
 }
