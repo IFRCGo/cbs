@@ -31,9 +31,7 @@ namespace Read.AutomaticReplyMessages
 
         public async Task Process(AutomaticReplyRemoved @event)
         {
-            Console.Out.WriteLine("Processing AutomaticReplyRemoved");
-            await _keyMessages.Remove(@event.Id);
-            Console.Out.WriteLine("Done Processing AutomaticReplyRemoved");
+            await _automaticReplies.Remove(@event.Id);
         }
 
         public async Task Process(AutomaticReplyKeyMessageDefined @event)
@@ -49,9 +47,7 @@ namespace Read.AutomaticReplyMessages
 
         public async Task Process(AutomaticReplyKeyMessageRemoved @event)
         {
-            Console.Out.WriteLine("Processing AutomaticReplyKeyMessageRemoved");
             await _keyMessages.Remove(@event.Id);
-            Console.Out.WriteLine("Done Processing AutomaticReplyKeyMessageRemoved");
         }
     }
 }

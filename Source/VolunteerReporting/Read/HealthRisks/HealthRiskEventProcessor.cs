@@ -15,12 +15,10 @@ namespace Read.HealthRisks
 
         public async Task Process(HealthRiskCreated @event)
         {
-            Console.WriteLine("Processing HealthRiskCreated");
             var healthRisk = _healthRisks.GetById(@event.Id) ?? new HealthRisk(@event.Id);
             healthRisk.ReadableId = @event.ReadableId;
             healthRisk.Name = @event.Name;
             await _healthRisks.Save(healthRisk);
-            Console.WriteLine("Done Processing HealthRiskCreated");
         }
     }
 }
