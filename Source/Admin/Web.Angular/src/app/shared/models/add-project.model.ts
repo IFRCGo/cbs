@@ -3,4 +3,5 @@ export class AddProject {
     name: string;
     nationalSocietyId: string;
     ownerUserId: string;
+    surveillanceId: string;
 }
