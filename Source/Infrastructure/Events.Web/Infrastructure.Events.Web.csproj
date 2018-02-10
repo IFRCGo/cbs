@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-        <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70"/>
-        <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha2.70"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+        <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
+        <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha2.70" />
     </ItemGroup>
 </Project>

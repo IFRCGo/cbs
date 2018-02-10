@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System.Globalization;
 using System.Security.Claims;
 using Autofac;
@@ -39,7 +44,8 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
 
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
-            builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>().SingleInstance();
+            builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
+                .SingleInstance();
             builder.RegisterType<EventProcessors>().As<IEventProcessors>().SingleInstance();
             builder.RegisterType<NullEventProcessorLog>().As<IEventProcessorLog>().SingleInstance();
             builder.RegisterType<NullEventProcessorStates>().As<IEventProcessorStates>().SingleInstance();
@@ -50,18 +56,20 @@ namespace Infrastructure.AspNet
             builder.RegisterType<CommittedEventStreamSender>().As<ICanSendCommittedEventStream>().SingleInstance();
             builder.RegisterType<CommittedEventStreamReceiver>().As<ICanReceiveCommittedEventStream>().SingleInstance();
             builder.RegisterType<CommittedEventStreamBridge>().As<ICommittedEventStreamBridge>().SingleInstance();
-            builder.RegisterType<CommittedEventStreamCoordinator>().As<ICommittedEventStreamCoordinator>().SingleInstance();
+            builder.RegisterType<CommittedEventStreamCoordinator>().As<ICommittedEventStreamCoordinator>()
+                .SingleInstance();
             builder.RegisterType<ProcessMethodEventProcessors>().AsSelf().SingleInstance();
 
             var applicationStructureBuilder =
                 new ApplicationStructureConfigurationBuilder()
-                    .Include(ApplicationAreas.Domain, "Infrastructure.AspNet.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
+                    .Include(ApplicationAreas.Domain,
+                        "Infrastructure.AspNet.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Domain, "Domain.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Events, "Events.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Read, "Read.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*");
 
             var applicationStructure = applicationStructureBuilder.Build();
-            var applicationName = (ApplicationName)"CBS";
+            var applicationName = (ApplicationName) "CBS";
             var application = new Application(applicationName, applicationStructure);
             builder.Register(_ => application).As<IApplication>().SingleInstance();
 
@@ -74,7 +82,6 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(tenant).As<ITenant>();
 
             builder.Register(_ =>
-
                 new doLittle.Runtime.Execution.ExecutionContext(
                     principal,
                     CultureInfo.InvariantCulture,
