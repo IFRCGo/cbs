@@ -1,6 +1,7 @@
 using Concepts;
 using doLittle.Events.Processing;
 using Events;
+using Events.External;
 
 namespace Read.DataCollectors
 {
@@ -19,10 +20,10 @@ namespace Read.DataCollectors
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            dataCollector.Age = @event.Age;
+            dataCollector.YearOfBirth = @event.YearOfBirth;
             dataCollector.NationalSociety = @event.NationalSociety;
-            dataCollector.PreferredLanguage = @event.PreferredLanguage;
-            dataCollector.Sex = @event.Sex;
+            dataCollector.PreferredLanguage = (Language) @event.PreferredLanguage;
+            dataCollector.Sex = (Sex) @event.Sex;
             dataCollector.RegisteredAt = @event.RegisteredAt;
             _dataCollectors.Save(dataCollector);
         }
@@ -41,6 +42,18 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        //TODO: Process CaseReportRecieved to find the time for last report recieved
+        public void Process(CaseReportReceived @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.LastReportRecievedAt = @event.Timestamp;
+            _dataCollectors.Save(dataCollector);
+        }
+
+        public void Process(InvalidReportReceived @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            dataCollector.LastReportRecievedAt = @event.Timestamp;
+            _dataCollectors.Save(dataCollector);
+        }
     }
 }

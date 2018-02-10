@@ -15,8 +15,8 @@ namespace Domain
         public Guid Id { get; set; }
         public string FirstName { get; set; } //Is FirstName / LastName robust enough for the areas that this will be used?  Shouldn't we just use name?
         public string LastName { get; set; }
-        public int Age { get; set; }  //Shouldn't this be DOB so we can calculate the Age?
-        public Sex Sex { get; set; } //Should we add Transgender?
+        public int YearOfBirth { get; set; }
+        public Sex Sex { get; set; } //Do we need Transgender / Other?
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }

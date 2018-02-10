@@ -9,7 +9,7 @@ namespace Read
         public Guid Id { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
@@ -18,7 +18,9 @@ namespace Read
         public string Email { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
         //TODO: Should this be nullable before first report is sent? Construct a concept?
-        //public DateTimeOffset LastReportRecievedAt { get; set; }
+        //TKV (10.02.2018): I think thi should be null untill first report is send so that
+        //it chould be shown in the frontend that we have not recived any report.
+        public DateTimeOffset? LastReportRecievedAt { get; set; }
         
         public DataCollector(Guid id) {
             Id = id;
