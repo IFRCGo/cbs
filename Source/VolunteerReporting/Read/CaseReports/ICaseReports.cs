@@ -7,7 +7,7 @@ namespace Read.CaseReports
 {
     public interface ICaseReports
     {
-        void Save(CaseReport caseReport);
+        Task Save(CaseReport caseReport);
         Task<IEnumerable<CaseReport>> GetAllAsync();
     }
 }

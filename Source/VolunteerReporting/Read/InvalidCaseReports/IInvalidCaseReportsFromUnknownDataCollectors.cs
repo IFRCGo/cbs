@@ -7,7 +7,7 @@ namespace Read.InvalidCaseReports
 {
     public interface IInvalidCaseReportsFromUnknownDataCollectors
     {
-        void Save(InvalidCaseReportFromUnknownDataCollector caseReport);
+        Task Save(InvalidCaseReportFromUnknownDataCollector caseReport);
         Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync();
     }
 }

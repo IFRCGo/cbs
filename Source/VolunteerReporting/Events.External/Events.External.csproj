@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70"/>
+    <Compile Remove="DefaultAutomaticReplyKeyMessageRemoved.cs" />
+    <Compile Remove="DefaultAutomaticReplyRemoved.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
   </ItemGroup>
 
 </Project>
