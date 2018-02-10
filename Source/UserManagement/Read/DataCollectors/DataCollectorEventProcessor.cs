@@ -19,10 +19,10 @@ namespace Read.DataCollectors
             dataCollector.FirstName = @event.FirstName;
             dataCollector.LastName = @event.LastName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            dataCollector.Age = @event.Age;
+            dataCollector.YearOfBirth = @event.YearOfBirth;
             dataCollector.NationalSociety = @event.NationalSociety;
-            dataCollector.PreferredLanguage = @event.PreferredLanguage;
-            dataCollector.Sex = @event.Sex;
+            dataCollector.PreferredLanguage = (Language) @event.PreferredLanguage;
+            dataCollector.Sex = (Sex) @event.Sex;
             dataCollector.RegisteredAt = @event.RegisteredAt;
             _dataCollectors.Save(dataCollector);
         }
