@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserType } from '../domain/userType.enum';
 
 @Component({
   selector: 'cbs-select-user-role',
