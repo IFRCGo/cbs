@@ -7,18 +7,18 @@ import { UtilityService } from '../../core/utility.service';
 import { AddProject, NationalSociety, User } from '../../shared/models';
 
 @Component({
-    selector: 'add-project',
+    selector: 'cbs-add-project',
     templateUrl: './add-project.component.html',
     styleUrls: ['./add-project.component.scss']
 })
 
 export class AddProjectComponent implements OnInit {
     name: string;
-    societies: Array<NationalSociety>;
-    owners: Array<User>;
+    societies: NationalSociety[];
+    owners: User[];
     selectedSociety: string;
     selectedOwner: string;
-    projectOwners: Array<User>;
+    projectOwners: User[];
 
     constructor(
         private projectService: ProjectService,
@@ -49,6 +49,7 @@ export class AddProjectComponent implements OnInit {
     }
 
     async addProject() {
+        console.log("Name: " + this.name);
         const projectId = this.utilityService.createGuid();
 
         let project = new AddProject();
