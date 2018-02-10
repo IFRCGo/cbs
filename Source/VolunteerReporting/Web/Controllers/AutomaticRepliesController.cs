@@ -48,7 +48,7 @@ namespace Web.Controllers
             });
         }
 
-        [k("{projectId}")]
+        [HttpGet("{projectId}")]
         public async Task<IEnumerable<Models.AutomaticReply>> GetAutomaticRepliesForProject(Guid projectId)
         {
             var projectDefined = await _automaticReplies.GetByProjectAsync(projectId);
