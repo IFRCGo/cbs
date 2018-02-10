@@ -1,4 +1,15 @@
-button {
-  width: 100%;
-  margin-bottom: 10px;
+.select-user-role {
+  max-width: 640px;
+  margin: 0 auto;
+
+  &__back-button {
+    margin: 10px 0;
+  }
+  &__header {
+    margin: 20px 0;
+  }
+  &__link {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
