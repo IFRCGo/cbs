@@ -9,20 +9,20 @@ import { UtilityService } from '../../core/utility.service';
 import { AddProject, NationalSociety, User } from '../../shared/models';
 
 @Component({
-    selector: 'cbs-projectlist',
-    templateUrl: './projectlist.component.html',
-    styleUrls: ['./projectlist.component.scss']
+    selector: 'cbs-project-list',
+    templateUrl: './project-list.component.html',
+    styleUrls: ['./project-list.component.scss']
 })
-export class ProjectlistComponent implements OnInit {
-    
-    projects: Array<Project>;
+
+export class ProjectListComponent implements OnInit {
+    projects: Project[];
     modalRef: BsModalRef;
     name: string;
-    societies: Array<NationalSociety>;
-    owners: Array<User>;
+    societies: NationalSociety[];
+    owners: User[];
     selectedSociety: string;
     selectedOwner: string;
-    projectOwners: Array<User>;
+    projectOwners: User[];
     selectedSurveillance: number;
 
     constructor(
@@ -39,11 +39,13 @@ export class ProjectlistComponent implements OnInit {
             (error) => { console.log(error); });
         this.nationalSocietyService.getNationalSocieties()
             .subscribe((result) => this.societies = result,
-                (error) => { console.log(error) });
+            (error) => { console.log(error) });
     }
+
     onSocietyChange(selectedNationalSocietyId: string) {
         this.getProjectOwners(selectedNationalSocietyId);
     }
+
     getProjectOwners(nationalSocietyId: string) {
         this.userService.getProjectOwners(nationalSocietyId).subscribe(
             (users) => {
@@ -54,6 +56,7 @@ export class ProjectlistComponent implements OnInit {
             }
         );
     }
+
     async addProject() {
         const projectId = this.utilityService.createGuid();
 

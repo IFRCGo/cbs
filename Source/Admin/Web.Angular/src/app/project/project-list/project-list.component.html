@@ -16,9 +16,10 @@
                 <label class="control-label col-sm-3" for="society">National society:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                        <select id="society" class="form-control" [(ngModel)]="selectedSociety"
-                                (change)="onSocietyChange(selectedSociety)" name="society">
+                        <span class="input-group-addon">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                        </span>
+                        <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society">
                             <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                         </select>
                     </div>
@@ -28,10 +29,11 @@
                 <label class="control-label col-sm-3" for="owner">Project / data owner:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                        <span class="input-group-addon">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        </span>
                         <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner">
-                            <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}}
-                                {{owner.lastname}} / {{owner.country}}
+                            <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}
                             </option>
                         </select>
                     </div>
@@ -41,7 +43,9 @@
                 <label class="control-label col-sm-3" for="project">Name of project:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                        <span class="input-group-addon">
+                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                        </span>
                         <input type="text" [(ngModel)]="name" name="project" id="project" class="form-control">
                     </div>
                 </div>
@@ -51,12 +55,10 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <label class="radio-inline">
-                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="1">Single
-                            Reports
+                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="1">Single Reports
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="2">Aggregated
-                            Reports
+                            <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="2">Aggregated Reports
                         </label>
                         <label class="radio-inline">
                             <input type="radio" [(ngModel)]="surveillance" name="surveillance" [value]="3">Both
@@ -74,23 +76,23 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-    <tr>
-        <th>Name</th>
-        <th>National Society</th>
-        <th>Data Owner</th>
-        <th>Surveillance Context</th>
-        <th>Actions</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>National Society</th>
+            <th>Data Owner</th>
+            <th>Surveillance Context</th>
+            <th>Actions</th>
+        </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let project of projects">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-            <a>Edit</a>
-        </td>
-    </tr>
+        <tr *ngFor="let project of projects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.nationalSociety?.name }}</td>
+            <td>{{ project.dataOwner?.firstname }} {{ project.dataOwner?.lastname }}</td>
+            <td>{{ project.surveillanceContex }}</td>
+            <td>
+                <a>Edit</a>
+            </td>
+        </tr>
     </tbody>
 </table>
