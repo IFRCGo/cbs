@@ -23,7 +23,7 @@
                 <span  *ngIf="caseReport.healthRisk" class="label label-success">Success</span>
                 <span  *ngIf="!caseReport.healthRisk" class="label label-danger">Error</span>
             </td>
-            <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
+            <td>{{caseReport.dataCollector?.displayName}}&nbsp;</td>
             <ng-container *ngIf="caseReport.healthRisk">
                 <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
                 <td>{{caseReport.numberOfFemalesOver5}}</td>

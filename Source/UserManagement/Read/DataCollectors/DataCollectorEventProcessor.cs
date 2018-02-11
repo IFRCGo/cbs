@@ -17,8 +17,8 @@ namespace Read.DataCollectors
         public void Process(DataCollectorAdded @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
-            dataCollector.FirstName = @event.FirstName;
-            dataCollector.LastName = @event.LastName;
+            dataCollector.FullName = @event.FullName;
+            dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             dataCollector.YearOfBirth = @event.YearOfBirth;
             dataCollector.NationalSociety = @event.NationalSociety;

@@ -7,11 +7,11 @@ namespace Domain
     {
         public AddDataCollectorValidator()
         {
-            RuleFor(_ => _.FirstName)
+            RuleFor(_ => _.FullName)
                 .NotEmpty()
                 .WithMessage("First name is not correct - Has to be defined");
 
-            RuleFor(_ => _.LastName)
+            RuleFor(_ => _.DisplayName)
                 .NotEmpty()
                 .WithMessage("Last name is not correct - Has to be defined");
 
