@@ -26,6 +26,6 @@ export class DeleteUserComponent {
         this.staffUserService.deleteUser(id);
         this.modalRef.hide();
 
-        //TODO: reload userList on success
+        // TODO: reload userList on success
     }
 }

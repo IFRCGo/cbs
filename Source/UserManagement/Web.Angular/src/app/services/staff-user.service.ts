@@ -39,7 +39,7 @@ export class StaffUserService {
       // .catch((error) => console.error(error));
   }
 
-  //TODO: Use result from api
+  // TODO: Use result from api
   deleteUser(id: string): Promise<void> {
     return this.http
       .delete(DELETE_USER + id, {headers: this.headers})
