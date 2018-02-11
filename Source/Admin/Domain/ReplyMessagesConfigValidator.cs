@@ -3,13 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
+using FluentValidation;
 
 namespace Domain
 {
-    public class UpdateMessage
+    public class ReplyMessagesConfigValidator : AbstractValidator<UpdateReplyMessagesConfig>
     {
-        public Guid Id { get; set; }
-        public string Message { get; set; }
+        public ReplyMessagesConfigValidator(IReplyMessagesConfigRules rules)
+        {
+            RuleFor(v => v.Messages).NotNull().WithMessage("Messages is missing");
+            RuleFor(v => v.Messages.Keys).Must(rules.IsTagsValid).WithMessage("Tags are not valid");
+        }
     }
 }

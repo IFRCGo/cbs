@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using Domain;
 using Events;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Read.AutomaticReplyMessages;
 
 namespace Web
 {
@@ -26,36 +26,28 @@ namespace Web
         }
 
         [HttpGet]
-        public IEnumerable<ReplyMessage> GetAll()
+        public ReplyMessagesConfig Get()
         {
-            return _replyMessages.GetAll();
+            return _replyMessages.Get();
         }
 
-        [HttpGet("{messageId}")]
-        public IEnumerable<ReplyMessage> GetById(Guid messsageId)
+        [HttpPut]
+        public IActionResult Update( [FromBody]UpdateReplyMessagesConfig command)
         {
-            return _replyMessages.GetById(messsageId);
-        }
-
-        [HttpPost]
-        public void Add([FromBody] CreateReplyMessage command)
-        {
-            Apply(command.Id, new ReplyMessageCreated
+            try
             {
-                Message = command.Message,
-                ReplyType = command.ReplyType
-            });
-        }
-
-        [HttpPut("{messageId}")]
-        public void Update(Guid messageId, [FromBody]UpdateMessage command)
-        {
-            Apply(command.Id, new MessageUpdated
+                Apply(UpdateReplyMessagesConfig.Id, new ReplyMessageConfigUpdated
+                {
+                    Messages = command.Messages
+                });
+            }
+            catch (DuplicateTagException e)
             {
-                Id = command.Id = messageId,
-                Message = command.Message
-            });
+                return BadRequest(e.Message);
+            }
 
+            return Ok();
         }
     }
+ 
 }

@@ -3,15 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using System.Collections.Generic;
 
-namespace Web
+namespace Read.AutomaticReplyMessages
 {
-    public interface IReplyMessages
+    public class ReplyMessagesConfig
     {
-        IEnumerable<ReplyMessage> GetAll();
-        IEnumerable<ReplyMessage> GetById(Guid messageId);
-        IEnumerable<ReplyMessage> GetById();
+        public IDictionary<string, IDictionary<string,string>> Messages { get; set; }
     }
 }

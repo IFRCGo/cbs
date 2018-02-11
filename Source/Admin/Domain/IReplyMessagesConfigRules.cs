@@ -3,11 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace Web
+namespace Domain
 {
-    public class ReplyMessage
+    public interface IReplyMessagesConfigRules
     {
+        bool IsTagsValid(IEnumerable<string> tags);
     }
 }

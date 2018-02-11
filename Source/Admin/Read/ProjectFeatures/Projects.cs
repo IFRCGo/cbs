@@ -29,12 +29,6 @@ namespace Read.ProjectFeatures
         public Project GetById(Guid id)
         {
             var project = _collection.Find(v => v.Id == id).SingleOrDefault();
-            if (project == null)
-            {
-                project = new Project {Name = "Dummy implementation", Id = id};
-                _collection.InsertOne(project);
-            }
-
             return project;
         }
 
@@ -45,8 +39,15 @@ namespace Read.ProjectFeatures
 
         public void Save(Project project)
         {
-            var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
-            _collection.ReplaceOne(filter, project);
+            if (GetById(project.Id) == null)
+            {
+                _collection.InsertOne(project);
+            }
+            else
+            {
+                var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
+                _collection.ReplaceOne(filter, project);
+            }
         }
 
         public IEnumerable<Project> GetAll()

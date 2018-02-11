@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using doLittle.Events.Processing;
 using Events;
+using Read.AutomaticReplyMessages;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 
@@ -114,23 +115,14 @@ namespace Read.ProjectFeatures
             }
         }
 
-        public void Process(ReplyMessageCreated @event)
+        public void Process(ReplyMessageConfigUpdated @event)
         {
-            _replyMessages.Save(new ReplyMessage
+            _replyMessages.Save(new ReplyMessagesConfig
             {
-                Message = @event.Message,
-                ReplyType = 
+                Messages = @event.Messages
             });
 
         }
     }
-
-    public class ReplyMessage
-    {
-    }
-
-    public interface IReplyMessages
-    {
-        void Save(ReplyMessage replyMessage);
-    }
+    
 }

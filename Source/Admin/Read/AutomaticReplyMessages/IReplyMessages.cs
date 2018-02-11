@@ -3,15 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using Events;
-
-namespace Web
+namespace Read.AutomaticReplyMessages
 {
-    public class CreateReplyMessage
+    public interface IReplyMessages
     {
-        public Guid Id { get; set; }
-        public string Message { get; set; }
-        public AutomaticReplyType ReplyType { get; set; }
+        ReplyMessagesConfig Get();
+        void Save(ReplyMessagesConfig config);
     }
 }
