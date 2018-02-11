@@ -18,16 +18,18 @@ namespace Read.ProjectFeatures
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
         private readonly IProjectHealthRiskVersions _projectHealthRiskVersions;
+        private readonly IReplyMessages _replyMessages;
 
         public ProjectEventProcessor(IProjects projects
             , IUsers users
             , INationalSocieties nationalSocieties
-            , IProjectHealthRiskVersions projectHealthRiskVersions)
+            , IProjectHealthRiskVersions projectHealthRiskVersions, IReplyMessages replyMessages)
         {
             _projects = projects;
             _users = users;
             _nationalSocieties = nationalSocieties;
             _projectHealthRiskVersions = projectHealthRiskVersions;
+            _replyMessages = replyMessages;
         }
 
         public void Process(ProjectCreated @event)
@@ -111,5 +113,24 @@ namespace Read.ProjectFeatures
                 _projects.Save(project);
             }
         }
+
+        public void Process(ReplyMessageCreated @event)
+        {
+            _replyMessages.Save(new ReplyMessage
+            {
+                Message = @event.Message,
+                ReplyType = 
+            });
+
+        }
+    }
+
+    public class ReplyMessage
+    {
+    }
+
+    public interface IReplyMessages
+    {
+        void Save(ReplyMessage replyMessage);
     }
 }
