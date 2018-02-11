@@ -11,8 +11,8 @@ namespace Domain.Specs.when_adding_a_data_collector.given
             return  new AddDataCollector
             {
                 Id = Guid.NewGuid(),
-                FirstName = "Data",
-                LastName = "Collector",
+                FullName = "Data Collector",
+                DisplayName = "Daty",
                 YearOfBirth = 1980,
                 Sex = Sex.Male,
                 NationalSociety = Guid.NewGuid(),

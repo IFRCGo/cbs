@@ -13,8 +13,8 @@ namespace Domain
     {
         //TODO: Update these properties to reflect what is needed for event. Remove PhoneNumber
         public Guid Id { get; set; }
-        public string FirstName { get; set; } //Is FirstName / LastName robust enough for the areas that this will be used?  Shouldn't we just use name?
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
         public Sex Sex { get; set; } //Do we need Transgender / Other?
         public Guid NationalSociety { get; set; }
