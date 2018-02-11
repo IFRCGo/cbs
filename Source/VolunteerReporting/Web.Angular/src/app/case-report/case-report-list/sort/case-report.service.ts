@@ -12,30 +12,32 @@ export class ReportService {
                             : a.timestamp > b.timestamp? 1 : a.timestamp < b.timestamp? -1 : 0;
             });
         } else if (criteria.sortColumn === 'status') {
+            // Sorts the table by the status field. Should make it possible to sort on two parameters,
+            // The sorting direcetion of sortColumn and the sortDirection of the timeStamp field
             return reports_detailed.sort( function(a,b) {
                 let result = ((a.healthRisk && b.healthRisk) || (!a.healthRisk && !b.healthRisk))? 
                             0 : a.healthRisk? -1 : 1;
                 return (criteria.sortDirection === "desc")? result : result * -1;
-            });
+            }); //.sort( (a, b) => a.timestamp > b.timestamp? 1 : a.timestamp < b.timestamp? -1 : 0);
             // WIP
         } else if (criteria.sortColumn === 'dataCollector') {
             return reports_detailed.sort( function(a,b ) {
+                console.log(a.dataCollector);
                 const fullName_a = a.dataCollector? 
-                                    a.dataCollector.firstName?
-                                        a.dataCollector.lastName?
-                                            '${a.dataCollector.firstName} ${a.dataCollector.lastName}'
-                                            : '${a.dataCollector.firstName}'
-                                        : undefined
+                                    a.dataCollector.fullName?
+                                        a.dataCollector.fullName : undefined
                                     : undefined;
                 const fullName_b = b.dataCollector? 
-                                    b.dataCollector.firstName?
-                                        b.dataCollector.lastName?
-                                            '${b.dataCollector.firstName} ${b.dataCollector.lastName}'
-                                            : '${b.dataCollector.firstName}'
-                                        : undefined
+                                    b.dataCollector.fullName?
+                                        b.dataCollector.fullName : undefined
                                     : undefined;
-                let result = (fullName_a === undefined && fullName_b === undefined)
-                return 1;
+
+                console.log(fullName_a);
+                let result = ((fullName_a === undefined && fullName_b === undefined) || (String(fullName_a) === String(fullName_b)))?
+                                0 : (fullName_a < fullName_b)?
+                                    -1 : 1;
+
+                return (criteria.sortDirection === "desc")? result : result * -1; 
             });
             
         }

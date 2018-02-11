@@ -12,11 +12,23 @@ namespace Domain.DataCollectors
     {
         public DataCollector(Guid id) : base(id) { }
 
-        //TODO: Add method to apply data collector added events
-        //TODO: RegisteredAt should be set in the apply method
-            //public void AddDataCollector(
-        
-        //    )
+        public void AddDataCollector(AddDataCollector command) 
+        {
+            Apply(new DataCollectorAdded
+            {
+                Id = command.Id,
+                FullName = command.FullName,
+                DisplayName = command.DisplayName,
+                YearOfBirth = command.YearOfBirth,
+                Sex = (int) command.Sex,
+                NationalSociety = command.NationalSociety,
+                PreferredLanguage = (int) command.PreferredLanguage,
+                RegisteredAt = DateTimeOffset.UtcNow
+                
+                //MobilePhoneNumber = command.MobilePhoneNumber,
+                //Email = command.Email
+            });
+        }
 
         //TODO: Add business validation that checks if number is already added
         public void AddPhoneNumber(string phoneNumber)

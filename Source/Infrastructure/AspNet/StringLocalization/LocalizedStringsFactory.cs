@@ -12,7 +12,7 @@ using Castle.DynamicProxy;
 namespace Infrastructure.AspNet.StringLocalization
 {
     internal class LocalizedStringsFactory<T> : ILocalizedStringsFactory<T>
-            where T : class, new()
+        where T : class, new()
     {
         private readonly IEnumerable<LocalizedStringsProvider> _providers;
         private readonly string _featureName;
@@ -34,6 +34,7 @@ namespace Infrastructure.AspNet.StringLocalization
                 return new ProxyGenerator().CreateClassProxy<T>(
                     new OverwriteStringInterceptor(provider.LocalizedStrings));
             }
+
             return new T();
         }
     }

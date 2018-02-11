@@ -21,8 +21,8 @@ namespace Read.DataCollectors
         public async Task Process(DataCollectorAdded @event)
         {           
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
-            dataCollector.FirstName = @event.FirstName;
-            dataCollector.LastName = @event.LastName;
+            dataCollector.FullName = @event.FullName;
+            dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             await _dataCollectors.Save(dataCollector);
         }

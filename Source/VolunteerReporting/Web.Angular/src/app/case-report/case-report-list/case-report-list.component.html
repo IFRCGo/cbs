@@ -9,7 +9,7 @@
             expand the sorting function for that given column -->
             <th sortable-column="timeStamp">Time</th>
             <th sortable-column="status">Status</th>
-            <th>Data&nbsp;Collector</th>
+            <th sortable-column="dataCollector">Data&nbsp;Collector</th>
             <th>Health&nbsp;Risk</th>
             <th>Females&nbsp;&gt;&nbsp;5</th>
             <th>Females&nbsp;&lt;&nbsp;5</th>
@@ -26,7 +26,7 @@
                 <span  *ngIf="!caseReport.healthRisk" class="label label-danger">Error</span>
                 
             </td>
-            <td>{{caseReport.dataCollector?.firstName}}&nbsp;{{caseReport.dataCollector?.lastName}}</td>
+            <td>{{caseReport.dataCollector?.displayName}}&nbsp;</td>
             <ng-container *ngIf="caseReport.healthRisk">
                 <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
                 <td>{{caseReport.numberOfFemalesOver5}}</td>

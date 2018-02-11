@@ -14,23 +14,31 @@ import { AddProject, NationalSociety, User } from '../../shared/models';
 
 export class AddProjectComponent implements OnInit {
     name: string;
-    societies: Array<NationalSociety>;
-    owners: Array<User>;
+    societies: NationalSociety[];
+    owners: User[];
     selectedSociety: string;
     selectedOwner: string;
-    projectOwners: Array<User>;
+    projectOwners: User[];
+    surveillanceOptions: object[];
+    selectedSurveillanceOptionId: string;
 
     constructor(
         private projectService: ProjectService,
         private utilityService: UtilityService,
         private userService: UserService,
-        private nationalSocietyService: NationalSocietyService
+        private nationalSocietyService: NationalSocietyService,
+
     ) { }
 
     ngOnInit() {
         this.nationalSocietyService.getNationalSocieties()
             .subscribe((result) => this.societies = result,
             (error) => { console.log(error) });
+        this.surveillanceOptions = [
+                { "id": '0', "name": "Single Reports" },
+                { "id": '1', "name": "Aggregated Reports" },
+                { "id": '2', "name": "Both" }
+            ];
     }
 
     onSocietyChange(selectedNationalSocietyId: string) {
@@ -48,12 +56,19 @@ export class AddProjectComponent implements OnInit {
         );
     }
 
+    getSurveillanceOptionId(id: string){
+        this.selectedSurveillanceOptionId = id;
+    }
+
     async addProject() {
         const projectId = this.utilityService.createGuid();
 
         let project = new AddProject();
         project.name = this.name;
         project.id = projectId;
+        project.nationalSocietyId = this.selectedSociety;
+        project.dataOwnerId = this.selectedOwner;
+        project.surveillanceId = this.selectedSurveillanceOptionId;
 
         await this.projectService.saveProject(project);
     }

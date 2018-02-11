@@ -25,6 +25,7 @@ namespace Infrastructure.AspNet.StringLocalization
             {
                 res.AddRange(GetFeatureStrings(featureDirectory));
             }
+
             return res;
         }
 

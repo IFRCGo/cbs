@@ -1,4 +1,5 @@
 ﻿#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,55 +15,61 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-	using System.Collections.Generic;
-	using System.Reflection;
-	using Internal;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-	using Resources;
-	using Validators;
 
-	internal class EqualToClientValidator : ClientValidatorBase {
-		EqualValidator EqualValidator {
-			get { return (EqualValidator)Validator; }
-		}
-		
-		public EqualToClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
-		}
+using System.Reflection;
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-		public override void AddValidation(ClientModelValidationContext context) {
+namespace FluentValidation.AspNetCore
+{
+    internal class EqualToClientValidator : ClientValidatorBase
+    {
+        EqualValidator EqualValidator
+        {
+            get { return (EqualValidator) Validator; }
+        }
 
-			var propertyToCompare = EqualValidator.MemberToCompare as PropertyInfo;
+        public EqualToClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
 
-			if (propertyToCompare != null)
-			{
-				// If propertyToCompare is not null then we're comparing to another property.
-				// If propertyToCompare is null then we're either comparing against a literal value, a field or a method call.
-				// We only care about property comparisons in this case.
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            var propertyToCompare = EqualValidator.MemberToCompare as PropertyInfo;
 
-				var comparisonDisplayName =
-					ValidatorOptions.DisplayNameResolver(Rule.TypeToValidate, propertyToCompare, null)
-					?? propertyToCompare.Name.SplitPascalCase();
+            if (propertyToCompare != null)
+            {
+                // If propertyToCompare is not null then we're comparing to another property.
+                // If propertyToCompare is null then we're either comparing against a literal value, a field or a method call.
+                // We only care about property comparisons in this case.
 
-				var formatter = new MessageFormatter()
-					.AppendPropertyName(Rule.GetDisplayName())
-					.AppendArgument("ComparisonValue", comparisonDisplayName);
+                var comparisonDisplayName =
+                    ValidatorOptions.DisplayNameResolver(Rule.TypeToValidate, propertyToCompare, null)
+                    ?? propertyToCompare.Name.SplitPascalCase();
 
-				string messageTemplate;
-				try {
-					messageTemplate = EqualValidator.ErrorMessageSource.GetString(null);
-				}
-				catch (FluentValidationMessageFormatException) {
-					messageTemplate = ValidatorOptions.LanguageManager.GetStringForValidator<EqualValidator>();
-				}
-				string message = formatter.BuildMessage(messageTemplate);
-				MergeAttribute(context.Attributes, "data-val", "true");
-				MergeAttribute(context.Attributes, "data-val-equalto", message);
-				MergeAttribute(context.Attributes, "data-val-equalto-other", propertyToCompare.Name);
-			}
-		
-		}
+                var formatter = new MessageFormatter()
+                    .AppendPropertyName(Rule.GetDisplayName())
+                    .AppendArgument("ComparisonValue", comparisonDisplayName);
 
-	}
+                string messageTemplate;
+                try
+                {
+                    messageTemplate = EqualValidator.ErrorMessageSource.GetString(null);
+                }
+                catch (FluentValidationMessageFormatException)
+                {
+                    messageTemplate = ValidatorOptions.LanguageManager.GetStringForValidator<EqualValidator>();
+                }
+
+                var message = formatter.BuildMessage(messageTemplate);
+                MergeAttribute(context.Attributes, "data-val", "true");
+                MergeAttribute(context.Attributes, "data-val-equalto", message);
+                MergeAttribute(context.Attributes, "data-val-equalto-other", propertyToCompare.Name);
+            }
+        }
+    }
 }

@@ -33,7 +33,7 @@ export class CaseReportListComponent implements OnInit {
     constructor(
         private caseReportService: AggregatedCaseReportService,
         private service: ReportService
-    ) { this.maxReports = 10 }
+    ) { this.maxReports = 1000 }
 
     /**
      * Calls a getReports method in a class that handles sorting on the data passed.
