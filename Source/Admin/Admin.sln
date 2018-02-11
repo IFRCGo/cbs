@@ -24,8 +24,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Tests", "Tests\Web.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "..\Infrastructure\Logging\Logging.csproj", "{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.RuleImplementations", "Domain.RuleImplementations\Domain.RuleImplementations.csproj", "{35169220-BE52-4C4E-BAA3-585C29870FCE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,18 +166,6 @@ Global
 		{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}.Release|x64.Build.0 = Release|Any CPU
 		{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}.Release|x86.ActiveCfg = Release|Any CPU
 		{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}.Release|x86.Build.0 = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|x64.Build.0 = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Debug|x86.Build.0 = Debug|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|x64.ActiveCfg = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|x64.Build.0 = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|x86.ActiveCfg = Release|Any CPU
-		{35169220-BE52-4C4E-BAA3-585C29870FCE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
