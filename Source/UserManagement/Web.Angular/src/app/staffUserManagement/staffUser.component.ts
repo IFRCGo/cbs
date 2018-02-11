@@ -68,8 +68,8 @@ export class StaffUserComponent implements OnInit {
 
   async addStaffUser(staffUser) {
     const newStaffUser: StaffUser = {
-        firstName: staffUser.firstName,
-        lastName: staffUser.lastName,
+        fullName: staffUser.fullName,
+        displayName: staffUser.displayName,
         sex: staffUser.sex,
         age: staffUser.age,
         nationalSociety: staffUser.nationalSociety,
