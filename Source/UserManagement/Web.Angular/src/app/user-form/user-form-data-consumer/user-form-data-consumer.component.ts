@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../domain/user';
+import { DataConsumer } from '../../domain/data-consumer';
+import { Router } from '@angular/router';
+import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_CONSUMER_PATH = 'data-consumer';
+
 
 @Component({
   selector: 'cbs-user-form-data-consumer',
@@ -9,14 +13,33 @@ export const DATA_CONSUMER_PATH = 'data-consumer';
   styleUrls: ['./user-form-data-consumer.component.scss']
 })
 export class UserFormDataConsumerComponent implements OnInit {
-  user = new User({});
+  user: DataConsumer;
+
+  public errorMsg = 'Something went wrong, try again later';
+  public successMsg = 'User added';
+  public success = false;
+  public error = false;
 
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
-  constructor() { }
+
+  constructor(private staffUserService: StaffUserService, private router: Router) {
+    this.user = new DataConsumer({});
+  }
 
   ngOnInit() {
   }
 
-  submit() { console.log(this.user) }
+  submit() {
+    this.staffUserService.saveUser(this.user).subscribe(
+      data => {
+        this.success = true;
+        console.log(data);
+        setTimeout(() => this.router.navigateByUrl(''), 3000)
+      },
+      error => {
+        this.error = true;
+        console.error(error)
+      })
+  }
 }
