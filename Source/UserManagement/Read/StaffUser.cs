@@ -13,7 +13,7 @@ namespace Read
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
-        public string Location { get; set; } //TODO: fix when location strucutre is known
+        public Location Location { get; set; } //TODO: fix when location strucutre is known
         public string GeoLocation { get; set; } //TODO: use GeoCoordinate
         public string MobilePhoneNumber { get; set; }
         public string Email { get; set; }

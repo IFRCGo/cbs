@@ -62,12 +62,10 @@ namespace Domain
                     .WithMessage("Duty Station is not correct - Has to be defined");
             });
 
-
-            //TODO waiting for change on location
-            //RuleFor(_ => _.Location)
-                //.NotEmpty()
-                //.When(_=> _.Role.RequiresLocation())
-                //.WithMessage("Location is not correct - Has to be defined");
+            RuleFor(_ => _.Location)
+                .NotEmpty()
+                .When(_=> _.Role.RequiresLocation())
+                .WithMessage("Location is not correct - Has to be defined");
         }
 
     }
