@@ -4,14 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read.NationalSocietyFeatures
 {
     public class NationalSociety
     {
-		public Guid Id { get; set; }
-		public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
         public string Country { get; set; }
         public int TimezoneOffsetFromUtcInMinutes { get; set; }
     }

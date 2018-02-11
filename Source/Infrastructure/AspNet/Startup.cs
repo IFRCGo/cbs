@@ -1,7 +1,11 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using AspNet.MongoDB;
 using Autofac;
 using doLittle.Collections;
-using doLittle.Types;
 using Infrastructure.AspNet.StringLocalization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +15,6 @@ namespace Infrastructure.AspNet
 {
     public class Startup
     {
-
         public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
             Internals.Configuration = configuration;

@@ -37,10 +37,10 @@ namespace Read.Projects
             return _collection.Find(filter).First();
         }
 
-        public void Save(Project project)
+        public async Task Save(Project project)
         {
             var filter = Builders<Project>.Filter.Eq(c => c.Id, project.Id);
-            _collection.ReplaceOne(filter, project, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, project, new UpdateOptions { IsUpsert = true });
         }
     }
 }

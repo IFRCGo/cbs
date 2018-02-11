@@ -1,4 +1,5 @@
-﻿#region License
+#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,82 +15,81 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/JeremySkinner/FluentValidation
+
 #endregion
+
+using System;
+using System.Reflection;
+using FluentValidation.Internal;
 
 namespace FluentValidation.AspNetCore
 {
-	using System;
-	using Microsoft.AspNetCore.Mvc;
-	using FluentValidation.Internal;
-	using System.Reflection;
-	using Microsoft.AspNetCore.Mvc.ModelBinding;
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
+    public class CustomizeValidatorAttribute : Attribute
+    {
+        public string RuleSet { get; set; }
+        public string Properties { get; set; }
+        public Type Interceptor { get; set; }
 
-	[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-	public class CustomizeValidatorAttribute : Attribute
-	{
-		public string RuleSet { get; set; }
-		public string Properties { get; set; }
-		public Type Interceptor { get; set; }
+        /// <summary>
+        /// Builds a validator selector from the options specified in the attribute's properties.
+        /// </summary>
+        public IValidatorSelector ToValidatorSelector()
+        {
+            IValidatorSelector selector;
 
-		/// <summary>
-		/// Builds a validator selector from the options specified in the attribute's properties.
-		/// </summary>
-		public IValidatorSelector ToValidatorSelector()
-		{
-			IValidatorSelector selector;
+            if (!string.IsNullOrEmpty(RuleSet))
+            {
+                var rulesets = RuleSet.Split(',', ';');
+                selector = CreateRulesetValidatorSelector(rulesets);
+            }
+            else if (!string.IsNullOrEmpty(Properties))
+            {
+                var properties = Properties.Split(',', ';');
+                selector = CreateMemberNameValidatorSelector(properties);
+            }
+            else
+            {
+                selector = CreateDefaultValidatorSelector();
+            }
 
-			if (!string.IsNullOrEmpty(RuleSet))
-			{
-				var rulesets = RuleSet.Split(',', ';');
-				selector = CreateRulesetValidatorSelector(rulesets);
-			}
-			else if (!string.IsNullOrEmpty(Properties))
-			{
-				var properties = Properties.Split(',', ';');
-				selector = CreateMemberNameValidatorSelector(properties);
-			}
-			else
-			{
-				selector = CreateDefaultValidatorSelector();
-			}
+            return selector;
+        }
 
-			return selector;
+        protected virtual IValidatorSelector CreateRulesetValidatorSelector(string[] ruleSets)
+        {
+            return ValidatorOptions.ValidatorSelectors.RulesetValidatorSelectorFactory(ruleSets);
+        }
 
-		}
+        protected virtual IValidatorSelector CreateMemberNameValidatorSelector(string[] properties)
+        {
+            return ValidatorOptions.ValidatorSelectors.MemberNameValidatorSelectorFactory(properties);
+        }
 
-		protected virtual IValidatorSelector CreateRulesetValidatorSelector(string[] ruleSets)
-		{
-			return ValidatorOptions.ValidatorSelectors.RulesetValidatorSelectorFactory(ruleSets);
-		}
+        protected virtual IValidatorSelector CreateDefaultValidatorSelector()
+        {
+            return ValidatorOptions.ValidatorSelectors.DefaultValidatorSelectorFactory();
+        }
 
-		protected virtual IValidatorSelector CreateMemberNameValidatorSelector(string[] properties)
-		{
-			return ValidatorOptions.ValidatorSelectors.MemberNameValidatorSelectorFactory(properties);
-		}
+        public IValidatorInterceptor GetInterceptor()
+        {
+            if (Interceptor == null) return null;
 
-		protected virtual IValidatorSelector CreateDefaultValidatorSelector()
-		{
-			return ValidatorOptions.ValidatorSelectors.DefaultValidatorSelectorFactory();
-		}
+            if (!typeof(IValidatorInterceptor).GetTypeInfo().IsAssignableFrom(Interceptor))
+            {
+                throw new InvalidOperationException(
+                    "Type {0} is not an IValidatorInterceptor. The Interceptor property of CustomizeValidatorAttribute must implement IValidatorInterceptor.");
+            }
 
-		public IValidatorInterceptor GetInterceptor()
-		{
-			if (Interceptor == null) return null;
+            var instance = Activator.CreateInstance(Interceptor) as IValidatorInterceptor;
 
-			if (!typeof(IValidatorInterceptor) .GetTypeInfo().IsAssignableFrom(Interceptor))
-			{
-				throw new InvalidOperationException("Type {0} is not an IValidatorInterceptor. The Interceptor property of CustomizeValidatorAttribute must implement IValidatorInterceptor.");
-			}
+            if (instance == null)
+            {
+                throw new InvalidOperationException(
+                    "Type {0} is not an IValidatorInterceptor. The Interceptor property of CustomizeValidatorAttribute must implement IValidatorInterceptor.");
+            }
 
-			var instance = Activator.CreateInstance(Interceptor) as IValidatorInterceptor;
-
-			if (instance == null)
-			{
-				throw new InvalidOperationException("Type {0} is not an IValidatorInterceptor. The Interceptor property of CustomizeValidatorAttribute must implement IValidatorInterceptor.");
-			}
-
-			return instance;
-		}
-
-	}
+            return instance;
+        }
+    }
 }

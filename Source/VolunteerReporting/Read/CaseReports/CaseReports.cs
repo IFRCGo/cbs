@@ -26,10 +26,10 @@ namespace Read.CaseReports
             return await list.ToListAsync();
         }
 
-        public void Save(CaseReport caseReport)
+        public async Task Save(CaseReport caseReport)
         {
             var filter = Builders<CaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
-            _collection.ReplaceOne(filter, caseReport, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
         }
     }
 }

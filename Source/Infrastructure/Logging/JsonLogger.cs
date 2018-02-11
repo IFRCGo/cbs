@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +20,8 @@ namespace Logging
         readonly Func<string, LogLevel, bool> _filter;
         readonly ICommandContextManager _commandContextManager;
 
-        public JsonLogger(string source, string category, Func<string, LogLevel, bool> filter, ICommandContextManager commandContextManager)
+        public JsonLogger(string source, string category, Func<string, LogLevel, bool> filter,
+            ICommandContextManager commandContextManager)
         {
             _category = category;
             _filter = filter;
@@ -29,10 +35,11 @@ namespace Logging
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            return (_filter == null || _filter(_category, logLevel));
+            return _filter == null || _filter(_category, logLevel);
         }
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
+            Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel)) return;
 
@@ -94,7 +101,8 @@ namespace Logging
                 if (state is IReadOnlyList<KeyValuePair<string, object>>)
                 {
                     var keyValuePairs = state as IReadOnlyList<KeyValuePair<string, object>>;
-                    var list = new List<KeyValuePair<string, object>>(keyValuePairs.Where(k => k.Key != "{OriginalFormat}"));
+                    var list = new List<KeyValuePair<string, object>>(keyValuePairs.Where(k =>
+                        k.Key != "{OriginalFormat}"));
                     content = list.ToDictionary(x => x.Key, x => x.Value);
                 }
 
@@ -109,7 +117,8 @@ namespace Logging
                     CorrelationId = Guid.Empty
                 };
 
-                if (_commandContextManager.HasCurrent) logMessage.CorrelationId = _commandContextManager.GetCurrent().TransactionCorrelationId;
+                if (_commandContextManager.HasCurrent)
+                    logMessage.CorrelationId = _commandContextManager.GetCurrent().TransactionCorrelationId;
 
                 var serialized = JsonConvert.SerializeObject(logMessage, new JsonSerializerSettings
                 {
@@ -117,7 +126,9 @@ namespace Logging
                 });
                 writer.WriteLine(serialized);
             }
-            finally { }
+            finally
+            {
+            }
         }
     }
 }
