@@ -23,11 +23,10 @@ import { UserFormDataVerifierComponent } from './user-form/user-form-data-verifi
 import { UserFormDataCollectorComponent } from './user-form/user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
 
-import { addUserFormRoutes, editUserFormRoutes } from './user-form';
+import { USER_FORM_ROUTES } from './user-form';
 
 const appRoutes: Routes = [
-  ...addUserFormRoutes(),
-  ...editUserFormRoutes(),
+  ...USER_FORM_ROUTES,
   { path: 'add-user', component: SelectUserRoleComponent },
   { path: '', component: UserListComponent },
   { path: '**', component: UserListComponent }
