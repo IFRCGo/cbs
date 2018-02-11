@@ -37,7 +37,6 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp
             };
             await _caseReports.Save(caseReport);
-
             // Send a message back to the DataCollector
         }
         public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)

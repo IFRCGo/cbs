@@ -33,11 +33,7 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
-            
             await _invalidCaseReports.Save(invalidCaseReport);
-            
-            // Send an sms-message back to the DataCollector
-            
         }
 
         public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
@@ -49,9 +45,6 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
             await _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
-
-            // Send an sms-message back to the phonenumber that sent the message
-            
         }
     }
 }
