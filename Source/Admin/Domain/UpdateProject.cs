@@ -26,6 +26,6 @@ namespace Domain
         [JsonConverter(typeof(StringEnumConverter))]
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
-        public string SMSGateWay { get; set; }
+        public string SmsProxy { get; set; }
     }
 }

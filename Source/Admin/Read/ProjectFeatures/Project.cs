@@ -26,6 +26,6 @@ namespace Read.ProjectFeatures
         public ProjectHealthRisk[] HealthRisks { get; set; }
 
         public User[] DataVerifiers { get; set; }
-        public string SMSGateWay { get; set; }
+        public string SmsProxy { get; set; }
     }
 }
