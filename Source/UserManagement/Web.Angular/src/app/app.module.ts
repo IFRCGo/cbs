@@ -7,13 +7,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
-import { StaffUserService } from './staffUserManagement/staffUser.service';
+
 import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
+import { StaffUserService } from './services/staff-user.service';
 
 import { AppComponent } from './app.component';
-import { StaffUserComponent } from './staffUserManagement/staffUser.component';
-import { UserListComponent } from './userListComponent/userList.component';
-import { DeleteUserComponent } from './deleteUser/deleteUser.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { SelectUserRoleComponent } from './select-user-role/select-user-role.component';
 import { UserFormAdminComponent } from './user-form/user-form-admin/user-form-admin.component';
 import { UserFormSystemConfiguratorComponent } from './user-form/user-form-system-configurator/user-form-system-configurator.component';
@@ -37,7 +37,6 @@ console.log(appRoutes);
 @NgModule({
   declarations: [
     AppComponent,
-    StaffUserComponent,
     UserListComponent,
     DeleteUserComponent,
     SelectUserRoleComponent,
