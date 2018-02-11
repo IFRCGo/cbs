@@ -1,7 +1,7 @@
 <h3>
     Projects
 </h3>
-<button type="button" class="btn btn-primary pull-right"> <a [routerLink]="['/project/add']">Add project</a></button>
+<a [routerLink]="['/project/add']" class="btn btn-primary pull-right">Add project</a>
 
 <table class="table table-bordered table-striped">
     <thead>
@@ -20,7 +20,7 @@
             <td>{{ project.dataOwner?.firstname }} {{ project.dataOwner?.lastname }}</td>
             <td>{{ project.surveillanceContex }}</td>
             <td>
-                <a>Edit</a>
+                <a [routerLink]="['/project' ,project.id, 'edit']">Edit</a>
             </td>
         </tr>
     </tbody>
