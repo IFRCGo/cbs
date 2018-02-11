@@ -7,8 +7,8 @@ namespace Read
 {
     public class DataCollector{
         public Guid Id { get; set; }        
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }

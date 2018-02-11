@@ -24,6 +24,7 @@ namespace Read.CaseReports
         
         public async Task Process(CaseReportReceived @event)
         {
+            // Save CaseReport in the CaseReports DB
             var caseReport = new CaseReport(@event.CaseReportId)
             {
                 DataCollectorId = @event.DataCollectorId,
@@ -36,9 +37,11 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp
             };
             await _caseReports.Save(caseReport);
+            // Send a message back to the DataCollector
         }
         public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
+            // Save CaseReport in the CaseReportsFromUnkown... DB
             var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId)
             {
                 Origin = @event.Origin,
@@ -51,6 +54,8 @@ namespace Read.CaseReports
                 Location = new Location(@event.Latitude, @event.Longitude)
             };
             await _caseReportsFromUnknownDataCollectors.Save(caseReport);
+
+            // Send a message back to the number sent the message.
         }   
         
         public async Task Process(CaseReportIdentified @event)

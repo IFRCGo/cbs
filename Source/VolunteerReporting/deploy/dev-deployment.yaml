@@ -50,7 +50,6 @@ kind: Service
 metadata:
   name: cbs-volunteerreporting-backend
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
   selector:

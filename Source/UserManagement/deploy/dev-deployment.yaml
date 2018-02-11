@@ -50,7 +50,6 @@ kind: Service
 metadata:
   name: cbs-usermgmt-backend
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
   selector:

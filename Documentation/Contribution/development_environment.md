@@ -41,9 +41,9 @@ Choose the editor or IDE you prefer.
 Visual Studio code is a free, open source, cross platform editor:
 Download it [here](https://code.visualstudio.com/).
 
-### IDE: Visual Studio 2017 or for Mac
+### IDE: Visual Studio 2017 or Visual Studio for Mac
 
-The Community edition of Visual Studio 2017 and Visual Studio 2017 for Mac can be used for free in open source development: 
+The Community edition of Visual Studio 2017 and Visual Studio for Mac can be used for free in open source development: 
 Download it [here](https://www.visualstudio.com/vs/community/).
 
 ## Terminal

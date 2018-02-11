@@ -27,5 +27,6 @@ namespace Domain
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
         public string SmsProxy { get; set; }
+
     }
 }

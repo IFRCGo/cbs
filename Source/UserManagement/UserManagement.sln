@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "..\Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events.External", "Events.External\Events.External.csproj", "{9B6BB884-21D0-4D00-B153-9C5DD0BD6130}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Specs", "Domain.Specs\Domain.Specs.csproj", "{348723FC-C602-4C1E-9396-4316EA443C30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,18 @@ Global
 		{9B6BB884-21D0-4D00-B153-9C5DD0BD6130}.Release|x64.Build.0 = Release|Any CPU
 		{9B6BB884-21D0-4D00-B153-9C5DD0BD6130}.Release|x86.ActiveCfg = Release|Any CPU
 		{9B6BB884-21D0-4D00-B153-9C5DD0BD6130}.Release|x86.Build.0 = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|x64.Build.0 = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Debug|x86.Build.0 = Debug|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|x64.ActiveCfg = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|x64.Build.0 = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|x86.ActiveCfg = Release|Any CPU
+		{348723FC-C602-4C1E-9396-4316EA443C30}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

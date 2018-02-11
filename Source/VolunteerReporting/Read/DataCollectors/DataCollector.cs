@@ -11,8 +11,8 @@ namespace Read.DataCollectors
     public class DataCollector
     {
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
         public Location Location { get; set; }
 
