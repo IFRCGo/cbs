@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
     <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Kafka\Kafka.csproj" />
     <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
   </ItemGroup>
   <ItemGroup>
