@@ -10,13 +10,14 @@ namespace Web.Controllers
     public class IncomingController : Controller
     {
         [HttpPost]
-        public void Receive([FromBody]SMS sms)
+        public void Receive([FromForm]SMS sms)
         {
             Console.WriteLine("---------------------------");
             
             Console.WriteLine("Sender: " + sms.Sender);
             Console.WriteLine("Timestamp: " + sms.Timestamp);
             Console.WriteLine("MSGID: " + sms.MsgID);
+            Console.WriteLine("OID: " + sms.OID);
             Console.WriteLine("Modem: " + sms.ModemNo);
             Console.WriteLine("Text: " + sms.Text);
 
