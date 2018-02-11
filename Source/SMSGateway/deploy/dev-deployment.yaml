@@ -33,12 +33,9 @@ spec:
   ports:
   - name: incoming
     port: 80
-    targetPort: smsproxy-incoming
   - name: tunnel
     port: 7001
-    targetPort: smsproxy-tunnel
   - name: tunnel-api
     port: 7002
-    targetPort: smsproxy-tunnel-api
   selector:
     app: smseagle
