@@ -26,9 +26,11 @@ namespace Infrastructure.AspNet.StringLocalization
 
         public bool IsAdapterForIndividualComponents => false;
 
-        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
+        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service,
+            Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
         {
-            if (!(service is IServiceWithType serviceWithType) || serviceWithType.ServiceType != typeof(LocalizedStringsProvider))
+            if (!(service is IServiceWithType serviceWithType) ||
+                serviceWithType.ServiceType != typeof(LocalizedStringsProvider))
                 return Enumerable.Empty<IComponentRegistration>();
 
             var unparsed = _provider.GetUnparsedLocalizedStrings();
@@ -40,10 +42,10 @@ namespace Infrastructure.AspNet.StringLocalization
                     new DelegateActivator(
                         serviceWithType.ServiceType, (c, p) => provider),
                     new CurrentScopeLifetime(),
-                        InstanceSharing.Shared,
-                        InstanceOwnership.OwnedByLifetimeScope,
-                        new[] { service },
-                        new Dictionary<string, object>()));
+                    InstanceSharing.Shared,
+                    InstanceOwnership.OwnedByLifetimeScope,
+                    new[] {service},
+                    new Dictionary<string, object>()));
 
             return registrations;
         }

@@ -27,10 +27,10 @@ namespace Read.InvalidCaseReports
             return await list.ToListAsync();
         }
 
-        public void Save(InvalidCaseReportFromUnknownDataCollector caseReport)
+        public async Task Save(InvalidCaseReportFromUnknownDataCollector caseReport)
         {
             var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, caseReport.Id);
-            _collection.ReplaceOne(filter, caseReport, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
         }
     }
 }

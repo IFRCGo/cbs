@@ -1,4 +1,5 @@
 #region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,35 +15,38 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-	using System;
-	using System.Collections.Generic;
-	using Internal;
-	using Validators;
-	using System.Linq;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-	public abstract class ClientValidatorBase : IClientModelValidator {
-		public IPropertyValidator Validator { get; private set; }
-		public PropertyRule Rule { get; private set; }
+using System.Collections.Generic;
+using FluentValidation.Internal;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-		public ClientValidatorBase(PropertyRule rule, IPropertyValidator validator) {
-			this.Validator = validator;
-			this.Rule = rule;
-		}
+namespace FluentValidation.AspNetCore
+{
+    public abstract class ClientValidatorBase : IClientModelValidator
+    {
+        public IPropertyValidator Validator { get; private set; }
+        public PropertyRule Rule { get; private set; }
 
-		public abstract void AddValidation(ClientModelValidationContext context);
+        public ClientValidatorBase(PropertyRule rule, IPropertyValidator validator)
+        {
+            this.Validator = validator;
+            this.Rule = rule;
+        }
 
-		protected static bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
-		{
-			if (attributes.ContainsKey(key))
-			{
-				return false;
-			}
+        public abstract void AddValidation(ClientModelValidationContext context);
 
-			attributes.Add(key, value);
-			return true;
-		}
-	}
+        protected static bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+        {
+            if (attributes.ContainsKey(key))
+            {
+                return false;
+            }
+
+            attributes.Add(key, value);
+            return true;
+        }
+    }
 }

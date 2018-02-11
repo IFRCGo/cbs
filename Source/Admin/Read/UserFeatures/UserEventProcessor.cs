@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using doLittle.Events.Processing;
-using Events;
 using Events.External;
 
 namespace Read.UserFeatures
