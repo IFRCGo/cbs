@@ -21,8 +21,7 @@ namespace Domain
         public String Position { get; set; }
         public String DutyStation { get; set; }
         public Language PreferredLanguage { get; set; }
-        public string Location { get; set; } //TODO: fix when location strucutre is known
-        //public GeoCoordinate GeoLocation { get; set; } //TODO: use GeoCoordinate
+        public Location Location { get; set; }
         public string MobilePhoneNumber { get; set; }
         public List<Guid> AssignedNationalSociety {get; set; }
     }

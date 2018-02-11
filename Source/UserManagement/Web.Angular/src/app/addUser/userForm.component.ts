@@ -1,22 +1,22 @@
-import { StaffUserService } from './staffUser.service';
-import { Component, OnInit } from '@angular/core';
+import { StaffUserService } from '../staffUserManagement/staffUser.service';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { StaffUser } from '../domain/staffUser';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
-  selector: 'cbs-user',
-  templateUrl: './staffUser.component.html',
-  styleUrls: ['./staffUser.component.scss']
-})
-export class StaffUserComponent implements OnInit {
-  staffUserForm: FormGroup;
+    selector: 'cbs-userForm',
+    templateUrl: './userForm.component.html'
+  })
+export class UserFormComponent {
+  userForm: FormGroup;
 
   selectedSex: string;
   sexOptions = [
-    { value: 'male', viewValue: 'Male' },
-    { value: 'female', viewValue: 'Female' }
+    { value: '0', viewValue: 'Male' },
+    { value: '1', viewValue: 'Female' },
+    { value: '2', viewValue: 'Other' }
   ];
 
   selectedNationalSociety: string;
@@ -26,8 +26,8 @@ export class StaffUserComponent implements OnInit {
 
   selectedLanguage: string;
   languageOptions = [
-    { value: 'en', viewValue: 'English' },
-    { value: 'fr', viewValue: 'French' }
+    { value: '0', viewValue: 'English' },
+    { value: '1', viewValue: 'French' }
   ];
 
   emailFormControl = new FormControl('', [
@@ -54,9 +54,9 @@ export class StaffUserComponent implements OnInit {
   }));
 
   buildForm() {
-    this.staffUserForm = this.formBuilder.group({
-        firstName: [ '', [ Validators.required ] ],
-        lastName: [ '', [ Validators.required ] ],
+    this.userForm = this.formBuilder.group({
+        fullName: [ '', [ Validators.required ] ],
+        displayName: [ '', [ Validators.required ] ],
         sex: ['', [ Validators.required ] ],
         age: ['', [ Validators.required, Validators.min(10), Validators.max(100) ] ],
         nationalSociety: ['', [ Validators.required ] ],
@@ -66,18 +66,19 @@ export class StaffUserComponent implements OnInit {
       });
   }
 
-  async addStaffUser(staffUser) {
+  async addUser(staffUser) {
     const newStaffUser: StaffUser = {
         fullName: staffUser.fullName,
         displayName: staffUser.displayName,
         sex: staffUser.sex,
         age: staffUser.age,
-        nationalSociety: staffUser.nationalSociety,
+        nationalSociety: "92c7c5be-f774-4d7c-8b65-ee14032c2d25",
         preferredLanguage: staffUser.preferredLanguage,
         mobilePhoneNumber: staffUser.mobilePhoneNumber,
         email: staffUser.email
     };
 
     this.staffUserService.saveUser(newStaffUser);
+    //TODO: reload userList and close modal
   }
 }
