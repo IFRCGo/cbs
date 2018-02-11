@@ -3,7 +3,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { StaffUserService } from '../services/staff-user.service';
-import { StaffUser } from '../domain/staffUser';
+import { StaffUser } from '../domain/staff-user';
 
 @Component({
     selector: 'cbs-delete-user',
@@ -11,7 +11,7 @@ import { StaffUser } from '../domain/staffUser';
 })
 export class DeleteUserComponent {
     @Input() user: StaffUser;
-    modalRef: BsModalRef;    
+    modalRef: BsModalRef;
 
     constructor(
         private staffUserService: StaffUserService,
@@ -25,7 +25,7 @@ export class DeleteUserComponent {
     deleteUser(id: string) {
         this.staffUserService.deleteUser(id);
         this.modalRef.hide();
-        
+
         //TODO: reload userList on success
     }
 }

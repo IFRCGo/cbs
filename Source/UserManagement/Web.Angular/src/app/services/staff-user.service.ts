@@ -1,5 +1,5 @@
-import { StaffUser } from '../domain/staffUser';
-import { NationalSociety } from '../domain/nationalSociety';
+import { StaffUser } from '../domain/staff-user';
+import { NationalSociety } from '../domain/national-society';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';

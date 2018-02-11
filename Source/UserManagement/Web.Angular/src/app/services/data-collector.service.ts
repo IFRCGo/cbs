@@ -1,6 +1,6 @@
-import { DataCollector } from './../domain/dataCollector';
+import { DataCollector } from './../domain/data-collector';
 import 'rxjs/add/operator/toPromise';
-import { environment } from '../../environments/environment'; 
+import { environment } from '../../environments/environment';
 
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';

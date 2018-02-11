@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffUserService } from '../services/staff-user.service';
-import { StaffUser } from '../domain/staffUser';
+import { StaffUser } from '../domain/staff-user';
 
 @Component({
   selector: 'cbs-user-list',

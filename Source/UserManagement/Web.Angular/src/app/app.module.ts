@@ -7,8 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
-
-import { DataCollectorService } from './dataCollectorManagement/dataCollector.service';
+import { DataCollectorService } from './services/data-collector.service';
 import { StaffUserService } from './services/staff-user.service';
 
 import { AppComponent } from './app.component';
