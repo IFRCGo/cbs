@@ -42,13 +42,7 @@ namespace Domain.Tests
             Assert.Equal(shouldValidate, validationResult.IsValid);
 
         }
-
-        [Theory]
-        [InlineData("", true)]
-        public void ValidateReplyMessageConfigLanguage(string language, bool shouldValidate)
-        {
-
-        }
+       
     }
 
 

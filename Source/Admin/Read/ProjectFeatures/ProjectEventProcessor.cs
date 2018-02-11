@@ -53,7 +53,7 @@ namespace Read.ProjectFeatures
             project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
             project.SurveillanceContext = @event.SurveillanceContext;
-            project.SMSGateWay = @event.SMSGateWay;
+            project.SmsProxy = @event.SmsProxy;
             _projects.Save(project);
         }
 
