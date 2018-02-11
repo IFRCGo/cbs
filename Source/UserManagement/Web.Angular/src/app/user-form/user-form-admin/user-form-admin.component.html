@@ -6,32 +6,32 @@
     <div class="form-group">
         <label for="first_name">First name</label>
         <input type="text" class="form-control" id="first_name"
-            required
-            [(ngModel)]="user.firstName" name="first_name"
-            #first_name="ngModel">
+               required
+               [(ngModel)]="user.firstName" name="first_name"
+               #first_name="ngModel">
     </div>
     <div class="form-group">
         <label for="last_name">Last name</label>
         <input type="text" class="form-control" id="last_name"
-            required
-            [(ngModel)]="user.lastName" name="last_name"
-            #last_name="ngModel">
+               required
+               [(ngModel)]="user.lastName" name="last_name"
+               #last_name="ngModel">
     </div>
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email"
-            required
-            [(ngModel)]="user.email" name="email"
-            #email="ngModel">
+               required
+               [(ngModel)]="user.email" name="email"
+               #email="ngModel">
     </div>
+    <div class="alert-danger" *ngIf="error">
+        {{errorMsg}}
+    </div>
+
+    <div class="alert-success" *ngIf="success">
+        {{successMsg}}
+    </div>
+    <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
 </form>
 
-<div class="alert-danger" *ngIf="error">
-    {{errorMsg}}
-</div>
 
-<div class="alert-success" *ngIf="success">
-    {{successMsg}}
-</div>
-
-<button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
