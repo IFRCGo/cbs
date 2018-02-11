@@ -15,34 +15,34 @@ import {
 } from './user-form-system-configurator/user-form-system-configurator.component';
 
 const ADD_USER_URL_PREFIX = 'add-user';
-const EDIT_USER_URL_PREFIX = 'edit-user';
 
-const USER_FORM_PATH_MAPPINGS = {
-    [ADMIN_PATH]: UserFormAdminComponent,
-    [DATA_COLLECTOR_PATH]: UserFormDataCollectorComponent,
-    [DATA_CONSUMER_PATH]: UserFormDataConsumerComponent,
-    [DATA_COORDINATOR_PATH]: UserFormDataCoordinatorComponent,
-    [DATA_OWNER_PATH]: UserFormDataOwnerComponent,
-    [DATA_VERIFIER_PATH]: UserFormDataVerifierComponent,
-    [SYSTEM_CONFIGURATOR_PATH]: UserFormSystemConfiguratorComponent
-};
-
-export function addUserFormRoutes(): Routes {
-    return Object.entries(USER_FORM_PATH_MAPPINGS)
-        .map(function ([ pathSuffix, component ]) {
-            return {
-                path: `${ADD_USER_URL_PREFIX}/${pathSuffix}`,
-                component
-            };
-        });
-}
-
-export function editUserFormRoutes(): Routes {
-    return Object.entries(USER_FORM_PATH_MAPPINGS)
-        .map(function ([ pathSuffix, component ]) {
-            return {
-                path: `${EDIT_USER_URL_PREFIX}/${pathSuffix}/:id`,
-                component
-            };
-        });
-}
+export const USER_FORM_ROUTES: Routes = [
+    {
+        path: `${ADD_USER_URL_PREFIX}/${ADMIN_PATH}`,
+        component: UserFormAdminComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${DATA_COLLECTOR_PATH}`,
+        component: UserFormDataCollectorComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${DATA_CONSUMER_PATH}`,
+        component: UserFormDataConsumerComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${DATA_OWNER_PATH}`,
+        component: UserFormDataOwnerComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${DATA_VERIFIER_PATH}`,
+        component: UserFormDataVerifierComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${DATA_COORDINATOR_PATH}`,
+        component: UserFormDataCoordinatorComponent
+    },
+    {
+        path: `${ADD_USER_URL_PREFIX}/${SYSTEM_CONFIGURATOR_PATH}`,
+        component: UserFormSystemConfiguratorComponent
+    }
+];
