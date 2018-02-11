@@ -35,8 +35,8 @@ namespace Web
             Apply(id, new StaffUserAdded
             {
                 Id = id,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
+                FullName = command.FullName,
+                DisplayName = command.DisplayName,
                 Age = command.Age,
                 Sex = command.Sex,
                 Location = command.Location,

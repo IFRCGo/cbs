@@ -1,11 +1,11 @@
 <form [formGroup]='userForm' class="register-staff-form" novalidate>
     <div class="form-group">
-        <label for="first_name">First name</label>
-        <input id="first_name" class="form-control"  type="text" formControlName='firstName' placeholder="First name" ngDefaultControl>
+        <label for="full_name">Full name</label>
+        <input id="full_name" class="form-control"  type="text" formControlName='fullName' placeholder="Full name" ngDefaultControl>
     </div>
     <div class="form-group">
-        <label>Last name</label>
-        <input id="last_name" class="form-control"  type="text" formControlName='lastName' placeholder="Last name" ngDefaultControl>
+        <label for="display_name">Display-name</label>
+        <input id="display_name" class="form-control"  type="text" formControlName='displayName' placeholder="Display-name" ngDefaultControl>
         
     </div>
     <div class="form-group">
@@ -45,4 +45,5 @@
         <label for="email">Email address</label>
         <input id="email" type="email" formControlName='email' class="form-control"  placeholder="E-mail Address" ngDefaultControl>
     </div>
+     <button type="submit" class="btn btn-primary pull-right" (click)="addUser(userForm.value)">Register</button>
 </form>

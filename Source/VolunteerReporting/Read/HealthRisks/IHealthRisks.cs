@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Read.HealthRisks
 {
@@ -9,6 +8,7 @@ namespace Read.HealthRisks
         HealthRisk GetById(Guid id);
         HealthRisk GetByReadableId(int readableId);
         Guid GetIdFromReadableId(int readbleId);
-        void Save(HealthRisk dataCollector);
+        Task Save(HealthRisk dataCollector);
+        Task Remove(Guid healthRiskId);
     }
 }
