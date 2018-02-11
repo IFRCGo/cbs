@@ -2,13 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
-using doLittle.DependencyInversion;
-using doLittle.Runtime.Applications;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -30,7 +29,7 @@ namespace Infrastructure.AspNet
         public static IServiceProvider ServiceProvider;
 
         public static IAssemblyFilters AssemblyFilters;
-        public static AssembliesConfiguration AssembliesConfiguration; 
+        public static AssembliesConfiguration AssembliesConfiguration;
         public static IAssemblyProvider AssemblyProvider;
         public static IAssemblies Assemblies;
     }

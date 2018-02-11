@@ -1,0 +1,31 @@
+<form novalidate>
+    <div class="admin-form" *ngIf="selectedUserRole == ('admin')">
+        <cbs-user-form-admin></cbs-user-form-admin>
+    </div>
+
+    <div class="system-configurator-form" *ngIf="selectedUserRole == ('system-configurator')">
+        <cbs-user-form-system-configurator></cbs-user-form-system-configurator>
+    </div>
+
+    <div class="data-coordinator-form" *ngIf="selectedUserRole == ('data-coordinator')">
+        <cbs-user-form-data-coordinator></cbs-user-form-data-coordinator>
+    </div>
+
+    <div class="data-coordinator-form" *ngIf="selectedUserRole == ('data-collector')">
+        <cbs-user-form-data-collector></cbs-user-form-data-collector>
+    </div>
+
+
+    <div class="data-coordinator-form" *ngIf="selectedUserRole == ('data-consumer')">
+        <cbs-user-form-data-consumer></cbs-user-form-data-consumer>
+    </div>
+
+    <div class="data-coordinator-form" *ngIf="selectedUserRole == ('data-owner')">
+        <cbs-user-form-data-owner></cbs-user-form-data-owner>
+    </div>
+
+
+    <div class="data-coordinator-form" *ngIf="selectedUserRole == ('data-verifier')">
+        <cbs-user-form-data-verifier></cbs-user-form-data-verifier>
+    </div>
+</form>

@@ -2,6 +2,7 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using doLittle.DependencyInversion;
@@ -20,17 +21,16 @@ namespace Infrastructure.AspNet
 
         public T Get<T>()
         {
-            return (T)_serviceProvider.GetService(typeof(T));
+            return (T) _serviceProvider.GetService(typeof(T));
         }
 
         public object Get(Type type)
         {
-            if( type.HasDefaultConstructor() ) return Activator.CreateInstance(type);
+            if (type.HasDefaultConstructor()) return Activator.CreateInstance(type);
             return _serviceProvider.GetService(type);
         }
-        
-        
-        
+
+
         public void Bind(Type service, Func<Type> resolveCallback)
         {
             throw new NotImplementedException();

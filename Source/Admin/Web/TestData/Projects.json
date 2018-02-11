@@ -71,7 +71,8 @@
     },
     {
         "Id": "25bc3f3e-f09d-45c1-89a8-6539511b8f09",
-        "Name": "Emergency Appeal Operation Update - Ebola Virus Disease Emergency Appeals (Guinea, Liberia, Sierra Leone and Global Coordination &amp; Preparedness) Emergency appeal n° MDR60002",
+        "Name":
+            "Emergency Appeal Operation Update - Ebola Virus Disease Emergency Appeals (Guinea, Liberia, Sierra Leone and Global Coordination &amp; Preparedness) Emergency appeal n° MDR60002",
         "NationalSocietyId": "a79b64be-9fae-4b22-8560-2950b8092adf",
         "DataOwnerId": "a79b64be-9fae-4b22-8560-2950b8092adf",
         "SurveillanceContex": "SingleReports"

@@ -1,8 +1,12 @@
-using MongoDB.Driver;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read.HealthRiskFeatures
 {
@@ -22,6 +26,7 @@ namespace Read.HealthRiskFeatures
         {
             return _collection.Find(_ => true).ToList();
         }
+
         public HealthRisk GetById(Guid id)
         {
             return _collection.Find(v => v.Id == id).Single();

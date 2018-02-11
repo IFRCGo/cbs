@@ -15,13 +15,12 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Catalog/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Admin/Web/bin";
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
-var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Example/Catalog/Web.Angular";
-var testsFolder = Environment.GetEnvironmentVariable("TestsFolder") ?? "../Source/Example/Catalog/Tests";
-
+var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Admin/Admin.sln";
+var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Admin/Web.Angular";
+var testsFolder = Environment.GetEnvironmentVariable("TestsFolder") ?? "../Source/Admin/Tests";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -71,7 +70,7 @@ Task("Build-Frontend")
     runSettings.Arguments.Add("--prod");
     runSettings.Arguments.Add("--build-optimizer");
     runSettings.Arguments.Add("--progress false");
-    
+
     NpmRunScript(runSettings);
 });
 

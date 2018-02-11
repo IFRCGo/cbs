@@ -32,10 +32,10 @@ namespace Read.AutomaticReplyMessages
             return _collection.Find(filter).FirstOrDefault();
         }
 
-        public void Save(DefaultAutomaticReply automaticReply)
+        public async Task Save(DefaultAutomaticReply automaticReply)
         {
             var filter = Builders<DefaultAutomaticReply>.Filter.Where(v => v.Type == automaticReply.Type && v.Language == automaticReply.Language);
-            _collection.ReplaceOne(filter, automaticReply, new UpdateOptions { IsUpsert = true });
+           await  _collection.ReplaceOneAsync(filter, automaticReply, new UpdateOptions { IsUpsert = true });
         }
     }
 }
