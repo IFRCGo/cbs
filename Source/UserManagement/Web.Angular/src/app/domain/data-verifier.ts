@@ -1,6 +1,6 @@
-import { StaffUser } from './staffUser';
+import { StaffUser } from './staff-user';
 import { Sex } from './sex';
-import { NationalSociety } from './nationalSociety';
+import { NationalSociety } from './national-society';
 import { Location } from './location';
 
 export class DataVerifier extends StaffUser {

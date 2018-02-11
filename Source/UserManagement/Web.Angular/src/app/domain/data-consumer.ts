@@ -1,4 +1,4 @@
-import { StaffUser } from './staffUser';
+import { StaffUser } from './staff-user';
 import { Location } from './location';
 
 export class DataConsumer extends StaffUser {
