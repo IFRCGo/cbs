@@ -1,0 +1,37 @@
+<div class="header">
+    <h2>Users</h2>
+    <a [routerLink]="'/add-user'" routerLinkActive="active">
+        <button class="btn btn-primary">
+            Add User
+        </button>
+    </a>
+</div>
+<div class="alert-danger" *ngIf="error">
+    {{errorMsg}}
+</div>
+<table class="table table-striped" *ngIf="!error">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Number</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th>Last report date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.mobilePhoneNumber}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.location}}</td>
+        <td></td>
+        <td><a>Edit</a> |
+            <cbs-deleteUser [user]=user></cbs-deleteUser>
+        </td>
+    </tr>
+    </tbody>
+</table>

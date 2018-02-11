@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  a {
+    margin: auto 0;
+  }
+}
+
+.alert-danger {
+  padding: 10px;
+  margin: 10px 0;
+}

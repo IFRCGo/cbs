@@ -2,12 +2,12 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-import { StaffUserService } from '../staffUserManagement/staffUser.service';
+import { StaffUserService } from '../services/staff-user.service';
 import { StaffUser } from '../domain/staffUser';
 
 @Component({
-    selector: 'cbs-deleteUser',
-    templateUrl: './deleteUser.component.html'
+    selector: 'cbs-delete-user',
+    templateUrl: './delete-user.component.html'
 })
 export class DeleteUserComponent {
     @Input() user: StaffUser;
