@@ -10,7 +10,7 @@ namespace Read.NationalSocietyFeatures
 {
     public interface INationalSocieties
     {
-		IEnumerable<NationalSociety> GetAll();
+        IEnumerable<NationalSociety> GetAll();
 
         void Save(NationalSociety nationalSociety);
         NationalSociety GetById(Guid id);

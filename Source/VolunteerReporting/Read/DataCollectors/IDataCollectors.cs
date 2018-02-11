@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using Concepts;
+using System.Threading.Tasks;
 
 namespace Read.DataCollectors
 {
@@ -12,6 +13,6 @@ namespace Read.DataCollectors
         DataCollector GetById(Guid id);
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);
-        void Save(DataCollector dataCollector);
+        Task Save(DataCollector dataCollector);
     }
 }

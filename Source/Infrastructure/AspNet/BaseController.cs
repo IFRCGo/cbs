@@ -2,14 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using System;
+
 using System.Collections.Generic;
 using doLittle.Events;
 using doLittle.Runtime.Events;
 using doLittle.Runtime.Events.Coordination;
 using doLittle.Runtime.Transactions;
-using doLittle.Types;
-using doLittle.Runtime.Applications;
 
 namespace Infrastructure.AspNet
 {
@@ -20,7 +18,9 @@ namespace Infrastructure.AspNet
     public class BaseController : Microsoft.AspNetCore.Mvc.Controller
     {
         readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
-        readonly Dictionary<EventSourceId, IEventSource> _eventSourceById = new Dictionary<EventSourceId, IEventSource>();
+
+        readonly Dictionary<EventSourceId, IEventSource> _eventSourceById =
+            new Dictionary<EventSourceId, IEventSource>();
 
 
         /// <summary>
@@ -28,7 +28,9 @@ namespace Infrastructure.AspNet
         /// </summary>
         public BaseController()
         {
-            _uncommittedEventStreamCoordinator = Internals.ServiceProvider.GetService(typeof(IUncommittedEventStreamCoordinator)) as IUncommittedEventStreamCoordinator;
+            _uncommittedEventStreamCoordinator =
+                Internals.ServiceProvider.GetService(typeof(IUncommittedEventStreamCoordinator)) as
+                    IUncommittedEventStreamCoordinator;
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace Infrastructure.AspNet
 
         IEventSource GetEventSourceForThisController(EventSourceId eventSourceId)
         {
-            if( _eventSourceById.ContainsKey(eventSourceId) ) return _eventSourceById[eventSourceId];
+            if (_eventSourceById.ContainsKey(eventSourceId)) return _eventSourceById[eventSourceId];
 
             var eventSource = new ControllerAggregateRoot(eventSourceId);
             _eventSourceById[eventSourceId] = eventSource;

@@ -1,4 +1,5 @@
-﻿#region License
+#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk) and contributors
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,19 +15,25 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-	using System;
 
-	public class ServiceProviderValidatorFactory : ValidatorFactoryBase {
-		private readonly IServiceProvider _serviceProvider;
+using System;
 
-		public ServiceProviderValidatorFactory(IServiceProvider serviceProvider) {
-			_serviceProvider = serviceProvider;
-		}
+namespace FluentValidation.AspNetCore
+{
+    public class ServiceProviderValidatorFactory : ValidatorFactoryBase
+    {
+        private readonly IServiceProvider _serviceProvider;
 
-		public override IValidator CreateInstance(Type validatorType) {
-			return _serviceProvider.GetService(validatorType) as IValidator;
-		}
-	}
+        public ServiceProviderValidatorFactory(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
+        public override IValidator CreateInstance(Type validatorType)
+        {
+            return _serviceProvider.GetService(validatorType) as IValidator;
+        }
+    }
 }

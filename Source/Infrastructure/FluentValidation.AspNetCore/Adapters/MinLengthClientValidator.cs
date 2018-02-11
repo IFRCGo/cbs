@@ -1,4 +1,5 @@
 ﻿#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,54 +15,63 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-    using Internal;
-    using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-    using Resources;
-    using Validators;
 
-    internal class MinLengthClientValidator :ClientValidatorBase {
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-		public override void AddValidation(ClientModelValidationContext context) {
-		    var lengthVal = (MinimumLengthValidator)Validator;
+namespace FluentValidation.AspNetCore
+{
+    internal class MinLengthClientValidator : ClientValidatorBase
+    {
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            var lengthVal = (MinimumLengthValidator) Validator;
 
-		    MergeAttribute(context.Attributes, "data-val", "true");
-		    MergeAttribute(context.Attributes, "data-val-minlength", GetErrorMessage(lengthVal, context));
-		    MergeAttribute(context.Attributes, "data-val-minlength-min", lengthVal.Min.ToString());
-	    }
+            MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-minlength", GetErrorMessage(lengthVal, context));
+            MergeAttribute(context.Attributes, "data-val-minlength-min", lengthVal.Min.ToString());
+        }
 
-	    private string GetErrorMessage(LengthValidator lengthVal, ClientModelValidationContext context) {
+        private string GetErrorMessage(LengthValidator lengthVal, ClientModelValidationContext context)
+        {
+            var formatter = new MessageFormatter()
+                .AppendPropertyName(Rule.GetDisplayName())
+                .AppendArgument("MinLength", lengthVal.Min)
+                .AppendArgument("MaxLength", lengthVal.Max);
 
-		    var formatter = new MessageFormatter()
-			    .AppendPropertyName(Rule.GetDisplayName())
-			    .AppendArgument("MinLength", lengthVal.Min)
-			    .AppendArgument("MaxLength", lengthVal.Max);
+            var messageNeedsSplitting = lengthVal.ErrorMessageSource.ResourceType == typeof(LanguageManager);
 
-		    bool messageNeedsSplitting = lengthVal.ErrorMessageSource.ResourceType == typeof(LanguageManager);
+            string message;
+            try
+            {
+                message = lengthVal.ErrorMessageSource.GetString(null);
+            }
+            catch (FluentValidationMessageFormatException)
+            {
+                message = ValidatorOptions.LanguageManager.GetStringForValidator<MinimumLengthValidator>();
+                messageNeedsSplitting = true;
+            }
 
-		    string message;
-		    try {
-			    message = lengthVal.ErrorMessageSource.GetString(null);
-		    } catch (FluentValidationMessageFormatException) {
-				message = ValidatorOptions.LanguageManager.GetStringForValidator<MinimumLengthValidator>();
-			    messageNeedsSplitting = true;
-		    }
+            if (messageNeedsSplitting)
+            {
+                // If we're using the default resources then the mesage for length errors will have two parts, eg:
+                // '{PropertyName}' must be between {MinLength} and {MaxLength} characters. You entered {TotalLength} characters.
+                // We can't include the "TotalLength" part of the message because this information isn't available at the time the message is constructed.
+                // Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
 
-		    if (messageNeedsSplitting) {
-			    // If we're using the default resources then the mesage for length errors will have two parts, eg:
-			    // '{PropertyName}' must be between {MinLength} and {MaxLength} characters. You entered {TotalLength} characters.
-			    // We can't include the "TotalLength" part of the message because this information isn't available at the time the message is constructed.
-			    // Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
+                message = message.Substring(0, message.IndexOf(".") + 1);
+            }
 
-			    message = message.Substring(0, message.IndexOf(".") + 1);
-		    }
+            message = formatter.BuildMessage(message);
+            return message;
+        }
 
-		    message = formatter.BuildMessage(message);
-		    return message;
-	    }
-
-	    public MinLengthClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
-	    }
+        public MinLengthClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
     }
 }

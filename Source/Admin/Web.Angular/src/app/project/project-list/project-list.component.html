@@ -1,0 +1,26 @@
+<h3>
+    Projects
+</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>National Society</th>
+            <th>Data Owner</th>
+            <th>Surveillance Context</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.nationalSociety?.name }}</td>
+            <td>{{ project.dataOwner?.firstname }} {{ project.dataOwner?.lastname }}</td>
+            <td>{{ project.surveillanceContex }}</td>
+            <td>
+                <a>Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

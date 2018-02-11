@@ -1,3 +1,10 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+using System;
+using System.Linq;
 using Domain;
 using Events;
 using Infrastructure.AspNet;
@@ -5,10 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.HealthRiskFeatures;
 using Read.ProjectFeatures;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Web
 {
@@ -41,13 +44,15 @@ namespace Web
             {
                 var healthRisks = _healthRisks.GetAll();
                 return Ok(
-                    healthRisks.Where(healthRisk => project.HealthRisks.Any(projectHealthRisk => projectHealthRisk.HealthRiskId == healthRisk.Id))
-                    .Select(v => new 
-                    {
-                        HealthRiskId = v.Id,
-                        v.Name,
-                        project.HealthRisks.First(x => x.HealthRiskId == v.Id).Threshold
-                    })
+                    healthRisks.Where(healthRisk =>
+                            project.HealthRisks.Any(
+                                projectHealthRisk => projectHealthRisk.HealthRiskId == healthRisk.Id))
+                        .Select(v => new
+                        {
+                            HealthRiskId = v.Id,
+                            v.Name,
+                            project.HealthRisks.First(x => x.HealthRiskId == v.Id).Threshold
+                        })
                 );
             }
             else
@@ -85,15 +90,42 @@ namespace Web
             return Ok(_healthRiskVersions.GetByProjectIdAndHealthRiskId(projectId, healthRiskId));
         }
 
-        [HttpPost("healthRisks/{healthRiskId}")]
-        public IActionResult SetHealthRisk(Guid projectId, Guid healthRiskId, [FromBody] SetProjectHealthRiskThreshold setProjectHealthRiskThreshold)
+        [HttpPut("healthRisks/{healthRiskId}")]
+        public IActionResult UpdateHealthRisk(Guid projectId, Guid healthRiskId,
+            [FromBody] UpdateProjectHealthRiskThreshold updateProjectHealthRiskThreshold)
         {
             var id = Guid.NewGuid();
-            Apply(id, new ProjectHealthRiskThresholdSet()
+            Apply(id, new ProjectHealthRiskThresholdUpdate()
             {
                 ProjectId = projectId,
                 HealthRiskId = healthRiskId,
-                Threshold = setProjectHealthRiskThreshold.Threshold
+                Threshold = updateProjectHealthRiskThreshold.Threshold
+            });
+            return Ok();
+        }
+
+        [HttpDelete("healthRisks/{healthRiskId}")]
+        public IActionResult RemoveHealthRisk(Guid projectId, Guid healthRiskId)
+        {
+            var id = Guid.NewGuid();
+            Apply(id, new ProjectHealthRiskRemoved()
+            {
+                ProjectId = projectId,
+                HealthRiskId = healthRiskId,
+            });
+            return Ok();
+        }
+
+        [HttpPost("healthRisks")]
+        public IActionResult AddHealthRisk(Guid projectId, Guid healthRiskId,
+            [FromBody] AddProjectHealthRisk addProjectHealthRisk)
+        {
+            var id = Guid.NewGuid();
+            Apply(id, new ProjectHealthRiskAdded
+            {
+                ProjectId = projectId,
+                HealthRiskId = healthRiskId,
+                Threshold = addProjectHealthRisk.Threshold
             });
             return Ok();
         }

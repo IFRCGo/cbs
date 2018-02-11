@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read.UserFeatures
 {
@@ -28,7 +28,7 @@ namespace Read.UserFeatures
 
             if (user == null)
             {
-                user = new User { Id = id, Firstname = "Dummy implementation" };
+                user = new User {Id = id, Firstname = "Dummy implementation"};
                 _collection.InsertOne(user);
             }
 

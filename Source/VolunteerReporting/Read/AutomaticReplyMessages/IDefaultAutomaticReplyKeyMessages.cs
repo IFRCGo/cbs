@@ -9,7 +9,7 @@ namespace Read.AutomaticReplyMessages
     public interface IDefaultAutomaticReplyKeyMessages
     {
         DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId);
-        void Save(DefaultAutomaticReplyKeyMessage keyMessage);
+        Task Save(DefaultAutomaticReplyKeyMessage keyMessage);
         Task<IEnumerable<DefaultAutomaticReplyKeyMessage>> GetAllAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,36 +15,44 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-	using System.Collections.Generic;
-	using Internal;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-	using Resources;
-	using Validators;
 
-	internal class EmailClientValidator : ClientValidatorBase {
-		private IEmailValidator EmailValidator {
-			get { return (IEmailValidator)Validator; }
-		}
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-		public EmailClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
-		}
+namespace FluentValidation.AspNetCore
+{
+    internal class EmailClientValidator : ClientValidatorBase
+    {
+        private IEmailValidator EmailValidator
+        {
+            get { return (IEmailValidator) Validator; }
+        }
 
-		public override void AddValidation(ClientModelValidationContext context) {
-			var formatter = new MessageFormatter().AppendPropertyName(Rule.GetDisplayName());
+        public EmailClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
 
-			string messageTemplate;
-			try {
-				messageTemplate = EmailValidator.ErrorMessageSource.GetString(null);
-			}
-			catch (FluentValidationMessageFormatException) {
-				messageTemplate = ValidatorOptions.LanguageManager.GetStringForValidator<EmailValidator>();
-			}
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            var formatter = new MessageFormatter().AppendPropertyName(Rule.GetDisplayName());
 
-			string message = formatter.BuildMessage(messageTemplate);
-			MergeAttribute(context.Attributes, "data-val", "true");
-			MergeAttribute(context.Attributes, "data-val-email", message);
-		}
-	}
+            string messageTemplate;
+            try
+            {
+                messageTemplate = EmailValidator.ErrorMessageSource.GetString(null);
+            }
+            catch (FluentValidationMessageFormatException)
+            {
+                messageTemplate = ValidatorOptions.LanguageManager.GetStringForValidator<EmailValidator>();
+            }
+
+            var message = formatter.BuildMessage(messageTemplate);
+            MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-email", message);
+        }
+    }
 }
