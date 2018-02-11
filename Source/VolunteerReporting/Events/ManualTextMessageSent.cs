@@ -9,5 +9,6 @@ namespace Events
 {
     public class ManualTextMessageSent : IEvent
     {
+
     }
 }
