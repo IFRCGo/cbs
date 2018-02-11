@@ -9,8 +9,8 @@ export class StaffUser {
     email: string;
 
     constructor(o: any) {
-        this.fullName = o.firstName;
-        this.displayName = o.lastName;
+        this.fullName = o.fullName;
+        this.displayName = o.displayName;
         this.age = o.age;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
