@@ -14,7 +14,7 @@ using Concepts;
 namespace Domain.Specs.when_adding_a_data_collector
 {
     [Subject(typeof(AddDataCollectorValidator))]
-    public class and_validating_a_command_with_a_missing_email
+    public class and_validating_a_command_with_a_missing_email : given.a_command_builder
     {
         static AddDataCollector cmd;
         static AddDataCollectorValidator validator;
@@ -24,19 +24,7 @@ namespace Domain.Specs.when_adding_a_data_collector
         {
             validator = new AddDataCollectorValidator();
 
-            cmd = new AddDataCollector
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Data",
-                LastName = "Collector",
-                Age = 25,
-                Sex = Sex.Male,
-                NationalSociety = Guid.NewGuid(),
-                PreferredLanguage = Language.English,
-                GpsLocation = new Location(123,123),
-                MobilePhoneNumber = "123456789",
-                Email = string.Empty
-            };
+            cmd = given.a_command_builder.get_invalid_command(c => c.Email = string.Empty);
         };
 
         Because of = () => { validation_results = validator.ValidateFor(cmd); };

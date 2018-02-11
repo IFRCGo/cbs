@@ -24,19 +24,7 @@ namespace Domain.Specs.when_adding_a_data_collector
         {
             validator = new AddDataCollectorValidator();
 
-            cmd = new AddDataCollector
-            {
-                Id = Guid.NewGuid(),
-                FirstName = null,
-                LastName = "Collector",
-                Age = 25,
-                Sex = Sex.Male,
-                NationalSociety = Guid.NewGuid(),
-                PreferredLanguage = Language.English,
-                GpsLocation = new Location(123,123),
-                MobilePhoneNumber = "123456789",
-                Email = "test@test.com"
-            };
+            cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.FirstName = null);
         };
 
         Because of = () => { validation_results = validator.ValidateFor(cmd); };
