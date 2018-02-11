@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataOwner } from '../domain/data-owner';
+import { DataOwner } from '../../domain/data-owner';
+
+export const DATA_OWNER_PATH = 'data-owner';
 
 @Component({
   selector: 'cbs-user-form-data-owner',

@@ -1,14 +1,11 @@
-import { UserType } from './userType.enum';
-import { Sex } from './sex.enum';
-
 export class User {
   firstName: string;
   lastName: string;
   mobilePhoneNumber: string;
   email: string;
-  userType: UserType;
+  userType: string;
   age: number;
-  sex: Sex;
+  sex: string;
   nationalSociety: string;
   project: string;
   preferredLanguage: string;

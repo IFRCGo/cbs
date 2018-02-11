@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { Admin } from '../../domain/admin';
+
+export const ADMIN_PATH = 'admin';
 
 @Component({
   selector: 'cbs-user-form-admin',
@@ -8,11 +10,16 @@ import { User } from '../domain/user';
 })
 export class UserFormAdminComponent implements OnInit {
 
-  user = new User({});
+  user: Admin;
 
-  constructor() { }
+  constructor() {
+    this.user = new Admin({});
+   }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+
+  }
 }

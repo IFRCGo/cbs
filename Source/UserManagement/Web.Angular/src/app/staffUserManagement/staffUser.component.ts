@@ -70,11 +70,6 @@ export class StaffUserComponent implements OnInit {
     const newStaffUser: StaffUser = {
         firstName: staffUser.firstName,
         lastName: staffUser.lastName,
-        sex: staffUser.sex,
-        age: staffUser.age,
-        nationalSociety: staffUser.nationalSociety,
-        preferredLanguage: staffUser.preferredLanguage,
-        mobilePhoneNumber: staffUser.mobilePhoneNumber,
         email: staffUser.email
     };
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { User } from '../../domain/user';
+
+export const DATA_VERIFIER_PATH = 'data-verifier';
 
 @Component({
   selector: 'cbs-user-form-data-verifier',
@@ -19,6 +21,5 @@ export class UserFormDataVerifierComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.user)
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../domain/user';
+import { User } from '../../domain/user';
+
+export const DATA_CONSUMER_PATH = 'data-consumer';
 
 @Component({
   selector: 'cbs-user-form-data-consumer',

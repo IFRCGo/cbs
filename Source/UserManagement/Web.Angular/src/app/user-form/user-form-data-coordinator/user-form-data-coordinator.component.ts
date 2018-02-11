@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataCoordinator } from '../domain/data-coordinator';
+import { DataCoordinator } from '../../domain/data-coordinator';
+
+export const DATA_COORDINATOR_PATH = 'data-coordinator';
 
 @Component({
   selector: 'cbs-user-form-data-coordinator',

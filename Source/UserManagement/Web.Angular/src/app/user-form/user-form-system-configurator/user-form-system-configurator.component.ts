@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemConfigurator } from '../domain/system-configurator';
+import { SystemConfigurator } from '../../domain/system-configurator';
+
+export const SYSTEM_CONFIGURATOR_PATH = 'system-configurator';
 
 @Component({
   selector: 'cbs-user-form-system-configurator',
