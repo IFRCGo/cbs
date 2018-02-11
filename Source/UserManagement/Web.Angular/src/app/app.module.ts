@@ -24,6 +24,7 @@ import { UserFormDataCollectorComponent } from './user-form/user-form-data-colle
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
 
 import { USER_FORM_ROUTES } from './user-form';
+import { ModalModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -59,7 +60,8 @@ console.log(appRoutes);
     HttpModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [StaffUserService, DataCollectorService],
   bootstrap: [AppComponent]
