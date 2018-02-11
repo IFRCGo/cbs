@@ -10,7 +10,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/aspnetcore:2.0.5-runtime
+FROM microsoft/aspnetcore:2.0.5
 WORKDIR /app
 COPY --from=dotnet-build /src/Source/VolunteerReporting/Web/out .
 ENTRYPOINT ["dotnet", "Web.dll"]
