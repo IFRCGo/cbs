@@ -28,7 +28,7 @@ describe('AppComponent', () => {
         })
     );
     it(
-        'should render Admin title in a brand tag',
+        'should render Admin title in a bootstrap brand tag',
         async(() => {
             const fixture = TestBed.createComponent(AppComponent);
             fixture.detectChanges();
