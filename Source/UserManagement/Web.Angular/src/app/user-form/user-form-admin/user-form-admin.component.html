@@ -1,5 +1,8 @@
 <form>
-    <h1>Add admin user</h1>
+    <a [routerLink]="['/add-user']" class="back-button">
+        <button class="btn btn-primary">Back</button>
+    </a>
+    <h1>Add administrator</h1>
     <div class="form-group">
         <label for="first_name">First name</label>
         <input type="text" class="form-control" id="first_name"

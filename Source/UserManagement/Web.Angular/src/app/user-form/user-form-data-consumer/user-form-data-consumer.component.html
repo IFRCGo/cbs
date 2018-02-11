@@ -1,11 +1,15 @@
+<form>
 <div class="form-group">
+  <a [routerLink]="['/add-user']" class="back-button">
+    <button class="btn btn-primary">Back</button>
+  </a>
+  <h1>Add Data Consumer</h1>
   <label for="first_name">First name</label>
   <input type="text" class="form-control" id="first_name"
          required
          [(ngModel)]="user.firstName" name="first_name"
          #first_name="ngModel">
 </div>
-
 
 <div class="form-group">
   <label for="last_name">Last name</label>
@@ -114,3 +118,4 @@
 </div>
 
 <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
+</form>
