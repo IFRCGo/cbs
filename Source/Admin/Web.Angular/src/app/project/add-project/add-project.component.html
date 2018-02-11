@@ -1,11 +1,11 @@
-<form class="form-horizontal">
+<form [hidden]="isFormSubmitted" class="form-horizontal" (ngSubmit)="addProject()" ngNativeValidate>
     <div class="form-group">
         <label class="control-label col-sm-3" for="society">National society:</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society" required>
-                        <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
+                <select id="society" class="form-control" [(ngModel)]="formData.selectedSociety" (change)="onSocietyChange(formData.selectedSociety)" name="society" required #society="ngModel">
+                    <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                 </select>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-                <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner" required>
+                <select id="owner" class="form-control" [(ngModel)]="formData.selectedOwner" name="owner" required>
                     <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}</option>
                 </select>
             </div>
@@ -26,22 +26,56 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
-                <input type="text" [(ngModel)]="name" name="project" id="project" class="form-control" required>
+                <input type="text" [(ngModel)]="formData.projectName" name="project" id="project" class="form-control" required>
             </div>
         </div>
     </div>
     <div class="form-group">
         <p class="control-label col-sm-3 font-weight-bold"><strong>Surveillance context:</strong></p>
         <div class="col-sm-9">
-                <fieldset id="surveillance" class="input-group">
-                    <div *ngFor="let key of surveillanceOptions" class="radio-inline">
-                        <label class="radio-inline">
-                        <input type="radio" (change)="getSurveillanceOptionId(key.id)" name="surveillance" [value]="key.id" [(ngModel)]="selectedSurveillanceOptionId" required>
-                        {{ key.name }}
-                        </label>
-                    </div>
-                </fieldset>
+            <fieldset id="surveillance" class="input-group">
+                <div *ngFor="let surveillanceOption of surveillanceOptions" class="radio-inline">
+                    <label class="radio-inline">
+                        <input type="radio" name="surveillance" [value]="surveillanceOption.id" [(ngModel)]="formData.selectedSurveillanceOptionId" required> {{ surveillanceOption.name }}
+                    </label>
+                </div>
+            </fieldset>
         </div>
     </div>
-    <button (click)="addProject()" type="submit" class="btn btn-primary pull-right">Create</button>
+    <div class="clearfix">
+        <div [hidden]="!formError" class="alert alert-danger">
+            {{formError}}
+        </div>
+        <button [disabled]="!!formError" type="submit" class="btn btn-primary pull-right">Create new project</button>
+        
+    </div>
 </form>
+
+<div [hidden]="!isFormSubmitted" class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <h3>Great! The following project was created:</h3>
+        <div class="row">
+            <div class="col-xs-4">National society:</div>
+            <div class="col-xs-8  pull-left">{{ findInArray(formData.selectedSociety, societies).name || 'Not found' }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Project / data owner:</div>
+            <div class="col-xs-8  pull-left">
+                {{findInArray(formData.selectedOwner, projectOwners).firstname}}
+                {{findInArray(formData.selectedOwner, projectOwners).lastname}}
+                {{findInArray(formData.selectedOwner, projectOwners).country}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Name of project:</div>
+            <div class="col-xs-8  pull-left">{{ formData.projectName }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Surveillance context:</div>
+            <div class="col-xs-8  pull-left">{{ findInArray(formData.selectedSurveillanceOptionId, surveillanceOptions).name }}</div>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary pull-right" (click)="resetForm()">Go back</button>
+        </div>
+    </div>
+</div>
