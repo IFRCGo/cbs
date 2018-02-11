@@ -5,6 +5,7 @@
 using Events.External;
 using doLittle.Events.Processing;
 using Concepts;
+using System.Threading.Tasks;
 
 namespace Read.DataCollectors
 {
@@ -26,20 +27,20 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberAddedToDataCollector @event)
+        public async Task Process(PhoneNumberAddedToDataCollector @event)
         {
             //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Add(@event.PhoneNumber);            
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberRemovedFromDataCollector @event)
+        public async Task Process(PhoneNumberRemovedFromDataCollector @event)
         {
             //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Remove(@event.PhoneNumber);
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
     }
 }

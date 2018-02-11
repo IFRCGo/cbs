@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReplyDefinedProcessor : ICanProcessEvents
+    public class AutomaticReplyProcessor : ICanProcessEvents
     {
         private readonly IAutomaticReplies _automaticReplies;
         private readonly IAutomaticReplyKeyMessages _keyMessages;
 
-        public AutomaticReplyDefinedProcessor(IAutomaticReplies automaticReplies, IAutomaticReplyKeyMessages keyMessages)
+        public AutomaticReplyProcessor(IAutomaticReplies automaticReplies, IAutomaticReplyKeyMessages keyMessages)
         {
             _automaticReplies = automaticReplies;
             _keyMessages = keyMessages;
@@ -26,7 +26,12 @@ namespace Read.AutomaticReplyMessages
             automaticReply.Type = (AutomaticReplyType)@event.Type;
             automaticReply.Message = @event.Message;
             automaticReply.Language = @event.Language;
-            _automaticReplies.Save(automaticReply);
+            await _automaticReplies.Save(automaticReply);
+        }
+
+        public async Task Process(AutomaticReplyRemoved @event)
+        {
+            await _automaticReplies.Remove(@event.Id);
         }
 
         public async Task Process(AutomaticReplyKeyMessageDefined @event)
@@ -37,7 +42,12 @@ namespace Read.AutomaticReplyMessages
             keyMessage.Type = (AutomaticReplyKeyMessageType)@event.Type;
             keyMessage.Message = @event.Message;
             keyMessage.Language = @event.Language;
-            _keyMessages.Save(keyMessage);
+            await _keyMessages.Save(keyMessage);
+        }
+
+        public async Task Process(AutomaticReplyKeyMessageRemoved @event)
+        {
+            await _keyMessages.Remove(@event.Id);
         }
     }
 }

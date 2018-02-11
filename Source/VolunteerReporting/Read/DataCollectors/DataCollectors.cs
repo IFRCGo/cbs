@@ -5,6 +5,7 @@
 using System;
 using Concepts;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace Read.DataCollectors
 {
@@ -38,10 +39,10 @@ namespace Read.DataCollectors
             return dataCollectorId;
         }
 
-        public void Save(DataCollector dataCollector)
+        public async Task Save(DataCollector dataCollector)
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
-            _collection.ReplaceOne(filter, dataCollector, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,31 +15,38 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
+
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 namespace FluentValidation.AspNetCore
 {
-	using System.Collections.Generic;
-	using Internal;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-	using Resources;
-	using Validators;
+    internal class CreditCardClientValidator : ClientValidatorBase
+    {
+        public CreditCardClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
 
-	internal class CreditCardClientValidator : ClientValidatorBase {
-		public CreditCardClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
-		}
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            var formatter = new MessageFormatter().AppendPropertyName(Rule.GetDisplayName());
+            string message;
+            try
+            {
+                message = Validator.ErrorMessageSource.GetString(null);
+            }
+            catch (FluentValidationMessageFormatException)
+            {
+                message = ValidatorOptions.LanguageManager.GetStringForValidator<CreditCardValidator>();
+            }
 
-		public override void AddValidation(ClientModelValidationContext context) {
-			var formatter = new MessageFormatter().AppendPropertyName(Rule.GetDisplayName());
-			string message;
-			try {
-				message = Validator.ErrorMessageSource.GetString(null);
-			}
-			catch (FluentValidationMessageFormatException) {
-				message = ValidatorOptions.LanguageManager.GetStringForValidator<CreditCardValidator>();
-			}
-			message = formatter.BuildMessage(message);
-			MergeAttribute(context.Attributes, "data-val", "true");
-			MergeAttribute(context.Attributes, "data-val-creditcard", message);
-		}
-	}
+            message = formatter.BuildMessage(message);
+            MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-creditcard", message);
+        }
+    }
 }

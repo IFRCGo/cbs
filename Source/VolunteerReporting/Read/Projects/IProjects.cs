@@ -8,7 +8,7 @@ namespace Read.Projects
     public interface IProjects
     {
         Task<IEnumerable<Project>> GetAllAsync();
-        void Save(Project project);
+        Task Save(Project project);
         Project GetById(Guid project);
     }
 }

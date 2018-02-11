@@ -4,7 +4,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society">
+                <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society" required>
                         <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                 </select>
             </div>
@@ -15,7 +15,7 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-                <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner">
+                <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner" required>
                     <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}</option>
                 </select>
             </div>
@@ -26,8 +26,21 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
-                <input type="text" [(ngModel)]="name" name="project" id="project" class="form-control">
+                <input type="text" [(ngModel)]="name" name="project" id="project" class="form-control" required>
             </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <p class="control-label col-sm-3 font-weight-bold"><strong>Surveillance context:</strong></p>
+        <div class="col-sm-9">
+                <fieldset id="surveillance" class="input-group">
+                    <div *ngFor="let key of surveillanceOptions" class="radio-inline">
+                        <label class="radio-inline">
+                        <input type="radio" (change)="getSurveillanceOptionId(key.id)" name="surveillance" [value]="key.id" [(ngModel)]="selectedSurveillanceOptionId" required>
+                        {{ key.name }}
+                        </label>
+                    </div>
+                </fieldset>
         </div>
     </div>
     <button (click)="addProject()" type="submit" class="btn btn-primary pull-right">Create</button>
