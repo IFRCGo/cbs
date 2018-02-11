@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let caseReport of reports">
+        <tr *ngFor="let caseReport of listedReports">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
                 <span  *ngIf="caseReport.healthRisk" class="label label-success">Success</span>
