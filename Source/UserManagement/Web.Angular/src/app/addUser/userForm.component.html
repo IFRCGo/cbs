@@ -45,4 +45,5 @@
         <label for="email">Email address</label>
         <input id="email" type="email" formControlName='email' class="form-control"  placeholder="E-mail Address" ngDefaultControl>
     </div>
+     <button type="submit" class="btn btn-primary pull-right" (click)="addUser(userForm.value)">Register</button>
 </form>
