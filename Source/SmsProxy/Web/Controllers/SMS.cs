@@ -10,6 +10,7 @@ namespace Web.Controllers
         public string Sender { get; set; }
         public long Timestamp { get; set; }
         public int MsgID { get; set; }
+        public int OID { get; set; }
         public int ModemNo { get; set; }
         public string Text { get; set; }
     }
