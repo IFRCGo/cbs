@@ -55,8 +55,8 @@ export class UserFormComponent {
 
   buildForm() {
     this.userForm = this.formBuilder.group({
-        firstName: [ '', [ Validators.required ] ],
-        lastName: [ '', [ Validators.required ] ],
+        fullName: [ '', [ Validators.required ] ],
+        displayName: [ '', [ Validators.required ] ],
         sex: ['', [ Validators.required ] ],
         age: ['', [ Validators.required, Validators.min(10), Validators.max(100) ] ],
         nationalSociety: ['', [ Validators.required ] ],
@@ -68,8 +68,8 @@ export class UserFormComponent {
 
   async addUser(staffUser) {
     const newStaffUser: StaffUser = {
-        firstName: staffUser.firstName,
-        lastName: staffUser.lastName,
+        fullName: staffUser.fullName,
+        displayName: staffUser.displayName,
         sex: staffUser.sex,
         age: staffUser.age,
         nationalSociety: "92c7c5be-f774-4d7c-8b65-ee14032c2d25",
