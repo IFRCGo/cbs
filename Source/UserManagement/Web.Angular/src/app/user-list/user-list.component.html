@@ -5,6 +5,11 @@
             Add User
         </button>
     </a>
+    <a [routerLink]="['/add-user/data-collector']" routerLinkActive="active">
+        <button class="btn btn-primary">
+            Add Data Collector
+        </button>
+    </a>
 </div>
 <div class="alert-danger" *ngIf="error">
     {{errorMsg}}

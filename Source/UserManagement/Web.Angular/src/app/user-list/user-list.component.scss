@@ -1,10 +1,13 @@
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  h2 {
+    display: inline-block;
+  }
 
   a {
-    margin: auto 0;
+    float: right;
+    display: inline-block;
+    line-height: 63px;
+    margin: 8px 4px;
   }
 }
 

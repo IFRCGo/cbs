@@ -6,8 +6,7 @@ const links = [
   { label: 'Data Consumer', href: 'data-consumer' },
   { label: 'Data Coordinator', href: 'data-coordinator' },
   { label: 'System Configurator', href: 'system-configurator' },
-  { label: 'Data Owner', href: 'data-owner' },
-  { label: 'Data Collector', href: 'data-collector' }
+  { label: 'Data Owner', href: 'data-owner' }
 ]
 
 @Component({
