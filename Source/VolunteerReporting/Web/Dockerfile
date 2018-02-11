@@ -1,5 +1,5 @@
 # Build the .NET part
-FROM microsoft/dotnet:2.0.5-sdk AS dotnet-build
+FROM microsoft/dotnet:2.0.5-sdk-2.1.4 AS dotnet-build
 WORKDIR /src
 COPY ./NuGet.Config ./
 COPY ./Build/MSBuild ./Build/MSBuild
