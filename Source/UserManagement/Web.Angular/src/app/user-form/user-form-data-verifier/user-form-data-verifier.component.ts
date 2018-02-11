@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../domain/user';
+import { DataVerifier } from '../../domain/data-verifier';
+import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_VERIFIER_PATH = 'data-verifier';
 
@@ -10,16 +11,17 @@ export const DATA_VERIFIER_PATH = 'data-verifier';
 })
 export class UserFormDataVerifierComponent implements OnInit {
 
-  user = new User({});
+  user = new DataVerifier({});
 
   languageOptions = ['English', 'French'];
 
-  constructor() {
+  constructor(private staffUserService: StaffUserService) {
   }
 
   ngOnInit() {
   }
 
   submit() {
+    this.staffUserService.saveUser(this.user);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataOwner } from '../../domain/data-owner';
+import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_OWNER_PATH = 'data-owner';
 
@@ -14,13 +15,13 @@ export class UserFormDataOwnerComponent implements OnInit {
 
   languageOptions = ['English', 'French'];
 
-  constructor() {
+  constructor(private staffUserService: StaffUserService) {
   }
 
   ngOnInit() {
   }
 
   submit() {
-    console.log(this.user)
+    this.staffUserService.saveUser(this.user);
   }
 }

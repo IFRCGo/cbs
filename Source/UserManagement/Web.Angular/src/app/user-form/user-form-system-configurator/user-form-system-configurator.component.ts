@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemConfigurator } from '../../domain/system-configurator';
+import { StaffUserService } from '../../services/staff-user.service';
 
 export const SYSTEM_CONFIGURATOR_PATH = 'system-configurator';
 
@@ -14,10 +15,12 @@ export class UserFormSystemConfiguratorComponent implements OnInit {
 
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
-  constructor() { }
+  constructor(private staffUserService: StaffUserService) { }
 
   ngOnInit() {
   }
 
-  submit() { console.log(this.user) }
+  submit() {
+    this.staffUserService.saveUser(this.user);
+  }
 }
