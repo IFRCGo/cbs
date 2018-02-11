@@ -17,8 +17,8 @@ namespace Domain.DataCollectors
             Apply(new DataCollectorAdded
             {
                 Id = command.Id,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
+                FullName = command.FullName,
+                DisplayName = command.DisplayName,
                 YearOfBirth = command.YearOfBirth,
                 Sex = (int) command.Sex,
                 NationalSociety = command.NationalSociety,
