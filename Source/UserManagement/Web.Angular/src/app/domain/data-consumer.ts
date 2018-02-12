@@ -1,11 +1,12 @@
 import { StaffUser } from './staff-user';
-import { Location } from './location';
 
 export class DataConsumer extends StaffUser {
-    location: Location;
+    longtitude: string;
+    latitude: string;
 
     constructor(params) {
         super(params);
-        this.location = params.location;
+        this.longtitude = params.longtitude;
+        this.latitude = params.latitude;
     }
 }

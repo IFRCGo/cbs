@@ -11,7 +11,6 @@
             #first_name="ngModel">
     </div>
 
-
     <div class="form-group">
         <label for="display_name">Display Name</label>
         <input type="text" class="form-control" id="display_name"
@@ -71,18 +70,18 @@
     </div>
 
     <div class="form-group">
-        <label>GPS location</label>
+        <label>Location</label>
         <fieldset class="form-inline">
-            <label for="lat">lat</label>
-            <input class="input-mini form-control" id="lat"
-                required
-                [(ngModel)]="user.lat" name="lat"
-                #lat="ngModel">
-            <label for="long">long</label>
-            <input class="input-mini form-control" id="long"
-                required
-                [(ngModel)]="user.long" name="long"
-                #long="ngModel">
+            <label for="latitude">Latitude</label>
+            <input class="input-mini form-control" id="latitude"
+                    required
+                    [(ngModel)]="user.latitude" name="latitude"
+                    #lat="ngModel">
+            <label for="longtitude">Longtitude</label>
+            <input class="input-mini form-control" id="longtitude"
+                    required
+                    [(ngModel)]="user.longtitude" name="longtitude"
+                    #long="ngModel">
         </fieldset>
     </div>
 

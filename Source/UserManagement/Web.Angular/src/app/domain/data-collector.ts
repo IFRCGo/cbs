@@ -1,5 +1,3 @@
-import { Location } from './location';
-
 class PhoneNumber {
     value: string;
     confirmed: boolean;
@@ -13,7 +11,8 @@ export class DataCollector {
     sex: string;
     nationalSociety: string;
     preferredLanguage: string;
-    location: Location;
+    latitude: string;
+    longtitude: string;
     phoneNumbers: Array<PhoneNumber>;
     email: string;
     registeredAt: Date;
@@ -26,7 +25,8 @@ export class DataCollector {
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;
-        this.location = o.location;
+        this.longtitude = o.longtitude;
+        this.latitude = o.latitude;
         this.phoneNumbers = o.phoneNumbers;
         this.email = o.email;
         this.registeredAt = o.registeredAt;

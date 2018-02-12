@@ -6,8 +6,8 @@ export class DataCoordinator extends StaffUser {
   nationalSociety: string;
   project: string;
   preferredLanguage: string;
-  lat: string;
-  long: string;
+  longtitude: string;
+  latitude: string;
   mobilePhoneNumber: string;
   assignedNationalSocieties: string;
 
@@ -18,8 +18,8 @@ export class DataCoordinator extends StaffUser {
     this.nationalSociety = o.nationalSociety;
     this.project = o.project;
     this.preferredLanguage = o.preferredLanguage;
-    this.lat = o.lat;
-    this.long = o.long;
+    this.longtitude = o.longtitude;
+    this.latitude = o.latitude;
     this.mobilePhoneNumber = o.mobilePhoneNumber;
     this.assignedNationalSocieties = o.assignedNationalSocieties;
   }

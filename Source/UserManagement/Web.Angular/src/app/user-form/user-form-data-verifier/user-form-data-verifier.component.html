@@ -46,13 +46,6 @@
                #nationalSociety="ngModel">
     </div>
     <div class="form-group">
-        <label for="project">Project</label>
-        <input type="text" class="form-control" id="project"
-               required
-               [(ngModel)]="user.project" name="project"
-               #project="ngModel">
-    </div>
-    <div class="form-group">
         <label for="preferredLanguage">Preferred Language</label>
         <select class="form-control" id="preferredLanguage"
                 required
@@ -64,18 +57,18 @@
         </select>
     </div>
     <div class="form-group">
-        <label>GPS location</label>
+        <label>Location</label>
         <fieldset class="form-inline">
-            <label for="lat">lat</label>
-            <input class="input-mini form-control" id="lat"
-                   required
-                   [(ngModel)]="user.lat" name="lat"
-                   #lat="ngModel">
-            <label for="long">long</label>
-            <input class="input-mini form-control" id="long"
-                   required
-                   [(ngModel)]="user.long" name="long"
-                   #long="ngModel">
+            <label for="latitude">Latitude</label>
+            <input class="input-mini form-control" id="latitude"
+                    required
+                    [(ngModel)]="user.latitude" name="latitude"
+                    #lat="ngModel">
+            <label for="longtitude">Longtitude</label>
+            <input class="input-mini form-control" id="longtitude"
+                    required
+                    [(ngModel)]="user.longtitude" name="longtitude"
+                    #long="ngModel">
         </fieldset>
     </div>
     <div class="form-group">
@@ -84,20 +77,6 @@
                required
                [(ngModel)]="user.mobilePhoneNumber" name="mobilePhoneNumber"
                #mobilePhoneNumber="ngModel">
-    </div>
-    <div class="form-group">
-        <label for="position">Posistion</label>
-        <input type="text" class="form-control" id="position"
-               required
-               [(ngModel)]="user.position" name="position"
-               #position="ngModel">
-    </div>
-    <div class="form-group">
-        <label for="dutyStation">Duty Station</label>
-        <input type="text" class="form-control" id="dutyStation"
-               required
-               [(ngModel)]="user.dutyStation" name="dutyStation"
-               #dutyStation="ngModel">
     </div>
     <div class="alert-danger" *ngIf="error">
         {{errorMsg}}
