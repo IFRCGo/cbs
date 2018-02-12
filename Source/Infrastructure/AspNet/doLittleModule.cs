@@ -46,7 +46,7 @@ namespace Infrastructure.AspNet
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
                 .SingleInstance();
-            builder.RegisterType<EventProcessors>().As<IEventProcessors>().SingleInstance();
+            builder.RegisterType<Infrastructure.AspNet.EventProcessors>().As<IEventProcessors>().SingleInstance();
             builder.RegisterType<NullEventProcessorLog>().As<IEventProcessorLog>().SingleInstance();
             builder.RegisterType<NullEventProcessorStates>().As<IEventProcessorStates>().SingleInstance();
             builder.RegisterType<NullEventStore>().As<IEventStore>().SingleInstance();
@@ -56,8 +56,7 @@ namespace Infrastructure.AspNet
             builder.RegisterType<CommittedEventStreamSender>().As<ICanSendCommittedEventStream>().SingleInstance();
             builder.RegisterType<CommittedEventStreamReceiver>().As<ICanReceiveCommittedEventStream>().SingleInstance();
             builder.RegisterType<CommittedEventStreamBridge>().As<ICommittedEventStreamBridge>().SingleInstance();
-            builder.RegisterType<CommittedEventStreamCoordinator>().As<ICommittedEventStreamCoordinator>()
-                .SingleInstance();
+            builder.RegisterType<CommittedEventStreamCoordinator>().As<ICommittedEventStreamCoordinator>().SingleInstance();
             builder.RegisterType<ProcessMethodEventProcessors>().AsSelf().SingleInstance();
 
             var applicationStructureBuilder =
