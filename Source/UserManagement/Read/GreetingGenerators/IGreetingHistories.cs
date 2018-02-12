@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Read.GreetingGenerators
 {
     public interface IGreetingHistories

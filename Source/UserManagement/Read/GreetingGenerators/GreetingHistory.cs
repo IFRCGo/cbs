@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Concepts;
-using Events;
 
 namespace Read.GreetingGenerators
 {

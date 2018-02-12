@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
@@ -7,12 +7,14 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events.External\Events.External.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeoCoordinate" Version="2.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
     <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha2.194" />
-    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194"/>
-    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70"/>
+    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194" />
+    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
   </ItemGroup>
 </Project>

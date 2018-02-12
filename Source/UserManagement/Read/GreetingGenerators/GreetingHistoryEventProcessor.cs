@@ -1,10 +1,5 @@
-using Concepts;
-using doLittle.Domain;
 using doLittle.Events.Processing;
-using Domain.MessageGenerators;
 using Events;
-using Events.External;
-using Read.DataCollectors;
 
 namespace Read.GreetingGenerators
 {

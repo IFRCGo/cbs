@@ -1,12 +1,12 @@
-using Concepts;
 using doLittle.Domain;
 using doLittle.Events.Processing;
 using Events;
-using Events.External;
 using Read.DataCollectors;
 
-namespace Read.GreetingGenerators
+namespace Policies.GreetingGenerators
 {
+    using Read.GreetingGenerators;
+
     public class GreetingGeneratorEventProcessor : ICanProcessEvents
     {
 
