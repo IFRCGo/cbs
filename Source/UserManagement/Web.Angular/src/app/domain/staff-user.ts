@@ -1,11 +1,11 @@
 export class StaffUser {
-    firstName: string;
-    lastName: string;
+    fullName: string;
+    displayName: string;
     email: string;
 
     constructor(o: any) {
-        this.firstName = o.firstName;
-        this.lastName = o.lastName;
+        this.fullName = o.fullName;
+        this.displayName = o.displayName;
         this.email = o.email;
     }
 }

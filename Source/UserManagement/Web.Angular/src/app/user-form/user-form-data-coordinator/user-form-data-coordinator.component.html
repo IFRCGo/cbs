@@ -4,20 +4,20 @@
     </a>
     <h1>Add Data Coordinator</h1>
     <div class="form-group">
-        <label for="first_name">First name</label>
-        <input type="text" class="form-control" id="first_name"
+        <label for="full_name">Full Name</label>
+        <input type="text" class="form-control" id="full_name"
             required
-            [(ngModel)]="user.firstName" name="first_name"
+            [(ngModel)]="user.fullName" name="full_name"
             #first_name="ngModel">
     </div>
 
 
     <div class="form-group">
-        <label for="last_name">Last name</label>
-        <input type="text" class="form-control" id="last_name"
-            required
-            [(ngModel)]="user.lastName" name="last_name"
-            #last_name="ngModel">
+        <label for="display_name">Display Name</label>
+        <input type="text" class="form-control" id="display_name"
+                required
+                [(ngModel)]="user.displayName" name="display_name"
+                #last_name="ngModel">
     </div>
 
     <div class="form-group">

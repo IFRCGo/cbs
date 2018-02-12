@@ -18,7 +18,6 @@ export class DataCollector {
     email: string;
     registeredAt: Date;
 
-
     constructor(o: any) {
         this.id = o.id;
         this.fullName = o.fullName;
