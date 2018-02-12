@@ -22,7 +22,6 @@ export class ReportService {
             // WIP
         } else if (criteria.sortColumn === 'dataCollector') {
             return reports_detailed.sort( function(a,b ) {
-                console.log(a.dataCollector);
                 const fullName_a = a.dataCollector? 
                                     a.dataCollector.fullName?
                                         a.dataCollector.fullName : undefined
@@ -32,7 +31,6 @@ export class ReportService {
                                         b.dataCollector.fullName : undefined
                                     : undefined;
 
-                console.log(fullName_a);
                 let result = ((fullName_a === undefined && fullName_b === undefined) || (String(fullName_a) === String(fullName_b)))?
                                 0 : (fullName_a < fullName_b)?
                                     -1 : 1;
