@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 const links = [
-  { label: 'Admin', href: 'admin' },
+  { label: 'Administrator', href: 'admin' },
   { label: 'Data Verifier', href: 'data-verifier' },
   { label: 'Data Consumer', href: 'data-consumer' },
   { label: 'Data Coordinator', href: 'data-coordinator' },
