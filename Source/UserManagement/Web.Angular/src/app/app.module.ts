@@ -13,7 +13,7 @@ import { StaffUserService } from './services/staff-user.service';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
-import { SelectUserRoleComponent } from './select-user-role/select-user-role.component';
+import { SelectUserRoleComponent } from './user-form/select-user-role/select-user-role.component';
 import { UserFormAdminComponent } from './user-form/user-form-admin/user-form-admin.component';
 import { UserFormSystemConfiguratorComponent } from './user-form/user-form-system-configurator/user-form-system-configurator.component';
 import { UserFormDataCoordinatorComponent } from './user-form/user-form-data-coordinator/user-form-data-coordinator.component';
@@ -27,7 +27,6 @@ import { ModalModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
-  { path: 'add-user', component: SelectUserRoleComponent },
   { path: '', component: UserListComponent },
   { path: '**', component: UserListComponent }
 ];

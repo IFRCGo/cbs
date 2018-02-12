@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { SelectUserRoleComponent } from './select-user-role/select-user-role.component';
 import { UserFormAdminComponent, ADMIN_PATH } from './user-form-admin/user-form-admin.component';
 import { UserFormDataCollectorComponent, DATA_COLLECTOR_PATH } from './user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent, DATA_CONSUMER_PATH } from './user-form-data-consumer/user-form-data-consumer.component';
@@ -17,6 +18,10 @@ import {
 const ADD_USER_URL_PREFIX = 'add-user';
 
 export const USER_FORM_ROUTES: Routes = [
+    {
+        path: ADD_USER_URL_PREFIX,
+        component: SelectUserRoleComponent
+    },
     {
         path: `${ADD_USER_URL_PREFIX}/${ADMIN_PATH}`,
         component: UserFormAdminComponent
