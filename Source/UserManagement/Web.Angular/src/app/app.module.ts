@@ -49,10 +49,7 @@ console.log(appRoutes);
 
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true} // <-- debugging purposes only
-    ),
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     CommonModule,
     HttpModule,
