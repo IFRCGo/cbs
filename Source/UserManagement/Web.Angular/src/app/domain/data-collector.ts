@@ -1,11 +1,8 @@
+import { Location } from './location';
+
 export class PhoneNumber {
     value: string;
     confirmed: boolean;
-}
-
-export class Location {
-    latitude: number;
-    longitude: number;
 }
 
 export class DataCollector {
