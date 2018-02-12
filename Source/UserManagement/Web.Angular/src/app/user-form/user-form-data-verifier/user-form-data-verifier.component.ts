@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataVerifier } from '../../domain/data-verifier';
 import { StaffUserService } from '../../services/staff-user.service';
-import { Router } from '@angular/router';
 
 export const DATA_VERIFIER_PATH = 'data-verifier';
 
@@ -20,7 +19,7 @@ export class UserFormDataVerifierComponent implements OnInit {
 
   languageOptions = ['English', 'French'];
 
-  constructor(private staffUserService: StaffUserService, private router: Router) {
+  constructor(private staffUserService: StaffUserService) {
   }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class UserFormDataVerifierComponent implements OnInit {
       data => {
         this.success = true;
         console.log(data);
-        setTimeout(() => this.router.navigateByUrl(''), 3000)
       },
       error => {
         this.error = true;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Admin } from '../../domain/admin';
 import { StaffUserService } from '../../services/staff-user.service';
-import { Router } from '@angular/router';
 
 export const ADMIN_PATH = 'admin';
 
@@ -18,8 +17,7 @@ export class UserFormAdminComponent implements OnInit {
   public success = false;
   public error = false;
 
-
-  constructor(private staffUserService: StaffUserService, private router: Router) {
+  constructor(private staffUserService: StaffUserService) {
     this.user = new Admin({});
    }
 
@@ -31,7 +29,6 @@ export class UserFormAdminComponent implements OnInit {
       data => {
         this.success = true;
         console.log(data);
-        setTimeout(() => this.router.navigateByUrl(''), 3000)
       },
       error => {
         this.error = true;

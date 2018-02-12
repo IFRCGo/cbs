@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemConfigurator } from '../../domain/system-configurator';
 import { StaffUserService } from '../../services/staff-user.service';
-import { Router } from '@angular/router';
 
 export const SYSTEM_CONFIGURATOR_PATH = 'system-configurator';
 
@@ -20,7 +19,7 @@ export class UserFormSystemConfiguratorComponent implements OnInit {
 
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
-  constructor(private staffUserService: StaffUserService, private router: Router) {
+  constructor(private staffUserService: StaffUserService) {
   }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class UserFormSystemConfiguratorComponent implements OnInit {
       data => {
         this.success = true;
         console.log(data);
-        setTimeout(() => this.router.navigateByUrl(''), 3000)
       },
       error => {
         this.error = true;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataCoordinator } from '../../domain/data-coordinator';
-import { Router } from '@angular/router';
 import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_COORDINATOR_PATH = 'data-coordinator';
@@ -21,7 +20,7 @@ export class UserFormDataCoordinatorComponent implements OnInit {
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
 
-  constructor(private staffUserService: StaffUserService, private router: Router) {
+  constructor(private staffUserService: StaffUserService) {
     this.user = new DataCoordinator({});
   }
   ngOnInit() {
@@ -33,7 +32,6 @@ export class UserFormDataCoordinatorComponent implements OnInit {
       data => {
         this.success = true;
         console.log(data);
-        setTimeout(() => this.router.navigateByUrl(''), 3000)
       },
       error => {
         this.error = true;

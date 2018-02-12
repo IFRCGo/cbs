@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataConsumer } from '../../domain/data-consumer';
-import { Router } from '@angular/router';
 import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_CONSUMER_PATH = 'data-consumer';
@@ -21,7 +20,7 @@ export class UserFormDataConsumerComponent implements OnInit {
   languageOptions = ['English', 'French'];
   nationalSocieties = ['Norway', 'Sweden'];
 
-  constructor(private staffUserService: StaffUserService, private router: Router) {
+  constructor(private staffUserService: StaffUserService) {
     this.user = new DataConsumer({});
   }
 
@@ -33,7 +32,6 @@ export class UserFormDataConsumerComponent implements OnInit {
       data => {
         this.success = true;
         console.log(data);
-        setTimeout(() => this.router.navigateByUrl(''), 3000)
       },
       error => {
         this.error = true;
