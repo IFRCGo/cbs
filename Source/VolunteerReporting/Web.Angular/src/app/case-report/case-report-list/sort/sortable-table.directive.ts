@@ -6,6 +6,7 @@ import { SortService } from './sort.service';
 @Directive({
   selector: '[sortable-table]'
 })
+// Emits an event that sortable-column.component.ts listens to
 export class SortableTableDirective implements OnInit, OnDestroy {
 
   constructor(private sortService: SortService) {}

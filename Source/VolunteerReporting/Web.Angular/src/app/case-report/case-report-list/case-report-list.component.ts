@@ -58,7 +58,6 @@ export class CaseReportListComponent implements OnInit {
                     this.reports = this.reportsDetailed = result || []
 
                     this.listedReports = this.reportsDetailed.slice(0, this.maxReports);
-                    console.log(this.listedReports);
                 }
             )
             .catch((error) => console.error(error));

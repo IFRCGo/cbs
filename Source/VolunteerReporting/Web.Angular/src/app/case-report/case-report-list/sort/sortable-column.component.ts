@@ -18,15 +18,11 @@ export class SortableColumnComponent implements OnInit {
     @Input('sort-direction')
     sortDirection: string = '';
 
-    timeSortDirection: string = "asc";
     private columnSortedSubscription: Subscription;
 
     @HostListener('click')
     sort() {
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-        
-        // Not used yet
-        this.timeSortDirection = this.columnName === "timeStamp"? this.sortDirection : this.timeSortDirection;
 
         this.sortService.columnSorted({ sortColumn: this.columnName, sortDirection: this.sortDirection });
     }
