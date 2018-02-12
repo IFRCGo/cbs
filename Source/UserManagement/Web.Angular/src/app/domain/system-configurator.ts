@@ -23,5 +23,4 @@ export class SystemConfigurator extends StaffUser {
     this.mobilePhoneNumber = o.mobilePhoneNumber;
     this.assignedNationalSocieties = o.assignedNationalSocieties;
   }
-
 }

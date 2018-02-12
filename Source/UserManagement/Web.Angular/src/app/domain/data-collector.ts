@@ -1,6 +1,6 @@
 import { Location } from './location';
 
-export class PhoneNumber {
+class PhoneNumber {
     value: string;
     confirmed: boolean;
 }
