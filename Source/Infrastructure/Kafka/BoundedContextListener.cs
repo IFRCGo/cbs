@@ -1,37 +1,36 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
 using doLittle.Applications;
-using doLittle.Collections;
-using doLittle.Configuration;
 using doLittle.Events;
-using doLittle.Events.InProcess;
 using doLittle.Execution;
-using doLittle.Lifecycle;
 using doLittle.Logging;
-using doLittle.Serialization;
+using doLittle.Runtime.Events;
+using doLittle.Runtime.Events.Coordination;
+using doLittle.Runtime.Events.Publishing.InProcess;
+using doLittle.Runtime.Events.Storage;
+using doLittle.Runtime.Transactions;
 using doLittle.Types;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Kafka
 {
- 
+
     [Singleton]
-    public class BoundedContextListener : IBoundedContextListener, IWantToKnowWhenConfigurationIsDone
+    public class BoundedContextListener : IBoundedContextListener
     {
         public static TransactionCorrelationId  CorrelationId { get; set; }
         readonly Consumer<Ignore, string> _consumer;
-        readonly ISerializer _serializer;
         readonly IEventConverter _eventConverter;
         readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
         readonly ILogger _logger;
-        readonly IApplicationResourceIdentifierConverter _applicationResourceIdentifierConverter;
+        readonly IApplicationArtifactIdentifierStringConverter _applicationResourceIdentifierConverter;
         readonly IImplementationsOf<IEvent> _eventTypes;
         readonly IEventSequenceNumbers _eventSequenceNumbers;
         readonly IEventStore _eventStore;
@@ -44,9 +43,8 @@ namespace Kafka
             ListenerConfiguration configuration,
             IEventConverter eventConverter,
             IUncommittedEventStreamCoordinator uncommittedEventStreamCoordinator,
-            ISerializer serializer,
             ILogger logger,
-            IApplicationResourceIdentifierConverter applicationResourceIdentifierConverter,
+            IApplicationArtifactIdentifierStringConverter applicationResourceIdentifierConverter,
             IImplementationsOf<IEvent> eventTypes,
             IEventStore eventStore,
             IEventEnvelopes eventEnvelopes,
@@ -54,7 +52,6 @@ namespace Kafka
             IEventSourceVersions eventSourceVersions,
             ICommittedEventStreamBridge committedEventStreamBridge)
         {
-            _serializer = serializer;
             _eventConverter = eventConverter;
             _uncommittedEventStreamCoordinator = uncommittedEventStreamCoordinator;
             _logger = logger;
@@ -65,8 +62,6 @@ namespace Kafka
             _eventEnvelopes = eventEnvelopes;
             _eventSourceVersions = eventSourceVersions;
             _committedEventStreamBridge = committedEventStreamBridge;
-
-            
 
             logger.Information($"Listening on topic '{configuration.Topic}' from '{connectionString}'");
 
@@ -90,7 +85,10 @@ namespace Kafka
                 try
                 {
                     logger.Trace($"Message received '{msg.Value}'");
-                    var raw = _serializer.FromJson<dynamic[]>(msg.Value);
+                    dynamic raw = JsonConvert.DeserializeObject(msg.Value);
+
+                    var serializer = new JsonSerializer();
+
 
                     foreach( var rawContentAndEnvelope in raw ) 
                     {
@@ -106,7 +104,14 @@ namespace Kafka
                         {
                             _logger.Trace("Matching Event Type : "+eventType.AssemblyQualifiedName);
                             var @event = Activator.CreateInstance(eventType, eventSourceId) as IEvent;
-                            _serializer.FromJson(@event, rawContentAndEnvelope.Content.ToString());
+
+                            using( var textReader = new StringReader(rawContentAndEnvelope.Content.ToString())) 
+                            {
+                                using( var reader = new JsonTextReader(textReader) )
+                                {
+                                    serializer.Populate(reader, @event);
+                                }
+                            }
 
                             var eventSource = new ExternalSource(eventSourceId);
                             var uncommittedEventStream = new UncommittedEventStream(eventSource);
@@ -155,12 +160,20 @@ namespace Kafka
            };
         }
 
-       public void Configured(IConfigure configure)
+
+        public void Start()
         {
             Task.Run(() =>
             {
                 for (;;) _consumer.Poll(TimeSpan.FromMilliseconds(50));
             });
+        }
+
+        public static void Start(IServiceProvider serviceProvider)
+        {
+            //var container = serviceProvider.GetService(typeof(IContainer)) as IContainer
+            //var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
+            //listener.Start();
         }
     }
 }

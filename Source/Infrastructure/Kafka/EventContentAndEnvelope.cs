@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using doLittle.Events;
+using doLittle.Runtime.Events;
 
 namespace Kafka
 {

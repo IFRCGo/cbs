@@ -1,4 +1,4 @@
-using doLittle.Events;
+using doLittle.Runtime.Events;
 
 namespace Kafka
 {

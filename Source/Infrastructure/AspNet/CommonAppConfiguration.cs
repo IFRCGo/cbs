@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Infrastructure.AspNet;
+using Kafka;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Microsoft.AspNetCore.Builder
@@ -34,6 +35,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            BoundedContextListener.Start(app.ApplicationServices);
 
             return app;
         }

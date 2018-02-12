@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using doLittle.Dynamic;
 using doLittle.Events;
+using doLittle.Runtime.Events;
 
 namespace Kafka
 {
