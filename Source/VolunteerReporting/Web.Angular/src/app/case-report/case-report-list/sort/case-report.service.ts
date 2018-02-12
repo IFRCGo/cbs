@@ -33,8 +33,8 @@ export class ReportService {
         // Sort by HealthRisk
         } else if (criteria.sortColumn === 'healthRisk') {
             return reports_detailed.sort( function(a, b) {
-                return ReportService.compareNullableField(a.healthRisk, b.healthRisk, criteria, 
-                    "readableId","readableId");
+                
+                return ReportService.compareHealthRisk(a, b, criteria);
             });
         // Sort by femalesOver5
         } else if (criteria.sortColumn === "femalesOver5") {
@@ -84,6 +84,16 @@ export class ReportService {
                 0 : a.healthRisk? -1 : 1;
 
                 return (criteria.sortDirection === "desc")? result : result * -1;
+    }
+    private static compareHealthRisk(a, b, criteria) {
+        const result = 
+            (a.healthRisk === undefined && b.healthRisk === undefined)? 0
+                : (a.healthRisk === undefined && b.healthRisk != undefined)? -1
+                    :  (a.healthRisk != undefined && b.healthRisk === undefined)? 1
+                            : (a.healthRisk.readableId < b.healthRisk.readableId)? 1
+                                : (a.healthRisk.readableId > b.healthRisk.readableId)? -1
+                                    : 0;
+        return (criteria.sortDirection === "desc")? result : result * -1;
     }
     /**
      * Compares two case reports by passing in the fields it is going to be compared on.
