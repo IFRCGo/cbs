@@ -2,6 +2,11 @@
 @import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import 'assets/bootstrap/theme';
 
+form { // TODO: Style the user-form with properly scoped CSS
+    max-width: 768px;
+    margin: 0 auto;
+}
+
 .form-group {
   select,
   input {
