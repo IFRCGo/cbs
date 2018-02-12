@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../domain/user';
 import { DataConsumer } from '../../domain/data-consumer';
 import { Router } from '@angular/router';
 import { StaffUserService } from '../../services/staff-user.service';
 
 export const DATA_CONSUMER_PATH = 'data-consumer';
-
 
 @Component({
   selector: 'cbs-user-form-data-consumer',
