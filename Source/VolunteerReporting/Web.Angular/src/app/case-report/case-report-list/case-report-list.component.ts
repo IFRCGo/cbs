@@ -3,6 +3,7 @@ import { AggregatedCaseReportService } from '../../core/aggregated-case-report.s
 import { Report } from '../../shared/models/report.model';
 
 import { ReportService, ReportSearchCriteria } from './sort/case-report.service';
+import { Filter } from './filtring/filter.pipe'
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -30,6 +31,10 @@ export class CaseReportListComponent implements OnInit {
     reports: Array<Report>;
     reportsDetailed: Array<any>;
     
+    filterField: string;
+    filterValue: any;
+
+    basicFilter: string = "all";
     constructor(
         private caseReportService: AggregatedCaseReportService,
         private service: ReportService
@@ -62,5 +67,11 @@ export class CaseReportListComponent implements OnInit {
             )
             .catch((error) => console.error(error));
             
+    }
+
+    onClick(name: string) {
+        console.log(name);
+        
+        this.basicFilter = name;
     }
 }

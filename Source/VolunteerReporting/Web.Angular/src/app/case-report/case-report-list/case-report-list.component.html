@@ -2,6 +2,22 @@
     Case Reports
 </h3>
 
+<table class="table table-bordered table-striped">
+    <tbody>
+    <tr>
+        <td> 
+            Quick Filters: 
+            <button (click)="basicFilter = 'all'">All</button>
+            <button (click)="basicFilter = 'success'">Success</button>
+            <button (click)="basicFilter = 'error'">Data error</button>
+            <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
+            
+        <td>
+            <button (click)="i = i">Advanced filter</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <table class="table table-bordered table-striped" sortable-table (sorted)="onSorted($event)">
     <thead>
         <tr>
@@ -10,16 +26,16 @@
             <th sortable-column="timeStamp">Time</th>
             <th sortable-column="status">Status</th>
             <th sortable-column="dataCollector">Data&nbsp;Collector</th>
-            <th>Health&nbsp;Risk</th>
-            <th>Females&nbsp;&gt;&nbsp;5</th>
-            <th>Females&nbsp;&lt;&nbsp;5</th>
-            <th>Males&nbsp;&gt;&nbsp;5</th>
-            <th>Males&nbsp;&lt;&nbsp;5</th>
+            <th sortable-column="healthRisk">Health&nbsp;Risk</th>
+            <th sortable-column="femalesOver5">Females&nbsp;&gt;&nbsp;5</th>
+            <th sortable-column="femalesUnder5">Females&nbsp;&lt;&nbsp;5</th>
+            <th sortable-column="malesOver5">Males&nbsp;&gt;&nbsp;5</th>
+            <th sortable-column="malesUnder5">Males&nbsp;&lt;&nbsp;5</th>
             <th>Lat&nbsp;/&nbsp;Long</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let caseReport of listedReports">
+        <tr *ngFor="let caseReport of listedReports | filter:basicFilter">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
                 <span  *ngIf="caseReport.healthRisk" class="label label-success">Success</span>
