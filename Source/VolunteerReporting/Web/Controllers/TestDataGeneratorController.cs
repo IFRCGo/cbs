@@ -154,8 +154,8 @@ namespace Web
             }
             else
             {
-                // Single event: healt risk # sex # age
-                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{randomizer.Next(2) + 1}#{randomizer.Next(70) + 1}";
+                // Single event: healt risk # sex # age group
+                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{randomizer.Next(2) + 1}#{randomizer.Next(2) + 1}";
             }
         }
 

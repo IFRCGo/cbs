@@ -38,8 +38,20 @@ namespace TextMessaging
 
         void ValidateThatIsCorrectMessage()
         {
-            if( !(Numbers.Length == 3 || Numbers.Length == 5) ) 
-                _errorMessages.Add("Message is in incorrect format - it should have 3 numbers for single case reporting and 5 for multiple cases");
+            if( !(Numbers.Length == 1 || Numbers.Length == 3 || Numbers.Length == 5) )
+            {
+                _errorMessages.Add("Message is in incorrect format - it should have 1, 3 or 5 numbers");
+            }
+                
+            if(Numbers.Any(x => x < 0))
+            {
+                _errorMessages.Add("Negative numbers are incorrect - only positive numbers and zero is allowed");
+            }
+
+            if (Numbers.Length == 3 && ((Numbers[1] < 1 || Numbers[1] > 2) || (Numbers[2] < 1 || Numbers[2] > 2)))
+            {
+                _errorMessages.Add("Sex and age group must be either 1 or 2");
+            }
         }
     }
 }
