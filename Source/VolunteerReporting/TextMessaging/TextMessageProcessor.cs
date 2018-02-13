@@ -60,12 +60,19 @@ namespace TextMessaging
             var healthRiskId = _healthRisks.GetIdFromReadableId(parsingResult.Numbers[0]);
             if (!parsingResult.HasMultipleCases)
             {
-                var sex = (Sex)parsingResult.Numbers[1];
-                var age = parsingResult.Numbers[2];
-                var malesUnder5 = age <= 5 && sex == Sex.Male ? 1 : 0;
-                var malesOver5 = age > 5 && sex == Sex.Male ? 1 : 0;
-                var femalesUnder5 = age <= 5 && sex == Sex.Female ? 1 : 0;
-                var femalesOver5 = age > 5 && sex == Sex.Female ? 1 : 0;
+                var malesUnder5 = 0;
+                var malesOver5 = 0;
+                var femalesUnder5 = 0;
+                var femalesOver5 = 0;
+                if (parsingResult.Numbers.Length == 3)
+                {  
+                    var sex = (Sex)parsingResult.Numbers[1];
+                    var ageGroup = parsingResult.Numbers[2];                        
+                    malesUnder5 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
+                    malesOver5 = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
+                    femalesUnder5 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
+                    femalesOver5 = ageGroup == 2 && sex == Sex.Female ? 1 : 0;                                     
+                }                
                 Report(
                     message,
                     dataCollectorId,
