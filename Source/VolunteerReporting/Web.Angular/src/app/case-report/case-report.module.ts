@@ -9,6 +9,9 @@ import { ReportService } from './case-report-list/sort/case-report.service';
 import { SortService } from './case-report-list/sort/sort.service';
 import { SortableTableDirective } from './case-report-list/sort/sortable-table.directive';
 import { SortableColumnComponent } from './case-report-list/sort/sortable-column.component';
+
+import { Filter } from './case-report-list/filtring/filter.pipe'
+
 @NgModule({
     imports: [
         CommonModule,
@@ -18,11 +21,13 @@ import { SortableColumnComponent } from './case-report-list/sort/sortable-column
     declarations: [
         CaseReportListComponent,
         SortableTableDirective,
-        SortableColumnComponent
+        SortableColumnComponent,
+        Filter
     ],
     providers: [
         ReportService,
-        SortService
+        SortService,
+        Filter
     ]
 })
 

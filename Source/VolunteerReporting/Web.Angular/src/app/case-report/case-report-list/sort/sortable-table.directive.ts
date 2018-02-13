@@ -6,6 +6,7 @@ import { SortService } from './sort.service';
 @Directive({
   selector: '[sortable-table]'
 })
+// Emits an event that sortable-column.component.ts listens to
 export class SortableTableDirective implements OnInit, OnDestroy {
 
   constructor(private sortService: SortService) {}
@@ -16,7 +17,7 @@ export class SortableTableDirective implements OnInit, OnDestroy {
     private columnSortedSubscription: Subscription;
 
     ngOnInit() {
-        // subscribe to sort changes so we emit and event for this data table
+        // subscribe to sort changes so we emit an event for this data table
         this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {
             this.sorted.emit(event);
         });
