@@ -34,7 +34,7 @@ namespace Web
             // which was the case when I tested this method using the old method versus fetching the data prior to querying it.
             // In my opinion, the best way to do this is to have a cache-system for these databases (preferably in the classes that deals directly
             // with IMongoDatabase and IMongoCollection 
-            var dataCollectors = await _dataCollectors.getAllAsync();
+            var dataCollectors = await _dataCollectors.GetAllAsync();
             // Following over from CaseReportController...
             // (half -as bad, but still half-assed)
             //
