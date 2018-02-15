@@ -1,4 +1,4 @@
-import { StaffUser } from './staffUser';
+import { StaffUser } from './staff-user';
 
 export class DataOwner extends StaffUser {
   age: number;

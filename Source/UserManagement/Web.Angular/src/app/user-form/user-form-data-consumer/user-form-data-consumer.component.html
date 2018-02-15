@@ -1,0 +1,56 @@
+<form>
+    <a [routerLink]="['/add-user']" class="back-button">
+        <button class="btn btn-primary">Back</button>
+    </a>
+    <h1>Add Data Consumer</h1>
+    <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" class="form-control" id="full_name"
+            required
+            [(ngModel)]="user.fullName" name="full_name"
+            #first_name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="display_name">Display Name</label>
+        <input type="text" class="form-control" id="display_name"
+                required
+                [(ngModel)]="user.displayName" name="display_name"
+                #last_name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email"
+               required
+               [(ngModel)]="user.email" name="email"
+               #email="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label>Location</label>
+        <fieldset class="form-inline">
+            <label for="latitude">Latitude</label>
+            <input class="input-mini form-control" id="latitude"
+                   required
+                   [(ngModel)]="user.latitude" name="latitude"
+                   #lat="ngModel">
+            <label for="longtitude">Longtitude</label>
+            <input class="input-mini form-control" id="longtitude"
+                   required
+                   [(ngModel)]="user.longtitude" name="longtitude"
+                   #long="ngModel">
+        </fieldset>
+    </div>
+
+    <div class="alert-danger" *ngIf="error">
+        {{errorMsg}}
+    </div>
+
+    <div class="alert-success" *ngIf="success">
+        {{successMsg}}
+    </div>
+    <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
+</form>
+
+
