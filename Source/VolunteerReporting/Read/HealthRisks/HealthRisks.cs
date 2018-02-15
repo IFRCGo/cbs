@@ -1,6 +1,7 @@
 using System;
 using MongoDB.Driver;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Read.HealthRisks
 {
@@ -15,7 +16,13 @@ namespace Read.HealthRisks
             _collection = database.GetCollection<HealthRisk>("HealthRisk");
         }
 
-        
+        public async Task<IEnumerable<HealthRisk>> GetAllAsync()
+        {
+            var filter = Builders<HealthRisk>.Filter.Empty;
+            var list = await _collection.FindAsync(filter);
+            return await list.ToListAsync();
+        }
+
         public HealthRisk GetById(Guid id)
         {
             return _collection.Find(d => d.Id == id).SingleOrDefault();

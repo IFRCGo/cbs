@@ -21,6 +21,7 @@ using Concepts;
 using Read.Projects;
 using doLittle.Events;
 using Microsoft.Extensions.Configuration;
+using Read.InvalidCaseReports;
 
 namespace Web
 {
@@ -118,8 +119,16 @@ namespace Web
                     Sent = DateTimeOffset.Now.AddSeconds(-randomizer.NextDouble() * 60 * 60 * 24 * 7 * 26), // last 26 weeks
                     ReceivedAtGatewayNumber = "0123456789",
                     Message = message
-                };                
+                };
 
+                // Create location for half the messages
+                /* DEPCRECATED
+                if (randomizer.NextDouble() > 0.5)
+                {
+                    textMessage.Latitude = -80d + randomizer.NextDouble() * 80d;    // Latitude between -80 and 80 degrees
+                    textMessage.Longitude = randomizer.NextDouble() * 360d;         // Longitude between 0 and 360 degrees
+                }
+                */
                 events.Add(textMessage);
             }
 
@@ -156,8 +165,16 @@ namespace Web
         [HttpGet("textmessages")]
         public void CreateTextMessages()
         {
-            var _caseReportsCollection = _database.GetCollection<CaseReport>("CaseReport");
-            _caseReportsCollection.DeleteMany(v => true);
+
+            var _col1 = _database.GetCollection<CaseReport>("CaseReport");
+            var _col2 = _database.GetCollection<CaseReportFromUnknownDataCollector>("CaseReportFromUnknownDataCollector");
+            var _col3 = _database.GetCollection<InvalidCaseReport>("InvalidCaseReport");
+            var _col4 = _database.GetCollection<InvalidCaseReportFromUnknownDataCollector>("InvalidCaseReportFromUnknownDataCollector");
+
+            _col1.DeleteMany(v => true);
+            _col2.DeleteMany(v => true);
+            _col3.DeleteMany(v => true);
+            _col4.DeleteMany(v => true);
 
             var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
             foreach (var message in textMessagesEvents)

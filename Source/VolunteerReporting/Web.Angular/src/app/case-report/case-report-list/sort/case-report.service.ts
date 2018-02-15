@@ -32,8 +32,7 @@ export class ReportService {
             });
         // Sort by HealthRisk
         } else if (criteria.sortColumn === 'healthRisk') {
-            return reports_detailed.sort( function(a, b) {
-                
+            return reports_detailed.sort( function(a, b) { 
                 return ReportService.compareHealthRisk(a, b, criteria);
             });
         // Sort by femalesOver5
@@ -85,11 +84,12 @@ export class ReportService {
 
                 return (criteria.sortDirection === "desc")? result : result * -1;
     }
-    private static compareHealthRisk(a, b, criteria) {
+
+    private static compareHealthRisk(a, b, criteria) { 
         const result = 
-            (a.healthRisk === undefined && b.healthRisk === undefined)? 0
-                : (a.healthRisk === undefined && b.healthRisk != undefined)? -1
-                    :  (a.healthRisk != undefined && b.healthRisk === undefined)? 1
+            (!this.hasNonNullField(a, "healthRisk") && !this.hasNonNullField(b, "healthRisk"))? 0
+                : (!this.hasNonNullField(a, "healthRisk") && this.hasNonNullField(b, "healthRisk"))? -1
+                    :  (this.hasNonNullField(a, "healthRisk") && !this.hasNonNullField(b, "healthRisk"))? 1
                             : (a.healthRisk.readableId < b.healthRisk.readableId)? 1
                                 : (a.healthRisk.readableId > b.healthRisk.readableId)? -1
                                     : 0;
@@ -120,6 +120,14 @@ export class ReportService {
                             : this.compareNullableField(aNullable[aField], bNullable[bField], criteria);
         return (criteria.sortDirection === "desc")? result : result * -1;
     }
+    /**
+     * Checks whether o has a field called field which is not null.
+     * @param o Any object
+     * @param field The field where we want to access data
+     */
+    private static hasNonNullField(o: any, field: string): boolean {
+        return (o != null && o[field] != undefined && o[field] != null);
+    }       
 }
 
 
