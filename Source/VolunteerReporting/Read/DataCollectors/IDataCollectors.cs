@@ -11,7 +11,7 @@ namespace Read.DataCollectors
 {
     public interface IDataCollectors
     {
-        Task<IEnumerable<DataCollector>> getAllAsync();
+        Task<IEnumerable<DataCollector>> GetAllAsync();
         DataCollector GetById(Guid id);
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);

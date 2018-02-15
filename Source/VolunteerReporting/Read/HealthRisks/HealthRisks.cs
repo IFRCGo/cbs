@@ -16,7 +16,7 @@ namespace Read.HealthRisks
             _collection = database.GetCollection<HealthRisk>("HealthRisk");
         }
 
-        public async Task<IEnumerable<HealthRisk>> getAllAsync()
+        public async Task<IEnumerable<HealthRisk>> GetAllAsync()
         {
             var filter = Builders<HealthRisk>.Filter.Empty;
             var list = await _collection.FindAsync(filter);

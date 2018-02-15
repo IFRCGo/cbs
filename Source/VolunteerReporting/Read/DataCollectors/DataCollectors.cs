@@ -21,7 +21,7 @@ namespace Read.DataCollectors
             _collection = database.GetCollection<DataCollector>("DataCollector");
         }
 
-        public async Task<IEnumerable<DataCollector>> getAllAsync()
+        public async Task<IEnumerable<DataCollector>> GetAllAsync()
         {
             var filter = Builders<DataCollector>.Filter.Empty;
             var list = await _collection.FindAsync(filter);
