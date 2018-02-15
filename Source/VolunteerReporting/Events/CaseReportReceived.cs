@@ -12,6 +12,7 @@ namespace Events
         public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
         public Guid HealthRiskId { get; set; }
+        public string Origin { get; set; }
         public int NumberOfMalesUnder5 { get; set; }
         public int NumberOfMalesOver5 { get; set; }
         public int NumberOfFemalesUnder5 { get; set; }
