@@ -19,9 +19,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public Task<IEnumerable<Project>> GetAllProjects()
+        public async Task<IEnumerable<Project>> GetAllProjects()
         {
-            return _projects.GetAllAsync();
+            return await _projects.GetAllAsync();
         }
     }
 }
