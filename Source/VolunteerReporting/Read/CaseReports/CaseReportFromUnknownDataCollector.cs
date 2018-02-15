@@ -13,7 +13,6 @@ namespace Read.CaseReports
         public int NumberOfMalesOver5 { get; internal set; }
         public int NumberOfMalesUnder5 { get; internal set; }
         public DateTimeOffset Timestamp { get; internal set; }
-        public Location Location { get; internal set; }
 
         public CaseReportFromUnknownDataCollector(Guid id)
         {
