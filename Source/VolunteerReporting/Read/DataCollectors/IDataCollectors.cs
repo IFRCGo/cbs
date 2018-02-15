@@ -5,11 +5,13 @@
 using System;
 using Concepts;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Read.DataCollectors
 {
     public interface IDataCollectors
     {
+        Task<IEnumerable<DataCollector>> getAllAsync();
         DataCollector GetById(Guid id);
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);

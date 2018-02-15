@@ -6,6 +6,7 @@ using System;
 using Concepts;
 using MongoDB.Driver;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Read.DataCollectors
 {
@@ -18,6 +19,13 @@ namespace Read.DataCollectors
         {
             _database = database;
             _collection = database.GetCollection<DataCollector>("DataCollector");
+        }
+
+        public async Task<IEnumerable<DataCollector>> getAllAsync()
+        {
+            var filter = Builders<DataCollector>.Filter.Empty;
+            var list = await _collection.FindAsync(filter);
+            return await list.ToListAsync();
         }
 
         public DataCollector GetById(Guid id)
