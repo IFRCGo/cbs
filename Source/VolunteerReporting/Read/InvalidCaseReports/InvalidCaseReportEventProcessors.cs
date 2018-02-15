@@ -30,6 +30,7 @@ namespace Read.InvalidCaseReports
             // Send the invalid report to the DB
             var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId);
             invalidCaseReport.DataCollectorId = @event.DataCollectorId;
+            invalidCaseReport.Origin = @event.Origin;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;

@@ -12,6 +12,7 @@ namespace Events
     {
         public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
+        public string Origin { get; set; }
         public string Message { get; set; }
         public IEnumerable<string> ErrorMessages { get; set; }
         public DateTimeOffset Timestamp { get; set; }
