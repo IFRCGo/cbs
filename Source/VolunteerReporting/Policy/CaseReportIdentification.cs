@@ -4,6 +4,7 @@ using Domain;
 using Events.External;
 using Read.CaseReports;
 using Read.DataCollectors;
+using Read.InvalidCaseReports;
 using System.Threading.Tasks;
 
 namespace Policy
@@ -12,15 +13,18 @@ namespace Policy
     {
         private readonly IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository;
         private readonly ICaseReportsFromUnknownDataCollectors unknownReports;
+        private readonly IInvalidCaseReportsFromUnknownDataCollectors invalidAndUnknownReports;
         private readonly IDataCollectors dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
             ICaseReportsFromUnknownDataCollectors unknownReports,
+            IInvalidCaseReportsFromUnknownDataCollectors invalidAndUnknownReports,
             IDataCollectors dataCollectors)
         {
             this.caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
             this.unknownReports = unknownReports;
+            this.invalidAndUnknownReports = invalidAndUnknownReports;
             this.dataCollectors = dataCollectors;
         }
 
@@ -44,7 +48,21 @@ namespace Policy
                     item.Timestamp
                     );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
-            }            
+            } 
+            
+            var invalidAndUnknownReports = await this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            foreach (var item in invalidAndUnknownReports)
+            {
+                var repo = caseReportingAggregateRootRepository.Get(item.Id);
+                repo.ReportInvalidReport(
+                    @event.DataCollectorId,
+                    item.PhoneNumber,
+                    item.Message,
+                    item.ParsingErrorMessage,
+                    item.Timestamp
+                    );
+                repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
+            }
         }
     }
 }

@@ -45,5 +45,10 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.Timestamp = @event.Timestamp;
             await _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
         }
+
+        public async Task Process(CaseReportIdentified @event)
+        {
+            await _invalidCaseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);
+        }
     }
 }
