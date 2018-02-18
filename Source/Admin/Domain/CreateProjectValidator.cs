@@ -23,6 +23,9 @@ namespace Domain
             RuleFor(_ => _.NationalSocietyId)
                 .NotEmpty()
                 .WithMessage("National society id is mandatory");
+            RuleFor(_ => _.SurveillanceContext)
+                .NotEmpty()
+                .WithMessage("Surveillance context is mandatory");
         }
     }
 }
