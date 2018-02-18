@@ -13,8 +13,9 @@ export class CaseReportService {
     constructor(private http: Http) { }
 
     getCaseReports(): Promise<Array<CaseReport>> {
+        // endpoint is obsolete and should be updated after the view has been adapted to the new read model (which will be /api/casereports again). 
         return this.http
-            .get(environment.api + '/api/casereports', { headers: this.headers })
+            .get(environment.api + '/api/casereportsobsolete', { headers: this.headers })
             .toPromise()
             .then((result) => { return result.json(); })
             .catch((error) => console.error(error));

@@ -12,16 +12,13 @@ namespace Read.InvalidCaseReports
     {
         readonly IInvalidCaseReports _invalidCaseReports;
         readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
-        readonly ISystemClock _systemClock;
 
         public InvalidCaseReportEventProcessors(
             IInvalidCaseReports invalidCaseReports,
-            IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors,
-            ISystemClock systemClock)
+            IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors)
         {
             _invalidCaseReports = invalidCaseReports;
             _invalidCaseReportsFromUnknownDataCollectors = invalidCaseReportsFromUnknownDataCollectors;
-            _systemClock = systemClock;
         }
 
 
@@ -29,6 +26,7 @@ namespace Read.InvalidCaseReports
         {
             // Send the invalid report to the DB
             var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId);
+            //invalidCaseReport.TextMessageId = @event.tex
             invalidCaseReport.DataCollectorId = @event.DataCollectorId;
             invalidCaseReport.Origin = @event.Origin;
             invalidCaseReport.Message = @event.Message;
