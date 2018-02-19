@@ -4,23 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Events;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using doLittle.Events;
 
-namespace Domain
+namespace Events
 {
-    public class CreateProject
+    public class MessageUpdated : IEvent
     {
         public Guid Id { get; set; }
-
-        public string Name { get; set; }
-
-        public Guid NationalSocietyId { get; set; }
-
-        public Guid DataOwnerId { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public string Message { get; set; }
     }
 }
