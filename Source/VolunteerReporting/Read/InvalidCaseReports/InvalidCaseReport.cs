@@ -7,7 +7,6 @@ namespace Read.InvalidCaseReports
     public class InvalidCaseReport
     {
         public Guid Id { get; set; }
-        public Guid TextMessageId { get; set; }
         public Guid DataCollectorId { get; internal set; }
         public string Origin { get; set; }
         public string Message { get; set; }

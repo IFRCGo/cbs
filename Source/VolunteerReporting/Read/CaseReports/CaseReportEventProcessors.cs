@@ -10,16 +10,13 @@ namespace Read.CaseReports
     {
         readonly ICaseReports _caseReports;
         readonly ICaseReportsFromUnknownDataCollectors _caseReportsFromUnknownDataCollectors;
-        readonly ISystemClock _systemClock;
 
         public CaseReportEventProcessor(
             ICaseReports caseReports,
-            ICaseReportsFromUnknownDataCollectors caseReportsFromUnknownDataCollectors,
-            ISystemClock systemClock)
+            ICaseReportsFromUnknownDataCollectors caseReportsFromUnknownDataCollectors)
         {
             _caseReports = caseReports;
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
-            _systemClock = systemClock;
         }
         
         public async Task Process(CaseReportReceived @event)
@@ -37,7 +34,6 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp
             };
             await _caseReports.Save(caseReport);
-            // Send a message back to the DataCollector
         }
         public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
@@ -53,8 +49,6 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp
             };
             await _caseReportsFromUnknownDataCollectors.Save(caseReport);
-
-            // Send a message back to the number sent the message.
         }   
         
         public async Task Process(CaseReportIdentified @event)

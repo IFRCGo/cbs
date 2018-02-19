@@ -8,27 +8,39 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Models;
 using Infrastructure.AspNet;
+using Read.CaseReportsForListing;
 
 namespace Web
 {
     [Route("api/casereports")]
     public class CaseReportsController : BaseController
     {
-        private readonly ICaseReports _caseReports;
+        private readonly ICaseReportsForListing _caseReports;
+        private readonly ICaseReports _caseReportsObsolete;
         private readonly IHealthRisks _healthRisks;
         private readonly IDataCollectors _dataCollectors;
 
-        public CaseReportsController(ICaseReports caseReports, IHealthRisks healthRisks, IDataCollectors dataCollectors)
+        public CaseReportsController(ICaseReportsForListing caseReports, ICaseReports caseReportsObsolete, IHealthRisks healthRisks, IDataCollectors dataCollectors)
         {
             _caseReports = caseReports;
+            _caseReportsObsolete = caseReportsObsolete;
             _healthRisks = healthRisks;
             _dataCollectors = dataCollectors;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CaseReportExpanded>> Get()
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _caseReports.GetAllAsync());
+        }
+
+        //TODO: Remove obsolete endpoint after view has been updated
+        [Route("api/casereportsobsolete")]
+        [HttpGet]
+        [Obsolete]
+        public async Task<IEnumerable<CaseReportExpanded>> GetObsolete()
         {   
-            var caseReports = await _caseReports.GetAllAsync();
+            var caseReports = await _caseReportsObsolete.GetAllAsync();
 
             // Comment from woksin - 15/02-2018
             // By fetching all risks and dataCollectors to memory we should get reduced latency,
