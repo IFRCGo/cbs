@@ -1,10 +1,5 @@
 using Concepts;
-using Read.CaseReports;
-using Read.DataCollectors;
-using Read.HealthRisks;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Read.CaseReportsForListing
 {
@@ -16,10 +11,10 @@ namespace Read.CaseReportsForListing
         public string DataCollectorDisplayName { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
         public HealthRiskId HealthRiskId { get; internal set; }
         public string HealthRisk { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
-        public int? NumberOfFemalesOver5 { get; internal set; } //QUESTION: Should this be a concept with default value if unknown?
-        public int? NumberOfFemalesUnder5 { get; internal set; } //QUESTION: Should this be a concept with default value if unknown?
-        public int? NumberOfMalesOver5 { get; internal set; } //QUESTION: Should this be a concept with default value if unknown?
-        public int? NumberOfMalesUnder5 { get; internal set; } //QUESTION: Should this be a concept with default value if unknown?
+        public int NumberOfFemalesOver5 { get; internal set; }
+        public int NumberOfFemalesUnder5 { get; internal set; } 
+        public int NumberOfMalesOver5 { get; internal set; } 
+        public int NumberOfMalesUnder5 { get; internal set; } 
         public DateTimeOffset Timestamp { get; internal set; }
         public Location Location { get; internal set; }
 
