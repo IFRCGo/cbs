@@ -33,12 +33,20 @@ namespace Web
         {
             return Ok(await _caseReports.GetAllAsync());
         }
-        
+
+        [HttpGet("obsolete")]
+        [Obsolete]
+        public async Task<IActionResult> GetObsolete()
+        {
+            return Ok(await _caseReportsObsolete.GetAllAsync());
+        }
+
         [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
         public async Task<IActionResult> GetLimitLast(int limit)
         {
             return Ok(await _caseReports.GetLimitAsync(limit, true));
         }
+
         [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
         public async Task<IActionResult> GetLimitFirst(int limit)
         {
