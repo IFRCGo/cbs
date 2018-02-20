@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AggregatedCaseReportService } from '../../core/aggregated-case-report.service';
-import { Report } from '../../shared/models/report.model';
+import { CaseReportForListing } from '../../shared/models/case-report-for-listing.model';
 
 import { ReportService, ReportSearchCriteria } from './sort/case-report.service';
 import { Filter } from './filtring/filter.pipe'
@@ -25,16 +25,14 @@ import { Filter } from './filtring/filter.pipe'
  *      cannot be accessed through the Report interface
  */
 export class CaseReportListComponent implements OnInit {
-    maxReports: number;
-    listedReports: Array<any>;
-
-    reports: Array<Report>;
-    reportsDetailed: Array<any>;
     
+    listedReports: Array<CaseReportForListing>;
+    maxReports: number;
     filterField: string;
     filterValue: any;
 
     basicFilter: string = "all";
+    
     constructor(
         private caseReportService: AggregatedCaseReportService,
         private service: ReportService
@@ -49,7 +47,7 @@ export class CaseReportListComponent implements OnInit {
      */
     getReports(criteria: ReportSearchCriteria) {
         
-        this.listedReports = this.service.getReports(this.reports,this.reportsDetailed, criteria).slice(0, this.maxReports);
+        this.listedReports = this.service.getReports(this.listedReports, criteria);
     }
 
     onSorted($event) {
@@ -60,9 +58,8 @@ export class CaseReportListComponent implements OnInit {
         this.caseReportService.getReports()
             .then(
                 (result) => {
-                    this.reports = this.reportsDetailed = result || []
-
-                    this.listedReports = this.reportsDetailed.slice(0, this.maxReports);
+                    this.listedReports = result || [];
+                    console.log(this.listedReports);
                 }
             )
             .catch((error) => console.error(error));
@@ -70,8 +67,6 @@ export class CaseReportListComponent implements OnInit {
     }
 
     onClick(name: string) {
-        console.log(name);
-        
         this.basicFilter = name;
     }
 }

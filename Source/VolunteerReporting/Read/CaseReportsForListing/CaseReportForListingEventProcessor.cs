@@ -74,7 +74,8 @@ namespace Read.CaseReportsForListing
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorId = @event.DataCollectorId,
-                DataCollectorDisplayName = dataCollector.DisplayName,                
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                Message = @event.Message,
                 Timestamp = @event.Timestamp
             };
             await _caseReports.Save(caseReport);
@@ -85,6 +86,7 @@ namespace Read.CaseReportsForListing
             var caseReport = new CaseReportForListing(@event.CaseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
+                Message = @event.Message,
                 Timestamp = @event.Timestamp
             };
             await _caseReports.Save(caseReport);

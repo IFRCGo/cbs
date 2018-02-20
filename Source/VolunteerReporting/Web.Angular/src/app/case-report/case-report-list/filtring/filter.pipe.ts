@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core"
+import { CaseReportForListing } from "../../../shared/models/case-report-for-listing.model";
 
 @Pipe({
     name: "filter",
@@ -6,7 +7,7 @@ import {Pipe, PipeTransform} from "@angular/core"
 })
 
 export class Filter implements PipeTransform{
-    transform(reports: Array<any>, value: string){
+    transform(reports: Array<CaseReportForListing>, value: string){
         if (!reports || !value) {
             return reports;
         }
@@ -20,30 +21,23 @@ export class Filter implements PipeTransform{
                 list.push(report);
                     break;
                 case "success":
-                    if (report.healthRisk) {
+                    if (report.healthRiskId) {
                         list.push(report);
                     }
                     break;
                 case "error":
-                    if (!report.healthRisk) {
+                    if (!report.healthRiskId) {
                         list.push(report);
                     }
                     break;
                 case "unknownSender":
-                    if (
-                        report.dataCollector?
-                            report.dataCollector.fullName?
-                                (report.dataCollector.fullName === "")? true
-                                    : false
-                                : true
-                            : true
-                    ) {
+                    if (!report.dataCollectorId) {
                         list.push(report);
                     }
                     break;
 
                 default:
-                list.push(report);
+                    list.push(report);
                     break;
             }       
         });

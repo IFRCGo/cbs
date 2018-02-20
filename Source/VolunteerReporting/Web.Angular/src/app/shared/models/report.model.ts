@@ -1,4 +1,4 @@
-import { Location, DataCollector, HealthRisk } from './index';
+import { Location } from './index';
 
 export interface Report {
     id: string;

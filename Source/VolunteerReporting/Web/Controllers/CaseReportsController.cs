@@ -27,7 +27,7 @@ namespace Web
             _healthRisks = healthRisks;
             _dataCollectors = dataCollectors;
         }
-
+        [Route("casereportsforlisting")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -35,7 +35,7 @@ namespace Web
         }
 
         //TODO: Remove obsolete endpoint after view has been updated
-        [Route("api/casereportsobsolete")]
+        [Route("casereportsobsolete")]
         [HttpGet]
         [Obsolete]
         public async Task<IEnumerable<CaseReportExpanded>> GetObsolete()
