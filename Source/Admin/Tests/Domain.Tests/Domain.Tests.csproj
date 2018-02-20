@@ -12,9 +12,9 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain.RuleImplementations\Domain.RuleImplementations.csproj" />
     <ProjectReference Include="..\..\Read\Read.csproj" />
     <ProjectReference Include="..\..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Domain.RuleImplementations\Domain.RuleImplementations.csproj" />
   </ItemGroup>
 
 </Project>

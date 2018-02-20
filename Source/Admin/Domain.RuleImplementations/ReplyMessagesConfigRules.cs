@@ -3,17 +3,23 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Autofac;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.RuleImplementations
 {
-    public class RuleModule : Module
+    public class ReplyMessagesConfigRules : IReplyMessagesConfigRules
     {
-        protected override void Load(ContainerBuilder builder)
+
+        public bool IsTagsValid(IEnumerable<string> tags)
         {
-            builder.RegisterType<ProjectHealthRiskRules>().As<IProjectHealthRiskRules>();
-            builder.RegisterType<ProjectRules>().As<IProjectRules>();
-            builder.RegisterType<UserRules>().As<IUserRules>();
+            return tags.All(IsTagValid);
+        }
+
+        private bool IsTagValid(string tag)
+        {
+            return !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
         }
     }
 }

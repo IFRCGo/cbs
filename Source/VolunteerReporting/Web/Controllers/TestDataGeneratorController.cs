@@ -22,6 +22,7 @@ using Read.Projects;
 using doLittle.Events;
 using Microsoft.Extensions.Configuration;
 using Read.InvalidCaseReports;
+using Read.CaseReportsForListing;
 
 namespace Web
 {
@@ -170,11 +171,12 @@ namespace Web
             var _col2 = _database.GetCollection<CaseReportFromUnknownDataCollector>("CaseReportFromUnknownDataCollector");
             var _col3 = _database.GetCollection<InvalidCaseReport>("InvalidCaseReport");
             var _col4 = _database.GetCollection<InvalidCaseReportFromUnknownDataCollector>("InvalidCaseReportFromUnknownDataCollector");
-
+            var _col5 = _database.GetCollection<CaseReportForListing>("CaseReportForListing");
             _col1.DeleteMany(v => true);
             _col2.DeleteMany(v => true);
             _col3.DeleteMany(v => true);
             _col4.DeleteMany(v => true);
+            _col5.DeleteMany(v => true);
 
             var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
             foreach (var message in textMessagesEvents)

@@ -96,9 +96,9 @@ namespace Domain.Tests
             var validator = new CreateProjectValidator(new ProjectRules(projects));
             var validationResult = validator.Validate(new CreateProject
             {
-                Name = "name",
+                Name = "name2",
                 DataOwnerId = Guid.NewGuid(),
-                NationalSocietyId = Guid.NewGuid(),
+                NationalSocietyId = Guid.NewGuid()
             });
             Assert.Contains(validationResult.Errors, e => e.ErrorMessage.Equals("Surveillance context is mandatory"));
         }

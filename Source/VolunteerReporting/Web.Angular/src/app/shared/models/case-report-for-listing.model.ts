@@ -1,17 +1,16 @@
-using Concepts;
-using System;
+import { Location } from './index';
+import { Report } from './report.model';
+import { CaseReportStatus } from './case-report-status.model'
 
-namespace Read.CaseReportsForListing
-{
-    public class CaseReportForListing
-    {
+export class CaseReportForListing implements Report {
+    
+    /*
         public Guid Id { get; private set; }
         public CaseReportStatus Status { get; internal set; }
         public DataCollectorId DataCollectorId { get; internal set; }
         public string DataCollectorDisplayName { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
         public HealthRiskId HealthRiskId { get; internal set; }
         public string HealthRisk { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
-        public string Message { get; internal set; } = ""; // From woksin: If the Status is a TextParsingError-status, then this message is nice to have.
         public int NumberOfFemalesOver5 { get; internal set; }
         public int NumberOfFemalesUnder5 { get; internal set; } 
         public int NumberOfMalesOver5 { get; internal set; } 
@@ -19,12 +18,19 @@ namespace Read.CaseReportsForListing
         public DateTimeOffset Timestamp { get; internal set; }
         public Location Location { get; internal set; }
 
-        //QUESTION: Should we also add text messages that could not be parsed with the parsing error messages? Or is it enough with that status, and another read model should be used in a different view were invalid case reports can be fixed
-        
-
-        public CaseReportForListing(Guid id)
-        {
-            Id = id;
-        }
-    }
+    */
+    success(): boolean { return true; }
+    id: string;
+    status: CaseReportStatus;
+    dataCollectorId: string;
+    dataCollectorDisplayName: string;
+    healthRiskId: string;
+    healthRisk: string;
+    message: string;
+    numberOfFemalesOver5: number;
+    numberOfFemalesUnder5: number;
+    numberOfMalesOver5: number;
+    numberOfMalesUnder5: number;
+    timestamp: Date;
+    location: Location;
 }
