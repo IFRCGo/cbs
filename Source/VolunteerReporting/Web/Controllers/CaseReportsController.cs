@@ -27,43 +27,23 @@ namespace Web
             _healthRisks = healthRisks;
             _dataCollectors = dataCollectors;
         }
-        [Route("casereportsforlisting")]
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _caseReports.GetAllAsync());
         }
-
-        //TODO: Remove obsolete endpoint after view has been updated
-        [Route("casereportsobsolete")]
-        [HttpGet]
-        [Obsolete]
-        public async Task<IEnumerable<CaseReportExpanded>> GetObsolete()
-        {   
-            var caseReports = await _caseReportsObsolete.GetAllAsync();
-
-            // Comment from woksin - 15/02-2018
-            // By fetching all risks and dataCollectors to memory we should get reduced latency,
-            // which was the case when I tested this method using the old method versus fetching the data prior to querying it.
-            // In my opinion, the best way to do this is to have a cache-system for these databases (preferably in the classes that deals directly
-            // with IMongoDatabase and IMongoCollection 
-            var healthRisks = await _healthRisks.GetAllAsync();
-            var dataCollectors = await _dataCollectors.GetAllAsync();
-            // Comment from review; einari - 23rd of October 2017
-            // Todo: This is a N+1 query - potentially incredibly slow
-            // an optimization would be to get all healthrisks and then
-            // do inmemory lookups. Also moved this away from being done inside the CaseReportExtended
-            // object - as it should not be having a relationship to repositories
-            return caseReports.Select(caseReport =>
-            {
-                var dataCollector = dataCollectors.FirstOrDefault(collector => collector.Id == caseReport.DataCollectorId);
-                var healthRisk = healthRisks.FirstOrDefault(risk => risk.Id == caseReport.HealthRiskId);
-               
-                //var healthRisk2 = _healthRisks.GetById(caseReport.HealthRiskId);
-                //var dataCollector2 = _dataCollectors.GetById(caseReport.DataCollectorId);
-                return new CaseReportExpanded(caseReport, dataCollector, healthRisk);
-            });
-           
+        
+        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
+        public async Task<IActionResult> GetLimitLast(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, true));
         }
+        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
+        public async Task<IActionResult> GetLimitFirst(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, false));
+        }
+        
     }
 }

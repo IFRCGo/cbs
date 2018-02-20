@@ -85,7 +85,6 @@ export class ReportService {
     }
 }
 
-
 export class ReportSearchCriteria {
   sortColumn: string;
   sortDirection: string;
