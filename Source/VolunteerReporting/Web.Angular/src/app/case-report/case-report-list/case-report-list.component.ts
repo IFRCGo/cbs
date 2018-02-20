@@ -4,6 +4,7 @@ import { CaseReportForListing } from '../../shared/models/case-report-for-listin
 
 import { ReportService, ReportSearchCriteria } from './sort/case-report.service';
 import { Filter } from './filtring/filter.pipe'
+import { CaseReportExporter } from './exporter/case-report-exporter.service';
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -33,9 +34,18 @@ export class CaseReportListComponent implements OnInit {
 
     basicFilter: string = "all";
     
+    fields: Array<string> = [
+        "id", "status", "dataCollectorId", "dataCollectorDisplayName",
+        "healthRiskId", "healthRisk", "message",
+        "numberOfFemalesOver5", "numberOfFemalesUnder5",
+        "numberOfMalesOver5", "numberOfMalesUnder5",
+        "timestamp", "location"
+    ];
+
     constructor(
         private caseReportService: AggregatedCaseReportService,
-        private service: ReportService
+        private service: ReportService,
+        private caseReportExporter: CaseReportExporter
     ) { this.maxReports = 10 }
 
     /**
@@ -60,6 +70,7 @@ export class CaseReportListComponent implements OnInit {
                 (result) => {
                     this.listedReports = result || [];
                     console.log(this.listedReports);
+                    this.caseReportExporter.exportToCsv(this.listedReports, this.fields);
                 }
             )
             .catch((error) => console.error(error));

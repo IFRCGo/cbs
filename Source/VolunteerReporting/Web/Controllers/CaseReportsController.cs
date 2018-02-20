@@ -52,6 +52,12 @@ namespace Web
         {
             return Ok(await _caseReports.GetLimitAsync(limit, false));
         }
-        
+
+        [HttpGet("export")]
+        public async Task<IActionResult> Export()
+        {
+            string[] fields = {};
+            return Ok(await _caseReports.ExportCsv(fields));
+        }
     }
 }

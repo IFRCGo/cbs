@@ -1,9 +1,15 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using Newtonsoft.Json.Converters;
 
 namespace Read.CaseReportsForListing
 {
@@ -57,6 +63,26 @@ namespace Read.CaseReportsForListing
         {
             var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, id);
             await _collection.DeleteOneAsync(filter);
+        }
+
+        public async Task<string> ExportCsv(string[] fields)
+        {
+            var filter = Builders<CaseReportForListing>.Filter.Empty;
+
+            var cursor = await _collection.FindAsync(filter);
+
+            throw new NotImplementedException();
+            return "";
+        }
+
+        public Task<FileContentResult> ExportExcel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FileContentResult> ExportPdf()
+        {
+            throw new NotImplementedException();
         }
     }
 }
