@@ -11,6 +11,7 @@ namespace Read.CaseReportsForListing
         public string DataCollectorDisplayName { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
         public HealthRiskId HealthRiskId { get; internal set; }
         public string HealthRisk { get; internal set; } = "Unknown"; //QUESTION: Should this be a concept with default value if unknown?
+        public string Message { get; internal set; } = ""; // From woksin: If the Status is a TextParsingError-status, then this message is nice to have.
         public int NumberOfFemalesOver5 { get; internal set; }
         public int NumberOfFemalesUnder5 { get; internal set; } 
         public int NumberOfMalesOver5 { get; internal set; } 
