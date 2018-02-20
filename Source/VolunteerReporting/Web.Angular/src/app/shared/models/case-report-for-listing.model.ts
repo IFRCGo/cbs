@@ -1,4 +1,4 @@
-import { Location, DataCollector, HealthRisk } from './index';
+import { Location } from './index';
 import { Report } from './report.model';
 import { CaseReportStatus } from './case-report-status.model'
 

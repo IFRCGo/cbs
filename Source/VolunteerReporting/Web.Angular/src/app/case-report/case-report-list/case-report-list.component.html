@@ -34,13 +34,16 @@
         <tr *ngFor="let caseReport of listedReports | filter:basicFilter">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
-                <span  *ngIf="caseReport.healthRisk" class="label label-success">Success</span>
-                <span  *ngIf="!caseReport.healthRisk" class="label label-danger">Error</span>
+                <span  *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
+                <span  *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
                 
             </td>
-            <td>{{caseReport.dataCollector?.displayName}}&nbsp;</td>
-            <ng-container *ngIf="caseReport.healthRisk">
-                <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td>
+            <td>
+                <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
+            </td>
+            <ng-container *ngIf="caseReport.healthRiskId">
+                <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
+                <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfFemalesOver5}}</td>
                 <td>{{caseReport.numberOfFemalesUnder5}}</td>
                 <td>{{caseReport.numberOfMalesOver5}}</td>
@@ -49,7 +52,7 @@
                     <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
                 </td>
             </ng-container>
-            <ng-container *ngIf="!caseReport.healthRisk">
+            <ng-container *ngIf="!caseReport.healthRiskId">
                 <td colspan="6">
                     {{caseReport.message}}
                 </td>

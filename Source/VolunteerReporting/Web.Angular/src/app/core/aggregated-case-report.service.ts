@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Report } from '../shared/models/report.model';
-import { CaseReport } from '../shared/models/index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin'; 
 import { environment } from '../../environments/environment'; 
+import { CaseReportForListing } from '../shared/models/case-report-for-listing.model';
 
 @Injectable()
 export class AggregatedCaseReportService {
@@ -16,14 +16,19 @@ export class AggregatedCaseReportService {
 
     constructor(private http: Http) { }
 
+    getReports(): Promise<void | Array<CaseReportForListing>> {
+        
+        return this.http.get(environment.api + "/api/casereports/casereportsforlisting", {headers: this.headers})
+            .toPromise()
+            .then(result => {return result.json(); })
+            .catch(error => console.error(error)); 
+            //Question: Should I even bother having the view initiated with a 
+            //list sorted by the timestamp when the user can do so himself?
+             
+        
+    }
+    /* Obsolete
     getReports(): Promise<void | Array<Report>> {
-
-       /* 
-        *  This code was left like this just because it works. The point is to fetch
-        *  data from the four lists, and return a sorted array of these. This way is 
-        *  probably the least efficient way, and should be improved by someone a more
-        *  skilled javascript programmer than me // 2017-11-07 roarfred //
-        */ 
 
         var caseReports = this.http.get(environment.api + '/api/casereports', { headers: this.headers });
         var caseReportsFromUnknownDataCollectors = this.http.get(environment.api + '/api/casereportsfromunknowndatacollectors', { headers: this.headers });
@@ -45,5 +50,5 @@ export class AggregatedCaseReportService {
                 return array.sort((a:Report, b:Report) => a.timestamp > b.timestamp ? 1 : a.timestamp < b.timestamp ? -1 : 0);
              })
             .catch((error) => console.error(error));
-    };
+    };*/
 }
