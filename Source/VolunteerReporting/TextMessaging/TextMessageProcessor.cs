@@ -54,8 +54,13 @@ namespace TextMessaging
                 return;
             }
 
-            // Todo: Should we have a validation check if we actually get a health risk id
             var healthRiskId = _healthRisks.GetIdFromReadableId(parsingResult.Numbers[0]);
+            if (healthRiskId == Guid.Empty)
+            {
+                ReportInvalidMessage(message, parsingResult, dataCollector, caseReporting, message.Sent);
+                return;
+            }
+
             if (!parsingResult.HasMultipleCases)
             {
                 var malesUnder5 = 0;
