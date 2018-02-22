@@ -9,6 +9,7 @@ using Read.DataCollectors;
 using Read.HealthRisks;
 using doLittle.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace TextMessaging
 {
@@ -50,14 +51,19 @@ namespace TextMessaging
             var caseReporting = _caseReportingRepository.Get(caseReportId);
             if (!parsingResult.IsValid)
             {
-                ReportInvalidMessage(message, parsingResult, dataCollector, caseReporting, message.Sent);
+                ReportInvalidMessage(message, parsingResult.ErrorMessages, dataCollector, caseReporting, message.Sent);
                 return;
             }
-
-            var healthRiskId = _healthRisks.GetIdFromReadableId(parsingResult.Numbers[0]);
+            var healthRiskReadableId = parsingResult.Numbers[0];
+            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
             if (healthRiskId == Guid.Empty)
-            {
-                ReportInvalidMessage(message, parsingResult, dataCollector, caseReporting, message.Sent);
+            {                  
+                ReportInvalidMessage(
+                    message,
+                    new List<string> {$"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}"},
+                    dataCollector,
+                    caseReporting,
+                    message.Sent);
                 return;
             }
 
@@ -108,7 +114,7 @@ namespace TextMessaging
 
         void ReportInvalidMessage(
             TextMessage message,
-            TextMessageParsingResult parsingResult,
+            IEnumerable<string> errorMessages,
             DataCollector dataCollector,
             CaseReporting caseReporting,
             DateTimeOffset timestamp)
@@ -118,12 +124,12 @@ namespace TextMessaging
                 dataCollector.Id,
                 message.OriginNumber,
                 message.Message,
-                parsingResult.ErrorMessages,
+                errorMessages,
                 timestamp);
             else caseReporting.ReportInvalidReportFromUnknownDataCollector(
                 message.OriginNumber,
                 message.Message,
-                parsingResult.ErrorMessages,
+                errorMessages,
                 timestamp);
         }
 
