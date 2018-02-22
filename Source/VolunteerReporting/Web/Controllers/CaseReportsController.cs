@@ -1,47 +1,33 @@
-using Microsoft.AspNetCore.Mvc;
-using Read.DataCollectors;
-using Read.CaseReports;
-using Read.HealthRisks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Models;
 using Infrastructure.AspNet;
+using Microsoft.AspNetCore.Mvc;
+using Read.CaseReports;
+using Read.CaseReportsForListing;
+using Read.DataCollectors;
+using Read.HealthRisks;
+using System.Threading.Tasks;
 
 namespace Web
 {
     [Route("api/casereports")]
     public class CaseReportsController : BaseController
     {
-        private readonly ICaseReports _caseReports;
+        private readonly ICaseReportsForListing _caseReports;
+        private readonly ICaseReports _caseReportsObsolete;
         private readonly IHealthRisks _healthRisks;
         private readonly IDataCollectors _dataCollectors;
 
-        public CaseReportsController(ICaseReports caseReports, IHealthRisks healthRisks, IDataCollectors dataCollectors)
+        public CaseReportsController(ICaseReportsForListing caseReports, ICaseReports caseReportsObsolete, IHealthRisks healthRisks, IDataCollectors dataCollectors)
         {
             _caseReports = caseReports;
+            _caseReportsObsolete = caseReportsObsolete;
             _healthRisks = healthRisks;
             _dataCollectors = dataCollectors;
         }
-
+        [Route("casereportsforlisting")]
         [HttpGet]
-        public async Task<IEnumerable<CaseReportExpanded>> Get()
+        public async Task<IActionResult> Get()
         {
-            var caseReports = await _caseReports.GetAllAsync();
-
-            // Comment from review; einari - 23rd of October 2017
-            // Todo: This is a N+1 query - potentially incredibly slow
-            // an optimization would be to get all data collectors and all healthrisks and then
-            // do inmemory lookups. Also moved this away from being done inside the CaseReportExtended
-            // object - as it should not be having a relationship to repositories
-            return caseReports.Select(caseReport => 
-            {
-                var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
-                var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-                
-                return new CaseReportExpanded(caseReport, dataCollector, healthRisk);
-            });
-        }
+            return Ok(await _caseReports.GetAllAsync());
+        }        
     }
 }

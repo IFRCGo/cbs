@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using doLittle.Events.Processing;
 using Events;
+using Read.AutomaticReplyMessages;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 
@@ -18,16 +19,18 @@ namespace Read.ProjectFeatures
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
         private readonly IProjectHealthRiskVersions _projectHealthRiskVersions;
+        private readonly IReplyMessages _replyMessages;
 
         public ProjectEventProcessor(IProjects projects
             , IUsers users
             , INationalSocieties nationalSocieties
-            , IProjectHealthRiskVersions projectHealthRiskVersions)
+            , IProjectHealthRiskVersions projectHealthRiskVersions, IReplyMessages replyMessages)
         {
             _projects = projects;
             _users = users;
             _nationalSocieties = nationalSocieties;
             _projectHealthRiskVersions = projectHealthRiskVersions;
+            _replyMessages = replyMessages;
         }
 
         public void Process(ProjectCreated @event)
@@ -50,7 +53,7 @@ namespace Read.ProjectFeatures
             project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
             project.SurveillanceContext = @event.SurveillanceContext;
-            project.SMSGateWay = @event.SMSGateWay;
+            project.SmsProxy = @event.SmsProxy;
             _projects.Save(project);
         }
 
@@ -111,5 +114,15 @@ namespace Read.ProjectFeatures
                 _projects.Save(project);
             }
         }
+
+        public void Process(ReplyMessageConfigUpdated @event)
+        {
+            _replyMessages.Save(new ReplyMessagesConfig
+            {
+                Messages = @event.Messages
+            });
+
+        }
     }
+    
 }

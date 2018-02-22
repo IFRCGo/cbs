@@ -9,5 +9,7 @@ namespace Read.InvalidCaseReports
     {
         Task Save(InvalidCaseReportFromUnknownDataCollector caseReport);
         Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync();
+        Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumber(string phoneNumber);
+        Task Remove(Guid id);
     }
 }

@@ -15,6 +15,7 @@ namespace Domain
 
         public void ReportInvalidReport(
             DataCollectorId collector,
+            string origin,
             string originalMessage,
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
@@ -23,6 +24,7 @@ namespace Domain
             {
                 CaseReportId = EventSourceId,
                 DataCollectorId = collector,
+                Origin = origin,
                 Message = originalMessage,
                 ErrorMessages = errorMessages,
                 Timestamp = timestamp
@@ -49,6 +51,7 @@ namespace Domain
         public void Report(
             Guid dataCollectorId,
             Guid healthRiskId,
+            string origin,
             int numberOfMalesUnder5,
             int numberOfMalesOver5,
             int numberOfFemalesUnder5,
@@ -62,6 +65,7 @@ namespace Domain
                 CaseReportId = EventSourceId,
                 DataCollectorId = dataCollectorId,
                 HealthRiskId = healthRiskId,
+                Origin = origin,
                 NumberOfMalesUnder5 = numberOfMalesUnder5,
                 NumberOfMalesOver5 = numberOfMalesOver5,
                 NumberOfFemalesUnder5 = numberOfFemalesUnder5,
@@ -79,8 +83,6 @@ namespace Domain
             int numberOfMalesOver5,
             int numberOfFemalesUnder5,
             int numberOfFemalesOver5,
-            double longitude,
-            double latitude,
             DateTimeOffset timestamp)
         {
             Apply(new CaseReportFromUnknownDataCollectorReceived
@@ -92,8 +94,6 @@ namespace Domain
                 NumberOfFemalesOver5 = numberOfFemalesOver5,
                 NumberOfMalesUnder5 = numberOfMalesUnder5,
                 NumberOfMalesOver5 = numberOfMalesOver5,
-                Longitude = longitude,
-                Latitude = latitude,
                 Timestamp = timestamp
             });
         }      

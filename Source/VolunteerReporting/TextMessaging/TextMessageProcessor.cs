@@ -45,31 +45,40 @@ namespace TextMessaging
         public void Process(TextMessage message)
         {
             var parsingResult = _textMessageParser.Parse(message);
-            var dataCollectorId = _dataCollectors.GetIdByPhoneNumber(message.OriginNumber);
-            var unknown = dataCollectorId == DataCollectorId.NotSet;
-
+            var dataCollector = _dataCollectors.GetByPhoneNumber(message.OriginNumber);
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
             if (!parsingResult.IsValid)
             {
-                ReportInvalidMessage(message, parsingResult, dataCollectorId, unknown, caseReporting, message.Sent);
+                ReportInvalidMessage(message, parsingResult, dataCollector, caseReporting, message.Sent);
                 return;
             }
 
-            // Todo: Should we have a validation check if we actually get a health risk id
             var healthRiskId = _healthRisks.GetIdFromReadableId(parsingResult.Numbers[0]);
+            if (healthRiskId == Guid.Empty)
+            {
+                ReportInvalidMessage(message, parsingResult, dataCollector, caseReporting, message.Sent);
+                return;
+            }
+
             if (!parsingResult.HasMultipleCases)
             {
-                var sex = (Sex)parsingResult.Numbers[1];
-                var age = parsingResult.Numbers[2];
-                var malesUnder5 = age <= 5 && sex == Sex.Male ? 1 : 0;
-                var malesOver5 = age > 5 && sex == Sex.Male ? 1 : 0;
-                var femalesUnder5 = age <= 5 && sex == Sex.Female ? 1 : 0;
-                var femalesOver5 = age > 5 && sex == Sex.Female ? 1 : 0;
+                var malesUnder5 = 0;
+                var malesOver5 = 0;
+                var femalesUnder5 = 0;
+                var femalesOver5 = 0;
+                if (parsingResult.Numbers.Length == 3)
+                {  
+                    var sex = (Sex)parsingResult.Numbers[1];
+                    var ageGroup = parsingResult.Numbers[2];                        
+                    malesUnder5 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
+                    malesOver5 = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
+                    femalesUnder5 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
+                    femalesOver5 = ageGroup == 2 && sex == Sex.Female ? 1 : 0;                                     
+                }                
                 Report(
                     message,
-                    dataCollectorId,
-                    unknown,
+                    dataCollector,
                     caseReporting,
                     healthRiskId,
                     malesUnder5,
@@ -86,8 +95,7 @@ namespace TextMessaging
                 var femalesOver5 = parsingResult.Numbers[4];
                 Report(
                     message,
-                    dataCollectorId,
-                    unknown,
+                    dataCollector,
                     caseReporting,
                     healthRiskId,
                     malesUnder5,
@@ -101,13 +109,14 @@ namespace TextMessaging
         void ReportInvalidMessage(
             TextMessage message,
             TextMessageParsingResult parsingResult,
-            DataCollectorId dataCollectorId,
-            bool unknown,
+            DataCollector dataCollector,
             CaseReporting caseReporting,
             DateTimeOffset timestamp)
         {
-            if (!unknown) caseReporting.ReportInvalidReport(
-                dataCollectorId,
+            if (dataCollector != null)
+                caseReporting.ReportInvalidReport(
+                dataCollector.Id,
+                message.OriginNumber,
                 message.Message,
                 parsingResult.ErrorMessages,
                 timestamp);
@@ -120,8 +129,7 @@ namespace TextMessaging
 
         void Report(
             TextMessage message,
-            DataCollectorId dataCollectorId,
-            bool unknown,
+            DataCollector dataCollector,
             CaseReporting caseReporting,
             Guid healthRiskId,
             int malesUnder5,
@@ -130,17 +138,18 @@ namespace TextMessaging
             int femalesOver5,
             DateTimeOffset timestamp)
         {
-            if (!unknown)
+            if (dataCollector != null)
             {
                 caseReporting.Report(
-                    dataCollectorId,
+                    dataCollector.Id,
                     healthRiskId,
+                    message.OriginNumber,
                     malesUnder5,
                     malesOver5,
                     femalesUnder5,
                     femalesOver5,
-                    message.Longitude,
-                    message.Latitude,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
                     timestamp
                 );
             }
@@ -153,8 +162,6 @@ namespace TextMessaging
                     malesOver5,
                     femalesUnder5,
                     femalesOver5,
-                    message.Longitude,
-                    message.Latitude,
                     timestamp
                 );
             }

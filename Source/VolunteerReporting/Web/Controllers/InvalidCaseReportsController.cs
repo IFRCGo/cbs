@@ -28,7 +28,13 @@ namespace Web
         public async Task<IEnumerable<InvalidCaseReportExpanded>> Get()
         {
             var invalidCaseReports = await _invalidCaseReports.GetAllAsync();
-
+            
+            // Comment from woksin - 15/02-2018
+            // By fetching all dataCollectors to memory we should get reduced latency,
+            // which was the case when I tested this method using the old method versus fetching the data prior to querying it.
+            // In my opinion, the best way to do this is to have a cache-system for these databases (preferably in the classes that deals directly
+            // with IMongoDatabase and IMongoCollection 
+            var dataCollectors = await _dataCollectors.GetAllAsync();
             // Following over from CaseReportController...
             // (half -as bad, but still half-assed)
             //
@@ -39,7 +45,8 @@ namespace Web
             // object - as it should not be having a relationship to repositories
             return invalidCaseReports.Select(caseReport => 
             {
-                var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
+                var dataCollector = dataCollectors.FirstOrDefault(collector => collector.Id == caseReport.DataCollectorId);
+                //var dataCollector2 = _dataCollectors.GetById(caseReport.DataCollectorId);
                 return new InvalidCaseReportExpanded(caseReport, dataCollector);
             });
         }

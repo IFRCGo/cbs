@@ -1,0 +1,17 @@
+.header {
+  h2 {
+    display: inline-block;
+  }
+
+  a {
+    float: right;
+    display: inline-block;
+    line-height: 63px;
+    margin: 8px 4px;
+  }
+}
+
+.alert-danger {
+  padding: 10px;
+  margin: 10px 0;
+}

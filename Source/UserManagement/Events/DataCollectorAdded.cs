@@ -7,8 +7,8 @@ namespace Events
     public class DataCollectorAdded : IEvent
     {
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
         public int Sex { get; set; }
         public Guid NationalSociety { get; set; }

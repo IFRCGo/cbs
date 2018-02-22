@@ -12,23 +12,23 @@ namespace Read.InvalidCaseReports
     {
         readonly IInvalidCaseReports _invalidCaseReports;
         readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
-        readonly ISystemClock _systemClock;
 
         public InvalidCaseReportEventProcessors(
             IInvalidCaseReports invalidCaseReports,
-            IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors,
-            ISystemClock systemClock)
+            IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors)
         {
             _invalidCaseReports = invalidCaseReports;
             _invalidCaseReportsFromUnknownDataCollectors = invalidCaseReportsFromUnknownDataCollectors;
-            _systemClock = systemClock;
         }
 
 
         public async Task Process(InvalidReportReceived @event)
         {
+            // Send the invalid report to the DB
             var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId);
+            //invalidCaseReport.TextMessageId = @event.tex
             invalidCaseReport.DataCollectorId = @event.DataCollectorId;
+            invalidCaseReport.Origin = @event.Origin;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
@@ -37,12 +37,18 @@ namespace Read.InvalidCaseReports
 
         public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
+            // Send the invalid report to tbe DB
             var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId);
             invalidCaseReport.PhoneNumber = @event.Origin;
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
             await _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
+        }
+
+        public async Task Process(CaseReportIdentified @event)
+        {
+            await _invalidCaseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);
         }
     }
 }

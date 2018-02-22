@@ -21,6 +21,8 @@ using Concepts;
 using Read.Projects;
 using doLittle.Events;
 using Microsoft.Extensions.Configuration;
+using Read.InvalidCaseReports;
+using Read.CaseReportsForListing;
 
 namespace Web
 {
@@ -121,12 +123,13 @@ namespace Web
                 };
 
                 // Create location for half the messages
+                /* DEPCRECATED
                 if (randomizer.NextDouble() > 0.5)
                 {
                     textMessage.Latitude = -80d + randomizer.NextDouble() * 80d;    // Latitude between -80 and 80 degrees
                     textMessage.Longitude = randomizer.NextDouble() * 360d;         // Longitude between 0 and 360 degrees
                 }
-
+                */
                 events.Add(textMessage);
             }
 
@@ -154,8 +157,8 @@ namespace Web
             }
             else
             {
-                // Single event: healt risk # sex # age
-                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{randomizer.Next(2) + 1}#{randomizer.Next(70) + 1}";
+                // Single event: healt risk # sex # age group
+                return $"{healthRiskIds[randomizer.Next(healthRiskIds.Length)]}#{randomizer.Next(2) + 1}#{randomizer.Next(2) + 1}";
             }
         }
 
@@ -163,8 +166,17 @@ namespace Web
         [HttpGet("textmessages")]
         public void CreateTextMessages()
         {
-            var _caseReportsCollection = _database.GetCollection<CaseReport>("CaseReport");
-            _caseReportsCollection.DeleteMany(v => true);
+
+            var _col1 = _database.GetCollection<CaseReport>("CaseReport");
+            var _col2 = _database.GetCollection<CaseReportFromUnknownDataCollector>("CaseReportFromUnknownDataCollector");
+            var _col3 = _database.GetCollection<InvalidCaseReport>("InvalidCaseReport");
+            var _col4 = _database.GetCollection<InvalidCaseReportFromUnknownDataCollector>("InvalidCaseReportFromUnknownDataCollector");
+            var _col5 = _database.GetCollection<CaseReportForListing>("CaseReportForListing");
+            _col1.DeleteMany(v => true);
+            _col2.DeleteMany(v => true);
+            _col3.DeleteMany(v => true);
+            _col4.DeleteMany(v => true);
+            _col5.DeleteMany(v => true);
 
             var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
             foreach (var message in textMessagesEvents)

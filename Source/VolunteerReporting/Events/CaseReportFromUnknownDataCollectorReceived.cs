@@ -17,7 +17,5 @@ namespace Events
         public int NumberOfMalesOver5 { get; set; }
         public int NumberOfFemalesUnder5 { get; set; }
         public int NumberOfFemalesOver5 { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
     }
 }

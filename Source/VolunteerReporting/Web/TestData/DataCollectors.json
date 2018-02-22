@@ -1,22 +1,22 @@
 [
     {
         "Id": "c50dcc5e-5c04-455d-a3e3-d8aaefeafe8b",
-        "Firstname": "Vanessa",
-        "Lastname": "Wallace",
+        "FullName": "Vanessa Wallace",
+        "DisplayName": "Vanessa Wallace",
         "LocationLatitude": 59.913869,
         "LocationLongitude": 10.752245
     },
     {
         "Id": "c9d3a4d8-f5b4-40a9-83c8-3a021a6f9262",
-        "Firstname": "Billie",
-        "Lastname": "Mclaughlin",
+        "FullName": "Billie Mclaughlin",
+        "DisplayName": "Billie Mclaughlin",
         "LocationLatitude": 59.913869,
         "LocationLongitude": 10.752245
     },
     {
         "Id": "a2106176-4186-4e94-9606-bc78ad26072c",
-        "Firstname": "Abraham",
-        "Lastname": "Watson",
+        "FullName": "Abraham Watson",
+        "DisplayName": "Abraham Watson",
         "LocationLatitude": 59.913869,
         "LocationLongitude": 10.752245
     }

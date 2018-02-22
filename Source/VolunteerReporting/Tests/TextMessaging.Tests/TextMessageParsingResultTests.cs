@@ -10,6 +10,48 @@ namespace TextMessaging.Tests
     public class TextMessageParsingResultTests
     {
         [Fact]
+        public void WhenCreatedWithOneNumberFragment_ItShouldBeValid()
+        {
+            var result = new TextMessageParsingResult(new[] {
+                new TextMessageFragment("42")
+            });
+
+            Assert.True(result.IsValid);
+            Assert.False(result.HasMultipleCases);
+            Assert.Single(result.Fragments);
+            Assert.True(result.ErrorMessages.Count() == 0);
+            Assert.Equal(new[] { 42}, result.Numbers);
+        }
+
+        [Fact]
+        public void WhenCreatedWithAZero_ItShouldBeValid()
+        {
+            var result = new TextMessageParsingResult(new[] {
+                new TextMessageFragment("0")
+            });
+
+            Assert.True(result.IsValid);
+            Assert.False(result.HasMultipleCases);
+            Assert.Single(result.Fragments);
+            Assert.True(result.ErrorMessages.Count() == 0);
+            Assert.Equal(new[] { 0 }, result.Numbers);
+        }
+
+        [Fact]
+        public void WhenCreatedWithANegativeNumber_ItShouldNotBeValid()
+        {
+            var result = new TextMessageParsingResult(new[] {
+                new TextMessageFragment("-30")
+            });
+
+            Assert.False(result.IsValid);
+            Assert.False(result.HasMultipleCases);
+            Assert.Single(result.Fragments);
+            Assert.True(result.ErrorMessages.Count() == 1);
+            Assert.Equal(new[] { -30 }, result.Numbers);
+        }
+
+        [Fact]
         public void WhenCreatedWithTwoNumberFragments_ItShouldNotBeValid()
         {
             var result = new TextMessageParsingResult(new[] {
@@ -42,19 +84,50 @@ namespace TextMessaging.Tests
         }
 
         [Fact]
-        public void WhenCreatedWithThreeNumberFragments_ItShoulBeValid()
+        public void WhenCreatedWithThreeNumberFragmentsWith1Or2InTheLastSlots_ItShoulBeValid()
         {
             var result = new TextMessageParsingResult(new[] {
                 new TextMessageFragment("42"),
-                new TextMessageFragment("43"),
-                new TextMessageFragment("44")
+                new TextMessageFragment("1"),
+                new TextMessageFragment("2")
             });
 
             Assert.True(result.IsValid);
             Assert.False(result.HasMultipleCases);
             Assert.Equal(3, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 0);
-            Assert.Equal(new[] {42,43,44}, result.Numbers);
+            Assert.Equal(new[] {42,1,2}, result.Numbers);
+        }
+
+        [Fact]
+        public void WhenCreatedWithThreeNumberFragmentsWithA0InTheLastSlots_ItShoulNotBeValid()
+        {
+            var result = new TextMessageParsingResult(new[] {
+                new TextMessageFragment("42"),
+                new TextMessageFragment("0"),
+                new TextMessageFragment("2")
+            });
+
+            Assert.False(result.IsValid);
+            Assert.False(result.HasMultipleCases);
+            Assert.Equal(3, result.Fragments.Count());
+            Assert.True(result.ErrorMessages.Count() == 1);
+            Assert.Equal(new[] { 42, 0, 2 }, result.Numbers);
+        }
+
+        [Fact]
+        public void WhenCreatedWithAANegativeNumber_ItShoulNotBeValid()
+        {
+            var result = new TextMessageParsingResult(new[] {
+                new TextMessageFragment("42"),
+                new TextMessageFragment("1"),
+                new TextMessageFragment("-34")
+            });
+
+            Assert.False(result.IsValid);
+            Assert.False(result.HasMultipleCases);
+            Assert.Equal(3, result.Fragments.Count());
+            Assert.Equal(new[] { 42, 1, -34 }, result.Numbers);
         }
 
         [Fact]
