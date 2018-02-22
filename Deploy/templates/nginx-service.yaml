@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingressservice
+  namespace: kube-system
+spec:
+  ports:
+    - port: 80
+      name: http
+    - port: 443
+      name: https
+  selector:
+    k8s-app: nginx-ingress-controller
+  type: LoadBalancer

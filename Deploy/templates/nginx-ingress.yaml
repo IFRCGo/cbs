@@ -10,15 +10,15 @@ spec:
   - host: test.cbsrc.org
     http:
       paths:      
-      - path: {services.usermanagement.path}
+      - path: {{services.usermanagement.path}}
         backend:
-          serviceName: {services.usermanagement.name}
+          serviceName: {{services.usermanagement.name}}
           servicePort: 80
-      - path: {services.volunteerreporting.path}
+      - path: {{services.volunteerreporting.path}}
         backend:
-          serviceName: {services.volunteerreporting.name}
+          serviceName: {{services.volunteerreporting.name}}
           servicePort: 80
-      - path: {services.admin.path}
+      - path: {{services.admin.path}}
         backend:
-          serviceName: {services.admin.name}
+          serviceName: {{services.admin.name}}
           servicePort: 80
