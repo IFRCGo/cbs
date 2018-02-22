@@ -14,7 +14,7 @@ using Infrastructure.AspNet;
 
 namespace Web
 {
-    [Route("api/usermanagement/")]
+    [Route("api/staffuser")]
     public class UserController : BaseController
     {
         readonly IUsers _users;
@@ -28,7 +28,7 @@ namespace Web
             _logger = logger;
         }
 
-        [HttpPost("staffuser")]
+        [HttpPost]
         public void Add([FromBody] AddStaffUser command)
         {
             var id = Guid.NewGuid();
@@ -53,8 +53,25 @@ namespace Web
             Console.WriteLine("in staffusers");
             var users = _users.GetAllStaffUsers();
             return users;
-        }        
+        }
 
+        [HttpPost("update/{id}")]
+        public void Update([FromBody] AddStaffUser command, Guid id)
+        {
+            Apply(id, new StaffUserAdded
+            {
+                Id = id,
+                FullName = command.FullName,
+                DisplayName = command.DisplayName,
+                Age = command.Age,
+                Sex = command.Sex,
+                Location = command.Location,
+                NationalSociety = command.NationalSociety,
+                PreferredLanguage = command.PreferredLanguage,
+                MobilePhoneNumber = command.MobilePhoneNumber,
+                Email = command.Email
+            });
+        }
         [HttpDelete("delete/{id}")]
         public void Delete(Guid id)
         {
