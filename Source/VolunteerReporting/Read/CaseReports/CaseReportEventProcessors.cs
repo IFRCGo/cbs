@@ -26,10 +26,10 @@ namespace Read.CaseReports
             {
                 DataCollectorId = @event.DataCollectorId,
                 HealthRiskId = @event.HealthRiskId,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesOver5 = @event.NumberOfFemalesOver5,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesOver5 = @event.NumberOfMalesOver5,
+                NumberOfFemalesAges0To4 = @event.NumberOfFemalesAges0To4,
+                NumberOfFemalesAgedOver4 = @event.NumberOfFemalesAgedOver4,
+                NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
+                NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp
             };
@@ -42,10 +42,10 @@ namespace Read.CaseReports
             {
                 Origin = @event.Origin,
                 HealthRiskId = @event.HealthRiskId,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesOver5 = @event.NumberOfFemalesOver5,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesOver5 = @event.NumberOfMalesOver5,
+                NumberOfFemalesAges0To4 = @event.NumberOfFemalesAges0To4,
+                NumberOfFemalesAgedOver4 = @event.NumberOfFemalesAgedOver4,
+                NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
+                NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
                 Timestamp = @event.Timestamp
             };
             await _caseReportsFromUnknownDataCollectors.Save(caseReport);

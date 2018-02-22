@@ -52,10 +52,10 @@ namespace Domain
             Guid dataCollectorId,
             Guid healthRiskId,
             string origin,
-            int numberOfMalesUnder5,
-            int numberOfMalesOver5,
-            int numberOfFemalesUnder5,
-            int numberOfFemalesOver5,
+            int numberOfMalesAges0To4,
+            int numberOfMalesAgedOver4,
+            int numberOfFemalesAges0To4,
+            int numberOfFemalesAgedOver4,
             double longitude,
             double latitude,
             DateTimeOffset timestamp)
@@ -66,10 +66,10 @@ namespace Domain
                 DataCollectorId = dataCollectorId,
                 HealthRiskId = healthRiskId,
                 Origin = origin,
-                NumberOfMalesUnder5 = numberOfMalesUnder5,
-                NumberOfMalesOver5 = numberOfMalesOver5,
-                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
-                NumberOfFemalesOver5 = numberOfFemalesOver5,
+                NumberOfMalesAges0To4 = numberOfMalesAges0To4,
+                NumberOfMalesAgedOver4 = numberOfMalesAgedOver4,
+                NumberOfFemalesAges0To4 = numberOfFemalesAges0To4,
+                NumberOfFemalesAgedOver4 = numberOfFemalesAgedOver4,
                 Longitude = longitude,
                 Latitude = latitude,
                 Timestamp = timestamp
@@ -79,10 +79,10 @@ namespace Domain
         public void ReportFromUnknownDataCollector(
             string origin,
             Guid healthRiskId,
-            int numberOfMalesUnder5,
-            int numberOfMalesOver5,
-            int numberOfFemalesUnder5,
-            int numberOfFemalesOver5,
+            int numberOfMalesAges0To4,
+            int numberOfMalesAgedOver4,
+            int numberOfFemalesAges0To4,
+            int numberOfFemalesAgedOver4,
             DateTimeOffset timestamp)
         {
             Apply(new CaseReportFromUnknownDataCollectorReceived
@@ -90,10 +90,10 @@ namespace Domain
                 CaseReportId = EventSourceId,
                 Origin = origin,
                 HealthRiskId = healthRiskId,
-                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
-                NumberOfFemalesOver5 = numberOfFemalesOver5,
-                NumberOfMalesUnder5 = numberOfMalesUnder5,
-                NumberOfMalesOver5 = numberOfMalesOver5,
+                NumberOfFemalesAges0To4 = numberOfFemalesAges0To4,
+                NumberOfFemalesAgedOver4 = numberOfFemalesAgedOver4,
+                NumberOfMalesAges0To4 = numberOfMalesAges0To4,
+                NumberOfMalesAgedOver4 = numberOfMalesAgedOver4,
                 Timestamp = timestamp
             });
         }      
