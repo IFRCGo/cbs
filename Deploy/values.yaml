@@ -1,0 +1,13 @@
+services: 
+    admin:
+        name: admin
+        service: cbs-admin-frontend-service
+        path: /
+    usermanagement:
+        name: usermanagement
+        service: cbs-usermanagement-frontend-service
+        path: /users
+    volunteerreporting:
+        name: volunteerreporting
+        service: cbs-volunteerreporting-frontend-service
+        path: /reporting
