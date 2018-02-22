@@ -22,8 +22,7 @@ import { Filter } from './case-report-list/filtring/filter.pipe'
         CaseReportListComponent,
         SortableTableDirective,
         SortableColumnComponent,
-        Filter,
-        CaseReportExporter
+        Filter
     ],
     providers: [
         ReportService,

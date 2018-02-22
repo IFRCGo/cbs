@@ -69,8 +69,6 @@ export class CaseReportListComponent implements OnInit {
             .then(
                 (result) => {
                     this.listedReports = result || [];
-                    console.log(this.listedReports);
-                    this.caseReportExporter.exportToCsv(this.listedReports, this.fields);
                 }
             )
             .catch((error) => console.error(error));
