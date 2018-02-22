@@ -12,25 +12,25 @@ spec:
       paths:      
       - path: {{ .Values.services.usermanagement.backend.path }}
         backend:
-          serviceName: {{ .Values.services.usermanagement.name }}
+          serviceName: {{ .Values.services.usermanagement.backend.service }}
           servicePort: 80
       - path: {{ .Values.services.volunteerreporting.backend.path }}
         backend:
-          serviceName: {{ .Values.services.volunteerreporting.name }}
+          serviceName: {{ .Values.services.volunteerreporting.backend.service }}
           servicePort: 80
       - path: {{ .Values.services.admin.backend.path }}
         backend:
-          serviceName: {{ .Values.services.admin.name }}
+          serviceName: {{ .Values.services.admin.backend.service }}
           servicePort: 80
       - path: {{ .Values.services.usermanagement.path }}
         backend:
-          serviceName: {{ .Values.services.usermanagement.name }}
+          serviceName: {{ .Values.services.usermanagement.service }}
           servicePort: 80
       - path: {{ .Values.services.volunteerreporting.path }}
         backend:
-          serviceName: {{ .Values.services.volunteerreporting.name }}
+          serviceName: {{ .Values.services.volunteerreporting.service }}
           servicePort: 80
       - path: {{ .Values.services.admin.path }}
         backend:
-          serviceName: {{ .Values.services.admin.name }}
+          serviceName: {{ .Values.services.admin.service }}
           servicePort: 80
