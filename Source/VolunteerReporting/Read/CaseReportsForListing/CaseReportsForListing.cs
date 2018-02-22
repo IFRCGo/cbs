@@ -65,24 +65,5 @@ namespace Read.CaseReportsForListing
             await _collection.DeleteOneAsync(filter);
         }
 
-        public async Task<string> ExportCsv(string[] fields)
-        {
-            var filter = Builders<CaseReportForListing>.Filter.Empty;
-
-            var cursor = await _collection.FindAsync(filter);
-
-            throw new NotImplementedException();
-            return "";
-        }
-
-        public Task<FileContentResult> ExportExcel()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<FileContentResult> ExportPdf()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace Read.CaseReportsForListing
         Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last);
         Task Save(CaseReportForListing caseReport);
         Task Remove(Guid id);
-
-        Task<string> ExportCsv(string[] fields);
-        Task<FileContentResult> ExportExcel();
-        Task<FileContentResult> ExportPdf();
-
     }
 }
