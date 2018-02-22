@@ -22,15 +22,15 @@ spec:
         backend:
           serviceName: {{ .Values.services.admin.backend.service }}
           servicePort: 80
-      - path: {{ .Values.services.usermanagement.path }}
+      - path: {{ .Values.services.usermanagement.frontend.path }}
         backend:
-          serviceName: {{ .Values.services.usermanagement.service }}
+          serviceName: {{ .Values.services.usermanagement.frontend.service }}
           servicePort: 80
-      - path: {{ .Values.services.volunteerreporting.path }}
+      - path: {{ .Values.services.volunteerreporting.frontend.path }}
         backend:
-          serviceName: {{ .Values.services.volunteerreporting.service }}
+          serviceName: {{ .Values.services.volunteerreporting.frontend.service }}
           servicePort: 80
-      - path: {{ .Values.services.admin.path }}
+      - path: {{ .Values.services.admin.frontend.path }}
         backend:
-          serviceName: {{ .Values.services.admin.service }}
+          serviceName: {{ .Values.services.admin.frontend.service }}
           servicePort: 80
