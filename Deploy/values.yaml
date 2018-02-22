@@ -4,7 +4,7 @@ services:
         service: cbs-admin-frontend-service
         path: /
         frontend:
-            version: 1413
+            version: 1414
         backend:
             version: 1414
     usermanagement:
@@ -20,6 +20,6 @@ services:
         service: cbs-volunteerreporting-frontend-service
         path: /reporting
         frontend:
-            version: 1414
+            version: 1413
         backend:
             version: 1413
