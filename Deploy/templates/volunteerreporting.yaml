@@ -48,8 +48,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cbs-volunteerreporting-backend
+  name: {{ .Values.services.volunteerreporting.backend.service }}
 spec:
+  type: NodePort
   ports:
   - port: 80
   selector:

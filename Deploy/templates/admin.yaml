@@ -48,8 +48,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cbs-admin-backend
+  name:   name: {{ .Values.services.admin.backend.service }}
 spec:
+  type: NodePort
   ports:
   - port: 80
   selector:
@@ -76,7 +77,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.services.admin.name }}
+  name: {{ .Values.services.admin.service }}
 spec:
   type: NodePort
   ports:
