@@ -1,14 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using Read.DataCollectors;
-using Read.CaseReports;
-using Read.HealthRisks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Models;
 using Infrastructure.AspNet;
+using Microsoft.AspNetCore.Mvc;
+using Read.CaseReports;
 using Read.CaseReportsForListing;
+using Read.DataCollectors;
+using Read.HealthRisks;
+using System.Threading.Tasks;
 
 namespace Web
 {
