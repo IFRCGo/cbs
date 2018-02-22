@@ -7,9 +7,9 @@ namespace Read.StaffUsers.Admin
     class Admin
     {
         public Guid Id { get; set; }
-        public String FullName { get; set; }
-        public String DisplayName { get; set; }
-        public String Email { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
+        public string Email { get; set; }
 
     }
 }

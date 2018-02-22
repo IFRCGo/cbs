@@ -1,7 +1,7 @@
-﻿namespace Concepts{
+namespace Concepts{
     public enum Role
     {
-        Admin,
+        Admin = 0,
         DataVerifier,
         DataConsumer,
         DataCoordinator,

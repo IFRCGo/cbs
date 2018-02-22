@@ -2,7 +2,7 @@ namespace Concepts
 {
     public enum Sex
     {
-        Male,
+        Male = 0,
         Female
     }
 }

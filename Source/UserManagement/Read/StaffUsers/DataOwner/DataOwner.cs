@@ -7,20 +7,20 @@ namespace Read.StaffUsers.DataOwner
 {
     class DataOwner
     {
-        public Guid Id;
+        public Guid Id { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
-        public SystemException Sex { get; set; }
+        public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        //public String GeoLocation { get; set; } //TODO: ??
+        public string GeoLocation { get; set; } //TODO: ??
         public List<string> MobilePhoneNumbers { get; set; }
         public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSociety { get; set; }
         public string Position { get; set; } //TODO: (free text, position within the NS) ?
-        public String DutyStation { get; set; }
+        public string DutyStation { get; set; }
     }
 }

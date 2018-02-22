@@ -6,6 +6,5 @@ namespace Read
 {
     public interface IUsers : IReadCollection<StaffUser>
     {
-
     }
 }

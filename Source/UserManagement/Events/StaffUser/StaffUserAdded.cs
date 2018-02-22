@@ -13,7 +13,8 @@ namespace Events
         public Sex Sex { get; set; } //TODO: Should not use enum in events. Only primitive types
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; } //TODO: Should not use enum in events. Only primitive types
-        public Location Location { get; set; } //TODO from Bjørn: Change to double LocationLongitude and double LocationLatitude
+
+        public Location Location { get; set; }
         public string GeoLocation { get; set; } //TODO from Bjørn: Change to double LocationLongitude and double LocationLatitude
         public string MobilePhoneNumber { get; set; } //TODO from Bjørn: Move into sepperate event since it is optional
         public string Email { get; set; } //TODO from Bjørn: Move into sepperate event since it is optional
