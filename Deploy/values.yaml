@@ -7,7 +7,7 @@ services:
         backend:
             version: 1414
             path: /adminbackend
-            service: cbs-volunteerreporting-backend-service
+            service: cbs-admin-backend-service
     usermanagement:
         frontend:
             version: 1415
