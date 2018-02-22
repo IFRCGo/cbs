@@ -76,7 +76,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.services.usermanagement.name }}
+  name: {{ .Values.services.usermanagement.service }}
 spec:
   type: NodePort
   ports:
