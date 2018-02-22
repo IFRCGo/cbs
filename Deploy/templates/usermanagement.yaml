@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: cbs-usermgmt-backend
-        image: karolikl/cbs-usermgmt-backend:{{services.usermanagement.backend.version}}
+        image: karolikl/cbs-usermgmt-backend:{{ .Values.services.usermanagement.backend.version }}
         ports:
         - containerPort: 80
 ---
@@ -69,14 +69,14 @@ spec:
     spec:
       containers:
       - name: cbs-usermgmt-frontend
-        image: karolikl/cbs-usermgmt-frontend:{{services.usermanagement.frontend.version}}
+        image: karolikl/cbs-usermgmt-frontend:{{ .Values.services.usermanagement.frontend.version }}
         ports:
         - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{services.usermanagement.name}}
+  name: {{ .Values.services.usermanagement.name }}
 spec:
   type: NodePort
   ports:

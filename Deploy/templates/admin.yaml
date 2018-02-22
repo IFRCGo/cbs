@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: cbs-admin-backend
-        image: karolikl/cbs-admin-backend:{{services.admin.backend.version}}
+        image: karolikl/cbs-admin-backend:{{ .Values.services.admin.backend.version }}
         ports:
         - containerPort: 80
 ---
@@ -69,14 +69,14 @@ spec:
     spec:
       containers:
       - name: cbs-admin-frontend
-        image: karolikl/cbs-admin-frontend:{{services.admin.frontend.version}}
+        image: karolikl/cbs-admin-frontend:{{ .Values.services.admin.frontend.version }}
         ports:
         - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{services.admin.name}}
+  name: {{ .Values.services.admin.name }}
 spec:
   type: NodePort
   ports:
