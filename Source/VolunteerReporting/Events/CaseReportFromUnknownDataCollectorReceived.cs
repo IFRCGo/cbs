@@ -13,9 +13,9 @@ namespace Events
         public Guid HealthRiskId { get; set; }
         public string Origin { get; set; }
         public DateTimeOffset Timestamp { get; set; }
-        public int NumberOfMalesUnder5 { get; set; }
-        public int NumberOfMalesOver5 { get; set; }
-        public int NumberOfFemalesUnder5 { get; set; }
-        public int NumberOfFemalesOver5 { get; set; }
+        public int NumberOfMalesAges0To4 { get; set; }
+        public int NumberOfMalesAgedOver4 { get; set; }
+        public int NumberOfFemalesAges0To4 { get; set; }
+        public int NumberOfFemalesAgedOver4 { get; set; }       
     }
 }

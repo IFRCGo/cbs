@@ -55,28 +55,28 @@ export class ReportService {
                 ReportService.hasHealthRisk, criteria);
             });
             
-        // Sort by femalesOver5
-        } else if (criteria.sortColumn === "femalesOver5") {
+        // Sort by femalesAgedOver4
+        } else if (criteria.sortColumn === "femalesAgedOver4") {
             return reports.sort(function(a,b) {
-                return ReportService.compareStandard(a, b, "numberOfFemalesOver5",
+                return ReportService.compareStandard(a, b, "numberOfFemalesAgedOver4",
                 ReportService.hasHealthRisk, criteria);
             });
-        // Sort by femalesUnder5
-        } else if (criteria.sortColumn === "femalesUnder5") {
+        // Sort by femalesAges0To4
+        } else if (criteria.sortColumn === "femalesAges0To4") {
             return reports.sort(function(a,b) {
-                return ReportService.compareStandard(a, b, "numberOfFemalesUnder5",
+                return ReportService.compareStandard(a, b, "numberOfFemalesAges0To4",
                 ReportService.hasHealthRisk, criteria);
             });
-        // Sort by malesOver5
-        } else if (criteria.sortColumn === "malesOver5") {
+        // Sort by malesOAgedOver4
+        } else if (criteria.sortColumn === "malesAgedOver4") {
             return reports.sort(function(a,b) {
-                return ReportService.compareStandard(a, b, "numberOfMalesOver5",
+                return ReportService.compareStandard(a, b, "numberOfMalesAgedOver4",
                 ReportService.hasHealthRisk, criteria);
             });
-        // Sort by malesUnder5
-        } else if (criteria.sortColumn === "malesUnder5") {
+        // Sort by malesAges0To4
+        } else if (criteria.sortColumn === "malesAges0To4") {
             return reports.sort(function(a,b) {
-                return ReportService.compareStandard(a, b, "numberOfMalesUnder5",
+                return ReportService.compareStandard(a, b, "numberOfMalesAges0To4",
                 ReportService.hasHealthRisk, criteria);
             });
         } 
