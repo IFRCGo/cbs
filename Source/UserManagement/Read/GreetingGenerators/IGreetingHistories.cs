@@ -1,11 +1,12 @@
+using System.Threading.Tasks;
+
 namespace Read.GreetingGenerators
 {
-    public interface IGreetingHistories
+    public interface IGreetingHistories : IReadCollection<GreetingHistory>
     {
-        GreetingHistory GetByPhoneNumber(string phoneNumber);
-
-        void RemovePhoneNumber(string phoneNumber);
+        Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber);
         
-        void Save(GreetingHistory greetingHistory);
+        Task Remove(string phoneNumber);
+        
     }
 }

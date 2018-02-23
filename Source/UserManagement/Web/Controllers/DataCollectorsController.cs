@@ -6,6 +6,7 @@ using Read;
 using Read.DataCollectors;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using doLittle.Domain;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,11 +29,9 @@ namespace Web
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            //TODO: This should limit nr of items somehow
-            Console.WriteLine("in datacollectors");
-            var items = _dataCollectors.GetAllDataCollectors();
+            var items = await _dataCollectors.GetAllAsync();
             return Ok(items);
         }
 

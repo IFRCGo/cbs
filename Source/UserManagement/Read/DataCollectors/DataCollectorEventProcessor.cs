@@ -14,9 +14,9 @@ namespace Read.DataCollectors
             _dataCollectors = dataCollectors;
         }
 
-        public void Process(DataCollectorAdded @event)
+        public async void Process(DataCollectorAdded @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
@@ -25,35 +25,35 @@ namespace Read.DataCollectors
             dataCollector.PreferredLanguage = (Language) @event.PreferredLanguage;
             dataCollector.Sex = (Sex) @event.Sex;
             dataCollector.RegisteredAt = @event.RegisteredAt;
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberAddedToDataCollector @event)
+        public async void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(PhoneNumberRemovedFromDataCollector @event)
+        public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(CaseReportReceived @event)
+        public async void Process(CaseReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
 
-        public void Process(InvalidReportReceived @event)
+        public async void Process(InvalidReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            _dataCollectors.Save(dataCollector);
+            await _dataCollectors.Save(dataCollector);
         }
     }
 }

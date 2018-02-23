@@ -3,10 +3,7 @@ using System.Collections.Generic;
 
 namespace Read.DataCollectors
 {
-    public interface IDataCollectors
+    public interface IDataCollectors : IReadCollection<DataCollector>
     {
-        DataCollector GetById(Guid id);
-        IEnumerable<DataCollector> GetAllDataCollectors();
-        void Save(DataCollector dataCollector);
     }
 }

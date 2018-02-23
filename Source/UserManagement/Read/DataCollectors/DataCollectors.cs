@@ -2,6 +2,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Read.DataCollectors
 {
@@ -16,20 +17,25 @@ namespace Read.DataCollectors
             _collection = database.GetCollection<DataCollector>("DataCollector");
         }
 
-        public IEnumerable<DataCollector> GetAllDataCollectors()
+        public async Task<DataCollector> GetByIdAsync(Guid id)
         {
-            return _collection.FindSync(_ => true).ToList();
+            return (await _collection.FindAsync(d => d.Id == id)).SingleOrDefault();
         }
 
-        public DataCollector GetById(Guid id)
+        public async Task<IEnumerable<DataCollector>> GetAllAsync()
         {
-            return _collection.Find(d => d.Id == id).SingleOrDefault();
+            return (await _collection.FindAsync(_ => true)).ToList();
         }
 
-        public void Save(DataCollector dataCollector)
+        public async Task Remove(Guid id)
+        {
+            await _collection.DeleteOneAsync(c => c.Id == id);
+        }
+
+        public async Task Save(DataCollector dataCollector)
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
-            _collection.ReplaceOne(filter, dataCollector, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
 }

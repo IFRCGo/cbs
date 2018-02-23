@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events;
 
 namespace Events.StaffUser
 {
-    class DataCoordinatorAdded
+    public class DataCoordinatorAdded : IEvent
     {
         /*
          * public Guid Id;
@@ -24,7 +25,7 @@ namespace Events.StaffUser
 
         public Guid Id { get; private set; }
         public string FullName { get; private set; }
-        public string DisplayName { get; set; }
+        public string DisplayName { get; private set; }
         public string Email { get; private set; }
         public int Age { get; private set; }
         public int Sex { get; private set; } // 0 is male 1 is female
@@ -33,6 +34,7 @@ namespace Events.StaffUser
         public double LocationLongitude { get; private set; }
         public double LocationLatitude { get; private set; }
         public string GeoLocation { get; private set; }
+        //TODO: Do we event want to have mobile number in event?
         public string MobilePhoneNumber { get; private set; } // TODO: A DataCoordinator can have multiple phonenumbers, 
         // though I guess we cannot have List objects in events??
         public bool MobilePhoneNumberConfirmed { get; private set; } = true;

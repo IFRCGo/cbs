@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="StaffUsers\Users.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events.External\Events.External.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />

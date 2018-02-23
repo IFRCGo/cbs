@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Read.StaffUsers.Admin
 {
-    class Admin
+    public class Admin
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

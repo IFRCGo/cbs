@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events;
 
 namespace Events.StaffUser
 {
-    class DataVerifierAdded
+    public class DataVerifierAdded : IEvent
     {
         /*
          *  public Guid Id { get; set; }
@@ -33,6 +34,7 @@ namespace Events.StaffUser
         public double LocationLongitude { get; private set; }
         public double LocationLatitude { get; private set; }
         public string GeoLocation { get; private set; }
+        //TODO: Do we event want to have mobile number in event?
         public string MobilePhoneNumber { get; private set; }
         public bool MobilePhoneNumberConfirmed { get; private set; } = true;
         public Guid AssignedNationalSociety { get; private set; }

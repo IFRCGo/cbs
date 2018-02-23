@@ -6,10 +6,11 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
+using doLittle.Commands;
 
 namespace Domain
 {
-    public class AddStaffUser
+    public class AddStaffUser : ICommand
     {
         public Role Role { get; set; }
         public string FullName { get; set; }
@@ -18,11 +19,16 @@ namespace Domain
         public int Age { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
-        public String Position { get; set; }
-        public String DutyStation { get; set; }
+        public string Position { get; set; }
+        public string DutyStation { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
+        public Location Area { get; set; } //TODO: I never understood Area
+        public string GeoLocation { get; set; }
         public string MobilePhoneNumber { get; set; }
-        public List<Guid> AssignedNationalSociety {get; set; }
+        // TODO: This cannot be a list for the moment since the event it generates cannot contain a list.
+        // TODO: If this is needed, then we need to have the Command handler generate a seperate event for each 
+        // AssignedNationalSociety
+        public Guid AssignedNationalSociety {get; set; }
     }
 }

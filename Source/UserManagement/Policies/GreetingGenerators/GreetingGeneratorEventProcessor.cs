@@ -24,14 +24,14 @@ namespace Policies.GreetingGenerators
             _messageGeneratorsAggregateRootRepository = messageGeneratorsAggregateRootRepository;
         }
 
-        public void Process(PhoneNumberAddedToDataCollector @event)
+        public async void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
 
             // Todo Get the correct welcome message based on the dataCollector.PreferredLanguage
             var welcomeMessage = "Welcome!";
 
-            var smsGenerator = _greetingHistories.GetByPhoneNumber(@event.PhoneNumber);
+            var smsGenerator =await  _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber);
             if (smsGenerator != null)
             {
                 return;

@@ -5,7 +5,7 @@ using Concepts;
 
 namespace Read.StaffUsers.SystemCoordinator
 {
-    class SystemCoordinator
+    public class SystemCoordinator
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

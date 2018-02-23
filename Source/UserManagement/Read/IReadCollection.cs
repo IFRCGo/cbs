@@ -10,6 +10,6 @@ namespace Read
         Task<T> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
         Task Remove(Guid id);
-        Task Save(T entity);
+        Task Save(T obj);
     }
 }

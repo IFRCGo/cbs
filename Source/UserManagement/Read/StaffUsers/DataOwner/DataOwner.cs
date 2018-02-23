@@ -5,7 +5,7 @@ using Concepts;
 
 namespace Read.StaffUsers.DataOwner
 {
-    class DataOwner
+    public class DataOwner
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

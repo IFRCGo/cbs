@@ -5,7 +5,7 @@ using Concepts;
 
 namespace Read.StaffUsers.DataConsumer
 {
-    class DataConsumer
+    public class DataConsumer
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

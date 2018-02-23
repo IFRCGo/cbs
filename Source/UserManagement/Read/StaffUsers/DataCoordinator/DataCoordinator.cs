@@ -5,7 +5,7 @@ using Concepts;
 
 namespace Read.StaffUsers.DataCoordinator
 {
-    class DataCoordinator
+    public class DataCoordinator
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

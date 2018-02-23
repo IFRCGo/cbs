@@ -5,7 +5,7 @@ using Concepts;
 
 namespace Read.StaffUsers.DataVerifier
 {
-    class DataVerifier
+    public class DataVerifier
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

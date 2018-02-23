@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events;
 
 namespace Events.StaffUser
 {
-    class AdminAdded
+    public class AdminAdded : IEvent
     {
         public Guid Id { get; private set; }
         public string FullName { get; private set; }

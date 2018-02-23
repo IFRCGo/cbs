@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 
 namespace Read.GreetingGenerators
@@ -13,21 +16,37 @@ namespace Read.GreetingGenerators
             _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
         }
 
-        public GreetingHistory GetByPhoneNumber(string phoneNumber)
+        public async Task<IEnumerable<GreetingHistory>> GetAllAsync()
         {
-            return _collection.Find(d => d.PhoneNumber == phoneNumber).SingleOrDefault();
+            return (await _collection.FindAsync(_ => true)).ToList();
         }
 
-        public void RemovePhoneNumber(string phoneNumber)
+        public async Task<GreetingHistory> GetByIdAsync(Guid id)
+        {
+            return (await _collection.FindAsync(d => d.Id == id)).SingleOrDefault();
+        }
+
+        public async Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber)
+        {
+            return (await _collection.FindAsync(d => d.PhoneNumber == phoneNumber)).SingleOrDefault();
+        }
+       
+        public async Task Remove(Guid id)
+        {
+            var filter = Builders<GreetingHistory>.Filter.Eq(c => c.Id, id);
+            await _collection.DeleteOneAsync(filter);
+        }
+
+        public async Task Remove(string phoneNumber)
         {
             var filter = Builders<GreetingHistory>.Filter.Eq(c => c.PhoneNumber, phoneNumber);
-            _collection.DeleteOne(filter);
+            await _collection.DeleteOneAsync(filter);
         }
 
-        public void Save(GreetingHistory greetingHistory)
+        public async Task Save(GreetingHistory greetingHistory)
         {
             var filter = Builders<GreetingHistory>.Filter.Eq(c => c.Id, greetingHistory.Id);
-            _collection.ReplaceOne(filter, greetingHistory, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, greetingHistory, new UpdateOptions { IsUpsert = true });
         }
     }
 }

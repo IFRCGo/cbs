@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using doLittle.Events;
 
 namespace Events.StaffUser
 {
-    class DataConsumerAdded
+    public class DataConsumerAdded : IEvent
     {
         /*
          * public Guid Id { get; set; }
