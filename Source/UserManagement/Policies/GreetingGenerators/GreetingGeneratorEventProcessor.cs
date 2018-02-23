@@ -1,6 +1,6 @@
 using doLittle.Domain;
 using doLittle.Events.Processing;
-using Events;
+using Events.DataCollector;
 using Read.DataCollectors;
 
 namespace Policies.GreetingGenerators

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Read.StaffUsers;
 
-namespace Read
+namespace Read.StaffUsers
 {
     public interface IStaffUsers : IReadCollection<StaffUser>
     {

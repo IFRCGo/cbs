@@ -1,15 +1,14 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Read.DataCollectors
 {
     public class DataCollectors : IDataCollectors
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<DataCollector> _collection;
+        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<DataCollector> _collection;
 
         public DataCollectors(IMongoDatabase database)
         {

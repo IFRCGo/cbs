@@ -2,7 +2,7 @@ using System;
 using Concepts;
 using doLittle.Events;
 
-namespace Events
+namespace Events.DataCollector
 {
     public class DataCollectorAdded : IEvent
     {

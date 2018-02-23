@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Concepts;
 
 namespace Read.StaffUsers.DataVerifier
@@ -20,6 +19,6 @@ namespace Read.StaffUsers.DataVerifier
         public List<string> MobilePhoneNumbers { get; set; }
         public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSociety { get; set; }
-        public DateTime RegistrationDate { get; set; }
+        public DateTimeOffset RegistrationDateTime { get; set; }
     }
 }

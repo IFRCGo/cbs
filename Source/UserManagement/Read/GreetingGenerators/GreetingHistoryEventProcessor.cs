@@ -1,5 +1,5 @@
 using doLittle.Events.Processing;
-using Events;
+using Events.DataCollector;
 
 namespace Read.GreetingGenerators
 {

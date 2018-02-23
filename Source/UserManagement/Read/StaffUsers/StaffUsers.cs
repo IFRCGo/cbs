@@ -8,8 +8,8 @@ namespace Read.StaffUsers
 {
     public class StaffUsers : IReadCollection<StaffUser>
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<StaffUser> _collection;
+        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<StaffUser> _collection;
 
         public StaffUsers(IMongoDatabase database)
         {
@@ -18,22 +18,22 @@ namespace Read.StaffUsers
         }
         public async Task<StaffUser> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return (await _collection.FindAsync(s => s.Id == id)).SingleOrDefault();
         }
 
         public async Task<IEnumerable<StaffUser>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return (await _collection.FindAsync(_ => true)).ToList();
         }
 
         public async Task Remove(Guid id)
         {
-            throw new NotImplementedException();
+            await _collection.DeleteOneAsync(s => s.Id == id);
         }
 
         public async Task Save(StaffUser obj)
         {
-            throw new NotImplementedException();
+            await _collection.ReplaceOneAsync(s => s.Id == obj.Id, obj, new UpdateOptions{IsUpsert = true});
         }
     }
 }

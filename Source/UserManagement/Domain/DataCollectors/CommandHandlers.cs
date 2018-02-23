@@ -11,14 +11,18 @@ using System.Text;
 
 namespace Domain.DataCollectors
 {
-    public class CommandHandlers : HandleCommand
+    public class CommandHandlers : ICanHandleCommands
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 
-        public CommandHandlers(IAggregateRootRepositoryFor<DataCollector> repository)
+        public CommandHandlers(
+            IAggregateRootRepositoryFor<DataCollector> repository
+            )
         {
             _repository = repository;
         }
+
+        //TODO: Should handle AddDataCollector aswell?? 
 
         public void Handle(AddPhoneNumber command)
         {

@@ -1,10 +1,11 @@
 using Concepts;
 using FluentValidation;
 
-namespace Domain
+namespace Domain.StaffUser.Validators
 {
     public class AddStaffUserValidator : AbstractValidator<AddStaffUser>
     {
+        //TODO: Work to be done.
         public AddStaffUserValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;

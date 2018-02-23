@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Events
+namespace Events.DataCollector
 {
-    public class PhoneNumberRemovedFromDataCollector : IEvent
+    public class PhoneNumberAddedToDataCollector : IEvent
     {
         public Guid Id { get; set; }
         public Guid DataCollectorId { get; set; }
         public string PhoneNumber { get; set; }
+
     }
 }

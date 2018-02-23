@@ -1,91 +1,100 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Concepts;
 using doLittle.Domain;
-using doLittle.Runtime.Events;
 using Events.StaffUser;
-namespace Domain.StaffUser
-{
-    public class StaffUser : AggregateRoot
-    {
-        protected StaffUser(EventSourceId id) : base(id) {}
 
-        //TODO: I have no idea, not even sure what AggregateRoot means. Someone should look over this.
+namespace Domain.StaffUser.AggregateRoots
+{
+    public class StaffUserManagement : AggregateRoot
+    {
+        public Guid Id { get; private set; }
+
+        public StaffUserManagement(Guid id) : base(id)
+        {
+            this.Id = id;
+
+        }
+        
         public void AddStaffUser(AddStaffUser command)
         {
             switch (command.Role)
             {
                 case Role.Admin:
-                    HandleAdmin(command);
+                    HandleAddAdmin(command);
                     break;
                 case Role.DataConsumer:
-                    HandleDataConsumer(command);
+                    HandleAddDataConsumer(command);
                     break;
                 case Role.DataCoordinator:
-                    HandleDataCoordinator(command);
+                    HandleAddDataCoordinator(command);
                     break;
                 case Role.DataOwner:
-                    HandleDataOwner(command);
+                    HandleAddDataOwner(command);
                     break;
                 case Role.DataVerifier:
-                    HandleDataVerifier(command);
+                    HandleAddDataVerifier(command);
                     break;
                 case Role.SystemCoordinator:
-                    HandleSystemCoordinator(command);
+                    HandleAddSystemCoordinator(command);
                     break;
+
+                default:
+                    //TODO: This should not happen due to InputValidation
+                    break;
+                
             }
         }
 
-        private void HandleAdmin(AddStaffUser command)
+        private void HandleAddAdmin(AddStaffUser command)
         {
+            
             Apply(new AdminAdded(
-                Guid.NewGuid(), command.FullName,
+                Id, command.FullName,
                 command.DisplayName, command.Email
                 ));
         }
-        private void HandleDataConsumer(AddStaffUser command)
+        private void HandleAddDataConsumer(AddStaffUser command)
         {
             Apply(new DataConsumerAdded(
-                Guid.NewGuid(), command.FullName,
+                Id, command.FullName,
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Area.Latitude
                 ));
         }
-        private void HandleDataCoordinator(AddStaffUser command)
+        private void HandleAddDataCoordinator(AddStaffUser command)
         {
             Apply(new DataCoordinatorAdded(
-                Guid.NewGuid(), command.FullName, command.DisplayName,
-                command.Email,command.Age, (int)command.Sex, command.NationalSociety,
+                Id, command.FullName, command.DisplayName,
+                command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety
                 ));
         }
-        private void HandleDataOwner(AddStaffUser command)
+        private void HandleAddDataOwner(AddStaffUser command)
         {
             Apply(new DataOwnerAdded(
-                Guid.NewGuid(), command.FullName, command.DisplayName,
+                Id, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, command.Position, command.DutyStation
                 ));
         }
-        private void HandleDataVerifier(AddStaffUser command)
+        private void HandleAddDataVerifier(AddStaffUser command)
         {
             Apply(new DataVerifierAdded(
-                Guid.NewGuid(), command.FullName, command.DisplayName,
+                Id, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, DateTime.Now
                 ));
         }
-        private void HandleSystemCoordinator(AddStaffUser command)
+        private void HandleAddSystemCoordinator(AddStaffUser command)
         {
             Apply(new SystemCoordinatorAdded(
-                Guid.NewGuid(), command.FullName, command.DisplayName,
+                Id, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,

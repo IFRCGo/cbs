@@ -1,7 +1,7 @@
 using System;
 using doLittle.Events;
 
-namespace Events
+namespace Events.StaffUser
 {
     public class StaffUserDeleted : IEvent
     {

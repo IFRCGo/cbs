@@ -1,13 +1,13 @@
 using Concepts;
 using doLittle.Events.Processing;
-using Events;
+using Events.DataCollector;
 using Events.External;
 
 namespace Read.DataCollectors
 {
     public class DataCollectorEventProcessor : ICanProcessEvents 
     {
-        readonly IDataCollectors _dataCollectors;
+        private readonly IDataCollectors _dataCollectors;
 
         public DataCollectorEventProcessor(IDataCollectors dataCollectors)
         {

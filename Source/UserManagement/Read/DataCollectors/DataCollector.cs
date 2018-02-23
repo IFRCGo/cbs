@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Concepts;
 using Events;
 
-namespace Read
+
+namespace Read.DataCollectors
 {
     public class DataCollector
     {

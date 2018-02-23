@@ -12,7 +12,7 @@ namespace Domain
     public class AddDataCollector : ICommand
     {
         //TODO: Update these properties to reflect what is needed for event. Remove PhoneNumber
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } // TODO: Question: Commands should not contain the Id of the result object?
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }

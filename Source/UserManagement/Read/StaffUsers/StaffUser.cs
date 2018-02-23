@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Concepts;
-using Read.StaffUsers.Admin;
 using Events.StaffUser;
+
 namespace Read.StaffUsers
 {
+    /// <summary>
+    /// The idea is that this class can contain all the different kinds of StaffUsers.
+    /// We used this idea in VolunteerReporting to supply the view with a single class that can contain the diferent 
+    /// read models that are derived from the same read model type.
+    /// 
+    /// We don't need all of these fields, we just need the fields specific for the view. Fields can be removed
+    /// here as we see fit.
+    /// </summary>
     public class StaffUser
     {
+
+
         public Guid Id { get; set; }
         public Role Role { get; set; }
         public string FullName { get; set; }

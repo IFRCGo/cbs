@@ -7,8 +7,8 @@ namespace Read.GreetingGenerators
 {
     public class GreetingHistories : IGreetingHistories
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<GreetingHistory> _collection;
+        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<GreetingHistory> _collection;
 
         public GreetingHistories(IMongoDatabase database)
         {
