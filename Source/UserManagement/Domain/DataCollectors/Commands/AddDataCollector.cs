@@ -7,7 +7,7 @@ using System;
 using Concepts;
 using doLittle.Commands;
 
-namespace Domain
+namespace Domain.DataCollectors.Commands
 {
     public class AddDataCollector : ICommand
     {

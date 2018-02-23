@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using doLittle.FluentValidation.Commands;
+using Domain.DataCollectors.Commands;
 using FluentValidation;
 
-namespace Domain
+namespace Domain.DataCollectors.Validators
 {
     public class AddDataCollectorValidator : CommandInputValidator<AddDataCollector>
     {

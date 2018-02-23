@@ -21,7 +21,8 @@ namespace Web
         private readonly IStaffUsers _users;
 
         private readonly StaffUserCommandHandler _staffUserCommandHandler;
-        public StaffUserController(
+
+        public StaffUserController (
             IStaffUsers users,
             StaffUserCommandHandler stafffUserCommandHandler
             )

@@ -23,12 +23,8 @@ namespace Domain.StaffUser.Validators
                 .WithMessage("Display name is not correct - Has to be defined");
 
             RuleFor(_ => _.Email)
-                .NotEmpty()
-                .WithMessage("Email is invalid - Has to be defined");
-
-            RuleFor(_ => _.Email)
-                .EmailAddress()
-                .WithMessage("Email is invalid - Has to be of valid format");
+                .NotEmpty().WithMessage("Email is invalid - Has to be defined")
+                .EmailAddress().WithMessage("Email is invalid - Has to be of valid format");
 
             When(_ => _.Role.RequiresExtensiveInfo(), () =>
             {

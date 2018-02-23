@@ -1,19 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using doLittle.Domain;
+using Domain.DataCollectors.Commands;
 using Events.DataCollector;
 
-namespace Domain.DataCollectors
+namespace Domain.DataCollectors.AggregateRoots
 {
-    public class DataCollector : AggregateRoot
+    public class DataCollectorManagement : AggregateRoot
     {
-        public Guid Id { get; private set; }
 
-        public DataCollector(Guid id) : base(id)
+        public DataCollectorManagement(Guid id) : base(id)
         {
-            Id = id;
-
         }
 
         public void AddDataCollector(AddDataCollector command)
@@ -22,7 +18,7 @@ namespace Domain.DataCollectors
             // immutable
             Apply(new DataCollectorAdded
             {
-                Id = this.Id,//Id = command.Id,
+                Id = EventSourceId,//Id = command.Id,
                 FullName = command.FullName,
                 DisplayName = command.DisplayName,
                 YearOfBirth = command.YearOfBirth,

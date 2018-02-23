@@ -17,4 +17,7 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataCollectors\CommandHandlers\" />
+  </ItemGroup>
 </Project>

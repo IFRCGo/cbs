@@ -19,9 +19,9 @@ namespace Domain.StaffUser.CommandHandlers
 
         public void Handle(AddStaffUser command)
         {
-            var staffUserMng = _repository.Get(Guid.NewGuid());
+            var root = _repository.Get(Guid.NewGuid());
 
-            staffUserMng.AddStaffUser(command);
+            root.AddStaffUser(command);
         }
 
         //TODO: Probably need to create an UpdateStaffUser command and corresponding events?

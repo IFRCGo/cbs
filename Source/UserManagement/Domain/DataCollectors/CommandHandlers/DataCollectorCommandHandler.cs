@@ -8,24 +8,31 @@ using doLittle.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.DataCollectors.AggregateRoots;
+using Domain.DataCollectors.Commands;
 
-namespace Domain.DataCollectors
+namespace Domain.DataCollectors.CommandHandlers
 {
-    public class CommandHandlers : ICanHandleCommands
+    public class DataCollectorCommandHandler : ICanHandleCommands
     {
-        private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
+        private readonly IAggregateRootRepositoryFor<DataCollectorManagement> _repository;
 
-        public CommandHandlers (
-            IAggregateRootRepositoryFor<DataCollector> repository
+        public DataCollectorCommandHandler (
+            IAggregateRootRepositoryFor<DataCollectorManagement> repository
             )
         {
             _repository = repository;
         }
 
-        //TODO: Should handle AddDataCollector aswell?? 
+        public void Handle(AddDataCollector command)
+        {
+            var root = _repository.Get(Guid.NewGuid());
+            root.AddDataCollector(command);
+        }
 
         public void Handle(AddPhoneNumber command)
         {
+            //TODO: Should probably not use command.DataCollectorId for EventSourceId?
             var root = _repository.Get(command.DataCollectorId);
             root.AddPhoneNumber(command.PhoneNumber);
         }

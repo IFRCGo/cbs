@@ -26,9 +26,7 @@ namespace Domain
         public Location Area { get; set; } //TODO: I never understood Area
         public string GeoLocation { get; set; }
         public string MobilePhoneNumber { get; set; }
-        // TODO: This cannot be a list for the moment since the event it generates cannot contain a list.
-        // TODO: If this is needed, then we need to have the Command handler generate a seperate event for each 
-        // AssignedNationalSociety
+        
         public Guid AssignedNationalSociety {get; set; }
     }
 }

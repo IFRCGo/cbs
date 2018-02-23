@@ -8,5 +8,6 @@ namespace Domain.StaffUser.Validators
     class AddStaffUserBusinessValidator : CommandBusinessValidator<AddStaffUser>
     {
         // TODO: Add business validation code for AddStaff
+
     }
 }

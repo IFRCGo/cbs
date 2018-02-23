@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doLittle.Domain;
+using Domain.DataCollectors.CommandHandlers;
+using Domain.DataCollectors.Commands;
+using MongoDB.Driver;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,16 +19,17 @@ namespace Web
     [Route("api/datacollectors")]
     public class DataCollectorsController : BaseController
     {
-        readonly IDataCollectors _dataCollectors;
+        private readonly IDataCollectors _dataCollectors;
 
-        readonly IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> _dataCollector;
+        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
+        //readonly IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> _dataCollector;
 
-        public DataCollectorsController(
-            IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> dataCollector,
+        public DataCollectorsController (
+            DataCollectorCommandHandler dataCollectorCommand,
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;
-            _dataCollector = dataCollector;
+            _dataCollectorCommandHandler = dataCollectorCommand;
         }
 
         [HttpGet]
@@ -38,8 +42,7 @@ namespace Web
         [HttpPost("add")]
         public IActionResult Post([FromBody] AddDataCollector command)
         {
-            var dataCollector = _dataCollector.Get(command.Id);
-            dataCollector.AddDataCollector(command);
+            _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
     }

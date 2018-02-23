@@ -48,8 +48,6 @@ namespace Domain.StaffUser.AggregateRoots
 
         private void HandleAddAdmin(AddStaffUser command)
         {
-            
-            
             Apply(new AdminAdded(
                 EventSourceId, command.FullName,
                 command.DisplayName, command.Email
@@ -63,8 +61,6 @@ namespace Domain.StaffUser.AggregateRoots
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Area.Latitude
                 ));
-
-
         }
         private void HandleAddDataCoordinator(AddStaffUser command)
         {

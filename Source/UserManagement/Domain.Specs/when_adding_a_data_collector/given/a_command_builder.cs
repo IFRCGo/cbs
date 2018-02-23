@@ -1,6 +1,7 @@
 using System;
 using Concepts;
 using System.Collections.Generic;
+using Domain.DataCollectors.Commands;
 
 namespace Domain.Specs.when_adding_a_data_collector.given
 {
