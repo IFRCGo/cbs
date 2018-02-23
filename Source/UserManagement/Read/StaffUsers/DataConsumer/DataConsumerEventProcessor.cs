@@ -1,0 +1,37 @@
+using System.Threading.Tasks;
+using Concepts;
+using doLittle.Events.Processing;
+using Events.StaffUser;
+
+namespace Read.StaffUsers.DataConsumer
+{
+    public class DataConsumerEventProcessor : ICanProcessEvents
+    {
+        private readonly IDataConsumers _dataConsumers;
+
+        public DataConsumerEventProcessor(
+            IDataConsumers dataConsumers
+        )
+        {
+            _dataConsumers = dataConsumers;
+        }
+
+        public async Task Process(DataConsumerAdded @event)
+        {
+            await _dataConsumers.Save(new DataConsumer
+            {
+                Area = new Location(@event.AreaLatitude, @event.AreaLongitude),
+                DisplayName = @event.DisplayName,
+                Email = @event.Email,
+                FullName = @event.Email,
+                Id = @event.Id
+            });
+        }
+
+        public async Task Process(StaffUserDeleted @event)
+        {
+            if ((Role)@event.Role == Role.DataConsumer)
+                await _dataConsumers.Remove(@event.Id);
+        }
+    }
+}

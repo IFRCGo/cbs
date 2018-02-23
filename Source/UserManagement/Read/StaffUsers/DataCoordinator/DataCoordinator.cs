@@ -16,7 +16,7 @@ namespace Read.StaffUsers.DataCoordinator
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        public Location GeoLocation { get; set; } //TODO: ??
+        public string GeoLocation { get; set; } //TODO: ??
         public List<string> MobilePhoneNumbers { get; set; }
         public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSociety { get; set; }
