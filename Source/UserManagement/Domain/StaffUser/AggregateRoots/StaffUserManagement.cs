@@ -7,12 +7,8 @@ namespace Domain.StaffUser.AggregateRoots
 {
     public class StaffUserManagement : AggregateRoot
     {
-        public Guid Id { get; private set; }
-
         public StaffUserManagement(Guid id) : base(id)
         {
-            this.Id = id;
-
         }
         
         public void AddStaffUser(AddStaffUser command)
@@ -47,12 +43,15 @@ namespace Domain.StaffUser.AggregateRoots
 
         // TODO: Should events get the ID from this AggregateRoot object, or a completly new Guid created here?
 
+        // QUESTION: I don't really understand the EventSourceId thing and how it functions here in the AggregateRoot.
+        // Should Events have a seperate EventSourceId field?
+
         private void HandleAddAdmin(AddStaffUser command)
         {
             
-            // QUESTION: @einari I don't really understand the EventSourceId thing and how it functions here in the AggregateRoot
+            
             Apply(new AdminAdded(
-                Id, command.FullName,
+                EventSourceId, command.FullName,
                 command.DisplayName, command.Email
                 ));
         }
@@ -60,7 +59,7 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddDataConsumer(AddStaffUser command)
         {
             Apply(new DataConsumerAdded(
-                Id, command.FullName,
+                EventSourceId, command.FullName,
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Area.Latitude
                 ));
@@ -70,7 +69,7 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddDataCoordinator(AddStaffUser command)
         {
             Apply(new DataCoordinatorAdded(
-                Id, command.FullName, command.DisplayName,
+                EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
@@ -80,7 +79,7 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddDataOwner(AddStaffUser command)
         {
             Apply(new DataOwnerAdded(
-                Id, command.FullName, command.DisplayName,
+                EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
@@ -90,7 +89,7 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddDataVerifier(AddStaffUser command)
         {
             Apply(new DataVerifierAdded(
-                Id, command.FullName, command.DisplayName,
+                EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
@@ -100,7 +99,7 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddSystemCoordinator(AddStaffUser command)
         {
             Apply(new SystemCoordinatorAdded(
-                Id, command.FullName, command.DisplayName,
+                EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.Age, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
