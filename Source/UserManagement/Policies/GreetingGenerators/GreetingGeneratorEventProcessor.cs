@@ -9,7 +9,6 @@ namespace Policies.GreetingGenerators
 
     public class GreetingGeneratorEventProcessor : ICanProcessEvents
     {
-
         readonly IGreetingHistories _greetingHistories;
         readonly IDataCollectors _dataCollectors;
         readonly IAggregateRootRepositoryFor<Domain.MessageGenerators.MessageGenerator> _messageGeneratorsAggregateRootRepository;
@@ -23,7 +22,7 @@ namespace Policies.GreetingGenerators
             _dataCollectors = dataCollectors;
             _messageGeneratorsAggregateRootRepository = messageGeneratorsAggregateRootRepository;
         }
-
+        /*TODO: What is this class? I would suggest to have another system for adding WelcomeMessages to datacollectors
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
@@ -45,5 +44,6 @@ namespace Policies.GreetingGenerators
                 PhoneNumber = @event.PhoneNumber
             });
         }
+        */
     }
 }

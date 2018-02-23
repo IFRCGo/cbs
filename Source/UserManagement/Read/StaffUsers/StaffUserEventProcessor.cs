@@ -44,5 +44,22 @@ namespace Read.StaffUsers
         {
             await _staffUserCollection.Remove(@event.Id);
         }
+
+        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        {
+            // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
+            var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
+            user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+
+            await _staffUserCollection.Save(user);
+        }
+        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        {
+            // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
+            var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
+            // TODO: Assume that the PhoneNumber exists?
+            user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+            await _staffUserCollection.Save(user);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Domain.DataCollectors.AggregateRoots
     public class DataCollectorManagement : AggregateRoot
     {
 
-        public DataCollectorManagement(Guid id) : base(id)
+        protected DataCollectorManagement(Guid id) : base(id)
         {
         }
 
@@ -29,27 +29,6 @@ namespace Domain.DataCollectors.AggregateRoots
 
                 //MobilePhoneNumber = command.MobilePhoneNumber,
                 //Email = command.Email
-            });
-        }
-
-        //TODO: Add business validation that checks if number is already added
-        public void AddPhoneNumber(string phoneNumber)
-        {
-            Apply(new PhoneNumberAddedToDataCollector
-            {
-                Id = Guid.NewGuid(),
-                DataCollectorId = EventSourceId,
-                PhoneNumber = phoneNumber
-            });
-        }
-
-        public void RemovePhoneNumber(string phoneNumber)
-        {
-            Apply(new PhoneNumberRemovedFromDataCollector
-            {
-                Id = Guid.NewGuid(),
-                DataCollectorId = EventSourceId,
-                PhoneNumber = phoneNumber
             });
         }
     }

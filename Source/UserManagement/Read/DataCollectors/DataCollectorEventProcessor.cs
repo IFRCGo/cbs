@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.DataCollector;
@@ -25,6 +26,8 @@ namespace Read.DataCollectors
             dataCollector.PreferredLanguage = (Language) @event.PreferredLanguage;
             dataCollector.Sex = (Sex) @event.Sex;
             dataCollector.RegisteredAt = @event.RegisteredAt;
+
+            dataCollector.PhoneNumbers = new List<PhoneNumber>();
             await _dataCollectors.Save(dataCollector);
         }
 

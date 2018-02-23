@@ -30,17 +30,5 @@ namespace Domain.DataCollectors.CommandHandlers
             root.AddDataCollector(command);
         }
 
-        public void Handle(AddPhoneNumber command)
-        {
-            //TODO: Should probably not use command.DataCollectorId for EventSourceId?
-            var root = _repository.Get(command.DataCollectorId);
-            root.AddPhoneNumber(command.PhoneNumber);
-        }
-
-        public void Handle(RemovePhoneNumber command)
-        {
-            var root = _repository.Get(command.DataCollectorId);
-            root.RemovePhoneNumber(command.PhoneNumber);
-        }
     }
 }

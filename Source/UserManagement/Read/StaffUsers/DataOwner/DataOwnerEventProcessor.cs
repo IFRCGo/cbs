@@ -44,5 +44,29 @@ namespace Read.StaffUsers.DataOwner
             if ((Role)@event.Role == Role.DataOwner)
                 await _dataOwners.Remove(@event.Id);
         }
+
+        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        {
+            if ((Role)@event.Role == Role.DataOwner)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
+                var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
+                user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+
+                await _dataOwners.Save(user);
+            }
+
+        }
+        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        {
+            if ((Role)@event.Role == Role.DataOwner)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
+                var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
+                // TODO: Assume that the PhoneNumber exists?
+                user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+                await _dataOwners.Save(user);
+            }
+        }
     }
 }

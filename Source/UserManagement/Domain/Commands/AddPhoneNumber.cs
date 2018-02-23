@@ -5,12 +5,20 @@
 
 using doLittle.Commands;
 using System;
+using Concepts;
 
 namespace Domain.DataCollectors
 {
     public class AddPhoneNumber : ICommand
     {
-        public Guid DataCollectorId { get; set; }
+        //TODO: If we make a descent input validator for this command we can have it this way
+        //which seems intuitive to me.
+
+        // Validator will check that if DataCollectorId == null then StaffUserId and Role != null
+        // If StaffUserId == null or Role == null then DataCollectorId != null 
+        public Guid? DataCollectorId { get; set; }
+        public Guid? StaffUserId { get; set; }
+        public Role? Role { get; set; }
         public string PhoneNumber { get; set; }
     }
 }

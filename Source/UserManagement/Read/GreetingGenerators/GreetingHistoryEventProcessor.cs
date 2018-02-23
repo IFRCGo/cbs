@@ -11,7 +11,7 @@ namespace Read.GreetingGenerators
         {
             _greetingHistories = greetingHistories;
         }
-
+        /* //TODO: What is even this class? Seems obsolete?
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.Id);
@@ -23,5 +23,6 @@ namespace Read.GreetingGenerators
         {
             await _greetingHistories.Remove(@event.PhoneNumber);
         }
+        */ 
     }
 }

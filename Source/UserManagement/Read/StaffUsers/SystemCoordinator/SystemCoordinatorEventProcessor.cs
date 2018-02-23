@@ -43,5 +43,29 @@ namespace Read.StaffUsers.SystemCoordinator
             if ((Role)@event.Role == Role.SystemCoordinator)
                 await _systemCoordinators.Remove(@event.Id);
         }
+
+        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        {
+            if ((Role) @event.Role == Role.SystemCoordinator)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
+                var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
+                user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+
+                await _systemCoordinators.Save(user);
+            }
+            
+        }
+        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        {
+            if ((Role) @event.Role == Role.SystemCoordinator)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
+                var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
+                // TODO: Assume that the PhoneNumber exists?
+                user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+                await _systemCoordinators.Save(user);
+            }
+        }
     }
 }

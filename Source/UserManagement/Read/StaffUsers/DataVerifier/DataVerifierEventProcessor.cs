@@ -44,5 +44,29 @@ namespace Read.StaffUsers.DataVerifier
             if ((Role)@event.Role == Role.DataVerifier)
                 await _dataVerifiers.Remove(@event.Id);
         }
+
+        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        {
+            if ((Role)@event.Role == Role.DataVerifier)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
+                var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
+                user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+
+                await _dataVerifiers.Save(user);
+            }
+
+        }
+        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        {
+            if ((Role)@event.Role == Role.DataVerifier)
+            {
+                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
+                var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
+                // TODO: Assume that the PhoneNumber exists?
+                user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+                await _dataVerifiers.Save(user);
+            }
+        }
     }
 }

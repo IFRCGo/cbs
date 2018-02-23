@@ -7,7 +7,7 @@ namespace Domain.StaffUser.AggregateRoots
 {
     public class StaffUserManagement : AggregateRoot
     {
-        public StaffUserManagement(Guid id) : base(id)
+        protected StaffUserManagement(Guid id) : base(id)
         {
         }
         
