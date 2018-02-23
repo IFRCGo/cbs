@@ -45,14 +45,18 @@ namespace Domain.StaffUser.AggregateRoots
             }
         }
 
+        // TODO: Should events get the ID from this AggregateRoot object, or a completly new Guid created here?
+
         private void HandleAddAdmin(AddStaffUser command)
         {
             
+            // QUESTION: @einari I don't really understand the EventSourceId thing and how it functions here in the AggregateRoot
             Apply(new AdminAdded(
                 Id, command.FullName,
                 command.DisplayName, command.Email
                 ));
         }
+
         private void HandleAddDataConsumer(AddStaffUser command)
         {
             Apply(new DataConsumerAdded(
@@ -60,6 +64,8 @@ namespace Domain.StaffUser.AggregateRoots
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Area.Latitude
                 ));
+
+
         }
         private void HandleAddDataCoordinator(AddStaffUser command)
         {

@@ -15,7 +15,7 @@ namespace Domain.DataCollectors
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 
-        public CommandHandlers(
+        public CommandHandlers (
             IAggregateRootRepositoryFor<DataCollector> repository
             )
         {
