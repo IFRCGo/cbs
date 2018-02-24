@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using doLittle.Events;
 using doLittle.Runtime.Events;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
     public interface IEventConverter
     {

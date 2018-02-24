@@ -9,7 +9,7 @@ using doLittle.Dynamic;
 using doLittle.Events;
 using doLittle.Runtime.Events;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
     public class EventConverter : IEventConverter
     {

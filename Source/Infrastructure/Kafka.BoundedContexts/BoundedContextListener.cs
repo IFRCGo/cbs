@@ -19,7 +19,7 @@ using doLittle.Runtime.Transactions;
 using doLittle.Types;
 using Newtonsoft.Json;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
 
     [Singleton]
@@ -157,6 +157,12 @@ namespace Kafka
         public void Start()
         {
             _consumer.SubscribeTo(_configuration.Topic, Received);
+        }
+
+        public static void Start(IServiceProvider serviceProvider)
+        {
+            var listener = serviceProvider.GetService(typeof(BoundedContextListener)) as BoundedContextListener;
+            listener.Start();
         }
     }
 }

@@ -9,7 +9,7 @@ using doLittle.Runtime.Events.Publishing;
 using doLittle.Runtime.Events.Publishing.InProcess;
 using doLittle.Serialization.Json;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
     public delegate void EventReceived(string json);
 

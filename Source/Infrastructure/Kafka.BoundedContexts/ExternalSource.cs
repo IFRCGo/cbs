@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using doLittle.Runtime.Events;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
     public class ExternalSource : EventSource
     {

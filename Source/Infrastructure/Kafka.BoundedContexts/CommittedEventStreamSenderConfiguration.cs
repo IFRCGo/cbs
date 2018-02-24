@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Kafka
+namespace Kafka.BoundedContexts
 {
     public class CommittedEventStreamSenderConfiguration
     {
