@@ -27,7 +27,6 @@ namespace Read.StaffUsers.DataVerifier
                 AssignedNationalSociety = new List<Guid>{ @event.AssignedNationalSociety },
                 Email = @event.Email,
                 FullName = @event.FullName,
-                GeoLocation = @event.GeoLocation,
                 Id = @event.Id,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
                 MobilePhoneNumbers = new List<string> { @event.MobilePhoneNumber },

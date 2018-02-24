@@ -25,7 +25,6 @@ namespace Read.StaffUsers
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        public string GeoLocation { get; set; }
         public List<string> MobilePhoneNumbers { get; set; }
         public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSociety { get; set; }
@@ -33,12 +32,12 @@ namespace Read.StaffUsers
 
         public string Position { get; set; }
         public string DutyStation { get; set; }
-        public Location Area { get; set; }
 
         public StaffUser(AdminAdded @event)
         {
             Role = Role.Admin;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
@@ -48,29 +47,32 @@ namespace Read.StaffUsers
         {
             Role = Role.DataConsumer;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
-            Area = new Location(@event.AreaLatitude, @event.AreaLongitude);
+
+            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+            
         }
         public StaffUser(DataCoordinatorAdded @event)
         {
             Role = Role.DataCoordinator;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
+
             YearOfBirth = @event.YearOfBirth;
             Sex = (Sex) @event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language) @event.PreferredLanguage;
-            GeoLocation = @event.GeoLocation;
-
+            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             MobilePhoneNumbers = new List<string>
             {
                 @event.MobilePhoneNumber
             };
-
             AssignedNationalSociety = new List<Guid>
             {
                 @event.AssignedNationalSociety
@@ -81,26 +83,24 @@ namespace Read.StaffUsers
         {
             Role = Role.DataOwner;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
+
             YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;
             Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            GeoLocation = @event.GeoLocation;
-
             MobilePhoneNumbers = new List<string>
             {
                 @event.MobilePhoneNumber
             };
-
             AssignedNationalSociety = new List<Guid>
             {
                 @event.AssignedNationalSociety
             };
-
             Position = @event.Position;
             DutyStation = @event.DutyStation;
 
@@ -109,49 +109,45 @@ namespace Read.StaffUsers
         {
             Role = Role.DataVerifier;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
+
             YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;
             Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            GeoLocation = @event.GeoLocation;
-
             MobilePhoneNumbers = new List<string>
             {
                 @event.MobilePhoneNumber
             };
-
             AssignedNationalSociety = new List<Guid>
             {
                 @event.AssignedNationalSociety
             };
-
             RegistrationDate = @event.RegistrationDate;
-
         }
 
         public StaffUser(SystemCoordinatorAdded @event)
         {
             Role = Role.SystemCoordinator;
             Id = @event.Id;
+
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
+
             YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;
             Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            GeoLocation = @event.GeoLocation;
-
             MobilePhoneNumbers = new List<string>
             {
                 @event.MobilePhoneNumber
             };
-
             AssignedNationalSociety = new List<Guid>
             {
                 @event.AssignedNationalSociety

@@ -59,7 +59,7 @@ namespace Domain.StaffUser.AggregateRoots
             Apply(new DataConsumerAdded(
                 EventSourceId, command.FullName,
                 command.DisplayName, command.Email,
-                command.Location.Longitude, command.Area.Latitude
+                command.Location.Longitude, command.Location.Latitude
                 ));
         }
         private void HandleAddDataCoordinator(AddStaffUser command)
@@ -68,7 +68,7 @@ namespace Domain.StaffUser.AggregateRoots
                 EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
+                command.Location.Latitude, command.MobilePhoneNumber,
                 command.AssignedNationalSociety
                 ));
         }
@@ -78,7 +78,7 @@ namespace Domain.StaffUser.AggregateRoots
                 EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
+                command.Location.Latitude, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, command.Position, command.DutyStation
                 ));
         }
@@ -88,7 +88,7 @@ namespace Domain.StaffUser.AggregateRoots
                 EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
+                command.Location.Latitude, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, DateTime.Now
                 ));
         }
@@ -98,7 +98,7 @@ namespace Domain.StaffUser.AggregateRoots
                 EventSourceId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
+                command.Location.Latitude, command.MobilePhoneNumber,
                 command.AssignedNationalSociety
                 ));
         }

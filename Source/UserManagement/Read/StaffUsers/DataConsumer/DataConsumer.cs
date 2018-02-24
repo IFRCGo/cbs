@@ -9,6 +9,6 @@ namespace Read.StaffUsers.DataConsumer
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
-        public Location Area { get; set; }
+        public Location Location { get; set; }
     }
 }

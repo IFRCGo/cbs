@@ -20,7 +20,7 @@ namespace Read.StaffUsers.DataConsumer
         {
             await _dataConsumers.Save(new DataConsumer
             {
-                Area = new Location(@event.AreaLatitude, @event.AreaLongitude),
+                Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,
                 FullName = @event.Email,

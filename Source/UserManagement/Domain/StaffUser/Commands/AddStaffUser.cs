@@ -23,8 +23,8 @@ namespace Domain
         public string DutyStation { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        public Location Area { get; set; } //TODO: I never understood Area
-        public string GeoLocation { get; set; }
+        //public Location Area { get; set; } //TODO: I never understood Area
+        //public string GeoLocation { get; set; }
         public string MobilePhoneNumber { get; set; }
         
         public Guid AssignedNationalSociety {get; set; }
