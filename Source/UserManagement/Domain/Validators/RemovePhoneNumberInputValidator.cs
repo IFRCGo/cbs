@@ -5,9 +5,10 @@
 
 using System;
 using doLittle.FluentValidation.Commands;
+using Domain.Commands;
 using FluentValidation;
 
-namespace Domain.DataCollectors
+namespace Domain.Validators
 {
     public class RemovePhoneNumberInputValidator : CommandInputValidator<RemovePhoneNumber>
     {

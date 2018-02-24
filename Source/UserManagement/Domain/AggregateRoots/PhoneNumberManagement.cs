@@ -1,7 +1,7 @@
 using System;
 using doLittle.Domain;
 using doLittle.Runtime.Events;
-using Domain.DataCollectors;
+using Domain.Commands;
 using Events.DataCollector;
 using Events.StaffUser;
 

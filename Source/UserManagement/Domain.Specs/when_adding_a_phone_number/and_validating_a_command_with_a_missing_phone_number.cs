@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using doLittle.Validation;
-using Domain.DataCollectors;
-using Domain.Specs;
+using Domain.Commands;
+using Domain.Validators;
 using Machine.Specifications;
 
 namespace Domain.Specs.when_adding_a_phone_number

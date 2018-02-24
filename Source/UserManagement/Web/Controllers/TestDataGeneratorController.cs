@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Domain;
 using Domain.DataCollectors.CommandHandlers;
 using Domain.DataCollectors.Commands;
 using Domain.StaffUser.CommandHandlers;
+using Domain.StaffUser.Commands;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;

@@ -1,6 +1,7 @@
 using System;
 using Concepts;
 using doLittle.Domain;
+using Domain.StaffUser.Commands;
 using Events.StaffUser;
 
 namespace Domain.StaffUser.AggregateRoots

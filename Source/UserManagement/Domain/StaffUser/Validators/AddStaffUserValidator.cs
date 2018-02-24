@@ -1,4 +1,5 @@
 using Concepts;
+using Domain.StaffUser.Commands;
 using FluentValidation;
 
 namespace Domain.StaffUser.Validators

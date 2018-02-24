@@ -2,7 +2,7 @@ using System;
 using doLittle.Domain;
 using doLittle.Runtime.Commands;
 using Domain.AggregateRoots;
-using Domain.DataCollectors;
+using Domain.Commands;
 
 namespace Domain.CommandHandlers
 {

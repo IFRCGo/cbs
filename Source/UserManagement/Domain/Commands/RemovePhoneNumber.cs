@@ -5,11 +5,9 @@
 
 using doLittle.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Concepts;
 
-namespace Domain.DataCollectors
+namespace Domain.Commands
 {
     public class RemovePhoneNumber : ICommand
     {

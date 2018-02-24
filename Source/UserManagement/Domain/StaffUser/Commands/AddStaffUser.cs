@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
-namespace Domain
+namespace Domain.StaffUser.Commands
 {
     public class AddStaffUser : ICommand
     {

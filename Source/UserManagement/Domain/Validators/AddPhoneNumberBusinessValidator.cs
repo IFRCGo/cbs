@@ -4,11 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 using doLittle.FluentValidation.Commands;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Domain.Commands;
 
-namespace Domain.DataCollectors
+namespace Domain.Validators
 {
     public class AddPhoneNumberBusinessValidator : CommandBusinessValidator<AddPhoneNumber>
     {

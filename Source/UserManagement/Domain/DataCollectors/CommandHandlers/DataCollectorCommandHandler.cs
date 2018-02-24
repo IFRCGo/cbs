@@ -6,8 +6,6 @@
 using doLittle.Runtime.Commands;
 using doLittle.Domain;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Domain.DataCollectors.AggregateRoots;
 using Domain.DataCollectors.Commands;
 

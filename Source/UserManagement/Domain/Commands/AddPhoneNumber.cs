@@ -7,7 +7,7 @@ using doLittle.Commands;
 using System;
 using Concepts;
 
-namespace Domain.DataCollectors
+namespace Domain.Commands
 {
     public class AddPhoneNumber : ICommand
     {

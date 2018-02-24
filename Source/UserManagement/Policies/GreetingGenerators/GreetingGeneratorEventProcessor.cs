@@ -1,8 +1,7 @@
 using doLittle.Domain;
 using doLittle.Events.Processing;
-using Events.DataCollector;
 using Read.DataCollectors;
-
+using Domain.MessageGenerator;
 namespace Policies.GreetingGenerators
 {
     using Read.GreetingGenerators;
@@ -11,12 +10,12 @@ namespace Policies.GreetingGenerators
     {
         readonly IGreetingHistories _greetingHistories;
         readonly IDataCollectors _dataCollectors;
-        readonly IAggregateRootRepositoryFor<Domain.MessageGenerators.MessageGenerator> _messageGeneratorsAggregateRootRepository;
+        readonly IAggregateRootRepositoryFor<MessageGenerator> _messageGeneratorsAggregateRootRepository;
 
         public GreetingGeneratorEventProcessor(
             IGreetingHistories greetingHistories,
             IDataCollectors dataCollectors,
-            IAggregateRootRepositoryFor<Domain.MessageGenerators.MessageGenerator> messageGeneratorsAggregateRootRepository)
+            IAggregateRootRepositoryFor<MessageGenerator> messageGeneratorsAggregateRootRepository)
         {
             _greetingHistories = greetingHistories;
             _dataCollectors = dataCollectors;

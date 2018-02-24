@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using doLittle.FluentValidation.Commands;
+using Domain.StaffUser.Commands;
 
 namespace Domain.StaffUser.Validators
 {

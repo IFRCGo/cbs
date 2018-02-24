@@ -1,10 +1,8 @@
 using doLittle.Domain;
 using Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Domain.MessageGenerators
+namespace Domain.MessageGenerator
 {
     public class MessageGenerator : AggregateRoot
     {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Concepts;
-using Domain;
 using Domain.DataCollectors.Commands;
+using Domain.StaffUser.Commands;
 using Newtonsoft.Json;
 
 namespace Web.TestData
