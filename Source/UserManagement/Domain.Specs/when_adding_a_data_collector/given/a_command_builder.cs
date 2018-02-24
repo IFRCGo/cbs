@@ -11,7 +11,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
         {
             return  new AddDataCollector
             {
-                Id = Guid.NewGuid(),
+                //Id = Guid.NewGuid(),
                 FullName = "Data Collector",
                 DisplayName = "Daty",
                 YearOfBirth = 1980,

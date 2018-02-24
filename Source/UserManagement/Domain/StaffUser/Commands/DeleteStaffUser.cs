@@ -10,7 +10,5 @@ namespace Domain.StaffUser.Commands
     {
         public Guid StaffUserId { get; set; }
         public Role Role { get; set; }
-
-
     }
 }

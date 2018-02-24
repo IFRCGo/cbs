@@ -12,7 +12,7 @@ namespace Domain.DataCollectors.Commands
     public class AddDataCollector : ICommand
     {
         //TODO: Update these properties to reflect what is needed for event. Remove PhoneNumber
-        public Guid Id { get; set; } // TODO: Question: Commands should not contain the Id of the result object?
+      //  public Guid Id { get; set; } // TODO: Question: Commands should not contain the Id of the result object?
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
@@ -20,7 +20,7 @@ namespace Domain.DataCollectors.Commands
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
-        public string MobilePhoneNumber { get; set; }
+        public string MobilePhoneNumber { get; set; } //TODO: from woksin: Remove phonenumber?
         public string Email { get; set; }
     }
 }

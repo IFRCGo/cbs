@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
 using Read.StaffUsers;
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/staffusers")]
     public class StaffUserController : BaseController
