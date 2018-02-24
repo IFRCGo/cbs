@@ -20,7 +20,7 @@ namespace Read.StaffUsers.DataCoordinator
 
         public async Task Process(DataCoordinatorAdded @event)
         {
-            await _dataCoordinators.Save(new DataCoordinator
+            await _dataCoordinators.SaveAsync(new DataCoordinator
             {
                 YearOfBirth = @event.YearOfBirth,
                 AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety},
@@ -40,7 +40,7 @@ namespace Read.StaffUsers.DataCoordinator
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataCoordinator)
-                await _dataCoordinators.Remove(@event.Id);
+                await _dataCoordinators.RemoveAsync(@event.Id);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
@@ -51,7 +51,7 @@ namespace Read.StaffUsers.DataCoordinator
                 var user = await _dataCoordinators.GetByIdAsync(@event.StaffUserId);
                 user.MobilePhoneNumbers.Add(@event.PhoneNumber);
 
-                await _dataCoordinators.Save(user);
+                await _dataCoordinators.SaveAsync(user);
             }
 
         }
@@ -63,7 +63,7 @@ namespace Read.StaffUsers.DataCoordinator
                 var user = await _dataCoordinators.GetByIdAsync(@event.StaffUserId);
                 // TODO: Assume that the PhoneNumber exists?
                 user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-                await _dataCoordinators.Save(user);
+                await _dataCoordinators.SaveAsync(user);
             }
         }
     }

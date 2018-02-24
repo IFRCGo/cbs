@@ -17,32 +17,32 @@ namespace Read.StaffUsers
 
         public async Task Process(DataConsumerAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
         public async Task Process(AdminAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
         public async Task Process(DataCoordinatorAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
         public async Task Process(DataOwnerAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
         public async Task Process(SystemCoordinatorAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
         public async Task Process(DataVerifierAdded @event)
         {
-            await _staffUserCollection.Save(new StaffUser(@event));
+            await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
 
         public async Task Process(StaffUserDeleted @event)
         {
-            await _staffUserCollection.Remove(@event.Id);
+            await _staffUserCollection.RemoveAsync(@event.Id);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
@@ -51,7 +51,7 @@ namespace Read.StaffUsers
             var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
             user.MobilePhoneNumbers.Add(@event.PhoneNumber);
 
-            await _staffUserCollection.Save(user);
+            await _staffUserCollection.SaveAsync(user);
         }
         public async Task Process(PhoneNumberRemovedFromStaffUser @event)
         {
@@ -59,7 +59,7 @@ namespace Read.StaffUsers
             var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
             // TODO: Assume that the PhoneNumber exists?
             user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-            await _staffUserCollection.Save(user);
+            await _staffUserCollection.SaveAsync(user);
         }
     }
 }

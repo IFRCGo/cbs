@@ -20,7 +20,7 @@ namespace Read.StaffUsers.DataVerifier
 
         public async Task Process(DataVerifierAdded @event)
         {
-            await _dataVerifiers.Save(new DataVerifier
+            await _dataVerifiers.SaveAsync(new DataVerifier
             {
                 YearOfBirth = @event.YearOfBirth,
                 DisplayName = @event.DisplayName,
@@ -41,7 +41,7 @@ namespace Read.StaffUsers.DataVerifier
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataVerifier)
-                await _dataVerifiers.Remove(@event.Id);
+                await _dataVerifiers.RemoveAsync(@event.Id);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
@@ -52,7 +52,7 @@ namespace Read.StaffUsers.DataVerifier
                 var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
                 user.MobilePhoneNumbers.Add(@event.PhoneNumber);
 
-                await _dataVerifiers.Save(user);
+                await _dataVerifiers.SaveAsync(user);
             }
 
         }
@@ -64,7 +64,7 @@ namespace Read.StaffUsers.DataVerifier
                 var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
                 // TODO: Assume that the PhoneNumber exists?
                 user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-                await _dataVerifiers.Save(user);
+                await _dataVerifiers.SaveAsync(user);
             }
         }
     }

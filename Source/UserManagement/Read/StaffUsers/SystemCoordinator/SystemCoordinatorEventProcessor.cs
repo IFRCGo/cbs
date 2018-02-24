@@ -20,7 +20,7 @@ namespace Read.StaffUsers.SystemCoordinator
 
         public async Task Process(SystemCoordinatorAdded @event)
         {
-            await _systemCoordinators.Save(new SystemCoordinator
+            await _systemCoordinators.SaveAsync(new SystemCoordinator
             {
                 YearOfBirth = @event.YearOfBirth,
                 DisplayName = @event.DisplayName,
@@ -40,7 +40,7 @@ namespace Read.StaffUsers.SystemCoordinator
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.SystemCoordinator)
-                await _systemCoordinators.Remove(@event.Id);
+                await _systemCoordinators.RemoveAsync(@event.Id);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
@@ -51,7 +51,7 @@ namespace Read.StaffUsers.SystemCoordinator
                 var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
                 user.MobilePhoneNumbers.Add(@event.PhoneNumber);
 
-                await _systemCoordinators.Save(user);
+                await _systemCoordinators.SaveAsync(user);
             }
             
         }
@@ -63,7 +63,7 @@ namespace Read.StaffUsers.SystemCoordinator
                 var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
                 // TODO: Assume that the PhoneNumber exists?
                 user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-                await _systemCoordinators.Save(user);
+                await _systemCoordinators.SaveAsync(user);
             }
         }
     }

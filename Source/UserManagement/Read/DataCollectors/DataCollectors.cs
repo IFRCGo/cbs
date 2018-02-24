@@ -16,9 +16,19 @@ namespace Read.DataCollectors
             _collection = database.GetCollection<DataCollector>("DataCollector");
         }
 
+        public DataCollector GetById(Guid id)
+        {
+            return _collection.Find(d => d.Id == id).SingleOrDefault();
+        }
+
         public async Task<DataCollector> GetByIdAsync(Guid id)
         {
             return (await _collection.FindAsync(d => d.Id == id)).SingleOrDefault();
+        }
+
+        public IEnumerable<DataCollector> GetAll()
+        {
+            return _collection.Find(_ => true).ToList();
         }
 
         public async Task<IEnumerable<DataCollector>> GetAllAsync()
@@ -26,15 +36,24 @@ namespace Read.DataCollectors
             return (await _collection.FindAsync(_ => true)).ToList();
         }
 
-        public async Task Remove(Guid id)
+        public void Remove(Guid id)
+        {
+            _collection.DeleteOne(c => c.Id == id);
+        }
+
+        public async Task RemoveAsync(Guid id)
         {
             await _collection.DeleteOneAsync(c => c.Id == id);
         }
 
-        public async Task Save(DataCollector dataCollector)
+        public void Save(DataCollector dataCollector)
         {
-            var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
-            await _collection.ReplaceOneAsync(filter, dataCollector, new UpdateOptions { IsUpsert = true });
+            _collection.ReplaceOne(d => d.Id == dataCollector.Id, dataCollector, new UpdateOptions { IsUpsert = true });
+        }
+
+        public async Task SaveAsync(DataCollector dataCollector)
+        {
+            await _collection.ReplaceOneAsync(d => d.Id == dataCollector.Id, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
 }

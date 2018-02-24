@@ -18,7 +18,7 @@ namespace Read.StaffUsers.DataConsumer
 
         public async Task Process(DataConsumerAdded @event)
         {
-            await _dataConsumers.Save(new DataConsumer
+            await _dataConsumers.SaveAsync(new DataConsumer
             {
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
                 DisplayName = @event.DisplayName,
@@ -31,7 +31,7 @@ namespace Read.StaffUsers.DataConsumer
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataConsumer)
-                await _dataConsumers.Remove(@event.Id);
+                await _dataConsumers.RemoveAsync(@event.Id);
         }
     }
 }

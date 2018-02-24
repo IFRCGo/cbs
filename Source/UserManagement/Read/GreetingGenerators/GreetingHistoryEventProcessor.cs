@@ -16,12 +16,12 @@ namespace Read.GreetingGenerators
         {
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.Id);
             greetingHistory.PhoneNumber = @event.PhoneNumber;
-           await _greetingHistories.Save(greetingHistory);
+           await _greetingHistories.SaveAsync(greetingHistory);
         }
 
         public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            await _greetingHistories.Remove(@event.PhoneNumber);
+            await _greetingHistories.RemoveAsync(@event.PhoneNumber);
         }
         */ 
     }

@@ -28,35 +28,35 @@ namespace Read.DataCollectors
             dataCollector.RegisteredAt = @event.RegisteredAt;
 
             dataCollector.PhoneNumbers = new List<PhoneNumber>();
-            await _dataCollectors.Save(dataCollector);
+            await _dataCollectors.SaveAsync(dataCollector);
         }
 
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-            await _dataCollectors.Save(dataCollector);
+            await _dataCollectors.SaveAsync(dataCollector);
         }
 
         public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-            await _dataCollectors.Save(dataCollector);
+            await _dataCollectors.SaveAsync(dataCollector);
         }
 
         public async void Process(CaseReportReceived @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            await _dataCollectors.Save(dataCollector);
+            await _dataCollectors.SaveAsync(dataCollector);
         }
 
         public async void Process(InvalidReportReceived @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            await _dataCollectors.Save(dataCollector);
+            await _dataCollectors.SaveAsync(dataCollector);
         }
     }
 }

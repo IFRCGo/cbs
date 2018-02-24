@@ -7,9 +7,16 @@ namespace Read
 {
     public interface IReadCollection<T>
     {
+        T GetById(Guid id);
         Task<T> GetByIdAsync(Guid id);
+
+        IEnumerable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync();
-        Task Remove(Guid id);
-        Task Save(T obj);
+
+        void Remove(Guid id);
+        Task RemoveAsync(Guid id);
+
+        void Save(T obj);
+        Task SaveAsync(T obj);
     }
 }

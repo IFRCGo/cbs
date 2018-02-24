@@ -20,7 +20,7 @@ namespace Read.StaffUsers.DataOwner
 
         public async Task Process(DataOwnerAdded @event)
         {
-            await _dataOwners.Save(new DataOwner
+            await _dataOwners.SaveAsync(new DataOwner
             {
                 YearOfBirth = @event.YearOfBirth,
                 AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety },
@@ -41,7 +41,7 @@ namespace Read.StaffUsers.DataOwner
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataOwner)
-                await _dataOwners.Remove(@event.Id);
+                await _dataOwners.RemoveAsync(@event.Id);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
@@ -52,7 +52,7 @@ namespace Read.StaffUsers.DataOwner
                 var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
                 user.MobilePhoneNumbers.Add(@event.PhoneNumber);
 
-                await _dataOwners.Save(user);
+                await _dataOwners.SaveAsync(user);
             }
 
         }
@@ -64,7 +64,7 @@ namespace Read.StaffUsers.DataOwner
                 var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
                 // TODO: Assume that the PhoneNumber exists?
                 user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-                await _dataOwners.Save(user);
+                await _dataOwners.SaveAsync(user);
             }
         }
     }

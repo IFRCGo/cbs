@@ -21,7 +21,7 @@ namespace Read.StaffUsers.Admin
 
         public async Task Process(AdminAdded @event)
         {
-            await _admins.Save(new Admin
+            await _admins.SaveAsync(new Admin
             {
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,
@@ -33,7 +33,7 @@ namespace Read.StaffUsers.Admin
         public async Task Process(StaffUserDeleted @event)
         {
             if ( (Role) @event.Role == Role.Admin)
-                await _admins.Remove(@event.Id);
+                await _admins.RemoveAsync(@event.Id);
         }
 
     }

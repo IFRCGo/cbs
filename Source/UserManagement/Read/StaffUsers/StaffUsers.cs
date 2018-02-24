@@ -26,14 +26,34 @@ namespace Read.StaffUsers
             return (await _collection.FindAsync(_ => true)).ToList();
         }
 
-        public async Task Remove(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             await _collection.DeleteOneAsync(s => s.Id == id);
         }
 
-        public async Task Save(StaffUser obj)
+        public async Task SaveAsync(StaffUser obj)
         {
             await _collection.ReplaceOneAsync(s => s.Id == obj.Id, obj, new UpdateOptions{IsUpsert = true});
+        }
+
+        public StaffUser GetById(Guid id)
+        {
+            return _collection.Find(s => s.Id == id).SingleOrDefault();
+        }
+
+        public IEnumerable<StaffUser> GetAll()
+        {
+            return _collection.Find(_ => true).ToList();
+        }
+
+        public void Remove(Guid id)
+        {
+            _collection.DeleteOne(s => s.Id == id);
+        }
+
+        public void Save(StaffUser obj)
+        {
+            _collection.ReplaceOne(s => s.Id == obj.Id, obj, new UpdateOptions { IsUpsert = true });
         }
     }
 }
