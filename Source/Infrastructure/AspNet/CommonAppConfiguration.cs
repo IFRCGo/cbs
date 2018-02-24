@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Infrastructure.AspNet;
-using Kafka;
+using Kafka.BoundedContexts;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Microsoft.AspNetCore.Builder
