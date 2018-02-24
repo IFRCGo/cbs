@@ -161,7 +161,7 @@ namespace Kafka.BoundedContexts
 
         public static void Start(IServiceProvider serviceProvider)
         {
-            var listener = serviceProvider.GetService(typeof(BoundedContextListener)) as BoundedContextListener;
+            var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
             listener.Start();
         }
     }
