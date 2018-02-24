@@ -30,5 +30,17 @@ namespace Domain.StaffUser.CommandHandlers
             // TODO: Call StaffUserManagement DeleteStaffUser
             //root.DeleteStaffUser(command);
         }
+
+        public void Handle(AddPhoneNumberToStaffUser command)
+        {
+            var root = _repository.Get(command.StaffUserId); //TODO: Or Guid.NewGuid()?
+            root.AddPhoneNumber(command);
+        }
+
+        public void Handle(RemovePhoneNumberFromStaffUser command)
+        {
+            var root = _repository.Get(command.StaffUserId);
+            root.RemovePhoneNumber(command);
+        }
     }
 }

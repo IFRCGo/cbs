@@ -4,12 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
 namespace Domain.StaffUser.Commands
 {
+    /// <summary>
+    /// Handles adding all kinds of staffusers.
+    /// It seems to that we have the option of this method, where fields can be empty.
+    /// Or have an add/remove command for each type of staffuser, which seems cumbersome and not dry.
+    /// </summary>
     public class AddStaffUser : ICommand
     {
         public Role Role { get; set; }

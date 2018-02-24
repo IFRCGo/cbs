@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using doLittle.Validation;
-using Domain.Commands;
-using Domain.Validators;
 using Machine.Specifications;
 
 namespace Domain.Specs.when_adding_a_phone_number
 {
+
+    /*TODO: Obsolete when having Add/Remove PhoneNumber Command split into 2
     [Subject(typeof(AddPhoneNumber))]
     public class and_validating_a_command_with_a_missing_data_collector_id { 
 
@@ -31,5 +31,7 @@ namespace Domain.Specs.when_adding_a_phone_number
 
         It should_identify_the_data_collector_id_as_the_problem =
             () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
+            
     }
+    */
 }

@@ -31,6 +31,19 @@ namespace Domain.DataCollectors.AggregateRoots
                 //Email = command.Email
             });
         }
+
+        public void AddPhoneNumber(AddPhoneNumberToDataCollector command)
+        {
+            Apply(new PhoneNumberAddedToDataCollector(
+                command.DataCollectorId, command.PhoneNumber
+                ));
+        }
+        public void RemovePhoneNumber(RemovePhoneNumberFromDataCollector command)
+        {
+            Apply(new PhoneNumberRemovedFromDataCollector( 
+                command.DataCollectorId, command.PhoneNumber
+            ));
+        }
     }
 }
 

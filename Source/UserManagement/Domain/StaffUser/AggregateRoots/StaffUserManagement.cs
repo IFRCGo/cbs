@@ -42,6 +42,20 @@ namespace Domain.StaffUser.AggregateRoots
             }
         }
 
+        public void AddPhoneNumber(AddPhoneNumberToStaffUser command)
+        {
+            Apply(new PhoneNumberAddedToStaffUser(
+                command.StaffUserId, command.PhoneNumber, (int)command.Role
+                ));
+        }
+
+        public void RemovePhoneNumber(RemovePhoneNumberFromStaffUser command)
+        {
+            Apply(new PhoneNumberRemovedFromStaffUser(
+                command.StaffUserId, command.PhoneNumber, (int)command.Role
+                ));
+        }
+
         // TODO: Should events get the ID from this AggregateRoot object, or a completly new Guid created here?
 
         // QUESTION: I don't really understand the EventSourceId thing and how it functions here in the AggregateRoot.

@@ -28,5 +28,16 @@ namespace Domain.DataCollectors.CommandHandlers
             root.AddDataCollector(command);
         }
 
+        public void Handle(AddPhoneNumberToDataCollector command)
+        {
+            var root = _repository.Get(command.DataCollectorId); //TODO: Or Guid.NewGuid()
+            root.AddPhoneNumber(command);
+        }
+
+        public void Handle(RemovePhoneNumberFromDataCollector command)
+        {
+            var root = _repository.Get(command.DataCollectorId); //TODO: Or Guid.NewGuid()
+            root.RemovePhoneNumber(command);
+        }
     }
 }
