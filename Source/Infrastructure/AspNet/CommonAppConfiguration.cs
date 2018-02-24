@@ -35,7 +35,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            BoundedContextListener.Start(app.ApplicationServices);
+            //BoundedContextListener.Start(app.ApplicationServices);
 
             return app;
         }
