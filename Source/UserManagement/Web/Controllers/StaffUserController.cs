@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain;
 using Domain.StaffUser.CommandHandlers;
 using Domain.StaffUser.Commands;
 using Microsoft.AspNetCore.Mvc;
