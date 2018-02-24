@@ -28,5 +28,6 @@
     <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
     <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\Kafka\Kafka.csproj" />
+    <ProjectReference Include="..\Kafka.BoundedContexts\Kafka.BoundedContexts.csproj" />
   </ItemGroup>
 </Project>
