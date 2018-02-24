@@ -7,6 +7,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
 {
     public class a_command_builder
     {
+        /*
         public static AddDataCollector get_valid_command()
         {
             return  new AddDataCollector
@@ -39,6 +40,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
         {
             return a_command_builder.get_invalid_command(new Action<AddDataCollector>[]{ invalidate });
         }
+        */
     }
 }
 

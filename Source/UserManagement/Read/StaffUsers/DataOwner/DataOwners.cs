@@ -9,9 +9,7 @@ namespace Read.StaffUsers.DataOwner
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<DataOwner> _collection;
-        public DataOwners (
-            IMongoDatabase database
-        )
+        public DataOwners (IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<DataOwner>("DataOwner");

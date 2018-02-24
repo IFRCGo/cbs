@@ -1,14 +1,14 @@
 using System;
 using doLittle.Domain;
-using doLittle.Runtime.Commands;
 using Domain.StaffUser.AggregateRoots;
 using Domain.StaffUser.Commands;
 
 namespace Domain.StaffUser.CommandHandlers
 {
-    public class StaffUserCommandHandler : ICanHandleCommands
+    public class StaffUserCommandHandler : IStaffUserCommandHandler
     {
         private readonly IAggregateRootRepositoryFor<StaffUserManagement> _repository;
+
         public StaffUserCommandHandler(
             IAggregateRootRepositoryFor<StaffUserManagement> repository)
         {

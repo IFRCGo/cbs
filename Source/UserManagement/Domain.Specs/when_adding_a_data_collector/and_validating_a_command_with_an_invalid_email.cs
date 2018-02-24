@@ -15,6 +15,7 @@ using Domain.DataCollectors.Validators;
 
 namespace Domain.Specs.when_adding_a_data_collector
 {
+    /*
     [Subject(typeof(AddDataCollectorValidator))]
     public class and_validating_a_command_with_an_invalid_email
     {
@@ -35,4 +36,5 @@ namespace Domain.Specs.when_adding_a_data_collector
         It should_have_one_validation_error = () => validation_results.ShouldHaveInvalidCountOf(1);
         It should_identify_the_email_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.Email));
     }
+    */
 }

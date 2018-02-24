@@ -11,7 +11,7 @@ using Domain.DataCollectors.Commands;
 
 namespace Domain.DataCollectors.CommandHandlers
 {
-    public class DataCollectorCommandHandler : ICanHandleCommands
+    public class DataCollectorCommandHandler : IDataCollectorCommandHandler
     {
         private readonly IAggregateRootRepositoryFor<DataCollectorManagement> _repository;
 

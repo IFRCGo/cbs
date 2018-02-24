@@ -10,9 +10,7 @@ namespace Read.StaffUsers.DataVerifier
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<DataVerifier> _collection;
 
-        public DataVerifiers (
-            IMongoDatabase database
-        )
+        public DataVerifiers (IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<DataVerifier>("DataVerifier");

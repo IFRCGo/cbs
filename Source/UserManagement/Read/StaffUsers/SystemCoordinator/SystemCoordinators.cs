@@ -10,9 +10,7 @@ namespace Read.StaffUsers.SystemCoordinator
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<SystemCoordinator> _collection;
 
-        public SystemCoordinators (
-            IMongoDatabase database
-        )
+        public SystemCoordinators (IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<SystemCoordinator>("SystemCoordinator");

@@ -9,9 +9,8 @@ namespace Read.StaffUsers.DataConsumer
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<DataConsumer> _collection;
-        public DataConsumers(
-            IMongoDatabase database
-        )
+
+        public DataConsumers(IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<DataConsumer>("DataConsumer");

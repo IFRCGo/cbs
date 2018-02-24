@@ -10,10 +10,7 @@ namespace Read.StaffUsers.Admin
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<Admin> _collection;
 
-        public Admins(
-            IMongoDatabase database,
-            IMongoCollection<Admin> collection
-            )
+        public Admins(IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<Admin>("Admin");

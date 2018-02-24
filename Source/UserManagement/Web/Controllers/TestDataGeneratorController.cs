@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
+using Read.GreetingGenerators;
 using Read.StaffUsers;
 using Read.StaffUsers.Admin;
 using Read.StaffUsers.DataConsumer;
@@ -25,13 +26,13 @@ namespace Web.Controllers
     public class TestDataGeneratorController : BaseController
     {
         private readonly IMongoDatabase _database;
-        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
-        private readonly StaffUserCommandHandler _staffUserCommandHandler;
+        private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
+        private readonly IStaffUserCommandHandler _staffUserCommandHandler;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
-            DataCollectorCommandHandler dataCollectorCommandHandler,
-            StaffUserCommandHandler staffUserCommandHandler
+            IDataCollectorCommandHandler dataCollectorCommandHandler,
+            IStaffUserCommandHandler staffUserCommandHandler
         )
         {
             _database = database;
@@ -51,7 +52,7 @@ namespace Web.Controllers
             CreateDataCollectorCommands();
             CreateAllStaffUserCommands();
         }
-
+        
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
@@ -100,13 +101,16 @@ namespace Web.Controllers
 
         }
 
-
-        private void DeleteCollection<T>(string collectionName)
+        [HttpGet("deleteall")]
+        public void DeleteAll()
         {
-            _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
+            DeleteAllStaffUserCollections();
+            DeleteDataCollector();
+            DeleteGreetingHistory();
         }
 
-        private void DeleteAllStaffUserCollections()
+        [HttpGet("deleteallstaffusercollections")]
+        public void DeleteAllStaffUserCollections()
         {
             DeleteCollection<StaffUser>("StaffUser");
             DeleteCollection<SystemCoordinator>("SystemCoordinator");
@@ -115,7 +119,24 @@ namespace Web.Controllers
             DeleteCollection<DataCoordinator>("DataCoordinator");
             DeleteCollection<DataConsumer>("DataConsumer");
             DeleteCollection<Admin>("Admin");
-            
+
+        }
+
+        [HttpGet("deletedatacollectorcollection")]
+        public void DeleteDataCollector()
+        {
+            DeleteCollection<DataCollector>("DataCollector");
+        }
+
+        [HttpGet("deletegreetinghistorycollection")]
+        public void DeleteGreetingHistory()
+        {
+            DeleteCollection<GreetingHistory>("GreetingHistories");
+        }
+
+        private void DeleteCollection<T>(string collectionName)
+        {
+            _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
         }
 
     }

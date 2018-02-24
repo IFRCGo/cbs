@@ -8,7 +8,7 @@ namespace Domain.DataCollectors.AggregateRoots
     public class DataCollectorManagement : AggregateRoot
     {
 
-        protected DataCollectorManagement(Guid id) : base(id)
+        public DataCollectorManagement(Guid id) : base(id)
         {
         }
 

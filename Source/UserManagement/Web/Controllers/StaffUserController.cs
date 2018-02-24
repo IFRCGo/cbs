@@ -18,11 +18,11 @@ namespace Web.Controllers
     {
         private readonly IStaffUsers _users;
 
-        private readonly StaffUserCommandHandler _staffUserCommandHandler;
+        private readonly IStaffUserCommandHandler _staffUserCommandHandler;
 
         public StaffUserController (
             IStaffUsers users,
-            StaffUserCommandHandler stafffUserCommandHandler
+            IStaffUserCommandHandler stafffUserCommandHandler
             )
         {
             _users = users;

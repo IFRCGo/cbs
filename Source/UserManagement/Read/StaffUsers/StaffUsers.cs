@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace Read.StaffUsers
 {
-    public class StaffUsers : IReadCollection<StaffUser>
+    public class StaffUsers : IStaffUsers
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<StaffUser> _collection;

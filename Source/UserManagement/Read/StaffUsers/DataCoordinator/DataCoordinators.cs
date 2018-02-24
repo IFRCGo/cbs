@@ -9,9 +9,8 @@ namespace Read.StaffUsers.DataCoordinator
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<DataCoordinator> _collection;
-        public DataCoordinators(
-            IMongoDatabase database
-        )
+
+        public DataCoordinators(IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<DataCoordinator>("DataCoordinator");

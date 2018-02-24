@@ -15,6 +15,7 @@ using Domain.DataCollectors.Validators;
 
 namespace Domain.Specs.when_adding_a_data_collector
 {
+    /*
     [Subject(typeof(AddDataCollectorValidator))]
     public class and_validating_a_command_with_a_missing_full_name
     {
@@ -35,4 +36,5 @@ namespace Domain.Specs.when_adding_a_data_collector
         It should_have_a_single_validation_error = () => validation_results.ShouldHaveInvalidCountOf(1);
         It should_identify_the_first_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.FullName));
     }
+    */
 }

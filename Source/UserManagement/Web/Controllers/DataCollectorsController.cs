@@ -21,11 +21,10 @@ namespace Web.Controllers
     {
         private readonly IDataCollectors _dataCollectors;
 
-        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
-        //readonly IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> _dataCollector;
+        private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
         public DataCollectorsController (
-            DataCollectorCommandHandler dataCollectorCommand,
+            IDataCollectorCommandHandler dataCollectorCommand,
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;
