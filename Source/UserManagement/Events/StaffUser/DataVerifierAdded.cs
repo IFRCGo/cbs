@@ -21,6 +21,9 @@ namespace Events.StaffUser
         public string MobilePhoneNumber { get; private set; }
         public bool MobilePhoneNumberConfirmed { get; private set; } = true;
         public Guid AssignedNationalSociety { get; private set; }
+        /// <summary>
+        /// Supplied at event creation
+        /// </summary>
         public DateTime RegistrationDate { get; private set; }
 
         public DataVerifierAdded(Guid id, string fullName, string displayName, string email, int yearOfBirth, 

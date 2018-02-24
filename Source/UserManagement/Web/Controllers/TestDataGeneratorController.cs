@@ -9,10 +9,16 @@ namespace Web.Controllers
     {
         public TestDataGeneratorController() { }
 
-        [HttpGet("generatetestdata")]
-        public void GenerateTestData()
+        [HttpGet("generatetestdataset")]
+        public void GenerateTestDataSet()
         {
             TestDataGenerator.GenerateAllTestData();
+        }
+        [HttpGet("handletestdatacommands")]
+        public void HandleTestDataCommands()
+        {
+            //TODO: Read commands from JSON and give them to the CommandHandlers
+
         }
     }
 }
