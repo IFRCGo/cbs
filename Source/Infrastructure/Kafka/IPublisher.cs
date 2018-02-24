@@ -2,15 +2,18 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Concepts;
-
 namespace Kafka
 {
-    public class KafkaConnectionString : ConceptAs<string>
+    /// <summary>
+    /// Defines a system that can send events
+    /// </summary>
+    public interface IPublisher
     {
-        public static implicit operator KafkaConnectionString(string connectionString)
-        {
-            return new KafkaConnectionString { Value = connectionString };
-        }
+        /// <summary>
+        /// Publish an event to a <see cref="Topic"/>
+        /// </summary>
+        /// <param name="topic"><see cref="Topic"/> to publsh to</param>
+        /// <param name="json">Json string payload</param>
+        void Publish(Topic topic, string json);
     }
 }

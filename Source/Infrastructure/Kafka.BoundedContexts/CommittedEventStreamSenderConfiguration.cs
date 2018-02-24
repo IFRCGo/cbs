@@ -2,15 +2,17 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Concepts;
+using System.Collections.Generic;
 
 namespace Kafka
 {
-    public class KafkaConnectionString : ConceptAs<string>
+    public class CommittedEventStreamSenderConfiguration
     {
-        public static implicit operator KafkaConnectionString(string connectionString)
+        public CommittedEventStreamSenderConfiguration(IEnumerable<Topic> topics)
         {
-            return new KafkaConnectionString { Value = connectionString };
+            Topics = topics;
         }
+
+        public IEnumerable<Topic> Topics { get; }
     }
 }

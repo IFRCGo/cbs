@@ -1,16 +1,14 @@
-﻿/*---------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Concepts;
+using doLittle.Runtime.Events;
 
 namespace Kafka
 {
-    public class Topic : ConceptAs<string>
+    public class ExternalSource : EventSource
     {
-        public static implicit operator Topic(string topic)
-        {
-            return new Topic { Value = topic };
-        }
+        public ExternalSource(EventSourceId id) : base(id) { }
+
     }
 }
