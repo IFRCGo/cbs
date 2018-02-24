@@ -22,7 +22,7 @@ namespace Read.StaffUsers.DataVerifier
         {
             await _dataVerifiers.Save(new DataVerifier
             {
-                Age = @event.Age,
+                YearOfBirth = @event.YearOfBirth,
                 DisplayName = @event.DisplayName,
                 AssignedNationalSociety = new List<Guid>{ @event.AssignedNationalSociety },
                 Email = @event.Email,

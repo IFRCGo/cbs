@@ -22,7 +22,7 @@ namespace Read.StaffUsers.DataOwner
         {
             await _dataOwners.Save(new DataOwner
             {
-                Age = @event.Age,
+                YearOfBirth = @event.YearOfBirth,
                 AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety },
                 DisplayName = @event.DisplayName,
                 DutyStation = @event.DutyStation,

@@ -22,7 +22,7 @@ namespace Read.StaffUsers.DataCoordinator
         {
             await _dataCoordinators.Save(new DataCoordinator
             {
-                Age = @event.Age,
+                YearOfBirth = @event.YearOfBirth,
                 AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety},
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,

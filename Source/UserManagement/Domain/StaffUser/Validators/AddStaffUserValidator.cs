@@ -28,9 +28,9 @@ namespace Domain.StaffUser.Validators
 
             When(_ => _.Role.RequiresExtensiveInfo(), () =>
             {
-                RuleFor(_ => _.Age)
+                RuleFor(_ => _.YearOfBirth)
                     .GreaterThan(0)
-                    .WithMessage("Age is not correct - Has to be greater than 0");
+                    .WithMessage("YearOfBirth is not correct - Has to be greater than 0");
                 RuleFor(_ => _.Sex)
                     .IsInEnum()
                     .WithMessage("Sex is not correct - Has to be a valid value");

@@ -66,7 +66,7 @@ namespace Domain.StaffUser.AggregateRoots
         {
             Apply(new DataCoordinatorAdded(
                 EventSourceId, command.FullName, command.DisplayName,
-                command.Email, command.Age, (int)command.Sex, command.NationalSociety,
+                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety
@@ -76,7 +76,7 @@ namespace Domain.StaffUser.AggregateRoots
         {
             Apply(new DataOwnerAdded(
                 EventSourceId, command.FullName, command.DisplayName,
-                command.Email, command.Age, (int)command.Sex, command.NationalSociety,
+                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, command.Position, command.DutyStation
@@ -86,7 +86,7 @@ namespace Domain.StaffUser.AggregateRoots
         {
             Apply(new DataVerifierAdded(
                 EventSourceId, command.FullName, command.DisplayName,
-                command.Email, command.Age, (int)command.Sex, command.NationalSociety,
+                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety, DateTime.Now
@@ -96,7 +96,7 @@ namespace Domain.StaffUser.AggregateRoots
         {
             Apply(new SystemCoordinatorAdded(
                 EventSourceId, command.FullName, command.DisplayName,
-                command.Email, command.Age, (int)command.Sex, command.NationalSociety,
+                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
                 command.Location.Latitude, command.GeoLocation, command.MobilePhoneNumber,
                 command.AssignedNationalSociety

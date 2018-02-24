@@ -57,7 +57,7 @@ namespace Web.Controllers
                 Id = id,
                 FullName = command.FullName,
                 DisplayName = command.DisplayName,
-                Age = command.Age,
+                YearOfBirth = command.YearOfBirth,
                 Sex = command.Sex,
                 Location = command.Location,
                 NationalSociety = command.NationalSociety,

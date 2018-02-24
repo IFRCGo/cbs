@@ -10,19 +10,17 @@ namespace Read.StaffUsers
     /// We used this idea in VolunteerReporting to supply the view with a single class that can contain the diferent 
     /// read models that are derived from the same read model type.
     /// 
-    /// We don't need all of these fields, we just need the fields specific for the view. Fields can be removed
+    /// We probaably don't need all of these fields, we just need the fields specific for the view. Fields can be removed
     /// here as we see fit.
     /// </summary>
     public class StaffUser
     {
-
-
         public Guid Id { get; set; }
         public Role Role { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
-        public int Age { get; set; }
+        public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
@@ -62,7 +60,7 @@ namespace Read.StaffUsers
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
-            Age = @event.Age;
+            YearOfBirth = @event.YearOfBirth;
             Sex = (Sex) @event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language) @event.PreferredLanguage;
@@ -86,7 +84,7 @@ namespace Read.StaffUsers
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
-            Age = @event.Age; Age = @event.Age;
+            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;
@@ -114,7 +112,7 @@ namespace Read.StaffUsers
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
-            Age = @event.Age; Age = @event.Age;
+            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;
@@ -142,7 +140,7 @@ namespace Read.StaffUsers
             FullName = @event.FullName;
             DisplayName = @event.DisplayName;
             Email = @event.Email;
-            Age = @event.Age; Age = @event.Age;
+            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
             Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
             PreferredLanguage = (Language)@event.PreferredLanguage;

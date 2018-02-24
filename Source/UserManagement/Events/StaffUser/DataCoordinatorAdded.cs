@@ -12,7 +12,7 @@ namespace Events.StaffUser
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
-        public int Age { get; set; }
+        public int YearOfBirth { get; set; }
         public SystemException Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
@@ -27,7 +27,7 @@ namespace Events.StaffUser
         public string FullName { get; private set; }
         public string DisplayName { get; private set; }
         public string Email { get; private set; }
-        public int Age { get; private set; }
+        public int YearOfBirth { get; private set; }
         public int Sex { get; private set; } // 0 is male 1 is female
         public Guid NationalSociety { get; private set; }
         public int PreferredLanguage { get; private set; } // 0 is english 1 is french TODO Must be another way to do this.
@@ -41,7 +41,7 @@ namespace Events.StaffUser
         public Guid AssignedNationalSociety { get; private set; }// TODO: A DataCoordinator can have multiple Assigned national societies,
         // though I guess we cannot have List objects in events??
 
-        public DataCoordinatorAdded(Guid id, string fullName, string displayName, string email, int age, 
+        public DataCoordinatorAdded(Guid id, string fullName, string displayName, string email, int yearOfBirth, 
             int sex, Guid nationalSociety, int preferredLanguage, double locationLongitude, double locationLatitude, 
             string geoLocation, string mobilePhoneNumber, Guid assignedNationalSociety)
         {
@@ -49,7 +49,7 @@ namespace Events.StaffUser
             FullName = fullName;
             DisplayName = displayName;
             Email = email;
-            Age = age;
+            YearOfBirth = yearOfBirth;
             Sex = sex;
             NationalSociety = nationalSociety;
             PreferredLanguage = preferredLanguage;

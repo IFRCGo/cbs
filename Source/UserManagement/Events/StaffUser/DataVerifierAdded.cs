@@ -12,7 +12,7 @@ namespace Events.StaffUser
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
-        public int Age { get; set; }
+        public int YearOfBirth { get; set; }
         public SystemException Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
@@ -27,7 +27,7 @@ namespace Events.StaffUser
         public string FullName { get; private set; }
         public string DisplayName { get; private set; }
         public string Email { get; private set; }
-        public int Age { get; private set; }
+        public int YearOfBirth { get; private set; }
         public int Sex { get; private set; }
         public Guid NationalSociety { get; private set; }
         public int PreferredLanguage { get; private set; }
@@ -40,7 +40,7 @@ namespace Events.StaffUser
         public Guid AssignedNationalSociety { get; private set; }
         public DateTime RegistrationDate { get; private set; }
 
-        public DataVerifierAdded(Guid id, string fullName, string displayName, string email, int age, 
+        public DataVerifierAdded(Guid id, string fullName, string displayName, string email, int yearOfBirth, 
             int sex, Guid nationalSociety, int preferredLanguage, double locationLongitude, double locationLatitude, string geoLocation, 
             string mobilePhoneNumber, Guid assignedNationalSociety, DateTime registrationDate)
         {
@@ -48,7 +48,7 @@ namespace Events.StaffUser
             FullName = fullName;
             DisplayName = displayName;
             Email = email;
-            Age = age;
+            YearOfBirth = yearOfBirth;
             Sex = sex;
             NationalSociety = nationalSociety;
             PreferredLanguage = preferredLanguage;

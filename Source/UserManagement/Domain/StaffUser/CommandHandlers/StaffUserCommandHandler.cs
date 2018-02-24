@@ -28,8 +28,9 @@ namespace Domain.StaffUser.CommandHandlers
 
         public void Handle(DeleteStaffUser command)
         {
-            var staffUserMng = _repository.Get(command.StaffUserId);
+            var root = _repository.Get(command.StaffUserId);
             // TODO: Call StaffUserManagement DeleteStaffUser
+            //root.DeleteStaffUser(command);
         }
     }
 }
