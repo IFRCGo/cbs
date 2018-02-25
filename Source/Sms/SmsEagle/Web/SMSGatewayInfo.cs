@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Web.SMSGatewayInfo
+namespace Web
 {
     public class SMSGatewayInfo
     {
@@ -13,6 +10,6 @@ namespace Web.SMSGatewayInfo
         public string GatewayID { get; set; }
         public bool IsDualModem { get; set; }
         public int GatewayMacAddress { get; set; }
-        public  PurchasedDate { get; set; }
+        public DateTimeOffset PurchasedDate { get; set; }
     }
 }
