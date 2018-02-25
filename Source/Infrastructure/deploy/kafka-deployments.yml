@@ -55,7 +55,7 @@ spec:
           - name: KAFKA_BROKER_ID
             value: "1"
           - name: KAFKA_CREATE_TOPICS
-            value: "admin:1:1,alert:1:1,usermanagement:1:1,volunteerreporting:1:1"
+            value: "incomingtextmessages:1:1,outgoingtextmessages:1:1,admin:1:1,alert:1:1,usermanagement:1:1,volunteerreporting:1:1"
           - name: KAFKA_LOG_RETENTION_BYTES
             value: "-1"
         volumeMounts:
