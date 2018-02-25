@@ -154,7 +154,7 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Start()
         {
-            _consumer.SubscribeTo(_configuration.Topic, Received);
+            _consumer.SubscribeTo($"BoundedContextListenerFor_{_configuration.Topic}",_configuration.Topic, Received);
         }
 
         public static void Start(IServiceProvider serviceProvider)
