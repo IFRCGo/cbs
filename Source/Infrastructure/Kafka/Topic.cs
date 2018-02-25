@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using doLittle.Concepts;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
     public class Topic : ConceptAs<string>
     {

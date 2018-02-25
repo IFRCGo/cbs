@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
 
     public class Configuration : IConfiguration

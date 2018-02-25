@@ -5,7 +5,7 @@
 using System;
 using Autofac;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
     public class KafkaModule : Autofac.Module
     {

@@ -10,7 +10,7 @@ using Confluent.Kafka.Serialization;
 using doLittle.Logging;
 using doLittle.Serialization.Json;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
     public class Consumer : IConsumer
     {

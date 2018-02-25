@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
     public interface IConfiguration
     {

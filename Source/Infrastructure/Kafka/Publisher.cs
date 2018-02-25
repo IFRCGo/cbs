@@ -8,7 +8,7 @@ using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
 using doLittle.Logging;
 
-namespace Kafka
+namespace Infrastructure.Kafka
 {
     /// <summary>
     /// Represents an implementation of <see cref="IPublisher"/>
