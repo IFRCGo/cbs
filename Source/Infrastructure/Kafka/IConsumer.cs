@@ -14,6 +14,6 @@ namespace Infrastructure.Kafka
         /// </summary>
         /// <param name="topic"><see cref="Topic"/> to subscribe to</param>
         /// <param name="received"><see cref="EventReceived"/> that gets called when there is an event received</param>
-        void SubscribeTo(Topic topic, EventReceived received);
+        void SubscribeTo(ConsumerName consumerName, Topic topic, EventReceived received);
     }
 }

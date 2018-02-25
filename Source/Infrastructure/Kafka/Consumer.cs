@@ -24,15 +24,15 @@ namespace Infrastructure.Kafka
         {
             _logger = logger;
             _configuration = configuration;
-
         }
 
-        public void SubscribeTo(Topic topic, EventReceived received)
+        public void SubscribeTo(ConsumerName consumerName, Topic topic, EventReceived received)
         {
             _logger.Information($"Listening on topic '{topic}' from '{_configuration.ConnectionString}'");
-            var consumer = new Confluent.Kafka.Consumer<Ignore, string>(_configuration.GetFor(topic), null, new StringDeserializer(Encoding.UTF8));
+            var consumer = new Confluent.Kafka.Consumer<Ignore, string>(_configuration.GetFor(consumerName), null, new StringDeserializer(Encoding.UTF8));
             consumer.Assign(new [] {  new TopicPartition(topic, 0)});
             consumer.OnMessage += (_, message)=> received(topic, message.Value);
+            consumer.OnError += (_, message) => _logger.Error(message.Reason);
 
             Task.Run(()=>
             {
