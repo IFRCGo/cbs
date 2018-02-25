@@ -16,9 +16,9 @@ namespace Read.DataCollectors
             _dataCollectors = dataCollectors;
         }
 
-        public async Task Process(DataCollectorAdded @event)
+        public void Process(DataCollectorAdded @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.Id) ?? new DataCollector(@event.Id);
+            var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
@@ -29,12 +29,12 @@ namespace Read.DataCollectors
             dataCollector.RegisteredAt = @event.RegisteredAt;
 
             dataCollector.PhoneNumbers = new List<PhoneNumber>();
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
         }
 
-        public async Task Process(DataCollectorUpdated @event)
+        public void Process(DataCollectorUpdated @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
 
             //TODO: Business Validator should check this(?)
             if (dataCollector == null)
@@ -52,32 +52,32 @@ namespace Read.DataCollectors
 
             dataCollector.Email = @event.Email; //Todo: Have to change this if datacollector can have multiple emails
 
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
 
         }
 
-        public async Task Process(PhoneNumberAddedToDataCollector @event)
+        public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             //TODO: Business Validator should check this(?)
             if (dataCollector == null)
             {
                 return;
             }
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
         }
 
-        public async Task Process(PhoneNumberRemovedFromDataCollector @event)
+        public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             //TODO: Business Validator should check this(?)
             if (dataCollector == null)
             {
                 return;
             }
             dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
         }
 
         public async Task Process(CaseReportReceived @event)
