@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using doLittle.Runtime.Events;
 
-namespace Kafka.BoundedContexts
+namespace Infrastructure.Kafka.BoundedContexts
 {
     public class EventContentAndEnvelope
     {

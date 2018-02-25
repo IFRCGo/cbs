@@ -19,10 +19,9 @@
         <PackageReference Include="doLittle.Serialization.Json" Version="2.0.0-alpha2.69" />
         <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
         <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-        <PackageReference Include="System.Reactive.Linq" Version="4.0.0-preview00001" />
     </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Kafka\Kafka.csproj" />
-  </ItemGroup>    
+    <ItemGroup>
+        <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
+    </ItemGroup>
 </Project>

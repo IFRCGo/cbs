@@ -5,7 +5,7 @@
 using System;
 using Autofac;
 
-namespace Kafka.BoundedContexts
+namespace Infrastructure.Kafka.BoundedContexts
 {
     public class KafkaModule : Autofac.Module
     {

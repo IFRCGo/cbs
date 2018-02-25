@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using doLittle.Applications;
 using doLittle.Events;
 using doLittle.Execution;
@@ -19,9 +18,8 @@ using doLittle.Runtime.Transactions;
 using doLittle.Types;
 using Newtonsoft.Json;
 
-namespace Kafka.BoundedContexts
+namespace Infrastructure.Kafka.BoundedContexts
 {
-
     [Singleton]
     public class BoundedContextListener : IBoundedContextListener
     {
