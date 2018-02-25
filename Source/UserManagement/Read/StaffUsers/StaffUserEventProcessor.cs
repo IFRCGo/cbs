@@ -46,9 +46,9 @@ namespace Read.StaffUsers
             await _staffUserCollection.RemoveAsync(@event.StaffUserId);
         }
 
-        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        public void Process(PhoneNumberAddedToStaffUser @event)
         {
-            var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
+            var user = _staffUserCollection.GetById(@event.StaffUserId);
             //TODO: Should be checked in business validator(?)
             if (user == null)
             {
@@ -56,18 +56,18 @@ namespace Read.StaffUsers
             }
             user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
-            await _staffUserCollection.SaveAsync(user);
+            _staffUserCollection.Save(user);
         }
-        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
-            var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
+            var user = _staffUserCollection.GetById(@event.StaffUserId);
             //TODO: Should be checked in business validator(?)
             if (user == null)
             {
                 return;
             }
             user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-            await _staffUserCollection.SaveAsync(user);
+            _staffUserCollection.Save(user);
         }
     }
 }

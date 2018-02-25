@@ -16,7 +16,6 @@ namespace Read.StaffUsers.SystemCoordinator
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
         public List<PhoneNumber> MobilePhoneNumbers { get; set; }
-        public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSociety { get; set; }
 
     }

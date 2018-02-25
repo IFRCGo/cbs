@@ -27,7 +27,6 @@ namespace Read.StaffUsers
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
         public List<PhoneNumber> MobilePhoneNumbers { get; set; }
-        public bool MobilePhoneNumberConfirmed { get; } = true;
         public List<Guid> AssignedNationalSocities { get; set; }
         public DateTimeOffset RegistrationDate { get; set; }
 

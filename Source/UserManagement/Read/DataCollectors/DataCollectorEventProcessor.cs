@@ -16,8 +16,9 @@ namespace Read.DataCollectors
             _dataCollectors = dataCollectors;
         }
 
-        public void Process(DataCollectorAdded @event)
+        public async Task Process(DataCollectorAdded @event)
         {
+            /* Should use a specific command and event for updating
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
@@ -29,7 +30,16 @@ namespace Read.DataCollectors
             dataCollector.RegisteredAt = @event.RegisteredAt;
 
             dataCollector.PhoneNumbers = new List<PhoneNumber>();
-            _dataCollectors.Save(dataCollector);
+            */ 
+            await _dataCollectors.SaveAsync(new DataCollector(@event.Id)
+            {
+                DisplayName = @event.DisplayName, FullName = @event.FullName,
+                Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
+                YearOfBirth = @event.YearOfBirth, NationalSociety = @event.NationalSociety,
+                Sex = (Sex)@event.Sex, RegisteredAt = @event.RegisteredAt,
+                PreferredLanguage = (Language)@event.PreferredLanguage,
+                PhoneNumbers = new List<PhoneNumber>()
+            });
         }
 
         public void Process(DataCollectorUpdated @event)
@@ -41,7 +51,8 @@ namespace Read.DataCollectors
             {
                 return;
             }
-                
+            //TODO: I think the best way to do an update is to assume that all the fields are either the same as before or changed.
+            // avoid null-values in the command and event
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
@@ -80,18 +91,18 @@ namespace Read.DataCollectors
             _dataCollectors.Save(dataCollector);
         }
 
-        public async Task Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
         }
 
-        public async Task Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event)
         {
-            var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.LastReportRecievedAt = @event.Timestamp;
-            await _dataCollectors.SaveAsync(dataCollector);
+            _dataCollectors.Save(dataCollector);
         }
     }
 }

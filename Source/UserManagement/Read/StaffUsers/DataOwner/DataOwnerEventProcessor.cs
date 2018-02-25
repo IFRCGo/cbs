@@ -44,35 +44,37 @@ namespace Read.StaffUsers.DataOwner
                 await _dataOwners.RemoveAsync(@event.StaffUserId);
         }
 
-        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        public void Process(PhoneNumberAddedToStaffUser @event)
         {
-            if ((Role)@event.Role == Role.DataOwner)
+            if ((Role) @event.Role != Role.DataOwner)
             {
-                var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
-                //TODO: Should be checked in business validator(?)
-                if (user == null)
-                {
-                    return;
-                }
-                user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-
-                await _dataOwners.SaveAsync(user);
+                return;
             }
+            var user = _dataOwners.GetById(@event.StaffUserId);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
+
+            _dataOwners.SaveAsync(user);
 
         }
-        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
-            if ((Role)@event.Role == Role.DataOwner)
+            if ((Role) @event.Role != Role.DataOwner)
             {
-                var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
-                //TODO: Should be checked in business validator(?)
-                if (user == null)
-                {
-                    return;
-                }
-                user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-                await _dataOwners.SaveAsync(user);
+                return;
             }
+            var user = _dataOwners.GetById(@event.StaffUserId);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
+            _dataOwners.SaveAsync(user);
         }
     }
 }

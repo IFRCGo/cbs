@@ -43,11 +43,11 @@ namespace Read.StaffUsers.SystemCoordinator
                 await _systemCoordinators.RemoveAsync(@event.StaffUserId);
         }
 
-        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        public void Process(PhoneNumberAddedToStaffUser @event)
         {
             if ((Role) @event.Role == Role.SystemCoordinator)
             {
-                var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
+                var user = _systemCoordinators.GetById(@event.StaffUserId);
                 //TODO: Should be checked in business validator(?)
                 if (user == null)
                 {
@@ -55,22 +55,22 @@ namespace Read.StaffUsers.SystemCoordinator
                 }
                 user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
-                await _systemCoordinators.SaveAsync(user);
+                _systemCoordinators.Save(user);
             }
             
         }
-        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
             if ((Role) @event.Role == Role.SystemCoordinator)
             {
-                var user = await _systemCoordinators.GetByIdAsync(@event.StaffUserId);
+                var user = _systemCoordinators.GetById(@event.StaffUserId);
                 //TODO: Should be checked in business validator(?)
                 if (user == null)
                 {
                     return;
                 }
                 user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-                await _systemCoordinators.SaveAsync(user);
+                _systemCoordinators.SaveAsync(user);
             }
         }
     }

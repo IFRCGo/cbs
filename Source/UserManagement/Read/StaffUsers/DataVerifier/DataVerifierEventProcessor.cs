@@ -44,33 +44,33 @@ namespace Read.StaffUsers.DataVerifier
                 await _dataVerifiers.RemoveAsync(@event.StaffUserId);
         }
 
-        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        public void Process(PhoneNumberAddedToStaffUser @event)
         {
             if ((Role)@event.Role == Role.DataVerifier)
             {
-                var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
+                var user = _dataVerifiers.GetById(@event.StaffUserId);
                 if (user == null)
                 {
                     return;
                 }
                 user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
-                await _dataVerifiers.SaveAsync(user);
+                _dataVerifiers.Save(user);
             }
 
         }
-        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
             if ((Role)@event.Role == Role.DataVerifier)
             {
-                var user = await _dataVerifiers.GetByIdAsync(@event.StaffUserId);
+                var user = _dataVerifiers.GetById(@event.StaffUserId);
                 //TODO: Should be checked in business validator(?)
                 if (user == null)
                 {
                     return;
                 }
                 user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
-                await _dataVerifiers.SaveAsync(user);
+                _dataVerifiers.Save(user);
             }
         }
     }

@@ -18,9 +18,9 @@ namespace Read.StaffUsers.DataCoordinator
             _dataCoordinators = dataCoordinators;
         }
 
-        public void Process(DataCoordinatorAdded @event)
+        public async Task Process(DataCoordinatorAdded @event)
         {
-            _dataCoordinators.Save(new DataCoordinator
+            await _dataCoordinators.SaveAsync(new DataCoordinator
             {
                 YearOfBirth = @event.YearOfBirth,
                 AssignedNationalSocieties = new List<Guid>(),
