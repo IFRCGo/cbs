@@ -2,6 +2,8 @@ using doLittle.Domain;
 using doLittle.Events.Processing;
 using Read.DataCollectors;
 using Domain.MessageGenerator;
+using Events.DataCollector;
+
 namespace Policies.GreetingGenerators
 {
     using Read.GreetingGenerators;
@@ -21,7 +23,6 @@ namespace Policies.GreetingGenerators
             _dataCollectors = dataCollectors;
             _messageGeneratorsAggregateRootRepository = messageGeneratorsAggregateRootRepository;
         }
-        /*TODO: What is this class? I would suggest to have another system for adding WelcomeMessages to datacollectors
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
@@ -35,14 +36,13 @@ namespace Policies.GreetingGenerators
                 return;
             }
 
-            var smsGeneratorAggregateRootRepository = _messageGeneratorsAggregateRootRepository.Get(@event.Id);
-            smsGeneratorAggregateRootRepository.GenerateMessage(new Domain.MessageGenerators.GenerateMessage()
+            var smsGeneratorAggregateRootRepository = _messageGeneratorsAggregateRootRepository.Get(@event.DataCollectorId);
+            smsGeneratorAggregateRootRepository.GenerateMessage(new GenerateMessage()
             {
-                Id = @event.Id,
+                Id = @event.DataCollectorId,
                 Message = welcomeMessage,
                 PhoneNumber = @event.PhoneNumber
             });
         }
-        */
     }
 }

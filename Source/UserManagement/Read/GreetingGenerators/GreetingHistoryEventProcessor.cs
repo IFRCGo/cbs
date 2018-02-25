@@ -11,10 +11,11 @@ namespace Read.GreetingGenerators
         {
             _greetingHistories = greetingHistories;
         }
-        /* //TODO: What is even this class? Seems obsolete?
+        
+        //TODO: Shouldn't this listen to MessageGenerated-event?
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.Id);
+            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber;
            await _greetingHistories.SaveAsync(greetingHistory);
         }
@@ -23,6 +24,5 @@ namespace Read.GreetingGenerators
         {
             await _greetingHistories.RemoveAsync(@event.PhoneNumber);
         }
-        */ 
     }
 }
