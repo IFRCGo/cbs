@@ -26,7 +26,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseMvc();
             app.UseSwagger();
 
-            //if (env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
