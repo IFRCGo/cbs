@@ -24,19 +24,19 @@ namespace Domain.DataCollectors.CommandHandlers
 
         public void Handle(AddDataCollector command)
         {
-            var root = _repository.Get(Guid.NewGuid());
+            var root = _repository.Get(command.DataCollectorId);
             root.AddDataCollector(command);
         }
 
         public void Handle(AddPhoneNumberToDataCollector command)
         {
-            var root = _repository.Get(command.DataCollectorId); //TODO: Or Guid.NewGuid()
+            var root = _repository.Get(command.DataCollectorId);
             root.AddPhoneNumber(command);
         }
 
         public void Handle(RemovePhoneNumberFromDataCollector command)
         {
-            var root = _repository.Get(command.DataCollectorId); //TODO: Or Guid.NewGuid()
+            var root = _repository.Get(command.DataCollectorId);
             root.RemovePhoneNumber(command);
         }
     }

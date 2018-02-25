@@ -26,14 +26,14 @@ namespace Read.StaffUsers.Admin
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,
                 FullName = @event.FullName,
-                Id = @event.Id
+                Id = @event.StaffUserId
             });
         }
 
         public async Task Process(StaffUserDeleted @event)
         {
             if ( (Role) @event.Role == Role.Admin)
-                await _admins.RemoveAsync(@event.Id);
+                await _admins.RemoveAsync(@event.StaffUserId);
         }
 
     }

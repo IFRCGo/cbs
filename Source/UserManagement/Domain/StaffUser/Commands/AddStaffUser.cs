@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
@@ -16,6 +17,8 @@ namespace Domain.StaffUser.Commands
     /// </summary>
     public class AddStaffUser : ICommand
     {
+        public Guid StaffUserId { get; set; }
+
         public Role Role { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
@@ -27,10 +30,8 @@ namespace Domain.StaffUser.Commands
         public string DutyStation { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        //public Location Area { get; set; } //TODO: I never understood Area
-        //public string GeoLocation { get; set; }
-        public string MobilePhoneNumber { get; set; }
-        
-        public Guid AssignedNationalSociety {get; set; }
+
+        public List<string> MobilePhoneNumber { get; set; }
+        public List<Guid> AssignedNationalSocieties {get; set; }
     }
 }

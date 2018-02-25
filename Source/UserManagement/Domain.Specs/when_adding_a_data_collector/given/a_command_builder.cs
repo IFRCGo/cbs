@@ -12,7 +12,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
         {
             return  new AddDataCollector
             {
-                //Id = Guid.NewGuid(),
+                //DataCollectorId = Guid.NewGuid(),
                 FullName = "Data Collector",
                 DisplayName = "Daty",
                 YearOfBirth = 1980,
@@ -20,7 +20,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
                 NationalSociety = Guid.NewGuid(),
                 PreferredLanguage = Language.English,
                 GpsLocation = new Location(123,123),
-                MobilePhoneNumber = "123456789",
+                MobilePhoneNumbers = "123456789",
                 Email = "test@test.com"
             };
         }

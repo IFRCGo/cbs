@@ -46,7 +46,7 @@ namespace Web.TestData
                     Email = name.Replace(' ', '_') + "@mail.com",
                     FullName = name,
                     GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
-                    MobilePhoneNumber = rng.Next(00000000, 99999999).ToString(),
+                    MobilePhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()},
                     NationalSociety = Guid.NewGuid(),
                     PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                     Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,
@@ -141,8 +141,8 @@ namespace Web.TestData
                 NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
                 PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                 Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                MobilePhoneNumber = rng.Next(00000000, 99999999).ToString(),
-                AssignedNationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)]
+                MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
+                AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
             };
             numDataCoordinators++;
 
@@ -163,8 +163,8 @@ namespace Web.TestData
                 NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
                 PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                 Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                MobilePhoneNumber = rng.Next(00000000, 99999999).ToString(),
-                AssignedNationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
+                AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]},
                 DutyStation = "Duty Station" + numDataOwners,
                 Position = "Position" + numDataOwners
             };
@@ -187,8 +187,8 @@ namespace Web.TestData
                 NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
                 PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                 Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                MobilePhoneNumber = rng.Next(00000000, 99999999).ToString(),
-                AssignedNationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)]
+                MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
+                AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
             };
             numDataVerifiers++;
 
@@ -209,8 +209,8 @@ namespace Web.TestData
                 NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
                 PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                 Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                MobilePhoneNumber = rng.Next(00000000, 99999999).ToString(),
-                AssignedNationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)]
+                MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
+                AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
             };
             numSystemCoordinators++;
 

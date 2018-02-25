@@ -34,6 +34,10 @@ namespace Read.DataCollectors
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            if (dataCollector == null)
+            {
+                return;
+            }
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
             await _dataCollectors.SaveAsync(dataCollector);
         }
@@ -41,6 +45,10 @@ namespace Read.DataCollectors
         public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = await _dataCollectors.GetByIdAsync(@event.DataCollectorId);
+            if (dataCollector == null)
+            {
+                return;
+            }
             dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             await _dataCollectors.SaveAsync(dataCollector);
         }

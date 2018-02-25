@@ -12,7 +12,7 @@ namespace Read.GreetingGenerators
             _greetingHistories = greetingHistories;
         }
         
-        //TODO: Shouldn't this listen to MessageGenerated-event?
+        //TODO: QUESTION: Shouldn't this listen to MessageGenerated-event?
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);

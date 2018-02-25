@@ -23,14 +23,14 @@ namespace Read.StaffUsers.DataOwner
             await _dataOwners.SaveAsync(new DataOwner
             {
                 YearOfBirth = @event.YearOfBirth,
-                AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety },
+                AssignedNationalSocieties = new List<Guid>(),
                 DisplayName = @event.DisplayName,
                 DutyStation = @event.DutyStation,
                 Email = @event.Email,
                 FullName = @event.FullName,
-                Id = @event.Id,
+                Id = @event.StaffUserId,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-                MobilePhoneNumbers = new List<string> { @event.MobilePhoneNumber },
+                MobilePhoneNumbers = new List<PhoneNumber>(),
                 Sex = (Sex)@event.Sex,
                 NationalSociety = @event.NationalSociety,
                 PreferredLanguage = (Language)@event.PreferredLanguage,
@@ -41,16 +41,20 @@ namespace Read.StaffUsers.DataOwner
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataOwner)
-                await _dataOwners.RemoveAsync(@event.Id);
+                await _dataOwners.RemoveAsync(@event.StaffUserId);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
         {
             if ((Role)@event.Role == Role.DataOwner)
             {
-                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
                 var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
-                user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+                //TODO: Should be checked in business validator(?)
+                if (user == null)
+                {
+                    return;
+                }
+                user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
                 await _dataOwners.SaveAsync(user);
             }
@@ -60,10 +64,13 @@ namespace Read.StaffUsers.DataOwner
         {
             if ((Role)@event.Role == Role.DataOwner)
             {
-                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
                 var user = await _dataOwners.GetByIdAsync(@event.StaffUserId);
-                // TODO: Assume that the PhoneNumber exists?
-                user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+                //TODO: Should be checked in business validator(?)
+                if (user == null)
+                {
+                    return;
+                }
+                user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
                 await _dataOwners.SaveAsync(user);
             }
         }

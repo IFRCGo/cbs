@@ -24,14 +24,14 @@ namespace Read.StaffUsers.DataConsumer
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,
                 FullName = @event.Email,
-                Id = @event.Id
+                Id = @event.StaffUserId
             });
         }
 
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataConsumer)
-                await _dataConsumers.RemoveAsync(@event.Id);
+                await _dataConsumers.RemoveAsync(@event.StaffUserId);
         }
     }
 }

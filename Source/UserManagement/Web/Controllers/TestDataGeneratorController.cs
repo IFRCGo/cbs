@@ -72,6 +72,8 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+                cmd.DataCollectorId = Guid.NewGuid();
                 _dataCollectorCommandHandler.Handle(cmd);
             }
             
@@ -96,6 +98,8 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+                cmd.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
 

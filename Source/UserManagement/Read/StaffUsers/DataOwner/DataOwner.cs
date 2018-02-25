@@ -15,11 +15,9 @@ namespace Read.StaffUsers.DataOwner
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
-        //public string GeoLocation { get; set; } //TODO: ??
-        public List<string> MobilePhoneNumbers { get; set; }
-        public bool MobilePhoneNumberConfirmed { get; } = true;
-        public List<Guid> AssignedNationalSociety { get; set; }
-        public string Position { get; set; } //TODO: (free text, position within the NS) ?
+        public List<PhoneNumber> MobilePhoneNumbers { get; set; }
+        public List<Guid> AssignedNationalSocieties { get; set; }
+        public string Position { get; set; }
         public string DutyStation { get; set; }
     }
 }

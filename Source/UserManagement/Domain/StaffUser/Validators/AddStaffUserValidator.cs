@@ -29,13 +29,6 @@ namespace Domain.StaffUser.Validators
 
             When(_ => _.Role.RequiresExtensiveInfo(), () =>
             {
-                RuleFor(_ => _.YearOfBirth)
-                    .GreaterThan(0)
-                    .WithMessage("YearOfBirth is not correct - Has to be greater than 0");
-                RuleFor(_ => _.Sex)
-                    .IsInEnum()
-                    .WithMessage("Sex is not correct - Has to be a valid value");
-
                 RuleFor(_ => _.NationalSociety)
                     .NotEmpty()
                     .WithMessage("National Society is not correct - Has to be a IRC Society");
@@ -44,26 +37,47 @@ namespace Domain.StaffUser.Validators
                     .IsInEnum()
                     .WithMessage("Preferred language is not correct - Has to be a supported languge");
 
-                //TODO: Validate MobilePhoneNumber based on localization
+                //TODO: Validate MobilePhoneNumbers based on localization
                 RuleFor(_ => _.MobilePhoneNumber)
                     .NotEmpty()
                     //.Matches(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")
                     .WithMessage("Mobile phone number is not correct - Has to be of correct form");
             });
 
-            When(_ => _.Role.RequiresPositionAndDutyStation(), () => {
-                RuleFor(_ => _.Position)
-                    .NotEmpty()
-                    .WithMessage("Position within National Society is not correct - Has to be defined");
-                RuleFor(_ => _.DutyStation)
-                    .NotEmpty()
-                    .WithMessage("Duty Station is not correct - Has to be defined");
+            When(_ => _.Role.RequiresAgeAndSex(), () =>
+            {
+                RuleFor(_ => _.YearOfBirth)
+                    .NotEmpty().WithMessage("YearOfBirth is not correct - Has to be specified");
+
+                RuleFor(_ => _.Sex)
+                    .IsInEnum().WithMessage("Sex is not correct - Has to be specified and have valid value");
             });
 
+            When(_ => _.Role.RequiresPositionAndDutyStation(), () => {
+                RuleFor(_ => _.Position)
+                    .NotEmpty().WithMessage("Position within National Society is not correct - Has to be defined");
+                RuleFor(_ => _.DutyStation)
+                    .NotEmpty().WithMessage("Duty Station is not correct - Has to be defined");
+            });
+
+            When(_ => _.Role.RequiresAssignedNationalSocieties(), () =>
+            {
+                RuleFor(_ => _.AssignedNationalSocieties)
+                    .NotEmpty().WithMessage("AssignedNationalSocieties list cannot be empty - Has to be defined");
+            });
+
+            When(_ => _.Role.RequiresLocation(), () => {
+                RuleFor(_ => _.Location)
+                    .NotEmpty().WithMessage("Location is not correct - Has to be defined");
+                    //.NotEqual(Location.NotSet);
+            });
+
+            /* Stick to the same pattern as above (?)
             RuleFor(_ => _.Location)
                 .NotEmpty()
                 .When(_=> _.Role.RequiresLocation())
                 .WithMessage("Location is not correct - Has to be defined");
+            */
         }
 
     }

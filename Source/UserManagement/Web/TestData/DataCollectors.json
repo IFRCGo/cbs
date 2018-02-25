@@ -1,44 +1,53 @@
 [
   {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
     "FullName": "Abraham Watson",
     "DisplayName": "Abraham_WatsonDISP",
-    "YearOfBirth": 1949,
+    "YearOfBirth": 1934,
     "Sex": 2,
-    "NationalSociety": "ad4f0bb3-e9df-4b38-83ab-8988331ecd8f",
-    "PreferredLanguage": 1,
+    "NationalSociety": "dd421f34-bdbf-45ae-87b5-9302dd98d320",
+    "PreferredLanguage": 0,
     "GpsLocation": {
-      "Latitude": 0.59307424192925651,
-      "Longitude": 0.73080823325124022
+      "Latitude": 0.0043609072474580755,
+      "Longitude": 0.96948369637573306
     },
-    "MobilePhoneNumber": "46022734",
+    "MobilePhoneNumbers": [
+      "8641874"
+    ],
     "Email": "Abraham_Watson@mail.com"
   },
   {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
     "FullName": "Vanessa Wallace",
     "DisplayName": "Vanessa_WallaceDISP",
-    "YearOfBirth": 1973,
-    "Sex": 2,
-    "NationalSociety": "acec2bb2-6db5-4942-84eb-ae52548749bb",
-    "PreferredLanguage": 0,
+    "YearOfBirth": 1943,
+    "Sex": 1,
+    "NationalSociety": "ee8d2685-e5aa-4386-be41-9da4ae85e0a8",
+    "PreferredLanguage": 1,
     "GpsLocation": {
-      "Latitude": 0.42073282945003959,
-      "Longitude": 0.255356358483134
+      "Latitude": 0.889947799448831,
+      "Longitude": 0.34008003507744522
     },
-    "MobilePhoneNumber": "79539583",
+    "MobilePhoneNumbers": [
+      "29640226"
+    ],
     "Email": "Vanessa_Wallace@mail.com"
   },
   {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
     "FullName": "Billie Mclaughlin",
     "DisplayName": "Billie_MclaughlinDISP",
-    "YearOfBirth": 2011,
-    "Sex": 1,
-    "NationalSociety": "6885d6ef-f4b8-45ba-a148-ee93ecdc64e3",
-    "PreferredLanguage": 0,
+    "YearOfBirth": 1962,
+    "Sex": 2,
+    "NationalSociety": "36109856-68a9-45ed-9bac-4a394af5c4f7",
+    "PreferredLanguage": 1,
     "GpsLocation": {
-      "Latitude": 0.081236401610652167,
-      "Longitude": 0.687280043813996
+      "Latitude": 0.30775135537039083,
+      "Longitude": 0.1754339077395545
     },
-    "MobilePhoneNumber": "30226209",
+    "MobilePhoneNumbers": [
+      "9635389"
+    ],
     "Email": "Billie_Mclaughlin@mail.com"
   }
 ]

@@ -26,6 +26,8 @@ namespace Domain.DataCollectors.Validators
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Must provide a valid email address");
             //TODO: rest of the rules
+
+            
         }
     }
 }

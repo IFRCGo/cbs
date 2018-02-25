@@ -32,11 +32,13 @@ namespace Web.Controllers
         [HttpPost("add")]
         public void Add([FromBody] AddStaffUser command)
         {
+            //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            command.StaffUserId = Guid.NewGuid();
             _staffUserCommandHandler.Handle(command);
             
         }
         
-        [HttpGet("staffusers")]
+        [HttpGet]
         public async Task<IEnumerable<StaffUser>> GetAllStaffUsers()
         {
             var users = await _users.GetAllAsync();
@@ -46,37 +48,13 @@ namespace Web.Controllers
         [HttpPost("update/{id}")]
         public void Update([FromBody] AddStaffUser command, Guid id)
         {
-            //TODO: Maybe make a
             _staffUserCommandHandler.Handle(command);
-            /*
-            //TODO: Should produce the command(?) that produces the right events
-            Apply(id, new StaffUserAdded
-            {
-                Id = id,
-                FullName = command.FullName,
-                DisplayName = command.DisplayName,
-                YearOfBirth = command.YearOfBirth,
-                Sex = command.Sex,
-                Location = command.Location,
-                NationalSociety = command.NationalSociety,
-                PreferredLanguage = command.PreferredLanguage,
-                MobilePhoneNumber = command.MobilePhoneNumber,
-                Email = command.Email
-            });
-            */
+            
         }
         [HttpDelete("delete")]
         public void Delete([FromBody] DeleteStaffUser command)
         {
             _staffUserCommandHandler.Handle(command);
-            /*
-            var role = (await _users.GetByIdAsync(id)).Role;
-            Apply(id, new StaffUserDeleted
-            {
-                Id = id,
-                Role =  (int)role
-            });
-            */
         }
     }
 }

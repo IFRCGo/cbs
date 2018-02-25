@@ -18,18 +18,30 @@ namespace Domain.DataCollectors.AggregateRoots
             // immutable
             Apply(new DataCollectorAdded
             {
-                Id = EventSourceId,//Id = command.Id,
+                Id = command.DataCollectorId,
+
                 FullName = command.FullName,
                 DisplayName = command.DisplayName,
                 YearOfBirth = command.YearOfBirth,
                 Sex = (int)command.Sex,
                 NationalSociety = command.NationalSociety,
                 PreferredLanguage = (int)command.PreferredLanguage,
-                RegisteredAt = DateTimeOffset.UtcNow
-
-                //MobilePhoneNumber = command.MobilePhoneNumber,
-                //Email = command.Email
+                RegisteredAt = DateTimeOffset.UtcNow,
+                
+                LocationLongitude = command.GpsLocation.Longitude,
+                LocationLatitude = command.GpsLocation.Latitude
+                //TODO: Need email?
             });
+
+            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbers)
+                {
+                    Apply(new PhoneNumberAddedToDataCollector(
+                        command.DataCollectorId, number
+                    ));
+                }
+            }
         }
 
         public void AddPhoneNumber(AddPhoneNumberToDataCollector command)

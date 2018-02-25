@@ -41,6 +41,8 @@ namespace Web.Controllers
         [HttpPost("add")]
         public IActionResult Post([FromBody] AddDataCollector command)
         {
+            //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            command.DataCollectorId = Guid.NewGuid();
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
