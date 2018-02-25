@@ -9,19 +9,21 @@ namespace Infrastructure.Kafka.BoundedContexts
 {
     public class KafkaModule : Autofac.Module
     {
-        const string KAFKA_CONNECTIONSTRING = "KAFKA_CONNECTIONSTRING";
+        const string KAFKA_BOUNDED_CONTEXT_TOPIC = "KAFKA_BOUNDED_CONTEXT_TOPIC";
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<BoundedContextListener>().As<IBoundedContextListener>().SingleInstance();
             
             var environmentVariables = Environment.GetEnvironmentVariables();
-            
 
-            
-            //if (environmentVariables.Contains(KAFKA_CONNECTIONSTRING))kafkaConnectionString = (string)environmentVariables[KAFKA_CONNECTIONSTRING];
-            
-            // _.For<TopicMessageSettings>().Use(() => new TopicMessageSettings { Server = kafkaConnectionString }).SetLifecycleTo(Lifecycles.Singleton);
+            var committedEventStreamSenderConfiguration = new CommittedEventStreamSenderConfiguration(new Topic[0]);
+            builder.RegisterInstance(committedEventStreamSenderConfiguration).As<CommittedEventStreamSenderConfiguration>();
+
+            Topic topic = "";
+            if( environmentVariables.Contains(KAFKA_BOUNDED_CONTEXT_TOPIC)) topic = (string)environmentVariables[KAFKA_BOUNDED_CONTEXT_TOPIC];
+            var boundedContextListenerConfiguration = new BoundedContextListenerConfiguration(topic);
+            builder.RegisterInstance(boundedContextListenerConfiguration).As<BoundedContextListenerConfiguration>();
         }
     }
 }
