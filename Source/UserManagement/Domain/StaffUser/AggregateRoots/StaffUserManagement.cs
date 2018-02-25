@@ -63,17 +63,6 @@ namespace Domain.StaffUser.AggregateRoots
                 command.DisplayName, command.Email
                 ));
 
-            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumber)
-                {
-                    Apply(new PhoneNumberAddedToStaffUser(
-                        command.StaffUserId, number,
-                        (int)command.Role
-                    ));
-                }
-            }
-            //TODO: DO the same for NationalSocieties
         }
 
         private void HandleAddDataConsumer(AddStaffUser command)
@@ -83,18 +72,6 @@ namespace Domain.StaffUser.AggregateRoots
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Location.Latitude
                 ));
-
-            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumber)
-                {
-                    Apply(new PhoneNumberAddedToStaffUser(
-                        command.StaffUserId, number,
-                        (int)command.Role
-                    ));
-                }
-            }
-            //TODO: DO the same for NationalSocieties
         }
         private void HandleAddDataCoordinator(AddStaffUser command)
         {
