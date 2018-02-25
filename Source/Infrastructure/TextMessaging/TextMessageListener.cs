@@ -7,6 +7,7 @@ namespace Infrastructure.TextMessaging
     public class TextMessageListener : ITextMessageListener
     {
         public static readonly Topic Topic = "incomingtextmessages";
+        public static readonly ConsumerName Consumer = "IncomingTextMessages";
         readonly IConsumer _consumer;
         readonly ITextMessageProcessors _processors;
         readonly ISerializer _serializer;
@@ -21,7 +22,7 @@ namespace Infrastructure.TextMessaging
         public void Start()
         {
             if( _processors.HasProcessors )
-                _consumer.SubscribeTo(Topic, MessageReceived);
+                _consumer.SubscribeTo(Consumer, Topic, MessageReceived);
             
         }
 
