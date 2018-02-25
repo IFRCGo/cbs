@@ -11,8 +11,8 @@ namespace Domain.DataCollectors.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("DataColelctorId cannot be empty")
-                .NotEqual(Guid.Empty).WithMessage("StaffUserId cannot be Guid.Empty");
+                .NotEmpty().WithMessage("DataCollectorId cannot be empty")
+                .NotEqual(Guid.Empty).WithMessage("DataCollectorId cannot be Guid.Empty");
 
 
             RuleFor(_ => _.PhoneNumber)

@@ -17,7 +17,7 @@ namespace Domain.StaffUser.CommandHandlers
 
         public void Handle(AddStaffUser command)
         {
-            var root = _repository.Get(Guid.NewGuid());
+            var root = _repository.Get(command.StaffUserId);
 
             root.AddStaffUser(command);
         }
@@ -33,7 +33,7 @@ namespace Domain.StaffUser.CommandHandlers
 
         public void Handle(AddPhoneNumberToStaffUser command)
         {
-            var root = _repository.Get(command.StaffUserId); //TODO: Or Guid.NewGuid()?
+            var root = _repository.Get(command.StaffUserId);
             root.AddPhoneNumber(command);
         }
 

@@ -16,8 +16,5 @@ namespace Events.DataCollector
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
-        //public string GpsLocation { get; set; }
-        //public string MobilePhoneNumber { get; set; }
-        //public string Email { get; set; }     
     }
 }

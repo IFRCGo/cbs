@@ -5,6 +5,7 @@ namespace Concepts
     public class Location : Value<Location>
     {
         public static readonly Location NotSet;
+
         static Location()
         {
             NotSet = new Location(-1d, -1d);

@@ -18,53 +18,62 @@ namespace Read.StaffUsers.DataCoordinator
             _dataCoordinators = dataCoordinators;
         }
 
-        public async Task Process(DataCoordinatorAdded @event)
+        public void Process(DataCoordinatorAdded @event)
         {
-            await _dataCoordinators.SaveAsync(new DataCoordinator
+            _dataCoordinators.Save(new DataCoordinator
             {
                 YearOfBirth = @event.YearOfBirth,
-                AssignedNationalSociety = new List<Guid> { @event.AssignedNationalSociety},
+                AssignedNationalSocieties = new List<Guid>(),
                 DisplayName = @event.DisplayName,
                 Email = @event.Email,
                 FullName = @event.FullName,
-                Id = @event.Id,
+                Id = @event.StaffUserId,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-                MobilePhoneNumbers = new List<string> { @event.MobilePhoneNumber},
+                MobilePhoneNumbers = new List<PhoneNumber>(),
                 NationalSociety = @event.NationalSociety,
                 Sex = (Sex)@event.Sex,
-                PreferredLanguage = (Language)@event.PreferredLanguage
-                
+                PreferredLanguage = (Language)@event.PreferredLanguage 
             });
         }
 
         public async Task Process(StaffUserDeleted @event)
         {
             if ((Role)@event.Role == Role.DataCoordinator)
-                await _dataCoordinators.RemoveAsync(@event.Id);
+                await _dataCoordinators.RemoveAsync(@event.StaffUserId);
         }
 
-        public async Task Process(PhoneNumberAddedToStaffUser @event)
+        public void Process(PhoneNumberAddedToStaffUser @event)
         {
-            if ((Role)@event.Role == Role.DataCoordinator)
+            if ((Role) @event.Role != Role.DataCoordinator)
             {
-                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
-                var user = await _dataCoordinators.GetByIdAsync(@event.StaffUserId);
-                user.MobilePhoneNumbers.Add(@event.PhoneNumber);
-
-                await _dataCoordinators.SaveAsync(user);
+                return;
             }
+
+            var user = _dataCoordinators.GetById(@event.StaffUserId);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
+
+            _dataCoordinators.Save(user);
 
         }
-        public async Task Process(PhoneNumberRemovedFromStaffUser @event)
+        public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
-            if ((Role)@event.Role == Role.DataCoordinator)
+            if ((Role) @event.Role != Role.DataCoordinator)
             {
-                // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
-                var user = await _dataCoordinators.GetByIdAsync(@event.StaffUserId);
-                // TODO: Assume that the PhoneNumber exists?
-                user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
-                await _dataCoordinators.SaveAsync(user);
+                return;
             }
+            var user = _dataCoordinators.GetById(@event.StaffUserId);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
+            _dataCoordinators.Save(user);
         }
     }
 }

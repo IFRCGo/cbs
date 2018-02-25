@@ -11,8 +11,8 @@ namespace Domain.StaffUser.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(_ => _.StaffUserId)
-                .NotEmpty().WithMessage("Id cannot be Empty")
-                .NotEqual(Guid.Empty).WithMessage("Id cannot be Guid.Empty");
+                .NotEmpty().WithMessage("StaffUserId cannot be Empty")
+                .NotEqual(Guid.Empty).WithMessage("StaffUserId cannot be Guid.Empty");
 
             RuleFor(_ => _.Role)
                 .IsInEnum().WithMessage("Role is not correct");

@@ -56,23 +56,19 @@ namespace Domain.StaffUser.AggregateRoots
                 ));
         }
 
-        // TODO: Should events get the ID from this AggregateRoot object, or a completly new Guid created here?
-
-        // QUESTION: I don't really understand the EventSourceId thing and how it functions here in the AggregateRoot.
-        // Should Events have a seperate EventSourceId field?
-
         private void HandleAddAdmin(AddStaffUser command)
         {
             Apply(new AdminAdded(
-                EventSourceId, command.FullName,
+                command.StaffUserId, command.FullName,
                 command.DisplayName, command.Email
                 ));
+
         }
 
         private void HandleAddDataConsumer(AddStaffUser command)
         {
             Apply(new DataConsumerAdded(
-                EventSourceId, command.FullName,
+                command.StaffUserId, command.FullName,
                 command.DisplayName, command.Email,
                 command.Location.Longitude, command.Location.Latitude
                 ));
@@ -80,42 +76,86 @@ namespace Domain.StaffUser.AggregateRoots
         private void HandleAddDataCoordinator(AddStaffUser command)
         {
             Apply(new DataCoordinatorAdded(
-                EventSourceId, command.FullName, command.DisplayName,
+                command.StaffUserId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.MobilePhoneNumber,
-                command.AssignedNationalSociety
+                command.Location.Latitude
                 ));
+
+            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumber)
+                {
+                    Apply(new PhoneNumberAddedToStaffUser(
+                        command.StaffUserId, number,
+                        (int)command.Role
+                    ));
+                }
+            }
+            //TODO: DO the same for NationalSocieties
         }
         private void HandleAddDataOwner(AddStaffUser command)
         {
             Apply(new DataOwnerAdded(
-                EventSourceId, command.FullName, command.DisplayName,
+                command.StaffUserId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.MobilePhoneNumber,
-                command.AssignedNationalSociety, command.Position, command.DutyStation
+                command.Location.Latitude, command.Position, command.DutyStation
                 ));
+
+            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumber)
+                {
+                    Apply(new PhoneNumberAddedToStaffUser(
+                        command.StaffUserId, number,
+                        (int)command.Role
+                    ));
+                }
+            }
+            //TODO: DO the same for NationalSocieties
         }
         private void HandleAddDataVerifier(AddStaffUser command)
         {
             Apply(new DataVerifierAdded(
-                EventSourceId, command.FullName, command.DisplayName,
+                command.StaffUserId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.MobilePhoneNumber,
-                command.AssignedNationalSociety, DateTime.Now
+                command.Location.Latitude, DateTimeOffset.UtcNow
                 ));
+
+            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumber)
+                {
+                    Apply(new PhoneNumberAddedToStaffUser(
+                        command.StaffUserId, number,
+                        (int)command.Role
+                    ));
+                }
+            }
+            //TODO: DO the same for NationalSocieties
         }
         private void HandleAddSystemCoordinator(AddStaffUser command)
         {
             Apply(new SystemCoordinatorAdded(
-                EventSourceId, command.FullName, command.DisplayName,
+                command.StaffUserId, command.FullName, command.DisplayName,
                 command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
                 (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.MobilePhoneNumber,
-                command.AssignedNationalSociety
+                command.Location.Latitude
                 ));
+
+            if (command.MobilePhoneNumber != null && command.MobilePhoneNumber.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumber)
+                {
+                    Apply(new PhoneNumberAddedToStaffUser(
+                        command.StaffUserId, number,
+                        (int)command.Role
+                    ));
+                }
+            }
+            //TODO: DO the same for NationalSocieties
         }
     }
 }

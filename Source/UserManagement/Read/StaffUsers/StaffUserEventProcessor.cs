@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
 
@@ -42,23 +43,30 @@ namespace Read.StaffUsers
 
         public async Task Process(StaffUserDeleted @event)
         {
-            await _staffUserCollection.RemoveAsync(@event.Id);
+            await _staffUserCollection.RemoveAsync(@event.StaffUserId);
         }
 
         public async Task Process(PhoneNumberAddedToStaffUser @event)
         {
-            // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNumberAdded
             var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
-            user.MobilePhoneNumbers.Add(@event.PhoneNumber);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
             await _staffUserCollection.SaveAsync(user);
         }
         public async Task Process(PhoneNumberRemovedFromStaffUser @event)
         {
-            // TODO: Assume that the StaffUser exists here? Should be checked in the BusinessValidator of PhoneNUmberRemoved
             var user = await _staffUserCollection.GetByIdAsync(@event.StaffUserId);
-            // TODO: Assume that the PhoneNumber exists?
-            user.MobilePhoneNumbers.Remove(@event.PhoneNumber);
+            //TODO: Should be checked in business validator(?)
+            if (user == null)
+            {
+                return;
+            }
+            user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             await _staffUserCollection.SaveAsync(user);
         }
     }

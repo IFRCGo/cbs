@@ -7,7 +7,7 @@ namespace Events.StaffUser
 {
     public class SystemCoordinatorAdded : IEvent
     {
-        public Guid Id { get; private set; }
+        public Guid StaffUserId { get; private set; }
         public string FullName { get; private set; }
         public string DisplayName { get; private set; }
         public string Email { get; private set; }
@@ -17,15 +17,12 @@ namespace Events.StaffUser
         public int PreferredLanguage { get; private set; }
         public double LocationLongitude { get; private set; }
         public double LocationLatitude { get; private set; }
-        public string MobilePhoneNumber { get; private set; }
-        public bool MobilePhoneNumberConfirmed { get; } = true;
-        public Guid AssignedNationalSociety { get; private set; }
 
-        public SystemCoordinatorAdded(Guid id, string fullName, string displayName, string email, 
+        public SystemCoordinatorAdded(Guid staffUserId, string fullName, string displayName, string email, 
             int yearOfBirth, int sex, Guid nationalSociety, int preferredLanguage, double locationLongitude, 
-            double locationLatitude, string mobilePhoneNumber, Guid assignedNationalSociety)
+            double locationLatitude)
         {
-            Id = id;
+            StaffUserId = staffUserId;
             FullName = fullName;
             DisplayName = displayName;
             Email = email;
@@ -35,8 +32,6 @@ namespace Events.StaffUser
             PreferredLanguage = preferredLanguage;
             LocationLongitude = locationLongitude;
             LocationLatitude = locationLatitude;
-            MobilePhoneNumber = mobilePhoneNumber;
-            AssignedNationalSociety = assignedNationalSociety;
         }
     }
 }
