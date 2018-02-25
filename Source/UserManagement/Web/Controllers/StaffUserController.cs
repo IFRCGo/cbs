@@ -29,6 +29,13 @@ namespace Web.Controllers
             _staffUserCommandHandler = stafffUserCommandHandler;
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<StaffUser>> GetAllStaffUsers()
+        {
+            var users = await _users.GetAllAsync();
+            return users;
+        }
+
         [HttpPost("add")]
         public void Add([FromBody] AddStaffUser command)
         {
@@ -36,12 +43,7 @@ namespace Web.Controllers
             
         }
         
-        [HttpGet("staffusers")]
-        public async Task<IEnumerable<StaffUser>> GetAllStaffUsers()
-        {
-            var users = await _users.GetAllAsync();
-            return users;
-        }
+        
 
         [HttpPost("update/{id}")]
         public void Update([FromBody] AddStaffUser command, Guid id)

@@ -32,6 +32,46 @@ namespace Domain.DataCollectors.AggregateRoots
             });
         }
 
+        public void UpdateDataCollector(UpdateDataCollector command)
+        {
+            // Apply DataCollectorUpdated event
+            Apply(new DataCollectorUpdated
+            {
+                DataCollectorId = command.DataCollectorId,
+                DisplayName = command.DisplayName,
+                Email = command.Email,
+                FullName = command.FullName,
+                LocationLatitude = command.GpsLocation.Latitude,
+                LocationLongitude = command.GpsLocation.Longitude,
+                NationalSociety = command.NationalSociety,
+                PreferredLanguage = (int)command.PreferredLanguage,
+                Sex = (int)command.Sex,
+                YearOfBirth = command.YearOfBirth
+            });
+            // Check if PhoneNumbersAdded list is not null and not empty
+            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbersAdded)
+                {
+                    Apply(new PhoneNumberAddedToDataCollector(
+                        command.DataCollectorId,
+                        number
+                        ));
+                }
+            }
+            // Check if PhoneNumbersRemoved list is not null and not empty
+            if (command.MobilePhoneNumbersRemoved != null && command.MobilePhoneNumbersRemoved.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbersRemoved)
+                {
+                    Apply(new PhoneNumberRemovedFromDataCollector(
+                        command.DataCollectorId,
+                        number
+                        ));
+                }
+            }
+        }
+
         public void AddPhoneNumber(AddPhoneNumberToDataCollector command)
         {
             Apply(new PhoneNumberAddedToDataCollector(
@@ -44,6 +84,8 @@ namespace Domain.DataCollectors.AggregateRoots
                 command.DataCollectorId, command.PhoneNumber
             ));
         }
+
+        
     }
 }
 

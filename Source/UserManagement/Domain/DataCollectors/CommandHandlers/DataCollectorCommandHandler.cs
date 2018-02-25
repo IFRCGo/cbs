@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using doLittle.Runtime.Commands;
 using doLittle.Domain;
 using System;
 using Domain.DataCollectors.AggregateRoots;
@@ -28,6 +27,12 @@ namespace Domain.DataCollectors.CommandHandlers
             root.AddDataCollector(command);
         }
 
+        public void Handle(UpdateDataCollector command)
+        {
+            var root = _repository.Get(Guid.NewGuid());
+            root.UpdateDataCollector(command);
+
+        }
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId); //TODO: Or Guid.NewGuid()

@@ -44,5 +44,12 @@ namespace Web.Controllers
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
+
+        [HttpPost("update")]
+        public IActionResult Update([FromBody] UpdateDataCollector command)
+        {
+            _dataCollectorCommandHandler.Handle(command);
+            return Ok();
+        }
     }
 }

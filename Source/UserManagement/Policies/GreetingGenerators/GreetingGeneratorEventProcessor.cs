@@ -30,7 +30,7 @@ namespace Policies.GreetingGenerators
             // Todo Get the correct welcome message based on the dataCollector.PreferredLanguage
             var welcomeMessage = "Welcome!";
 
-            var smsGenerator =await  _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber);
+            var smsGenerator = await  _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber);
             if (smsGenerator != null)
             {
                 return;
