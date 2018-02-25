@@ -12,6 +12,8 @@ using System;
 
 namespace TextMessaging
 {
+
+
     /// <summary>
     /// Represents an implementation of <see cref="ICanProcessTextMessage"/>
     /// </summary>
