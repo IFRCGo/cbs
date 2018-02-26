@@ -37,6 +37,7 @@ namespace Domain.StaffUser.CommandHandlers
             root.UpdateStaffUser(command);
 
         }
+
         public void Handle(AddPhoneNumberToStaffUser command)
         {
             var root = _repository.Get(command.StaffUserId);

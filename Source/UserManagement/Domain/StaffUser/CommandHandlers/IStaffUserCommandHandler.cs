@@ -7,6 +7,8 @@ namespace Domain.StaffUser.CommandHandlers
     {
         void Handle(AddStaffUser command);
 
+        void Handle(UpdateStaffUser command);
+
         void Handle(DeleteStaffUser command);
 
         void Handle(AddPhoneNumberToStaffUser command);

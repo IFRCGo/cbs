@@ -45,9 +45,12 @@ namespace Web.Controllers
             
         }
 
-        [HttpPost("update/{id}")]
-        public void Update([FromBody] AddStaffUser command, Guid id)
+        [HttpPost("update")]
+        public void Update([FromBody] UpdateStaffUser command)
         {
+            // TODO: QUESTION: Maybe have specific Command-model classes for each
+            // of the staffuser types to ensure that the correct information is 
+            // given?
             _staffUserCommandHandler.Handle(command);
             
         }

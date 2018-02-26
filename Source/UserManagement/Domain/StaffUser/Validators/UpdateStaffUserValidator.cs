@@ -12,6 +12,10 @@ namespace Domain.StaffUser.Validators
 
             RuleFor(_ => _.StaffUserId)
                 .NotEmpty().NotEqual(Guid.Empty).WithMessage("StaffUserId cannot be empty or equal to Guid.Empty");
+
+            //TODO: Add validation rules
+            RuleFor(_ => _.Role)
+                .Empty().WithMessage("JKDJFSD");
         }
     }
 }
