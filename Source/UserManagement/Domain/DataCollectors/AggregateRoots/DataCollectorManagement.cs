@@ -12,10 +12,10 @@ namespace Domain.DataCollectors.AggregateRoots
         {
         }
 
+        #region VisibleCommands
+
         public void AddDataCollector(AddDataCollector command)
         {
-            // TODO: All events should have a constructor since all of its fields should be
-            // immutable
             Apply(new DataCollectorAdded
             {
                 Id = command.DataCollectorId,
@@ -33,15 +33,7 @@ namespace Domain.DataCollectors.AggregateRoots
                 //TODO: Need email?
             });
 
-            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumbers)
-                {
-                    Apply(new PhoneNumberAddedToDataCollector(
-                        command.DataCollectorId, number
-                    ));
-                }
-            }
+            AddPhoneNumbers(command);
         }
 
         public void UpdateDataCollector(UpdateDataCollector command)
@@ -60,28 +52,8 @@ namespace Domain.DataCollectors.AggregateRoots
                 Sex = (int)command.Sex,
                 YearOfBirth = command.YearOfBirth
             });
-            // Check if PhoneNumbersAdded list is not null and not empty
-            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumbersAdded)
-                {
-                    Apply(new PhoneNumberAddedToDataCollector(
-                        command.DataCollectorId,
-                        number
-                        ));
-                }
-            }
-            // Check if PhoneNumbersRemoved list is not null and not empty
-            if (command.MobilePhoneNumbersRemoved != null && command.MobilePhoneNumbersRemoved.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumbersRemoved)
-                {
-                    Apply(new PhoneNumberRemovedFromDataCollector(
-                        command.DataCollectorId,
-                        number
-                        ));
-                }
-            }
+            AddPhoneNumbers(command);
+            RemovePhoneNumbers(command);
         }
 
         public void AddPhoneNumber(AddPhoneNumberToDataCollector command)
@@ -97,7 +69,51 @@ namespace Domain.DataCollectors.AggregateRoots
             ));
         }
 
-        
+
+        #endregion
+
+        #region PhoneNumber
+
+        private void AddPhoneNumbers(AddDataCollector command)
+        {
+            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbers)
+                {
+                    Apply(new PhoneNumberAddedToDataCollector(
+                        command.DataCollectorId, number
+                    ));
+                }
+            }
+        }
+
+        private void AddPhoneNumbers(UpdateDataCollector command)
+        {
+            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbersAdded)
+                {
+                    Apply(new PhoneNumberAddedToDataCollector(
+                        command.DataCollectorId, number
+                    ));
+                }
+            }
+        }
+
+        private void RemovePhoneNumbers(UpdateDataCollector command)
+        {
+            if (command.MobilePhoneNumbersRemoved != null && command.MobilePhoneNumbersRemoved.Count > 0)
+            {
+                foreach (var number in command.MobilePhoneNumbersRemoved)
+                {
+                    Apply(new PhoneNumberRemovedFromDataCollector(
+                        command.DataCollectorId,
+                        number
+                    ));
+                }
+            }
+        }
+        #endregion
     }
 }
 

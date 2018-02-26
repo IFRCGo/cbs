@@ -33,6 +33,8 @@ namespace Read.StaffUsers
         public string Position { get; set; }
         public string DutyStation { get; set; }
 
+        #region ConstructorsForCreatingStaffUser
+
         public StaffUser(AdminAdded @event)
         {
             Role = Role.Admin;
@@ -53,7 +55,7 @@ namespace Read.StaffUsers
             Email = @event.Email;
 
             Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            
+
         }
         public StaffUser(DataCoordinatorAdded @event)
         {
@@ -65,9 +67,9 @@ namespace Read.StaffUsers
             Email = @event.Email;
 
             YearOfBirth = @event.YearOfBirth;
-            Sex = (Sex) @event.Sex;
+            Sex = (Sex)@event.Sex;
             NationalSociety = @event.NationalSociety;
-            PreferredLanguage = (Language) @event.PreferredLanguage;
+            PreferredLanguage = (Language)@event.PreferredLanguage;
             Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             MobilePhoneNumbers = new List<PhoneNumber>();
             AssignedNationalSocities = new List<Guid>();
@@ -130,5 +132,9 @@ namespace Read.StaffUsers
             MobilePhoneNumbers = new List<PhoneNumber>();
             AssignedNationalSocities = new List<Guid>();
         }
+
+        #endregion
+
     }
+
 }

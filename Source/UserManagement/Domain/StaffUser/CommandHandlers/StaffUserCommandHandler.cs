@@ -31,6 +31,12 @@ namespace Domain.StaffUser.CommandHandlers
             //root.DeleteStaffUser(command);
         }
 
+        public void Handle(UpdateStaffUser command)
+        {
+            var root = _repository.Get(command.StaffUserId);
+            root.UpdateStaffUser(command);
+
+        }
         public void Handle(AddPhoneNumberToStaffUser command)
         {
             var root = _repository.Get(command.StaffUserId);

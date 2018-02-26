@@ -2,6 +2,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="StaffUser\DataVerifier.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />

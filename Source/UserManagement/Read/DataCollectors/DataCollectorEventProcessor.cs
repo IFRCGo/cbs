@@ -59,7 +59,7 @@ namespace Read.DataCollectors
             dataCollector.YearOfBirth = @event.YearOfBirth;
             dataCollector.NationalSociety = @event.NationalSociety;
             dataCollector.PreferredLanguage = (Language)@event.PreferredLanguage;
-            dataCollector.Sex = (Sex)@event.Sex;
+            dataCollector.Sex = (Sex)@event.Sex; // Todo: This should perhaps not be editable aswell?
 
             dataCollector.Email = @event.Email; //Todo: Have to change this if datacollector can have multiple emails
 

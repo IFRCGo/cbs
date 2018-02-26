@@ -16,6 +16,8 @@ namespace Read.StaffUsers
             _staffUserCollection = staffUserCollection;
         }
 
+        #region StaffUserAddedEvents
+
         public async Task Process(DataConsumerAdded @event)
         {
             await _staffUserCollection.SaveAsync(new StaffUser(@event));
@@ -41,11 +43,144 @@ namespace Read.StaffUsers
             await _staffUserCollection.SaveAsync(new StaffUser(@event));
         }
 
+        #endregion
+
+        #region StaffUserUpdatedEvents
+
+        public void Process(AdminUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        public void Process(DataConsumerUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        public void Process(DataCoordinatorUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
+
+            staffUser.NationalSociety = @event.NationalSociety;
+            staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        public void Process(DataOwnerUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
+
+            staffUser.NationalSociety = @event.NationalSociety;
+            staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
+
+            staffUser.Position = @event.Position;
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        public void Process(DataVerifierUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
+
+            staffUser.NationalSociety = @event.NationalSociety;
+            staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        public void Process(SystemCoordinatorUpdated @event)
+        {
+            var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
+
+            // TODO: Should be checked in businessvalidator?
+            if (staffUser == null)
+            {
+                return;
+            }
+
+            staffUser.FullName = @event.FullName;
+            staffUser.DisplayName = @event.DisplayName;
+            staffUser.Email = @event.Email;
+
+            staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
+
+            staffUser.NationalSociety = @event.NationalSociety;
+            staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
+
+            _staffUserCollection.Save(staffUser);
+        }
+
+        #endregion
+
         public async Task Process(StaffUserDeleted @event)
         {
             await _staffUserCollection.RemoveAsync(@event.StaffUserId);
         }
 
+        
         public void Process(PhoneNumberAddedToStaffUser @event)
         {
             var user = _staffUserCollection.GetById(@event.StaffUserId);
@@ -58,6 +193,7 @@ namespace Read.StaffUsers
 
             _staffUserCollection.Save(user);
         }
+
         public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
             var user = _staffUserCollection.GetById(@event.StaffUserId);
