@@ -1,3 +1,4 @@
+using System;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.CaseReports;
@@ -23,11 +24,31 @@ namespace Web
             _healthRisks = healthRisks;
             _dataCollectors = dataCollectors;
         }
-        [Route("casereportsforlisting")]
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _caseReports.GetAllAsync());
-        }        
+        }
+
+        [HttpGet("obsolete")]
+        [Obsolete]
+        public async Task<IActionResult> GetObsolete()
+        {
+            return Ok(await _caseReportsObsolete.GetAllAsync());
+        }
+
+        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
+        public async Task<IActionResult> GetLimitLast(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, true));
+        }
+
+        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
+        public async Task<IActionResult> GetLimitFirst(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, false));
+        }
+
     }
 }

@@ -6,6 +6,7 @@ import { CaseReportForListing } from "../../../shared/models/case-report-for-lis
     pure: false
 })
 
+//TODO: Add smarter filtering. Preferably a filter should be a json
 export class Filter implements PipeTransform{
     transform(reports: Array<CaseReportForListing>, value: string){
         if (!reports || !value) {

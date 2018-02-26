@@ -1,8 +1,15 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using Newtonsoft.Json.Converters;
 
 namespace Read.CaseReportsForListing
 {
@@ -26,6 +33,26 @@ namespace Read.CaseReportsForListing
             return await list.ToListAsync();
         }
 
+        public async Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last)
+        {
+            
+            var filter = Builders<CaseReportForListing>.Filter.Empty;
+
+            // TODO: Can we assume that this explicit conversion is safe?
+            var totalDocuments = (int)await _collection.CountAsync(filter);
+
+            limit = (limit > totalDocuments) ? totalDocuments : limit;
+
+            var options = new FindOptions<CaseReportForListing>()
+            {
+                Skip = last ? totalDocuments - limit : 0,
+                Limit = limit
+            };   
+            var list = await _collection.FindAsync(filter, options);
+
+            return await list.ToListAsync();
+        }
+
         public async Task Save(CaseReportForListing caseReport)
         {
             var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, caseReport.Id);
@@ -37,5 +64,6 @@ namespace Read.CaseReportsForListing
             var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, id);
             await _collection.DeleteOneAsync(filter);
         }
+
     }
 }

@@ -4,6 +4,7 @@ import { CaseReportForListing } from '../../shared/models/case-report-for-listin
 
 import { ReportService, ReportSearchCriteria } from './sort/case-report.service';
 import { Filter } from './filtring/filter.pipe'
+import { CaseReportExporter } from './exporter/case-report-exporter.service';
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -33,10 +34,19 @@ export class CaseReportListComponent implements OnInit {
 
     basicFilter: string = "all";
     
+    fields: Array<string> = [
+        "id", "status", "dataCollectorId", "dataCollectorDisplayName",
+        "healthRiskId", "healthRisk", "message",
+        "numberOfFemalesOver5", "numberOfFemalesUnder5",
+        "numberOfMalesOver5", "numberOfMalesUnder5",
+        "timestamp", "location"
+    ];
+
     constructor(
         private caseReportService: AggregatedCaseReportService,
-        private service: ReportService
-    ) { this.maxReports = 1000 }
+        private service: ReportService,
+        private caseReportExporter: CaseReportExporter
+    ) { this.maxReports = 10 }
 
     /**
      * Calls a getReports method in a class that handles sorting on the data passed.
@@ -55,11 +65,10 @@ export class CaseReportListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.caseReportService.getReports()
+        this.caseReportService.getLimitLastReports(this.maxReports)
             .then(
                 (result) => {
                     this.listedReports = result || [];
-                    console.log(this.listedReports);
                 }
             )
             .catch((error) => console.error(error));
