@@ -19,10 +19,10 @@ services:
             service: cbs-usermanagement-backend-service
     volunteerreporting:
         frontend:
-            version: 1438
+            version: 1442
             service: cbs-volunteerreporting-frontend-service
             path: /reporting
         backend:
-            version: 1413
+            version: 1442
             path: /volunteerreportingbackend
             service: cbs-volunteerreporting-backend-service
