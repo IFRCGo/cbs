@@ -5,6 +5,6 @@ namespace Domain.StaffUser
 {
     public interface IAmAssignedToNationalSocieties
     {
-        IEnumerable<Guid> AssignedNationalSocieties { get; set; }
+        IEnumerable<Guid> AssignedNationalSocieties { get; }
     }
 }
