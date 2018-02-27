@@ -18,5 +18,10 @@ namespace Concepts
 
         public double Latitude { get; private set; }
         public double Longitude { get; private set; }
+
+        public bool IsValid()
+        {
+            return (Latitude >= -90 && Latitude <= 90) && (Longitude >= -180 && Longitude <= 180);
+        }
     }
 }
