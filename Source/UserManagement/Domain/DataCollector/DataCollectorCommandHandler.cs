@@ -24,6 +24,7 @@ namespace Domain.DataCollector
         public void Handle(AddDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
+<<<<<<< HEAD
             root.AddDataCollector(
                 command.FullName,
                 command.DisplayName,
@@ -35,6 +36,9 @@ namespace Domain.DataCollector
                 command.Email,
                 command.PhoneNumbers
                 );
+=======
+            root.RegisterDataCollector(command.DataCollectorId, command.FullName, command.DisplayName);
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
         }
 
         public void Handle(UpdateDataCollector command)

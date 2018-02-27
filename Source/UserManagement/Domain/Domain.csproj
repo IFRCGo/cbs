@@ -14,6 +14,9 @@
     <Compile Remove="StaffUser\Update\UpdateStaffUser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataCollector\DataCollector.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha2.194" />
     <PackageReference Include="doLittle.FluentValidation" Version="2.0.0-alpha2.194" />
     <PackageReference Include="FluentValidation" Version="7.1.1" />

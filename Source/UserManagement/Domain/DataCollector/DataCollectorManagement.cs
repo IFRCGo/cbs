@@ -6,6 +6,10 @@ using Domain.DataCollector.Add;
 using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
 using Events.DataCollector;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using System.Linq;
 
 namespace Domain.DataCollector
 {
@@ -19,11 +23,20 @@ namespace Domain.DataCollector
 
         #region VisibleCommands
 
-        public void AddDataCollector(
+<<<<<<< HEAD
+        public void RegisterDataCollector(
             Guid dataCollectorId, string fullName, string displayName,
             int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
             Location gpsLocation, string email, List<string> phoneNumbers
             )
+=======
+        public void RegisterDataCollector(Guid dataCollectorId, string fullName, string displayName)
+        {
+
+        }
+
+        public void AddDataCollector(AddDataCollector command)
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
         {
             Apply(new DataCollectorAdded
             {
@@ -71,8 +84,14 @@ namespace Domain.DataCollector
 
         public void AddPhoneNumber(string number)
         {
+<<<<<<< HEAD
             if (_numbers.Contains(number)) return;
             
+=======
+            if(_phoneNumbers.Contains(command.PhoneNumber))
+                return;  
+
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
             Apply(new PhoneNumberAddedToDataCollector(
                 EventSourceId,
                 number
@@ -80,14 +99,32 @@ namespace Domain.DataCollector
         }
         public void RemovePhoneNumber(string number)
         {
+<<<<<<< HEAD
             if (!_numbers.Contains(number)) return;
             
 
             Apply(new PhoneNumberRemovedFromDataCollector(
                 EventSourceId,
                 number
+=======
+            if(!_phoneNumbers.Contains(command.PhoneNumber))
+                return;    
+
+            Apply(new PhoneNumberRemovedFromDataCollector( 
+                command.DataCollectorId, command.PhoneNumber
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
             ));
         }
+
+        private void On(PhoneNumberAddedToDataCollector @event)
+        {
+            _phoneNumbers.Add(@event.PhoneNumber);
+        }
+
+        private void On(PhoneNumberRemovedFromDataCollector @event)
+        {
+            _phoneNumbers.Remove(@event.PhoneNumber);
+        }    
 
 
         #endregion
@@ -96,8 +133,12 @@ namespace Domain.DataCollector
 
         private void AddPhoneNumbers(IReadOnlyCollection<string> numbers)
         {
+<<<<<<< HEAD
             if (numbers == null || numbers.Count <= 0) return;
             foreach (var number in numbers)
+=======
+            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Any())
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
             {
                 Apply(new PhoneNumberAddedToDataCollector(
                     EventSourceId, 
@@ -108,8 +149,12 @@ namespace Domain.DataCollector
 
         private void RemovePhoneNumbers(IReadOnlyCollection<string> numbers)
         {
+<<<<<<< HEAD
             if (numbers == null || numbers.Count <= 0) return;
             foreach (var number in numbers)
+=======
+            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Any())
+>>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
             {
                 Apply(new PhoneNumberRemovedFromDataCollector(
                     EventSourceId,
