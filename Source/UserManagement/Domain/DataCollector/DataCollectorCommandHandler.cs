@@ -12,10 +12,10 @@ namespace Domain.DataCollector
 {
     public class DataCollectorCommandHandler : IDataCollectorCommandHandler
     {
-        private readonly IAggregateRootRepositoryFor<DataCollectorManagement> _repository;
+        private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 
         public DataCollectorCommandHandler (
-            IAggregateRootRepositoryFor<DataCollectorManagement> repository
+            IAggregateRootRepositoryFor<DataCollector> repository
             )
         {
             _repository = repository;
@@ -25,7 +25,6 @@ namespace Domain.DataCollector
         {
             var root = _repository.Get(command.DataCollectorId);
             root.AddDataCollector(
-                command.DataCollectorId,
                 command.FullName,
                 command.DisplayName,
                 command.YearOfBirth,
@@ -42,7 +41,6 @@ namespace Domain.DataCollector
         {
             var root = _repository.Get(command.DataCollectorId);
             root.UpdateDataCollector(
-                command.DataCollectorId,
                 command.FullName,
                 command.DisplayName,
                 command.NationalSociety,
