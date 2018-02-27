@@ -12,7 +12,7 @@ using doLittle.Domain;
 
 namespace Web
 {
-    [Route("api/datacollectors/")]
+    [Route("api/datacollectors")]
     public class DataCollectorsController : BaseController
     {
         readonly IDataCollectors _dataCollectors;
@@ -36,7 +36,7 @@ namespace Web
             return Ok(items);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Post([FromBody] AddDataCollector command)
         {
             var dataCollector = _dataCollector.Get(command.Id);
