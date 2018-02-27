@@ -20,7 +20,8 @@ namespace Domain.Specs.StaffUser.BasicInfo
             {
                 StaffUserId = Guid.NewGuid(),
                 Email = "user@redcross.no",
-                FullName = null
+                FullName = null,
+                DisplayName = "Joe"
             };
         };
 

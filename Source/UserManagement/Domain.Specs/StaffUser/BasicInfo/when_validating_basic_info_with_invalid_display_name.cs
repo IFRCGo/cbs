@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Domain.Specs.StaffUser.BasicInfo
 {
     [Subject(typeof(BasicInfoValidator))]
-    public class when_validating_with_invalid_email
+    public class when_validating_with_invalid_display_name
     {
         static BasicInfoValidator validator;
         static ValidationResult validation_results;
@@ -19,15 +19,14 @@ namespace Domain.Specs.StaffUser.BasicInfo
             sut = new Domain.StaffUser.BasicInfo
             {
                 StaffUserId = Guid.NewGuid(),
-                Email = "user@redcross",
-                FullName = "Our New User",
-                DisplayName = "Joe"
+                Email = "user@redcross.no",
+                FullName = "Joe"
             };
         };
 
         Because of = () => { validation_results = validator.Validate(sut); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();  
-        It should_identify_the_email_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(sut.Email));  
+        It should_identify_the_display_name_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(sut.DisplayName));  
     }
 }

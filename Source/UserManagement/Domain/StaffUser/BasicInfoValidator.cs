@@ -18,6 +18,9 @@ namespace Domain.StaffUser
 
             RuleFor(bi => bi.FullName)
                 .NotEmpty().WithMessage("Fullname is required.");
+
+            RuleFor(bi => bi.DisplayName)
+                .NotEmpty().WithMessage("Display name is required.");    
         }
     }
 }
