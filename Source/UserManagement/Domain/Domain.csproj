@@ -4,7 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="StaffUser\Validators\AddPhoneNumberToStaffUserInputValidator.cs" />
+    <Compile Remove="StaffUser\Validators\**" />
+    <EmbeddedResource Remove="StaffUser\Validators\**" />
+    <None Remove="StaffUser\Validators\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="StaffUser\Add\DataOwner.cs" />
+    <Compile Remove="StaffUser\ExtendedStaffUser.cs" />
+    <Compile Remove="StaffUser\Update\UpdateStaffUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha2.194" />

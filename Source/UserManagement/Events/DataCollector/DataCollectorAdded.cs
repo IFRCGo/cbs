@@ -6,7 +6,7 @@ namespace Events.DataCollector
 {
     public class DataCollectorAdded : IEvent
     {
-        public Guid Id { get; set; }
+        public Guid DataCollectorId { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }

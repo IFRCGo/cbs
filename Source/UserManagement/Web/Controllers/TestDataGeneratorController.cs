@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.UpdateDataCollector;
 using Domain.StaffUser.CommandHandlers;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.PhoneNumber;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -72,7 +72,7 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+                //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
                 cmd.DataCollectorId = Guid.NewGuid();
                 _dataCollectorCommandHandler.Handle(cmd);
             }
@@ -98,7 +98,7 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+                //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
                 cmd.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }

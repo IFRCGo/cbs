@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using doLittle.Domain;
-using System;
 using Domain.DataCollector.Add;
 using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
@@ -22,28 +21,49 @@ namespace Domain.DataCollector
             _repository = repository;
         }
 
-        public void Handle(Add.AddDataCollector command)
+        public void Handle(AddDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.AddDataCollector(command);
+            root.AddDataCollector(
+                command.DataCollectorId,
+                command.FullName,
+                command.DisplayName,
+                command.YearOfBirth,
+                command.Sex,
+                command.NationalSociety,
+                command.PreferredLanguage,
+                command.GpsLocation,
+                command.Email,
+                command.PhoneNumbers
+                );
         }
 
         public void Handle(UpdateDataCollector command)
         {
-            var root = _repository.Get(Guid.NewGuid());
-            root.UpdateDataCollector(command);
+            var root = _repository.Get(command.DataCollectorId);
+            root.UpdateDataCollector(
+                command.DataCollectorId,
+                command.FullName,
+                command.DisplayName,
+                command.NationalSociety,
+                command.PreferredLanguage,
+                command.GpsLocation,
+                command.Email,
+                command.PhoneNumbersAdded,
+                command.PhoneNumbersRemoved
+                );
 
         }
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.AddPhoneNumber(command);
+            root.AddPhoneNumber(command.PhoneNumber);
         }
 
         public void Handle(RemovePhoneNumberFromDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.RemovePhoneNumber(command);
+            root.RemovePhoneNumber(command.PhoneNumber);
         }
     }
 }

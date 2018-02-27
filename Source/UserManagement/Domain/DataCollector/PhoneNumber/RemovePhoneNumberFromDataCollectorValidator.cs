@@ -1,5 +1,4 @@
 using System;
-using Domain.DataCollector.UpdateDataCollector;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
@@ -8,9 +7,8 @@ namespace Domain.DataCollector.PhoneNumber
     {
         public RemovePhoneNumberFromDataCollectorValidator()
         {
-            CascadeMode = CascadeMode.StopOnFirstFailure;
-
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("DataCollectorId cannot be empty")
                 .NotEqual(Guid.Empty).WithMessage("DataCollectorId cannot be Guid.Empty");
 

@@ -1,71 +1,91 @@
 using System;
+using System.Collections.Generic;
+using Concepts;
 using doLittle.Domain;
-using Domain.DataCollector.UpdateDataCollector;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
 using Events.DataCollector;
 
 namespace Domain.DataCollector
 {
     public class DataCollectorManagement : AggregateRoot
     {
-
+        private readonly List<string> _numbers;
         public DataCollectorManagement(Guid id) : base(id)
         {
+            _numbers = new List<string>();
         }
 
         #region VisibleCommands
 
-        public void AddDataCollector(AddDataCollector command)
+        public void AddDataCollector(
+            Guid dataCollectorId, string fullName, string displayName,
+            int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
+            Location gpsLocation, string email, List<string> phoneNumbers
+            )
         {
             Apply(new DataCollectorAdded
             {
-                Id = command.DataCollectorId,
+                DataCollectorId = dataCollectorId,
 
-                FullName = command.FullName,
-                DisplayName = command.DisplayName,
-                YearOfBirth = command.YearOfBirth,
-                Sex = (int)command.Sex,
-                NationalSociety = command.NationalSociety,
-                PreferredLanguage = (int)command.PreferredLanguage,
+                FullName = fullName,
+                DisplayName = displayName,
+                YearOfBirth = yearOfBirth,
+                Sex = (int)sex,
+                NationalSociety = nationalSociety,
+                PreferredLanguage = (int)preferredLanguage,
                 RegisteredAt = DateTimeOffset.UtcNow,
                 
-                LocationLongitude = command.GpsLocation.Longitude,
-                LocationLatitude = command.GpsLocation.Latitude
+                LocationLongitude = gpsLocation.Longitude,
+                LocationLatitude = gpsLocation.Latitude
                 //TODO: Need email?
             });
 
-            AddPhoneNumbers(command);
+            AddPhoneNumbers(phoneNumbers);
         }
 
-        public void UpdateDataCollector(UpdateDataCollector command)
+        public void UpdateDataCollector(
+            Guid dataCollectorId, string fullName, string displayName,
+            Guid nationalSociety, Language preferredLanguage,
+            Location gpsLocation, string email, List<string> phoneNumbersAdded,
+            List<string> phoneNumbersRemoved
+            )
         {
             // Apply DataCollectorUpdated event
             Apply(new DataCollectorUpdated
             {
-                DataCollectorId = command.DataCollectorId,
-                DisplayName = command.DisplayName,
-                Email = command.Email,
-                FullName = command.FullName,
-                LocationLatitude = command.GpsLocation.Latitude,
-                LocationLongitude = command.GpsLocation.Longitude,
-                NationalSociety = command.NationalSociety,
-                PreferredLanguage = (int)command.PreferredLanguage,
-                Sex = (int)command.Sex,
-                YearOfBirth = command.YearOfBirth
+                DataCollectorId = dataCollectorId,
+                DisplayName = displayName,
+                Email = email,
+                FullName = fullName,
+                LocationLatitude = gpsLocation.Latitude,
+                LocationLongitude = gpsLocation.Longitude,
+                NationalSociety = nationalSociety,
+                PreferredLanguage = (int)preferredLanguage,
+                
             });
-            AddPhoneNumbers(command);
-            RemovePhoneNumbers(command);
+            AddPhoneNumbers(phoneNumbersAdded);
+            RemovePhoneNumbers(phoneNumbersRemoved);
         }
 
-        public void AddPhoneNumber(AddPhoneNumberToDataCollector command)
+        public void AddPhoneNumber(string number)
         {
+            if (_numbers.Contains(number)) return;
+            
             Apply(new PhoneNumberAddedToDataCollector(
-                command.DataCollectorId, command.PhoneNumber
-                ));
+                EventSourceId,
+                number
+            ));
         }
-        public void RemovePhoneNumber(RemovePhoneNumberFromDataCollector command)
+        public void RemovePhoneNumber(string number)
         {
-            Apply(new PhoneNumberRemovedFromDataCollector( 
-                command.DataCollectorId, command.PhoneNumber
+            if (!_numbers.Contains(number)) return;
+            
+
+            Apply(new PhoneNumberRemovedFromDataCollector(
+                EventSourceId,
+                number
             ));
         }
 
@@ -74,45 +94,43 @@ namespace Domain.DataCollector
 
         #region PhoneNumber
 
-        private void AddPhoneNumbers(AddDataCollector command)
+        private void AddPhoneNumbers(IReadOnlyCollection<string> numbers)
         {
-            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Count > 0)
+            if (numbers == null || numbers.Count <= 0) return;
+            foreach (var number in numbers)
             {
-                foreach (var number in command.MobilePhoneNumbers)
-                {
-                    Apply(new PhoneNumberAddedToDataCollector(
-                        command.DataCollectorId, number
-                    ));
-                }
+                Apply(new PhoneNumberAddedToDataCollector(
+                    EventSourceId, 
+                    number
+                ));
             }
         }
 
-        private void AddPhoneNumbers(UpdateDataCollector command)
+        private void RemovePhoneNumbers(IReadOnlyCollection<string> numbers)
         {
-            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Count > 0)
+            if (numbers == null || numbers.Count <= 0) return;
+            foreach (var number in numbers)
             {
-                foreach (var number in command.MobilePhoneNumbersAdded)
-                {
-                    Apply(new PhoneNumberAddedToDataCollector(
-                        command.DataCollectorId, number
-                    ));
-                }
+                Apply(new PhoneNumberRemovedFromDataCollector(
+                    EventSourceId,
+                    number
+                ));
             }
+        }
+        #endregion
+
+        #region On-methods
+
+        private void On(PhoneNumberAddedToDataCollector @event)
+        {
+            _numbers.Add(@event.PhoneNumber);
         }
 
-        private void RemovePhoneNumbers(UpdateDataCollector command)
+        private void On(PhoneNumberRemovedFromDataCollector @event)
         {
-            if (command.MobilePhoneNumbersRemoved != null && command.MobilePhoneNumbersRemoved.Count > 0)
-            {
-                foreach (var number in command.MobilePhoneNumbersRemoved)
-                {
-                    Apply(new PhoneNumberRemovedFromDataCollector(
-                        command.DataCollectorId,
-                        number
-                    ));
-                }
-            }
+            _numbers.Remove(@event.PhoneNumber);
         }
+
         #endregion
     }
 }

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
@@ -20,7 +21,9 @@ namespace Domain.DataCollector.Add
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
-        public string[] MobilePhoneNumbers { get; set; }
+        // TODO: Don't know if DataCollector should have Email
         public string Email { get; set; }
+        public List<string> PhoneNumbers { get; set; }
+        
     }
 }
