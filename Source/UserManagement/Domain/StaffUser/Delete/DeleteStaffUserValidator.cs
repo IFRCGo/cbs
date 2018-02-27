@@ -2,7 +2,7 @@ using System;
 using Domain.StaffUser.Commands;
 using FluentValidation;
 
-namespace Domain.StaffUser.Validators
+namespace Domain.StaffUser.Delete
 {
     public class DeleteStaffUserValidator : AbstractValidator<DeleteStaffUser>
     {

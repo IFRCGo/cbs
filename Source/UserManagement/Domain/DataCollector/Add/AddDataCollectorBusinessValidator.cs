@@ -1,6 +1,6 @@
 using doLittle.FluentValidation.Commands;
 
-namespace Domain.DataCollector.AddDataCollector
+namespace Domain.DataCollector.Add
 {
     public class AddDataCollectorBusinessValidator : CommandBusinessValidator<AddDataCollector>
     {

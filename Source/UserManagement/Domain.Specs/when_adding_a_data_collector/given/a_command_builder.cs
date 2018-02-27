@@ -1,7 +1,7 @@
 using System;
 using Concepts;
 using System.Collections.Generic;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.UpdateDataCollector;
 
 namespace Domain.Specs.when_adding_a_data_collector.given
 {
@@ -20,7 +20,7 @@ namespace Domain.Specs.when_adding_a_data_collector.given
                 NationalSociety = Guid.NewGuid(),
                 PreferredLanguage = Language.English,
                 GpsLocation = new Location(123,123),
-                MobilePhoneNumbers = "123456789",
+                PhoneNumbers = "123456789",
                 Email = "test@test.com"
             };
         }

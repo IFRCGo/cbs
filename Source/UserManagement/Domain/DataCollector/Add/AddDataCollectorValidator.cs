@@ -6,7 +6,7 @@
 using doLittle.FluentValidation.Commands;
 using FluentValidation;
 
-namespace Domain.DataCollector.AddDataCollector
+namespace Domain.DataCollector.Add
 {
     public class AddDataCollectorValidator : CommandInputValidator<AddDataCollector>
     {

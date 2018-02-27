@@ -1,8 +1,8 @@
 using System;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.UpdateDataCollector;
 using FluentValidation;
 
-namespace Domain.DataCollectors.Validators
+namespace Domain.DataCollector.PhoneNumber
 {
     public class RemovePhoneNumberFromDataCollectorValidator : AbstractValidator<RemovePhoneNumberFromDataCollector>
     {

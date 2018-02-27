@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 
-namespace Domain.DataCollectors.Commands
+namespace Domain.DataCollector.Update
 {
     public class UpdateDataCollector
     {

@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
-namespace Domain.DataCollector.AddDataCollector
+namespace Domain.DataCollector.Add
 {
     public class AddDataCollector : ICommand
     {

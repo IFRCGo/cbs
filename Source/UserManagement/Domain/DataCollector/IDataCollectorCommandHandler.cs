@@ -1,7 +1,9 @@
 using doLittle.Runtime.Commands;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.Update;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
 
-namespace Domain.DataCollectors.CommandHandlers
+namespace Domain.DataCollector
 {
     public interface IDataCollectorCommandHandler : ICanHandleCommands
     {

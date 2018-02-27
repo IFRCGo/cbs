@@ -5,10 +5,11 @@
 
 using doLittle.Domain;
 using System;
-using Domain.DataCollectors.AggregateRoots;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
 
-namespace Domain.DataCollectors.CommandHandlers
+namespace Domain.DataCollector
 {
     public class DataCollectorCommandHandler : IDataCollectorCommandHandler
     {
@@ -21,7 +22,7 @@ namespace Domain.DataCollectors.CommandHandlers
             _repository = repository;
         }
 
-        public void Handle(AddDataCollector command)
+        public void Handle(Add.AddDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
             root.AddDataCollector(command);

@@ -1,10 +1,10 @@
 using System;
 using Concepts;
 using doLittle.Domain;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.PhoneNumber;
 using Events.StaffUser;
 
-namespace Domain.StaffUser.AggregateRoots
+namespace Domain.StaffUser
 {
     public class StaffUserManagement : AggregateRoot
     {
@@ -14,7 +14,7 @@ namespace Domain.StaffUser.AggregateRoots
 
         #region VisibleCommands
 
-        public void AddStaffUser(AddStaffUser command)
+        public void AddStaffUser(Add command)
         {
             switch (command.Role)
             {
@@ -105,7 +105,7 @@ namespace Domain.StaffUser.AggregateRoots
 
         #region PhoneNumber
 
-        private void AddPhoneNumbers(AddStaffUser command)
+        private void AddPhoneNumbers(Add command)
         {
             foreach (var number in command.MobilePhoneNumber)
             {
@@ -151,7 +151,7 @@ namespace Domain.StaffUser.AggregateRoots
         
         #region HandleAdd
 
-        private void AddAdmin(AddStaffUser command)
+        private void AddAdmin(Add command)
         {
             Apply(new AdminAdded(
                 command.StaffUserId, command.FullName,
@@ -160,7 +160,7 @@ namespace Domain.StaffUser.AggregateRoots
 
         }
 
-        private void AddDataConsumer(AddStaffUser command)
+        private void AddDataConsumer(Add command)
         {
             Apply(new DataConsumerAdded(
                 command.StaffUserId, command.FullName,
@@ -168,7 +168,7 @@ namespace Domain.StaffUser.AggregateRoots
                 command.Location.Longitude, command.Location.Latitude
                 ));
         }
-        private void AddDataCoordinator(AddStaffUser command)
+        private void AddDataCoordinator(Add command)
         {
             Apply(new DataCoordinatorAdded(
                 command.StaffUserId, command.FullName, command.DisplayName,
@@ -177,7 +177,7 @@ namespace Domain.StaffUser.AggregateRoots
                 command.Location.Latitude
                 ));
         }
-        private void AddDataOwner(AddStaffUser command)
+        private void AddDataOwner(Add command)
         {
             Apply(new DataOwnerAdded(
                 command.StaffUserId, command.FullName, command.DisplayName,
@@ -186,7 +186,7 @@ namespace Domain.StaffUser.AggregateRoots
                 command.Location.Latitude, command.Position, command.DutyStation
                 ));
         }
-        private void AddDataVerifier(AddStaffUser command)
+        private void AddDataVerifier(Add command)
         {
             Apply(new DataVerifierAdded(
                 command.StaffUserId, command.FullName, command.DisplayName,
@@ -195,7 +195,7 @@ namespace Domain.StaffUser.AggregateRoots
                 command.Location.Latitude, DateTimeOffset.UtcNow
                 ));
         }
-        private void AddSystemCoordinator(AddStaffUser command)
+        private void AddSystemCoordinator(Add command)
         {
             Apply(new SystemCoordinatorAdded(
                 command.StaffUserId, command.FullName, command.DisplayName,

@@ -1,10 +1,10 @@
 using System;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.PhoneNumber;
 using FluentValidation;
 
-namespace Domain.StaffUser.Validators
+namespace Domain.StaffUser.Update
 {
-    public class UpdateStaffUserValidator : AbstractValidator<UpdateStaffUser>
+    public class UpdateStaffUserValidator : AbstractValidator<BaseStaffUser>
     {
         public UpdateStaffUserValidator()
         {

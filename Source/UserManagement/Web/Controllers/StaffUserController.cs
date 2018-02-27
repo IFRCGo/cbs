@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.StaffUser.CommandHandlers;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.PhoneNumber;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
 using Read.StaffUsers;
@@ -39,7 +39,7 @@ namespace Web.Controllers
         [HttpPost("add")]
         public void Add([FromBody] AddStaffUser command)
         {
-            //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
             command.StaffUserId = Guid.NewGuid();
             _staffUserCommandHandler.Handle(command);
             

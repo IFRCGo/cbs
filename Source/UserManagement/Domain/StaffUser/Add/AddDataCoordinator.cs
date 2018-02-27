@@ -1,7 +1,7 @@
 using System;
 using Concepts;
 
-namespace Domain.StaffUser.AddStaffUser
+namespace Domain.StaffUser.Add
 {
     public class AddDataCoordinator : CoordinatorStaffUser
     {

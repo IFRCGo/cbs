@@ -1,8 +1,8 @@
 using System;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.PhoneNumber;
 using FluentValidation;
 
-namespace Domain.StaffUser.Validators
+namespace Domain.StaffUser.PhoneNumber
 {
     public class RemovePhoneNumberFromStaffUserValidator : AbstractValidator<RemovePhoneNumberFromStaffUser>
     {

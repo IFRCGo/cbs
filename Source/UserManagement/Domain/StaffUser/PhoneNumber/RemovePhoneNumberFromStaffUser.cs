@@ -2,7 +2,7 @@ using System;
 using Concepts;
 using doLittle.Commands;
 
-namespace Domain.StaffUser.Commands
+namespace Domain.StaffUser.PhoneNumber
 {
     public class RemovePhoneNumberFromStaffUser : ICommand
     {

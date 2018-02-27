@@ -2,9 +2,9 @@ using Concepts;
 using Domain.StaffUser.Commands;
 using FluentValidation;
 
-namespace Domain.StaffUser.Validators
+namespace Domain.StaffUser.Add
 {
-    public class AddStaffUserValidator : AbstractValidator<AddStaffUser>
+    public class AddStaffUserValidator : AbstractValidator<BaseStaffUser>
     {
 
         //TODO: Work to be done.
@@ -27,7 +27,7 @@ namespace Domain.StaffUser.Validators
             RuleFor(_ => _.Email)
                 .NotEmpty().WithMessage("Email is invalid - Has to be defined")
                 .EmailAddress().WithMessage("Email is invalid - Has to be of valid format");
-
+            /* Move into other validators
             When(_ => _.Role.RequiresExtensiveInfo(), () =>
             {
                 RuleFor(_ => _.NationalSociety)
@@ -79,6 +79,7 @@ namespace Domain.StaffUser.Validators
                 .When(_=> _.Role.RequiresLocation())
                 .WithMessage("Location is not correct - Has to be defined");
             */
+            
         }
 
     }

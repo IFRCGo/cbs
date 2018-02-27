@@ -10,8 +10,7 @@ using doLittle.Validation;
 using System.Linq;
 using System.Collections.Generic;
 using Concepts;
-using Domain.DataCollectors.Commands;
-using Domain.DataCollectors.Validators;
+using Domain.DataCollector.UpdateDataCollector;
 
 namespace Domain.Specs.when_adding_a_data_collector
 {

@@ -1,9 +1,11 @@
 using System;
 using doLittle.Domain;
-using Domain.StaffUser.AggregateRoots;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser;
+using Domain.StaffUser.Delete;
+using Domain.StaffUser.PhoneNumber;
+using Domain.StaffUser.Update;
 
-namespace Domain.StaffUser.CommandHandlers
+namespace Domain.StaffUser
 {
     public class StaffUserCommandHandler : IStaffUserCommandHandler
     {
@@ -15,7 +17,7 @@ namespace Domain.StaffUser.CommandHandlers
             _repository = repository;
         }
 
-        public void Handle(AddStaffUser command)
+        public void Handle(AddAdmin command)
         {
             var root = _repository.Get(command.StaffUserId);
 

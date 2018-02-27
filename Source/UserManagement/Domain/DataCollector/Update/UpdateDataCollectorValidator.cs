@@ -1,8 +1,8 @@
 using System;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.Update;
 using FluentValidation;
 
-namespace Domain.DataCollectors.Validators
+namespace Domain.DataCollector.Update
 {
     public class UpdateDataCollectorValidator : AbstractValidator<UpdateDataCollector>
     {

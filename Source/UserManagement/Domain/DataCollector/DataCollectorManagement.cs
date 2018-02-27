@@ -1,9 +1,9 @@
 using System;
 using doLittle.Domain;
-using Domain.DataCollectors.Commands;
+using Domain.DataCollector.UpdateDataCollector;
 using Events.DataCollector;
 
-namespace Domain.DataCollectors.AggregateRoots
+namespace Domain.DataCollector
 {
     public class DataCollectorManagement : AggregateRoot
     {
