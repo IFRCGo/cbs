@@ -11,12 +11,12 @@ namespace Domain.Specs.StaffUser.BasicInfo
     {
         static BasicInfoValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.BasicInfo sut;
+        static Domain.StaffUser.BasicInfo extended;
 
         Establish context = () =>
         {
             validator = new BasicInfoValidator();
-            sut = new Domain.StaffUser.BasicInfo
+            extended = new Domain.StaffUser.BasicInfo
             {
                 StaffUserId = Guid.NewGuid(),
                 Email = "user@redcross.no",
@@ -24,9 +24,9 @@ namespace Domain.Specs.StaffUser.BasicInfo
             };
         };
 
-        Because of = () => { validation_results = validator.Validate(sut); };
+        Because of = () => { validation_results = validator.Validate(extended); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();  
-        It should_identify_the_display_name_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(sut.DisplayName));  
+        It should_identify_the_display_name_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(extended.DisplayName));  
     }
 }

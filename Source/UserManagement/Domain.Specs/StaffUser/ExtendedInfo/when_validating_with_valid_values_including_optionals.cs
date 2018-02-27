@@ -9,15 +9,15 @@ namespace Domain.Specs.StaffUser.ExtendedInfo
     {
         static ExtendedInfoValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.ExtendedInfo sut;
+        static Domain.StaffUser.ExtendedInfo extended;
 
         Establish context = () =>
         {
             validator = new ExtendedInfoValidator();
-            sut = given.extended_info.build_valid_instance();
+            extended = given.extended_info.build_valid_instance();
         };
 
-        Because of = () => { validation_results = validator.Validate(sut); };
+        Because of = () => { validation_results = validator.Validate(extended); };
 
         It should_be_valid = () => validation_results.ShouldBeValid();          
     }
