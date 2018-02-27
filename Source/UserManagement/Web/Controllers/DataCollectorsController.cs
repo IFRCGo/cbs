@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doLittle.Domain;
-using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollector.UpdateDataCollector;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using Domain.DataCollector;
 using MongoDB.Driver;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

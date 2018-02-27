@@ -25,7 +25,7 @@ namespace Domain.DataCollector
         public void Handle(Add.AddDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.AddDataCollector(command);
+            root.RegisterDataCollector(command.DataCollectorId, command.FullName, command.DisplayName);
         }
 
         public void Handle(UpdateDataCollector command)

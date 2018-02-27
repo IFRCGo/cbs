@@ -20,8 +20,8 @@ namespace Domain.DataCollector.Add
                 .NotEmpty()
                 .WithMessage("Display name is not correct - Has to be defined");
 
-
             RuleFor(_ => _.Email)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Must provide a valid email address");
             //TODO: rest of the rules

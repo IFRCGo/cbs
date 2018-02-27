@@ -1,10 +1,15 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollectors.Commands;
-using Domain.StaffUser.CommandHandlers;
-using Domain.StaffUser.Commands;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using Domain.DataCollector;
+using Domain.StaffUser.Add;
+using Domain.StaffUser.Delete;
+using Domain.StaffUser.PhoneNumber;
+using Domain.StaffUser.Update;
+using Domain.StaffUser;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -49,59 +54,59 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-            CreateDataCollectorCommands();
-            CreateAllStaffUserCommands();
+            // CreateDataCollectorCommands();
+            // CreateAllStaffUserCommands();
         }
         
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
-            DeleteCollection<DataCollector>("DataCollector");
-            AddDataCollector[] commands;
-            try
-            {
-                commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
-                        System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
-            catch (FileNotFoundException e)
-            {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-                commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
-                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
+            // DeleteCollection<DataCollector>("DataCollector");
+            // AddDataCollector[] commands;
+            // try
+            // {
+            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //             System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            // }
+            // catch (FileNotFoundException e)
+            // {
+            //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            // }
 
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
-                cmd.DataCollectorId = Guid.NewGuid();
-                _dataCollectorCommandHandler.Handle(cmd);
-            }
+            // foreach (var cmd in commands)
+            // {
+            //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            //     cmd.DataCollectorId = Guid.NewGuid();
+            //     _dataCollectorCommandHandler.Handle(cmd);
+            // }
             
         }
 
         [HttpGet("allstaffusercommands")]
         public void CreateAllStaffUserCommands()
         {
-            DeleteAllStaffUserCollections();
-            AddStaffUser[] commands;
-            try
-            {
-                commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
-                    System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
-            }
-            catch (FileNotFoundException e)
-            {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-                commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
-                    System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
-            }
+            // DeleteAllStaffUserCollections();
+            // AddStaffUser[] commands;
+            // try
+            // {
+            //     commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
+            //         System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
+            // }
+            // catch (FileNotFoundException e)
+            // {
+            //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+            //     commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
+            //         System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
+            // }
 
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
-                cmd.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
-            }
+            // foreach (var cmd in commands)
+            // {
+            //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            //     cmd.StaffUserId = Guid.NewGuid();
+            //     _staffUserCommandHandler.Handle(cmd);
+            // }
 
         }
 
@@ -116,13 +121,13 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            DeleteCollection<StaffUser>("StaffUser");
-            DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            DeleteCollection<DataVerifier>("DataVerifier");
-            DeleteCollection<DataOwner>("DataOwner");
-            DeleteCollection<DataCoordinator>("DataCoordinator");
-            DeleteCollection<DataConsumer>("DataConsumer");
-            DeleteCollection<Admin>("Admin");
+            // DeleteCollection<StaffUser>("StaffUser");
+            // DeleteCollection<SystemCoordinator>("SystemCoordinator");
+            // DeleteCollection<DataVerifier>("DataVerifier");
+            // DeleteCollection<DataOwner>("DataOwner");
+            // DeleteCollection<DataCoordinator>("DataCoordinator");
+            // DeleteCollection<DataConsumer>("DataConsumer");
+            // DeleteCollection<Admin>("Admin");
 
         }
 

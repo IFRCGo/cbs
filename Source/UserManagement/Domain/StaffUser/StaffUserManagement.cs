@@ -2,6 +2,8 @@ using System;
 using Concepts;
 using doLittle.Domain;
 using Domain.StaffUser.PhoneNumber;
+using Domain.StaffUser.Add;
+using Domain.StaffUser.Update;
 using Events.StaffUser;
 
 namespace Domain.StaffUser
@@ -14,7 +16,7 @@ namespace Domain.StaffUser
 
         #region VisibleCommands
 
-        public void AddStaffUser(Add command)
+        public void AddStaffUser(Add.BaseStaffUser command)
         {
             switch (command.Role)
             {
@@ -105,18 +107,18 @@ namespace Domain.StaffUser
 
         #region PhoneNumber
 
-        private void AddPhoneNumbers(Add command)
+        private void AddPhoneNumbers(Add.BaseStaffUser command)
         {
-            foreach (var number in command.MobilePhoneNumber)
-            {
-                // Just handle the command directly, should be no point in giving it to the commandhandler(?)
-                AddPhoneNumber(new AddPhoneNumberToStaffUser
-                {
-                    PhoneNumber = number,
-                    Role = command.Role,
-                    StaffUserId = command.StaffUserId
-                });
-            }
+            // foreach (var number in command.MobilePhoneNumber)
+            // {
+            //     // Just handle the command directly, should be no point in giving it to the commandhandler(?)
+            //     AddPhoneNumber(new AddPhoneNumberToStaffUser
+            //     {
+            //         PhoneNumber = number,
+            //         Role = command.Role,
+            //         StaffUserId = command.StaffUserId
+            //     });
+            // }
         }
 
         private void AddPhoneNumbers(UpdateStaffUser command)
@@ -151,58 +153,58 @@ namespace Domain.StaffUser
         
         #region HandleAdd
 
-        private void AddAdmin(Add command)
+        private void AddAdmin(Add.BaseStaffUser command)
         {
-            Apply(new AdminAdded(
-                command.StaffUserId, command.FullName,
-                command.DisplayName, command.Email
-                ));
+            // Apply(new AdminAdded(
+            //     command.StaffUserId, command.FullName,
+            //     command.DisplayName, command.Email
+            //     ));
 
         }
 
-        private void AddDataConsumer(Add command)
+        private void AddDataConsumer(Add.BaseStaffUser command)
         {
-            Apply(new DataConsumerAdded(
-                command.StaffUserId, command.FullName,
-                command.DisplayName, command.Email,
-                command.Location.Longitude, command.Location.Latitude
-                ));
+            // Apply(new DataConsumerAdded(
+            //     command.StaffUserId, command.FullName,
+            //     command.DisplayName, command.Email,
+            //     command.Location.Longitude, command.Location.Latitude
+            //     ));
         }
-        private void AddDataCoordinator(Add command)
+        private void AddDataCoordinator(Add.BaseStaffUser command)
         {
-            Apply(new DataCoordinatorAdded(
-                command.StaffUserId, command.FullName, command.DisplayName,
-                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
-                (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude
-                ));
+            // Apply(new DataCoordinatorAdded(
+            //     command.StaffUserId, command.FullName, command.DisplayName,
+            //     command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
+            //     (int)command.PreferredLanguage, command.Location.Longitude,
+            //     command.Location.Latitude
+            //     ));
         }
-        private void AddDataOwner(Add command)
+        private void AddDataOwner(Add.BaseStaffUser command)
         {
-            Apply(new DataOwnerAdded(
-                command.StaffUserId, command.FullName, command.DisplayName,
-                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
-                (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, command.Position, command.DutyStation
-                ));
+            // Apply(new DataOwnerAdded(
+            //     command.StaffUserId, command.FullName, command.DisplayName,
+            //     command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
+            //     (int)command.PreferredLanguage, command.Location.Longitude,
+            //     command.Location.Latitude, command.Position, command.DutyStation
+            //     ));
         }
-        private void AddDataVerifier(Add command)
+        private void AddDataVerifier(Add.BaseStaffUser command)
         {
-            Apply(new DataVerifierAdded(
-                command.StaffUserId, command.FullName, command.DisplayName,
-                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
-                (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude, DateTimeOffset.UtcNow
-                ));
+            // Apply(new DataVerifierAdded(
+            //     command.StaffUserId, command.FullName, command.DisplayName,
+            //     command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
+            //     (int)command.PreferredLanguage, command.Location.Longitude,
+            //     command.Location.Latitude, DateTimeOffset.UtcNow
+            //     ));
         }
-        private void AddSystemCoordinator(Add command)
+        private void AddSystemCoordinator(Add.BaseStaffUser command)
         {
-            Apply(new SystemCoordinatorAdded(
-                command.StaffUserId, command.FullName, command.DisplayName,
-                command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
-                (int)command.PreferredLanguage, command.Location.Longitude,
-                command.Location.Latitude
-                ));
+            // Apply(new SystemCoordinatorAdded(
+            //     command.StaffUserId, command.FullName, command.DisplayName,
+            //     command.Email, command.YearOfBirth, (int)command.Sex, command.NationalSociety,
+            //     (int)command.PreferredLanguage, command.Location.Longitude,
+            //     command.Location.Latitude
+            //     ));
         }
         
         #endregion

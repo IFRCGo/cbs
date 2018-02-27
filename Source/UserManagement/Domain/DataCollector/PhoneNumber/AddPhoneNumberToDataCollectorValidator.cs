@@ -1,5 +1,5 @@
 using System;
-using Domain.DataCollector.UpdateDataCollector;
+using Domain.DataCollector.Update;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber

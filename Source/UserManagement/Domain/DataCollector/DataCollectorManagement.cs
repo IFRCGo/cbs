@@ -1,18 +1,27 @@
 using System;
+using System.Collections.Generic;
 using doLittle.Domain;
-using Domain.DataCollector.UpdateDataCollector;
 using Events.DataCollector;
+using Domain.DataCollector.Add;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using System.Linq;
 
 namespace Domain.DataCollector
 {
     public class DataCollectorManagement : AggregateRoot
     {
-
+        private List<string> _phoneNumbers = new List<string>();
         public DataCollectorManagement(Guid id) : base(id)
         {
         }
 
         #region VisibleCommands
+
+        public void RegisterDataCollector(Guid dataCollectorId, string fullName, string displayName)
+        {
+
+        }
 
         public void AddDataCollector(AddDataCollector command)
         {
@@ -58,16 +67,32 @@ namespace Domain.DataCollector
 
         public void AddPhoneNumber(AddPhoneNumberToDataCollector command)
         {
+            if(_phoneNumbers.Contains(command.PhoneNumber))
+                return;  
+
             Apply(new PhoneNumberAddedToDataCollector(
                 command.DataCollectorId, command.PhoneNumber
                 ));
         }
         public void RemovePhoneNumber(RemovePhoneNumberFromDataCollector command)
         {
+            if(!_phoneNumbers.Contains(command.PhoneNumber))
+                return;    
+
             Apply(new PhoneNumberRemovedFromDataCollector( 
                 command.DataCollectorId, command.PhoneNumber
             ));
         }
+
+        private void On(PhoneNumberAddedToDataCollector @event)
+        {
+            _phoneNumbers.Add(@event.PhoneNumber);
+        }
+
+        private void On(PhoneNumberRemovedFromDataCollector @event)
+        {
+            _phoneNumbers.Remove(@event.PhoneNumber);
+        }    
 
 
         #endregion
@@ -76,7 +101,7 @@ namespace Domain.DataCollector
 
         private void AddPhoneNumbers(AddDataCollector command)
         {
-            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Count > 0)
+            if (command.MobilePhoneNumbers != null && command.MobilePhoneNumbers.Any())
             {
                 foreach (var number in command.MobilePhoneNumbers)
                 {
@@ -89,7 +114,7 @@ namespace Domain.DataCollector
 
         private void AddPhoneNumbers(UpdateDataCollector command)
         {
-            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Count > 0)
+            if (command.MobilePhoneNumbersAdded != null && command.MobilePhoneNumbersAdded.Any())
             {
                 foreach (var number in command.MobilePhoneNumbersAdded)
                 {

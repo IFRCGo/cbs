@@ -1,5 +1,5 @@
 using doLittle.FluentValidation.Commands;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.Add;
 
 namespace Domain.StaffUser.Add
 {

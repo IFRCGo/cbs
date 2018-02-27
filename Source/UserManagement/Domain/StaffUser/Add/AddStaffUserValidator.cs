@@ -1,5 +1,5 @@
 using Concepts;
-using Domain.StaffUser.Commands;
+using Domain.StaffUser.Add;
 using FluentValidation;
 
 namespace Domain.StaffUser.Add
