@@ -1,8 +1,4 @@
 using System;
-<<<<<<< HEAD
-=======
-using Domain.DataCollector.Update;
->>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber

@@ -1,35 +1,11 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-<<<<<<< HEAD
-using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollector.UpdateDataCollector;
-using Domain.StaffUser.CommandHandlers;
-using Domain.StaffUser.PhoneNumber;
-=======
-using Domain.DataCollector.Add;
-using Domain.DataCollector.PhoneNumber;
-using Domain.DataCollector.Update;
+
 using Domain.DataCollector;
-using Domain.StaffUser.Add;
-using Domain.StaffUser.Delete;
-using Domain.StaffUser.PhoneNumber;
-using Domain.StaffUser.Update;
 using Domain.StaffUser;
->>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
-using Read.StaffUsers;
-using Read.StaffUsers.Admin;
-using Read.StaffUsers.DataConsumer;
-using Read.StaffUsers.DataCoordinator;
-using Read.StaffUsers.DataOwner;
-using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.SystemCoordinator;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -82,21 +58,12 @@ namespace Web.Controllers
             //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             // }
 
-<<<<<<< HEAD
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
-                cmd.DataCollectorId = Guid.NewGuid();
-                _dataCollectorCommandHandler.Handle(cmd);
-            }
-=======
             // foreach (var cmd in commands)
             // {
             //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
             //     cmd.DataCollectorId = Guid.NewGuid();
             //     _dataCollectorCommandHandler.Handle(cmd);
             // }
->>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
             
         }
 
@@ -117,21 +84,12 @@ namespace Web.Controllers
             //         System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
             // }
 
-<<<<<<< HEAD
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
-                cmd.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
-            }
-=======
             // foreach (var cmd in commands)
             // {
             //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
             //     cmd.StaffUserId = Guid.NewGuid();
             //     _staffUserCommandHandler.Handle(cmd);
             // }
->>>>>>> 0e304c99aa928cef3f5308a15ea685a35cce0d0e
 
         }
 
@@ -159,7 +117,7 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteCollection<Read.DataCollectors.DataCollector>("DataCollector");
         }
 
         [HttpGet("deletegreetinghistorycollection")]

@@ -11,15 +11,15 @@ namespace Domain.DataCollector
 {
     public class DataCollector : AggregateRoot
     {
-        private readonly List<string> _numbers;
+        private readonly List<string> _numbers = new List<string>();
+
         public DataCollector(Guid id) : base(id)
         {
-            _numbers = new List<string>();
         }
 
         #region VisibleCommands
 
-        public void AddDataCollector(
+        public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
             Location gpsLocation, string email, List<string> phoneNumbers

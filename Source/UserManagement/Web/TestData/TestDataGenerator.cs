@@ -48,7 +48,8 @@ namespace Web.TestData
                     Email = name.Replace(' ', '_') + "@mail.com",
                     FullName = name,
                     GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
-                    MobilePhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()}.ToArray(),
+                    // TODO: Shouldn't command have a List<string> instead of string[]?
+                    PhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()},
                     NationalSociety = Guid.NewGuid(),
                     PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
                     Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,

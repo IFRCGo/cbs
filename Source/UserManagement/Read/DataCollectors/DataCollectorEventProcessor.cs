@@ -31,7 +31,7 @@ namespace Read.DataCollectors
 
             dataCollector.PhoneNumbers = new List<PhoneNumber>();
             */ 
-            await _dataCollectors.SaveAsync(new DataCollector(@event.Id)
+            await _dataCollectors.SaveAsync(new DataCollector(@event.DataCollectorId)
             {
                 DisplayName = @event.DisplayName, FullName = @event.FullName,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
@@ -51,17 +51,13 @@ namespace Read.DataCollectors
             {
                 return;
             }
-            //TODO: I think the best way to do an update is to assume that all the fields are either the same as before or changed.
-            // avoid null-values in the command and event
+
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            dataCollector.YearOfBirth = @event.YearOfBirth;
             dataCollector.NationalSociety = @event.NationalSociety;
             dataCollector.PreferredLanguage = (Language)@event.PreferredLanguage;
-            dataCollector.Sex = (Sex)@event.Sex; // Todo: This should perhaps not be editable aswell?
-
-            dataCollector.Email = @event.Email; //Todo: Have to change this if datacollector can have multiple emails
+            dataCollector.Email = @event.Email;
 
             _dataCollectors.Save(dataCollector);
 
