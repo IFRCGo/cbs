@@ -44,5 +44,8 @@ Thumbs.db
 
 #Build tools #
 ##############
-Build/tools/
+Build/tools/Addins
+Build/tools/Cake
+Build/tools/nuget.exe
+Build/tools/packages.config.md5sum
 .buildsettings
