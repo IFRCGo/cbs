@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
@@ -9,11 +11,12 @@ namespace Domain.DataCollector.PhoneNumber
         {
             RuleFor(_ => _.DataCollectorId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("DataCollectorId cannot be empty")
-                .NotEqual(Guid.Empty).WithMessage("DataCollectorId cannot be Guid.Empty");
+                .NotEmpty().WithMessage("Data Collector Id is required");
 
             RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("PhoneNumber cannot be empty");
+                .NotEmpty().WithMessage("At least one Phone Number is required");
+                //TODO: Add validation on phonenumber format
+
         }
     }
 }

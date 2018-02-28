@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using doLittle.FluentValidation.Commands;
 using FluentValidation;
 
@@ -13,28 +15,44 @@ namespace Domain.DataCollector.Add
     {
         public AddDataCollectorValidator()
         {
-            // TODO: Question: Should we have inputvalidation for DataCollectorId?
-            // Should Guid be provided in frontend or in the receiving controller?
+
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("DataCollectorId must be set")
-                .NotEqual(Guid.Empty).WithMessage($"DataCollectorId cannot be equal to {Guid.Empty}");
+                .NotEmpty().WithMessage("Data Collector Id must be set");
 
             RuleFor(_ => _.FullName)
                 .NotEmpty()
-                .WithMessage("Full name is not correct - Has to be defined");
+                .WithMessage("Full Name is not correct - Has to be defined");
 
             RuleFor(_ => _.DisplayName)
                 .NotEmpty()
-                .WithMessage("Display name is not correct - Has to be defined");
+                .WithMessage("Display Name is not correct - Has to be defined");
 
             RuleFor(_ => _.Email)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Email is required.")
-                .EmailAddress().WithMessage("Must provide a valid email address");
+                .EmailAddress().WithMessage("Email address must be valid");
 
+            RuleFor(_ => _.Sex)
+                .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
 
+            RuleFor(_ => _.GpsLocation)
+                .NotNull().WithMessage("Location must be provided");
+                //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
 
-            
+            RuleFor(_ => _.NationalSociety)
+                .NotEmpty().WithMessage("A National Society is required");
+
+            RuleFor(_ => _.PreferredLanguage)
+                .IsInEnum().WithMessage("Preferred Language is required and must be valid");
+
+            RuleFor(_ => _.YearOfBirth)
+                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth is required").When(y => y != null);
+
+            RuleFor(_ => _.PhoneNumbers)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("At least one Phone Number is required")
+                .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+
         }
     }
 }
