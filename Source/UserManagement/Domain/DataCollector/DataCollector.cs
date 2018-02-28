@@ -22,7 +22,7 @@ namespace Domain.DataCollector
         public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, string email, List<string> phoneNumbers
+            Location gpsLocation, string email, IEnumerable<string> phoneNumbers
             )
         {
             Apply(new DataCollectorAdded
@@ -48,8 +48,8 @@ namespace Domain.DataCollector
         public void UpdateDataCollector(
             string fullName, string displayName,
             Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, string email, List<string> phoneNumbersAdded,
-            List<string> phoneNumbersRemoved
+            Location gpsLocation, string email, IEnumerable<string> phoneNumbersAdded,
+            IEnumerable<string> phoneNumbersRemoved
             )
         {
             // Apply DataCollectorUpdated event
@@ -89,14 +89,13 @@ namespace Domain.DataCollector
             ));
         }
 
-
         #endregion
 
         #region PhoneNumber
 
-        private void AddPhoneNumbers(IReadOnlyCollection<string> numbers)
+        private void AddPhoneNumbers(IEnumerable<string> numbers)
         {
-            if (numbers == null || numbers.Count <= 0) return;
+            if (numbers == null) return;
             foreach (var number in numbers)
             {
                 Apply(new PhoneNumberAddedToDataCollector(
@@ -106,9 +105,9 @@ namespace Domain.DataCollector
             }
         }
 
-        private void RemovePhoneNumbers(IReadOnlyCollection<string> numbers)
+        private void RemovePhoneNumbers(IEnumerable<string> numbers)
         {
-            if (numbers == null || numbers.Count <= 0) return;
+            if (numbers == null) return;
             foreach (var number in numbers)
             {
                 Apply(new PhoneNumberRemovedFromDataCollector(

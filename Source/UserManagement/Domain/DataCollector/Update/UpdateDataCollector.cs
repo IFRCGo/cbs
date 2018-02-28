@@ -17,8 +17,8 @@ namespace Domain.DataCollector.Update
         public Location GpsLocation { get; set; }
         // TODO: Don't know if datacollector can have Email or if it's editable
         public string Email { get; set; }
-        public List<string> PhoneNumbersAdded { get; set; }
-        public List<string> PhoneNumbersRemoved { get; set; }
+        public IEnumerable<string> PhoneNumbersAdded { get; set; }
+        public IEnumerable<string> PhoneNumbersRemoved { get; set; }
      
     }
 }

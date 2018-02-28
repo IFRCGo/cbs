@@ -31,7 +31,8 @@ namespace Domain.DataCollector.Add
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Must provide a valid email address");
-            //TODO: rest of the rules
+
+
 
             
         }

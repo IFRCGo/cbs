@@ -23,7 +23,7 @@ namespace Domain.DataCollector.Add
         public Location GpsLocation { get; set; }
         // TODO: Don't know if DataCollector should have Email
         public string Email { get; set; }
-        public List<string> PhoneNumbers { get; set; }
+        public IEnumerable<string> PhoneNumbers { get; set; }
         
     }
 }
