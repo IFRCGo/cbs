@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:  
   rules:
-  - host: test.cbsrc.org
+  - host: dev.cbsrc.org
     http:
       paths:      
       - path: {{ .Values.services.usermanagement.backend.path }}
