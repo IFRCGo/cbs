@@ -4,7 +4,7 @@
   *--------------------------------------------------------------------------------------------*/
 
  using Machine.Specifications;
- using doLittle.Validation;
+ using FluentValidation.Results;
  using System.Collections.Generic;
  using Domain.DataCollector.Add;
 
@@ -15,7 +15,7 @@ namespace Domain.Specs.DataCollector.when_adding_a_data_collector
      {
          static AddDataCollector cmd;
          static AddDataCollectorValidator validator;
-         static IEnumerable<ValidationResult> validation_results;
+         static ValidationResult validation_results;
 
          Establish context = () => 
          {
@@ -24,7 +24,7 @@ namespace Domain.Specs.DataCollector.when_adding_a_data_collector
              cmd = get_invalid_command(c => c.Email = string.Empty);
          };
 
-         Because of = () => { validation_results = validator.ValidateFor(cmd); };
+         Because of = () => { validation_results = validator.Validate(cmd); };
 
          It should_be_invalid = () => validation_results.ShouldBeInvalid();
          It should_have_two_validation_errors = () => validation_results.ShouldHaveInvalidCountOf(2);
