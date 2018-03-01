@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Events.StaffUser;
 
+
 namespace Domain.Specs.StaffUser.Registering.a_new_admin
 {
     [Subject("Registering")]
@@ -26,16 +27,20 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
 
         Because of = () => sut.RegisterNewAdminUser(name,display_name,email,now);
 
-        It should_generate_a_new_admin_user_registered_event 
-            = () => sut.UncommittedEvents.First().ShouldBeOfExactType<NewAdminUserRegistered>();
-        It should_have_the_correct_full_name = () => get_event().FullName.ShouldEqual(name);
-        It should_have_the_correct_display_name = () => get_event().DisplayName.ShouldEqual(display_name);
-        It should_have_the_correct_email = () => get_event().Email.ShouldEqual(email);
-        It should_have_the_correct_registed_at_time = () => get_event().RegisteredAt.ShouldEqual(now);
+        // It should_generate_a_new_admin_user_registered_event 
+        //     = () => sut.UncommittedEvents.First().ShouldBeOfExactType<NewAdminUserRegistered>();
+        // It should_have_the_correct_full_name = () => get_event().FullName.ShouldEqual(name);
+        // It should_have_the_correct_display_name = () => get_event().DisplayName.ShouldEqual(display_name);
+        // It should_have_the_correct_email = () => get_event().Email.ShouldEqual(email);
+        // It should_have_the_correct_registed_at_time = () => get_event().RegisteredAt.ShouldEqual(now);
 
-        static NewAdminUserRegistered get_event()
-        {
-            return sut.UncommittedEvents.First() as NewAdminUserRegistered;
-        }
+        It should_create_a_new_admin_user_registed_event_with_the_correct_values 
+            = () => sut.ShouldHaveEvent<NewAdminUserRegistered>().AtBeginning().Where(
+                e => e.FullName.ShouldEqual(name),
+                e => e.DisplayName.ShouldEqual(display_name),
+                e => e.Email.ShouldEqual(email),
+                e => e.RegisteredAt.ShouldEqual(now)
+            );
+
     }
 }
