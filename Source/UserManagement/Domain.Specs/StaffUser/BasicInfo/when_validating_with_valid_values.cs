@@ -11,21 +11,15 @@ namespace Domain.Specs.StaffUser.BasicInfo
     {
         static BasicInfoValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.BasicInfo extended;
+        static Domain.StaffUser.BasicInfo basic;
 
         Establish context = () =>
         {
             validator = new BasicInfoValidator();
-            extended = new Domain.StaffUser.BasicInfo
-            {
-                StaffUserId = Guid.NewGuid(),
-                Email = "user@redcross.no",
-                FullName = "Our New User",
-                DisplayName = "Joe"
-            };
+            basic = given.basic_info.build_valid_instance();
         };
 
-        Because of = () => { validation_results = validator.Validate(extended); };
+        Because of = () => { validation_results = validator.Validate(basic); };
 
         It should_be_valid = () => validation_results.ShouldBeValid();    
     }

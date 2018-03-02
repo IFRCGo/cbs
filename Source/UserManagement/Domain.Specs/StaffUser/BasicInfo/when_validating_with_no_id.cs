@@ -11,23 +11,17 @@ namespace Domain.Specs.StaffUser.BasicInfo
     {
         static BasicInfoValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.BasicInfo extended;
+        static Domain.StaffUser.BasicInfo basic;
 
         Establish context = () =>
         {
             validator = new BasicInfoValidator();
-            extended = new Domain.StaffUser.BasicInfo
-            {
-                StaffUserId = Guid.Empty,
-                Email = "user@redcross.no",
-                FullName = "Our New User",
-                DisplayName = "Joe"
-            };
+            basic = given.basic_info.build_instance_with(bi => bi.StaffUserId = Guid.Empty);
         };
 
-        Because of = () => { validation_results = validator.Validate(extended); };
+        Because of = () => { validation_results = validator.Validate(basic); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();  
-        It should_identify_the_staff_user_id_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(extended.StaffUserId));  
+        It should_identify_the_staff_user_id_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(basic.StaffUserId));  
     }
 }
