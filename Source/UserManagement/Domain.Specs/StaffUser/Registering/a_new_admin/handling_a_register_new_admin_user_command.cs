@@ -44,7 +44,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
 
         Because of = () => command_handlers.Handle(command);
 
-        It should_attempt_to_retreive_the_staff_user = () => repository.VerifyAll();
+        It should_attempt_to_retrieve_the_staff_user = () => repository.VerifyAll();
         It should_get_the_time_from_the_system_clock = () => system_clock.VerifyAll();
         It call_the_register_new_admin_user_method_with_the_correct_parameters = () => 
         {
