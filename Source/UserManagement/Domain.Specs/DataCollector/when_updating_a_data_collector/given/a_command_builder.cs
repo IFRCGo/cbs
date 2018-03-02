@@ -19,7 +19,7 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
                  GpsLocation = new Location(123,123),
                  PhoneNumbersAdded = new string[] {"123456789"},
                  PhoneNumbersRemoved = new string[] {"987654321"},
-                 Email = "test@test.com"
+                 //Email = "test@test.com"
 
                  
              };

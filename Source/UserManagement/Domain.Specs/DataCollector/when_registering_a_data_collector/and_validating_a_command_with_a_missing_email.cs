@@ -6,20 +6,20 @@
 // using Machine.Specifications;
 // using FluentValidation.Results;
 // using System.Collections.Generic;
-// using Domain.DataCollector.Update;
+// using Domain.DataCollector.Registering;
 
-//namespace Domain.Specs.DataCollector.when_updating_a_data_collector
+//namespace Domain.Specs.DataCollector.when_adding_a_data_collector
 // {
-//     [Subject(typeof(UpdateDataCollectorValidator))]
+//     [Subject(typeof(AddDataCollectorValidator))]
 //     public class and_validating_a_command_with_a_missing_email : given.a_command_builder
 //     {
-//         static UpdateDataCollector cmd;
-//         static UpdateDataCollectorValidator validator;
+//         static RegisterDataCollector cmd;
+//         static AddDataCollectorValidator validator;
 //         static ValidationResult validation_results;
 
 //         Establish context = () => 
 //         {
-//             validator = new UpdateDataCollectorValidator();
+//             validator = new AddDataCollectorValidator();
 
 //             cmd = get_invalid_command(c => c.Email = string.Empty);
 //         };

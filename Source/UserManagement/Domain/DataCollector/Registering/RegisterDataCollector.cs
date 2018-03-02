@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using Concepts;
 using doLittle.Commands;
 
-namespace Domain.DataCollector.Add
+namespace Domain.DataCollector.Registering
 {
-    public class AddDataCollector : ICommand
+    public class RegisterDataCollector : ICommand
     {
         public Guid DataCollectorId { get; set; }
 
@@ -21,8 +21,6 @@ namespace Domain.DataCollector.Add
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
-        // TODO: Don't know if DataCollector should have Email
-        public string Email { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
         
     }

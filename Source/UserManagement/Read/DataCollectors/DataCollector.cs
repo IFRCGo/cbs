@@ -17,7 +17,6 @@ namespace Read.DataCollectors
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
         public List<PhoneNumber> PhoneNumbers { get; set; }
-        public string Email { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
 
         //TODO: Should this be nullable before first report is sent? Construct a concept?

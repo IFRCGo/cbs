@@ -45,16 +45,16 @@ namespace Web.Controllers
         public void CreateDataCollectorCommands()
         {
             // DeleteCollection<DataCollector>("DataCollector");
-            // AddDataCollector[] commands;
+            // RegisterDataCollector[] commands;
             // try
             // {
-            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
             //             System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             // }
             // catch (FileNotFoundException e)
             // {
             //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
             //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             // }
 

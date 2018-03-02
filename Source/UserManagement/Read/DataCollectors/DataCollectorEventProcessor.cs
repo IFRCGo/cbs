@@ -16,7 +16,7 @@ namespace Read.DataCollectors
             _dataCollectors = dataCollectors;
         }
 
-        public async Task Process(DataCollectorAdded @event)
+        public async Task Process(DataCollectorRegistered @event)
         {
             /* Should use a specific command and event for updating
             var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
@@ -57,7 +57,6 @@ namespace Read.DataCollectors
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             dataCollector.NationalSociety = @event.NationalSociety;
             dataCollector.PreferredLanguage = (Language)@event.PreferredLanguage;
-            dataCollector.Email = @event.Email;
 
             _dataCollectors.Save(dataCollector);
 

@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doLittle.Domain;
-using Domain.DataCollector.Add;
+using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
 using Domain.DataCollector;
@@ -41,7 +41,7 @@ namespace Web.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post([FromBody] AddDataCollector command)
+        public IActionResult Post([FromBody] RegisterDataCollector command)
         {
             //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
             command.DataCollectorId = Guid.NewGuid();

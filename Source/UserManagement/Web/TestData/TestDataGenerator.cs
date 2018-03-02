@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Concepts;
 using Domain.DataCollector.Update;
-using Domain.DataCollector.Add;
+using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 using Domain.StaffUser.PhoneNumber;
 using Newtonsoft.Json;
@@ -42,10 +42,10 @@ namespace Web.TestData
 
         public static void GenerateCorrectAddDataCollectorCommands()
         {
-            var data = names.Select(name => new AddDataCollector
+            var data = names.Select(name => new RegisterDataCollector
                 {
                     DisplayName = name.Replace(' ', '_') + "DISP",
-                    Email = name.Replace(' ', '_') + "@mail.com",
+                    //Email = name.Replace(' ', '_') + "@mail.com",
                     FullName = name,
                     GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
                     // TODO: Shouldn't command have a List<string> instead of string[]?

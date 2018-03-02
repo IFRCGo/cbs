@@ -21,10 +21,10 @@ namespace Domain.DataCollector.Update
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
 
-            RuleFor(_ => _.Email)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Email is required.")
-                .EmailAddress().WithMessage("Email address must be valid");
+            //RuleFor(_ => _.Email)
+            //    .Cascade(CascadeMode.StopOnFirstFailure)
+            //    .NotEmpty().WithMessage("Email is required.")
+            //    .EmailAddress().WithMessage("Email address must be valid");
 
             RuleFor(_ => _.GpsLocation)
                 .NotNull().WithMessage("Location must be provided");

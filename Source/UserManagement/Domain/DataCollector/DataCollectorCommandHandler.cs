@@ -3,8 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using doLittle.Domain;
-using Domain.DataCollector.Add;
+using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
 
@@ -21,7 +22,7 @@ namespace Domain.DataCollector
             _repository = repository;
         }
 
-        public void Handle(AddDataCollector command)
+        public void Handle(RegisterDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
             root.RegisterDataCollector(
@@ -32,8 +33,8 @@ namespace Domain.DataCollector
                 command.NationalSociety,
                 command.PreferredLanguage,
                 command.GpsLocation,
-                command.Email,
-                command.PhoneNumbers
+                command.PhoneNumbers,
+                DateTimeOffset.UtcNow
                 );
         }
 
@@ -46,7 +47,6 @@ namespace Domain.DataCollector
                 command.NationalSociety,
                 command.PreferredLanguage,
                 command.GpsLocation,
-                command.Email,
                 command.PhoneNumbersAdded,
                 command.PhoneNumbersRemoved
                 );

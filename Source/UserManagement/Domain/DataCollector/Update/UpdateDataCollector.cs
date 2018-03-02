@@ -15,8 +15,6 @@ namespace Domain.DataCollector.Update
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
-        // TODO: Don't know if datacollector can have Email or if it's editable
-        public string Email { get; set; }
         public IEnumerable<string> PhoneNumbersAdded { get; set; }
         public IEnumerable<string> PhoneNumbersRemoved { get; set; }
      

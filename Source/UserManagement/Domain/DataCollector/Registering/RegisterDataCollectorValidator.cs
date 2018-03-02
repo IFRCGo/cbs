@@ -9,9 +9,9 @@ using System.Linq;
 using doLittle.FluentValidation.Commands;
 using FluentValidation;
 
-namespace Domain.DataCollector.Add
+namespace Domain.DataCollector.Registering
 {
-    public class AddDataCollectorValidator : CommandInputValidator<AddDataCollector>
+    public class AddDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
     {
         public AddDataCollectorValidator()
         {
@@ -27,10 +27,10 @@ namespace Domain.DataCollector.Add
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
 
-            RuleFor(_ => _.Email)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Email is required.")
-                .EmailAddress().WithMessage("Email address must be valid");
+            //RuleFor(_ => _.Email)
+            //    .Cascade(CascadeMode.StopOnFirstFailure)
+            //    .NotEmpty().WithMessage("Email is required.")
+            //    .EmailAddress().WithMessage("Email address must be valid");
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);

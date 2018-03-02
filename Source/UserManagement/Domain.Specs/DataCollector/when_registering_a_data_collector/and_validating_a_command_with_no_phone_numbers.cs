@@ -1,13 +1,13 @@
-using Domain.DataCollector.Add;
+using Domain.DataCollector.Registering;
 using FluentValidation.Results;
 using Machine.Specifications;
 
-namespace Domain.Specs.DataCollector.when_adding_a_data_collector
+namespace Domain.Specs.DataCollector.when_registering_a_data_collector
 {
     [Subject(typeof(AddDataCollectorValidator))]
     public class and_validating_a_command_with_no_phone_numbers
     {
-        static AddDataCollector cmd;
+        static RegisterDataCollector cmd;
         static AddDataCollectorValidator validator;
         static ValidationResult validation_results;
 

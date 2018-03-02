@@ -6,14 +6,14 @@
  using Machine.Specifications;
  using FluentValidation.Results;
  using System.Collections.Generic;
- using Domain.DataCollector.Add;
+ using Domain.DataCollector.Registering;
 
-namespace Domain.Specs.DataCollector.when_adding_a_data_collector
+ namespace Domain.Specs.DataCollector.when_registering_a_data_collector
  {
      [Subject(typeof(AddDataCollectorValidator))]
-     public class and_validating_a_command_with_a_missing_email : given.a_command_builder
+     public class and_validating_a_valid_command
      {
-         static AddDataCollector cmd;
+         static RegisterDataCollector cmd;
          static AddDataCollectorValidator validator;
          static ValidationResult validation_results;
 
@@ -21,13 +21,11 @@ namespace Domain.Specs.DataCollector.when_adding_a_data_collector
          {
              validator = new AddDataCollectorValidator();
 
-             cmd = get_invalid_command(c => c.Email = string.Empty);
+             cmd = given.a_command_builder.get_valid_command();
          };
 
          Because of = () => { validation_results = validator.Validate(cmd); };
 
-         It should_be_invalid = () => validation_results.ShouldBeInvalid();
-         It should_have_two_validation_errors = () => validation_results.ShouldHaveInvalidCountOf(2);
-         It should_identify_the_email_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.Email));
+         It should_be_valid = () => validation_results.ShouldBeValid();
      }
  }

@@ -7,8 +7,8 @@ namespace Events.DataCollector
 {
     public class PhoneNumberRemovedFromDataCollector : IEvent
     {
-        public Guid DataCollectorId { get; private set; }
-        public string PhoneNumber { get; private set; }
+        public Guid DataCollectorId { get; }
+        public string PhoneNumber { get; }
 
         public PhoneNumberRemovedFromDataCollector(Guid dataCollectorId, string phoneNumber)
         {
