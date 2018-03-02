@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 
 namespace Domain.StaffUser
 {
-    public class BasicInfo
+    public class UserInfo
     {
         public Guid StaffUserId { get; set; }
         public string FullName { get; set; }

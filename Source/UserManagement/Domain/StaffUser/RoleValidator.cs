@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using FluentValidation;
 using System.Linq;
 using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class ExtendedInfoValidator : AbstractValidator<ExtendedInfo>
+    public class RoleValidator : AbstractValidator<Role>
     {
-        public ExtendedInfoValidator()
+        public RoleValidator()
         {
             RuleFor(ei => ei.YearOfBirth)
                 .InclusiveBetween(1900,DateTime.UtcNow.Year).WithMessage("Year of birth is invalid").When(yob => yob != null);

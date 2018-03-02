@@ -10,7 +10,7 @@ namespace Domain.StaffUser.Registering
         {
             RuleFor(_ => _.UserDetails)
                 .NotNull().WithMessage("User Details are required")
-                .SetValidator(new BasicInfoValidator());
+                .SetValidator(new UserInfoValidator());
         }
     }
 }

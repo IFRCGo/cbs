@@ -4,19 +4,19 @@ using FluentValidation.Results;
 using Domain.StaffUser;
 using Concepts;
 
-namespace Domain.Specs.StaffUser.ExtendedInfo
+namespace Domain.Specs.StaffUser.Role
 {
-    [Subject(typeof(ExtendedInfoValidator))]
+    [Subject(typeof(RoleValidator))]
     public class when_validating_with_an_invalid_optional_year_of_birth
     {
-        static ExtendedInfoValidator validator;
+        static RoleValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.ExtendedInfo extended;
+        static Domain.StaffUser.Role extended;
 
         Establish context = () =>
         {
-            validator = new ExtendedInfoValidator();
-            extended = given.extended_info.build_instance_with(ei => ei.YearOfBirth = 1);
+            validator = new RoleValidator();
+            extended = given.role.build_instance_with(ei => ei.YearOfBirth = 1);
             extended.Sex = Sex.Female;
         };
 

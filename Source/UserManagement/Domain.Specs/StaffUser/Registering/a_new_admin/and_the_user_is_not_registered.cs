@@ -28,7 +28,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         Because of = () => sut.RegisterNewAdminUser(name,display_name,email,now);
 
         It should_create_a_new_admin_user_registed_event_with_the_correct_values 
-            = () => sut.ShouldHaveEvent<NewAdminUserRegistered>().AtBeginning().Where(
+            = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.FullName.ShouldEqual(name),
                 e => e.DisplayName.ShouldEqual(display_name),
                 e => e.Email.ShouldEqual(email),

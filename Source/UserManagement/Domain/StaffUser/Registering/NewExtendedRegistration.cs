@@ -4,8 +4,9 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewRegistration : ICommand
+
+    public abstract class NewExtendedRegistration : NewRegistration
     {
-        public UserInfo UserDetails { get; set;}
+        public Role Role { get; set;}
     }
 }

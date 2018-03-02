@@ -4,19 +4,19 @@ using FluentValidation.Results;
 using Domain.StaffUser;
 using Concepts;
 
-namespace Domain.Specs.StaffUser.ExtendedInfo
+namespace Domain.Specs.StaffUser.Role
 {
-    [Subject(typeof(ExtendedInfoValidator))]
-    public class when_validating_with_missing_phone_numbers
+    [Subject(typeof(RoleValidator))]
+    public class when_validating_with_invalid_national_society
     {
-        static ExtendedInfoValidator validator;
+        static RoleValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.ExtendedInfo extended;
+        static Domain.StaffUser.Role extended;
 
         Establish context = () =>
         {
-            validator = new ExtendedInfoValidator();
-            extended = given.extended_info.build_instance_with(ei => ei.PhoneNumbers = null);
+            validator = new RoleValidator();
+            extended = given.role.build_instance_with(ei => ei.NationalSociety = Guid.Empty);
             extended.YearOfBirth = 1980;
             extended.Sex = Sex.Female;
         };
@@ -25,6 +25,6 @@ namespace Domain.Specs.StaffUser.ExtendedInfo
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();    
         It should_have_one_error = () => validation_results.ShouldHaveInvalidCountOf(1);
-        It should_identify_phone_numbers_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(extended.PhoneNumbers));      
+        It should_identify_national_society_as_the_error = () => validation_results.ShouldHaveInvalidProperty(nameof(extended.NationalSociety));      
     }
 }

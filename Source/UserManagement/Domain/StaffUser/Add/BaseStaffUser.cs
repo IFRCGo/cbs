@@ -8,7 +8,7 @@ namespace Domain.StaffUser.Add
     {
         public Guid StaffUserId { get; set; }
         //TODO: Needed?
-        public Role Role { get; protected set; }
+        public _Role Role { get; protected set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }

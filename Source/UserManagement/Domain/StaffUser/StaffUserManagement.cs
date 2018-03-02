@@ -20,22 +20,22 @@ namespace Domain.StaffUser
         {
             switch (command.Role)
             {
-                case Role.Admin:
+                case _Role.Admin:
                     AddAdmin(command);
                     break;
-                case Role.DataConsumer:
+                case _Role.DataConsumer:
                     AddDataConsumer(command);
                     break;
-                case Role.DataCoordinator:
+                case _Role.DataCoordinator:
                     AddDataCoordinator(command);
                     break;
-                case Role.DataOwner:
+                case _Role.DataOwner:
                     AddDataOwner(command);
                     break;
-                case Role.DataVerifier:
+                case _Role.DataVerifier:
                     AddDataVerifier(command);
                     break;
-                case Role.SystemCoordinator:
+                case _Role.SystemCoordinator:
                     AddSystemCoordinator(command);
                     break;
             }
@@ -56,22 +56,22 @@ namespace Domain.StaffUser
         {
             switch (command.Role)
             {
-                case Role.Admin:
+                case _Role.Admin:
                     UpdateAdmin(command);
                     break;
-                case Role.DataConsumer:
+                case _Role.DataConsumer:
                     UpdateDataConsumer(command);
                     break;
-                case Role.DataCoordinator:
+                case _Role.DataCoordinator:
                     UpdateDataCoordinator(command);
                     break;
-                case Role.DataOwner:
+                case _Role.DataOwner:
                     UpdateDataOwner(command);
                     break;
-                case Role.DataVerifier:
+                case _Role.DataVerifier:
                     UpdateDataVerifier(command);
                     break;
-                case Role.SystemCoordinator:
+                case _Role.SystemCoordinator:
                     UpdateSystemCoordinator(command);
                     break;
             }
@@ -92,14 +92,14 @@ namespace Domain.StaffUser
         public void AddPhoneNumber(AddPhoneNumberToStaffUser command)
         {
             Apply(new PhoneNumberAddedToStaffUser(
-                command.StaffUserId, command.PhoneNumber, (int)command.Role
+                command.StaffUserId, command.PhoneNumber, 0
             ));
         }
 
         public void RemovePhoneNumber(RemovePhoneNumberFromStaffUser command)
         {
             Apply(new PhoneNumberRemovedFromStaffUser(
-                command.StaffUserId, command.PhoneNumber, (int)command.Role
+                command.StaffUserId, command.PhoneNumber, 0
             ));
         }
 

@@ -1,13 +1,19 @@
-using System;
+﻿using System;
 using Concepts;
 using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class ExtendedInfo
+    public interface IRole
     {
-        public ExtendedInfo()
+        RoleType Type { get; }
+    }
+
+    public abstract class Role : IRole
+    {
+        public Role(RoleType type)
         {
+            Type = type;
             PreferredLanguage = Language.English;
             PhoneNumbers = new string[0];
         }
@@ -17,5 +23,7 @@ namespace Domain.StaffUser
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
+
+        public RoleType Type { get; }
     }
 }

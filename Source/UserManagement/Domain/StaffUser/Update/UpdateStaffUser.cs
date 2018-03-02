@@ -13,7 +13,7 @@ namespace Domain.StaffUser.Update
         public string Email { get; set; }
         // Used for determining what kind of user it is.
         //TODO: QUESTION: Can a user's Role be changed?
-        public Role Role { get; set; } 
+        public _Role Role { get; set; } 
         public Guid NationalSociety { get; set; }
         public Language PreferedLanguage { get; set; }
         public Location GpsLocation { get; set; }

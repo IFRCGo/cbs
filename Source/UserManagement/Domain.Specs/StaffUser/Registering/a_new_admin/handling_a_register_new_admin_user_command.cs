@@ -7,6 +7,7 @@ using Events.StaffUser;
 using Moq;
 using System;
 using It = Machine.Specifications.It;
+using given = Domain.Specs.StaffUser.UserInfo.given;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_admin
 {
@@ -24,13 +25,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         {
             command = new RegisterNewAdminUser
             {
-                UserDetails = new Domain.StaffUser.BasicInfo
-                {
-                    StaffUserId = Guid.NewGuid(),
-                    FullName = "fullname",
-                    DisplayName = "displayname",
-                    Email = "test@redcross.com",
-                }
+                UserDetails = given.user_info.build_valid_instance()
             };
             staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
@@ -48,7 +43,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         It should_get_the_time_from_the_system_clock = () => system_clock.VerifyAll();
         It call_the_register_new_admin_user_method_with_the_correct_parameters = () => 
         {
-            staff_user.ShouldHaveEvent<NewAdminUserRegistered>().AtBeginning().Where(
+            staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),
                 e => e.FullName.ShouldEqual(command.UserDetails.FullName),
                 e => e.DisplayName.ShouldEqual(command.UserDetails.DisplayName),

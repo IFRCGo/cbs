@@ -4,19 +4,19 @@ using System;
 using FluentValidation.Results;
 using System.Collections.Generic;
 
-namespace Domain.Specs.StaffUser.BasicInfo
+namespace Domain.Specs.StaffUser.UserInfo
 {
-    [Subject(typeof(BasicInfoValidator))]
+    [Subject(typeof(UserInfoValidator))]
     public class when_validating_with_valid_values
     {
-        static BasicInfoValidator validator;
+        static UserInfoValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.BasicInfo basic;
+        static Domain.StaffUser.UserInfo basic;
 
         Establish context = () =>
         {
-            validator = new BasicInfoValidator();
-            basic = given.basic_info.build_valid_instance();
+            validator = new UserInfoValidator();
+            basic = given.user_info.build_valid_instance();
         };
 
         Because of = () => { validation_results = validator.Validate(basic); };

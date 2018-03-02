@@ -1,10 +1,10 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Domain.StaffUser
 {
-    public class BasicInfoValidator : AbstractValidator<BasicInfo>
+    public class UserInfoValidator : AbstractValidator<UserInfo>
     {
-        public BasicInfoValidator()
+        public UserInfoValidator()
         {
             ValidatorOptions.CascadeMode = CascadeMode.Continue;
 

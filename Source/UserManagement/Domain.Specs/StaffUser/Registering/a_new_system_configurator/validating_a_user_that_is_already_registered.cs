@@ -5,24 +5,24 @@ using System;
 using FluentValidation.Results;
 using given = Domain.Specs.StaffUser.UserInfo.given;
 
-namespace Domain.Specs.StaffUser.Registering.a_new_admin
+namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {
     [Subject("Registering")]
     public class validating_a_user_that_is_already_registered
     {
-        static RegisterNewAdminUser register;
-        static RegisterNewAdminUserBusinessRulesValidator sut;
+        static RegisterNewSystemConfigurator register;
+        static RegisterNewSystemConfiguratorBusinessRulesValidator sut;
         static StaffUserIsRegistered staff_user_is_registered;
         static ValidationResult validation_results;
         Establish context = () => {
-            register = new RegisterNewAdminUser
+            register = new RegisterNewSystemConfigurator
             {
                 UserDetails = given.user_info.build_valid_instance()
             };
 
             staff_user_is_registered = (id) => true;
 
-            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);
+            sut = new RegisterNewSystemConfiguratorBusinessRulesValidator(staff_user_is_registered);
         };
 
         Because of = () => validation_results = sut.Validate(register);
