@@ -20,6 +20,19 @@ namespace Events.StaffUser
         public DateTimeOffset RegisteredAt { get; }
     }
 
+    public class SystemConfiguratorRegistered : IEvent
+    {
+        public SystemConfiguratorRegistered (Guid staffUserId, Guid nationalSociety, int language) 
+        {
+            this.StaffUserId = staffUserId;
+            this.NationalSociety = nationalSociety;
+            this.PreferredLanguage = language;
+        }
+        public Guid StaffUserId { get; }
+        public Guid NationalSociety { get; }
+        public int PreferredLanguage { get; }
+    }
+
     public class NationalSocietyRegistered : IEvent 
     {
         public NationalSocietyRegistered (Guid staffUserId, Guid nationalSociety) 

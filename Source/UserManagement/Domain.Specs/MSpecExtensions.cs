@@ -43,7 +43,11 @@ namespace Domain.Specs
             @event.ShouldNotBeNull();
             @event.ShouldBeOfExactType<T>();
             return new EventValueValidation<T>(@event);
+        }
 
+        public void Instances(int expected)
+        {
+            _stream.OfType<T>().Count().ShouldEqual(expected);
         }
     }
 
@@ -53,6 +57,11 @@ namespace Domain.Specs
         {
             var sequenceValidation = new EventSequenceValidation<T>(eventSource.UncommittedEvents);
             return sequenceValidation;
+        }
+
+        public static void ShouldNotHaveEvent<T>(this IEventSource eventSource) where T : IEvent
+        {
+            eventSource.UncommittedEvents.OfType<T>().Any().ShouldBeFalse();
         }
     } 
 

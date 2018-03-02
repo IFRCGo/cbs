@@ -23,8 +23,7 @@ namespace Domain.StaffUser
         public void RegisterNewSystemConfigurator(string fullname, string displayname, string email, DateTimeOffset registeredAt, Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex)
         {
             Register(fullname,displayname,email,registeredAt);
-            RegisterNationalSociety(nationalSociety);
-            RegisterPreferredLanguage(language);
+            RegisterSystemConfigurator(nationalSociety,language);
             RegisterPhoneNumbers(phoneNumbers);
             RegisterAssignedToNationalSocieties(assignedTo);
             RegisterBirthYear(birthYear);
@@ -39,7 +38,8 @@ namespace Domain.StaffUser
 
         private void RegisterBirthYear(int? birthYear)
         {
-            throw new NotImplementedException();
+            if(birthYear.HasValue)
+                Apply(new BirthYearRegistered(EventSourceId, (int)birthYear.Value));
         }
 
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
@@ -63,9 +63,9 @@ namespace Domain.StaffUser
             Apply(new PreferredLanguageRegistered(EventSourceId,(int)language));
         }
 
-        private void RegisterNationalSociety(Guid nationalSociety)
+        private void RegisterSystemConfigurator(Guid nationalSociety, Language language)
         {
-            Apply(new NationalSocietyRegistered(EventSourceId,nationalSociety));
+            Apply(new SystemConfiguratorRegistered(EventSourceId,nationalSociety, (int)language));
         }
 
         void On(NewUserRegistered @event)
