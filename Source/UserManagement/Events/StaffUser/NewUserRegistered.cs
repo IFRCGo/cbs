@@ -22,15 +22,19 @@ namespace Events.StaffUser
 
     public class SystemConfiguratorRegistered : IEvent
     {
-        public SystemConfiguratorRegistered (Guid staffUserId, Guid nationalSociety, int language) 
+        public SystemConfiguratorRegistered (Guid staffUserId, Guid nationalSociety, int language, int sex, int birthYear) 
         {
             this.StaffUserId = staffUserId;
             this.NationalSociety = nationalSociety;
             this.PreferredLanguage = language;
+            this.Sex = sex;
+            this.BirthYear = birthYear;
         }
         public Guid StaffUserId { get; }
         public Guid NationalSociety { get; }
         public int PreferredLanguage { get; }
+        public int BirthYear { get; set; }
+        public int Sex { get; set; }
     }
 
     public class NationalSocietyRegistered : IEvent 
@@ -75,27 +79,5 @@ namespace Events.StaffUser
         }
         public Guid StaffUserId { get; }
         public string PhoneNumber { get; }
-    } 
-
-    public class SexRegistered : IEvent 
-    {
-        public SexRegistered (Guid staffUserId, int sex) 
-        {
-            this.StaffUserId = staffUserId;
-            this.Sex = sex;
-        }
-        public Guid StaffUserId { get; }
-        public int Sex { get; }
-    } 
-
-    public class BirthYearRegistered : IEvent 
-    {
-        public BirthYearRegistered (Guid staffUserId, int year) 
-        {
-            this.StaffUserId = staffUserId;
-            this.BirthYear = year;
-        }
-        public Guid StaffUserId { get; }
-        public int BirthYear { get; }
     } 
 }
