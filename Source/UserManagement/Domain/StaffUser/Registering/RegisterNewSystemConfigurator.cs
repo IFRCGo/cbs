@@ -5,7 +5,7 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewSystemConfigurator : NewExtendedRegistration, IAmAssignedToNationalSocieties
+    public class RegisterNewSystemConfigurator : NewExtendedRegistration<SystemConfigurator>, IAmAssignedToNationalSocieties
     {
         public IEnumerable<Guid> AssignedNationalSocieties { get; set;}
     }

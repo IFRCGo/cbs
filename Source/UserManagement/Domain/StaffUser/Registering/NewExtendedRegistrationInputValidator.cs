@@ -4,7 +4,9 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewExtendedRegistrationInputValidator<T> : CommandInputValidator<T> where T : NewExtendedRegistration
+    public abstract class NewExtendedRegistrationInputValidator<TCommand,TRole> : CommandInputValidator<TCommand> 
+        where TCommand : NewExtendedRegistration<TRole> 
+        where TRole : Role
     {
         protected NewExtendedRegistrationInputValidator()
         {

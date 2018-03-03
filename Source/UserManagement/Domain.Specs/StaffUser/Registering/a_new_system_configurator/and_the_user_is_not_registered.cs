@@ -12,14 +12,14 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static su.StaffUser sut;
         static DateTimeOffset now;
         static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.Role role;
+        static Domain.StaffUser.SystemConfigurator role;
         static Guid[] assigned_national_societies;
 
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             user_info = StaffUser.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.role.build_valid_instance();
+            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.SystemConfigurator>();
             role.YearOfBirth = 1980;
             role.Sex = Sex.Female;
             assigned_national_societies = new Guid[]{ Guid.NewGuid(), Guid.NewGuid() };

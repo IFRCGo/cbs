@@ -12,7 +12,6 @@ namespace Domain.Specs.StaffUser.Role.given
             {
                 YearOfBirth = null,
                 Sex = null,
-                NationalSociety = Guid.NewGuid(),
                 PreferredLanguage = Language.English,
                 PhoneNumbers = new string[]{ "999999", "8888888" }
             };

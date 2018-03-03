@@ -10,14 +10,14 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static su.StaffUser sut;
         static DateTimeOffset now;
         static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.Role role;
+        static Domain.StaffUser.SystemConfigurator role;
         static Exception result;
 
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             user_info = StaffUser.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.role.build_valid_instance();
+            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.SystemConfigurator>();
             sut = new su.StaffUser(user_info.StaffUserId);
 
             //register the user so that they are already registered

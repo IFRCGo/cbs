@@ -5,7 +5,7 @@ using FluentValidation;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewDataOwnerInputValidator : NewExtendedRegistrationInputValidator<RegisterNewSystemConfigurator>
+    public class RegisterNewDataOwnerInputValidator : NewExtendedRegistrationInputValidator<RegisterNewSystemConfigurator,SystemConfigurator>
     {
         public RegisterNewDataOwnerInputValidator()
         {

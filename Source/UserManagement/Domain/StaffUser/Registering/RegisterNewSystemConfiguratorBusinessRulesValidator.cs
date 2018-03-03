@@ -6,7 +6,8 @@ using System.Linq;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewSystemConfiguratorBusinessRulesValidator : NewRegistrationBusinessRulesValidator<RegisterNewSystemConfigurator>
+    public class RegisterNewSystemConfiguratorBusinessRulesValidator 
+                    : NewRegistrationBusinessRulesValidator<RegisterNewSystemConfigurator>
     {
         readonly CanAssignToNationalSociety _canAssignToNationalSociety;
 

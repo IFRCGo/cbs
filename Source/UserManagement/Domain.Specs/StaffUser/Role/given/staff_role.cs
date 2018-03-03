@@ -6,9 +6,9 @@ namespace Domain.Specs.StaffUser.Role.given
 {
     public class staff_role
     {
-        public static Domain.StaffUser.StaffRole build_valid_instance()
+        public static T build_valid_instance<T>() where T : Domain.StaffUser.StaffRole, new()
         {
-            return new BasicStaffRole
+            return new T
             {
                 YearOfBirth = null,
                 Sex = null,
@@ -18,28 +18,22 @@ namespace Domain.Specs.StaffUser.Role.given
             };
         }
 
-        public static  Domain.StaffUser.StaffRole build_instance_with(IEnumerable<Action< Domain.StaffUser.StaffRole>> invalidations)
+        public static T build_instance_with<T>(IEnumerable<Action< Domain.StaffUser.StaffRole>> invalidations)
+            where T : Domain.StaffUser.StaffRole, new()
         {
-            var extendedInfo = build_valid_instance();
+            var role = build_valid_instance<T>();
             foreach(var invalidate in invalidations)
             {
-                invalidate(extendedInfo);
+                invalidate(role);
             }
-            return extendedInfo;
+            return role;
         }
 
 
-        public static  Domain.StaffUser.StaffRole build_instance_with(Action< Domain.StaffUser.StaffRole> invalidate)
+        public static T build_instance_with<T>(Action< Domain.StaffUser.StaffRole> invalidate)
+            where T : Domain.StaffUser.StaffRole, new()
         {
-            return build_instance_with(new Action< Domain.StaffUser.StaffRole>[]{ invalidate });
-        }
-    }
-
-    public class BasicStaffRole : Domain.StaffUser.StaffRole
-    {
-        public BasicStaffRole() : base(Domain.StaffUser.RoleType.DataCooridinator)
-        {
-
+            return build_instance_with<T>(new Action< Domain.StaffUser.StaffRole>[]{ invalidate });
         }
     }
 }

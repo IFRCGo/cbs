@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class DataCoordinator : Role 
+    public class DataCoordinator : StaffRole 
     {
         public DataCoordinator() : base(RoleType.DataCooridinator)
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class SystemConfigurator : Role 
+    public class SystemConfigurator : StaffRole 
     {
         public SystemConfigurator() : base(RoleType.SystemConfigurator)
         {

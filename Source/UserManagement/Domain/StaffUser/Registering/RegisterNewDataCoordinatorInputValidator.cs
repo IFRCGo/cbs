@@ -2,7 +2,8 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewDataCoordinatorInputValidator : NewExtendedRegistrationInputValidator<RegisterNewDataCoordinator>
+    public class RegisterNewDataCoordinatorInputValidator 
+                    : NewExtendedRegistrationInputValidator<RegisterNewDataCoordinator, DataCoordinator>
     {
         public RegisterNewDataCoordinatorInputValidator()
         {

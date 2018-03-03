@@ -8,7 +8,7 @@ using Moq;
 using System;
 using It = Machine.Specifications.It;
 using given = Domain.Specs.StaffUser.UserInfo.given;
-using given_role = Domain.Specs.StaffUser.Role.given.role;
+using given_role = Domain.Specs.StaffUser.Role.given.staff_role;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {
@@ -27,7 +27,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             command = new RegisterNewSystemConfigurator
             {
                 UserDetails = given.user_info.build_valid_instance(),
-                Role = given_role.build_valid_instance(),
+                Role = given_role.build_valid_instance<Domain.StaffUser.SystemConfigurator>(),
                 AssignedNationalSocieties = constants.valid_assigned_to_national_societies
             };
             staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);

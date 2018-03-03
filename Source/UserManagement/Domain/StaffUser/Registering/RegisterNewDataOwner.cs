@@ -6,7 +6,7 @@ using doLittle.Commands;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewDataOwner : NewExtendedRegistration, IHaveALocation
+    public class RegisterNewDataOwner : NewExtendedRegistration<DataOwner>, IHaveALocation
     {
         public Location Location { get; set;}
         public string Position { get; set; }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Domain.StaffUser
 {
 
-    public class DataOwner : Role 
+    public class DataOwner : StaffRole 
     {
         public DataOwner() : base(RoleType.DataOwner)
         {

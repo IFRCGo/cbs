@@ -17,9 +17,6 @@ namespace Domain.StaffUser
             
             RuleFor(ei => ei.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required");
-
-            RuleFor(ei => ei.NationalSociety)
-                .NotEmpty().WithMessage("A National Society is required");
             
             RuleFor(ei => ei.PhoneNumbers)
                 .Cascade(CascadeMode.StopOnFirstFailure)

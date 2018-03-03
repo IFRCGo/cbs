@@ -27,7 +27,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
             command = new RegisterNewDataCoordinator
             {
                 UserDetails = given.user_info.build_valid_instance(),
-                Role = given_role.role.build_valid_instance(),
+                Role = given_role.staff_role.build_valid_instance<Domain.StaffUser.DataCoordinator>(),
                 AssignedNationalSocieties = constants.valid_assigned_to_national_societies
             };
             staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);

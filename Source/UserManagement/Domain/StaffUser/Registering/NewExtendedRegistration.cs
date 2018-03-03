@@ -4,8 +4,8 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewExtendedRegistration : NewRegistration
+    public abstract class NewExtendedRegistration<T> : NewRegistration where T : Role
     {
-        public Role Role { get; set;}
+        public T Role { get; set;}
     }
 }
