@@ -28,6 +28,14 @@ namespace Domain.StaffUser
             RegisterAssignedToNationalSocieties(assignedTo);
         }
 
+        public void RegisterNewDataCoordinator(string fullname, string displayname, string email, DateTimeOffset registeredAt, Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex)
+        {
+            Register(fullname,displayname,email,registeredAt);
+            RegisterDataCoordinator(nationalSociety,language, sex, birthYear);
+            RegisterPhoneNumbers(phoneNumbers);
+            RegisterAssignedToNationalSocieties(assignedTo);
+        }
+
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
         {
             foreach(var nationalSociety in assignedNationalSocieties)
@@ -54,6 +62,13 @@ namespace Domain.StaffUser
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
             var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
             Apply(new SystemConfiguratorRegistered(EventSourceId,nationalSociety, (int)language, sex_, year));
+        }
+
+        private void RegisterDataCoordinator(Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth)
+        {
+            var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            Apply(new DataCoordinatorRegistered(EventSourceId,nationalSociety, (int)language, sex_, year));
         }
 
         void On(NewUserRegistered @event)

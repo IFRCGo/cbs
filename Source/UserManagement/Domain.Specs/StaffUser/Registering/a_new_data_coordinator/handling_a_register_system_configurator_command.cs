@@ -9,7 +9,7 @@ using System;
 using It = Machine.Specifications.It;
 using given = Domain.Specs.StaffUser.UserInfo.given;
 
-namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
+namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
 {
     [Subject("Registering")]
     public class handling_a_register_system_configurator_command
@@ -41,7 +41,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
         It should_attempt_to_retrieve_the_staff_user = () => repository.VerifyAll();
         It should_get_the_time_from_the_system_clock = () => system_clock.VerifyAll();
-        It call_the_register_new_system_configurator_method_with_the_correct_parameters = () => 
+        It call_the_register_new_data_coordinator_user_method_with_the_correct_parameters = () => 
         {
             staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),

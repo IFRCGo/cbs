@@ -1,12 +1,10 @@
-﻿using System;
-using doLittle.FluentValidation.Commands;
 using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewSystemConfiguratorInputValidator : NewExtendedRegistrationInputValidator<RegisterNewSystemConfigurator>
+    public class RegisterNewDataCoordinatorInputValidator : NewExtendedRegistrationInputValidator<RegisterNewDataCoordinator>
     {
-        public RegisterNewSystemConfiguratorInputValidator()
+        public RegisterNewDataCoordinatorInputValidator()
         {
             RuleFor(_ => (_ as IAmAssignedToNationalSocieties))
                 .NotNull()
