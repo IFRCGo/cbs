@@ -11,17 +11,17 @@ namespace Domain.Specs.StaffUser.Role
     {
         static RoleValidator validator;
         static ValidationResult validation_results;
-        static Domain.StaffUser.Role extended;
+        static Domain.StaffUser.Role role;
 
         Establish context = () =>
         {
             validator = new RoleValidator();
-            extended = given.role.build_instance_with(ei => ei.NationalSociety = Guid.Empty);
-            extended.YearOfBirth = 1980;
-            extended.Sex = Sex.Female;
+            role = given.role.build_instance_with(ei => ei.NationalSociety = Guid.Empty);
+            role.YearOfBirth = 1980;
+            role.Sex = Sex.Female;
         };
 
-        Because of = () => { validation_results = validator.Validate(extended); };
+        Because of = () => { validation_results = validator.Validate(role); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();    
         It should_have_one_error = () => validation_results.ShouldHaveInvalidCountOf(1);

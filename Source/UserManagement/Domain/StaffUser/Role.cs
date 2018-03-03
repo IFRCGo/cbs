@@ -11,7 +11,7 @@ namespace Domain.StaffUser
 
     public abstract class Role : IRole
     {
-        public Role(RoleType type)
+        protected Role(RoleType type)
         {
             Type = type;
             PreferredLanguage = Language.English;
@@ -20,7 +20,7 @@ namespace Domain.StaffUser
         //public Location Location { get; set; }
         public int? YearOfBirth { get; set; }
         public Sex? Sex { get; set; }
-        public Guid NationalSociety { get; set; }
+        public Guid? NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
 
