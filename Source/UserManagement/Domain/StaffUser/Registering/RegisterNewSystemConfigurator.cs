@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Concepts;
 using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering

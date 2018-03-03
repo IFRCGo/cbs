@@ -8,14 +8,15 @@ using Moq;
 using System;
 using It = Machine.Specifications.It;
 using given = Domain.Specs.StaffUser.UserInfo.given;
+using given_role = Domain.Specs.StaffUser.Role.given;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
 {
     [Subject("Registering")]
-    public class handling_a_register_system_configurator_command
+    public class handling_a_register_data_coordinator_command
     {
         static RegisteringCommandHandlers command_handlers;
-        static RegisterNewAdminUser command; 
+        static RegisterNewDataCoordinator command; 
         static Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>> repository;
         static Mock<ISystemClock> system_clock;
         static Domain.StaffUser.StaffUser staff_user;
@@ -23,9 +24,11 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
 
         Establish context = () => 
         {
-            command = new RegisterNewAdminUser
+            command = new RegisterNewDataCoordinator
             {
-                UserDetails = given.user_info.build_valid_instance()
+                UserDetails = given.user_info.build_valid_instance(),
+                Role = given_role.role.build_valid_instance(),
+                AssignedNationalSocieties = constants.valid_assigned_to_national_societies
             };
             staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
@@ -49,6 +52,11 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
                 e => e.DisplayName.ShouldEqual(command.UserDetails.DisplayName),
                 e => e.Email.ShouldEqual(command.UserDetails.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
+            );
+
+            staff_user.ShouldHaveEvent<DataCoordinatorRegistered>().InStream().Where(
+                e => e.NationalSociety.ShouldEqual(command.Role.NationalSociety),
+                e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage)
             );
         };
     }

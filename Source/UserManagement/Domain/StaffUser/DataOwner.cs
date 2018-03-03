@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class DataCoordinator : Role 
+
+    public class DataOwner : Role 
     {
-        public DataCoordinator() : base(RoleType.DataCooridinator)
+        public DataOwner() : base(RoleType.DataOwner)
         {
         }
     }
