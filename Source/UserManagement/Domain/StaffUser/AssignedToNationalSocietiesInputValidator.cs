@@ -1,10 +1,10 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Domain.StaffUser
 {
-    public class AssignedToNationalSocietiesValidator : AbstractValidator<IAmAssignedToNationalSocieties>
+    public class AssignedToNationalSocietiesInputValidator : AbstractValidator<IAmAssignedToNationalSocieties>
     {
-        public AssignedToNationalSocietiesValidator()
+        public AssignedToNationalSocietiesInputValidator()
         {
             RuleFor(ns => ns.AssignedNationalSocieties)
                 .NotEmpty().WithMessage("Must be assigned to at least one National Society");

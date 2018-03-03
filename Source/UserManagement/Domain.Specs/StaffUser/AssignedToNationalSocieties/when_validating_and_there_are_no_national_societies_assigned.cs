@@ -12,13 +12,13 @@ namespace Domain.Specs.StaffUser.AssignedToNationalSocieties
     [Subject(typeof(IAmAssignedToNationalSocieties))]
     public class when_validating_and_there_are_no_national_societies_assigned
     {
-        static AssignedToNationalSocietiesValidator validator;
+        static AssignedToNationalSocietiesInputValidator validator;
         static ValidationResult validation_results;
         static Mock<IAmAssignedToNationalSocieties> assigned_to_national_societies;
 
         Establish context = () =>
         {
-            validator = new AssignedToNationalSocietiesValidator();
+            validator = new AssignedToNationalSocietiesInputValidator();
             assigned_to_national_societies = new Mock<IAmAssignedToNationalSocieties>();
             assigned_to_national_societies.SetupGet(m => m.AssignedNationalSocieties).Returns((IEnumerable<Guid>)null);
         };

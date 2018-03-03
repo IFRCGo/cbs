@@ -13,21 +13,24 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static RegisterNewDataCoordinator register;
         static RegisterNewDataCoordinatorBusinessRulesValidator sut;
         static StaffUserIsRegistered staff_user_is_registered;
+        static CanAssignToNationalSociety can_assign_to_national_society;
         static ValidationResult validation_results;
         Establish context = () => 
         {
             register = new RegisterNewDataCoordinator
             {
-                UserDetails = given.user_info.build_valid_instance()
+                UserDetails = given.user_info.build_valid_instance(),
+                AssignedNationalSocieties = new [] { Guid.NewGuid() }
             };
 
             staff_user_is_registered = (id) => false;
+            can_assign_to_national_society = (id) => true;
 
-            sut = new RegisterNewDataCoordinatorBusinessRulesValidator(staff_user_is_registered);
+            sut = new RegisterNewDataCoordinatorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society);
         };
 
         Because of = () => validation_results = sut.Validate(register);
 
         It should_be_valid = () => validation_results.ShouldBeValid();
-    }    
+    } 
 }

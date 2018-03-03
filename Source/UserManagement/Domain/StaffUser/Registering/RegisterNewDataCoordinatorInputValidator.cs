@@ -8,7 +8,7 @@ namespace Domain.StaffUser.Registering
         {
             RuleFor(_ => (_ as IAmAssignedToNationalSocieties))
                 .NotNull()
-                .SetValidator(new AssignedToNationalSocietiesValidator());
+                .SetValidator(new AssignedToNationalSocietiesInputValidator());
         }
     }
 }
