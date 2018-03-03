@@ -50,13 +50,18 @@ namespace Events.StaffUser {
 
     public class DataOwnerRegistered : IEvent 
     {
-        public DataOwnerRegistered (Guid staffUserId, double latitude, double longitude, string position, string dutyStation) 
+        public DataOwnerRegistered (Guid staffUserId, Guid nationalSociety, int language, int sex, int birthYear,
+                                    double latitude, double longitude, string position, string dutyStation) 
         {
             this.DutyStation = dutyStation;
             this.Position = position;
             this.Longitude = longitude;
             this.Latitude = latitude;
             this.StaffUserId = staffUserId;
+            this.NationalSociety = nationalSociety;
+            this.PreferredLanguage = language;
+            this.Sex = sex;
+            this.BirthYear = birthYear;
 
         }
         public Guid StaffUserId { get; }
@@ -64,6 +69,10 @@ namespace Events.StaffUser {
         public double Longitude { get; }
         public string Position { get; }
         public string DutyStation { get; }
+        public Guid NationalSociety { get; }
+        public int PreferredLanguage { get; }
+        public int BirthYear { get; set; }
+        public int Sex { get; set; }
     }
 
     public class NationalSocietyRegistered : IEvent {

@@ -9,6 +9,7 @@ using System;
 using It = Machine.Specifications.It;
 using given = Domain.Specs.StaffUser.UserInfo.given;
 using given_role = Domain.Specs.StaffUser.Role.given;
+using Concepts;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 {
@@ -57,10 +58,15 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             );
 
             staff_user.ShouldHaveEvent<DataOwnerRegistered>().InStream().Where(
+                e => e.NationalSociety.ShouldEqual(command.Role.NationalSociety),
+                e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage),
+                e => e.Sex.ShouldEqual(Constants.NOT_KNOWN),
+                e => e.BirthYear.ShouldEqual(Constants.NOT_KNOWN),
                 e => e.Position.ShouldEqual(data_owner_constants.valid_position),
                 e => e.DutyStation.ShouldEqual(data_owner_constants.valid_duty_station),
                 e => e.Longitude.ShouldEqual(data_owner_constants.valid_location.Longitude),
                 e => e.Latitude.ShouldEqual(data_owner_constants.valid_location.Latitude)
+
             );
         };
     }

@@ -45,7 +45,7 @@ namespace Domain.StaffUser
                                                 Location location, string position, string dutyStation)
         {
             Register(fullname,displayname,email,registeredAt);
-            RegisterDataOwner(location, position, dutyStation);
+            RegisterDataOwner(nationalSociety,language, sex, birthYear, location, position, dutyStation);
         }
 
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
@@ -83,9 +83,13 @@ namespace Domain.StaffUser
             Apply(new DataCoordinatorRegistered(EventSourceId,nationalSociety, (int)language, sex_, year));
         }
 
-        private void RegisterDataOwner(Location location, string position, string dutyStation)
+        private void RegisterDataOwner(Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth, 
+                                        Location location, string position, string dutyStation)
         {
-            Apply(new DataOwnerRegistered(EventSourceId,location.Latitude, location.Longitude, position, dutyStation));
+            var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            Apply(new DataOwnerRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
+                                            location.Latitude, location.Longitude, position, dutyStation));
         }
 
         void On(NewUserRegistered @event)
