@@ -52,20 +52,20 @@ namespace Domain.StaffUser.Registering
 
         public void Handle(RegisterNewStaffDataVerifier command)
         {
-            var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewDataVerifier(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                                command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
-                                                command.Role.PreferredLanguage, command.Role.PhoneNumbers, command.Role.YearOfBirth,
+            var user = _repository.Get(command.Role.StaffUserId);
+            user.RegisterNewDataVerifier(command.Role.FullName, command.Role.DisplayName, 
+                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
                                                 command.Role.Sex, command.Location);
         }
 
         public void Handle(RegisterNewStaffDataConsumer command)
         {
-            var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewDataConsumer(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                                command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
-                                                command.Role.PreferredLanguage, command.Role.YearOfBirth,
-                                                command.Role.Sex, command.Location);
+            var user = _repository.Get(command.Role.StaffUserId);
+            user.RegisterNewDataConsumer(command.Role.FullName, command.Role.DisplayName, 
+                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.PreferredLanguage.Value, command.Role.BirthYear,
+                                                command.Role.Sex, command.Role.Location);
         }
     }
 }

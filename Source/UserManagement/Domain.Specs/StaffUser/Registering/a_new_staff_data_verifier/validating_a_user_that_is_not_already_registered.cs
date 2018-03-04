@@ -16,10 +16,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         static ValidationResult validation_results;
         Establish context = () => 
         {
-            register = new RegisterNewStaffDataVerifier
-            {
-                UserDetails = given_user.build_valid_instance()
-            };
+            register = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
 
             staff_user_is_registered = (id) => false;
 

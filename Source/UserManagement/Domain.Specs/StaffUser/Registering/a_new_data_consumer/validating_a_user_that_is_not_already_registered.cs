@@ -16,10 +16,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
         static ValidationResult validation_results;
         Establish context = () => 
         {
-            register = new RegisterNewStaffDataConsumer
-            {
-                UserDetails = given_user.user_info.build_valid_instance()
-            };
+            register = given.commands.build_valid_instance<RegisterNewStaffDataConsumer>();
 
             staff_user_is_registered = (id) => false;
 

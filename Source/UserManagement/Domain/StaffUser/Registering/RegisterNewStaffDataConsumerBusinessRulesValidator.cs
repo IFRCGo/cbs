@@ -4,7 +4,8 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewStaffDataConsumerBusinessRulesValidator : NewRegistrationBusinessRulesValidator<RegisterNewStaffDataConsumer>
+    public class RegisterNewStaffDataConsumerBusinessRulesValidator 
+        : NewStaffRegistrationBusinessRulesValidator<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>
     {
         public RegisterNewStaffDataConsumerBusinessRulesValidator(StaffUserIsRegistered isRegistered) : base(isRegistered)
         {

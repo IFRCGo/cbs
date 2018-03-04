@@ -5,9 +5,11 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewStaffDataConsumer : NewExtendedRegistration<StaffDataConsumer>, IRequireLocation
+    public class RegisterNewStaffDataConsumer : NewStaffRegistration<Domain.StaffUser.Roles.DataConsumer>
     {
-        public Location Location { get; set;}
-        public string Position { get; set; }
+        public RegisterNewStaffDataConsumer()
+        {
+            Role = new Domain.StaffUser.Roles.DataConsumer();
+        }
     }
 }

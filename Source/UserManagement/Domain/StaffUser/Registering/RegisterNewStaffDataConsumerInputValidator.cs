@@ -4,15 +4,8 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-
     public class RegisterNewStaffDataConsumerInputValidator 
-                    : NewExtendedRegistrationInputValidator<RegisterNewStaffDataConsumer,StaffDataConsumer>
+                    : NewStaffRegistrationInputValidator<RegisterNewStaffDataConsumer,Domain.StaffUser.Roles.DataConsumer>
     {
-        public RegisterNewStaffDataConsumerInputValidator()
-        {
-            RuleFor(_ => (_ as IRequireLocation))
-                .NotNull()
-                .SetValidator(new RequireLocationValidator());
-        }
     }    
 }

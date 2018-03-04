@@ -7,11 +7,5 @@ namespace Domain.StaffUser.Registering
     public class RegisterNewSystemConfiguratorInputValidator 
                     : NewStaffRegistrationInputValidator<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>
     {
-        public RegisterNewSystemConfiguratorInputValidator()
-        {
-            RuleFor(_ => (_ as IRequireAssignedNationalSocieties))
-                .NotNull()
-                .SetValidator(new RequireAssignedNationalSocietiesInputValidator());
-        }
     }
 }

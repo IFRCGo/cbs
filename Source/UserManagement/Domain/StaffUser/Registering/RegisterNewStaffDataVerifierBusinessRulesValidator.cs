@@ -4,8 +4,8 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-
-    public class RegisterNewStaffDataVerifierBusinessRulesValidator : NewRegistrationBusinessRulesValidator<RegisterNewStaffDataVerifier>
+    public class RegisterNewStaffDataVerifierBusinessRulesValidator 
+        : NewStaffRegistrationBusinessRulesValidator<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>
     {
         public RegisterNewStaffDataVerifierBusinessRulesValidator(StaffUserIsRegistered isRegistered) : base(isRegistered)
         {

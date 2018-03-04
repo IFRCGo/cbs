@@ -1,6 +1,7 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
+using Domain.StaffUser.Registering;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
 {
@@ -9,25 +10,25 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.StaffDataConsumer role;
         static Exception result;
+        static RegisterNewStaffDataConsumer command;
 
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.StaffDataConsumer>();
-            sut = new su.StaffUser(user_info.StaffUserId);
+            command = given.commands.build_valid_instance<RegisterNewStaffDataConsumer>();
+            sut = new su.StaffUser(command.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataConsumer(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.YearOfBirth, role.Sex, constants.valid_location);
+            sut.RegisterNewDataConsumer(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+                    command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.BirthYear, 
+                    command.Role.Sex, constants.valid_location);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataConsumer(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.YearOfBirth, role.Sex, constants.valid_location)
+            () =>  sut.RegisterNewDataConsumer(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+                    command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.BirthYear, command.Role.Sex, 
+                    constants.valid_location)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

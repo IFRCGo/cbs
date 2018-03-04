@@ -2,6 +2,7 @@ using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
 using Concepts;
+using Domain.StaffUser.Registering;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 {
@@ -10,27 +11,25 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.StaffDataVerifier role;
         static Exception result;
+        static RegisterNewStaffDataVerifier command;
 
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.StaffDataVerifier>();
-            sut = new su.StaffUser(user_info.StaffUserId);
+            command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
+            sut = new su.StaffUser(command.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataVerifier(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    constants.valid_location);
+            sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName, command.Role.Email,now,
+                    command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
+                    command.Role.BirthYear, command.Role.Sex, constants.valid_location);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataVerifier(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    constants.valid_location)
+            () =>  sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName, command.Role.Email,now,
+                    command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
+                    command.Role.BirthYear, command.Role.Sex, constants.valid_location)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

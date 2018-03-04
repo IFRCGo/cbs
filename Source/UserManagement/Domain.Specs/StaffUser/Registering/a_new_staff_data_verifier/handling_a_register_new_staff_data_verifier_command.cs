@@ -25,18 +25,13 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 
         Establish context = () => 
         {
-            command = new RegisterNewStaffDataVerifier
-            {
-                UserDetails = given_user.build_valid_instance(),
-                Role = given_role.staff_role.build_valid_instance<Domain.StaffUser.StaffDataVerifier>(),
-                Location = constants.valid_location
-            };
+            command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
             command.Role.Sex = Sex.Female;
-            command.Role.YearOfBirth = 1980;
+            command.Role.BirthYear = 1980;
             command.Location = constants.valid_location;
-            staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
+            staff_user = new Domain.StaffUser.StaffUser(command.Role.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
-            repository.Setup(r => r.Get(command.UserDetails.StaffUserId)).Returns(staff_user);
+            repository.Setup(r => r.Get(command.Role.StaffUserId)).Returns(staff_user);
             now = DateTimeOffset.UtcNow;
             system_clock = new Mock<ISystemClock>();
             system_clock.Setup(c => c.GetCurrentTime()).Returns(now);
@@ -51,10 +46,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         It call_the_register_new_data_owner_method_with_the_correct_parameters = () => 
         {
             staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),
-                e => e.FullName.ShouldEqual(command.UserDetails.FullName),
-                e => e.DisplayName.ShouldEqual(command.UserDetails.DisplayName),
-                e => e.Email.ShouldEqual(command.UserDetails.Email),
+                e => e.StaffUserId.ShouldEqual(command.Role.StaffUserId),
+                e => e.FullName.ShouldEqual(command.Role.FullName),
+                e => e.DisplayName.ShouldEqual(command.Role.DisplayName),
+                e => e.Email.ShouldEqual(command.Role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
@@ -62,7 +57,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
                 e => e.NationalSociety.ShouldEqual(command.Role.NationalSociety),
                 e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage),
                 e => e.Sex.ShouldEqual((int)command.Role.Sex),
-                e => e.BirthYear.ShouldEqual(command.Role.YearOfBirth.Value),
+                e => e.BirthYear.ShouldEqual(command.Role.BirthYear.Value),
                 e => e.Longitude.ShouldEqual(command.Location.Longitude),
                 e => e.Latitude.ShouldEqual(command.Location.Latitude)
 
