@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
-    public class DataOwner : StaffRole 
+
+    public class StaffDataConsumer : StaffRole 
     {
-        public DataOwner() : base(RoleType.DataOwner)
+        public StaffDataConsumer() : base(RoleType.StaffDataConsumer)
         {
         }
     }

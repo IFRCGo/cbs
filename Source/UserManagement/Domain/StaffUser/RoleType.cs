@@ -10,7 +10,9 @@ namespace Domain.StaffUser
         SystemConfigurator,
         DataCooridinator,
         DataOwner,
-        DataVerifier,
-        DataConsumer
+        StaffDataVerifier,
+        AffiliateDataVerifier,
+        StaffDataConsumer,
+        AffiliateDataConsumer
     }
 }

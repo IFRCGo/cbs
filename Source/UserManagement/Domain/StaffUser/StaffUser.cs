@@ -48,6 +48,14 @@ namespace Domain.StaffUser
             RegisterDataOwner(nationalSociety,language, sex, birthYear, location, position, dutyStation);
         }
 
+        public void RegisterNewStaffDataVerifier(string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+                                                Guid nationalSociety, Language language, int? birthYear, Sex? sex, 
+                                                Location location, string position)
+        {
+            Register(fullname,displayname,email,registeredAt);
+            RegisterStaffDataVerifier(nationalSociety,language, sex, birthYear, location, position);
+        }
+
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
         {
             foreach(var nationalSociety in assignedNationalSocieties)
@@ -90,6 +98,15 @@ namespace Domain.StaffUser
             var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
             Apply(new DataOwnerRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
                                             location.Latitude, location.Longitude, position, dutyStation));
+        }
+
+        private void RegisterStaffDataVerifier(Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth, 
+                                                Location location, string position)
+        {
+            var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            Apply(new StaffDataVerifierRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
+                                                    location.Latitude, location.Longitude, position));
         }
 
         void On(NewUserRegistered @event)

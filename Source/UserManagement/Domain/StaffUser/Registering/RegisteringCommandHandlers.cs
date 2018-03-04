@@ -49,5 +49,14 @@ namespace Domain.StaffUser.Registering
                                          command.Role.PreferredLanguage, command.Role.YearOfBirth, command.Role.Sex,
                                          command.Location, command.Position, command.DutyStation);
         }
+
+        public void Handle(RegisterNewStaffDataVerifier command)
+        {
+            var user = _repository.Get(command.UserDetails.StaffUserId);
+            user.RegisterNewStaffDataVerifier(command.UserDetails.FullName, command.UserDetails.DisplayName, 
+                                        command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                         command.Role.PreferredLanguage, command.Role.YearOfBirth, command.Role.Sex,
+                                         command.Location, command.Position);
+        }
     }
 }
