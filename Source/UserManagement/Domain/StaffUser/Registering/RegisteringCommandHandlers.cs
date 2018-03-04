@@ -18,9 +18,9 @@ namespace Domain.StaffUser.Registering
 
         public void Handle(RegisterNewAdminUser command)
         {
-            var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewAdminUser(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                        command.UserDetails.Email, _systemClock.GetCurrentTime());
+            var user = _repository.Get(command.StaffUserId);
+            user.RegisterNewAdminUser(command.FullName, command.DisplayName, 
+                                        command.Email, _systemClock.GetCurrentTime());
         }
 
         public void Handle(RegisterNewDataCoordinator command)

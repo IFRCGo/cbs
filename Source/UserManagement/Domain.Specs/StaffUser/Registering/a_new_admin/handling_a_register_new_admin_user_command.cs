@@ -23,13 +23,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
 
         Establish context = () => 
         {
-            command = new RegisterNewAdminUser
-            {
-                UserDetails = given.user_info.build_valid_instance()
-            };
-            staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
+            command = given.commands.build_valid_instance<RegisterNewAdminUser>();
+            staff_user = new Domain.StaffUser.StaffUser(command.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
-            repository.Setup(r => r.Get(command.UserDetails.StaffUserId)).Returns(staff_user);
+            repository.Setup(r => r.Get(command.StaffUserId)).Returns(staff_user);
             now = DateTimeOffset.UtcNow;
             system_clock = new Mock<ISystemClock>();
             system_clock.Setup(c => c.GetCurrentTime()).Returns(now);
@@ -44,10 +41,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         It call_the_register_new_admin_user_method_with_the_correct_parameters = () => 
         {
             staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),
-                e => e.FullName.ShouldEqual(command.UserDetails.FullName),
-                e => e.DisplayName.ShouldEqual(command.UserDetails.DisplayName),
-                e => e.Email.ShouldEqual(command.UserDetails.Email),
+                e => e.StaffUserId.ShouldEqual(command.StaffUserId),
+                e => e.FullName.ShouldEqual(command.FullName),
+                e => e.DisplayName.ShouldEqual(command.DisplayName),
+                e => e.Email.ShouldEqual(command.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
         };

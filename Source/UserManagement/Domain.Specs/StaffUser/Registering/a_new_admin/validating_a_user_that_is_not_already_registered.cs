@@ -16,11 +16,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         static StaffUserIsRegistered staff_user_is_registered;
         static ValidationResult validation_results;
         Establish context = () => {
-            register = new RegisterNewAdminUser
-            {
-                UserDetails = given.user_info.build_valid_instance()
-            };
-
+            register = given.commands.build_valid_instance<RegisterNewAdminUser>();
             staff_user_is_registered = (id) => false;
 
             sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);

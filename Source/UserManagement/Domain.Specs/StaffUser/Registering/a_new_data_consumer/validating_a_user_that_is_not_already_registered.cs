@@ -3,7 +3,7 @@ using Domain.StaffUser;
 using Domain.StaffUser.Registering;
 using System;
 using FluentValidation.Results;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
+using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
 {
@@ -18,7 +18,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
         {
             register = new RegisterNewStaffDataConsumer
             {
-                UserDetails = given.user_info.build_valid_instance()
+                UserDetails = given_user.user_info.build_valid_instance()
             };
 
             staff_user_is_registered = (id) => false;

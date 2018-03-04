@@ -7,7 +7,7 @@ using Events.StaffUser;
 using Moq;
 using System;
 using It = Machine.Specifications.It;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
+using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given.user_info;
 using given_role = Domain.Specs.StaffUser.Role.given;
 using Concepts;
 
@@ -27,7 +27,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         {
             command = new RegisterNewDataOwner
             {
-                UserDetails = given.user_info.build_valid_instance(),
+                UserDetails = given_user.build_valid_instance(),
                 Role = given_role.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>(),
                 Position = data_owner_constants.valid_position,
                 DutyStation = data_owner_constants.valid_duty_station,

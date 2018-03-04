@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewAdminUserBusinessRulesValidator : NewRegistrationBusinessRulesValidator<RegisterNewAdminUser>
+    public class RegisterNewAdminUserBusinessRulesValidator : NewStaffRegistrationBusinessRulesValidator<RegisterNewAdminUser>
     {
         public RegisterNewAdminUserBusinessRulesValidator(StaffUserIsRegistered isRegistered) : base(isRegistered)
         {

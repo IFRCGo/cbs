@@ -5,7 +5,7 @@ using FluentValidation;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewAdminUserInputValidator : NewRegistrationInputValidator<RegisterNewAdminUser>
+    public class RegisterNewAdminUserInputValidator : NewStaffRegistrationInputValidator<RegisterNewAdminUser>
     {
     }
 }

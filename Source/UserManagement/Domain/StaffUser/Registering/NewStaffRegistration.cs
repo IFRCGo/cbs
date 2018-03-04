@@ -5,7 +5,8 @@ using doLittle.Commands;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewAdminUser : NewStaffRegistration
+    public abstract class NewStaffRegistration : Domain.StaffUser.Roles.StaffRole, ICommand 
     {
+
     }
 }

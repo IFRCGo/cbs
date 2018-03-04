@@ -7,7 +7,7 @@ using Events.StaffUser;
 using Moq;
 using System;
 using It = Machine.Specifications.It;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
+using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given.user_info;
 using given_role = Domain.Specs.StaffUser.Role.given.staff_role;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
@@ -26,7 +26,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
         {
             command = new RegisterNewStaffDataConsumer
             {
-                UserDetails = given.user_info.build_valid_instance(),
+                UserDetails = given_user.build_valid_instance(),
                 Role = given_role.build_valid_instance<Domain.StaffUser.StaffDataConsumer>()
             };
             command.Location = constants.valid_location;

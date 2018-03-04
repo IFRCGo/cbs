@@ -3,7 +3,7 @@ using Domain.StaffUser;
 using Domain.StaffUser.Registering;
 using System;
 using FluentValidation.Results;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
+using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given.user_info;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 {
@@ -17,7 +17,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         Establish context = () => {
             register = new RegisterNewStaffDataVerifier
             {
-                UserDetails = given.user_info.build_valid_instance()
+                UserDetails = given_user.build_valid_instance()
             };
 
             staff_user_is_registered = (id) => true;
