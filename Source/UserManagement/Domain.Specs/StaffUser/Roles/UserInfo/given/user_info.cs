@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain.Specs.StaffUser.UserInfo.given
+namespace Domain.Specs.StaffUser.Roles.UserInfo.given
 {
     public class user_info
     {

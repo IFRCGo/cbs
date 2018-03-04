@@ -4,7 +4,7 @@ using System;
 using FluentValidation.Results;
 using System.Collections.Generic;
 
-namespace Domain.Specs.StaffUser.UserInfo
+namespace Domain.Specs.StaffUser.Roles.UserInfo
 {
     [Subject(typeof(UserInfoValidator))]
     public class when_validating_with_invalid_email_and_invalid_fullname
