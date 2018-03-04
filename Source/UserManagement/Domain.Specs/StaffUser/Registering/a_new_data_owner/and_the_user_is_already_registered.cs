@@ -24,14 +24,14 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 
             //register the user so that they are already registered
             sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage,role.YearOfBirth, role.Sex, 
+                    role.NationalSociety, role.PreferredLanguage,role.PhoneNumbers, role.YearOfBirth, role.Sex,  
                     data_owner_constants.valid_location, data_owner_constants.valid_position, 
                     data_owner_constants.valid_duty_station);
         };
 
         Because of = () => result = Catch.Exception(
             () =>  sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage,role.YearOfBirth, role.Sex, 
+                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
                     data_owner_constants.valid_location, data_owner_constants.valid_position, 
                     data_owner_constants.valid_duty_station)
         );

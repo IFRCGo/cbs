@@ -8,16 +8,15 @@ using Moq;
 using System;
 using It = Machine.Specifications.It;
 using given = Domain.Specs.StaffUser.UserInfo.given;
-using given_role = Domain.Specs.StaffUser.Role.given;
-using Concepts;
+using given_role = Domain.Specs.StaffUser.Role.given.staff_role;
 
-namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
+namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
 {
     [Subject("Registering")]
-    public class handling_a_register_new_data_owner_command
+    public class handling_a_register_new_data_consumer_command
     {
         static RegisteringCommandHandlers command_handlers;
-        static RegisterNewStaffDataVerifier command; 
+        static RegisterNewStaffDataConsumer command; 
         static Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>> repository;
         static Mock<ISystemClock> system_clock;
         static Domain.StaffUser.StaffUser staff_user;
@@ -25,15 +24,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 
         Establish context = () => 
         {
-            command = new RegisterNewStaffDataVerifier
+            command = new RegisterNewStaffDataConsumer
             {
                 UserDetails = given.user_info.build_valid_instance(),
-                Role = given_role.staff_role.build_valid_instance<Domain.StaffUser.StaffDataVerifier>(),
-                Position = constants.valid_position,
-                Location = constants.valid_location
+                Role = given_role.build_valid_instance<Domain.StaffUser.StaffDataConsumer>()
             };
-            command.Role.Sex = Sex.Female;
-            command.Role.YearOfBirth = 1980;
+            command.Location = constants.valid_location;
             staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
             repository.Setup(r => r.Get(command.UserDetails.StaffUserId)).Returns(staff_user);
@@ -48,7 +44,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 
         It should_attempt_to_retrieve_the_staff_user = () => repository.VerifyAll();
         It should_get_the_time_from_the_system_clock = () => system_clock.VerifyAll();
-        It call_the_register_new_data_owner_method_with_the_correct_parameters = () => 
+        It call_the_register_new_system_configurator_method_with_the_correct_parameters = () => 
         {
             staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),
@@ -58,15 +54,9 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
-            staff_user.ShouldHaveEvent<StaffDataVerifierRegistered>().InStream().Where(
+            staff_user.ShouldHaveEvent<StaffDataConsumerRegistered>().InStream().Where(
                 e => e.NationalSociety.ShouldEqual(command.Role.NationalSociety),
-                e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage),
-                e => e.Sex.ShouldEqual((int)command.Role.Sex),
-                e => e.BirthYear.ShouldEqual(command.Role.YearOfBirth.Value),
-                e => e.Position.ShouldEqual(command.Position),
-                e => e.Longitude.ShouldEqual(command.Location.Longitude),
-                e => e.Latitude.ShouldEqual(command.Location.Latitude)
-
+                e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage)
             );
         };
     }

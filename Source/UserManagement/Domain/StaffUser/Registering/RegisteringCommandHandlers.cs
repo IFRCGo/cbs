@@ -46,17 +46,26 @@ namespace Domain.StaffUser.Registering
             var user = _repository.Get(command.UserDetails.StaffUserId);
             user.RegisterNewDataOwner(command.UserDetails.FullName, command.UserDetails.DisplayName, 
                                         command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
-                                         command.Role.PreferredLanguage, command.Role.YearOfBirth, command.Role.Sex,
-                                         command.Location, command.Position, command.DutyStation);
+                                         command.Role.PreferredLanguage, command.Role.PhoneNumbers, command.Role.YearOfBirth, 
+                                         command.Role.Sex, command.Location, command.Position, command.DutyStation);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
         {
             var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewStaffDataVerifier(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                        command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
-                                         command.Role.PreferredLanguage, command.Role.YearOfBirth, command.Role.Sex,
-                                         command.Location, command.Position);
+            user.RegisterNewDataVerifier(command.UserDetails.FullName, command.UserDetails.DisplayName, 
+                                                command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.PreferredLanguage, command.Role.PhoneNumbers, command.Role.YearOfBirth,
+                                                command.Role.Sex, command.Location);
+        }
+
+        public void Handle(RegisterNewStaffDataConsumer command)
+        {
+            var user = _repository.Get(command.UserDetails.StaffUserId);
+            user.RegisterNewDataConsumer(command.UserDetails.FullName, command.UserDetails.DisplayName, 
+                                                command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.PreferredLanguage, command.Role.YearOfBirth,
+                                                command.Role.Sex, command.Location);
         }
     }
 }

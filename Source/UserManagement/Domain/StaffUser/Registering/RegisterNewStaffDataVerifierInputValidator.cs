@@ -12,8 +12,6 @@ namespace Domain.StaffUser.Registering
             RuleFor(_ => (_ as IHaveALocation))
                 .NotNull()
                 .SetValidator(new HaveALocationValidator());
-            RuleFor(_ => _.Position)
-                .NotEmpty().WithMessage("Position is required");
             //these are normally optional on role, but not for data verifiers
             //the StaffRoleValidator validates the correctness of the values if provided, 
             //so we only have to enforce that they are provided here
