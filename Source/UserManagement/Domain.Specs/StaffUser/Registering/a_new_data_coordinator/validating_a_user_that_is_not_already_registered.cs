@@ -17,11 +17,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static ValidationResult validation_results;
         Establish context = () => 
         {
-            register = new RegisterNewDataCoordinator
-            {
-                UserDetails = given_user.build_valid_instance(),
-                AssignedNationalSocieties = new [] { Guid.NewGuid() }
-            };
+            register = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
 
             staff_user_is_registered = (id) => false;
             can_assign_to_national_society = (id) => true;

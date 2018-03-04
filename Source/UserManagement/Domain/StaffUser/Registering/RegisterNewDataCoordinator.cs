@@ -5,8 +5,11 @@ using doLittle.Commands;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewDataCoordinator : NewExtendedRegistration<DataCoordinator>, IAmAssignedToNationalSocieties
-    {
-        public IEnumerable<Guid> AssignedNationalSocieties { get; set;}
+    public class RegisterNewDataCoordinator : NewStaffRegistration<Domain.StaffUser.Roles.DataCoordinator>
+    {        
+        public RegisterNewDataCoordinator()
+        {
+            Role = new Domain.StaffUser.Roles.DataCoordinator();
+        }
     }
 }

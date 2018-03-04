@@ -25,11 +25,11 @@ namespace Domain.StaffUser.Registering
 
         public void Handle(RegisterNewDataCoordinator command)
         {
-            var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewDataCoordinator(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                        command.UserDetails.Email, _systemClock.GetCurrentTime(), command.Role.NationalSociety,
-                                        command.Role.PreferredLanguage, command.Role.PhoneNumbers,
-                                        command.AssignedNationalSocieties, command.Role.YearOfBirth, command.Role.Sex);
+            var user = _repository.Get(command.Role.StaffUserId);
+            user.RegisterNewDataCoordinator(command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, _systemClock.GetCurrentTime(), command.Role.NationalSociety,
+                                        command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
         }
 
         public void Handle(RegisterNewSystemConfigurator command)

@@ -6,7 +6,8 @@ using System.Linq;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewDataCoordinatorBusinessRulesValidator : NewRegistrationBusinessRulesValidator<RegisterNewDataCoordinator>
+    public class RegisterNewDataCoordinatorBusinessRulesValidator 
+                    : NewStaffRegistrationBusinessRulesValidator<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>
     {
         readonly CanAssignToNationalSociety _canAssignToNationalSociety;
 
@@ -16,14 +17,13 @@ namespace Domain.StaffUser.Registering
         {
             _canAssignToNationalSociety = canAssignToNationalSociety;
 
-            RuleFor(_ => _.AssignedNationalSocieties)
+            RuleFor(_ => _.Role.AssignedNationalSocieties)
                 .Must(BeAssignable).WithMessage("Cannot assign to the selected National Societies");
-                
         }
 
         private bool BeAssignable(IEnumerable<Guid> nationalSocieties)
         {
             return nationalSocieties.All(ns => _canAssignToNationalSociety(ns));
         }
-    }    
+    }  
 }

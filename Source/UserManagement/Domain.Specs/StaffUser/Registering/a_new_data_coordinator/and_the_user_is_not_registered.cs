@@ -3,6 +3,7 @@ using su = Domain.StaffUser;
 using System;
 using Events.StaffUser;
 using Concepts;
+using Domain.StaffUser.Registering;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
 {
@@ -11,40 +12,35 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.DataCoordinator role;
-        static Guid[] assigned_national_societies;
-
+        static RegisterNewDataCoordinator cmd;
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.DataCoordinator>();
-            role.YearOfBirth = 1980;
-            role.Sex = Sex.Female;
-            assigned_national_societies = new Guid[]{ Guid.NewGuid(), Guid.NewGuid() };
-            sut = new su.StaffUser(user_info.StaffUserId);
+            cmd = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
+            cmd.Role.BirthYear = 1980;
+            cmd.Role.Sex = Sex.Female;
+            sut = new su.StaffUser(cmd.Role.StaffUserId);
         };
 
         Because of = () => {
-            sut.RegisterNewDataCoordinator(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, assigned_national_societies,
-                    role.YearOfBirth, role.Sex);
+            sut.RegisterNewDataCoordinator(cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,now,
+                    cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,cmd.Role.AssignedNationalSocieties,
+                    cmd.Role.BirthYear, cmd.Role.Sex);
         };
         It should_create_a_new_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.FullName.ShouldEqual(user_info.FullName),
-                e => e.DisplayName.ShouldEqual(user_info.DisplayName),
-                e => e.Email.ShouldEqual(user_info.Email),
+                e => e.FullName.ShouldEqual(cmd.Role.FullName),
+                e => e.DisplayName.ShouldEqual(cmd.Role.DisplayName),
+                e => e.Email.ShouldEqual(cmd.Role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
         It should_create_a_system_configurator_registered_event = () => {
             sut.ShouldHaveEvent<DataCoordinatorRegistered>().InStream().Where(
-                e => e.NationalSociety.ShouldEqual(role.NationalSociety),
-                e => e.PreferredLanguage.ShouldEqual((int)role.PreferredLanguage),
-                e => e.Sex.ShouldEqual((int)role.Sex.Value),
-                e => e.BirthYear.ShouldEqual((int)role.YearOfBirth.Value)
+                e => e.NationalSociety.ShouldEqual(cmd.Role.NationalSociety),
+                e => e.PreferredLanguage.ShouldEqual((int)cmd.Role.PreferredLanguage),
+                e => e.Sex.ShouldEqual((int)cmd.Role.Sex.Value),
+                e => e.BirthYear.ShouldEqual((int)cmd.Role.BirthYear)
             );
         };
 

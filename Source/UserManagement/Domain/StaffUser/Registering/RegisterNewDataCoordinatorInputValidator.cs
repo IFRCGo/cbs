@@ -3,13 +3,13 @@ using FluentValidation;
 namespace Domain.StaffUser.Registering
 {
     public class RegisterNewDataCoordinatorInputValidator 
-                    : NewExtendedRegistrationInputValidator<RegisterNewDataCoordinator, DataCoordinator>
+                    : NewStaffRegistrationInputValidator<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>
     {
         public RegisterNewDataCoordinatorInputValidator()
         {
-            RuleFor(_ => (_ as IAmAssignedToNationalSocieties))
+            RuleFor(_ => (_ as IRequireAssignedNationalSocieties))
                 .NotNull()
-                .SetValidator(new AssignedToNationalSocietiesInputValidator());
+                .SetValidator(new RequireAssignedNationalSocietiesInputValidator());
         }
     }
 }

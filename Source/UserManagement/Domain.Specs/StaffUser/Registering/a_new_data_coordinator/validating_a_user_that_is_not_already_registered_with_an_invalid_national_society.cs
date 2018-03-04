@@ -18,11 +18,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static ValidationResult validation_results;
         Establish context = () => 
         {
-            register = new RegisterNewDataCoordinator
-            {
-                UserDetails = given_user.build_valid_instance(),
-                AssignedNationalSocieties = new [] { Guid.NewGuid() }
-            };
+            register = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
 
             staff_user_is_registered = (id) => false;
             can_assign_to_national_society = (id) => false;
@@ -34,6 +30,6 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
         It should_have_one_invalidation = () => validation_results.ShouldHaveInvalidCountOf(1);
-        It should_indicate_that_the_assigned_national_societies_are_invalid = () => validation_results.ShouldHaveInvalidProperty(nameof(register.AssignedNationalSocieties));
+        It should_indicate_that_the_assigned_national_societies_are_invalid = () => validation_results.ShouldHaveInvalidNestedProperty(nameof(register.Role.AssignedNationalSocieties));
     }           
 }
