@@ -6,23 +6,23 @@ using Concepts;
 using Moq;
 using It = Machine.Specifications.It;
 
-namespace Domain.Specs.StaffUser.SupportBirthYear
+namespace Domain.Specs.StaffUser.RequireBirthYear
 {
-    [Subject(typeof(ISupportBirthYear))]
+    [Subject(typeof(IRequireBirthYear))]
     public class when_validating_and_birth_year_is_valid
     {
-        static SupportBirthYearInputValidator validator;
+        static RequireBirthYearInputValidator validator;
         static ValidationResult validation_results;
-        static Mock<ISupportBirthYear> support_birth_year;
+        static Mock<IRequireBirthYear> require_birth_year;
 
         Establish context = () =>
         {
-            validator = new SupportBirthYearInputValidator();
-            support_birth_year = new Mock<ISupportBirthYear>();
-            support_birth_year.SetupGet(m => m.BirthYear).Returns(1980);
+            validator = new RequireBirthYearInputValidator();
+            require_birth_year = new Mock<IRequireBirthYear>();
+            require_birth_year.SetupGet(m => m.BirthYear).Returns(1980);
         };
 
-        Because of = () => { validation_results = validator.Validate(support_birth_year.Object); };
+        Because of = () => { validation_results = validator.Validate(require_birth_year.Object); };
 
         It should_be_valid = () => validation_results.ShouldBeValid();    
     }

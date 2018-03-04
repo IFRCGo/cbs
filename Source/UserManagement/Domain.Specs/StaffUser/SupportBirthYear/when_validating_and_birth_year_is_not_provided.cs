@@ -5,9 +5,9 @@ using Domain.StaffUser;
 using Moq;
 using It = Machine.Specifications.It;
 
-namespace Domain.Specs.StaffUser.SupportPhoneNumbers
+namespace Domain.Specs.StaffUser.SupportBirthYear
 {
-    [Subject(typeof(ISupportPhoneNumbers))]
+    [Subject(typeof(ISupportBirthYear))]
     public class when_validating_and_birth_year_is_not_provided
     {
         static SupportBirthYearInputValidator validator;
