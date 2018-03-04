@@ -3,12 +3,13 @@ using Domain.StaffUser.Registering;
 using System.Collections.Generic;
 using System;
 using Concepts;
+using doLittle.Commands;
 
 namespace Domain.Specs.StaffUser.Registering.given
 {
     public class commands
     {
-        public static T build_valid_instance<T>() where T : NewStaffRegistration, new()
+        public static T build_valid_instance<T>() where T : INewStaffRegistration, new()
         {
             var cmd = new T();
             PopulateStaffDetails(cmd);
@@ -17,20 +18,23 @@ namespace Domain.Specs.StaffUser.Registering.given
             PopulateNationalSociety(cmd);
             PopulateBirthYear(cmd);
             PopulatePhoneNumbers(cmd);
+            PopulateAssignedNationalSocieties(cmd);
             return cmd;
         }
 
-        static void PopulateStaffDetails<T>(T instance) where T : NewStaffRegistration, new()
+        static void PopulateStaffDetails<T>(T instance) where T : INewStaffRegistration, new()
         {
-            instance.StaffUserId = Guid.NewGuid();
-            instance.Email = "user@redcross.no";
-            instance.FullName = "Our New User";
-            instance.DisplayName = "Joe";
+            var inst = (instance as dynamic).Role;
+
+            inst.StaffUserId = Guid.NewGuid();
+            inst.Email = "user@redcross.no";
+            inst.FullName = "Our New User";
+            inst.DisplayName = "Joe";
         }
 
-        static void PopulatePreferredLanguage<T>(T instance) where T : NewStaffRegistration, new() 
+        static void PopulatePreferredLanguage<T>(T instance) where T : INewStaffRegistration, new() 
         {
-            var prefLang = instance as IRequirePreferredLanguage;
+            var prefLang = (instance as dynamic).Role as IRequirePreferredLanguage;
 
             if(prefLang == null)
                 return;
@@ -38,9 +42,9 @@ namespace Domain.Specs.StaffUser.Registering.given
             (prefLang as dynamic).PreferredLanguage = Language.English;
         }
 
-        static void PopulateSex<T>(T instance) where T : NewStaffRegistration, new() 
+        static void PopulateSex<T>(T instance) where T : ICommand, new() 
         {
-            var sex = instance as IRequireSex;
+            var sex = (instance as dynamic).Role as IRequireSex;
 
             if(sex == null)
                 return;
@@ -48,9 +52,9 @@ namespace Domain.Specs.StaffUser.Registering.given
             (sex as dynamic).Sex = Sex.Female;
         }
 
-        static void PopulateNationalSociety<T>(T instance) where T : NewStaffRegistration, new() 
+        static void PopulateNationalSociety<T>(T instance) where T : INewStaffRegistration, new() 
         {
-            var natSec = instance as IRequireNationalSociety;
+            var natSec = (instance as dynamic).Role as IRequireNationalSociety;
 
             if(natSec == null)
                 return;
@@ -58,9 +62,9 @@ namespace Domain.Specs.StaffUser.Registering.given
             (natSec as dynamic).NationalSociety = Guid.NewGuid();
         }
 
-        static void PopulateBirthYear<T>(T instance) where T : NewStaffRegistration, new() 
+        static void PopulateBirthYear<T>(T instance) where T : INewStaffRegistration, new() 
         {
-            var year = instance as IRequireBirthYear;
+            var year = (instance as dynamic).Role as IRequireBirthYear;
 
             if(year == null)
                 return;
@@ -68,14 +72,24 @@ namespace Domain.Specs.StaffUser.Registering.given
             (year as dynamic).BirthYear = 1980;
         }
 
-        static void PopulatePhoneNumbers<T>(T instance) where T : NewStaffRegistration, new() 
+        static void PopulatePhoneNumbers<T>(T instance) where T : INewStaffRegistration, new() 
         {
-            var numbers = instance as IRequirePhoneNumbers;
+            var numbers = (instance as dynamic).Role as IRequirePhoneNumbers;
 
             if(numbers == null)
                 return;
 
             (numbers as dynamic).PhoneNumbers = new string[]{ "1234567", "2345678"};
+        }
+
+        static void PopulateAssignedNationalSocieties<T>(T instance) where T : INewStaffRegistration, new() 
+        {
+            var numbers = (instance as dynamic).Role as IRequireAssignedNationalSocieties;
+
+            if(numbers == null)
+                return;
+
+            (numbers as dynamic).AssignedNationalSocieties = new Guid[]{ Guid.NewGuid(), Guid.NewGuid()};
         }
     }
 }

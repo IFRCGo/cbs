@@ -5,8 +5,11 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewSystemConfigurator : NewExtendedRegistration<SystemConfigurator>, IAmAssignedToNationalSocieties
+    public class RegisterNewSystemConfigurator : NewStaffRegistration<Domain.StaffUser.Roles.SystemConfigurator>
     {
-        public IEnumerable<Guid> AssignedNationalSocieties { get; set;}
+        public RegisterNewSystemConfigurator()
+        {
+            Role = new Domain.StaffUser.Roles.SystemConfigurator();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Domain.StaffUser.Registering
 {
     public class RegisterNewSystemConfiguratorBusinessRulesValidator 
-                    : NewRegistrationBusinessRulesValidator<RegisterNewSystemConfigurator>
+                    : NewStaffRegistrationBusinessRulesValidator<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>
     {
         readonly CanAssignToNationalSociety _canAssignToNationalSociety;
 
@@ -17,7 +17,7 @@ namespace Domain.StaffUser.Registering
         {
             _canAssignToNationalSociety = canAssignToNationalSociety;
 
-            RuleFor(_ => _.AssignedNationalSocieties)
+            RuleFor(_ => _.Role.AssignedNationalSocieties)
                 .Must(BeAssignable).WithMessage("Cannot assign to the selected National Societies");
         }
 

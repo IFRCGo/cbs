@@ -17,11 +17,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static CanAssignToNationalSociety can_assign_to_national_society;
         static ValidationResult validation_results;
         Establish context = () => {
-            register = new RegisterNewSystemConfigurator
-            {
-                UserDetails = given_user.build_valid_instance(),
-                AssignedNationalSocieties = new [] { Guid.NewGuid() }
-            };
+            register = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
 
             staff_user_is_registered = (id) => false;
             can_assign_to_national_society = (id) => false;
@@ -33,6 +29,6 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
         It should_have_one_invalidation = () => validation_results.ShouldHaveInvalidCountOf(1);
-        It should_indicate_that_the_assigned_national_societies_are_invalid = () => validation_results.ShouldHaveInvalidProperty(nameof(register.AssignedNationalSocieties));
+        It should_indicate_that_the_assigned_national_societies_are_invalid = () => validation_results.ShouldHaveInvalidProperty($"{nameof(register.Role)}.{nameof(register.Role.AssignedNationalSocieties)}");
     }  
 }

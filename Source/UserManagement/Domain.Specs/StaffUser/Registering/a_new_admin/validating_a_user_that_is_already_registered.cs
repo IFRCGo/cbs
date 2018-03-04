@@ -26,6 +26,6 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
         It should_have_one_invalidation = () => validation_results.ShouldHaveInvalidCountOf(1);
-        It should_indicate_that_the_staff_user_id_is_invalid = () => validation_results.ShouldHaveInvalidProperty(nameof(register.StaffUserId));
+        It should_indicate_that_the_staff_user_id_is_invalid = () => validation_results.ShouldHaveInvalidNestedProperty(nameof(register.Role.StaffUserId));
     }
 }

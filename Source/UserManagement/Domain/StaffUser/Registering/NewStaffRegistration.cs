@@ -4,9 +4,12 @@ using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-
-    public abstract class NewStaffRegistration : Domain.StaffUser.Roles.StaffRole, ICommand 
+    public interface INewStaffRegistration : ICommand 
     {
 
+    }
+    public abstract class NewStaffRegistration<T> : INewStaffRegistration where T : Domain.StaffUser.Roles.StaffRole
+    {
+        public T Role { get; protected set; }
     }
 }
