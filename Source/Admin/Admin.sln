@@ -22,13 +22,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read.Tests", "Tests\Read.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "Tests\Web.Tests\Web.Tests.csproj", "{8B66717A-23B5-4AAC-B1ED-29BC866A0939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "..\Infrastructure\Logging\Logging.csproj", "{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "..\Infrastructure\Logging\Infrastructure.Logging.csproj", "{EC965ABF-9289-4DAD-9ECF-A5A698241FF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.RuleImplementations", "Domain.RuleImplementations\Domain.RuleImplementations.csproj", "{64E0C9C3-8EBE-405B-8852-FFB203FD2D06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "..\Infrastructure\Kafka\Kafka.csproj", "{93694F85-8803-4EBA-86B7-99AE56F4B3FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "..\Infrastructure\Kafka\Infrastructure.Kafka.csproj", "{93694F85-8803-4EBA-86B7-99AE56F4B3FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Kafka.BoundedContexts.csproj", "{CF5AA4F2-C753-4236-BCE3-F69A3D71C808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj", "{CF5AA4F2-C753-4236-BCE3-F69A3D71C808}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

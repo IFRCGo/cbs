@@ -34,11 +34,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.TextMessagin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Policy", "Policy\Policy.csproj", "{AACC97A8-C4D6-4D17-8AEF-7A5E36B2C0A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "..\Infrastructure\Logging\Logging.csproj", "{0779E02D-D25B-4067-B693-88891B9F1EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "..\Infrastructure\Logging\Infrastructure.Logging.csproj", "{0779E02D-D25B-4067-B693-88891B9F1EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Kafka.BoundedContexts.csproj", "{AAF0392D-DA7C-4F16-A555-FA7CB33639FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj", "{AAF0392D-DA7C-4F16-A555-FA7CB33639FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "..\Infrastructure\Kafka\Kafka.csproj", "{0E37AFF3-F2EC-456F-9F5E-3AA47EBC253E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "..\Infrastructure\Kafka\Infrastructure.Kafka.csproj", "{0E37AFF3-F2EC-456F-9F5E-3AA47EBC253E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
