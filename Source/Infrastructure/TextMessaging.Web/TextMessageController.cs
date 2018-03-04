@@ -1,3 +1,5 @@
+using doLittle.Serialization.Json;
+using Infrastructure.Kafka;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.TextMessaging.Web
@@ -5,17 +7,20 @@ namespace Infrastructure.TextMessaging.Web
     [Route("/api/textmessages")]
     public class TextMessageController
     {
-        readonly ITextMessageProcessors _textMessageProcessors;
+        readonly IPublisher _publisher;
+        readonly ISerializer _serializer;
 
-        public TextMessageController(ITextMessageProcessors textMessageProcessors)
+        public TextMessageController(IPublisher publisher, ISerializer serializer)
         {
-            _textMessageProcessors = textMessageProcessors;
+            _serializer = serializer;
+            _publisher = publisher;
         }
 
         [HttpPost]
-        public void Post([FromBody]TextMessage message)
+        public void Post([FromBody] TextMessage message)
         {
-            _textMessageProcessors.Process(message);
+            var messageAsJson = _serializer.ToJson(message);
+            _publisher.Publish(TextMessageListener.Topic, messageAsJson);
         }
     }
 }

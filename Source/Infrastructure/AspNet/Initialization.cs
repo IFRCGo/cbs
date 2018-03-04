@@ -5,7 +5,7 @@
 
 using System;
 using Autofac.Extensions.DependencyInjection;
-using Logging;
+using Infrastructure.Logging;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
