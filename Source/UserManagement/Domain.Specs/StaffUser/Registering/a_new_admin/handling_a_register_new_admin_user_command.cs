@@ -7,7 +7,7 @@ using Events.StaffUser;
 using Moq;
 using System;
 using It = Machine.Specifications.It;
-using given = Domain.Specs.StaffUser.UserInfo.given;
+using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_admin
 {

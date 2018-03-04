@@ -18,7 +18,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.UserInfo.given.user_info.build_valid_instance();
+            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
             role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>();
             sut = new su.StaffUser(user_info.StaffUserId);
         };

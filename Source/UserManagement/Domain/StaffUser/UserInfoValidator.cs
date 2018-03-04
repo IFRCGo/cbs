@@ -6,8 +6,6 @@ namespace Domain.StaffUser
     {
         public UserInfoValidator()
         {
-            ValidatorOptions.CascadeMode = CascadeMode.Continue;
-
             RuleFor(bi => bi.StaffUserId)
                 .NotEmpty().WithMessage("An Id for the Staff User is required.");
 

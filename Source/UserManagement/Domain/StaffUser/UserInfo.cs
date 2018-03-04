@@ -2,7 +2,7 @@
 
 namespace Domain.StaffUser
 {
-    public class UserInfo
+    public class UserInfo : IHaveUserInfo
     {
         public Guid StaffUserId { get; set; }
         public string FullName { get; set; }
