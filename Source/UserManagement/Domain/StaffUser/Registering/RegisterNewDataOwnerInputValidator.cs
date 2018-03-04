@@ -4,13 +4,13 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewDataOwnerInputValidator : NewExtendedRegistrationInputValidator<RegisterNewDataOwner,DataOwner>
+    public class RegisterNewDataOwnerInputValidator : NewStaffRegistrationInputValidator<RegisterNewDataOwner,Domain.StaffUser.Roles.DataOwner>
     {
         public RegisterNewDataOwnerInputValidator()
         {
-            RuleFor(_ => (_ as IHaveALocation))
+            RuleFor(_ => (_ as IRequireLocation))
                 .NotNull()
-                .SetValidator(new HaveALocationValidator());
+                .SetValidator(new RequireLocationValidator());
             RuleFor(_ => _.Position)
                 .NotEmpty().WithMessage("Position is required");
             RuleFor(_ => _.DutyStation)

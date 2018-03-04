@@ -26,8 +26,8 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         Because of = () => {
             sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
                     role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    data_owner_constants.valid_location, data_owner_constants.valid_position, 
-                    data_owner_constants.valid_duty_station);
+                    constants.valid_location, constants.valid_position, 
+                    constants.valid_duty_station);
         };
         It should_create_a_new_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
@@ -39,10 +39,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 
         It should_create_a_system_configurator_registered_event = () => {
             sut.ShouldHaveEvent<DataOwnerRegistered>().InStream().Where(
-                e => e.Position.ShouldEqual(data_owner_constants.valid_position),
-                e => e.DutyStation.ShouldEqual(data_owner_constants.valid_duty_station),
-                e => e.Latitude.ShouldEqual(data_owner_constants.valid_location.Latitude),
-                e => e.Longitude.ShouldEqual(data_owner_constants.valid_location.Longitude)
+                e => e.Position.ShouldEqual(constants.valid_position),
+                e => e.DutyStation.ShouldEqual(constants.valid_duty_station),
+                e => e.Latitude.ShouldEqual(constants.valid_location.Latitude),
+                e => e.Longitude.ShouldEqual(constants.valid_location.Longitude)
             );
         };
     }    

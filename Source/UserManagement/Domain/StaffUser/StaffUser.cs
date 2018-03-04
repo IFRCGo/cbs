@@ -128,17 +128,17 @@ namespace Domain.StaffUser
                                             location.Latitude, location.Longitude));
         }
 
-        void On(NewUserRegistered @event)
-        {
-            _isRegistered = true;
-        }
-
         void Register(string fullname, string displayname, string email, DateTimeOffset registeredAt)
         {
             if(_isRegistered)
                 throw new UserAlreadyRegistered($"User '{EventSourceId}' {email} {displayname} is already registered.");
             
             Apply(new NewUserRegistered(EventSourceId, fullname, displayname, email, registeredAt));
+        }
+
+        void On(NewUserRegistered @event)
+        {
+            _isRegistered = true;
         }
     }
 }

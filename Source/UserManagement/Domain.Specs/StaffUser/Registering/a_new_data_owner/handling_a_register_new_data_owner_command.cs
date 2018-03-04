@@ -25,17 +25,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 
         Establish context = () => 
         {
-            command = new RegisterNewDataOwner
-            {
-                UserDetails = given_user.build_valid_instance(),
-                Role = given_role.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>(),
-                Position = data_owner_constants.valid_position,
-                DutyStation = data_owner_constants.valid_duty_station,
-                Location = data_owner_constants.valid_location
-            };
-            staff_user = new Domain.StaffUser.StaffUser(command.UserDetails.StaffUserId);
+            command = given.commands.build_valid_instance<RegisterNewDataOwner>();
+            staff_user = new Domain.StaffUser.StaffUser(command.Role.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
-            repository.Setup(r => r.Get(command.UserDetails.StaffUserId)).Returns(staff_user);
+            repository.Setup(r => r.Get(command.Role.StaffUserId)).Returns(staff_user);
             now = DateTimeOffset.UtcNow;
             system_clock = new Mock<ISystemClock>();
             system_clock.Setup(c => c.GetCurrentTime()).Returns(now);
@@ -50,10 +43,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         It call_the_register_new_data_owner_method_with_the_correct_parameters = () => 
         {
             staff_user.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.StaffUserId.ShouldEqual(command.UserDetails.StaffUserId),
-                e => e.FullName.ShouldEqual(command.UserDetails.FullName),
-                e => e.DisplayName.ShouldEqual(command.UserDetails.DisplayName),
-                e => e.Email.ShouldEqual(command.UserDetails.Email),
+                e => e.StaffUserId.ShouldEqual(command.Role.StaffUserId),
+                e => e.FullName.ShouldEqual(command.Role.FullName),
+                e => e.DisplayName.ShouldEqual(command.Role.DisplayName),
+                e => e.Email.ShouldEqual(command.Role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
@@ -62,11 +55,10 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
                 e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage),
                 e => e.Sex.ShouldEqual(Constants.NOT_KNOWN),
                 e => e.BirthYear.ShouldEqual(Constants.NOT_KNOWN),
-                e => e.Position.ShouldEqual(data_owner_constants.valid_position),
-                e => e.DutyStation.ShouldEqual(data_owner_constants.valid_duty_station),
-                e => e.Longitude.ShouldEqual(data_owner_constants.valid_location.Longitude),
-                e => e.Latitude.ShouldEqual(data_owner_constants.valid_location.Latitude)
-
+                e => e.Position.ShouldEqual(constants.valid_position),
+                e => e.DutyStation.ShouldEqual(constants.valid_duty_station),
+                e => e.Longitude.ShouldEqual(constants.valid_location.Longitude),
+                e => e.Latitude.ShouldEqual(constants.valid_location.Latitude)
             );
         };
     }

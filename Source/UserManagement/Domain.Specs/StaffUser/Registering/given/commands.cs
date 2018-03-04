@@ -19,6 +19,9 @@ namespace Domain.Specs.StaffUser.Registering.given
             PopulateBirthYear(cmd);
             PopulatePhoneNumbers(cmd);
             PopulateAssignedNationalSocieties(cmd);
+            PopulatePosition(cmd);
+            PopulateDutyStation(cmd);
+            PopulateLocation(cmd);
             return cmd;
         }
 
@@ -62,6 +65,26 @@ namespace Domain.Specs.StaffUser.Registering.given
             (natSec as dynamic).NationalSociety = Guid.NewGuid();
         }
 
+        static void PopulateDutyStation<T>(T instance) where T : INewStaffRegistration, new() 
+        {
+            var dutyStation = (instance as dynamic).Role as IRequireDutyStation;
+
+            if(dutyStation == null)
+                return;
+
+            (dutyStation as dynamic).DutyStation = "duty station";
+        }
+
+        static void PopulatePosition<T>(T instance) where T : INewStaffRegistration, new() 
+        {
+            var pos = (instance as dynamic).Role as IRequirePosition;
+
+            if(pos == null)
+                return;
+
+            (pos as dynamic).Position = "position";
+        }
+
         static void PopulateBirthYear<T>(T instance) where T : INewStaffRegistration, new() 
         {
             var year = (instance as dynamic).Role as IRequireBirthYear;
@@ -90,6 +113,16 @@ namespace Domain.Specs.StaffUser.Registering.given
                 return;
 
             (numbers as dynamic).AssignedNationalSocieties = new Guid[]{ Guid.NewGuid(), Guid.NewGuid()};
+        }
+
+        static void PopulateLocation<T>(T instance) where T : INewStaffRegistration, new() 
+        {
+            var loc = (instance as dynamic).Role as IRequireLocation;
+
+            if(loc == null)
+                return;
+
+            (loc as dynamic).Location = new Location(45,45);
         }
     }
 }

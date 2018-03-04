@@ -6,7 +6,7 @@ using doLittle.Commands;
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewStaffDataVerifier : NewExtendedRegistration<StaffDataVerifier>, IHaveALocation
+    public class RegisterNewStaffDataVerifier : NewExtendedRegistration<StaffDataVerifier>, IRequireLocation
     {
         public Location Location { get; set; }
     }

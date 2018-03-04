@@ -10,9 +10,9 @@ namespace Domain.StaffUser.Registering
     {
         public RegisterNewStaffDataConsumerInputValidator()
         {
-            RuleFor(_ => (_ as IHaveALocation))
+            RuleFor(_ => (_ as IRequireLocation))
                 .NotNull()
-                .SetValidator(new HaveALocationValidator());
+                .SetValidator(new RequireLocationValidator());
         }
     }    
 }

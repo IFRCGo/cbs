@@ -7,24 +7,24 @@ using Concepts;
 using Moq;
 using It = Machine.Specifications.It;
 
-namespace Domain.Specs.StaffUser.Roles.HaveALocation
+namespace Domain.Specs.StaffUser.Roles.RequireLocation
 {
-    [Subject(typeof(IHaveALocation))]
-    public class when_validating_and_location_is_missing
+    [Subject(typeof(IRequireLocation))]
+    public class when_validating_and_the_location_is_invalid
     {
-        static HaveALocationValidator validator;
+        static RequireLocationValidator validator;
         static ValidationResult validation_results;
-        static IHaveALocation location;
+        static IRequireLocation location;
 
         Establish context = () =>
         {
-            validator = new HaveALocationValidator();
-            var mock = new Mock<IHaveALocation>();
-            mock.SetupGet(m => m.Location).Returns((Location)null);
+            validator = new RequireLocationValidator();
+            var mock = new Mock<IRequireLocation>();
+            mock.SetupGet(m => m.Location).Returns(new Location(45,200));
             location = mock.Object;
         };
 
-        Because of = () => { validation_results = validator.Validate(location);};
+        Because of = () => { validation_results = validator.Validate(location); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();    
         It should_have_one_error = () => validation_results.ShouldHaveInvalidCountOf(1);

@@ -28,7 +28,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         Because of = () => {
             sut.RegisterNewDataVerifier(user_info.FullName,user_info.DisplayName,user_info.Email,now,
                     role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    data_owner_constants.valid_location);
+                    constants.valid_location);
         };
         It should_create_a_new_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(

@@ -15,10 +15,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         static StaffUserIsRegistered staff_user_is_registered;
         static ValidationResult validation_results;
         Establish context = () => {
-            register = new RegisterNewDataOwner
-            {
-                UserDetails = given_user.build_valid_instance()
-            };
+            register = given.commands.build_valid_instance<RegisterNewDataOwner>();
 
             staff_user_is_registered = (id) => false;
 

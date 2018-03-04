@@ -1,11 +1,11 @@
-using Concepts;
+﻿using Concepts;
 using FluentValidation;
 
 namespace Domain.StaffUser
 {
-    public class HaveALocationValidator : AbstractValidator<IHaveALocation>
+    public class RequireLocationValidator : AbstractValidator<IRequireLocation>
     {
-        public HaveALocationValidator()
+        public RequireLocationValidator()
         {
             RuleFor(l => l.Location)
                 .Cascade(CascadeMode.StopOnFirstFailure)

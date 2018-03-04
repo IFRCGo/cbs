@@ -1,8 +1,8 @@
-using Concepts;
+﻿using Concepts;
 
 namespace Domain.StaffUser
 {
-    public interface IHaveALocation
+    public interface IRequireLocation
     {
          Location Location { get; }
     }

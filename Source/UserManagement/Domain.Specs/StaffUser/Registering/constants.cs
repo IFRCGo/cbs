@@ -12,5 +12,6 @@ namespace Domain.Specs.StaffUser.Registering
 
         public static readonly Location valid_location = new Location(45,45);
         public const string valid_position = "position";
+        public const string valid_duty_station = "duty station";
     }
 }

@@ -9,9 +9,9 @@ namespace Domain.StaffUser.Registering
     {
         public RegisterNewSystemConfiguratorInputValidator()
         {
-            RuleFor(_ => (_ as IAmAssignedToNationalSocieties))
+            RuleFor(_ => (_ as IRequireAssignedNationalSocieties))
                 .NotNull()
-                .SetValidator(new AssignedToNationalSocietiesInputValidator());
+                .SetValidator(new RequireAssignedNationalSocietiesInputValidator());
         }
     }
 }

@@ -43,11 +43,11 @@ namespace Domain.StaffUser.Registering
 
         public void Handle(RegisterNewDataOwner command)
         {
-            var user = _repository.Get(command.UserDetails.StaffUserId);
-            user.RegisterNewDataOwner(command.UserDetails.FullName, command.UserDetails.DisplayName, 
-                                        command.UserDetails.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
-                                         command.Role.PreferredLanguage, command.Role.PhoneNumbers, command.Role.YearOfBirth, 
-                                         command.Role.Sex, command.Location, command.Position, command.DutyStation);
+            var user = _repository.Get(command.Role.StaffUserId);
+            user.RegisterNewDataOwner(command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
+                                         command.Role.Sex, command.Role.Location, command.Role.Position, command.Role.DutyStation);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
