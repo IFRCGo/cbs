@@ -33,7 +33,7 @@ namespace Web
             var incomingTextMessage = new TextMessage
             {
                 Id = Guid.NewGuid(),
-                Sent = DateTimeOffset.Parse(sms.Timestamp),
+                Sent = DateTimeOffset.ParseExact(sms.Timestamp,"yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture),
                 OriginNumber = sms.OID,
                 Message = sms.Text,
                 FullMessage = sms.Text,
