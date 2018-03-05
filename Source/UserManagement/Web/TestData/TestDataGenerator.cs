@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Concepts;
 using Domain.DataCollector.Update;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 using Domain.StaffUser.PhoneNumber;
+using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
 
 namespace Web.TestData
@@ -18,7 +20,10 @@ namespace Web.TestData
         private static int numDataCoordinators = 0;
         private static int numDataOwners = 0;
         private static int numDataVerifiers = 0;
-        private static int numSystemCoordinators = 0;
+        private static int numSystemConfigurators = 0;
+
+        private static Array languageVals = Enum.GetValues(typeof(Language));
+        private static Array sexVals = Enum.GetValues(typeof(Sex));
 
         private static readonly Random rng = new Random();
 
@@ -41,8 +46,6 @@ namespace Web.TestData
 
         public static void GenerateCorrectAddDataCollectorCommands()
         {
-            var languageValues = Enum.GetValues(typeof(Language));
-            var sexValues = Enum.GetValues(typeof(Sex));
             var data = names.Select(name => new RegisterDataCollector
                 {
                     DisplayName = name.Replace(' ', '_') + "DISP",
@@ -50,11 +53,10 @@ namespace Web.TestData
                     GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
                     PhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()},
                     NationalSociety = Guid.NewGuid(),
-                    PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
-                    Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (Sex)sexVals.GetValue(rng.Next(sexVals.Length)),
                     YearOfBirth = rng.Next(1920, 2018)
-                })
-                .ToList();
+                }).ToList();
 
 
             using (var file = File.CreateText("./TestData/DataCollectors.json"))
@@ -65,160 +67,187 @@ namespace Web.TestData
 
         public static void GenerateCorrectAddStaffUserCommands()
         {
-            // var data = new List<AddStaffUser>();
-            // for (var i = 0; i < 100; i++)
-            // {
-            //     Role role = (Role)rng.Next(0, 6);
+            StringBuilder sb = new StringBuilder();
+            const int numRegistrations = 100;
 
-            //     switch (role)
-            //     {
-            //         case Role.Admin:
-            //             data.Add(CreateAddAdminCommand());
-            //             break;
-            //         case Role.DataConsumer:
-            //             data.Add(CreateAddDataConsumerCommand());
-            //             break;
-            //         case Role.DataCoordinator:
-            //             data.Add(CreateAddDataCoordinatorCommand());
-            //             break;
-            //         case Role.DataOwner:
-            //             data.Add(CreateAddDataOwnerCommand());
-            //             break;
-            //         case Role.DataVerifier:
-            //             data.Add(CreateAddDataVerifierCommand());
-            //             break;
-            //         case Role.SystemCoordinator:
-            //             data.Add(CreateAddSystemCoordinatorCommand());
-            //             break;
-            //     }
-            // }
-            // using (var file = File.CreateText("./TestData/StaffUsers.json"))
-            // {
-            //     file.WriteLine(JsonConvert.SerializeObject(data, Formatting.Indented));
-            // }
+            var roleVals = Enum.GetValues(typeof(_Role));
+
+            for (var i = 0; i < numRegistrations; i++)
+            {
+                //TODO: Should we depend on _Role? And maybe create another class to create commands dynamically, like in Domain.Specs
+                _Role role = (_Role)roleVals.GetValue(rng.Next(roleVals.Length));
+
+                switch (role)
+                {
+                    case _Role.Admin:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewAdminUserCommand(), Formatting.Indented));
+                        break;
+                    case _Role.DataConsumer:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataConsumerCommand(), Formatting.Indented));
+                        break;
+                    case _Role.DataCoordinator:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataCoordinatorCommand(), Formatting.Indented));
+                        break;
+                    case _Role.DataOwner:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataOwnerCommand(), Formatting.Indented));
+                        break;
+                    case _Role.DataVerifier:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewStaffDataVerifierCommand(), Formatting.Indented));
+                        break;
+                    case _Role.SystemCoordinator:
+                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewSystemConfiguratorCommand(), Formatting.Indented));
+                        break;
+                }
+            }
+            using (var file = File.CreateText("./TestData/StaffUsers.json"))
+            {
+                file.WriteLine(sb.ToString());
+            }
 
         }
-        // private static AddStaffUser CreateAddAdminCommand()
-        // {
-        //     var name = "Admin" + numAdmins;
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.Admin,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com"
-        //     };
-        //     numAdmins++;
+        private static RegisterNewAdminUser CreateRegisterNewAdminUserCommand()
+        {
+            var name = "Admin" + numAdmins;
+            var result = new RegisterNewAdminUser()
+            {
+                Role =
+                {
+                    FullName = name,
+                    DisplayName = name + "_Display_Name",
+                    Email = name + "@mail.com",
+                }
+            };
+            numAdmins++;
 
-        //     return result;
-        // }
-        // private static AddStaffUser CreateAddDataConsumerCommand()
-        // {
-        //     var name = "DataConsumer" + numDataConsumers;
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.DataConsumer,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com",
+            return result;
+        }
+        private static RegisterNewStaffDataConsumer CreateRegisterNewDataConsumerCommand()
+        {
+            var name = "DataConsumer" + numDataConsumers;
+            var result = new RegisterNewStaffDataConsumer
+            {
+                Role =
+                {
+                    FullName = name,
+                    DisplayName = name + " Display name",
+                    Email = name + "@mail.com",
 
-        //         Location = new Location(rng.NextDouble(), rng.NextDouble())
-        //     };
-        //     numDataConsumers++;
+                    Location = new Location(rng.NextDouble(), rng.NextDouble()),
+                    BirthYear = rng.Next(1920, 2017),
+                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
+                    StaffUserId = Guid.NewGuid()
+                }
+            };
+            numDataConsumers++;
 
-        //     return result;
-        // }
-        // private static AddStaffUser CreateAddDataCoordinatorCommand()
-        // {
-        //     var name = "DataCoordinator" + numDataCoordinators;
-        //     var languageValues = Enum.GetValues(typeof(Language));
-        //     var sexValues = Enum.GetValues(typeof(Sex));
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.DataCoordinator,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com",
+            return result;
+        }
+        private static RegisterNewDataCoordinator CreateRegisterNewDataCoordinatorCommand()
+        {
+            var name = "DataCoordinator" + numDataCoordinators;
+            var result = new RegisterNewDataCoordinator()
+            {
+                Role =
+                {
+                    FullName = name,
+                    DisplayName = name + " Display name",
+                    Email = name + "@mail.com",
+                    
+                    BirthYear = rng.Next(1920, 2017),
+                    
+                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
+                    StaffUserId = Guid.NewGuid(),
+                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
+                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] }
+                }
+            };
+            numDataCoordinators++;
 
-        //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
-        //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
-        //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
-        //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
-        //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
-        //     };
-        //     numDataCoordinators++;
+            return result;
+        }
+        private static RegisterNewDataOwner CreateRegisterNewDataOwnerCommand()
+        {
+            var name = "DataOwner" + numDataOwners;
+            
+            var result = new RegisterNewDataOwner()
+            {
+                Role = {
+                    FullName = name,
+                    DisplayName = name + " Display name",
+                    Email = name + "@mail.com",
 
-        //     return result;
-        // }
-        // private static AddStaffUser CreateAddDataOwnerCommand()
-        // {
-        //     var name = "DataOwner" + numDataOwners;
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.DataOwner,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com",
+                    BirthYear = rng.Next(1920, 2017),
 
-        //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
-        //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
-        //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
-        //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
-        //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]},
-        //         DutyStation = "Duty Station" + numDataOwners,
-        //         Position = "Position" + numDataOwners
-        //     };
-        //     numDataOwners++;
+                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
+                    StaffUserId = Guid.NewGuid(),
+                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
+                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
+                    Location = new Location(rng.NextDouble(), rng.NextDouble()),
+                    DutyStation = "Dutty Station" + numDataOwners,
+                    Position = "Position" + numDataOwners
+                }
+            };
+            numDataOwners++;
 
-        //     return result;
-        // }
-        // private static AddStaffUser CreateAddDataVerifierCommand()
-        // {
-        //     var name = "DataVerifier" + numDataVerifiers;
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.DataVerifier,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com",
+            return result;
+        }
+        private static RegisterNewStaffDataVerifier CreateRegisterNewStaffDataVerifierCommand()
+        {
+            var name = "DataVerifier" + numDataVerifiers;
 
-        //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
-        //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
-        //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
-        //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
-        //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
-        //     };
-        //     numDataVerifiers++;
+            var result = new RegisterNewStaffDataVerifier()
+            {
+                Role =
+                {
+                    FullName = name,
+                    DisplayName = name + " Display name",
+                    Email = name + "@mail.com",
 
-        //     return result;
-        // }
-        // private static AddStaffUser CreateAddSystemCoordinatorCommand()
-        // {
-        //     var name = "SystemCoordinator" + numSystemCoordinators;
-        //     var result = new AddStaffUser
-        //     {
-        //         Role = Role.SystemCoordinator,
-        //         FullName = name,
-        //         DisplayName = name + " Display name",
-        //         Email = name + "@mail.com",
+                    BirthYear = rng.Next(1920, 2017),
 
-        //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
-        //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
-        //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
-        //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
-        //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
-        //     };
-        //     numSystemCoordinators++;
+                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
+                    StaffUserId = Guid.NewGuid(),
+                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
+                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
+                    Location = new Location(rng.NextDouble(), rng.NextDouble())
+                }
+            };
+            numDataVerifiers++;
 
-        //     return result;
-        // }
+            return result;
+        }
+        private static RegisterNewSystemConfigurator CreateRegisterNewSystemConfiguratorCommand()
+        {
+            var name = "SystemConfigurator" + numSystemConfigurators;
+            var result = new RegisterNewSystemConfigurator()
+            {
+                Role =
+                {
+                    FullName = name,
+                    DisplayName = name + " Display name",
+                    Email = name + "@mail.com",
+
+                    BirthYear = rng.Next(1920, 2017),
+
+                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
+                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
+                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
+                    StaffUserId = Guid.NewGuid(),
+                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
+                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] }
+                }
+            };
+            numSystemConfigurators++;
+
+            return result;
+        }
     }
 }

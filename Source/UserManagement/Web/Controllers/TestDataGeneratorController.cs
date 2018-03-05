@@ -1,8 +1,12 @@
 
+using System;
+using System.IO;
 using Domain.DataCollector;
+using Domain.DataCollector.Registering;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using Read.GreetingGenerators;
 using Web.TestData;
 
@@ -35,34 +39,34 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-            // CreateDataCollectorCommands();
-            // CreateAllStaffUserCommands();
+             CreateDataCollectorCommands();
+             CreateAllStaffUserCommands();
         }
         
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
-            // DeleteCollection<DataCollector>("DataCollector");
-            // RegisterDataCollector[] commands;
-            // try
-            // {
-            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-            //             System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            // }
-            // catch (FileNotFoundException e)
-            // {
-            //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-            //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            // }
+            DeleteCollection<DataCollector>("DataCollector");
+            RegisterDataCollector[] commands;
+            try
+            {
+                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+                        System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            }
+            catch (FileNotFoundException e)
+            {
+                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            }
 
-            // foreach (var cmd in commands)
-            // {
-            //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
-            //     cmd.DataCollectorId = Guid.NewGuid();
-            //     _dataCollectorCommandHandler.Handle(cmd);
-            // }
-            
+            foreach (var cmd in commands)
+            {
+                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+                cmd.DataCollectorId = Guid.NewGuid();
+                _dataCollectorCommandHandler.Handle(cmd);
+            }
+
         }
 
         [HttpGet("allstaffusercommands")]
@@ -102,13 +106,14 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            // DeleteCollection<StaffUser>("StaffUser");
-            // DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            // DeleteCollection<DataVerifier>("DataVerifier");
-            // DeleteCollection<DataOwner>("DataOwner");
-            // DeleteCollection<DataCoordinator>("DataCoordinator");
-            // DeleteCollection<DataConsumer>("DataConsumer");
-            // DeleteCollection<Admin>("Admin");
+            //TODO: Must be updated when the new read models are made
+            //DeleteCollection<StaffUser>("StaffUser");
+            //DeleteCollection<SystemCoordinator>("SystemCoordinator");
+            //DeleteCollection<DataVerifier>("DataVerifier");
+            //DeleteCollection<DataOwner>("DataOwner");
+            //DeleteCollection<DataCoordinator>("DataCoordinator");
+            //DeleteCollection<DataConsumer>("DataConsumer");
+            //DeleteCollection<Admin>("Admin");
 
         }
 
