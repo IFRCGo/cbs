@@ -12,7 +12,7 @@ namespace Domain.StaffUser.Roles
         public Sex? Sex { get; set; }
         public IEnumerable<Guid> AssignedNationalSocieties { get; set; }
         public Guid NationalSociety { get; set; }
-        public Language? PreferredLanguage { get; set; }
+        public Language PreferredLanguage { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
         public string DutyStation { get; set; }
         public string Position { get; set; }

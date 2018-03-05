@@ -1,14 +1,11 @@
 using Machine.Specifications;
 using Domain.StaffUser;
 using Domain.StaffUser.Registering;
-using System;
 using FluentValidation.Results;
-using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given.user_info;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {
-
-        [Subject("Registering")]
+    [Subject("Registering")]
     public class validating_a_user_that_is_not_already_registered_with_an_invalid_national_society
     {
         static RegisterNewSystemConfigurator register;

@@ -1,9 +1,7 @@
 using Machine.Specifications;
 using Domain.StaffUser;
 using Domain.StaffUser.Registering;
-using System;
 using FluentValidation.Results;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_admin
 {

@@ -1,4 +1,4 @@
-﻿using Machine.Specifications;
+using Machine.Specifications;
 using doLittle.Time;
 using doLittle.Domain;
 using Domain.StaffUser;
@@ -7,8 +7,6 @@ using Events.StaffUser;
 using Moq;
 using System;
 using It = Machine.Specifications.It;
-using given_user = Domain.Specs.StaffUser.Roles.UserInfo.given.user_info;
-using given_role = Domain.Specs.StaffUser.Role.given;
 using Concepts;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier

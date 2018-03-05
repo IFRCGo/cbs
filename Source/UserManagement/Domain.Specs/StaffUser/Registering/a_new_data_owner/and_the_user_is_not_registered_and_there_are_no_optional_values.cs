@@ -1,9 +1,12 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Events.StaffUser;
 using Concepts;
+using Domain.StaffUser.Registering;
+using Domain.StaffUser.Roles;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 {
@@ -12,32 +15,36 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.DataOwner role;
+        static RegisterNewDataOwner cmd;
+        static DataOwner role;
 
-        Establish context = () => 
+        private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>();
-            sut = new su.StaffUser(user_info.StaffUserId);
+            cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
+            sut = new su.StaffUser(cmd.Role.StaffUserId);
+            role = cmd.Role;
+            role.BirthYear = null;
+            role.PreferredLanguage = null;
+            role.Sex = null;
         };
 
-        Because of = () => {
-            sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    constants.valid_location, constants.valid_position, 
-                    constants.valid_duty_station);
+        Because of = () =>
+        {
+            sut.RegisterNewDataOwner(role.FullName, role.DisplayName, role.Email,
+                now, role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
+                role.Sex, role.Location, role.Position, role.DutyStation);
         };
-        It should_create_a_new_user_registed_event_with_the_correct_values 
+        It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.FullName.ShouldEqual(user_info.FullName),
-                e => e.DisplayName.ShouldEqual(user_info.DisplayName),
-                e => e.Email.ShouldEqual(user_info.Email),
+                e => e.FullName.ShouldEqual(role.FullName),
+                e => e.DisplayName.ShouldEqual(role.DisplayName),
+                e => e.Email.ShouldEqual(role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
-        It should_create_a_system_configurator_registered_event = () => {
+        It should_create_a_system_configurator_registered_event = () =>
+        {
             sut.ShouldHaveEvent<DataOwnerRegistered>().InStream().Where(
                 e => e.Position.ShouldEqual(constants.valid_position),
                 e => e.DutyStation.ShouldEqual(constants.valid_duty_station),
@@ -45,5 +52,5 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
                 e => e.Longitude.ShouldEqual(constants.valid_location.Longitude)
             );
         };
-    }    
+    }
 }

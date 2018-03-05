@@ -1,8 +1,7 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
-using Concepts;
-
+using Domain.StaffUser.Registering;
 namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 {
     [Subject("Registering")]
@@ -10,31 +9,26 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.DataOwner role;
         static Exception result;
+        static RegisterNewDataOwner cmd;
 
-        Establish context = () => 
+        Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>();
-            sut = new su.StaffUser(user_info.StaffUserId);
-
+            cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
+            sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage,role.PhoneNumbers, role.YearOfBirth, role.Sex,  
-                    constants.valid_location, constants.valid_position, 
-                    constants.valid_duty_station);
+            sut.RegisterNewDataOwner(cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+                cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
+                cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Location, cmd.Role.Position, cmd.Role.DutyStation);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    constants.valid_location, constants.valid_position, 
-                    constants.valid_duty_station)
-        );
+            () => sut.RegisterNewDataOwner(cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+                cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
+                cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Location, cmd.Role.Position, cmd.Role.DutyStation)
+            );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();
         It should_be_a_user_already_registered_exception = () => result.ShouldBeOfExactType<UserAlreadyRegistered>();

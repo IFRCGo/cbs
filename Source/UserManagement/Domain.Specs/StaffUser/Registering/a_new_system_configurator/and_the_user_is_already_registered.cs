@@ -1,6 +1,8 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
+using Domain.StaffUser.Registering;
+using Domain.StaffUser.Roles;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {
@@ -9,27 +11,26 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.SystemConfigurator role;
         static Exception result;
+        static RegisterNewSystemConfigurator cmd;
+        static SystemConfigurator role;
 
-        Establish context = () => 
+        Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.SystemConfigurator>();
-            sut = new su.StaffUser(user_info.StaffUserId);
+            cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
+            sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewSystemConfigurator(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, new[] { Guid.NewGuid() },
-                    role.YearOfBirth, role.Sex);
+            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+                    role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
+                    role.BirthYear, role.Sex);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewSystemConfigurator(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, new[] { Guid.NewGuid() },
-                    role.YearOfBirth, role.Sex)
+            () => sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+                    role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
+                    role.BirthYear, role.Sex)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

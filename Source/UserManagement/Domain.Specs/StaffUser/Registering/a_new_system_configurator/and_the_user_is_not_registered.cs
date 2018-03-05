@@ -3,6 +3,9 @@ using su = Domain.StaffUser;
 using System;
 using Events.StaffUser;
 using Concepts;
+using Domain.Specs.StaffUser.Roles.UserInfo.given;
+using Domain.StaffUser.Registering;
+using Domain.StaffUser.Roles;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {
@@ -11,48 +14,50 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.SystemConfigurator role;
-        static Guid[] assigned_national_societies;
+        static RegisterNewSystemConfigurator cmd;
+        static SystemConfigurator role;
 
-        Establish context = () => 
+        private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.SystemConfigurator>();
-            role.YearOfBirth = 1980;
+            cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
+            role = cmd.Role;
+            role.BirthYear = 1980;
             role.Sex = Sex.Female;
-            assigned_national_societies = new Guid[]{ Guid.NewGuid(), Guid.NewGuid() };
-            sut = new su.StaffUser(user_info.StaffUserId);
+            sut = new su.StaffUser(role.StaffUserId);
         };
 
-        Because of = () => {
-            sut.RegisterNewSystemConfigurator(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, assigned_national_societies,
-                    role.YearOfBirth, role.Sex);
+        Because of = () =>
+        {
+            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+                    role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.AssignedNationalSocieties,
+                    role.BirthYear, role.Sex);
         };
-        It should_create_a_new_user_registed_event_with_the_correct_values 
+        It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.FullName.ShouldEqual(user_info.FullName),
-                e => e.DisplayName.ShouldEqual(user_info.DisplayName),
-                e => e.Email.ShouldEqual(user_info.Email),
+                e => e.FullName.ShouldEqual(role.FullName),
+                e => e.DisplayName.ShouldEqual(role.DisplayName),
+                e => e.Email.ShouldEqual(role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
-        It should_create_a_system_configurator_registered_event = () => {
+        It should_create_a_system_configurator_registered_event = () =>
+        {
             sut.ShouldHaveEvent<SystemConfiguratorRegistered>().InStream().Where(
                 e => e.NationalSociety.ShouldEqual(role.NationalSociety),
                 e => e.PreferredLanguage.ShouldEqual((int)role.PreferredLanguage),
                 e => e.Sex.ShouldEqual((int)role.Sex.Value),
-                e => e.BirthYear.ShouldEqual((int)role.YearOfBirth.Value)
+                e => e.BirthYear.ShouldEqual((int)role.BirthYear.Value)
             );
         };
 
-        It should_create_a_national_society_assigned_for_each_national_society = () => {
+        It should_create_a_national_society_assigned_for_each_national_society = () =>
+        {
             sut.ShouldHaveEvent<NationalSocietyAssigned>().Instances(2);
         };
 
-        It should_create_a_phone_number_registered_event_for_each_phone_number = () => {
+        It should_create_a_phone_number_registered_event_for_each_phone_number = () =>
+        {
             sut.ShouldHaveEvent<PhoneNumberRegistered>().Instances(2);
         };
     }

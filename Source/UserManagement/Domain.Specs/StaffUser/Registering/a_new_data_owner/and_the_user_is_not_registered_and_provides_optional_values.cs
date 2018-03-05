@@ -1,8 +1,10 @@
-﻿using Machine.Specifications;
+using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
 using Events.StaffUser;
 using Concepts;
+using Domain.StaffUser.Registering;
+using Domain.StaffUser.Roles;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
 {
@@ -11,34 +13,36 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
     {
         static su.StaffUser sut;
         static DateTimeOffset now;
-        static Domain.StaffUser.UserInfo user_info;
-        static Domain.StaffUser.DataOwner role;
+        static RegisterNewDataOwner cmd;
+        static DataOwner role;
 
-        Establish context = () => 
+        private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
-            user_info = StaffUser.Roles.UserInfo.given.user_info.build_valid_instance();
-            role = StaffUser.Role.given.staff_role.build_valid_instance<Domain.StaffUser.DataOwner>();
-            role.YearOfBirth = 1980;
+            cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
+            sut = new su.StaffUser(cmd.Role.StaffUserId);
+            role = cmd.Role;
+            role.BirthYear = 1980;
             role.Sex = Sex.Female;
-            sut = new su.StaffUser(user_info.StaffUserId);
         };
 
-        Because of = () => {
-            sut.RegisterNewDataOwner(user_info.FullName,user_info.DisplayName,user_info.Email,now,
-                    role.NationalSociety, role.PreferredLanguage, role.PhoneNumbers, role.YearOfBirth, role.Sex, 
-                    constants.valid_location, constants.valid_position, 
-                    constants.valid_duty_station);
+        Because of = () =>
+        {
+            sut.RegisterNewDataOwner(cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+                cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
+                cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Location, cmd.Role.Position, cmd.Role.DutyStation);
         };
-        It should_create_a_new_user_registed_event_with_the_correct_values 
+
+        It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
-                e => e.FullName.ShouldEqual(user_info.FullName),
-                e => e.DisplayName.ShouldEqual(user_info.DisplayName),
-                e => e.Email.ShouldEqual(user_info.Email),
+                e => e.FullName.ShouldEqual(role.FullName),
+                e => e.DisplayName.ShouldEqual(role.DisplayName),
+                e => e.Email.ShouldEqual(role.Email),
                 e => e.RegisteredAt.ShouldEqual(now)
             );
 
-        It should_create_a_system_configurator_registered_event = () => {
+        It should_create_a_system_configurator_registered_event = () =>
+        {
             sut.ShouldHaveEvent<DataOwnerRegistered>().InStream().Where(
                 e => e.Longitude.ShouldEqual(constants.valid_location.Longitude),
                 e => e.Latitude.ShouldEqual(constants.valid_location.Latitude),

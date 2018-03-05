@@ -1,7 +1,6 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
-using Concepts;
 using Domain.StaffUser.Registering;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
