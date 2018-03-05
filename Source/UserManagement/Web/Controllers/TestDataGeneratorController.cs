@@ -17,13 +17,13 @@ namespace Web.Controllers
     public class TestDataGeneratorController : BaseController
     {
         private readonly IMongoDatabase _database;
-        private readonly Domain.DataCollector.DataCollectorCommandHandler _dataCollectorCommandHandler;
-        private readonly RegisteringCommandHandlers _staffUserCommandHandler;
+        private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
+        private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
-            Domain.DataCollector.DataCollectorCommandHandler dataCollectorCommandHandler,
-            RegisteringCommandHandlers staffUserCommandHandler
+            Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
+            IRegisteringCommandHandlers staffUserCommandHandler
         )
         {
             _database = database;
@@ -240,7 +240,7 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
-            DeleteCollection<Read.DataCollectors.DataCollector>("DataCollector");
+            DeleteCollection<DataCollector>("DataCollector");
         }
 
         [HttpGet("deletegreetinghistorycollection")]

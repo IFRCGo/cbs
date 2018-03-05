@@ -1,0 +1,272 @@
+[
+  {
+    "Role": {
+      "BirthYear": 1997,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "4a0e3d82-b780-4ca7-ad6d-306151533280"
+      ],
+      "NationalSociety": "a765ddfa-10b3-46fc-94cb-177fc7a649d4",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "18795884"
+      ],
+      "StaffUserId": "13e254d9-f671-4519-8901-9e1a150c5059",
+      "FullName": "DataCoordinator0",
+      "DisplayName": "DataCoordinator0 Display name",
+      "Email": "DataCoordinator0@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1967,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "41b0de70-102b-4c62-8423-e7385b082851"
+      ],
+      "NationalSociety": "a765ddfa-10b3-46fc-94cb-177fc7a649d4",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "95866167"
+      ],
+      "StaffUserId": "14154e83-d38b-4767-bf34-e6f70310c90b",
+      "FullName": "DataCoordinator1",
+      "DisplayName": "DataCoordinator1 Display name",
+      "Email": "DataCoordinator1@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1964,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "37d1620d-6b97-4af9-bd16-4c7826a0a598"
+      ],
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "4362710"
+      ],
+      "StaffUserId": "edb86b75-57f9-4660-ba07-fdf366552288",
+      "FullName": "DataCoordinator2",
+      "DisplayName": "DataCoordinator2 Display name",
+      "Email": "DataCoordinator2@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1960,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "37d1620d-6b97-4af9-bd16-4c7826a0a598"
+      ],
+      "NationalSociety": "e999d2d0-1eed-48fa-abe0-1642c89d7a1e",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "64180111"
+      ],
+      "StaffUserId": "df8a7f63-8d57-411f-96b5-a21ab07763d4",
+      "FullName": "DataCoordinator3",
+      "DisplayName": "DataCoordinator3 Display name",
+      "Email": "DataCoordinator3@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1958,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "80458844"
+      ],
+      "StaffUserId": "1978feff-5da2-46d2-a3fe-2532cec2f0fb",
+      "FullName": "DataCoordinator4",
+      "DisplayName": "DataCoordinator4 Display name",
+      "Email": "DataCoordinator4@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 2009,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "c7aba18a-b620-4c06-be1a-8fc2a885d129"
+      ],
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "71450307"
+      ],
+      "StaffUserId": "7af3b837-002f-4bb2-bba2-78cb139eceb7",
+      "FullName": "DataCoordinator5",
+      "DisplayName": "DataCoordinator5 Display name",
+      "Email": "DataCoordinator5@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 2004,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "4a0e3d82-b780-4ca7-ad6d-306151533280"
+      ],
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "84799957"
+      ],
+      "StaffUserId": "2874bc80-1cd0-4cb7-ba89-ea6cbe7b703f",
+      "FullName": "DataCoordinator6",
+      "DisplayName": "DataCoordinator6 Display name",
+      "Email": "DataCoordinator6@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 2003,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "58885717"
+      ],
+      "StaffUserId": "db38f20f-f764-4dbf-88fd-85fd064c5cc7",
+      "FullName": "DataCoordinator7",
+      "DisplayName": "DataCoordinator7 Display name",
+      "Email": "DataCoordinator7@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1965,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "edadbdf4-d193-4a45-8c27-b83cd734973a",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "74562487"
+      ],
+      "StaffUserId": "4e1ed7ad-f944-42a1-ae7e-9a474830da39",
+      "FullName": "DataCoordinator8",
+      "DisplayName": "DataCoordinator8 Display name",
+      "Email": "DataCoordinator8@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1960,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "9e1607da-0162-479d-8139-09a0c473a14d"
+      ],
+      "NationalSociety": "fc567f31-57ef-4b11-bb13-e280e3700e48",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "39208831"
+      ],
+      "StaffUserId": "12f0edf6-bb82-4279-a654-c83229238834",
+      "FullName": "DataCoordinator9",
+      "DisplayName": "DataCoordinator9 Display name",
+      "Email": "DataCoordinator9@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1954,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "37d1620d-6b97-4af9-bd16-4c7826a0a598"
+      ],
+      "NationalSociety": "edadbdf4-d193-4a45-8c27-b83cd734973a",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "5764474"
+      ],
+      "StaffUserId": "1af864fa-3fc3-4b5f-a538-057a7a6d03f0",
+      "FullName": "DataCoordinator10",
+      "DisplayName": "DataCoordinator10 Display name",
+      "Email": "DataCoordinator10@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1943,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "37d1620d-6b97-4af9-bd16-4c7826a0a598"
+      ],
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "85479786"
+      ],
+      "StaffUserId": "c6f61d6c-24e3-45d3-914c-1bf889b8a40b",
+      "FullName": "DataCoordinator11",
+      "DisplayName": "DataCoordinator11 Display name",
+      "Email": "DataCoordinator11@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1933,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "c7aba18a-b620-4c06-be1a-8fc2a885d129"
+      ],
+      "NationalSociety": "c7aba18a-b620-4c06-be1a-8fc2a885d129",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "41919734"
+      ],
+      "StaffUserId": "6f47320d-89d5-4b87-b05c-9b30f40c3233",
+      "FullName": "DataCoordinator12",
+      "DisplayName": "DataCoordinator12 Display name",
+      "Email": "DataCoordinator12@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1942,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "e999d2d0-1eed-48fa-abe0-1642c89d7a1e"
+      ],
+      "NationalSociety": "37d1620d-6b97-4af9-bd16-4c7826a0a598",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "83737377"
+      ],
+      "StaffUserId": "469c662a-2421-4262-8808-325922c15ca2",
+      "FullName": "DataCoordinator13",
+      "DisplayName": "DataCoordinator13 Display name",
+      "Email": "DataCoordinator13@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1953,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "41b0de70-102b-4c62-8423-e7385b082851",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "40873248"
+      ],
+      "StaffUserId": "ffd8e19b-f2f4-423c-bf0e-3dc141667e03",
+      "FullName": "DataCoordinator14",
+      "DisplayName": "DataCoordinator14 Display name",
+      "Email": "DataCoordinator14@mail.com"
+    }
+  }
+]
