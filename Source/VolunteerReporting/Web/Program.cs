@@ -6,7 +6,7 @@ namespace Web
     {
         public static int Main(string[] args)
         {
-            return Initialization.BuildAndRun<Startup>("Catalog", args);
+            return Initialization.BuildAndRun<Startup>("VolunteerReporting", args);
         }
     }
 }
