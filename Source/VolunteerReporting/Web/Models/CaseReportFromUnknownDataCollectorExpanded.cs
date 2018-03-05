@@ -4,23 +4,24 @@ using System;
 
 namespace Web.Models
 {
+    //TODO: Don't really need this anymore because of CaseReportForListing?
     public class CaseReportFromUnknownDataCollectorExpanded
     {
         public Guid Id { get; private set; }
         public HealthRisk HealthRisk { get; private set; }
-        public int NumberOfFemalesOver5 { get; private set; }
-        public int NumberOfFemalesUnder5 { get; private set; }
-        public int NumberOfMalesOver5 { get; private set; }
-        public int NumberOfMalesUnder5 { get; private set; }
+        public int NumberOfFemalesAgedOver4 { get; private set; }
+        public int NumberOfFemalesAges0To4 { get; private set; }
+        public int NumberOfMalesAgedOver4 { get; private set; }
+        public int NumberOfMalesAges0To4 { get; private set; }
         public DateTimeOffset Timestamp { get; private set; }
 
         public CaseReportFromUnknownDataCollectorExpanded(CaseReportFromUnknownDataCollector caseReport, HealthRisk healthRisk)
         {
             Id = caseReport.Id;
-            NumberOfFemalesOver5 = caseReport.NumberOfFemalesOver5;
-            NumberOfFemalesUnder5 = caseReport.NumberOfFemalesUnder5;
-            NumberOfMalesOver5 = caseReport.NumberOfMalesOver5;
-            NumberOfMalesUnder5 = caseReport.NumberOfMalesUnder5;
+            NumberOfFemalesAgedOver4 = caseReport.NumberOfFemalesAgedOver4;
+            NumberOfFemalesAges0To4 = caseReport.NumberOfFemalesAges0To4;
+            NumberOfMalesAgedOver4 = caseReport.NumberOfMalesAgedOver4;
+            NumberOfMalesAges0To4 = caseReport.NumberOfMalesAges0To4;
             Timestamp = caseReport.Timestamp;
             HealthRisk = healthRisk;
         }

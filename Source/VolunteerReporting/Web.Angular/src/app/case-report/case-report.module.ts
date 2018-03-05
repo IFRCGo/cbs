@@ -9,7 +9,7 @@ import { ReportService } from './case-report-list/sort/case-report.service';
 import { SortService } from './case-report-list/sort/sort.service';
 import { SortableTableDirective } from './case-report-list/sort/sortable-table.directive';
 import { SortableColumnComponent } from './case-report-list/sort/sortable-column.component';
-
+import { CaseReportExporter } from './case-report-list/exporter/case-report-exporter.service'
 import { Filter } from './case-report-list/filtring/filter.pipe'
 
 @NgModule({
@@ -27,7 +27,8 @@ import { Filter } from './case-report-list/filtring/filter.pipe'
     providers: [
         ReportService,
         SortService,
-        Filter
+        Filter,
+        CaseReportExporter
     ]
 })
 

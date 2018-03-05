@@ -1,7 +1,6 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Read.CaseReportsForListing
@@ -26,6 +25,26 @@ namespace Read.CaseReportsForListing
             return await list.ToListAsync();
         }
 
+        public async Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last)
+        {
+            
+            var filter = Builders<CaseReportForListing>.Filter.Empty;
+
+            // TODO: Can we assume that this explicit conversion is safe?
+            var totalDocuments = (int)await _collection.CountAsync(filter);
+
+            limit = (limit > totalDocuments) ? totalDocuments : limit;
+
+            var options = new FindOptions<CaseReportForListing>()
+            {
+                Skip = last ? totalDocuments - limit : 0,
+                Limit = limit
+            };   
+            var list = await _collection.FindAsync(filter, options);
+
+            return await list.ToListAsync();
+        }
+
         public async Task Save(CaseReportForListing caseReport)
         {
             var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, caseReport.Id);
@@ -37,5 +56,6 @@ namespace Read.CaseReportsForListing
             var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, id);
             await _collection.DeleteOneAsync(filter);
         }
+
     }
 }

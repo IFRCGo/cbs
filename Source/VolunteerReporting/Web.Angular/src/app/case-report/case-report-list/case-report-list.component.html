@@ -23,10 +23,10 @@
             <th sortable-column="status">Status</th>
             <th sortable-column="dataCollector">Data&nbsp;Collector</th>
             <th sortable-column="healthRisk">Health&nbsp;Risk</th>
-            <th sortable-column="femalesOver5">Females&nbsp;&gt;&nbsp;5</th>
-            <th sortable-column="femalesUnder5">Females&nbsp;&lt;&nbsp;5</th>
-            <th sortable-column="malesOver5">Males&nbsp;&gt;&nbsp;5</th>
-            <th sortable-column="malesUnder5">Males&nbsp;&lt;&nbsp;5</th>
+            <th sortable-column="femalesAgedOver4">Females aged over 4</th>
+            <th sortable-column="femalesAges0To4">Females ages 0 to 4</th>
+            <th sortable-column="malesAgedOver4">Males aged over 4</th>
+            <th sortable-column="malesAges0To4">Males ages 0 to 4</th>
             <th>Lat&nbsp;/&nbsp;Long</th>
         </tr>
     </thead>
@@ -44,10 +44,10 @@
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
-                <td>{{caseReport.numberOfFemalesOver5}}</td>
-                <td>{{caseReport.numberOfFemalesUnder5}}</td>
-                <td>{{caseReport.numberOfMalesOver5}}</td>
-                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>{{caseReport.numberOfFemalesAgedOver4}}</td>
+                <td>{{caseReport.numberOfFemalesAges0To4}}</td>
+                <td>{{caseReport.numberOfMalesAgedOver4}}</td>
+                <td>{{caseReport.numberOfMalesAges0To4}}</td>
                 <td>
                     <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
                 </td>
