@@ -28,7 +28,7 @@ namespace Infrastructure.Kafka
             var config = new Dictionary<string, object>
                 { { "bootstrap.servers", ConnectionString },
                     { "group.id", consumer },
-                    { "enable.auto.commit", true },
+                    { "enable.auto.commit", false },
                     { "auto.commit.interval.ms", 1000 },
                     {
                     "default.topic.config",
