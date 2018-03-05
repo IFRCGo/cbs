@@ -25,9 +25,6 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
             sut = new su.StaffUser(cmd.Role.StaffUserId);
             role = cmd.Role;
-            role.BirthYear = null;
-            role.PreferredLanguage = null;
-            role.Sex = null;
         };
 
         Because of = () =>
