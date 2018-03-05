@@ -1,4 +1,5 @@
 using System;
+using doLittle.Applications;
 using doLittle.Serialization.Json;
 using Infrastructure.Kafka;
 
@@ -11,18 +12,20 @@ namespace Infrastructure.TextMessaging
         readonly IConsumer _consumer;
         readonly ITextMessageProcessors _processors;
         readonly ISerializer _serializer;
+        readonly BoundedContext _boundedContext;
 
-        public TextMessageListener(IConsumer consumer, ITextMessageProcessors processors, ISerializer serializer)
+        public TextMessageListener(IConsumer consumer, ITextMessageProcessors processors, ISerializer serializer, BoundedContext boundedContext)
         {
             _consumer = consumer;
             _processors = processors;
             _serializer = serializer;
+            _boundedContext = boundedContext;
         }
 
         public void Start()
         {
             if( _processors.HasProcessors )
-                _consumer.SubscribeTo(Consumer, Topic, MessageReceived);
+                _consumer.SubscribeTo($"{Consumer}-{_boundedContext.Name}", Topic, MessageReceived);
             
         }
 

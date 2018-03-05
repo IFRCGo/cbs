@@ -14,7 +14,7 @@ namespace Infrastructure.Kafka
         protected override void Load(ContainerBuilder builder)
         {
             var environmentVariables = Environment.GetEnvironmentVariables();
-            KafkaConnectionString kafkaConnectionString = "52.178.92.69:9092";
+            KafkaConnectionString kafkaConnectionString = "kafka-service:9092";
             if (environmentVariables.Contains(KAFKA_CONNECTIONSTRING)) kafkaConnectionString = (string)environmentVariables[KAFKA_CONNECTIONSTRING];
             builder.RegisterInstance(kafkaConnectionString).As<KafkaConnectionString>();
         }

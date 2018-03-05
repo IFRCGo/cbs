@@ -31,8 +31,19 @@ namespace Infrastructure.Kafka
             _logger.Information($"Listening on topic '{topic}' from '{_configuration.ConnectionString}'");
             var consumer = new Confluent.Kafka.Consumer<Ignore, string>(_configuration.GetFor(consumerName), null, new StringDeserializer(Encoding.UTF8));
             consumer.Assign(new [] {  new TopicPartition(topic, 0)});
-            consumer.OnMessage += (_, message)=> received(topic, message.Value);
-            consumer.OnError += (_, message) => _logger.Error(message.Reason);
+            consumer.OnMessage += (_, message)=>
+            {
+                try
+                {
+                    received(topic, message.Value);
+                    consumer.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "Couldn't handle received message");
+                }
+            };
+            consumer.OnError += (_, message)=> _logger.Error(message.Reason);
 
             Task.Run(()=>
             {
