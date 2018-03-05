@@ -1,5 +1,5 @@
 using doLittle.Events.Processing;
-using Events;
+using Events.DataCollector;
 
 namespace Read.GreetingGenerators
 {
@@ -11,17 +11,18 @@ namespace Read.GreetingGenerators
         {
             _greetingHistories = greetingHistories;
         }
-
-        public void Process(PhoneNumberAddedToDataCollector @event)
+        
+        //TODO: QUESTION: Shouldn't this listen to MessageGenerated-event?
+        public async void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var greetingHistory = _greetingHistories.GetByPhoneNumber(@event.PhoneNumber) ?? new GreetingHistory(@event.Id);
+            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber;
-            _greetingHistories.Save(greetingHistory);
+           await _greetingHistories.SaveAsync(greetingHistory);
         }
 
-        public void Process(PhoneNumberRemovedFromDataCollector @event)
+        public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            _greetingHistories.RemovePhoneNumber(@event.PhoneNumber);
+            await _greetingHistories.RemoveAsync(@event.PhoneNumber);
         }
     }
 }

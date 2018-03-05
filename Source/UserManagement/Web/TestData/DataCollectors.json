@@ -1,0 +1,53 @@
+[
+  {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
+    "FullName": "Abraham Watson",
+    "DisplayName": "Abraham_WatsonDISP",
+    "YearOfBirth": 1934,
+    "Sex": 2,
+    "NationalSociety": "dd421f34-bdbf-45ae-87b5-9302dd98d320",
+    "PreferredLanguage": 0,
+    "GpsLocation": {
+      "Latitude": 0.0043609072474580755,
+      "Longitude": 0.96948369637573306
+    },
+    "MobilePhoneNumbers": [
+      "8641874"
+    ],
+    "Email": "Abraham_Watson@mail.com"
+  },
+  {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
+    "FullName": "Vanessa Wallace",
+    "DisplayName": "Vanessa_WallaceDISP",
+    "YearOfBirth": 1943,
+    "Sex": 1,
+    "NationalSociety": "ee8d2685-e5aa-4386-be41-9da4ae85e0a8",
+    "PreferredLanguage": 1,
+    "GpsLocation": {
+      "Latitude": 0.889947799448831,
+      "Longitude": 0.34008003507744522
+    },
+    "MobilePhoneNumbers": [
+      "29640226"
+    ],
+    "Email": "Vanessa_Wallace@mail.com"
+  },
+  {
+    "DataCollectorId": "00000000-0000-0000-0000-000000000000",
+    "FullName": "Billie Mclaughlin",
+    "DisplayName": "Billie_MclaughlinDISP",
+    "YearOfBirth": 1962,
+    "Sex": 2,
+    "NationalSociety": "36109856-68a9-45ed-9bac-4a394af5c4f7",
+    "PreferredLanguage": 1,
+    "GpsLocation": {
+      "Latitude": 0.30775135537039083,
+      "Longitude": 0.1754339077395545
+    },
+    "MobilePhoneNumbers": [
+      "9635389"
+    ],
+    "Email": "Billie_Mclaughlin@mail.com"
+  }
+]

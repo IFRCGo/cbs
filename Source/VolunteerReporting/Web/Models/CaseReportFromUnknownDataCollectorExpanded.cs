@@ -4,6 +4,7 @@ using System;
 
 namespace Web.Models
 {
+    //TODO: Don't really need this anymore because of CaseReportForListing?
     public class CaseReportFromUnknownDataCollectorExpanded
     {
         public Guid Id { get; private set; }

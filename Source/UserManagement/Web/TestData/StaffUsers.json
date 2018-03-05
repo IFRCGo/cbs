@@ -1,0 +1,2088 @@
+[
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer0",
+    "DisplayName": "DataConsumer0 Display name",
+    "Email": "DataConsumer0@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.09323380239924127,
+      "Longitude": 0.26243619958983555
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin0",
+    "DisplayName": "Admin0 Display name",
+    "Email": "Admin0@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator0",
+    "DisplayName": "DataCoordinator0 Display name",
+    "Email": "DataCoordinator0@mail.com",
+    "YearOfBirth": 1940,
+    "Sex": 2,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.3580325317373651,
+      "Longitude": 0.2188519612973798
+    },
+    "MobilePhoneNumber": [
+      "28114434"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin1",
+    "DisplayName": "Admin1 Display name",
+    "Email": "Admin1@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin2",
+    "DisplayName": "Admin2 Display name",
+    "Email": "Admin2@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer1",
+    "DisplayName": "DataConsumer1 Display name",
+    "Email": "DataConsumer1@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.95001497117337541,
+      "Longitude": 0.51385259326261123
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator0",
+    "DisplayName": "SystemCoordinator0 Display name",
+    "Email": "SystemCoordinator0@mail.com",
+    "YearOfBirth": 1995,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.33417608045701686,
+      "Longitude": 0.23784098552439409
+    },
+    "MobilePhoneNumber": [
+      "55369658"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator1",
+    "DisplayName": "SystemCoordinator1 Display name",
+    "Email": "SystemCoordinator1@mail.com",
+    "YearOfBirth": 1914,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.69998301132581342,
+      "Longitude": 0.8098935945005592
+    },
+    "MobilePhoneNumber": [
+      "84930098"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner0",
+    "DisplayName": "DataOwner0 Display name",
+    "Email": "DataOwner0@mail.com",
+    "YearOfBirth": 2005,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": "Position0",
+    "DutyStation": "Duty Station0",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.65516033286934738,
+      "Longitude": 0.38586447312769689
+    },
+    "MobilePhoneNumber": [
+      "53191526"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin3",
+    "DisplayName": "Admin3 Display name",
+    "Email": "Admin3@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier0",
+    "DisplayName": "DataVerifier0 Display name",
+    "Email": "DataVerifier0@mail.com",
+    "YearOfBirth": 1900,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.58250130181317283,
+      "Longitude": 0.83653167208495161
+    },
+    "MobilePhoneNumber": [
+      "76343401"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier1",
+    "DisplayName": "DataVerifier1 Display name",
+    "Email": "DataVerifier1@mail.com",
+    "YearOfBirth": 1966,
+    "Sex": 2,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.7302777453932342,
+      "Longitude": 0.15703476507078612
+    },
+    "MobilePhoneNumber": [
+      "86151333"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer2",
+    "DisplayName": "DataConsumer2 Display name",
+    "Email": "DataConsumer2@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.34145449117825111,
+      "Longitude": 0.58116133351864352
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator2",
+    "DisplayName": "SystemCoordinator2 Display name",
+    "Email": "SystemCoordinator2@mail.com",
+    "YearOfBirth": 1935,
+    "Sex": 2,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.18265409357038051,
+      "Longitude": 0.95069407110600457
+    },
+    "MobilePhoneNumber": [
+      "55200018"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner1",
+    "DisplayName": "DataOwner1 Display name",
+    "Email": "DataOwner1@mail.com",
+    "YearOfBirth": 2017,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": "Position1",
+    "DutyStation": "Duty Station1",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.609330028113597,
+      "Longitude": 0.49291702429434148
+    },
+    "MobilePhoneNumber": [
+      "27714129"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer3",
+    "DisplayName": "DataConsumer3 Display name",
+    "Email": "DataConsumer3@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.040865798034177066,
+      "Longitude": 0.93654898877094916
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator1",
+    "DisplayName": "DataCoordinator1 Display name",
+    "Email": "DataCoordinator1@mail.com",
+    "YearOfBirth": 1976,
+    "Sex": 2,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.24660989094833372,
+      "Longitude": 0.014610872145095315
+    },
+    "MobilePhoneNumber": [
+      "9645396"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator3",
+    "DisplayName": "SystemCoordinator3 Display name",
+    "Email": "SystemCoordinator3@mail.com",
+    "YearOfBirth": 1917,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.69973903507913415,
+      "Longitude": 0.42057592534486948
+    },
+    "MobilePhoneNumber": [
+      "22665623"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer4",
+    "DisplayName": "DataConsumer4 Display name",
+    "Email": "DataConsumer4@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.885837600978947,
+      "Longitude": 0.21143383542608182
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer5",
+    "DisplayName": "DataConsumer5 Display name",
+    "Email": "DataConsumer5@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.34331485784766957,
+      "Longitude": 0.56446770232378862
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator4",
+    "DisplayName": "SystemCoordinator4 Display name",
+    "Email": "SystemCoordinator4@mail.com",
+    "YearOfBirth": 1976,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.58437204248475472,
+      "Longitude": 0.53173668055410339
+    },
+    "MobilePhoneNumber": [
+      "99983202"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator2",
+    "DisplayName": "DataCoordinator2 Display name",
+    "Email": "DataCoordinator2@mail.com",
+    "YearOfBirth": 1907,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.02430909174695103,
+      "Longitude": 0.93604420262204679
+    },
+    "MobilePhoneNumber": [
+      "93608318"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner2",
+    "DisplayName": "DataOwner2 Display name",
+    "Email": "DataOwner2@mail.com",
+    "YearOfBirth": 1909,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": "Position2",
+    "DutyStation": "Duty Station2",
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.70104815051939717,
+      "Longitude": 0.90959099303446289
+    },
+    "MobilePhoneNumber": [
+      "7234109"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner3",
+    "DisplayName": "DataOwner3 Display name",
+    "Email": "DataOwner3@mail.com",
+    "YearOfBirth": 2016,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": "Position3",
+    "DutyStation": "Duty Station3",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.30483043533974813,
+      "Longitude": 0.081937217657425079
+    },
+    "MobilePhoneNumber": [
+      "20002199"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer6",
+    "DisplayName": "DataConsumer6 Display name",
+    "Email": "DataConsumer6@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.89366315486545822,
+      "Longitude": 0.43233622118473808
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier2",
+    "DisplayName": "DataVerifier2 Display name",
+    "Email": "DataVerifier2@mail.com",
+    "YearOfBirth": 1929,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.49923602654563076,
+      "Longitude": 0.045701009708317468
+    },
+    "MobilePhoneNumber": [
+      "19686817"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin4",
+    "DisplayName": "Admin4 Display name",
+    "Email": "Admin4@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer7",
+    "DisplayName": "DataConsumer7 Display name",
+    "Email": "DataConsumer7@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.94975440201803785,
+      "Longitude": 0.75588761025848217
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator3",
+    "DisplayName": "DataCoordinator3 Display name",
+    "Email": "DataCoordinator3@mail.com",
+    "YearOfBirth": 1931,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.11655676882553695,
+      "Longitude": 0.21135672424517418
+    },
+    "MobilePhoneNumber": [
+      "59177663"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator4",
+    "DisplayName": "DataCoordinator4 Display name",
+    "Email": "DataCoordinator4@mail.com",
+    "YearOfBirth": 1901,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.3492075900310686,
+      "Longitude": 0.14177053288639083
+    },
+    "MobilePhoneNumber": [
+      "50339433"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator5",
+    "DisplayName": "DataCoordinator5 Display name",
+    "Email": "DataCoordinator5@mail.com",
+    "YearOfBirth": 1905,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.70979018635572411,
+      "Longitude": 0.95398953461739677
+    },
+    "MobilePhoneNumber": [
+      "99900220"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner4",
+    "DisplayName": "DataOwner4 Display name",
+    "Email": "DataOwner4@mail.com",
+    "YearOfBirth": 2003,
+    "Sex": 2,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": "Position4",
+    "DutyStation": "Duty Station4",
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.2052737950371922,
+      "Longitude": 0.96922754308638515
+    },
+    "MobilePhoneNumber": [
+      "69974936"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer8",
+    "DisplayName": "DataConsumer8 Display name",
+    "Email": "DataConsumer8@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.91788430647826025,
+      "Longitude": 0.5237272216583263
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier3",
+    "DisplayName": "DataVerifier3 Display name",
+    "Email": "DataVerifier3@mail.com",
+    "YearOfBirth": 1980,
+    "Sex": 2,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.13257194595996846,
+      "Longitude": 0.33362439336889627
+    },
+    "MobilePhoneNumber": [
+      "86998704"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator5",
+    "DisplayName": "SystemCoordinator5 Display name",
+    "Email": "SystemCoordinator5@mail.com",
+    "YearOfBirth": 1906,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.90733435792258676,
+      "Longitude": 0.73267760627562073
+    },
+    "MobilePhoneNumber": [
+      "80143466"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin5",
+    "DisplayName": "Admin5 Display name",
+    "Email": "Admin5@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier4",
+    "DisplayName": "DataVerifier4 Display name",
+    "Email": "DataVerifier4@mail.com",
+    "YearOfBirth": 2001,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.0066418144882851348,
+      "Longitude": 0.87811824347736234
+    },
+    "MobilePhoneNumber": [
+      "48763026"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner5",
+    "DisplayName": "DataOwner5 Display name",
+    "Email": "DataOwner5@mail.com",
+    "YearOfBirth": 1917,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": "Position5",
+    "DutyStation": "Duty Station5",
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.11881285306010994,
+      "Longitude": 0.19459102824078456
+    },
+    "MobilePhoneNumber": [
+      "36011360"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin6",
+    "DisplayName": "Admin6 Display name",
+    "Email": "Admin6@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier5",
+    "DisplayName": "DataVerifier5 Display name",
+    "Email": "DataVerifier5@mail.com",
+    "YearOfBirth": 1968,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.16739656364889655,
+      "Longitude": 0.82037528223375566
+    },
+    "MobilePhoneNumber": [
+      "50739960"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator6",
+    "DisplayName": "DataCoordinator6 Display name",
+    "Email": "DataCoordinator6@mail.com",
+    "YearOfBirth": 1935,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.37117556406705432,
+      "Longitude": 0.58973615271492685
+    },
+    "MobilePhoneNumber": [
+      "66468763"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer9",
+    "DisplayName": "DataConsumer9 Display name",
+    "Email": "DataConsumer9@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.1242558616792112,
+      "Longitude": 0.66874615553242445
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator6",
+    "DisplayName": "SystemCoordinator6 Display name",
+    "Email": "SystemCoordinator6@mail.com",
+    "YearOfBirth": 1976,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.38638797839469646,
+      "Longitude": 0.28498840671264958
+    },
+    "MobilePhoneNumber": [
+      "43433550"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator7",
+    "DisplayName": "SystemCoordinator7 Display name",
+    "Email": "SystemCoordinator7@mail.com",
+    "YearOfBirth": 1964,
+    "Sex": 2,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.4232674932215677,
+      "Longitude": 0.70778301251483289
+    },
+    "MobilePhoneNumber": [
+      "73002440"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier6",
+    "DisplayName": "DataVerifier6 Display name",
+    "Email": "DataVerifier6@mail.com",
+    "YearOfBirth": 2005,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.64234726393704644,
+      "Longitude": 0.71371971150567737
+    },
+    "MobilePhoneNumber": [
+      "25339000"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer10",
+    "DisplayName": "DataConsumer10 Display name",
+    "Email": "DataConsumer10@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.99577388539713518,
+      "Longitude": 0.45412520806031542
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator8",
+    "DisplayName": "SystemCoordinator8 Display name",
+    "Email": "SystemCoordinator8@mail.com",
+    "YearOfBirth": 1902,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.93227656229039491,
+      "Longitude": 0.22702744893125607
+    },
+    "MobilePhoneNumber": [
+      "20929775"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator9",
+    "DisplayName": "SystemCoordinator9 Display name",
+    "Email": "SystemCoordinator9@mail.com",
+    "YearOfBirth": 1963,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.75071869266718561,
+      "Longitude": 0.68652275516023986
+    },
+    "MobilePhoneNumber": [
+      "13555344"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner6",
+    "DisplayName": "DataOwner6 Display name",
+    "Email": "DataOwner6@mail.com",
+    "YearOfBirth": 2004,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": "Position6",
+    "DutyStation": "Duty Station6",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.22832742623441268,
+      "Longitude": 0.1695039557151049
+    },
+    "MobilePhoneNumber": [
+      "10819945"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator10",
+    "DisplayName": "SystemCoordinator10 Display name",
+    "Email": "SystemCoordinator10@mail.com",
+    "YearOfBirth": 1924,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.43856162784554142,
+      "Longitude": 0.93302533819015387
+    },
+    "MobilePhoneNumber": [
+      "96528526"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer11",
+    "DisplayName": "DataConsumer11 Display name",
+    "Email": "DataConsumer11@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.39283398463988395,
+      "Longitude": 0.75392869848475264
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer12",
+    "DisplayName": "DataConsumer12 Display name",
+    "Email": "DataConsumer12@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.48075556358357685,
+      "Longitude": 0.52072666050900085
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier7",
+    "DisplayName": "DataVerifier7 Display name",
+    "Email": "DataVerifier7@mail.com",
+    "YearOfBirth": 1947,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.11493179905923633,
+      "Longitude": 0.89162857126986073
+    },
+    "MobilePhoneNumber": [
+      "2719695"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier8",
+    "DisplayName": "DataVerifier8 Display name",
+    "Email": "DataVerifier8@mail.com",
+    "YearOfBirth": 1953,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.87050441134278866,
+      "Longitude": 0.83006713671147225
+    },
+    "MobilePhoneNumber": [
+      "20042330"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier9",
+    "DisplayName": "DataVerifier9 Display name",
+    "Email": "DataVerifier9@mail.com",
+    "YearOfBirth": 1956,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.64933213994341532,
+      "Longitude": 0.63450247358274758
+    },
+    "MobilePhoneNumber": [
+      "92641818"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier10",
+    "DisplayName": "DataVerifier10 Display name",
+    "Email": "DataVerifier10@mail.com",
+    "YearOfBirth": 1922,
+    "Sex": 2,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.40119757661651706,
+      "Longitude": 0.41393657001384376
+    },
+    "MobilePhoneNumber": [
+      "73422753"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner7",
+    "DisplayName": "DataOwner7 Display name",
+    "Email": "DataOwner7@mail.com",
+    "YearOfBirth": 1987,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": "Position7",
+    "DutyStation": "Duty Station7",
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.17880074036251789,
+      "Longitude": 0.12485066155197595
+    },
+    "MobilePhoneNumber": [
+      "34807342"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier11",
+    "DisplayName": "DataVerifier11 Display name",
+    "Email": "DataVerifier11@mail.com",
+    "YearOfBirth": 1948,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.19241067310441781,
+      "Longitude": 0.39062466676841706
+    },
+    "MobilePhoneNumber": [
+      "28346138"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator7",
+    "DisplayName": "DataCoordinator7 Display name",
+    "Email": "DataCoordinator7@mail.com",
+    "YearOfBirth": 1957,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.8456624275286041,
+      "Longitude": 0.27495421388882874
+    },
+    "MobilePhoneNumber": [
+      "66285669"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer13",
+    "DisplayName": "DataConsumer13 Display name",
+    "Email": "DataConsumer13@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.70756999389620967,
+      "Longitude": 0.99410846037515832
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator11",
+    "DisplayName": "SystemCoordinator11 Display name",
+    "Email": "SystemCoordinator11@mail.com",
+    "YearOfBirth": 1912,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.45709745420939168,
+      "Longitude": 0.027185196069621106
+    },
+    "MobilePhoneNumber": [
+      "59771431"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator12",
+    "DisplayName": "SystemCoordinator12 Display name",
+    "Email": "SystemCoordinator12@mail.com",
+    "YearOfBirth": 1981,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.51285483711997737,
+      "Longitude": 0.63459069311366911
+    },
+    "MobilePhoneNumber": [
+      "57732945"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator8",
+    "DisplayName": "DataCoordinator8 Display name",
+    "Email": "DataCoordinator8@mail.com",
+    "YearOfBirth": 1927,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.24673169955924698,
+      "Longitude": 0.4589295338182382
+    },
+    "MobilePhoneNumber": [
+      "15657644"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer14",
+    "DisplayName": "DataConsumer14 Display name",
+    "Email": "DataConsumer14@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.33486100488103043,
+      "Longitude": 0.19650515783415415
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer15",
+    "DisplayName": "DataConsumer15 Display name",
+    "Email": "DataConsumer15@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.74973354942618564,
+      "Longitude": 0.64050343895354467
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer16",
+    "DisplayName": "DataConsumer16 Display name",
+    "Email": "DataConsumer16@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.61211771406797588,
+      "Longitude": 0.30803795312905591
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier12",
+    "DisplayName": "DataVerifier12 Display name",
+    "Email": "DataVerifier12@mail.com",
+    "YearOfBirth": 1963,
+    "Sex": 2,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.68574706077843306,
+      "Longitude": 0.38804337959179813
+    },
+    "MobilePhoneNumber": [
+      "69292727"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 3,
+    "FullName": "DataCoordinator9",
+    "DisplayName": "DataCoordinator9 Display name",
+    "Email": "DataCoordinator9@mail.com",
+    "YearOfBirth": 1958,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.085527236613224839,
+      "Longitude": 0.29898216542740452
+    },
+    "MobilePhoneNumber": [
+      "82480831"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator13",
+    "DisplayName": "SystemCoordinator13 Display name",
+    "Email": "SystemCoordinator13@mail.com",
+    "YearOfBirth": 1937,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.80570482407030874,
+      "Longitude": 0.5054472216896001
+    },
+    "MobilePhoneNumber": [
+      "53672878"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer17",
+    "DisplayName": "DataConsumer17 Display name",
+    "Email": "DataConsumer17@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.47800539642479523,
+      "Longitude": 0.94068148682857
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin7",
+    "DisplayName": "Admin7 Display name",
+    "Email": "Admin7@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator14",
+    "DisplayName": "SystemCoordinator14 Display name",
+    "Email": "SystemCoordinator14@mail.com",
+    "YearOfBirth": 1982,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.83404044287001733,
+      "Longitude": 0.81499556583119348
+    },
+    "MobilePhoneNumber": [
+      "86901780"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin8",
+    "DisplayName": "Admin8 Display name",
+    "Email": "Admin8@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier13",
+    "DisplayName": "DataVerifier13 Display name",
+    "Email": "DataVerifier13@mail.com",
+    "YearOfBirth": 1953,
+    "Sex": 2,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.15764881770948358,
+      "Longitude": 0.69449748410587087
+    },
+    "MobilePhoneNumber": [
+      "11097792"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner8",
+    "DisplayName": "DataOwner8 Display name",
+    "Email": "DataOwner8@mail.com",
+    "YearOfBirth": 1919,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": "Position8",
+    "DutyStation": "Duty Station8",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.40077691171354468,
+      "Longitude": 0.8807789612937621
+    },
+    "MobilePhoneNumber": [
+      "89357937"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator15",
+    "DisplayName": "SystemCoordinator15 Display name",
+    "Email": "SystemCoordinator15@mail.com",
+    "YearOfBirth": 1949,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.42886228041204733,
+      "Longitude": 0.72352408558294368
+    },
+    "MobilePhoneNumber": [
+      "78427014"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier14",
+    "DisplayName": "DataVerifier14 Display name",
+    "Email": "DataVerifier14@mail.com",
+    "YearOfBirth": 1905,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.33294401426471026,
+      "Longitude": 0.30770848100432591
+    },
+    "MobilePhoneNumber": [
+      "543276"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator16",
+    "DisplayName": "SystemCoordinator16 Display name",
+    "Email": "SystemCoordinator16@mail.com",
+    "YearOfBirth": 1917,
+    "Sex": 1,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.30919208438563722,
+      "Longitude": 0.43049364137951918
+    },
+    "MobilePhoneNumber": [
+      "1575626"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin9",
+    "DisplayName": "Admin9 Display name",
+    "Email": "Admin9@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer18",
+    "DisplayName": "DataConsumer18 Display name",
+    "Email": "DataConsumer18@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.10579437162065616,
+      "Longitude": 0.054097729294606357
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin10",
+    "DisplayName": "Admin10 Display name",
+    "Email": "Admin10@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner9",
+    "DisplayName": "DataOwner9 Display name",
+    "Email": "DataOwner9@mail.com",
+    "YearOfBirth": 1969,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": "Position9",
+    "DutyStation": "Duty Station9",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.988660790486569,
+      "Longitude": 0.59325156993849737
+    },
+    "MobilePhoneNumber": [
+      "48749863"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator17",
+    "DisplayName": "SystemCoordinator17 Display name",
+    "Email": "SystemCoordinator17@mail.com",
+    "YearOfBirth": 1903,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.91511246045823791,
+      "Longitude": 0.55929583942484851
+    },
+    "MobilePhoneNumber": [
+      "28732395"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin11",
+    "DisplayName": "Admin11 Display name",
+    "Email": "Admin11@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin12",
+    "DisplayName": "Admin12 Display name",
+    "Email": "Admin12@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin13",
+    "DisplayName": "Admin13 Display name",
+    "Email": "Admin13@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 4,
+    "FullName": "SystemCoordinator18",
+    "DisplayName": "SystemCoordinator18 Display name",
+    "Email": "SystemCoordinator18@mail.com",
+    "YearOfBirth": 1922,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.784428248547217,
+      "Longitude": 0.84064305659413485
+    },
+    "MobilePhoneNumber": [
+      "48054667"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer19",
+    "DisplayName": "DataConsumer19 Display name",
+    "Email": "DataConsumer19@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.0221963347970491,
+      "Longitude": 0.13139115047240219
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner10",
+    "DisplayName": "DataOwner10 Display name",
+    "Email": "DataOwner10@mail.com",
+    "YearOfBirth": 1961,
+    "Sex": 1,
+    "NationalSociety": "23c8ccef-cad1-4751-81ab-3560b06dcd9a",
+    "Position": "Position10",
+    "DutyStation": "Duty Station10",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.26714620099735736,
+      "Longitude": 0.016771969858916463
+    },
+    "MobilePhoneNumber": [
+      "73603667"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier15",
+    "DisplayName": "DataVerifier15 Display name",
+    "Email": "DataVerifier15@mail.com",
+    "YearOfBirth": 1941,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.84792360889163032,
+      "Longitude": 0.10064380434371709
+    },
+    "MobilePhoneNumber": [
+      "38901975"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer20",
+    "DisplayName": "DataConsumer20 Display name",
+    "Email": "DataConsumer20@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.012204619595876253,
+      "Longitude": 0.98260906663844783
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin14",
+    "DisplayName": "Admin14 Display name",
+    "Email": "Admin14@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier16",
+    "DisplayName": "DataVerifier16 Display name",
+    "Email": "DataVerifier16@mail.com",
+    "YearOfBirth": 1946,
+    "Sex": 2,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.20423254193935195,
+      "Longitude": 0.75260851334436263
+    },
+    "MobilePhoneNumber": [
+      "695196"
+    ],
+    "AssignedNationalSocieties": [
+      "7d4215c6-e559-467a-98d6-952f184a3f0c"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 1,
+    "FullName": "DataVerifier17",
+    "DisplayName": "DataVerifier17 Display name",
+    "Email": "DataVerifier17@mail.com",
+    "YearOfBirth": 1900,
+    "Sex": 1,
+    "NationalSociety": "91f90cca-a595-4538-9f76-703ac77420f7",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.49042926751562826,
+      "Longitude": 0.9955080803462808
+    },
+    "MobilePhoneNumber": [
+      "1919489"
+    ],
+    "AssignedNationalSocieties": [
+      "23c8ccef-cad1-4751-81ab-3560b06dcd9a"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin15",
+    "DisplayName": "Admin15 Display name",
+    "Email": "Admin15@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 2,
+    "FullName": "DataConsumer21",
+    "DisplayName": "DataConsumer21 Display name",
+    "Email": "DataConsumer21@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.88926552603452724,
+      "Longitude": 0.53765574681463457
+    },
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner11",
+    "DisplayName": "DataOwner11 Display name",
+    "Email": "DataOwner11@mail.com",
+    "YearOfBirth": 1911,
+    "Sex": 2,
+    "NationalSociety": "7d4215c6-e559-467a-98d6-952f184a3f0c",
+    "Position": "Position11",
+    "DutyStation": "Duty Station11",
+    "PreferredLanguage": 1,
+    "Location": {
+      "Latitude": 0.73999925225041774,
+      "Longitude": 0.091526915361884481
+    },
+    "MobilePhoneNumber": [
+      "70461930"
+    ],
+    "AssignedNationalSocieties": [
+      "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc"
+    ]
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin16",
+    "DisplayName": "Admin16 Display name",
+    "Email": "Admin16@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 0,
+    "FullName": "Admin17",
+    "DisplayName": "Admin17 Display name",
+    "Email": "Admin17@mail.com",
+    "YearOfBirth": 0,
+    "Sex": 0,
+    "NationalSociety": "00000000-0000-0000-0000-000000000000",
+    "Position": null,
+    "DutyStation": null,
+    "PreferredLanguage": 0,
+    "Location": null,
+    "MobilePhoneNumber": null,
+    "AssignedNationalSocieties": null
+  },
+  {
+    "StaffUserId": "00000000-0000-0000-0000-000000000000",
+    "Role": 5,
+    "FullName": "DataOwner12",
+    "DisplayName": "DataOwner12 Display name",
+    "Email": "DataOwner12@mail.com",
+    "YearOfBirth": 1939,
+    "Sex": 1,
+    "NationalSociety": "459e8de5-a778-46e6-b8d1-aa3fdd1c0cfc",
+    "Position": "Position12",
+    "DutyStation": "Duty Station12",
+    "PreferredLanguage": 0,
+    "Location": {
+      "Latitude": 0.88526521058998309,
+      "Longitude": 0.81253942791956446
+    },
+    "MobilePhoneNumber": [
+      "98342815"
+    ],
+    "AssignedNationalSocieties": [
+      "91f90cca-a595-4538-9f76-703ac77420f7"
+    ]
+  }
+]

@@ -2,7 +2,7 @@ namespace Concepts
 {
     public enum Language
     {
-        English,
+        English = 0,
         French,
     }
 }

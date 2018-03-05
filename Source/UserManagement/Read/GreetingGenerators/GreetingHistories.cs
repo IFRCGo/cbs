@@ -1,11 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 
 namespace Read.GreetingGenerators
 {
     public class GreetingHistories : IGreetingHistories
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<GreetingHistory> _collection;
+        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<GreetingHistory> _collection;
 
         public GreetingHistories(IMongoDatabase database)
         {
@@ -13,21 +16,66 @@ namespace Read.GreetingGenerators
             _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
         }
 
+        public IEnumerable<GreetingHistory> GetAll()
+        {
+            return _collection.Find(_ => true).ToList();
+        }
+
+        public async Task<IEnumerable<GreetingHistory>> GetAllAsync()
+        {
+            return (await _collection.FindAsync(_ => true)).ToList();
+        }
+
+        public GreetingHistory GetById(Guid id)
+        {
+            return _collection.Find(d => d.Id == id).SingleOrDefault();
+        }
+
+        public async Task<GreetingHistory> GetByIdAsync(Guid id)
+        {
+            return (await _collection.FindAsync(d => d.Id == id)).SingleOrDefault();
+        }
+
         public GreetingHistory GetByPhoneNumber(string phoneNumber)
         {
             return _collection.Find(d => d.PhoneNumber == phoneNumber).SingleOrDefault();
         }
 
-        public void RemovePhoneNumber(string phoneNumber)
+        public async Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber)
         {
-            var filter = Builders<GreetingHistory>.Filter.Eq(c => c.PhoneNumber, phoneNumber);
-            _collection.DeleteOne(filter);
+            return (await _collection.FindAsync(d => d.PhoneNumber == phoneNumber)).SingleOrDefault();
+        }
+
+        public void Remove(Guid id)
+        {
+            _collection.DeleteOne(g => g.Id == id);
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            await _collection.DeleteOneAsync(g => g.Id == id);
+        }
+
+        public void Remove(string phoneNumber)
+        {
+            _collection.DeleteOne(g => g.PhoneNumber == phoneNumber);
+        }
+
+        public async Task RemoveAsync(string phoneNumber)
+        {
+            await _collection.DeleteOneAsync(g => g.PhoneNumber == phoneNumber);
         }
 
         public void Save(GreetingHistory greetingHistory)
         {
-            var filter = Builders<GreetingHistory>.Filter.Eq(c => c.Id, greetingHistory.Id);
-            _collection.ReplaceOne(filter, greetingHistory, new UpdateOptions { IsUpsert = true });
+            _collection.ReplaceOne(g => g.Id == greetingHistory.Id, greetingHistory,
+                new UpdateOptions { IsUpsert = true });
+        }
+
+        public async Task SaveAsync(GreetingHistory greetingHistory)
+        {
+            await _collection.ReplaceOneAsync(g => g.Id == greetingHistory.Id, greetingHistory, 
+                new UpdateOptions { IsUpsert = true });
         }
     }
 }
