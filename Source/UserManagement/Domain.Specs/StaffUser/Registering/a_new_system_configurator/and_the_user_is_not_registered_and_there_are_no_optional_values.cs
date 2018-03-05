@@ -4,6 +4,7 @@ using Domain.Specs.StaffUser.Roles.UserInfo.given;
 using Domain.StaffUser.Registering;
 using Domain.StaffUser.Roles;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 using Machine.Specifications;
 
 

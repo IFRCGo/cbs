@@ -1,5 +1,4 @@
 using System;
-using Concepts;
 using doLittle.Events;
 
 namespace Events.DataCollector

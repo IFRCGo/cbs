@@ -6,6 +6,7 @@ using Concepts;
 using Domain.Specs.StaffUser.Roles.UserInfo.given;
 using Domain.StaffUser.Registering;
 using Domain.StaffUser.Roles;
+using Events.StaffUser.Registration;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 {

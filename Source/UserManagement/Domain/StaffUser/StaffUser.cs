@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Domain.StaffUser.Registering;
+using Events.StaffUser.Registration;
 
 namespace Domain.StaffUser
 {
@@ -96,14 +97,14 @@ namespace Domain.StaffUser
         private void RegisterSystemConfigurator(Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
-            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new SystemConfiguratorRegistered(EventSourceId,nationalSociety, (int)language, sex_, year));
         }
 
         private void RegisterDataCoordinator(Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
-            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new DataCoordinatorRegistered(EventSourceId,nationalSociety, (int)language, sex_, year));
         }
 
@@ -111,7 +112,7 @@ namespace Domain.StaffUser
                                         Location location, string position, string dutyStation)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
-            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new DataOwnerRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
                                             location.Latitude, location.Longitude, position, dutyStation));
         }
@@ -120,7 +121,7 @@ namespace Domain.StaffUser
                                                 Location location)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
-            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new StaffDataVerifierRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
                                                     location.Latitude, location.Longitude));
         }
@@ -129,7 +130,7 @@ namespace Domain.StaffUser
                                         Location location)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
-            var year = yearOfBirth.HasValue ? yearOfBirth.Value : Constants.NOT_KNOWN;
+            var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new StaffDataConsumerRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
                                             location.Latitude, location.Longitude));
         }

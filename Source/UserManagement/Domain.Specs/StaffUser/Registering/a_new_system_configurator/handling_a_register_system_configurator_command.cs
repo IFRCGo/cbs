@@ -5,6 +5,7 @@ using Domain.StaffUser.Registering;
 using Events.StaffUser;
 using Moq;
 using System;
+using Events.StaffUser.Registration;
 using It = Machine.Specifications.It;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator

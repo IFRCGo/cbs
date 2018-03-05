@@ -15,10 +15,11 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static RegisterNewSystemConfigurator cmd;
         static SystemConfigurator role;
 
-        Establish context = () =>
+        private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
+            role = cmd.Role;
             sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered

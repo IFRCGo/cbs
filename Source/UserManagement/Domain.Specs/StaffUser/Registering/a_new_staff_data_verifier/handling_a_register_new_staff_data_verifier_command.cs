@@ -8,6 +8,7 @@ using Moq;
 using System;
 using It = Machine.Specifications.It;
 using Concepts;
+using Events.StaffUser.Registration;
 
 namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
 {

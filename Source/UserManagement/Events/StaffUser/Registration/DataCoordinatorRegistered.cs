@@ -1,7 +1,7 @@
 using System;
 using doLittle.Events;
 
-namespace Events.StaffUser
+namespace Events.StaffUser.Registration
 {
     public class DataCoordinatorRegistered : IEvent 
     {
