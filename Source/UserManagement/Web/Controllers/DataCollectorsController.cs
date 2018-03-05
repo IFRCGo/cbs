@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doLittle.Domain;
-using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollector.UpdateDataCollector;
+using Domain.DataCollector.Registering;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using Domain.DataCollector;
 using MongoDB.Driver;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,7 +41,7 @@ namespace Web.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post([FromBody] AddDataCollector command)
+        public IActionResult Post([FromBody] RegisterDataCollector command)
         {
             //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
             command.DataCollectorId = Guid.NewGuid();

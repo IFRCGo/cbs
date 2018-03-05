@@ -8,14 +8,23 @@ namespace Events.DataCollector
     {
         public Guid DataCollectorId { get; set; }
 
-        public string FullName { get; set; }
-        public string DisplayName { get; set; }
-        public int YearOfBirth { get; set; }
-        public int Sex { get; set; } //Do we need Transgender / Other?
-        public Guid NationalSociety { get; set; }
-        public int PreferredLanguage { get; set; }
-        public double LocationLongitude { get; set; }
-        public double LocationLatitude { get; set; }
-        public string Email { get; set; }
+        public string FullName { get; }
+        public string DisplayName { get; }
+        public Guid NationalSociety { get; }
+        public int PreferredLanguage { get; }
+        public double LocationLongitude { get; }
+        public double LocationLatitude { get; }
+
+        public DataCollectorUpdated(Guid dataCollectorId, string fullName, string displayName, 
+            Guid nationalSociety, int preferredLanguage, double locationLongitude, double locationLatitude)
+        {
+            DataCollectorId = dataCollectorId;
+            FullName = fullName;
+            DisplayName = displayName;
+            NationalSociety = nationalSociety;
+            PreferredLanguage = preferredLanguage;
+            LocationLongitude = locationLongitude;
+            LocationLatitude = locationLatitude;
+        }
     }
 }

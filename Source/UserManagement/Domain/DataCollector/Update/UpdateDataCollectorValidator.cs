@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Domain.DataCollector.Update;
 using FluentValidation;
 
@@ -8,20 +10,43 @@ namespace Domain.DataCollector.Update
     {
         public UpdateDataCollectorValidator()
         {
-            CascadeMode = CascadeMode.StopOnFirstFailure;
-
-            //TODO: Add input validation rules
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("DataCollectorId cannot be emppty")
-                .NotEqual(Guid.Empty).WithMessage("DataCollectorId cannot be Guid.Empty");
+                .NotEmpty().WithMessage("Data Collector Id must be set");
 
-            //TODO: We have to decide how to deal with updating.
-            // 1) Should the user get a form he/she can fill out which contains all the information
-            // of that datacollector in the form as default values? Or 2), should we change only 
-            // the fields which are provided?
-            // I would say that option 1) is better since then we don't have to have null-values in the command 
-            // and event, and we don't need to check the fields for null.
-            
+            RuleFor(_ => _.FullName)
+                .NotEmpty()
+                .WithMessage("Full Name is not correct - Has to be defined");
+
+            RuleFor(_ => _.DisplayName)
+                .NotEmpty()
+                .WithMessage("Display Name is not correct - Has to be defined");
+
+            //RuleFor(_ => _.Email)
+            //    .Cascade(CascadeMode.StopOnFirstFailure)
+            //    .NotEmpty().WithMessage("Email is required.")
+            //    .EmailAddress().WithMessage("Email address must be valid");
+
+            RuleFor(_ => _.GpsLocation)
+                .NotNull().WithMessage("Location must be provided");
+            //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
+
+            RuleFor(_ => _.NationalSociety)
+                .NotEmpty().WithMessage("A National Society is required");
+
+            RuleFor(_ => _.PreferredLanguage)
+                .IsInEnum().WithMessage("Preferred Language is required and must be valid");
+
+            When(_ => _.PhoneNumbersAdded != null, () =>
+            {
+                RuleFor(_ => _.PhoneNumbersAdded)
+                    .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+            });
+
+            When(_ => _.PhoneNumbersRemoved != null, () =>
+            {
+                RuleFor(_ => _.PhoneNumbersAdded)
+                    .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+            });
         }
     }
 }

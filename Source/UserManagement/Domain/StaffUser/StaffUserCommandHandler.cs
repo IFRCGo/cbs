@@ -4,6 +4,7 @@ using Domain.StaffUser;
 using Domain.StaffUser.Delete;
 using Domain.StaffUser.PhoneNumber;
 using Domain.StaffUser.Update;
+using Domain.StaffUser.Add;
 
 namespace Domain.StaffUser
 {

@@ -1,23 +1,11 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Domain.DataCollectors.CommandHandlers;
-using Domain.DataCollectors.Commands;
-using Domain.StaffUser.CommandHandlers;
-using Domain.StaffUser.Commands;
+
+using Domain.DataCollector;
+using Domain.StaffUser;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
-using Read.StaffUsers;
-using Read.StaffUsers.Admin;
-using Read.StaffUsers.DataConsumer;
-using Read.StaffUsers.DataCoordinator;
-using Read.StaffUsers.DataOwner;
-using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.SystemCoordinator;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -49,59 +37,59 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-            CreateDataCollectorCommands();
-            CreateAllStaffUserCommands();
+            // CreateDataCollectorCommands();
+            // CreateAllStaffUserCommands();
         }
         
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
-            DeleteCollection<DataCollector>("DataCollector");
-            AddDataCollector[] commands;
-            try
-            {
-                commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
-                        System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
-            catch (FileNotFoundException e)
-            {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-                commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
-                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
+            // DeleteCollection<DataCollector>("DataCollector");
+            // RegisterDataCollector[] commands;
+            // try
+            // {
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+            //             System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            // }
+            // catch (FileNotFoundException e)
+            // {
+            //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+            //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            // }
 
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
-                cmd.DataCollectorId = Guid.NewGuid();
-                _dataCollectorCommandHandler.Handle(cmd);
-            }
+            // foreach (var cmd in commands)
+            // {
+            //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            //     cmd.DataCollectorId = Guid.NewGuid();
+            //     _dataCollectorCommandHandler.Handle(cmd);
+            // }
             
         }
 
         [HttpGet("allstaffusercommands")]
         public void CreateAllStaffUserCommands()
         {
-            DeleteAllStaffUserCollections();
-            AddStaffUser[] commands;
-            try
-            {
-                commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
-                    System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
-            }
-            catch (FileNotFoundException e)
-            {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-                commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
-                    System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
-            }
+            // DeleteAllStaffUserCollections();
+            // AddStaffUser[] commands;
+            // try
+            // {
+            //     commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
+            //         System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
+            // }
+            // catch (FileNotFoundException e)
+            // {
+            //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+            //     commands = JsonConvert.DeserializeObject<AddStaffUser[]>(
+            //         System.IO.File.ReadAllText("./TestData/StaffUsers.json"));
+            // }
 
-            foreach (var cmd in commands)
-            {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
-                cmd.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
-            }
+            // foreach (var cmd in commands)
+            // {
+            //     //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
+            //     cmd.StaffUserId = Guid.NewGuid();
+            //     _staffUserCommandHandler.Handle(cmd);
+            // }
 
         }
 
@@ -116,20 +104,20 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            DeleteCollection<StaffUser>("StaffUser");
-            DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            DeleteCollection<DataVerifier>("DataVerifier");
-            DeleteCollection<DataOwner>("DataOwner");
-            DeleteCollection<DataCoordinator>("DataCoordinator");
-            DeleteCollection<DataConsumer>("DataConsumer");
-            DeleteCollection<Admin>("Admin");
+            // DeleteCollection<StaffUser>("StaffUser");
+            // DeleteCollection<SystemCoordinator>("SystemCoordinator");
+            // DeleteCollection<DataVerifier>("DataVerifier");
+            // DeleteCollection<DataOwner>("DataOwner");
+            // DeleteCollection<DataCoordinator>("DataCoordinator");
+            // DeleteCollection<DataConsumer>("DataConsumer");
+            // DeleteCollection<Admin>("Admin");
 
         }
 
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteCollection<Read.DataCollectors.DataCollector>("DataCollector");
         }
 
         [HttpGet("deletegreetinghistorycollection")]
