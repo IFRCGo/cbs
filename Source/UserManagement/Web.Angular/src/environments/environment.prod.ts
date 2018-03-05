@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://cbs-usermgmt-backend'
+  api: 'http://dev.cbsrc.org/usermanagementbackend'
 };

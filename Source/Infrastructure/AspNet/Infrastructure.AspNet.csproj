@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="doLittle.Assemblies" Version="2.0.0-alpha2.69" />
@@ -26,6 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
-    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\Logging\Infrastructure.Logging.csproj" />
+    <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
+    <ProjectReference Include="..\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj" />
+    <ProjectReference Include="..\TextMessaging\Infrastructure.TextMessaging.csproj" />
   </ItemGroup>
 </Project>

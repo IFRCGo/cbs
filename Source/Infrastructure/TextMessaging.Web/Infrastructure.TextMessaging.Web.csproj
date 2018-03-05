@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\TextMessaging\Infrastructure.TextMessaging.csproj" />
+      <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
     </ItemGroup>
 
 </Project>

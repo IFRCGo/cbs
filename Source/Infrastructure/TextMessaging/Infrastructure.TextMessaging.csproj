@@ -1,16 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Infrastructure.TextMessaging</AssemblyName>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Infrastructure.TextMessaging</AssemblyName>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
-    <PackageReference Include="Autofac" Version="4.6.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
+        <PackageReference Include="doLittle.Serialization.Json" Version="2.0.0-alpha2.69" />
+        <PackageReference Include="Autofac" Version="4.6.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.0" />
+        <PackageReference Include="Microsoft.Azure.ServiceBus" Version="2.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.0" />
+    </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
+    </ItemGroup>
 </Project>
