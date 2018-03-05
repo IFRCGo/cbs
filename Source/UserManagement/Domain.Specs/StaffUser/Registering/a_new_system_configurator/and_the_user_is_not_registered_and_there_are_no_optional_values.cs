@@ -25,7 +25,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
             role = cmd.Role;
+
+            role.Sex = null;
+            role.BirthYear = null;
+            
             sut = new su.StaffUser(role.StaffUserId);
+            
         };
 
         Because of = () =>
