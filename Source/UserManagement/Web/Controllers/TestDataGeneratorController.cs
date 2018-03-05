@@ -1,28 +1,11 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Domain.DataCollector.Add;
-using Domain.DataCollector.PhoneNumber;
-using Domain.DataCollector.Update;
+
 using Domain.DataCollector;
-using Domain.StaffUser.Add;
-using Domain.StaffUser.Delete;
-using Domain.StaffUser.PhoneNumber;
-using Domain.StaffUser.Update;
 using Domain.StaffUser;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
-using Read.StaffUsers;
-using Read.StaffUsers.Admin;
-using Read.StaffUsers.DataConsumer;
-using Read.StaffUsers.DataCoordinator;
-using Read.StaffUsers.DataOwner;
-using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.SystemCoordinator;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -62,16 +45,16 @@ namespace Web.Controllers
         public void CreateDataCollectorCommands()
         {
             // DeleteCollection<DataCollector>("DataCollector");
-            // AddDataCollector[] commands;
+            // RegisterDataCollector[] commands;
             // try
             // {
-            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
             //             System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             // }
             // catch (FileNotFoundException e)
             // {
             //     TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
-            //     commands = JsonConvert.DeserializeObject<AddDataCollector[]>(
+            //     commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
             //         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             // }
 
@@ -134,7 +117,7 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteCollection<Read.DataCollectors.DataCollector>("DataCollector");
         }
 
         [HttpGet("deletegreetinghistorycollection")]

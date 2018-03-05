@@ -48,11 +48,14 @@ namespace Domain.Specs
             validationResults.Errors.Any(r => r.PropertyName == propertyName).ShouldBeTrue();
         }
 
+<<<<<<< HEAD
         public static void ShouldHaveInvalidNestedProperty(this fv.ValidationResult validationResults, string propertyName)
         {
             validationResults.Errors.Any(r => r.PropertyName.EndsWith(propertyName)).ShouldBeTrue();
         }
 
+=======
+>>>>>>> f01384643bc8b6ca00dd30fe5f9371a18f21dcaa
         public static void ShouldHaveInvalidCountOf(this fv.ValidationResult validationResults, int expected)
         {
             System.Console.WriteLine(validationResults.Errors.Count());

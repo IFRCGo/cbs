@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Concepts;
 using Domain.DataCollector.Update;
-using Domain.DataCollector.Add;
+using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 using Domain.StaffUser.PhoneNumber;
 using Newtonsoft.Json;
@@ -21,17 +21,16 @@ namespace Web.TestData
         private static int numSystemCoordinators = 0;
 
         private static readonly Random rng = new Random();
+
         private static readonly string[] names =
         {
-            "Abraham Watson", "Vanessa Wallace",
+            "Abraham Watson",
+            "Vanessa Wallace",
             "Billie Mclaughlin"
         };
 
         private static readonly Guid[] nationalSocieties =
-        {
-            Guid.NewGuid(), Guid.NewGuid(),
-            Guid.NewGuid(), Guid.NewGuid()
-        };
+            Enumerable.Range(0, 10).Select(x => Guid.NewGuid()).ToArray();
 
 
         public static void GenerateAllTestData()
@@ -42,17 +41,18 @@ namespace Web.TestData
 
         public static void GenerateCorrectAddDataCollectorCommands()
         {
-            var data = names.Select(name => new AddDataCollector
+            var languageValues = Enum.GetValues(typeof(Language));
+            var sexValues = Enum.GetValues(typeof(Sex));
+            var data = names.Select(name => new RegisterDataCollector
                 {
                     DisplayName = name.Replace(' ', '_') + "DISP",
-                    Email = name.Replace(' ', '_') + "@mail.com",
                     FullName = name,
                     GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
-                    MobilePhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()}.ToArray(),
+                    PhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()},
                     NationalSociety = Guid.NewGuid(),
-                    PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
-                    Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,
-                    YearOfBirth = rng.Next(1900, 2018)
+                    PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
+                    Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
+                    YearOfBirth = rng.Next(1920, 2018)
                 })
                 .ToList();
 
@@ -131,6 +131,8 @@ namespace Web.TestData
         // private static AddStaffUser CreateAddDataCoordinatorCommand()
         // {
         //     var name = "DataCoordinator" + numDataCoordinators;
+        //     var languageValues = Enum.GetValues(typeof(Language));
+        //     var sexValues = Enum.GetValues(typeof(Sex));
         //     var result = new AddStaffUser
         //     {
         //         Role = Role.DataCoordinator,
@@ -139,9 +141,9 @@ namespace Web.TestData
         //         Email = name + "@mail.com",
 
         //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = rng.Next(0, 2) < 1? Sex.Male : Sex.Female,
+        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
         //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
+        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
         //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
         //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
         //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
@@ -161,9 +163,9 @@ namespace Web.TestData
         //         Email = name + "@mail.com",
 
         //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,
+        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
         //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
+        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
         //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
         //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
         //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]},
@@ -185,9 +187,9 @@ namespace Web.TestData
         //         Email = name + "@mail.com",
 
         //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,
+        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
         //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
+        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
         //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
         //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
         //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}
@@ -207,9 +209,9 @@ namespace Web.TestData
         //         Email = name + "@mail.com",
 
         //         YearOfBirth = rng.Next(1900, 2018),
-        //         Sex = rng.Next(0, 2) < 1 ? Sex.Male : Sex.Female,
+        //         Sex = (Sex)sexValues.GetValue(rng.Next(sexValues.Length)),
         //         NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-        //         PreferredLanguage = rng.Next(0, 2) < 1 ? Language.English : Language.French,
+        //         PreferredLanguage = (Language)languageValues.GetValue(rng.Next(languageValues.Length)),
         //         Location = new Location(rng.NextDouble(), rng.NextDouble()),
         //         MobilePhoneNumber = new List<string> {rng.Next(00000000, 99999999).ToString()},
         //         AssignedNationalSocieties = new List<Guid> {nationalSocieties[rng.Next(nationalSocieties.Length)]}

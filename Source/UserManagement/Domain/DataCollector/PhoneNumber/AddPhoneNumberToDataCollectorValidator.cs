@@ -1,5 +1,6 @@
 using System;
-using Domain.DataCollector.Update;
+using System.Collections.Generic;
+using System.Linq;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
@@ -8,16 +9,14 @@ namespace Domain.DataCollector.PhoneNumber
     {
         public AddPhoneNumberToDataCollectorValidator()
         {
-            CascadeMode = CascadeMode.StopOnFirstFailure;
-
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("DataCollectorId cannot be empty")
-                .NotEqual(Guid.Empty).WithMessage("DataCollectorId cannot be Guid.Empty");
-
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Data Collector Id is required");
 
             RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("PhoneNumber cannot be empty");
-            // TODO: Add aditional rules here
+                .NotEmpty().WithMessage("At least one Phone Number is required");
+                //TODO: Add validation on phonenumber format
+
         }
     }
 }
