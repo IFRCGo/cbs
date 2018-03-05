@@ -1,8 +1,6 @@
 using Machine.Specifications;
 using su = Domain.StaffUser;
 using System;
-using System.Linq;
-using Events.StaffUser;
 using Events.StaffUser.Registration;
 
 
