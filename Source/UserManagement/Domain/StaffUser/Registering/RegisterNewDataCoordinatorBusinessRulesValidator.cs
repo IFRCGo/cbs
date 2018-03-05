@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using doLittle.FluentValidation.Commands;
 using FluentValidation;
 using System.Linq;
 
 namespace Domain.StaffUser.Registering
 {
     public class RegisterNewDataCoordinatorBusinessRulesValidator 
-                    : NewStaffRegistrationBusinessRulesValidator<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>
+                    : NewStaffRegistrationBusinessRulesValidator<RegisterNewDataCoordinator, Roles.DataCoordinator>
     {
         readonly CanAssignToNationalSociety _canAssignToNationalSociety;
 

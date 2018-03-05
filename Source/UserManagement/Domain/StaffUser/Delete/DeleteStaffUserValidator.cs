@@ -1,5 +1,4 @@
 using System;
-using Domain.StaffUser.Delete;
 using FluentValidation;
 
 namespace Domain.StaffUser.Delete

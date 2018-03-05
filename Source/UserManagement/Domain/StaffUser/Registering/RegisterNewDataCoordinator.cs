@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
 
-    public class RegisterNewDataCoordinator : NewStaffRegistration<Domain.StaffUser.Roles.DataCoordinator>
+    public class RegisterNewDataCoordinator : NewStaffRegistration<Roles.DataCoordinator>
     {        
         public RegisterNewDataCoordinator()
         {
-            Role = new Domain.StaffUser.Roles.DataCoordinator();
+            Role = new Roles.DataCoordinator();
         }
     }
 }

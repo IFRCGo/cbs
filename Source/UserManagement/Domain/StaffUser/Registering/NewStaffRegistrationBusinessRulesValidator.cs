@@ -6,7 +6,7 @@ namespace Domain.StaffUser.Registering
 {
     public abstract class NewStaffRegistrationBusinessRulesValidator<TCommand,TRole> : CommandBusinessValidator<TCommand> 
     where TCommand : NewStaffRegistration<TRole>
-    where TRole : Domain.StaffUser.Roles.StaffRole
+    where TRole : Roles.StaffRole
     {
         readonly StaffUserIsRegistered _isRegistered;
 

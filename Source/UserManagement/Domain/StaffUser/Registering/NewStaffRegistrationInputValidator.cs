@@ -1,16 +1,12 @@
 using doLittle.FluentValidation.Commands;
 using doLittle.Reflection;
 using FluentValidation;
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using doLittle.Collections;
 
 namespace Domain.StaffUser.Registering
 {
     public abstract class NewStaffRegistrationInputValidator<TCommand,TRole> : CommandInputValidator<TCommand> 
         where TCommand : NewStaffRegistration<TRole>
-        where TRole : Domain.StaffUser.Roles.StaffRole
+        where TRole : Roles.StaffRole
     {
 
         // private Dictionary<Type,Type> _mappings = new Dictionary<Type, Type>()

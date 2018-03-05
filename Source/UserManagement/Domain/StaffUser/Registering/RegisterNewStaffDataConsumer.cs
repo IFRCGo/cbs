@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Concepts;
-using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewStaffDataConsumer : NewStaffRegistration<Domain.StaffUser.Roles.DataConsumer>
+    public class RegisterNewStaffDataConsumer : NewStaffRegistration<Roles.DataConsumer>
     {
         public RegisterNewStaffDataConsumer()
         {
-            Role = new Domain.StaffUser.Roles.DataConsumer();
+            Role = new Roles.DataConsumer();
         }
     }
 }

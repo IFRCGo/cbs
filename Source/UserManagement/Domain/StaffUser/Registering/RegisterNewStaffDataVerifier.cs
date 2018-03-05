@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering {
 
-    public class RegisterNewStaffDataVerifier : NewStaffRegistration<Domain.StaffUser.Roles.DataVerifier>, IRequireLocation,
+    public class RegisterNewStaffDataVerifier : NewStaffRegistration<Roles.DataVerifier>, IRequireLocation,
         IRequireBirthYear, IRequirePreferredLanguage, IRequireSex, IRequireNationalSociety, IRequirePhoneNumbers 
     {
         public RegisterNewStaffDataVerifier () 
         {
-            Role = new Domain.StaffUser.Roles.DataVerifier();    
+            Role = new Roles.DataVerifier();    
         }
         public Location Location { get; set; }
         public int BirthYear { get; set; }

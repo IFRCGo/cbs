@@ -16,6 +16,7 @@ namespace Read.StaffUsers
     /// </summary>
     public class StaffUser
     {
+        //TODO: Update to the new system
         public Guid Id { get; set; }
         public _Role Role { get; set; }
         public string FullName { get; set; }
@@ -35,103 +36,104 @@ namespace Read.StaffUsers
 
         #region ConstructorsForCreatingStaffUser
 
-        public StaffUser(AdminAdded @event)
-        {
-            Role = _Role.Admin;
-            Id = @event.StaffUserId;
+        //TODO: Update to the new system
+        //public StaffUser(AdminAdded @event)
+        //{
+        //    Role = _Role.Admin;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
-        }
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
+        //}
 
-        public StaffUser(DataConsumerAdded @event)
-        {
-            Role = _Role.DataConsumer;
-            Id = @event.StaffUserId;
+        //public StaffUser(DataConsumerAdded @event)
+        //{
+        //    Role = _Role.DataConsumer;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
 
-            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+        //    Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
 
-        }
-        public StaffUser(DataCoordinatorAdded @event)
-        {
-            Role = _Role.DataCoordinator;
-            Id = @event.StaffUserId;
+        //}
+        //public StaffUser(DataCoordinatorAdded @event)
+        //{
+        //    Role = _Role.DataCoordinator;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
 
-            YearOfBirth = @event.YearOfBirth;
-            Sex = (Sex)@event.Sex;
-            NationalSociety = @event.NationalSociety;
-            PreferredLanguage = (Language)@event.PreferredLanguage;
-            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            MobilePhoneNumbers = new List<PhoneNumber>();
-            AssignedNationalSocities = new List<Guid>();
+        //    YearOfBirth = @event.YearOfBirth;
+        //    Sex = (Sex)@event.Sex;
+        //    NationalSociety = @event.NationalSociety;
+        //    PreferredLanguage = (Language)@event.PreferredLanguage;
+        //    Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+        //    MobilePhoneNumbers = new List<PhoneNumber>();
+        //    AssignedNationalSocities = new List<Guid>();
 
-        }
+        //}
 
-        public StaffUser(DataOwnerAdded @event)
-        {
-            Role = _Role.DataOwner;
-            Id = @event.StaffUserId;
+        //public StaffUser(DataOwnerAdded @event)
+        //{
+        //    Role = _Role.DataOwner;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
 
-            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
-            Sex = (Sex)@event.Sex;
-            NationalSociety = @event.NationalSociety;
-            PreferredLanguage = (Language)@event.PreferredLanguage;
-            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            MobilePhoneNumbers = new List<PhoneNumber>();
-            AssignedNationalSocities = new List<Guid>();
-            Position = @event.Position;
-            DutyStation = @event.DutyStation;
+        //    YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
+        //    Sex = (Sex)@event.Sex;
+        //    NationalSociety = @event.NationalSociety;
+        //    PreferredLanguage = (Language)@event.PreferredLanguage;
+        //    Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+        //    MobilePhoneNumbers = new List<PhoneNumber>();
+        //    AssignedNationalSocities = new List<Guid>();
+        //    Position = @event.Position;
+        //    DutyStation = @event.DutyStation;
 
-        }
-        public StaffUser(DataVerifierAdded @event)
-        {
-            Role = _Role.DataVerifier;
-            Id = @event.StaffUserId;
+        //}
+        //public StaffUser(DataVerifierAdded @event)
+        //{
+        //    Role = _Role.DataVerifier;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
 
-            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
-            Sex = (Sex)@event.Sex;
-            NationalSociety = @event.NationalSociety;
-            PreferredLanguage = (Language)@event.PreferredLanguage;
-            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            MobilePhoneNumbers = new List<PhoneNumber>();
-            AssignedNationalSocities = new List<Guid>();
-            RegistrationDate = @event.RegistrationDate;
-        }
+        //    YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
+        //    Sex = (Sex)@event.Sex;
+        //    NationalSociety = @event.NationalSociety;
+        //    PreferredLanguage = (Language)@event.PreferredLanguage;
+        //    Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+        //    MobilePhoneNumbers = new List<PhoneNumber>();
+        //    AssignedNationalSocities = new List<Guid>();
+        //    RegistrationDate = @event.RegistrationDate;
+        //}
 
-        public StaffUser(SystemCoordinatorAdded @event)
-        {
-            Role = _Role.SystemCoordinator;
-            Id = @event.StaffUserId;
+        //public StaffUser(SystemCoordinatorAdded @event)
+        //{
+        //    Role = _Role.SystemCoordinator;
+        //    Id = @event.StaffUserId;
 
-            FullName = @event.FullName;
-            DisplayName = @event.DisplayName;
-            Email = @event.Email;
+        //    FullName = @event.FullName;
+        //    DisplayName = @event.DisplayName;
+        //    Email = @event.Email;
 
-            YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
-            Sex = (Sex)@event.Sex;
-            NationalSociety = @event.NationalSociety;
-            PreferredLanguage = (Language)@event.PreferredLanguage;
-            Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            MobilePhoneNumbers = new List<PhoneNumber>();
-            AssignedNationalSocities = new List<Guid>();
-        }
+        //    YearOfBirth = @event.YearOfBirth; YearOfBirth = @event.YearOfBirth;
+        //    Sex = (Sex)@event.Sex;
+        //    NationalSociety = @event.NationalSociety;
+        //    PreferredLanguage = (Language)@event.PreferredLanguage;
+        //    Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+        //    MobilePhoneNumbers = new List<PhoneNumber>();
+        //    AssignedNationalSocities = new List<Guid>();
+        //}
 
         #endregion
 

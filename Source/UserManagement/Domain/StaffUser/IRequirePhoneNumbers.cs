@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-
+using System.Collections.Generic;
 namespace Domain.StaffUser
 {
     public interface IRequirePhoneNumbers

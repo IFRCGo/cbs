@@ -9,16 +9,17 @@ namespace Read.StaffUsers.DataVerifier
 {
     public class DataVerifierEventProcessor : ICanProcessEvents
     {
+        
+        private readonly IDataVerifiers _dataVerifiers;
+
+        public DataVerifierEventProcessor(
+            IDataVerifiers dataVerifiers
+        )
+        {
+            _dataVerifiers = dataVerifiers;
+        }
+
         //TODO: Update to the new system
-        //private readonly IDataVerifiers _dataVerifiers;
-
-        //public DataVerifierEventProcessor(
-        //    IDataVerifiers dataVerifiers
-        //)
-        //{
-        //    _dataVerifiers = dataVerifiers;
-        //}
-
         //public async Task Process(DataVerifierAdded @event)
         //{
         //    await _dataVerifiers.SaveAsync(new DataVerifier
@@ -35,7 +36,7 @@ namespace Read.StaffUsers.DataVerifier
         //        Sex = (Sex)@event.Sex,
         //        PreferredLanguage = (Language)@event.PreferredLanguage,
         //        RegistrationDateTime = @event.RegistrationDate
-                
+
         //    });
         //}
 
@@ -50,10 +51,6 @@ namespace Read.StaffUsers.DataVerifier
         //    if ((Role)@event.Role == Role.DataVerifier)
         //    {
         //        var user = _dataVerifiers.GetById(@event.StaffUserId);
-        //        if (user == null)
-        //        {
-        //            return;
-        //        }
         //        user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
         //        _dataVerifiers.Save(user);
@@ -65,11 +62,6 @@ namespace Read.StaffUsers.DataVerifier
         //    if ((Role)@event.Role == Role.DataVerifier)
         //    {
         //        var user = _dataVerifiers.GetById(@event.StaffUserId);
-        //        //TODO: Should be checked in business validator(?)
-        //        if (user == null)
-        //        {
-        //            return;
-        //        }
         //        user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
         //        _dataVerifiers.Save(user);
         //    }

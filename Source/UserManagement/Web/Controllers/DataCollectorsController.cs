@@ -23,10 +23,10 @@ namespace Web.Controllers
     {
         private readonly IDataCollectors _dataCollectors;
 
-        private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
+        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
 
         public DataCollectorsController (
-            IDataCollectorCommandHandler dataCollectorCommand,
+            DataCollectorCommandHandler dataCollectorCommand,
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;

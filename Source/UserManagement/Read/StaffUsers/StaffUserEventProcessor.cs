@@ -18,44 +18,39 @@ namespace Read.StaffUsers
 
         #region StaffUserAddedEvents
 
-        public async Task Process(DataConsumerAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
-        public async Task Process(AdminAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
-        public async Task Process(DataCoordinatorAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
-        public async Task Process(DataOwnerAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
-        public async Task Process(SystemCoordinatorAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
-        public async Task Process(DataVerifierAdded @event)
-        {
-            await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        }
+        //TODO: Update to the new system
+        //public async Task Process(DataConsumerAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
+        //public async Task Process(AdminAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
+        //public async Task Process(DataCoordinatorAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
+        //public async Task Process(DataOwnerAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
+        //public async Task Process(SystemCoordinatorAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
+        //public async Task Process(DataVerifierAdded @event)
+        //{
+        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
+        //}
 
         #endregion
 
         #region StaffUserUpdatedEvents
-
+        //TODO: Update to the new system
         public void Process(AdminUpdated @event)
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
 
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
@@ -67,12 +62,6 @@ namespace Read.StaffUsers
         public void Process(DataConsumerUpdated @event)
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
 
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
@@ -86,12 +75,6 @@ namespace Read.StaffUsers
         public void Process(DataCoordinatorUpdated @event)
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
 
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
@@ -108,13 +91,7 @@ namespace Read.StaffUsers
         public void Process(DataOwnerUpdated @event)
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
-
+            
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
             staffUser.Email = @event.Email;
@@ -133,12 +110,6 @@ namespace Read.StaffUsers
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
 
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
-
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
             staffUser.Email = @event.Email;
@@ -154,12 +125,6 @@ namespace Read.StaffUsers
         public void Process(SystemCoordinatorUpdated @event)
         {
             var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-            // TODO: Should be checked in businessvalidator?
-            if (staffUser == null)
-            {
-                return;
-            }
 
             staffUser.FullName = @event.FullName;
             staffUser.DisplayName = @event.DisplayName;
@@ -184,11 +149,6 @@ namespace Read.StaffUsers
         public void Process(PhoneNumberAddedToStaffUser @event)
         {
             var user = _staffUserCollection.GetById(@event.StaffUserId);
-            //TODO: Should be checked in business validator(?)
-            if (user == null)
-            {
-                return;
-            }
             user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
             _staffUserCollection.Save(user);
@@ -197,11 +157,6 @@ namespace Read.StaffUsers
         public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
             var user = _staffUserCollection.GetById(@event.StaffUserId);
-            //TODO: Should be checked in business validator(?)
-            if (user == null)
-            {
-                return;
-            }
             user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             _staffUserCollection.Save(user);
         }

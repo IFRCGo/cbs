@@ -21,11 +21,6 @@ namespace Domain.DataCollector.Update
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
 
-            //RuleFor(_ => _.Email)
-            //    .Cascade(CascadeMode.StopOnFirstFailure)
-            //    .NotEmpty().WithMessage("Email is required.")
-            //    .EmailAddress().WithMessage("Email address must be valid");
-
             RuleFor(_ => _.GpsLocation)
                 .NotNull().WithMessage("Location must be provided");
             //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");

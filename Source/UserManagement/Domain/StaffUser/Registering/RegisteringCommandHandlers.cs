@@ -1,4 +1,3 @@
-using System;
 using doLittle.Domain;
 using doLittle.Time;
 using doLittle.Runtime.Commands;
@@ -7,10 +6,10 @@ namespace Domain.StaffUser.Registering
 {
     public class RegisteringCommandHandlers : ICanHandleCommands
     {
-        IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser> _repository;
+        IAggregateRootRepositoryFor<StaffUser> _repository;
         ISystemClock _systemClock;
 
-        public RegisteringCommandHandlers(IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser> repository, ISystemClock systemClock)
+        public RegisteringCommandHandlers(IAggregateRootRepositoryFor<StaffUser> repository, ISystemClock systemClock)
         {
             _repository = repository;
             _systemClock = systemClock;

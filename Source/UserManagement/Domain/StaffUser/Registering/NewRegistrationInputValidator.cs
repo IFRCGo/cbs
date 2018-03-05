@@ -1,4 +1,3 @@
-using System;
 using doLittle.FluentValidation.Commands;
 using FluentValidation;
 

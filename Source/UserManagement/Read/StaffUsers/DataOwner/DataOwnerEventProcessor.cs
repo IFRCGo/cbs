@@ -9,16 +9,17 @@ namespace Read.StaffUsers.DataOwner
 {
     public class DataOwnerEventProcessor : ICanProcessEvents
     {
-        //TODO: Update the new System
-        //private readonly IDataOwners _dataOwners;
+        
+        private readonly IDataOwners _dataOwners;
 
-        //public DataOwnerEventProcessor(
-        //    IDataOwners dataOwners
-        //)
-        //{
-        //    _dataOwners = dataOwners;
-        //}
+        public DataOwnerEventProcessor(
+            IDataOwners dataOwners
+        )
+        {
+            _dataOwners = dataOwners;
+        }
 
+        //TODO: Update to the new system
         //public async Task Process(DataOwnerAdded @event)
         //{
         //    await _dataOwners.SaveAsync(new DataOwner
@@ -52,11 +53,6 @@ namespace Read.StaffUsers.DataOwner
         //        return;
         //    }
         //    var user = _dataOwners.GetById(@event.StaffUserId);
-        //    //TODO: Should be checked in business validator(?)
-        //    if (user == null)
-        //    {
-        //        return;
-        //    }
         //    user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
 
         //    _dataOwners.SaveAsync(user);
@@ -69,11 +65,6 @@ namespace Read.StaffUsers.DataOwner
         //        return;
         //    }
         //    var user = _dataOwners.GetById(@event.StaffUserId);
-        //    //TODO: Should be checked in business validator(?)
-        //    if (user == null)
-        //    {
-        //        return;
-        //    }
         //    user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
         //    _dataOwners.SaveAsync(user);
         //}

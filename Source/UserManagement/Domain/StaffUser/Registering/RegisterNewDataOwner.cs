@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Concepts;
-using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewDataOwner : NewStaffRegistration<Domain.StaffUser.Roles.DataOwner>
+    public class RegisterNewDataOwner : NewStaffRegistration<Roles.DataOwner>
     {
         public RegisterNewDataOwner()
         {
-            Role = new Domain.StaffUser.Roles.DataOwner();
+            Role = new Roles.DataOwner();
         } 
     }
 }

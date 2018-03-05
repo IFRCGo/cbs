@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Concepts;
-using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisterNewSystemConfigurator : NewStaffRegistration<Domain.StaffUser.Roles.SystemConfigurator>
+    public class RegisterNewSystemConfigurator : NewStaffRegistration<Roles.SystemConfigurator>
     {
         public RegisterNewSystemConfigurator()
         {
-            Role = new Domain.StaffUser.Roles.SystemConfigurator();
+            Role = new Roles.SystemConfigurator();
         }
     }
 }

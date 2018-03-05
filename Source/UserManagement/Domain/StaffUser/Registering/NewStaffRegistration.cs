@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
@@ -8,7 +6,7 @@ namespace Domain.StaffUser.Registering
     {
 
     }
-    public abstract class NewStaffRegistration<T> : INewStaffRegistration where T : Domain.StaffUser.Roles.StaffRole
+    public abstract class NewStaffRegistration<T> : INewStaffRegistration where T : Roles.StaffRole
     {
         public T Role { get; protected set; }
     }

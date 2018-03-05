@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Concepts;
 
 namespace Read.StaffUsers.DataCoordinator
 {
     public class DataCoordinator
     {
+        //TODO: Update to the new system
         public Guid Id { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }

@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using doLittle.FluentValidation.Commands;
 using FluentValidation;
 using System.Linq;
 

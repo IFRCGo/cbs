@@ -1,5 +1,4 @@
 using FluentValidation;
-using System;
 
 namespace Domain.StaffUser
 {

@@ -11,7 +11,7 @@ using Domain.DataCollector.Update;
 
 namespace Domain.DataCollector
 {
-    public class DataCollectorCommandHandler : IDataCollectorCommandHandler
+    public class DataCollectorCommandHandler
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 

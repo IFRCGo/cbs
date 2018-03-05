@@ -15,18 +15,18 @@ namespace Read.StaffUsers.DataConsumer
         {
             _dataConsumers = dataConsumers;
         }
-
-        public async Task Process(DataConsumerAdded @event)
-        {
-            await _dataConsumers.SaveAsync(new DataConsumer
-            {
-                Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-                DisplayName = @event.DisplayName,
-                Email = @event.Email,
-                FullName = @event.Email,
-                Id = @event.StaffUserId
-            });
-        }
+        //TODO: Update to the new system
+        //public async Task Process(DataConsumerAdded @event)
+        //{
+        //    await _dataConsumers.SaveAsync(new DataConsumer
+        //    {
+        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
+        //        DisplayName = @event.DisplayName,
+        //        Email = @event.Email,
+        //        FullName = @event.Email,
+        //        Id = @event.StaffUserId
+        //    });
+        //}
 
         //TODO: Update to the new system
         //public async Task Process(StaffUserDeleted @event)

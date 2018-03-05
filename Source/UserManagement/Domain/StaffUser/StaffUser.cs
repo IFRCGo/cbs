@@ -1,10 +1,9 @@
 using doLittle.Domain;
 using Events.StaffUser;
-using doLittle.Events;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using Concepts;
+using Domain.StaffUser.Registering;
 
 namespace Domain.StaffUser
 {
@@ -14,6 +13,8 @@ namespace Domain.StaffUser
 
         public StaffUser(Guid staffUserId) : base(staffUserId)
         {}
+
+        #region Visible Registration Commands
 
         public void RegisterNewAdminUser(string fullname, string displayname, string email, DateTimeOffset registeredAt)
         {
@@ -66,6 +67,11 @@ namespace Domain.StaffUser
             RegisterPhoneNumbers(phoneNumbers);
         }
 
+
+        #endregion
+
+
+
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
         {
             foreach(var nationalSociety in assignedNationalSocieties)
@@ -73,7 +79,7 @@ namespace Domain.StaffUser
                 Apply(new NationalSocietyAssigned(EventSourceId,nationalSociety));
             }
         }
-
+        //TODO: from woksin: Make this public? I think that there we can receive a command that adds phone numbers to user
         private void RegisterPhoneNumbers(IEnumerable<string> phoneNumbers)
         {
             foreach(var phoneNumber in phoneNumbers)
@@ -127,7 +133,7 @@ namespace Domain.StaffUser
             Apply(new StaffDataConsumerRegistered(EventSourceId,nationalSociety,(int)language,sex_,year,
                                             location.Latitude, location.Longitude));
         }
-
+        //TODO: from woksin: Shouldn't this be private?
         void Register(string fullname, string displayname, string email, DateTimeOffset registeredAt)
         {
             if(_isRegistered)
@@ -136,9 +142,14 @@ namespace Domain.StaffUser
             Apply(new NewUserRegistered(EventSourceId, fullname, displayname, email, registeredAt));
         }
 
-        void On(NewUserRegistered @event)
+        #region On Methods
+
+        private void On(NewUserRegistered @event)
         {
             _isRegistered = true;
         }
+
+        #endregion
+
     }
 }

@@ -1,7 +1,4 @@
-using System;
 using FluentValidation;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Domain.StaffUser
 {
