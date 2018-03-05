@@ -6,6 +6,7 @@ metadata:
   labels:
     app: kafka
 spec:
+  type: LoadBalancer
   ports:
   - port: 9092
     name: kafka-port
@@ -51,19 +52,3 @@ spec:
   selector:
     app: kafka
     name: zookeeper
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mqtt-bridge
-  labels:
-    app: kafka
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 1883
-    name: mqtt-bridge-port
-    protocol: TCP
-  selector:
-    app: kafka
-    name: mqtt-bridge

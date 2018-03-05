@@ -1,7 +1,6 @@
 using System;
-using Concepts;
 
-namespace Domain.MessageGenerators
+namespace Domain.MessageGenerator
 {
     public class GenerateMessage
     {

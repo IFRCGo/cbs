@@ -1,10 +1,8 @@
 using doLittle.Domain;
 using Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Domain.MessageGenerators
+namespace Domain.MessageGenerator
 {
     public class MessageGenerator : AggregateRoot
     {
@@ -14,7 +12,7 @@ namespace Domain.MessageGenerators
         {
             Apply(new MessageGenerated
             {
-                Id = command.Id,
+                DataCollectorId = command.Id,
                 PhoneNumber = command.PhoneNumber,
                 Message = command.Message
             });

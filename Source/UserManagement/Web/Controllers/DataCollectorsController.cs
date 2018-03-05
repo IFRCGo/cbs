@@ -6,41 +6,53 @@ using Read;
 using Read.DataCollectors;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using doLittle.Domain;
+using Domain.DataCollector.Registering;
+using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.Update;
+using Domain.DataCollector;
+using MongoDB.Driver;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/datacollectors")]
     public class DataCollectorsController : BaseController
     {
-        readonly IDataCollectors _dataCollectors;
+        private readonly IDataCollectors _dataCollectors;
 
-        readonly IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> _dataCollector;
+        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
 
-        public DataCollectorsController(
-            IAggregateRootRepositoryFor<Domain.DataCollectors.DataCollector> dataCollector,
+        public DataCollectorsController (
+            DataCollectorCommandHandler dataCollectorCommand,
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;
-            _dataCollector = dataCollector;
+            _dataCollectorCommandHandler = dataCollectorCommand;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            //TODO: This should limit nr of items somehow
-            Console.WriteLine("in datacollectors");
-            var items = _dataCollectors.GetAllDataCollectors();
+            var items = await _dataCollectors.GetAllAsync();
             return Ok(items);
         }
 
         [HttpPost("add")]
-        public IActionResult Post([FromBody] AddDataCollector command)
+        public IActionResult Post([FromBody] RegisterDataCollector command)
         {
-            var dataCollector = _dataCollector.Get(command.Id);
-            dataCollector.AddDataCollector(command);
+            //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
+            command.DataCollectorId = Guid.NewGuid();
+            _dataCollectorCommandHandler.Handle(command);
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update([FromBody] UpdateDataCollector command)
+        {
+            _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
     }

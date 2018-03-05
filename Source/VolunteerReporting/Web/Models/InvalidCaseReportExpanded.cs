@@ -10,6 +10,7 @@ using Read.InvalidCaseReports;
 
 namespace Web.Models
 {
+    //TODO: Don't really need this anymore because of CaseReportForListing?
     public class InvalidCaseReportExpanded
     {
         public Guid Id { get; set; }
