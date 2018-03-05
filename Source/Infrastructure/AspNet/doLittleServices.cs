@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System.Reflection;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
@@ -7,10 +12,8 @@ using Infrastructure.AspNet;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-
     public static class doLittleServices
     {
-
         public static IServiceCollection Add_doLittle(this IServiceCollection services)
         {
             var logAppenders = LoggingConfigurator.DiscoverAndConfigure(Internals.LoggerFactory);
@@ -38,7 +41,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Internals.AssembliesConfiguration = assembliesConfiguration;
             Internals.AssemblyProvider = assemblyProvider;
             Internals.Assemblies = new Assemblies(assemblyProvider);
-            
+
             return services;
         }
     }

@@ -35,54 +35,33 @@ namespace Web
             Apply(id, new StaffUserAdded
             {
                 Id = id,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
+                FullName = command.FullName,
+                DisplayName = command.DisplayName,
                 Age = command.Age,
                 Sex = command.Sex,
+                Location = command.Location,
                 NationalSociety = command.NationalSociety,
                 PreferredLanguage = command.PreferredLanguage,
                 MobilePhoneNumber = command.MobilePhoneNumber,
                 Email = command.Email
             });
         }
-
-        [HttpPost("datacollector")]
-        public void Add([FromBody] AddDataCollector command)
-        {
-            Apply(command.Id, new DataCollectorAdded
-            {
-                Id = command.Id,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                Age = command.Age,
-                Sex = command.Sex,
-                NationalSociety = command.NationalSociety,
-                PreferredLanguage = command.PreferredLanguage,
-                MobilePhoneNumber = command.MobilePhoneNumber,
-                Email = command.Email
-            });
-        }
-
+        
         [HttpGet("staffusers")]
         public IEnumerable<StaffUser> GetAllStaffUsers()
         {
             Console.WriteLine("in staffusers");
             var users = _users.GetAllStaffUsers();
             return users;
-        }
+        }        
 
-        [HttpGet("datacollectors")]
-        public IEnumerable<DataCollector> GetAllDataCollectors()
+        [HttpDelete("delete/{id}")]
+        public void Delete(Guid id)
         {
-            Console.WriteLine("in datacollectors");
-            var users = _users.GetAllDataCollectors();
-            return users;
-        }
-
-        [HttpDelete("items/{id}")]
-        public void Remove(Guid id)
-        {
-
+            Apply(id, new UserDeleted
+            {
+                Id = id
+            });
         }
     }
 }

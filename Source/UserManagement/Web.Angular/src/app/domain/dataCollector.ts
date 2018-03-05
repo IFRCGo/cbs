@@ -1,28 +1,38 @@
+export class PhoneNumber {
+    value: string;
+    confirmed: boolean;
+}
+
+export class Location {
+    latitude: number;
+    longitude: number;
+}
+
 export class DataCollector {
-    firstName: string;
-    lastName: string;
+    id: string;
+    fullName: string;
+    displayName: string;
     age: number;
     sex: string;
     nationalSociety: string;
     preferredLanguage: string;
-    gpsLocation: string;
-    mobilePhoneNumber: string;
+    location: Location;
+    phoneNumbers: Array<PhoneNumber>;
     email: string;
-    longitude: number;
-    latitude: number;
+    registeredAt: Date;
 
 
     constructor(o: any) {
-        this.firstName = o.name;
-        this.lastName = o.lastName;
+        this.id = o.id;
+        this.fullName = o.fullName;
+        this.displayName = o.displayName;
         this.age = o.age;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;
-        this.gpsLocation = o.gpsLocation;
-        this.mobilePhoneNumber = o.mobilePhoneNumber;
+        this.location = o.location;
+        this.phoneNumbers = o.phoneNumbers;
         this.email = o.email;
-        this.longitude = o.longitude;
-        this.latitude = o.latittude;
+        this.registeredAt = o.registeredAt;
     }
 }

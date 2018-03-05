@@ -1,5 +1,5 @@
 using System;
-using Concepts.enums;
+using Concepts;
 using Events;
 
 namespace Read
@@ -7,13 +7,13 @@ namespace Read
     public class StaffUser
     {
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public int Age { get; set; }
         public Sex Sex { get; set; }
         public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
-        public string Location { get; set; } //TODO: fix when location strucutre is known
+        public Location Location { get; set; } //TODO: fix when location strucutre is known
         public string GeoLocation { get; set; } //TODO: use GeoCoordinate
         public string MobilePhoneNumber { get; set; }
         public string Email { get; set; }
@@ -25,8 +25,8 @@ namespace Read
         public StaffUser(StaffUserAdded @event)
         {
             Id = @event.Id;
-            FirstName = @event.FirstName;
-            LastName = @event.LastName;
+            FullName = @event.FullName;
+            DisplayName = @event.DisplayName;
             Age = @event.Age;
             Sex = @event.Sex;
             NationalSociety = @event.NationalSociety;

@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +16,8 @@ namespace Infrastructure.AspNet
     {
         public bool IsAdapterForIndividualComponents => false;
 
-        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
+        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service,
+            Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
         {
             var serviceWithType = service as IServiceWithType;
 
@@ -19,7 +25,7 @@ namespace Infrastructure.AspNet
                 return Enumerable.Empty<IComponentRegistration>();
 
             var builder = RegistrationBuilder.ForType(serviceWithType.ServiceType);
-            return new[] { builder.CreateRegistration() };
+            return new[] {builder.CreateRegistration()};
         }
     }
 }

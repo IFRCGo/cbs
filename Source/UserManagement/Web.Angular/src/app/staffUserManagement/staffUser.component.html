@@ -1,52 +1,5 @@
 <h2>Register staff</h2>
 
-<form [formGroup]='staffUserForm' class="register-staff-form" novalidate>
-
-    <mat-select class="full-width input-field" formControlName='nationalSociety' [(ngModel)]="selectedNationalSociety" placeholder="National Society">
-        <mat-option *ngFor="let society of nationalSocieties" [value]="society.value">
-            {{ society.viewValue }}
-        </mat-option>
-    </mat-select>
-
-    <div class="flex-row">
-        <mat-form-field class="half-width">
-            <input mdInput formControlName='firstName' placeholder="First name" ngDefaultControl>
-        </mat-form-field>
-        <mat-form-field class="half-width">
-            <input mdInput formControlName='lastName' placeholder="Last name" ngDefaultControl>
-        </mat-form-field>
-    </div>
-
-    <mat-form-field class="full-width input-field">
-        <input mdInput formControlName='age' placeholder="Age" ngDefaultControl>
-    </mat-form-field>
-    
-    <mat-select class="full-width input-field" formControlName='sex' [(ngModel)]="selectedSex" placeholder="Sex">
-        <mat-option *ngFor="let sex of sexOptions" [value]="sex.value">
-            {{ sex.viewValue }}
-        </mat-option>
-    </mat-select>
-
-    <mat-select class="full-width input-field" formControlName='preferredLanguage' [(ngModel)]="selectedLanguage" placeholder="Preferred Language">
-        <mat-option *ngFor="let language of languageOptions" [value]="language.value">
-            {{ language.viewValue }}
-        </mat-option>
-    </mat-select>
-
-    <mat-form-field class="full-width input-field">
-        <input type="tel" mdInput formControlName='mobilePhoneNumber' placeholder="Telephone">
-    </mat-form-field>
-
-    <mat-form-field class="full-width input-field">
-        <input mdInput type="email" formControlName='email' placeholder="E-mail Address" ngDefaultControl>
-        <mat-error *ngIf="staffUserForm.controls.email.hasError('pattern')">
-            Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="staffUserForm.controls.email.hasError('required')">
-            Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
+TODO: THIS IS TO BE REPLACED BY USERFORM
+<form class="register-staff-form">
 </form>
-
-<button mat-raised-button color="primary" type="submit" class="btn submit-button" (click)="addStaffUser(staffUserForm.value)">Register</button>
-

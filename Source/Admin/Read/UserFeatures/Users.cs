@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read.UserFeatures
 {
@@ -24,15 +24,15 @@ namespace Read.UserFeatures
 
         public User GetById(Guid id)
         {
-            var project = _collection.Find(v => v.Id == id).SingleOrDefault();
+            var user = _collection.Find(v => v.Id == id).SingleOrDefault();
 
-            if (project == null)
+            if (user == null)
             {
-                project = new User { Firstname = "Dummy implementation" };
-                _collection.InsertOne(project);
+                user = new User {Id = id, Firstname = "Dummy implementation"};
+                _collection.InsertOne(user);
             }
 
-            return project;
+            return user;
         }
 
         public async Task<IEnumerable<User>> GetByNationalSocietyId(Guid id)

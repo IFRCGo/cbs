@@ -1,15 +1,15 @@
-using System.Collections.Generic;
-using System.Reflection;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Microsoft.AspNetCore.Builder
 {
     public static class CommonAppConfiguration
     {
-
-
         public static IApplicationBuilder UseCommon(this IApplicationBuilder app, IHostingEnvironment env)
         {
             Internals.ServiceProvider = app.ApplicationServices;
@@ -28,10 +28,7 @@ namespace Microsoft.AspNetCore.Builder
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                });
+                app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             }
 
             app.UseDefaultFiles();
@@ -40,6 +37,5 @@ namespace Microsoft.AspNetCore.Builder
 
             return app;
         }
-
     }
 }

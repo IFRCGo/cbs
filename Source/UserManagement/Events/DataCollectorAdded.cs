@@ -1,5 +1,5 @@
 using System;
-using Concepts.enums;
+using Concepts;
 using doLittle.Events;
 
 namespace Events
@@ -7,14 +7,17 @@ namespace Events
     public class DataCollectorAdded : IEvent
     {
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Age { get; set; }
-        public Sex Sex { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
+        public int YearOfBirth { get; set; }
+        public int Sex { get; set; }
         public Guid NationalSociety { get; set; }
-        public Language PreferredLanguage { get; set; }
-        public string GpsLocation { get; set; }
-        public string MobilePhoneNumber { get; set; }
-        public string Email { get; set; }
+        public int PreferredLanguage { get; set; }
+        public double LocationLongitude { get; set; }
+        public double LocationLatitude { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; }
+        //public string GpsLocation { get; set; }
+        //public string MobilePhoneNumber { get; set; }
+        //public string Email { get; set; }     
     }
 }

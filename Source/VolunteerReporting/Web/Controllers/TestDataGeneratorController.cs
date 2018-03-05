@@ -87,7 +87,7 @@ namespace Web
             foreach (var dataCollector in dataCollectors)
             {
                 Apply(dataCollector.Id, dataCollector);
-                Apply(Guid.NewGuid(), new PhoneNumberAdded
+                Apply(Guid.NewGuid(), new PhoneNumberAddedToDataCollector
                 {
                     DataCollectorId = dataCollector.Id,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
@@ -194,7 +194,7 @@ namespace Web
             {
                 try
                 {
-                    this.Apply(@event.Id, @event);
+                    Apply(@event.Id, @event);
                 }
                 catch (Exception ex)
                 {
@@ -256,7 +256,7 @@ namespace Web
             {
                 try
                 {
-                    this.Apply(@event.Id, @event);
+                    Apply(@event.Id, @event);
                 }
                 catch (Exception ex)
                 {
@@ -427,7 +427,7 @@ namespace Web
             {
                 try
                 {
-                    this.Apply(@event.Id, @event);
+                    Apply(@event.Id, @event);
                 }
                 catch (Exception ex)
                 {
@@ -448,7 +448,7 @@ namespace Web
             {
                 try
                 {
-                    this.Apply(@event.Id, @event);
+                    Apply(@event.Id, @event);
                 }
                 catch (Exception ex)
                 {
@@ -467,6 +467,41 @@ namespace Web
             var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
             foreach (var project in projects)
                 Apply(project.Id, project);
+        }
+
+        [HttpGet("testDelete")]
+        public void TestDelete()
+        {
+            var events = JsonConvert.DeserializeObject<AutomaticReplyRemoved[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyRemoved.json"));
+
+            foreach (var @event in events)
+            {
+                try
+                {
+                    Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
+        }
+        [HttpGet("testChangeMessage")]
+        public void TestChangeMessage()
+        {
+            var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyChangeTest.json"));
+
+            foreach (var @event in events)
+            {
+                try
+                {
+                    Apply(@event.Id, @event);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.ToString());
+                }
+            }
         }
 
     }

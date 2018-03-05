@@ -1,4 +1,5 @@
 ﻿#region License
+
 // Copyright (c) Jeremy Skinner (http://www.jeremyskinner.co.uk)
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,61 +15,71 @@
 // limitations under the License.
 // 
 // The latest version of this file can be found at https://github.com/jeremyskinner/FluentValidation
+
 #endregion
-namespace FluentValidation.AspNetCore {
-	using System.Collections.Generic;
-	using Internal;
-	using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-	using Resources;
-	using Validators;
 
-	internal class RangeClientValidator : ClientValidatorBase {
-		InclusiveBetweenValidator RangeValidator {
-			get { return (InclusiveBetweenValidator)Validator; }
-		}
-		
-		public RangeClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator) {
+using FluentValidation.Internal;
+using FluentValidation.Resources;
+using FluentValidation.Validators;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-		}
+namespace FluentValidation.AspNetCore
+{
+    internal class RangeClientValidator : ClientValidatorBase
+    {
+        InclusiveBetweenValidator RangeValidator
+        {
+            get { return (InclusiveBetweenValidator) Validator; }
+        }
 
-		public override void AddValidation(ClientModelValidationContext context) {
-			if (RangeValidator.To != null && RangeValidator.From != null) {
-				MergeAttribute(context.Attributes, "data-val", "true");
-				MergeAttribute(context.Attributes, "data-val-range", GetErrorMessage(context));
-				MergeAttribute(context.Attributes, "data-val-range-max", RangeValidator.To.ToString());
-				MergeAttribute(context.Attributes, "data-val-range-min", RangeValidator.From.ToString());
-			}
-		}
+        public RangeClientValidator(PropertyRule rule, IPropertyValidator validator) : base(rule, validator)
+        {
+        }
 
-		private string GetErrorMessage(ClientModelValidationContext context) {
-			var formatter = new MessageFormatter()
-				.AppendPropertyName(Rule.GetDisplayName())
-				.AppendArgument("From", RangeValidator.From)
-				.AppendArgument("To", RangeValidator.To);
-			var messageNeedsSplitting = RangeValidator.ErrorMessageSource.ResourceType == typeof(LanguageManager);
+        public override void AddValidation(ClientModelValidationContext context)
+        {
+            if (RangeValidator.To != null && RangeValidator.From != null)
+            {
+                MergeAttribute(context.Attributes, "data-val", "true");
+                MergeAttribute(context.Attributes, "data-val-range", GetErrorMessage(context));
+                MergeAttribute(context.Attributes, "data-val-range-max", RangeValidator.To.ToString());
+                MergeAttribute(context.Attributes, "data-val-range-min", RangeValidator.From.ToString());
+            }
+        }
 
-			string message;
+        private string GetErrorMessage(ClientModelValidationContext context)
+        {
+            var formatter = new MessageFormatter()
+                .AppendPropertyName(Rule.GetDisplayName())
+                .AppendArgument("From", RangeValidator.From)
+                .AppendArgument("To", RangeValidator.To);
+            var messageNeedsSplitting = RangeValidator.ErrorMessageSource.ResourceType == typeof(LanguageManager);
 
-			try {
-				message = RangeValidator.ErrorMessageSource.GetString(null);
-			}
-			catch (FluentValidationMessageFormatException) {
-				message =ValidatorOptions.LanguageManager.GetStringForValidator<InclusiveBetweenValidator>();
-				messageNeedsSplitting = true;
-			}
+            string message;
 
-			if (messageNeedsSplitting)
-			{
-				// If we're using the default resources then the mesage for length errors will have two parts, eg:
-				// '{PropertyName}' must be between {From} and {To}. You entered {Value}.
-				// We can't include the "Value" part of the message because this information isn't available at the time the message is constructed.
-				// Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
+            try
+            {
+                message = RangeValidator.ErrorMessageSource.GetString(null);
+            }
+            catch (FluentValidationMessageFormatException)
+            {
+                message = ValidatorOptions.LanguageManager.GetStringForValidator<InclusiveBetweenValidator>();
+                messageNeedsSplitting = true;
+            }
 
-				message = message.Substring(0, message.IndexOf(".") + 1);
-			}
-			message = formatter.BuildMessage(message);
+            if (messageNeedsSplitting)
+            {
+                // If we're using the default resources then the mesage for length errors will have two parts, eg:
+                // '{PropertyName}' must be between {From} and {To}. You entered {Value}.
+                // We can't include the "Value" part of the message because this information isn't available at the time the message is constructed.
+                // Instead, we'll just strip this off by finding the index of the period that separates the two parts of the message.
 
-			return message;
-		}
-	}
+                message = message.Substring(0, message.IndexOf(".") + 1);
+            }
+
+            message = formatter.BuildMessage(message);
+
+            return message;
+        }
+    }
 }

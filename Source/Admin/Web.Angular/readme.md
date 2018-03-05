@@ -1,3 +1,4 @@
+
 # CBS Example frontend application
 
 ## Prerequisites

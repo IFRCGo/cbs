@@ -19,14 +19,14 @@ For more information, take a look at this [video](https://youtu.be/pXkXyb6xTdE).
 
 ## Build Status
 
-| Projects  | AppVeyor status (Windows)  | CircleCI status (Linux) | TravisCI status (Linux)
-|---|---|---|---|
-| Example project  | [![Build status](https://ci.appveyor.com/api/projects/status/3s33gey8y08ynu4s/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-hjk90/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-hjk90/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-hjk90/branch/master/tests) | [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)](https://travis-ci.org/sheeeng/cbs)
+| Projects  | AppVeyor status (Windows)  |
+|---|---|
 | Volunteer Reporting  | [![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-g81xy/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master/tests) |
 | Admin  | [![Build status](https://ci.appveyor.com/api/projects/status/5u26suwgd9co1rgp/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-0ntrh/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-0ntrh/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-0ntrh/branch/master/tests) |
 | User Management  | [![Build status](https://ci.appveyor.com/api/projects/status/yyxiq56hy52iyv50/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-83l5k/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master/tests) |
 | Alert  | [![Build status](https://ci.appveyor.com/api/projects/status/2lab71gqtq8hkxn8/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-q2clx/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master/tests) |
 
+<!-- [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)] -->
 ## Our next milestone
 
 We are currently working on the MVP (minimum viable product) of CBS. At the moment there is a plague outbreak in Madagascar, with 57 deaths and more than 680 cases reported, and it keeps spreading. The sooner we can test CBS in the field, the more lives will be saved. 
@@ -49,6 +49,7 @@ Our biggest shortage at the moment is designers and frond-end developers, but th
 If you need help, please take a look at our [documentation](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions. 
 
 ## Media coverage
+- February 2nd, 2018. Digi.no: ["Utviklere fra norsk IT-bransje jobber frivillig for Røde Kors for å lage løsning som kan redde liv"](https://www.digi.no/artikler/utviklere-fra-norsk-it-bransje-jobber-frivillig-for-rode-kors-for-a-lage-losning-som-kan-redde-liv/428348)
 - December 6th, 2017. Microsoft press release: ["Recoding the Red Cross"](https://news.microsoft.com/europe/features/recoding-the-red-cross/), ["Koding hjelper Røde Kors redde liv"](http://www.mynewsdesk.com/no/microsoft-norge/pressreleases/omkoding-av-roede-kors-2317982)
 - November 16th, 2017. NRK P2 Studio 2: ["Helseapper"](https://radio.nrk.no/serie/studio-2-p2/MKRV20017917/16-11-2017#t=57m14s)
 - Telenor Norge: ["Koder for en bedre klode"](https://www.telenor.no/om/samfunnsansvar/artikler/codeathon.jsp)

@@ -4,6 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Events;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Read.NationalSocietyFeatures;
+using Read.UserFeatures;
 
 namespace Read.ProjectFeatures
 {
@@ -12,7 +17,16 @@ namespace Read.ProjectFeatures
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+        public User DataOwner { get; set; }
+        public NationalSociety NationalSociety { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
         public ProjectHealthRisk[] HealthRisks { get; set; }
+
+        public User[] DataVerifiers { get; set; }
+
+        public string SmsProxy { get; set; }
     }
 }

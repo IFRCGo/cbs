@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AddProjectComponent } from './add-project/add-project.component';
-import { ProjectlistComponent } from './projectlist/projectlist.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
     {
@@ -19,7 +19,7 @@ const routes: Routes = [
             },
             {
                 path: 'list',
-                component: ProjectlistComponent
+                component: ProjectListComponent
             }
         ]
     }

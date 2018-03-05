@@ -13,7 +13,7 @@ export class DataCollectorService {
   constructor(private http: Http) { }
 
   saveDataCollector(dataCollector: DataCollector): Promise<void> {
-    const url = environment.api + '/api/usermanagement/dataCollector';
+    const url = environment.api + '/api/dataCollectors';
 
     return this.http
       .post(url, JSON.stringify(dataCollector), { headers: this.headers })
@@ -23,7 +23,7 @@ export class DataCollectorService {
   }
 
   getAllDataCollectors(): Promise<void> {
-    const url = environment.api + '/api/usermanagement/dataCollectors';
+    const url = environment.api + '/api/dataCollectors';
 
     return this.http
       .get(url, { headers: this.headers })

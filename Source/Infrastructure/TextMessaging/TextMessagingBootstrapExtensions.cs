@@ -7,13 +7,13 @@ namespace Infrastructure.TextMessaging
 {
     public static class TextMessagingBootstrapExtensions
     {
-        public static IApplicationBuilder EnableSmsGatewayListner(this IApplicationBuilder app)
+        public static IApplicationBuilder EnableSmsProxyListner(this IApplicationBuilder app)
         {
             app.ApplicationServices.GetService(typeof(GatewayMessageReceiver));
             return app;
         }
 
-        public static ContainerBuilder RegisterSmsGateway(this ContainerBuilder builder, bool enableLoopBackSms)
+        public static ContainerBuilder RegisterSmsProxy(this ContainerBuilder builder, bool enableLoopBackSms)
         {
             builder.RegisterModule<GatewaySenderModule>();
 

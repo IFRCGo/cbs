@@ -32,10 +32,10 @@ namespace Read.AutomaticReplyMessages
             return _collection.Find(filter).FirstOrDefault();
         }
 
-        public void Save(DefaultAutomaticReplyKeyMessage keyMessage)
+        public async Task Save(DefaultAutomaticReplyKeyMessage keyMessage)
         {
             var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
-            _collection.ReplaceOne(filter, keyMessage, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(filter, keyMessage, new UpdateOptions { IsUpsert = true });
        }
     }
 }

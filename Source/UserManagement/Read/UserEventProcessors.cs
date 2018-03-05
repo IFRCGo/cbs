@@ -17,13 +17,11 @@ namespace Read
             var user = new StaffUser(@event);
 
             _users.Save(user);
-        }
+        }        
 
-        public void Process(DataCollectorAdded @event)
+        public void Process(UserDeleted @event)
         {
-            var user = new DataCollector(@event);
-
-            _users.Save(user);
+            _users.DeleteUserById(@event.Id);
         }
     }
 }
