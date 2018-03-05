@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 15.0.26124.0
@@ -27,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "..\Infrastructure\Kafka\Infrastructure.Kafka.csproj", "{F5B4C032-F6C3-4B35-84EC-D16F31E3C5E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj", "{AB4675C2-00B6-4801-B96E-F3F527C32DCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{757E9A48-F695-4B7B-9DDE-216FF001EE77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,6 +196,18 @@ Global
 		{AB4675C2-00B6-4801-B96E-F3F527C32DCD}.Release|x64.Build.0 = Release|x64
 		{AB4675C2-00B6-4801-B96E-F3F527C32DCD}.Release|x86.ActiveCfg = Release|x86
 		{AB4675C2-00B6-4801-B96E-F3F527C32DCD}.Release|x86.Build.0 = Release|x86
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|x64.Build.0 = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Debug|x86.Build.0 = Debug|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x64.ActiveCfg = Release|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x64.Build.0 = Release|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x86.ActiveCfg = Release|Any CPU
+		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

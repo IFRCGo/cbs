@@ -71,6 +71,7 @@ namespace Infrastructure.AspNet
             var applicationName = (ApplicationName) "CBS";
             var application = new Application(applicationName, applicationStructure);
             builder.Register(_ => application).As<IApplication>().SingleInstance();
+            builder.Register(_ => Internals.BoundedContext).AsSelf();
 
             var identity = new ClaimsIdentity();
             identity.AddClaim(new Claim(identity.NameClaimType, "[Anonymous]"));

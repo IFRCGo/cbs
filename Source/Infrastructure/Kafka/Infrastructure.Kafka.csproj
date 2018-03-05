@@ -6,8 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="4.6.2" />
-        
+        <PackageReference Include="Autofac" Version="4.6.2" />      
         <PackageReference Include="Confluent.Kafka" Version="0.11.3" />
         <PackageReference Include="doLittle.Concepts" Version="2.0.0-alpha2.69" />
         <PackageReference Include="doLittle.Logging" Version="2.0.0-alpha2.69" />
