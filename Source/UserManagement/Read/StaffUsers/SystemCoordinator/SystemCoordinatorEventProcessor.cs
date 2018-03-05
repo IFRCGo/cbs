@@ -39,13 +39,13 @@ namespace Read.StaffUsers.SystemCoordinator
 
         public async Task Process(StaffUserDeleted @event)
         {
-            if ((Role)@event.Role == Role.SystemCoordinator)
+            if ((_Role)@event.Role == _Role.SystemCoordinator)
                 await _systemCoordinators.RemoveAsync(@event.StaffUserId);
         }
 
         public void Process(PhoneNumberAddedToStaffUser @event)
         {
-            if ((Role) @event.Role == Role.SystemCoordinator)
+            if ((_Role) @event.Role == _Role.SystemCoordinator)
             {
                 var user = _systemCoordinators.GetById(@event.StaffUserId);
                 //TODO: Should be checked in business validator(?)
@@ -61,7 +61,7 @@ namespace Read.StaffUsers.SystemCoordinator
         }
         public void Process(PhoneNumberRemovedFromStaffUser @event)
         {
-            if ((Role) @event.Role == Role.SystemCoordinator)
+            if ((_Role) @event.Role == _Role.SystemCoordinator)
             {
                 var user = _systemCoordinators.GetById(@event.StaffUserId);
                 //TODO: Should be checked in business validator(?)

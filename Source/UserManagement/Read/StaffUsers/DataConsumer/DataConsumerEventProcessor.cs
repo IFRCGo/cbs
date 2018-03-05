@@ -28,10 +28,11 @@ namespace Read.StaffUsers.DataConsumer
             });
         }
 
-        public async Task Process(StaffUserDeleted @event)
-        {
-            if ((Role)@event.Role == Role.DataConsumer)
-                await _dataConsumers.RemoveAsync(@event.StaffUserId);
-        }
+        //TODO: Update to the new system
+        //public async Task Process(StaffUserDeleted @event)
+        //{
+        //    if ((Role)@event.Role == Role.DataConsumer)
+        //        await _dataConsumers.RemoveAsync(@event.StaffUserId);
+        //}
     }
 }

@@ -29,12 +29,12 @@ namespace Read.StaffUsers.Admin
                 Id = @event.StaffUserId
             });
         }
-
-        public async Task Process(StaffUserDeleted @event)
-        {
-            if ( (Role) @event.Role == Role.Admin)
-                await _admins.RemoveAsync(@event.StaffUserId);
-        }
+        // TODO: Update to the new system
+        //public async Task Process(StaffUserDeleted @event)
+        //{
+        //    if ( (Role) @event.Role == Role.Admin)
+        //        await _admins.RemoveAsync(@event.StaffUserId);
+        //}
 
     }
 }

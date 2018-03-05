@@ -17,7 +17,7 @@ namespace Read.StaffUsers
     public class StaffUser
     {
         public Guid Id { get; set; }
-        public Role Role { get; set; }
+        public _Role Role { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
@@ -37,7 +37,7 @@ namespace Read.StaffUsers
 
         public StaffUser(AdminAdded @event)
         {
-            Role = Role.Admin;
+            Role = _Role.Admin;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
@@ -47,7 +47,7 @@ namespace Read.StaffUsers
 
         public StaffUser(DataConsumerAdded @event)
         {
-            Role = Role.DataConsumer;
+            Role = _Role.DataConsumer;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
@@ -59,7 +59,7 @@ namespace Read.StaffUsers
         }
         public StaffUser(DataCoordinatorAdded @event)
         {
-            Role = Role.DataCoordinator;
+            Role = _Role.DataCoordinator;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
@@ -78,7 +78,7 @@ namespace Read.StaffUsers
 
         public StaffUser(DataOwnerAdded @event)
         {
-            Role = Role.DataOwner;
+            Role = _Role.DataOwner;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
@@ -98,7 +98,7 @@ namespace Read.StaffUsers
         }
         public StaffUser(DataVerifierAdded @event)
         {
-            Role = Role.DataVerifier;
+            Role = _Role.DataVerifier;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
@@ -117,7 +117,7 @@ namespace Read.StaffUsers
 
         public StaffUser(SystemCoordinatorAdded @event)
         {
-            Role = Role.SystemCoordinator;
+            Role = _Role.SystemCoordinator;
             Id = @event.StaffUserId;
 
             FullName = @event.FullName;
