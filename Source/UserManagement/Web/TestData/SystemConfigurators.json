@@ -1,0 +1,218 @@
+[
+  {
+    "Role": {
+      "BirthYear": 1926,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "edadbdf4-d193-4a45-8c27-b83cd734973a",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "33717400"
+      ],
+      "StaffUserId": "bc6d4375-051e-4a86-b493-6b7e2467ff90",
+      "FullName": "SystemConfigurator0",
+      "DisplayName": "SystemConfigurator0 Display name",
+      "Email": "SystemConfigurator0@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1958,
+      "Sex": null,
+      "AssignedNationalSocieties": [
+        "e999d2d0-1eed-48fa-abe0-1642c89d7a1e"
+      ],
+      "NationalSociety": "fc567f31-57ef-4b11-bb13-e280e3700e48",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "88537598"
+      ],
+      "StaffUserId": "bac5ec7a-a588-442f-a2fc-7419798153e0",
+      "FullName": "SystemConfigurator1",
+      "DisplayName": "SystemConfigurator1 Display name",
+      "Email": "SystemConfigurator1@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 2016,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "4a0e3d82-b780-4ca7-ad6d-306151533280"
+      ],
+      "NationalSociety": "a765ddfa-10b3-46fc-94cb-177fc7a649d4",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "57243150"
+      ],
+      "StaffUserId": "101af209-ccbf-43ef-bd28-51bde3800ead",
+      "FullName": "SystemConfigurator2",
+      "DisplayName": "SystemConfigurator2 Display name",
+      "Email": "SystemConfigurator2@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1978,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "edadbdf4-d193-4a45-8c27-b83cd734973a"
+      ],
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "43256785"
+      ],
+      "StaffUserId": "eec8cccf-7e7c-419c-95e7-a8bf76652768",
+      "FullName": "SystemConfigurator3",
+      "DisplayName": "SystemConfigurator3 Display name",
+      "Email": "SystemConfigurator3@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1943,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "41b0de70-102b-4c62-8423-e7385b082851"
+      ],
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "13322270"
+      ],
+      "StaffUserId": "a583da10-9270-4d38-8d67-0becd9e60d32",
+      "FullName": "SystemConfigurator4",
+      "DisplayName": "SystemConfigurator4 Display name",
+      "Email": "SystemConfigurator4@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1986,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "a765ddfa-10b3-46fc-94cb-177fc7a649d4"
+      ],
+      "NationalSociety": "37d1620d-6b97-4af9-bd16-4c7826a0a598",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "97294506"
+      ],
+      "StaffUserId": "f97d4d17-0045-457f-ba1a-a53c3c072cf1",
+      "FullName": "SystemConfigurator5",
+      "DisplayName": "SystemConfigurator5 Display name",
+      "Email": "SystemConfigurator5@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1982,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "4a0e3d82-b780-4ca7-ad6d-306151533280"
+      ],
+      "NationalSociety": "a765ddfa-10b3-46fc-94cb-177fc7a649d4",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "98791324"
+      ],
+      "StaffUserId": "72c62783-00ce-46b9-be11-5afd18acf76e",
+      "FullName": "SystemConfigurator6",
+      "DisplayName": "SystemConfigurator6 Display name",
+      "Email": "SystemConfigurator6@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1950,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "9e1607da-0162-479d-8139-09a0c473a14d"
+      ],
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "54740347"
+      ],
+      "StaffUserId": "aca6d524-49be-4562-b737-8262f80d9537",
+      "FullName": "SystemConfigurator7",
+      "DisplayName": "SystemConfigurator7 Display name",
+      "Email": "SystemConfigurator7@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1985,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "db74b670-fa00-49d0-b5b9-1b26921ed3bb"
+      ],
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "49097503"
+      ],
+      "StaffUserId": "52bd10b5-0ca2-4ca7-b649-97bb2071c428",
+      "FullName": "SystemConfigurator8",
+      "DisplayName": "SystemConfigurator8 Display name",
+      "Email": "SystemConfigurator8@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 2008,
+      "Sex": null,
+      "AssignedNationalSocieties": [
+        "4a0e3d82-b780-4ca7-ad6d-306151533280"
+      ],
+      "NationalSociety": "fc567f31-57ef-4b11-bb13-e280e3700e48",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "32550218"
+      ],
+      "StaffUserId": "2a9ce305-f941-4638-922f-c566afcbde82",
+      "FullName": "SystemConfigurator9",
+      "DisplayName": "SystemConfigurator9 Display name",
+      "Email": "SystemConfigurator9@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1959,
+      "Sex": 2,
+      "AssignedNationalSocieties": [
+        "db74b670-fa00-49d0-b5b9-1b26921ed3bb"
+      ],
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "61739511"
+      ],
+      "StaffUserId": "f4a3e0d7-0cfe-42ee-bc33-eef11345278b",
+      "FullName": "SystemConfigurator10",
+      "DisplayName": "SystemConfigurator10 Display name",
+      "Email": "SystemConfigurator10@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1983,
+      "Sex": 1,
+      "AssignedNationalSocieties": [
+        "9e1607da-0162-479d-8139-09a0c473a14d"
+      ],
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 1,
+      "PhoneNumbers": [
+        "66335063"
+      ],
+      "StaffUserId": "239fd30c-58be-42a2-9937-59a32ed6f73f",
+      "FullName": "SystemConfigurator11",
+      "DisplayName": "SystemConfigurator11 Display name",
+      "Email": "SystemConfigurator11@mail.com"
+    }
+  }
+]
