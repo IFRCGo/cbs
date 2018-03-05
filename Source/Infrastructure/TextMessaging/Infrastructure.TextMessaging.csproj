@@ -6,8 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="doLittle.Applications" Version="2.0.0-alpha2.69" />
         <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
         <PackageReference Include="doLittle.Serialization.Json" Version="2.0.0-alpha2.69" />
+        <PackageReference Include="doLittle.Runtime.Commands" Version="2.0.0-alpha2.70" />
         <PackageReference Include="Autofac" Version="4.6.2" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.0" />
         <PackageReference Include="Microsoft.Azure.ServiceBus" Version="2.0.0" />
