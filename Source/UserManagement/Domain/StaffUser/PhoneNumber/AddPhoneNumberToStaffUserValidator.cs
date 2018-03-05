@@ -19,7 +19,6 @@ namespace Domain.StaffUser.PhoneNUmber
 
             RuleFor(_ => _.PhoneNumber)
                 .NotEmpty().WithMessage("PhoneNumber cannot be empty");
-            // TODO: Add aditional rules here
         }
     }
 }

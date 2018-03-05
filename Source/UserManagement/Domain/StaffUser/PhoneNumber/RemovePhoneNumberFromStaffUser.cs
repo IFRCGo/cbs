@@ -7,7 +7,7 @@ namespace Domain.StaffUser.PhoneNumber
     public class RemovePhoneNumberFromStaffUser : ICommand
     {
         public Guid StaffUserId { get; set; }
-        public Role Role { get; set; }
+        public _Role Role { get; set; }
         public string PhoneNumber { get; set; }
     }
 }

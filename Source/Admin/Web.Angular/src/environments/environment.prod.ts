@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://cbs-admin-backend'
+  api: 'http://dev.cbsrc.org/adminbackend'
 };

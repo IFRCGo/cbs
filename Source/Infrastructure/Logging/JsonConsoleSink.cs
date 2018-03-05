@@ -2,14 +2,13 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Logging
+namespace Infrastructure.Logging
 {
     public class JsonConsoleSink : ILogEventSink
     {

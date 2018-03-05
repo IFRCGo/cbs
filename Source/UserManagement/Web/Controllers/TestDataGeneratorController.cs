@@ -1,10 +1,8 @@
 
 using Domain.DataCollector;
-using Domain.StaffUser;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Read.DataCollectors;
 using Read.GreetingGenerators;
 using Web.TestData;
 
@@ -14,13 +12,13 @@ namespace Web.Controllers
     public class TestDataGeneratorController : BaseController
     {
         private readonly IMongoDatabase _database;
-        private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
-        private readonly IStaffUserCommandHandler _staffUserCommandHandler;
+        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
+        private readonly Domain.StaffUser.Registering.RegisteringCommandHandlers _staffUserCommandHandler;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
-            IDataCollectorCommandHandler dataCollectorCommandHandler,
-            IStaffUserCommandHandler staffUserCommandHandler
+            DataCollectorCommandHandler dataCollectorCommandHandler,
+            Domain.StaffUser.Registering.RegisteringCommandHandlers staffUserCommandHandler
         )
         {
             _database = database;

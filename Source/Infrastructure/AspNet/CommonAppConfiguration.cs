@@ -2,8 +2,9 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using Infrastructure.AspNet;
+using Infrastructure.TextMessaging;
+using Infrastructure.Kafka.BoundedContexts;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Microsoft.AspNetCore.Builder
@@ -34,6 +35,8 @@ namespace Microsoft.AspNetCore.Builder
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            //BoundedContextListener.Start(app.ApplicationServices);
+            TextMessageListener.Start(app.ApplicationServices);
 
             return app;
         }

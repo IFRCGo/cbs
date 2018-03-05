@@ -1,5 +1,4 @@
 using System;
-using Domain.StaffUser.PhoneNumber;
 using FluentValidation;
 
 namespace Domain.StaffUser.PhoneNumber

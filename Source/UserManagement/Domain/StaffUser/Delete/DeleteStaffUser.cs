@@ -7,6 +7,6 @@ namespace Domain.StaffUser.Delete
     public class DeleteStaffUser : ICommand
     {
         public Guid StaffUserId { get; set; }
-        public Role Role { get; set; }
+        public _Role Role { get; set; } //TODO: Change to different role type?
     }
 }

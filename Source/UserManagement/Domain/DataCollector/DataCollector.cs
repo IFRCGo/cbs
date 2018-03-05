@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Concepts;
 using doLittle.Domain;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.PhoneNumber;
-using Domain.DataCollector.Update;
 using Events.DataCollector;
 
 namespace Domain.DataCollector

@@ -18,23 +18,23 @@ namespace Read.StaffUsers.Admin
         {
             _admins = admins;
         }
-
-        public async Task Process(AdminAdded @event)
-        {
-            await _admins.SaveAsync(new Admin
-            {
-                DisplayName = @event.DisplayName,
-                Email = @event.Email,
-                FullName = @event.FullName,
-                Id = @event.StaffUserId
-            });
-        }
-
-        public async Task Process(StaffUserDeleted @event)
-        {
-            if ( (Role) @event.Role == Role.Admin)
-                await _admins.RemoveAsync(@event.StaffUserId);
-        }
+        //TODO: Update to the new system
+        //public async Task Process(Registr @event)
+        //{
+        //    await _admins.SaveAsync(new Admin
+        //    {
+        //        DisplayName = @event.DisplayName,
+        //        Email = @event.Email,
+        //        FullName = @event.FullName,
+        //        Id = @event.StaffUserId
+        //    });
+        //}
+        // TODO: Update to the new system
+        //public async Task Process(StaffUserDeleted @event)
+        //{
+        //    if ( (Role) @event.Role == Role.Admin)
+        //        await _admins.RemoveAsync(@event.StaffUserId);
+        //}
 
     }
 }
