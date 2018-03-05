@@ -72,36 +72,66 @@ namespace Web.TestData
 
             var roleVals = Enum.GetValues(typeof(_Role));
 
+
+            List<RegisterNewAdminUser> admins = new List<RegisterNewAdminUser>();
+            List<RegisterNewStaffDataConsumer> dataConsumers = new List<RegisterNewStaffDataConsumer>();
+            List<RegisterNewDataCoordinator> dataCoordinator = new List<RegisterNewDataCoordinator>();
+            List<RegisterNewDataOwner> dataOwners = new List<RegisterNewDataOwner>();
+            List<RegisterNewStaffDataVerifier> dataVerifiers = new List<RegisterNewStaffDataVerifier>();
+            List<RegisterNewSystemConfigurator> systemConfigurators = new List<RegisterNewSystemConfigurator>();
+
+
             for (var i = 0; i < numRegistrations; i++)
             {
-                //TODO: Should we depend on _Role? And maybe create another class to create commands dynamically, like in Domain.Specs
+                //TODO: Should we depend on _Role? 
+                //TODO: Maybe create another class to create commands dynamically, like in Domain.Specs
                 _Role role = (_Role)roleVals.GetValue(rng.Next(roleVals.Length));
 
                 switch (role)
                 {
                     case _Role.Admin:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewAdminUserCommand(), Formatting.Indented));
+                        admins.Add(CreateRegisterNewAdminUserCommand());
                         break;
                     case _Role.DataConsumer:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataConsumerCommand(), Formatting.Indented));
+                        dataConsumers.Add(CreateRegisterNewDataConsumerCommand());
                         break;
                     case _Role.DataCoordinator:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataCoordinatorCommand(), Formatting.Indented));
+                        dataCoordinator.Add(CreateRegisterNewDataCoordinatorCommand());
                         break;
                     case _Role.DataOwner:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewDataOwnerCommand(), Formatting.Indented));
+                        dataOwners.Add(CreateRegisterNewDataOwnerCommand());
                         break;
                     case _Role.DataVerifier:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewStaffDataVerifierCommand(), Formatting.Indented));
+                        dataVerifiers.Add(CreateRegisterNewStaffDataVerifierCommand());
                         break;
                     case _Role.SystemCoordinator:
-                        sb.Append(JsonConvert.SerializeObject(CreateRegisterNewSystemConfiguratorCommand(), Formatting.Indented));
+                        systemConfigurators.Add(CreateRegisterNewSystemConfiguratorCommand());
                         break;
                 }
             }
-            using (var file = File.CreateText("./TestData/StaffUsers.json"))
+            using (var file = File.CreateText("./TestData/Admins.json"))
             {
-                file.WriteLine(sb.ToString());
+                file.WriteLine(JsonConvert.SerializeObject(admins, Formatting.Indented ));
+            }
+            using (var file = File.CreateText("./TestData/DataConsumers.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(dataConsumers, Formatting.Indented));
+            }
+            using (var file = File.CreateText("./TestData/DataCoordinators.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(dataCoordinator, Formatting.Indented));
+            }
+            using (var file = File.CreateText("./TestData/DataOwners.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(dataOwners, Formatting.Indented));
+            }
+            using (var file = File.CreateText("./TestData/DataVerifiers.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(dataVerifiers, Formatting.Indented));
+            }
+            using (var file = File.CreateText("./TestData/SystemConfigurators.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(systemConfigurators, Formatting.Indented));
             }
 
         }
