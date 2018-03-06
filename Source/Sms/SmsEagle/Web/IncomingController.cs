@@ -34,7 +34,7 @@ namespace Web
             {
                 Id = Guid.NewGuid(),
                 Sent = DateTimeOffset.ParseExact(sms.Timestamp,"yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture),
-                OriginNumber = sms.OID,
+                OriginNumber = sms.Sender,
                 Message = sms.Text,
                 FullMessage = sms.Text,
                 ReceivedAtGatewayNumber = sms.ModemNo,
