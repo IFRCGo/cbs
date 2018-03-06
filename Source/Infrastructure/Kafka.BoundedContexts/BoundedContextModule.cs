@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using System.Linq;
 using Autofac;
 
 namespace Infrastructure.Kafka.BoundedContexts
@@ -10,6 +11,7 @@ namespace Infrastructure.Kafka.BoundedContexts
     public class KafkaModule : Autofac.Module
     {
         const string KAFKA_BOUNDED_CONTEXT_TOPIC = "KAFKA_BOUNDED_CONTEXT_TOPIC";
+        const string KAFKA_BOUNDED_CONTEXT_SEND_TOPICS = "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS";
 
         protected override void Load(ContainerBuilder builder)
         {
@@ -17,7 +19,10 @@ namespace Infrastructure.Kafka.BoundedContexts
             
             var environmentVariables = Environment.GetEnvironmentVariables();
 
-            var committedEventStreamSenderConfiguration = new CommittedEventStreamSenderConfiguration(new Topic[0]);
+            var kafkaSendTopics = new string[0];
+            if (environmentVariables.Contains(KAFKA_BOUNDED_CONTEXT_SEND_TOPICS)) kafkaSendTopics = ((string)environmentVariables[KAFKA_BOUNDED_CONTEXT_SEND_TOPICS]).Split(';');
+
+            var committedEventStreamSenderConfiguration = new CommittedEventStreamSenderConfiguration(kafkaSendTopics.Select(_ => (Topic)_));
             builder.RegisterInstance(committedEventStreamSenderConfiguration).As<CommittedEventStreamSenderConfiguration>();
 
             Topic topic = "";
