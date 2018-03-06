@@ -39,7 +39,7 @@ namespace Domain.DataCollector.Update
 
             When(_ => _.PhoneNumbersRemoved != null, () =>
             {
-                RuleFor(_ => _.PhoneNumbersAdded)
+                RuleFor(_ => _.PhoneNumbersRemoved)
                     .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
             });
         }
