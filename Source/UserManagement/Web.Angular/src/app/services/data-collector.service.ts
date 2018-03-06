@@ -12,23 +12,19 @@ export class DataCollectorService {
 
   constructor(private http: Http) { }
 
-  saveDataCollector(dataCollector: DataCollector): Promise<void> {
+  saveDataCollector(dataCollector: DataCollector): Promise<any> {
     const url = environment.api + '/api/dataCollectors';
 
     return this.http
       .post(url, JSON.stringify(dataCollector), { headers: this.headers })
-      .toPromise()
-      .then(() => { console.log('DataCollector user added successfully'); })
-      .catch((error) => console.error(error));
+      .toPromise();
   }
 
-  getAllDataCollectors(): Promise<void> {
+  getAllDataCollectors(): Promise<any> {
     const url = environment.api + '/api/dataCollectors';
 
     return this.http
       .get(url, { headers: this.headers })
-      .toPromise()
-      .then((users) => { console.log(users); })
-      .catch((error) => console.error(error));
+      .toPromise();
   }
 }
