@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.StaffUser;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
 using Read.StaffUsers;

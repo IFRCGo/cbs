@@ -18,25 +18,15 @@ namespace Read.DataCollectors
 
         public async Task Process(DataCollectorRegistered @event)
         {
-            /* Should use a specific command and event for updating
-            var dataCollector = _dataCollectors.GetById(@event.Id) ?? new DataCollector(@event.Id);
-            dataCollector.FullName = @event.FullName;
-            dataCollector.DisplayName = @event.DisplayName;
-            dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            dataCollector.YearOfBirth = @event.YearOfBirth;
-            dataCollector.NationalSociety = @event.NationalSociety;
-            dataCollector.PreferredLanguage = (Language) @event.PreferredLanguage;
-            dataCollector.Sex = (Sex) @event.Sex;
-            dataCollector.RegisteredAt = @event.RegisteredAt;
-
-            dataCollector.PhoneNumbers = new List<PhoneNumber>();
-            */ 
             await _dataCollectors.SaveAsync(new DataCollector(@event.DataCollectorId)
             {
-                DisplayName = @event.DisplayName, FullName = @event.FullName,
+                DisplayName = @event.DisplayName,
+                FullName = @event.FullName,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-                YearOfBirth = @event.YearOfBirth, NationalSociety = @event.NationalSociety,
-                Sex = (Sex)@event.Sex, RegisteredAt = @event.RegisteredAt,
+                YearOfBirth = @event.YearOfBirth,
+                NationalSociety = @event.NationalSociety,
+                Sex = (Sex)@event.Sex,
+                RegisteredAt = @event.RegisteredAt,
                 PreferredLanguage = (Language)@event.PreferredLanguage,
                 PhoneNumbers = new List<PhoneNumber>()
             });
@@ -45,12 +35,6 @@ namespace Read.DataCollectors
         public void Process(DataCollectorUpdated @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-
-            //TODO: Business Validator should check this(?)
-            if (dataCollector == null)
-            {
-                return;
-            }
 
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
