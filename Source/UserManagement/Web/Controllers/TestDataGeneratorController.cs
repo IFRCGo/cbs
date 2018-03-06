@@ -54,7 +54,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
                         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
@@ -93,7 +93,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewAdminUser[]>(
                     System.IO.File.ReadAllText("./TestData/Admins.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewAdminUser[]>(
@@ -115,7 +115,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataConsumer[]>(
                     System.IO.File.ReadAllText("./TestData/DataConsumers.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataConsumer[]>(
@@ -137,7 +137,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewDataCoordinator[]>(
                     System.IO.File.ReadAllText("./TestData/DataCoordinators.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataCoordinator[]>(
@@ -159,7 +159,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewDataOwner[]>(
                     System.IO.File.ReadAllText("./TestData/DataOwners.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataOwner[]>(
@@ -181,7 +181,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataVerifier[]>(
                     System.IO.File.ReadAllText("./TestData/DataVerifiers.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataVerifier[]>(
@@ -203,7 +203,7 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewSystemConfigurator[]>(
                     System.IO.File.ReadAllText("./TestData/SystemConfigurators.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 TestDataGenerator.GenerateCorrectAddStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewSystemConfigurator[]>(
