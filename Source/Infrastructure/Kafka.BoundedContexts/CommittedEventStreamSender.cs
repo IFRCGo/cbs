@@ -40,6 +40,7 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Send(CommittedEventStream committedEventStream)
         {
+#if(false)
             _logger.Information("Sending committed event stream");
             _bridge.Send(committedEventStream);
             var eventContentAndEnvelopes = _eventConverter.Convert(committedEventStream);
@@ -51,6 +52,7 @@ namespace Infrastructure.Kafka.BoundedContexts
                 _logger.Information($"Send committed event stream to topic: '{topic}'");
                 _publisher.Publish(topic, json);
             });
+#endif            
         }
     }
 }

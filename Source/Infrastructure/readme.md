@@ -1,6 +1,35 @@
 
 # Infrastructure
 
+## Kafka
+
+The project uses Kafka as a transport for events
+
+### Hosts
+
+Kafka is set up to respond to a specific DNS name and everything honors this. This particular name is not
+accessible to the host - your machine. In order for us to be able to from local processes connect to Kafka,
+we need to add an entry to the operating systems hosts file.
+
+In your hosts file we need to map `kafka-service` to the IP of the Kafka CBS Dev instance.
+On a unix system you can edit the hosts file like so:
+
+```shell
+$ sudo nano /etc/hosts
+```
+
+On a Windows system, this file is located in the `c:\Windows\System32\drivers\etc\hosts` - edit using Notepad or your favorite editor.
+
+You can also use `code`, `pico` or any other editor to edit that file.
+
+Add the following line:
+
+```
+52.178.92.69  kafka-service
+```
+
+The IP address should correspond to the IP of the Kafka instance. On the CBS Dev cluster, it is `52.178.92.69`.
+
 ## Logging
 
 Collecting logs from an application is very important. All running applications just need to output logs in a specific

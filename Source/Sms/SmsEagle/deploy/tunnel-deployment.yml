@@ -7,15 +7,10 @@ spec:
   template:
     metadata:
       labels:
-        app: smseagle
+        app: sms
         environment: dev
     spec:
       containers:
-      - name: smseagle
-        image: redcrossredcrescent/smsproxy:1
-        ports:
-        - containerPort: 80
-          name: smsproxy-incoming
       - name: smseagle-tunnel
         image: redcrossredcrescent/smsproxy:tunnel-1
         ports:
@@ -23,19 +18,3 @@ spec:
           name: smsproxy-tunnel
         - containerPort: 7002
           name: smsproxy-tunnel-api
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: smseagle
-spec:
-  type: LoadBalancer
-  ports:
-  - name: incoming
-    port: 80
-  - name: tunnel
-    port: 7001
-  - name: tunnel-api
-    port: 7002
-  selector:
-    app: smseagle
