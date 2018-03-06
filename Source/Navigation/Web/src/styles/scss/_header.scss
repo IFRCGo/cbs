@@ -1,0 +1,13 @@
+.navigation-header {
+    display: flex;
+    flex-direction: row;
+    height: 7.2rem;
+    justify-content: flex-start;
+    padding: 1.5rem 1rem;
+    border-bottom: .2rem solid $link-color;
+    svg {
+        max-height: 100%;
+        width: 7.35rem;
+        display: block;
+    }
+}

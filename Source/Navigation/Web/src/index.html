@@ -1,8 +1,20 @@
-<link rel="stylesheet" href="style.bundle.css">
-<script src="bundle.js"></script>
-<section>
-    <figure class="logo">
-        CBS
-    </figure>
-    <%= require('./Components/navigation.html') %>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <base href="/" target="_parent">
+</head>
+<body>       
+    <header class="navigation-header">
+        <figure class="logo">
+            ${ require('./assets/images/ifrc.svg')}
+        </figure>
+        ${require('./Components/navigation.html') }
+    </header>   
+</body>
+</html>
+
+

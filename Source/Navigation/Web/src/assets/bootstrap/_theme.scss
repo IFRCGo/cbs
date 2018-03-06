@@ -2,9 +2,8 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
- @import '../../assets/bootstrap/variables';
- @import '~bootstrap-sass/assets/stylesheets/_bootstrap';
- @import '../../assets/bootstrap/theme';
- @import './_header';
- @import '../../Components/_navigation';
+ 
+ th{
+    color: $table-header;
+    background-color: $table-header-bg;
+  }
