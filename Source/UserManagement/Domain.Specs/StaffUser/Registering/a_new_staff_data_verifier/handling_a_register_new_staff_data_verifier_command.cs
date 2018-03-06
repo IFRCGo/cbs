@@ -27,7 +27,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
             command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
             command.Role.Sex = Sex.Female;
             command.Role.BirthYear = 1980;
-            command.Location = constants.valid_location;
+            command.Role.Location = constants.valid_location;
             staff_user = new Domain.StaffUser.StaffUser(command.Role.StaffUserId);
             repository = new Mock<IAggregateRootRepositoryFor<Domain.StaffUser.StaffUser>>();
             repository.Setup(r => r.Get(command.Role.StaffUserId)).Returns(staff_user);
@@ -56,9 +56,9 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
                 e => e.NationalSociety.ShouldEqual(command.Role.NationalSociety),
                 e => e.PreferredLanguage.ShouldEqual((int)command.Role.PreferredLanguage),
                 e => e.Sex.ShouldEqual((int)command.Role.Sex),
-                e => e.BirthYear.ShouldEqual(command.Role.BirthYear.Value),
-                e => e.Longitude.ShouldEqual(command.Location.Longitude),
-                e => e.Latitude.ShouldEqual(command.Location.Latitude)
+                e => e.BirthYear.ShouldEqual(command.Role.BirthYear),
+                e => e.Longitude.ShouldEqual(command.Role.Location.Longitude),
+                e => e.Latitude.ShouldEqual(command.Role.Location.Latitude)
 
             );
         };
