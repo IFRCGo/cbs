@@ -1,0 +1,18 @@
+nav {
+    padding: 0 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    a {
+        color: $brand-primary;
+        font-size: 1.6rem;
+        padding: 1rem;
+        margin: 0 1rem;
+        display: block;
+        border-radius: .3rem;
+        &:hover {
+            background-color: $gray-lighter;
+            text-decoration: none;
+        }
+    }
+}
