@@ -5,11 +5,24 @@ namespace Read.StaffUsers.DataConsumer
 {
     public class DataConsumer
     {
-        //TODO: Update to the new system
-        public Guid Id { get; set; }
-        public string FullName { get; set; }
-        public string DisplayName { get; set; }
-        public string Email { get; set; }
+        public DataConsumer(Guid staffUserId, Location location, 
+            Guid nationalSociety, Language preferredLanguage, 
+            int birthYear, Sex sex)
+
+        {
+            StaffUserId = staffUserId;
+            Location = location;
+            NationalSociety = nationalSociety;
+            PreferredLanguage = preferredLanguage;
+            BirthYear = birthYear;
+            Sex = sex;
+        }
+        public Guid StaffUserId { get; set; }
         public Location Location { get; set; }
+        public Guid NationalSociety { get; set; }
+        public Language PreferredLanguage { get; set; }
+        public int BirthYear { get; set; }
+        public Sex Sex { get; set; }
+        
     }
 }

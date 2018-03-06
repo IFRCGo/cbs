@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers.DataVerifier
 {
@@ -19,27 +20,19 @@ namespace Read.StaffUsers.DataVerifier
             _dataVerifiers = dataVerifiers;
         }
 
+        public async Task Process(StaffDataVerifierRegistered @event)
+        {
+            await _dataVerifiers.SaveAsync(new DataVerifier(
+                    @event.StaffUserId,
+                    @event.BirthYear,
+                    (Sex)@event.Sex,
+                    @event.NationalSociety,
+                    (Language)@event.PreferredLanguage,
+                    new Location(@event.Latitude, @event.Longitude)
+                    ));
+        }
+
         //TODO: Update to the new system
-        //public async Task Process(DataVerifierAdded @event)
-        //{
-        //    await _dataVerifiers.SaveAsync(new DataVerifier
-        //    {
-        //        YearOfBirth = @event.YearOfBirth,
-        //        DisplayName = @event.DisplayName,
-        //        AssignedNationalSociety = new List<Guid>(),
-        //        Email = @event.Email,
-        //        FullName = @event.FullName,
-        //        Id = @event.StaffUserId,
-        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-        //        MobilePhoneNumbers = new List<PhoneNumber>(),
-        //        NationalSociety = @event.NationalSociety,
-        //        Sex = (Sex)@event.Sex,
-        //        PreferredLanguage = (Language)@event.PreferredLanguage,
-        //        RegistrationDateTime = @event.RegistrationDate
-
-        //    });
-        //}
-
         //public async Task Process(StaffUserDeleted @event)
         //{
         //    if ((Role)@event.Role == Role.DataVerifier)

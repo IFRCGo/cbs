@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers.DataConsumer
 {
@@ -15,18 +16,18 @@ namespace Read.StaffUsers.DataConsumer
         {
             _dataConsumers = dataConsumers;
         }
-        //TODO: Update to the new system
-        //public async Task Process(DataConsumerAdded @event)
-        //{
-        //    await _dataConsumers.SaveAsync(new DataConsumer
-        //    {
-        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-        //        DisplayName = @event.DisplayName,
-        //        Email = @event.Email,
-        //        FullName = @event.Email,
-        //        Id = @event.StaffUserId
-        //    });
-        //}
+
+        public async Task Process(StaffDataConsumerRegistered @event)
+        {
+            await _dataConsumers.SaveAsync(new DataConsumer(
+                @event.StaffUserId,
+                new Location(@event.Latitude, @event.Longitude),
+                @event.NationalSociety,
+                (Language)@event.PreferredLanguage,
+                @event.BirthYear,
+                (Sex)@event.Sex 
+                ));
+        }
 
         //TODO: Update to the new system
         //public async Task Process(StaffUserDeleted @event)

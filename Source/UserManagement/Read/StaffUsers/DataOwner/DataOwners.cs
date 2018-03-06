@@ -17,12 +17,12 @@ namespace Read.StaffUsers.DataOwner
 
         public DataOwner GetById(Guid id)
         {
-            return _collection.Find(a => a.Id == id).SingleOrDefault();
+            return _collection.Find(a => a.StaffUserId == id).SingleOrDefault();
         }
 
         public async Task<DataOwner> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(a => a.Id == id)).SingleOrDefault();
+            return (await _collection.FindAsync(a => a.StaffUserId == id)).SingleOrDefault();
         }
 
         public IEnumerable<DataOwner> GetAll()
@@ -37,22 +37,22 @@ namespace Read.StaffUsers.DataOwner
 
         public void Remove(Guid id)
         {
-            _collection.DeleteOne(a => a.Id == id);
+            _collection.DeleteOne(a => a.StaffUserId == id);
         }
 
         public async Task RemoveAsync(Guid id)
         {
-            await _collection.DeleteOneAsync(a => a.Id == id);
+            await _collection.DeleteOneAsync(a => a.StaffUserId == id);
         }
 
         public void Save(DataOwner obj)
         {
-            _collection.ReplaceOne(a => a.Id == obj.Id, obj, new UpdateOptions { IsUpsert = true });
+            _collection.ReplaceOne(a => a.StaffUserId == obj.StaffUserId, obj, new UpdateOptions { IsUpsert = true });
         }
 
         public async Task SaveAsync(DataOwner obj)
         {
-            await _collection.ReplaceOneAsync(a => a.Id == obj.Id, obj, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(a => a.StaffUserId == obj.StaffUserId, obj, new UpdateOptions { IsUpsert = true });
         }
     }
 }

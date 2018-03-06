@@ -71,13 +71,11 @@ namespace Domain.StaffUser
 
         #endregion
 
-
-
         private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
         {
             foreach(var nationalSociety in assignedNationalSocieties)
             {
-                Apply(new NationalSocietyAssigned(EventSourceId,nationalSociety));
+                Apply(new NationalSocietyAssigned(EventSourceId, nationalSociety));
             }
         }
         //TODO: from woksin: Make this public? I think that there we can receive a command that adds phone numbers to user

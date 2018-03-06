@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers.DataCoordinator
 {
@@ -17,25 +18,19 @@ namespace Read.StaffUsers.DataCoordinator
         {
             _dataCoordinators = dataCoordinators;
         }
-        //TODO: Update to the new system
-        //public async Task Process(DataCoordinatorAdded @event)
-        //{
-        //    await _dataCoordinators.SaveAsync(new DataCoordinator
-        //    {
-        //        YearOfBirth = @event.YearOfBirth,
-        //        AssignedNationalSocieties = new List<Guid>(),
-        //        DisplayName = @event.DisplayName,
-        //        Email = @event.Email,
-        //        FullName = @event.FullName,
-        //        Id = @event.StaffUserId,
-        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-        //        MobilePhoneNumbers = new List<PhoneNumber>(),
-        //        NationalSociety = @event.NationalSociety,
-        //        Sex = (Sex)@event.Sex,
-        //        PreferredLanguage = (Language)@event.PreferredLanguage 
-        //    });
-        //}
+        
+        public async Task Process(DataCoordinatorRegistered @event)
+        {
+            await _dataCoordinators.SaveAsync(new DataCoordinator(
+                    @event.StaffUserId,
+                    @event.BirthYear,
+                    (Sex)@event.Sex,
+                    @event.NationalSociety,
+                    (Language)@event.PreferredLanguage
+                    ));
+        }
 
+        //TODO: Update to the new system
         //public async Task Process(StaffUserDeleted @event)
         //{
         //    if ((Role)@event.Role == Role.DataCoordinator)

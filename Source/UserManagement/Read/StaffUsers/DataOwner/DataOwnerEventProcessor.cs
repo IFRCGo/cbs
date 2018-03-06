@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers.DataOwner
 {
@@ -19,27 +20,21 @@ namespace Read.StaffUsers.DataOwner
             _dataOwners = dataOwners;
         }
 
-        //TODO: Update to the new system
-        //public async Task Process(DataOwnerAdded @event)
-        //{
-        //    await _dataOwners.SaveAsync(new DataOwner
-        //    {
-        //        YearOfBirth = @event.YearOfBirth,
-        //        AssignedNationalSocieties = new List<Guid>(),
-        //        DisplayName = @event.DisplayName,
-        //        DutyStation = @event.DutyStation,
-        //        Email = @event.Email,
-        //        FullName = @event.FullName,
-        //        Id = @event.StaffUserId,
-        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-        //        MobilePhoneNumbers = new List<PhoneNumber>(),
-        //        Sex = (Sex)@event.Sex,
-        //        NationalSociety = @event.NationalSociety,
-        //        PreferredLanguage = (Language)@event.PreferredLanguage,
-        //        Position = @event.Position
-        //    });
-        //}
+        public async Task Process(DataOwnerRegistered @event)
+        {
+            await _dataOwners.SaveAsync(new DataOwner(
+                    @event.StaffUserId,
+                    @event.BirthYear,
+                    (Sex)@event.Sex,
+                    @event.NationalSociety,
+                    (Language)@event.PreferredLanguage,
+                    new Location(@event.Latitude, @event.Longitude),
+                    @event.Position,
+                    @event.DutyStation
+                    ));
+        }
 
+        //TODO: Update to the new system
         //public async Task Process(StaffUserDeleted @event)
         //{
         //    if ((Role)@event.Role == Role.DataOwner)

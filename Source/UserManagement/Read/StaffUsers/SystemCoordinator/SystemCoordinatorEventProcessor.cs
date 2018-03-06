@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers.SystemCoordinator
 {
@@ -18,25 +19,18 @@ namespace Read.StaffUsers.SystemCoordinator
             _systemCoordinators = systemCoordinators;
         }
 
-        //TODO: Update to the new system
-        //public async Task Process(SystemCoordinatorAdded @event)
-        //{
-        //    await _systemCoordinators.SaveAsync(new SystemCoordinator
-        //    {
-        //        YearOfBirth = @event.YearOfBirth,
-        //        DisplayName = @event.DisplayName,
-        //        AssignedNationalSociety = new List<Guid>(),
-        //        Email = @event.Email,
-        //        FullName = @event.FullName,
-        //        Id = @event.StaffUserId,
-        //        Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
-        //        MobilePhoneNumbers = new List<PhoneNumber>(),
-        //        NationalSociety = @event.NationalSociety,
-        //        Sex = (Sex)@event.Sex,
-        //        PreferredLanguage = (Language)@event.PreferredLanguage
+        public async Task Process(SystemConfiguratorRegistered @event)
+        {
+            await _systemCoordinators.SaveAsync(new SystemCoordinator(
+                    @event.StaffUserId,
+                    @event.BirthYear,
+                    (Sex)@event.Sex,
+                    @event.NationalSociety,
+                    (Language)@event.PreferredLanguage
+                    ));
+        }
 
-        //    });
-        //}
+        //TODO: 
 
         //public async Task Process(StaffUserDeleted @event)
         //{
@@ -44,9 +38,9 @@ namespace Read.StaffUsers.SystemCoordinator
         //        await _systemCoordinators.RemoveAsync(@event.StaffUserId);
         //}
 
-        //public void Process(PhoneNumberAddedToStaffUser @event)
+        //public void Process(PhoneNumberRegistered @event)
         //{
-        //    if ((_Role) @event.Role == _Role.SystemCoordinator)
+        //    if ((_Role)@event.Role == _Role.SystemCoordinator)
         //    {
         //        var user = _systemCoordinators.GetById(@event.StaffUserId);
         //        user.MobilePhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
@@ -57,7 +51,7 @@ namespace Read.StaffUsers.SystemCoordinator
         //}
         //public void Process(PhoneNumberRemovedFromStaffUser @event)
         //{
-        //    if ((_Role) @event.Role == _Role.SystemCoordinator)
+        //    if ((_Role)@event.Role == _Role.SystemCoordinator)
         //    {
         //        var user = _systemCoordinators.GetById(@event.StaffUserId);
         //        user.MobilePhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));

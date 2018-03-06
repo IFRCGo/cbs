@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
+using Events.StaffUser.Registration;
 
 namespace Read.StaffUsers
 {
@@ -15,130 +16,17 @@ namespace Read.StaffUsers
         {
             _staffUserCollection = staffUserCollection;
         }
-
-        #region StaffUserAddedEvents
-
-        //TODO: Update to the new system
-        //public async Task Process(DataConsumerAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-        //public async Task Process(AdminAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-        //public async Task Process(DataCoordinatorAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-        //public async Task Process(DataOwnerAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-        //public async Task Process(SystemCoordinatorAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-        //public async Task Process(DataVerifierAdded @event)
-        //{
-        //    await _staffUserCollection.SaveAsync(new StaffUser(@event));
-        //}
-
-        #endregion
-
-        #region StaffUserUpdatedEvents
-        //TODO: Update to the new system
-        //public void Process(AdminUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        //public void Process(DataConsumerUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        //public void Process(DataCoordinatorUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
-
-        //    staffUser.NationalSociety = @event.NationalSociety;
-        //    staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        //public void Process(DataOwnerUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-            
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
-
-        //    staffUser.NationalSociety = @event.NationalSociety;
-        //    staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
-
-        //    staffUser.Position = @event.Position;
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        //public void Process(DataVerifierUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
-
-        //    staffUser.NationalSociety = @event.NationalSociety;
-        //    staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        //public void Process(SystemCoordinatorUpdated @event)
-        //{
-        //    var staffUser = _staffUserCollection.GetById(@event.StaffUserId);
-
-        //    staffUser.FullName = @event.FullName;
-        //    staffUser.DisplayName = @event.DisplayName;
-        //    staffUser.Email = @event.Email;
-
-        //    staffUser.Location = new Location(@event.GpsLocationLatitude, @event.GpsLocationLongitude);
-
-        //    staffUser.NationalSociety = @event.NationalSociety;
-        //    staffUser.PreferredLanguage = (Language)@event.PreferredLanguage;
-
-        //    _staffUserCollection.Save(staffUser);
-        //}
-
-        #endregion
+        
+        public async Task Process(NewUserRegistered @event)
+        {
+            await _staffUserCollection.SaveAsync(new StaffUser(
+                @event.StaffUserId,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt
+            ));
+        }
 
         public async Task Process(StaffUserDeleted @event)
         {

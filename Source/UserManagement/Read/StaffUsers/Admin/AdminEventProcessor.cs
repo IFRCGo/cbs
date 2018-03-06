@@ -18,6 +18,9 @@ namespace Read.StaffUsers.Admin
         {
             _admins = admins;
         }
+        //TODO: Deprecated when we have NewUserRegistered event. No means of differentiating
+        //between a NewUser and an Admin.
+
         //TODO: Update to the new system
         //public async Task Process(Registr @event)
         //{
@@ -26,7 +29,7 @@ namespace Read.StaffUsers.Admin
         //        DisplayName = @event.DisplayName,
         //        Email = @event.Email,
         //        FullName = @event.FullName,
-        //        Id = @event.StaffUserId
+        //        StaffUserId = @event.StaffUserId
         //    });
         //}
         // TODO: Update to the new system

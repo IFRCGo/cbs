@@ -30,6 +30,7 @@ namespace Events.StaffUser.Registration
         public int Sex { get; set; }
     }
 
+    //TODO: Shouldn't this be in its own file?
     public class StaffDataConsumerRegistered : IEvent 
     {
         public StaffDataConsumerRegistered (Guid staffUserId, Guid nationalSociety, int language, int sex, int birthYear,

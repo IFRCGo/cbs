@@ -18,7 +18,7 @@ namespace Read.StaffUsers
         }
         public async Task<StaffUser> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(s => s.Id == id)).SingleOrDefault();
+            return (await _collection.FindAsync(s => s.StaffUserId == id)).SingleOrDefault();
         }
 
         public async Task<IEnumerable<StaffUser>> GetAllAsync()
@@ -28,17 +28,17 @@ namespace Read.StaffUsers
 
         public async Task RemoveAsync(Guid id)
         {
-            await _collection.DeleteOneAsync(s => s.Id == id);
+            await _collection.DeleteOneAsync(s => s.StaffUserId == id);
         }
 
         public async Task SaveAsync(StaffUser obj)
         {
-            await _collection.ReplaceOneAsync(s => s.Id == obj.Id, obj, new UpdateOptions{IsUpsert = true});
+            await _collection.ReplaceOneAsync(s => s.StaffUserId == obj.StaffUserId, obj, new UpdateOptions{IsUpsert = true});
         }
 
         public StaffUser GetById(Guid id)
         {
-            return _collection.Find(s => s.Id == id).SingleOrDefault();
+            return _collection.Find(s => s.StaffUserId == id).SingleOrDefault();
         }
 
         public IEnumerable<StaffUser> GetAll()
@@ -48,12 +48,12 @@ namespace Read.StaffUsers
 
         public void Remove(Guid id)
         {
-            _collection.DeleteOne(s => s.Id == id);
+            _collection.DeleteOne(s => s.StaffUserId == id);
         }
 
         public void Save(StaffUser obj)
         {
-            _collection.ReplaceOne(s => s.Id == obj.Id, obj, new UpdateOptions { IsUpsert = true });
+            _collection.ReplaceOne(s => s.StaffUserId == obj.StaffUserId, obj, new UpdateOptions { IsUpsert = true });
         }
     }
 }
