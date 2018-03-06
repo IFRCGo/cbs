@@ -30,8 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Kafka.Bounde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{757E9A48-F695-4B7B-9DDE-216FF001EE77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{757E9A48-F695-4B7B-9DDE-216FF001EE77}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
