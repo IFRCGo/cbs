@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
@@ -13,7 +13,7 @@ namespace Read.HealthRiskFeatures
     public class HealthRisks : IHealthRisks
     {
         private IMongoDatabase _database;
-        private IMongoCollection<HealthRisk> _collection;
+        private readonly IMongoCollection<HealthRisk> _collection;
 
         public HealthRisks(IMongoDatabase database)
 

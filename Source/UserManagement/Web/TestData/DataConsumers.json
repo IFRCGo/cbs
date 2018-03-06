@@ -1,0 +1,274 @@
+[
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.65271303926255231,
+        "Longitude": 0.29856704049676985
+      },
+      "Sex": 2,
+      "BirthYear": 2015,
+      "NationalSociety": "37d1620d-6b97-4af9-bd16-4c7826a0a598",
+      "PreferredLanguage": 0,
+      "StaffUserId": "8fc57391-54c3-4ac1-8365-bab56aa19baf",
+      "FullName": "DataConsumer0",
+      "DisplayName": "DataConsumer0 Display name",
+      "Email": "DataConsumer0@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.76631194714750717,
+        "Longitude": 0.944006764303896
+      },
+      "Sex": 1,
+      "BirthYear": 1946,
+      "NationalSociety": "e999d2d0-1eed-48fa-abe0-1642c89d7a1e",
+      "PreferredLanguage": 1,
+      "StaffUserId": "a67d1c86-a4c5-4f04-9259-43654118646d",
+      "FullName": "DataConsumer1",
+      "DisplayName": "DataConsumer1 Display name",
+      "Email": "DataConsumer1@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.97533707459240082,
+        "Longitude": 0.2164984295221504
+      },
+      "Sex": null,
+      "BirthYear": 2016,
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 1,
+      "StaffUserId": "02ab1f6d-f2eb-414b-8e46-9f86d3fb46e5",
+      "FullName": "DataConsumer2",
+      "DisplayName": "DataConsumer2 Display name",
+      "Email": "DataConsumer2@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.76945665887066006,
+        "Longitude": 0.68321346942485006
+      },
+      "Sex": null,
+      "BirthYear": 1936,
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 1,
+      "StaffUserId": "acb1c4dc-ae6e-4351-b580-ebfdf96c2c23",
+      "FullName": "DataConsumer3",
+      "DisplayName": "DataConsumer3 Display name",
+      "Email": "DataConsumer3@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.4522376439777378,
+        "Longitude": 0.078007583077069176
+      },
+      "Sex": 1,
+      "BirthYear": 1933,
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 1,
+      "StaffUserId": "60d8fea8-8864-41e9-8d8b-11c3c9e9a55e",
+      "FullName": "DataConsumer4",
+      "DisplayName": "DataConsumer4 Display name",
+      "Email": "DataConsumer4@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.88017737254508643,
+        "Longitude": 0.88268500095358349
+      },
+      "Sex": 1,
+      "BirthYear": 1984,
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 0,
+      "StaffUserId": "f50ed7a3-382e-44d4-9d98-3f702ff1ee1d",
+      "FullName": "DataConsumer5",
+      "DisplayName": "DataConsumer5 Display name",
+      "Email": "DataConsumer5@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.70183589155871229,
+        "Longitude": 0.85541349316733584
+      },
+      "Sex": 2,
+      "BirthYear": 1920,
+      "NationalSociety": "4a0e3d82-b780-4ca7-ad6d-306151533280",
+      "PreferredLanguage": 1,
+      "StaffUserId": "7878eec5-2517-4dd4-b61a-ea0edd19d1b1",
+      "FullName": "DataConsumer6",
+      "DisplayName": "DataConsumer6 Display name",
+      "Email": "DataConsumer6@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.18536595496598909,
+        "Longitude": 0.23172644769387621
+      },
+      "Sex": 1,
+      "BirthYear": 2012,
+      "NationalSociety": "41b0de70-102b-4c62-8423-e7385b082851",
+      "PreferredLanguage": 1,
+      "StaffUserId": "407da9df-f85b-4b2e-845c-35bf66c6eef3",
+      "FullName": "DataConsumer7",
+      "DisplayName": "DataConsumer7 Display name",
+      "Email": "DataConsumer7@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.99001846694854012,
+        "Longitude": 0.18788989735203324
+      },
+      "Sex": 1,
+      "BirthYear": 1984,
+      "NationalSociety": "41b0de70-102b-4c62-8423-e7385b082851",
+      "PreferredLanguage": 1,
+      "StaffUserId": "9cc060e9-b6ef-4abb-8550-c2dd6465767e",
+      "FullName": "DataConsumer8",
+      "DisplayName": "DataConsumer8 Display name",
+      "Email": "DataConsumer8@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.01249866653815781,
+        "Longitude": 0.21702692015889424
+      },
+      "Sex": 2,
+      "BirthYear": 1988,
+      "NationalSociety": "c7aba18a-b620-4c06-be1a-8fc2a885d129",
+      "PreferredLanguage": 0,
+      "StaffUserId": "8232a7db-2c74-407e-b44d-0122f34e56b7",
+      "FullName": "DataConsumer9",
+      "DisplayName": "DataConsumer9 Display name",
+      "Email": "DataConsumer9@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.64654917672581469,
+        "Longitude": 0.14583081153492947
+      },
+      "Sex": 1,
+      "BirthYear": 1931,
+      "NationalSociety": "41b0de70-102b-4c62-8423-e7385b082851",
+      "PreferredLanguage": 0,
+      "StaffUserId": "d5bb77da-87a8-45d8-8ac2-8132b37efa62",
+      "FullName": "DataConsumer10",
+      "DisplayName": "DataConsumer10 Display name",
+      "Email": "DataConsumer10@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.018023618039686055,
+        "Longitude": 0.51117551257422911
+      },
+      "Sex": 2,
+      "BirthYear": 2002,
+      "NationalSociety": "41b0de70-102b-4c62-8423-e7385b082851",
+      "PreferredLanguage": 1,
+      "StaffUserId": "fd460c5c-ae12-48a5-8c8e-a9fc69a4df2e",
+      "FullName": "DataConsumer11",
+      "DisplayName": "DataConsumer11 Display name",
+      "Email": "DataConsumer11@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.6604851864559973,
+        "Longitude": 0.044698529897582967
+      },
+      "Sex": 2,
+      "BirthYear": 1960,
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 1,
+      "StaffUserId": "80aad092-8cc9-4364-b43e-b692b8de25b9",
+      "FullName": "DataConsumer12",
+      "DisplayName": "DataConsumer12 Display name",
+      "Email": "DataConsumer12@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.8045819154030559,
+        "Longitude": 0.19911613697144953
+      },
+      "Sex": 2,
+      "BirthYear": 1968,
+      "NationalSociety": "a765ddfa-10b3-46fc-94cb-177fc7a649d4",
+      "PreferredLanguage": 0,
+      "StaffUserId": "4d701cd1-b59b-4f48-9cae-b8e84f095e67",
+      "FullName": "DataConsumer13",
+      "DisplayName": "DataConsumer13 Display name",
+      "Email": "DataConsumer13@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.22796289912795784,
+        "Longitude": 0.42533410453485981
+      },
+      "Sex": 2,
+      "BirthYear": 1986,
+      "NationalSociety": "37d1620d-6b97-4af9-bd16-4c7826a0a598",
+      "PreferredLanguage": 0,
+      "StaffUserId": "171d87f0-e9c9-40fd-bd1c-adcfb5739223",
+      "FullName": "DataConsumer14",
+      "DisplayName": "DataConsumer14 Display name",
+      "Email": "DataConsumer14@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.65037904337531838,
+        "Longitude": 0.43600875112973558
+      },
+      "Sex": 1,
+      "BirthYear": 1971,
+      "NationalSociety": "db74b670-fa00-49d0-b5b9-1b26921ed3bb",
+      "PreferredLanguage": 0,
+      "StaffUserId": "6a3dab96-a136-47ca-a817-38cc89a155ac",
+      "FullName": "DataConsumer15",
+      "DisplayName": "DataConsumer15 Display name",
+      "Email": "DataConsumer15@mail.com"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 0.19175849537912687,
+        "Longitude": 0.36860732099442151
+      },
+      "Sex": 1,
+      "BirthYear": 1975,
+      "NationalSociety": "9e1607da-0162-479d-8139-09a0c473a14d",
+      "PreferredLanguage": 1,
+      "StaffUserId": "3cf797df-9975-4fce-a7fa-bfa5ef8460d9",
+      "FullName": "DataConsumer16",
+      "DisplayName": "DataConsumer16 Display name",
+      "Email": "DataConsumer16@mail.com"
+    }
+  }
+]
