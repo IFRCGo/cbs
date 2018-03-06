@@ -227,13 +227,13 @@ namespace Web.Controllers
         public void DeleteAllStaffUserCollections()
         {
             //TODO: Must be updated when the new read models are made
-            //DeleteCollection<StaffUser>("StaffUser");
-            //DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            //DeleteCollection<DataVerifier>("DataVerifier");
-            //DeleteCollection<DataOwner>("DataOwner");
-            //DeleteCollection<DataCoordinator>("DataCoordinator");
-            //DeleteCollection<DataConsumer>("DataConsumer");
-            //DeleteCollection<Admin>("Admin");
+            DeleteCollection<Read.StaffUsers.StaffUser>("StaffUser");
+            DeleteCollection<Read.StaffUsers.SystemCoordinator.SystemCoordinator>("SystemCoordinator");
+            DeleteCollection<Read.StaffUsers.DataVerifier.DataVerifier>("DataVerifier");
+            DeleteCollection<Read.StaffUsers.DataOwner.DataOwner>("DataOwner");
+            DeleteCollection<Read.StaffUsers.DataCoordinator.DataCoordinator>("DataCoordinator");
+            DeleteCollection<Read.StaffUsers.DataConsumer.DataConsumer>("DataConsumer");
+            DeleteCollection<Read.StaffUsers.Admin.Admin>("Admin");
 
         }
 
