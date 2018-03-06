@@ -1,6 +1,8 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Infrastructure.AspNet;
@@ -9,6 +11,7 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
+using Read.StaffUsers.StaffUserForReading;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -20,17 +23,78 @@ namespace Web.Controllers
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
+        private readonly IStaffUsersForReading _staffUseresForReading;
+
         public TestDataGeneratorController(
             IMongoDatabase database,
             Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
-            IRegisteringCommandHandlers staffUserCommandHandler
+            IRegisteringCommandHandlers staffUserCommandHandler,
+            IStaffUsersForReading staffUsersForReading
         )
         {
             _database = database;
             _staffUserCommandHandler = staffUserCommandHandler;
             _dataCollectorCommandHandler = dataCollectorCommandHandler;
+            _staffUseresForReading = staffUsersForReading;
         }
 
+        [HttpGet("testpolycol")]
+        public void TestPolymorphicCollection()
+        {
+            DeleteCollection<BaseUser>("StaffUsersForReading");
+
+            var baseUserId = Guid.NewGuid();
+            var dataConsumerId = Guid.NewGuid();
+            var systemConfiguratorId = Guid.NewGuid();
+
+            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.Admin
+            {
+                DisplayName = "Test1",
+                Email = "Test1@mail.com",
+                FullName = "Test1Name",
+                RegistrationDate = DateTimeOffset.UtcNow,
+                StaffUserId = baseUserId
+            });
+            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.DataConsumer()
+            {
+                DisplayName = "Test2",
+                Email = "Test2@mail.com",
+                FullName = "Test2Name",
+                RegistrationDate = DateTimeOffset.UtcNow,
+                StaffUserId = dataConsumerId,
+                PreferredLanguage = Language.English,
+                BirthYear = 2000,
+                Location = new Location(2.0, 4.0),
+                NationalSociety = Guid.NewGuid(),
+                Sex = Sex.Female
+            });
+            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.SystemConfigurator()
+            {
+                DisplayName = "Test3",
+                Email = "Test3@mail.com",
+                FullName = "Test3Name",
+                RegistrationDate = DateTimeOffset.UtcNow,
+                StaffUserId = systemConfiguratorId,
+                PreferredLanguage = Language.English,
+                
+                NationalSociety = Guid.NewGuid(),
+                Sex = Sex.Female,
+                MobilePhoneNumbers = new List<PhoneNumber> { new PhoneNumber("41480655")},
+                AssignedNationalSociety = new List<Guid> { Guid.NewGuid()},
+                BirthYear = 2000
+            });
+
+            Admin b = _staffUseresForReading.GetById<Admin>(baseUserId);
+            DataConsumer dc = _staffUseresForReading.GetById<DataConsumer>(dataConsumerId);
+            SystemConfigurator sc = _staffUseresForReading.GetById<SystemConfigurator>(systemConfiguratorId);
+            BaseUser sc2 = _staffUseresForReading.GetById<BaseUser>(systemConfiguratorId);
+
+            IEnumerable<BaseUser> allUsers = _staffUseresForReading.GetAll<BaseUser>();
+            IEnumerable<Admin> allAdmins = _staffUseresForReading.GetAll<Admin>();
+            IEnumerable<BaseUser> allDataConsumers = _staffUseresForReading.GetAll<DataConsumer>();
+
+            Console.WriteLine();
+        }
         [HttpGet("generatetestdataset")]
         public void GenerateTestDataSet()
         {
