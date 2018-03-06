@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser;
 using Events.StaffUser.Registration;

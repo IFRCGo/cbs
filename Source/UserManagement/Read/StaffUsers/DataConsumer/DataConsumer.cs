@@ -23,6 +23,6 @@ namespace Read.StaffUsers.DataConsumer
         public Language PreferredLanguage { get; set; }
         public int BirthYear { get; set; }
         public Sex Sex { get; set; }
-        
+
     }
 }
