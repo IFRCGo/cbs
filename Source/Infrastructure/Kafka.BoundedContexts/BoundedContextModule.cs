@@ -8,7 +8,7 @@ using Autofac;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {
-    public class KafkaModule : Autofac.Module
+    public class BoundedContextModule : Autofac.Module
     {
         const string KAFKA_BOUNDED_CONTEXT_TOPIC = "KAFKA_BOUNDED_CONTEXT_TOPIC";
         const string KAFKA_BOUNDED_CONTEXT_SEND_TOPICS = "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS";
