@@ -13,10 +13,4 @@
     <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194" />
     <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.2\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  
 </Project>

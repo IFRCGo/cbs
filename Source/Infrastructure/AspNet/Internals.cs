@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using doLittle.Applications;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace Infrastructure.AspNet
     /// </summary>
     internal class Internals
     {
+        public static BoundedContext BoundedContext;
         public static IConfiguration Configuration;
         public static ILoggerFactory LoggerFactory;
         public static IEnumerable<Assembly> AllAssemblies;

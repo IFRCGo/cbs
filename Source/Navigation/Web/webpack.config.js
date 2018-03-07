@@ -10,7 +10,9 @@ module.exports = [{
     module: {
         rules: [
             configParts.loaders.htmlLoader,
-            configParts.loaders.sassLoader
+            configParts.loaders.sassLoader,
+            configParts.loaders.svgLoader,
+            configParts.loaders.fontLoader
         ]
     },
     plugins: [

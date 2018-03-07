@@ -4,7 +4,7 @@ using doLittle.Runtime.Commands;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisteringCommandHandlers : ICanHandleCommands
+    public class RegisteringCommandHandlers : IRegisteringCommandHandlers
     {
         IAggregateRootRepositoryFor<StaffUser> _repository;
         ISystemClock _systemClock;
@@ -55,7 +55,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataVerifier(command.Role.FullName, command.Role.DisplayName, 
                                                 command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
-                                                command.Role.Sex, command.Location);
+                                                command.Role.Sex, command.Role.Location);
         }
 
         public void Handle(RegisterNewStaffDataConsumer command)

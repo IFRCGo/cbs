@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Autofac;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
+using doLittle.Collections;
 using doLittle.Domain;
 using doLittle.Events.Processing;
 using doLittle.Logging;
@@ -43,6 +44,8 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(Internals.AssemblyProvider).As<IAssemblyProvider>();
             builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
 
+            Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
+
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
                 .SingleInstance();
@@ -71,6 +74,7 @@ namespace Infrastructure.AspNet
             var applicationName = (ApplicationName) "CBS";
             var application = new Application(applicationName, applicationStructure);
             builder.Register(_ => application).As<IApplication>().SingleInstance();
+            builder.Register(_ => Internals.BoundedContext).AsSelf();
 
             var identity = new ClaimsIdentity();
             identity.AddClaim(new Claim(identity.NameClaimType, "[Anonymous]"));

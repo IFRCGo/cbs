@@ -39,24 +39,31 @@ module.exports = {
         },
         svgLoader: {
             test: /\.svg/,
+            exclude: /\/fonts\/bootstrap/,
             use: {
                 loader: 'svg-inline-loader',
                 options: {
                     removeTags: true,
                     removingTags: ['title', 'desc'],
                     removingTagAttrs: ['id', 'data-name']
-
+                    
                 }
             }
         },
-
+        fontLoader: {
+            test: /\.(ttf|eot|woff|woff2|svg)$/,
+            exclude: /\/assets\/images/,
+            loader: "file-loader",
+            options: {
+                name: "fonts/[name].[ext]",
+            },
+        },
     },
     plugins: {
         cleanDistFolderAndIndexfile: new CleanWebpackPlugin(["dist/*"]),
         buildHtmlIndex: new HtmlWebpackPlugin({
             template: "./src/index.html",
-            filename: 'index.html',
-            inject:false
+            filename: 'index.html'
         }),
         sassBuilder: sassBuilder
     }

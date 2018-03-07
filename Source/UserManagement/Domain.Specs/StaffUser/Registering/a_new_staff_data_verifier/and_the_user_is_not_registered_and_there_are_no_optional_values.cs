@@ -42,7 +42,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
             sut.ShouldHaveEvent<StaffDataVerifierRegistered>().InStream().Where(
                 e => e.Latitude.ShouldEqual(constants.valid_location.Latitude),
                 e => e.Longitude.ShouldEqual(constants.valid_location.Longitude),
-                e => e.BirthYear.ShouldEqual(command.Role.BirthYear.Value),
+                e => e.BirthYear.ShouldEqual(command.Role.BirthYear),
                 e => e.Sex.ShouldEqual((int)command.Role.Sex.Value)
             );
         };
