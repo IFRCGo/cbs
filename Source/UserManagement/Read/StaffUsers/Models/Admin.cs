@@ -1,6 +1,6 @@
 using System;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Models
 {
     public class Admin : BaseUser
     {

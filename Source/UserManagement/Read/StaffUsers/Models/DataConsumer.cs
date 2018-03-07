@@ -2,7 +2,7 @@ using System;
 using Concepts;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Models
 {
     public class DataConsumer : BaseUser
     {

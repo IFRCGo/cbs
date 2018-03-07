@@ -11,7 +11,8 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
-using Read.StaffUsers.StaffUserForReading;
+using Read.StaffUsers;
+using Read.StaffUsers.Models;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -19,6 +20,7 @@ namespace Web.Controllers
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : BaseController
     {
+        private static readonly Random rng = new Random();
         private readonly IMongoDatabase _database;
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
@@ -39,52 +41,50 @@ namespace Web.Controllers
         }
 
         [HttpGet("testpolycol")]
-        public void TestPolymorphicCollection()
+        public async void TestPolymorphicCollection()
         {
             DeleteCollection<BaseUser>("StaffUsersForReading");
 
-            var baseUserId = Guid.NewGuid();
+            var adminId = Guid.NewGuid();
             var dataConsumerId = Guid.NewGuid();
             var systemConfiguratorId = Guid.NewGuid();
 
-            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.Admin
-            {
-                DisplayName = "Test1",
-                Email = "Test1@mail.com",
-                FullName = "Test1Name",
-                RegistrationDate = DateTimeOffset.UtcNow,
-                StaffUserId = baseUserId
-            });
-            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.DataConsumer()
-            {
-                DisplayName = "Test2",
-                Email = "Test2@mail.com",
-                FullName = "Test2Name",
-                RegistrationDate = DateTimeOffset.UtcNow,
-                StaffUserId = dataConsumerId,
-                PreferredLanguage = Language.English,
-                BirthYear = 2000,
-                Location = new Location(2.0, 4.0),
-                NationalSociety = Guid.NewGuid(),
-                Sex = Sex.Female
-            });
-            _staffUseresForReading.Save(new Read.StaffUsers.StaffUserForReading.SystemConfigurator()
-            {
-                DisplayName = "Test3",
-                Email = "Test3@mail.com",
-                FullName = "Test3Name",
-                RegistrationDate = DateTimeOffset.UtcNow,
-                StaffUserId = systemConfiguratorId,
-                PreferredLanguage = Language.English,
-                
-                NationalSociety = Guid.NewGuid(),
-                Sex = Sex.Female,
-                MobilePhoneNumbers = new List<PhoneNumber> { new PhoneNumber("41480655")},
-                AssignedNationalSociety = new List<Guid> { Guid.NewGuid()},
-                BirthYear = 2000
-            });
+            _staffUseresForReading.Save(new Admin
+            (
+                adminId,
+                "Admin1",
+                "Admin1_Disp",
+                "Admin1@mail.com",
+                DateTimeOffset.UtcNow
+            ));
+            _staffUseresForReading.Save(new DataConsumer
+            (
 
-            Admin b = _staffUseresForReading.GetById<Admin>(baseUserId);
+                dataConsumerId,
+                "DataConsumer1",
+                "DataConsumer1_Disp",
+                "DataConsumer1@mail.com",
+                DateTimeOffset.UtcNow,
+                new Location(rng.NextDouble(), rng.NextDouble()),
+                Guid.NewGuid(),
+                Language.English,
+                2000,
+                Sex.Female
+            ));
+            _staffUseresForReading.Save(new SystemConfigurator
+            (
+                systemConfiguratorId,
+                "SystemConfigurator1",
+                "SystemConfigurator1_Disp",
+                "SystemConfigurator1@mail.com",
+                DateTimeOffset.UtcNow,
+                2000,
+                Sex.Male,
+                Guid.NewGuid(),
+                Language.French
+            ));
+
+            Admin b = _staffUseresForReading.GetById<Admin>(adminId);
             DataConsumer dc = _staffUseresForReading.GetById<DataConsumer>(dataConsumerId);
             SystemConfigurator sc = _staffUseresForReading.GetById<SystemConfigurator>(systemConfiguratorId);
             BaseUser sc2 = _staffUseresForReading.GetById<BaseUser>(systemConfiguratorId);
@@ -92,6 +92,32 @@ namespace Web.Controllers
             IEnumerable<BaseUser> allUsers = _staffUseresForReading.GetAll<BaseUser>();
             IEnumerable<Admin> allAdmins = _staffUseresForReading.GetAll<Admin>();
             IEnumerable<BaseUser> allDataConsumers = _staffUseresForReading.GetAll<DataConsumer>();
+
+            IEnumerable<BaseUser> allUsers2 = await _staffUseresForReading.GetAllAsync<BaseUser>();
+            IEnumerable<Admin> allAdmins2 = await _staffUseresForReading.GetAllAsync<Admin>();
+            IEnumerable<BaseUser> allDataConsumers2 = await _staffUseresForReading.GetAllAsync<DataConsumer>();
+
+            _staffUseresForReading.Save(new SystemConfigurator(
+                adminId,
+                "SystemConfigurator2",
+                "SystemConfigurator2_Disp",
+                "SystemConfigurator2@mail.com",
+                DateTimeOffset.UtcNow,
+                2001,
+                Sex.Male,
+                Guid.NewGuid(),
+                Language.French
+                ));
+
+            try
+            {
+                Admin a1 = _staffUseresForReading.GetById<Admin>(adminId);
+            }
+            catch (UserNotOfExpectedType)
+            {
+            }
+            SystemConfigurator sc3 = _staffUseresForReading.GetById<SystemConfigurator>(adminId);
+
 
             Console.WriteLine();
         }
@@ -290,13 +316,13 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            DeleteCollection<Read.StaffUsers.StaffUser>("StaffUser");
-            DeleteCollection<Read.StaffUsers.SystemCoordinator.SystemCoordinator>("SystemCoordinator");
-            DeleteCollection<Read.StaffUsers.DataVerifier.DataVerifier>("DataVerifier");
-            DeleteCollection<Read.StaffUsers.DataOwner.DataOwner>("DataOwner");
-            DeleteCollection<Read.StaffUsers.DataCoordinator.DataCoordinator>("DataCoordinator");
-            DeleteCollection<Read.StaffUsers.DataConsumer.DataConsumer>("DataConsumer");
-            DeleteCollection<Read.StaffUsers.Admin.Admin>("Admin");
+            //DeleteCollection<Read.StaffUsers.StaffUser>("StaffUser");
+            //DeleteCollection<Read.StaffUsers.SystemCoordinator.SystemCoordinator>("SystemCoordinator");
+            //DeleteCollection<Read.StaffUsers.DataVerifier.DataVerifier>("DataVerifier");
+            //DeleteCollection<Read.StaffUsers.DataOwner.DataOwner>("DataOwner");
+            //DeleteCollection<Read.StaffUsers.DataCoordinator.DataCoordinator>("DataCoordinator");
+            //DeleteCollection<Read.StaffUsers.DataConsumer.DataConsumer>("DataConsumer");
+            //DeleteCollection<Read.StaffUsers.Admin.Admin>("Admin");
 
         }
 

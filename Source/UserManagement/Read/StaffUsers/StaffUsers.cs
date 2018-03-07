@@ -8,12 +8,12 @@ using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
 {
-    public class StaffUsersForReading : IStaffUsersForReading
+    public class StaffUsers : IStaffUsers
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<BaseUser> _collection;
 
-        public StaffUsersForReading(IMongoDatabase database)
+        public StaffUsers(IMongoDatabase database)
         {
             _database = database;
             _collection = database.GetCollection<BaseUser>("StaffUsersForReading");

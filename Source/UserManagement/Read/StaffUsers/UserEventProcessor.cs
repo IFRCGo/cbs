@@ -1,13 +1,13 @@
 using doLittle.Events.Processing;
 using Events.StaffUser.Registration;
-
+using Read.StaffUsers.Models;
 namespace Read.StaffUsers
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        private IStaffUsersForReading _collection;
+        private IStaffUsers _collection;
 
-        public UserEventProcessor(IStaffUsersForReading collection)
+        public UserEventProcessor(IStaffUsers collection)
         {
             _collection = collection;
         }
@@ -25,7 +25,9 @@ namespace Read.StaffUsers
 
         public void Process(StaffDataConsumerRegistered @event)
         {
-            _collection.Save(new DataConsumer());
+            //_collection.Save(new DataConsumer(
+            //    eve
+            //    ));
         }
     }
 }

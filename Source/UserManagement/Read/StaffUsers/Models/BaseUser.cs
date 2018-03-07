@@ -1,10 +1,11 @@
 using System;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Models
 {
     [BsonDiscriminator(RootClass = true)]
-    [BsonKnownTypes(typeof(Admin), typeof(DataConsumer), typeof(DataCoordinator), typeof(DataOwner), typeof(DataVerifier), typeof(SystemConfigurator))]
+    [BsonKnownTypes(typeof(Admin), typeof(DataConsumer), typeof(DataCoordinator), 
+        typeof(DataOwner), typeof(DataVerifier), typeof(SystemConfigurator))]
     public abstract class BaseUser
     {
         [BsonId]
