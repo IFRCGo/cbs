@@ -1,7 +1,7 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
@@ -25,31 +25,32 @@ namespace Web.Controllers
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
-        private readonly IStaffUsersForReading _staffUseresForReading;
+        private readonly IStaffUsers _staffUsers;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
             Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
             IRegisteringCommandHandlers staffUserCommandHandler,
-            IStaffUsersForReading staffUsersForReading
+            IStaffUsers staffUsers
         )
         {
             _database = database;
             _staffUserCommandHandler = staffUserCommandHandler;
             _dataCollectorCommandHandler = dataCollectorCommandHandler;
-            _staffUseresForReading = staffUsersForReading;
+            _staffUsers = staffUsers;
         }
 
         [HttpGet("testpolycol")]
-        public async void TestPolymorphicCollection()
+        public async Task<IActionResult> TestPolymorphicCollection()
         {
+            //TODO: Perhaps do testing of the polymorphic collection in Read.Specs instead
             DeleteCollection<BaseUser>("StaffUsersForReading");
 
             var adminId = Guid.NewGuid();
             var dataConsumerId = Guid.NewGuid();
             var systemConfiguratorId = Guid.NewGuid();
 
-            _staffUseresForReading.Save(new Admin
+            _staffUsers.Save(new Admin
             (
                 adminId,
                 "Admin1",
@@ -57,7 +58,7 @@ namespace Web.Controllers
                 "Admin1@mail.com",
                 DateTimeOffset.UtcNow
             ));
-            _staffUseresForReading.Save(new DataConsumer
+            _staffUsers.Save(new DataConsumer
             (
 
                 dataConsumerId,
@@ -71,7 +72,7 @@ namespace Web.Controllers
                 2000,
                 Sex.Female
             ));
-            _staffUseresForReading.Save(new SystemConfigurator
+            _staffUsers.Save(new SystemConfigurator
             (
                 systemConfiguratorId,
                 "SystemConfigurator1",
@@ -84,20 +85,26 @@ namespace Web.Controllers
                 Language.French
             ));
 
-            Admin b = _staffUseresForReading.GetById<Admin>(adminId);
-            DataConsumer dc = _staffUseresForReading.GetById<DataConsumer>(dataConsumerId);
-            SystemConfigurator sc = _staffUseresForReading.GetById<SystemConfigurator>(systemConfiguratorId);
-            BaseUser sc2 = _staffUseresForReading.GetById<BaseUser>(systemConfiguratorId);
+            Admin b = _staffUsers.GetById<Admin>(adminId);
+            DataConsumer dc = _staffUsers.GetById<DataConsumer>(dataConsumerId);
+            SystemConfigurator sc = _staffUsers.GetById<SystemConfigurator>(systemConfiguratorId);
+            BaseUser sc2 = _staffUsers.GetById<BaseUser>(systemConfiguratorId);
 
-            IEnumerable<BaseUser> allUsers = _staffUseresForReading.GetAll<BaseUser>();
-            IEnumerable<Admin> allAdmins = _staffUseresForReading.GetAll<Admin>();
-            IEnumerable<BaseUser> allDataConsumers = _staffUseresForReading.GetAll<DataConsumer>();
+            Admin ba = await _staffUsers.GetByIdAsync<Admin>(adminId);
+            DataConsumer dca = await _staffUsers.GetByIdAsync<DataConsumer>(dataConsumerId);
+            SystemConfigurator sca = await _staffUsers.GetByIdAsync<SystemConfigurator>(systemConfiguratorId);
+            BaseUser sc2a = await _staffUsers.GetByIdAsync<BaseUser>(systemConfiguratorId);
 
-            IEnumerable<BaseUser> allUsers2 = await _staffUseresForReading.GetAllAsync<BaseUser>();
-            IEnumerable<Admin> allAdmins2 = await _staffUseresForReading.GetAllAsync<Admin>();
-            IEnumerable<BaseUser> allDataConsumers2 = await _staffUseresForReading.GetAllAsync<DataConsumer>();
 
-            _staffUseresForReading.Save(new SystemConfigurator(
+            IEnumerable<BaseUser> allUsers = _staffUsers.GetAll<BaseUser>();
+            IEnumerable<Admin> allAdmins = _staffUsers.GetAll<Admin>();
+            IEnumerable<BaseUser> allDataConsumers = _staffUsers.GetAll<DataConsumer>();
+
+            IEnumerable<BaseUser> allUsers2 = await _staffUsers.GetAllAsync<BaseUser>();
+            IEnumerable<Admin> allAdmins2 = await _staffUsers.GetAllAsync<Admin>();
+            IEnumerable<BaseUser> allDataConsumers2 = await _staffUsers.GetAllAsync<DataConsumer>();
+
+            _staffUsers.Save(new SystemConfigurator(
                 adminId,
                 "SystemConfigurator2",
                 "SystemConfigurator2_Disp",
@@ -111,15 +118,16 @@ namespace Web.Controllers
 
             try
             {
-                Admin a1 = _staffUseresForReading.GetById<Admin>(adminId);
+                Admin a1 = _staffUsers.GetById<Admin>(adminId);
+                return BadRequest();
             }
             catch (UserNotOfExpectedType)
             {
             }
-            SystemConfigurator sc3 = _staffUseresForReading.GetById<SystemConfigurator>(adminId);
+            SystemConfigurator sc3 = _staffUsers.GetById<SystemConfigurator>(adminId);
 
 
-            Console.WriteLine();
+            return Ok();
         }
         [HttpGet("generatetestdataset")]
         public void GenerateTestDataSet()

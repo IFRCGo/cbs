@@ -41,7 +41,7 @@ namespace Read.StaffUsers
 
         public async Task<T> GetByIdAsync<T>(Guid id) where T : BaseUser
         {
-            var user = (await  _collection.FindAsync(_ => _.StaffUserId == id)).FirstOrDefault();
+            var user = (await _collection.FindAsync(_ => _.StaffUserId == id)).FirstOrDefault();
 
             if (user == null)
             {
@@ -66,8 +66,10 @@ namespace Read.StaffUsers
         public async Task<IEnumerable<T>> GetAllAsync<T>() where T : BaseUser
         {
             var filter = Builders<BaseUser>.Filter.OfType<T>();
-            return (await _collection.FindAsync(filter)).ToList() as List<T>; // Should be a safe conversion
-            
+            var cursor = await _collection.FindAsync(filter);
+            var res = await cursor.ToListAsync();
+            return res.Cast<T>().ToList();
+
         }
 
         public void Remove(Guid id)
@@ -82,7 +84,7 @@ namespace Read.StaffUsers
 
         public void Save<T>(T dataCollector) where T : BaseUser
         {
-            _collection.ReplaceOne(_ => _.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions {IsUpsert = true});
+            _collection.ReplaceOne(_ => _.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
 
         public async Task SaveAsync<T>(T dataCollector) where T : BaseUser
