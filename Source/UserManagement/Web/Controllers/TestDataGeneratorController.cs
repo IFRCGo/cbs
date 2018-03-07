@@ -1,6 +1,8 @@
-
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Infrastructure.AspNet;
@@ -9,6 +11,8 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
+using Read.StaffUsers;
+using Read.StaffUsers.Models;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -16,19 +20,24 @@ namespace Web.Controllers
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : BaseController
     {
+        private static readonly Random rng = new Random();
         private readonly IMongoDatabase _database;
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
+        private readonly IStaffUsers _staffUsers;
+
         public TestDataGeneratorController(
             IMongoDatabase database,
             Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
-            IRegisteringCommandHandlers staffUserCommandHandler
+            IRegisteringCommandHandlers staffUserCommandHandler,
+            IStaffUsers staffUsers
         )
         {
             _database = database;
             _staffUserCommandHandler = staffUserCommandHandler;
             _dataCollectorCommandHandler = dataCollectorCommandHandler;
+            _staffUsers = staffUsers;
         }
 
         [HttpGet("generatetestdataset")]
@@ -226,14 +235,13 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            //TODO: Must be updated when the new read models are made
-            //DeleteCollection<StaffUser>("StaffUser");
-            //DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            //DeleteCollection<DataVerifier>("DataVerifier");
-            //DeleteCollection<DataOwner>("DataOwner");
-            //DeleteCollection<DataCoordinator>("DataCoordinator");
-            //DeleteCollection<DataConsumer>("DataConsumer");
-            //DeleteCollection<Admin>("Admin");
+            //DeleteCollection<Read.StaffUsers.StaffUser>("StaffUser");
+            //DeleteCollection<Read.StaffUsers.SystemCoordinator.SystemCoordinator>("SystemCoordinator");
+            //DeleteCollection<Read.StaffUsers.DataVerifier.DataVerifier>("DataVerifier");
+            //DeleteCollection<Read.StaffUsers.DataOwner.DataOwner>("DataOwner");
+            //DeleteCollection<Read.StaffUsers.DataCoordinator.DataCoordinator>("DataCoordinator");
+            //DeleteCollection<Read.StaffUsers.DataConsumer.DataConsumer>("DataConsumer");
+            //DeleteCollection<Read.StaffUsers.Admin.Admin>("Admin");
 
         }
 

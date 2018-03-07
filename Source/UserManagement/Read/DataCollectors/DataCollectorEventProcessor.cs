@@ -49,11 +49,6 @@ namespace Read.DataCollectors
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            //TODO: Business Validator should check this(?)
-            if (dataCollector == null)
-            {
-                return;
-            }
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
@@ -61,11 +56,6 @@ namespace Read.DataCollectors
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            //TODO: Business Validator should check this(?)
-            if (dataCollector == null)
-            {
-                return;
-            }
             dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }

@@ -11,6 +11,7 @@ namespace Domain.DataCollector
     {
         private readonly List<string> _numbers = new List<string>();
         private bool _isRegistered;
+
         public DataCollector(Guid id) : base(id)
         {
         }
