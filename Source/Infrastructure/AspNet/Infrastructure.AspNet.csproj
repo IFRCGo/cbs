@@ -10,6 +10,7 @@
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="doLittle.Assemblies" Version="2.0.0-alpha2.69" />
+    <PackageReference Include="doLittle.Collections" Version="2.0.0-alpha2.69" />
     <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
     <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha2.194" />
     <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194" />

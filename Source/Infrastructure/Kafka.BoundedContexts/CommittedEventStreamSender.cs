@@ -2,12 +2,18 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using doLittle.Collections;
 using doLittle.Logging;
+using doLittle.Runtime.Applications;
 using doLittle.Runtime.Events;
 using doLittle.Runtime.Events.Publishing;
 using doLittle.Runtime.Events.Publishing.InProcess;
 using doLittle.Serialization.Json;
+using Newtonsoft.Json;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {
@@ -40,7 +46,8 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Send(CommittedEventStream committedEventStream)
         {
-#if(false)
+            if( _senderConfiguration.Topics.Count() == 0 ) return;
+
             _logger.Information("Sending committed event stream");
             _bridge.Send(committedEventStream);
             var eventContentAndEnvelopes = _eventConverter.Convert(committedEventStream);
@@ -52,7 +59,6 @@ namespace Infrastructure.Kafka.BoundedContexts
                 _logger.Information($"Send committed event stream to topic: '{topic}'");
                 _publisher.Publish(topic, json);
             });
-#endif            
         }
     }
 }
