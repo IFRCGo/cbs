@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Concepts;
 using doLittle.Events.Processing;
 using Events.StaffUser.Registration;
@@ -6,33 +7,31 @@ namespace Read.StaffUsers
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        private IStaffUsers _collection;
+        private readonly IStaffUsers _collection;
 
         public UserEventProcessor(IStaffUsers collection)
         {
             _collection = collection;
         }
 
-        public void Process(NewUserRegistered @event)
+        public async Task Process(AdminRegistered @event)
         {
-            _collection.Save(new Admin (
-                    @event.StaffUserId,
-                    @event.FullName,
-                    @event.DisplayName,
-                    @event.Email,
-                    @event.RegisteredAt
-                ));
-        }
-
-        public void Process(StaffDataConsumerRegistered @event)
-        {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            _collection.Save(new DataConsumer(
+            await _collection.SaveAsync(new Admin(
                 @event.StaffUserId,
-                baseUser.FullName,
-                baseUser.DisplayName,
-                baseUser.Email,
-                baseUser.RegistrationDate,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt
+            ));
+        }
+        public async Task Process(StaffDataConsumerRegistered @event)
+        {
+            await _collection.SaveAsync(new DataConsumer(
+                @event.StaffUserId,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt,
                 new Location(@event.Latitude, @event.Longitude),
                 @event.NationalSociety,
                 (Language)@event.PreferredLanguage,
@@ -40,30 +39,28 @@ namespace Read.StaffUsers
                 (Sex)@event.Sex
                 ));
         }
-        public void Process(DataCoordinatorRegistered @event)
+        public async Task Process(DataCoordinatorRegistered @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            _collection.Save(new DataCoordinator(
+            await _collection.SaveAsync(new DataCoordinator(
                 @event.StaffUserId,
-                baseUser.FullName,
-                baseUser.DisplayName,
-                baseUser.Email,
-                baseUser.RegistrationDate,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt,
                 @event.BirthYear,
                 (Sex)@event.Sex,
                 @event.NationalSociety,
                 (Language)@event.PreferredLanguage
             ));
         }
-        public void Process(DataOwnerRegistered @event)
+        public async Task Process(DataOwnerRegistered @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            _collection.Save(new DataOwner(
+            await _collection.SaveAsync(new DataOwner(
                 @event.StaffUserId,
-                baseUser.FullName,
-                baseUser.DisplayName,
-                baseUser.Email,
-                baseUser.RegistrationDate,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt,
                 @event.BirthYear,
                 (Sex)@event.Sex,
                 @event.NationalSociety,
@@ -73,15 +70,14 @@ namespace Read.StaffUsers
                 @event.DutyStation
             ));
         }
-        public void Process(StaffDataVerifierRegistered @event)
+        public async Task Process(StaffDataVerifierRegistered @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            _collection.Save(new DataVerifier(
+            await _collection.SaveAsync(new DataVerifier(
                 @event.StaffUserId,
-                baseUser.FullName,
-                baseUser.DisplayName,
-                baseUser.Email,
-                baseUser.RegistrationDate,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt,
                 @event.BirthYear,
                 (Sex)@event.Sex,
                 @event.NationalSociety,
@@ -89,15 +85,14 @@ namespace Read.StaffUsers
                 new Location(@event.Latitude, @event.Longitude)
             ));
         }
-        public void Process(SystemConfiguratorRegistered @event)
+        public async Task Process(SystemConfiguratorRegistered @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            _collection.Save(new SystemConfigurator(
+            await _collection.SaveAsync(new SystemConfigurator(
                 @event.StaffUserId,
-                baseUser.FullName,
-                baseUser.DisplayName,
-                baseUser.Email,
-                baseUser.RegistrationDate,
+                @event.FullName,
+                @event.DisplayName,
+                @event.Email,
+                @event.RegisteredAt,
                 @event.BirthYear,
                 (Sex)@event.Sex,
                 @event.NationalSociety,
