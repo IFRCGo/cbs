@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Autofac;
 using doLittle.Assemblies;
 using doLittle.Assemblies.Configuration;
+using doLittle.Collections;
 using doLittle.Domain;
 using doLittle.Events.Processing;
 using doLittle.Logging;
@@ -42,6 +43,8 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(Internals.AssembliesConfiguration).As<AssembliesConfiguration>();
             builder.RegisterInstance(Internals.AssemblyProvider).As<IAssemblyProvider>();
             builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
+
+            Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
 
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
