@@ -16,7 +16,7 @@ namespace Read.StaffUsers
         public StaffUsers(IMongoDatabase database)
         {
             _database = database;
-            _collection = database.GetCollection<BaseUser>("StaffUsersForReading");
+            _collection = database.GetCollection<BaseUser>("StaffUsers");
         }
 
 
@@ -68,6 +68,7 @@ namespace Read.StaffUsers
             var filter = Builders<BaseUser>.Filter.OfType<T>();
             var cursor = await _collection.FindAsync(filter);
             var res = await cursor.ToListAsync();
+            //TODO: This should be safe..
             return res.Cast<T>().ToList();
 
         }

@@ -20,7 +20,6 @@ namespace Web.Controllers
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : BaseController
     {
-        private static readonly Random rng = new Random();
         private readonly IMongoDatabase _database;
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
@@ -72,7 +71,6 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
                 cmd.DataCollectorId = Guid.NewGuid();
                 _dataCollectorCommandHandler.Handle(cmd);
             }
@@ -235,15 +233,9 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            //DeleteCollection<Read.StaffUsers.StaffUser>("StaffUser");
-            //DeleteCollection<Read.StaffUsers.SystemCoordinator.SystemCoordinator>("SystemCoordinator");
-            //DeleteCollection<Read.StaffUsers.DataVerifier.DataVerifier>("DataVerifier");
-            //DeleteCollection<Read.StaffUsers.DataOwner.DataOwner>("DataOwner");
-            //DeleteCollection<Read.StaffUsers.DataCoordinator.DataCoordinator>("DataCoordinator");
-            //DeleteCollection<Read.StaffUsers.DataConsumer.DataConsumer>("DataConsumer");
-            //DeleteCollection<Read.StaffUsers.Admin.Admin>("Admin");
-
+            DeleteCollection<BaseUser>("StaffUsers");
         }
+        
 
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()

@@ -53,7 +53,6 @@ namespace Domain.DataCollector
             IEnumerable<string> phoneNumbersRemoved
             )
         {
-            // Apply DataCollectorUpdated event
             Apply(new DataCollectorUpdated
             (
                 EventSourceId,
@@ -119,20 +118,20 @@ namespace Domain.DataCollector
 
         #region On-methods
 
-        //private void On(DataCollectorRegistered @event)
-        //{
-        //    _isRegistered = true;
-        //}
+        private void On(DataCollectorRegistered @event)
+        {
+            _isRegistered = true;
+        }
 
-        //private void On(PhoneNumberAddedToDataCollector @event)
-        //{
-        //    _numbers.Add(@event.PhoneNumber);
-        //}
+        private void On(PhoneNumberAddedToDataCollector @event)
+        {
+            _numbers.Add(@event.PhoneNumber);
+        }
 
-        //private void On(PhoneNumberRemovedFromDataCollector @event)
-        //{
-        //    _numbers.Remove(@event.PhoneNumber);
-        //}
+        private void On(PhoneNumberRemovedFromDataCollector @event)
+        {
+            _numbers.Remove(@event.PhoneNumber);
+        }
 
         #endregion
     }
