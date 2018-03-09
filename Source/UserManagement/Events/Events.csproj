@@ -3,13 +3,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="StaffUser\DataVerifier.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
   </ItemGroup>
