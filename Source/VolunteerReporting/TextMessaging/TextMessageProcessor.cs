@@ -14,8 +14,6 @@ using System.Linq;
 
 namespace TextMessaging
 {
-
-
     /// <summary>
     /// Represents an implementation of <see cref="ICanProcessTextMessage"/>
     /// </summary>
