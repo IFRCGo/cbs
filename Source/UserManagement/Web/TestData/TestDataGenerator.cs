@@ -4,10 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Concepts;
-using Domain.DataCollector.Update;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.PhoneNumber;
-using Domain.StaffUser.PhoneNumber;
 using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
 
@@ -40,11 +37,11 @@ namespace Web.TestData
 
         public static void GenerateAllTestData()
         {
-            GenerateCorrectAddDataCollectorCommands();
+            GenerateCorrectRegisterDataCollectorCommands();
             GenerateCorrectAddStaffUserCommands();
         }
 
-        public static void GenerateCorrectAddDataCollectorCommands()
+        public static void GenerateCorrectRegisterDataCollectorCommands()
         {
             var data = names.Select(name => new RegisterDataCollector
                 {
