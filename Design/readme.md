@@ -1,9 +1,11 @@
 # CBS Mockup
 The [MVP Mockup](https://balsamiq.cloud/sgyjn/ppbia)
+
 The [1.0 Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp) 
+
 All mockups made using [Balsamiq mockups](https://balsamiq.cloud)
  
-
+ 
 # User stories
 
 All user stories can be found on [Trello](https://trello.com/b/6xbowfgP/user-stories).
