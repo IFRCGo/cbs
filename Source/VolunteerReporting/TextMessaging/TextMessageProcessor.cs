@@ -54,13 +54,22 @@ namespace TextMessaging
             var caseReporting = _caseReportingRepository.Get(caseReportId);
             if (!isTextMessageFormatValid && unknownDataCollector)
             {
-                ReportInvalidReportFromUnknownDataCollector(message, parsingResult.ErrorMessages, caseReporting);
+                caseReporting.ReportInvalidReportFromUnknownDataCollector(
+                    message.OriginNumber,
+                    message.Message,
+                    parsingResult.ErrorMessages,
+                    message.Sent);                
                 return;                
             }
 
             if (!isTextMessageFormatValid && !unknownDataCollector)
             {
-                ReportInvalidMessage(message, parsingResult.ErrorMessages, dataCollector, caseReporting);
+                caseReporting.ReportInvalidReport(
+                    dataCollector.Id,
+                    message.OriginNumber,
+                    message.Message,
+                    parsingResult.ErrorMessages,
+                    message.Sent);                
                 return;
             }
             
@@ -71,20 +80,21 @@ namespace TextMessaging
                 var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
                 if (unknownDataCollector)
                 {
-                    ReportInvalidReportFromUnknownDataCollector(
-                        message,
-                        errorMessages,
-                        caseReporting
-                        );
+                    caseReporting.ReportInvalidReportFromUnknownDataCollector(
+                        message.OriginNumber,
+                        message.Message,
+                        parsingResult.ErrorMessages,
+                        message.Sent);                    
                     return;
                 }
                 else
                 {
-                    ReportInvalidMessage(
-                    message,
-                    errorMessages,
-                    dataCollector,
-                    caseReporting);
+                    caseReporting.ReportInvalidReport(
+                        dataCollector.Id,
+                        message.OriginNumber,
+                        message.Message,
+                        parsingResult.ErrorMessages,
+                        message.Sent);
                     return;
                 }               
             }
@@ -115,68 +125,7 @@ namespace TextMessaging
 
             if (unknownDataCollector)
             {
-                ReportFromUnknownDataCollector(
-                    message,
-                    caseReporting,
-                    healthRiskId,
-                    malesAges0To4,
-                    malesAgedOver4,
-                    femalesAges0To4,
-                    femalesAgedOver4
-                    );
-                return;
-            }
-            else
-            {
-                Report(
-                message,
-                dataCollector,
-                caseReporting,
-                healthRiskId,
-                malesAges0To4,
-                malesAgedOver4,
-                femalesAges0To4,
-                femalesAgedOver4);
-                return;
-            }
-        }
-
-        private void ReportInvalidReportFromUnknownDataCollector(
-            TextMessage message,
-            IEnumerable<string> errorMessages,
-            CaseReporting caseReporting)
-        {
-            caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                message.OriginNumber,
-                message.Message,
-                errorMessages,
-                message.Sent);
-        }
-
-        private void ReportInvalidMessage(
-            TextMessage message,
-            IEnumerable<string> errorMessages,
-            DataCollector dataCollector,
-            CaseReporting caseReporting)
-        {           
-                caseReporting.ReportInvalidReport(
-                dataCollector.Id,
-                message.OriginNumber,
-                message.Message,
-                errorMessages,
-                message.Sent);            
-        }
-
-        private void ReportFromUnknownDataCollector(
-            TextMessage message,
-            CaseReporting caseReporting,
-            Guid healthRiskId,
-            int malesAges0To4,
-            int malesAgedOver4,
-            int femalesAges0To4,
-            int femalesAgedOver4)
-        {
-            caseReporting.ReportFromUnknownDataCollector(
+                caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
                     healthRiskId,
                     malesAges0To4,
@@ -184,19 +133,10 @@ namespace TextMessaging
                     femalesAges0To4,
                     femalesAgedOver4,
                     message.Sent
-                );
-        }
+                );                
+                return;
+            }
 
-        private void Report(
-            TextMessage message,
-            DataCollector dataCollector,
-            CaseReporting caseReporting,
-            Guid healthRiskId,
-            int malesAges0To4,
-            int malesAgedOver4,
-            int femalesAges0To4,
-            int femalesAgedOver4)
-        {           
             caseReporting.Report(
                 dataCollector.Id,
                 healthRiskId,
@@ -207,8 +147,7 @@ namespace TextMessaging
                 femalesAgedOver4,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
-                message.Sent
-            );                        
-        }
+                message.Sent);
+        }           
     }
 }
