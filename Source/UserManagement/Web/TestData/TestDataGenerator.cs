@@ -38,7 +38,7 @@ namespace Web.TestData
         public static void GenerateAllTestData()
         {
             GenerateCorrectRegisterDataCollectorCommands();
-            GenerateCorrectAddStaffUserCommands();
+            GenerateCorrectRegisterStaffUserCommands();
         }
 
         public static void GenerateCorrectRegisterDataCollectorCommands()
@@ -62,7 +62,7 @@ namespace Web.TestData
             }
         }
 
-        public static void GenerateCorrectAddStaffUserCommands()
+        public static void GenerateCorrectRegisterStaffUserCommands()
         {
             StringBuilder sb = new StringBuilder();
             const int numRegistrations = 100;
