@@ -92,6 +92,5 @@ namespace Read.StaffUsers
         {
             await _collection.ReplaceOneAsync(_ => _.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
-
     }
 }

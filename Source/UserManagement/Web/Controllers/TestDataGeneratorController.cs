@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Infrastructure.AspNet;
@@ -64,7 +61,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+                TestDataGenerator.GenerateCorrectRegisterDataCollectorCommands();
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
                     System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }
@@ -102,7 +99,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewAdminUser[]>(
                     System.IO.File.ReadAllText("./TestData/Admins.json"));
             }
@@ -124,7 +121,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataConsumer[]>(
                     System.IO.File.ReadAllText("./TestData/DataConsumers.json"));
             }
@@ -146,7 +143,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataCoordinator[]>(
                     System.IO.File.ReadAllText("./TestData/DataCoordinators.json"));
             }
@@ -168,7 +165,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataOwner[]>(
                     System.IO.File.ReadAllText("./TestData/DataOwners.json"));
             }
@@ -190,7 +187,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataVerifier[]>(
                     System.IO.File.ReadAllText("./TestData/DataVerifiers.json"));
             }
@@ -212,7 +209,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewSystemConfigurator[]>(
                     System.IO.File.ReadAllText("./TestData/SystemConfigurators.json"));
             }
@@ -222,6 +219,9 @@ namespace Web.Controllers
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
+
+        #region Delete collections
+
         [HttpGet("deleteall")]
         public void DeleteAll()
         {
@@ -235,7 +235,43 @@ namespace Web.Controllers
         {
             DeleteCollection<BaseUser>("StaffUsers");
         }
-        
+
+        [HttpGet("deletealladmins")]
+        public void DeleteAllAdmins()
+        {
+            DeleteCollection<Admin>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataconsumers")]
+        public void DeleteAllDataConsumers()
+        {
+            DeleteCollection<DataConsumer>("StaffUsers");
+        }
+
+        [HttpGet("deletealldatacoordinators")]
+        public void DeleteAllDataCoordinators()
+        {
+            DeleteCollection<DataCoordinator>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataowners")]
+        public void DeleteAllDataOwners()
+        {
+            DeleteCollection<DataOwner>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataverifiers")]
+        public void DeleteAllDataVerifiers()
+        {
+            DeleteCollection<DataVerifier>("StaffUsers");
+        }
+
+        [HttpGet("deleteallsystemconfigurators")]
+        public void DeleteAllSystemConfigurators()
+        {
+            DeleteCollection<SystemConfigurator>("StaffUsers");
+        }
+
 
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
@@ -249,10 +285,12 @@ namespace Web.Controllers
             DeleteCollection<GreetingHistory>("GreetingHistories");
         }
 
+
         private void DeleteCollection<T>(string collectionName)
         {
             _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
         }
 
+        #endregion
     }
 }
