@@ -23,10 +23,10 @@ namespace Web.Controllers
     {
         private readonly IDataCollectors _dataCollectors;
 
-        private readonly DataCollectorCommandHandler _dataCollectorCommandHandler;
+        private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
         public DataCollectorsController (
-            DataCollectorCommandHandler dataCollectorCommand,
+            IDataCollectorCommandHandler dataCollectorCommand,
             IDataCollectors dataCollectors)
         {
             _dataCollectors = dataCollectors;
@@ -40,10 +40,11 @@ namespace Web.Controllers
             return Ok(items);
         }
 
-        [HttpPost("add")]
+        [HttpPost("register")]
         public IActionResult Post([FromBody] RegisterDataCollector command)
         {
-            //TODO: Question: Set DataCollectorId here, in CommandHandler or make the request contain the DataCollectorId?
+            //Todo: We have to be clear whether we want Id to be supplied to a command by the controller or by the frontend
+            //when registering a datacollector, or a staffuser for that matter
             command.DataCollectorId = Guid.NewGuid();
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
