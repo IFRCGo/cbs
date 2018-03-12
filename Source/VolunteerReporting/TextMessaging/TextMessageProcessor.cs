@@ -72,10 +72,10 @@ namespace TextMessaging
                     message.Sent);                
                 return;
             }
-            
-            var healthRiskReadableId = parsingResult.Numbers[0];
+
+            var healthRiskReadableId = parsingResult.HealthRiskReadableId;
             var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
-            if (healthRiskId == Guid.Empty)
+            if (healthRiskId == HealthRiskId.NotSet)
             {
                 var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
                 if (unknownDataCollector)
@@ -97,41 +97,17 @@ namespace TextMessaging
                         message.Sent);
                     return;
                 }               
-            }
-
-            var malesAges0To4 = 0;
-            var malesAgedOver4 = 0;
-            var femalesAges0To4 = 0;
-            var femalesAgedOver4 = 0;
-
-            if (parsingResult.HasMultipleCases)
-            {
-                malesAges0To4 = parsingResult.Numbers[1];
-                malesAgedOver4 = parsingResult.Numbers[2];
-                femalesAges0To4 = parsingResult.Numbers[3];
-                femalesAgedOver4 = parsingResult.Numbers[4];                     
-            }
-            //TODO: Add validation on health risk to ensure that human health risks actually have three valid numbers. Non-human health risks are single digit
-            var singlecaseWithHumanHealthRisk = parsingResult.Numbers.Length == 3;
-            if (singlecaseWithHumanHealthRisk)
-            {
-                var sex = (Sex)parsingResult.Numbers[1];
-                var ageGroup = parsingResult.Numbers[2];
-                malesAges0To4 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
-                malesAgedOver4 = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
-                femalesAges0To4 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
-                femalesAgedOver4 = ageGroup == 2 && sex == Sex.Female ? 1 : 0;
-            }
+            }            
 
             if (unknownDataCollector)
             {
                 caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
                     healthRiskId,
-                    malesAges0To4,
-                    malesAgedOver4,
-                    femalesAges0To4,
-                    femalesAgedOver4,
+                    parsingResult.MalesAges0To4,
+                    parsingResult.MalesAgedOver4,
+                    parsingResult.FemalesAges0To4,
+                    parsingResult.FemalesAgedOver4,
                     message.Sent
                 );                
                 return;
@@ -141,10 +117,10 @@ namespace TextMessaging
                 dataCollector.Id,
                 healthRiskId,
                 message.OriginNumber,
-                malesAges0To4,
-                malesAgedOver4,
-                femalesAges0To4,
-                femalesAgedOver4,
+                parsingResult.MalesAges0To4,
+                parsingResult.MalesAgedOver4,
+                parsingResult.FemalesAges0To4,
+                parsingResult.FemalesAgedOver4,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
                 message.Sent);
