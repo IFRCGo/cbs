@@ -7,6 +7,7 @@ RUN ["yarn","global", "add", "@angular/cli@latest"]
 COPY . /src
 WORKDIR /src
 RUN ["yarn", "install"]
+RUN ["yarn", "lint"]
 RUN ["ng", "build", "--prod", "--base-href=/reporting/", "--deploy-url=/reporting/"]
 
 FROM nginx:1.13-alpine

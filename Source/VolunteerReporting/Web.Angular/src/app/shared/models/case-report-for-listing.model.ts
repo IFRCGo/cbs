@@ -1,6 +1,6 @@
 import { Location } from './index';
 import { Report } from './report.model';
-import { CaseReportStatus } from './case-report-status.model'
+import { CaseReportStatus } from './case-report-status.model';
 
 export class CaseReportForListing implements Report {    
     success(): boolean { return true; }
@@ -16,5 +16,5 @@ export class CaseReportForListing implements Report {
     numberOfMalesAgedOver4: number;
     numberOfMalesAges0To4: number;
     timestamp: Date;
-    location: Location;AgedOver4
+    location: Location;AgedOver4;
 }
