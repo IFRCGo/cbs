@@ -1,7 +1,7 @@
 # CBS Mockup
-The [MVP Mockup](https://balsamiq.cloud/sgyjn/ppbia)
+We are currently working on the [MVP Mockup](https://balsamiq.cloud/sgyjn/ppbia)
 
-The [1.0 Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp) 
+If you want to look at future features take a look at the [1.0 Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp) 
 
 All mockups made using [Balsamiq mockups](https://balsamiq.cloud)
  
