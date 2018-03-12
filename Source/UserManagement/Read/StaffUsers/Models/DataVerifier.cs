@@ -17,6 +17,9 @@ namespace Read.StaffUsers.Models
             NationalSociety = nationalSociety;
             PreferredLanguage = preferredLanguage;
             Location = location;
+
+            PhoneNumbers = new List<PhoneNumber>();
+            AssignedNationalSocieties = new List<Guid>();
         }
 
         [BsonRequired]
@@ -29,10 +32,9 @@ namespace Read.StaffUsers.Models
         public Language PreferredLanguage { get; set; }
         [BsonRequired]
         public Location Location { get; set; }
-
-        public List<PhoneNumber> MobilePhoneNumbers { get; set; }
-            = new List<PhoneNumber>();
-        public List<Guid> AssignedNationalSociety { get; set; }
-            = new List<Guid>();
+        [BsonRequired]
+        public List<PhoneNumber> PhoneNumbers { get; set; }
+        [BsonRequired]
+        public List<Guid> AssignedNationalSocieties { get; set; }
     }
 }

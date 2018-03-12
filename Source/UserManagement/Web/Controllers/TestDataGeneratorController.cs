@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Infrastructure.AspNet;
@@ -61,7 +64,7 @@ namespace Web.Controllers
             }
             catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+                TestDataGenerator.GenerateCorrectRegisterDataCollectorCommands();
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
                     System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }

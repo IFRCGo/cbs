@@ -19,7 +19,7 @@ namespace Read.StaffUsers.Models
         [BsonRequired]
         public DateTimeOffset RegistrationDate { get; set; }
 
-        public BaseUser(Guid staffUserId, string fullName, string displayName, string email, DateTimeOffset registrationDate)
+        protected BaseUser(Guid staffUserId, string fullName, string displayName, string email, DateTimeOffset registrationDate)
         {
             StaffUserId = staffUserId;
             FullName = fullName;

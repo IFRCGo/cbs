@@ -16,6 +16,9 @@ namespace Read.StaffUsers.Models
             Sex = sex;
             NationalSociety = nationalSociety;
             PreferredLanguage = preferredLanguage;
+
+            PhoneNumbers = new List<PhoneNumber>();
+            AssignedNationalSocieties = new List<Guid>();
         }
 
         public int BirthYear { get; set; }
@@ -25,9 +28,9 @@ namespace Read.StaffUsers.Models
         [BsonRequired]
         public Language PreferredLanguage { get; set; }
 
-        public List<PhoneNumber> MobilePhoneNumbers { get; }
-            = new List<PhoneNumber>();
-        public List<Guid> AssignedNationalSocieties { get; }
-            = new List<Guid>();
+        [BsonRequired]
+        public List<PhoneNumber> PhoneNumbers { get; set; }
+        [BsonRequired]
+        public List<Guid> AssignedNationalSocieties { get; set; }
     }
 }
