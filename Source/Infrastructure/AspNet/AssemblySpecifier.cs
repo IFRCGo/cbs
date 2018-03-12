@@ -26,7 +26,8 @@ namespace Infrastructure.AspNet
                 "WindowsBase",
                 "netstandard",
                 "MongoDB",
-                "Swashbuckle"
+                "Swashbuckle",
+                "Web.PrecompiledViews"
             );
         }
     }
