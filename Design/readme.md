@@ -1,15 +1,48 @@
 # CBS Mockup
-The MVP mockup is made using [Balsamiq mockups](https://balsamiq.cloud/sgyjn/ppbia): 
+We are currently working on the [MVP Mockup](https://balsamiq.cloud/sgyjn/ppbia)
 
-You can also find the source file and a clickable PDF in this folder, but please note that the PDF contains a couple of blank pages. Refer to the Balsamiq mockup above to view these. 
+If you want to look at future features take a look at the [1.0 Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp) 
 
+All mockups made using [Balsamiq mockups](https://balsamiq.cloud)
+ 
+ 
 # User stories
 
 All user stories can be found on [Trello](https://trello.com/b/6xbowfgP/user-stories).
 
 ## Project mappings
 
-To understand which bounded context or project each page in the PDF belongs to, refer to the list below. The name of the page can be found on the top of each page in the PDF.
+To understand which bounded context or project each page belongs to, refer to the list below. The name of the page can be found on the top of each page in the sidebar of Balsamiq .
+
+MVP
+
+| Page name  | Project / bounded context where the functionality belongs
+|---|---|
+| Projects  | Admin
+| Add Project | Admin 
+| Project Summary | Admin
+| Project Summary need config | Admin
+| Project Summary edit | Admin
+| Project Summary export | Admin
+| Project Summary PDF | Admin
+| Case Reports | Volunteer Reporting
+| Case Reports filters | Volunteer Reporting
+| Case Reports export | Volunteer Reporting
+| Users List | User Management
+| Add user | User Management
+| Edit user | User Management
+| Health risks | Admin
+| Add health risks | Admin
+| Edit Health risks | Admin
+| SMS gateways | Admin
+| Edit SMS gateway | Admin
+| Feedback messages admin | Admin
+| Add feedback message admin | Admin
+| Edit feedback message 1 admin | Admin
+| Edit feedback message 2 admin | Admin
+| Send message Admin | Admin
+
+1.0
 
 | Page name  | Project / bounded context where the functionality belongs
 |---|---|
@@ -38,6 +71,7 @@ To understand which bounded context or project each page in the PDF belongs to, 
 | Add health risks | Admin
 | Edit Health risks | Admin
 | SMS gateways | Admin
+| Edit SMS gateway | Admin
 | Feedback messages admin | Admin
 | Add feedback message admin | Admin
 | Edit feedback message 1 admin | Admin
