@@ -83,7 +83,7 @@ namespace TextMessaging
                     caseReporting.ReportInvalidReportFromUnknownDataCollector(
                         message.OriginNumber,
                         message.Message,
-                        parsingResult.ErrorMessages,
+                        errorMessages,
                         message.Sent);                    
                     return;
                 }
@@ -93,7 +93,7 @@ namespace TextMessaging
                         dataCollector.Id,
                         message.OriginNumber,
                         message.Message,
-                        parsingResult.ErrorMessages,
+                        errorMessages,
                         message.Sent);
                     return;
                 }               
