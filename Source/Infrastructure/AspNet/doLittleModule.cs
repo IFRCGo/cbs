@@ -44,7 +44,7 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(Internals.AssemblyProvider).As<IAssemblyProvider>();
             builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
 
-            Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
+            //Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
 
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
