@@ -99,5 +99,43 @@ namespace Read.StaffUsers
                 (Language)@event.PreferredLanguage
             ));
         }
+
+        public void Process(PhoneNumberRegistered @event)
+        {
+            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
+            if (baseUser == null)
+            {
+                throw new UserNotFound($"The user with id {@event.StaffUserId} was not found");
+            }
+            try
+            {
+                dynamic user = baseUser;
+                user.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
+                _collection.Save(baseUser);
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            {
+                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have phonenumbers");
+            }
+        }
+
+        public void Process(NationalSocietyAssigned @event)
+        {
+            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
+            if (baseUser == null)
+            {
+                throw new UserNotFound($"The user with id {@event.StaffUserId} was not found");
+            }
+            try
+            {
+                dynamic user = baseUser;
+                user.AssignedNationalSocieties.Add(@event.NationalSociety);
+                _collection.Save(baseUser);
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            {
+                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have assigned national societies");
+            }
+        }
     }
 }

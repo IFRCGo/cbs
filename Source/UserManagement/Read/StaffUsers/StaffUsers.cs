@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Linq;
 using System.Threading.Tasks;
+using Concepts;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
@@ -35,7 +36,7 @@ namespace Read.StaffUsers
                 // User is not of request type
                 throw new UserNotOfExpectedType($"User with id {id} was is not of type {nameof(T)}");
             }
-
+            
             return result;
         }
 
