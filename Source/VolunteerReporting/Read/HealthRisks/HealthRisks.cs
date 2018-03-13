@@ -2,6 +2,7 @@ using System;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Concepts;
 
 namespace Read.HealthRisks
 {
@@ -33,7 +34,7 @@ namespace Read.HealthRisks
             return _collection.Find(d => d.ReadableId == readableId).Single();
         }
 
-        public Guid GetIdFromReadableId(int readbleId)
+        public HealthRiskId GetIdFromReadableId(int readbleId)
         {
             var healthRiskId = _collection.Find(d => d.ReadableId == readbleId).Project(_ => _.Id).FirstOrDefault();
             return healthRiskId;
@@ -47,7 +48,7 @@ namespace Read.HealthRisks
 
         public async Task Remove(Guid healthRiskId)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id.Value, healthRiskId);
             await _collection.DeleteOneAsync(filter);
         }
 
