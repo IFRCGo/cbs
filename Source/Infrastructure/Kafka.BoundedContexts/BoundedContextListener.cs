@@ -154,13 +154,30 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Start()
         {
-            _consumer.SubscribeTo($"BoundedContextListenerFor_{_configuration.Topic}",_configuration.Topic, Received);
+            try 
+            {
+                if( _configuration.Topic == string.Empty ) 
+                {
+                    _logger.Warning("Missing topic - won't get events from other bounded contexts");
+                    return;
+                }
+                _consumer.SubscribeTo($"BoundedContextListenerFor_{_configuration.Topic}",_configuration.Topic, Received);
+            } catch( Exception ex ) 
+            {
+                _logger.Error(ex, "Failed subscribing to topics");
+            }
         }
 
         public static void Start(IServiceProvider serviceProvider)
         {
-            var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
-            listener.Start();
+            try 
+            { 
+                var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
+                listener.Start();
+            } catch( Exception ex )
+            {
+                Logger.Internal.Error(ex, "Problem starting bounded context listener");
+            }
         }
     }
 }
