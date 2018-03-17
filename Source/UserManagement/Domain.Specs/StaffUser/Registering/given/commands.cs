@@ -1,6 +1,5 @@
 using Domain.StaffUser;
 using Domain.StaffUser.Registering;
-using System.Collections.Generic;
 using System;
 using Concepts;
 using doLittle.Commands;

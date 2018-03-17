@@ -7,6 +7,7 @@ using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
+using specs = Domain.Specs;
 
 namespace Web.TestData
 {
@@ -43,19 +44,16 @@ namespace Web.TestData
 
         public static void GenerateCorrectRegisterDataCollectorCommands()
         {
-            var data = names.Select(name => new RegisterDataCollector
-                {
-                    DisplayName = name.Replace(' ', '_') + "DISP",
-                    FullName = name,
-                    GpsLocation = new Location(rng.NextDouble(), rng.NextDouble()),
-                    PhoneNumbers = new List<string> {rng.Next(00000000, 99999999).ToString()},
-                    NationalSociety = Guid.NewGuid(),
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (Sex)sexVals.GetValue(rng.Next(sexVals.Length)),
-                    YearOfBirth = rng.Next(1920, 2018)
-                }).ToList();
+           
+            var data = new List<RegisterDataCollector>();
 
-
+            foreach (var name in names)
+            {
+                var dataCollector = specs.DataCollector.when_registering_a_data_collector.given.a_command_builder.get_valid_command();
+                dataCollector.DisplayName = name + "_Disp";
+                dataCollector.FullName = name;
+                data.Add(dataCollector);
+            }
             using (var file = File.CreateText("./TestData/DataCollectors.json"))
             {
                 file.WriteLine(JsonConvert.SerializeObject(data, Formatting.Indented));   
@@ -68,14 +66,13 @@ namespace Web.TestData
             const int numRegistrations = 100;
 
             var roleVals = Enum.GetValues(typeof(_Role));
-
-
-            List<RegisterNewAdminUser> admins = new List<RegisterNewAdminUser>();
-            List<RegisterNewStaffDataConsumer> dataConsumers = new List<RegisterNewStaffDataConsumer>();
-            List<RegisterNewDataCoordinator> dataCoordinator = new List<RegisterNewDataCoordinator>();
-            List<RegisterNewDataOwner> dataOwners = new List<RegisterNewDataOwner>();
-            List<RegisterNewStaffDataVerifier> dataVerifiers = new List<RegisterNewStaffDataVerifier>();
-            List<RegisterNewSystemConfigurator> systemConfigurators = new List<RegisterNewSystemConfigurator>();
+            
+            var admins = new List<RegisterNewAdminUser>();
+            var dataConsumers = new List<RegisterNewStaffDataConsumer>();
+            var dataCoordinator = new List<RegisterNewDataCoordinator>();
+            var dataOwners = new List<RegisterNewDataOwner>();
+            var dataVerifiers = new List<RegisterNewStaffDataVerifier>();
+            var systemConfigurators = new List<RegisterNewSystemConfigurator>();
 
 
             for (var i = 0; i < numRegistrations; i++)
@@ -87,22 +84,22 @@ namespace Web.TestData
                 switch (role)
                 {
                     case _Role.Admin:
-                        admins.Add(CreateRegisterNewAdminUserCommand());
+                        admins.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewAdminUser>());
                         break;
                     case _Role.DataConsumer:
-                        dataConsumers.Add(CreateRegisterNewDataConsumerCommand());
+                        dataConsumers.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewStaffDataConsumer>());
                         break;
                     case _Role.DataCoordinator:
-                        dataCoordinator.Add(CreateRegisterNewDataCoordinatorCommand());
+                        dataCoordinator.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewDataCoordinator>());
                         break;
                     case _Role.DataOwner:
-                        dataOwners.Add(CreateRegisterNewDataOwnerCommand());
+                        dataOwners.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewDataOwner>());
                         break;
                     case _Role.DataVerifier:
-                        dataVerifiers.Add(CreateRegisterNewStaffDataVerifierCommand());
+                        dataVerifiers.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewStaffDataVerifier>());
                         break;
                     case _Role.SystemCoordinator:
-                        systemConfigurators.Add(CreateRegisterNewSystemConfiguratorCommand());
+                        systemConfigurators.Add(specs.StaffUser.Registering.given.commands.build_valid_instance<RegisterNewSystemConfigurator>());
                         break;
                 }
             }
@@ -130,151 +127,6 @@ namespace Web.TestData
             {
                 file.WriteLine(JsonConvert.SerializeObject(systemConfigurators, Formatting.Indented));
             }
-
-        }
-        private static RegisterNewAdminUser CreateRegisterNewAdminUserCommand()
-        {
-            var name = "Admin" + numAdmins;
-            var result = new RegisterNewAdminUser()
-            {
-                Role =
-                {
-                    FullName = name,
-                    DisplayName = name + "_Display_Name",
-                    Email = name + "@mail.com",
-                }
-            };
-            numAdmins++;
-
-            return result;
-        }
-        private static RegisterNewStaffDataConsumer CreateRegisterNewDataConsumerCommand()
-        {
-            var name = "DataConsumer" + numDataConsumers;
-            var result = new RegisterNewStaffDataConsumer
-            {
-                Role =
-                {
-                    FullName = name,
-                    DisplayName = name + " Display name",
-                    Email = name + "@mail.com",
-
-                    Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                    BirthYear = rng.Next(1920, 2017),
-                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
-                    StaffUserId = Guid.NewGuid()
-                }
-            };
-            numDataConsumers++;
-
-            return result;
-        }
-        private static RegisterNewDataCoordinator CreateRegisterNewDataCoordinatorCommand()
-        {
-            var name = "DataCoordinator" + numDataCoordinators;
-            var result = new RegisterNewDataCoordinator()
-            {
-                Role =
-                {
-                    FullName = name,
-                    DisplayName = name + " Display name",
-                    Email = name + "@mail.com",
-                    
-                    BirthYear = rng.Next(1920, 2017),
-                    
-                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
-                    StaffUserId = Guid.NewGuid(),
-                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] }
-                }
-            };
-            numDataCoordinators++;
-
-            return result;
-        }
-        private static RegisterNewDataOwner CreateRegisterNewDataOwnerCommand()
-        {
-            var name = "DataOwner" + numDataOwners;
-            
-            var result = new RegisterNewDataOwner()
-            {
-                Role = {
-                    FullName = name,
-                    DisplayName = name + " Display name",
-                    Email = name + "@mail.com",
-
-                    BirthYear = rng.Next(1920, 2017),
-
-                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
-                    StaffUserId = Guid.NewGuid(),
-                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
-                    Location = new Location(rng.NextDouble(), rng.NextDouble()),
-                    DutyStation = "Dutty Station" + numDataOwners,
-                    Position = "Position" + numDataOwners
-                }
-            };
-            numDataOwners++;
-
-            return result;
-        }
-        private static RegisterNewStaffDataVerifier CreateRegisterNewStaffDataVerifierCommand()
-        {
-            var name = "DataVerifier" + numDataVerifiers;
-
-            var result = new RegisterNewStaffDataVerifier()
-            {
-                Role =
-                {
-                    FullName = name,
-                    DisplayName = name + " Display name",
-                    Email = name + "@mail.com",
-
-                    BirthYear = rng.Next(1920, 2017),
-
-                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
-                    StaffUserId = Guid.NewGuid(),
-                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
-                    Location = new Location(rng.NextDouble(), rng.NextDouble())
-                }
-            };
-            numDataVerifiers++;
-
-            return result;
-        }
-        private static RegisterNewSystemConfigurator CreateRegisterNewSystemConfiguratorCommand()
-        {
-            var name = "SystemConfigurator" + numSystemConfigurators;
-            var result = new RegisterNewSystemConfigurator()
-            {
-                Role =
-                {
-                    FullName = name,
-                    DisplayName = name + " Display name",
-                    Email = name + "@mail.com",
-
-                    BirthYear = rng.Next(1920, 2017),
-
-                    NationalSociety = nationalSocieties[rng.Next(nationalSocieties.Length)],
-                    PreferredLanguage = (Language)languageVals.GetValue(rng.Next(languageVals.Length)),
-                    Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
-                    StaffUserId = Guid.NewGuid(),
-                    PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] }
-                }
-            };
-            numSystemConfigurators++;
-
-            return result;
         }
     }
 }

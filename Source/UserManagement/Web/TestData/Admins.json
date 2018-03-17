@@ -1,130 +1,162 @@
 [
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin0",
-      "DisplayName": "Admin0_Display_Name",
-      "Email": "Admin0@mail.com"
+      "StaffUserId": "dc5536e4-d24b-40e6-b983-aa6f90bdbb4e",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin1",
-      "DisplayName": "Admin1_Display_Name",
-      "Email": "Admin1@mail.com"
+      "StaffUserId": "9f974734-0f9e-4cdf-b8cd-266f5ff95d49",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin2",
-      "DisplayName": "Admin2_Display_Name",
-      "Email": "Admin2@mail.com"
+      "StaffUserId": "35e3ed12-95cc-4f35-b71c-980ca4b750fd",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin3",
-      "DisplayName": "Admin3_Display_Name",
-      "Email": "Admin3@mail.com"
+      "StaffUserId": "12f16175-7111-4359-a6b4-8be2d945fd8b",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin4",
-      "DisplayName": "Admin4_Display_Name",
-      "Email": "Admin4@mail.com"
+      "StaffUserId": "3e856fff-c6b7-49f6-9734-d2792d8a4308",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin5",
-      "DisplayName": "Admin5_Display_Name",
-      "Email": "Admin5@mail.com"
+      "StaffUserId": "198bf52f-3f40-48f8-81b2-b7fdc2f997cd",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin6",
-      "DisplayName": "Admin6_Display_Name",
-      "Email": "Admin6@mail.com"
+      "StaffUserId": "af80ab93-2ea4-412b-a1e2-e06c1610e707",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin7",
-      "DisplayName": "Admin7_Display_Name",
-      "Email": "Admin7@mail.com"
+      "StaffUserId": "eb10ec6d-1942-41f9-b852-d4884abc6c23",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin8",
-      "DisplayName": "Admin8_Display_Name",
-      "Email": "Admin8@mail.com"
+      "StaffUserId": "b9e7f247-0e0e-4882-8784-e82818e16e0a",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin9",
-      "DisplayName": "Admin9_Display_Name",
-      "Email": "Admin9@mail.com"
+      "StaffUserId": "fc238e58-7da7-4f10-bc1c-9596913bdfac",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin10",
-      "DisplayName": "Admin10_Display_Name",
-      "Email": "Admin10@mail.com"
+      "StaffUserId": "2672ef52-62c8-4ef5-8e2b-f3fb5f4a8a80",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin11",
-      "DisplayName": "Admin11_Display_Name",
-      "Email": "Admin11@mail.com"
+      "StaffUserId": "2a3b07f6-067d-482a-9a30-a568db553781",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin12",
-      "DisplayName": "Admin12_Display_Name",
-      "Email": "Admin12@mail.com"
+      "StaffUserId": "be39817f-764e-4b23-bf40-edea0e64894e",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin13",
-      "DisplayName": "Admin13_Display_Name",
-      "Email": "Admin13@mail.com"
+      "StaffUserId": "784dd237-e998-4842-9b17-afef200ed819",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin14",
-      "DisplayName": "Admin14_Display_Name",
-      "Email": "Admin14@mail.com"
+      "StaffUserId": "157b9f3d-76c1-402e-97e0-627840d556e2",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin15",
-      "DisplayName": "Admin15_Display_Name",
-      "Email": "Admin15@mail.com"
+      "StaffUserId": "1fae3125-55fe-4181-ba61-7c8c9e9b31b3",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "StaffUserId": "a103573f-f72a-4bd0-8d19-b86ddf3e7f52",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "StaffUserId": "ea0b37bc-427b-4938-92ff-1b6c6ceb5a13",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "StaffUserId": "52dd706e-9b1b-4370-a6ee-de396ad56b99",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "StaffUserId": "f327632f-84c9-4a2c-8236-a873eee1996f",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   }
 ]

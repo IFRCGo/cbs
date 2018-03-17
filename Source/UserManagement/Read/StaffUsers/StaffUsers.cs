@@ -69,19 +69,27 @@ namespace Read.StaffUsers
             var filter = Builders<BaseUser>.Filter.OfType<T>();
             var cursor = await _collection.FindAsync(filter);
             var res = await cursor.ToListAsync();
-            //TODO: This should be safe..
+            // This should be safe..
             return res.Cast<T>().ToList();
 
         }
 
         public void Remove(Guid id)
         {
-            _collection.DeleteOne(_ => _.StaffUserId == id);
+            var res = _collection.DeleteOne(_ => _.StaffUserId == id);
+            if (res.DeletedCount == 0)
+            {
+                throw new UserNotFound($"StaffUser with id {id} was not found");
+            }
         }
 
         public async Task RemoveAsync(Guid id)
         {
-            await _collection.DeleteOneAsync(_ => _.StaffUserId == id);
+            var res =  await _collection.DeleteOneAsync(_ => _.StaffUserId == id);
+            if (res.DeletedCount == 0)
+            {
+                throw new UserNotFound($"StaffUser with id {id} was not found");
+            }
         }
 
         public void Save<T>(T dataCollector) where T : BaseUser

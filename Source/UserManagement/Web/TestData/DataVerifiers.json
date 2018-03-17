@@ -1,354 +1,254 @@
 [
   {
     "Role": {
-      "BirthYear": 1929,
+      "BirthYear": 1980,
       "Sex": 2,
-      "AssignedNationalSocieties": [
-        "55f764ee-8067-4131-8394-dfedd305d1b0"
-      ],
-      "NationalSociety": "dcc501ec-e5ae-4ecd-bbb4-8b26d050f1e7",
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "ebef9245-762f-4403-ba6c-f91ddef88b17",
       "PreferredLanguage": 0,
       "PhoneNumbers": [
-        "84720684"
+        "1234567",
+        "2345678"
       ],
       "Location": {
-        "Latitude": 0.87254072533573057,
-        "Longitude": 0.19596063494494215
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "StaffUserId": "f5e29e2c-a0d1-4ae9-bcd2-aceb2936f921",
-      "FullName": "DataVerifier0",
-      "DisplayName": "DataVerifier0 Display name",
-      "Email": "DataVerifier0@mail.com"
+      "StaffUserId": "e086d929-235b-4ee0-85c6-07491b984f34",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "BirthYear": 2010,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "5255406d-89bd-4480-9116-27f3caf45e1d"
-      ],
-      "NationalSociety": "4c73fbfc-0ce9-4eab-abb5-b9740498cfe7",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "23803703"
-      ],
-      "Location": {
-        "Latitude": 0.26281600224916635,
-        "Longitude": 0.25845532410706173
-      },
-      "StaffUserId": "e7e9a818-5552-4816-90ec-317e189ce732",
-      "FullName": "DataVerifier1",
-      "DisplayName": "DataVerifier1 Display name",
-      "Email": "DataVerifier1@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 2016,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec"
-      ],
-      "NationalSociety": "5255406d-89bd-4480-9116-27f3caf45e1d",
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "d296ecda-4005-45bb-b57d-d73df17deb49",
       "PreferredLanguage": 0,
       "PhoneNumbers": [
-        "76722409"
+        "1234567",
+        "2345678"
       ],
       "Location": {
-        "Latitude": 0.00027193641302731652,
-        "Longitude": 0.60436084289306813
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "StaffUserId": "a6d1d500-6adf-459e-bb3f-87a307bbfba9",
-      "FullName": "DataVerifier2",
-      "DisplayName": "DataVerifier2 Display name",
-      "Email": "DataVerifier2@mail.com"
+      "StaffUserId": "6f29ec46-55d6-416d-8a81-6d0b7c82d1aa",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "BirthYear": 1949,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "dcc501ec-e5ae-4ecd-bbb4-8b26d050f1e7"
-      ],
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "14489065"
-      ],
-      "Location": {
-        "Latitude": 0.85014585026080991,
-        "Longitude": 0.61889520502597806
-      },
-      "StaffUserId": "05a05424-f4f7-4233-b163-e77ede52f1b9",
-      "FullName": "DataVerifier3",
-      "DisplayName": "DataVerifier3 Display name",
-      "Email": "DataVerifier3@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 2000,
+      "BirthYear": 1980,
       "Sex": 2,
-      "AssignedNationalSocieties": [
-        "e32a53b5-ae93-4881-be7c-c289746a70bc"
-      ],
-      "NationalSociety": "55f764ee-8067-4131-8394-dfedd305d1b0",
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "2fd64681-4db4-4241-8c11-6e1ed57b1f34",
       "PreferredLanguage": 0,
       "PhoneNumbers": [
-        "97435597"
+        "1234567",
+        "2345678"
       ],
       "Location": {
-        "Latitude": 0.037745776603811315,
-        "Longitude": 0.46338151416898776
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "StaffUserId": "ceae83e8-7e5f-4755-aaf4-94e26d0d2004",
-      "FullName": "DataVerifier4",
-      "DisplayName": "DataVerifier4 Display name",
-      "Email": "DataVerifier4@mail.com"
+      "StaffUserId": "1c2cd34b-05cc-4a88-b083-d3f79e2f45e6",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "BirthYear": 1946,
+      "BirthYear": 1980,
       "Sex": 2,
-      "AssignedNationalSocieties": [
-        "5255406d-89bd-4480-9116-27f3caf45e1d"
-      ],
-      "NationalSociety": "55f764ee-8067-4131-8394-dfedd305d1b0",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "13177663"
-      ],
-      "Location": {
-        "Latitude": 0.551992085553702,
-        "Longitude": 0.67696286769442393
-      },
-      "StaffUserId": "8dea87ba-4448-4b52-b0eb-e797884b3e86",
-      "FullName": "DataVerifier5",
-      "DisplayName": "DataVerifier5 Display name",
-      "Email": "DataVerifier5@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1943,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "2d4f9fdc-712d-42f2-99c0-2828bf613cac"
-      ],
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "37186289"
-      ],
-      "Location": {
-        "Latitude": 0.35831635415475643,
-        "Longitude": 0.595534037610299
-      },
-      "StaffUserId": "99e55537-0b16-445f-979c-427d8c4d2d0c",
-      "FullName": "DataVerifier6",
-      "DisplayName": "DataVerifier6 Display name",
-      "Email": "DataVerifier6@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1920,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "5255406d-89bd-4480-9116-27f3caf45e1d"
-      ],
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "90221205"
-      ],
-      "Location": {
-        "Latitude": 0.45725572596176328,
-        "Longitude": 0.20007359432059973
-      },
-      "StaffUserId": "4635e871-6271-418f-8752-9c069af23eea",
-      "FullName": "DataVerifier7",
-      "DisplayName": "DataVerifier7 Display name",
-      "Email": "DataVerifier7@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1959,
-      "Sex": 2,
-      "AssignedNationalSocieties": [
-        "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec"
-      ],
-      "NationalSociety": "2d4f9fdc-712d-42f2-99c0-2828bf613cac",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "74061718"
-      ],
-      "Location": {
-        "Latitude": 0.022509583282521731,
-        "Longitude": 0.34514266780817077
-      },
-      "StaffUserId": "2ee868ab-1330-4a26-aa16-d2bdb8f1c12c",
-      "FullName": "DataVerifier8",
-      "DisplayName": "DataVerifier8 Display name",
-      "Email": "DataVerifier8@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1990,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "56b9c71f-f284-4de5-8aa1-6c706f254e4d"
-      ],
-      "NationalSociety": "bf4c9eb4-4660-4054-a61e-0627d1c8434c",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "70748415"
-      ],
-      "Location": {
-        "Latitude": 0.17376820052683736,
-        "Longitude": 0.46777112803783788
-      },
-      "StaffUserId": "d5588a86-d282-44c0-8060-fce2d07515b6",
-      "FullName": "DataVerifier9",
-      "DisplayName": "DataVerifier9 Display name",
-      "Email": "DataVerifier9@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1931,
-      "Sex": 2,
-      "AssignedNationalSocieties": [
-        "2d4f9fdc-712d-42f2-99c0-2828bf613cac"
-      ],
-      "NationalSociety": "5255406d-89bd-4480-9116-27f3caf45e1d",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "21924816"
-      ],
-      "Location": {
-        "Latitude": 0.860649224771489,
-        "Longitude": 0.22062598551652673
-      },
-      "StaffUserId": "fe86969f-11f4-4bce-9369-8d269a223682",
-      "FullName": "DataVerifier10",
-      "DisplayName": "DataVerifier10 Display name",
-      "Email": "DataVerifier10@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1990,
-      "Sex": null,
-      "AssignedNationalSocieties": [
-        "dcc501ec-e5ae-4ecd-bbb4-8b26d050f1e7"
-      ],
-      "NationalSociety": "55f764ee-8067-4131-8394-dfedd305d1b0",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "65821403"
-      ],
-      "Location": {
-        "Latitude": 0.099292440386159544,
-        "Longitude": 0.35515155520064362
-      },
-      "StaffUserId": "2cf53021-1c0a-4418-b571-014b4aaffc6e",
-      "FullName": "DataVerifier11",
-      "DisplayName": "DataVerifier11 Display name",
-      "Email": "DataVerifier11@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1978,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "2d4f9fdc-712d-42f2-99c0-2828bf613cac"
-      ],
-      "NationalSociety": "56b9c71f-f284-4de5-8aa1-6c706f254e4d",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "15440504"
-      ],
-      "Location": {
-        "Latitude": 0.45598505691438218,
-        "Longitude": 0.11568116262354011
-      },
-      "StaffUserId": "6569cba2-5c67-48a0-a627-9024fc03ab63",
-      "FullName": "DataVerifier12",
-      "DisplayName": "DataVerifier12 Display name",
-      "Email": "DataVerifier12@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1984,
-      "Sex": 1,
-      "AssignedNationalSocieties": [
-        "cec094bd-de50-45da-8ac9-0fc2fadbdf04"
-      ],
-      "NationalSociety": "5255406d-89bd-4480-9116-27f3caf45e1d",
-      "PreferredLanguage": 1,
-      "PhoneNumbers": [
-        "70934694"
-      ],
-      "Location": {
-        "Latitude": 0.43238300151768283,
-        "Longitude": 0.036654152458838261
-      },
-      "StaffUserId": "28e49ac4-b456-4150-b8db-7a4fac5f7e43",
-      "FullName": "DataVerifier13",
-      "DisplayName": "DataVerifier13 Display name",
-      "Email": "DataVerifier13@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "BirthYear": 1951,
-      "Sex": 2,
-      "AssignedNationalSocieties": [
-        "55f764ee-8067-4131-8394-dfedd305d1b0"
-      ],
-      "NationalSociety": "2d4f9fdc-712d-42f2-99c0-2828bf613cac",
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "38f5e8aa-7dfd-4270-be10-e9953ed9204e",
       "PreferredLanguage": 0,
       "PhoneNumbers": [
-        "83000545"
+        "1234567",
+        "2345678"
       ],
       "Location": {
-        "Latitude": 0.20953037506413197,
-        "Longitude": 0.74282525328119531
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "StaffUserId": "e47c164b-8097-42d6-883e-1ff7775b8a89",
-      "FullName": "DataVerifier14",
-      "DisplayName": "DataVerifier14 Display name",
-      "Email": "DataVerifier14@mail.com"
+      "StaffUserId": "e38c59e8-5147-4521-9ead-0ac29c34702e",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
-      "BirthYear": 1989,
-      "Sex": null,
-      "AssignedNationalSocieties": [
-        "cec094bd-de50-45da-8ac9-0fc2fadbdf04"
-      ],
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "3b459220-40bc-482d-a241-f1358e6ed5b9",
       "PreferredLanguage": 0,
       "PhoneNumbers": [
-        "38955276"
+        "1234567",
+        "2345678"
       ],
       "Location": {
-        "Latitude": 0.0097461529121483457,
-        "Longitude": 0.50928368303425786
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "StaffUserId": "36f7e6db-19d0-4b36-a687-1af8443601a5",
-      "FullName": "DataVerifier15",
-      "DisplayName": "DataVerifier15 Display name",
-      "Email": "DataVerifier15@mail.com"
+      "StaffUserId": "5320821f-bea2-4201-8778-9413d2f70b18",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "3b1d7d74-f530-4ede-ad15-61c1dd6a00b6",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "f1a57267-86c7-4867-9cfd-12b8d791383e",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "d5a470ef-cbf9-4041-be42-2297146c8c95",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "5943f2ec-2fc3-442b-9482-59a6963b09cf",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "17dce3a2-4411-44aa-b26d-13993bcd5d00",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "672de879-a681-47ce-b0fc-9bf842518082",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "0d47e766-0384-4d45-b95a-5b5035c38d27",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "3de653fb-ac52-46d5-b8a7-5bf273919f32",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "149c77e5-43bf-42b4-bf81-4fd14a20e649",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "9a7cda50-24db-4c3d-866a-28b196043594",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "ca0e189d-db50-4459-a9a2-ddf0f857a0cd",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "7688fb0b-3c6f-4fa6-8e83-d0ffdc2d7b3d",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": 1980,
+      "Sex": 2,
+      "AssignedNationalSocieties": null,
+      "NationalSociety": "70803a3b-7516-4f2d-b900-75862f19d39f",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "StaffUserId": "3fab373a-2ba2-4444-b622-f4bf7d7c76e1",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   }
 ]
