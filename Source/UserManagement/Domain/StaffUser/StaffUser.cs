@@ -45,10 +45,10 @@ namespace Domain.StaffUser
     
         public void RegisterNewDataOwner(string fullname, string displayname, string email, DateTimeOffset registeredAt, 
                                             Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, int? birthYear, 
-                                                Sex? sex, Location location, string position, string dutyStation)
+                                                Sex? sex, string position, string dutyStation)
         {
             Register(fullname, displayname, email, registeredAt);
-            RegisterDataOwner(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location, position, dutyStation);
+            RegisterDataOwner(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, position, dutyStation);
             RegisterPhoneNumbers(phoneNumbers);
         }
 
@@ -114,13 +114,13 @@ namespace Domain.StaffUser
         }
 
         private void RegisterDataOwner(string fullname, string displayname, string email, DateTimeOffset registeredAt, 
-            Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth, Location location, 
+            Guid nationalSociety, Language language, Sex? sex, int? yearOfBirth, 
             string position, string dutyStation)
         {
             var sex_ = sex.HasValue ? (int)sex.Value : Constants.NOT_KNOWN;
             var year = yearOfBirth ?? Constants.NOT_KNOWN;
             Apply(new DataOwnerRegistered(EventSourceId, fullname, displayname, email, registeredAt, nationalSociety, 
-                (int)language, sex_, year, location.Latitude, location.Longitude, position, dutyStation));
+                (int)language, sex_, year, position, dutyStation));
         }
 
         private void RegisterStaffDataVerifier(string fullname, string displayname, string email, DateTimeOffset registeredAt, 

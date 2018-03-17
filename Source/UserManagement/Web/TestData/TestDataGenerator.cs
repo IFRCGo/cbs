@@ -67,7 +67,7 @@ namespace Web.TestData
             StringBuilder sb = new StringBuilder();
             const int numRegistrations = 100;
 
-            var roleVals = Enum.GetValues(typeof(_Role));
+            var roleVals = Enum.GetValues(typeof(Role));
 
 
             List<RegisterNewAdminUser> admins = new List<RegisterNewAdminUser>();
@@ -82,26 +82,26 @@ namespace Web.TestData
             {
                 //TODO: Should we depend on _Role? 
                 //TODO: Maybe create another class to create commands dynamically, like in Domain.Specs
-                _Role role = (_Role)roleVals.GetValue(rng.Next(roleVals.Length));
+                Role role = (Role)roleVals.GetValue(rng.Next(roleVals.Length));
 
                 switch (role)
                 {
-                    case _Role.Admin:
+                    case Role.Admin:
                         admins.Add(CreateRegisterNewAdminUserCommand());
                         break;
-                    case _Role.DataConsumer:
+                    case Role.DataConsumer:
                         dataConsumers.Add(CreateRegisterNewDataConsumerCommand());
                         break;
-                    case _Role.DataCoordinator:
+                    case Role.DataCoordinator:
                         dataCoordinator.Add(CreateRegisterNewDataCoordinatorCommand());
                         break;
-                    case _Role.DataOwner:
+                    case Role.DataOwner:
                         dataOwners.Add(CreateRegisterNewDataOwnerCommand());
                         break;
-                    case _Role.DataVerifier:
+                    case Role.DataVerifier:
                         dataVerifiers.Add(CreateRegisterNewStaffDataVerifierCommand());
                         break;
-                    case _Role.SystemCoordinator:
+                    case Role.SystemCoordinator:
                         systemConfigurators.Add(CreateRegisterNewSystemConfiguratorCommand());
                         break;
                 }
@@ -214,8 +214,6 @@ namespace Web.TestData
                     Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
                     StaffUserId = Guid.NewGuid(),
                     PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
-                    Location = new Location(rng.NextDouble(), rng.NextDouble()),
                     DutyStation = "Dutty Station" + numDataOwners,
                     Position = "Position" + numDataOwners
                 }
@@ -243,7 +241,6 @@ namespace Web.TestData
                     Sex = (rng.NextDouble() < 0.8)? (Sex)sexVals.GetValue(rng.Next(sexVals.Length)) : (Sex?)null,
                     StaffUserId = Guid.NewGuid(),
                     PhoneNumbers = new List<string> { rng.Next(00000000, 99999999).ToString() },
-                    AssignedNationalSocieties = new List<Guid> { nationalSocieties[rng.Next(nationalSocieties.Length)] },
                     Location = new Location(rng.NextDouble(), rng.NextDouble())
                 }
             };

@@ -65,7 +65,6 @@ namespace Read.StaffUsers
                 (Sex)@event.Sex,
                 @event.NationalSociety,
                 (Language)@event.PreferredLanguage,
-                new Location(@event.Latitude, @event.Longitude),
                 @event.Position,
                 @event.DutyStation
             ));

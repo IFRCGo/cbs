@@ -31,7 +31,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         {
             sut.RegisterNewDataOwner(role.FullName, role.DisplayName, role.Email,
                 now, role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
-                role.Sex, role.Location, role.Position, role.DutyStation);
+                role.Sex, role.Position, role.DutyStation);
         };
         It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
@@ -45,9 +45,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         {
             sut.ShouldHaveEvent<DataOwnerRegistered>().InStream().Where(
                 e => e.Position.ShouldEqual(constants.valid_position),
-                e => e.DutyStation.ShouldEqual(constants.valid_duty_station),
-                e => e.Latitude.ShouldEqual(constants.valid_location.Latitude),
-                e => e.Longitude.ShouldEqual(constants.valid_location.Longitude)
+                e => e.DutyStation.ShouldEqual(constants.valid_duty_station)
             );
         };
     }

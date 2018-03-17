@@ -46,7 +46,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataOwner(command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
                                          command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
-                                         command.Role.Sex, command.Role.Location, command.Role.Position, command.Role.DutyStation);
+                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
