@@ -3,9 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="StaffUser\Registration\StaffDataConsumer.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
   <ItemGroup>
