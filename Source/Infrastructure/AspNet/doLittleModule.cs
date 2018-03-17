@@ -22,6 +22,7 @@ using doLittle.Runtime.Events.Storage;
 using doLittle.Runtime.Execution;
 using doLittle.Runtime.Tenancy;
 using doLittle.Types;
+using Autofac.Features.ResolveAnything;
 
 namespace Infrastructure.AspNet
 {
@@ -29,6 +30,10 @@ namespace Infrastructure.AspNet
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var selfBindingRegistrationSource = new AnyConcreteTypeNotAlreadyRegisteredSource(type => 
+                !type.Namespace.StartsWith("Microsoft") &&
+                !type.Namespace.StartsWith("System"));
+            
             var logAppenders = LoggingConfigurator.DiscoverAndConfigure(Internals.LoggerFactory);
             doLittle.Logging.ILogger logger = new Logger(logAppenders);
             builder.RegisterType<Logger>().As<doLittle.Logging.ILogger>().SingleInstance();
@@ -44,7 +49,9 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(Internals.AssemblyProvider).As<IAssemblyProvider>();
             builder.RegisterInstance(Internals.Assemblies).As<IAssemblies>();
 
-            Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
+            builder.RegisterType<ConvertersProvider>().AsSelf();
+
+            //Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
 
             builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()

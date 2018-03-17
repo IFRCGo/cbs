@@ -10,11 +10,10 @@ using Read.HealthRisks;
 using doLittle.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TextMessaging
 {
-
-
     /// <summary>
     /// Represents an implementation of <see cref="ICanProcessTextMessage"/>
     /// </summary>
@@ -48,131 +47,83 @@ namespace TextMessaging
         public void Process(TextMessage message)
         {
             var parsingResult = _textMessageParser.Parse(message);
+            var isTextMessageFormatValid = parsingResult.IsValid;
             var dataCollector = _dataCollectors.GetByPhoneNumber(message.OriginNumber);
+            var unknownDataCollector = dataCollector == null;
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
-            if (!parsingResult.IsValid)
+            if (!isTextMessageFormatValid && unknownDataCollector)
             {
-                ReportInvalidMessage(message, parsingResult.ErrorMessages, dataCollector, caseReporting, message.Sent);
-                return;
-            }
-            var healthRiskReadableId = parsingResult.Numbers[0];
-            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
-            if (healthRiskId == Guid.Empty)
-            {                  
-                ReportInvalidMessage(
-                    message,
-                    new List<string> {$"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}"},
-                    dataCollector,
-                    caseReporting,
-                    message.Sent);
-                return;
-            }
-
-            if (!parsingResult.HasMultipleCases)
-            {
-                var malesAges0To4 = 0;
-                var malesAgedOver4 = 0;
-                var femalesAges0To4 = 0;
-                var femalesAgedOver4 = 0;
-                if (parsingResult.Numbers.Length == 3)
-                {  
-                    var sex = (Sex)parsingResult.Numbers[1];
-                    var ageGroup = parsingResult.Numbers[2];                        
-                    malesAges0To4 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
-                    malesAgedOver4 = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
-                    femalesAges0To4 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
-                    femalesAgedOver4 = ageGroup == 2 && sex == Sex.Female ? 1 : 0;                                     
-                }                
-                Report(
-                    message,
-                    dataCollector,
-                    caseReporting,
-                    healthRiskId,
-                    malesAges0To4,
-                    malesAgedOver4,
-                    femalesAges0To4,
-                    femalesAgedOver4,
-                    message.Sent);
-            }
-            else
-            {
-                var malesAges0To4 = parsingResult.Numbers[1];
-                var malesAgedOver4 = parsingResult.Numbers[2];
-                var femalesAges0To4 = parsingResult.Numbers[3];
-                var femalesAgedOver4 = parsingResult.Numbers[4];
-                Report(
-                    message,
-                    dataCollector,
-                    caseReporting,
-                    healthRiskId,
-                    malesAges0To4,
-                    malesAgedOver4,
-                    femalesAges0To4,
-                    femalesAgedOver4,
-                    message.Sent);
-            }
-        }
-
-        void ReportInvalidMessage(
-            TextMessage message,
-            IEnumerable<string> errorMessages,
-            DataCollector dataCollector,
-            CaseReporting caseReporting,
-            DateTimeOffset timestamp)
-        {
-            if (dataCollector != null)
-                caseReporting.ReportInvalidReport(
-                dataCollector.Id,
-                message.OriginNumber,
-                message.Message,
-                errorMessages,
-                timestamp);
-            else caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                message.OriginNumber,
-                message.Message,
-                errorMessages,
-                timestamp);
-        }
-
-        void Report(
-            TextMessage message,
-            DataCollector dataCollector,
-            CaseReporting caseReporting,
-            Guid healthRiskId,
-            int malesUnder5,
-            int malesOver5,
-            int femalesUnder5,
-            int femalesOver5,
-            DateTimeOffset timestamp)
-        {
-            if (dataCollector != null)
-            {
-                caseReporting.Report(
-                    dataCollector.Id,
-                    healthRiskId,
+                caseReporting.ReportInvalidReportFromUnknownDataCollector(
                     message.OriginNumber,
-                    malesUnder5,
-                    malesOver5,
-                    femalesUnder5,
-                    femalesOver5,
-                    dataCollector.Location.Longitude,
-                    dataCollector.Location.Latitude,
-                    timestamp
-                );
+                    message.Message,
+                    parsingResult.ErrorMessages,
+                    message.Sent);                
+                return;                
             }
-            else
+
+            if (!isTextMessageFormatValid && !unknownDataCollector)
+            {
+                caseReporting.ReportInvalidReport(
+                    dataCollector.Id,
+                    message.OriginNumber,
+                    message.Message,
+                    parsingResult.ErrorMessages,
+                    message.Sent);                
+                return;
+            }
+
+            var healthRiskReadableId = parsingResult.HealthRiskReadableId;
+            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
+            if (healthRiskId == HealthRiskId.NotSet)
+            {
+                var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
+                if (unknownDataCollector)
+                {
+                    caseReporting.ReportInvalidReportFromUnknownDataCollector(
+                        message.OriginNumber,
+                        message.Message,
+                        errorMessages,
+                        message.Sent);                    
+                    return;
+                }
+                else
+                {
+                    caseReporting.ReportInvalidReport(
+                        dataCollector.Id,
+                        message.OriginNumber,
+                        message.Message,
+                        errorMessages,
+                        message.Sent);
+                    return;
+                }               
+            }            
+
+            if (unknownDataCollector)
             {
                 caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
                     healthRiskId,
-                    malesUnder5,
-                    malesOver5,
-                    femalesUnder5,
-                    femalesOver5,
-                    timestamp
-                );
+                    parsingResult.MalesAges0To4,
+                    parsingResult.MalesAgedOver4,
+                    parsingResult.FemalesAges0To4,
+                    parsingResult.FemalesAgedOver4,
+                    message.Sent
+                );                
+                return;
             }
-        }
+
+            caseReporting.Report(
+                dataCollector.Id,
+                healthRiskId,
+                message.OriginNumber,
+                parsingResult.MalesAges0To4,
+                parsingResult.MalesAgedOver4,
+                parsingResult.FemalesAges0To4,
+                parsingResult.FemalesAgedOver4,
+                dataCollector.Location.Longitude,
+                dataCollector.Location.Latitude,
+                message.Sent);
+        }           
     }
 }

@@ -17,10 +17,9 @@ namespace TextMessaging.Tests
             });
 
             Assert.True(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Single(result.Fragments);
             Assert.True(result.ErrorMessages.Count() == 0);
-            Assert.Equal(new[] { 42}, result.Numbers);
+            Assert.Equal(42, result.HealthRiskReadableId.Value);
         }
 
         [Fact]
@@ -31,10 +30,9 @@ namespace TextMessaging.Tests
             });
 
             Assert.True(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Single(result.Fragments);
             Assert.True(result.ErrorMessages.Count() == 0);
-            Assert.Equal(new[] { 0 }, result.Numbers);
+            Assert.Equal(0, result.HealthRiskReadableId.Value);
         }
 
         [Fact]
@@ -45,7 +43,6 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Single(result.Fragments);
             Assert.True(result.ErrorMessages.Count() == 1);
             Assert.Equal(new[] { -30 }, result.Numbers);
@@ -60,7 +57,6 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Equal(2, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 1);
             Assert.Equal(new[] {42,43}, result.Numbers);
@@ -77,7 +73,6 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Equal(4, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 1);
             Assert.Equal(new[] {42,43,44,45}, result.Numbers);
@@ -93,10 +88,13 @@ namespace TextMessaging.Tests
             });
 
             Assert.True(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Equal(3, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 0);
-            Assert.Equal(new[] {42,1,2}, result.Numbers);
+            Assert.Equal(42, result.HealthRiskReadableId.Value);
+            Assert.Equal(0, result.MalesAges0To4);
+            Assert.Equal(1, result.MalesAgedOver4);
+            Assert.Equal(0, result.FemalesAges0To4);
+            Assert.Equal(0, result.FemalesAgedOver4);
         }
 
         [Fact]
@@ -109,7 +107,6 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Equal(3, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 1);
             Assert.Equal(new[] { 42, 0, 2 }, result.Numbers);
@@ -125,7 +122,6 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.False(result.HasMultipleCases);
             Assert.Equal(3, result.Fragments.Count());
             Assert.Equal(new[] { 42, 1, -34 }, result.Numbers);
         }
@@ -142,10 +138,13 @@ namespace TextMessaging.Tests
             });
 
             Assert.True(result.IsValid);
-            Assert.True(result.HasMultipleCases);
             Assert.Equal(5, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 0);
-            Assert.Equal(new[] {42,43,44,45,46}, result.Numbers);
+            Assert.Equal(42, result.HealthRiskReadableId.Value);
+            Assert.Equal(43, result.MalesAges0To4);
+            Assert.Equal(44, result.MalesAgedOver4);
+            Assert.Equal(45, result.FemalesAges0To4);
+            Assert.Equal(46, result.FemalesAgedOver4);
         }
 
         [Fact]
