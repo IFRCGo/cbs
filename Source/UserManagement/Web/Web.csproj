@@ -18,6 +18,5 @@
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Domain.Specs\Domain.Specs.csproj" />
   </ItemGroup>
 </Project>
