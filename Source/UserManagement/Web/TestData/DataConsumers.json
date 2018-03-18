@@ -2,289 +2,241 @@
   {
     "Role": {
       "Location": {
-        "Latitude": 0.63294948992922417,
-        "Longitude": 0.887341888568989
-      },
-      "Sex": 1,
-      "BirthYear": 1959,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 0,
-      "StaffUserId": "4570850c-f72f-4bcb-9ebc-084df13f792f",
-      "FullName": "DataConsumer0",
-      "DisplayName": "DataConsumer0 Display name",
-      "Email": "DataConsumer0@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.33736335874412365,
-        "Longitude": 0.9472491843380263
-      },
-      "Sex": 2,
-      "BirthYear": 1979,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "23ff0d79-0a77-4bb1-b830-028a6b997584",
-      "FullName": "DataConsumer1",
-      "DisplayName": "DataConsumer1 Display name",
-      "Email": "DataConsumer1@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.54333068036629384,
-        "Longitude": 0.14054031490373439
-      },
-      "Sex": 2,
-      "BirthYear": 1971,
-      "NationalSociety": "cec094bd-de50-45da-8ac9-0fc2fadbdf04",
-      "PreferredLanguage": 0,
-      "StaffUserId": "e0e39dfa-fcde-4b4d-a34c-baa8958cdf4c",
-      "FullName": "DataConsumer2",
-      "DisplayName": "DataConsumer2 Display name",
-      "Email": "DataConsumer2@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.9481426877659479,
-        "Longitude": 0.23744914971173237
-      },
-      "Sex": 2,
-      "BirthYear": 1998,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 0,
-      "StaffUserId": "2d27cb51-52bb-4ae0-8953-559c7a51b4b6",
-      "FullName": "DataConsumer3",
-      "DisplayName": "DataConsumer3 Display name",
-      "Email": "DataConsumer3@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.6071116992305553,
-        "Longitude": 0.25030502548921157
-      },
-      "Sex": 1,
-      "BirthYear": 2007,
-      "NationalSociety": "55f764ee-8067-4131-8394-dfedd305d1b0",
-      "PreferredLanguage": 0,
-      "StaffUserId": "83b1e5ec-97a5-4cef-a89e-edc475a7549a",
-      "FullName": "DataConsumer4",
-      "DisplayName": "DataConsumer4 Display name",
-      "Email": "DataConsumer4@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.43025942492776525,
-        "Longitude": 0.57067178402592977
-      },
-      "Sex": 2,
-      "BirthYear": 1933,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "784d35d0-6a4e-44ef-90df-ad074f2428cc",
-      "FullName": "DataConsumer5",
-      "DisplayName": "DataConsumer5 Display name",
-      "Email": "DataConsumer5@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.38027893583303268,
-        "Longitude": 0.25583478447787222
-      },
-      "Sex": 2,
-      "BirthYear": 1931,
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
-      "PreferredLanguage": 1,
-      "StaffUserId": "3200cea8-6fb0-41c9-af71-8c886df9a36d",
-      "FullName": "DataConsumer6",
-      "DisplayName": "DataConsumer6 Display name",
-      "Email": "DataConsumer6@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.80068500842930979,
-        "Longitude": 0.40557548329493753
-      },
-      "Sex": 2,
-      "BirthYear": 1973,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "7a04eadc-7c4e-413e-b641-b6c9f2881b57",
-      "FullName": "DataConsumer7",
-      "DisplayName": "DataConsumer7 Display name",
-      "Email": "DataConsumer7@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.96534765277306911,
-        "Longitude": 0.68957620984389267
-      },
-      "Sex": 1,
-      "BirthYear": 2007,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "68a99c58-0a8d-4d21-b953-351c82238383",
-      "FullName": "DataConsumer8",
-      "DisplayName": "DataConsumer8 Display name",
-      "Email": "DataConsumer8@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.847716266684102,
-        "Longitude": 0.899405307089633
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
       "Sex": null,
-      "BirthYear": 1958,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "4fe623ac-b6a6-4eda-8c0c-d7c95d71250f",
-      "FullName": "DataConsumer9",
-      "DisplayName": "DataConsumer9 Display name",
-      "Email": "DataConsumer9@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.54493741949318786,
-        "Longitude": 0.287725286692253
-      },
-      "Sex": 1,
-      "BirthYear": 1992,
-      "NationalSociety": "2d4f9fdc-712d-42f2-99c0-2828bf613cac",
-      "PreferredLanguage": 1,
-      "StaffUserId": "617eb144-4798-4a7d-9ecf-e2185ac8edfe",
-      "FullName": "DataConsumer10",
-      "DisplayName": "DataConsumer10 Display name",
-      "Email": "DataConsumer10@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.35090540365823797,
-        "Longitude": 0.23135833127021713
-      },
-      "Sex": 1,
-      "BirthYear": 1992,
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
+      "BirthYear": null,
+      "NationalSociety": "4081d9f1-5a55-40c5-b066-4ff845a91fd6",
       "PreferredLanguage": 0,
-      "StaffUserId": "e025fa2e-1cd5-4f8b-a605-7d38727ff046",
-      "FullName": "DataConsumer11",
-      "DisplayName": "DataConsumer11 Display name",
-      "Email": "DataConsumer11@mail.com"
+      "StaffUserId": "cdc10c70-652e-491b-a25b-e23f20111b17",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
       "Location": {
-        "Latitude": 0.39755109296997593,
-        "Longitude": 0.50595950172560267
-      },
-      "Sex": 2,
-      "BirthYear": 1950,
-      "NationalSociety": "bf4c9eb4-4660-4054-a61e-0627d1c8434c",
-      "PreferredLanguage": 0,
-      "StaffUserId": "aca2c9d2-5476-4a4b-8563-4a422d2c62c9",
-      "FullName": "DataConsumer12",
-      "DisplayName": "DataConsumer12 Display name",
-      "Email": "DataConsumer12@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.22919601864609682,
-        "Longitude": 0.12606176181047304
-      },
-      "Sex": 1,
-      "BirthYear": 1961,
-      "NationalSociety": "dcc501ec-e5ae-4ecd-bbb4-8b26d050f1e7",
-      "PreferredLanguage": 1,
-      "StaffUserId": "6f44e6e0-afe6-44aa-b373-f260c8e2bdb4",
-      "FullName": "DataConsumer13",
-      "DisplayName": "DataConsumer13 Display name",
-      "Email": "DataConsumer13@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.011795772245058685,
-        "Longitude": 0.5708126898719057
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
       "Sex": null,
-      "BirthYear": 1932,
-      "NationalSociety": "cec094bd-de50-45da-8ac9-0fc2fadbdf04",
-      "PreferredLanguage": 1,
-      "StaffUserId": "272273fa-f29a-473f-817c-b6b8f630d642",
-      "FullName": "DataConsumer14",
-      "DisplayName": "DataConsumer14 Display name",
-      "Email": "DataConsumer14@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.17834371336658658,
-        "Longitude": 0.76390590833681915
-      },
-      "Sex": 2,
-      "BirthYear": 1998,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
-      "PreferredLanguage": 1,
-      "StaffUserId": "0699a856-461e-47e1-ac6b-e9cbc4210c65",
-      "FullName": "DataConsumer15",
-      "DisplayName": "DataConsumer15 Display name",
-      "Email": "DataConsumer15@mail.com"
-    }
-  },
-  {
-    "Role": {
-      "Location": {
-        "Latitude": 0.38729438250292764,
-        "Longitude": 0.3154099263788247
-      },
-      "Sex": 2,
-      "BirthYear": 1929,
-      "NationalSociety": "88ec9b8e-2f9c-49b4-88bb-0e7ee87090ec",
+      "BirthYear": null,
+      "NationalSociety": "1bead9bf-a9bd-4ace-ad47-03f804004ca6",
       "PreferredLanguage": 0,
-      "StaffUserId": "29fee45c-daf3-4bfd-8fdd-81b70135a6ac",
-      "FullName": "DataConsumer16",
-      "DisplayName": "DataConsumer16 Display name",
-      "Email": "DataConsumer16@mail.com"
+      "StaffUserId": "e6534d43-1446-415e-acdb-cf763f698d75",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   },
   {
     "Role": {
       "Location": {
-        "Latitude": 0.48216381318967966,
-        "Longitude": 0.39943599021035991
+        "Latitude": 45.0,
+        "Longitude": 45.0
       },
-      "Sex": 1,
-      "BirthYear": 1984,
-      "NationalSociety": "e32a53b5-ae93-4881-be7c-c289746a70bc",
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "94e14b63-45df-4ad2-a0c7-3bbbab88b22e",
       "PreferredLanguage": 0,
-      "StaffUserId": "7ec433a1-485f-4986-91b5-434565d557fd",
-      "FullName": "DataConsumer17",
-      "DisplayName": "DataConsumer17 Display name",
-      "Email": "DataConsumer17@mail.com"
+      "StaffUserId": "dd46b786-7501-4c0b-b953-0782b5fb931a",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "a9c64c9b-6620-4724-8a77-1c9268a103c9",
+      "PreferredLanguage": 0,
+      "StaffUserId": "1380c5fa-34c7-4cb9-bdc8-4532727237d9",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "ba9d42f0-bb31-492e-ab6b-1db489b30a8d",
+      "PreferredLanguage": 0,
+      "StaffUserId": "f28b2d20-b9ad-4405-9832-c3aacf4354f9",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "ef5109e5-9cf1-4d53-9258-0cdb77c78351",
+      "PreferredLanguage": 0,
+      "StaffUserId": "ea7f59dd-35df-4587-891a-cb928e2d5623",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "46863bc1-bb94-4b0a-b9fc-ae7129c2eaad",
+      "PreferredLanguage": 0,
+      "StaffUserId": "5bca4dcc-3bfb-41ee-819a-1417333afc26",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "42dc0024-f619-4613-98b8-8de622ecc39c",
+      "PreferredLanguage": 0,
+      "StaffUserId": "7910e365-96f0-4e2d-b25d-d734c9fe1eff",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "6d420dd9-40e7-4c21-8793-a1e62209fb12",
+      "PreferredLanguage": 0,
+      "StaffUserId": "1698bc76-71ba-4dee-b990-672e07910ccc",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "58cf5149-3660-4675-b7e0-c908d13788aa",
+      "PreferredLanguage": 0,
+      "StaffUserId": "76c7d444-f93f-4568-8fb6-1ddc8cda62dd",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "5ce03745-4a00-4aa7-8ce9-37f870ff265a",
+      "PreferredLanguage": 0,
+      "StaffUserId": "fae2cafa-3643-4851-9e9f-20a4fc6eb8fe",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "1a142b98-be4d-496d-a17c-ab5526ad671b",
+      "PreferredLanguage": 0,
+      "StaffUserId": "98c91d95-b684-4f1c-b275-9e1a2fe887e3",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "a6cb52ab-4e25-4bb7-b793-90aa055a7ac6",
+      "PreferredLanguage": 0,
+      "StaffUserId": "ce97f794-4d68-424d-9524-f591bb63e43f",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "b0e9db91-bf63-44d3-893b-0b8cec45f4f3",
+      "PreferredLanguage": 0,
+      "StaffUserId": "7d033308-2cdb-470e-9854-9d082846e487",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "677c32db-a663-416c-9fb1-d07a97178573",
+      "PreferredLanguage": 0,
+      "StaffUserId": "01addf4a-269e-4974-833f-96b19fb213b3",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
     }
   }
 ]

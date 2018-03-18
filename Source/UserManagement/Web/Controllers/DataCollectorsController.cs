@@ -1,18 +1,11 @@
-using Domain;
-using Events;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
-using Read;
 using Read.DataCollectors;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using doLittle.Domain;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
 using Domain.DataCollector;
-using MongoDB.Driver;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,6 +46,8 @@ namespace Web.Controllers
         [HttpPost("update")]
         public IActionResult Update([FromBody] UpdateDataCollector command)
         {
+            // TODO: Changes has to be made to updating the datacollector.
+            // Should use the same system as staffusers
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }

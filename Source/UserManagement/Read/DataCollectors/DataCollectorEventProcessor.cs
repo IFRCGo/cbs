@@ -34,6 +34,7 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorUpdated @event)
         {
+            //TODO: Should be replaced with a new system
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
 
             dataCollector.FullName = @event.FullName;
