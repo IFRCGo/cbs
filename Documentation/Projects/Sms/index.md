@@ -57,7 +57,7 @@ public class MyTextMessageProcessor : ICanProcessTextMessage
 }
 ```
 
-## Testing locally
+## Running locally
 
 There is a REST endpoint that can be used by adding a dependency to the `TextMessaging.Web` project.
 This project adds a route `/api/textmessages` that accepts a post.
@@ -133,3 +133,33 @@ Add the following line:
 ```
 
 The IP address should correspond to the IP of the Kafka instance. On the CBS Dev cluster, it is `52.178.92.69`.
+
+## Running locally with SMS Eagle endpoint
+
+Part of the solution is the SMS Eagle endpoint that exposes a route that enables the device running on-premise to connect
+to the cloud. This endpoint can also be run locally and one can use this endpoint instead of the default TextMessaging
+endpoint. For this solution to be running you need to have configured the above mentioned Kafka setup.
+
+All you need to do is run the Web endpoint project located in `./Source/Sms/SmsEagle/Web` - it will be hosted in
+development on port `50323` the route for this will then be: `http://localhost:50323/incoming`.
+
+By posting to this with the message as `form-data`- it will push a event onto Kafka and processors will pick this up.
+
+The SMS format that is expected is represented by the following class:
+
+```csharp
+public class SMS
+{
+    public string Sender {  get; set; }
+    public string Timestamp {  get; set; }
+    public string MsgID {  get; set; }
+
+    public string OID { get; set; }
+    public string ModemNo {  get; set; }
+    public string Text {  get; set; }
+}
+```
+
+Using Postman you represent the `form-data` as follows:
+
+![](./Postman_Eagle_Sample.png)
