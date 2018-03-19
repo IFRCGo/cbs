@@ -17,7 +17,7 @@ The reason for this is that it complicates the installation requirements and cou
 harder to get working.
 
 The choice has been made to go for [SMS Eagle](https://www.smseagle.eu/). A device based on Raspberry PI with
-a raspbian deployment and custom software on top. It enables the scenarios we want.
+a [raspbian](http://raspbian.org) deployment and custom software on top. It enables the scenarios we want.
 
 
 ## Architecture
