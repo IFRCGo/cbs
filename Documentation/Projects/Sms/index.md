@@ -6,7 +6,8 @@ author: einari
 ---
 # Sms
 
-This file holds details on how the Sms project works, its infrastructure, architecture and how to work with it.
+A vital part of this project is the ability to ingest reports through SMS.
+Below is are all details on how the Sms project works, its infrastructure, architecture and how to work with it.
 
 ## Hardware
 
@@ -18,7 +19,6 @@ harder to get working.
 
 The choice has been made to go for [SMS Eagle](https://www.smseagle.eu/). A device based on Raspberry PI with
 a [raspbian](http://raspbian.org) deployment and custom software on top. It enables the scenarios we want.
-
 
 ## Architecture
 
