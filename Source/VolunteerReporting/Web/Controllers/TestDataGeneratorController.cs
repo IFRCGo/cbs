@@ -24,7 +24,7 @@ using Microsoft.Extensions.Configuration;
 using Read.InvalidCaseReports;
 using Read.CaseReportsForListing;
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : BaseController
