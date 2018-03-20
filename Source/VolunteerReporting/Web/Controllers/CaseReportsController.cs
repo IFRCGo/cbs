@@ -7,7 +7,7 @@ using Read.DataCollectors;
 using Read.HealthRisks;
 using System.Threading.Tasks;
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/casereports")]
     public class CaseReportsController : BaseController

@@ -9,7 +9,7 @@ using Read.HealthRisks;
 using Web.Models;
 using Infrastructure.AspNet;
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/invalidcasereportsfromunknowndatacollectors")]
     public class InvalidCaseReportsFromUnknownDataCollectorsController : BaseController
