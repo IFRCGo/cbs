@@ -1,6 +1,8 @@
-
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Infrastructure.AspNet;
@@ -9,6 +11,8 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
+using Read.StaffUsers;
+using Read.StaffUsers.Models;
 using Web.TestData;
 
 namespace Web.Controllers
@@ -20,15 +24,19 @@ namespace Web.Controllers
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
+        private readonly IStaffUsers _staffUsers;
+
         public TestDataGeneratorController(
             IMongoDatabase database,
             Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
-            IRegisteringCommandHandlers staffUserCommandHandler
+            IRegisteringCommandHandlers staffUserCommandHandler,
+            IStaffUsers staffUsers
         )
         {
             _database = database;
             _staffUserCommandHandler = staffUserCommandHandler;
             _dataCollectorCommandHandler = dataCollectorCommandHandler;
+            _staffUsers = staffUsers;
         }
 
         [HttpGet("generatetestdataset")]
@@ -54,16 +62,15 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
                         System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddDataCollectorCommands();
+                TestDataGenerator.GenerateCorrectRegisterDataCollectorCommands();
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
                     System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }
 
             foreach (var cmd in commands)
             {
-                //TODO: Question: Set Id here, in CommandHandler or make the request contain the Id?
                 cmd.DataCollectorId = Guid.NewGuid();
                 _dataCollectorCommandHandler.Handle(cmd);
             }
@@ -93,9 +100,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewAdminUser[]>(
                     System.IO.File.ReadAllText("./TestData/Admins.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewAdminUser[]>(
                     System.IO.File.ReadAllText("./TestData/Admins.json"));
             }
@@ -115,9 +122,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataConsumer[]>(
                     System.IO.File.ReadAllText("./TestData/DataConsumers.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataConsumer[]>(
                     System.IO.File.ReadAllText("./TestData/DataConsumers.json"));
             }
@@ -137,9 +144,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewDataCoordinator[]>(
                     System.IO.File.ReadAllText("./TestData/DataCoordinators.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataCoordinator[]>(
                     System.IO.File.ReadAllText("./TestData/DataCoordinators.json"));
             }
@@ -159,9 +166,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewDataOwner[]>(
                     System.IO.File.ReadAllText("./TestData/DataOwners.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewDataOwner[]>(
                     System.IO.File.ReadAllText("./TestData/DataOwners.json"));
             }
@@ -181,9 +188,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataVerifier[]>(
                     System.IO.File.ReadAllText("./TestData/DataVerifiers.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewStaffDataVerifier[]>(
                     System.IO.File.ReadAllText("./TestData/DataVerifiers.json"));
             }
@@ -203,9 +210,9 @@ namespace Web.Controllers
                 commands = JsonConvert.DeserializeObject<RegisterNewSystemConfigurator[]>(
                     System.IO.File.ReadAllText("./TestData/SystemConfigurators.json"));
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                TestDataGenerator.GenerateCorrectAddStaffUserCommands();
+                TestDataGenerator.GenerateCorrectRegisterStaffUserCommands();
                 commands = JsonConvert.DeserializeObject<RegisterNewSystemConfigurator[]>(
                     System.IO.File.ReadAllText("./TestData/SystemConfigurators.json"));
             }
@@ -215,6 +222,9 @@ namespace Web.Controllers
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
+
+        #region Delete collections
+
         [HttpGet("deleteall")]
         public void DeleteAll()
         {
@@ -226,16 +236,45 @@ namespace Web.Controllers
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            //TODO: Must be updated when the new read models are made
-            //DeleteCollection<StaffUser>("StaffUser");
-            //DeleteCollection<SystemCoordinator>("SystemCoordinator");
-            //DeleteCollection<DataVerifier>("DataVerifier");
-            //DeleteCollection<DataOwner>("DataOwner");
-            //DeleteCollection<DataCoordinator>("DataCoordinator");
-            //DeleteCollection<DataConsumer>("DataConsumer");
-            //DeleteCollection<Admin>("Admin");
-
+            DeleteCollection<BaseUser>("StaffUsers");
         }
+
+        [HttpGet("deletealladmins")]
+        public void DeleteAllAdmins()
+        {
+            DeleteCollection<Admin>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataconsumers")]
+        public void DeleteAllDataConsumers()
+        {
+            DeleteCollection<DataConsumer>("StaffUsers");
+        }
+
+        [HttpGet("deletealldatacoordinators")]
+        public void DeleteAllDataCoordinators()
+        {
+            DeleteCollection<DataCoordinator>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataowners")]
+        public void DeleteAllDataOwners()
+        {
+            DeleteCollection<DataOwner>("StaffUsers");
+        }
+
+        [HttpGet("deletealldataverifiers")]
+        public void DeleteAllDataVerifiers()
+        {
+            DeleteCollection<DataVerifier>("StaffUsers");
+        }
+
+        [HttpGet("deleteallsystemconfigurators")]
+        public void DeleteAllSystemConfigurators()
+        {
+            DeleteCollection<SystemConfigurator>("StaffUsers");
+        }
+
 
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
@@ -249,10 +288,12 @@ namespace Web.Controllers
             DeleteCollection<GreetingHistory>("GreetingHistories");
         }
 
+
         private void DeleteCollection<T>(string collectionName)
         {
             _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
         }
 
+        #endregion
     }
 }

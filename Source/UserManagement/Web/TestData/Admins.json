@@ -126,13 +126,5 @@
       "DisplayName": "Admin15_Display_Name",
       "Email": "Admin15@mail.com"
     }
-  },
-  {
-    "Role": {
-      "StaffUserId": "00000000-0000-0000-0000-000000000000",
-      "FullName": "Admin16",
-      "DisplayName": "Admin16_Display_Name",
-      "Email": "Admin16@mail.com"
-    }
   }
 ]

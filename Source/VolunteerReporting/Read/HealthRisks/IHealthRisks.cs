@@ -1,3 +1,4 @@
+using Concepts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Read.HealthRisks
         Task<IEnumerable<HealthRisk>> GetAllAsync();
         HealthRisk GetById(Guid id);
         HealthRisk GetByReadableId(int readableId);
-        Guid GetIdFromReadableId(int readbleId);
+        HealthRiskId GetIdFromReadableId(int readbleId);
         Task Save(HealthRisk dataCollector);
         Task Remove(Guid healthRiskId);
         

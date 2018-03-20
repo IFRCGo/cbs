@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using doLittle.Applications;
 using doLittle.Events;
 using doLittle.Execution;
 using doLittle.Logging;
+using doLittle.Runtime.Applications;
 using doLittle.Runtime.Events;
 using doLittle.Runtime.Events.Coordination;
 using doLittle.Runtime.Events.Publishing.InProcess;
@@ -27,7 +27,7 @@ namespace Infrastructure.Kafka.BoundedContexts
         readonly IEventConverter _eventConverter;
         readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
         readonly ILogger _logger;
-        readonly IApplicationArtifactIdentifierStringConverter _applicationResourceIdentifierConverter;
+        readonly IApplicationResourceIdentifierConverter _applicationResourceIdentifierConverter;
         readonly IImplementationsOf<IEvent> _eventTypes;
         readonly IEventSequenceNumbers _eventSequenceNumbers;
         readonly IEventStore _eventStore;
@@ -43,7 +43,7 @@ namespace Infrastructure.Kafka.BoundedContexts
             IEventConverter eventConverter,
             IUncommittedEventStreamCoordinator uncommittedEventStreamCoordinator,
             ILogger logger,
-            IApplicationArtifactIdentifierStringConverter applicationResourceIdentifierConverter,
+            IApplicationResourceIdentifierConverter applicationResourceIdentifierConverter,
             IImplementationsOf<IEvent> eventTypes,
             IEventStore eventStore,
             IEventEnvelopes eventEnvelopes,
@@ -154,13 +154,30 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Start()
         {
-            _consumer.SubscribeTo($"BoundedContextListenerFor_{_configuration.Topic}",_configuration.Topic, Received);
+            try 
+            {
+                if( _configuration.Topic == string.Empty ) 
+                {
+                    _logger.Warning("Missing topic - won't get events from other bounded contexts");
+                    return;
+                }
+                _consumer.SubscribeTo($"BoundedContextListenerFor_{_configuration.Topic}",_configuration.Topic, Received);
+            } catch( Exception ex ) 
+            {
+                _logger.Error(ex, "Failed subscribing to topics");
+            }
         }
 
         public static void Start(IServiceProvider serviceProvider)
         {
-            var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
-            listener.Start();
+            try 
+            { 
+                var listener = serviceProvider.GetService(typeof(IBoundedContextListener)) as IBoundedContextListener;
+                listener.Start();
+            } catch( Exception ex )
+            {
+                Logger.Internal.Error(ex, "Problem starting bounded context listener");
+            }
         }
     }
 }
