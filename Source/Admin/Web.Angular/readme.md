@@ -9,7 +9,7 @@
 
 ## Local build & run
 
-(Active path: `cbs/Source/Example/Web.Angular`)
+(Active path: `cbs/Source/Admin/Web.Angular`)
 
 Restore dependencies
 
@@ -18,6 +18,20 @@ Restore dependencies
 Build and host locally
 
 > `ng serve` or `npm start`
+
+This then host on http://localhost:4200
+
+
+Build and host global navbar locally 
+
+(Active path: `cbs/Source/Navigation/Web/`)
+>`$ npm install`
+>`$ npm start`
+This will run and open automatically http://localhost:9999
+
+
+
+
 
 ## Scaffold new Angular components
 
