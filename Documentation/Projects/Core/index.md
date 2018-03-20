@@ -18,7 +18,7 @@ to competency:
 | ------------------ | ------------------ | ---------------------------------- |
 | Karoline Klever    | Cloud Solution Architect, Community building | e: karolikl@microsoft.com, t: karolikl |
 |Einar Ingebrigtsen	|Architecture, Tech	|e: einar@dolittle.com, t: einari
-| Bjørn Rasmussen    |                       | e: bjornfos@gmail.com, Velcrow81 | 
+| Bjørn Rasmussen    | Senior Developer                      | e: bjornfos@gmail.com, Velcrow81 | 
 | Alexander Hoset    | UX | e: alexanderhoset@mac.com, alexanderhoset |
 | Samson Gejibo | SMS Proxy| e: samson.gejibo@redcross.no, eprom |
 | Roxanne Moore | Red Cross Business Owner | e: roxanne.moore@ifrc.org |
