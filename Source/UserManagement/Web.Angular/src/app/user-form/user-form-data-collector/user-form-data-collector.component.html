@@ -46,42 +46,40 @@
             required
             [(ngModel)]="user.nationalSociety" name="nationalSociety"
             #nationalSociety="ngModel">
-        <option *ngFor="let nationalSociety of nationalSocieties" [value]="nationalSociety">{{nationalSociety}}</option>
+        <option *ngFor="let nationalSociety of nationalSocieties" [value]="nationalSociety.id">{{nationalSociety.desc}}</option>
     </select>
   </div>
   <div class="form-group">
     <label>Location</label>
     <fieldset class="form-inline">
       <label for="latitude">Latitude</label>
-      <input 
+      <input
+        type="number"
         class="input-mini form-control" 
         id="latitude"
         required
-        [(ngModel)]="user.latitude"
+        [(ngModel)]="user.gpsLocation.latitude"
         name="latitude"
-        #lat="ngModel"
-      >
-      <label for="longtitude">Longtitude</label>
+      />
+      <label for="longitude">Longitude</label>
       <input 
+        type="number"
         class="input-mini form-control" 
-        id="longtitude"
+        id="longitude"
         required
-        [(ngModel)]="user.longtitude"
-        name="longtitude"
-        #long="ngModel"
-      >
+        [(ngModel)]="user.gpsLocation.longitude"
+        name="longitude"
+      />
     </fieldset>
     <div class="form-group">
-      <label for="registeredAt">Registered At</label>
-      <input
-        type="text"
-        class="form-control"
-        id="registeredAt"
-        required
-        [(ngModel)]="user.registeredAt" 
-        name="registeredAt"
-        #registeredAt="ngModel"
-      >
+      <label>Phone numbers</label>
+      <div *ngFor="let phoneNumber of user.phoneNumbers; index as i">
+        <input type="text" class="form-control"
+              [(ngModel)]="user.phoneNumbers[i]" name="item-{{i}}"
+              required
+             >
+      </div>
+      <button class="btn btn-success" (click)="addPhoneNumber()">Add phone number</button>
     </div>
   </div>
   <div class="alert-danger" *ngIf="error">

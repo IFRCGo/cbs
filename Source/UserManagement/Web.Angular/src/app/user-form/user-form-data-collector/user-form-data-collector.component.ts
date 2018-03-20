@@ -12,9 +12,13 @@ export const DATA_COLLECTOR_PATH = 'data-collector';
 export class UserFormDataCollectorComponent {
   user: DataCollector = new DataCollector({});
   languageOptions = ['English', 'French'];
-  nationalSocieties = ['Norway', 'Sweden'];
+  nationalSocieties = [{desc: 'Norway', id: 'badbc228-84aa-4ec3-8946-473b813ab969'}, {desc: 'Sweden', id: '28a460de-3c9e-4fb9-b42d-6bb4d7029a9c'}];
 
   constructor(private dataColletorService: DataCollectorService) {
+  }
+
+  addPhoneNumber() {
+    this.user.phoneNumbers.push('')
   }
 
   submit() {

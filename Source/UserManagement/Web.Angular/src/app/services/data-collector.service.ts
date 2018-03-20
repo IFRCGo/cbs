@@ -13,7 +13,9 @@ export class DataCollectorService {
   constructor(private http: Http) { }
 
   saveDataCollector(dataCollector: DataCollector): Promise<any> {
-    const url = environment.api + '/api/dataCollectors';
+    const url = environment.api + '/api/datacollectors/register';
+
+    console.log("Register url: " + url);
 
     return this.http
       .post(url, JSON.stringify(dataCollector), { headers: this.headers })
