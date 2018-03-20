@@ -1,15 +1,23 @@
 nav {
-    padding: 0 3rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    padding: 2rem 3rem 0;
+    @media (min-width: $screen-sm-min) {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0 3rem;
+    }
     a {
         color: $brand-primary;
-        font-size: 1.6rem;
-        padding: 1rem;
-        margin: 0 1rem;
         display: block;
-        border-radius: .3rem;
+        font-size: 2.4rem;
+        padding: 1.5rem;
+        margin: 0 1rem;
+        @media (min-width: $screen-sm-min) {
+            border-radius: .3rem;
+            font-size: 1.6rem;
+            line-height: 4rem;
+            padding: 0 1.5rem;
+        }
         &:hover {
             background-color: $gray-lighter;
             text-decoration: none;

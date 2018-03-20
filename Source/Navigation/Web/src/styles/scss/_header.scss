@@ -1,13 +1,20 @@
+@import "../../assets/bootstrap/variables";
 .navigation-header {
-    display: flex;
-    flex-direction: row;
-    height: 7.2rem;
-    justify-content: flex-start;
-    padding: 1.5rem 1rem;
-    border-bottom: .2rem solid $link-color;
+    padding: 5rem 1rem;
+    @media (min-width: $screen-sm-min) {
+        border-bottom: .2rem solid $link-color;
+        display: flex;
+        flex-direction: row;
+        height: 7.2rem;
+        justify-content: flex-start;
+        padding: 1.5rem 1rem;
+    }
     svg {
         max-height: 100%;
         width: 7.35rem;
         display: block;
+        @media (max-width: $screen-xs-max) {
+            display: none;
+        }
     }
 }

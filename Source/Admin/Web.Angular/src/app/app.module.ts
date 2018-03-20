@@ -8,6 +8,7 @@ import { ProjectModule } from './project/project.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
+import { NavTopBarComponent } from './navigation/nav-top-bar/nav-top-bar.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
 @NgModule({
     declarations: [
         AppComponent,
+        NavTopBarComponent,
     ],
     imports: [
         BrowserModule,
