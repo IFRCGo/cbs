@@ -22,20 +22,27 @@ Build and host locally
 This then host on http://localhost:4200
 
 
-Build and host global navbar locally 
+###  Local navbar build & run
+
+Prerequisites
+
+- Webpack (`npm install -g webpack`)
 
 (Active path: `cbs/Source/Navigation/Web/`)
->`$ npm install`
->`$ npm start`
-This will run and open automatically http://localhost:9999
 
+Restore dependencies
 
+> `npm install`
+
+Build and host locally
+
+> `npm start`
 
 
 
 ## Scaffold new Angular components
 
-(Active path: `cbs/Source/Example/Frontend`)
+(Active path: `cbs/Source/Admin/Frontend`)
 
 Create new component
 
