@@ -16,7 +16,14 @@ to competency:
 
 | Person             | Role / Competency  | Contact information                |
 | ------------------ | ------------------ | ---------------------------------- |
-| Einar Ingebrigtsen | Architecture, Tech | e: einari@microsoft.com, t: einari |
+| Karoline Klever    | Cloud Solution Architect, Community building | e: karolikl@microsoft.com, t: karolikl |
+|Einar Ingebrigtsen	|Architecture, Tech	|e: einar@dolittle.com, t: einari
+| Bjørn Rasmussen    |                       | e: bjornfos@gmail.com, Velcrow81 | 
+| Alexander Hoset    | UX | e: alexanderhoset@mac.com, alexanderhoset |
+| Samson Gejibo | SMS Proxy| e: samson.gejibo@redcross.no, eprom |
+| Roxanne Moore | Red Cross Business Owner | e: roxanne.moore@ifrc.org |
+| Anine Kongelf| Red Cross Business Owner| e: anine.kongelf@redcross.no |
+
 
 ## Common infrastructure and reusable components
 
