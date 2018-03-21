@@ -1,8 +1,8 @@
 ---
 title: Overview of continuous integration
-description: 
+description:
 keywords: CI
-author: sheeng
+author: karolikl
 ---
 # Overview
 
@@ -28,31 +28,6 @@ capability to only build those projects that are changed for the different proje
 If you would like to set up a build towards your own fork in AppVeyor, follow the following steps: 
 1. Create a new Project on `https://ci.appveyor.com` (you will need one project in AppVeyor per project build).
 1. Add the path to the newly created yml file in the field `Custom configuration .yml file name` under the `General` tab. Do not edit any other settings, these are picked up from the appveyor.yml file. 
-
-## TravisCI / CircleCI
-
-Our TravisCI/CircleCI builds used to validate on other platforms such as Linux, which is the runtime environment.
-
-Folks with access to CBS's official accounts can now add CI/CD builds to CircleCI/TravisCI.
-
-## Build Using Docker Container
-
-(Active path: `cbs`)
-
-Build image
-> `./dockerize.sh`
-
-Run container: 
-> `./containerize.sh`
-
-Build Example application (inside container)
-> `./build.sh`
-
-After running the `./dockerize.sh` script, you will have a `<image-owner>/cbs-devel` image for building the project. This image can be published to DockerHub. 
-
-Use `./containerize.sh` to access the terminal inside the container, created from `<image-owner>/cbs-devel` image.
-
-On the terminal inside the container, use `./build.sh` to build the project.
 
 ## Documentation
 
