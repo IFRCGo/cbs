@@ -1,0 +1,2 @@
+#!/bin/bash
+source ../../../Build/docker_cloud/pre_push
