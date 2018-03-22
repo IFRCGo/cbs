@@ -1,7 +1,2 @@
 #!/bin/bash
-
-echo Tagging $IMAGE_NAME as $DOCKER_REPO:$SOURCE_COMMIT
-docker tag $IMAGE_NAME $DOCKER_REPO:$SOURCE_COMMIT
-
-echo Pushing $DOCKER_REPO:$SOURCE_COMMIT
-docker push $DOCKER_REPO:$SOURCE_COMMIT
+source ../../../../Build/docker_cloud/pre_push
