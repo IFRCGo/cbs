@@ -1,4 +1,2 @@
 #!/bin/bash
-pwd
-ls ../../../../Build/docker_cloud/
-source ../../../../Build/docker_cloud/pre_push
+source ../../../Build/docker_cloud/pre_push
