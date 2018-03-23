@@ -40,21 +40,19 @@ namespace Web.Controllers
         public IActionResult Get()
         {
             var result = _queryCoordinator.Execute(new AllDataCollectors(_collection), new PagingInfo());
-            //var items = await _dataCollectors.GetAllAsync();
+
             if (result.Success)
             {
                 return Ok(result.Items);
             }
-            return new NotFoundResult();
 
-            //return Ok(items);
+            return new NotFoundResult();
+            
         }
 
         [HttpPost("register")]
         public IActionResult Post([FromBody] RegisterDataCollector command)
         {
-            //Todo: We have to be clear whether we want Id to be supplied to a command by the controller or by the frontend
-            //when registering a datacollector, or a staffuser for that matter
             command.DataCollectorId = Guid.NewGuid();
             _dataCollectorCommandHandler.Handle(command);
             return Ok();

@@ -9,8 +9,6 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public PagingInfo PagingInfo { get; set; }
-
         public AllDataCollectors(IMongoCollection<DataCollector> collection)
         {
             _collection = collection;
