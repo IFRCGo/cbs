@@ -236,46 +236,61 @@ namespace Web.Controllers
         {
             DeleteCollection<BaseUser>("StaffUsers");
         }
-
-        #region Have not tested if this works, on TODO list
+        
         [HttpGet("deletealladmins")]
         public void DeleteAllAdmins()
         {
-            DeleteCollection<Admin>("StaffUsers");
+            //TODO: Not sure that this works? Have not tested yet
+            //DeleteCollection<Admin>("StaffUsers");
+            var filter = Builders<BaseUser>.Filter.OfType<Admin>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataconsumers")]
         public void DeleteAllDataConsumers()
         {
-            DeleteCollection<DataConsumer>("StaffUsers");
+            //DeleteCollection<DataConsumer>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataConsumer>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldatacoordinators")]
         public void DeleteAllDataCoordinators()
         {
-            DeleteCollection<DataCoordinator>("StaffUsers");
+            //DeleteCollection<DataCoordinator>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataCoordinator>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataowners")]
         public void DeleteAllDataOwners()
         {
-            DeleteCollection<DataOwner>("StaffUsers");
+            //DeleteCollection<DataOwner>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataOwner>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataverifiers")]
         public void DeleteAllDataVerifiers()
         {
-            DeleteCollection<DataVerifier>("StaffUsers");
+            //DeleteCollection<DataVerifier>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataVerifier>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deleteallsystemconfigurators")]
         public void DeleteAllSystemConfigurators()
         {
-            DeleteCollection<SystemConfigurator>("StaffUsers");
+           // DeleteCollection<SystemConfigurator>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<SystemConfigurator>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
-
-        #endregion
-
+        
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
