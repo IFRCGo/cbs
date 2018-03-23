@@ -10,7 +10,7 @@ using Web.Models;
 using Read.InvalidCaseReports;
 using Infrastructure.AspNet;
 
-namespace Web
+namespace Web.Controllers
 {
     [Route("api/invalidcasereports")]
     public class InvalidCaseReportsController : BaseController

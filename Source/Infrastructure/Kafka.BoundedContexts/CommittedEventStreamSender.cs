@@ -46,10 +46,11 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         public void Send(CommittedEventStream committedEventStream)
         {
-            if( _senderConfiguration.Topics.Count() == 0 ) return;
-
             _logger.Information("Sending committed event stream");
             _bridge.Send(committedEventStream);
+            
+            if( _senderConfiguration.Topics.Count() == 0 ) return;
+
             var eventContentAndEnvelopes = _eventConverter.Convert(committedEventStream);
             var json = _serializer.ToJson(eventContentAndEnvelopes);
 

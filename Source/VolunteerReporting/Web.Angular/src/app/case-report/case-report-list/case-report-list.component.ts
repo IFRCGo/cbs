@@ -64,7 +64,7 @@ export class CaseReportListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.caseReportService.getLimitLastReports(this.maxReports)
+    this.caseReportService.getReports()
       .then(result => {
         this.listedReports = result || [];
       })
