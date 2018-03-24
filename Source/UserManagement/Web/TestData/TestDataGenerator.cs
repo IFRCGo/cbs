@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Concepts;
+using DnsClient;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
@@ -11,6 +12,13 @@ namespace Web.TestData
 {
     public static class TestDataGenerator
     {
+        private static readonly string[] names =
+        {
+            "Abraham Watson",
+            "Vanessa Wallace",
+            "Billie Mclaughlin"
+        };
+
         public static void GenerateAllTestData()
         {
             GenerateCorrectRegisterDataCollectorCommands();
