@@ -1,0 +1,21 @@
+#!/bin/bash
+VERSION=$(cat $REPO_ROOT/VERSION)
+
+# Get all tags from Docker Hub
+SHORT_REPO=$(echo -n $DOCKER_REPO | tr "/" "\n" | tail -n 2 | tr "\n" "/")
+TAGS_JSON=$(curl -sf https://hub.docker.com/v2/repositories/$SHORT_REPO/tags/)
+TAGS=$(echo $TAGS_JSON | sed -E 's/"name"\s*:\s*"([^"]*)"/\nNAME:\1\n/g' | sed -n 's/NAME://p')
+
+# Generate 0 or last build-num + 1
+LAST_BUILD_NUM=$(echo "$TAGS" | sed -nE s/^$VERSION-//p | sed -E 's/\+.*//' | sort | tail -n 1)
+if [ -n "$LAST_BUILD_NUM" ]; then
+  NEW_BUILD_NUM=$(expr $LAST_BUILD_NUM + 1)
+else
+  NEW_BUILD_NUM=0
+fi
+
+# Save the new tag
+NEW_VERSION_TAG=$VERSION-$NEW_BUILD_NUM
+
+echo Next build number: $NEW_BUILD_NUM
+echo New tag: $NEW_VERSION_TAG

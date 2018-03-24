@@ -1,7 +1,17 @@
 #!/bin/bash
 
-echo Tagging $IMAGE_NAME as $DOCKER_REPO:$SOURCE_COMMIT
-docker tag $IMAGE_NAME $DOCKER_REPO:$SOURCE_COMMIT
+# Get a new build number for current version
+source $REPO_ROOT/Build/docker_cloud/new_build_num
 
-echo Pushing $DOCKER_REPO:$SOURCE_COMMIT
-docker push $DOCKER_REPO:$SOURCE_COMMIT
+# Short commit sha
+SOURCE_COMMIT=8b72df9caf0e80678f442fb52d7b06a5902e8a5b
+SHORT_COMMIT=$(echo $SOURCE_COMMIT | cut -c -7)
+
+# New image name, repo:version-build+commit
+NEW_IMAGE_NAME=$DOCKER_REPO:$NEW_VERSION_TAG+$SHORT_COMMIT
+
+echo Tagging $IMAGE_NAME as $NEW_IMAGE_NAME
+docker tag $IMAGE_NAME $NEW_IMAGE_NAME
+
+echo Pushing $NEW_IMAGE_NAME
+docker push $NEW_IMAGE_NAME
