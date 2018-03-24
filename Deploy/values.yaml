@@ -1,28 +1,54 @@
 services:
+    # The version of the services will be auto-updated by Keel when new images
+    # are available. But they need an inital version to be deployable.
     admin:
         frontend:
-            version: latest
+            image: jakobho/cbs-admin-frontend
+            version: 0.0.1-0.8b72df9
             service: cbs-admin-frontend-service
             path: /
         backend:
-            version: latest
+            image: jakobho/cbs-admin-backend
+            version: 0.0.1-0.8b72df9
             path: /adminbackend
             service: cbs-admin-backend-service
     usermanagement:
         frontend:
-            version: latest
+            image: jakobho/cbs-usermgmt-frontend
+            version: 0.0.1-0.8b72df9
             service: cbs-usermanagement-frontend-service
             path: /users
         backend:
-            version: latest
+            image: jakobho/cbs-usermgmt-backend
+            version: 0.0.1-0.8b72df9
             path: /usermanagementbackend
             service: cbs-usermanagement-backend-service
     volunteerreporting:
         frontend:
-            version: latest
+            image: jakobho/cbs-vr-frontend
+            version: 0.0.1-0.8b72df9
             service: cbs-volunteerreporting-frontend-service
             path: /reporting
         backend:
-            version: latest
+            image: jakobho/cbs-vr-backend
+            version: 0.0.1-0.8b72df9
             path: /volunteerreportingbackend
             service: cbs-volunteerreporting-backend-service
+
+keel:
+    policy: all
+    trigger: poll
+    pollSchedule: "@every 1m"
+    images:
+        - repository: services.admin.frontend.image
+          tag: services.admin.frontend.version
+        - repository: services.admin.backend.image
+          tag: services.admin.backend.version
+        - repository: services.usermanagement.frontend.image
+          tag: services.usermanagement.frontend.version
+        - repository: services.usermanagement.backend.image
+          tag: services.usermanagement.backend.version
+        - repository: services.volunteerreporting.frontend.image
+          tag: services.volunteerreporting.frontend.version
+        - repository: services.volunteerreporting.backend.image
+          tag: services.volunteerreporting.backend.version
