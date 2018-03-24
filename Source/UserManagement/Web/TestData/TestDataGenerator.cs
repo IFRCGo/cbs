@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Concepts;
-using DnsClient;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
