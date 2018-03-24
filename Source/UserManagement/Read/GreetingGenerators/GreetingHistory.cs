@@ -1,13 +1,16 @@
 using System;
+using doLittle.Read;
 
 namespace Read.GreetingGenerators
 {
-    public class GreetingHistory{
-        public Guid Id { get; set; } //QUESTION: einari, michael: What does this represent? An EventSourceId or the DataCollectorId of the datacollector?
+    public class GreetingHistory : IReadModel
+    {
+        public Guid GreetingHistoryId { get; set; }
         public string PhoneNumber { get; set; }
+        //TODO: Shouldn't this contain a string Message aswell? Or should there just be a default message?
         
-        public GreetingHistory(Guid id) {
-            Id = id;
+        public GreetingHistory(Guid greetingHistoryId) {
+            GreetingHistoryId = greetingHistoryId;
         }       
     }
 }

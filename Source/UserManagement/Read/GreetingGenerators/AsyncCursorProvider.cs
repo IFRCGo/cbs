@@ -2,11 +2,11 @@ using System.Linq;
 using doLittle.Read;
 using MongoDB.Driver;
 
-namespace Read.DataCollectors
+namespace Read.GreetingGenerators
 {
-    public class AsyncCursorProvider : IQueryProviderFor<IAsyncCursor<DataCollector>>
+    public class AsyncCursorProvider : IQueryProviderFor<IAsyncCursor<GreetingHistory>>
     {
-        public QueryProviderResult Execute(IAsyncCursor<DataCollector> query, PagingInfo paging)
+        public QueryProviderResult Execute(IAsyncCursor<GreetingHistory> query, PagingInfo paging)
         {
             var result = new QueryProviderResult();
 
@@ -16,6 +16,7 @@ namespace Read.DataCollectors
             }
 
             var list = query.ToList();
+
             if (paging.Enabled)
             {
                 var start = paging.Size * paging.Number;
