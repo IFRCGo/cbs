@@ -1,7 +1,6 @@
 # Build the static content part
 FROM node:latest AS angular-build
 WORKDIR /src
-RUN ["npm", "install", "-g", "yarn"]
 RUN ["yarn","global", "add", "typescript"]
 RUN ["yarn","global", "add", "@angular/cli@latest"]
 COPY . /src
