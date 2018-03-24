@@ -4,7 +4,8 @@ using Concepts;
 
 namespace Domain.StaffUser.Roles
 {
-    public class DataCoordinator : StaffRole, ISupportBirthYear, ISupportSex, IRequireAssignedNationalSocieties,
+    public class DataCoordinator : StaffRole, 
+        ISupportBirthYear, ISupportSex, IRequireAssignedNationalSocieties,
         IRequireNationalSociety, IRequirePhoneNumbers, IRequirePreferredLanguage
     {
         public int? BirthYear { get; set; }

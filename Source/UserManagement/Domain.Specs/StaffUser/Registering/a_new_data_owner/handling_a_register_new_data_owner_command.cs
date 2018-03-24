@@ -55,9 +55,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
                 e => e.Sex.ShouldEqual(Constants.NOT_KNOWN),
                 e => e.BirthYear.ShouldEqual(Constants.NOT_KNOWN),
                 e => e.Position.ShouldEqual(constants.valid_position),
-                e => e.DutyStation.ShouldEqual(constants.valid_duty_station),
-                e => e.Longitude.ShouldEqual(constants.valid_location.Longitude),
-                e => e.Latitude.ShouldEqual(constants.valid_location.Latitude)
+                e => e.DutyStation.ShouldEqual(constants.valid_duty_station)
             );
         };
     }

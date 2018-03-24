@@ -12,9 +12,6 @@ namespace Domain.StaffUser.Delete
             RuleFor(_ => _.StaffUserId)
                 .NotEmpty().WithMessage("StaffUserId cannot be Empty")
                 .NotEqual(Guid.Empty).WithMessage("StaffUserId cannot be Guid.Empty");
-
-            RuleFor(_ => _.Role)
-                .IsInEnum().WithMessage("Role is not correct");
         }
         
     }

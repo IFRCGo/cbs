@@ -9,15 +9,15 @@ namespace Events.StaffUser.Registration
             string email, DateTimeOffset registeredAt, Guid nationalSociety, int language, 
             int sex, int birthYear) 
         {
-            this.StaffUserId = staffUserId;
+            StaffUserId = staffUserId;
             FullName = fullName;
             DisplayName = displayName;
             Email = email;
             RegisteredAt = registeredAt;
-            this.NationalSociety = nationalSociety;
-            this.PreferredLanguage = language;
-            this.Sex = sex;
-            this.BirthYear = birthYear;
+            NationalSociety = nationalSociety;
+            PreferredLanguage = language;
+            Sex = sex;
+            BirthYear = birthYear;
         }
         public Guid StaffUserId { get; }
 
@@ -28,7 +28,7 @@ namespace Events.StaffUser.Registration
 
         public Guid NationalSociety { get; }
         public int PreferredLanguage { get; }
-        public int BirthYear { get; set; }
-        public int Sex { get; set; }
+        public int BirthYear { get; }
+        public int Sex { get; }
     }
 }

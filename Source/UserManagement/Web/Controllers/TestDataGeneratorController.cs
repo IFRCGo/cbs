@@ -23,8 +23,7 @@ namespace Web.Controllers
         private readonly IMongoDatabase _database;
         private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
-
-        private readonly IStaffUsers _staffUsers;
+        
 
         public TestDataGeneratorController(
             IMongoDatabase database,
@@ -36,7 +35,6 @@ namespace Web.Controllers
             _database = database;
             _staffUserCommandHandler = staffUserCommandHandler;
             _dataCollectorCommandHandler = dataCollectorCommandHandler;
-            _staffUsers = staffUsers;
         }
 
         [HttpGet("generatetestdataset")]
@@ -93,7 +91,7 @@ namespace Web.Controllers
         [HttpGet("alladminusercommands")]
         public void CreateAllAdminUserCommands()
         {
-            //Delete Admin collection
+            DeleteAllAdmins();
             RegisterNewAdminUser[] commands;
             try
             {
@@ -115,7 +113,7 @@ namespace Web.Controllers
         [HttpGet("alldataconsumercommands")]
         public void CreateAllDataConsumerCommands()
         {
-            //Delete DataConsumer collection
+            DeleteAllDataConsumers();
             RegisterNewStaffDataConsumer[] commands;
             try
             {
@@ -137,7 +135,7 @@ namespace Web.Controllers
         [HttpGet("alldatacoordinatorcommands")]
         public void CreateAllDataCoordinatorCommands()
         {
-            //Delete DataCoordinator collection
+            DeleteAllDataCoordinators();
             RegisterNewDataCoordinator[] commands;
             try
             {
@@ -159,7 +157,7 @@ namespace Web.Controllers
         [HttpGet("alldataownercommands")]
         public void CreateAllDataOwnerCommands()
         {
-            //Delete DataOwner collection
+            DeleteAllDataOwners();
             RegisterNewDataOwner[] commands;
             try
             {
@@ -181,7 +179,7 @@ namespace Web.Controllers
         [HttpGet("alldataverifiercommands")]
         public void CreateAllDataVerifierCommands()
         {
-            //Delete DataVerifier collection
+            DeleteAllDataVerifiers();
             RegisterNewStaffDataVerifier[] commands;
             try
             {
@@ -203,7 +201,7 @@ namespace Web.Controllers
         [HttpGet("allsystemconfiguratorcommands")]
         public void CreateAllSystemConfiguratorCommands()
         {
-            //Delete SystemConfigurator collection
+            DeleteAllSystemConfigurators();
             RegisterNewSystemConfigurator[] commands;
             try
             {
@@ -238,44 +236,61 @@ namespace Web.Controllers
         {
             DeleteCollection<BaseUser>("StaffUsers");
         }
-
+        
         [HttpGet("deletealladmins")]
         public void DeleteAllAdmins()
         {
-            DeleteCollection<Admin>("StaffUsers");
+            //TODO: Not sure that this works? Have not tested yet
+            //DeleteCollection<Admin>("StaffUsers");
+            var filter = Builders<BaseUser>.Filter.OfType<Admin>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataconsumers")]
         public void DeleteAllDataConsumers()
         {
-            DeleteCollection<DataConsumer>("StaffUsers");
+            //DeleteCollection<DataConsumer>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataConsumer>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldatacoordinators")]
         public void DeleteAllDataCoordinators()
         {
-            DeleteCollection<DataCoordinator>("StaffUsers");
+            //DeleteCollection<DataCoordinator>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataCoordinator>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataowners")]
         public void DeleteAllDataOwners()
         {
-            DeleteCollection<DataOwner>("StaffUsers");
+            //DeleteCollection<DataOwner>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataOwner>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataverifiers")]
         public void DeleteAllDataVerifiers()
         {
-            DeleteCollection<DataVerifier>("StaffUsers");
+            //DeleteCollection<DataVerifier>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<DataVerifier>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deleteallsystemconfigurators")]
         public void DeleteAllSystemConfigurators()
         {
-            DeleteCollection<SystemConfigurator>("StaffUsers");
+           // DeleteCollection<SystemConfigurator>("StaffUsers");
+
+            var filter = Builders<BaseUser>.Filter.OfType<SystemConfigurator>();
+            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
-
-
+        
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {

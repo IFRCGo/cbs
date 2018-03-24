@@ -5,7 +5,8 @@ using Concepts;
 namespace Domain.StaffUser.Roles
 {
 
-    public class SystemConfigurator : StaffRole, ISupportBirthYear, ISupportSex, IRequireAssignedNationalSocieties,
+    public class SystemConfigurator : StaffRole, 
+        ISupportBirthYear, ISupportSex, IRequireAssignedNationalSocieties,
         IRequireNationalSociety, IRequirePhoneNumbers, IRequirePreferredLanguage
     {
         public int? BirthYear { get; set; }

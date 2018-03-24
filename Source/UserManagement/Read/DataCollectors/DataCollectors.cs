@@ -28,7 +28,7 @@ namespace Read.DataCollectors
 
         public IEnumerable<DataCollector> GetAll()
         {
-            return _collection.Find(_ => true).ToList();
+            return _collection.Find(_ => true).ToEnumerable();
         }
 
         public async Task<IEnumerable<DataCollector>> GetAllAsync()

@@ -6,8 +6,8 @@ namespace Events.StaffUser.Registration
     public class NationalSocietyAssigned : IEvent 
     {
         public NationalSocietyAssigned (Guid staffUserId, Guid nationalSociety) {
-            this.StaffUserId = staffUserId;
-            this.NationalSociety = nationalSociety;
+            StaffUserId = staffUserId;
+            NationalSociety = nationalSociety;
         }
         public Guid StaffUserId { get; }
         public Guid NationalSociety { get; }

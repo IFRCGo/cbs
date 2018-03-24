@@ -3,11 +3,11 @@ using doLittle.Events;
 
 namespace Events.StaffUser.Registration
 {
-    public class StaffDataVerifierRegistered : IEvent 
+    public class StaffDataConsumerRegistered : IEvent
     {
-        public StaffDataVerifierRegistered (Guid staffUserId, string fullName, string displayName, 
-            string email, DateTimeOffset registeredAt, Guid nationalSociety, int language, 
-            int sex, int birthYear, double latitude, double longitude) 
+        public StaffDataConsumerRegistered(Guid staffUserId, string fullName, string displayName,
+            string email, DateTimeOffset registeredAt, Guid nationalSociety, int language,
+            int sex, int birthYear, double latitude, double longitude)
         {
             Longitude = longitude;
             Latitude = latitude;

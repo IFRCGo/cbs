@@ -5,7 +5,7 @@ namespace Events.DataCollector
 {
     public class DataCollectorUpdated : IEvent
     {
-        public Guid DataCollectorId { get; set; }
+        public Guid DataCollectorId { get; }
 
         public string FullName { get; }
         public string DisplayName { get; }

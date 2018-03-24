@@ -1,15 +1,10 @@
-using Domain;
-using Events;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
-using Read;
 using Read.DataCollectors;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using doLittle.Domain;
+using doLittle.Read;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.PhoneNumber;
 using Domain.DataCollector.Update;
 using Domain.DataCollector;
 using MongoDB.Driver;
@@ -21,30 +16,43 @@ namespace Web.Controllers
     [Route("api/datacollectors")]
     public class DataCollectorsController : BaseController
     {
-        private readonly IDataCollectors _dataCollectors;
+        //private readonly IDataCollectors _dataCollectors;
+
+        private readonly IMongoCollection<Read.DataCollectors.DataCollector> _collection;
 
         private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
+        private readonly IQueryCoordinator _queryCoordinator;
+
         public DataCollectorsController (
+            IMongoDatabase database,
             IDataCollectorCommandHandler dataCollectorCommand,
-            IDataCollectors dataCollectors)
+            IDataCollectors dataCollectors,
+            IQueryCoordinator queryCoordinator)
         {
-            _dataCollectors = dataCollectors;
+            _collection = database.GetCollection<Read.DataCollectors.DataCollector>("DataCollectors");
+            //_dataCollectors = dataCollectors;
             _dataCollectorCommandHandler = dataCollectorCommand;
+            _queryCoordinator = queryCoordinator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            var items = await _dataCollectors.GetAllAsync();
-            return Ok(items);
+            var result = _queryCoordinator.Execute(new AllDataCollectors(_collection), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return new NotFoundResult();
+            
         }
 
         [HttpPost("register")]
         public IActionResult Post([FromBody] RegisterDataCollector command)
         {
-            //Todo: We have to be clear whether we want Id to be supplied to a command by the controller or by the frontend
-            //when registering a datacollector, or a staffuser for that matter
             command.DataCollectorId = Guid.NewGuid();
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
@@ -53,6 +61,8 @@ namespace Web.Controllers
         [HttpPost("update")]
         public IActionResult Update([FromBody] UpdateDataCollector command)
         {
+            // TODO: Changes has to be made to updating the datacollector.
+            // Should use the same system as staffusers
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
