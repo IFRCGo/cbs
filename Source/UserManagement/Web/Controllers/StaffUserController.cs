@@ -6,9 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using doLittle.Read;
 using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
+using MongoDB.Driver;
+using Read.DataCollectors;
 using Read.StaffUsers;
 using Read.StaffUsers.Models;
 
@@ -17,27 +20,63 @@ namespace Web.Controllers
     [Route("api/staffusers")]
     public class StaffUserController : BaseController
     {
-        private readonly IStaffUsers _users;
+        private readonly IMongoCollection<BaseUser> _collection;
 
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
+        private readonly IQueryCoordinator _queryCoordinator;
+
         public StaffUserController (
-            IStaffUsers users,
+            IMongoCollection<BaseUser> collection,
             IRegisteringCommandHandlers stafffUserCommandHandler
             )
         {
-            _users = users;
+            _collection = collection;
             _staffUserCommandHandler = stafffUserCommandHandler;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<BaseUser>> GetAllStaffUsers()
+        public IActionResult GetAll()
         {
-            var users = await _users.GetAllAsync<BaseUser>();
-            return users;
+            var result = _queryCoordinator.Execute(new AllStaffUsers<BaseUser>(_collection), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return new NotFoundResult();
+        }
+
+        [HttpGet("getadmins")]
+        public IActionResult GetAllAdmins()
+        {
+            var result = _queryCoordinator.Execute(new AllStaffUsers<Admin>(_collection), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return new NotFoundResult();
         }
 
 
+        //TODO: Does the Query-system acutally provide functionality for doing Queries async?
+        //[HttpGet("getallasync")]
+        //public async Task<IActionResult> GetAllStaffUsersAsync()
+        //{
+        //    var result = _queryCoordinator.Execute(new AllStaffUsersAsync<BaseUser>(_collection), new PagingInfo());
+
+        //    if (result.Success)
+        //    {
+        //        return Ok(result.Items);
+        //    }
+
+        //    return new NotFoundResult();
+        //}
+
+        //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
         [HttpPost("register/admin")]
         public void RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {

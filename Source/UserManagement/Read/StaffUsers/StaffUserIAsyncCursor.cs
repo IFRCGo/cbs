@@ -4,7 +4,8 @@ using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
 {
-    public class StaffUserIAsyncCursor<T> where T : BaseUser
+    public class StaffUserIAsyncCursor<T> 
+        where T : BaseUser
     {
 
         public StaffUserIAsyncCursor(IAsyncCursor<BaseUser> cursor)

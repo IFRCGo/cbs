@@ -31,7 +31,6 @@ namespace Web.Controllers
             IQueryCoordinator queryCoordinator)
         {
             _collection = database.GetCollection<Read.DataCollectors.DataCollector>("DataCollectors");
-            //_dataCollectors = dataCollectors;
             _dataCollectorCommandHandler = dataCollectorCommand;
             _queryCoordinator = queryCoordinator;
         }
@@ -46,8 +45,20 @@ namespace Web.Controllers
                 return Ok(result.Items);
             }
 
+            return new NotFoundResult();  
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var result = _queryCoordinator.Execute(new DataCollectorById(_collection, id), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
             return new NotFoundResult();
-            
         }
 
         [HttpPost("register")]

@@ -19,7 +19,8 @@ namespace Read.StaffUsers
 
         }
 
-        public StaffUserIAsyncCursor<T> Query => new StaffUserIAsyncCursor<T>(_collection.FindSync(Builders<BaseUser>.Filter.OfType<T>()));
+        public StaffUserIAsyncCursor<T> Query => 
+            new StaffUserIAsyncCursor<T>(_collection.FindSync(Builders<BaseUser>.Filter.OfType<T>()));
 
     }
 

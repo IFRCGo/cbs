@@ -1,21 +1,24 @@
 using System.Linq;
 using doLittle.Read;
 using MongoDB.Driver;
+using Read.StaffUsers.Models;
 
-namespace Read.GreetingGenerators
+namespace Read.StaffUsers
 {
-    public class AsyncCursorProvider : IQueryProviderFor<IAsyncCursor<GreetingHistory>>
+    public class StaffUserAsyncCursorProvider<T> : IQueryProviderFor<StaffUserIAsyncCursor<T>>
+        where T : BaseUser
     {
-        public QueryProviderResult Execute(IAsyncCursor<GreetingHistory> query, PagingInfo paging)
+        //TODO: May have to make seperate providers for each ReadModel
+        public QueryProviderResult Execute(StaffUserIAsyncCursor<T> query, PagingInfo paging)
         {
             var result = new QueryProviderResult();
 
-            if (!query.Any())
+            if (!query.Cursor.Any())
             {
                 return result;
             }
-            
-            var list = query.ToList();
+
+            var list = query.Cursor.ToList();
 
             if (paging.Enabled)
             {
