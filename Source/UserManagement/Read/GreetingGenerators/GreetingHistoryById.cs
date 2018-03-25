@@ -16,7 +16,7 @@ namespace Read.GreetingGenerators
 
         public Guid GreetingHistoryId { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindSync(g => g.GreetingHistoryId == GreetingHistoryId);
+        public IAsyncCursor<GreetingHistory> Query => _collection.FindSync(g => g.DataCollectorId == GreetingHistoryId);
 
     }
 
@@ -32,6 +32,6 @@ namespace Read.GreetingGenerators
 
         public Guid GreetingHistoryId { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindAsync(g => g.GreetingHistoryId == GreetingHistoryId).Result; //TODO: Safe?
+        public IAsyncCursor<GreetingHistory> Query => _collection.FindAsync(g => g.DataCollectorId == GreetingHistoryId).Result; //TODO: Safe?
     }
 }

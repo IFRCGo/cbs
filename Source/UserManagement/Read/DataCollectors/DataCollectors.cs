@@ -13,7 +13,7 @@ namespace Read.DataCollectors
         public DataCollectors(IMongoDatabase database)
         {
             _database = database;
-            _collection = database.GetCollection<DataCollector>("DataCollector");
+            _collection = database.GetCollection<DataCollector>("DataCollectors");
         }
 
         public DataCollector GetById(Guid id)

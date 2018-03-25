@@ -8,6 +8,7 @@ namespace Read.DataCollectors
     {
         public QueryProviderResult Execute(IAsyncCursor<DataCollector> query, PagingInfo paging)
         {
+                
             var result = new QueryProviderResult();
 
             if (!query.Any())

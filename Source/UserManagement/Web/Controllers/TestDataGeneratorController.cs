@@ -294,7 +294,7 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollector()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteCollection<DataCollector>("DataCollectors");
         }
 
         [HttpGet("deletegreetinghistorycollection")]

@@ -8,9 +8,9 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public DataCollectorById(IMongoCollection<DataCollector> collection, Guid dataCollectorId)
+        public DataCollectorById(IMongoDatabase database, Guid dataCollectorId)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors");
             DataCollectorId = dataCollectorId;
         }
 

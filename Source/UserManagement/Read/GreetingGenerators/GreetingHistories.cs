@@ -28,12 +28,12 @@ namespace Read.GreetingGenerators
 
         public GreetingHistory GetById(Guid id)
         {
-            return _collection.Find(d => d.GreetingHistoryId == id).SingleOrDefault();
+            return _collection.Find(d => d.DataCollectorId == id).SingleOrDefault();
         }
 
         public async Task<GreetingHistory> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(d => d.GreetingHistoryId == id)).SingleOrDefault();
+            return (await _collection.FindAsync(d => d.DataCollectorId == id)).SingleOrDefault();
         }
 
         public GreetingHistory GetByPhoneNumber(string phoneNumber)
@@ -48,12 +48,12 @@ namespace Read.GreetingGenerators
 
         public void Remove(Guid id)
         {
-            _collection.DeleteOne(g => g.GreetingHistoryId == id);
+            _collection.DeleteOne(g => g.DataCollectorId == id);
         }
 
         public async Task RemoveAsync(Guid id)
         {
-            await _collection.DeleteOneAsync(g => g.GreetingHistoryId == id);
+            await _collection.DeleteOneAsync(g => g.DataCollectorId == id);
         }
 
         public void Remove(string phoneNumber)
@@ -68,13 +68,13 @@ namespace Read.GreetingGenerators
 
         public void Save(GreetingHistory greetingHistory)
         {
-            _collection.ReplaceOne(g => g.GreetingHistoryId == greetingHistory.GreetingHistoryId, greetingHistory,
+            _collection.ReplaceOne(g => g.DataCollectorId == greetingHistory.DataCollectorId, greetingHistory,
                 new UpdateOptions { IsUpsert = true });
         }
 
         public async Task SaveAsync(GreetingHistory greetingHistory)
         {
-            await _collection.ReplaceOneAsync(g => g.GreetingHistoryId == greetingHistory.GreetingHistoryId, greetingHistory, 
+            await _collection.ReplaceOneAsync(g => g.DataCollectorId == greetingHistory.DataCollectorId, greetingHistory, 
                 new UpdateOptions { IsUpsert = true });
         }
     }
