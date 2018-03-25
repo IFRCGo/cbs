@@ -7,9 +7,9 @@ namespace Read.GreetingGenerators
     {
         private readonly IMongoCollection<GreetingHistory> _collection;
 
-        public GreetingHistoryByPhoneNumber(IMongoCollection<GreetingHistory> collection, string phoneNumber)
+        public GreetingHistoryByPhoneNumber(IMongoDatabase database, string phoneNumber)
         {
-            _collection = collection;
+            _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
             PhoneNumber = phoneNumber;
         }
 
@@ -23,9 +23,9 @@ namespace Read.GreetingGenerators
     {
         private readonly IMongoCollection<GreetingHistory> _collection;
 
-        public GreetingHistoryByPhoneNumberAsync(IMongoCollection<GreetingHistory> collection, string phoneNumber)
+        public GreetingHistoryByPhoneNumberAsync(IMongoDatabase database, string phoneNumber)
         {
-            _collection = collection;
+            _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
             PhoneNumber = phoneNumber;
         }
 

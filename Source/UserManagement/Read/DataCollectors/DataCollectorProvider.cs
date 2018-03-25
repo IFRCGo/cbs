@@ -1,8 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
 using doLittle.Read;
-using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {
@@ -15,6 +13,7 @@ namespace Read.DataCollectors
 
             if (query == null)
             {
+                //TODO: Perhaps throw apropriate exception
                 return result;
             }
 

@@ -20,25 +20,27 @@ namespace Web.Controllers
     [Route("api/staffusers")]
     public class StaffUserController : BaseController
     {
-        private readonly IMongoCollection<BaseUser> _collection;
+        private readonly IMongoDatabase _database;
 
         private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
 
         private readonly IQueryCoordinator _queryCoordinator;
 
         public StaffUserController (
-            IMongoCollection<BaseUser> collection,
+            IMongoDatabase database,
+            IQueryCoordinator queryCoordinator,
             IRegisteringCommandHandlers stafffUserCommandHandler
             )
         {
-            _collection = collection;
+            _database = database;
+            _queryCoordinator = queryCoordinator;
             _staffUserCommandHandler = stafffUserCommandHandler;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _queryCoordinator.Execute(new AllStaffUsers<BaseUser>(_collection), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllStaffUsers<BaseUser>(_database), new PagingInfo());
 
             if (result.Success)
             {
@@ -51,7 +53,7 @@ namespace Web.Controllers
         [HttpGet("getadmins")]
         public IActionResult GetAllAdmins()
         {
-            var result = _queryCoordinator.Execute(new AllStaffUsers<Admin>(_collection), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllStaffUsers<Admin>(_database), new PagingInfo());
 
             if (result.Success)
             {

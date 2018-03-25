@@ -53,7 +53,7 @@ namespace Web.Controllers
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteDataCollectors();
             RegisterDataCollector[] commands;
             try
             {
@@ -227,7 +227,7 @@ namespace Web.Controllers
         public void DeleteAll()
         {
             DeleteAllStaffUserCollections();
-            DeleteDataCollector();
+            DeleteDataCollectors();
             DeleteGreetingHistory();
         }
 
@@ -292,7 +292,7 @@ namespace Web.Controllers
         }
         
         [HttpGet("deletedatacollectorcollection")]
-        public void DeleteDataCollector()
+        public void DeleteDataCollectors()
         {
             DeleteCollection<DataCollector>("DataCollectors");
         }

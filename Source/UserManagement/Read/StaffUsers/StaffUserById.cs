@@ -5,22 +5,21 @@ using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
 {
-    //TODO: Question. Seperate query for each kind of staffuser, or use a generic one like this?
     public class StaffUserById<T> : IQueryFor<T>
         where T : BaseUser
     {
         private readonly IMongoCollection<BaseUser> _collection;
 
-        public StaffUserById(IMongoCollection<BaseUser> collection, Guid staffUserId)
+        public StaffUserById(IMongoDatabase database, Guid staffUserId)
         {
-            _collection = collection;
+            _collection = database.GetCollection<BaseUser>("StaffUsers");
             StaffUserId = staffUserId;
 
         }
 
         public Guid StaffUserId { get; }
-        public StaffUserIAsyncCursor<T> Query =>
-            new StaffUserIAsyncCursor<T>(_collection.FindSync(u => u.StaffUserId == StaffUserId));
+
+        public T Query => _collection.FindSync(u => u.StaffUserId == StaffUserId).FirstOrDefault() as T;
 
     }
 
@@ -29,15 +28,14 @@ namespace Read.StaffUsers
     {
         private readonly IMongoCollection<BaseUser> _collection;
 
-        public StaffUserByIdAsync(IMongoCollection<BaseUser> collection, Guid staffUserId)
+        public StaffUserByIdAsync(IMongoDatabase database, Guid staffUserId)
         {
-            _collection = collection;
+            _collection = database.GetCollection<BaseUser>("StaffUsers");
             StaffUserId = staffUserId;
-
         }
 
         public Guid StaffUserId { get; }
-        public StaffUserIAsyncCursor<T> Query =>
-            new StaffUserIAsyncCursor<T>(_collection.FindAsync(u => u.StaffUserId == StaffUserId).Result); //TODO: Safe?
+        public T Query => 
+            _collection.FindAsync(u => u.StaffUserId == StaffUserId).Result.FirstOrDefault() as T; //TODO: Safe?
     }
 }

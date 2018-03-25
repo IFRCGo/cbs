@@ -23,9 +23,9 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public AllDataCollectorsAsync(IMongoCollection<DataCollector> collection)
+        public AllDataCollectorsAsync(IMongoDatabase database)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
 
         }
 

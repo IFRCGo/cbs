@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using doLittle.Read;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -7,20 +8,19 @@ using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
 {
-    //TODO: Question. Seperate query for each kind of staffuser, or use a generic one like this?
     public class AllStaffUsers<T> : IQueryFor<T> 
         where T : BaseUser
     {
         private readonly IMongoCollection<BaseUser> _collection;
 
-        public AllStaffUsers(IMongoCollection<BaseUser> collection)
+        public AllStaffUsers(IMongoDatabase database)
         {
-            _collection = collection;
+            _collection = database.GetCollection<BaseUser>("StaffUsers");
 
         }
 
-        public StaffUserIAsyncCursor<T> Query => 
-            new StaffUserIAsyncCursor<T>(_collection.FindSync(Builders<BaseUser>.Filter.OfType<T>()));
+        public IEnumerable<T> Query => 
+            _collection.FindSync(Builders<BaseUser>.Filter.OfType<T>()).ToList().Cast<T>();
 
     }
 
@@ -29,13 +29,13 @@ namespace Read.StaffUsers
     {
         private readonly IMongoCollection<BaseUser> _collection;
 
-        public AllStaffUsersAsync(IMongoCollection<BaseUser> collection)
+        public AllStaffUsersAsync(IMongoDatabase database)
         {
-            _collection = collection;
+            _collection = database.GetCollection<BaseUser>("StaffUsers");
 
         }
 
-        public StaffUserIAsyncCursor<T> Query =>
-            new StaffUserIAsyncCursor<T>(_collection.FindAsync(Builders<BaseUser>.Filter.OfType<T>()).Result); //TODO: Safe?
+        public IEnumerable<T> Query =>
+            _collection.FindAsync(Builders<BaseUser>.Filter.OfType<T>()).Result.ToList().Cast<T>(); //TODO: Safe?
     }
 }
