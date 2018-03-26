@@ -18,22 +18,24 @@ MVP
 
 | Page name  | Project / bounded context where the functionality belongs
 |---|---|
+| Data Reopsitories  | Admin
+| Add Data Repository | Admin 
+| Edit Data Repository | Admin 
 | Projects  | Admin
 | Add Project | Admin 
 | Project Summary | Admin
 | Project Summary need config | Admin
-| Project Summary edit | Admin
-| Project Summary export | Admin
-| Project Summary PDF | Admin
+| Project edit | Admin
+| Export Project Summary  | Admin
 | Case Reports | Volunteer Reporting
-| Case Reports filters | Volunteer Reporting
-| Case Reports export | Volunteer Reporting
+| Filter Case Reports | Volunteer Reporting
+| Export Case Reports | Volunteer Reporting
 | Users List | User Management
 | Add user | User Management
 | Edit user | User Management
 | Health risks | Admin
-| Add health risks | Admin
-| Edit Health risks | Admin
+| Add health risk | Admin
+| Edit Health risk | Admin
 | SMS gateways | Admin
 | Edit SMS gateway | Admin
 | Feedback messages admin | Admin

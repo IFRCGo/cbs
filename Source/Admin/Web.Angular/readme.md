@@ -42,7 +42,7 @@ Build and host locally
 
 ## Scaffold new Angular components
 
-(Active path: `cbs/Source/Admin/Frontend`)
+(Active path: `cbs/Source/Admin/Web.Angular`)
 
 Create new component
 
