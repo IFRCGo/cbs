@@ -107,13 +107,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataconsumercommands")]
         public void CreateAllDataConsumerCommands()
         {
-            DeleteAllDataConsumers();
             RegisterNewStaffDataConsumer[] commands;
             try
             {
@@ -129,13 +129,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldatacoordinatorcommands")]
         public void CreateAllDataCoordinatorCommands()
         {
-            DeleteAllDataCoordinators();
             RegisterNewDataCoordinator[] commands;
             try
             {
@@ -151,13 +151,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataownercommands")]
         public void CreateAllDataOwnerCommands()
         {
-            DeleteAllDataOwners();
             RegisterNewDataOwner[] commands;
             try
             {
@@ -173,13 +173,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataverifiercommands")]
         public void CreateAllDataVerifierCommands()
         {
-            DeleteAllDataVerifiers();
             RegisterNewStaffDataVerifier[] commands;
             try
             {
@@ -195,13 +195,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("allsystemconfiguratorcommands")]
         public void CreateAllSystemConfiguratorCommands()
         {
-            DeleteAllSystemConfigurators();
             RegisterNewSystemConfigurator[] commands;
             try
             {
@@ -217,6 +217,7 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }

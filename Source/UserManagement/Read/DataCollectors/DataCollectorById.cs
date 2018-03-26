@@ -16,7 +16,7 @@ namespace Read.DataCollectors
 
         public Guid DataCollectorId { get; }
 
-        public DataCollector Query => _collection.FindSync(d => d.Id == DataCollectorId).FirstOrDefault();
+        public DataCollector Query => _collection.FindSync(d => d.DataCollectorId == DataCollectorId).FirstOrDefault();
     }
 
     public class DataCollectorByIdAsync : IQueryFor<DataCollector>
@@ -31,7 +31,7 @@ namespace Read.DataCollectors
 
         public Guid DataCollectorId { get; }
 
-        public DataCollector Query => _collection.FindAsync(d => d.Id == DataCollectorId).Result.FirstOrDefault(); //Todo: Safe?
+        public DataCollector Query => _collection.FindAsync(d => d.DataCollectorId == DataCollectorId).Result.FirstOrDefault(); //Todo: Safe?
     }
 
 }

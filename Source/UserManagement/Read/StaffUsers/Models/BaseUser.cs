@@ -10,14 +10,13 @@ namespace Read.StaffUsers.Models
     public abstract class BaseUser : IReadModel
     {
         [BsonId]
-        public Guid StaffUserId { get; }
+        public Guid StaffUserId { get; set; }
         [BsonRequired]
         public string FullName { get; set; }
         [BsonRequired]
         public string DisplayName { get; set; }
         [BsonRequired]
         public string Email { get; set; }
-        [BsonRequired]
         public DateTimeOffset RegistrationDate { get; set; }
 
         protected BaseUser(Guid staffUserId, string fullName, string displayName, string email, DateTimeOffset registrationDate)

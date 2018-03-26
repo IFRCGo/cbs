@@ -22,8 +22,7 @@ namespace Read.StaffUsers
 
         public T GetById<T>(Guid id) where T : BaseUser
         {
-
-            var user = _collection.FindSync(_ => _.StaffUserId == id).FirstOrDefault();
+            var user = _collection.FindSync(u => u.StaffUserId == id).FirstOrDefault();
             if (user == null)
             {
                 throw new UserNotFound($"StaffUser with id {id} was not found");
@@ -41,7 +40,7 @@ namespace Read.StaffUsers
 
         public async Task<T> GetByIdAsync<T>(Guid id) where T : BaseUser
         {
-            var user = (await _collection.FindAsync(_ => _.StaffUserId == id)).FirstOrDefault();
+            var user = (await _collection.FindAsync(u => u.StaffUserId == id)).FirstOrDefault();
 
             if (user == null)
             {
@@ -74,7 +73,7 @@ namespace Read.StaffUsers
 
         public void Remove(Guid id)
         {
-            var res = _collection.DeleteOne(_ => _.StaffUserId == id);
+            var res = _collection.DeleteOne(u => u.StaffUserId == id);
             if (res.DeletedCount == 0)
             {
                 throw new UserNotFound($"StaffUser with id {id} was not found");
@@ -83,7 +82,7 @@ namespace Read.StaffUsers
 
         public async Task RemoveAsync(Guid id)
         {
-            var res =  await _collection.DeleteOneAsync(_ => _.StaffUserId == id);
+            var res =  await _collection.DeleteOneAsync(u => u.StaffUserId == id);
             if (res.DeletedCount == 0)
             {
                 throw new UserNotFound($"StaffUser with id {id} was not found");
@@ -92,12 +91,12 @@ namespace Read.StaffUsers
 
         public void Save<T>(T dataCollector) where T : BaseUser
         {
-            _collection.ReplaceOne(_ => _.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
+            _collection.ReplaceOne(u => u.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
 
         public async Task SaveAsync<T>(T dataCollector) where T : BaseUser
         {
-            await _collection.ReplaceOneAsync(_ => _.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
+            await _collection.ReplaceOneAsync(u => u.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
     }
 }
