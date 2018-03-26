@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: cbs-volunteerreporting-backend
-        image: karolikl/cbs-vr-backend:{{ .Values.services.volunteerreporting.backend.version }}
+        image: {{ .Values.services.volunteerreporting.backend.image }}:{{ .Values.services.volunteerreporting.backend.version }}
         ports:
         - containerPort: 80
 ---
@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: cbs-volunteerreporting-frontend
-        image: karolikl/cbs-vr-frontend:{{ .Values.services.volunteerreporting.frontend.version }}
+        image: {{ .Values.services.volunteerreporting.frontend.image }}:{{ .Values.services.volunteerreporting.frontend.version }}
         ports:
         - containerPort: 80
 ---
