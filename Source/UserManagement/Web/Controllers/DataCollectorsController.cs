@@ -57,7 +57,7 @@ namespace Web.Controllers
             {
                 return Ok(result.Items);
             }
-
+            //TODO: For this, and the rest of the endpoints: Should probably return something else than 404?
             return new NotFoundResult();
         }
 
