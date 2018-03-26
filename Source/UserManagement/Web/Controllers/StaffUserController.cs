@@ -8,12 +8,19 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using doLittle.Read;
 using Domain.StaffUser.Registering;
+using Domain.StaffUser.Roles;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
 using MongoDB.Driver;
 using Read.DataCollectors;
 using Read.StaffUsers;
 using Read.StaffUsers.Models;
+using Admin = Read.StaffUsers.Models.Admin;
+using DataConsumer = Read.StaffUsers.Models.DataConsumer;
+using DataCoordinator = Read.StaffUsers.Models.DataCoordinator;
+using DataOwner = Read.StaffUsers.Models.DataOwner;
+using DataVerifier = Read.StaffUsers.Models.DataVerifier;
+using SystemConfigurator = Read.StaffUsers.Models.SystemConfigurator;
 
 namespace Web.Controllers
 {
@@ -37,84 +44,133 @@ namespace Web.Controllers
             _staffUserCommandHandler = stafffUserCommandHandler;
         }
 
+        #region Get All Users
+
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAllUsers()
         {
-            var result = _queryCoordinator.Execute(new AllStaffUsers<BaseUser>(_database), new PagingInfo());
-
-            if (result.Success)
-            {
-                return Ok(result.Items);
-            }
-
-            return new NotFoundResult();
+            return GetAllStaffUsers<BaseUser>();
         }
 
         [HttpGet("getadmins")]
         public IActionResult GetAllAdmins()
         {
-            var result = _queryCoordinator.Execute(new AllStaffUsers<Admin>(_database), new PagingInfo());
-
-            if (result.Success)
-            {
-                return Ok(result.Items);
-            }
-
-            return new NotFoundResult();
+            return GetAllStaffUsers<Admin>();
         }
 
+        [HttpGet("getdataconsumers")]
+        public IActionResult GetAllDataConsumers()
+        {
+            return GetAllStaffUsers<DataConsumer>();
+        }
 
-        //TODO: Does the Query-system acutally provide functionality for doing Queries async?
-        //[HttpGet("getallasync")]
-        //public async Task<IActionResult> GetAllStaffUsersAsync()
-        //{
-        //    var result = _queryCoordinator.Execute(new AllStaffUsersAsync<BaseUser>(_collection), new PagingInfo());
+        [HttpGet("getdatacoordinators")]
+        public IActionResult GetAllDataCoordinator()
+        {
+            return GetAllStaffUsers<DataCoordinator>();
+        }
 
-        //    if (result.Success)
-        //    {
-        //        return Ok(result.Items);
-        //    }
+        [HttpGet("getdataowners")]
+        public IActionResult GetAllDataOwners()
+        {
+            return GetAllStaffUsers<DataOwner>();
+        }
 
-        //    return new NotFoundResult();
-        //}
+        [HttpGet("getdataverifiers")]
+        public IActionResult GetAllDataVerifiers()
+        {
+            return GetAllStaffUsers<DataVerifier>();
+        }
+
+        [HttpGet("getsystemconfigurators")]
+        public IActionResult GetAllSystemConfigurators()
+        {
+            return GetAllStaffUsers<SystemConfigurator>();
+        }
+
+        #endregion
+
+        #region Get By Id
+
+        [HttpGet("getuser/{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            return GetStaffUserById<BaseUser>(id);
+        }
+
+        [HttpGet("getadmin/{id}")]
+        public IActionResult GetAdminById(Guid id)
+        {
+            return GetStaffUserById<Admin>(id);
+        }
+
+        [HttpGet("getdataconsumer/{id}")]
+        public IActionResult GetDataConsumerById(Guid id)
+        {
+            return GetStaffUserById<DataConsumer>(id);
+        }
+
+        [HttpGet("getdatacoordinator/{id}")]
+        public IActionResult GetDataCoordinatorById(Guid id)
+        {
+            return GetStaffUserById<DataCoordinator>(id);
+        }
+
+        [HttpGet("getdataowner/{id}")]
+        public IActionResult GetDataOwnerById(Guid id)
+        {
+            return GetStaffUserById<DataOwner>(id);
+        }
+
+        [HttpGet("getdataverifier/{id}")]
+        public IActionResult GetDataVerifierById(Guid id)
+        {
+            return GetStaffUserById<DataVerifier>(id);
+        }
+
+        [HttpGet("getsystemconfigurator/{id}")]
+        public IActionResult GetSystemConfiguratorById(Guid id)
+        {
+            return GetStaffUserById<SystemConfigurator>(id);
+        }
+
+        #endregion
+
+        #region Register
 
         //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
         [HttpPost("register/admin")]
         public void RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewAdminUser, Domain.StaffUser.Roles.Admin>(command);
         }
         [HttpPost("register/systemconfigurator")]
         public void RegisterAdmin([FromBody] RegisterNewSystemConfigurator command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
         }
         [HttpPost("register/datacordinator")]
         public void RegisterAdmin([FromBody] RegisterNewDataCoordinator command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>(command);
         }
         [HttpPost("register/dataowner")]
         public void RegisterAdmin([FromBody] RegisterNewDataOwner command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewDataOwner, Domain.StaffUser.Roles.DataOwner>(command);
         }
         [HttpPost("register/staffdataconsumer")]
         public void RegisterAdmin([FromBody] RegisterNewStaffDataConsumer command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>(command);
         }
         [HttpPost("register/staffdataverifier")]
         public void RegisterAdmin([FromBody] RegisterNewStaffDataVerifier command)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            _staffUserCommandHandler.Handle(command);
+            RegisterStaffUser<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>(command);
         }
+
+        #endregion
 
         //TODO: Implement when we have decided on how updating should work for the staffusers
         //[HttpPost("update")]
@@ -130,5 +186,44 @@ namespace Web.Controllers
         //{
         //    _staffUserCommandHandler.Handle(command);
         //}
-}
+
+        #region Private Methods
+
+        private IActionResult GetAllStaffUsers<T>()
+            where T : BaseUser
+        {
+            var result = _queryCoordinator.Execute(new AllStaffUsers<T>(_database), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return new NotFoundResult();
+        }
+
+        private IActionResult GetStaffUserById<T>(Guid id)
+            where T : BaseUser
+        {
+            var result = _queryCoordinator.Execute(new StaffUserById<T>(_database, id), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return new NotFoundResult();
+        }
+
+        private void RegisterStaffUser<TRegistration, TRole>(TRegistration command)
+            where TRegistration : NewStaffRegistration<TRole>
+            where TRole : StaffRole
+        {
+            command.Role.StaffUserId = Guid.NewGuid();
+            var registrationCmd = command as dynamic;
+            _staffUserCommandHandler.Handle(registrationCmd);
+        }
+
+        #endregion
+    }
 }
