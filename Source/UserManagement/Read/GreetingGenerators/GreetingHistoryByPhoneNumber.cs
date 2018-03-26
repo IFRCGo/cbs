@@ -15,7 +15,7 @@ namespace Read.GreetingGenerators
 
         public string PhoneNumber { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindSync(g => g.PhoneNumber.Equals(PhoneNumber));
+        public GreetingHistory Query => _collection.FindSync(g => g.PhoneNumber.Equals(PhoneNumber)).FirstOrDefault();
 
     }
 
@@ -31,6 +31,6 @@ namespace Read.GreetingGenerators
 
         public string PhoneNumber { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindAsync(g => g.PhoneNumber.Equals(PhoneNumber)).Result; //TODO: Safe?
+        public GreetingHistory Query => _collection.FindAsync(g => g.PhoneNumber.Equals(PhoneNumber)).Result.FirstOrDefault(); //TODO: Safe?
     }
 }

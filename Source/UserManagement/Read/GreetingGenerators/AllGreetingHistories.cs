@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using doLittle.Read;
 using MongoDB.Driver;
 
@@ -13,7 +15,7 @@ namespace Read.GreetingGenerators
 
         }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindSync(_ => true);
+        public IEnumerable<GreetingHistory> Query => _collection.FindSync(_ => true).ToList();
 
     }
 
@@ -27,6 +29,6 @@ namespace Read.GreetingGenerators
 
         }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindAsync(_ => true).Result; //TODO: Safe?
+        public IEnumerable<GreetingHistory> Query => _collection.FindAsync(_ => true).Result.ToList(); //TODO: Safe?
     }
 }

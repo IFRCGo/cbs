@@ -8,15 +8,15 @@ namespace Read.GreetingGenerators
     {
         private readonly IMongoCollection<GreetingHistory> _collection;
 
-        public GreetingHistoryById(IMongoDatabase database, Guid greetingHistoryId)
+        public GreetingHistoryById(IMongoDatabase database, Guid dataCollectorId)
         {
             _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
-            GreetingHistoryId = greetingHistoryId;
+            DataCollectorId = dataCollectorId;
         }
 
-        public Guid GreetingHistoryId { get; }
+        public Guid DataCollectorId { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindSync(g => g.DataCollectorId == GreetingHistoryId);
+        public GreetingHistory Query => _collection.FindSync(g => g.DataCollectorId == DataCollectorId).FirstOrDefault();
 
     }
 
@@ -24,14 +24,14 @@ namespace Read.GreetingGenerators
     {
         private readonly IMongoCollection<GreetingHistory> _collection;
 
-        public GreetingHistoryByIdAsync(IMongoDatabase database, Guid greetingHistoryId)
+        public GreetingHistoryByIdAsync(IMongoDatabase database, Guid dataCollectorId)
         {
             _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
-            GreetingHistoryId = greetingHistoryId;
+            DataCollectorId = dataCollectorId;
         }
 
-        public Guid GreetingHistoryId { get; }
+        public Guid DataCollectorId { get; }
 
-        public IAsyncCursor<GreetingHistory> Query => _collection.FindAsync(g => g.DataCollectorId == GreetingHistoryId).Result; //TODO: Safe?
+        public GreetingHistory Query => _collection.FindAsync(g => g.DataCollectorId == DataCollectorId).Result.FirstOrDefault(); //TODO: Safe?
     }
 }
