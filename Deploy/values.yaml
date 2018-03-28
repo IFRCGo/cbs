@@ -3,34 +3,34 @@ services:
     # are available. But they need an inital version to be deployable.
     admin:
         frontend:
-            image: jakobho/cbs-admin-frontend
+            image: redcrossredcrescent/cbs-admin-frontend
             version: 0.0.1-0.8b72df9
             service: cbs-admin-frontend-service
             path: /
         backend:
-            image: jakobho/cbs-admin-backend
+            image: redcrossredcrescent/cbs-admin-backend
             version: 0.0.1-0.8b72df9
             path: /adminbackend
             service: cbs-admin-backend-service
     usermanagement:
         frontend:
-            image: jakobho/cbs-usermgmt-frontend
+            image: redcrossredcrescent/cbs-usermgmt-frontend
             version: 0.0.1-0.8b72df9
             service: cbs-usermanagement-frontend-service
             path: /users
         backend:
-            image: jakobho/cbs-usermgmt-backend
+            image: redcrossredcrescent/cbs-usermgmt-backend
             version: 0.0.1-0.8b72df9
             path: /usermanagementbackend
             service: cbs-usermanagement-backend-service
     volunteerreporting:
         frontend:
-            image: jakobho/cbs-vr-frontend
+            image: redcrossredcrescent/cbs-vr-frontend
             version: 0.0.1-0.8b72df9
             service: cbs-volunteerreporting-frontend-service
             path: /reporting
         backend:
-            image: jakobho/cbs-vr-backend
+            image: redcrossredcrescent/cbs-vr-backend
             version: 0.0.1-0.8b72df9
             path: /volunteerreportingbackend
             service: cbs-volunteerreporting-backend-service
