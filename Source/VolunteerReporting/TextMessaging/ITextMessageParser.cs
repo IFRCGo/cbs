@@ -17,7 +17,8 @@ namespace TextMessaging
         /// <param name="textMessage"><see cref="TextMessage"/></param>
         /// <returns>The <see cref="TextMessageParsingResult">result</see></returns>
         /// <remarks>
-        /// Expected format of sms content: Event # sex of case # Age of case #
+        /// Delimiters: * # 
+        /// Expected format of sms content: Event [delimiter] sex of case [delimiter] Age of case [delimiter]
         /// or Event # Number of male cases five or under # Number of male cases over 5	# Number of female cases five or under # Number of female cases over five
         /// </remarks>
         TextMessageParsingResult Parse(TextMessage textMessage);
