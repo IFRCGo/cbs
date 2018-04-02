@@ -48,7 +48,6 @@ namespace Web.TestData
 
             var roleVals = Enum.GetValues(typeof(Role));
             var rng = new Random();
-            var sb = new StringBuilder();
 
             var admins = new List<RegisterNewAdminUser>();
             var dataConsumers = new List<RegisterNewStaffDataConsumer>();
