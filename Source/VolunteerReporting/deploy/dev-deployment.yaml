@@ -46,9 +46,9 @@ spec:
         - containerPort: 80
         env:
         - name: "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS"
-          value: "admin;alert;volunteerreporting"
+          value: "admin;alert;usermanagement"
         - name: "KAFKA_BOUNDED_CONTEXT_TOPIC"
-          value: "usermanagement"
+          value: "volunteerreporting"
         
 ---
 apiVersion: v1
