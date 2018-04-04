@@ -12,21 +12,23 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
         static DateTimeOffset now;
         static Exception result;
         static RegisterNewStaffDataConsumer command;
+        static bool is_new_registration;
 
-        Establish context = () => 
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             command = given.commands.build_valid_instance<RegisterNewStaffDataConsumer>();
+            is_new_registration = true;
             sut = new su.StaffUser(command.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataConsumer(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+            sut.RegisterNewDataConsumer(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.BirthYear, 
                     command.Role.Sex, constants.valid_location);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataConsumer(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+            () =>  sut.RegisterNewDataConsumer(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.BirthYear, command.Role.Sex, 
                     constants.valid_location)
         );

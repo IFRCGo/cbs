@@ -15,21 +15,24 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         static su.StaffUser sut;
         static DateTimeOffset now;
         static RegisterNewStaffDataVerifier command;
+        static bool is_new_registration;
 
-        Establish context = () => 
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
             command.Role.Sex = Sex.Female;
             command.Role.BirthYear = 1980;
+            is_new_registration = true;
             sut = new su.StaffUser(command.Role.StaffUserId);
         };
 
         Because of = () => {
-            sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+            sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
                     command.Role.BirthYear, command.Role.Sex, constants.valid_location);
         };
+
         It should_create_a_new_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.FullName.ShouldEqual(command.Role.FullName),

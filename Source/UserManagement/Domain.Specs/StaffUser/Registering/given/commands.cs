@@ -11,6 +11,8 @@ namespace Domain.Specs.StaffUser.Registering.given
         public static T build_valid_instance<T>() where T : INewStaffRegistration, new()
         {
             var cmd = new T();
+            (cmd as dynamic).IsNewRegistration = true;
+
             PopulateStaffDetails(cmd);
             PopulateSex(cmd);
             PopulatePreferredLanguage(cmd);

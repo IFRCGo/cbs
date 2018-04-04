@@ -14,17 +14,19 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         static string name;
         static string display_name;
         static string email;
+        static bool is_new_registration;
 
-        Establish context = () => 
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             name = "name";
             display_name = "display";
             email = "test@redcross.com";
+            is_new_registration = true;
             sut = new su.StaffUser(Guid.NewGuid());
         };
 
-        Because of = () => sut.RegisterNewAdminUser(name,display_name,email,now);
+        Because of = () => sut.RegisterNewAdminUser(is_new_registration, name,display_name,email,now);
 
         It should_create_a_new_admin_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(

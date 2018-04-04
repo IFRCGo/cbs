@@ -18,21 +18,24 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         static DateTimeOffset now;
         static RegisterNewDataOwner cmd;
         static DataOwner role;
+        static bool is_new_registration;
 
         private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
             sut = new su.StaffUser(cmd.Role.StaffUserId);
+            is_new_registration = true;
             role = cmd.Role;
         };
 
         Because of = () =>
         {
-            sut.RegisterNewDataOwner(role.FullName, role.DisplayName, role.Email,
+            sut.RegisterNewDataOwner(is_new_registration, role.FullName, role.DisplayName, role.Email,
                 now, role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
                 role.Sex, role.Position, role.DutyStation);
         };
+
         It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.FullName.ShouldEqual(role.FullName),

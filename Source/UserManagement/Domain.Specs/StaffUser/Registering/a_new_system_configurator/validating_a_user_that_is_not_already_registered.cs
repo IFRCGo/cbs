@@ -13,14 +13,15 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static StaffUserIsRegistered staff_user_is_registered;
         static CanAssignToNationalSociety can_assign_to_national_society;
         static ValidationResult validation_results;
+
         Establish context = () => 
         {
             register = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
 
             staff_user_is_registered = (id) => false;
             can_assign_to_national_society = (id) => true;
-
-            sut = new RegisterNewSystemConfiguratorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society);
+            var is_new_registration = true;
+            sut = new RegisterNewSystemConfiguratorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society, is_new_registration);
         };
 
         Because of = () => validation_results = sut.Validate(register);

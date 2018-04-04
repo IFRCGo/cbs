@@ -14,22 +14,24 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static Exception result;
         static RegisterNewSystemConfigurator cmd;
         static SystemConfigurator role;
+        static bool is_new_registration;
 
         private Establish context = () =>
         {
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
             role = cmd.Role;
+            is_new_registration = true;
             sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email, now,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
                     role.BirthYear, role.Sex);
         };
 
         Because of = () => result = Catch.Exception(
-            () => sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+            () => sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email, now,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
                     role.BirthYear, role.Sex)
         );

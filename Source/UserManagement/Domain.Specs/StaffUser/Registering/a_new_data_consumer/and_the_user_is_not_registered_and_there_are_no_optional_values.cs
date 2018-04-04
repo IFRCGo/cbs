@@ -15,15 +15,18 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
         static su.StaffUser sut;
         static DateTimeOffset now;
         static RegisterNewStaffDataConsumer command;
-        Establish context = () => 
+        static bool is_new_registration;
+
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             command = given.commands.build_valid_instance<RegisterNewStaffDataConsumer>();
+            is_new_registration = true;
             sut = new su.StaffUser(command.Role.StaffUserId);
         };
 
         Because of = () => {
-            sut.RegisterNewDataConsumer(command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+            sut.RegisterNewDataConsumer(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
                                         command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.BirthYear, 
                                         command.Role.Sex, constants.valid_location);
         };
