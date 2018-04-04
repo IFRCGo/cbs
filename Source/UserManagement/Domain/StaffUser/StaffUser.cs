@@ -11,6 +11,7 @@ namespace Domain.StaffUser
     public class StaffUser : AggregateRoot
     {
         private bool _isRegistered;
+        private DateTimeOffset _registeredAt;
 
         public StaffUser(Guid staffUserId) : base(staffUserId)
         {}

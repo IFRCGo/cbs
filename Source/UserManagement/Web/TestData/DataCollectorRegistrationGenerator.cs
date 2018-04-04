@@ -12,6 +12,7 @@ namespace Web.TestData
             return new RegisterDataCollector
             {
                 DataCollectorId = Guid.NewGuid(),
+                IsNewRegistration = true,
                 FullName = "Data Collector",
                 DisplayName = "Daty",
                 YearOfBirth = 1980,
