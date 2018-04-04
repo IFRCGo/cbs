@@ -28,7 +28,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         };
 
         Because of = () => {
-            sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,now,
+            sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
                     command.Role.BirthYear, command.Role.Sex, constants.valid_location);
         };

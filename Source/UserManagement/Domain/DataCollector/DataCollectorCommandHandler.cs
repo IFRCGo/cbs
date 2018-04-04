@@ -33,8 +33,7 @@ namespace Domain.DataCollector
                 command.NationalSociety,
                 command.PreferredLanguage,
                 command.GpsLocation,
-                command.PhoneNumbers,
-                DateTimeOffset.UtcNow
+                command.PhoneNumbers
                 );
         }
 

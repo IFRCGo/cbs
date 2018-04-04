@@ -18,73 +18,73 @@ namespace Domain.StaffUser
 
         #region Visible Registration Commands
 
-        public void RegisterNewAdminUser(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt)
+        public void RegisterNewAdminUser(bool isNewRegistration, string fullname, string displayname, string email)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterAdmin(fullname, displayname, email, registeredAt);
+            RegisterAdmin(fullname, displayname, email, _registeredAt);
         }
 
-        public void RegisterNewSystemConfigurator(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+        public void RegisterNewSystemConfigurator(bool isNewRegistration, string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                         IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterSystemConfigurator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
+            RegisterSystemConfigurator(fullname, displayname, email, _registeredAt, nationalSociety, language, sex, birthYear);
             RegisterPhoneNumbers(phoneNumbers);
             RegisterAssignedToNationalSocieties(assignedTo);
         }
 
-        public void RegisterNewDataCoordinator(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+        public void RegisterNewDataCoordinator(bool isNewRegistration, string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                     IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterDataCoordinator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
+            RegisterDataCoordinator(fullname, displayname, email, _registeredAt, nationalSociety, language, sex, birthYear);
             RegisterPhoneNumbers(phoneNumbers);
             RegisterAssignedToNationalSocieties(assignedTo);
         }
     
-        public void RegisterNewDataOwner(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+        public void RegisterNewDataOwner(bool isNewRegistration, string fullname, string displayname, string email, 
                                             Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, int? birthYear, 
                                                 Sex? sex, string position, string dutyStation)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterDataOwner(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, position, dutyStation);
+            RegisterDataOwner(fullname, displayname, email, _registeredAt, nationalSociety, language, sex, birthYear, position, dutyStation);
             RegisterPhoneNumbers(phoneNumbers);
         }
 
-        public void RegisterNewDataConsumer(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+        public void RegisterNewDataConsumer(bool isNewRegistration, string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, int? birthYear, Sex? sex, 
                                                         Location location)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterDataConsumer(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
+            RegisterDataConsumer(fullname, displayname, email, _registeredAt, nationalSociety, language, sex, birthYear, location);
         }
 
-        public void RegisterNewDataVerifier(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt, 
+        public void RegisterNewDataVerifier(bool isNewRegistration, string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                 int? birthYear, Sex? sex, Location location)
         {
             if (isNewRegistration)
             {
-                Register(fullname, displayname, email, registeredAt);
+                Register(fullname, displayname, email);
             }
-            RegisterStaffDataVerifier(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
+            RegisterStaffDataVerifier(fullname, displayname, email, _registeredAt, nationalSociety, language, sex, birthYear, location);
             RegisterPhoneNumbers(phoneNumbers);
         }
 
@@ -165,12 +165,18 @@ namespace Domain.StaffUser
             Apply(new AdminRegistered(EventSourceId, fullname, displayname, email, registeredAt));
         }
 
-        private void Register(string fullname, string displayname, string email, DateTimeOffset registeredAt)
+        private void Register(string fullname, string displayname, string email)
         {
-            
             if (_isRegistered)
-                throw new UserAlreadyRegistered($"User '{EventSourceId}' {fullname} {email} {displayname} is already registered.");
-            Apply(new NewUserRegistered(EventSourceId, fullname, displayname, email, registeredAt));
+            {
+                throw new UserAlreadyRegistered(
+                    $"User '{EventSourceId}' {fullname} {email} {displayname} is already registered.");
+            }
+            else
+            {
+                _registeredAt = DateTimeOffset.UtcNow;
+                Apply(new NewUserRegistered(EventSourceId, fullname, displayname, email, _registeredAt));
+            }
         }
         #endregion
 

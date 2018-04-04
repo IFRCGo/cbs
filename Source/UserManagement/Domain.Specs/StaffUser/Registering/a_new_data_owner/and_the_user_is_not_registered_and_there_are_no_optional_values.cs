@@ -32,7 +32,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         Because of = () =>
         {
             sut.RegisterNewDataOwner(is_new_registration, role.FullName, role.DisplayName, role.Email,
-                now, role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
+                role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
                 role.Sex, role.Position, role.DutyStation);
         };
 

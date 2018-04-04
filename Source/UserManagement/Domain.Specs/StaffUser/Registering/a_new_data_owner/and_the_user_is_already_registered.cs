@@ -21,13 +21,13 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataOwner(is_new_registration, cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+            sut.RegisterNewDataOwner(is_new_registration, cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email,
                 cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
                 cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Position, cmd.Role.DutyStation);
         };
 
         Because of = () => result = Catch.Exception(
-            () => sut.RegisterNewDataOwner(is_new_registration, cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+            () => sut.RegisterNewDataOwner(is_new_registration, cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email,
                 cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
                 cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Position, cmd.Role.DutyStation)
             );

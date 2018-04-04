@@ -18,14 +18,14 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewAdminUser(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime());
+                                        command.Role.Email);
         }
 
         public void Handle(RegisterNewDataCoordinator command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewDataCoordinator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(), command.Role.NationalSociety,
+                                        command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
                                         command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
         }
@@ -34,7 +34,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewSystemConfigurator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                        command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
                                         command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
         }
@@ -43,7 +43,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewDataOwner(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                        command.Role.Email, command.Role.NationalSociety,
                                          command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
                                          command.Role.Sex, command.Role.Position, command.Role.DutyStation);
         }
@@ -52,7 +52,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewDataVerifier(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
                                                 command.Role.Sex, command.Role.Location);
         }
@@ -61,7 +61,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewDataConsumer(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+                                                command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.BirthYear,
                                                 command.Role.Sex, command.Role.Location);
         }

@@ -28,11 +28,11 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
 
             
             //register the user so that they are already registered
-            sut.RegisterNewAdminUser(is_new_registration, name,display_name,email,now);
+            sut.RegisterNewAdminUser(is_new_registration, name,display_name,email);
 
         };
 
-        Because of = () => result = Catch.Exception(() => sut.RegisterNewAdminUser(is_new_registration, name,display_name,email,now));
+        Because of = () => result = Catch.Exception(() => sut.RegisterNewAdminUser(is_new_registration, name,display_name,email));
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();
         It should_be_a_user_already_registered_exception = () => result.ShouldBeOfExactType<UserAlreadyRegistered>();

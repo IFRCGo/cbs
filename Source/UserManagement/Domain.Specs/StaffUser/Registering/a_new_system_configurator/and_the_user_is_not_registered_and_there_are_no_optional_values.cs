@@ -34,7 +34,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
         private Because of = () =>
         {
-            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email, now,
+            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.AssignedNationalSocieties,
                     role.BirthYear, role.Sex);
         };
