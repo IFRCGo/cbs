@@ -16,6 +16,8 @@ namespace Web.TestData
         public static T GenerateDefaultNewStaffRegistration<T>() where T : INewStaffRegistration, new()
         {
             var cmd = new T();
+            (cmd as dynamic).IsNewRegistration = true;
+
             PopulateStaffDetails(cmd);
             PopulateSex(cmd);
             PopulatePreferredLanguage(cmd);

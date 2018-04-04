@@ -36,58 +36,101 @@ namespace Web.Controllers
             var users = await _users.GetAllAsync<BaseUser>();
             return users;
         }
-
-
+        
         [HttpPost("register/admin")]
         public void RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
+
         [HttpPost("register/systemconfigurator")]
-        public void RegisterAdmin([FromBody] RegisterNewSystemConfigurator command)
+        public void RegisterSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
+
         [HttpPost("register/datacordinator")]
-        public void RegisterAdmin([FromBody] RegisterNewDataCoordinator command)
+        public void RegisterDatacordinator([FromBody] RegisterNewDataCoordinator command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
+
         [HttpPost("register/dataowner")]
-        public void RegisterAdmin([FromBody] RegisterNewDataOwner command)
+        public void RegisterDataOwner([FromBody] RegisterNewDataOwner command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
+
         [HttpPost("register/staffdataconsumer")]
-        public void RegisterAdmin([FromBody] RegisterNewStaffDataConsumer command)
+        public void RegisterDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
+
         [HttpPost("register/staffdataverifier")]
-        public void RegisterAdmin([FromBody] RegisterNewStaffDataVerifier command)
+        public void RegisterDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             _staffUserCommandHandler.Handle(command);
         }
 
-        //TODO: Implement when we have decided on how updating should work for the staffusers
-        //[HttpPost("update")]
-        //public void Update([FromBody] UpdateStaffUser command)
-        //{
-        //    // of the staffuser types to ensure that the correct information is 
-        //    // given?
-        //    _staffUserCommandHandler.Handle(command);
+        [HttpPost("update/admin")]
+        public void UpdateAdmin([FromBody] RegisterNewAdminUser command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
 
-        //}
+        [HttpPost("update/systemconfigurator")]
+        public void UpdateSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/datacordinator")]
+        public void UpdaterDataCordinator([FromBody] RegisterNewDataCoordinator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/dataowner")]
+        public void UpdateDataOwner([FromBody] RegisterNewDataOwner command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/staffdataconsumer")]
+        public void UpdateDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/staffdataverifier")]
+        public void UpdateDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
         //[HttpDelete("delete")]
         //public void Delete([FromBody] DeleteStaffUser command)
         //{
         //    _staffUserCommandHandler.Handle(command);
         //}
-}
+    }
 }
