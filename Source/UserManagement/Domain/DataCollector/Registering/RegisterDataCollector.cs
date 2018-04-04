@@ -14,6 +14,7 @@ namespace Domain.DataCollector.Registering
     {
         public Guid DataCollectorId { get; set; }
 
+        public bool IsNewRegistration { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }

@@ -19,14 +19,16 @@ namespace Domain.DataCollector
         #region VisibleCommands
 
         public void RegisterDataCollector(
+            bool isNewRegistration,
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers,
             DateTimeOffset registeredAt
             )
         {
-            if (_isRegistered)
+            if (isNewRegistration && _isRegistered)
             {
+                //TODO: We might want to Apply an event here that signals that a new data collector has been registered
                 throw new DataCollectorAlreadyRegistered($"DataCollector '{EventSourceId} {fullName} {displayName} is already registered'");
             }
             Apply(new DataCollectorRegistered
@@ -44,27 +46,6 @@ namespace Domain.DataCollector
             ));
 
             AddPhoneNumbers(phoneNumbers);
-        }
-
-        public void UpdateDataCollector(
-            string fullName, string displayName,
-            Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbersAdded,
-            IEnumerable<string> phoneNumbersRemoved
-            )
-        {
-            Apply(new DataCollectorUpdated
-            (
-                EventSourceId,
-                fullName,
-                displayName,
-                nationalSociety,
-                (int)preferredLanguage,
-                gpsLocation.Longitude,
-                gpsLocation.Latitude
-            ));
-            AddPhoneNumbers(phoneNumbersAdded);
-            RemovePhoneNumbers(phoneNumbersRemoved);
         }
 
         public void AddPhoneNumber(string number)

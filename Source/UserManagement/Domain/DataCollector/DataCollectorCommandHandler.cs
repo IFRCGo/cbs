@@ -7,7 +7,6 @@ using System;
 using doLittle.Domain;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
-using Domain.DataCollector.Update;
 
 namespace Domain.DataCollector
 {
@@ -26,6 +25,7 @@ namespace Domain.DataCollector
         {
             var root = _repository.Get(command.DataCollectorId);
             root.RegisterDataCollector(
+                command.IsNewRegistration,
                 command.FullName,
                 command.DisplayName,
                 command.YearOfBirth,
@@ -38,20 +38,7 @@ namespace Domain.DataCollector
                 );
         }
 
-        public void Handle(UpdateDataCollector command)
-        {
-            var root = _repository.Get(command.DataCollectorId);
-            root.UpdateDataCollector(
-                command.FullName,
-                command.DisplayName,
-                command.NationalSociety,
-                command.PreferredLanguage,
-                command.GpsLocation,
-                command.PhoneNumbersAdded,
-                command.PhoneNumbersRemoved
-                );
-
-        }
+        
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
