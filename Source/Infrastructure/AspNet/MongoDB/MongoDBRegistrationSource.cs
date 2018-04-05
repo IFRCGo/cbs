@@ -15,7 +15,7 @@ using Infrastructure.AspNet.ConnectionStrings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace AspNet.MongoDB
+namespace Infrastructure.AspNet.MongoDB
 {
     public class MongoDBRegistrationSource : IRegistrationSource
     {
