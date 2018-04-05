@@ -18,15 +18,17 @@
 
         <div class="login-status">
 
+
+            <!-- ko if: loggedIn -->
+
             <!-- ko if: nationalSocieties().length > 1 -->
             <select data-bind="options: nationalSocieties" class="society-picker form-control">
             </select>
             <!-- /ko -->
             <!-- ko if: nationalSocieties().length == 1 -->
-            asdasd
+            Norway
             <!-- /ko -->
-
-            <!-- ko if: loggedIn -->
+            
             <div class="logged-in">
                 <p>
                     Logged in as:
