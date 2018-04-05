@@ -8,6 +8,7 @@ namespace Read.DataCollectors
     {
         public QueryProviderResult Execute(IAsyncCursor<DataCollector> query, PagingInfo paging)
         {
+                
             var result = new QueryProviderResult();
 
             if (!query.Any())
@@ -16,17 +17,14 @@ namespace Read.DataCollectors
             }
 
             var list = query.ToList();
-            result.TotalItems = list.Count;
-
             if (paging.Enabled)
             {
-                result.TotalItems = paging.Size;
-
                 var start = paging.Size * paging.Number;
                 list = list.Skip(start).Take(paging.Size).ToList();
             }
 
             result.Items = list;
+            result.TotalItems = list.Count;
 
             return result;
         }

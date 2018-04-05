@@ -1,4 +1,5 @@
 using System;
+using doLittle.Read;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read.StaffUsers.Models
@@ -6,7 +7,7 @@ namespace Read.StaffUsers.Models
     [BsonDiscriminator(RootClass = true)]
     [BsonKnownTypes(typeof(Admin), typeof(DataConsumer), typeof(DataCoordinator), 
         typeof(DataOwner), typeof(DataVerifier), typeof(SystemConfigurator))]
-    public abstract class BaseUser
+    public abstract class BaseUser : IReadModel
     {
         [BsonId]
         public Guid StaffUserId { get; set; }
@@ -16,7 +17,6 @@ namespace Read.StaffUsers.Models
         public string DisplayName { get; set; }
         [BsonRequired]
         public string Email { get; set; }
-        [BsonRequired]
         public DateTimeOffset RegistrationDate { get; set; }
 
         protected BaseUser(Guid staffUserId, string fullName, string displayName, string email, DateTimeOffset registrationDate)
