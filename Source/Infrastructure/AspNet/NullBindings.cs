@@ -47,14 +47,15 @@ namespace Infrastructure.AspNet
             builder.Bind<ICallContext>().To(new DefaultCallContext());
             builder.Bind<ICanResolvePrincipal>().To(new DefaultPrincipalResolver());
 
-            var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("Studio")
+            var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("CBS")
                 .Application(applicationBuilder =>
                     applicationBuilder
-                    .PrefixLocationsWith(new BoundedContext("Sentry"))
+                    .PrefixLocationsWith(new BoundedContext("VolunteerReporting"))
                     .WithStructureStartingWith(new ApplicationStructureFragment(typeof(BoundedContext)), _ => { })
                 )
 
                 .StructureMappedTo(_ => _
+                    .Domain("Infrastructure.Events.-^{Feature}.-^{SubFeature}*")
                     .Domain("Domain.-^{Feature}.-^{SubFeature}*")
                     .Domain("Domain.-^{Module}.-^{Feature}.-^{SubFeature}*")
                     .Events("Events.-^{Feature}.-^{SubFeature}*")
