@@ -15,27 +15,24 @@ using Web.Models;
 namespace Web.Controllers
 {
     [Route("api/automaticreplies")]
-    public class AutomaticRepliesController : BaseController
+    public class AutomaticRepliesController : Controller
     {
         private readonly IDefaultAutomaticReplies _defaultAutomaticReplies;
         private readonly IDefaultAutomaticReplyKeyMessages _defaultAutomaticReplyKeyMessages;
         private readonly IAutomaticReplies _automaticReplies;
         private readonly IAutomaticReplyKeyMessages _automaticReplyKeyMessages;
-        private readonly IAggregateRootRepositoryFor<AutomaticReplyDefinition> _automaticReplyRepository;
 
         public AutomaticRepliesController(
             IDefaultAutomaticReplies defaultAutomaticReplies,
             IDefaultAutomaticReplyKeyMessages defaultAutomaticReplyKeyMessages,
             IAutomaticReplies automaticReplies,
-            IAutomaticReplyKeyMessages automaticReplyKeyMessages,
-            IAggregateRootRepositoryFor<AutomaticReplyDefinition> automaticReplyRepository
+            IAutomaticReplyKeyMessages automaticReplyKeyMessages
             )
         {
             _defaultAutomaticReplies = defaultAutomaticReplies;
             _defaultAutomaticReplyKeyMessages = defaultAutomaticReplyKeyMessages;
             _automaticReplies = automaticReplies;
             _automaticReplyKeyMessages = automaticReplyKeyMessages;
-            _automaticReplyRepository = automaticReplyRepository;
         }
 
         [HttpGet("automaticreplytypes")]
@@ -98,35 +95,6 @@ namespace Web.Controllers
                     Message = c.Message
                 })
             );
-        }
-
-        [HttpPut]
-        public IActionResult CreateOrUpdateAutomaticReply([FromBody]DefineAutomaticReplyForProject automaticReply)
-        {
-            var eventId = Guid.NewGuid();
-            var repository = _automaticReplyRepository.Get(eventId);
-            repository.Define(
-                automaticReply.ProjectId,
-                automaticReply.Type,
-                automaticReply.Language,
-                automaticReply.Message
-                );
-            return Ok();
-        }
-
-        [HttpPut("keymessage")]
-        public IActionResult CreateOrUpdateAutomaticReplyKeyMessage([FromBody]DefineAutomaticReplyKeyMessageForProject automaticReplyKeyMessage)
-        {
-            var eventId = Guid.NewGuid();
-            var repository = _automaticReplyRepository.Get(eventId);
-            repository.DefineKeyMessage(
-                automaticReplyKeyMessage.HealthRiskId,
-                automaticReplyKeyMessage.ProjectId,
-                automaticReplyKeyMessage.Type,
-                automaticReplyKeyMessage.Language,
-                automaticReplyKeyMessage.Message
-                );
-            return Ok();
         }
     }
 }

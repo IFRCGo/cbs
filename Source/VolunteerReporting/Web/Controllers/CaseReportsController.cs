@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Web.Controllers
 {
     [Route("api/casereports")]
-    public class CaseReportsController : BaseController
+    public class CaseReportsController : Controller
     {
         private readonly ICaseReportsForListing _caseReports;
         private readonly ICaseReports _caseReportsObsolete;
@@ -49,6 +49,5 @@ namespace Web.Controllers
         {
             return Ok(await _caseReports.GetLimitAsync(limit, false));
         }
-
     }
 }
