@@ -24,8 +24,10 @@
     <PackageReference Include="Dolittle.SDK.Domain" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.SDK.Events.Processing" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.SDK.Events.Storage" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Runtime.Commands" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Runtime.Events.Coordination" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Runtime.Events.Storage" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2*" />
 
     <PackageReference Include="Dolittle.AspNetCore.Bootstrap" Version="2.0.0-alpha2*" />
@@ -35,6 +37,7 @@
     <PackageReference Include="Dolittle.AspNetCore.Queries" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.AspNetCore.Queries.Proxies" Version="2.0.0-alpha2*" />
     
+    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.0.0-alpha2*" />
 
     <PackageReference Include="Serilog" Version="2.6.0" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
