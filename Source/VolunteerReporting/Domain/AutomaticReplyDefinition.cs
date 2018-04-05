@@ -1,16 +1,14 @@
+using System;
 using Concepts;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain
 {
     public class AutomaticReplyDefinition : AggregateRoot
     {
-        public AutomaticReplyDefinition(EventSourceId eventSourceId) : base(eventSourceId)
+        public AutomaticReplyDefinition(EventSourceId eventSourceId): base(eventSourceId)
         {
 
         }
@@ -20,10 +18,10 @@ namespace Domain
             Apply(new AutomaticReplyDefined()
             {
                 Id = Guid.NewGuid(),
-                ProjectId = projectId,
-                Type = (int)type,
-                Language = language,
-                Message = message
+                    ProjectId = projectId,
+                    Type = (int)type,
+                    Language = language,
+                    Message = message
             });
         }
 
@@ -32,11 +30,11 @@ namespace Domain
             Apply(new AutomaticReplyKeyMessageDefined()
             {
                 Id = Guid.NewGuid(),
-                HealthRiskId = healthRiskId,
-                ProjectId = projectId,
-                Type = (int)type,
-                Language = language,
-                Message = message
+                    HealthRiskId = healthRiskId,
+                    ProjectId = projectId,
+                    Type = (int)type,
+                    Language = language,
+                    Message = message
             });
         }
     }
