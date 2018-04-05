@@ -5,11 +5,10 @@
 using Dolittle.Events;
 using Dolittle.Runtime.Events;
 
-namespace Infrastructure.Kafka.BoundedContexts
+namespace Infrastructure.Events
 {
     public class ExternalSource : EventSource
     {
         public ExternalSource(EventSourceId id) : base(id) { }
-
     }
 }

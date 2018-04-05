@@ -17,6 +17,7 @@ using Dolittle.Runtime.Events.Storage;
 using Dolittle.Runtime.Transactions;
 using Dolittle.Types;
 using Newtonsoft.Json;
+using Infrastructure.Events;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {
