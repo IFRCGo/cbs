@@ -1,11 +1,12 @@
 using Concepts;
+using Dolittle.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain
 {
-    public class DefineAutomaticReplyForProject
+    public class DefineAutomaticReplyForProject : ICommand
     {
         public Guid ProjectId { get; set; }
         public AutomaticReplyType Type { get; set; }
