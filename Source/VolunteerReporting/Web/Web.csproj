@@ -13,7 +13,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.External\Events.External.csproj" />

@@ -19,7 +19,7 @@ using Read.DataCollectors;
 using Read.AutomaticReplyMessages;
 using Concepts;
 using Read.Projects;
-using doLittle.Events;
+using Dolittle.Events;
 using Microsoft.Extensions.Configuration;
 using Read.InvalidCaseReports;
 using Read.CaseReportsForListing;

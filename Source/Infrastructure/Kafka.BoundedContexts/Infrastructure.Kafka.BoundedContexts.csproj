@@ -8,16 +8,17 @@
     <ItemGroup>
         <PackageReference Include="Autofac" Version="4.6.2" />
         <PackageReference Include="Confluent.Kafka" Version="0.11.3" />
-        <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
-        <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha2.70" />
-        <PackageReference Include="doLittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2.70" />
-        <PackageReference Include="doLittle.Runtime.Transactions" Version="2.0.0-alpha2.70" />
-        <PackageReference Include="doLittle.Runtime.Applications" Version="2.0.0-alpha2.70" />
-        <PackageReference Include="doLittle.Dynamic" Version="2.0.0-alpha2.69" />
-        <PackageReference Include="doLittle.Time" Version="2.0.0-alpha2.69" />
-        <PackageReference Include="doLittle.Logging" Version="2.0.0-alpha2.69" />
-        <PackageReference Include="doLittle.Serialization.Json" Version="2.0.0-alpha2.69" />
-        <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
+        <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Runtime.Events" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Runtime.Events.Coordination" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Runtime.Transactions" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Applications" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Dynamic" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Time" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Logging" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Serialization.Json" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Types" Version="2.0.0-alpha2*" />
         <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     </ItemGroup>
 

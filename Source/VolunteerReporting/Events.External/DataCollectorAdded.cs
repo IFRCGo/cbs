@@ -1,5 +1,5 @@
 using System;
-using doLittle.Events;
+using Dolittle.Events;
 using System.Collections.Generic;
 
 namespace Events.External

@@ -1,5 +1,5 @@
 using Concepts;
-using doLittle.Domain;
+using Dolittle.Domain;
 using Domain;
 using Events;
 using Events.External;

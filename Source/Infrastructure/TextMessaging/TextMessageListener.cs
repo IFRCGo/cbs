@@ -1,6 +1,6 @@
 using System;
-using doLittle.Applications;
-using doLittle.Serialization.Json;
+using Dolittle.Applications;
+using Dolittle.Serialization.Json;
 using Infrastructure.Kafka;
 
 namespace Infrastructure.TextMessaging

@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using doLittle.Runtime.Commands;
+using Dolittle.Runtime.Commands;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Logging

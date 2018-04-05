@@ -1,6 +1,6 @@
 using Concepts;
-using doLittle.Events.Processing;
-using doLittle.Time;
+using Dolittle.Events.Processing;
+using Dolittle.Time;
 using Events;
 using System.Threading.Tasks;
 

@@ -6,7 +6,7 @@ using System;
 using System.Text;
 using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
-using doLittle.Logging;
+using Dolittle.Logging;
 
 namespace Infrastructure.Kafka
 {

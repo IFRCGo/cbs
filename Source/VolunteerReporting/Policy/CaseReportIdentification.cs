@@ -1,5 +1,5 @@
-using doLittle.Domain;
-using doLittle.Events.Processing;
+using Dolittle.Domain;
+using Dolittle.Events.Processing;
 using Domain;
 using Events.External;
 using Read.CaseReports;

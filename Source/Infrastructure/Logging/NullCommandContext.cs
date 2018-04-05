@@ -4,10 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using System.Collections.Generic;
-using doLittle.Runtime.Commands;
-using doLittle.Runtime.Events;
-using doLittle.Runtime.Execution;
-using doLittle.Runtime.Transactions;
+using Dolittle.Events;
+using Dolittle.Runtime.Commands;
+using Dolittle.Runtime.Commands.Coordination;
+using Dolittle.Runtime.Events;
+using Dolittle.Runtime.Execution;
+using Dolittle.Runtime.Transactions;
 
 namespace Infrastructure.Logging
 {

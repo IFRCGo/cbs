@@ -1,5 +1,5 @@
 using Events.External;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using System.Threading.Tasks;
 using System;
 namespace Read.HealthRisks
