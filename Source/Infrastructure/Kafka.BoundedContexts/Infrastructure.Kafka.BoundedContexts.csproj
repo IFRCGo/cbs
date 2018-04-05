@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Events\Infrastructure.Events.csproj" />
         <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
     </ItemGroup>
 </Project>
