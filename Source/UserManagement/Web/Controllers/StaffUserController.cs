@@ -139,57 +139,102 @@ namespace Web.Controllers
         #region Register
 
         //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
+
         [HttpPost("register/admin")]
         public void RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewAdminUser, Domain.StaffUser.Roles.Admin>(command);
         }
 
         [HttpPost("register/systemconfigurator")]
         public void RegisterSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
         }
 
         [HttpPost("register/datacordinator")]
         public void RegisterDatacordinator([FromBody] RegisterNewDataCoordinator command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>(command);
         }
 
         [HttpPost("register/dataowner")]
         public void RegisterDataOwner([FromBody] RegisterNewDataOwner command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewDataOwner, Domain.StaffUser.Roles.DataOwner>(command);
         }
 
         [HttpPost("register/staffdataconsumer")]
         public void RegisterDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>(command);
         }
 
         [HttpPost("register/staffdataverifier")]
         public void RegisterDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            
             RegisterStaffUser<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>(command);
         }
 
         #endregion
 
-        //TODO: Implement when we have decided on how updating should work for the staffusers
-        //[HttpPost("update")]
-        //public void Update([FromBody] UpdateStaffUser command)
-        //{
-        //    // of the staffuser types to ensure that the correct information is 
-        //    // given?
-        //    _staffUserCommandHandler.Handle(command);
+        #region Update Methods
 
-        //[HttpDelete("delete")]
-        //public void Delete([FromBody] DeleteStaffUser command)
-        //{
-        //    _staffUserCommandHandler.Handle(command);
-        //}
+        [HttpPost("update/admin")]
+        public void UpdateAdmin([FromBody] RegisterNewAdminUser command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/systemconfigurator")]
+        public void UpdateSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/datacordinator")]
+        public void UpdaterDataCordinator([FromBody] RegisterNewDataCoordinator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/dataowner")]
+        public void UpdateDataOwner([FromBody] RegisterNewDataOwner command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/staffdataconsumer")]
+        public void UpdateDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        [HttpPost("update/staffdataverifier")]
+        public void UpdateDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+        }
+
+        #endregion
 
         #region Private Methods
 
@@ -224,6 +269,16 @@ namespace Web.Controllers
             where TRole : StaffRole
         {
             command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
+            var registrationCmd = command as dynamic;
+            _staffUserCommandHandler.Handle(registrationCmd);
+        }
+
+        private void UpdateStaffUser<TRegistration, TRole>(TRegistration command)
+            where TRegistration : NewStaffRegistration<TRole>
+            where TRole : StaffRole
+        {
+            command.IsNewRegistration = false;
             var registrationCmd = command as dynamic;
             _staffUserCommandHandler.Handle(registrationCmd);
         }
