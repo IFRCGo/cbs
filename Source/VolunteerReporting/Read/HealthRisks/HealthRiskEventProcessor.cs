@@ -21,7 +21,6 @@ namespace Read.HealthRisks
                 Name = @event.Name
             };
             _healthRisks.Save(healthRisk);
-            var returned = _healthRisks.GetById(healthRisk.Id);
         }
     }
 }
