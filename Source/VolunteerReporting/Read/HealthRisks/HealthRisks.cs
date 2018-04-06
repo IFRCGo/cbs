@@ -40,15 +40,27 @@ namespace Read.HealthRisks
             return healthRiskId;
         }
 
-        public async Task Save(HealthRisk healthRisk)
+        public void Save(HealthRisk healthRisk)
+        {
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
+            _collection.ReplaceOne(filter, healthRisk, new UpdateOptions { IsUpsert = true });
+        }
+
+        public void Remove(Guid healthRiskId)
+        {
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
+            _collection.DeleteOne(filter);
+        }
+
+        public async Task SaveAsync(HealthRisk healthRisk)
         {
             var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
             await  _collection.ReplaceOneAsync(filter, healthRisk, new UpdateOptions { IsUpsert = true });
         }
 
-        public async Task Remove(Guid healthRiskId)
+        public async Task RemoveAsync(Guid healthRiskId)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id.Value, healthRiskId);
+            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
             await _collection.DeleteOneAsync(filter);
         }
 

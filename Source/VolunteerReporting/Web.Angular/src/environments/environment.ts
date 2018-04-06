@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api: 'http://dev.cbsrc.org/volunteerreportingbackend'
+  api: 'http://localhost:5000'
 };
