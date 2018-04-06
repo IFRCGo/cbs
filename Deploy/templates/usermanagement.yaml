@@ -44,6 +44,11 @@ spec:
         image: {{ .Values.services.usermanagement.backend.image }}:{{ .Values.services.usermanagement.backend.version }}
         ports:
         - containerPort: 80
+        env:
+        - name: "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS"
+          value: "admin;alert;volunteerreporting"
+        - name: "KAFKA_BOUNDED_CONTEXT_TOPIC"
+          value: "usermanagement"        
 ---
 apiVersion: v1
 kind: Service
