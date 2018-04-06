@@ -18,7 +18,7 @@ namespace Web.Controllers
     {
         //private readonly IDataCollectors _dataCollectors;
 
-        private readonly IMongoCollection<Read.DataCollectors.DataCollector> _collection;
+        private readonly IMongoDatabase _database;
 
         private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
@@ -30,8 +30,7 @@ namespace Web.Controllers
             IDataCollectors dataCollectors,
             IQueryCoordinator queryCoordinator)
         {
-            _collection = database.GetCollection<Read.DataCollectors.DataCollector>("DataCollectors");
-            //_dataCollectors = dataCollectors;
+            _database = database;
             _dataCollectorCommandHandler = dataCollectorCommand;
             _queryCoordinator = queryCoordinator;
         }
@@ -39,15 +38,27 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _queryCoordinator.Execute(new AllDataCollectors(_collection), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllDataCollectors(_database), new PagingInfo());
 
             if (result.Success)
             {
                 return Ok(result.Items);
             }
 
+            return new NotFoundResult();  
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var result = _queryCoordinator.Execute(new DataCollectorById(_database, id), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+            //TODO: For this, and the rest of the endpoints: Should probably return something else than 404?
             return new NotFoundResult();
-            
         }
 
         [HttpPost("register")]

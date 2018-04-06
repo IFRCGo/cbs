@@ -53,7 +53,7 @@ namespace Web.Controllers
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteDataCollectors();
             RegisterDataCollector[] commands;
             try
             {
@@ -107,13 +107,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataconsumercommands")]
         public void CreateAllDataConsumerCommands()
         {
-            DeleteAllDataConsumers();
             RegisterNewStaffDataConsumer[] commands;
             try
             {
@@ -129,13 +129,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldatacoordinatorcommands")]
         public void CreateAllDataCoordinatorCommands()
         {
-            DeleteAllDataCoordinators();
             RegisterNewDataCoordinator[] commands;
             try
             {
@@ -151,13 +151,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataownercommands")]
         public void CreateAllDataOwnerCommands()
         {
-            DeleteAllDataOwners();
             RegisterNewDataOwner[] commands;
             try
             {
@@ -173,13 +173,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("alldataverifiercommands")]
         public void CreateAllDataVerifierCommands()
         {
-            DeleteAllDataVerifiers();
             RegisterNewStaffDataVerifier[] commands;
             try
             {
@@ -195,13 +195,13 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
         [HttpGet("allsystemconfiguratorcommands")]
         public void CreateAllSystemConfiguratorCommands()
         {
-            DeleteAllSystemConfigurators();
             RegisterNewSystemConfigurator[] commands;
             try
             {
@@ -217,6 +217,7 @@ namespace Web.Controllers
 
             foreach (var cmd in commands)
             {
+                cmd.Role.StaffUserId = Guid.NewGuid();
                 _staffUserCommandHandler.Handle(cmd);
             }
         }
@@ -227,9 +228,16 @@ namespace Web.Controllers
         public void DeleteAll()
         {
             DeleteAllStaffUserCollections();
-            DeleteDataCollector();
+            DeleteDataCollectors();
             DeleteGreetingHistory();
         }
+
+        private void DeleteCollection<T>(string collectionName)
+        {
+            _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
+        }
+
+        #region StaffUser
 
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
@@ -240,8 +248,6 @@ namespace Web.Controllers
         [HttpGet("deletealladmins")]
         public void DeleteAllAdmins()
         {
-            //TODO: Not sure that this works? Have not tested yet
-            //DeleteCollection<Admin>("StaffUsers");
             var filter = Builders<BaseUser>.Filter.OfType<Admin>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
@@ -249,8 +255,6 @@ namespace Web.Controllers
         [HttpGet("deletealldataconsumers")]
         public void DeleteAllDataConsumers()
         {
-            //DeleteCollection<DataConsumer>("StaffUsers");
-
             var filter = Builders<BaseUser>.Filter.OfType<DataConsumer>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
@@ -258,8 +262,6 @@ namespace Web.Controllers
         [HttpGet("deletealldatacoordinators")]
         public void DeleteAllDataCoordinators()
         {
-            //DeleteCollection<DataCoordinator>("StaffUsers");
-
             var filter = Builders<BaseUser>.Filter.OfType<DataCoordinator>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
@@ -267,8 +269,6 @@ namespace Web.Controllers
         [HttpGet("deletealldataowners")]
         public void DeleteAllDataOwners()
         {
-            //DeleteCollection<DataOwner>("StaffUsers");
-
             var filter = Builders<BaseUser>.Filter.OfType<DataOwner>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
@@ -276,8 +276,6 @@ namespace Web.Controllers
         [HttpGet("deletealldataverifiers")]
         public void DeleteAllDataVerifiers()
         {
-            //DeleteCollection<DataVerifier>("StaffUsers");
-
             var filter = Builders<BaseUser>.Filter.OfType<DataVerifier>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
@@ -285,28 +283,22 @@ namespace Web.Controllers
         [HttpGet("deleteallsystemconfigurators")]
         public void DeleteAllSystemConfigurators()
         {
-           // DeleteCollection<SystemConfigurator>("StaffUsers");
-
             var filter = Builders<BaseUser>.Filter.OfType<SystemConfigurator>();
             _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
-        
+
+        #endregion
+
         [HttpGet("deletedatacollectorcollection")]
-        public void DeleteDataCollector()
+        public void DeleteDataCollectors()
         {
-            DeleteCollection<DataCollector>("DataCollector");
+            DeleteCollection<DataCollector>("DataCollectors");
         }
 
         [HttpGet("deletegreetinghistorycollection")]
         public void DeleteGreetingHistory()
         {
             DeleteCollection<GreetingHistory>("GreetingHistories");
-        }
-
-
-        private void DeleteCollection<T>(string collectionName)
-        {
-            _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
         }
 
         #endregion
