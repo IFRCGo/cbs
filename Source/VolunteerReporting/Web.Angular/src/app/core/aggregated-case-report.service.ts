@@ -43,6 +43,7 @@ export class AggregatedCaseReportService {
     return this.http.get(`${environment.api}/api/casereports`, {headers: this.headers})
       .toPromise()
       .then(result => {
+        console.log(environment.api);
         return result.json();
       })
       .catch(error => console.error(error));

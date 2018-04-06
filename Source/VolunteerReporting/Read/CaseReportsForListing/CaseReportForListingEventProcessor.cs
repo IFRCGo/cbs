@@ -22,7 +22,7 @@ namespace Read.CaseReportsForListing
             _dataCollectors = dataCollectors;
             _healthRisks = healthRisks;
         }
-        public async Task Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
@@ -41,12 +41,12 @@ namespace Read.CaseReportsForListing
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin
             };
-            await _caseReports.Save(caseReport);
+             _caseReports.Save(caseReport);
         }
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
 
-        public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
+        public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
             var caseReport = new CaseReportForListing(@event.CaseReportId)
@@ -61,7 +61,7 @@ namespace Read.CaseReportsForListing
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin
             };
-            await _caseReports.Save(caseReport);
+             _caseReports.Save(caseReport);
         }
 
         public async Task Process(CaseReportIdentified @event)
@@ -70,7 +70,7 @@ namespace Read.CaseReportsForListing
             await _caseReports.Remove(@event.CaseReportId);
         }
 
-        public async Task Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var caseReport = new CaseReportForListing(@event.CaseReportId)
@@ -83,10 +83,10 @@ namespace Read.CaseReportsForListing
                 Origin = @event.Origin,
                 ParsingErrorMessage = @event.ErrorMessages
             };
-            await _caseReports.Save(caseReport);
+            _caseReports.Save(caseReport);
         }
 
-        public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {            
             var caseReport = new CaseReportForListing(@event.CaseReportId)
             {
@@ -96,7 +96,7 @@ namespace Read.CaseReportsForListing
                 Origin = @event.Origin,
                 ParsingErrorMessage = @event.ErrorMessages
             };
-            await _caseReports.Save(caseReport);
+            _caseReports.Save(caseReport);
         }
 
         //TODO: Remove error reports if they get fixed when we have events for that

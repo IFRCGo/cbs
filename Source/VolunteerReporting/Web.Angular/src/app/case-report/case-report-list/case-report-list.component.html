@@ -40,6 +40,7 @@
             </td>
             <td>
                 <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
+                <span *ngIf="!caseReport.dataCollectorId">Origin:{{caseReport.origin}}&nbsp;</span>
             </td>
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
@@ -54,7 +55,7 @@
             </ng-container>
             <ng-container *ngIf="!caseReport.healthRiskId">
                 <td colspan="6">
-                    {{caseReport.message}}
+                    Received: {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
         </tr>

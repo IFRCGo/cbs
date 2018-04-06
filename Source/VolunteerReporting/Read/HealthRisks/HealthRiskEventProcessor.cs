@@ -13,12 +13,15 @@ namespace Read.HealthRisks
             _healthRisks = healthRisks;
         }
 
-        public async Task Process(HealthRiskCreated @event)
+        public void Process(HealthRiskCreated @event)
         {
-            var healthRisk = _healthRisks.GetById(@event.Id) ?? new HealthRisk(@event.Id);
-            healthRisk.ReadableId = @event.ReadableId;
-            healthRisk.Name = @event.Name;
-            await _healthRisks.Save(healthRisk);
+            var healthRisk = new HealthRisk(@event.Id)
+            {
+                ReadableId = @event.ReadableId,
+                Name = @event.Name
+            };
+            _healthRisks.Save(healthRisk);
+            var returned = _healthRisks.GetById(healthRisk.Id);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Read.CaseReportsForListing
             return await list.ToListAsync();
         }
 
-        public async Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last)
+        public async Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, bool last)
         {
             
             var filter = Builders<CaseReportForListing>.Filter.Empty;

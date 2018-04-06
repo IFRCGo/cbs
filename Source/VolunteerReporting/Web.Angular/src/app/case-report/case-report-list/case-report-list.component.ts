@@ -65,6 +65,7 @@ export class CaseReportListComponent implements OnInit {
     this.caseReportService.getReports()
       .then(result => {
         this.listedReports = result || [];
+        console.log(this.listedReports);
       })
       .catch(error => console.error(error));
 
