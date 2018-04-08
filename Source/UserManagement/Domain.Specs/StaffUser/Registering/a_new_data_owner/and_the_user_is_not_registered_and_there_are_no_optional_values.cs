@@ -33,7 +33,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         {
             sut.RegisterNewDataOwner(is_new_registration, role.FullName, role.DisplayName, role.Email,
                 role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
-                role.Sex, role.Position, role.DutyStation);
+                role.Sex, role.Position, role.DutyStation, now);
         };
 
         It should_create_a_new_user_registed_event_with_the_correct_values

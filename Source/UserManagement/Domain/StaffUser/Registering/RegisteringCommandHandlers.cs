@@ -18,7 +18,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewAdminUser(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email);
+                                        command.Role.Email, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewDataCoordinator command)
@@ -27,7 +27,8 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataCoordinator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex,
+                                        command.RegisteredAt);
         }
 
         public void Handle(RegisterNewSystemConfigurator command)
@@ -36,7 +37,8 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewSystemConfigurator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex,
+                                        command.RegisteredAt);
         }
 
         public void Handle(RegisterNewDataOwner command)
@@ -45,7 +47,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataOwner(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                          command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
-                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation);
+                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
@@ -54,7 +56,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataVerifier(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
                                                 command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewStaffDataConsumer command)
@@ -63,7 +65,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataConsumer(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
                                                 command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, command.RegisteredAt);
         }
     }
 }

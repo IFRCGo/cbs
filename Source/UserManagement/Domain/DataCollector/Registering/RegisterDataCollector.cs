@@ -24,5 +24,6 @@ namespace Domain.DataCollector.Registering
         public Location GpsLocation { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
         
+        public DateTimeOffset RegisteredAt { get; set; }
     }
 }

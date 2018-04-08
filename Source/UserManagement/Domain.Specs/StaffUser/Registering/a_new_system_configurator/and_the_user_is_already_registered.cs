@@ -27,13 +27,13 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             //register the user so that they are already registered
             sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
-                    role.BirthYear, role.Sex);
+                    role.BirthYear, role.Sex, now);
         };
 
         Because of = () => result = Catch.Exception(
             () => sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
-                    role.BirthYear, role.Sex)
+                    role.BirthYear, role.Sex, now)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

@@ -1,3 +1,4 @@
+using System;
 using doLittle.Commands;
 
 namespace Domain.StaffUser.Registering
@@ -10,5 +11,6 @@ namespace Domain.StaffUser.Registering
     {
         public T Role { get; protected set; }
         public bool IsNewRegistration { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; }
     }
 }

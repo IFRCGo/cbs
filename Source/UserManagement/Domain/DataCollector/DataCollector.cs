@@ -23,7 +23,7 @@ namespace Domain.DataCollector
             bool isNewRegistration,
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbers
+            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt
             )
         {
             if (isNewRegistration && _isRegistered)
@@ -31,8 +31,11 @@ namespace Domain.DataCollector
                 //TODO: We might want to Apply an event here that signals that a new data collector has been registered
                 throw new DataCollectorAlreadyRegistered($"DataCollector '{EventSourceId} {fullName} {displayName} is already registered'");
             }
-            if (isNewRegistration)
-                _registeredAt = DateTimeOffset.UtcNow;
+            //TODO: For the moment it does not seem that we can persist state for AggregateRoots for some reason?
+            // Therefore this must be commented out, the result of this is that the data collector get's a new registered at value for each time it's modified...
+            //if (isNewRegistration)
+               // _registeredAt = DateTimeOffset.UtcNow;
+
             Apply(new DataCollectorRegistered
             (
                 EventSourceId,
@@ -44,7 +47,7 @@ namespace Domain.DataCollector
                 (int)preferredLanguage,
                 gpsLocation.Longitude,
                 gpsLocation.Latitude,
-                _registeredAt
+                registeredAt
             ));
 
             AddPhoneNumbers(phoneNumbers);

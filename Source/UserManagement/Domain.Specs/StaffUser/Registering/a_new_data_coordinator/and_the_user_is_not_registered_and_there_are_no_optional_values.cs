@@ -28,7 +28,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         Because of = () => {
             sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers, cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex);
+                    cmd.Role.BirthYear, cmd.Role.Sex, now);
         };
 
         It should_create_a_new_user_registed_event_with_the_correct_values 

@@ -24,13 +24,13 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
             //register the user so that they are already registered
             sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers, cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex);
+                    cmd.Role.BirthYear, cmd.Role.Sex, now);
         };
 
         Because of = () => result = Catch.Exception(
             () =>  sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers, cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex)
+                    cmd.Role.BirthYear, cmd.Role.Sex, now)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

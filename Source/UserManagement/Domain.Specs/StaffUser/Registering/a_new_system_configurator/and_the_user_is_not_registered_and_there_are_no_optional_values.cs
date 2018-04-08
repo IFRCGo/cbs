@@ -36,7 +36,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         {
             sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.AssignedNationalSocieties,
-                    role.BirthYear, role.Sex);
+                    role.BirthYear, role.Sex, now);
         };
 
         It should_create_a_new_user_registed_event_with_the_correct_values

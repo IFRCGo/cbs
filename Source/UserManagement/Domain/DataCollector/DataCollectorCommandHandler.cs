@@ -33,7 +33,8 @@ namespace Domain.DataCollector
                 command.NationalSociety,
                 command.PreferredLanguage,
                 command.GpsLocation,
-                command.PhoneNumbers
+                command.PhoneNumbers,
+                command.RegisteredAt
                 );
         }
 

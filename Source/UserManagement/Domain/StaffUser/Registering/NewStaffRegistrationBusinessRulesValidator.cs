@@ -22,7 +22,7 @@ namespace Domain.StaffUser.Registering
             }
         }
 
-        bool NotBeAlreadyRegistered(Guid staffUserId)
+        private bool NotBeAlreadyRegistered(Guid staffUserId)
         {
             return !_isRegistered(staffUserId);
         }

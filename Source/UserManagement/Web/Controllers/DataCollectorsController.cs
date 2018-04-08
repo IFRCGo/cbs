@@ -67,6 +67,8 @@ namespace Web.Controllers
         {
             command.DataCollectorId = Guid.NewGuid();
             command.IsNewRegistration = true;
+            command.RegisteredAt = DateTimeOffset.UtcNow;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
@@ -75,6 +77,7 @@ namespace Web.Controllers
         public IActionResult Update([FromBody] RegisterDataCollector command)
         {
             command.IsNewRegistration = false;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
