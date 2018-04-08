@@ -8,30 +8,30 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public DataCollectorById(IMongoCollection<DataCollector> collection, Guid dataCollectorId)
+        public DataCollectorById(IMongoDatabase database, Guid dataCollectorId)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors");
             DataCollectorId = dataCollectorId;
         }
 
         public Guid DataCollectorId { get; }
 
-        public IAsyncCursor<DataCollector> Query => _collection.FindSync(d => d.Id == DataCollectorId);
+        public DataCollector Query => _collection.FindSync(d => d.DataCollectorId == DataCollectorId).FirstOrDefault();
     }
 
     public class DataCollectorByIdAsync : IQueryFor<DataCollector>
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public DataCollectorByIdAsync(IMongoCollection<DataCollector> collection, Guid dataCollectorId)
+        public DataCollectorByIdAsync(IMongoDatabase database, Guid dataCollectorId)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
             DataCollectorId = dataCollectorId;
         }
 
         public Guid DataCollectorId { get; }
 
-        public IAsyncCursor<DataCollector> Query => _collection.FindAsync(d => d.Id == DataCollectorId).Result; //Todo: Safe?
+        public DataCollector Query => _collection.FindAsync(d => d.DataCollectorId == DataCollectorId).Result.FirstOrDefault(); //Todo: Safe?
     }
 
 }

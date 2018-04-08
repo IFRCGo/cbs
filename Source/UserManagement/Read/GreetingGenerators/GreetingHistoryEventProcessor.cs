@@ -1,4 +1,5 @@
 using doLittle.Events.Processing;
+using Events;
 using Events.DataCollector;
 
 namespace Read.GreetingGenerators
@@ -13,6 +14,16 @@ namespace Read.GreetingGenerators
         }
         
         //TODO: QUESTION: Shouldn't this listen to MessageGenerated-event?
+
+        public async void Process(MessageGenerated @event)
+        {
+            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ??
+                                  new GreetingHistory(@event.DataCollectorId);
+            greetingHistory.PhoneNumber = @event.PhoneNumber;
+
+            
+        }
+
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
