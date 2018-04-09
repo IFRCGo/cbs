@@ -12,6 +12,7 @@ namespace Domain.Specs.StaffUser.Registering.given
         {
             var cmd = new T();
             (cmd as dynamic).IsNewRegistration = true;
+            (cmd as dynamic).RegisteredAt = DateTimeOffset.UtcNow;
 
             PopulateStaffDetails(cmd);
             PopulateSex(cmd);

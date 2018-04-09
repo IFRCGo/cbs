@@ -21,6 +21,7 @@
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
                  PhoneNumbers = new List<string>{"123456789"},
+                 RegisteredAt = DateTimeOffset.UtcNow
              };
          }
 

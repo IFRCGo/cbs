@@ -19,7 +19,8 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
                  PhoneNumbers = new [] {"123456789"},
-                 //Email = "test@test.com"
+                 //Email = "test@test.com",
+                 
                  
              };
          }
