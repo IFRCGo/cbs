@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StaffUserService } from '../services/staff-user.service';
-import { StaffUser } from '../domain/staff-user';
+import { DataCollectorService } from '../services/data-collector.service';
+import { DataCollector } from '../domain/data-collector';
 
 @Component({
   selector: 'cbs-user-list',
@@ -8,16 +8,16 @@ import { StaffUser } from '../domain/staff-user';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users: Array<StaffUser>;
+  users: Array<DataCollector>;
 
   public error: boolean;
   public errorMsg = 'Could not get users, try again later';
 
-  constructor(private staffUserService: StaffUserService) {
+  constructor(private staffUserService: DataCollectorService) {
   }
 
   ngOnInit() {
-    this.staffUserService.getAllUsers().subscribe(
+    this.staffUserService.getAllDataCollectors().subscribe(
       data => {
         this.users = data.json();
       },
@@ -26,7 +26,5 @@ export class UserListComponent implements OnInit {
         console.error(error)
       }
     )
-    // .then(users => this.users = users)
-    // .catch((error) => console.error(error));
   }
 }

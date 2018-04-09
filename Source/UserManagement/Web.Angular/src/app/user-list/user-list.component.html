@@ -1,5 +1,5 @@
 <div class="header">
-    <h2>Users</h2>
+    <h2>Data collectors</h2>
     <a [routerLink]="['/add-user']" routerLinkActive="active">
         <button class="btn btn-primary">
             Add User
@@ -19,10 +19,8 @@
     <tr>
         <th>Full Name</th>
         <th>Display Name</th>
-        <th>Number</th>
-        <th>Email</th>
-        <th>Location</th>
-        <th>Last report date</th>
+        <th>Phone Numbers</th>
+        <th></th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -30,9 +28,7 @@
     <tr *ngFor="let user of users">
         <td>{{user.fullName}}</td>
         <td>{{user.displayName}}</td>
-        <td>{{user.mobilePhoneNumber}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.location}}</td>
+        <td><span *ngFor="let number of user.phoneNumbers">{{number.value}} </span></td>
         <td></td>
         <td><a>Edit</a> |
             <cbs-delete-user [user]=user></cbs-delete-user>
