@@ -44,6 +44,11 @@ spec:
         image: {{ .Values.services.volunteerreporting.backend.image }}:{{ .Values.services.volunteerreporting.backend.version }}
         ports:
         - containerPort: 80
+        env:
+        - name: "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS"
+          value: "admin;alert;usermanagement"
+        - name: "KAFKA_BOUNDED_CONTEXT_TOPIC"
+          value: "volunteerreporting"        
 ---
 apiVersion: v1
 kind: Service

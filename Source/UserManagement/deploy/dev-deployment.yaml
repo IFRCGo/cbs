@@ -44,6 +44,12 @@ spec:
         image: karolikl/cbs-usermgmt-backend:$BUILD_ID
         ports:
         - containerPort: 80
+        env:
+        - name: "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS"
+          value: "admin;alert;volunteerreporting"
+        - name: "KAFKA_BOUNDED_CONTEXT_TOPIC"
+          value: "usermanagement"
+        
 ---
 apiVersion: v1
 kind: Service

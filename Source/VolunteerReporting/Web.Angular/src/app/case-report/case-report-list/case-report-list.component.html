@@ -40,6 +40,7 @@
             </td>
             <td>
                 <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
+                <span *ngIf="!caseReport.dataCollectorId">Origin:{{caseReport.origin}}&nbsp;</span>
             </td>
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
@@ -49,12 +50,12 @@
                 <td>{{caseReport.numberOfMalesAgedOver4}}</td>
                 <td>{{caseReport.numberOfMalesAges0To4}}</td>
                 <td>
-                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
+                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}}, {{caseReport.location.longitude | number}}</span>
                 </td>
             </ng-container>
             <ng-container *ngIf="!caseReport.healthRiskId">
                 <td colspan="6">
-                    {{caseReport.message}}
+                    {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
         </tr>

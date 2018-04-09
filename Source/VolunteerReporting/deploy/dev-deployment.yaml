@@ -44,6 +44,12 @@ spec:
         image: karolikl/cbs-vr-backend:$BUILD_ID
         ports:
         - containerPort: 80
+        env:
+        - name: "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS"
+          value: "admin;alert;usermanagement"
+        - name: "KAFKA_BOUNDED_CONTEXT_TOPIC"
+          value: "volunteerreporting"
+        
 ---
 apiVersion: v1
 kind: Service

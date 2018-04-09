@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: smseagle
-        image: redcrossredcrescent/smseagle:1
+        image: redcrossredcrescent/smseagle
         ports:
         - containerPort: 80
           name: incoming

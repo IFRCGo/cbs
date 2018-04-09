@@ -11,8 +11,10 @@ namespace Read.HealthRisks
         HealthRisk GetById(Guid id);
         HealthRisk GetByReadableId(int readableId);
         HealthRiskId GetIdFromReadableId(int readbleId);
-        Task Save(HealthRisk dataCollector);
-        Task Remove(Guid healthRiskId);
+        void Save(HealthRisk dataCollector);
+        void Remove(Guid healthRiskId);
+        Task SaveAsync(HealthRisk dataCollector);
+        Task RemoveAsync(Guid healthRiskId);
         
     }
 }

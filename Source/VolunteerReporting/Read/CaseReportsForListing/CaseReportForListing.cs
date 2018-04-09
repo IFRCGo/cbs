@@ -1,10 +1,12 @@
 using Concepts;
 using System;
+using System.Collections.Generic;
 
 namespace Read.CaseReportsForListing
 {
     public class CaseReportForListing
     {
+        //TODO: Comment woksin: This whole Read project for casereports needs a rework like what I did for UserManagement
         public Guid Id { get; private set; }
         public CaseReportStatus Status { get; internal set; }
         public DataCollectorId DataCollectorId { get; internal set; }
@@ -18,7 +20,12 @@ namespace Read.CaseReportsForListing
         public int NumberOfMalesAges0To4 { get; internal set; } 
         public DateTimeOffset Timestamp { get; internal set; }
         public Location Location { get; internal set; }
-        
+
+        public string Origin { get; internal set; }
+
+        public IEnumerable<string> ParsingErrorMessage { get; internal set; }
+
+
         public CaseReportForListing(Guid id)
         {
             Id = id;

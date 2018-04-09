@@ -22,7 +22,7 @@ namespace Read.CaseReportsForListing
             _dataCollectors = dataCollectors;
             _healthRisks = healthRisks;
         }
-        public async Task Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
@@ -38,14 +38,15 @@ namespace Read.CaseReportsForListing
                 NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
                 NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
                 Location = new Location(@event.Latitude, @event.Longitude),
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Origin = @event.Origin
             };
-            await _caseReports.Save(caseReport);
+             _caseReports.Save(caseReport);
         }
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
 
-        public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
+        public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
             var caseReport = new CaseReportForListing(@event.CaseReportId)
@@ -57,17 +58,19 @@ namespace Read.CaseReportsForListing
                 NumberOfFemalesAgedOver4 = @event.NumberOfFemalesAgedOver4,
                 NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
                 NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Origin = @event.Origin
             };
-            await _caseReports.Save(caseReport);
+             _caseReports.Save(caseReport);
         }
 
         public async Task Process(CaseReportIdentified @event)
         {
+            //TODO: Is this correct?
             await _caseReports.Remove(@event.CaseReportId);
         }
 
-        public async Task Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var caseReport = new CaseReportForListing(@event.CaseReportId)
@@ -76,20 +79,24 @@ namespace Read.CaseReportsForListing
                 DataCollectorId = @event.DataCollectorId,
                 DataCollectorDisplayName = dataCollector.DisplayName,
                 Message = @event.Message,
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Origin = @event.Origin,
+                ParsingErrorMessage = @event.ErrorMessages
             };
-            await _caseReports.Save(caseReport);
+            _caseReports.Save(caseReport);
         }
 
-        public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {            
             var caseReport = new CaseReportForListing(@event.CaseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
                 Message = @event.Message,
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Origin = @event.Origin,
+                ParsingErrorMessage = @event.ErrorMessages
             };
-            await _caseReports.Save(caseReport);
+            _caseReports.Save(caseReport);
         }
 
         //TODO: Remove error reports if they get fixed when we have events for that

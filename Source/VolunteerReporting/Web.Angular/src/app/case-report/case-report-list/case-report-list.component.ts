@@ -28,7 +28,6 @@ import {CaseReportExporter} from './exporter/case-report-exporter.service';
 export class CaseReportListComponent implements OnInit {
 
   listedReports: Array<CaseReportForListing>;
-  maxReports: number;
   filterField: string;
   filterValue: any;
 
@@ -39,13 +38,12 @@ export class CaseReportListComponent implements OnInit {
     'healthRiskId', 'healthRisk', 'message',
     'numberOfFemalesOver5', 'numberOfFemalesUnder5',
     'numberOfMalesOver5', 'numberOfMalesUnder5',
-    'timestamp', 'location'
+    'timestamp', 'location', 'origin', 'parsingErrorMessage'
   ];
 
   constructor(private caseReportService: AggregatedCaseReportService,
               private service: ReportService,
               private caseReportExporter: CaseReportExporter) {
-    this.maxReports = 10;
   }
 
   /**
