@@ -51,14 +51,10 @@ export class AddEditHealthRiskComponent implements OnInit {
     }
 
     addHealthRisk(){
-        this.healthRiskService.saveHealthRisk(this.risk)
-            .subscribe(() => //go to healthrisk page
-                (error) => {console.log(error); });
+        this.healthRiskService.saveHealthRisk(this.risk);
     };
 
     editHealthRisk(){
-        this.healthRiskService.updateHealthRisk(this.risk)
-        .subscribe(() => //go to healthrisk page
-            (error) => {console.log(error); });
+        this.healthRiskService.updateHealthRisk(this.risk);
     };
 }

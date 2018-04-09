@@ -19,14 +19,12 @@ export class HealthRiskService {
             .get('/api/healthRisk/'+ id);
     }
     
-    saveHealthRisk(item: HealthRisk): Observable<void> {
-        return this.apiService
-            .post('/api/healthRisk/addhealthrisk', item);
+    saveHealthRisk(item: HealthRisk){
+       this.apiService.post('/api/healthRisk/addhealthrisk', item);
     }
 
-    updateHealthRisk(item: HealthRisk) : Observable<void>{
-        return this.apiService
-            .post('api/healthRisk', item);
+    updateHealthRisk(item: HealthRisk){
+         this.apiService.post('api/healthRisk', item);
     }
 
     removeHealthRisk(id: string): Observable<void>{
