@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
+const API_URL = environment.api + '/api/datacollectors';
 
 @Injectable()
 export class DataCollectorService {
@@ -22,13 +23,8 @@ export class DataCollectorService {
       .catch((error) => console.error(error));
   }
 
-  getAllDataCollectors(): Promise<void> {
-    const url = environment.api + '/api/dataCollectors';
-
+  getAllDataCollectors() {
     return this.http
-      .get(url, { headers: this.headers })
-      .toPromise()
-      .then((users) => { console.log(users); })
-      .catch((error) => console.error(error));
+      .get(API_URL, {headers: this.headers});
   }
 }

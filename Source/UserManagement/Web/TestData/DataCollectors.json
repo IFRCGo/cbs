@@ -1,0 +1,50 @@
+[
+  {
+    "DataCollectorId": "7295289b-0763-4c7a-80df-ad667c445cdc",
+    "FullName": "Abraham Watson",
+    "DisplayName": "Abraham Watson_Disp",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "NationalSociety": "c6a1ffc6-0bb8-4a39-bd54-60cd3a47a730",
+    "PreferredLanguage": 0,
+    "GpsLocation": {
+      "Latitude": 123.0,
+      "Longitude": 123.0
+    },
+    "PhoneNumbers": [
+      "123456789"
+    ]
+  },
+  {
+    "DataCollectorId": "add38b75-db62-4ea2-b5ff-350d2baa1472",
+    "FullName": "Vanessa Wallace",
+    "DisplayName": "Vanessa Wallace_Disp",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "NationalSociety": "0f340ddd-b1ef-4a5f-93ea-6f935ed1e48f",
+    "PreferredLanguage": 0,
+    "GpsLocation": {
+      "Latitude": 123.0,
+      "Longitude": 123.0
+    },
+    "PhoneNumbers": [
+      "123456789"
+    ]
+  },
+  {
+    "DataCollectorId": "083e912b-3e40-403a-86ad-56a8cfc7bcf9",
+    "FullName": "Billie Mclaughlin",
+    "DisplayName": "Billie Mclaughlin_Disp",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "NationalSociety": "2a1b5af6-74a5-4f86-979c-3b67b1c6c9d5",
+    "PreferredLanguage": 0,
+    "GpsLocation": {
+      "Latitude": 123.0,
+      "Longitude": 123.0
+    },
+    "PhoneNumbers": [
+      "123456789"
+    ]
+  }
+]

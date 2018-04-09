@@ -28,7 +28,7 @@ services:
             image: redcrossredcrescent/cbs-vr-frontend
             version: 0.0.1-0.8b72df9
             service: cbs-volunteerreporting-frontend-service
-            path: /reporting
+            path: "/reporting.*"
         backend:
             image: redcrossredcrescent/cbs-vr-backend
             version: 0.0.1-0.8b72df9
