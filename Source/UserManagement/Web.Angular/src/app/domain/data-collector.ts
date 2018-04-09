@@ -3,6 +3,7 @@ export class DataCollector {
     fullName: string;
     displayName: string;
     yearOfBirth: number;
+    phoneNumberString: string;
     phoneNumbers: Array<string>;
     sex: string;
     nationalSociety: string;
@@ -18,7 +19,8 @@ export class DataCollector {
         this.fullName = o.fullName;
         this.displayName = o.displayName;
         this.yearOfBirth = o.yearOfBirth;
-        this.phoneNumbers = [''];
+        this.phoneNumberString = o.phoneNumberString;
+        this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;

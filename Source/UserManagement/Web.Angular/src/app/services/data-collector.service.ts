@@ -15,6 +15,12 @@ export class DataCollectorService {
   saveDataCollector(dataCollector: DataCollector): Promise<any> {
     const url = environment.api + '/api/datacollectors/register';
 
+    console.log(dataCollector);
+
+    dataCollector.phoneNumbers = dataCollector.phoneNumberString.split(',').map(function(item) {
+      return item.trim();
+    });
+
     console.log("Register url: " + url);
 
     return this.http

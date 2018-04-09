@@ -71,16 +71,16 @@
         name="longitude"
       />
     </fieldset>
-    <div class="form-group">
-      <label>Phone numbers</label>
-      <div *ngFor="let phoneNumber of user.phoneNumbers; index as i">
-        <input type="text" class="form-control"
-              [(ngModel)]="user.phoneNumbers[i]" name="item-{{i}}"
-              required
-             >
-      </div>
-      <button class="btn btn-success" (click)="addPhoneNumber()">Add phone number</button>
-    </div>
+  </div>
+  <label>Phone numbers (comma seperated)</label>
+  <div class="form-group">
+    <input type="text"
+      class="input-mini form-control" 
+      id="phoneNumber"
+      required
+      [(ngModel)]="user.phoneNumberString"
+      name="phoneNumber"
+        >
   </div>
   <div class="alert-danger" *ngIf="error">
     {{errorMsg}}

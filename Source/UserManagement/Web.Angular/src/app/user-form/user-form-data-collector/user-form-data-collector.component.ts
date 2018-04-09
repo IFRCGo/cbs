@@ -17,10 +17,6 @@ export class UserFormDataCollectorComponent {
   constructor(private dataColletorService: DataCollectorService) {
   }
 
-  addPhoneNumber() {
-    this.user.phoneNumbers.push('')
-  }
-
   submit() {
     this.dataColletorService.saveDataCollector(this.user)
       .then(response => {
