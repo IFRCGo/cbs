@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { NationalSocietyService } from './nationalsociety.service';
 import { ProjectService } from './project.service';
+import { HealthRiskService } from './healthRisk.service'
 import { UserService } from './user.service';
 import { UtilityService } from './utility.service';
 
@@ -15,6 +16,7 @@ import { UtilityService } from './utility.service';
     providers: [
         ApiService,
         ProjectService,
+        HealthRiskService,
         UtilityService,
         NationalSocietyService,
         UserService
