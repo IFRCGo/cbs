@@ -21,7 +21,9 @@
         "launchBrowser": true,
         "launchUrl": "swagger",
         "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS":"admin;alert;volunteerreporting",
+            "KAFKA_BOUNDED_CONTEXT_TOPIC":"usermanagement"
         },
         "applicationUrl": "http://localhost:5000/"
     }
