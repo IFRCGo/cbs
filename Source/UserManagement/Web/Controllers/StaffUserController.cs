@@ -52,37 +52,37 @@ namespace Web.Controllers
             return GetAllStaffUsers<BaseUser>();
         }
 
-        [HttpGet("getadmins")]
+        [HttpGet("admin")]
         public IActionResult GetAllAdmins()
         {
             return GetAllStaffUsers<Admin>();
         }
 
-        [HttpGet("getdataconsumers")]
+        [HttpGet("dataconsumer")]
         public IActionResult GetAllDataConsumers()
         {
             return GetAllStaffUsers<DataConsumer>();
         }
 
-        [HttpGet("getdatacoordinators")]
+        [HttpGet("datacoordinator")]
         public IActionResult GetAllDataCoordinator()
         {
             return GetAllStaffUsers<DataCoordinator>();
         }
 
-        [HttpGet("getdataowners")]
+        [HttpGet("dataowner")]
         public IActionResult GetAllDataOwners()
         {
             return GetAllStaffUsers<DataOwner>();
         }
 
-        [HttpGet("getdataverifiers")]
+        [HttpGet("dataverifier")]
         public IActionResult GetAllDataVerifiers()
         {
             return GetAllStaffUsers<DataVerifier>();
         }
 
-        [HttpGet("getsystemconfigurators")]
+        [HttpGet("systemconfigurator")]
         public IActionResult GetAllSystemConfigurators()
         {
             return GetAllStaffUsers<SystemConfigurator>();
@@ -92,43 +92,43 @@ namespace Web.Controllers
 
         #region Get By Id
 
-        [HttpGet("getuser/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             return GetStaffUserById<BaseUser>(id);
         }
 
-        [HttpGet("getadmin/{id}")]
+        [HttpGet("admin/{id}")]
         public IActionResult GetAdminById(Guid id)
         {
             return GetStaffUserById<Admin>(id);
         }
 
-        [HttpGet("getdataconsumer/{id}")]
+        [HttpGet("dataconsumer/{id}")]
         public IActionResult GetDataConsumerById(Guid id)
         {
             return GetStaffUserById<DataConsumer>(id);
         }
 
-        [HttpGet("getdatacoordinator/{id}")]
+        [HttpGet("datacoordinator/{id}")]
         public IActionResult GetDataCoordinatorById(Guid id)
         {
             return GetStaffUserById<DataCoordinator>(id);
         }
 
-        [HttpGet("getdataowner/{id}")]
+        [HttpGet("dataowner/{id}")]
         public IActionResult GetDataOwnerById(Guid id)
         {
             return GetStaffUserById<DataOwner>(id);
         }
 
-        [HttpGet("getdataverifier/{id}")]
+        [HttpGet("dataverifier/{id}")]
         public IActionResult GetDataVerifierById(Guid id)
         {
             return GetStaffUserById<DataVerifier>(id);
         }
 
-        [HttpGet("getsystemconfigurator/{id}")]
+        [HttpGet("systemconfigurator/{id}")]
         public IActionResult GetSystemConfiguratorById(Guid id)
         {
             return GetStaffUserById<SystemConfigurator>(id);
@@ -140,7 +140,7 @@ namespace Web.Controllers
 
         //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
 
-        [HttpPost("register/admin")]
+        [HttpPost("admin")]
         public IActionResult RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -150,7 +150,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("register/systemconfigurator")]
+        [HttpPost("systemconfigurator")]
         public IActionResult RegisterSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -160,7 +160,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("register/datacordinator")]
+        [HttpPost("datacordinator")]
         public IActionResult RegisterDatacordinator([FromBody] RegisterNewDataCoordinator command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -170,7 +170,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("register/dataowner")]
+        [HttpPost("dataowner")]
         public IActionResult RegisterDataOwner([FromBody] RegisterNewDataOwner command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -180,7 +180,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("register/staffdataconsumer")]
+        [HttpPost("staffdataconsumer")]
         public IActionResult RegisterDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -190,7 +190,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("register/staffdataverifier")]
+        [HttpPost("staffdataverifier")]
         public IActionResult RegisterDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
         {
             command.Role.StaffUserId = Guid.NewGuid();
@@ -204,7 +204,7 @@ namespace Web.Controllers
 
         #region Update Methods
 
-        [HttpPost("update/admin")]
+        [HttpPut("admin")]
         public IActionResult UpdateAdmin([FromBody] RegisterNewAdminUser command)
         {
             command.IsNewRegistration = false;
@@ -213,7 +213,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update/systemconfigurator")]
+        [HttpPut("systemconfigurator")]
         public IActionResult UpdateSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
         {
             command.IsNewRegistration = false;
@@ -222,7 +222,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update/datacordinator")]
+        [HttpPut("datacordinator")]
         public IActionResult UpdaterDataCordinator([FromBody] RegisterNewDataCoordinator command)
         {
             command.IsNewRegistration = false;
@@ -231,7 +231,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update/dataowner")]
+        [HttpPut("dataowner")]
         public IActionResult UpdateDataOwner([FromBody] RegisterNewDataOwner command)
         {
             command.IsNewRegistration = false;
@@ -240,7 +240,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update/staffdataconsumer")]
+        [HttpPut("staffdataconsumer")]
         public IActionResult UpdateDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
         {
             command.IsNewRegistration = false;
@@ -249,7 +249,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update/staffdataverifier")]
+        [HttpPut("staffdataverifier")]
         public IActionResult UpdateDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
         {
             command.IsNewRegistration = false;

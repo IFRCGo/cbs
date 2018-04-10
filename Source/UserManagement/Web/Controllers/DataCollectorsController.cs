@@ -49,7 +49,7 @@ namespace Web.Controllers
             return new NotFoundResult();  
         }
 
-        [HttpGet("getbyid/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             var result = _queryCoordinator.Execute(new DataCollectorById(_database, id), new PagingInfo());
@@ -62,7 +62,7 @@ namespace Web.Controllers
             return new NotFoundResult();
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public IActionResult Register([FromBody] RegisterDataCollector command)
         {
             command.DataCollectorId = Guid.NewGuid();
@@ -73,7 +73,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPut]
         public IActionResult Update([FromBody] RegisterDataCollector command)
         {
             command.IsNewRegistration = false;
