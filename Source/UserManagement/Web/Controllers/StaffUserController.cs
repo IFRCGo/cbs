@@ -138,7 +138,10 @@ namespace Web.Controllers
 
         #region Register
 
-        //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
+        //TODO: Woksin (10/04/18): Instead of relying on the commands being sent is as parameters, maybe
+        // we should retrieve a StaffUserRole instead
+        
+        //TODO: Everything here is functional, but in my opinion it gives too much responsibility to the frontend.
 
         [HttpPost("admin")]
         public IActionResult RegisterAdmin([FromBody] RegisterNewAdminUser command)
