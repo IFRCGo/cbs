@@ -38,5 +38,8 @@
         "@angular/compiler-cli": "^4.4.4",
         "@angular/language-service": "^4.4.4",
         "typescript": "~2.5.3"
+    },
+    "optionalDependencies": {
+        "fsevents": "*"
     }
 }
