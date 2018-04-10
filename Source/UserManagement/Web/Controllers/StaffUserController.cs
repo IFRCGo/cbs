@@ -4,24 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using doLittle.Read;
 using Domain.StaffUser.Registering;
-using Domain.StaffUser.Roles;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.AspNet;
 using MongoDB.Driver;
-using Read.DataCollectors;
 using Read.StaffUsers;
-using Read.StaffUsers.Models;
-using Admin = Read.StaffUsers.Models.Admin;
-using DataConsumer = Read.StaffUsers.Models.DataConsumer;
-using DataCoordinator = Read.StaffUsers.Models.DataCoordinator;
-using DataOwner = Read.StaffUsers.Models.DataOwner;
-using DataVerifier = Read.StaffUsers.Models.DataVerifier;
-using SystemConfigurator = Read.StaffUsers.Models.SystemConfigurator;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -50,43 +40,43 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult GetAllUsers()
         {
-            return GetAllStaffUsers<BaseUser>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.BaseUser>();
         }
 
         [HttpGet("admin")]
         public IActionResult GetAllAdmins()
         {
-            return GetAllStaffUsers<Admin>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.Admin>();
         }
 
         [HttpGet("dataconsumer")]
         public IActionResult GetAllDataConsumers()
         {
-            return GetAllStaffUsers<DataConsumer>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.DataConsumer>();
         }
 
         [HttpGet("datacoordinator")]
         public IActionResult GetAllDataCoordinator()
         {
-            return GetAllStaffUsers<DataCoordinator>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.DataCoordinator>();
         }
 
         [HttpGet("dataowner")]
         public IActionResult GetAllDataOwners()
         {
-            return GetAllStaffUsers<DataOwner>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.DataOwner>();
         }
 
         [HttpGet("dataverifier")]
         public IActionResult GetAllDataVerifiers()
         {
-            return GetAllStaffUsers<DataVerifier>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.DataVerifier>();
         }
 
         [HttpGet("systemconfigurator")]
         public IActionResult GetAllSystemConfigurators()
         {
-            return GetAllStaffUsers<SystemConfigurator>();
+            return GetAllStaffUsers<Read.StaffUsers.Models.SystemConfigurator>();
         }
 
         #endregion
@@ -96,56 +86,51 @@ namespace Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            return GetStaffUserById<BaseUser>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.BaseUser>(id);
         }
 
         [HttpGet("admin/{id}")]
         public IActionResult GetAdminById(Guid id)
         {
-            return GetStaffUserById<Admin>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.Admin>(id);
         }
 
         [HttpGet("dataconsumer/{id}")]
         public IActionResult GetDataConsumerById(Guid id)
         {
-            return GetStaffUserById<DataConsumer>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.DataConsumer>(id);
         }
 
         [HttpGet("datacoordinator/{id}")]
         public IActionResult GetDataCoordinatorById(Guid id)
         {
-            return GetStaffUserById<DataCoordinator>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.DataCoordinator>(id);
         }
 
         [HttpGet("dataowner/{id}")]
         public IActionResult GetDataOwnerById(Guid id)
         {
-            return GetStaffUserById<DataOwner>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.DataOwner>(id);
         }
 
         [HttpGet("dataverifier/{id}")]
         public IActionResult GetDataVerifierById(Guid id)
         {
-            return GetStaffUserById<DataVerifier>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.DataVerifier>(id);
         }
 
         [HttpGet("systemconfigurator/{id}")]
         public IActionResult GetSystemConfiguratorById(Guid id)
         {
-            return GetStaffUserById<SystemConfigurator>(id);
+            return GetStaffUserById<Read.StaffUsers.Models.SystemConfigurator>(id);
         }
 
         #endregion
 
         #region Register
 
-        //TODO: Woksin (10/04/18): Instead of relying on the commands being sent is as parameters, maybe
-        // we should retrieve a StaffUserRole instead
-        
-        //TODO: Everything here is functional, but in my opinion it gives too much responsibility to the frontend.
-
         [HttpPost("admin")]
-        public IActionResult RegisterAdmin([FromBody] Read.StaffUsers.Models.Admin admin)
+        public IActionResult RegisterAdmin([FromBody] Admin admin)
         {
             var command = new RegisterNewAdminUser
             {
@@ -166,7 +151,7 @@ namespace Web.Controllers
         }
 
         [HttpPost("systemconfigurator")]
-        public IActionResult RegisterSystemConfigurator([FromBody] Read.StaffUsers.Models.SystemConfigurator systemConfigurator)
+        public IActionResult RegisterSystemConfigurator([FromBody] SystemConfigurator systemConfigurator)
         {
             var command = new RegisterNewSystemConfigurator()
             {
@@ -186,13 +171,15 @@ namespace Web.Controllers
                     BirthYear = systemConfigurator.BirthYear
                 },
             };
+
+
             RegisterStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
 
             return Ok();
         }
 
         [HttpPost("datacordinator")]
-        public IActionResult RegisterDatacordinator([FromBody] Read.StaffUsers.Models.DataCoordinator dataCoordinator)
+        public IActionResult RegisterDatacordinator([FromBody] DataCoordinator dataCoordinator)
         {
             var command = new RegisterNewDataCoordinator()
             {
@@ -218,7 +205,7 @@ namespace Web.Controllers
         }
 
         [HttpPost("dataowner")]
-        public IActionResult RegisterDataOwner([FromBody] Read.StaffUsers.Models.DataOwner dataOwner)
+        public IActionResult RegisterDataOwner([FromBody] DataOwner dataOwner)
         {
             var command = new RegisterNewDataOwner()
             {
@@ -246,20 +233,48 @@ namespace Web.Controllers
         }
 
         [HttpPost("staffdataconsumer")]
-        public IActionResult RegisterDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
+        public IActionResult RegisterDataConsumer([FromBody] DataConsumer dataConsumer)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            command.IsNewRegistration = true;
+            var command = new RegisterNewStaffDataConsumer
+            {
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    FullName = dataConsumer.FullName,
+                    DisplayName = dataConsumer.DisplayName,
+                    Email = dataConsumer.Email,
+                    PreferredLanguage = dataConsumer.PreferredLanguage,
+                    NationalSociety = dataConsumer.NationalSociety,
+                    Sex = dataConsumer.Sex,
+                    BirthYear = dataConsumer.BirthYear,
+                    Location = dataConsumer.Location
+                }
+            };
             RegisterStaffUser<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>(command);
 
             return Ok();
         }
 
         [HttpPost("staffdataverifier")]
-        public IActionResult RegisterDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
+        public IActionResult RegisterDataVerifier([FromBody] DataVerifier dataVerifier)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            
+            var command = new RegisterNewStaffDataVerifier
+            {
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    FullName = dataVerifier.FullName,
+                    DisplayName = dataVerifier.DisplayName,
+                    Email = dataVerifier.Email,
+                    PreferredLanguage = dataVerifier.PreferredLanguage,
+                    NationalSociety = dataVerifier.NationalSociety,
+                    Sex = dataVerifier.Sex,
+                    BirthYear = dataVerifier.BirthYear,
+                    Location = dataVerifier.Location,
+                    PhoneNumbers = dataVerifier.PhoneNumbers.Select(p => p.Value)
+                }
+            };
             RegisterStaffUser<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>(command);
 
             return Ok();
@@ -270,55 +285,146 @@ namespace Web.Controllers
         #region Update Methods
 
         [HttpPut("admin")]
-        public IActionResult UpdateAdmin([FromBody] RegisterNewAdminUser command)
+        public IActionResult UpdateAdmin([FromBody] Admin admin)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewAdminUser
+            {
+                RegisteredAt = admin.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = admin.StaffUserId,
+                    FullName = admin.FullName,
+                    DisplayName = admin.DisplayName,
+                    Email = admin.Email
+                }
+            };
+            UpdateStaffUser<RegisterNewAdminUser, Domain.StaffUser.Roles.Admin>(command);
 
             return Ok();
         }
 
         [HttpPut("systemconfigurator")]
-        public IActionResult UpdateSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
+        public IActionResult UpdateSystemConfigurator([FromBody] SystemConfigurator systemConfigurator)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewSystemConfigurator
+            {
+                RegisteredAt = systemConfigurator.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = systemConfigurator.StaffUserId,
+                    FullName = systemConfigurator.FullName,
+                    DisplayName = systemConfigurator.DisplayName,
+                    Email = systemConfigurator.Email,
+                    PhoneNumbers = systemConfigurator.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = systemConfigurator.PreferredLanguage,
+                    NationalSociety = systemConfigurator.NationalSociety,
+                    Sex = systemConfigurator.Sex,
+                    AssignedNationalSocieties = systemConfigurator.AssignedNationalSocieties,
+                    BirthYear = systemConfigurator.BirthYear
+                },
+            };
+            UpdateStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
 
             return Ok();
         }
 
         [HttpPut("datacordinator")]
-        public IActionResult UpdaterDataCordinator([FromBody] RegisterNewDataCoordinator command)
+        public IActionResult UpdaterDataCordinator([FromBody] DataCoordinator dataCoordinator)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewDataCoordinator
+            {
+                RegisteredAt = dataCoordinator.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = dataCoordinator.StaffUserId,
+                    FullName = dataCoordinator.FullName,
+                    DisplayName = dataCoordinator.DisplayName,
+                    Email = dataCoordinator.Email,
+                    PhoneNumbers = dataCoordinator.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = dataCoordinator.PreferredLanguage,
+                    NationalSociety = dataCoordinator.NationalSociety,
+                    Sex = dataCoordinator.Sex,
+                    AssignedNationalSocieties = dataCoordinator.AssignedNationalSocieties,
+                    BirthYear = dataCoordinator.BirthYear
+                }
+            };
+            UpdateStaffUser<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>(command);
 
             return Ok();
         }
 
         [HttpPut("dataowner")]
-        public IActionResult UpdateDataOwner([FromBody] RegisterNewDataOwner command)
+        public IActionResult UpdateDataOwner([FromBody] DataOwner dataOwner)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewDataOwner
+            {
+                RegisteredAt = dataOwner.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = dataOwner.StaffUserId,
+                    FullName = dataOwner.FullName,
+                    DisplayName = dataOwner.DisplayName,
+                    Email = dataOwner.Email,
+                    PhoneNumbers = dataOwner.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = dataOwner.PreferredLanguage,
+                    NationalSociety = dataOwner.NationalSociety,
+                    Sex = dataOwner.Sex,
+                    BirthYear = dataOwner.BirthYear,
+                    DutyStation = dataOwner.DutyStation,
+                    Position = dataOwner.Position
+                }
+            };
+
+            UpdateStaffUser<RegisterNewDataOwner, Domain.StaffUser.Roles.DataOwner>(command);
 
             return Ok();
         }
 
         [HttpPut("staffdataconsumer")]
-        public IActionResult UpdateDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
+        public IActionResult UpdateDataConsumer([FromBody] DataConsumer dataConsumer)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewStaffDataConsumer
+            {
+                RegisteredAt = dataConsumer.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = dataConsumer.StaffUserId,
+                    FullName = dataConsumer.FullName,
+                    DisplayName = dataConsumer.DisplayName,
+                    Email = dataConsumer.Email,
+                    PreferredLanguage = dataConsumer.PreferredLanguage,
+                    NationalSociety = dataConsumer.NationalSociety,
+                    Sex = dataConsumer.Sex,
+                    BirthYear = dataConsumer.BirthYear,
+                    Location = dataConsumer.Location
+                }
+            };
+            UpdateStaffUser<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>(command);
 
             return Ok();
         }
 
         [HttpPut("staffdataverifier")]
-        public IActionResult UpdateDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
+        public IActionResult UpdateDataVerifier([FromBody] DataVerifier dataVerifier)
         {
-            command.IsNewRegistration = false;
-            _staffUserCommandHandler.Handle(command);
+            var command = new RegisterNewStaffDataVerifier
+            {
+                RegisteredAt = dataVerifier.RegistrationDate,
+                Role =
+                {
+                    StaffUserId = dataVerifier.StaffUserId,
+                    FullName = dataVerifier.FullName,
+                    DisplayName = dataVerifier.DisplayName,
+                    Email = dataVerifier.Email,
+                    PreferredLanguage = dataVerifier.PreferredLanguage,
+                    NationalSociety = dataVerifier.NationalSociety,
+                    Sex = dataVerifier.Sex,
+                    BirthYear = dataVerifier.BirthYear,
+                    Location = dataVerifier.Location,
+                    PhoneNumbers = dataVerifier.PhoneNumbers.Select(p => p.Value)
+                }
+            };
+            UpdateStaffUser<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>(command);
 
             return Ok();
         }
@@ -328,7 +434,7 @@ namespace Web.Controllers
         #region Private Methods
 
         private IActionResult GetAllStaffUsers<T>()
-            where T : BaseUser
+            where T : Read.StaffUsers.Models.BaseUser
         {
             var result = _queryCoordinator.Execute(new AllStaffUsers<T>(_database), new PagingInfo());
 
@@ -341,7 +447,7 @@ namespace Web.Controllers
         }
 
         private IActionResult GetStaffUserById<T>(Guid id)
-            where T : BaseUser
+            where T : Read.StaffUsers.Models.BaseUser
         {
             var result = _queryCoordinator.Execute(new StaffUserById<T>(_database, id), new PagingInfo());
 
@@ -355,20 +461,21 @@ namespace Web.Controllers
 
         private void RegisterStaffUser<TRegistration, TRole>(TRegistration command)
             where TRegistration : NewStaffRegistration<TRole>
-            where TRole : StaffRole
+            where TRole : Domain.StaffUser.Roles.StaffRole
         {
-            command.Role.StaffUserId = Guid.NewGuid();
             command.IsNewRegistration = true;
-            //TODO: Hmm, a working workaround this is... Though, I think it would be better to do this in AggregateRoot 
+            command.Role.StaffUserId = Guid.NewGuid();
             command.RegisteredAt = DateTimeOffset.UtcNow;
+
             _staffUserCommandHandler.Handle(command as dynamic);
         }
 
         private void UpdateStaffUser<TRegistration, TRole>(TRegistration command)
             where TRegistration : NewStaffRegistration<TRole>
-            where TRole : StaffRole
+            where TRole : Domain.StaffUser.Roles.StaffRole
         {
             command.IsNewRegistration = false;
+
             _staffUserCommandHandler.Handle(command as dynamic);
         }
 
