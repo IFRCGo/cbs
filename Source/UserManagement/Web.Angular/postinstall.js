@@ -18,7 +18,10 @@ var copyRecursiveSync = function(src, dest) {
 
 fs.exists('./src/app/navigation', result => {
     if (!result) {
+        console.log('Navigation symlink / folder does not exist - copy across');
         copyRecursiveSync('../../Navigation/', './src/app/navigation');
-        console.log("Navigation folder copied")
+        console.log('All files copied');
+    } else {
+        console.log('Navigation symlink or folder exists - carry on');
     }
 });
