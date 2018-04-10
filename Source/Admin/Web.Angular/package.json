@@ -28,7 +28,6 @@
         "@angular/router": "^4.4.4",
         "bootstrap-sass": "^3.3.7",
         "core-js": "^2.5.3",
-        "fs-extra": "^5.0.0",
         "ngx-bootstrap": "^2.0.0-rc.0",
         "rxjs": "^5.5.6",
         "zone.js": "^0.8.20"
@@ -38,8 +37,5 @@
         "@angular/compiler-cli": "^4.4.4",
         "@angular/language-service": "^4.4.4",
         "typescript": "~2.5.3"
-    },
-    "optionalDependencies": {
-        "fsevents": "*"
     }
 }
