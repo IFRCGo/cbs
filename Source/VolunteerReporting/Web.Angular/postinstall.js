@@ -16,7 +16,7 @@ var copyRecursiveSync = function(src, dest) {
   }
 };
 
-fs.exists('./src/app/navigation', result => {
+fs.exists('./src/app/navigation/nav-top-bar/nav-top-bar.component.ts', result => {
     if (!result) {
         console.log('Navigation symlink / folder does not exist - copy across');
         copyRecursiveSync('../../Navigation/', './src/app/navigation');
@@ -25,3 +25,4 @@ fs.exists('./src/app/navigation', result => {
         console.log('Navigation symlink or folder exists - carry on');
     }
 });
+
