@@ -23,7 +23,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
 @NgModule({
     declarations: [
         AppComponent,
-        NavTopBarComponent,
+        NavTopBarComponent
     ],
     imports: [
         BrowserModule,
@@ -32,6 +32,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
         rootRouting,
         ProjectModule,
         ModalModule.forRoot()
+        
     ],
     bootstrap: [AppComponent]
 })
