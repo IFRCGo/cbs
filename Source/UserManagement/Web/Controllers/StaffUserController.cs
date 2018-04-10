@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using doLittle.Read;
 using Domain.StaffUser.Registering;
@@ -144,40 +145,101 @@ namespace Web.Controllers
         //TODO: Everything here is functional, but in my opinion it gives too much responsibility to the frontend.
 
         [HttpPost("admin")]
-        public IActionResult RegisterAdmin([FromBody] RegisterNewAdminUser command)
+        public IActionResult RegisterAdmin([FromBody] Read.StaffUsers.Models.Admin admin)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            command.IsNewRegistration = true;
+            var command = new RegisterNewAdminUser
+            {
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    StaffUserId = Guid.NewGuid(),
+                    FullName = admin.FullName,
+                    DisplayName = admin.DisplayName,
+                    Email = admin.Email
+                },
+            };
+
             RegisterStaffUser<RegisterNewAdminUser, Domain.StaffUser.Roles.Admin>(command);
 
             return Ok();
         }
 
         [HttpPost("systemconfigurator")]
-        public IActionResult RegisterSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
+        public IActionResult RegisterSystemConfigurator([FromBody] Read.StaffUsers.Models.SystemConfigurator systemConfigurator)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            command.IsNewRegistration = true;
+            var command = new RegisterNewSystemConfigurator()
+            {
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    StaffUserId = Guid.NewGuid(),
+                    FullName = systemConfigurator.FullName,
+                    DisplayName = systemConfigurator.DisplayName,
+                    Email = systemConfigurator.Email,
+                    PhoneNumbers = systemConfigurator.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = systemConfigurator.PreferredLanguage,
+                    NationalSociety = systemConfigurator.NationalSociety,
+                    Sex = systemConfigurator.Sex,
+                    AssignedNationalSocieties = systemConfigurator.AssignedNationalSocieties,
+                    BirthYear = systemConfigurator.BirthYear
+                },
+            };
             RegisterStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
 
             return Ok();
         }
 
         [HttpPost("datacordinator")]
-        public IActionResult RegisterDatacordinator([FromBody] RegisterNewDataCoordinator command)
+        public IActionResult RegisterDatacordinator([FromBody] Read.StaffUsers.Models.DataCoordinator dataCoordinator)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            command.IsNewRegistration = true;
+            var command = new RegisterNewDataCoordinator()
+            {
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    StaffUserId = Guid.NewGuid(),
+                    FullName = dataCoordinator.FullName,
+                    DisplayName = dataCoordinator.DisplayName,
+                    Email = dataCoordinator.Email,
+                    PhoneNumbers = dataCoordinator.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = dataCoordinator.PreferredLanguage,
+                    NationalSociety = dataCoordinator.NationalSociety,
+                    Sex = dataCoordinator.Sex,
+                    AssignedNationalSocieties = dataCoordinator.AssignedNationalSocieties,
+                    BirthYear = dataCoordinator.BirthYear
+                }
+            };
             RegisterStaffUser<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>(command);
 
             return Ok();
         }
 
         [HttpPost("dataowner")]
-        public IActionResult RegisterDataOwner([FromBody] RegisterNewDataOwner command)
+        public IActionResult RegisterDataOwner([FromBody] Read.StaffUsers.Models.DataOwner dataOwner)
         {
-            command.Role.StaffUserId = Guid.NewGuid();
-            command.IsNewRegistration = true;
+            var command = new RegisterNewDataOwner()
+            {
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                Role =
+                {
+                    StaffUserId = Guid.NewGuid(),
+                    FullName = dataOwner.FullName,
+                    DisplayName = dataOwner.DisplayName,
+                    Email = dataOwner.Email,
+                    PhoneNumbers = dataOwner.PhoneNumbers.Select(p => p.Value),
+                    PreferredLanguage = dataOwner.PreferredLanguage,
+                    NationalSociety = dataOwner.NationalSociety,
+                    Sex = dataOwner.Sex,
+                    BirthYear = dataOwner.BirthYear,
+                    DutyStation = dataOwner.DutyStation,
+                    Position = dataOwner.Position
+                }
+            };
+
             RegisterStaffUser<RegisterNewDataOwner, Domain.StaffUser.Roles.DataOwner>(command);
 
             return Ok();
