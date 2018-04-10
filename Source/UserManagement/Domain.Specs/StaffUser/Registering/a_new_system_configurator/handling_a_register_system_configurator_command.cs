@@ -2,7 +2,6 @@ using Machine.Specifications;
 using doLittle.Time;
 using doLittle.Domain;
 using Domain.StaffUser.Registering;
-using Events.StaffUser;
 using Moq;
 using System;
 using Events.StaffUser.Registration;

@@ -17,4 +17,7 @@ export class CaseReportForListing implements Report {
     numberOfMalesAges0To4: number;
     timestamp: Date;
     location: Location;AgedOver4;
+
+    origin: string;
+    parsingErrorMessage: Array<string>;
 }

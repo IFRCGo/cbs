@@ -15,11 +15,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
         static RegisterNewAdminUserBusinessRulesValidator sut;
         static StaffUserIsRegistered staff_user_is_registered;
         static ValidationResult validation_results;
-        Establish context = () => {
+
+        private Establish context = () => {
             register = given.commands.build_valid_instance<RegisterNewAdminUser>();
             staff_user_is_registered = (id) => false;
-
-            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);
+            var is_new_registration = true;
+            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered, is_new_registration);
         };
 
         Because of = () => validation_results = sut.Validate(register);

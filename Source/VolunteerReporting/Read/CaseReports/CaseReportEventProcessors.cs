@@ -19,7 +19,7 @@ namespace Read.CaseReports
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
         }
         
-        public async Task Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event)
         {
             // Save CaseReport in the CaseReports DB
             var caseReport = new CaseReport(@event.CaseReportId)
@@ -33,9 +33,9 @@ namespace Read.CaseReports
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp
             };
-            await _caseReports.Save(caseReport);
+            _caseReports.Save(caseReport);
         }
-        public async Task Process(CaseReportFromUnknownDataCollectorReceived @event)
+        public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
             // Save CaseReport in the CaseReportsFromUnkown... DB
             var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId)
@@ -48,7 +48,7 @@ namespace Read.CaseReports
                 NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
                 Timestamp = @event.Timestamp
             };
-            await _caseReportsFromUnknownDataCollectors.Save(caseReport);
+            _caseReportsFromUnknownDataCollectors.Save(caseReport);
         }   
         
         public async Task Process(CaseReportIdentified @event)

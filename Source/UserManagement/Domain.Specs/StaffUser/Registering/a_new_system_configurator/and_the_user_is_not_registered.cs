@@ -17,6 +17,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
         static DateTimeOffset now;
         static RegisterNewSystemConfigurator cmd;
         static SystemConfigurator role;
+        static bool is_new_registration;
 
         private Establish context = () =>
         {
@@ -25,14 +26,15 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             role = cmd.Role;
             role.BirthYear = 1980;
             role.Sex = Sex.Female;
+            is_new_registration = true;
             sut = new su.StaffUser(role.StaffUserId);
         };
 
         Because of = () =>
         {
-            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email, now,
+            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.AssignedNationalSocieties,
-                    role.BirthYear, role.Sex);
+                    role.BirthYear, role.Sex, now);
         };
         It should_create_a_new_user_registed_event_with_the_correct_values
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(

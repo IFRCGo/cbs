@@ -78,7 +78,7 @@ namespace Infrastructure.Kafka.BoundedContexts
 
                 foreach( var rawContentAndEnvelope in raw ) 
                 {
-                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Content.EventSourceId.ToString());
+                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Envelope.EventSourceId.ToString());
                     var eventIdentifier = _applicationResourceIdentifierConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
                     var version = EventSourceVersion.FromCombined((double)rawContentAndEnvelope.Envelope.Version);
                     var correlationId = (TransactionCorrelationId)Guid.Parse(rawContentAndEnvelope.Envelope.CorrelationId.ToString());
@@ -140,7 +140,7 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         IEvent GetEventFrom(dynamic rawContentAndEnvelope, EventSourceId eventSourceId, Type eventType)
         {
-            var @event = Activator.CreateInstance(eventType, eventSourceId) as IEvent;
+            var @event = Activator.CreateInstance(eventType) as IEvent;
             using (var textReader = new StringReader(rawContentAndEnvelope.Content.ToString()))
             {
                 using (var reader = new JsonTextReader(textReader))

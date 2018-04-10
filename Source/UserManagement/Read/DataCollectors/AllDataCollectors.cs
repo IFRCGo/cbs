@@ -9,13 +9,13 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public AllDataCollectors(IMongoCollection<DataCollector> collection)
+        public AllDataCollectors(IMongoDatabase database)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors");
 
         }
 
-        public IAsyncCursor<DataCollector> Query => _collection.FindSync(_ => true);
+        public IEnumerable<DataCollector> Query => _collection.FindSync(_ => true).ToList();
         
     }
 
@@ -23,15 +23,13 @@ namespace Read.DataCollectors
     {
         private readonly IMongoCollection<DataCollector> _collection;
 
-        public AllDataCollectorsAsync(IMongoCollection<DataCollector> collection)
+        public AllDataCollectorsAsync(IMongoDatabase database)
         {
-            _collection = collection;
+            _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
 
         }
 
-        public PagingInfo PagingInfo { get; set; }
-
-        public IAsyncCursor<DataCollector> Query => _collection.FindAsync(_ => true).Result; //TODO: Safe?
+        public IEnumerable<DataCollector> Query => _collection.FindAsync(_ => true).Result.ToList(); //TODO: Safe?
     }
 
 }

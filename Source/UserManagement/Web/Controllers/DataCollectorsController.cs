@@ -2,10 +2,8 @@ using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.DataCollectors;
 using System;
-using System.Threading.Tasks;
 using doLittle.Read;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.Update;
 using Domain.DataCollector;
 using MongoDB.Driver;
 
@@ -18,11 +16,13 @@ namespace Web.Controllers
     {
         //private readonly IDataCollectors _dataCollectors;
 
-        private readonly IMongoCollection<Read.DataCollectors.DataCollector> _collection;
+        private readonly IMongoDatabase _database;
 
         private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
         private readonly IQueryCoordinator _queryCoordinator;
+
+        private readonly IDataCollectors _dataCollectors;
 
         public DataCollectorsController (
             IMongoDatabase database,
@@ -30,39 +30,54 @@ namespace Web.Controllers
             IDataCollectors dataCollectors,
             IQueryCoordinator queryCoordinator)
         {
-            _collection = database.GetCollection<Read.DataCollectors.DataCollector>("DataCollectors");
-            //_dataCollectors = dataCollectors;
+            _database = database;
             _dataCollectorCommandHandler = dataCollectorCommand;
             _queryCoordinator = queryCoordinator;
+            _dataCollectors = dataCollectors;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
-            var result = _queryCoordinator.Execute(new AllDataCollectors(_collection), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllDataCollectors(_database), new PagingInfo());
 
             if (result.Success)
             {
                 return Ok(result.Items);
             }
 
+            return new NotFoundResult();  
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var result = _queryCoordinator.Execute(new DataCollectorById(_database, id), new PagingInfo());
+
+            if (result.Success)
+            {
+                return Ok(result.Items);
+            }
+            //TODO: For this, and the rest of the endpoints: Should probably return something else than 404?
             return new NotFoundResult();
-            
         }
 
         [HttpPost("register")]
-        public IActionResult Post([FromBody] RegisterDataCollector command)
+        public IActionResult Register([FromBody] RegisterDataCollector command)
         {
             command.DataCollectorId = Guid.NewGuid();
+            command.IsNewRegistration = true;
+            command.RegisteredAt = DateTimeOffset.UtcNow;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
 
         [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateDataCollector command)
+        public IActionResult Update([FromBody] RegisterDataCollector command)
         {
-            // TODO: Changes has to be made to updating the datacollector.
-            // Should use the same system as staffusers
+            command.IsNewRegistration = false;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }

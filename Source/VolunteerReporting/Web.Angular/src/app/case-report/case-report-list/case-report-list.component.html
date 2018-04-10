@@ -23,10 +23,10 @@
             <th sortable-column="status">Status</th>
             <th sortable-column="dataCollector">Data&nbsp;Collector</th>
             <th sortable-column="healthRisk">Health&nbsp;Risk</th>
-            <th sortable-column="femalesAgedOver4">Females aged over 4</th>
-            <th sortable-column="femalesAges0To4">Females ages 0 to 4</th>
-            <th sortable-column="malesAgedOver4">Males aged over 4</th>
-            <th sortable-column="malesAges0To4">Males ages 0 to 4</th>
+            <th sortable-column="malesAges0To4">Males &lt; 5</th>
+            <th sortable-column="malesAgedOver4">Males &ge; 5</th>
+            <th sortable-column="femalesAges0To4">Females &lt; 5</th>
+            <th sortable-column="femalesAgedOver4">Females &ge; 5</th>
             <th>Lat&nbsp;/&nbsp;Long</th>
         </tr>
     </thead>
@@ -40,21 +40,22 @@
             </td>
             <td>
                 <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
+                <span *ngIf="!caseReport.dataCollectorId">Origin:{{caseReport.origin}}&nbsp;</span>
             </td>
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
-                <td>{{caseReport.numberOfFemalesAgedOver4}}</td>
-                <td>{{caseReport.numberOfFemalesAges0To4}}</td>
-                <td>{{caseReport.numberOfMalesAgedOver4}}</td>
                 <td>{{caseReport.numberOfMalesAges0To4}}</td>
+                <td>{{caseReport.numberOfMalesAgedOver4}}</td>
+                <td>{{caseReport.numberOfFemalesAges0To4}}</td>
+                <td>{{caseReport.numberOfFemalesAgedOver4}}</td>
                 <td>
-                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}} / {{caseReport.location.longitude | number}}</span>
+                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}}, {{caseReport.location.longitude | number}}</span>
                 </td>
             </ng-container>
             <ng-container *ngIf="!caseReport.healthRiskId">
                 <td colspan="6">
-                    {{caseReport.message}}
+                    {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
         </tr>

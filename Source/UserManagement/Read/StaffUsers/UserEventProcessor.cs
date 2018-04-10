@@ -102,10 +102,6 @@ namespace Read.StaffUsers
         public void Process(PhoneNumberRegistered @event)
         {
             var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            if (baseUser == null)
-            {
-                throw new UserNotFound($"The user with id {@event.StaffUserId} was not found");
-            }
             try
             {
                 dynamic user = baseUser;
@@ -121,10 +117,6 @@ namespace Read.StaffUsers
         public void Process(NationalSocietyAssigned @event)
         {
             var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            if (baseUser == null)
-            {
-                throw new UserNotFound($"The user with id {@event.StaffUserId} was not found");
-            }
             try
             {
                 dynamic user = baseUser;

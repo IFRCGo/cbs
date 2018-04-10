@@ -83,15 +83,15 @@ namespace Web.Controllers
             var _collection = _database.GetCollection<DataCollector>("DataCollector");
             _collection.DeleteMany(v => true);
 
-            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
             foreach (var dataCollector in dataCollectors)
             {
-                Apply(dataCollector.Id, dataCollector);
+                Apply(dataCollector.DataCollectorId, dataCollector);
                 Apply(Guid.NewGuid(), new PhoneNumberAddedToDataCollector
                 {
-                    DataCollectorId = dataCollector.Id,
+                    DataCollectorId = dataCollector.DataCollectorId,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
                 });
             }

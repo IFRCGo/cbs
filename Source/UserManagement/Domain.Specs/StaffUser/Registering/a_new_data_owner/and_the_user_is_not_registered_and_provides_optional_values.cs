@@ -16,6 +16,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
         static DateTimeOffset now;
         static RegisterNewDataOwner cmd;
         static DataOwner role;
+        static bool is_new_registration;
 
         private Establish context = () =>
         {
@@ -25,13 +26,14 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             role = cmd.Role;
             role.BirthYear = 1980;
             role.Sex = Sex.Female;
+            is_new_registration = true;
         };
 
         Because of = () =>
         {
-            sut.RegisterNewDataOwner(cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email, now,
+            sut.RegisterNewDataOwner(is_new_registration, cmd.Role.FullName, cmd.Role.DisplayName, cmd.Role.Email,
                 cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,
-                cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Position, cmd.Role.DutyStation);
+                cmd.Role.BirthYear, cmd.Role.Sex, cmd.Role.Position, cmd.Role.DutyStation, now);
         };
 
         It should_create_a_new_user_registed_event_with_the_correct_values

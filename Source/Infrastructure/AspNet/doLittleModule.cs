@@ -71,8 +71,8 @@ namespace Infrastructure.AspNet
 
             var applicationStructureBuilder =
                 new ApplicationStructureConfigurationBuilder()
-                    .Include(ApplicationAreas.Domain,
-                        "Infrastructure.AspNet.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
+                    .Include(ApplicationAreas.Domain,"Infrastructure.AspNet.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
+                    .Include(ApplicationAreas.Domain, "Infrastructure.Kafka.BoundedContexts.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Domain, "Domain.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Events, "Events.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*")
                     .Include(ApplicationAreas.Read, "Read.-{BoundedContext}.-{Module}.-{Feature}.^{SubFeature}*");
