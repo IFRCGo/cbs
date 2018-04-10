@@ -139,53 +139,126 @@ namespace Web.Controllers
         #region Register
 
         //TODO: Update to return CommandResult when the doLittle endpoint for queries and coommands is released :)
+
         [HttpPost("register/admin")]
-        public void RegisterAdmin([FromBody] RegisterNewAdminUser command)
+        public IActionResult RegisterAdmin([FromBody] RegisterNewAdminUser command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewAdminUser, Domain.StaffUser.Roles.Admin>(command);
+
+            return Ok();
         }
+
         [HttpPost("register/systemconfigurator")]
-        public void RegisterAdmin([FromBody] RegisterNewSystemConfigurator command)
+        public IActionResult RegisterSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewSystemConfigurator, Domain.StaffUser.Roles.SystemConfigurator>(command);
+
+            return Ok();
         }
+
         [HttpPost("register/datacordinator")]
-        public void RegisterAdmin([FromBody] RegisterNewDataCoordinator command)
+        public IActionResult RegisterDatacordinator([FromBody] RegisterNewDataCoordinator command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewDataCoordinator, Domain.StaffUser.Roles.DataCoordinator>(command);
+
+            return Ok();
         }
+
         [HttpPost("register/dataowner")]
-        public void RegisterAdmin([FromBody] RegisterNewDataOwner command)
+        public IActionResult RegisterDataOwner([FromBody] RegisterNewDataOwner command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewDataOwner, Domain.StaffUser.Roles.DataOwner>(command);
+
+            return Ok();
         }
+
         [HttpPost("register/staffdataconsumer")]
-        public void RegisterAdmin([FromBody] RegisterNewStaffDataConsumer command)
+        public IActionResult RegisterDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            command.IsNewRegistration = true;
             RegisterStaffUser<RegisterNewStaffDataConsumer, Domain.StaffUser.Roles.DataConsumer>(command);
+
+            return Ok();
         }
+
         [HttpPost("register/staffdataverifier")]
-        public void RegisterAdmin([FromBody] RegisterNewStaffDataVerifier command)
+        public IActionResult RegisterDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
         {
+            command.Role.StaffUserId = Guid.NewGuid();
+            
             RegisterStaffUser<RegisterNewStaffDataVerifier, Domain.StaffUser.Roles.DataVerifier>(command);
+
+            return Ok();
         }
 
         #endregion
 
-        //TODO: Implement when we have decided on how updating should work for the staffusers
-        //[HttpPost("update")]
-        //public void Update([FromBody] UpdateStaffUser command)
-        //{
-        //    // of the staffuser types to ensure that the correct information is 
-        //    // given?
-        //    _staffUserCommandHandler.Handle(command);
+        #region Update Methods
 
-        //}
-        //[HttpDelete("delete")]
-        //public void Delete([FromBody] DeleteStaffUser command)
-        //{
-        //    _staffUserCommandHandler.Handle(command);
-        //}
+        [HttpPost("update/admin")]
+        public IActionResult UpdateAdmin([FromBody] RegisterNewAdminUser command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        [HttpPost("update/systemconfigurator")]
+        public IActionResult UpdateSystemConfigurator([FromBody] RegisterNewSystemConfigurator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        [HttpPost("update/datacordinator")]
+        public IActionResult UpdaterDataCordinator([FromBody] RegisterNewDataCoordinator command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        [HttpPost("update/dataowner")]
+        public IActionResult UpdateDataOwner([FromBody] RegisterNewDataOwner command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        [HttpPost("update/staffdataconsumer")]
+        public IActionResult UpdateDataConsumer([FromBody] RegisterNewStaffDataConsumer command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        [HttpPost("update/staffdataverifier")]
+        public IActionResult UpdateDataVerifier([FromBody] RegisterNewStaffDataVerifier command)
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command);
+
+            return Ok();
+        }
+
+        #endregion
 
         #region Private Methods
 
@@ -220,8 +293,18 @@ namespace Web.Controllers
             where TRole : StaffRole
         {
             command.Role.StaffUserId = Guid.NewGuid();
-            var registrationCmd = command as dynamic;
-            _staffUserCommandHandler.Handle(registrationCmd);
+            command.IsNewRegistration = true;
+            //TODO: Hmm, a working workaround this is... Though, I think it would be better to do this in AggregateRoot 
+            command.RegisteredAt = DateTimeOffset.UtcNow;
+            _staffUserCommandHandler.Handle(command as dynamic);
+        }
+
+        private void UpdateStaffUser<TRegistration, TRole>(TRegistration command)
+            where TRegistration : NewStaffRegistration<TRole>
+            where TRole : StaffRole
+        {
+            command.IsNewRegistration = false;
+            _staffUserCommandHandler.Handle(command as dynamic);
         }
 
         #endregion

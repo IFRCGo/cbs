@@ -1,13 +1,12 @@
 using doLittle.Domain;
 using doLittle.Time;
-using doLittle.Runtime.Commands;
 
 namespace Domain.StaffUser.Registering
 {
     public class RegisteringCommandHandlers : IRegisteringCommandHandlers
     {
-        IAggregateRootRepositoryFor<StaffUser> _repository;
-        ISystemClock _systemClock;
+        readonly IAggregateRootRepositoryFor<StaffUser> _repository;
+        readonly ISystemClock _systemClock;
 
         public RegisteringCommandHandlers(IAggregateRootRepositoryFor<StaffUser> repository, ISystemClock systemClock)
         {
@@ -18,53 +17,55 @@ namespace Domain.StaffUser.Registering
         public void Handle(RegisterNewAdminUser command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewAdminUser(command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime());
+            user.RegisterNewAdminUser(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewDataCoordinator command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewDataCoordinator(command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(), command.Role.NationalSociety,
+            user.RegisterNewDataCoordinator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex,
+                                        command.RegisteredAt);
         }
 
         public void Handle(RegisterNewSystemConfigurator command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewSystemConfigurator(command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+            user.RegisterNewSystemConfigurator(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex,
+                                        command.RegisteredAt);
         }
 
         public void Handle(RegisterNewDataOwner command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewDataOwner(command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+            user.RegisterNewDataOwner(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                        command.Role.Email, command.Role.NationalSociety,
                                          command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
-                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation);
+                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewDataVerifier(command.Role.FullName, command.Role.DisplayName, 
-                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+            user.RegisterNewDataVerifier(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                                command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, command.RegisteredAt);
         }
 
         public void Handle(RegisterNewStaffDataConsumer command)
         {
             var user = _repository.Get(command.Role.StaffUserId);
-            user.RegisterNewDataConsumer(command.Role.FullName, command.Role.DisplayName, 
-                                                command.Role.Email, _systemClock.GetCurrentTime(),command.Role.NationalSociety,
+            user.RegisterNewDataConsumer(command.IsNewRegistration, command.Role.FullName, command.Role.DisplayName, 
+                                                command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, command.RegisteredAt);
         }
     }
 }

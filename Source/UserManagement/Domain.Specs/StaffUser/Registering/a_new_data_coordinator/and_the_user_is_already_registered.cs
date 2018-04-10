@@ -12,23 +12,25 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static DateTimeOffset now;
         static Exception result;
         static RegisterNewDataCoordinator cmd;
+        static bool is_new_registration;
 
-        Establish context = () => 
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
+            is_new_registration = true;
             sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataCoordinator(cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,now,
+            sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers, cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex);
+                    cmd.Role.BirthYear, cmd.Role.Sex, now);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataCoordinator(cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,now,
+            () =>  sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers, cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex)
+                    cmd.Role.BirthYear, cmd.Role.Sex, now)
         );
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();

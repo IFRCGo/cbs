@@ -3,23 +3,22 @@
   *  Licensed under the MIT License. See LICENSE in the project root for license information.
   *--------------------------------------------------------------------------------------------*/
 
- using Machine.Specifications;
+using Domain.DataCollector.Registering;
+using Machine.Specifications;
  using FluentValidation.Results;
- using System.Collections.Generic;
- using Domain.DataCollector.Update;
 
  namespace Domain.Specs.DataCollector.when_updating_a_data_collector
  {
-     [Subject(typeof(UpdateDataCollectorValidator))]
+     [Subject("Update")]
      public class and_validating_a_valid_command
      {
-         static UpdateDataCollector cmd;
-         static UpdateDataCollectorValidator validator;
+         static RegisterDataCollector cmd;
+         static RegisterDataCollectorValidator validator;
          static ValidationResult validation_results;
 
          Establish context = () => 
          {
-             validator = new UpdateDataCollectorValidator();
+             validator = new RegisterDataCollectorValidator();
 
              cmd = given.a_command_builder.get_valid_command();
          };
