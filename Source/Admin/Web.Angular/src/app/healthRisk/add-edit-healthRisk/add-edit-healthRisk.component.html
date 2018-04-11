@@ -1,0 +1,38 @@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Health risk:</label>
+        <div class="col-sm-9">
+            <input type="text" [(ngModel)]="risk.name" name="name" id="name" 
+            class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="case">Case Definition:</label>
+        <div class="col-sm-9">
+            <textarea  ref-textarea  [(ngModel)]="risk.caseDefinition" name="case" id="case" cols="30" rows="10" 
+            class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="threshold">Alert Threshold:</label>
+        <div class="col-sm-3">
+            <input type="number" [(ngModel)]="risk.threshold" name="threshold" id="threshold" 
+            class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="message">Key Message:</label>
+        <div class="col-sm-9">
+            <input type="text" [(ngModel)]="risk.message" name="message" id="message" class="form-control" />
+        </div>    
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="action">Key Action:</label>
+        <div class="col-sm-9">
+            <input type="text" [(ngModel)]="risk.action" name="action" id="action"   class="form-control"/>
+        </div>
+    </div>
+    <div>
+        <button (click)="addEditHealthRisk()" type="submit" class="btn btn-primary pull-right">Save</button>
+    </div>
+</form>
