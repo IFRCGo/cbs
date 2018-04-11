@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CaseReportModule } from './case-report/case-report.module';
 import { CoreModule } from './core/core.module';
-import { NavTopBarComponent } from './navigation/nav-top-bar/nav-top-bar.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 @NgModule({
     declarations: [
