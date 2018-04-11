@@ -22,6 +22,7 @@ import { UserFormDataVerifierComponent } from './user-form/user-form-data-verifi
 import { UserFormDataCollectorComponent } from './user-form/user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
 import { DataCollectorDetailComponent } from './user-detail/datacollector-detail.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 import { USER_FORM_ROUTES } from './user-form';
 import { USER_DETAIL_ROUTES } from './user-detail';
@@ -49,7 +50,8 @@ console.log(appRoutes);
     UserFormDataVerifierComponent,
     UserFormDataCollectorComponent,
     UserFormDataConsumerComponent,
-    DataCollectorDetailComponent
+    DataCollectorDetailComponent,
+    NavTopBarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

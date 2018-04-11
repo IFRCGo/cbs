@@ -4,16 +4,16 @@ using Machine.Specifications;
 using Concepts;
 namespace Domain.Specs.DataCollector.when_registering_a_data_collector
 {
-    [Subject(typeof(AddDataCollectorValidator))]
+    [Subject("Registration")]
     public class and_validating_a_command_with_an_invalid_preferred_language
     {
         static RegisterDataCollector cmd;
-        static AddDataCollectorValidator validator;
+        static RegisterDataCollectorValidator validator;
         static ValidationResult validation_results;
 
         Machine.Specifications.Establish context = () => 
         {
-            validator = new AddDataCollectorValidator();
+            validator = new RegisterDataCollectorValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PreferredLanguage = (Language)(-1));
         };

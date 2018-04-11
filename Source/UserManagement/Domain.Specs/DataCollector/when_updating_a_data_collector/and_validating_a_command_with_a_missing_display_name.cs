@@ -4,21 +4,20 @@
 *--------------------------------------------------------------------------------------------*/
 using Machine.Specifications;
 using FluentValidation.Results;
-using System.Collections.Generic;
-using Domain.DataCollector.Update;
+using Domain.DataCollector.Registering;
 
 namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 {
-    [Subject(typeof(UpdateDataCollectorValidator))]
+    [Subject("Update")]
     public class and_validating_a_command_with_a_missing_display_name
     {
-        static UpdateDataCollector cmd;
-        static UpdateDataCollectorValidator validator;
+        static RegisterDataCollector cmd;
+        static RegisterDataCollectorValidator validator;
         static ValidationResult validation_results;
 
         Establish context = () => 
         {
-            validator = new UpdateDataCollectorValidator();
+            validator = new RegisterDataCollectorValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.DisplayName = null);
         };

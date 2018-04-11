@@ -14,6 +14,13 @@ using Read.GreetingGenerators;
 using Read.StaffUsers;
 using Read.StaffUsers.Models;
 using Web.TestData;
+using Admin = Web.Models.Admin;
+using BaseUser = Web.Models.BaseUser;
+using DataConsumer = Web.Models.DataConsumer;
+using DataCoordinator = Web.Models.DataCoordinator;
+using DataOwner = Web.Models.DataOwner;
+using DataVerifier = Web.Models.DataVerifier;
+using SystemConfigurator = Web.Models.SystemConfigurator;
 
 namespace Web.Controllers
 {

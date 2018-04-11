@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.HealthRiskFeatures;
+using System;
 
 namespace Web
 {
@@ -29,6 +30,38 @@ namespace Web
         public async Task<IEnumerable<HealthRisk>> Get()
         {
             return await _healthRisks.GetAllAsync();
+        }
+
+        [HttpGet("{id}")]
+        public HealthRisk Get(Guid id)
+        {
+            return _healthRisks.GetById(id);
+        }
+
+        [HttpPost]
+        [Route("addhealthrisk")]
+        public IActionResult AddHealthRisk([FromBody]HealthRisk healthRisk)
+        {
+            _healthRisks.SaveAsync(healthRisk);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] HealthRisk healthRisk)
+        {
+            _healthRisks.ReplaceAsync(healthRisk);
+
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            _healthRisks.RemoveAsync(id);
+
+            return Ok();
         }
     }
 }

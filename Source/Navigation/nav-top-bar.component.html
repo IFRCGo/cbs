@@ -1,0 +1,30 @@
+<header class="navigation-header">
+    <figure class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 175 100">
+            <rect width="175" height="100" fill="#fff" />
+            <path d="M20,50h66m-33,-33v66" fill="none" stroke="#c00" stroke-width="20" />
+            <circle cx="132" cy="50" r="34" fill="#c00" />
+            <circle cx="142" cy="50" r="28" fill="#fff" />
+            <path d="M7,7H168V93H7z" fill="none" stroke="#c00" stroke-width="3" />
+        </svg>
+    </figure>
+    <nav>
+        <a href="http://localhost:4200/">Project administration</a>
+        <a href="http://localhost:4201/">User managment</a>
+        <a href="http://52.174.27.41/">Volunteer reporting</a>
+    </nav>
+
+    <div class="login-status">
+        <select class="society-picker form-control">
+            <option *ngFor="let society of societies">{{society}}</option>
+        </select>
+
+        <div class="logged-in">
+            <p>
+                Logged in as:
+            </p>
+            <p> Kåre Valebrokk</p>
+        </div>
+
+    </div>
+</header>

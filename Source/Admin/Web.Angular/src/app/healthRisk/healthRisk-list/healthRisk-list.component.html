@@ -1,0 +1,30 @@
+<h3>
+        Health Risks
+</h3>
+
+<a routerLink="add">
+    <button type="button" class="btn btn-primary pull-right">Add Health Risk</button>
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Health risk</th>
+            <th>Case Definition</th>
+            <th>Alert Threshold</th>
+            <th>Key Messages</th>
+            <th>Key Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let risk of risks">
+            <td>{{ risk.HealthRisk }}</td>
+            <td>{{ risk.CaseDefinition }}</td>
+            <td>{{ risk.AlertThreshold }}</td>
+            <td>{{ risk.Messages }}</td>
+            <td>
+                <a routerLink="update" >Edit</a> | <a ng-click="deleteHealthRisk(risk)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

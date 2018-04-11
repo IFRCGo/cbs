@@ -12,17 +12,22 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS": "admin;alert;usermanagement",
+            "KAFKA_BOUNDED_CONTEXT_TOPIC": "volunteerreporting"
+        }
     },
     "Web": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS": "admin;alert;usermanagement",
+            "KAFKA_BOUNDED_CONTEXT_TOPIC": "volunteerreporting"
+
+        },
       "applicationUrl": "http://localhost:5000/"
     }
   }

@@ -2,10 +2,9 @@ using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.DataCollectors;
 using System;
-using System.Threading.Tasks;
+using System.Linq;
 using doLittle.Read;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.Update;
 using Domain.DataCollector;
 using MongoDB.Driver;
 
@@ -16,14 +15,13 @@ namespace Web.Controllers
     [Route("api/datacollectors")]
     public class DataCollectorsController : BaseController
     {
-        //private readonly IDataCollectors _dataCollectors;
-
+     
         private readonly IMongoDatabase _database;
 
         private readonly IDataCollectorCommandHandler _dataCollectorCommandHandler;
 
         private readonly IQueryCoordinator _queryCoordinator;
-
+        
         public DataCollectorsController (
             IMongoDatabase database,
             IDataCollectorCommandHandler dataCollectorCommand,
@@ -36,7 +34,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             var result = _queryCoordinator.Execute(new AllDataCollectors(_database), new PagingInfo());
 
@@ -48,7 +46,7 @@ namespace Web.Controllers
             return new NotFoundResult();  
         }
 
-        [HttpGet("getbyid/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             var result = _queryCoordinator.Execute(new DataCollectorById(_database, id), new PagingInfo());
@@ -57,23 +55,51 @@ namespace Web.Controllers
             {
                 return Ok(result.Items);
             }
-            //TODO: For this, and the rest of the endpoints: Should probably return something else than 404?
             return new NotFoundResult();
         }
 
-        [HttpPost("register")]
-        public IActionResult Post([FromBody] RegisterDataCollector command)
+        [HttpPost]
+        public IActionResult Register([FromBody] Read.DataCollectors.DataCollector dataCollector)
         {
-            command.DataCollectorId = Guid.NewGuid();
+            var command = new RegisterDataCollector
+            {
+                DataCollectorId = Guid.NewGuid(),
+                IsNewRegistration = true,
+                RegisteredAt = DateTimeOffset.UtcNow,
+                PhoneNumbers = dataCollector.PhoneNumbers.Select(pn => pn.Value),
+                DisplayName = dataCollector.DisplayName,
+                FullName = dataCollector.FullName,
+                GpsLocation = dataCollector.Location,
+                NationalSociety = dataCollector.NationalSociety,
+                PreferredLanguage = dataCollector.PreferredLanguage,
+                Sex = dataCollector.Sex,
+                YearOfBirth = dataCollector.YearOfBirth
+
+            };
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
 
-        [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateDataCollector command)
+        [HttpPut]
+        public IActionResult Update([FromBody] Read.DataCollectors.DataCollector dataCollector)
         {
-            // TODO: Changes has to be made to updating the datacollector.
-            // Should use the same system as staffusers
+            // TODO: Woksin (10/04/18): Hmm, I'm thinking here, maybe send the original DataCollector with command
+            // to compare fields, and from there the AggregateRoot can decide which fields to update? @einari 
+            var command = new RegisterDataCollector
+            {
+                DataCollectorId = dataCollector.DataCollectorId,
+                IsNewRegistration = false,
+                RegisteredAt = dataCollector.RegisteredAt,
+                PhoneNumbers = dataCollector.PhoneNumbers.Select(pn => pn.Value),
+                DisplayName = dataCollector.DisplayName,
+                FullName = dataCollector.FullName,
+                GpsLocation = dataCollector.Location,
+                NationalSociety = dataCollector.NationalSociety,
+                PreferredLanguage = dataCollector.PreferredLanguage,
+                Sex = dataCollector.Sex,
+                YearOfBirth = dataCollector.YearOfBirth
+            };
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }

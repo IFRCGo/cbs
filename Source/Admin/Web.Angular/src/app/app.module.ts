@@ -5,16 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProjectModule } from './project/project.module';
+import { HealthRiskModule } from './healthRisk/healthRisk.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
-import { NavTopBarComponent } from './navigation/nav-top-bar/nav-top-bar.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'project',
         pathMatch: 'full'
+    },
+    {
+        path:'healthrisk',
+        redirectTo: 'healthrisk',
+        pathMatch:'full',
     }
 ];
 
@@ -23,7 +29,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
 @NgModule({
     declarations: [
         AppComponent,
-        NavTopBarComponent,
+        NavTopBarComponent
     ],
     imports: [
         BrowserModule,
@@ -31,7 +37,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
         CoreModule,
         rootRouting,
         ProjectModule,
+        HealthRiskModule,
         ModalModule.forRoot()
+        
     ],
     bootstrap: [AppComponent]
 })

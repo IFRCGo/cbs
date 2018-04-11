@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using doLittle.Collections;
+using doLittle.Concepts.Serialization.Json;
 using doLittle.Logging;
 using doLittle.Runtime.Applications;
 using doLittle.Runtime.Events;
@@ -38,8 +39,11 @@ namespace Infrastructure.AspNet
         public IEnumerable<JsonConverter> Provide()
         {
             return new JsonConverter[] {
+                new ConceptConverter(),
+                new EventSourceVersionConverter(),
                 new ApplicationResourceIdentifierJsonConverter(_applicationResourceIdentifierConverter)
             };
         }
     }    
+   
 }

@@ -11,6 +11,7 @@ namespace Domain.StaffUser.Registering
         void Handle(RegisterNewSystemConfigurator command);
 
         void Handle(RegisterNewDataOwner command);
+
         void Handle(RegisterNewStaffDataVerifier command);
 
         void Handle(RegisterNewStaffDataConsumer command);

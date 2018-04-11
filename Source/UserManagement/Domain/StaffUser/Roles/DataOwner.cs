@@ -4,7 +4,6 @@ using Concepts;
 
 namespace Domain.StaffUser.Roles
 {
-
     public class DataOwner : StaffRole, 
         ISupportBirthYear, ISupportSex, IRequireNationalSociety, IRequirePhoneNumbers, 
         IRequirePreferredLanguage, IRequireDutyStation, IRequirePosition
