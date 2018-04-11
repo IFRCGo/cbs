@@ -2,29 +2,33 @@ import { DataCollector } from './../domain/data-collector';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
 
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const API_URL = environment.api + '/api/datacollectors';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class DataCollectorService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  saveDataCollector(dataCollector: DataCollector): Promise<void> {
+  saveDataCollector (dataCollector: DataCollector): Observable<DataCollector> {
     const url = environment.api + '/api/dataCollectors';
-
     return this.http
-      .post(url, JSON.stringify(dataCollector), { headers: this.headers })
-      .toPromise()
-      .then(() => { console.log('DataCollector user added successfully'); })
-      .catch((error) => console.error(error));
+    .post<DataCollector>(url, dataCollector, httpOptions);
   }
 
-  getAllDataCollectors() {
-    return this.http
-      .get(API_URL, {headers: this.headers});
+  getAllDataCollectors (): Observable<DataCollector[]> {
+    return this.http.get<DataCollector[]>(API_URL);
+  }
+
+  getDataCollector(id: string): Observable<DataCollector[]> {
+    const url = `${API_URL}/${id}`;
+    return this.http.get<DataCollector[]>(url, httpOptions);
   }
 }

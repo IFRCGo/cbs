@@ -1,38 +1,14 @@
-<div class="header">
-    <h2>Data collectors</h2>
-    <a [routerLink]="['/add-user']" routerLinkActive="active">
-        <button class="btn btn-primary">
-            Add User
-        </button>
-    </a>
-    <a [routerLink]="['/add-user/data-collector']" routerLinkActive="active">
-        <button class="btn btn-primary">
-            Add Data Collector
-        </button>
-    </a>
-</div>
-<div class="alert-danger" *ngIf="error">
-    {{errorMsg}}
-</div>
-<table class="table table-striped" *ngIf="!error">
-    <thead>
-    <tr>
-        <th>Full Name</th>
-        <th>Display Name</th>
-        <th>Phone Numbers</th>
-        <th></th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-        <td>{{user.fullName}}</td>
-        <td>{{user.displayName}}</td>
-        <td><span *ngFor="let number of user.phoneNumbers">{{number.value}} </span></td>
-        <td></td>
-        <td><a>Edit</a> |
-            <cbs-delete-user [user]=user></cbs-delete-user>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div *ngIf="dataCollector">
+    <h2>{{dataCollector.fullName}}</h2>
+    <div><span>Display name: </span>{{dataCollector.displayName}}</div>
+    <div><span>Year of birth: </span>{{dataCollector.yearOfBirth}}</div>
+    <div><span>Sex: </span><span *ngIf="dataCollector.sex == 1">Male</span><span *ngIf="dataCollector.sex == 2">Female</span></div>
+    <div><span>National society: </span>{{dataCollector.nationalSociety}}</div>
+    <div><span>Preferred Language: </span>{{dataCollector.preferredLanguage}}</div>
+    <div><span>Location: </span>{{dataCollector.location.latitude}} / {{dataCollector.location.longitude}}</div>
+    <div><span>Phone numbers: </span><span *ngFor="let phonenumber of dataCollector.phoneNumbers">{{phonenumber.value}}</span></div>
+    <div><span>Registered date: </span>{{dataCollector.registeredAt}}</div>
+    <div><span>Last report received at: </span>{{dataCollector.lastReportRecievedAt}}</div>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
+  
