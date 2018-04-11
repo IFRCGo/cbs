@@ -11,3 +11,4 @@ RUN ["ng", "build", "--prod", "--base-href=/users/", "--deploy-url=/users/"]
 
 FROM nginx:1.13-alpine
 COPY --from=angular-build /Source/UserManagement/Web.Angular/dist /usr/share/nginx/html
+COPY --from=angular-build /Source/UserManagement/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
