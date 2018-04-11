@@ -157,9 +157,10 @@ namespace Web
                         ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
                         Name = values[Array.IndexOf(columnNames, "Health Risk")],
                         Threshold = int.Parse(threshold),
-                        ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
-                        ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
-                        SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
+                        CaseDefinition = values[Array.IndexOf(columnNames, "Case Definition")],
+                        //ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
+                        //ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
+                        //SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
                         CommunityCase = values[Array.IndexOf(columnNames, "Community Case")],
                         Note = values[Array.IndexOf(columnNames, "Note")],
                         KeyMessage = values[Array.IndexOf(columnNames, "Key Message")]
