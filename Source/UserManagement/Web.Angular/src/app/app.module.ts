@@ -21,6 +21,7 @@ import { UserFormDataOwnerComponent } from './user-form/user-form-data-owner/use
 import { UserFormDataVerifierComponent } from './user-form/user-form-data-verifier/user-form-data-verifier.component';
 import { UserFormDataCollectorComponent } from './user-form/user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 import { USER_FORM_ROUTES } from './user-form';
 import { ModalModule } from 'ngx-bootstrap';
@@ -45,8 +46,8 @@ console.log(appRoutes);
     UserFormDataOwnerComponent,
     UserFormDataVerifierComponent,
     UserFormDataCollectorComponent,
-    UserFormDataConsumerComponent
-
+    UserFormDataConsumerComponent,
+    NavTopBarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
