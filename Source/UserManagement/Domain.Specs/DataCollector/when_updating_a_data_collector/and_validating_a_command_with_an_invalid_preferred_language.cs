@@ -1,19 +1,20 @@
-using Domain.DataCollector.Update;
 using FluentValidation.Results;
 using Machine.Specifications;
 using Concepts;
+using Domain.DataCollector.Registering;
+
 namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 {
-    [Subject(typeof(UpdateDataCollectorValidator))]
+    [Subject("Update")]
     public class and_validating_a_command_with_an_invalid_preferred_language
     {
-        static UpdateDataCollector cmd;
-        static UpdateDataCollectorValidator validator;
+        static RegisterDataCollector cmd;
+        static RegisterDataCollectorValidator validator;
         static ValidationResult validation_results;
 
         Machine.Specifications.Establish context = () => 
         {
-            validator = new UpdateDataCollectorValidator();
+            validator = new RegisterDataCollectorValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PreferredLanguage = (Language)(-1));
         };

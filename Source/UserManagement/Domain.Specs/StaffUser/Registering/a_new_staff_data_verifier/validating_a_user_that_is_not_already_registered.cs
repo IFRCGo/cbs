@@ -12,13 +12,14 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         static RegisterNewStaffDataVerifierBusinessRulesValidator sut;
         static StaffUserIsRegistered staff_user_is_registered;
         static ValidationResult validation_results;
+
         Establish context = () => 
         {
             register = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
 
             staff_user_is_registered = (id) => false;
-
-            sut = new RegisterNewStaffDataVerifierBusinessRulesValidator(staff_user_is_registered);
+            var is_new_registration = true;
+            sut = new RegisterNewStaffDataVerifierBusinessRulesValidator(staff_user_is_registered, is_new_registration);
         };
 
         Because of = () => validation_results = sut.Validate(register);

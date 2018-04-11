@@ -2,10 +2,8 @@ using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.DataCollectors;
 using System;
-using System.Threading.Tasks;
 using doLittle.Read;
 using Domain.DataCollector.Registering;
-using Domain.DataCollector.Update;
 using Domain.DataCollector;
 using MongoDB.Driver;
 
@@ -24,6 +22,8 @@ namespace Web.Controllers
 
         private readonly IQueryCoordinator _queryCoordinator;
 
+        private readonly IDataCollectors _dataCollectors;
+
         public DataCollectorsController (
             IMongoDatabase database,
             IDataCollectorCommandHandler dataCollectorCommand,
@@ -33,10 +33,11 @@ namespace Web.Controllers
             _database = database;
             _dataCollectorCommandHandler = dataCollectorCommand;
             _queryCoordinator = queryCoordinator;
+            _dataCollectors = dataCollectors;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             var result = _queryCoordinator.Execute(new AllDataCollectors(_database), new PagingInfo());
 
@@ -62,18 +63,21 @@ namespace Web.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Post([FromBody] RegisterDataCollector command)
+        public IActionResult Register([FromBody] RegisterDataCollector command)
         {
             command.DataCollectorId = Guid.NewGuid();
+            command.IsNewRegistration = true;
+            command.RegisteredAt = DateTimeOffset.UtcNow;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
 
         [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateDataCollector command)
+        public IActionResult Update([FromBody] RegisterDataCollector command)
         {
-            // TODO: Changes has to be made to updating the datacollector.
-            // Should use the same system as staffusers
+            command.IsNewRegistration = false;
+
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }

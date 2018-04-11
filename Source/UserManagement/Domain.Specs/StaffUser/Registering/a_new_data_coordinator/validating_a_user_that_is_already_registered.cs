@@ -15,14 +15,15 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static StaffUserIsRegistered staff_user_is_registered;
         static CanAssignToNationalSociety can_assign_to_national_society;
         static ValidationResult validation_results;
+
         Establish context = () => 
         {
             register = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
 
             staff_user_is_registered = (id) => true;
             can_assign_to_national_society = (id) => true;
-
-            sut = new RegisterNewDataCoordinatorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society);
+            var is_new_registration = true;
+            sut = new RegisterNewDataCoordinatorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society, is_new_registration);
         };
 
         Because of = () => validation_results = sut.Validate(register);

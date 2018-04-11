@@ -10,15 +10,19 @@ namespace Domain.StaffUser.Registering
     {
         readonly StaffUserIsRegistered _isRegistered;
 
-        public NewStaffRegistrationBusinessRulesValidator(StaffUserIsRegistered isRegistered)
+        public NewStaffRegistrationBusinessRulesValidator(StaffUserIsRegistered isRegistered, bool isNewRegistration)
         {
             _isRegistered = isRegistered;
 
-            //Use ModelRule when the rule applies to the command as a whole or to multiple properties, not a specific property
-            RuleFor(_ => _.Role.StaffUserId).Must(NotBeAlreadyRegistered).WithMessage(_ => $"User '{_.Role.StaffUserId}' is already registered.");
+            if (isNewRegistration)
+            {
+                //Use ModelRule when the rule applies to the command as a whole or to multiple properties, not a specific property
+                RuleFor(_ => _.Role.StaffUserId).Must(NotBeAlreadyRegistered)
+                    .WithMessage(_ => $"User '{_.Role.StaffUserId}' is already registered.");
+            }
         }
 
-        bool NotBeAlreadyRegistered(Guid staffUserId)
+        private bool NotBeAlreadyRegistered(Guid staffUserId)
         {
             return !_isRegistered(staffUserId);
         }
