@@ -18,7 +18,8 @@ services:
 
   cbs-admin-frontend:
     build:
-        context: ./Web.Angular
+        context: ../../
+        dockerfile: Source/Admin/Web.Angular/Dockerfile
     depends_on:
         - cbs-admin-db
         - cbs-admin-backend
