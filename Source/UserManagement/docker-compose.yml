@@ -18,7 +18,8 @@ services:
 
   cbs-usermgmt-frontend:
     build:
-        context: ./Web.Angular
+        context: ../../
+        dockerfile: Source/UserManagement/Web.Angular/Dockerfile
     depends_on:
         - cbs-usermgmt-db
         - cbs-usermgmt-backend
