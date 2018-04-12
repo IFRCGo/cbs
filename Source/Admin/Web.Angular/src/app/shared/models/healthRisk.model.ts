@@ -1,8 +1,10 @@
 export class HealthRisk {
     id: string;
     name: string;
+    readableId: string;
     caseDefinition: string;
+    note: string;
+    communityCase: string;
     threshold?: number;
-    message: string;
-    action: string;
+    keyMessage: string;
 }
