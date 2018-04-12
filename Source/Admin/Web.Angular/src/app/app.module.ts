@@ -9,7 +9,7 @@ import { HealthRiskModule } from './healthRisk/healthRisk.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
-import { NavTopBarComponent } from './navigation/nav-top-bar/nav-top-bar.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 const routes: Routes = [
     {
@@ -24,12 +24,12 @@ const routes: Routes = [
     }
 ];
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavTopBarComponent,
+        NavTopBarComponent
     ],
     imports: [
         BrowserModule,
@@ -39,6 +39,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
         ProjectModule,
         HealthRiskModule,
         ModalModule.forRoot()
+
     ],
     bootstrap: [AppComponent]
 })
