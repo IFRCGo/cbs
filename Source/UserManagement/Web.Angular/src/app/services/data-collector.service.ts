@@ -17,11 +17,17 @@ export class DataCollectorService {
 
   constructor(private http: HttpClient) { }
 
-  saveDataCollector (dataCollector: DataCollector): Observable<DataCollector> {
-    const url = environment.api + '/api/dataCollectors';
-    return this.http
-    .post<DataCollector>(url, dataCollector, httpOptions);
-  }
+saveDataCollector(dataCollector: DataCollector): Promise<any> {
+  console.log(dataCollector);
+
+  dataCollector.phoneNumbers = dataCollector.phoneNumberString.split(',').map(function(item) {
+    return { value: item.trim(), confirmed: false};
+  });
+
+  return this.http
+    .post(API_URL, JSON.stringify(dataCollector), httpOptions)
+    .toPromise();
+}
 
   getAllDataCollectors (): Observable<DataCollector[]> {
     return this.http.get<DataCollector[]>(API_URL);

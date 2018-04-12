@@ -3,7 +3,6 @@ import { DataCollectorService } from '../services/data-collector.service';
 import { DataCollector } from '../domain/data-collector';
 
 @Component({
-  selector: 'cbs-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })

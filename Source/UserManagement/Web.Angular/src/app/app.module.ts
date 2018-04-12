@@ -32,11 +32,10 @@ import { ModalModule } from 'ngx-bootstrap';
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
   ...USER_DETAIL_ROUTES,
+  { path: 'list', component: UserListComponent },
   { path: '', component: UserListComponent },
   { path: '**', component: UserListComponent }
 ];
-
-console.log(appRoutes);
 
 @NgModule({
   declarations: [
