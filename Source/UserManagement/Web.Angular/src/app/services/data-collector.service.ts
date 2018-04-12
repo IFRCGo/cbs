@@ -37,4 +37,13 @@ saveDataCollector(dataCollector: DataCollector): Promise<any> {
     const url = `${API_URL}/${id}`;
     return this.http.get<DataCollector[]>(url, httpOptions);
   }
+
+  deleteDataCollector(id: string): Promise<void> {
+    const url = `${API_URL}/${id}`;
+    return this.http
+      .delete(url, httpOptions)
+      .toPromise()
+      .then(() => console.log('User deleted' + id))
+      .catch((error) => console.error(error));
+  }
 }

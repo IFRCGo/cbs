@@ -47,6 +47,11 @@ namespace Read.DataCollectors
 
         }
 
+        public async Task Process(DataCollectorRemoved @event)
+        {
+            await _dataCollectors.RemoveAsync(@event.DataCollectorId);
+        }
+
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);

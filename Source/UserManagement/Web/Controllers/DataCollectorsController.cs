@@ -104,5 +104,17 @@ namespace Web.Controllers
             _dataCollectorCommandHandler.Handle(command);
             return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var command = new DeleteDataCollector
+            {
+                DataCollectorId = id,
+            };
+
+            _dataCollectorCommandHandler.Handle(command);
+            return Ok();
+        }
     }
 }
