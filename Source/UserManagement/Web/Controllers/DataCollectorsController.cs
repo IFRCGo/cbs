@@ -7,6 +7,7 @@ using doLittle.Read;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
