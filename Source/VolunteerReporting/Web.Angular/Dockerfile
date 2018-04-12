@@ -12,3 +12,4 @@ RUN ["ng", "build", "--prod", "--base-href=/reporting/", "--deploy-url=/reportin
 
 FROM nginx:1.13-alpine
 COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/dist /usr/share/nginx/html
+COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf

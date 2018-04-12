@@ -11,3 +11,4 @@ RUN ["ng", "build", "--prod"]
 
 FROM nginx:1.13-alpine
 COPY --from=angular-build /Source/Admin/Web.Angular/dist /usr/share/nginx/html
+COPY --from=angular-build /Source/Admin/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
