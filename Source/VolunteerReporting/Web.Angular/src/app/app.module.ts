@@ -10,6 +10,14 @@ import { CaseReportModule } from './case-report/case-report.module';
 import { CoreModule } from './core/core.module';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
+const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'case-report',
+        pathMatch: 'full'
+    }
+];
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -20,7 +28,7 @@ import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
         CommonModule,
         HttpModule,
         CoreModule,
-        RouterModule.forRoot([]),
+        RouterModule.forRoot(routes),
         CaseReportModule
     ],
     providers: [],
