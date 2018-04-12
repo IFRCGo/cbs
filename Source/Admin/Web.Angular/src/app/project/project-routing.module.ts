@@ -10,16 +10,16 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'add',
+                redirectTo: 'list',
                 pathMatch: 'full'
-            },
-            {
-                path: 'add',
-                component: AddProjectComponent
             },
             {
                 path: 'list',
                 component: ProjectListComponent
+            },
+            {
+                path: 'add',
+                component: AddProjectComponent
             }
         ]
     }
