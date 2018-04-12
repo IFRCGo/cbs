@@ -69,21 +69,26 @@ export class CaseReportListComponent implements OnInit {
     }
 
     getAllReports() {
-        this.caseReportService.getReports()
-            .then(result => {
-                this.listedReports = result || [];
-            })
-            .catch(error => console.error(error));
+        let promise = new Promise((resolve, reject) => {
+            this.caseReportService.getReports()
+                .then(result => {
+                    this.listedReports = result || [];
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
 
+        });
+        return promise;
     }
 
     refresh() {
-        if( this.lastCriteria ) {
-            this.listedReports = this.service.getReports(this.listedReports, this.lastCriteria); 
-        } else {
-            this.getAllReports();
-        }
-        
+        this.getAllReports().then(() => {
+            if (this.lastCriteria) {
+                this.listedReports = this.service.getReports(this.listedReports, this.lastCriteria);
+            }
+        });
     }
 
     onClick(name: string) {
