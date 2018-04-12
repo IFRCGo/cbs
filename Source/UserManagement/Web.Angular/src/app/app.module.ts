@@ -36,8 +36,6 @@ const appRoutes: Routes = [
   { path: '**', component: UserListComponent }
 ];
 
-console.log(appRoutes);
-
 @NgModule({
   declarations: [
     AppComponent,

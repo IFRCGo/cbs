@@ -9,19 +9,15 @@ export const ADMIN_PATH = 'admin';
   templateUrl: './user-form-admin.component.html',
   styleUrls: ['./user-form-admin.component.scss']
 })
-export class UserFormAdminComponent implements OnInit {
+export class UserFormAdminComponent {
 
-  user: Admin;
+  user: Admin = new Admin({});
   public errorMsg = 'Something went wrong, try again later';
   public successMsg = 'User added';
   public success = false;
   public error = false;
 
   constructor(private staffUserService: StaffUserService) {
-    this.user = new Admin({});
-   }
-
-  ngOnInit() {
   }
 
   submit() {
