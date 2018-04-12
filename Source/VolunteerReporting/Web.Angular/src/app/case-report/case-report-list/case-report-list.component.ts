@@ -57,6 +57,7 @@ export class CaseReportListComponent implements OnInit {
      */
     getReports(criteria: ReportSearchCriteria) {
         this.lastCriteria = criteria;
+        if (this.listedReports === undefined) return;
         this.listedReports = this.service.getReports(this.listedReports, criteria);
     }
 
@@ -71,19 +72,12 @@ export class CaseReportListComponent implements OnInit {
     getAllReports() {
         this.caseReportService.getReports()
             .then(result => {
-                this.listedReports = result || [];
+                  this.listedReports = result || [];
+                  if (this.lastCriteria) {
+                    this.getReports(this.lastCriteria);
+                  }
             })
             .catch(error => console.error(error));
-
-    }
-
-    refresh() {
-        if( this.lastCriteria ) {
-            this.listedReports = this.service.getReports(this.listedReports, this.lastCriteria); 
-        } else {
-            this.getAllReports();
-        }
-        
     }
 
     onClick(name: string) {
