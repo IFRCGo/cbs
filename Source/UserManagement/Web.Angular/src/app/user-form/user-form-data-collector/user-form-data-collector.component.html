@@ -1,5 +1,5 @@
 <form>
-  <a [routerLink]="['/add-user']" class="back-button">
+  <a [routerLink]="['/']" class="back-button">
       <button class="btn btn-primary">Back</button>
   </a>
   <h1>Add Data Collector</h1>
@@ -10,7 +10,7 @@
              [(ngModel)]="user.fullName" name="full_name"
              #first_name="ngModel">
   </div>
-  <div class="form-group">
+<div class="form-group">
       <label for="display_name">Display Name</label>
       <input type="text" class="form-control" id="display_name"
               required
@@ -26,12 +26,14 @@
   </div>
   <div class="form-group">
     <label for="sex">Sex</label>
-    <input type="string" class="form-control" id="sex"
-           required
-           [(ngModel)]="user.sex" name="sex"
-           #sex="ngModel">
+    <select class="form-control" id="sex"
+            required
+            [(ngModel)]="user.sex" name="sex"
+            #sex="ngModel">
+        <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
+    </select>
   </div>
-  <div class="form-group">
+<div class="form-group">
     <label for="preferredLanguage">Preferred Language</label>
     <select class="form-control" id="preferredLanguage"
             required
@@ -58,21 +60,21 @@
         class="input-mini form-control" 
         id="latitude"
         required
-        [(ngModel)]="user.gpsLocation.latitude"
+        [(ngModel)]="user.location.latitude"
         name="latitude"
       />
       <label for="longitude">Longitude</label>
-      <input 
+     <input 
         type="number"
         class="input-mini form-control" 
         id="longitude"
         required
-        [(ngModel)]="user.gpsLocation.longitude"
+        [(ngModel)]="user.location.longitude"
         name="longitude"
       />
     </fieldset>
   </div>
-  <label>Phone numbers (comma seperated)</label>
+   <label>Phone numbers (comma seperated)</label>
   <div class="form-group">
     <input type="text"
       class="input-mini form-control" 
@@ -88,7 +90,7 @@
   <div class="alert-success" *ngIf="success">
     {{successMsg}}
   </div>
-  <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
+     <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
 </form>
 
 

@@ -1,5 +1,10 @@
 import { Location } from "./location.model";
 
+class PhoneNumber {
+    value: string;
+    confirmed: boolean;
+}
+
 export class DataCollector {
 
     dataCollectorId: string;
@@ -7,7 +12,7 @@ export class DataCollector {
     displayName: string;
     yearOfBirth: number;
     phoneNumberString: string;
-    phoneNumbers: Array<string>;
+    phoneNumbers: Array<PhoneNumber>;
     sex: string;
     nationalSociety: string;
     preferredLanguage: string;

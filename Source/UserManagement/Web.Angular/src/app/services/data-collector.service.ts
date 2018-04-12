@@ -18,18 +18,14 @@ export class DataCollectorService {
   constructor(private http: HttpClient) { }
 
 saveDataCollector(dataCollector: DataCollector): Promise<any> {
-  const url = API_URL + '/register';
-
   console.log(dataCollector);
 
   dataCollector.phoneNumbers = dataCollector.phoneNumberString.split(',').map(function(item) {
-    return item.trim();
+    return { value: item.trim(), confirmed: false};
   });
 
-  console.log("Register url: " + url);
-
   return this.http
-    .post(url, JSON.stringify(dataCollector), httpOptions)
+    .post(API_URL, JSON.stringify(dataCollector), httpOptions)
     .toPromise();
 }
 
