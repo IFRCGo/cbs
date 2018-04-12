@@ -19,9 +19,9 @@
 <table class="table table-bordered table-striped" sortable-table (sorted)="onSorted($event)">
     <thead>
         <tr>
-            <!-- To make a column sortable create the atribute sortable-column="sortColumn" and create an if-branch in ./sort/case-report.service.ts to 
+            <!-- To make a column sortable create the atribute sortable-column="sortColumn" and create an if-branch in ./sort/case-report.service.ts to
             expand the sorting function for that given column -->
-            <th sortable-column="timeStamp">Time</th>
+            <th sortable-column="timeStamp" sort-direction="desc">Time</th>
             <th sortable-column="status">Status</th>
             <th sortable-column="dataCollector">Data&nbsp;Collector</th>
             <th sortable-column="healthRisk">Health&nbsp;Risk</th>
