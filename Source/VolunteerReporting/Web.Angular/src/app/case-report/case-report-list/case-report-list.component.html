@@ -1,17 +1,19 @@
 <h3>
     Case Reports
+    <button (click)="refresh()">Refresh</button>
 </h3>
 
 <table class="table table-bordered table-striped">
     <tbody>
-    <tr>
-        <td> 
-            Quick Filters: 
-            <button (click)="basicFilter = 'all'">All</button>
-            <button (click)="basicFilter = 'success'">Success</button>
-            <button (click)="basicFilter = 'error'">Data error</button>
-            <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
-    </tr>
+        <tr>
+            <td>
+                Quick Filters:
+                <button (click)="basicFilter = 'all'">All</button>
+                <button (click)="basicFilter = 'success'">Success</button>
+                <button (click)="basicFilter = 'error'">Data error</button>
+                <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 <table class="table table-bordered table-striped" sortable-table (sorted)="onSorted($event)">
@@ -34,9 +36,9 @@
         <tr *ngFor="let caseReport of listedReports | filter:basicFilter">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
-                <span  *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
-                <span  *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
-                
+                <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
+                <span *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
+
             </td>
             <td>
                 <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>

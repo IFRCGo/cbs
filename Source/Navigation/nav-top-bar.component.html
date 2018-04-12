@@ -9,22 +9,24 @@
         </svg>
     </figure>
     <nav>
-        <a href="http://localhost:4200/">Project administration</a>
-        <a href="http://localhost:4201/">User managment</a>
-        <a href="http://52.174.27.41/">Volunteer reporting</a>
+        <a href="/">Project administration</a>
+        <a href="/users">User management</a>
+        <a href="/reporting">Volunteer reporting</a>
     </nav>
 
     <div class="login-status">
+
+        <!--
         <select class="society-picker form-control">
             <option *ngFor="let society of societies">{{society}}</option>
         </select>
+        -->
 
         <div class="logged-in">
             <p>
                 Logged in as:
             </p>
-            <p> Kåre Valebrokk</p>
+            <p>{{name}}</p>
         </div>
-
     </div>
 </header>
