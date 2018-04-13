@@ -57,8 +57,9 @@ export class CaseReportListComponent implements OnInit {
      */
     getReports(criteria: ReportSearchCriteria) {
         this.lastCriteria = criteria;
-        if (this.listedReports === undefined) return;
-        this.listedReports = this.service.getReports(this.listedReports, criteria);
+        if (this.listedReports !== undefined) {
+          this.listedReports = this.service.getReports(this.listedReports, criteria);
+        }
     }
 
     onSorted($event) {
