@@ -46,10 +46,10 @@
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
-                <td>{{caseReport.numberOfMalesAges0To4}}</td>
-                <td>{{caseReport.numberOfMalesAgedOver4}}</td>
-                <td>{{caseReport.numberOfFemalesAges0To4}}</td>
-                <td>{{caseReport.numberOfFemalesAgedOver4}}</td>
+                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
+                <td>{{caseReport.numberOfFemalesUnder5}}</td>
+                <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
                 <td>
                     <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}}, {{caseReport.location.longitude | number}}</span>
                 </td>

@@ -14,10 +14,10 @@ namespace Read.CaseReportsForListing
         public HealthRiskId HealthRiskId { get; internal set; }
         public string HealthRisk { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
         public string Message { get; internal set; }
-        public int NumberOfFemalesAgedOver4 { get; internal set; }
-        public int NumberOfFemalesAges0To4 { get; internal set; } 
-        public int NumberOfMalesAgedOver4 { get; internal set; } 
-        public int NumberOfMalesAges0To4 { get; internal set; } 
+        public int NumberOfFemalesAged5AndOlder { get; internal set; }
+        public int NumberOfFemalesUnder5 { get; internal set; } 
+        public int NumberOfMalesAged5AndOlder { get; internal set; } 
+        public int NumberOfMalesUnder5 { get; internal set; } 
         public DateTimeOffset Timestamp { get; internal set; }
         public Location Location { get; internal set; }
 

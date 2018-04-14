@@ -104,10 +104,10 @@ namespace TextMessaging
                 caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
                     healthRiskId,
-                    parsingResult.MalesAges0To4,
-                    parsingResult.MalesAgedOver4,
-                    parsingResult.FemalesAges0To4,
-                    parsingResult.FemalesAgedOver4,
+                    parsingResult.MalesUnder5,
+                    parsingResult.MalesAged5AndOlder,
+                    parsingResult.FemalesUnder5,
+                    parsingResult.FemalesAged5AndOlder,
                     message.Sent
                 );                
                 return;
@@ -117,10 +117,10 @@ namespace TextMessaging
                 dataCollector.Id,
                 healthRiskId,
                 message.OriginNumber,
-                parsingResult.MalesAges0To4,
-                parsingResult.MalesAgedOver4,
-                parsingResult.FemalesAges0To4,
-                parsingResult.FemalesAgedOver4,
+                parsingResult.MalesUnder5,
+                parsingResult.MalesAged5AndOlder,
+                parsingResult.FemalesUnder5,
+                parsingResult.FemalesAged5AndOlder,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
                 message.Sent);
