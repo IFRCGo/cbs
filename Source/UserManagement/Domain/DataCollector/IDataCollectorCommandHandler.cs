@@ -7,7 +7,10 @@ namespace Domain.DataCollector
     public interface IDataCollectorCommandHandler : ICanHandleCommands
     {
         void Handle(RegisterDataCollector command);
-        
+
+        void Handle(DeleteDataCollector command);
+
+
         void Handle(AddPhoneNumberToDataCollector command);
 
         void Handle(RemovePhoneNumberFromDataCollector command);
