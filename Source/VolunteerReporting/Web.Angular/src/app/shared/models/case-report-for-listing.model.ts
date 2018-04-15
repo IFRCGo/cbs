@@ -11,10 +11,10 @@ export class CaseReportForListing implements Report {
     healthRiskId: string;
     healthRisk: string;
     message: string;
-    numberOfFemalesAgedOver4: number;
-    numberOfFemalesAges0To4: number;
-    numberOfMalesAgedOver4: number;
-    numberOfMalesAges0To4: number;
+    numberOfFemalesAged5AndOlder: number;
+    numberOfFemalesUnder5: number;
+    numberOfMalesAged5AndOlder: number;
+    numberOfMalesUnder5: number;
     timestamp: Date;
     location: Location;AgedOver4;
 

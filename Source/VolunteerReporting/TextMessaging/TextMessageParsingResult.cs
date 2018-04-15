@@ -26,10 +26,10 @@ namespace TextMessaging
         public bool IsValid => ErrorMessages.Count() == 0;       
         public IEnumerable<string> ErrorMessages => _errorMessages;
         public HealthRiskReadableId HealthRiskReadableId { get; private set; }
-        public int MalesAges0To4 { get; private set; }
-        public int MalesAgedOver4 { get; private set; }
-        public int FemalesAges0To4 { get; private set; }
-        public int FemalesAgedOver4 { get; private set; }
+        public int MalesUnder5 { get; private set; }
+        public int MalesAged5AndOlder { get; private set; }
+        public int FemalesUnder5 { get; private set; }
+        public int FemalesAged5AndOlder { get; private set; }
 
         private void ValidateAllFragmentsHasValue()
         {
@@ -70,19 +70,19 @@ namespace TextMessaging
             {
                 var sex = (Sex)Numbers[1];
                 var ageGroup = Numbers[2];
-                MalesAges0To4 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
-                MalesAgedOver4 = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
-                FemalesAges0To4 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
-                FemalesAgedOver4 = ageGroup == 2 && sex == Sex.Female ? 1 : 0;
+                MalesUnder5 = ageGroup == 1 && sex == Sex.Male ? 1 : 0;
+                MalesAged5AndOlder = ageGroup == 2 && sex == Sex.Male ? 1 : 0;
+                FemalesUnder5 = ageGroup == 1 && sex == Sex.Female ? 1 : 0;
+                FemalesAged5AndOlder = ageGroup == 2 && sex == Sex.Female ? 1 : 0;
             }
 
             var hasMultipleCases = Numbers.Length == 5;
             if (hasMultipleCases)
             {
-                MalesAges0To4 = Numbers[1];
-                MalesAgedOver4 = Numbers[2];
-                FemalesAges0To4 = Numbers[3];
-                FemalesAgedOver4 = Numbers[4];
+                MalesUnder5 = Numbers[1];
+                MalesAged5AndOlder = Numbers[2];
+                FemalesUnder5 = Numbers[3];
+                FemalesAged5AndOlder = Numbers[4];
             }
         }
     }

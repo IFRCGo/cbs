@@ -66,7 +66,7 @@ export class ReportService {
     // Sort by femalesAgedOver4
     if (criteria.sortColumn === 'femalesAgedOver4') {
       return reports.sort(function (a, b) {
-        return ReportService.compareStandard(a, b, 'numberOfFemalesAgedOver4',
+        return ReportService.compareStandard(a, b, 'numberOfFemalesAged5AndOlder',
           ReportService.hasHealthRisk, criteria);
       });
     }
@@ -74,7 +74,7 @@ export class ReportService {
     // Sort by femalesAges0To4
     if (criteria.sortColumn === 'femalesAges0To4') {
       return reports.sort(function (a, b) {
-        return ReportService.compareStandard(a, b, 'numberOfFemalesAges0To4',
+        return ReportService.compareStandard(a, b, 'numberOfFemalesUnder5',
           ReportService.hasHealthRisk, criteria);
       });
     }
@@ -82,7 +82,7 @@ export class ReportService {
     // Sort by malesOAgedOver4
     if (criteria.sortColumn === 'malesAgedOver4') {
       return reports.sort(function (a, b) {
-        return ReportService.compareStandard(a, b, 'numberOfMalesAgedOver4',
+        return ReportService.compareStandard(a, b, 'numberOfMalesAged5AndOlder',
           ReportService.hasHealthRisk, criteria);
       });
     }
@@ -90,7 +90,7 @@ export class ReportService {
     // Sort by malesAges0To4
     if (criteria.sortColumn === 'malesAges0To4') {
       return reports.sort(function (a, b) {
-        return ReportService.compareStandard(a, b, 'numberOfMalesAges0To4',
+        return ReportService.compareStandard(a, b, 'numberOfMalesUnder5',
           ReportService.hasHealthRisk, criteria);
       });
     }
