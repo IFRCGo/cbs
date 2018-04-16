@@ -113,7 +113,8 @@ namespace Infrastructure.Logging
                     Content = content,
                     Method = file,
                     Line = line,
-                    CorrelationId = Guid.Empty
+                    CorrelationId = Guid.Empty,
+                    StackTrace = exception?.StackTrace ?? string.Empty
                 };
 
                 if (_commandContextManager.HasCurrent)

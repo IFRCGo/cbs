@@ -16,5 +16,6 @@ namespace Infrastructure.Logging
         public string Method { get; set; }
         public int Line { get; set; }
         public object Content { get; set; }
+        public string StackTrace {  get; set; }
     }
 }
