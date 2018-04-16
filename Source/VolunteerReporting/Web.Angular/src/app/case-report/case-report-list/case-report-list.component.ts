@@ -57,7 +57,9 @@ export class CaseReportListComponent implements OnInit {
      */
     getReports(criteria: ReportSearchCriteria) {
         this.lastCriteria = criteria;
-        this.listedReports = this.service.getReports(this.listedReports, criteria);
+        if (this.listedReports !== undefined) {
+          this.listedReports = this.service.getReports(this.listedReports, criteria);
+        }
     }
 
     onSorted($event) {
@@ -69,26 +71,14 @@ export class CaseReportListComponent implements OnInit {
     }
 
     getAllReports() {
-        let promise = new Promise((resolve, reject) => {
-            this.caseReportService.getReports()
-                .then(result => {
-                    this.listedReports = result || [];
-                })
-                .catch(error => {
-                    console.error(error);
-                    reject(error);
-                });
-
-        });
-        return promise;
-    }
-
-    refresh() {
-        this.getAllReports().then(() => {
-            if (this.lastCriteria) {
-                this.listedReports = this.service.getReports(this.listedReports, this.lastCriteria);
-            }
-        });
+        this.caseReportService.getReports()
+            .then(result => {
+                  this.listedReports = result || [];
+                  if (this.lastCriteria) {
+                    this.getReports(this.lastCriteria);
+                  }
+            })
+            .catch(error => console.error(error));
     }
 
     onClick(name: string) {

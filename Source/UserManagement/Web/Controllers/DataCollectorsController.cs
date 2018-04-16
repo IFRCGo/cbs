@@ -7,6 +7,7 @@ using doLittle.Read;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -98,6 +99,18 @@ namespace Web.Controllers
                 PreferredLanguage = dataCollector.PreferredLanguage,
                 Sex = dataCollector.Sex,
                 YearOfBirth = dataCollector.YearOfBirth
+            };
+
+            _dataCollectorCommandHandler.Handle(command);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var command = new DeleteDataCollector
+            {
+                DataCollectorId = id,
             };
 
             _dataCollectorCommandHandler.Handle(command);

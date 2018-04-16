@@ -53,6 +53,13 @@ namespace Domain.DataCollector
             AddPhoneNumbers(phoneNumbers);
         }
 
+        public void DeleteDataCollector(Guid dataCollectorId)
+        {
+            Apply(new DataCollectorRemoved(
+                dataCollectorId
+            ));
+        }
+
         public void AddPhoneNumber(string number)
         {
             if (_numbers.Contains(number)) return;

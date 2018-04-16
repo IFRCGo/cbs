@@ -9,6 +9,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Health risk</th>
             <th>Case Definition</th>
             <th>Alert Threshold</th>
@@ -18,10 +19,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let risk of risks">
-            <td>{{ risk.HealthRisk }}</td>
-            <td>{{ risk.CaseDefinition }}</td>
-            <td>{{ risk.AlertThreshold }}</td>
-            <td>{{ risk.Messages }}</td>
+            <td>{{ risk.readableId }}</td>
+            <td>{{ risk.name }}</td>
+            <td>{{ risk.caseDefinition }}</td>
+            <td>{{ risk.threshold }}</td>
+            <td>{{ risk.keyMessage }}</td>
             <td>
                 <a routerLink="update" >Edit</a> | <a ng-click="deleteHealthRisk(risk)">Delete</a>
             </td>

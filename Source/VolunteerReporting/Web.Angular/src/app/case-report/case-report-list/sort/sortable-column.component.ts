@@ -36,6 +36,10 @@ export class SortableColumnComponent implements OnInit {
         this.sortDirection = '';
       }
     });
+    // if a sorting is set already, emit the event
+    if (this.sortDirection !== '') {
+      this.sortService.columnSorted({sortColumn: this.columnName, sortDirection: this.sortDirection});
+    }
   }
 
   ngOnDestroy() {

@@ -6,28 +6,35 @@ class PhoneNumber {
 }
 
 export class DataCollector {
+
     dataCollectorId: string;
     fullName: string;
     displayName: string;
     yearOfBirth: number;
+    phoneNumberString: string;
+    phoneNumbers: Array<PhoneNumber>;
     sex: string;
     nationalSociety: string;
     preferredLanguage: string;
     location: Location;
-    phoneNumbers: Array<PhoneNumber>;
     registeredAt: Date;
     lastReportRecievedAt: Date;
 
     constructor(o: any) {
+
         this.dataCollectorId = o.id;
         this.fullName = o.fullName;
         this.displayName = o.displayName;
-        this.yearOfBirth = o.age;
+        this.yearOfBirth = o.yearOfBirth;
+        this.phoneNumberString = o.phoneNumberString;
+        this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;
-        this.location = o.location;
-        this.phoneNumbers = o.phoneNumbers;
+        this.location = {
+            longitude: o.longitude,
+            latitude: o.latitude   
+        }
         this.registeredAt = o.registeredAt;
     }
 }

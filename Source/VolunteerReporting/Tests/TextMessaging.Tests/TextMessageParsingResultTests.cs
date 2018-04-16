@@ -91,10 +91,10 @@ namespace TextMessaging.Tests
             Assert.Equal(3, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 0);
             Assert.Equal(42, result.HealthRiskReadableId.Value);
-            Assert.Equal(0, result.MalesAges0To4);
-            Assert.Equal(1, result.MalesAgedOver4);
-            Assert.Equal(0, result.FemalesAges0To4);
-            Assert.Equal(0, result.FemalesAgedOver4);
+            Assert.Equal(0, result.MalesUnder5);
+            Assert.Equal(1, result.MalesAged5AndOlder);
+            Assert.Equal(0, result.FemalesUnder5);
+            Assert.Equal(0, result.FemalesAged5AndOlder);
         }
 
         [Fact]
@@ -141,10 +141,10 @@ namespace TextMessaging.Tests
             Assert.Equal(5, result.Fragments.Count());
             Assert.True(result.ErrorMessages.Count() == 0);
             Assert.Equal(42, result.HealthRiskReadableId.Value);
-            Assert.Equal(43, result.MalesAges0To4);
-            Assert.Equal(44, result.MalesAgedOver4);
-            Assert.Equal(45, result.FemalesAges0To4);
-            Assert.Equal(46, result.FemalesAgedOver4);
+            Assert.Equal(43, result.MalesUnder5);
+            Assert.Equal(44, result.MalesAged5AndOlder);
+            Assert.Equal(45, result.FemalesUnder5);
+            Assert.Equal(46, result.FemalesAged5AndOlder);
         }
 
         [Fact]

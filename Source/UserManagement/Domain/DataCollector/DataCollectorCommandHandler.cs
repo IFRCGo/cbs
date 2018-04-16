@@ -14,7 +14,7 @@ namespace Domain.DataCollector
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 
-        public DataCollectorCommandHandler (
+        public DataCollectorCommandHandler(
             IAggregateRootRepositoryFor<DataCollector> repository
             )
         {
@@ -38,7 +38,13 @@ namespace Domain.DataCollector
                 );
         }
 
-        
+        public void Handle(DeleteDataCollector command)
+        {
+            var root = _repository.Get(command.DataCollectorId);
+            root.DeleteDataCollector(command.DataCollectorId);
+        }
+
+
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);

@@ -24,7 +24,7 @@ const routes: Routes = [
     }
 ];
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     declarations: [
@@ -39,7 +39,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
         ProjectModule,
         HealthRiskModule,
         ModalModule.forRoot()
-        
+
     ],
     bootstrap: [AppComponent]
 })
