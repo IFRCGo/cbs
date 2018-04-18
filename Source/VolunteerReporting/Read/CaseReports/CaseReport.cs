@@ -6,6 +6,7 @@ namespace Read.CaseReports
     public class CaseReport
     {
         public Guid Id { get; private set; }
+        public string Message { get; internal set; }
         public Guid DataCollectorId { get; internal set; }
         public Guid HealthRiskId { get; internal set; }
         public int NumberOfFemalesAged5AndOlder { get; internal set; }
