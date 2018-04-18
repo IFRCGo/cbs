@@ -118,7 +118,7 @@ namespace TextMessaging
                 if (!AgeGroupIsValid())
                 {
                     ErrorMessages.Add(
-                        $"Age group must be either under 5 ({(int) AgeGroup.AgeUnder5}), or over 5 ({(int) AgeGroup.AgeOver5})");
+                        $"Age group must be either under 5 ({(int) AgeGroup.AgeUnder5}), or 5 and over ({(int) AgeGroup.Age5AndOver})");
                 }
 
                 if (!SexIsValid())
@@ -145,9 +145,9 @@ namespace TextMessaging
                 var ageGroup = (AgeGroup) numbers[2];
 
                 MalesUnder5 = ageGroup == AgeGroup.AgeUnder5 && sex == Sex.Male ? 1 : 0;
-                MalesAged5AndOlder = ageGroup == AgeGroup.AgeOver5 && sex == Sex.Male ? 1 : 0;
+                MalesAged5AndOlder = ageGroup == AgeGroup.Age5AndOver && sex == Sex.Male ? 1 : 0;
                 FemalesUnder5 = ageGroup == AgeGroup.AgeUnder5 && sex == Sex.Female ? 1 : 0;
-                FemalesAged5AndOlder = ageGroup == AgeGroup.AgeOver5 && sex == Sex.Female ? 1 : 0;
+                FemalesAged5AndOlder = ageGroup == AgeGroup.Age5AndOver && sex == Sex.Female ? 1 : 0;
             }
             
             if (IsMultipleCaseReport)

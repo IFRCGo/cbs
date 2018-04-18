@@ -3,6 +3,6 @@ namespace Concepts
     public enum AgeGroup
     {
         AgeUnder5 = 1,
-        AgeOver5 = 2
+        Age5AndOver = 2
     }
 }
