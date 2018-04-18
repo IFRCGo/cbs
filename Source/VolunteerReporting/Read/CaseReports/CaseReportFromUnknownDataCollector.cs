@@ -6,6 +6,7 @@ namespace Read.CaseReports
     public class CaseReportFromUnknownDataCollector
     {
         public Guid Id { get; set; }
+        public string Message { get; set; }
         public string Origin { get; internal set; }
         public Guid HealthRiskId { get; internal set; }
         public int NumberOfFemalesAged5AndOlder { get; internal set; }

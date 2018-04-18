@@ -45,7 +45,9 @@ namespace Policy
                     item.NumberOfFemalesAged5AndOlder,
                     dataCollector.Location.Longitude,
                     dataCollector.Location.Latitude,
-                    item.Timestamp
+                    item.Timestamp,
+                    item.Message
+                    
                     );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             } 
