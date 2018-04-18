@@ -49,8 +49,6 @@ namespace TextMessaging
             SetNumbers();
             ValidateMessage();
             PopulateMessageContent();
-
-
         }
 
         public bool IsInvalidFormat => caseReportType == CaseReportType.InvalidFormat;
@@ -163,4 +161,3 @@ namespace TextMessaging
     }
 
 }
-

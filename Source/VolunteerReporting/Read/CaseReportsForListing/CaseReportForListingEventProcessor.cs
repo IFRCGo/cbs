@@ -39,7 +39,8 @@ namespace Read.CaseReportsForListing
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp,
-                Origin = @event.Origin
+                Origin = @event.Origin,
+                Message = @event.Message
             };
              _caseReports.Save(caseReport);
         }
@@ -59,7 +60,8 @@ namespace Read.CaseReportsForListing
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Timestamp = @event.Timestamp,
-                Origin = @event.Origin
+                Origin = @event.Origin,
+                Message = @event.Message
             };
              _caseReports.Save(caseReport);
         }
