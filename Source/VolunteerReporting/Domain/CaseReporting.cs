@@ -58,7 +58,8 @@ namespace Domain
             int numberOfFemalesAged5AndOlder,
             double longitude,
             double latitude,
-            DateTimeOffset timestamp)
+            DateTimeOffset timestamp,
+            string message)
         {
             Apply(new CaseReportReceived
             {
@@ -72,7 +73,8 @@ namespace Domain
                 NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
                 Longitude = longitude,
                 Latitude = latitude,
-                Timestamp = timestamp
+                Timestamp = timestamp,
+                Message = message
             });
         }        
 
@@ -83,7 +85,8 @@ namespace Domain
             int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder,
-            DateTimeOffset timestamp)
+            DateTimeOffset timestamp,
+            string message)
         {
             Apply(new CaseReportFromUnknownDataCollectorReceived
             {
@@ -94,7 +97,8 @@ namespace Domain
                 NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
                 NumberOfMalesUnder5 = numberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder,
-                Timestamp = timestamp
+                Timestamp = timestamp,
+                Message = message
             });
         }      
         

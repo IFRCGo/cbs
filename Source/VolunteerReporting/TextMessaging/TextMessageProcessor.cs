@@ -108,7 +108,8 @@ namespace TextMessaging
                     parsingResult.MalesAged5AndOlder,
                     parsingResult.FemalesUnder5,
                     parsingResult.FemalesAged5AndOlder,
-                    message.Sent
+                    message.Sent,
+                    message.Message
                 );                
                 return;
             }
@@ -123,7 +124,9 @@ namespace TextMessaging
                 parsingResult.FemalesAged5AndOlder,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
-                message.Sent);
+                message.Sent,
+                message.Message
+            );
         }           
     }
 }
