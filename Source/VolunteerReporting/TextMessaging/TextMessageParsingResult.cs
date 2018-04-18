@@ -16,7 +16,7 @@ namespace TextMessaging
         {
             Fragments = fragments;
             Numbers = fragments.Where(fragment => fragment.IsNumber).Select(fragment => fragment.AsNumber).ToArray();            
-            ValidateAllFragmentsHasValue();
+            ValidateAllFragmentsHasValidValue();
             ValidateThatIsCorrectMessage();
             PopulateMessageContent();
         }
@@ -31,9 +31,9 @@ namespace TextMessaging
         public int FemalesUnder5 { get; private set; }
         public int FemalesAged5AndOlder { get; private set; }
 
-        private void ValidateAllFragmentsHasValue()
+        private void ValidateAllFragmentsHasValidValue()
         {
-            if( Fragments.Any(fragment => !fragment.HasValue) )
+            if( Fragments.Any(fragment => !fragment.HasValue || !fragment.IsNumber) )
                 _errorMessages.Add("Message contain one or more hashes with missing number in front or after");
         }
 
