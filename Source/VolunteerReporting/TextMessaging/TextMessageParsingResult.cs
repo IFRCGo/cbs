@@ -44,6 +44,7 @@ namespace TextMessaging
             if (!IsValid)
                 return;
 
+            // Only validate further when all the fragments are only numbers
             SetCaseReportType();
             SetNumbers();
             ValidateMessage();
