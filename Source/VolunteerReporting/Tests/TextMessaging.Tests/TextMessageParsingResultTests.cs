@@ -157,7 +157,7 @@ namespace TextMessaging.Tests
             });
 
             Assert.False(result.IsValid);
-            Assert.True(result.ErrorMessages.Count == 2);
+            Assert.True(result.ErrorMessages.Count == 1);
         }
     }
 }
