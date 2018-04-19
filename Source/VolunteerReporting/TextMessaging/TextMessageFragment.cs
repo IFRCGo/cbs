@@ -2,6 +2,7 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 namespace TextMessaging
 {
     public class TextMessageFragment
@@ -10,18 +11,17 @@ namespace TextMessaging
         {
             Value = value;
 
-            var result = 0;
-            IsNumber = int.TryParse(value, out result);
-            AsNumber = result;
-
-            HasValue = value.Length > 0;
+            Number = int.TryParse(value, out var tmp) ? tmp : default(int?);
         }
+
         public string Value { get; }
 
-        public bool IsNumber { get; }
+        public int? Number { get; }
 
-        public bool HasValue { get; }
+        public bool HasValue => 
+            Value != null && !Value.Equals(string.Empty);
 
-        public int AsNumber { get; }
+        public bool IsValid => 
+            HasValue && Number.HasValue;
     }
 }
