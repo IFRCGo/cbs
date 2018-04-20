@@ -50,10 +50,42 @@ namespace Web
                 FullMessage = sms.Text,
                 ReceivedAtGatewayNumber = sms.ModemNo,
             };
+          
+            var incomingTextMessageAsJson = _serializer.ToJson(incomingTextMessage);
+            _publisher.Publish(TextMessageListener.Topic, incomingTextMessageAsJson);
+            _logger.Information(incomingTextMessageAsJson);
+        }
+
+        [HttpPost ("/smssync")]
+        public void MessageFromSMSSync([FromForm] SMSSync sms){
+        
+            var dateTime = DateTime.ParseExact(sms.Sent_timestamp, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+            var dateTimeOffset = new DateTimeOffset(dateTime);
+            try
+            { 
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Oslo");
+                
+                var offset = timeZone.GetUtcOffset(dateTime);
+                dateTime = dateTime.Subtract(offset);
+                dateTimeOffset = new DateTimeOffset(dateTime, offset);
+            } catch {}
+
+             var incomingTextMessage = new TextMessage
+            {
+                Id = Guid.NewGuid(),
+                
+                Sent = dateTimeOffset,
+                OriginNumber = sms.From,
+                Message = sms.Message,
+                FullMessage = sms.Message,
+                ReceivedAtGatewayNumber = sms.device_id,
+            };       
 
             var incomingTextMessageAsJson = _serializer.ToJson(incomingTextMessage);
             _publisher.Publish(TextMessageListener.Topic, incomingTextMessageAsJson);
             _logger.Information(incomingTextMessageAsJson);
+
+
         }
     }
 }
