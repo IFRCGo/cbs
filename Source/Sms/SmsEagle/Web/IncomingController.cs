@@ -33,16 +33,42 @@ namespace Web
             var incomingTextMessage = new TextMessage
             {
                 Id = Guid.NewGuid(),
+                
                 Sent = DateTimeOffset.ParseExact(sms.Timestamp,"yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture),
                 OriginNumber = sms.Sender,
                 Message = sms.Text,
                 FullMessage = sms.Text,
                 ReceivedAtGatewayNumber = sms.ModemNo,
             };
+          
+
 
             var incomingTextMessageAsJson = _serializer.ToJson(incomingTextMessage);
             _publisher.Publish(TextMessageListener.Topic, incomingTextMessageAsJson);
             _logger.Information(incomingTextMessageAsJson);
+        }
+
+        [HttpPost ("/smssync")]
+        public void MessageFromSMSSync([FromForm] SMSSync sms){
+
+             var incomingTextMessage = new TextMessage
+            {
+                Id = Guid.NewGuid(),
+                
+                Sent = DateTimeOffset.ParseExact(sms.Sent_timestamp,"yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture),
+                OriginNumber = sms.From,
+                Message = sms.Message,
+                FullMessage = sms.Message,
+                ReceivedAtGatewayNumber = sms.device_id,
+            };
+          
+
+
+            var incomingTextMessageAsJson = _serializer.ToJson(incomingTextMessage);
+            _publisher.Publish(TextMessageListener.Topic, incomingTextMessageAsJson);
+            _logger.Information(incomingTextMessageAsJson);
+
+
         }
     }
 }
