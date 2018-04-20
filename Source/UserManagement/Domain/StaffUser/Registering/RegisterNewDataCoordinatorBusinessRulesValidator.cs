@@ -10,9 +10,11 @@ namespace Domain.StaffUser.Registering
     {
         readonly CanAssignToNationalSociety _canAssignToNationalSociety;
 
-        public RegisterNewDataCoordinatorBusinessRulesValidator(StaffUserIsRegistered isRegistered, 
-                                                                    CanAssignToNationalSociety canAssignToNationalSociety) 
-            : base(isRegistered)
+        public RegisterNewDataCoordinatorBusinessRulesValidator(
+            StaffUserIsRegistered isRegistered, 
+            CanAssignToNationalSociety canAssignToNationalSociety, 
+            bool isNewRegistration) 
+            : base(isRegistered, isNewRegistration)
         {
             _canAssignToNationalSociety = canAssignToNationalSociety;
 

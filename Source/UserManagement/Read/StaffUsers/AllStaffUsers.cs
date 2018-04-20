@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using doLittle.Read;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Read.GreetingGenerators;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers

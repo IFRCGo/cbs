@@ -11,9 +11,9 @@ using FluentValidation;
 
 namespace Domain.DataCollector.Registering
 {
-    public class AddDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
+    public class RegisterDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
     {
-        public AddDataCollectorValidator()
+        public RegisterDataCollectorValidator()
         {
 
             RuleFor(_ => _.DataCollectorId)

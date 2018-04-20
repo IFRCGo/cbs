@@ -1,0 +1,14 @@
+<div *ngIf="dataCollector">
+    <h2>{{dataCollector.fullName}}</h2>
+    <div><span>Display name: </span>{{dataCollector.displayName}}</div>
+    <div><span>Year of birth: </span>{{dataCollector.yearOfBirth}}</div>
+    <div><span>Sex: </span><span *ngIf="dataCollector.sex == 1">Male</span><span *ngIf="dataCollector.sex == 2">Female</span></div>
+    <div><span>National society: </span>{{dataCollector.nationalSociety}}</div>
+    <div><span>Preferred Language: </span>{{dataCollector.preferredLanguage}}</div>
+    <div><span>Location: </span>{{dataCollector.location.latitude}} / {{dataCollector.location.longitude}}</div>
+    <div><span>Phone numbers: </span><span *ngFor="let phonenumber of dataCollector.phoneNumbers">{{phonenumber.value}}</span></div>
+    <div><span>Registered date: </span>{{dataCollector.registeredAt}}</div>
+    <div><span>Last report received at: </span>{{dataCollector.lastReportRecievedAt}}</div>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
+  

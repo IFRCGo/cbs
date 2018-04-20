@@ -25,14 +25,15 @@ namespace Read.HealthRiskFeatures
                 Name = @event.Name,
                 ReadableId = @event.ReadableId,
                 Threshold = @event.Threshold,
-                ConfirmedCase = @event.ConfirmedCase,
+                CaseDefinition = @event.CaseDefinition,
+                //ConfirmedCase = @event.ConfirmedCase,
                 Note = @event.Note,
-                ProbableCase = @event.ProbableCase,
+                //ProbableCase = @event.ProbableCase,
                 CommunityCase = @event.CommunityCase,
-                SuspectedCase = @event.SuspectedCase,
+                //SuspectedCase = @event.SuspectedCase,
                 KeyMessage = @event.KeyMessage
             };
-            _healthRisks.Save(healthRisk);
+            _healthRisks.SaveAsync(healthRisk);
         }
     }
 }

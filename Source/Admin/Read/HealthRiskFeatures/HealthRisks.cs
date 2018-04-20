@@ -39,9 +39,23 @@ namespace Read.HealthRiskFeatures
             return await list.ToListAsync();
         }
 
-        public void Save(HealthRisk healthRisk)
+        public async Task SaveAsync(HealthRisk healthRisk)
         {
-            _collection.InsertOne(healthRisk);
+            await _collection.InsertOneAsync(healthRisk);
+        }
+
+        public async Task ReplaceAsync(HealthRisk healthRisk)
+        {
+            var filter = Builders<HealthRisk>.Filter.Eq(v => v.Id, healthRisk.Id);
+
+            await _collection.ReplaceOneAsync(filter, healthRisk);
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            var filter = Builders<HealthRisk>.Filter.Eq(v => v.Id, id);
+
+            await _collection.DeleteOneAsync(filter);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace TextMessaging.Tests
 {
     public class TextMessageParserTests
     {
+        //TODO: Write more tests
         [Fact]
         public void WhenParsingWithTwoFragments_ItShoulReturnTwoFragments()
         {

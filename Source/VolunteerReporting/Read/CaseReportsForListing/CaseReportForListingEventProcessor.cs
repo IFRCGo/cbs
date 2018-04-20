@@ -33,13 +33,14 @@ namespace Read.CaseReportsForListing
                 DataCollectorDisplayName = dataCollector.DisplayName,
                 HealthRiskId = @event.HealthRiskId,
                 HealthRisk = healthRisk.Name,
-                NumberOfFemalesAges0To4 = @event.NumberOfFemalesAges0To4,
-                NumberOfFemalesAgedOver4 = @event.NumberOfFemalesAgedOver4,
-                NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
-                NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
+                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
+                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp,
-                Origin = @event.Origin
+                Origin = @event.Origin,
+                Message = @event.Message
             };
              _caseReports.Save(caseReport);
         }
@@ -54,12 +55,13 @@ namespace Read.CaseReportsForListing
                 Status = CaseReportStatus.UnknownDataCollector,                
                 HealthRiskId = @event.HealthRiskId,
                 HealthRisk = healthRisk.Name,
-                NumberOfFemalesAges0To4 = @event.NumberOfFemalesAges0To4,
-                NumberOfFemalesAgedOver4 = @event.NumberOfFemalesAgedOver4,
-                NumberOfMalesAges0To4 = @event.NumberOfMalesAges0To4,
-                NumberOfMalesAgedOver4 = @event.NumberOfMalesAgedOver4,
+                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
+                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Timestamp = @event.Timestamp,
-                Origin = @event.Origin
+                Origin = @event.Origin,
+                Message = @event.Message
             };
              _caseReports.Save(caseReport);
         }

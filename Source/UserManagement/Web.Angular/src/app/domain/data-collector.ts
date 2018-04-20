@@ -1,34 +1,40 @@
+import { Location } from "./location.model";
+
 class PhoneNumber {
     value: string;
     confirmed: boolean;
 }
 
 export class DataCollector {
-    id: string;
+
+    dataCollectorId: string;
     fullName: string;
     displayName: string;
-    age: number;
+    yearOfBirth: number;
+    phoneNumberString: string;
+    phoneNumbers: Array<PhoneNumber>;
     sex: string;
     nationalSociety: string;
     preferredLanguage: string;
-    latitude: string;
-    longtitude: string;
-    phoneNumbers: Array<PhoneNumber>;
-    email: string;
+    location: Location;
     registeredAt: Date;
+    lastReportRecievedAt: Date;
 
     constructor(o: any) {
-        this.id = o.id;
+
+        this.dataCollectorId = o.id;
         this.fullName = o.fullName;
         this.displayName = o.displayName;
-        this.age = o.age;
+        this.yearOfBirth = o.yearOfBirth;
+        this.phoneNumberString = o.phoneNumberString;
+        this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
         this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;
-        this.longtitude = o.longtitude;
-        this.latitude = o.latitude;
-        this.phoneNumbers = o.phoneNumbers;
-        this.email = o.email;
+        this.location = {
+            longitude: o.longitude,
+            latitude: o.latitude   
+        }
         this.registeredAt = o.registeredAt;
     }
 }

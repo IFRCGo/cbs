@@ -2,19 +2,19 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-import { StaffUserService } from '../services/staff-user.service';
-import { StaffUser } from '../domain/staff-user';
+import { DataCollectorService } from '../services/data-collector.service';
+import { DataCollector } from '../domain/data-collector';
 
 @Component({
     selector: 'cbs-delete-user',
     templateUrl: './delete-user.component.html'
 })
 export class DeleteUserComponent {
-    @Input() user: StaffUser;
+    @Input() user: DataCollector;
     modalRef: BsModalRef;
 
     constructor(
-        private staffUserService: StaffUserService,
+        private dataCollectorService: DataCollectorService,
         private modalService: BsModalService
     ) {}
 
@@ -23,9 +23,8 @@ export class DeleteUserComponent {
     }
 
     deleteUser(id: string) {
-        this.staffUserService.deleteUser(id);
+        console.log(id);
+        this.dataCollectorService.deleteDataCollector(id);
         this.modalRef.hide();
-
-        // TODO: reload userList on success
     }
 }

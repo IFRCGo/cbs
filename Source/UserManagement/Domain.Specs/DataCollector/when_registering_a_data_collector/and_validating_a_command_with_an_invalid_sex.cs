@@ -4,16 +4,16 @@ using Machine.Specifications;
 using Concepts;
 namespace Domain.Specs.DataCollector.when_registering_a_data_collector
 {
-    [Subject(typeof(AddDataCollectorValidator))]
+    [Subject("Registration")]
     public class and_validating_a_command_with_a_missing_sex
     {
         static RegisterDataCollector cmd;
-        static AddDataCollectorValidator validator;
+        static RegisterDataCollectorValidator validator;
         static ValidationResult validation_results;
 
         Establish context = () => 
         {
-            validator = new AddDataCollectorValidator();
+            validator = new RegisterDataCollectorValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.Sex = (Sex)(-1));
         };

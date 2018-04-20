@@ -4,29 +4,30 @@
 
 <table class="table table-bordered table-striped">
     <tbody>
-    <tr>
-        <td> 
-            Quick Filters: 
-            <button (click)="basicFilter = 'all'">All</button>
-            <button (click)="basicFilter = 'success'">Success</button>
-            <button (click)="basicFilter = 'error'">Data error</button>
-            <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
-    </tr>
+        <tr>
+            <td>
+                Quick Filters:
+                <button (click)="basicFilter = 'all'">All</button>
+                <button (click)="basicFilter = 'success'">Success</button>
+                <button (click)="basicFilter = 'error'">Data error</button>
+                <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 <table class="table table-bordered table-striped" sortable-table (sorted)="onSorted($event)">
     <thead>
         <tr>
-            <!-- To make a column sortable create the atribute sortable-column="sortColumn" and create an if-branch in ./sort/case-report.service.ts to 
+            <!-- To make a column sortable create the atribute sortable-column="sortColumn" and create an if-branch in ./sort/case-report.service.ts to
             expand the sorting function for that given column -->
-            <th sortable-column="timeStamp">Time</th>
+            <th sortable-column="timeStamp" sort-direction="desc">Time</th>
             <th sortable-column="status">Status</th>
             <th sortable-column="dataCollector">Data&nbsp;Collector</th>
             <th sortable-column="healthRisk">Health&nbsp;Risk</th>
-            <th sortable-column="femalesAgedOver4">Females aged over 4</th>
-            <th sortable-column="femalesAges0To4">Females ages 0 to 4</th>
-            <th sortable-column="malesAgedOver4">Males aged over 4</th>
-            <th sortable-column="malesAges0To4">Males ages 0 to 4</th>
+            <th sortable-column="malesAges0To4">Males &lt; 5</th>
+            <th sortable-column="malesAgedOver4">Males &ge; 5</th>
+            <th sortable-column="femalesAges0To4">Females &lt; 5</th>
+            <th sortable-column="femalesAgedOver4">Females &ge; 5</th>
             <th>Lat&nbsp;/&nbsp;Long</th>
         </tr>
     </thead>
@@ -34,9 +35,9 @@
         <tr *ngFor="let caseReport of listedReports | filter:basicFilter">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
-                <span  *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
-                <span  *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
-                
+                <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
+                <span *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
+
             </td>
             <td>
                 <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
@@ -45,10 +46,10 @@
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
-                <td>{{caseReport.numberOfFemalesAgedOver4}}</td>
-                <td>{{caseReport.numberOfFemalesAges0To4}}</td>
-                <td>{{caseReport.numberOfMalesAgedOver4}}</td>
-                <td>{{caseReport.numberOfMalesAges0To4}}</td>
+                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
+                <td>{{caseReport.numberOfFemalesUnder5}}</td>
+                <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
                 <td>
                     <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}}, {{caseReport.location.longitude | number}}</span>
                 </td>
