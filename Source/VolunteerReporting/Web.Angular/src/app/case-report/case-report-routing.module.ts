@@ -3,6 +3,9 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {CaseReportListComponent} from './case-report-list/case-report-list.component';
 
+/*import { environment } from './environment';
+console.log('PRODUCTION:',environment.production);*/
+
 const routes: Routes = [
   {
     path: 'case-report',
