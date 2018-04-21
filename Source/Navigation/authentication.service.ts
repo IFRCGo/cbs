@@ -53,7 +53,7 @@ export class AuthenticationService {
     private update():Promise<boolean> {
         const self = this;
         let resolve;
-        const promise = new Promise((r) => { resolve = r; });
+        const promise = new Promise<boolean>((r) => { resolve = r; });
         if (isDevMode()) {
             this._name = 'DEV-MODE';
             this._loggedIn = true;

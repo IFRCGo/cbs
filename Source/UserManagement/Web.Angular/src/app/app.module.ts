@@ -23,6 +23,8 @@ import { UserFormDataVerifierComponent } from './user-form/user-form-data-verifi
 import { UserFormDataCollectorComponent } from './user-form/user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
 import { DataCollectorDetailComponent } from './user-detail/datacollector-detail.component';
+import { AuthenticationService } from 'navigation/authentication.service';
+import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 import { USER_FORM_ROUTES } from './user-form';
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     UserFormDataCollectorComponent,
     UserFormDataConsumerComponent,
     DataCollectorDetailComponent,
+    IfLoggedInComponent,
     NavTopBarComponent
   ],
   imports: [
@@ -64,7 +67,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ModalModule.forRoot()
   ],
-  providers: [StaffUserService, DataCollectorService],
+  providers: [
+    StaffUserService,
+    DataCollectorService,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
