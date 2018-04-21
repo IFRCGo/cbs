@@ -14,7 +14,6 @@ export class DataCollector {
     phoneNumberString: string;
     phoneNumbers: Array<PhoneNumber>;
     sex: string;
-    nationalSociety: string;
     preferredLanguage: string;
     location: Location;
     registeredAt: Date;
@@ -29,7 +28,6 @@ export class DataCollector {
         this.phoneNumberString = o.phoneNumberString;
         this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
-        this.nationalSociety = o.nationalSociety;
         this.preferredLanguage = o.preferredLanguage;
         this.location = {
             longitude: o.longitude,

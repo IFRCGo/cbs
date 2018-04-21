@@ -10,7 +10,6 @@ namespace Domain.DataCollector
 
         void Handle(DeleteDataCollector command);
 
-
         void Handle(AddPhoneNumberToDataCollector command);
 
         void Handle(RemovePhoneNumberFromDataCollector command);

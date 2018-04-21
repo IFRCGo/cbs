@@ -14,7 +14,6 @@ export class UserFormDataCollectorComponent {
   user: DataCollector = new DataCollector({});
   languageOptions = ['English', 'French'];
   sexOptions = [{desc: 'Male', id: '1'}, {desc: 'Female', id: '2'}];
-  nationalSocieties = [{desc: 'Norway', id: 'badbc228-84aa-4ec3-8946-473b813ab969'}, {desc: 'Sweden', id: '28a460de-3c9e-4fb9-b42d-6bb4d7029a9c'}];
 
   constructor(
     private router: Router,
