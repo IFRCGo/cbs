@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;

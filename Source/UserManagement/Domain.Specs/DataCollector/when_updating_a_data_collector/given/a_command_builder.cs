@@ -15,7 +15,6 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
                  IsNewRegistration = false,
                  FullName = "Data Collector",
                  DisplayName = "Daty",
-                 NationalSociety = Guid.NewGuid(),
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
                  PhoneNumbers = new [] {"123456789"},

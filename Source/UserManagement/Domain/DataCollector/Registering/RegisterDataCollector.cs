@@ -19,7 +19,6 @@ namespace Domain.DataCollector.Registering
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
-        public Guid NationalSociety { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }

@@ -30,7 +30,6 @@ namespace Domain.DataCollector
                 command.DisplayName,
                 command.YearOfBirth,
                 command.Sex,
-                command.NationalSociety,
                 command.PreferredLanguage,
                 command.GpsLocation,
                 command.PhoneNumbers,
