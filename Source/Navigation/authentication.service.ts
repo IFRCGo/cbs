@@ -8,6 +8,7 @@ export class AuthenticationService {
     private _name:string;
     private _loggedIn:boolean;
     private _userManager:UserManager;
+    private _alreadyUpdating:Promise<boolean>;
 
     // http://localhost:5000/be4c4da6-5ede-405f-a947-8aedad564b7f/CBS/connect/authorize?client_id=25c7ddac-dd1b-482a-8638-aaa909fd1f1c&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2F&response_type=id_token&scope=openid%20email%20profile&state=c767449ef8d34ce7aa5a1335aa65f8d5&nonce=2fcacdb525c042d78e438e58c27085b5
     // http://localhost:4200/#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2YTdlYTY4ZmRiMzhkOTZmNjNkMmM4ZjA5MWJlYmQ3IiwidHlwIjoiSldUIn0.eyJuYmYiOjE1MjM1MTc5MTgsImV4cCI6MTUyMzUxODIxOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwL2JlNGM0ZGE2LTVlZGUtNDA1Zi1hOTQ3LThhZWRhZDU2NGI3Zi9jYnMiLCJhdWQiOiIyNWM3ZGRhYy1kZDFiLTQ4MmEtODYzOC1hYWE5MDlmZDFmMWMiLCJub25jZSI6Ijc3ZDA4MGY1N2ExZjRjNjk4ZGJiZGY0MjQ3OTc5MjNmIiwiaWF0IjoxNTIzNTE3OTE4LCJzaWQiOiJjYzM4OWVjMzRjYzQ4ZDllZmY4OTQyZDBkODExNWQ0ZCIsInN1YiI6Im9XNHVOQTZERUdfYllLVXFITWNUTkhUbno3UDBsTVdjbXFKYndxazZsb0EiLCJhdXRoX3RpbWUiOjE1MjM1MTc5MTMsImlkcCI6IjliMjk2OTc3LTc2NTctNGJjOC1iNWIwLTNmMGEyM2M0Mzk1OCIsIm5hbWUiOlsiRWluYXIgSW5nZWJyaWd0c2VuIiwiRWluYXIgSW5nZWJyaWd0c2VuIl0sImFtciI6WyJleHRlcm5hbCJdfQ.TR2SCZgi0kV9YYxJyMhoIacDv8T4OozsNDgF-JDHyN5VRUQWCZNl9WXKLpCejR44rxNWO-zY5idARTj96wvf_erE2NOeS4xmNqjgPcINb8rXPbENUbziIlf9u4JzRWk0wxYu3n9Vm2ntX2X18mrgPPqATZNkkKQsUKtElprItkVWblMjFUjKfCqwjr_0zrlCSn2eV4uxa1V5kz6G4bG2Y51_508O5dvJAMZartPPYnoFOm95ofZzWHHI9vjak8-M4HbhN1GohEHW9GifKzhc7fFzbZOOgBIuPWOLO6N0yg-n3Dw2v3RkNV6sbMVQJbz1uNxo_cst_eIbAJQnt7BHHw&scope=openid%20email%20profile&state=7b28db0d18b3426fad289fbab270315d&session_state=ZTV6bOmFDZ6mpPF8AMyr443WQ2DFdbf53ZTkX3Jt6Io.c5013f207eb75815167356274546341a
@@ -51,33 +52,41 @@ export class AuthenticationService {
     }
 
     private update():Promise<boolean> {
-        const self = this;
-        let resolve;
-        const promise = new Promise<boolean>((r) => { resolve = r; });
-        if (isDevMode()) {
-            this._name = 'DEV-MODE';
-            this._loggedIn = true;
-            resolve(true);
+        if (this._alreadyUpdating) {
+            return this._alreadyUpdating;
         } else {
-            if( window.location.hash.indexOf('id_token=') >= 0 ) {
-                this._userManager.signinRedirectCallback().then(function(user) {
-                    self._userManager.storeUser(user);
-                    window.location.hash = '';
-                    self.populateUser(user, resolve);
-                });
+            const self = this;
+            let resolve;
+            const promise = new Promise<boolean>((r) => { resolve = r; });
+            self._alreadyUpdating = promise;
+            if (isDevMode()) {
+                this._name = 'DEV-MODE';
+                this._loggedIn = true;
+                resolve(true);
+                self._alreadyUpdating = null;
             } else {
-                this._userManager.getUser().then(function(user) {
-                    if( user ) {
+                if( window.location.hash.indexOf('id_token=') >= 0 ) {
+                    this._userManager.signinRedirectCallback().then(function(user) {
+                        self._userManager.storeUser(user);
+                        window.location.hash = '';
                         self.populateUser(user, resolve);
-                    } else {
-                        self._userManager.signinRedirect({
-                            state: { some:'state' }
-                        }).then(function() {});
-                    }
-                });
+                        self._alreadyUpdating = null;
+                    });
+                } else {
+                    this._userManager.getUser().then(function(user) {
+                        if( user ) {
+                            self.populateUser(user, resolve);
+                            self._alreadyUpdating = null;
+                        } else {
+                            self._userManager.signinRedirect({
+                                state: { some:'state' }
+                            }).then(function() {});
+                        }
+                    });
+                }
             }
+            return promise;
         }
-        return promise;
     }
 
     get isLoggedIn():Observable<boolean> {
