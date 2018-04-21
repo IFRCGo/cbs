@@ -8,6 +8,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CaseReportModule } from './case-report/case-report.module';
 import { CoreModule } from './core/core.module';
+import { AuthenticationService } from 'navigation/authentication.service';
+import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 const routes: Routes = [
@@ -21,6 +23,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+        IfLoggedInComponent,
         NavTopBarComponent
     ],
     imports: [
@@ -31,7 +34,9 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         CaseReportModule
     ],
-    providers: [],
+    providers: [
+        AuthenticationService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
