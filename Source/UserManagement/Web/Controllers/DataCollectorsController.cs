@@ -59,6 +59,7 @@ namespace Web.Controllers
             return new NotFoundResult();
         }
 
+        //QUESTION FROM VELCROW81: SHOULD NOT THE COMMAND BE USED AS THE ARGUMENT INSTEAD OF THE READ MODEL?
         [HttpPost]
         public IActionResult Register([FromBody] Read.DataCollectors.DataCollector dataCollector)
         {
@@ -71,7 +72,6 @@ namespace Web.Controllers
                 DisplayName = dataCollector.DisplayName,
                 FullName = dataCollector.FullName,
                 GpsLocation = dataCollector.Location,
-                NationalSociety = dataCollector.NationalSociety,
                 PreferredLanguage = dataCollector.PreferredLanguage,
                 Sex = dataCollector.Sex,
                 YearOfBirth = dataCollector.YearOfBirth
@@ -95,7 +95,6 @@ namespace Web.Controllers
                 DisplayName = dataCollector.DisplayName,
                 FullName = dataCollector.FullName,
                 GpsLocation = dataCollector.Location,
-                NationalSociety = dataCollector.NationalSociety,
                 PreferredLanguage = dataCollector.PreferredLanguage,
                 Sex = dataCollector.Sex,
                 YearOfBirth = dataCollector.YearOfBirth
