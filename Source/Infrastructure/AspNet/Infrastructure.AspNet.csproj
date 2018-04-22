@@ -13,7 +13,10 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
 
     <PackageReference Include="Dolittle.Assemblies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Applications" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Applications.Serialization.Json" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Concepts" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Concepts.Serialization.Json" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Collections" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Types" Version="2.0.0-alpha2*" />
 
