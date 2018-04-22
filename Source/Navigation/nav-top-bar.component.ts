@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManager, WebStorageStateStore } from 'oidc-client';
 
+// IMPORTANT: This import statement assumes a specific path - it navigates itself out of the node_modules folder and into src
+import { environment } from '../../src/environments/environment';
+
 @Component({
     selector: 'cbs-nav-top-bar',
     templateUrl: `./nav-top-bar.component.html`,
     styleUrls: ['./nav-top-bar.component.scss']
 })
 export class NavTopBarComponent implements OnInit {
-    societies:any[];
-    name:string;
-    loggedIn:boolean;
+    societies: any[];
+    name: string;
+    loggedIn: boolean;
 
     constructor() {
         this.societies = ['Norway', 'Sweden'];
@@ -23,59 +26,61 @@ export class NavTopBarComponent implements OnInit {
 
     ngOnInit() {
         let self = this;
-        let userManager = new UserManager({
-            authority: 'https://dolittle.online/be4c4da6-5ede-405f-a947-8aedad564b7f/CBS',
-            //'http://localhost:5000/be4c4da6-5ede-405f-a947-8aedad564b7f/CBS',
-            
-            automaticSilentRenew: true,
-            checkSessionInterval: 10000,
-            client_id: '25c7ddac-dd1b-482a-8638-aaa909fd1f1c',
-            filterProtocolClaims: true,
-            loadUserInfo: true,
-            post_logout_redirect_uri: '',
-            redirect_uri: `${window.location.origin}/`,
-            response_type: 'id_token',
-            scope: 'openid email profile',
-            silentRequestTimeout: 10000,
-            silent_redirect_uri: '',
-            userStore: new WebStorageStateStore({
-                prefix: "cbs",
-                store: window.localStorage
-            })
-        });
 
-        let populateUser = (user) => {
-            if( Object.prototype.toString.call(user.profile.name) === '[object Array]' )
-            {
-                self.name = user.profile.name[0];
-            } else 
-            {
-                self.name = user.profile.name;
-            }
-            self.loggedIn = true;
-        };
+        if (environment.production == true) {
+            let userManager = new UserManager({
+                authority: 'https://dolittle.online/be4c4da6-5ede-405f-a947-8aedad564b7f/CBS',
+                //'http://localhost:5000/be4c4da6-5ede-405f-a947-8aedad564b7f/CBS',
 
-        let getUserOrSignin = () => {
-            userManager.getUser().then(function(user) {
-                if( user ) {
-                    populateUser(user);
-                } else {
-                    userManager.signinRedirect({
-                        state: { some:'state' }
-                    }).then(function() {
-                    });
-                        
-                }
+                automaticSilentRenew: true,
+                checkSessionInterval: 10000,
+                client_id: '25c7ddac-dd1b-482a-8638-aaa909fd1f1c',
+                filterProtocolClaims: true,
+                loadUserInfo: true,
+                post_logout_redirect_uri: '',
+                redirect_uri: `${window.location.origin}/`,
+                response_type: 'id_token',
+                scope: 'openid email profile',
+                silentRequestTimeout: 10000,
+                silent_redirect_uri: '',
+                userStore: new WebStorageStateStore({
+                    prefix: "cbs",
+                    store: window.localStorage
+                })
             });
+
+            let populateUser = (user) => {
+                if (Object.prototype.toString.call(user.profile.name) === '[object Array]') {
+                    self.name = user.profile.name[0];
+                } else {
+                    self.name = user.profile.name;
+                }
+                self.loggedIn = true;
+            };
+
+            let getUserOrSignin = () => {
+                userManager.getUser().then(function (user) {
+                    if (user) {
+                        populateUser(user);
+                    } else {
+                        userManager.signinRedirect({
+                            state: { some: 'state' }
+                        }).then(function () {
+                        });
+
+                    }
+                });
+            }
+
+            if (window.location.hash.indexOf('id_token=') >= 0) {
+                userManager.signinRedirectCallback().then(function (user) {
+                    userManager.storeUser(user);
+                    window.location.hash = '';
+                    populateUser(user);
+                });
+            } else getUserOrSignin();
         }
 
-        if( window.location.hash.indexOf('id_token=') >= 0 ) {
-            userManager.signinRedirectCallback().then(function(user) {
-                userManager.storeUser(user);
-                window.location.hash = '';
-                populateUser(user);
-            });
-        } else getUserOrSignin();
     }
 }
 
