@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../Infrastructure"
+		},
+		{
+			"path": "/Users/einari/Projects/RedCross/cbs/Source/Navigation"
 		}
 	],
 	"settings": {}

@@ -39,13 +39,15 @@ namespace Policy
                     @event.DataCollectorId,
                     item.HealthRiskId,
                     item.Origin,
-                    item.NumberOfMalesAges0To4,
-                    item.NumberOfMalesAgedOver4,
-                    item.NumberOfFemalesAges0To4,
-                    item.NumberOfFemalesAgedOver4,
+                    item.NumberOfMalesUnder5,
+                    item.NumberOfMalesAged5AndOlder,
+                    item.NumberOfFemalesUnder5,
+                    item.NumberOfFemalesAged5AndOlder,
                     dataCollector.Location.Longitude,
                     dataCollector.Location.Latitude,
-                    item.Timestamp
+                    item.Timestamp,
+                    item.Message
+                    
                     );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             } 

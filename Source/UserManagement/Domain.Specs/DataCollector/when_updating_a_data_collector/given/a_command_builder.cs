@@ -1,31 +1,30 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using Domain.DataCollector.Update;
+using Domain.DataCollector.Registering;
 
 namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
 {
     public class a_command_builder
     {
-        public static UpdateDataCollector get_valid_command()
+        public static RegisterDataCollector get_valid_command()
          {
-             return  new UpdateDataCollector
+             return new RegisterDataCollector()
              {
                  DataCollectorId = Guid.NewGuid(),
+                 IsNewRegistration = false,
                  FullName = "Data Collector",
                  DisplayName = "Daty",
-                 NationalSociety = Guid.NewGuid(),
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
-                 PhoneNumbersAdded = new string[] {"123456789"},
-                 PhoneNumbersRemoved = new string[] {"987654321"},
-                 //Email = "test@test.com"
-
+                 PhoneNumbers = new [] {"123456789"},
+                 //Email = "test@test.com",
+                 
                  
              };
          }
 
-         public static UpdateDataCollector get_invalid_command(IEnumerable<Action<UpdateDataCollector>> invalidations)
+         public static RegisterDataCollector get_invalid_command(IEnumerable<Action<RegisterDataCollector>> invalidations)
          {
              var cmd = get_valid_command();
              foreach(var invalidate in invalidations)
@@ -36,9 +35,9 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
          }
 
 
-         public static UpdateDataCollector get_invalid_command(Action<UpdateDataCollector> invalidate)
+         public static RegisterDataCollector get_invalid_command(Action<RegisterDataCollector> invalidate)
          {
-             return get_invalid_command(new Action<UpdateDataCollector>[]{ invalidate });
+             return get_invalid_command(new []{ invalidate });
          }
     }
 }

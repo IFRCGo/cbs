@@ -11,9 +11,9 @@ using FluentValidation;
 
 namespace Domain.DataCollector.Registering
 {
-    public class AddDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
+    public class RegisterDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
     {
-        public AddDataCollectorValidator()
+        public RegisterDataCollectorValidator()
         {
 
             RuleFor(_ => _.DataCollectorId)
@@ -38,10 +38,7 @@ namespace Domain.DataCollector.Registering
             RuleFor(_ => _.GpsLocation)
                 .NotNull().WithMessage("Location must be provided");
                 //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
-
-            RuleFor(_ => _.NationalSociety)
-                .NotEmpty().WithMessage("A National Society is required");
-
+                
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
 

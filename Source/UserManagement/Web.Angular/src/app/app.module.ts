@@ -1,7 +1,8 @@
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,17 +22,22 @@ import { UserFormDataOwnerComponent } from './user-form/user-form-data-owner/use
 import { UserFormDataVerifierComponent } from './user-form/user-form-data-verifier/user-form-data-verifier.component';
 import { UserFormDataCollectorComponent } from './user-form/user-form-data-collector/user-form-data-collector.component';
 import { UserFormDataConsumerComponent } from './user-form/user-form-data-consumer/user-form-data-consumer.component';
+import { DataCollectorDetailComponent } from './user-detail/datacollector-detail.component';
+import { AuthenticationService } from 'navigation/authentication.service';
+import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 import { USER_FORM_ROUTES } from './user-form';
+import { USER_DETAIL_ROUTES } from './user-detail';
 import { ModalModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
+  ...USER_DETAIL_ROUTES,
+  { path: 'list', component: UserListComponent },
   { path: '', component: UserListComponent },
   { path: '**', component: UserListComponent }
 ];
-
-console.log(appRoutes);
 
 @NgModule({
   declarations: [
@@ -45,20 +51,27 @@ console.log(appRoutes);
     UserFormDataOwnerComponent,
     UserFormDataVerifierComponent,
     UserFormDataCollectorComponent,
-    UserFormDataConsumerComponent
-
+    UserFormDataConsumerComponent,
+    DataCollectorDetailComponent,
+    IfLoggedInComponent,
+    NavTopBarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     CommonModule,
+    HttpClientModule,
     HttpModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot()
   ],
-  providers: [StaffUserService, DataCollectorService],
+  providers: [
+    StaffUserService,
+    DataCollectorService,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

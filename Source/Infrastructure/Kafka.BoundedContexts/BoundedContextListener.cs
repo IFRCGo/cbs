@@ -141,7 +141,7 @@ namespace Infrastructure.Kafka.BoundedContexts
 
         IEvent GetEventFrom(dynamic rawContentAndEnvelope, EventSourceId eventSourceId, Type eventType)
         {
-            var @event = Activator.CreateInstance(eventType, eventSourceId) as IEvent;
+            var @event = Activator.CreateInstance(eventType) as IEvent;
             using (var textReader = new StringReader(rawContentAndEnvelope.Content.ToString()))
             {
                 using (var reader = new JsonTextReader(textReader))

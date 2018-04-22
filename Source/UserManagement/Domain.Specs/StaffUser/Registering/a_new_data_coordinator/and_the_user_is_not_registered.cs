@@ -14,20 +14,24 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_coordinator
         static su.StaffUser sut;
         static DateTimeOffset now;
         static RegisterNewDataCoordinator cmd;
-        Establish context = () => 
+        static bool is_new_registration;
+
+        private Establish context = () => 
         {
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewDataCoordinator>();
             cmd.Role.BirthYear = 1980;
             cmd.Role.Sex = Sex.Female;
+            is_new_registration = true;
             sut = new su.StaffUser(cmd.Role.StaffUserId);
         };
 
         Because of = () => {
-            sut.RegisterNewDataCoordinator(cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,now,
+            sut.RegisterNewDataCoordinator(is_new_registration, cmd.Role.FullName,cmd.Role.DisplayName,cmd.Role.Email,
                     cmd.Role.NationalSociety, cmd.Role.PreferredLanguage.Value, cmd.Role.PhoneNumbers,cmd.Role.AssignedNationalSocieties,
-                    cmd.Role.BirthYear, cmd.Role.Sex);
+                    cmd.Role.BirthYear, cmd.Role.Sex, now);
         };
+
         It should_create_a_new_user_registed_event_with_the_correct_values 
             = () => sut.ShouldHaveEvent<NewUserRegistered>().AtBeginning().Where(
                 e => e.FullName.ShouldEqual(cmd.Role.FullName),

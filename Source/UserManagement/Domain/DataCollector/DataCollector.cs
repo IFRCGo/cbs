@@ -19,16 +19,22 @@ namespace Domain.DataCollector
         #region VisibleCommands
 
         public void RegisterDataCollector(
+            bool isNewRegistration,
             string fullName, string displayName,
-            int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbers,
-            DateTimeOffset registeredAt
+            int yearOfBirth, Sex sex, Language preferredLanguage,
+            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt
             )
         {
-            if (_isRegistered)
+            if (isNewRegistration && _isRegistered)
             {
+                //TODO: We might want to Apply an event here that signals that a new data collector has been registered
                 throw new DataCollectorAlreadyRegistered($"DataCollector '{EventSourceId} {fullName} {displayName} is already registered'");
             }
+            //TODO: For the moment it does not seem that we can persist state for AggregateRoots for some reason?
+            // Therefore this must be commented out, the result of this is that the data collector get's a new registered at value for each time it's modified...
+            //if (isNewRegistration)
+               // _registeredAt = DateTimeOffset.UtcNow;
+
             Apply(new DataCollectorRegistered
             (
                 EventSourceId,
@@ -36,7 +42,6 @@ namespace Domain.DataCollector
                 displayName,
                 yearOfBirth,
                 (int)sex,
-                nationalSociety,
                 (int)preferredLanguage,
                 gpsLocation.Longitude,
                 gpsLocation.Latitude,
@@ -46,25 +51,11 @@ namespace Domain.DataCollector
             AddPhoneNumbers(phoneNumbers);
         }
 
-        public void UpdateDataCollector(
-            string fullName, string displayName,
-            Guid nationalSociety, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbersAdded,
-            IEnumerable<string> phoneNumbersRemoved
-            )
+        public void DeleteDataCollector(Guid dataCollectorId)
         {
-            Apply(new DataCollectorUpdated
-            (
-                EventSourceId,
-                fullName,
-                displayName,
-                nationalSociety,
-                (int)preferredLanguage,
-                gpsLocation.Longitude,
-                gpsLocation.Latitude
+            Apply(new DataCollectorRemoved(
+                dataCollectorId
             ));
-            AddPhoneNumbers(phoneNumbersAdded);
-            RemovePhoneNumbers(phoneNumbersRemoved);
         }
 
         public void AddPhoneNumber(string number)

@@ -12,14 +12,14 @@ namespace TextMessaging.Tests
         public void WhenFragmentIsANumber_ShouldBeConsideredANumber()
         {
             var fragment = new TextMessageFragment("42");
-            Assert.True(fragment.IsNumber);
+            Assert.True(fragment.Number.HasValue);
         }
 
         [Fact]
         public void WhenFragmentIsNotANumber_ShouldNotBeConsideredANumber()
         {
             var fragment = new TextMessageFragment("SomethingElse");
-            Assert.False(fragment.IsNumber);
+            Assert.False(fragment.Number.HasValue);
         }
 
         [Fact]
@@ -40,7 +40,8 @@ namespace TextMessaging.Tests
         public void WhenFragmentIsANumber_ShouldReturnTheNumberThroughAsNumber()
         {
             var fragment = new TextMessageFragment("42");
-            Assert.Equal(42,fragment.AsNumber);
+            Assert.True(fragment.Number.HasValue);
+            Assert.Equal(42, fragment.Number.Value);
         }
     }
 }

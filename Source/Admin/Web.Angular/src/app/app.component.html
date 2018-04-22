@@ -1,36 +1,20 @@
-<cbs-nav-top-bar></cbs-nav-top-bar>
-<nav class="navbar navbar-default navbar-static-top">
+<cbs-if-logged-in>
+    <cbs-nav-top-bar></cbs-nav-top-bar>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a [routerLink]="['project/list']">Projects</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['healthrisk']">Health risks</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">CBS Administration</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a routerLink="/">Home</a>
-                </li>
-                <li>
-                    <a [routerLink]="['project/list']">Project list</a>
-                </li>
-                <li>
-                    <a [routerLink]="['project/add']">Add project</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="../navbar/">Logged on as: xxx</a>
-                </li>
-            </ul>
-        </div>
+        <router-outlet></router-outlet>
     </div>
-</nav>
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+</cbs-if-logged-in>

@@ -24,7 +24,6 @@ namespace Read.DataCollectors
                 FullName = @event.FullName,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
                 YearOfBirth = @event.YearOfBirth,
-                NationalSociety = @event.NationalSociety,
                 Sex = (Sex)@event.Sex,
                 RegisteredAt = @event.RegisteredAt,
                 PreferredLanguage = (Language)@event.PreferredLanguage,
@@ -39,12 +38,18 @@ namespace Read.DataCollectors
 
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
-            dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-            dataCollector.NationalSociety = @event.NationalSociety;
+            dataCollector.Location = new Location(
+                @event.LocationLatitude,
+                @event.LocationLongitude);
             dataCollector.PreferredLanguage = (Language)@event.PreferredLanguage;
 
             _dataCollectors.Save(dataCollector);
 
+        }
+
+        public async Task Process(DataCollectorRemoved @event)
+        {
+            await _dataCollectors.RemoveAsync(@event.DataCollectorId);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)

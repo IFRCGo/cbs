@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {AggregatedCaseReportService} from '../../core/aggregated-case-report.service';
-import {CaseReportForListing} from '../../shared/models/case-report-for-listing.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {ReportService, ReportSearchCriteria} from './sort/case-report.service';
-import {Filter} from './filtering/filter.pipe';
-import {CaseReportExporter} from './exporter/case-report-exporter.service';
+import { AggregatedCaseReportService } from '../../core/aggregated-case-report.service';
+import { CaseReportForListing } from '../../shared/models/case-report-for-listing.model';
+import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
+import { QuickFilter, Filter } from './filtering/filter.pipe';
+import { CaseReportExporter } from './exporter/case-report-exporter.service';
+import { Report } from '../../shared/models/report.model';
 
 @Component({
-  selector: 'cbs-case-report-list',
-  templateUrl: './case-report-list.component.html',
-  styleUrls: ['./case-report-list.component.scss']
+    selector: 'cbs-case-report-list',
+    templateUrl: './case-report-list.component.html',
+    styleUrls: ['./case-report-list.component.scss']
 })
-
 /**
  * maxReports: number
  *      The number of reports that can be shown on a page
@@ -27,52 +28,62 @@ import {CaseReportExporter} from './exporter/case-report-exporter.service';
  */
 export class CaseReportListComponent implements OnInit {
 
-  listedReports: Array<CaseReportForListing>;
-  maxReports: number;
-  filterField: string;
-  filterValue: any;
+    listedReports: Array<CaseReportForListing>;
 
-  basicFilter: string = 'all';
+    allFilters: Array<QuickFilter> = QuickFilter.Filters;
+    currentFilter: QuickFilter = QuickFilter.All;
 
-  fields: Array<string> = [
-    'id', 'status', 'dataCollectorId', 'dataCollectorDisplayName',
-    'healthRiskId', 'healthRisk', 'message',
-    'numberOfFemalesOver5', 'numberOfFemalesUnder5',
-    'numberOfMalesOver5', 'numberOfMalesUnder5',
-    'timestamp', 'location'
-  ];
+    allColumns: Array<Column> = CaseReportColumns;
+    sortDescending: boolean = true;
+    currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
-  constructor(private caseReportService: AggregatedCaseReportService,
-              private service: ReportService,
-              private caseReportExporter: CaseReportExporter) {
-    this.maxReports = 10;
-  }
+    constructor(
+        private caseReportService: AggregatedCaseReportService,
+        private caseReportExporter: CaseReportExporter,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
 
-  /**
-   * Calls a getReports method in a class that handles sorting on the data passed.
-   * It may, or may not, be done by sending both an array that holds all the reports referenced to by
-   * the Report interface and an array of raw CaseReport objects.
-   * Ideally it would be nice to just pass an array of the raw data
-   * @param criteria The sorting criteria passed to the sorter service.
-   */
-  getReports(criteria: ReportSearchCriteria) {
-    this.listedReports = this.service.getReports(this.listedReports, criteria);
-  }
+    updateNavigation(filter: QuickFilter, column: SortableColumn, sortDescending: boolean) {
+      this.router.navigate(['../'+filter.name], { relativeTo: this.route, queryParams: {
+        sortBy: column.name,
+        order: sortDescending ? 'desc' : 'asc'
+      }});
+    }
 
-  onSorted($event) {
-    this.getReports($event);
-  }
+    filterButtonStyle(filter: QuickFilter) {
+        return {
+            'font-weight': this.currentFilter === filter ? 'bold' : 'normal'
+        };
+    }
+    clickFilter(filter: QuickFilter) {
+        this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
+    }
 
-  ngOnInit() {
-    this.caseReportService.getReports()
-      .then(result => {
-        this.listedReports = result || [];
-      })
-      .catch(error => console.error(error));
+    toggleSortColum(column: Column) {
+        if (column instanceof SortableColumn) {
+            if (column !== this.currentSortColumn) {
+                this.updateNavigation(this.currentFilter, column, true);
+            } else {
+                this.updateNavigation(this.currentFilter, this.currentSortColumn, !this.sortDescending);
+            }
+        }
+    }
 
-  }
+    ngOnInit() {
+        this.caseReportService.getReports().then(result => {
+            this.listedReports = result || [];
+        }).catch(error => console.error(error));
 
-  onClick(name: string) {
-    this.basicFilter = name;
-  }
+        this.route.params.subscribe(params => {
+            this.currentFilter = QuickFilter.fromName(params.filter);
+        });
+
+        this.route.queryParams.subscribe(query => {
+            this.sortDescending = query.order != 'asc';
+            this.currentSortColumn = this.allColumns.find(column => {
+                return column instanceof SortableColumn && column.name == query.sortBy;
+            }) as SortableColumn || this.currentSortColumn;
+        });
+    }
 }

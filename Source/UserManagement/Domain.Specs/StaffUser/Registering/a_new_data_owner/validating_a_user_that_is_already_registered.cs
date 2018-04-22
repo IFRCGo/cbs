@@ -17,8 +17,8 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             register = given.commands.build_valid_instance<RegisterNewDataOwner>();
 
             staff_user_is_registered = (id) => true;
-
-            sut = new RegisterNewDataOwnerBusinessRulesValidator(staff_user_is_registered);
+            var is_new_registration = true;
+            sut = new RegisterNewDataOwnerBusinessRulesValidator(staff_user_is_registered, is_new_registration);
         };
 
         Because of = () => validation_results = sut.Validate(register);

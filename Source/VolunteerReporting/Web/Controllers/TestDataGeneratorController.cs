@@ -86,7 +86,7 @@ namespace Web
             var _collection = _database.GetCollection<DataCollector>("DataCollector");
             _collection.DeleteMany(v => true);
 
-            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorAdded[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+            var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
             _eventReplayer.Replay(dataCollectors, _ => _.Id, (eventSource, @event) => {

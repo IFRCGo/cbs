@@ -141,33 +141,6 @@ namespace Web
                 Apply(risk.Id, risk);
         }
 
-        [HttpGet("createhealthrisksjson")]
-        public void CreateHealthRisksJson()
-        {
-            ConvertSeparatedFileWithHeadersToJson(
-                "./TestData/CBS Diseases - Events.tsv",
-                "./TestData/HealthRisks.json",
-                "\t",
-                (columnNames, values) =>
-                {
-                    var threshold = values[Array.IndexOf(columnNames, "Threshold")];
-                    return new HealthRiskCreated()
-                    {
-                        Id = Guid.NewGuid(),
-                        ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
-                        Name = values[Array.IndexOf(columnNames, "Health Risk")],
-                        Threshold = int.Parse(threshold),
-                        ConfirmedCase = values[Array.IndexOf(columnNames, "Confirmed Case")],
-                        ProbableCase = values[Array.IndexOf(columnNames, "Probable case")],
-                        SuspectedCase = values[Array.IndexOf(columnNames, "Suspected Case")],
-                        CommunityCase = values[Array.IndexOf(columnNames, "Community Case")],
-                        Note = values[Array.IndexOf(columnNames, "Note")],
-                        KeyMessage = values[Array.IndexOf(columnNames, "Key Message")]
-                    };
-                }
-            );
-        }
-
         [HttpGet("createprojectsjson")]
         public void CreateProjecstJson()
         {
