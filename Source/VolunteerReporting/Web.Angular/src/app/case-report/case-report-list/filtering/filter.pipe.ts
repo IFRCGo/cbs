@@ -36,7 +36,7 @@ export class QuickFilter {
 })
 export class Filter implements PipeTransform {
   transform(reports: Array<CaseReportForListing>, filter: QuickFilter) {
-    if (!reports) return [];
+    if (!reports) { return []; }
     return reports.filter(filter.evaluate);
   }
 }
