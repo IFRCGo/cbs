@@ -7,28 +7,28 @@
       <label for="full_name">Full Name</label>
       <input type="text" class="form-control" id="full_name"
              required
-             [(ngModel)]="user.fullName" name="full_name"
+             [(ngModel)]="command.fullName" name="full_name"
              #first_name="ngModel">
   </div>
 <div class="form-group">
       <label for="display_name">Display Name</label>
       <input type="text" class="form-control" id="display_name"
               required
-              [(ngModel)]="user.displayName" name="display_name"
+              [(ngModel)]="command.displayName" name="display_name"
               #last_name="ngModel">
   </div>
   <div class="form-group">
     <label for="yearOfBirth">Year of Birth</label>
     <input type="number" class="form-control" id="yearOfBirth"
            required
-           [(ngModel)]="user.yearOfBirth" name="yearOfBirth"
+           [(ngModel)]="command.yearOfBirth" name="yearOfBirth"
            #yearOfBirth="ngModel">
   </div>
   <div class="form-group">
     <label for="sex">Sex</label>
     <select class="form-control" id="sex"
             required
-            [(ngModel)]="user.sex" name="sex"
+            [(ngModel)]="command.sex" name="sex"
             #sex="ngModel">
         <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
     </select>
@@ -37,7 +37,7 @@
     <label for="preferredLanguage">Preferred Language</label>
     <select class="form-control" id="preferredLanguage"
             required
-            [(ngModel)]="user.preferredLanguage" name="preferredLanguage"
+            [(ngModel)]="command.preferredLanguage" name="preferredLanguage"
             #preferredLanguage="ngModel">
         <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage">{{preferredLanguage}}</option>
     </select>
@@ -51,7 +51,7 @@
         class="input-mini form-control" 
         id="latitude"
         required
-        [(ngModel)]="user.location.latitude"
+        [(ngModel)]="command.gpsLocation.latitude"
         name="latitude"
       />
       <label for="longitude">Longitude</label>
@@ -60,7 +60,7 @@
         class="input-mini form-control" 
         id="longitude"
         required
-        [(ngModel)]="user.location.longitude"
+        [(ngModel)]="command.gpsLocation.longitude"
         name="longitude"
       />
     </fieldset>
@@ -71,7 +71,7 @@
       class="input-mini form-control" 
       id="phoneNumber"
       required
-      [(ngModel)]="user.phoneNumberString"
+      [(ngModel)]="phoneNumberString"
       name="phoneNumber"
         >
   </div>
