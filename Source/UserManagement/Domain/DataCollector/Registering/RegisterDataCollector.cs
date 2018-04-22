@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Commands;
+using Dolittle.Commands;
 
 namespace Domain.DataCollector.Registering
 {
@@ -14,7 +14,7 @@ namespace Domain.DataCollector.Registering
     {
         public Guid DataCollectorId { get; set; }
 
-        public bool IsNewRegistration { get; set; }
+        
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
@@ -23,6 +23,10 @@ namespace Domain.DataCollector.Registering
         public Location GpsLocation { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
         
+        // Todo: we can deduct this from the command handler
         public DateTimeOffset RegisteredAt { get; set; }
+
+        // Todo: This is wrong - the fact that it is a Register command means it is New by definition; implicitly
+        public bool IsNewRegistration { get; set; }
     }
 }
