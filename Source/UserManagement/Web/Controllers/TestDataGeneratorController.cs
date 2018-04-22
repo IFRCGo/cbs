@@ -21,27 +21,27 @@ using DataCoordinator = Web.Models.DataCoordinator;
 using DataOwner = Web.Models.DataOwner;
 using DataVerifier = Web.Models.DataVerifier;
 using SystemConfigurator = Web.Models.SystemConfigurator;
+using Dolittle.Commands.Coordination;
+
 
 namespace Web.Controllers
 {
     [Route("api/testdatagenerator")]
-    public class TestDataGeneratorController : BaseController
+    public class TestDataGeneratorController : Controller
     {
         private readonly IMongoDatabase _database;
-        private readonly Domain.DataCollector.IDataCollectorCommandHandler _dataCollectorCommandHandler;
-        private readonly IRegisteringCommandHandlers _staffUserCommandHandler;
+        private readonly ICommandCoordinator _commandCoordinator;
         
 
         public TestDataGeneratorController(
             IMongoDatabase database,
-            Domain.DataCollector.IDataCollectorCommandHandler dataCollectorCommandHandler,
-            IRegisteringCommandHandlers staffUserCommandHandler,
+            ICommandCoordinator commandCoordinator,
+            
             IStaffUsers staffUsers
         )
         {
             _database = database;
-            _staffUserCommandHandler = staffUserCommandHandler;
-            _dataCollectorCommandHandler = dataCollectorCommandHandler;
+            _commandCoordinator = commandCoordinator;
         }
 
         [HttpGet("generatetestdataset")]
@@ -77,7 +77,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.DataCollectorId = Guid.NewGuid();
-                _dataCollectorCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
 
         }
@@ -115,7 +115,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
         [HttpGet("alldataconsumercommands")]
@@ -137,7 +137,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
         [HttpGet("alldatacoordinatorcommands")]
@@ -159,7 +159,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
         [HttpGet("alldataownercommands")]
@@ -181,7 +181,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
         [HttpGet("alldataverifiercommands")]
@@ -203,7 +203,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
         [HttpGet("allsystemconfiguratorcommands")]
@@ -225,7 +225,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _staffUserCommandHandler.Handle(cmd);
+                _commandCoordinator.Handle(cmd);
             }
         }
 
