@@ -89,10 +89,10 @@ namespace Web
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
-            _eventReplayer.Replay(dataCollectors, _ => _.Id, (eventSource, @event) => {
+            _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
                 eventSource.Apply(new PhoneNumberAddedToDataCollector
                 {
-                    DataCollectorId = @event.Id,
+                    DataCollectorId = @event.DataCollectorId,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
                 });
             });
