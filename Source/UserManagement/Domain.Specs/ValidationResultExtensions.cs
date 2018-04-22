@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using doLittle.Validation;
+using Dolittle.Validation;
 using System.Linq;
 using System.Collections.Generic;
 using Machine.Specifications;

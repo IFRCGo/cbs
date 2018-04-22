@@ -1,10 +1,10 @@
-using doLittle.FluentValidation.Commands;
-using doLittle.Reflection;
+using Dolittle.Commands.Validation;
+using Dolittle.Reflection;
 using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewStaffRegistrationInputValidator<TCommand,TRole> : CommandInputValidator<TCommand> 
+    public abstract class NewStaffRegistrationInputValidator<TCommand,TRole> : CommandInputValidatorFor<TCommand> 
         where TCommand : NewStaffRegistration<TRole>
         where TRole : Roles.StaffRole
     {

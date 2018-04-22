@@ -1,5 +1,5 @@
 using System;
-using doLittle.Read;
+using Dolittle.Queries;
 using MongoDB.Driver;
 
 namespace Read.DataCollectors

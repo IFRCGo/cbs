@@ -1,5 +1,5 @@
-using doLittle.Runtime.Events;
-using doLittle.Events;
+using Dolittle.Runtime.Events;
+using Dolittle.Events;
 using System;
 using System.Linq;
 using Machine.Specifications;
