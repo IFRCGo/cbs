@@ -1,12 +1,7 @@
 using System;
-<<<<<<< HEAD
 using Dolittle.Applications;
 using Dolittle.Serialization.Json;
-=======
-using doLittle.Applications;
-using doLittle.Logging;
-using doLittle.Serialization.Json;
->>>>>>> master
+using Dolittle.Logging;
 using Infrastructure.Kafka;
 
 namespace Infrastructure.TextMessaging
