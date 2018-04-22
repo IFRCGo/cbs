@@ -47,9 +47,11 @@ namespace TextMessaging
         public void Process(TextMessage message)
         {
             var parsingResult = _textMessageParser.Parse(message);
+
             var isTextMessageFormatValid = parsingResult.IsValid;
             var dataCollector = _dataCollectors.GetByPhoneNumber(message.OriginNumber);
             var unknownDataCollector = dataCollector == null;
+
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
             if (!isTextMessageFormatValid && unknownDataCollector)
@@ -87,16 +89,14 @@ namespace TextMessaging
                         message.Sent);                    
                     return;
                 }
-                else
-                {
-                    caseReporting.ReportInvalidReport(
-                        dataCollector.Id,
-                        message.OriginNumber,
-                        message.Message,
-                        errorMessages,
-                        message.Sent);
-                    return;
-                }               
+
+                caseReporting.ReportInvalidReport(
+                    dataCollector.Id,
+                    message.OriginNumber,
+                    message.Message,
+                    errorMessages,
+                    message.Sent);
+                return;
             }            
 
             if (unknownDataCollector)
@@ -108,7 +108,8 @@ namespace TextMessaging
                     parsingResult.MalesAged5AndOlder,
                     parsingResult.FemalesUnder5,
                     parsingResult.FemalesAged5AndOlder,
-                    message.Sent
+                    message.Sent,
+                    message.Message
                 );                
                 return;
             }
@@ -123,7 +124,9 @@ namespace TextMessaging
                 parsingResult.FemalesAged5AndOlder,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
-                message.Sent);
+                message.Sent,
+                message.Message
+            );
         }           
     }
 }

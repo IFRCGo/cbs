@@ -11,7 +11,6 @@ namespace Domain.DataCollector
     {
         private readonly List<string> _numbers = new List<string>();
         private bool _isRegistered;
-        private DateTimeOffset _registeredAt;
 
         public DataCollector(Guid id) : base(id)
         {
@@ -22,7 +21,7 @@ namespace Domain.DataCollector
         public void RegisterDataCollector(
             bool isNewRegistration,
             string fullName, string displayName,
-            int yearOfBirth, Sex sex, Guid nationalSociety, Language preferredLanguage,
+            int yearOfBirth, Sex sex, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt
             )
         {
@@ -43,7 +42,6 @@ namespace Domain.DataCollector
                 displayName,
                 yearOfBirth,
                 (int)sex,
-                nationalSociety,
                 (int)preferredLanguage,
                 gpsLocation.Longitude,
                 gpsLocation.Latitude,

@@ -31,7 +31,8 @@ namespace Read.CaseReports
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Location = new Location(@event.Latitude, @event.Longitude),
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Message = @event.Message
             };
             _caseReports.Save(caseReport);
         }
@@ -46,7 +47,8 @@ namespace Read.CaseReports
                 NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
+                Message = @event.Message
             };
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
         }   

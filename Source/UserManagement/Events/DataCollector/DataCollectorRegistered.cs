@@ -10,22 +10,27 @@ namespace Events.DataCollector
         public string DisplayName { get; }
         public int YearOfBirth { get; }
         public int Sex { get; }
-        public Guid NationalSociety { get; }
         public int PreferredLanguage { get; }
         public double LocationLongitude { get; }
         public double LocationLatitude { get; }
         public DateTimeOffset RegisteredAt { get; }
 
-        public DataCollectorRegistered(Guid dataCollectorId, string fullName, string displayName, 
-            int yearOfBirth, int sex, Guid nationalSociety, int preferredLanguage, double locationLongitude, 
-            double locationLatitude, DateTimeOffset registeredAt)
+        public DataCollectorRegistered(
+            Guid dataCollectorId,
+            string fullName,
+            string displayName,            
+            int yearOfBirth,
+            int sex,
+            int preferredLanguage,
+            double locationLongitude, 
+            double locationLatitude,
+            DateTimeOffset registeredAt)
         {
             DataCollectorId = dataCollectorId;
             FullName = fullName;
             DisplayName = displayName;
             YearOfBirth = yearOfBirth;
             Sex = sex;
-            NationalSociety = nationalSociety;
             PreferredLanguage = preferredLanguage;
             LocationLongitude = locationLongitude;
             LocationLatitude = locationLatitude;

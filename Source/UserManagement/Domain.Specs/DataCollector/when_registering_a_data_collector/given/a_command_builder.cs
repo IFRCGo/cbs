@@ -17,7 +17,6 @@
                  DisplayName = "Daty",
                  YearOfBirth = 1980,
                  Sex = Sex.Male,
-                 NationalSociety = Guid.NewGuid(),
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
                  PhoneNumbers = new List<string>{"123456789"},

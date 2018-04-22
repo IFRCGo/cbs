@@ -12,6 +12,7 @@ namespace Events
         public Guid CaseReportId { get; set; }
         public Guid HealthRiskId { get; set; }
         public string Origin { get; set; }
+        public string Message { get; set; }
         public DateTimeOffset Timestamp { get; set; }
         public int NumberOfMalesUnder5 { get; set; }
         public int NumberOfMalesAged5AndOlder { get; set; }

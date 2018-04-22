@@ -7,32 +7,26 @@
         <tr>
             <td>
                 Quick Filters:
-                <button (click)="basicFilter = 'all'">All</button>
-                <button (click)="basicFilter = 'success'">Success</button>
-                <button (click)="basicFilter = 'error'">Data error</button>
-                <button (click)="basicFilter = 'unknownSender'">Unknown sender</button>
+                <span *ngFor="let filter of allFilters">
+                  <button [ngStyle]="filterButtonStyle(filter)" (click)="clickFilter(filter)">{{filter.description}}</button>
+                </span>
             </td>
         </tr>
     </tbody>
 </table>
-<table class="table table-bordered table-striped" sortable-table (sorted)="onSorted($event)">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <!-- To make a column sortable create the atribute sortable-column="sortColumn" and create an if-branch in ./sort/case-report.service.ts to
-            expand the sorting function for that given column -->
-            <th sortable-column="timeStamp" sort-direction="desc">Time</th>
-            <th sortable-column="status">Status</th>
-            <th sortable-column="dataCollector">Data&nbsp;Collector</th>
-            <th sortable-column="healthRisk">Health&nbsp;Risk</th>
-            <th sortable-column="malesAges0To4">Males &lt; 5</th>
-            <th sortable-column="malesAgedOver4">Males &ge; 5</th>
-            <th sortable-column="femalesAges0To4">Females &lt; 5</th>
-            <th sortable-column="femalesAgedOver4">Females &ge; 5</th>
-            <th>Lat&nbsp;/&nbsp;Long</th>
+            <th *ngFor="let column of allColumns"
+                  [column]="column"
+                  [current-sorted]="currentSortColumn"
+                  [sort-descending]="sortDescending"
+                  (click)="toggleSortColum(column)"
+            ></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let caseReport of listedReports | filter:basicFilter">
+        <tr *ngFor="let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending">
             <td>{{caseReport.timestamp | date:'medium'}}</td>
             <td>
                 <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>

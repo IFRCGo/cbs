@@ -17,13 +17,20 @@ export class AggregatedCaseReportService {
   constructor(private http: Http) {
   }
 
+  convertDatatypes(reports: Array<CaseReportForListing>): Array<CaseReportForListing> {
+    reports.forEach(report => {
+      report.timestamp = new Date(report.timestamp);
+    });
+    return reports;
+  }
+
   getLimitFirstReports(limit: number): Promise<void | Array<CaseReportForListing>> {
     return this.http.get(`${environment.api}/api/casereports/getlimitfirst?limit=${limit}`, {
       headers: this.headers
     })
       .toPromise()
       .then(result => {
-        return result.json();
+        return this.convertDatatypes(result.json());
       })
       .catch(error => console.error(error));
   }
@@ -34,7 +41,7 @@ export class AggregatedCaseReportService {
     })
       .toPromise()
       .then(result => {
-        return result.json();
+        return this.convertDatatypes(result.json());
       })
       .catch(error => console.error(error));
   }
@@ -43,7 +50,7 @@ export class AggregatedCaseReportService {
     return this.http.get(`${environment.api}/api/casereports`, {headers: this.headers})
       .toPromise()
       .then(result => {
-        return result.json();
+        return this.convertDatatypes(result.json());
       })
       .catch(error => console.error(error));
   }
