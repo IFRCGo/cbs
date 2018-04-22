@@ -1,6 +1,5 @@
 using System;
-using Concepts;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events
 {
