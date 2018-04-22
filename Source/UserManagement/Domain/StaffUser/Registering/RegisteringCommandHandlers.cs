@@ -1,9 +1,10 @@
-using doLittle.Domain;
-using doLittle.Time;
+using Dolittle.Commands.Handling;
+using Dolittle.Domain;
+using Dolittle.Time;
 
 namespace Domain.StaffUser.Registering
 {
-    public class RegisteringCommandHandlers : IRegisteringCommandHandlers
+    public class RegisteringCommandHandlers : ICanHandleCommands
     {
         readonly IAggregateRootRepositoryFor<StaffUser> _repository;
         readonly ISystemClock _systemClock;
