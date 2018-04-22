@@ -12,11 +12,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'list',
+        redirectTo: 'list/all',
         pathMatch: 'full'
       },
       {
-        path: 'list',
+        path: 'list/:filter',
         component: CaseReportListComponent
       }
     ]
