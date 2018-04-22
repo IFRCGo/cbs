@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DataCollectorService } from './services/data-collector.service';
+import { CommandCoordinator } from './services/CommandCoordinator';
 import { StaffUserService } from './services/staff-user.service';
 
 import { AppComponent } from './app.component';
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
   providers: [
     StaffUserService,
     DataCollectorService,
-    AuthenticationService
+    AuthenticationService,
+    CommandCoordinator
   ],
   bootstrap: [AppComponent]
 })
