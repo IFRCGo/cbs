@@ -51,14 +51,15 @@ namespace Web.Utility
             var table = new PdfPTable(9)
             {
                 WidthPercentage = 100f,
-                PaddingTop = 10f
+                PaddingTop = 10f,
+                HeaderRows = 1
             };
 
             table.SetWidths(new [] { 2.5f, 2f, 3f, 5f, 1f, 1f, 1f, 1f, 1.5f });
 
             AddCaseReportFieldsToTable(table);
 
-            foreach (var caseReport in caseReports)
+            foreach (var caseReport in caseReports.OrderByDescending(e => e.Timestamp))
             {
                 AddCaseReportDataToTable(table, caseReport);
             }

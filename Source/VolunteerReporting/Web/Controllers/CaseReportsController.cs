@@ -38,7 +38,7 @@ namespace Web.Controllers
             return Ok(await _caseReports.GetAllAsync());
         }
 
-        [Route("pdf")]
+        [Route("export/pdf")]
         [HttpGet]
         public async Task<IActionResult> PdfReport()
         {
@@ -73,7 +73,7 @@ namespace Web.Controllers
             return Ok(await _caseReports.GetLimitAsync(limit, false));
         }
 
-        [HttpGet("export")]
+        [HttpGet("export/csv")]
         public async Task<IActionResult> Export()
         {
             // Get all the case reports
