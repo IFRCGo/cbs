@@ -38,8 +38,7 @@ namespace Web.Controllers
             return Ok(await _caseReports.GetAllAsync());
         }
 
-        [Route("export/pdf")]
-        [HttpGet]
+        [HttpGet("export/pdf")]
         public async Task<IActionResult> PdfReport()
         {
             var now = DateTimeOffset.UtcNow;
