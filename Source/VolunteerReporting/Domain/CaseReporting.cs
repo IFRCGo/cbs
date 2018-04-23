@@ -17,6 +17,8 @@ namespace Domain
             DataCollectorId collector,
             string origin,
             string originalMessage,
+            double longitude,
+            double latitude,
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
@@ -27,7 +29,9 @@ namespace Domain
                 Origin = origin,
                 Message = originalMessage,
                 ErrorMessages = errorMessages,
-                Timestamp = timestamp
+                Timestamp = timestamp,
+                Longitude = longitude,
+                Latitude = latitude
             });
         }
 

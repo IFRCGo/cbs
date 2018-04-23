@@ -71,6 +71,8 @@ namespace TextMessaging
                     dataCollector.Id,
                     message.OriginNumber,
                     message.Message,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
                     parsingResult.ErrorMessages,
                     message.Sent);                
                 return;
@@ -95,6 +97,8 @@ namespace TextMessaging
                     dataCollector.Id,
                     message.OriginNumber,
                     message.Message,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
                     errorMessages,
                     message.Sent);
                 return;

@@ -19,7 +19,7 @@ namespace Web.Utility
 
             using (var stream = new MemoryStream())
             {
-                var doc = new Document(PageSize.A4, 30f, 30f, 30f, 30f);
+                var doc = new Document(PageSize.A4, 0f, 0f, 30f, 10f);
 
                 using (var writer = PdfWriter.GetInstance(doc, stream))
                 {
@@ -29,7 +29,7 @@ namespace Web.Utility
                     doc.AddCreator("Cbs - Volunteer Reporting");
                     doc.AddSubject("Case Reports " + nowString);
                     doc.AddTitle("Case Reports " + nowString);
-
+                    
                     doc.Open();
                     
                     AddCaseReportsToPdf(caseReports, doc, opts);
@@ -48,8 +48,14 @@ namespace Web.Utility
 
         private static void AddCaseReportsToPdf(IList<CaseReportForListing> caseReports, Document doc, string[] opts)
         {
-            var table = new PdfPTable(3);
-            
+            var table = new PdfPTable(9)
+            {
+                WidthPercentage = 100f,
+                PaddingTop = 10f
+            };
+
+            table.SetWidths(new [] { 2.5f, 2f, 3f, 5f, 1f, 1f, 1f, 1f, 1.5f });
+
             AddCaseReportFieldsToTable(table);
 
             foreach (var caseReport in caseReports)
@@ -73,13 +79,12 @@ namespace Web.Utility
             table.AddCell("Females >= 5");
             table.AddCell("Lat., Long.");
 
-
         }
 
         private static void AddCaseReportDataToTable(PdfPTable table, CaseReportForListing caseReport)
         {
             var time = caseReport.Timestamp.ToString("MMMM dd, yyyy, hh:mm:ss tt");
-            var status = caseReport.ParsingErrorMessage == null || caseReport.ParsingErrorMessage.Count() == 0;
+            var status = !caseReport.ParsingErrorMessage.Any();
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                 ? caseReport.DataCollectorDisplayName
                 : "Origin: " + caseReport.Origin;

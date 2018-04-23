@@ -89,7 +89,7 @@ namespace Read.CaseReportsForListing
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin,
                 ParsingErrorMessage = @event.ErrorMessages,
-                Location = Location.NotSet,
+                Location = new Location(@event.Latitude, @event.Longitude),
                 HealthRisk = "Unknown"
             };
             _caseReports.Save(caseReport);
