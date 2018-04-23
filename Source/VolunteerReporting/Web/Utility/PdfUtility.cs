@@ -29,13 +29,20 @@ namespace Web.Utility
                     doc.AddCreator("Cbs - Volunteer Reporting");
                     doc.AddSubject("Case Reports " + nowString);
                     doc.AddTitle("Case Reports " + nowString);
-                    
+
                     doc.Open();
-                    
-                    AddCaseReportsToPdf(caseReports, doc, opts);
+                    doc.NewPage();
+                    if (caseReports.Any())
+                    {
+                        AddCaseReportsToPdf(caseReports, doc, opts);
+                    }
+                    else
+                    {
+                        doc.Add(new Paragraph("No case reports were retrieved from the database"));
+                    }
 
                     doc.Close();
-
+                    
                     writer.Flush();
                 }
                 
@@ -46,7 +53,7 @@ namespace Web.Utility
             }
         }
 
-        private static void AddCaseReportsToPdf(IList<CaseReportForListing> caseReports, Document doc, string[] opts)
+        private static void AddCaseReportsToPdf(IEnumerable<CaseReportForListing> caseReports, Document doc, string[] opts)
         {
             var table = new PdfPTable(9)
             {
@@ -74,17 +81,16 @@ namespace Web.Utility
             table.AddCell("Status");
             table.AddCell("Datacollector");
             table.AddCell("Healthrisk");
-            table.AddCell("Males < 5");
-            table.AddCell("Males >= 5");
-            table.AddCell("Females < 5");
-            table.AddCell("Females >= 5");
-            table.AddCell("Lat., Long.");
-
+            table.AddCell("M < 5");
+            table.AddCell("M >= 5"); //TODO: Greater equal symbol does not work in the pdf
+            table.AddCell("F < 5");
+            table.AddCell("F >= 5"); //TODO: Greater equal symbol does not work in the pdf
+            table.AddCell("Lat. Long.");
         }
 
         private static void AddCaseReportDataToTable(PdfPTable table, CaseReportForListing caseReport)
         {
-            var time = caseReport.Timestamp.ToString("MMMM dd, yyyy, hh:mm:ss tt");
+            var time = caseReport.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt");
             var status = !caseReport.ParsingErrorMessage.Any();
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                 ? caseReport.DataCollectorDisplayName
@@ -119,7 +125,7 @@ namespace Web.Utility
             {
                 var message = caseReport.Message;
 
-                var errorMessages = String.Join(", ", caseReport.ParsingErrorMessage);
+                var errorMessages = string.Join(", ", caseReport.ParsingErrorMessage);
 
                 var cellText = message + "\nErrors: " + errorMessages;
 
