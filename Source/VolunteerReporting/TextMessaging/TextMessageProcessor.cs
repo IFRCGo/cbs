@@ -54,6 +54,7 @@ namespace TextMessaging
 
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
+
             if (!isTextMessageFormatValid && unknownDataCollector)
             {
                 caseReporting.ReportInvalidReportFromUnknownDataCollector(

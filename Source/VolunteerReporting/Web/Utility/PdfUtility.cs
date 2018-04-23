@@ -79,10 +79,14 @@ namespace Web.Utility
         private static void AddCaseReportDataToTable(PdfPTable table, CaseReportForListing caseReport)
         {
             var time = caseReport.Timestamp.ToString("MMMM dd, yyyy, hh:mm:ss tt");
-            var status = caseReport.ParsingErrorMessage.Count() == 0;
+            var status = caseReport.ParsingErrorMessage == null || caseReport.ParsingErrorMessage.Count() == 0;
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                 ? caseReport.DataCollectorDisplayName
                 : "Origin: " + caseReport.Origin;
+
+            var latLong = caseReport.Location != Location.NotSet 
+                ? caseReport.Location.ToString() 
+                : "";
 
             table.AddCell(time);
             table.AddCell(status ? "Success" : "Error");
@@ -98,17 +102,12 @@ namespace Web.Utility
                 var femalesUnder5 = caseReport.NumberOfFemalesUnder5.ToString();
 
                 var femalesOver5 = caseReport.NumberOfFemalesAged5AndOlder.ToString();
-
-                var latLong = caseReport.Location != Location.NotSet ?
-                    caseReport.Location.ToString() : "";
-
                 
                 table.AddCell(healthRisk);
                 table.AddCell(malesUnder5);
                 table.AddCell(malesOver5);
                 table.AddCell(femalesUnder5);
                 table.AddCell(femalesOver5);
-                table.AddCell(latLong);
             }
             else
             {
@@ -116,13 +115,17 @@ namespace Web.Utility
 
                 var errorMessages = String.Join(", ", caseReport.ParsingErrorMessage);
 
-                var isKnowDataCollector = dataCollector != "Unknown";
+                var cellText = message + "\nErrors: " + errorMessages;
 
+                var cell = new PdfPCell(new Phrase(cellText))
+                {
+                    Colspan = 5
+                };
+
+                table.AddCell(cell);
             }
-            
-            
 
-            
+            table.AddCell(latLong);
         }
     }
 }
