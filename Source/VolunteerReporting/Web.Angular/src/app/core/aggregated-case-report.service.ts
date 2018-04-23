@@ -24,6 +24,7 @@ export class AggregatedCaseReportService {
     return reports;
   }
 
+  /* We should not use this, they are evil!
   getLimitFirstReports(limit: number): Promise<void | Array<CaseReportForListing>> {
     return this.http.get(`${environment.api}/api/casereports/getlimitfirst?limit=${limit}`, {
       headers: this.headers
@@ -45,12 +46,22 @@ export class AggregatedCaseReportService {
       })
       .catch(error => console.error(error));
   }
-
+*/
   getReports(): Promise<void | Array<CaseReportForListing>> {
     return this.http.get(`${environment.api}/api/casereports`, {headers: this.headers})
       .toPromise()
       .then(result => {
         return this.convertDatatypes(result.json());
+      })
+      .catch(error => console.error(error));
+  }
+
+  exportToPdf(): Promise<void | any> {
+    //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
+    return this.http.get(`${environment.api}/api/casereports/pdf`, {headers: this.headers})
+      .toPromise()
+      .then(res => {
+          return res;
       })
       .catch(error => console.error(error));
   }

@@ -44,15 +44,18 @@
                 <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
                 <td>{{caseReport.numberOfFemalesUnder5}}</td>
                 <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
-                <td>
-                    <span *ngIf="caseReport.location">{{caseReport.location.latitude | number}}, {{caseReport.location.longitude | number}}</span>
-                </td>
             </ng-container>
             <ng-container *ngIf="!caseReport.healthRiskId">
-                <td colspan="6">
+                <td colspan="5">
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
+            <td>
+                <span *ngIf="caseReport.location"> 
+                    <span *ngIf="caseReport.location.latitude != -1">{{caseReport.location.latitude  | number}}, {{caseReport.location.longitude | number}}</span>
+                    <span *ngIf="caseReport.location.latitude == -1"></span>
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>
