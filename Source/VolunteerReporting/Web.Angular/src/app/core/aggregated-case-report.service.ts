@@ -24,6 +24,7 @@ export class AggregatedCaseReportService {
     return reports;
   }
 
+  /* We should not use this, they are evil!
   getLimitFirstReports(limit: number): Promise<void | Array<CaseReportForListing>> {
     return this.http.get(`${environment.api}/api/casereports/getlimitfirst?limit=${limit}`, {
       headers: this.headers
@@ -45,7 +46,7 @@ export class AggregatedCaseReportService {
       })
       .catch(error => console.error(error));
   }
-
+*/
   getReports(): Promise<void | Array<CaseReportForListing>> {
     return this.http.get(`${environment.api}/api/casereports`, {headers: this.headers})
       .toPromise()

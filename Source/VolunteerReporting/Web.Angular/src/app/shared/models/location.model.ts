@@ -1,4 +1,5 @@
 export class Location {
+    notSet: Location = new Location();
     constructor() {
         this.latitude = -1;
         this.longitude = -1;

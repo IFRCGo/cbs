@@ -30,6 +30,7 @@ namespace Policy
 
         public async Task Process(PhoneNumberAddedToDataCollector @event)
         {
+            
             var unknownReports = await this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
             var dataCollector = this.dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
@@ -52,6 +53,7 @@ namespace Policy
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             } 
             
+            
             var invalidAndUnknownReports = await this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
@@ -60,8 +62,11 @@ namespace Policy
                     @event.DataCollectorId,
                     item.PhoneNumber,
                     item.Message,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
                     item.ParsingErrorMessage,
                     item.Timestamp
+                    
                     );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             }
