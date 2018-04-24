@@ -28,6 +28,7 @@
         "ngx-bootstrap-modal": "^2.0.1",
         "oidc-client": "^1.4.1",
         "rxjs": "^5.4.2",
+        "yarn": "^1.6.0",
         "zone.js": "^0.8.14"
     },
     "devDependencies": {

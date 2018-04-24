@@ -16,7 +16,8 @@ export class CaseReportExporter {
 
   exportToExcel(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    const url = `${environment.api}/api/casereports/export/excel?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+    const url = `${environment.api}/api/casereports/export/excel?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
     console.log(url);
     window.open(url, '_blank');
@@ -31,7 +32,8 @@ export class CaseReportExporter {
   }
   exportToPdf(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    const url = `${environment.api}/api/casereports/export/pdf?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+    const url = `${environment.api}/api/casereports/export/pdf?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
     console.log(url);
     window.open(url, '_blank');
@@ -45,7 +47,8 @@ export class CaseReportExporter {
 
   exportToCsv(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    const url = `${environment.api}/api/casereports/export/csv?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+    const url = `${environment.api}/api/casereports/export/csv?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
     console.log(url);
     window.open(url, '_blank');
