@@ -5,7 +5,6 @@ import { AggregatedCaseReportService } from '../../core/aggregated-case-report.s
 import { CaseReportForListing } from '../../shared/models/case-report-for-listing.model';
 import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
 import { QuickFilter, Filter } from './filtering/filter.pipe';
-import { CaseReportExporter } from './exporter/case-report-exporter.service';
 import { Report } from '../../shared/models/report.model';
 
 @Component({
@@ -39,7 +38,6 @@ export class CaseReportListComponent implements OnInit {
 
     constructor(
         private caseReportService: AggregatedCaseReportService,
-        private caseReportExporter: CaseReportExporter,
         private route: ActivatedRoute,
         private router: Router
     ) { }
