@@ -14,9 +14,12 @@ export class CaseReportExporter {
   constructor(private http: Http) {
   }
 
-  exportToExcel(/* filters, orderby */): void {
+  exportToExcel(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    window.open(`${environment.api}/api/casereports/export/excel`, '_blank');
+    const url = `${environment.api}/api/casereports/export/excel?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+
+    console.log(url);
+    window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/excel`, {headers: this.headers})
     //   .toPromise()
     //   .then(res => {
@@ -26,9 +29,12 @@ export class CaseReportExporter {
     //   })
     //   .catch(error => console.error(error));
   }
-  exportToPdf(/* filters, orderby */): void {
+  exportToPdf(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    window.open(`${environment.api}/api/casereports/export/pdf`, '_blank');
+    const url = `${environment.api}/api/casereports/export/pdf?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+
+    console.log(url);
+    window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/pdf`, {headers: this.headers})
     //   .toPromise()
     //   .then(res => {
@@ -37,9 +43,12 @@ export class CaseReportExporter {
     //   .catch(error => console.error(error));
   }
 
-  exportToCsv(/* filters, orderby */): void {
+  exportToCsv(filter: string, orderBy: string, direction: string): void {
     //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
-    window.open(`${environment.api}/api/casereports/export/csv`, '_blank');
+    const url = `${environment.api}/api/casereports/export/csv?filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+
+    console.log(url);
+    window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/csv`, {headers: this.headers})
     //   .toPromise()
     //   .then(res => {

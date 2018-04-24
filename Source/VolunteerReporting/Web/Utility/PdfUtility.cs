@@ -66,7 +66,7 @@ namespace Web.Utility
 
             AddCaseReportFieldsToTable(table);
 
-            foreach (var caseReport in caseReports.OrderByDescending(e => e.Timestamp))
+            foreach (var caseReport in caseReports)
             {
                 AddCaseReportDataToTable(table, caseReport);
             }
