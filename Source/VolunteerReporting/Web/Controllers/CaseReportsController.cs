@@ -44,34 +44,25 @@ namespace Web.Controllers
 
             var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
 
-            var pdfBytes = PdfUtility.CreateCaseReportPdf(caseReports.ToList(), new[] { "all" });
+            var pdfBytes = PdfUtility.CreateCaseReportPdf(caseReports, new[] { "all" });
 
             return File(pdfBytes, "application/pdf",
                 "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".pdf");
             
         }
 
-        [HttpGet("obsolete")]
-        [Obsolete]
-        public async Task<IActionResult> GetObsolete()
-        {
-            return Ok(await _caseReportsObsolete.GetAllAsync());
-        }
-
-        [Obsolete]
-        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
-        public async Task<IActionResult> GetLimitLast(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, true));
-        }
-        [Obsolete]
-        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
-        public async Task<IActionResult> GetLimitFirst(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, false));
-        }
-
         [HttpGet("export/csv")]
+        public async Task<IActionResult> CsvReport()
+        {
+            var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
+
+            var csvBytes = CsvUtility.CreateCaseReportCsv(caseReports);
+
+            return File(csvBytes, "text/csv", 
+                "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".csv");
+        }
+
+        [HttpGet("export/excel")]
         public async Task<IActionResult> Export()
         {
             //TODO: I think that having a parameter of some kind of datastructure that represents
@@ -95,7 +86,7 @@ namespace Web.Controllers
                 Sheet sheet = new Sheet() { Id = document.WorkbookPart.GetIdOfPart(worksheet), SheetId = 1, Name = "Case Reports" };
                 sheets.Append(sheet);
 
-            
+
                 uint rowIndex = 0;
                 // Add some headers
                 {
@@ -140,7 +131,7 @@ namespace Web.Controllers
                     var status = new Cell { CellReference = "B" + rowIndex };
                     row.Append(status);
                     status.DataType = new EnumValue<CellValues>(CellValues.String);
-                
+
                     var origin = new Cell { CellReference = "C" + rowIndex };
                     row.Append(origin);
                     origin.DataType = new EnumValue<CellValues>(CellValues.String);
@@ -169,7 +160,7 @@ namespace Web.Controllers
                     var location = new Cell { CellReference = "I" + rowIndex };
                     row.Append(location);
                     location.DataType = new EnumValue<CellValues>(CellValues.String);
-                    location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude+"/"+report.Location.Longitude : "");
+                    location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude + "/" + report.Location.Longitude : "");
 
                     var message = new Cell { CellReference = "J" + rowIndex };
                     row.Append(message);
@@ -207,10 +198,29 @@ namespace Web.Controllers
                 document.Close();
                 stream.Seek(0, SeekOrigin.Begin);
 
-                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".xlsx");
             }
         }
 
+        [HttpGet("obsolete")]
+        [Obsolete]
+        public async Task<IActionResult> GetObsolete()
+        {
+            return Ok(await _caseReportsObsolete.GetAllAsync());
+        }
+
+        [Obsolete]
+        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
+        public async Task<IActionResult> GetLimitLast(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, true));
+        }
+        [Obsolete]
+        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
+        public async Task<IActionResult> GetLimitFirst(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, false));
+        }
     }
 }
