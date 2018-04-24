@@ -19,7 +19,6 @@ export class CaseReportExporter {
     const url = `${environment.api}/api/casereports/export/excel?` +
                 `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
-    console.log(url);
     window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/excel`, {headers: this.headers})
     //   .toPromise()
@@ -35,7 +34,6 @@ export class CaseReportExporter {
     const url = `${environment.api}/api/casereports/export/pdf?` +
                 `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
-    console.log(url);
     window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/pdf`, {headers: this.headers})
     //   .toPromise()
@@ -50,7 +48,6 @@ export class CaseReportExporter {
     const url = `${environment.api}/api/casereports/export/csv?` +
                 `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
-    console.log(url);
     window.open(url, '_blank');
     // return this.http.get(`${environment.api}/api/casereports/export/csv`, {headers: this.headers})
     //   .toPromise()
