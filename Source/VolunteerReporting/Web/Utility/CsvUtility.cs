@@ -9,7 +9,6 @@ namespace Web.Utility
 {
     public static class CsvUtility
     {
-
         public static byte[] CreateCaseReportCsv(IEnumerable<CaseReportForListing> caseReports)
         {
             var sb = new StringBuilder();
