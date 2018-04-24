@@ -52,7 +52,9 @@
                   </td>
             </tr>
         </table>
-        <button type="submit">Export</button>
+        <div class="actions">
+            <button (click)="modalExportCaseReports.close()">Cancel</button>
+            <button type="submit">Export</button>
+        </div>
     </form>
-    <!--<button (click)="modalExportCaseReports.close()">Close</button>-->
 </ngx-smart-modal>
