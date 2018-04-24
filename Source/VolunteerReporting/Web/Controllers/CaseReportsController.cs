@@ -51,7 +51,7 @@ namespace Web.Controllers
                 var exporter = exporters[format];
 
                 var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
-                //caseReports = ApplyFilteringAndSorting(caseReports, filter, sortBy, order);
+                caseReports = ApplyFilteringAndSorting(caseReports, filter, sortBy, order);
 
                 var stream = new MemoryStream();
                 var result = exporter.WriteReports(caseReports, fields, stream);
@@ -111,7 +111,7 @@ namespace Web.Controllers
                     return r => r.HealthRiskId != HealthRiskId.NotSet && r.HealthRisk != "Unknown";
                 case "error":
                     return r => r.HealthRiskId == HealthRiskId.NotSet ||  r.HealthRisk == "Unknown";
-                case "unknown_sender":
+                case "unknownSender":
                     return  r => r.DataCollectorId == DataCollectorId.NotSet || r.DataCollectorDisplayName == "Unknown";
                 default:
                     return _ => true;
@@ -122,16 +122,21 @@ namespace Web.Controllers
         {
             switch (filter)
             {
-                case "time":
-                    return e => e.Timestamp;
-                case "females_under":
+                case "status":
+                    return r => r.Status;
+                case "dataCollector":
+                    return r => r.DataCollectorDisplayName;
+                case "healthRisk":
+                    return r => r.HealthRisk;
+                case "femalesAges0To4":
                     return r => r.NumberOfFemalesUnder5;
-                case "females_over":
+                case "femalesAgesOver4":
                     return r => r.NumberOfFemalesAged5AndOlder;
-                case "males_under":
+                case "malesAges0To4":
                     return r => r.NumberOfMalesUnder5;
-                case "males_over":
+                case "malesAgedOver4":
                     return r => r.NumberOfMalesAged5AndOlder;
+                case "time":
                 default:
                     return e => e.Timestamp;
             }
@@ -143,7 +148,8 @@ namespace Web.Controllers
             {
                 case "asc":
                     return false;
-                default: //"desc"
+                case "desc":
+                default:
                     return true;
             }
         }
