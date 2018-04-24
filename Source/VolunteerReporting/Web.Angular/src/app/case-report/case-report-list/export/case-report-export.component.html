@@ -1,0 +1,84 @@
+<ngx-smart-modal #modalExportCaseReports identifier="modalExportCaseReports" [backdrop]="false">
+    <h2>Export case reports</h2>
+    <form ngNoForm action="http://dev.cbsrc.org/volunteerreportingbackend/api/casereports/export" method="get">
+        <table class="fieldTable">
+            <tr>
+                <td>Format:</td>
+                <td>
+                    <input type="radio" id="formatExcel" name="format" value="excel" checked>
+                    <label for="formatExcel">Excel</label>
+
+                    <input type="radio" id="formatPDF" name="format" value="pdf">
+                    <label for="formatPDF">PDF</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Fields:</td>
+                <td>
+                    <table #fieldsTable>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="fieldsAll" name="fields" value="all"
+                                  [(ngModel)]="fields.all" (ngModelChange)="fieldsChanged('all',$event)">
+                                <label for="fieldsAll">All</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="fieldsFemalesUnder5" name="fields" value="femalesUnder5"
+                                  [(ngModel)]="fields.femalesUnder5" (ngModelChange)="fieldsChanged('femalesUnder5',$event)">
+                                <label for="fieldsFemalesUnder5">Females < 5</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="fieldsTimestamp" name="fields" value="timestamp"
+                                  [(ngModel)]="fields.timestamp" (ngModelChange)="fieldsChanged('timestamp',$event)">
+                                <label for="fieldsTimestamp">Timestamp</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="fieldsFemales5AndOlder" name="fields" value="females5AndOlder"
+                                  [(ngModel)]="fields.females5AndOlder" (ngModelChange)="fieldsChanged('females5AndOlder',$event)">
+                                <label for="fieldsFemales5AndOlder">Females ≥ 5</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="fieldsStatus" name="fields" value="status"
+                                  [(ngModel)]="fields.status" (ngModelChange)="fieldsChanged('status',$event)">
+                                <label for="fieldsStatus">Status</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="fieldsMalesUnder5" name="fields" value="malesUnder5"
+                                  [(ngModel)]="fields.malesUnder5" (ngModelChange)="fieldsChanged('malesUnder5',$event)">
+                                <label for="fieldsMalesUnder5">Males < 5</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="fieldsDatacollector" name="fields" value="datacollector"
+                                  [(ngModel)]="fields.datacollector" (ngModelChange)="fieldsChanged('datacollector',$event)">
+                                <label for="fieldsDatacollector">Data collector</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="fieldsMales5AndOlder" name="fields" value="males5AndOlder"
+                                  [(ngModel)]="fields.males5AndOlder" (ngModelChange)="fieldsChanged('males5AndOlder',$event)">
+                                <label for="fieldsMales5AndOlder">Males ≥ 5</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="fieldsHealthrisk" name="fields" value="healthrisk"
+                                  [(ngModel)]="fields.healthrisk" (ngModelChange)="fieldsChanged('healthrisk',$event)">
+                                <label for="fieldsHealthrisk">Health risk</label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <a href="http://dev.cbsrc.org/volunteerreportingbackend/api/casereports/export" download>Download</a>
+        <button type="submit">Export</button>
+    </form>
+    <!--<button (click)="modalExportCaseReports.close()">Close</button>-->
+</ngx-smart-modal>

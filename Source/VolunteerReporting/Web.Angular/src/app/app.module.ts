@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CaseReportModule } from './case-report/case-report.module';
@@ -31,6 +33,7 @@ const routes: Routes = [
         CommonModule,
         HttpModule,
         CoreModule,
+        NoopAnimationsModule,
         RouterModule.forRoot(routes),
         CaseReportModule
     ],

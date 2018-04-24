@@ -2,6 +2,12 @@
     Case Reports
 </h3>
 
+<cbs-case-report-export #exporter></cbs-case-report-export>
+
+<div class="actions">
+    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
+</div>
+
 <table class="table table-bordered table-striped">
     <tbody>
         <tr>

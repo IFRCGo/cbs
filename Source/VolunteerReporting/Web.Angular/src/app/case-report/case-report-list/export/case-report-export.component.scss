@@ -1,0 +1,14 @@
+form table label {
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-right: 2em;
+}
+
+form table.fieldTable {
+    border-spacing: 1em;
+    border-collapse: separate;
+}
+
+form table.fieldTable tr {
+    vertical-align: top;
+}
