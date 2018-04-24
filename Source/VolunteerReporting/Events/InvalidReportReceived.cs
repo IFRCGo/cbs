@@ -14,6 +14,8 @@ namespace Events
         public Guid DataCollectorId { get; set; }
         public string Origin { get; set; }
         public string Message { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
         public IEnumerable<string> ErrorMessages { get; set; }
         public DateTimeOffset Timestamp { get; set; }
     }

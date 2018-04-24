@@ -1,19 +1,59 @@
 import {Injectable} from '@angular/core';
 import {CaseReportForListing} from '../../../shared/models/case-report-for-listing.model';
 
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/forkJoin';
+
+import {Headers, Http} from '@angular/http';
+
+import {environment} from '../../../../environments/environment';
 
 @Injectable()
 export class CaseReportExporter {
-  constructor() {
+  private headers = new Headers({'Content-Type': 'application/json'});
+  constructor(private http: Http) {
   }
 
-  exportToCsv(listedReports: Array<CaseReportForListing>, fields: Array<string>) {
-    //TODO: Should export the list of CaseReports using the various applied filters on the list to produce a
-    // csv file that will be downloaded by the client.
-    // I have not figured out to do this yet, I tried looking it up, tried using different packages, but it
-    // all just grew into a mess and nothing worked. That's why I have not done anything here atm.
-    // We really should have someone that has experience with this frontend here.
-    // --Woksin
+  exportToExcel(filter: string, orderBy: string, direction: string): void {
+    //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
+    const url = `${environment.api}/api/casereports/export/excel?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
 
+    window.open(url, '_blank');
+    // return this.http.get(`${environment.api}/api/casereports/export/excel`, {headers: this.headers})
+    //   .toPromise()
+    //   .then(res => {
+    //       const blob = new Blob([res], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    //       console.log(blob);
+    //       return blob;
+    //   })
+    //   .catch(error => console.error(error));
+  }
+  exportToPdf(filter: string, orderBy: string, direction: string): void {
+    //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
+    const url = `${environment.api}/api/casereports/export/pdf?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+
+    window.open(url, '_blank');
+    // return this.http.get(`${environment.api}/api/casereports/export/pdf`, {headers: this.headers})
+    //   .toPromise()
+    //   .then(res => {
+    //       return res;
+    //   })
+    //   .catch(error => console.error(error));
+  }
+
+  exportToCsv(filter: string, orderBy: string, direction: string): void {
+    //TODO: Export to pdf should work on the backend now, we just need to make a button for exporting
+    const url = `${environment.api}/api/casereports/export/csv?` +
+                `filter=${filter}&orderBy=${orderBy}&direction=${direction}`;
+
+    window.open(url, '_blank');
+    // return this.http.get(`${environment.api}/api/casereports/export/csv`, {headers: this.headers})
+    //   .toPromise()
+    //   .then(res => {
+    //       return res;
+    //   })
+    //   .catch(error => console.error(error));
   }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Concepts;
 using doLittle.Events.Processing;
 using Events;
@@ -40,7 +41,8 @@ namespace Read.CaseReportsForListing
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin,
-                Message = @event.Message
+                Message = @event.Message,
+                ParsingErrorMessage = new List<string>()
             };
              _caseReports.Save(caseReport);
         }
@@ -61,7 +63,10 @@ namespace Read.CaseReportsForListing
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin,
-                Message = @event.Message
+                Message = @event.Message,
+                DataCollectorDisplayName = "Unknown",
+                ParsingErrorMessage = new List<string>(),
+                Location = Location.NotSet
             };
              _caseReports.Save(caseReport);
         }
@@ -83,7 +88,9 @@ namespace Read.CaseReportsForListing
                 Message = @event.Message,
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages
+                ParsingErrorMessage = @event.ErrorMessages,
+                Location = new Location(@event.Latitude, @event.Longitude),
+                HealthRisk = "Unknown"
             };
             _caseReports.Save(caseReport);
         }
@@ -96,7 +103,10 @@ namespace Read.CaseReportsForListing
                 Message = @event.Message,
                 Timestamp = @event.Timestamp,
                 Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages
+                ParsingErrorMessage = @event.ErrorMessages,
+                DataCollectorDisplayName = "Unknown",
+                Location = Location.NotSet,
+                HealthRisk = "Unknown"
             };
             _caseReports.Save(caseReport);
         }
