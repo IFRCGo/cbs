@@ -92,11 +92,12 @@ namespace Web.Utility
         {
             var time = caseReport.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt");
             var status = !caseReport.ParsingErrorMessage.Any();
+
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                 ? caseReport.DataCollectorDisplayName
                 : "Origin: " + caseReport.Origin;
 
-            var latLong = caseReport.Location != Location.NotSet 
+            var latLong = caseReport.Location != null && caseReport.Location != Location.NotSet 
                 ? caseReport.Location.ToString() 
                 : "";
 
