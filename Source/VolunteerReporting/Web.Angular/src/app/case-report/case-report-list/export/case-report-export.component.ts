@@ -5,18 +5,6 @@ import { environment } from '../../../../environments/environment';
 import { Column, SortableColumn, CaseReportColumns } from '../sort/columns';
 import { QuickFilter } from '../filtering/filter.pipe';
 
-class FieldsToExport {
-  all: boolean = true
-  timestamp: boolean = false
-  status: boolean = false
-  datacollector: boolean = false
-  healthrisk: boolean = false
-  femalesUnder5: boolean = false
-  females5AndOlder: boolean = false
-  malesUnder5: boolean = false
-  males5AndOlder: boolean = false
-}
-
 const createExportableFieldsArray = (original: Array<Column>, columns: number = 2): Array<Array<Column>> => {
     const fields = [new Column('all','All')].concat(original);
     const rows = Math.ceil(fields.length/columns);
@@ -46,23 +34,17 @@ export class CaseReportExportComponent {
     readonly exportBackendUrl: string = `${environment.api}/api/casereports/export`;
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
-    allSortableColumns: Array<Column> = CaseReportColumns.filter((c: Column) => c instanceof SortableColumn) as Array<SortableColumn>;
+    allSortableColumns: Array<Column> =
+      CaseReportColumns.filter((c: Column) => c instanceof SortableColumn) as Array<SortableColumn>;
     allFields: Array<Array<Column>> = createExportableFieldsArray(CaseReportColumns);
 
-    fields : { [key: string]: boolean } = { "all": true };
+    fields : { [key: string]: boolean } = { 'all': true };
 
     constructor(
         private modal: NgxSmartModalService
     ) { }
 
     open(filter: QuickFilter, sortColum: SortableColumn, sortDescending: boolean) {
-        /*const modal = this.modal.getModal('modalExportCaseReports');
-        modal.setData({
-
-        });
-        modal.open();
-        */
-        console.log('Set data', filter, sortColum, sortDescending);
         this.modal.setModalData({
           filter: filter,
           sortColumn: sortColum,
