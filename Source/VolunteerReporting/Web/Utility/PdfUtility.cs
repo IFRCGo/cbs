@@ -12,7 +12,7 @@ namespace Web.Utility
 {
     public static class PdfUtility
     {
-        public static byte[] CreateCaseReportPdf(IList<CaseReportForListing> caseReports, string[] opts)
+        public static byte[] CreateCaseReportPdf(IEnumerable<CaseReportForListing> caseReports, string[] opts)
         {
             var now = DateTimeOffset.UtcNow;
             var nowString = now.ToString("yyyy-MMMM-dd");
@@ -66,7 +66,7 @@ namespace Web.Utility
 
             AddCaseReportFieldsToTable(table);
 
-            foreach (var caseReport in caseReports.OrderByDescending(e => e.Timestamp))
+            foreach (var caseReport in caseReports)
             {
                 AddCaseReportDataToTable(table, caseReport);
             }

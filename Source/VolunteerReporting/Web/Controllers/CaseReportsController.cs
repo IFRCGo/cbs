@@ -12,6 +12,7 @@ using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Collections.Generic;
+using Concepts;
 using DocumentFormat.OpenXml;
 
 using CaseReportForListing = Read.CaseReportsForListing.CaseReportForListing;
@@ -37,48 +38,46 @@ namespace Web.Controllers
         }
 
         [HttpGet("export/pdf")]
-        public async Task<IActionResult> PdfReport()
+        public async Task<IActionResult> PdfReport(string filter = "", string orderBy = "", string direction = "")
         {
             //TODO: I think that having a parameter of some kind of datastructure that represents
             // the filtering and order by is the way to go(?)
+            
 
             var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
 
-            var pdfBytes = PdfUtility.CreateCaseReportPdf(caseReports.ToList(), new[] { "all" });
+            caseReports = ApplyFilteringAndSorting(caseReports, filter, orderBy, direction);
+
+            var pdfBytes = PdfUtility.CreateCaseReportPdf(caseReports, new[] { "all" });
 
             return File(pdfBytes, "application/pdf",
                 "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".pdf");
             
         }
 
-        [HttpGet("obsolete")]
-        [Obsolete]
-        public async Task<IActionResult> GetObsolete()
-        {
-            return Ok(await _caseReportsObsolete.GetAllAsync());
-        }
-
-        [Obsolete]
-        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
-        public async Task<IActionResult> GetLimitLast(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, true));
-        }
-        [Obsolete]
-        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
-        public async Task<IActionResult> GetLimitFirst(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, false));
-        }
-
         [HttpGet("export/csv")]
-        public async Task<IActionResult> Export()
+        public async Task<IActionResult> CsvReport(string filter = "", string orderBy = "", string direction = "")
+        {
+            var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
+
+            caseReports = ApplyFilteringAndSorting(caseReports, filter, orderBy, direction);
+
+            var csvBytes = CsvUtility.CreateCaseReportCsv(caseReports);
+
+            return File(csvBytes, "text/csv", 
+                "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".csv");
+        }
+
+        [HttpGet("export/excel")]
+        public async Task<IActionResult> Export(string filter = "", string orderBy = "", string direction = "")
         {
             //TODO: I think that having a parameter of some kind of datastructure that represents
             // the filtering and order by is the way to go(?)
 
             // Get all the case reports
-            var reports = await _caseReports.GetAllAsync();
+            var reports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
+
+            reports = ApplyFilteringAndSorting(reports, filter, orderBy, direction);
 
             // Create the document in memory
             using (var stream = new MemoryStream())
@@ -95,7 +94,7 @@ namespace Web.Controllers
                 Sheet sheet = new Sheet() { Id = document.WorkbookPart.GetIdOfPart(worksheet), SheetId = 1, Name = "Case Reports" };
                 sheets.Append(sheet);
 
-            
+
                 uint rowIndex = 0;
                 // Add some headers
                 {
@@ -140,7 +139,7 @@ namespace Web.Controllers
                     var status = new Cell { CellReference = "B" + rowIndex };
                     row.Append(status);
                     status.DataType = new EnumValue<CellValues>(CellValues.String);
-                
+
                     var origin = new Cell { CellReference = "C" + rowIndex };
                     row.Append(origin);
                     origin.DataType = new EnumValue<CellValues>(CellValues.String);
@@ -169,7 +168,7 @@ namespace Web.Controllers
                     var location = new Cell { CellReference = "I" + rowIndex };
                     row.Append(location);
                     location.DataType = new EnumValue<CellValues>(CellValues.String);
-                    location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude+"/"+report.Location.Longitude : "");
+                    location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude + "/" + report.Location.Longitude : "");
 
                     var message = new Cell { CellReference = "J" + rowIndex };
                     row.Append(message);
@@ -207,10 +206,86 @@ namespace Web.Controllers
                 document.Close();
                 stream.Seek(0, SeekOrigin.Begin);
 
-                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     "casereports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + ".xlsx");
             }
         }
 
+        [HttpGet("obsolete")]
+        [Obsolete]
+        public async Task<IActionResult> GetObsolete()
+        {
+            return Ok(await _caseReportsObsolete.GetAllAsync());
+        }
+
+        [Obsolete]
+        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
+        public async Task<IActionResult> GetLimitLast(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, true));
+        }
+        [Obsolete]
+        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
+        public async Task<IActionResult> GetLimitFirst(int limit)
+        {
+            return Ok(await _caseReports.GetLimitAsync(limit, false));
+        }
+
+        private IEnumerable<CaseReportForListing> ApplyFilteringAndSorting(
+            IEnumerable<CaseReportForListing> caseReports, string filter, string orderBy, string direction)
+        {
+            return SortDesc(direction)
+                ? caseReports.Where(GetFilterPredicate(filter)).OrderByDescending(GetOrderByPredicate(orderBy))
+                : caseReports.Where(GetFilterPredicate(filter)).OrderBy(GetOrderByPredicate(orderBy));
+        }
+
+        private Func<CaseReportForListing, bool> GetFilterPredicate(string filter)
+        {
+            switch (filter)
+            {
+                case "all":
+                    return _ => true;
+                case "success":
+                    return r => r.HealthRiskId != HealthRiskId.NotSet && r.HealthRisk != "Unknown";
+                case "error":
+                    return r => r.HealthRiskId == HealthRiskId.NotSet ||  r.HealthRisk == "Unknown";
+                case "unknown_sender":
+                    return  r => r.DataCollectorId == DataCollectorId.NotSet || r.DataCollectorDisplayName == "Unknown";
+                default:
+                    return _ => true;
+            }
+        }
+
+        private Func<CaseReportForListing, IComparable> GetOrderByPredicate(string filter)
+        {
+            switch (filter)
+            {
+                case "time":
+                    return e => e.Timestamp;
+                case "females_under":
+                    return r => r.NumberOfFemalesUnder5;
+                case "females_over":
+                    return r => r.NumberOfFemalesAged5AndOlder;
+                case "males_under":
+                    return r => r.NumberOfMalesUnder5;
+                case "males_over":
+                    return r => r.NumberOfMalesAged5AndOlder;
+                default:
+                    return e => e.Timestamp;
+            }
+        }
+
+        private bool SortDesc(string direction)
+        {
+            switch (direction)
+            {
+                case "asc":
+                    return false;
+                case "desc":
+                    return true;
+                default:
+                    return true;
+            }
+        }
     }
 }
