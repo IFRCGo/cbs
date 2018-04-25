@@ -58,8 +58,10 @@ namespace Web
 
         [HttpPost ("/smssync")]
         public void MessageFromSMSSync([FromForm] SMSSync sms){
+
+            //SMSSync send a unix timestamp
         
-            var dateTime = DateTime.ParseExact(sms.Sent_timestamp, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+            var dateTime = UnixTimeStampToDateTime(float.Parse(sms.Sent_timestamp, System.Globalization.CultureInfo.InstalledUICulture));
             var dateTimeOffset = new DateTimeOffset(dateTime);
             try
             { 
@@ -86,6 +88,15 @@ namespace Web
             _logger.Information(incomingTextMessageAsJson);
 
 
+        }
+
+        public static DateTime UnixTimeStampToDateTime( float unixTimeStamp )
+        {
+
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds( unixTimeStamp ).ToLocalTime();
+            return dtDateTime;
         }
     }
 }
