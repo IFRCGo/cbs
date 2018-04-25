@@ -1,56 +1,57 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Read.CaseReportsForListing;
-using System.Linq;
 using Concepts;
 
 namespace Web.Utility
 {
-    public static class PdfUtility
+    public class PdfExporter : IReportExporter
     {
-        public static byte[] CreateCaseReportPdf(IEnumerable<CaseReportForListing> caseReports, string[] opts)
+        public string GetFileExtension()
         {
-            var now = DateTimeOffset.UtcNow;
-            var nowString = now.ToString("yyyy-MMMM-dd");
+            return ".pdf";
+        }
 
-            using (var stream = new MemoryStream())
+        public string GetMIMEType()
+        {
+            return "application/pdf";
+        }
+
+        public bool WriteReports(IEnumerable<CaseReportForListing> reports, string[] fields, Stream stream)
+        {
+            var nowString = DateTimeOffset.Now.ToString("yyyy-MMMM-dd");
+            var doc = new Document(PageSize.A4, 0f, 0f, 30f, 10f);
+
+            using (var writer = PdfWriter.GetInstance(doc, stream))
             {
-                var doc = new Document(PageSize.A4, 0f, 0f, 30f, 10f);
+                writer.CloseStream = false;
 
-                using (var writer = PdfWriter.GetInstance(doc, stream))
+                doc.AddAuthor("Cbs - Volunteer Reporting");
+                doc.AddCreator("Cbs - Volunteer Reporting");
+                doc.AddSubject("Case Reports " + nowString);
+                doc.AddTitle("Case Reports " + nowString);
+
+                doc.Open();
+                doc.NewPage();
+                if (reports.Any())
                 {
-                    writer.CloseStream = false;
-
-                    doc.AddAuthor("Cbs - Volunteer Reporting");
-                    doc.AddCreator("Cbs - Volunteer Reporting");
-                    doc.AddSubject("Case Reports " + nowString);
-                    doc.AddTitle("Case Reports " + nowString);
-
-                    doc.Open();
-                    doc.NewPage();
-                    if (caseReports.Any())
-                    {
-                        AddCaseReportsToPdf(caseReports, doc, opts);
-                    }
-                    else
-                    {
-                        doc.Add(new Paragraph("No case reports were retrieved from the database"));
-                    }
-
-                    doc.Close();
-                    
-                    writer.Flush();
+                    AddCaseReportsToPdf(reports, doc, new string[] { });
                 }
-                
-                stream.Seek(0, SeekOrigin.Begin);
-                stream.Flush();
+                else
+                {
+                    doc.Add(new Paragraph("No case reports were retrieved from the database"));
+                }
 
-                return stream.ToArray();
+                doc.Close();
+
+                writer.Flush();
             }
+
+            return true;
         }
 
         private static void AddCaseReportsToPdf(IEnumerable<CaseReportForListing> caseReports, Document doc, string[] opts)
@@ -62,7 +63,7 @@ namespace Web.Utility
                 HeaderRows = 1
             };
 
-            table.SetWidths(new [] { 2.5f, 2f, 3f, 5f, 1f, 1f, 1f, 1f, 1.5f });
+            table.SetWidths(new[] { 2.5f, 2f, 3f, 5f, 1f, 1f, 1f, 1f, 1.5f });
 
             AddCaseReportFieldsToTable(table);
 
@@ -70,7 +71,7 @@ namespace Web.Utility
             {
                 AddCaseReportDataToTable(table, caseReport);
             }
-            
+
             doc.Add(table);
 
         }
@@ -91,14 +92,14 @@ namespace Web.Utility
         private static void AddCaseReportDataToTable(PdfPTable table, CaseReportForListing caseReport)
         {
             var time = caseReport.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt");
-            var status = !caseReport.ParsingErrorMessage.Any();
+            var status = caseReport.HealthRiskId != null;
 
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                 ? caseReport.DataCollectorDisplayName
                 : "Origin: " + caseReport.Origin;
 
-            var latLong = caseReport.Location != null && caseReport.Location != Location.NotSet 
-                ? caseReport.Location.ToString() 
+            var latLong = caseReport.Location != null && caseReport.Location != Location.NotSet
+                ? caseReport.Location.ToString()
                 : "";
 
             table.AddCell(time);
@@ -115,7 +116,7 @@ namespace Web.Utility
                 var femalesUnder5 = caseReport.NumberOfFemalesUnder5.ToString();
 
                 var femalesOver5 = caseReport.NumberOfFemalesAged5AndOlder.ToString();
-                
+
                 table.AddCell(healthRisk);
                 table.AddCell(malesUnder5);
                 table.AddCell(malesOver5);
@@ -126,7 +127,7 @@ namespace Web.Utility
             {
                 var message = caseReport.Message;
 
-                var errorMessages = string.Join(", ", caseReport.ParsingErrorMessage);
+                var errorMessages = string.Join(", ", caseReport.ParsingErrorMessage != null ? String.Join(".", caseReport.ParsingErrorMessage) : "");
 
                 var cellText = message + "\nErrors: " + errorMessages;
 

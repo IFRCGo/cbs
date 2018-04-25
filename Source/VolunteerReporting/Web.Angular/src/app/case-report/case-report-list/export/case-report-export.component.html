@@ -1,0 +1,60 @@
+<ngx-smart-modal #modalExportCaseReports identifier="modalExportCaseReports" [backdrop]="false">
+    <h2>Export case reports</h2>
+    <form ngNoForm *ngIf="modalExportCaseReports.hasData()" [action]="exportBackendUrl" method="get">
+        <table>
+            <tr>
+                <td>Format:</td>
+                <td>
+                    <input type="radio" id="formatExcel" name="format" value="excel" checked>
+                    <label for="formatExcel">Excel</label>
+
+                    <input type="radio" id="formatPDF" name="format" value="pdf">
+                    <label for="formatPDF">PDF</label>
+
+                    <input type="radio" id="formatCSV" name="format" value="csv">
+                    <label for="formatCSV">CSV</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Fields:</td>
+                <td>
+                    <table class="fieldTable">
+                        <tr *ngFor="let rows of allFields">
+                            <td *ngFor="let field of rows">
+                                <input type="checkbox" [id]="'fields'+field.name" name="fields" [value]="field.name"
+                                  [(ngModel)]="fields[field.name]" (ngModelChange)="fieldsChanged(field.name, $event)">
+                                <label [for]="'fields'+field.name">{{field.description}}</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                  <td>Quick filter:</td>
+                  <td>
+                      <select name="filter" [value]="modalExportCaseReports.getData().filter.name">
+                          <option *ngFor="let filter of allFilters" [value]="filter.name">{{filter.description}}</option>
+                      </select>
+                  </td>
+            </tr>
+            <tr>
+                  <td>Sort by:</td>
+                  <td>
+                      <select name="sortBy" [value]="modalExportCaseReports.getData().sortColumn.name">
+                          <option *ngFor="let column of allSortableColumns" [value]="column.name">{{column.description}}</option>
+                      </select>
+
+                      <input type="radio" id="orderDesc" name="order" value="desc" [checked]="modalExportCaseReports.getData().sortDescending">
+                      <label for="orderDesc">Descending</label>
+
+                      <input type="radio" id="orderAsc" name="order" value="asc" [checked]="!modalExportCaseReports.getData().sortDescending">
+                      <label for="orderAsc">Ascending</label>
+                  </td>
+            </tr>
+        </table>
+        <div class="actions">
+            <button (click)="modalExportCaseReports.close()">Cancel</button>
+            <button type="submit">Export</button>
+        </div>
+    </form>
+</ngx-smart-modal>

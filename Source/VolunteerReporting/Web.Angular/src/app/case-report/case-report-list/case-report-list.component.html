@@ -1,7 +1,13 @@
 <h3>
     Case Reports
 </h3>
-<case-report-exporter></case-report-exporter>
+
+<cbs-case-report-export #exporter></cbs-case-report-export>
+
+<div class="actions">
+    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
+</div>
+
 <table class="table table-bordered table-striped">
     <tbody>
         <tr>
@@ -51,7 +57,7 @@
                 </td>
             </ng-container>
             <td>
-                <span *ngIf="caseReport.location"> 
+                <span *ngIf="caseReport.location">
                     <span *ngIf="caseReport.location.latitude != -1">{{caseReport.location.latitude  | number}}, {{caseReport.location.longitude | number}}</span>
                     <span *ngIf="caseReport.location.latitude == -1"></span>
                 </span>
