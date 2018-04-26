@@ -47,11 +47,15 @@ namespace Infrastructure.AspNet
             builder.Bind<ICallContext>().To(new DefaultCallContext());
             builder.Bind<ICanResolvePrincipal>().To(new DefaultPrincipalResolver());
 
-            var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("Demo")
+            var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("Demo")//TODO: Or CBS
                 .Application(applicationBuilder =>
                     applicationBuilder
-                    .PrefixLocationsWith(new BoundedContext("commodity_planner"))
-                    .WithStructureStartingWith<BoundedContext>( _ => _.Required)
+                    .PrefixLocationsWith(new BoundedContext("commodity_planner")) //TODO: Or VolunteerReporting
+                    .WithStructureStartingWith<BoundedContext>(_ => _
+                        .Required.WithChild<Feature>(f => f
+                            .WithChild<SubFeature>(c => c.Recursive)
+                        )
+                    )
                 )
                 .StructureMappedTo(_ => _
                     .Domain("Infrastructure.Events.-^{Feature}.-^{SubFeature}*")
