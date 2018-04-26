@@ -51,7 +51,11 @@ namespace Infrastructure.AspNet
                 .Application(applicationBuilder =>
                     applicationBuilder
                     .PrefixLocationsWith(new BoundedContext("VolunteerReporting"))
-                    .WithStructureStartingWith(new ApplicationStructureFragment(typeof(BoundedContext)), _ => { })
+                    .WithStructureStartingWith<BoundedContext>(_ => _
+                        .Required.WithChild<Feature>(f => f
+                            .WithChild<SubFeature>(c => c.Recursive)
+                        )
+                    )
                 )
 
                 .StructureMappedTo(_ => _
