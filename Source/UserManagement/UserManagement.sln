@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Read", "Read\Read.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.AspNet", "..\Infrastructure\AspNet\Infrastructure.AspNet.csproj", "{1B16B807-809C-4F3E-8475-0DA4F0428F56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.AspNetCore", "..\Infrastructure\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj", "{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concepts", "Concepts\Concepts.csproj", "{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Logging", "..\Infrastructure\Logging\Infrastructure.Logging.csproj", "{01DFB3EF-93C2-42EE-887A-CF4F63F567B4}"
@@ -29,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Kafka.BoundedContexts", "..\Infrastructure\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj", "{AB4675C2-00B6-4801-B96E-F3F527C32DCD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{757E9A48-F695-4B7B-9DDE-216FF001EE77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Events", "..\Infrastructure\Events\Infrastructure.Events.csproj", "{A24710C1-9160-4181-82EA-32CC59CDE508}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,18 +100,6 @@ Global
 		{1B16B807-809C-4F3E-8475-0DA4F0428F56}.Release|x64.Build.0 = Release|Any CPU
 		{1B16B807-809C-4F3E-8475-0DA4F0428F56}.Release|x86.ActiveCfg = Release|Any CPU
 		{1B16B807-809C-4F3E-8475-0DA4F0428F56}.Release|x86.Build.0 = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|x64.Build.0 = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Debug|x86.Build.0 = Debug|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x64.ActiveCfg = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x64.Build.0 = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x86.ActiveCfg = Release|Any CPU
-		{FEEC6AE8-6804-41BD-A312-FA4AE024DE77}.Release|x86.Build.0 = Release|Any CPU
 		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A55B7B0C-53B4-4E27-BC83-0D8B8E2C8809}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -208,6 +196,18 @@ Global
 		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x64.Build.0 = Release|Any CPU
 		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x86.ActiveCfg = Release|Any CPU
 		{757E9A48-F695-4B7B-9DDE-216FF001EE77}.Release|x86.Build.0 = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|x64.Build.0 = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Debug|x86.Build.0 = Debug|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x64.ActiveCfg = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x64.Build.0 = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x86.ActiveCfg = Release|Any CPU
+		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
