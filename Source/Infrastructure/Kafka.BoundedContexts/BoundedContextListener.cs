@@ -6,17 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using doLittle.Events;
-using doLittle.Execution;
-using doLittle.Logging;
-using doLittle.Runtime.Applications;
-using doLittle.Runtime.Events;
-using doLittle.Runtime.Events.Coordination;
-using doLittle.Runtime.Events.Publishing.InProcess;
-using doLittle.Runtime.Events.Storage;
-using doLittle.Runtime.Transactions;
-using doLittle.Types;
+using Dolittle.Events;
+using Dolittle.Execution;
+using Dolittle.Logging;
+using Dolittle.Applications;
+using Dolittle.Runtime.Events;
+using Dolittle.Runtime.Events.Coordination;
+using Dolittle.Runtime.Events.Publishing.InProcess;
+using Dolittle.Runtime.Events.Storage;
+using Dolittle.Runtime.Transactions;
+using Dolittle.Types;
 using Newtonsoft.Json;
+using Infrastructure.Events;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {
@@ -27,7 +28,7 @@ namespace Infrastructure.Kafka.BoundedContexts
         readonly IEventConverter _eventConverter;
         readonly IUncommittedEventStreamCoordinator _uncommittedEventStreamCoordinator;
         readonly ILogger _logger;
-        readonly IApplicationResourceIdentifierConverter _applicationResourceIdentifierConverter;
+        readonly IApplicationArtifactIdentifierStringConverter _applicationArtifactIdentifierStringConverter;
         readonly IImplementationsOf<IEvent> _eventTypes;
         readonly IEventSequenceNumbers _eventSequenceNumbers;
         readonly IEventStore _eventStore;
@@ -43,7 +44,7 @@ namespace Infrastructure.Kafka.BoundedContexts
             IEventConverter eventConverter,
             IUncommittedEventStreamCoordinator uncommittedEventStreamCoordinator,
             ILogger logger,
-            IApplicationResourceIdentifierConverter applicationResourceIdentifierConverter,
+            IApplicationArtifactIdentifierStringConverter applicationArtifactIdentifierStringConverter,
             IImplementationsOf<IEvent> eventTypes,
             IEventStore eventStore,
             IEventEnvelopes eventEnvelopes,
@@ -55,7 +56,7 @@ namespace Infrastructure.Kafka.BoundedContexts
             _eventConverter = eventConverter;
             _uncommittedEventStreamCoordinator = uncommittedEventStreamCoordinator;
             _logger = logger;
-            _applicationResourceIdentifierConverter = applicationResourceIdentifierConverter;
+            _applicationArtifactIdentifierStringConverter = applicationArtifactIdentifierStringConverter;
             _eventTypes = eventTypes;
             _eventSequenceNumbers = eventSequenceNumbers;
             _eventStore = eventStore;
@@ -78,8 +79,8 @@ namespace Infrastructure.Kafka.BoundedContexts
 
                 foreach( var rawContentAndEnvelope in raw ) 
                 {
-                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Envelope.EventSourceId.ToString());
-                    var eventIdentifier = _applicationResourceIdentifierConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
+                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Content.EventSourceId.ToString());
+                    var eventIdentifier = _applicationArtifactIdentifierStringConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
                     var version = EventSourceVersion.FromCombined((double)rawContentAndEnvelope.Envelope.Version);
                     var correlationId = (TransactionCorrelationId)Guid.Parse(rawContentAndEnvelope.Envelope.CorrelationId.ToString());
                     var eventSource = new ExternalSource(eventSourceId);

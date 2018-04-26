@@ -12,7 +12,7 @@ using Infrastructure.AspNet;
 namespace Web.Controllers
 {
     [Route("api/invalidcasereportsfromunknowndatacollectors")]
-    public class InvalidCaseReportsFromUnknownDataCollectorsController : BaseController
+    public class InvalidCaseReportsFromUnknownDataCollectorsController : Controller
     {
         private readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
 

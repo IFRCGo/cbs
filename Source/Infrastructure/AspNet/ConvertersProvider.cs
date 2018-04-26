@@ -6,14 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using doLittle.Collections;
-using doLittle.Concepts.Serialization.Json;
-using doLittle.Logging;
-using doLittle.Runtime.Applications;
-using doLittle.Runtime.Events;
-using doLittle.Runtime.Events.Publishing;
-using doLittle.Runtime.Events.Publishing.InProcess;
-using doLittle.Serialization.Json;
+using Dolittle.Collections;
+using Dolittle.Concepts.Serialization.Json;
+using Dolittle.Logging;
+using Dolittle.Applications;
+using Dolittle.Applications.Serialization.Json;
+using Dolittle.Runtime.Events;
+using Dolittle.Runtime.Events.Publishing;
+using Dolittle.Runtime.Events.Publishing.InProcess;
+using Dolittle.Serialization.Json;
 using Newtonsoft.Json;
 
 namespace Infrastructure.AspNet
@@ -24,24 +25,24 @@ namespace Infrastructure.AspNet
     /// </summary>
     public class ConvertersProvider : ICanProvideConverters
     {
-        readonly IApplicationResourceIdentifierConverter _applicationResourceIdentifierConverter;
+        readonly IApplicationArtifactIdentifierStringConverter _applicationArtifactIdentifierStringConverter;
 
         /// <summary>
         /// Initializes a new instance 
         /// </summary>
-        /// <param name="applicationResourceIdentifierConverter"><see cref="IApplicationResourceIdentifierConverter"/> for converting to and from <see cref="IApplicationResourceIdentifier"/></param>
-        public ConvertersProvider(IApplicationResourceIdentifierConverter applicationResourceIdentifierConverter)
+        /// <param name="applicationArtifactIdentifierStringConverter"><see cref="IApplicationArtifactIdentifierStringConverter"/> for converting to and from <see cref="IApplicationArtifactIdentifier"/></param>
+        public ConvertersProvider(IApplicationArtifactIdentifierStringConverter applicationArtifactIdentifierStringConverter)
         {
-            _applicationResourceIdentifierConverter = applicationResourceIdentifierConverter;
+            _applicationArtifactIdentifierStringConverter = applicationArtifactIdentifierStringConverter;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc/>&
         public IEnumerable<JsonConverter> Provide()
         {
             return new JsonConverter[] {
                 new ConceptConverter(),
                 new EventSourceVersionConverter(),
-                new ApplicationResourceIdentifierJsonConverter(_applicationResourceIdentifierConverter)
+                new ApplicationArtifactIdentifierJsonConverter(_applicationArtifactIdentifierStringConverter)
             };
         }
     }    

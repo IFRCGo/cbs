@@ -1,5 +1,5 @@
 using System;
-using doLittle.Read;
+using Dolittle.ReadModels;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read.GreetingGenerators

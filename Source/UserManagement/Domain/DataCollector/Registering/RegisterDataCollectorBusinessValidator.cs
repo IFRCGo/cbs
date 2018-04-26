@@ -1,8 +1,8 @@
-using doLittle.FluentValidation.Commands;
+using Dolittle.Commands.Validation;
 
 namespace Domain.DataCollector.Registering
 {
-    public class RegisterDataCollectorBusinessValidator : CommandBusinessValidator<RegisterDataCollector>
+    public class RegisterDataCollectorBusinessValidator : CommandBusinessValidatorFor<RegisterDataCollector>
     {
         //TODO: Add business validation
     }

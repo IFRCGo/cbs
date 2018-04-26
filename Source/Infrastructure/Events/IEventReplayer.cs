@@ -2,13 +2,14 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using doLittle.Runtime.Events;
+using System;
+using System.Collections.Generic;
+using Dolittle.Events;
 
-namespace Infrastructure.Kafka.BoundedContexts
+namespace Infrastructure.Events
 {
-    public class ExternalSource : EventSource
+    public interface IEventReplayer
     {
-        public ExternalSource(EventSourceId id) : base(id) { }
-
+        void Replay<T>(IEnumerable<T> events, Func<T, Guid> getIdCallback, Action<IEventSource, T> eventSourceCallback = null) where T : IEvent;
     }
 }

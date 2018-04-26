@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using doLittle.Domain;
+using Dolittle.Domain;
+using Dolittle.Commands.Handling;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 
 namespace Domain.DataCollector
 {
-    public class DataCollectorCommandHandler : IDataCollectorCommandHandler
+    public class DataCollectorCommandHandler : ICanHandleCommands
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 

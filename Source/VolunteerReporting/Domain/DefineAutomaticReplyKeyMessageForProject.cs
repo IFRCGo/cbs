@@ -1,11 +1,10 @@
-using Concepts;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Concepts;
+using Dolittle.Commands;
 
 namespace Domain
 {
-    public class DefineAutomaticReplyKeyMessageForProject
+    public class DefineAutomaticReplyKeyMessageForProject : ICommand
     {
         public Guid HealthRiskId { get; set; }
         public Guid ProjectId { get; set; }

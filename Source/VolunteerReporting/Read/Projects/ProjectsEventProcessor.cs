@@ -1,4 +1,4 @@
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events.External;
 using System;
 using System.Collections.Generic;

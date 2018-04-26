@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Read;
+using Dolittle.ReadModels;
 using MongoDB.Bson.Serialization.Attributes;
 
 

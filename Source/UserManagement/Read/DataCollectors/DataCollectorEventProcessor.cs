@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.External;
 

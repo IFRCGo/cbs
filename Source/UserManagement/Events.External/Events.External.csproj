@@ -6,6 +6,6 @@
 
 
   <ItemGroup>
-    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
+    <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*" />
   </ItemGroup>
 </Project>

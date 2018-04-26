@@ -2,7 +2,7 @@ using Domain.StaffUser;
 using Domain.StaffUser.Registering;
 using System;
 using Concepts;
-using doLittle.Commands;
+using Dolittle.Commands;
 
 namespace Domain.Specs.StaffUser.Registering.given
 {

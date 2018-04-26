@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events.StaffUser.Registration;
 using Read.StaffUsers.Models;
 namespace Read.StaffUsers

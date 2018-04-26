@@ -5,9 +5,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using doLittle.Dynamic;
-using doLittle.Events;
-using doLittle.Runtime.Events;
+using Dolittle.Dynamic;
+using Dolittle.Events;
+using Dolittle.Runtime.Events;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {

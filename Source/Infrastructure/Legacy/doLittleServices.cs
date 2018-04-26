@@ -4,26 +4,26 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Reflection;
-using doLittle.Assemblies;
-using doLittle.Assemblies.Configuration;
-using doLittle.Logging;
-using doLittle.Types;
+using Dolittle.Assemblies;
+using Dolittle.Assemblies.Configuration;
+using Dolittle.Logging;
+using Dolittle.Types;
 using Infrastructure.AspNet;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class doLittleServices
+    public static class DolittleServices
     {
-        public static IServiceCollection Add_doLittle(this IServiceCollection services)
+        public static IServiceCollection Add_Dolittle(this IServiceCollection services)
         {
             var logAppenders = LoggingConfigurator.DiscoverAndConfigure(Internals.LoggerFactory);
-            doLittle.Logging.ILogger logger = new Logger(logAppenders);
+            Dolittle.Logging.ILogger logger = new Logger(logAppenders);
 
             var assembliesConfigurationBuilder = new AssembliesConfigurationBuilder();
             assembliesConfigurationBuilder.IncludeAll();
 
             var contractToImplementorsMap = new ContractToImplementorsMap();
-            var executingAssembly = typeof(doLittleModule).GetTypeInfo().Assembly;
+            var executingAssembly = typeof(DolittleModule).GetTypeInfo().Assembly;
             contractToImplementorsMap.Feed(executingAssembly.GetTypes());
 
             var assemblySpecifiers = new AssemblySpecifiers(assembliesConfigurationBuilder.RuleBuilder, logger);

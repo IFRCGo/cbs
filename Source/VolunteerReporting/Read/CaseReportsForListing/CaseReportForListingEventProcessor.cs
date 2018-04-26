@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events;
 using Read.DataCollectors;
 using Read.HealthRisks;

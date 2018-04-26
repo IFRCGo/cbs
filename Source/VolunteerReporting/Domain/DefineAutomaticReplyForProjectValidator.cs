@@ -1,13 +1,12 @@
-using FluentValidation;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
+using Dolittle.Commands.Validation;
+using FluentValidation;
 
 namespace Domain
 {
-    public class DefineAutomaticReplyForProjectValidator : AbstractValidator<DefineAutomaticReplyForProject>
+    public class DefineAutomaticReplyForProjectValidator : CommandInputValidatorFor<DefineAutomaticReplyForProject>
     {
         public DefineAutomaticReplyForProjectValidator()
         {

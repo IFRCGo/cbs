@@ -6,27 +6,27 @@
 using System.Globalization;
 using System.Security.Claims;
 using Autofac;
-using doLittle.Assemblies;
-using doLittle.Assemblies.Configuration;
-using doLittle.Collections;
-using doLittle.Domain;
-using doLittle.Events.Processing;
-using doLittle.Logging;
-using doLittle.Runtime.Applications;
-using doLittle.Runtime.Commands;
-using doLittle.Runtime.Events.Coordination;
-using doLittle.Runtime.Events.Processing;
-using doLittle.Runtime.Events.Publishing;
-using doLittle.Runtime.Events.Publishing.InProcess;
-using doLittle.Runtime.Events.Storage;
-using doLittle.Runtime.Execution;
-using doLittle.Runtime.Tenancy;
-using doLittle.Types;
+using Dolittle.Assemblies;
+using Dolittle.Assemblies.Configuration;
+using Dolittle.Collections;
+using Dolittle.Domain;
+using Dolittle.Events.Processing;
+using Dolittle.Logging;
+using Dolittle.Runtime.Applications;
+using Dolittle.Runtime.Commands;
+using Dolittle.Runtime.Events.Coordination;
+using Dolittle.Runtime.Events.Processing;
+using Dolittle.Runtime.Events.Publishing;
+using Dolittle.Runtime.Events.Publishing.InProcess;
+using Dolittle.Runtime.Events.Storage;
+using Dolittle.Runtime.Execution;
+using Dolittle.Runtime.Tenancy;
+using Dolittle.Types;
 using Autofac.Features.ResolveAnything;
 
 namespace Infrastructure.AspNet
 {
-    public class doLittleModule : Autofac.Module
+    public class DolittleModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -35,8 +35,8 @@ namespace Infrastructure.AspNet
                 !type.Namespace.StartsWith("System"));
             
             var logAppenders = LoggingConfigurator.DiscoverAndConfigure(Internals.LoggerFactory);
-            doLittle.Logging.ILogger logger = new Logger(logAppenders);
-            builder.RegisterType<Logger>().As<doLittle.Logging.ILogger>().SingleInstance();
+            Dolittle.Logging.ILogger logger = new Logger(logAppenders);
+            builder.RegisterType<Logger>().As<Dolittle.Logging.ILogger>().SingleInstance();
 
             builder.RegisterType<ControllerActionCommandContextManager>().As<ICommandContextManager>().SingleInstance();
 
@@ -53,7 +53,7 @@ namespace Infrastructure.AspNet
 
             //Internals.Assemblies.GetAll().ForEach(assembly => builder.RegisterAssemblyTypes(assembly).AsSelf().AsImplementedInterfaces());
 
-            builder.RegisterType<Container>().As<doLittle.DependencyInversion.IContainer>().SingleInstance();
+            builder.RegisterType<Container>().As<Dolittle.DependencyInversion.IContainer>().SingleInstance();
             builder.RegisterType<UncommittedEventStreamCoordinator>().As<IUncommittedEventStreamCoordinator>()
                 .SingleInstance();
             builder.RegisterType<Infrastructure.AspNet.EventProcessors>().As<IEventProcessors>().SingleInstance();
@@ -92,7 +92,7 @@ namespace Infrastructure.AspNet
             builder.RegisterInstance(tenant).As<ITenant>();
 
             builder.Register(_ =>
-                new doLittle.Runtime.Execution.ExecutionContext(
+                new Dolittle.Runtime.Execution.ExecutionContext(
                     principal,
                     CultureInfo.InvariantCulture,
                     (context, details) => { },

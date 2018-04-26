@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Domain;
+using Dolittle.Domain;
 using Domain.DataCollector.Registering;
 using Events.DataCollector;
 

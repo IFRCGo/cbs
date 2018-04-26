@@ -1,4 +1,4 @@
-using doLittle.Events;
+using Dolittle.Events;
 using System;
 
 namespace Events.DataCollector

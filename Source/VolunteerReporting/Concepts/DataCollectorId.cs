@@ -1,5 +1,5 @@
 using System;
-using doLittle.Concepts;
+using Dolittle.Concepts;
 
 namespace Concepts
 {

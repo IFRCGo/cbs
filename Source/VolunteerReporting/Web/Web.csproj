@@ -15,17 +15,17 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Events.Web\Infrastructure.Events.Web.csproj" />
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-    <ProjectReference Include="..\Events\Events.csproj" />
-    <ProjectReference Include="..\Events.External\Events.External.csproj" />
-    <ProjectReference Include="..\Read\Read.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Kafka\Infrastructure.Kafka.csproj" />
-    <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
+      <ProjectReference Include="..\Concepts\Concepts.csproj" />
+      <ProjectReference Include="..\Events\Events.csproj" />
+      <ProjectReference Include="..\Events.External\Events.External.csproj" />
+      <ProjectReference Include="..\Read\Read.csproj" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Kafka\Infrastructure.Kafka.csproj" />
+      <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />

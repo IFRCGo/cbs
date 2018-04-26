@@ -1,6 +1,6 @@
 using Machine.Specifications;
-using doLittle.Time;
-using doLittle.Domain;
+using Dolittle.Time;
+using Dolittle.Domain;
 using Domain.StaffUser.Registering;
 using Moq;
 using System;

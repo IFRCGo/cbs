@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using System.Collections.Generic;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events
 {

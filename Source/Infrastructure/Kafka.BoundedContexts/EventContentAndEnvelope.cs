@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System.Collections.Generic;
-using doLittle.Runtime.Events;
+using Dolittle.Runtime.Events;
 
 namespace Infrastructure.Kafka.BoundedContexts
 {

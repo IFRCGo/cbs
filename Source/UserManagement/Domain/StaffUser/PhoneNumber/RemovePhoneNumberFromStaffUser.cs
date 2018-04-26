@@ -1,6 +1,6 @@
 using System;
 using Concepts;
-using doLittle.Commands;
+using Dolittle.Commands;
 
 namespace Domain.StaffUser.PhoneNumber
 {

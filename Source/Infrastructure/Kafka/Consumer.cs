@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
-using doLittle.Logging;
-using doLittle.Serialization.Json;
+using Dolittle.Logging;
+using Dolittle.Serialization.Json;
 
 namespace Infrastructure.Kafka
 {

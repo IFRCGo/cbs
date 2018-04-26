@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Events.External;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Concepts;
 using System.Threading.Tasks;
 

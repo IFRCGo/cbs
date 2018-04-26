@@ -6,12 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using doLittle.FluentValidation.Commands;
+using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.DataCollector.Registering
 {
-    public class RegisterDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
+    public class RegisterDataCollectorValidator : CommandInputValidatorFor<RegisterDataCollector>
     {
         public RegisterDataCollectorValidator()
         {

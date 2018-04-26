@@ -1,13 +1,12 @@
-using Concepts;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Concepts;
+using Dolittle.ReadModels;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReply
+    public class AutomaticReply : IReadModel
     {
-        public AutomaticReply(Guid id) => Id = id;
+        public AutomaticReply(Guid id)=> Id = id;
         public Guid Id { get; set; }
         public Guid ProjectId { get; set; }
         public AutomaticReplyType Type { get; set; }

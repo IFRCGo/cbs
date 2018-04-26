@@ -1,5 +1,5 @@
-using doLittle.Domain;
-using doLittle.Events.Processing;
+using Dolittle.Domain;
+using Dolittle.Events.Processing;
 using Read.DataCollectors;
 using Domain.MessageGenerator;
 using Events.DataCollector;

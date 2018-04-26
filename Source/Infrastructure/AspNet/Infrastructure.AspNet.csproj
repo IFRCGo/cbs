@@ -5,20 +5,44 @@
     <AssemblyName>Infrastructure.AspNet</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
-    <PackageReference Include="doLittle.Assemblies" Version="2.0.0-alpha2.69" />
-    <PackageReference Include="doLittle.Collections" Version="2.0.0-alpha2.69" />
-    <PackageReference Include="doLittle.Concepts.Serialization.Json" Version="2.0.0-alpha2.69" />
-    <PackageReference Include="doLittle.Types" Version="2.0.0-alpha2.69" />
-    <PackageReference Include="doLittle.Domain" Version="2.0.0-alpha2.194" />
-    <PackageReference Include="doLittle.Events.Processing" Version="2.0.0-alpha2.194" />
-    <PackageReference Include="doLittle.Runtime.Commands" Version="2.0.0-alpha2.70" />
-    <PackageReference Include="doLittle.Runtime.Events" Version="2.0.0-alpha2.70" />
-    <PackageReference Include="doLittle.Runtime.Events.Coordination" Version="2.0.0-alpha2.70" />
-    <PackageReference Include="doLittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2.70" />
+
+    <PackageReference Include="Dolittle.Assemblies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Applications" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Applications.Serialization.Json" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Concepts" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Concepts.Serialization.Json" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Collections" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Types" Version="2.0.0-alpha2*" />
+
+    <PackageReference Include="Dolittle.DependencyInversion" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.DependencyInversion.Conventions" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.DependencyInversion.Bootstrap" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.0.0-alpha2*" />
+    
+    <PackageReference Include="Dolittle.SDK.Domain" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.SDK.Events.Processing" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.SDK.Events.Storage" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Runtime.Commands" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Runtime.Events.Coordination" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Runtime.Events.Storage" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2*" />
+
+    <PackageReference Include="Dolittle.AspNetCore.Bootstrap" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Commands" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Commands.Proxies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.ReadModels.Proxies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Queries" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Queries.Proxies" Version="2.0.0-alpha2*" />
+    
+    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.0.0-alpha2*" />
+
     <PackageReference Include="Serilog" Version="2.6.0" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
@@ -27,7 +51,6 @@
     <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentValidation.AspNetCore\FluentValidation.AspNetCore.csproj" />
     <ProjectReference Include="..\Logging\Infrastructure.Logging.csproj" />
     <ProjectReference Include="..\Kafka\Infrastructure.Kafka.csproj" />
     <ProjectReference Include="..\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj" />
