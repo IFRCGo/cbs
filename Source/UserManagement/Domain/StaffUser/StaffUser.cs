@@ -28,10 +28,9 @@ namespace Domain.StaffUser
                                                     Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                         IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+           
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterSystemConfigurator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
             RegisterPhoneNumbers(phoneNumbers);
@@ -42,10 +41,9 @@ namespace Domain.StaffUser
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                     IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataCoordinator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
             RegisterPhoneNumbers(phoneNumbers);
@@ -56,10 +54,9 @@ namespace Domain.StaffUser
                                             Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, int? birthYear, 
                                                 Sex? sex, string position, string dutyStation, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataOwner(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, position, dutyStation);
             RegisterPhoneNumbers(phoneNumbers);
@@ -69,10 +66,9 @@ namespace Domain.StaffUser
                                                     Guid nationalSociety, Language language, int? birthYear, Sex? sex, 
                                                         Location location, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataConsumer(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
         }

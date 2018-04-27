@@ -1,3 +1,4 @@
+using System;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Dolittle.Time;
@@ -19,7 +20,7 @@ namespace Domain.StaffUser.Registering
         {
             var user = _repository.Get(command.Role.StaffUserId);
             user.RegisterNewAdminUser(command.Role.FullName, command.Role.DisplayName, 
-                                        command.Role.Email);
+                                        command.Role.Email, DateTimeOffset.UtcNow);
         }
 
         public void Handle(RegisterNewDataCoordinator command)
@@ -28,7 +29,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataCoordinator(command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex, DateTimeOffset.UtcNow);
         }
 
         public void Handle(RegisterNewSystemConfigurator command)
@@ -37,7 +38,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewSystemConfigurator(command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                         command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers,
-                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex);
+                                        command.Role.AssignedNationalSocieties, command.Role.BirthYear, command.Role.Sex, DateTimeOffset.UtcNow);
         }
 
         public void Handle(RegisterNewDataOwner command)
@@ -46,7 +47,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataOwner(command.Role.FullName, command.Role.DisplayName, 
                                         command.Role.Email, command.Role.NationalSociety,
                                          command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear, 
-                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation);
+                                         command.Role.Sex, command.Role.Position, command.Role.DutyStation, DateTimeOffset.UtcNow);
         }
 
         public void Handle(RegisterNewStaffDataVerifier command)
@@ -55,7 +56,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataVerifier(command.Role.FullName, command.Role.DisplayName, 
                                                 command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, DateTimeOffset.UtcNow);
         }
 
         public void Handle(RegisterNewStaffDataConsumer command)
@@ -64,7 +65,7 @@ namespace Domain.StaffUser.Registering
             user.RegisterNewDataConsumer(command.Role.FullName, command.Role.DisplayName, 
                                                 command.Role.Email,command.Role.NationalSociety,
                                                 command.Role.PreferredLanguage.Value, command.Role.BirthYear,
-                                                command.Role.Sex, command.Role.Location);
+                                                command.Role.Sex, command.Role.Location, DateTimeOffset.UtcNow);
         }
     }
 }

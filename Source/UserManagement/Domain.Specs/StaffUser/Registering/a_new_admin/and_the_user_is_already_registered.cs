@@ -23,16 +23,15 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
             name = "name";
             display_name = "display";
             email = "test@redcross.com";
-            is_new_registration = true;
             sut = new su.StaffUser(Guid.NewGuid());
 
             
             //register the user so that they are already registered
-            sut.RegisterNewAdminUser(is_new_registration, name,display_name,email,now);
+            sut.RegisterNewAdminUser(name,display_name,email,now);
 
         };
 
-        Because of = () => result = Catch.Exception(() => sut.RegisterNewAdminUser(is_new_registration, name,display_name,email,now));
+        Because of = () => result = Catch.Exception(() => sut.RegisterNewAdminUser(name,display_name,email,now));
 
         It should_throw_an_exception = () => result.ShouldNotBeNull();
         It should_be_a_user_already_registered_exception = () => result.ShouldBeOfExactType<UserAlreadyRegistered>();

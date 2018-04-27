@@ -10,6 +10,7 @@ using Read.GreetingGenerators;
 using Read.StaffUsers;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
+using Read.StaffUsers.Models;
 
 
 namespace Web.Controllers

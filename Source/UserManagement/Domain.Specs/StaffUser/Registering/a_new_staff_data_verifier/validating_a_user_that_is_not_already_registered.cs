@@ -18,8 +18,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
             register = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
 
             staff_user_is_registered = (id) => false;
-            var is_new_registration = true;
-            sut = new RegisterNewStaffDataVerifierBusinessRulesValidator(staff_user_is_registered, is_new_registration);
+            sut = new RegisterNewStaffDataVerifierBusinessRulesValidator(staff_user_is_registered);
         };
 
         Because of = () => validation_results = sut.Validate(register);

@@ -18,17 +18,16 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
         {
             now = DateTimeOffset.UtcNow;
             command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
-            is_new_registration = true;
             sut = new su.StaffUser(command.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName, command.Role.Email,
+            sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName, command.Role.Email,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
                     command.Role.BirthYear, command.Role.Sex, constants.valid_location, now);
         };
 
         Because of = () => result = Catch.Exception(
-            () =>  sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName, command.Role.Email,
+            () =>  sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName, command.Role.Email,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
                     command.Role.BirthYear, command.Role.Sex, constants.valid_location, now)
         );
