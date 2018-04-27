@@ -26,7 +26,6 @@ namespace Domain.DataCollector
         {
             var root = _repository.Get(command.DataCollectorId);
             root.RegisterDataCollector(
-                command.IsNewRegistration,
                 command.FullName,
                 command.DisplayName,
                 command.YearOfBirth,
@@ -34,7 +33,7 @@ namespace Domain.DataCollector
                 command.PreferredLanguage,
                 command.GpsLocation,
                 command.PhoneNumbers,
-                command.RegisteredAt
+                DateTimeOffset.UtcNow
                 );
         }
 

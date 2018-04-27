@@ -3,15 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using System.Linq;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
-using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
-using Infrastructure.AspNet;
 using MongoDB.Driver;
 using Read.StaffUsers;
-using Web.Models;
 
 namespace Web.Controllers
 {

@@ -1,26 +1,14 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using Concepts;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
 using Read.StaffUsers;
-using Read.StaffUsers.Models;
 using Web.TestData;
-using Admin = Web.Models.Admin;
-using BaseUser = Web.Models.BaseUser;
-using DataConsumer = Web.Models.DataConsumer;
-using DataCoordinator = Web.Models.DataCoordinator;
-using DataOwner = Web.Models.DataOwner;
-using DataVerifier = Web.Models.DataVerifier;
-using SystemConfigurator = Web.Models.SystemConfigurator;
 using Dolittle.Commands.Coordination;
 
 

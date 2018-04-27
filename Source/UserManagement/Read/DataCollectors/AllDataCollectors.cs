@@ -19,17 +19,17 @@ namespace Read.DataCollectors
         
     }
 
-    public class AllDataCollectorsAsync : IQueryFor<DataCollector>
-    {
-        private readonly IMongoCollection<DataCollector> _collection;
+    //public class AllDataCollectorsAsync : IQueryFor<DataCollector>
+    //{
+    //    private readonly IMongoCollection<DataCollector> _collection;
 
-        public AllDataCollectorsAsync(IMongoDatabase database)
-        {
-            _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
+    //    public AllDataCollectorsAsync(IMongoDatabase database)
+    //    {
+    //        _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
 
-        }
+    //    }
 
-        public IEnumerable<DataCollector> Query => _collection.FindAsync(_ => true).Result.ToList(); //TODO: Safe?
-    }
+    //    public IEnumerable<DataCollector> Query => _collection.FindAsync(_ => true).Result.ToList(); //TODO: Safe?
+    //}
 
 }

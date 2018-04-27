@@ -27,17 +27,17 @@ namespace Domain.DataCollector.Registering
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
 
+            //TODO: Add later
             //RuleFor(_ => _.Email)
             //    .Cascade(CascadeMode.StopOnFirstFailure)
-            //    .NotEmpty().WithMessage("Email is required.")
             //    .EmailAddress().WithMessage("Email address must be valid");
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
 
             RuleFor(_ => _.GpsLocation)
-                .NotNull().WithMessage("Location must be provided");
-                //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
+                .NotNull().WithMessage("Location must be provided")
+                .Must(l => l.IsValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
                 
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
@@ -48,7 +48,7 @@ namespace Domain.DataCollector.Registering
             RuleFor(_ => _.PhoneNumbers)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("At least one Phone Number is required")
-                .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+                .Must(c => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
 
         }
     }

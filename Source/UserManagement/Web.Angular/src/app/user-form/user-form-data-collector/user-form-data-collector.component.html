@@ -37,9 +37,10 @@
     <label for="preferredLanguage">Preferred Language</label>
     <select class="form-control" id="preferredLanguage"
             required
-            [(ngModel)]="command.preferredLanguage" name="preferredLanguage"
+            [(ngModel)]="command.preferredLanguage" 
+            name="preferredLanguage"
             #preferredLanguage="ngModel">
-        <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage">{{preferredLanguage}}</option>
+        <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
     </select>
   </div>  
   <div class="form-group">

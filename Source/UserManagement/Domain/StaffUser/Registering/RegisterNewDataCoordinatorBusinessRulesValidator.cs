@@ -12,9 +12,9 @@ namespace Domain.StaffUser.Registering
 
         public RegisterNewDataCoordinatorBusinessRulesValidator(
             StaffUserIsRegistered isRegistered, 
-            CanAssignToNationalSociety canAssignToNationalSociety, 
-            bool isNewRegistration) 
-            : base(isRegistered, isNewRegistration)
+            CanAssignToNationalSociety canAssignToNationalSociety
+            ) 
+            : base(isRegistered)
         {
             _canAssignToNationalSociety = canAssignToNationalSociety;
 

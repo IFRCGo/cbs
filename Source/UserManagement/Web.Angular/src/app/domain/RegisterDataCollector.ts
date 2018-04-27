@@ -1,16 +1,17 @@
 import {  Command } from '../services/Command';
 import { Location } from './location.model';
+import { Sex } from './sex';
+import { Language } from './language.model';
 
 export class RegisterDataCollector extends Command {
     dataCollectorId: string;
     fullName: string;
     displayName: string;
     yearOfBirth: number;
-    sex: string;
-    preferredLanguage: string;
+    sex: Sex;
+    preferredLanguage: Language;
     gpsLocation: Location;
     phoneNumbers: Array<string>;
-    registeredAt: Date;
 
     constructor() {
         super();

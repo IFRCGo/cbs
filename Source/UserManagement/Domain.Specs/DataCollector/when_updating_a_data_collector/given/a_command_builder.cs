@@ -12,7 +12,6 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector.given
              return new RegisterDataCollector()
              {
                  DataCollectorId = Guid.NewGuid(),
-                 IsNewRegistration = false,
                  FullName = "Data Collector",
                  DisplayName = "Daty",
                  PreferredLanguage = Language.English,

@@ -16,17 +16,15 @@ namespace Domain.StaffUser
 
         #region Visible Registration Commands
 
-        public void RegisterNewAdminUser(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt)
+        public void RegisterNewAdminUser(string fullname, string displayname, string email, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterAdmin(fullname, displayname, email, registeredAt);
         }
 
-        public void RegisterNewSystemConfigurator(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewSystemConfigurator(string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                         IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
@@ -40,7 +38,7 @@ namespace Domain.StaffUser
             RegisterAssignedToNationalSocieties(assignedTo);
         }
 
-        public void RegisterNewDataCoordinator(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataCoordinator(string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                     IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
@@ -54,7 +52,7 @@ namespace Domain.StaffUser
             RegisterAssignedToNationalSocieties(assignedTo);
         }
     
-        public void RegisterNewDataOwner(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataOwner(string fullname, string displayname, string email, 
                                             Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, int? birthYear, 
                                                 Sex? sex, string position, string dutyStation, DateTimeOffset registeredAt)
         {
@@ -67,7 +65,7 @@ namespace Domain.StaffUser
             RegisterPhoneNumbers(phoneNumbers);
         }
 
-        public void RegisterNewDataConsumer(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataConsumer(string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, int? birthYear, Sex? sex, 
                                                         Location location, DateTimeOffset registeredAt)
         {
@@ -79,15 +77,13 @@ namespace Domain.StaffUser
             RegisterDataConsumer(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
         }
 
-        public void RegisterNewDataVerifier(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataVerifier(string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                 int? birthYear, Sex? sex, Location location, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
-
+            
+            Register(fullname, displayname, email, registeredAt);
+           
             RegisterStaffDataVerifier(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
             RegisterPhoneNumbers(phoneNumbers);
         }
@@ -186,7 +182,6 @@ namespace Domain.StaffUser
         private void On(NewUserRegistered @event)
         {
             _isRegistered = true;
-            //_registeredAt = DateTimeOffset.UtcNow;
         }
 
         #endregion

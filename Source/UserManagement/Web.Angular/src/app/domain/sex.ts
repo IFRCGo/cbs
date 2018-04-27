@@ -1,1 +1,4 @@
-export enum Sex { Male, Female };
+export enum Sex {
+    Male = 1,
+    Female = 2
+};
