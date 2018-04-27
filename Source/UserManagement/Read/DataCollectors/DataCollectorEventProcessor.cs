@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Concepts;
 using Dolittle.Events.Processing;
@@ -31,20 +33,37 @@ namespace Read.DataCollectors
             });
         }
 
-        public void Process(DataCollectorUpdated @event)
+        public void Process(DataCollectorUserInformationChanged @event)
         {
-            //TODO: Should be replaced with a new system
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ?? 
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
 
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
-            dataCollector.Location = new Location(
-                @event.LocationLatitude,
-                @event.LocationLongitude);
-            dataCollector.PreferredLanguage = (Language)@event.PreferredLanguage;
-
+            dataCollector.Sex = (Sex)@event.Sex;
+            
             _dataCollectors.Save(dataCollector);
 
+        }
+
+        public void Process(DataCollectorLocationChanged @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+
+            dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+
+            _dataCollectors.Save(dataCollector);
+        }
+
+        public void Process(DataCollectorPrefferedLanguageChanged @event)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+
+            dataCollector.PreferredLanguage = (Language) @event.Language;
+
+            _dataCollectors.Save(dataCollector);
         }
 
         public async Task Process(DataCollectorRemoved @event)
@@ -62,7 +81,7 @@ namespace Read.DataCollectors
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Remove(new PhoneNumber(@event.PhoneNumber));
+            dataCollector.PhoneNumbers.RemoveAll(number => @event.PhoneNumber.Contains(number.Value));
             _dataCollectors.Save(dataCollector);
         }
 

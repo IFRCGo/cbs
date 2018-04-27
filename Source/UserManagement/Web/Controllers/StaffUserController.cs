@@ -119,12 +119,7 @@ namespace Web.Controllers
         {
             var result = _queryCoordinator.Execute(new AllStaffUsers<T>(_database), new PagingInfo());
 
-            if (result.Success)
-            {
-                return Ok(result.Items);
-            }
-
-            return new NotFoundResult();
+            return Ok(result.Items);    
         }
 
         private IActionResult GetStaffUserById<T>(Guid id)

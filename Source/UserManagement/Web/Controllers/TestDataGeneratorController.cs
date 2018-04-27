@@ -66,7 +66,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.DataCollectorId = Guid.NewGuid();
-                _commandCoordinator.Handle(cmd);
+                var result = _commandCoordinator.Handle(cmd);
             }
 
         }

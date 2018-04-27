@@ -4,27 +4,48 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { DataCollectorService } from '../services/data-collector.service';
 import { DataCollector } from '../domain/data-collector';
+import { CommandCoordinator } from '../services/CommandCoordinator';
+import { DeleteDataCollector } from '../domain/data-collector/DeleteDataCollector';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
     selector: 'cbs-delete-user',
     templateUrl: './delete-user.component.html'
 })
 export class DeleteUserComponent {
+    command: DeleteDataCollector = new DeleteDataCollector();
+
     @Input() user: DataCollector;
     modalRef: BsModalRef;
 
     constructor(
-        private dataCollectorService: DataCollectorService,
+        private commandCoordinator: CommandCoordinator,
         private modalService: BsModalService
-    ) {}
+    ) {
+    }
 
     openModal(template: TemplateRef<any>) {
         this.modalRef = this.modalService.show(template)
     }
 
     deleteUser(id: string) {
-        console.log(id);
-        this.dataCollectorService.deleteDataCollector(id);
+        this.command.dataCollectorId = this.user.dataCollectorId;
+        if (!environment.production) {
+            console.log('Deleting datacollector with id = ' + this.command.dataCollectorId )
+        }
+        this.commandCoordinator.handle(this.command)
+            .then(response => {
+                if (!environment.production) {
+                    console.log(response);
+                }
+                // this.router.navigate(['list']);
+            })
+            .catch(response => {
+                if (!environment.production) {
+                    console.error(response);
+                }
+                // this.router.navigate(['list']);
+            });
         this.modalRef.hide();
     }
 }

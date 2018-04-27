@@ -15,7 +15,6 @@ namespace Web.Controllers
     [Route("api/datacollectors")]
     public class DataCollectorsController : Controller
     {
-     
         private readonly IMongoDatabase _database;
 
         private readonly IQueryCoordinator _queryCoordinator;
@@ -34,12 +33,7 @@ namespace Web.Controllers
         {
             var result = _queryCoordinator.Execute(new AllDataCollectors(_database), new PagingInfo());
 
-            if (result.Success)
-            {
-                return Ok(result.Items);
-            }
-
-            return new NotFoundResult();  
+            return Ok(result.Items);
         }
 
         [HttpGet("{id}")]

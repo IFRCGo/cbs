@@ -6,7 +6,7 @@ using Machine.Specifications;
 namespace Domain.Specs.DataCollector.when_removing_a_phone_number
 {
     [Subject(typeof(RemovePhoneNumberFromDataCollectorValidator))]
-    public class and__validating_a_valid_command
+    public class and_validating_a_valid_command
     {
         static RemovePhoneNumberFromDataCollector cmd;
         static RemovePhoneNumberFromDataCollectorValidator validator;

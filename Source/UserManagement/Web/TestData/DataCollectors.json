@@ -1,53 +1,47 @@
 [
   {
-    "DataCollectorId": "d632f3c3-1212-4c4a-9879-cc8a92919837",
-    "IsNewRegistration": true,
+    "DataCollectorId": "de2504b8-20a2-48e5-aa53-f01402a4e756",
     "FullName": "Abraham Watson",
     "DisplayName": "Abraham Watson_Disp",
     "YearOfBirth": 1980,
     "Sex": 1,
     "PreferredLanguage": 0,
     "GpsLocation": {
-      "Latitude": 123.0,
-      "Longitude": 123.0
+      "Latitude": 35.0,
+      "Longitude": 35.0
     },
     "PhoneNumbers": [
       "123456789"
-    ],
-    "RegisteredAt": "2018-04-11T12:57:01.331888+00:00"
+    ]
   },
   {
-    "DataCollectorId": "6515c4d6-14b5-4a0d-882f-5c7389a20035",
-    "IsNewRegistration": true,
+    "DataCollectorId": "7e7d32e0-15b0-4d85-950b-d29f1d8caa8e",
     "FullName": "Vanessa Wallace",
     "DisplayName": "Vanessa Wallace_Disp",
     "YearOfBirth": 1980,
     "Sex": 1,
     "PreferredLanguage": 0,
     "GpsLocation": {
-      "Latitude": 123.0,
-      "Longitude": 123.0
+      "Latitude": 35.0,
+      "Longitude": 35.0
     },
     "PhoneNumbers": [
       "123456789"
-    ],
-    "RegisteredAt": "2018-04-11T12:57:01.3319798+00:00"
+    ]
   },
   {
-    "DataCollectorId": "88fab69c-7864-46ee-8ad8-8111b6e49de0",
-    "IsNewRegistration": true,
+    "DataCollectorId": "6aebdecf-8d5b-4391-9367-9509a9b6f29f",
     "FullName": "Billie Mclaughlin",
     "DisplayName": "Billie Mclaughlin_Disp",
     "YearOfBirth": 1980,
     "Sex": 1,
     "PreferredLanguage": 0,
     "GpsLocation": {
-      "Latitude": 123.0,
-      "Longitude": 123.0
+      "Latitude": 35.0,
+      "Longitude": 35.0
     },
     "PhoneNumbers": [
       "123456789"
-    ],
-    "RegisteredAt": "2018-04-11T12:57:01.331984+00:00"
+    ]
   }
 ]

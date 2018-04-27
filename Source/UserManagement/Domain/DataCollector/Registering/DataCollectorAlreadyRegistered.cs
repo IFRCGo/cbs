@@ -6,7 +6,6 @@ namespace Domain.DataCollector.Registering
     {
         public DataCollectorAlreadyRegistered(string message) : base(message)
         {
-
         }
     }
 }

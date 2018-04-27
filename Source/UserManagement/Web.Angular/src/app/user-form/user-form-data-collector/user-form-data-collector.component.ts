@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterDataCollector } from '../../domain/RegisterDataCollector';
 
 import { CommandCoordinator } from '../../services/CommandCoordinator';
 import { Command } from '../../services/Command';
 import { Guid } from '../../services/Guid';
 import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
+import { RegisterDataCollector } from '../../domain/data-collector/RegisterDataCollector';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -31,9 +31,7 @@ export class UserFormDataCollectorComponent {
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',');
-        this.command.phoneNumbers.forEach(n => {
-            n = n.trim()
-        });
+        this.command.phoneNumbers.map( number => number.trim());
         console.log(this.command);
         this.commandCoordinator.handle(this.command)
             .then(response => {

@@ -22,6 +22,5 @@ namespace Domain.DataCollector.Registering
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
         public IEnumerable<string> PhoneNumbers { get; set; }
-        
     }
 }

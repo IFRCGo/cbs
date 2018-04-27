@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Concepts;
 using Dolittle.Domain;
+using Domain.DataCollector.Changing;
 using Domain.DataCollector.Registering;
 using Events.DataCollector;
 
@@ -43,64 +45,70 @@ namespace Domain.DataCollector
                 registeredAt
             ));
 
-            AddPhoneNumbers(phoneNumbers);
+            foreach (var phoneNumber in phoneNumbers)
+            {
+                AddPhoneNumber(phoneNumber);
+            }
         }
 
-        public void DeleteDataCollector(Guid dataCollectorId)
+        public void ChangeLocation(Location location)
+        {
+            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
+            //{
+            //    throw new Exception("Datacollector not registered");
+            //}
+
+            Apply(new DataCollectorLocationChanged(EventSourceId, location.Latitude, location.Longitude));
+        }
+
+        public void ChangePreferredLanguage(Language language)
+        {
+            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
+            //{
+            //    throw new Exception("Datacollector not registered");
+            //}
+
+            Apply(new DataCollectorPrefferedLanguageChanged(EventSourceId, (int)language));
+        }
+
+        public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex)
+        {
+            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
+            //{
+            //    throw new Exception("Datacollector not registered");
+            //}
+
+            Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex));
+        }
+
+        public void DeleteDataCollector()
         {
             Apply(new DataCollectorRemoved(
-                dataCollectorId
+                EventSourceId
             ));
         }
 
         public void AddPhoneNumber(string number)
         {
-            if (_numbers.Contains(number)) return;
             
             Apply(new PhoneNumberAddedToDataCollector(
                 EventSourceId,
-                number
-            ));
-        }
-        public void RemovePhoneNumber(string number)
-        {
-            if (!_numbers.Contains(number)) return;
-            
+                number));
 
+        }
+
+        public void RemovePhoneNumbers(string number)
+        {
             Apply(new PhoneNumberRemovedFromDataCollector(
                 EventSourceId,
                 number
             ));
+
         }
 
         #endregion
 
-        #region PhoneNumber
 
-        private void AddPhoneNumbers(IEnumerable<string> numbers)
-        {
-            if (numbers == null) return;
-            foreach (var number in numbers)
-            {
-                Apply(new PhoneNumberAddedToDataCollector(
-                    EventSourceId, 
-                    number
-                ));
-            }
-        }
-
-        private void RemovePhoneNumbers(IEnumerable<string> numbers)
-        {
-            if (numbers == null) return;
-            foreach (var number in numbers)
-            {
-                Apply(new PhoneNumberRemovedFromDataCollector(
-                    EventSourceId,
-                    number
-                ));
-            }
-        }
-        #endregion
 
         #region On-methods
 

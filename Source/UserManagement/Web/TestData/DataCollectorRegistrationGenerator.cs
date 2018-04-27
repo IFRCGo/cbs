@@ -17,7 +17,7 @@ namespace Web.TestData
                 YearOfBirth = 1980,
                 Sex = Sex.Male,
                 PreferredLanguage = Language.English,
-                GpsLocation = new Location(123, 123),
+                GpsLocation = new Location(35, 35),
                 PhoneNumbers = new List<string> { "123456789" }
             };
         }

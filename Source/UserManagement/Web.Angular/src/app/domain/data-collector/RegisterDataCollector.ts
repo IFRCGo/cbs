@@ -1,7 +1,8 @@
-import {  Command } from '../services/Command';
-import { Location } from './location.model';
-import { Sex } from './sex';
-import { Language } from './language.model';
+import { Command } from '../../services/Command';
+import { Sex } from '../sex';
+import { Language } from '../language.model';
+import { Location } from '../location.model';
+
 
 export class RegisterDataCollector extends Command {
     dataCollectorId: string;
