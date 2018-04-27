@@ -11,7 +11,8 @@
              [(ngModel)]="command.fullName" name="full_name"
              #full_name="ngModel">
 
-    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-danger">
+    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" 
+      class="alert alert-warning">
 
       <div *ngIf="full_name.errors?.required">
         Full Name is required.
@@ -28,7 +29,8 @@
               required minlength="4"
               [(ngModel)]="command.displayName" name="display_name"
               #display_name="ngModel">
-    <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-danger">
+    <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" 
+      class="alert alert-warning">
 
       <div *ngIf="display_name.errors?.required">
         Display Name is required.
@@ -47,7 +49,8 @@
            [(ngModel)]="command.yearOfBirth" name="yearOfBirth"
            #yearOfBirth="ngModel">
 
-    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" class="alert alert-danger">
+    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" 
+      class="alert alert-warning">
       <div *ngIf="yearOfBirth.errors?.required">
         Year Of Birth is required.
       </div>
@@ -62,7 +65,7 @@
             #sex="ngModel">
         <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
     </select>
-    <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-danger">
+    <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
         <div *ngIf="sex.errors?.required">
           Sex is required.
         </div>
@@ -79,7 +82,7 @@
         <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
     </select>
     
-    <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-danger">
+    <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
         <div *ngIf="preferredLanguage.errors?.required">
           Preferred Language is required.
       </div>
@@ -112,7 +115,7 @@
         #longitude="ngModel"
       />
       <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
-        || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-danger">
+        || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
       
       <div *ngIf="latitude.errors?.required">
           Location Latitude is required
@@ -133,7 +136,7 @@
       name="phoneNumber"
       #phoneNumbers="ngModel"
         >
-    <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-danger">
+    <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
         <div *ngIf="phoneNumbers.errors?.required">
           Phonenumber is required.
       </div>

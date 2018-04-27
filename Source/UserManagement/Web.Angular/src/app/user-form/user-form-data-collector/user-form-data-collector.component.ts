@@ -36,10 +36,11 @@ export class UserFormDataCollectorComponent {
         this.commandCoordinator.handle(this.command)
             .then(response => {
                 console.log(response);
-                // this.router.navigate(['list']);
+                return response;
             })
             .catch(response => {
                 console.log(response);
+                return response;
                 // this.router.navigate(['list']);
             });
     }
