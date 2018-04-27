@@ -1,29 +1,59 @@
-<form ngNativeValidate>
+<form #form="ngForm" ngNativeValidate>
   <a [routerLink]="['/']" class="back-button">
       <button class="btn btn-primary">Back</button>
   </a>
+
   <h1>Add Data Collector</h1>
   <div class="form-group">
       <label for="full_name">Full Name</label>
       <input type="text" class="form-control" id="full_name"
-             required
+             required minlength="4"
              [(ngModel)]="command.fullName" name="full_name"
-             #first_name="ngModel">
+             #full_name="ngModel">
+
+    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-danger">
+
+      <div *ngIf="full_name.errors?.required">
+        Full Name is required.
+      </div>
+      <div *ngIf="full_name.errors?.minlength">
+        Full Name must be at least 4 characters long.
+      </div>
+    </div>
   </div>
-<div class="form-group">
+
+  <div class="form-group">
       <label for="display_name">Display Name</label>
       <input type="text" class="form-control" id="display_name"
-              required
+              required minlength="4"
               [(ngModel)]="command.displayName" name="display_name"
-              #last_name="ngModel">
+              #display_name="ngModel">
+    <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-danger">
+
+      <div *ngIf="display_name.errors?.required">
+        Display Name is required.
+      </div>
+      <div *ngIf="display_name.errors?.minlength">
+        Display Name must be at least 4 characters long.
+      </div>
+    </div>
   </div>
+
   <div class="form-group">
     <label for="yearOfBirth">Year of Birth</label>
     <input type="number" class="form-control" id="yearOfBirth"
+          ng-valid ng-valid-number ng-valid-max ng-valid-min
            required
            [(ngModel)]="command.yearOfBirth" name="yearOfBirth"
            #yearOfBirth="ngModel">
+
+    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" class="alert alert-danger">
+      <div *ngIf="yearOfBirth.errors?.required">
+        Year Of Birth is required.
+      </div>
+    </div>
   </div>
+
   <div class="form-group">
     <label for="sex">Sex</label>
     <select class="form-control" id="sex"
@@ -32,7 +62,13 @@
             #sex="ngModel">
         <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
     </select>
+    <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-danger">
+        <div *ngIf="sex.errors?.required">
+          Sex is required.
+        </div>
+      </div>
   </div>
+
 <div class="form-group">
     <label for="preferredLanguage">Preferred Language</label>
     <select class="form-control" id="preferredLanguage"
@@ -42,7 +78,14 @@
             #preferredLanguage="ngModel">
         <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
     </select>
+    
+    <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-danger">
+        <div *ngIf="preferredLanguage.errors?.required">
+          Preferred Language is required.
+      </div>
+    </div>
   </div>  
+
   <div class="form-group">
     <label>Location</label>
     <fieldset class="form-inline">
@@ -54,16 +97,30 @@
         required
         [(ngModel)]="command.gpsLocation.latitude"
         name="latitude"
+        #latitude="ngModel"
+
       />
       <label for="longitude">Longitude</label>
      <input 
         type="number"
         class="input-mini form-control" 
         id="longitude"
+        
         required
         [(ngModel)]="command.gpsLocation.longitude"
         name="longitude"
+        #longitude="ngModel"
       />
+      <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
+        || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-danger">
+      
+      <div *ngIf="latitude.errors?.required">
+          Location Latitude is required
+      </div>
+      <div *ngIf="longitude.errors?.required">
+          Location Longitude is required
+      </div>
+    </div>
     </fieldset>
   </div>
    <label>Phone numbers (comma seperated)</label>
@@ -74,9 +131,15 @@
       required
       [(ngModel)]="phoneNumberString"
       name="phoneNumber"
+      #phoneNumbers="ngModel"
         >
+    <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-danger">
+        <div *ngIf="phoneNumbers.errors?.required">
+          Phonenumber is required.
+      </div>
+    </div>
   </div>
-     <button type="submit" class="btn btn-success" (click)="submit()">Submit</button>
+     <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" (click)="submit()">Submit</button>
 </form>
 
 

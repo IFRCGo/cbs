@@ -16,7 +16,7 @@ export const DATA_COLLECTOR_PATH = 'data-collector';
 })
 export class UserFormDataCollectorComponent {
 
-    phoneNumberString: string;
+    phoneNumberString = '';
     command: RegisterDataCollector = new RegisterDataCollector();
     languageOptions = [{desc: Language[Language.English], id: Language.English},
                         {desc: Language[Language.French], id: Language.French}];
