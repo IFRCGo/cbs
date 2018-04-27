@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { DataCollectorService } from './services/data-collector.service';
 import { CommandCoordinator } from './services/CommandCoordinator';
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     StaffUserService,

@@ -7,6 +7,7 @@ import { Guid } from '../../services/Guid';
 import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
 import { RegisterDataCollector } from '../../domain/data-collector/RegisterDataCollector';
+import { ToastrService } from 'ngx-toastr';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -25,10 +26,12 @@ export class UserFormDataCollectorComponent {
 
     constructor(
         private router: Router,
-        private commandCoordinator: CommandCoordinator
+        private commandCoordinator: CommandCoordinator,
+        private toastr: ToastrService
     ) { }
 
     submit() {
+        this.toastr.info('Hello');
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',');
         this.command.phoneNumbers.map( number => number.trim());
@@ -36,10 +39,12 @@ export class UserFormDataCollectorComponent {
         this.commandCoordinator.handle(this.command)
             .then(response => {
                 console.log(response);
+                this.toastr.success('Successfully registered a datacollector');
                 return response;
             })
             .catch(response => {
                 console.log(response);
+                this.toastr.error('error');
                 return response;
                 // this.router.navigate(['list']);
             });
