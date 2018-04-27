@@ -28,7 +28,9 @@ export class UserFormDataCollectorComponent {
         private router: Router,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService
-    ) { }
+    ) {
+        toastr.toastrConfig.positionClass = 'toast-top-center';
+    }
 
     submit() {
         this.toastr.info('Hello');
