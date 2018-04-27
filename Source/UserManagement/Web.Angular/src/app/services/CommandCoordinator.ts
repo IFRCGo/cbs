@@ -19,7 +19,7 @@ export class CommandCoordinator {
     constructor(private http: HttpClient) { }
 
     handle(command): Promise<any> {
-        var commandRequestAsJson = JSON.stringify(CommandRequest.createFrom(command))
+        const commandRequestAsJson = JSON.stringify(CommandRequest.createFrom(command))
         return this.http
             .post(API_URL, commandRequestAsJson, httpOptions)
             .toPromise();

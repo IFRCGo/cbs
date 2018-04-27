@@ -1,5 +1,5 @@
 import {  Command } from '../services/Command';
-import { Location } from "./location.model";
+import { Location } from './location.model';
 
 export class RegisterDataCollector extends Command {
     dataCollectorId: string;
@@ -14,7 +14,7 @@ export class RegisterDataCollector extends Command {
 
     constructor() {
         super();
-        this.type = "CBS#VolunteerReporting.DataCollector-RegisterDataCollector+Command|Domain";
+        this.type = 'CBS#VolunteerReporting.DataCollector-RegisterDataCollector+Command|Domain';
         this.gpsLocation = new Location();
     }
 }

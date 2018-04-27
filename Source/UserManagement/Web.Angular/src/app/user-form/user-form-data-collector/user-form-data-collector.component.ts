@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { RegisterDataCollector } from '../../domain/RegisterDataCollector';
 
 import { CommandCoordinator } from '../../services/CommandCoordinator';
@@ -29,12 +29,12 @@ export class UserFormDataCollectorComponent {
         this.command.phoneNumbers = this.phoneNumberString.split(',');
         this.commandCoordinator.handle(this.command)
             .then(response => {
-                console.log(response); 
-                //this.router.navigate(['list']);
+                console.log(response);
+                // this.router.navigate(['list']);
             })
             .catch(response => {
                 console.log(response);
-                //this.router.navigate(['list']);
+                // this.router.navigate(['list']);
             });
     }
 }

@@ -1,3 +1,3 @@
 export class Command {
-    type:string;
+    type: string;
 }

@@ -10,22 +10,22 @@ export class CommandRequest {
     content = {};
 
     /**
+     * Creates a {CommandRequest} from a {Command}
+     * @param {Command} command
+     */
+    static createFrom(command) {
+        const request = new CommandRequest(command.type, command);
+        return request;
+    }
+
+    /**
      * Initializes a new instance of {CommandRequest}
-     * @param {string} type 
-     * @param {*} content 
+     * @param {string} type
+     * @param {*} content
      */
     constructor(type, content) {
         this.correlationId = Guid.create();
         this.type = type;
         this.content = content;
-    }
-
-    /**
-     * Creates a {CommandRequest} from a {Command}
-     * @param {Command} command 
-     */
-    static createFrom(command) {
-        var request = new CommandRequest(command.type, command);
-        return request;
     }
 }

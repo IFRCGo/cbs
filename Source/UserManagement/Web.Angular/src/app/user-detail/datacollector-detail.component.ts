@@ -23,7 +23,7 @@ export class DataCollectorDetailComponent implements OnInit {
   }
 
   getDataCollector(): void {
-    var id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.dataCollectorService.getDataCollector(id)
       .subscribe(dataCollector => this.dataCollector = dataCollector[0]);
   }

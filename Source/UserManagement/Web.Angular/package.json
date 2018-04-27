@@ -27,6 +27,7 @@
         "ngx-bootstrap": "^2.0.0-rc.0",
         "oidc-client": "^1.4.1",
         "rxjs": "^5.4.2",
+        "ts-lint": "^4.5.1",
         "zone.js": "^0.8.14"
     },
     "devDependencies": {

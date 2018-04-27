@@ -1,4 +1,4 @@
-import { Location } from "./location.model";
+import { Location } from './location.model';
 
 class PhoneNumber {
     value: string;
@@ -31,7 +31,7 @@ export class DataCollector {
         this.preferredLanguage = o.preferredLanguage;
         this.location = {
             longitude: o.longitude,
-            latitude: o.latitude   
+            latitude: o.latitude
         }
         this.registeredAt = o.registeredAt;
     }
