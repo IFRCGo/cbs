@@ -5,6 +5,7 @@
 
 using System;
 using System.Linq;
+using Concepts;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
@@ -35,8 +36,12 @@ namespace Domain.DataCollector.Registering
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
 
             RuleFor(_ => _.GpsLocation)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Location must be provided")
-                .Must(l => l.IsValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
+                .Must(l => l.IsValid()).WithMessage(
+                    "Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180")
+                .Must(l => !l.Equals(Location.NotSet)).WithMessage("Location cannot be -1, -1");
+                
                 
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");

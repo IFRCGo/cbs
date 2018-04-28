@@ -1,5 +1,3 @@
-
-using System.Linq;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
