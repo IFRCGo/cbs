@@ -42,7 +42,9 @@ namespace Domain.DataCollector.Registering
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
 
             RuleFor(_ => _.YearOfBirth)
-                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth is required").When(y => y != null);
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Year of birth is required")
+                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
 
             RuleFor(_ => _.PhoneNumbers)
                 .Cascade(CascadeMode.StopOnFirstFailure)

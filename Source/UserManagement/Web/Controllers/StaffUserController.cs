@@ -109,10 +109,6 @@ namespace Web.Controllers
         {
             return GetStaffUserById<Read.StaffUsers.Models.SystemConfigurator>(id);
         }
-
-
-
-
  
         private IActionResult GetAllStaffUsers<T>()
             where T : Read.StaffUsers.Models.BaseUser

@@ -9,6 +9,7 @@ namespace Domain.DataCollector.Changing
         {
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set");
+
             RuleFor(_ => _.Location)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Location must be provided")

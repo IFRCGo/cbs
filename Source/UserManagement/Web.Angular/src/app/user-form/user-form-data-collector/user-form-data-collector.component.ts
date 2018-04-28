@@ -8,6 +8,7 @@ import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
 import { RegisterDataCollector } from '../../domain/data-collector/RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment.prod';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -33,22 +34,36 @@ export class UserFormDataCollectorComponent {
     }
 
     submit() {
-        this.toastr.info('Hello');
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',');
         this.command.phoneNumbers.map( number => number.trim());
-        console.log(this.command);
         this.commandCoordinator.handle(this.command)
             .then(response => {
-                console.log(response);
-                this.toastr.success('Successfully registered a datacollector');
-                return response;
+                if (!environment.production) {
+                    console.log(response);
+                }
+                if (response.success)  {
+                    this.toastr.success('Successfully registered a new data collector!');
+                    this.router.navigate(['list']);
+                } else {
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error('Could not register a new data collector because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error('Could not register new data collector:\n' + errors);
+                    }
+                }
             })
             .catch(response => {
-                console.log(response);
-                this.toastr.error('error');
-                return response;
-                // this.router.navigate(['list']);
+                if (!environment.production) {
+                    console.log(response);
+                }
+                if (!response.passedSecurity) { // Security error
+                    this.toastr.error('Could not register a new data collector because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    this.toastr.error('Could not register new data collector:\n' + errors);
+                }
             });
     }
 }

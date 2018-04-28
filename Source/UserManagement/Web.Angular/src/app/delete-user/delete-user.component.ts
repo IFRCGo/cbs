@@ -7,6 +7,7 @@ import { DataCollector } from '../domain/data-collector';
 import { CommandCoordinator } from '../services/CommandCoordinator';
 import { DeleteDataCollector } from '../domain/data-collector/DeleteDataCollector';
 import { environment } from '../../environments/environment.prod';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'cbs-delete-user',
@@ -20,7 +21,8 @@ export class DeleteUserComponent {
 
     constructor(
         private commandCoordinator: CommandCoordinator,
-        private modalService: BsModalService
+        private modalService: BsModalService,
+        private router: Router
     ) {
     }
 
@@ -38,13 +40,13 @@ export class DeleteUserComponent {
                 if (!environment.production) {
                     console.log(response);
                 }
-                // this.router.navigate(['list']);
+                this.router.navigate(['list']);
             })
             .catch(response => {
                 if (!environment.production) {
                     console.error(response);
                 }
-                // this.router.navigate(['list']);
+                this.router.navigate(['list']);
             });
         this.modalRef.hide();
     }

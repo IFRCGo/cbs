@@ -1,14 +1,9 @@
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.DataCollectors;
 using System;
-using System.Linq;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
-using Domain.DataCollector.Registering;
-using Domain.DataCollector;
 using MongoDB.Driver;
-using System.Collections.Generic;
 
 namespace Web.Controllers
 {
