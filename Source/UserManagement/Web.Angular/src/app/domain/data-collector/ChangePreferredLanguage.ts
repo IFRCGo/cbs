@@ -3,7 +3,7 @@ import { Language } from '../language.model';
 
 export class ChangePreferredLanguage extends Command {
     dataCollectorId: string;
-    language: Language
+    preferredLanguage: number
 
     constructor() {
         super();

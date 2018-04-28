@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { DataCollector } from '../domain/data-collector';
 import { DataCollectorService } from '../services/data-collector.service';
 import { Location } from '@angular/common';
-
 @Component({
   selector: 'cbs-user-detail',
   templateUrl: './datacollector-detail.component.html',
   styleUrls: ['./datacollector-detail.component.scss']
 })
 export class DataCollectorDetailComponent implements OnInit {
+
   @Input() dataCollector: DataCollector;
 
   constructor(

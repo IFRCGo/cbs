@@ -11,7 +11,6 @@ export class DataCollector {
     fullName: string;
     displayName: string;
     yearOfBirth: number;
-    phoneNumberString: string;
     phoneNumbers: Array<PhoneNumber>;
     sex: string;
     preferredLanguage: string;
@@ -25,7 +24,6 @@ export class DataCollector {
         this.fullName = o.fullName;
         this.displayName = o.displayName;
         this.yearOfBirth = o.yearOfBirth;
-        this.phoneNumberString = o.phoneNumberString;
         this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
         this.preferredLanguage = o.preferredLanguage;

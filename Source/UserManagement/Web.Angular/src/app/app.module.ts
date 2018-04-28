@@ -32,6 +32,7 @@ import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 import { USER_FORM_ROUTES } from './user-form';
 import { USER_DETAIL_ROUTES } from './user-detail';
 import { ModalModule } from 'ngx-bootstrap';
+import { EditUserFormDataCollectorComponent } from './user-form/edit-user-form-data-collector/edit-user-form-data-collector.component';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     AppComponent,
     UserListComponent,
     DeleteUserComponent,
+    EditUserFormDataCollectorComponent,
     SelectUserRoleComponent,
     UserFormAdminComponent,
     UserFormSystemConfiguratorComponent,

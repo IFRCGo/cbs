@@ -7,7 +7,7 @@ export class ChangeBaseInformation extends Command {
     fullName: string;
     displayName: string;
     yearOfBirth: number;
-    sex: Sex;
+    sex: number;
 
     constructor() {
         super();

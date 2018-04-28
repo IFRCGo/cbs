@@ -25,16 +25,28 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
-        <td><a routerLink="/detail/{{user.dataCollectorId}}">
-            <span>{{user.fullName}}</span> 
-          </a></td>
-        <td>{{user.displayName}}</td>
-        <td><span *ngFor="let number of user.phoneNumbers">{{number.value}} </span></td>
-        <td></td>
-        <td><!--<a>Edit</a> |-->
-            <cbs-delete-user [user]=user></cbs-delete-user>
-        </td>
-    </tr>
+        <tr *ngFor="let user of users">
+            <td>
+                <a routerLink="/detail/{{user.dataCollectorId}}">
+                    <span>
+                        {{user.fullName}}
+                    </span> 
+                </a>
+            </td>
+            <td>
+                {{user.displayName}}
+            </td>
+            <td>
+                <span *ngFor="let number of user.phoneNumbers">
+                    {{number.value}} 
+                </span>
+            </td>
+            <td>
+                <cbs-delete-user [user]=user></cbs-delete-user>
+            </td>
+            <td>
+                <a [routerLink]="['/edit-user/data-collector/',user.dataCollectorId]" routerLinkActive="active">Edit</a>
+            </td>
+        </tr>
     </tbody>
 </table>

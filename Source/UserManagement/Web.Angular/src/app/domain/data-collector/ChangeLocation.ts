@@ -1,5 +1,5 @@
 import { Command } from '../../services/Command';
-
+import {Location} from '../location.model'
 export class ChangeLocation extends Command {
     dataCollectorId: string;
     location: Location

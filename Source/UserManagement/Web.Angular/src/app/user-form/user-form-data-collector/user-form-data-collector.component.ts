@@ -20,6 +20,7 @@ export class UserFormDataCollectorComponent {
 
     phoneNumberString = '';
     command: RegisterDataCollector = new RegisterDataCollector();
+
     languageOptions = [{desc: Language[Language.English], id: Language.English},
                         {desc: Language[Language.French], id: Language.French}];
     sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male },

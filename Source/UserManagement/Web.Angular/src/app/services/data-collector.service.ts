@@ -25,4 +25,15 @@ export class DataCollectorService {
     const url = `${API_URL}/${id}`;
     return this.http.get<DataCollector[]>(url, httpOptions);
   }
+  getDataCollectorsPromise(): Promise<DataCollector[]> {
+    return this.http
+        .get(API_URL, {headers: httpOptions.headers})
+        .toPromise() as Promise<DataCollector[]>;
+  }
+  getDataCollectorPromise(id: string): Promise<DataCollector[]> {
+    const url = `${API_URL}/${id}`;
+    return this.http
+        .get(url, {headers: httpOptions.headers})
+        .toPromise() as Promise<DataCollector[]>;
+  }
 }
