@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {
@@ -15,6 +16,8 @@ namespace Read.DataCollectors
 
         void Remove(Guid id);
         Task RemoveAsync(Guid id);
+
+        void UpdateSafe(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update);
 
         void Save(DataCollector dataCollector);
 

@@ -6,6 +6,7 @@ using Concepts;
 using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.External;
+using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {
@@ -74,18 +75,17 @@ namespace Read.DataCollectors
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                            throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found") ;
-            dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-            _dataCollectors.Save(dataCollector);
+            // Threadsafe updating
+            _dataCollectors.UpdateSafe(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Push(d => d.PhoneNumbers,new PhoneNumber(@event.PhoneNumber)));
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
-            dataCollector.PhoneNumbers.RemoveAll(phone => phone.Value == @event.PhoneNumber);
-            _dataCollectors.Save(dataCollector);
+            //Threadsafe updating
+            _dataCollectors.UpdateSafe(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));
+
         }
 
         public void Process(CaseReportReceived @event)

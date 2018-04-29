@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Read.DataCollectors
@@ -46,6 +47,14 @@ namespace Read.DataCollectors
             await _collection.DeleteOneAsync(c => c.DataCollectorId == id);
         }
 
+        public void UpdateSafe(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
+        {
+            lock (_collection)
+            {
+                _collection.UpdateOne(filter, update);
+            }
+        }
+
         public void Save(DataCollector dataCollector)
         {
             _collection.ReplaceOne(d => d.DataCollectorId == dataCollector.DataCollectorId, dataCollector, new UpdateOptions { IsUpsert = true });
@@ -54,6 +63,11 @@ namespace Read.DataCollectors
         public async Task SaveAsync(DataCollector dataCollector)
         {
             await _collection.ReplaceOneAsync(d => d.DataCollectorId == dataCollector.DataCollectorId, dataCollector, new UpdateOptions { IsUpsert = true });
+        }
+
+        public IMongoCollection<DataCollector> GetCollection()
+        {
+            return _collection;
         }
     }
 }
