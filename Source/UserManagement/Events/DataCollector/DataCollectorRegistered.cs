@@ -5,15 +5,15 @@ namespace Events.DataCollector
 {
     public class DataCollectorRegistered : IEvent
     {
-        public Guid DataCollectorId { get; }
-        public string FullName { get; }
-        public string DisplayName { get; }
-        public int YearOfBirth { get; }
-        public int Sex { get; }
-        public int PreferredLanguage { get; }
-        public double LocationLongitude { get; }
-        public double LocationLatitude { get; }
-        public DateTimeOffset RegisteredAt { get; }
+        public Guid DataCollectorId { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
+        public int YearOfBirth { get; set; }
+        public int Sex { get; set; }
+        public int PreferredLanguage { get; set; }
+        public double LocationLongitude { get; set; }
+        public double LocationLatitude { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; }
 
         public DataCollectorRegistered(
             Guid dataCollectorId,

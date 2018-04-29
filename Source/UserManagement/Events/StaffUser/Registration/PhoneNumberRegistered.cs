@@ -9,7 +9,8 @@ namespace Events.StaffUser.Registration
             StaffUserId = staffUserId;
             PhoneNumber = phoneNumber;
         }
-        public Guid StaffUserId { get; }
-        public string PhoneNumber { get; }
+        public Guid StaffUserId { get; set; }
+        public string PhoneNumber { get; set; }
+
     }
 }

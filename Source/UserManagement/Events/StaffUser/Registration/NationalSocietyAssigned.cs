@@ -9,6 +9,7 @@ namespace Events.StaffUser.Registration
             StaffUserId = staffUserId;
             NationalSociety = nationalSociety;
         }
+
         public Guid StaffUserId { get; }
         public Guid NationalSociety { get; }
     }

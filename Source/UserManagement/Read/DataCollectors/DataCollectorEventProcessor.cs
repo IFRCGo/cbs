@@ -41,6 +41,7 @@ namespace Read.DataCollectors
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Sex = (Sex)@event.Sex;
+            dataCollector.YearOfBirth = @event.YearOfBirth;
             
             _dataCollectors.Save(dataCollector);
 
@@ -73,28 +74,32 @@ namespace Read.DataCollectors
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                            throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found") ;
             dataCollector.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.RemoveAll(number => @event.PhoneNumber.Contains(number.Value));
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            dataCollector.PhoneNumbers.RemoveAll(phone => phone.Value == @event.PhoneNumber);
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(CaseReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found"); ;
             dataCollector.LastReportRecievedAt = @event.Timestamp;
             _dataCollectors.Save(dataCollector);
         }
 
         public void Process(InvalidReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
+                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found"); ;
             dataCollector.LastReportRecievedAt = @event.Timestamp;
             _dataCollectors.Save(dataCollector);
         }

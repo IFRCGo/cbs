@@ -5,8 +5,8 @@ namespace Events.External
 {
     public class CaseReportReceived : IEvent
     {
-        public Guid DataCollectorId { get; }
-        public DateTimeOffset Timestamp { get; }
+        public Guid DataCollectorId { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public CaseReportReceived(Guid dataCollectorId, DateTimeOffset timestamp)
         {
