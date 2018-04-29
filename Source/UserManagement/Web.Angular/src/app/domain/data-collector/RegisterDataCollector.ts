@@ -3,7 +3,6 @@ import { Sex } from '../sex';
 import { Language } from '../language.model';
 import { Location } from '../location.model';
 
-
 export class RegisterDataCollector extends Command {
     dataCollectorId: string;
     fullName: string;

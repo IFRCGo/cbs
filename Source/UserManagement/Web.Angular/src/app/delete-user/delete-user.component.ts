@@ -40,14 +40,17 @@ export class DeleteUserComponent {
                 if (!environment.production) {
                     console.log(response);
                 }
+                this.modalRef.hide();
                 this.router.navigate(['list']);
+                window.location.reload();
+
             })
             .catch(response => {
                 if (!environment.production) {
                     console.error(response);
                 }
+                // TODO: Maybe use toastr to show error message?
                 this.router.navigate(['list']);
             });
-        this.modalRef.hide();
     }
 }
