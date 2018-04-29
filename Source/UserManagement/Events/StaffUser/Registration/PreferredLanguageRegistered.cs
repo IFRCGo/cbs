@@ -9,7 +9,9 @@ namespace Events.StaffUser.Registration
             StaffUserId = staffUserId;
             PreferredLanguage = preferredLanguage;
         }
-        public Guid StaffUserId { get; }
-        public int PreferredLanguage { get; }
+        public Guid StaffUserId { get; set; }
+        public int PreferredLanguage { get; set; }
+
+
     }
 }

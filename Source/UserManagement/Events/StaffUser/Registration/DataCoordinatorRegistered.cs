@@ -20,16 +20,16 @@ namespace Events.StaffUser.Registration
             BirthYear = birthYear;
 
         }
-        public Guid StaffUserId { get; }
+        public Guid StaffUserId { get; set; }
 
-        public string FullName { get; }
-        public string DisplayName { get; }
-        public string Email { get; }
-        public DateTimeOffset RegisteredAt { get; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
+        public string Email { get; set; }
+        public DateTimeOffset RegisteredAt { get; set; }
 
-        public Guid NationalSociety { get; }
-        public int PreferredLanguage { get; }
-        public int BirthYear { get; }
-        public int Sex { get; }
+        public Guid NationalSociety { get; set; }
+        public int PreferredLanguage { get; set; }
+        public int BirthYear { get; set; }
+        public int Sex { get; set; }
     }
 }
