@@ -11,7 +11,8 @@ namespace Domain.DataCollector.PhoneNumber
                 .NotEmpty().WithMessage("Data Collector Id is required");
 
             RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("At least one Phone Number is required");
+                .NotEmpty().WithMessage("Phone Number is required")
+                .Must(_ => !_.Contains(" ")).WithMessage("Phone number is not valid");
 
         }
     }

@@ -15,6 +15,9 @@ namespace Concepts
         //TODO: This value should default to false after the MVP and when there is logic for phone number confirmation
         public bool Confirmed { get; private set; } = true;
 
+        public bool IsValid => ! Value.Contains(" ");
+        
+
         public override bool Equals(object obj)
         {
             var item = obj as PhoneNumber;

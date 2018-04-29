@@ -12,15 +12,15 @@ export class DataCollector {
     displayName: string;
     yearOfBirth: number;
     phoneNumbers: Array<PhoneNumber>;
-    sex: string;
-    preferredLanguage: string;
+    sex: number;
+    preferredLanguage: number;
     location: Location;
     registeredAt: Date;
     lastReportRecievedAt: Date;
 
     constructor(o: any) {
 
-        this.dataCollectorId = o.id;
+        this.dataCollectorId = o.dataCollectorId;
         this.fullName = o.fullName;
         this.displayName = o.displayName;
         this.yearOfBirth = o.yearOfBirth;

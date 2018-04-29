@@ -4,14 +4,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommandCoordinator } from '../../services/CommandCoordinator';
 import { Command } from '../../services/Command';
 import { Language } from '../../domain/language.model';
+import {Location } from '../../domain/location.model';
 import { Sex } from '../../domain/sex';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../environments/environment.prod';
 import { AddPhoneNumberToDataCollector } from '../../domain/data-collector/AddPhoneNumberToDataCollector';
 import { ChangeBaseInformation } from '../../domain/data-collector/ChangeBaseInformation';
 import { ChangeLocation } from '../../domain/data-collector/ChangeLocation';
 import { ChangePreferredLanguage } from '../../domain/data-collector/ChangePreferredLanguage';
-import { RemovePhoneNumberFromDateCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
+import { RemovePhoneNumberFromDataCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
 import { DataCollector } from '../../domain/data-collector';
 import { DataCollectorService } from '../../services/data-collector.service';
 
@@ -27,16 +27,16 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     user: DataCollector;
     phoneNumberString = '';
 
-    removePhoneNumberCommands: Array<RemovePhoneNumberFromDateCollector> = new Array;
-    addPhoneNumberCommands: Array<AddPhoneNumberToDataCollector> = new Array;
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
     changeLocationCommand: ChangeLocation = new ChangeLocation();
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
 
     languageOptions = [{desc: Language[Language.English], id: Language.English},
                         {desc: Language[Language.French], id: Language.French}];
-    sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male },
-                 { desc: Sex[Sex.Female], id: Sex.Female }];
+    sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male as number },
+                 { desc: Sex[Sex.Female], id: Sex.Female as number }];
+
+    private userHasChanged = false;
 
     constructor(
         private router: Router,
@@ -48,67 +48,275 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
     ngOnInit(): void {
-        const sub = this.route.params.subscribe(params => {
+
+        this.route.params.subscribe(params => {
             const id = params['id'];
 
-        console.log(id);
         this.dataCollectorService.getDataCollectorPromise(id)
                 .then(response => {
                     this.user = response[0];
-                    this.initChangeBaseInformation();
-                    this.initChangeLocation();
-                    this.initChangePreferredLanguage();
                     if (this.user != null && this.user !== undefined) {
-                        this.toastr.success('Successfully retrieved the data collector');
-                        this.error = false;
+                        this.initChangeBaseInformation();
+                        this.initChangeLocation();
+                        this.initChangePreferredLanguage();
+                        this.initPhoneNumbers();
+                    } else {
+                        console.error(response);
+                        this.toastr.error('Could not retrieve data collector from server');
+                        this.router.navigate(['list']);
                     }
                 })
                 .catch(error => {
                     console.error(error);
-                    this.error = true;
+                    this.toastr.error('Could not retrieve data collector from server');
+                    this.router.navigate(['list']);
                 });
         });
     }
 
     submit() {
-        console.log(this.changeBaseInformationCommand);
-        console.log(this.changeLocationCommand);
-        console.log(this.changePreferredLanguageCommand);
+        this.handleChangeBaseInformation();
+        this.handleChangeLocation();
+        this.handleChangePreferredLanguage();
+        this.handleAddPhoneNumbers();
+        this.handleRemovePhoneNumbers();
+        if (this.userHasChanged) {
+            this.router.navigate(['list']);
+            this.toastr.info('Refresh window if you can\'t see changes made ')
+        } else {
+            this.toastr.warning('No changes has been made');
+        }
     }
     private initChangeBaseInformation() {
         this.changeBaseInformationCommand.dataCollectorId = this.user.dataCollectorId;
         this.changeBaseInformationCommand.displayName = this.user.displayName;
         this.changeBaseInformationCommand.fullName = this.user.fullName;
-        this.changeBaseInformationCommand.sex = Sex[this.user.sex];
+        this.changeBaseInformationCommand.sex = this.user.sex;
         this.changeBaseInformationCommand.yearOfBirth = this.user.yearOfBirth;
     }
 
     private initChangeLocation() {
         this.changeLocationCommand.dataCollectorId = this.user.dataCollectorId;
-        this.changeLocationCommand.location = this.user.location;
+        this.changeLocationCommand.location = new Location();
+        this.changeLocationCommand.location.latitude = this.user.location.latitude;
+        this.changeLocationCommand.location.longitude = this.user.location.longitude;
+
     }
     private initChangePreferredLanguage() {
         this.changePreferredLanguageCommand.dataCollectorId = this.user.dataCollectorId;
-        this.changePreferredLanguageCommand.preferredLanguage = Language[this.user.preferredLanguage];
+        this.changePreferredLanguageCommand.preferredLanguage = this.user.preferredLanguage;
     }
+    private initPhoneNumbers() {
+        this.phoneNumberString = this.user.phoneNumbers.map(number => number.value).join(', ');
+        console.log(this.phoneNumberString);
+
+    }
+
+//#region Handling of commands
     private handleChangeBaseInformation() {
-        // TODO:
+        if (this.hasChangedBaseInformation()) {
+            this.userHasChanged = true;
+            this.commandCoordinator.handle(this.changeBaseInformationCommand)
+                .then(response => {
+                    console.log(response);
+                    if (response.success)  {
+                        this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s base information`);
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' base information because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
+                             + ` base information :\n${errors}`);
+                        }
+                    }
+                })
+                .catch(response => {
+                    console.log(response);
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' base information because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
+                             + ` base information:\n${errors}`);
+                    }
+                    this.router.navigate(['list']);
+                });
+        }
     }
     private handleChangeLocation() {
-        if (this.user.location.latitude !== this.changeLocationCommand.location.latitude
-            || this.user.location.longitude !== this.changeLocationCommand.location.longitude) {
-                this.commandCoordinator.handle(this.changeLocationCommand)
-                    .then(response => {
-
-                    })
-                    .catch(error => {
-
-                    });
-            }
+        if (this.hasChangedLocation()) {
+            this.userHasChanged = true;
+            this.commandCoordinator.handle(this.changeLocationCommand)
+                .then(response => {
+                    console.log(response);
+                    if (response.success)  {
+                        this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s location`);
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' location because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s location:\n${errors}`);
+                        }
+                    }
+                })
+                .catch(response => {
+                    console.log(response);
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' location because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s location:\n${errors}`);
+                    }
+                });
+        }
     }
     private handleChangePreferredLanguage() {
-        // TODO:
+        if (this.hasChangedPreferredLanguage()) {
+            this.userHasChanged = true;
+            this.commandCoordinator.handle(this.changePreferredLanguageCommand)
+                .then(response => {
+                    console.log(response);
+                    if (response.success)  {
+                        this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s preferred language`);
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' preferred languagebecause of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
+                             + ` preferred language:\n${errors}`);
+                        }
+                    }
+                })
+                .catch(response => {
+                    console.log(response);
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
+                                ' preferred language because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
+                             + ` preferred language:\n${errors}`);
+                    }
+                });
+        }
     }
-    
 
+    private handleAddPhoneNumbers() {
+        const prevNumbers = this.user.phoneNumbers.map(number => number.value.trim());
+        const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
+        const addednumbers = [];
+        newNumbers.forEach(number => {
+            if (!prevNumbers.some(prevNumber => prevNumber === number)) {
+                addednumbers.push(number);
+            }
+        });
+        addednumbers.forEach(number => {
+            this.userHasChanged = true;
+            const cmd = new AddPhoneNumberToDataCollector();
+            cmd.dataCollectorId = this.user.dataCollectorId;
+            cmd.phoneNumber = number;
+
+            console.log(cmd);
+            this.commandCoordinator.handle(cmd)
+                .then(response => {
+                    console.log(response);
+                    if (response.success)  {
+                        this.toastr.success(`Successfully added ${cmd.phoneNumber} ${this.changeBaseInformationCommand.displayName}s`
+                        + ' phone numbers');
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
+                                ' phone numbers because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s`
+                                + ` phone numbers:\n${errors}`);
+                        }
+                    }
+                })
+                .catch(response => {
+                    console.log(response);
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
+                                ' phone numbers because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s`
+                                + ` phone numbers:\n${errors}`);
+                    }
+                });
+        });
+    }
+
+    private handleRemovePhoneNumbers() {
+        const prevNumbers = this.user.phoneNumbers.map(number => number.value.trim());
+        const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
+        const removednumbers = [];
+        prevNumbers.forEach(number => {
+            if (!newNumbers.some(newNumber => newNumber === number)) {
+                removednumbers.push(number);
+            }
+        });
+        removednumbers.forEach(number => {
+            this.userHasChanged = true;
+            const cmd = new RemovePhoneNumberFromDataCollector();
+            cmd.dataCollectorId = this.user.dataCollectorId;
+            cmd.phoneNumber = number;
+
+            console.log(cmd);
+
+            this.commandCoordinator.handle(cmd)
+                .then(response => {
+                    console.log(response);
+                    if (response.success)  {
+                        this.toastr.success(`Successfully removed ${cmd.phoneNumber} from`
+                        + ` ${this.changeBaseInformationCommand.displayName} sphone numbers`);
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
+                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers because of security issues`);
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
+                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
+                        }
+                    }
+                })
+                .catch(response => {
+                        console.log(response);
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
+                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers because of security issues`);
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
+                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
+                    }
+                });
+        });
+    }
+
+//#endregion
+
+    private hasChangedBaseInformation() {
+        return (this.changeBaseInformationCommand.displayName !== this.user.displayName
+            || this.changeBaseInformationCommand.fullName !== this.user.fullName
+            || this.changeBaseInformationCommand.sex !== this.user.sex
+            || this.changeBaseInformationCommand.yearOfBirth !== this.user.yearOfBirth);
+    }
+    private hasChangedLocation() {
+        return (this.user.location.latitude !== this.changeLocationCommand.location.latitude
+            || this.user.location.longitude !== this.changeLocationCommand.location.longitude);
+    }
+    private hasChangedPreferredLanguage() {
+        return this.changePreferredLanguageCommand.preferredLanguage !== this.user.preferredLanguage;
+    }
 }

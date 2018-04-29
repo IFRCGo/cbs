@@ -1,6 +1,6 @@
 import { Command } from '../../services/Command';
 
-export class RemovePhoneNumberFromDateCollector extends Command {
+export class RemovePhoneNumberFromDataCollector extends Command {
     dataCollectorId: string;
     phoneNumber: string;
 

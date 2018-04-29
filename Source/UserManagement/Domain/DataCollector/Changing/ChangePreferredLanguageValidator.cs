@@ -9,7 +9,6 @@ namespace Domain.DataCollector.Changing
         {
             RuleFor(_ => _.PreferredLanguage)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Preferred Language is required")
                 .IsInEnum().WithMessage("Preferred Language must be valid");
         }
     }
