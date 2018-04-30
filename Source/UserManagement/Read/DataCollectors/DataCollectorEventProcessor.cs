@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Concepts;
 using Dolittle.Events.Processing;
@@ -35,15 +36,19 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorUserInformationChanged @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ?? 
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Combine(
+                    Builders<DataCollector>.Update.Set(d => d.FullName, @event.FullName),
+                    Builders<DataCollector>.Update.Set(d => d.DisplayName, @event.DisplayName),
+                    Builders<DataCollector>.Update.Set(d => d.Sex, (Sex) @event.Sex),
+                    Builders<DataCollector>.Update.Set(d => d.YearOfBirth, @event.YearOfBirth))
+                );
 
-            dataCollector.FullName = @event.FullName;
-            dataCollector.DisplayName = @event.DisplayName;
-            dataCollector.Sex = (Sex)@event.Sex;
-            dataCollector.YearOfBirth = @event.YearOfBirth;
-            
-            _dataCollectors.Save(dataCollector);
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
 
         }
 
@@ -55,16 +60,28 @@ namespace Read.DataCollectors
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
 
             _dataCollectors.Save(dataCollector);
+
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.Location, new Location(@event.LocationLatitude,@event.LocationLongitude)));
+
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
+
         }
 
         public void Process(DataCollectorPrefferedLanguageChanged @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.PreferredLanguage, (Language)@event.Language));
 
-            dataCollector.PreferredLanguage = (Language) @event.Language;
-
-            _dataCollectors.Save(dataCollector);
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
         }
 
         public async Task Process(DataCollectorRemoved @event)
@@ -74,33 +91,49 @@ namespace Read.DataCollectors
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            // Threadsafe updating
-            _dataCollectors.UpdateSafe(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+            var res = _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
                 Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
+
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            //Threadsafe updating
-            _dataCollectors.UpdateSafe(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
                 Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));
 
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
         }
 
         public void Process(CaseReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found"); ;
-            dataCollector.LastReportRecievedAt = @event.Timestamp;
-            _dataCollectors.Save(dataCollector);
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
         }
 
         public void Process(InvalidReportReceived @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found"); ;
-            dataCollector.LastReportRecievedAt = @event.Timestamp;
-            _dataCollectors.Save(dataCollector);
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+
+            if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
+            {
+                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
+            }
         }
     }
 }

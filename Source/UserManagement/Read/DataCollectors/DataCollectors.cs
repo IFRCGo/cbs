@@ -47,12 +47,14 @@ namespace Read.DataCollectors
             await _collection.DeleteOneAsync(c => c.DataCollectorId == id);
         }
 
-        public void UpdateSafe(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
+        public UpdateResult UpdateOne(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
         {
-            lock (_collection)
-            {
-                _collection.UpdateOne(filter, update);
-            }
+            return _collection.UpdateOne(filter, update, new UpdateOptions {IsUpsert = false});
+        }
+
+        public UpdateResult UpdateMany(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
+        {
+            return _collection.UpdateMany(filter, update, new UpdateOptions { IsUpsert = false });
         }
 
         public void Save(DataCollector dataCollector)

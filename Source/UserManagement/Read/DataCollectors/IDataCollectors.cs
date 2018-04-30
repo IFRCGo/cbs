@@ -17,10 +17,10 @@ namespace Read.DataCollectors
         void Remove(Guid id);
         Task RemoveAsync(Guid id);
 
-        void UpdateSafe(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update);
+        UpdateResult UpdateOne(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update);
+        UpdateResult UpdateMany(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update);
 
         void Save(DataCollector dataCollector);
-
         Task SaveAsync(DataCollector dataCollector);
     }
 }
