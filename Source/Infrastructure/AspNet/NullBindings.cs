@@ -50,7 +50,7 @@ namespace Infrastructure.AspNet
             var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("CBS")
                 .Application(applicationBuilder =>
                     applicationBuilder
-                        .PrefixLocationsWith(new BoundedContext("Admin"))
+                        .PrefixLocationsWith(new BoundedContext("VolunteerReporting"))
                         .WithStructureStartingWith<BoundedContext>(_ => _
                             .Required.WithChild<Feature>(f => f
                                 .WithChild<SubFeature>(c => c.Recursive)
