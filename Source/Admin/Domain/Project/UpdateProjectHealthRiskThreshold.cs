@@ -3,24 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using Domain.Admin;
-using Read.UserFeatures;
+using Dolittle.Commands;
 
-namespace Domain.RuleImplementations
+namespace Domain
 {
-    public class UserRules : IUserRules
+    public class UpdateProjectHealthRiskThreshold : ICommand
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        //TODO: Probaly needs an project ID aswell
+        public int Threshold { get; set; }
     }
 }

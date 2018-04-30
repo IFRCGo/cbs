@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events
 {
     public class NationalSocietyCreated : IEvent
     {
-        public String Name { get; set; }
-        public String Country { get; set; }
+        public string Name { get; set; }
+        public string Country { get; set; }
         public Guid Id { get; set; }
         public int TimezoneOffsetFromUtcInMinutes { get; set; }
     }

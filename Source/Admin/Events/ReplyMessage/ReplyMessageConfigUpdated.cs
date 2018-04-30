@@ -3,24 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Domain.ReplyMessage;
+using Dolittle.Events;
 
-namespace Domain.RuleImplementations
+namespace Events.ReplyMessage
 {
-    public class ReplyMessagesConfigRules : IReplyMessagesConfigRules
+    public class ReplyMessageConfigUpdated : IEvent
     {
-
-        public bool IsTagsValid(IEnumerable<string> tags)
-        {
-            return tags.All(IsTagValid);
-        }
-
-        private bool IsTagValid(string tag)
-        {
-            return !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
-        }
+        public IDictionary<string,IDictionary<string,string>> Messages { get; set; }
     }
 }

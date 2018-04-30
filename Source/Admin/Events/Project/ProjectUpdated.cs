@@ -4,29 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Events;
-using Events.Project;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Read.NationalSocietyFeatures;
-using Read.UserFeatures;
+using Dolittle.Events;
 
-namespace Read.ProjectFeatures
+namespace Events.Project
 {
-    public class Project
+    public class ProjectUpdated : IEvent
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-        public User DataOwner { get; set; }
-        public NationalSociety NationalSociety { get; set; }
+        public Guid NationalSocietyId { get; set; }
+        public Guid DataOwnerId { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
-
-        public ProjectHealthRisk[] HealthRisks { get; set; }
-
-        public User[] DataVerifiers { get; set; }
+        public int SurveillanceContext { get; set; }
 
         public string SmsProxy { get; set; }
     }

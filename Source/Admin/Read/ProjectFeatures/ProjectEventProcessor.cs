@@ -5,8 +5,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events;
+using Events.Admin;
+using Events.Project;
+using Events.ReplyMessage;
 using Read.AutomaticReplyMessages;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
@@ -41,7 +44,7 @@ namespace Read.ProjectFeatures
                 NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId),
                 DataOwner = _users.GetById(@event.DataOwnerId),
                 Name = @event.Name,
-                SurveillanceContext = @event.SurveillanceContext
+                SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext
             };
             _projects.Save(project);
         }
@@ -52,7 +55,7 @@ namespace Read.ProjectFeatures
             project.NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId);
             project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
-            project.SurveillanceContext = @event.SurveillanceContext;
+            project.SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext;
             project.SmsProxy = @event.SmsProxy;
             _projects.Save(project);
         }

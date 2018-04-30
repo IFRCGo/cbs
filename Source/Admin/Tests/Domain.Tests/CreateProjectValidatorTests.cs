@@ -4,8 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Domain.Project;
 using Domain.RuleImplementations;
 using Events;
+using Events.Project;
 using FakeItEasy;
 using Read.ProjectFeatures;
 using Xunit;
@@ -23,7 +25,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -39,7 +41,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -55,7 +57,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -72,7 +74,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -90,7 +92,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -108,7 +110,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
@@ -127,7 +129,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Project {Name = "name"}}
+                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));

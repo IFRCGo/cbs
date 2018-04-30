@@ -4,23 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Admin;
-using Read.UserFeatures;
 
-namespace Domain.RuleImplementations
+namespace Domain.Admin
 {
-    public class UserRules : IUserRules
+    public interface IUserRules
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        bool IsUserExisting(Guid userId);
     }
 }

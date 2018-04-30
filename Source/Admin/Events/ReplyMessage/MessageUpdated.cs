@@ -4,23 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Admin;
-using Read.UserFeatures;
+using Dolittle.Events;
 
-namespace Domain.RuleImplementations
+namespace Events.ReplyMessage
 {
-    public class UserRules : IUserRules
+    public class MessageUpdated : IEvent
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        public Guid Id { get; set; }
+        public string Message { get; set; }
     }
 }

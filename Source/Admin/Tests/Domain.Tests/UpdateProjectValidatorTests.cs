@@ -5,7 +5,9 @@
 
 using System;
 using System.Linq;
+using Domain.Project;
 using Events;
+using Events.Project;
 using Xunit;
 
 namespace Domain.Tests

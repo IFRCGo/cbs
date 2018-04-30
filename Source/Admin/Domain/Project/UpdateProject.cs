@@ -4,20 +4,26 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Dolittle.Events;
+using Dolittle.Commands;
+using Events.Project;
 
-namespace Events.External
+namespace Domain.Project
 {
-    public class UserCreated : IEvent
+    public class UpdateProject : ICommand
     {
         public Guid Id { get; set; }
 
-        public string Firstname { get; set; }
-
-        public string Lastname { get; set; }
-
-        public string Country { get; set; }
+        public string Name { get; set; }
 
         public Guid NationalSocietyId { get; set; }
+
+        /// <summary>
+        /// Data owner user id.
+        /// </summary>
+        public Guid DataOwnerId { get; set; }
+        
+        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+
+        public string SMSGateWay { get; set; }
     }
 }

@@ -4,6 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Autofac;
+using Domain.Admin;
+using Domain.Project;
+using Domain.ReplyMessage;
 
 namespace Domain.RuleImplementations
 {

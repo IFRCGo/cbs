@@ -4,23 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Admin;
-using Read.UserFeatures;
+using Dolittle.Commands;
 
-namespace Domain.RuleImplementations
+namespace Domain.HealthRisk
 {
-    public class UserRules : IUserRules
+    public class AddProjectHealthRisk : ICommand
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        public Guid ProjectId { get; set; }
+        public Guid HealthRiskId { get; set; }
+        public int Threshold { get; set; }
     }
 }

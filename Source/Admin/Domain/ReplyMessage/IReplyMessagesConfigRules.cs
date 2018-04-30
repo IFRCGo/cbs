@@ -3,24 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Domain.ReplyMessage;
 
-namespace Domain.RuleImplementations
+namespace Domain.ReplyMessage
 {
-    public class ReplyMessagesConfigRules : IReplyMessagesConfigRules
+    public interface IReplyMessagesConfigRules
     {
-
-        public bool IsTagsValid(IEnumerable<string> tags)
-        {
-            return tags.All(IsTagValid);
-        }
-
-        private bool IsTagValid(string tag)
-        {
-            return !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
-        }
+        bool IsTagsValid(IEnumerable<string> tags);
     }
 }

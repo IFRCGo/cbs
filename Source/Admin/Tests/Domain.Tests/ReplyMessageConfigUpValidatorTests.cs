@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
+using Domain.ReplyMessage;
 using Domain.RuleImplementations;
 using Xunit;
 

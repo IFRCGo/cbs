@@ -3,24 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using Domain.Admin;
-using Read.UserFeatures;
-
-namespace Domain.RuleImplementations
+namespace Events.Project
 {
-    public class UserRules : IUserRules
+    //TODO: Move to concepts
+    public enum ProjectSurveillanceContext
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        SingleReports,
+        AggregateReports,
+        SingleAndAggregateReports
     }
 }

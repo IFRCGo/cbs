@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
+using Domain.ReplyMessage;
 using Xunit;
 
 namespace Domain.Tests

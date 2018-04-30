@@ -3,24 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using Domain.Admin;
-using Read.UserFeatures;
+using Dolittle.Commands.Validation;
+using FluentValidation;
 
-namespace Domain.RuleImplementations
+namespace Domain
 {
-    public class UserRules : IUserRules
+    public class UpdateProjectHealthRiskThresholdValidator : CommandInputValidatorFor<UpdateProjectHealthRiskThreshold>
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
+        public UpdateProjectHealthRiskThresholdValidator()
         {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
+            RuleFor(v => v.Threshold).GreaterThan(0).WithMessage("The threshold can not be zero or negative");
         }
     }
 }

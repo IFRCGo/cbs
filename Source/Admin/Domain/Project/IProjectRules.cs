@@ -4,23 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Admin;
-using Read.UserFeatures;
 
-namespace Domain.RuleImplementations
+namespace Domain.Project
 {
-    public class UserRules : IUserRules
+    public interface IProjectRules
     {
-        private readonly IUsers _users;
-
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        bool IsProjectNameUnique(string name);
+        bool IsUserNotAVerifier(Guid projectId, Guid userId);
     }
 }

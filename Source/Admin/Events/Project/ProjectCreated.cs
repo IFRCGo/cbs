@@ -4,23 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Admin;
-using Read.UserFeatures;
+using Dolittle.Events;
 
-namespace Domain.RuleImplementations
+namespace Events.Project
 {
-    public class UserRules : IUserRules
+    public class ProjectCreated : IEvent
     {
-        private readonly IUsers _users;
+        public Guid Id { get; set; }
 
-        public UserRules(IUsers users)
-        {
-            _users = users;
-        }
-
-        public bool IsUserExisting(Guid userId)
-        {
-            return _users.GetById(userId) != null;
-        }
+        public string Name { get; set; }
+        public Guid NationalSocietyId { get; set; }
+        public Guid DataOwnerId { get; set; }
+        
+        public int SurveillanceContext { get; set; }
     }
 }
