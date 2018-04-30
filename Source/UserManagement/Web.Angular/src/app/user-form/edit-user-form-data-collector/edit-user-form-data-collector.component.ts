@@ -22,7 +22,6 @@ export const DATA_COLLECTOR_PATH = 'data-collector';
     styleUrls: ['./edit-user-form-data-collector.component.scss']
 })
 export class EditUserFormDataCollectorComponent implements OnInit {
-
     error = false;
     user: DataCollector;
     phoneNumberString = '';
@@ -31,8 +30,8 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     changeLocationCommand: ChangeLocation = new ChangeLocation();
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
 
-    languageOptions = [{desc: Language[Language.English], id: Language.English},
-                        {desc: Language[Language.French], id: Language.French}];
+    languageOptions = [{desc: Language[Language.English], id: Language.English as number},
+                        {desc: Language[Language.French], id: Language.French as number}];
     sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male as number },
                  { desc: Sex[Sex.Female], id: Sex.Female as number }];
 
@@ -82,7 +81,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         this.handleRemovePhoneNumbers();
         if (this.userHasChanged) {
             this.router.navigate(['list']);
-            this.toastr.info('Refresh window if you can\'t see changes made ')
+            this.toastr.info('Reload page to see changes');
         } else {
             this.toastr.warning('No changes has been made');
         }
@@ -108,7 +107,6 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     }
     private initPhoneNumbers() {
         this.phoneNumberString = this.user.phoneNumbers.map(number => number.value).join(', ');
-        console.log(this.phoneNumberString);
 
     }
 
@@ -118,6 +116,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
             this.userHasChanged = true;
             this.commandCoordinator.handle(this.changeBaseInformationCommand)
                 .then(response => {
+                    console.log('Response from ChangeBaseInformation command')
                     console.log(response);
                     if (response.success)  {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s base information`);
@@ -133,6 +132,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     }
                 })
                 .catch(response => {
+                    console.log('Response from ChangeBaseInformation command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
@@ -151,6 +151,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
             this.userHasChanged = true;
             this.commandCoordinator.handle(this.changeLocationCommand)
                 .then(response => {
+                    console.log('Response from ChangeLocation command')
                     console.log(response);
                     if (response.success)  {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s location`);
@@ -165,6 +166,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     }
                 })
                 .catch(response => {
+                    console.log('Response from ChangeLocation command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
@@ -181,6 +183,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
             this.userHasChanged = true;
             this.commandCoordinator.handle(this.changePreferredLanguageCommand)
                 .then(response => {
+                    console.log('Response from ChangePreferredLanguage command')
                     console.log(response);
                     if (response.success)  {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s preferred language`);
@@ -196,6 +199,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     }
                 })
                 .catch(response => {
+                    console.log('Response from ChangePreferredLanguage command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
@@ -223,10 +227,9 @@ export class EditUserFormDataCollectorComponent implements OnInit {
             const cmd = new AddPhoneNumberToDataCollector();
             cmd.dataCollectorId = this.user.dataCollectorId;
             cmd.phoneNumber = number;
-
-            console.log(cmd);
             this.commandCoordinator.handle(cmd)
                 .then(response => {
+                    console.log('Response from AddPhoneNumberToDataCollector command')
                     console.log(response);
                     if (response.success)  {
                         this.toastr.success(`Successfully added ${cmd.phoneNumber} ${this.changeBaseInformationCommand.displayName}s`
@@ -243,6 +246,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     }
                 })
                 .catch(response => {
+                    console.log('Response from AddPhoneNumberToDataCollector command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
@@ -271,10 +275,9 @@ export class EditUserFormDataCollectorComponent implements OnInit {
             cmd.dataCollectorId = this.user.dataCollectorId;
             cmd.phoneNumber = number;
 
-            console.log(cmd);
-
             this.commandCoordinator.handle(cmd)
                 .then(response => {
+                    console.log('Response from Remove PhoneNumberFromDataCollector command')
                     console.log(response);
                     if (response.success)  {
                         this.toastr.success(`Successfully removed ${cmd.phoneNumber} from`
@@ -291,6 +294,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     }
                 })
                 .catch(response => {
+                        console.log('Response from Remove PhoneNumberFromDataCollector command')
                         console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not remove ${cmd.phoneNumber} from`

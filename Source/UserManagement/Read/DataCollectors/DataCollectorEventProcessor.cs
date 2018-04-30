@@ -76,7 +76,7 @@ namespace Read.DataCollectors
         {
             // Threadsafe updating
             _dataCollectors.UpdateSafe(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
-                Builders<DataCollector>.Update.Push(d => d.PhoneNumbers,new PhoneNumber(@event.PhoneNumber)));
+                Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)

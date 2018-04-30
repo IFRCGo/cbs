@@ -42,10 +42,10 @@
                 </span>
             </td>
             <td>
-                <cbs-delete-user [user]=user></cbs-delete-user>
             </td>
             <td>
-                <a [routerLink]="['/edit-user/data-collector/',user.dataCollectorId]" routerLinkActive="active">Edit</a>
+                    <a [routerLink]="['/edit-user/data-collector/',user.dataCollectorId]" routerLinkActive="active">Edit</a> 
+                    <cbs-delete-user [user]=user></cbs-delete-user>
             </td>
         </tr>
     </tbody>
