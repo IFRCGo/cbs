@@ -72,7 +72,7 @@ namespace Read.DataCollectors
 
         }
 
-        public void Process(DataCollectorPrefferedLanguageChanged @event)
+        public void Process(DataCollectorPreferredLanguageChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
                 Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),

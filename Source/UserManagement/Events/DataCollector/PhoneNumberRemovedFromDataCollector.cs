@@ -1,7 +1,5 @@
 using Dolittle.Events;
 using System;
-using System.Collections.Generic;
-
 namespace Events.DataCollector
 {
     public class PhoneNumberRemovedFromDataCollector : IEvent

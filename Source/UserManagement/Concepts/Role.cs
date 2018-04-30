@@ -1,4 +1,5 @@
-namespace Concepts{
+namespace Concepts
+{
     public enum Role
     {
         Admin = 0,

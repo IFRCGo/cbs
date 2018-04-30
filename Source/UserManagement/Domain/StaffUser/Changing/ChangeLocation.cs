@@ -2,12 +2,12 @@ using System;
 using Concepts;
 using Dolittle.Commands;
 
-namespace Domain.StaffUser.PhoneNumber
+namespace Domain.StaffUser.Changing
 {
-    public class AddPhoneNumberToStaffUser : ICommand
+    public class ChangeLocation : ICommand
     {
         public Guid StaffUserId { get; set; }
-        public string PhoneNumber { get; set; }
+        public Location Location { get; set; }
 
         public Role Role { get; set; }
     }
