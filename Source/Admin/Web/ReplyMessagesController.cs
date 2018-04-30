@@ -2,11 +2,9 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-using System;
+ 
 using Domain;
 using Events;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.AutomaticReplyMessages;
@@ -14,7 +12,7 @@ using Read.AutomaticReplyMessages;
 namespace Web
 {
     [Route("api/replymessages")]
-    public class ReplyMessagesController : BaseController
+    public class ReplyMessagesController : Controller
     {
         readonly IReplyMessages _replyMessages;
 
@@ -31,23 +29,24 @@ namespace Web
             return _replyMessages.Get();
         }
 
-        [HttpPut]
-        public IActionResult Update( [FromBody]UpdateReplyMessagesConfig command)
-        {
-            try
-            {
-                Apply(UpdateReplyMessagesConfig.Id, new ReplyMessageConfigUpdated
-                {
-                    Messages = command.Messages
-                });
-            }
-            catch (DuplicateTagException e)
-            {
-                return BadRequest(e.Message);
-            }
+        //TODO: Integrate to DoLittle2.0
+        //[HttpPut]
+        //public IActionResult Update( [FromBody]UpdateReplyMessagesConfig command)
+        //{
+        //    try
+        //    {
+        //        Apply(UpdateReplyMessagesConfig.Id, new ReplyMessageConfigUpdated
+        //        {
+        //            Messages = command.Messages
+        //        });
+        //    }
+        //    catch (DuplicateTagException e)
+        //    {
+        //        return BadRequest(e.Message);
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
  
 }

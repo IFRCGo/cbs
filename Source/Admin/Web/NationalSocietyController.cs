@@ -17,11 +17,12 @@ namespace Web
     /// API for NationalSociety
     /// </summary>
     [Route("api/nationalsociety")]
-    public class NationalSocietyController : BaseController
+    public class NationalSocietyController : Controller
     {
         private readonly ILogger<ProjectController> _logger;
         private readonly INationalSocieties _nationalSociety;
 
+        
         public NationalSocietyController(
             INationalSocieties nationalSociety,
             ILogger<ProjectController> logger
@@ -40,13 +41,14 @@ namespace Web
         [HttpPost]
         public void AddNationalSociety()
         {
-            var id = Guid.NewGuid();
-            Apply(id, new NationalSocietyCreated
-            {
-                Name = Guid.NewGuid().ToString(),
-                Id = Guid.NewGuid(),
-                TimezoneOffsetFromUtcInMinutes = (int) TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes
-            });
+            //TODO: Integerate to new DoLittle
+            //var id = Guid.NewGuid();
+            //Apply(id, new NationalSocietyCreated
+            //{
+            //    Name = Guid.NewGuid().ToString(),
+            //    Id = Guid.NewGuid(),
+            //    TimezoneOffsetFromUtcInMinutes = (int) TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes
+            //});
         }
     }
 }

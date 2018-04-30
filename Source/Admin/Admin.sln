@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Kafka.Bounde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{714336A8-752F-4878-B0E5-7E22258B2F2C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Events", "..\Infrastructure\Events\Infrastructure.Events.csproj", "{8C80FB1B-2429-4E14-AB1D-91A7AA737934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -222,6 +224,18 @@ Global
 		{714336A8-752F-4878-B0E5-7E22258B2F2C}.Release|x64.Build.0 = Release|Any CPU
 		{714336A8-752F-4878-B0E5-7E22258B2F2C}.Release|x86.ActiveCfg = Release|Any CPU
 		{714336A8-752F-4878-B0E5-7E22258B2F2C}.Release|x86.Build.0 = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|x64.Build.0 = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Debug|x86.Build.0 = Debug|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|x64.ActiveCfg = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|x64.Build.0 = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|x86.ActiveCfg = Release|Any CPU
+		{8C80FB1B-2429-4E14-AB1D-91A7AA737934}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

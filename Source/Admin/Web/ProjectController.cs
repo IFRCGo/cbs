@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain;
 using Events;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.ProjectFeatures;
@@ -16,7 +15,7 @@ using Read.ProjectFeatures;
 namespace Web
 {
     [Route("api/project")]
-    public class ProjectController : BaseController
+    public class ProjectController : Controller
     {
         readonly ILogger<ProjectController> _logger;
 
@@ -42,57 +41,59 @@ namespace Web
             return _projects.GetById(id);
         }
 
-        [HttpPost]
-        public void Post([FromBody] CreateProject command)
-        {
-            Apply(command.Id, new ProjectCreated
-            {
-                Name = command.Name,
-                Id = command.Id,
-                NationalSocietyId = command.NationalSocietyId,
-                DataOwnerId = command.DataOwnerId,
-            });
-        }
+        //TODO: Integrate to DoLittle2.0
 
-        [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] UpdateProject command)
-        {
-            Apply(id, new ProjectUpdated
-            {
-                Id = command.Id = id,
-                Name = command.Name,
-                NationalSocietyId = command.NationalSocietyId,
-                DataOwnerId = command.DataOwnerId,
-            });
-        }
+        //[HttpPost]
+        //public void Post([FromBody] CreateProject command)
+        //{
+        //    Apply(command.Id, new ProjectCreated
+        //    {
+        //        Name = command.Name,
+        //        Id = command.Id,
+        //        NationalSocietyId = command.NationalSocietyId,
+        //        DataOwnerId = command.DataOwnerId,
+        //    });
+        //}
 
-        [HttpPost("{id}/dataverifiers")]
-        public void AddDataVerifier(Guid id, [FromBody] AddDataVerifier command)
-        {
-            Apply(id, new DataVerifierAdded
-            {
-                ProjectId = command.ProjectId = id,
-                UserId = command.UserId
-            });
-        }
+        //[HttpPut("{id}")]
+        //public void Put(Guid id, [FromBody] UpdateProject command)
+        //{
+        //    Apply(id, new ProjectUpdated
+        //    {
+        //        Id = command.Id = id,
+        //        Name = command.Name,
+        //        NationalSocietyId = command.NationalSocietyId,
+        //        DataOwnerId = command.DataOwnerId,
+        //    });
+        //}
 
-        [HttpDelete("{id}/dataverifiers/{userId}")]
-        public void RemoveDataVerifier(Guid id, Guid userId)
-        {
-            Apply(id, new DataVerifierRemoved
-            {
-                ProjectId = id,
-                UserId = userId
-            });
-        }
+        //[HttpPost("{id}/dataverifiers")]
+        //public void AddDataVerifier(Guid id, [FromBody] AddDataVerifier command)
+        //{
+        //    Apply(id, new DataVerifierAdded
+        //    {
+        //        ProjectId = command.ProjectId = id,
+        //        UserId = command.UserId
+        //    });
+        //}
 
-        [HttpDelete("{id}")]
-        public void Delete(Guid id)
-        {
-            Apply(id, new ProjectDeleted
-            {
-                ProjectId = id
-            });
-        }
+        //[HttpDelete("{id}/dataverifiers/{userId}")]
+        //public void RemoveDataVerifier(Guid id, Guid userId)
+        //{
+        //    Apply(id, new DataVerifierRemoved
+        //    {
+        //        ProjectId = id,
+        //        UserId = userId
+        //    });
+        //}
+
+        //[HttpDelete("{id}")]
+        //public void Delete(Guid id)
+        //{
+        //    Apply(id, new ProjectDeleted
+        //    {
+        //        ProjectId = id
+        //    });
+        //}
     }
 }
