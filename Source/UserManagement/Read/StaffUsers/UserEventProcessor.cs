@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
 using Concepts;
 using Dolittle.Events.Processing;
+using Events.StaffUser;
 using Events.StaffUser.Registration;
+using MongoDB.Driver;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
@@ -100,37 +102,63 @@ namespace Read.StaffUsers
             ));
         }
 
-        public void Process(PhoneNumberRegistered @event)
+        public void Process(PhoneNumberAddedToDataCoordinator @event)
         {
 
             //TODO: Don't do this, use update
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            try
-            {
-                dynamic user = baseUser;
-                user.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-                _collection.Save(baseUser);
-            }
-            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
-            {
-                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have phonenumbers");
-            }
+            //var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
+            //try
+            //{
+            //    dynamic user = baseUser;
+            //    user.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
+            //    _collection.Save(baseUser);
+            //}
+            //catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            //{
+            //    throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have phonenumbers");
+            //}
+            _collection.UpdateOne(Builders<DataCoordinator>.Filter.Where(u => u.StaffUserId == @event.StaffUserId),
+                Builders<DataCoordinator>.Update.AddToSet(u => u.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
         }
 
-        public void Process(NationalSocietyAssigned @event)
+        public void Process(PhoneNumberRemovedFromDataCoordinator @event)
+        {
+
+            //TODO: Don't do this, use update
+            //var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
+            //try
+            //{
+            //    dynamic user = baseUser;
+            //    user.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
+            //    _collection.Save(baseUser);
+            //}
+            //catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            //{
+            //    throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have phonenumbers");
+            //}
+            _collection.UpdateOne(Builders<DataCoordinator>.Filter.Where(u => u.StaffUserId == @event.StaffUserId),
+                Builders<DataCoordinator>.Update.PullFilter(u => u.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));
+        }
+
+        public void Process(NationalSocietyAssignedToDataCoordinator @event)
         {
             //TODO: Don't do this, use update
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            try
-            {
-                dynamic user = baseUser;
-                user.AssignedNationalSocieties.Add(@event.NationalSociety);
-                _collection.Save(baseUser);
-            }
-            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
-            {
-                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have assigned national societies");
-            }
+            //var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
+            //try
+            //{
+            //    dynamic user = baseUser;
+            //    user.AssignedNationalSocieties.Add(@event.NationalSociety);
+            //    _collection.Save(baseUser);
+            //}
+            //catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            //{
+            //    throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have assigned national societies");
+            //}
+
+            //TODO: Need to test
+            _collection.UpdateOne(Builders<DataCoordinator>.Filter.Where(u => u.StaffUserId == @event.StaffUserId),
+                Builders<DataCoordinator>.Update.AddToSet(u => u.AssignedNationalSocieties, @event.NationalSociety));
+
         }
     }
 }

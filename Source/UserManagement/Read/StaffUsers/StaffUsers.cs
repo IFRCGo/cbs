@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
@@ -97,11 +98,40 @@ namespace Read.StaffUsers
             await _collection.ReplaceOneAsync(u => u.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
 
-        public void UpdateOneBaseUser(FilterDefinition<BaseUser> filter, UpdateDefinition<BaseUser> update)
+        public void UpdateOne<T>(FilterDefinition<T> filter, UpdateDefinition<T> update) where T : BaseUser
         {
-            _collection.UpdateOne(filter, update);
+            _collection.UpdateOne(filter as dynamic, update as dynamic);
         }
 
-        //TODO:  Craete update for each kind of user
+        //public void UpdateOneAdmin(FilterDefinition<Admin> filter, UpdateDefinition<Admin> update)
+        //{
+        //    _collection.UpdateOne(filter as dynamic, update as dynamic);
+        //}
+
+        //public void UpdateOneDataConsumer(FilterDefinition<DataConsumer> filter, UpdateDefinition<DataConsumer> update)
+        //{
+
+        //}
+
+        //public void UpdateOneDataCoordinator(FilterDefinition<DataCoordinator> filter, UpdateDefinition<DataCoordinator> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void UpdateOneDataOwner(FilterDefinition<DataOwner> filter, UpdateDefinition<DataOwner> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void UpdateOneDataVerifier(FilterDefinition<DataVerifier> filter, UpdateDefinition<DataVerifier> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void UpdateOneSystemConfigurator(FilterDefinition<SystemConfigurator> filter, UpdateDefinition<SystemConfigurator> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
@@ -24,5 +26,13 @@ namespace Read.StaffUsers
             where T : BaseUser;
         Task SaveAsync<T>(T dataCollector)
             where T : BaseUser;
+
+        void UpdateOne<T>(FilterDefinition<T> filter, UpdateDefinition<T> update) where T : BaseUser;
+        //void UpdateOneAdmin(FilterDefinition<Admin> filter, UpdateDefinition<Admin> update);
+        //void UpdateOneDataConsumer(FilterDefinition<DataConsumer> filter, UpdateDefinition<DataConsumer> update);
+        //void UpdateOneDataCoordinator(FilterDefinition<DataCoordinator> filter, UpdateDefinition<DataCoordinator> update);
+        //void UpdateOneDataOwner(FilterDefinition<DataOwner> filter, UpdateDefinition<DataOwner> update);
+        //void UpdateOneDataVerifier(FilterDefinition<DataVerifier> filter, UpdateDefinition<DataVerifier> update);
+        //void UpdateOneSystemConfigurator(FilterDefinition<SystemConfigurator> filter, UpdateDefinition<SystemConfigurator> update);
     }
 }

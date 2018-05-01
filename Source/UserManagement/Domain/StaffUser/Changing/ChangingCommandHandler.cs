@@ -7,6 +7,11 @@ namespace Domain.StaffUser.Changing
     {
         readonly IAggregateRootRepositoryFor<StaffUser> _repository;
 
+        public ChangingCommandHandler(IAggregateRootRepositoryFor<StaffUser> repository)
+        {
+            _repository = repository;
+        }
+
         public void Handle(AddAssignedNationalSociety cmd)
         {
             var root = _repository.Get(cmd.StaffUserId);
