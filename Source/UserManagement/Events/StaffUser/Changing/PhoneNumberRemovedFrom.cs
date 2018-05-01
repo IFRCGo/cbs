@@ -3,48 +3,48 @@ using Dolittle.Events;
 
 namespace Events.StaffUser.Changing
 {
-    public class PhoneNumberAddedToSystemConfigurator : IEvent
+    public class PhoneNumberRemovedFromSystemConfigurator : IEvent
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
 
-        public PhoneNumberAddedToSystemConfigurator(Guid staffUserId, string phoneNumber)
+        public PhoneNumberRemovedFromSystemConfigurator(Guid staffUserId, string phoneNumber)
         {
             StaffUserId = staffUserId;
             PhoneNumber = phoneNumber;
         }
     }
 
-    public class PhoneNumberAddedToDataCoordinator : IEvent
+    public class PhoneNumberRemovedFromDataCoordinator : IEvent
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
 
-        public PhoneNumberAddedToDataCoordinator(Guid staffUserId, string phoneNumber)
+        public PhoneNumberRemovedFromDataCoordinator(Guid staffUserId, string phoneNumber)
         {
             StaffUserId = staffUserId;
             PhoneNumber = phoneNumber;
         }
     }
 
-    public class PhoneNumberAddedToDataOwner : IEvent
+    public class PhoneNumberRemovedFromDataOwner : IEvent
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
 
-        public PhoneNumberAddedToDataOwner(Guid staffUserId, string phoneNumber)
+        public PhoneNumberRemovedFromDataOwner(Guid staffUserId, string phoneNumber)
         {
             StaffUserId = staffUserId;
             PhoneNumber = phoneNumber;
         }
     }
 
-    public class PhoneNumberAddedToDataVerifier : IEvent
+    public class PhoneNumberRemovedFromDataVerifier : IEvent
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
 
-        public PhoneNumberAddedToDataVerifier(Guid staffUserId, string phoneNumber)
+        public PhoneNumberRemovedFromDataVerifier(Guid staffUserId, string phoneNumber)
         {
             StaffUserId = staffUserId;
             PhoneNumber = phoneNumber;

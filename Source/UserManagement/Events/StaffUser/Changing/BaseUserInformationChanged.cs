@@ -9,5 +9,13 @@ namespace Events.StaffUser.Changing
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
+
+        public BaseUserInformationChanged(Guid staffUserId, string fullName, string displayName, string email)
+        {
+            StaffUserId = staffUserId;
+            FullName = fullName;
+            DisplayName = displayName;
+            Email = email;
+        }
     }
 }
