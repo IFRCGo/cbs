@@ -21,18 +21,18 @@ namespace Web.Controllers
         private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
 
-        public readonly IStaffUsers _staffUsers;
+        public readonly IStaffUserRepositoryContext _context;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
             ICommandCoordinator commandCoordinator,
-            
-            IStaffUsers staffUsers
+
+            IStaffUserRepositoryContext context
         )
         {
             _database = database;
             _commandCoordinator = commandCoordinator;
-            _staffUsers = staffUsers;
+            _context = context;
         }
 
         [HttpPut("newTest")]
@@ -40,7 +40,7 @@ namespace Web.Controllers
         {
             var adminId = Guid.NewGuid();
             
-            _staffUsers.Save(new Admin(
+            _context.AdminRepository.Insert(new Admin(
                 adminId,
                 "name",
                 "dispname",
@@ -48,7 +48,7 @@ namespace Web.Controllers
                 DateTimeOffset.UtcNow
                 ));
 
-            _staffUsers.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
+            _context.AdminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
                 Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 

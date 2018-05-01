@@ -3,6 +3,7 @@ using Dolittle.Events;
 
 namespace Events.StaffUser
 {
+
     public class NationalSocietyAssignedToSystemConfigurator : IEvent
     {
         public Guid StaffUserId { get; set; }

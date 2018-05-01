@@ -1,39 +1,40 @@
-using System.Collections.Generic;
 using System.Linq;
 using Dolittle.Queries;
-using MongoDB.Driver;
+using Read.StaffUsers.Admin;
 using Read.StaffUsers.Models;
 
 namespace Read.StaffUsers
 {
-    public class AllStaffUsers<T> : IQueryFor<T> 
-        where T : BaseUser
+    
+    public class AllStaffUsers : IQueryFor<BaseUser> 
     {
-        private readonly IMongoCollection<BaseUser> _collection;
+        private readonly IStaffUserRepositoryContext _context;
 
-        public AllStaffUsers(IMongoDatabase database)
+        public AllStaffUsers(IStaffUserRepositoryContext context)
         {
-            _collection = database.GetCollection<BaseUser>("StaffUsers");
-
+            _context = context;
         }
 
-        public IEnumerable<T> Query => 
-            _collection.FindSync(Builders<BaseUser>.Filter.OfType<T>()).ToList().Cast<T>();
+        public IQueryable<BaseUser> Query => 
+            _context.AdminRepository.Query.Select(_ => _)
+                .Concat<BaseUser>(_context.DataConsumerRepository.Query.Select(_ => _))
+                .Concat(_context.DataCoordinatorRepository.Query.Select(_ => _))
+                .Concat(_context.DataOwnerRepository.Query.Select(_ => _))
+                .Concat(_context.DataVerifierRepository.Query.Select(_ => _))
+                .Concat(_context.SystemConfiguratorRepository.Query.Select(_ => _));
 
     }
 
-    public class AllStaffUsersAsync<T> : IQueryFor<T>
-        where T : BaseUser
+
+    public class AllAdmins : IQueryFor<Models.Admin>
     {
-        private readonly IMongoCollection<BaseUser> _collection;
+        private readonly IAdminRepository _admins;
 
-        public AllStaffUsersAsync(IMongoDatabase database)
+        public AllAdmins(IStaffUserRepositoryContext context)
         {
-            _collection = database.GetCollection<BaseUser>("StaffUsers");
-
+            _admins = context.AdminRepository;
         }
 
-        public IEnumerable<T> Query =>
-            _collection.FindAsync(Builders<BaseUser>.Filter.OfType<T>()).Result.ToList().Cast<T>(); //TODO: Safe?
+        public IQueryable<Models.Admin> Query => _admins.Query.Select(a => a);
     }
 }

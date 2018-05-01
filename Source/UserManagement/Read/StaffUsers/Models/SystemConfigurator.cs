@@ -23,13 +23,10 @@ namespace Read.StaffUsers.Models
 
         public int BirthYear { get; set; }
         public Sex Sex { get; set; }
-        [BsonRequired]
         public Guid NationalSociety { get; set; }
-        [BsonRequired]
         public Language PreferredLanguage { get; set; }
-        [BsonRequired]
+
         public List<PhoneNumber> PhoneNumbers { get; set; }
-        [BsonRequired]
         public List<Guid> AssignedNationalSocieties { get; set; }
     }
 }
