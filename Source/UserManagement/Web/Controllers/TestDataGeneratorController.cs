@@ -104,7 +104,13 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _commandCoordinator.Handle(cmd);
+                //TODO: Einari, this is  really weird
+                var res = _commandCoordinator.Handle(cmd);
+                var validator = new RegisterNewAdminUserInputValidator();
+
+                var resValidation = validator.Validate(cmd);
+                Console.Write(resValidation);
+                Console.Write(res);
             }
         }
         [HttpGet("alldataconsumercommands")]
