@@ -20,7 +20,8 @@ namespace Web.Controllers
     {
         private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
-        
+
+        public readonly IStaffUsers _staffUsers;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
@@ -31,6 +32,24 @@ namespace Web.Controllers
         {
             _database = database;
             _commandCoordinator = commandCoordinator;
+            _staffUsers = staffUsers;
+        }
+
+        [HttpPut("newTest")]
+        public void TestNew()
+        {
+            var adminId = Guid.NewGuid();
+            
+            _staffUsers.Save(new Admin(
+                adminId,
+                "name",
+                "dispname",
+                "email@live.no",
+                DateTimeOffset.UtcNow
+                ));
+
+            _staffUsers.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
+                Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 
         [HttpGet("generatetestdataset")]

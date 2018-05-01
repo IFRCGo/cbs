@@ -4,6 +4,8 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Linq;
 using System.Threading.Tasks;
+using Concepts;
+using Dolittle.ReadModels;
 using MongoDB.Bson;
 using Read.StaffUsers.Models;
 
@@ -98,9 +100,9 @@ namespace Read.StaffUsers
             await _collection.ReplaceOneAsync(u => u.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
 
+
         public void UpdateOne<T>(FilterDefinition<T> filter, UpdateDefinition<T> update) where T : BaseUser
         {
-            _collection.UpdateOne(filter as dynamic, update as dynamic);
         }
 
         //public void UpdateOneAdmin(FilterDefinition<Admin> filter, UpdateDefinition<Admin> update)
