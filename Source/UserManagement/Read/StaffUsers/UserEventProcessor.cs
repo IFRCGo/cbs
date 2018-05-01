@@ -3,6 +3,7 @@ using Concepts;
 using Dolittle.Events.Processing;
 using Events.StaffUser.Registration;
 using Read.StaffUsers.Models;
+
 namespace Read.StaffUsers
 {
     public class UserEventProcessor : ICanProcessEvents
@@ -101,6 +102,8 @@ namespace Read.StaffUsers
 
         public void Process(PhoneNumberRegistered @event)
         {
+
+            //TODO: Don't do this, use update
             var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
             try
             {
@@ -116,6 +119,7 @@ namespace Read.StaffUsers
 
         public void Process(NationalSocietyAssigned @event)
         {
+            //TODO: Don't do this, use update
             var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
             try
             {

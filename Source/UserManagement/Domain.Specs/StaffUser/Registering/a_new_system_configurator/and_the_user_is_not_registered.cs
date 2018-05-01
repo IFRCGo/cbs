@@ -55,12 +55,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
         It should_create_a_national_society_assigned_for_each_national_society = () =>
         {
-            sut.ShouldHaveEvent<NationalSocietyAssigned>().Instances(2);
+            sut.ShouldHaveEvent<NationalSocietyAssignedToSystemConfigurator>().Instances(2);
         };
 
         It should_create_a_phone_number_registered_event_for_each_phone_number = () =>
         {
-            sut.ShouldHaveEvent<PhoneNumberRegistered>().Instances(2);
+            sut.ShouldHaveEvent<PhoneNumberAddedToSystemConfigurator>().Instances(2);
         };
     }
 }

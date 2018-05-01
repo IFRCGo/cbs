@@ -6,7 +6,7 @@ namespace Concepts
         DataVerifier,
         DataConsumer,
         DataCoordinator,
-        SystemCoordinator,
+        SystemConfigurator,
         DataOwner
     }
 }

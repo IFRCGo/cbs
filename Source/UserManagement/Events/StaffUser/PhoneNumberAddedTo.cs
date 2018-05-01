@@ -1,7 +1,7 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.StaffUser.Changing
+namespace Events.StaffUser
 {
     public class PhoneNumberAddedToSystemConfigurator : IEvent
     {

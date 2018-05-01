@@ -27,9 +27,8 @@ namespace Read.StaffUsers
             {
                 throw new UserNotFound($"StaffUser with id {id} was not found");
             }
-            var result = user as T;
 
-            if (result == null)
+            if (!(user is T result))
             {
                 // User is not of request type
                 throw new UserNotOfExpectedType($"User with id {id} was is not of type {nameof(T)}");
@@ -46,9 +45,8 @@ namespace Read.StaffUsers
             {
                 throw new UserNotFound($"StaffUser with id {id} was not found");
             }
-            var result = user as T;
 
-            if (result == null)
+            if (!(user is T result))
             {
                 throw new UserNotOfExpectedType($"User with id {id} was is not of type {nameof(T)}");
             }
@@ -98,5 +96,12 @@ namespace Read.StaffUsers
         {
             await _collection.ReplaceOneAsync(u => u.StaffUserId == dataCollector.StaffUserId, dataCollector, new UpdateOptions { IsUpsert = true });
         }
+
+        public void UpdateOneBaseUser(FilterDefinition<BaseUser> filter, UpdateDefinition<BaseUser> update)
+        {
+            _collection.UpdateOne(filter, update);
+        }
+
+        //TODO:  Craete update for each kind of user
     }
 }

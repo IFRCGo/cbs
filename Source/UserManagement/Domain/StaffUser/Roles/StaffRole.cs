@@ -11,7 +11,6 @@ namespace Domain.StaffUser.Roles
         public string Email { get; set; }
     }
 
-    //TODO: Really stupid way to do this...
     public static class RoleExtensions
     {
         public static StaffRole GetStaffRole(this Role role)
@@ -28,7 +27,7 @@ namespace Domain.StaffUser.Roles
                     return new DataOwner();
                 case Role.DataVerifier:
                     return new DataVerifier();
-                case Role.SystemCoordinator:
+                case Role.SystemConfigurator:
                     return new SystemConfigurator();
 
                 default:

@@ -1,26 +1,26 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.StaffUser.Changing
+namespace Events.StaffUser
 {
-    public class NationalSocietyDeasignedFromSystemConfigurator : IEvent
+    public class NationalSocietyAssignedToSystemConfigurator : IEvent
     {
         public Guid StaffUserId { get; set; }
         public Guid NationalSociety { get; set; }
 
-        public NationalSocietyDeasignedFromSystemConfigurator(Guid staffUserId, Guid nationalSociety)
+        public NationalSocietyAssignedToSystemConfigurator(Guid staffUserId, Guid nationalSociety)
         {
             StaffUserId = staffUserId;
             NationalSociety = nationalSociety;
         }
     }
 
-    public class NationalSocietyDeasignedFromDataCoordinator : IEvent
+    public class NationalSocietyAssignedToDataCoordinator : IEvent
     {
         public Guid StaffUserId { get; set; }
         public Guid NationalSociety { get; set; }
 
-        public NationalSocietyDeasignedFromDataCoordinator(Guid staffUserId, Guid nationalSociety)
+        public NationalSocietyAssignedToDataCoordinator(Guid staffUserId, Guid nationalSociety)
         {
             StaffUserId = staffUserId;
             NationalSociety = nationalSociety;
