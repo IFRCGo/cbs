@@ -2,21 +2,44 @@ using Concepts;
 using Dolittle.Events.Processing;
 using Events.StaffUser;
 using Events.StaffUser.Registration;
+using Read.StaffUsers.Admin;
+using Read.StaffUsers.DataConsumer;
+using Read.StaffUsers.DataCoordinator;
+using Read.StaffUsers.DataOwner;
+using Read.StaffUsers.DataVerifier;
+using Read.StaffUsers.Models;
+using Read.StaffUsers.SystemConfigurator;
 
 namespace Read.StaffUsers
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        private readonly IStaffUserRepositoryContext _context;
+        private readonly IAdminRepository _adminRepository;
+        private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
+        private readonly IDataOwnerRepository _dataOwnerRepository;
+        private readonly IDataVerifierRepository _dataVerifierRepository;
+        private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
+        private readonly IDataConsumerRepository _dataConsumerRepository;
 
-        public UserEventProcessor(IStaffUserRepositoryContext context)
+        public UserEventProcessor(
+            IAdminRepository adminRepository,
+            IDataConsumerRepository dataConsumerRepository,
+            IDataCoordinatorRepository dataCoordinatorRepository,
+            IDataOwnerRepository dataOwnerRepository,
+            IDataVerifierRepository dataVerifierRepository,
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
-            _context = context;
+            _adminRepository = adminRepository;
+            _dataCoordinatorRepository = dataCoordinatorRepository;
+            _dataOwnerRepository = dataOwnerRepository;
+            _dataVerifierRepository = dataVerifierRepository;
+            _systemConfiguratorRepository = systemConfiguratorRepository;
+            _dataConsumerRepository = dataConsumerRepository;
         }
 
         public void Process(AdminRegistered @event)
         {
-            _context.AdminRepository.Insert(new Models.Admin(
+            _adminRepository.Insert(new Models.Admin(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -26,7 +49,7 @@ namespace Read.StaffUsers
         }
         public void Process(StaffDataConsumerRegistered @event)
         {
-            _context.DataConsumerRepository.Insert(new Models.DataConsumer(
+            _dataConsumerRepository.Insert(new Models.DataConsumer(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -41,7 +64,7 @@ namespace Read.StaffUsers
         }
         public void Process(DataCoordinatorRegistered @event)
         {
-            _context.DataCoordinatorRepository.Insert(new Models.DataCoordinator(
+            _dataCoordinatorRepository.Insert(new Models.DataCoordinator(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -55,7 +78,7 @@ namespace Read.StaffUsers
         }
         public void Process(DataOwnerRegistered @event)
         {
-            _context.DataOwnerRepository.Insert(new Models.DataOwner(
+            _dataOwnerRepository.Insert(new Models.DataOwner(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -71,7 +94,7 @@ namespace Read.StaffUsers
         }
         public void Process(StaffDataVerifierRegistered @event)
         {
-            _context.DataVerifierRepository.Insert(new Models.DataVerifier(
+            _dataVerifierRepository.Insert(new Models.DataVerifier(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -86,7 +109,7 @@ namespace Read.StaffUsers
         }
         public void Process(SystemConfiguratorRegistered @event)
         {
-            _context.SystemConfiguratorRepository.Insert(new Models.SystemConfigurator(
+            _systemConfiguratorRepository.Insert(new Models.SystemConfigurator(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -100,17 +123,17 @@ namespace Read.StaffUsers
         }
         public void Process(PhoneNumberAddedToDataCoordinator @event)
         {
-            _context.DataCoordinatorRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+            _dataCoordinatorRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
         }
 
         public void Process(PhoneNumberRemovedFromDataCoordinator @event)
         {
-            _context.DataCoordinatorRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+            _dataCoordinatorRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
         }
 
         public void Process(NationalSocietyAssignedToDataCoordinator @event)
         {
-            _context.DataCoordinatorRepository.AddAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
+            _dataCoordinatorRepository.AddAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
         }
     }
 }

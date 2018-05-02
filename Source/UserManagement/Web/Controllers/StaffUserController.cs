@@ -14,14 +14,14 @@ namespace Web.Controllers
     [Route("api/staffusers")]
     public class StaffUserController : Controller
     {
-        private readonly IStaffUserRepositoryContext _context;
+        //private readonly IStaffUserRepositoryContext _context;
         private readonly IQueryCoordinator _queryCoordinator;
 
         public StaffUserController (
-            IStaffUserRepositoryContext context,
+            //IStaffUserRepositoryContext context,
             IQueryCoordinator queryCoordinator)
         {
-            _context = context;
+            //_context = context;
             _queryCoordinator = queryCoordinator;
         }
 
@@ -34,9 +34,9 @@ namespace Web.Controllers
         [HttpGet("admin")]
         public IActionResult GetAllAdmins()
         {
-            var res = _queryCoordinator.Execute(new AllAdmins(_context), new PagingInfo());
+            //var res = _queryCoordinator.Execute(new AllAdmins(_context), new PagingInfo());
 
-            return Ok(res.Items);
+            return Ok(); // res.Items
         }
 
         //[HttpGet("dataconsumer")]

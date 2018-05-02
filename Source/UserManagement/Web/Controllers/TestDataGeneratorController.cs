@@ -11,7 +11,13 @@ using Read.StaffUsers;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
 using Read.StaffUsers.Models;
-
+using Read.StaffUsers.Admin;
+using Read.StaffUsers.DataConsumer;
+using Read.StaffUsers.DataCoordinator;
+using Read.StaffUsers.DataOwner;
+using Read.StaffUsers.DataVerifier;
+using Read.StaffUsers.Models;
+using Read.StaffUsers.SystemConfigurator;
 
 namespace Web.Controllers
 {
@@ -21,26 +27,38 @@ namespace Web.Controllers
         private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
 
-        public readonly IStaffUserRepositoryContext _context;
+        private readonly IAdminRepository _adminRepository;
+        private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
+        private readonly IDataOwnerRepository _dataOwnerRepository;
+        private readonly IDataVerifierRepository _dataVerifierRepository;
+        private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
+        private readonly IDataConsumerRepository _dataConsumerRepository;
 
         public TestDataGeneratorController(
-            IMongoDatabase database,
             ICommandCoordinator commandCoordinator,
-
-            IStaffUserRepositoryContext context
-        )
+            IAdminRepository adminRepository,
+            IDataConsumerRepository dataConsumerRepository,
+            IDataCoordinatorRepository dataCoordinatorRepository,
+            IDataOwnerRepository dataOwnerRepository,
+            IDataVerifierRepository dataVerifierRepository,
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
-            _database = database;
             _commandCoordinator = commandCoordinator;
-            _context = context;
+            _adminRepository = adminRepository;
+            _dataCoordinatorRepository = dataCoordinatorRepository;
+            _dataOwnerRepository = dataOwnerRepository;
+            _dataVerifierRepository = dataVerifierRepository;
+            _systemConfiguratorRepository = systemConfiguratorRepository;
+            _dataConsumerRepository = dataConsumerRepository;
         }
+       
 
         [HttpPut("newTest")]
         public void TestNew()
         {
             var adminId = Guid.NewGuid();
             
-            _context.AdminRepository.Insert(new Admin(
+            _adminRepository.Insert(new Admin(
                 adminId,
                 "name",
                 "dispname",
@@ -48,7 +66,7 @@ namespace Web.Controllers
                 DateTimeOffset.UtcNow
                 ));
 
-            _context.AdminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
+            _adminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
                 Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 
@@ -270,7 +288,7 @@ namespace Web.Controllers
         public void DeleteAllAdmins()
         {
             var filter = Builders<BaseUser>.Filter.OfType<Admin>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            //_database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataconsumers")]
