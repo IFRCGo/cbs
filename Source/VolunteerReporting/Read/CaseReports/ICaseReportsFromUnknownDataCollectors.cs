@@ -6,9 +6,16 @@ namespace Read.CaseReports
 {
     public interface ICaseReportsFromUnknownDataCollectors
     {
-        Task Save(CaseReportFromUnknownDataCollector anonymousCaseReport);
-        Task Remove(Guid id);
+        void Save(CaseReportFromUnknownDataCollector caseReport);
+        Task SaveAsync(CaseReportFromUnknownDataCollector anonymousCaseReport);
+
+        void Remove(Guid id);
+        Task RemoveAsync(Guid id);
+
+        IEnumerable<CaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync();
-        Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetByPhoneNumber(string phoneNumber);
+
+        IEnumerable<CaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber);
+        Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber);
     }
 }

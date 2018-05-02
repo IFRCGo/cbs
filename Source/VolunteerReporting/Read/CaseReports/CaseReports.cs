@@ -19,6 +19,11 @@ namespace Read.CaseReports
             _collection = database.GetCollection<CaseReport>(CollectionName);
         }
 
+        public IEnumerable<CaseReport> GetAll()
+        {
+            return _collection.FindSync(_ => true).ToList();
+        }
+
         public async Task<IEnumerable<CaseReport>> GetAllAsync()
         {
             var filter = Builders<CaseReport>.Filter.Empty;
@@ -26,7 +31,12 @@ namespace Read.CaseReports
             return await list.ToListAsync();
         }
 
-        public async Task Save(CaseReport caseReport)
+        public void Save(CaseReport caseReport)
+        {
+            _collection.ReplaceOne(_ => _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
+        }
+
+        public async Task SaveAsync(CaseReport caseReport)
         {
             var filter = Builders<CaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
             await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });

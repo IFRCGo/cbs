@@ -19,7 +19,7 @@ namespace Read.InvalidCaseReports
         }
 
 
-        public async Task Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event)
         {
             // Send the invalid report to the DB
             var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId);
@@ -29,23 +29,26 @@ namespace Read.InvalidCaseReports
             invalidCaseReport.Message = @event.Message;
             invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
             invalidCaseReport.Timestamp = @event.Timestamp;
-            await _invalidCaseReports.Save(invalidCaseReport);
+            _invalidCaseReports.Save(invalidCaseReport);
         }
 
-        public async Task Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
             // Send the invalid report to tbe DB
-            var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId);
-            invalidCaseReport.PhoneNumber = @event.Origin;
-            invalidCaseReport.Message = @event.Message;
-            invalidCaseReport.ParsingErrorMessage = @event.ErrorMessages;
-            invalidCaseReport.Timestamp = @event.Timestamp;
-            await _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
+            var invalidCaseReport =
+                new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId)
+                {
+                    PhoneNumber = @event.Origin,
+                    Message = @event.Message,
+                    ParsingErrorMessage = @event.ErrorMessages,
+                    Timestamp = @event.Timestamp
+                };
+            _invalidCaseReportsFromUnknownDataCollectors.Save(invalidCaseReport);
         }
 
-        public async Task Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event)
         {
-            await _invalidCaseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);
+            _invalidCaseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);
         }
     }
 }
