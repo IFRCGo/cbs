@@ -28,7 +28,6 @@ namespace Domain.DataCollector
         {
             if (_isRegistered)
             {
-                //TODO: We might want to Apply an event here that signals that a new data collector has been registered
                 throw new DataCollectorAlreadyRegistered($"DataCollector '{EventSourceId} {fullName} {displayName} is already registered'");
             }
 
@@ -68,7 +67,7 @@ namespace Domain.DataCollector
             //    throw new Exception("Datacollector not registered");
             //}
 
-            Apply(new DataCollectorPrefferedLanguageChanged(EventSourceId, (int)language));
+            Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
         }
 
         public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex)

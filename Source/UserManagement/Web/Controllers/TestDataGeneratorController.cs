@@ -11,7 +11,13 @@ using Read.StaffUsers;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
 using Read.StaffUsers.Models;
-
+using Read.StaffUsers.Admin;
+using Read.StaffUsers.DataConsumer;
+using Read.StaffUsers.DataCoordinator;
+using Read.StaffUsers.DataOwner;
+using Read.StaffUsers.DataVerifier;
+using Read.StaffUsers.Models;
+using Read.StaffUsers.SystemConfigurator;
 
 namespace Web.Controllers
 {
@@ -20,17 +26,48 @@ namespace Web.Controllers
     {
         private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
-        
+
+        private readonly IAdminRepository _adminRepository;
+        private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
+        private readonly IDataOwnerRepository _dataOwnerRepository;
+        private readonly IDataVerifierRepository _dataVerifierRepository;
+        private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
+        private readonly IDataConsumerRepository _dataConsumerRepository;
 
         public TestDataGeneratorController(
-            IMongoDatabase database,
             ICommandCoordinator commandCoordinator,
-            
-            IStaffUsers staffUsers
-        )
+            IAdminRepository adminRepository,
+            IDataConsumerRepository dataConsumerRepository,
+            IDataCoordinatorRepository dataCoordinatorRepository,
+            IDataOwnerRepository dataOwnerRepository,
+            IDataVerifierRepository dataVerifierRepository,
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
-            _database = database;
             _commandCoordinator = commandCoordinator;
+            _adminRepository = adminRepository;
+            _dataCoordinatorRepository = dataCoordinatorRepository;
+            _dataOwnerRepository = dataOwnerRepository;
+            _dataVerifierRepository = dataVerifierRepository;
+            _systemConfiguratorRepository = systemConfiguratorRepository;
+            _dataConsumerRepository = dataConsumerRepository;
+        }
+       
+
+        [HttpPut("newTest")]
+        public void TestNew()
+        {
+            var adminId = Guid.NewGuid();
+            
+            _adminRepository.Insert(new Admin(
+                adminId,
+                "name",
+                "dispname",
+                "email@live.no",
+                DateTimeOffset.UtcNow
+                ));
+
+            _adminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
+                Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 
         [HttpGet("generatetestdataset")]
@@ -104,7 +141,13 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _commandCoordinator.Handle(cmd);
+                //TODO: Einari, this is  really weird
+                var res = _commandCoordinator.Handle(cmd);
+                var validator = new RegisterNewAdminUserInputValidator();
+
+                var resValidation = validator.Validate(cmd);
+                Console.Write(resValidation);
+                Console.Write(res);
             }
         }
         [HttpGet("alldataconsumercommands")]
@@ -245,7 +288,7 @@ namespace Web.Controllers
         public void DeleteAllAdmins()
         {
             var filter = Builders<BaseUser>.Filter.OfType<Admin>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            //_database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
         }
 
         [HttpGet("deletealldataconsumers")]

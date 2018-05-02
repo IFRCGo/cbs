@@ -15,4 +15,9 @@
     <PackageReference Include="Dolittle.SDK.ReadModels" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.SDK.Queries" Version="2.0.0-alpha2*" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.mvc.core\2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
