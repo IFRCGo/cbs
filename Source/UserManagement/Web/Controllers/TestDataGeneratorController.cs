@@ -20,17 +20,36 @@ namespace Web.Controllers
     {
         private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
-        
+
+        public readonly IStaffUserRepositoryContext _context;
 
         public TestDataGeneratorController(
             IMongoDatabase database,
             ICommandCoordinator commandCoordinator,
-            
-            IStaffUsers staffUsers
+
+            IStaffUserRepositoryContext context
         )
         {
             _database = database;
             _commandCoordinator = commandCoordinator;
+            _context = context;
+        }
+
+        [HttpPut("newTest")]
+        public void TestNew()
+        {
+            var adminId = Guid.NewGuid();
+            
+            _context.AdminRepository.Insert(new Admin(
+                adminId,
+                "name",
+                "dispname",
+                "email@live.no",
+                DateTimeOffset.UtcNow
+                ));
+
+            _context.AdminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
+                Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 
         [HttpGet("generatetestdataset")]
@@ -104,7 +123,13 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _commandCoordinator.Handle(cmd);
+                //TODO: Einari, this is  really weird
+                var res = _commandCoordinator.Handle(cmd);
+                var validator = new RegisterNewAdminUserInputValidator();
+
+                var resValidation = validator.Validate(cmd);
+                Console.Write(resValidation);
+                Console.Write(res);
             }
         }
         [HttpGet("alldataconsumercommands")]

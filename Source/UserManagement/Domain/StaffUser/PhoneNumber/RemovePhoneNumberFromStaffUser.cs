@@ -8,5 +8,7 @@ namespace Domain.StaffUser.PhoneNumber
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
+
+        public Role Role { get; set; }
     }
 }

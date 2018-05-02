@@ -11,10 +11,15 @@ namespace Read.DataCollectors
 {
     public interface IDataCollectors
     {
+        IEnumerable<DataCollector> GetAll();
         Task<IEnumerable<DataCollector>> GetAllAsync();
+
         DataCollector GetById(Guid id);
+
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);
-        Task Save(DataCollector dataCollector);
+
+        void Save(DataCollector dataCollector);
+        Task SaveAsync(DataCollector dataCollector);
     }
 }

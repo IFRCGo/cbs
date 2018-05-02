@@ -19,9 +19,9 @@ namespace Read.DataCollectors
             _dataCollectors = dataCollectors;
         }
 
-        public async Task Process(DataCollectorRegistered @event)
+        public void Process(DataCollectorRegistered @event)
         {
-            await _dataCollectors.SaveAsync(new DataCollector(@event.DataCollectorId)
+            _dataCollectors.Save(new DataCollector(@event.DataCollectorId)
             {
                 DisplayName = @event.DisplayName,
                 FullName = @event.FullName,
@@ -72,7 +72,7 @@ namespace Read.DataCollectors
 
         }
 
-        public void Process(DataCollectorPrefferedLanguageChanged @event)
+        public void Process(DataCollectorPreferredLanguageChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
                 Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
@@ -91,7 +91,8 @@ namespace Read.DataCollectors
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var res = _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
                 Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
