@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 15.0.26124.0
@@ -29,6 +29,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.TextMessaging", "..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj", "{757E9A48-F695-4B7B-9DDE-216FF001EE77}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Events", "..\Infrastructure\Events\Infrastructure.Events.csproj", "{A24710C1-9160-4181-82EA-32CC59CDE508}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rules", "Rules\Rules.csproj", "{E39D0D02-BBB8-48A1-8194-37A0A533014C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,6 +210,18 @@ Global
 		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x64.Build.0 = Release|Any CPU
 		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x86.ActiveCfg = Release|Any CPU
 		{A24710C1-9160-4181-82EA-32CC59CDE508}.Release|x86.Build.0 = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|x64.Build.0 = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Debug|x86.Build.0 = Debug|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|x64.ActiveCfg = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|x64.Build.0 = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|x86.ActiveCfg = Release|Any CPU
+		{E39D0D02-BBB8-48A1-8194-37A0A533014C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
