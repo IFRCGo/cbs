@@ -14,7 +14,7 @@ namespace Rules.StaffUser.Registering
 
         bool IsStaffUserRegistered(Guid staffUserId)
         {
-            return true;
+            return false;
         }
     }
 }
