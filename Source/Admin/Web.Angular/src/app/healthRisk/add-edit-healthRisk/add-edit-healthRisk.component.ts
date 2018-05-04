@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class AddEditHealthRiskComponent implements OnInit {
-    private risk: HealthRisk;
+    risk: HealthRisk;
 
     createCmd: CreateHealthRisk = new CreateHealthRisk();
     modifyCmd: ModifyHealthRisk = new ModifyHealthRisk();
