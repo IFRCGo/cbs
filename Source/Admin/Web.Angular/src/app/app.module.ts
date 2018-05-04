@@ -12,6 +12,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { AuthenticationService } from 'navigation/authentication.service';
 import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { CommandCoordinator } from './services/CommandCoordinator';
 
 const routes: Routes = [
     {
@@ -45,7 +46,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
     ],
     providers: [
-        AuthenticationService
+        AuthenticationService,
+        CommandCoordinator
     ],
     bootstrap: [AppComponent]
 })
