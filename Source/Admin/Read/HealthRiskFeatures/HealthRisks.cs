@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 
@@ -39,6 +40,11 @@ namespace Read.HealthRiskFeatures
             return await list.ToListAsync();
         }
 
+        public void Save(HealthRisk healthRisk)
+        {
+            _collection.ReplaceOne(_ => _.Id == healthRisk.Id, healthRisk, new UpdateOptions {IsUpsert = true});
+        }
+
         public async Task SaveAsync(HealthRisk healthRisk)
         {
             await _collection.InsertOneAsync(healthRisk);
@@ -49,6 +55,16 @@ namespace Read.HealthRiskFeatures
             var filter = Builders<HealthRisk>.Filter.Eq(v => v.Id, healthRisk.Id);
 
             await _collection.ReplaceOneAsync(filter, healthRisk);
+        }
+
+        public UpdateResult Update(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update)
+        {
+           return _collection.UpdateOne(filter, update);
+        }
+
+        public UpdateResult Update(Expression<Func<HealthRisk, bool>> filter, UpdateDefinition<HealthRisk> update)
+        {
+            return _collection.UpdateOne(filter, update);
         }
 
         public async Task RemoveAsync(Guid id)
