@@ -17,10 +17,8 @@ namespace Read.StaffUsers.Models
             BirthYear = birthYear;
             Sex = sex;
         }
-
-        [BsonRequired]
+        
         public Location Location { get; set; }
-        [BsonRequired]
         public Guid NationalSociety { get; set; }
 
         public Language PreferredLanguage { get; set; }

@@ -76,7 +76,7 @@ namespace Web.TestData
                     case Role.DataVerifier:
                         dataVerifiers.Add(StaffUserRegistrationGenerator.GenerateDefaultNewStaffRegistration<RegisterNewStaffDataVerifier>());
                         break;
-                    case Role.SystemCoordinator:
+                    case Role.SystemConfigurator:
                         systemConfigurators.Add(StaffUserRegistrationGenerator.GenerateDefaultNewStaffRegistration<RegisterNewSystemConfigurator>());
                         break;
                 }

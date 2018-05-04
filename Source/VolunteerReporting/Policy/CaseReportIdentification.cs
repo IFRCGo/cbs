@@ -28,11 +28,11 @@ namespace Policy
             this.dataCollectors = dataCollectors;
         }
 
-        public async Task Process(PhoneNumberAddedToDataCollector @event)
+        public void Process(PhoneNumberAddedToDataCollector @event)
         {
             
-            var unknownReports = await this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
-            var dataCollector = this.dataCollectors.GetById(@event.DataCollectorId); 
+            var unknownReports = this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var dataCollector = dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
             {
                 var repo = caseReportingAggregateRootRepository.Get(item.Id);
@@ -54,7 +54,7 @@ namespace Policy
             } 
             
             
-            var invalidAndUnknownReports = await this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var invalidAndUnknownReports = this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
                 var repo = caseReportingAggregateRootRepository.Get(item.Id);

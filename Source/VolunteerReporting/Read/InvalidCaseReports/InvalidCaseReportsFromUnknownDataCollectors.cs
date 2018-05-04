@@ -19,6 +19,11 @@ namespace Read.InvalidCaseReports
             _collection = database.GetCollection<InvalidCaseReportFromUnknownDataCollector>(CollectionName);
         }
 
+        public IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetAll()
+        {
+            return _collection.FindSync(_ => true).ToList();
+        }
+
         public async Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync()
         {
             var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Empty;
@@ -26,20 +31,35 @@ namespace Read.InvalidCaseReports
             return await list.ToListAsync();
         }
 
-        public async Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumber(string phoneNumber)
+        public IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber)
+        {
+            return _collection.FindSync(_ => _.PhoneNumber == phoneNumber).ToList();
+        }
+
+        public async Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber)
         {
             var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.PhoneNumber, phoneNumber);
             var list = await _collection.FindAsync(filter);
             return await list.ToListAsync();
         }
 
-        public async Task Save(InvalidCaseReportFromUnknownDataCollector caseReport)
+        public void Remove(Guid id)
+        {
+            _collection.DeleteOne(_ => _.Id == id);
+        }
+
+        public void Save(InvalidCaseReportFromUnknownDataCollector caseReport)
+        {
+            _collection.ReplaceOne(_=> _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
+        }
+
+        public async Task SaveAsync(InvalidCaseReportFromUnknownDataCollector caseReport)
         {
             var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, caseReport.Id);
             await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
         }
 
-        public async Task Remove(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, id);
             await _collection.DeleteOneAsync(filter);
