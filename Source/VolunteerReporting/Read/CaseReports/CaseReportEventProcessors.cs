@@ -1,6 +1,6 @@
 using Concepts;
-using doLittle.Events.Processing;
-using doLittle.Time;
+using Dolittle.Events.Processing;
+using Dolittle.Time;
 using Events;
 using System.Threading.Tasks;
 
@@ -53,9 +53,9 @@ namespace Read.CaseReports
             _caseReportsFromUnknownDataCollectors.Save(caseReport);
         }   
         
-        public async Task Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event)
         {
-            await _caseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);            
+            _caseReportsFromUnknownDataCollectors.Remove(@event.CaseReportId);            
         }
     }
 }

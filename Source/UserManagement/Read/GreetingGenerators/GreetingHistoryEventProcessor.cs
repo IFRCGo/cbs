@@ -1,4 +1,4 @@
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events;
 using Events.DataCollector;
 
@@ -26,14 +26,19 @@ namespace Read.GreetingGenerators
 
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
+            
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
-            greetingHistory.PhoneNumber = @event.PhoneNumber;
-           await _greetingHistories.SaveAsync(greetingHistory);
+            greetingHistory.PhoneNumber = @event.PhoneNumber; // Todo: THis does nothing if GetByPhoneNumberAsync doesn't return nul
+            await _greetingHistories.SaveAsync(greetingHistory);
+            
+            
         }
 
         public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            await _greetingHistories.RemoveAsync(@event.PhoneNumber);
+         
+             await _greetingHistories.RemoveAsync(@event.PhoneNumber);
+           
         }
     }
 }

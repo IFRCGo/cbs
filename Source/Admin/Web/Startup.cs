@@ -21,25 +21,27 @@ namespace Web
         {
         }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCommon();
-        }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.Use(async (context, next) =>
-            {
-                await next();
 
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    services.AddCommon();
+        //}
 
-            app.UseCommon(env);
-        }
+        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+        //    app.Use(async (context, next) =>
+        //    {
+        //        await next();
+
+        //        if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
+        //        {
+        //            context.Request.Path = "/index.html";
+        //            await next();
+        //        }
+        //    });
+
+        //    app.UseCommon(env);
+        //}
     }
 }

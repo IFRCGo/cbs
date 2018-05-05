@@ -21,6 +21,11 @@ namespace Read.DataCollectors
             _collection = database.GetCollection<DataCollector>("DataCollector");
         }
 
+        public IEnumerable<DataCollector> GetAll()
+        {
+            return _collection.FindSync(_ => true).ToList();
+        }
+
         public async Task<IEnumerable<DataCollector>> GetAllAsync()
         {
             var filter = Builders<DataCollector>.Filter.Empty;
@@ -47,7 +52,12 @@ namespace Read.DataCollectors
             return dataCollectorId;
         }
 
-        public async Task Save(DataCollector dataCollector)
+        public void Save(DataCollector dataCollector)
+        {
+            _collection.ReplaceOne(_ => _.Id == dataCollector.Id, dataCollector, new UpdateOptions {IsUpsert = true});
+        }
+
+        public async Task SaveAsync(DataCollector dataCollector)
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
             await _collection.ReplaceOneAsync(filter, dataCollector, new UpdateOptions { IsUpsert = true });

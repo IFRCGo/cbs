@@ -1,5 +1,6 @@
 using System;
-using doLittle.Commands;
+using System.Collections.Generic;
+using Dolittle.Commands;
 
 namespace Domain.DataCollector.PhoneNumber
 {

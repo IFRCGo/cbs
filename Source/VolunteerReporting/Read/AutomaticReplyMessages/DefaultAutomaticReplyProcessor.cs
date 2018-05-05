@@ -1,5 +1,5 @@
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events.External;
 using System.Threading.Tasks;
 using System;

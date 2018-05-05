@@ -1,5 +1,5 @@
-using doLittle.Domain;
-using doLittle.Events.Processing;
+using Dolittle.Domain;
+using Dolittle.Events.Processing;
 using Read.DataCollectors;
 using Domain.MessageGenerator;
 using Events.DataCollector;
@@ -30,19 +30,22 @@ namespace Policies.GreetingGenerators
             // Todo Get the correct welcome message based on the dataCollector.PreferredLanguage
             var welcomeMessage = "Welcome!";
 
-            var smsGenerator = await  _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber);
+            
+            var smsGenerator = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber);
             if (smsGenerator != null)
             {
-                return;
+                return;// TODO: Something should be thrown
             }
 
             var smsGeneratorAggregateRootRepository = _messageGeneratorsAggregateRootRepository.Get(@event.DataCollectorId);
-            smsGeneratorAggregateRootRepository.GenerateMessage(new GenerateMessage()
+            smsGeneratorAggregateRootRepository.GenerateMessage(new GenerateMessage
             {
                 Id = @event.DataCollectorId,
                 Message = welcomeMessage,
                 PhoneNumber = @event.PhoneNumber
             });
+            
+            
         }
     }
 }

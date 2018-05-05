@@ -25,13 +25,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_owner
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewDataOwner>();
             sut = new su.StaffUser(cmd.Role.StaffUserId);
-            is_new_registration = true;
             role = cmd.Role;
         };
 
         Because of = () =>
         {
-            sut.RegisterNewDataOwner(is_new_registration, role.FullName, role.DisplayName, role.Email,
+            sut.RegisterNewDataOwner(role.FullName, role.DisplayName, role.Email,
                 role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.BirthYear,
                 role.Sex, role.Position, role.DutyStation, now);
         };

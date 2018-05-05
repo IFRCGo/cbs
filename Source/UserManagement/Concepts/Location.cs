@@ -1,9 +1,12 @@
-using doLittle.Concepts;
+using Dolittle.Concepts;
 
 namespace Concepts
 {
     public class Location : Value<Location>
     {
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
+
         public static readonly Location NotSet;
 
         static Location()
@@ -16,8 +19,6 @@ namespace Concepts
             Longitude = longitude;
         }
 
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
 
         public bool IsValid()
         {

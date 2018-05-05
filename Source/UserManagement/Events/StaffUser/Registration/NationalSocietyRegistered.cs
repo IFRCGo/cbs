@@ -1,5 +1,5 @@
 using System;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events.StaffUser.Registration
 {
@@ -9,7 +9,8 @@ namespace Events.StaffUser.Registration
             StaffUserId = staffUserId;
             NationalSociety = nationalSociety;
         }
-        public Guid StaffUserId { get; }
-        public Guid NationalSociety { get; }
+        public Guid StaffUserId { get; set; }
+        public Guid NationalSociety { get; set; }
+
     }
 }

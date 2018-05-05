@@ -5,6 +5,7 @@
 
 using System;
 using System.Linq;
+using Domain.Project;
 using Read.ProjectFeatures;
 
 namespace Domain.RuleImplementations

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Domain.Admin;
 using Read.UserFeatures;
 
 namespace Domain.RuleImplementations

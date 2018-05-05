@@ -1,7 +1,7 @@
 export class HealthRisk {
     id: string;
     name: string;
-    readableId: string;
+    readableId: number;
     caseDefinition: string;
     note: string;
     communityCase: string;

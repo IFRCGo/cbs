@@ -17,8 +17,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_admin
             register = given.commands.build_valid_instance<RegisterNewAdminUser>();
 
             staff_user_is_registered = (id) => true;
-            var is_new_registration = true;
-            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered, is_new_registration);
+            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);
         };
 
         Because of = () => validation_results = sut.Validate(register);

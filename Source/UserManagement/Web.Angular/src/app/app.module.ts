@@ -7,8 +7,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { DataCollectorService } from './services/data-collector.service';
+import { CommandCoordinator } from './services/CommandCoordinator';
 import { StaffUserService } from './services/staff-user.service';
 
 import { AppComponent } from './app.component';
@@ -30,6 +32,7 @@ import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 import { USER_FORM_ROUTES } from './user-form';
 import { USER_DETAIL_ROUTES } from './user-detail';
 import { ModalModule } from 'ngx-bootstrap';
+import { EditUserFormDataCollectorComponent } from './user-form/edit-user-form-data-collector/edit-user-form-data-collector.component';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
     AppComponent,
     UserListComponent,
     DeleteUserComponent,
+    EditUserFormDataCollectorComponent,
     SelectUserRoleComponent,
     UserFormAdminComponent,
     UserFormSystemConfiguratorComponent,
@@ -65,12 +69,14 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     StaffUserService,
     DataCollectorService,
-    AuthenticationService
+    AuthenticationService,
+    CommandCoordinator
   ],
   bootstrap: [AppComponent]
 })

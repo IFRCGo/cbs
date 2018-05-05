@@ -12,6 +12,12 @@ import { ModalModule } from 'ngx-bootstrap';
 import { AuthenticationService } from 'navigation/authentication.service';
 import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { CommandCoordinator } from './services/CommandCoordinator';
+import {ToastrModule} from 'ngx-toastr';
+import { HealthRiskListComponent } from './healthRisk/healthRisk-list/healthRisk-list.component';
+import { AddEditHealthRiskComponent } from './healthRisk/add-edit-healthRisk/add-edit-healthRisk.component';
+import { DeleteHealthRiskComponent } from './healthRisk/delete-health-risk/delete-healthrisk.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
     {
@@ -21,9 +27,10 @@ const routes: Routes = [
     },
     {
         path:'healthrisk',
-        redirectTo: 'healthrisk',
-        pathMatch:'full',
-    }
+        redirectTo: "healthrisk",
+        pathMatch: "full"
+    },
+    
 ];
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
@@ -41,11 +48,14 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
         rootRouting,
         ProjectModule,
         HealthRiskModule,
-        ModalModule.forRoot()
+        BrowserAnimationsModule,
+        ModalModule.forRoot(),
+        ToastrModule.forRoot()
 
     ],
     providers: [
-        AuthenticationService
+        AuthenticationService,
+        CommandCoordinator
     ],
     bootstrap: [AppComponent]
 })

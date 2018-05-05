@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using System.Collections.Generic;
-using doLittle.Logging;
+using Dolittle.Logging;
 
 namespace Infrastructure.Kafka
 {

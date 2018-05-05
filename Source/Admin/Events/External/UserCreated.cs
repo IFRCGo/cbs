@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events.External
 {

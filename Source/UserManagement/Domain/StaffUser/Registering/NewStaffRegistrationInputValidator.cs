@@ -1,10 +1,10 @@
-using doLittle.FluentValidation.Commands;
-using doLittle.Reflection;
+using Dolittle.Commands.Validation;
+using Dolittle.Reflection;
 using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewStaffRegistrationInputValidator<TCommand,TRole> : CommandInputValidator<TCommand> 
+    public abstract class NewStaffRegistrationInputValidator<TCommand,TRole> : CommandInputValidatorFor<TCommand> 
         where TCommand : NewStaffRegistration<TRole>
         where TRole : Roles.StaffRole
     {
@@ -27,13 +27,15 @@ namespace Domain.StaffUser.Registering
 
         protected NewStaffRegistrationInputValidator()
         {
+            //TODO: This was not working
             RuleFor(_ => _.Role)
                 .NotNull().WithMessage("Role is required")
                 .SetValidator(new HaveUserInfoValidator());
-            
+
+
             //TODO: This can be done much better!  Need to look into FluentValidation to
             //see how to set a validator without the fluent interface
-            if(IsRole<IRequireAssignedNationalSocieties>())
+            if (IsRole<IRequireAssignedNationalSocieties>())
             {
                 RuleFor(_ => (_ as IRequireAssignedNationalSocieties))
                     .NotNull()

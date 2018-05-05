@@ -1,5 +1,5 @@
 using System;
-using doLittle.Commands;
+using Dolittle.Commands;
 
 namespace Domain.StaffUser.Delete
 {

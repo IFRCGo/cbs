@@ -19,17 +19,27 @@ namespace Read.InvalidCaseReports
             _collection = database.GetCollection<InvalidCaseReport>(CollectionName);
         }
 
+        public void Save(InvalidCaseReport caseReport)
+        {
+            _collection.ReplaceOne(_=> _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
+        }
+
+        public Task SaveAsync(InvalidCaseReport caseReport)
+        {
+            var filter = Builders<InvalidCaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
+            return _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
+        }
+
+        public IEnumerable<InvalidCaseReport> GetAll()
+        {
+            return _collection.FindSync(_ => true).ToList();
+        }
+
         public async Task<IEnumerable<InvalidCaseReport>> GetAllAsync()
         {
             var filter = Builders<InvalidCaseReport>.Filter.Empty;
             var list = await _collection.FindAsync(filter);
             return await list.ToListAsync();
-        }
-
-        public async Task Save(InvalidCaseReport caseReport)
-        {
-            var filter = Builders<InvalidCaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
-            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
         }
     }
 }

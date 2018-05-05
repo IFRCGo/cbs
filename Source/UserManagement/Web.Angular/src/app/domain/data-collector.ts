@@ -1,4 +1,4 @@
-import { Location } from "./location.model";
+import { Location } from './location.model';
 
 class PhoneNumber {
     value: string;
@@ -11,27 +11,25 @@ export class DataCollector {
     fullName: string;
     displayName: string;
     yearOfBirth: number;
-    phoneNumberString: string;
     phoneNumbers: Array<PhoneNumber>;
-    sex: string;
-    preferredLanguage: string;
+    sex: number;
+    preferredLanguage: number;
     location: Location;
     registeredAt: Date;
     lastReportRecievedAt: Date;
 
     constructor(o: any) {
 
-        this.dataCollectorId = o.id;
+        this.dataCollectorId = o.dataCollectorId;
         this.fullName = o.fullName;
         this.displayName = o.displayName;
         this.yearOfBirth = o.yearOfBirth;
-        this.phoneNumberString = o.phoneNumberString;
         this.phoneNumbers = o.phoneNumbers;
         this.sex = o.sex;
         this.preferredLanguage = o.preferredLanguage;
         this.location = {
             longitude: o.longitude,
-            latitude: o.latitude   
+            latitude: o.latitude
         }
         this.registeredAt = o.registeredAt;
     }

@@ -6,6 +6,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.HealthRisk;
+using Domain.Project;
 using Domain.RuleImplementations;
 using FakeItEasy;
 using Read.HealthRiskFeatures;
@@ -28,7 +30,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     Id = projectId,
                     HealthRisks =
@@ -40,7 +42,7 @@ namespace Domain.Tests
 
             var healthRisks = A.Fake<IHealthRisks>();
             A.CallTo(() => healthRisks.GetById(A<Guid>._)).Returns(
-                new HealthRisk());
+                new Read.HealthRiskFeatures.HealthRisk());
 
             IProjectHealthRiskRules projectHealthRiskRules = new ProjectHealthRiskRules(projects, healthRisks);
             var validator = new AddProjectHealthRiskValidator(projectHealthRiskRules);
@@ -56,7 +58,7 @@ namespace Domain.Tests
             var healthRiskId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     Id = projectId,
                     HealthRisks = new[] {new ProjectHealthRisk() {HealthRiskId = healthRiskId},}
@@ -65,7 +67,7 @@ namespace Domain.Tests
 
             var healthRisks = A.Fake<IHealthRisks>();
             A.CallTo(() => healthRisks.GetById(A<Guid>._)).Returns(
-                new HealthRisk()
+                new Read.HealthRiskFeatures.HealthRisk()
             );
 
             IProjectHealthRiskRules projectHealthRiskRules = new ProjectHealthRiskRules(projects, healthRisks);
@@ -82,7 +84,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     Id = projectId,
                 }

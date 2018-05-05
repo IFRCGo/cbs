@@ -20,8 +20,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_data_consumer
             register = given.commands.build_valid_instance<RegisterNewStaffDataConsumer>();
 
             staff_user_is_registered = (id) => true;
-            var is_new_registration = true;
-            sut = new RegisterNewStaffDataConsumerBusinessRulesValidator(staff_user_is_registered, is_new_registration);
+            sut = new RegisterNewStaffDataConsumerBusinessRulesValidator(staff_user_is_registered);
         };
 
         Because of = () => validation_results = sut.Validate(register);

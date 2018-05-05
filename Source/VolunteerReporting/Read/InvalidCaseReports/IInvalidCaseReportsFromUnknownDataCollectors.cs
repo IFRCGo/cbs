@@ -7,9 +7,14 @@ namespace Read.InvalidCaseReports
 {
     public interface IInvalidCaseReportsFromUnknownDataCollectors
     {
-        Task Save(InvalidCaseReportFromUnknownDataCollector caseReport);
+        //TODO: Redo with repository pattern
+        void Save(InvalidCaseReportFromUnknownDataCollector caseReport);
+        Task SaveAsync(InvalidCaseReportFromUnknownDataCollector caseReport);
+        IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync();
-        Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumber(string phoneNumber);
-        Task Remove(Guid id);
+        IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber);
+        Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber);
+        void Remove(Guid id);
+        Task RemoveAsync(Guid id);
     }
 }

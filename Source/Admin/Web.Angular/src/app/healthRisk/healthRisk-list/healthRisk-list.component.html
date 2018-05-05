@@ -25,7 +25,7 @@
             <td>{{ risk.threshold }}</td>
             <td>{{ risk.keyMessage }}</td>
             <td>
-                <a routerLink="update" >Edit</a> | <a ng-click="deleteHealthRisk(risk)">Delete</a>
+                <a [routerLink]="[risk.id,'update']" routerLinkActive="active">Edit</a> | <cbs-delete-healthrisk [risk]=risk></cbs-delete-healthrisk>
             </td>
         </tr>
     </tbody>

@@ -18,7 +18,7 @@ namespace Domain.Specs.DataCollector.when_removing_a_phone_number
             cmd = new RemovePhoneNumberFromDataCollector
             {
                 DataCollectorId = Guid.NewGuid(),
-                PhoneNumber = String.Empty
+                PhoneNumber = string.Empty
             };
         };
 

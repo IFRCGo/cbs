@@ -1,22 +1,45 @@
-using System.Threading.Tasks;
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
+using Events.StaffUser;
 using Events.StaffUser.Registration;
+using Read.StaffUsers.Admin;
+using Read.StaffUsers.DataConsumer;
+using Read.StaffUsers.DataCoordinator;
+using Read.StaffUsers.DataOwner;
+using Read.StaffUsers.DataVerifier;
 using Read.StaffUsers.Models;
+using Read.StaffUsers.SystemConfigurator;
+
 namespace Read.StaffUsers
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        private readonly IStaffUsers _collection;
+        private readonly IAdminRepository _adminRepository;
+        private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
+        private readonly IDataOwnerRepository _dataOwnerRepository;
+        private readonly IDataVerifierRepository _dataVerifierRepository;
+        private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
+        private readonly IDataConsumerRepository _dataConsumerRepository;
 
-        public UserEventProcessor(IStaffUsers collection)
+        public UserEventProcessor(
+            IAdminRepository adminRepository,
+            IDataConsumerRepository dataConsumerRepository,
+            IDataCoordinatorRepository dataCoordinatorRepository,
+            IDataOwnerRepository dataOwnerRepository,
+            IDataVerifierRepository dataVerifierRepository,
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
-            _collection = collection;
+            _adminRepository = adminRepository;
+            _dataCoordinatorRepository = dataCoordinatorRepository;
+            _dataOwnerRepository = dataOwnerRepository;
+            _dataVerifierRepository = dataVerifierRepository;
+            _systemConfiguratorRepository = systemConfiguratorRepository;
+            _dataConsumerRepository = dataConsumerRepository;
         }
 
-        public async Task Process(AdminRegistered @event)
+        public void Process(AdminRegistered @event)
         {
-            await _collection.SaveAsync(new Admin(
+            _adminRepository.Insert(new Models.Admin(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -24,9 +47,9 @@ namespace Read.StaffUsers
                 @event.RegisteredAt
             ));
         }
-        public async Task Process(StaffDataConsumerRegistered @event)
+        public void Process(StaffDataConsumerRegistered @event)
         {
-            await _collection.SaveAsync(new DataConsumer(
+            _dataConsumerRepository.Insert(new Models.DataConsumer(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -39,9 +62,9 @@ namespace Read.StaffUsers
                 (Sex)@event.Sex
                 ));
         }
-        public async Task Process(DataCoordinatorRegistered @event)
+        public void Process(DataCoordinatorRegistered @event)
         {
-            await _collection.SaveAsync(new DataCoordinator(
+            _dataCoordinatorRepository.Insert(new Models.DataCoordinator(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -53,9 +76,9 @@ namespace Read.StaffUsers
                 (Language)@event.PreferredLanguage
             ));
         }
-        public async Task Process(DataOwnerRegistered @event)
+        public void Process(DataOwnerRegistered @event)
         {
-            await _collection.SaveAsync(new DataOwner(
+            _dataOwnerRepository.Insert(new Models.DataOwner(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -69,9 +92,9 @@ namespace Read.StaffUsers
                 @event.DutyStation
             ));
         }
-        public async Task Process(StaffDataVerifierRegistered @event)
+        public void Process(StaffDataVerifierRegistered @event)
         {
-            await _collection.SaveAsync(new DataVerifier(
+            _dataVerifierRepository.Insert(new Models.DataVerifier(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -84,9 +107,9 @@ namespace Read.StaffUsers
                 new Location(@event.Latitude, @event.Longitude)
             ));
         }
-        public async Task Process(SystemConfiguratorRegistered @event)
+        public void Process(SystemConfiguratorRegistered @event)
         {
-            await _collection.SaveAsync(new SystemConfigurator(
+            _systemConfiguratorRepository.Insert(new Models.SystemConfigurator(
                 @event.StaffUserId,
                 @event.FullName,
                 @event.DisplayName,
@@ -98,35 +121,19 @@ namespace Read.StaffUsers
                 (Language)@event.PreferredLanguage
             ));
         }
-
-        public void Process(PhoneNumberRegistered @event)
+        public void Process(PhoneNumberAddedToDataCoordinator @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            try
-            {
-                dynamic user = baseUser;
-                user.PhoneNumbers.Add(new PhoneNumber(@event.PhoneNumber));
-                _collection.Save(baseUser);
-            }
-            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
-            {
-                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have phonenumbers");
-            }
+            _dataCoordinatorRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
         }
 
-        public void Process(NationalSocietyAssigned @event)
+        public void Process(PhoneNumberRemovedFromDataCoordinator @event)
         {
-            var baseUser = _collection.GetById<BaseUser>(@event.StaffUserId);
-            try
-            {
-                dynamic user = baseUser;
-                user.AssignedNationalSocieties.Add(@event.NationalSociety);
-                _collection.Save(baseUser);
-            }
-            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
-            {
-                throw new UserNotOfExpectedType($"The user with id {@event.StaffUserId} was does not have assigned national societies");
-            }
+            _dataCoordinatorRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(NationalSocietyAssignedToDataCoordinator @event)
+        {
+            _dataCoordinatorRepository.AddAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
         }
     }
 }

@@ -19,8 +19,7 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
             staff_user_is_registered = (id) => false;
             can_assign_to_national_society = (id) => false;
-            var is_new_registration = true;
-            sut = new RegisterNewSystemConfiguratorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society, is_new_registration);
+            sut = new RegisterNewSystemConfiguratorBusinessRulesValidator(staff_user_is_registered, can_assign_to_national_society);
         };
 
         Because of = () => validation_results = sut.Validate(register);

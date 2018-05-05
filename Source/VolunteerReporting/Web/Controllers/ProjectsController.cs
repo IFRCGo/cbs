@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Web.Controllers
 {
     [Route("api/projects")]
-    public class ProjectsController : BaseController
+    public class ProjectsController : Controller
     {
         private IProjects _projects;
 

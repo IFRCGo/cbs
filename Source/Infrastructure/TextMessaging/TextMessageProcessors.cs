@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using doLittle.Collections;
-using doLittle.DependencyInversion;
-using doLittle.Logging;
-using doLittle.Runtime.Commands;
-using doLittle.Runtime.Transactions;
-using doLittle.Types;
+using Dolittle.Collections;
+using Dolittle.Logging;
+using Dolittle.Runtime.Commands;
+using Dolittle.Runtime.Commands.Coordination;
+using Dolittle.Runtime.Transactions;
+using Dolittle.Types;
 
 namespace Infrastructure.TextMessaging
 {

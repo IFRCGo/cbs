@@ -23,12 +23,11 @@ namespace Domain.Specs.StaffUser.Registering.a_new_staff_data_verifier
             command = given.commands.build_valid_instance<RegisterNewStaffDataVerifier>();
             command.Role.Sex = Sex.Female;
             command.Role.BirthYear = 1980;
-            is_new_registration = true;
             sut = new su.StaffUser(command.Role.StaffUserId);
         };
 
         Because of = () => {
-            sut.RegisterNewDataVerifier(is_new_registration, command.Role.FullName,command.Role.DisplayName,command.Role.Email,
+            sut.RegisterNewDataVerifier(command.Role.FullName,command.Role.DisplayName,command.Role.Email,
                     command.Role.NationalSociety, command.Role.PreferredLanguage.Value, command.Role.PhoneNumbers, 
                     command.Role.BirthYear, command.Role.Sex, constants.valid_location, now);
         };

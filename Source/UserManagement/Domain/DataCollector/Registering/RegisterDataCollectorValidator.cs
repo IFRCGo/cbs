@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using doLittle.FluentValidation.Commands;
+using Concepts;
+using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.DataCollector.Registering
 {
-    public class RegisterDataCollectorValidator : CommandInputValidator<RegisterDataCollector>
+    public class RegisterDataCollectorValidator : CommandInputValidatorFor<RegisterDataCollector>
     {
         public RegisterDataCollectorValidator()
         {
@@ -27,28 +27,34 @@ namespace Domain.DataCollector.Registering
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
 
+            //TODO: Add later
             //RuleFor(_ => _.Email)
             //    .Cascade(CascadeMode.StopOnFirstFailure)
-            //    .NotEmpty().WithMessage("Email is required.")
             //    .EmailAddress().WithMessage("Email address must be valid");
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
 
             RuleFor(_ => _.GpsLocation)
-                .NotNull().WithMessage("Location must be provided");
-                //TODO: UNcomment when merged with Michael's branch.Must(l => l.isValid()).WithMessage("Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("Location must be provided")
+                .Must(l => l.IsValid()).WithMessage(
+                    "Location is invalid. Latitude must be in the range -90 to 90 and longitude in the range -180 to 180")
+                .Must(l => !l.Equals(Location.NotSet)).WithMessage("Location cannot be -1, -1");
+                
                 
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
 
             RuleFor(_ => _.YearOfBirth)
-                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth is required").When(y => y != null);
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Year of birth is required")
+                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
 
             RuleFor(_ => _.PhoneNumbers)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("At least one Phone Number is required")
-                .Must((IEnumerable<string> c) => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+                .Must(c => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
 
         }
     }

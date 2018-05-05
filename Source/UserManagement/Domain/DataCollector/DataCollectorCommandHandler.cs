@@ -4,13 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using doLittle.Domain;
+using Dolittle.Domain;
+using Dolittle.Commands.Handling;
+using Domain.DataCollector.Changing;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 
 namespace Domain.DataCollector
 {
-    public class DataCollectorCommandHandler : IDataCollectorCommandHandler
+    public class DataCollectorCommandHandler : ICanHandleCommands
     {
         private readonly IAggregateRootRepositoryFor<DataCollector> _repository;
 
@@ -25,7 +27,6 @@ namespace Domain.DataCollector
         {
             var root = _repository.Get(command.DataCollectorId);
             root.RegisterDataCollector(
-                command.IsNewRegistration,
                 command.FullName,
                 command.DisplayName,
                 command.YearOfBirth,
@@ -33,14 +34,37 @@ namespace Domain.DataCollector
                 command.PreferredLanguage,
                 command.GpsLocation,
                 command.PhoneNumbers,
-                command.RegisteredAt
+                DateTimeOffset.UtcNow
                 );
+        }
+
+        public void Handle(ChangeBaseInformation command)
+        {
+            var root =_repository.Get(command.DataCollectorId);
+            root.ChangeBaseInformation(
+                command.FullName,
+                command.DisplayName,
+                command.YearOfBirth,
+                command.Sex
+            );
+        }
+
+        public void Handle(ChangePreferredLanguage command)
+        {
+            var root = _repository.Get(command.DataCollectorId);
+            root.ChangePreferredLanguage(command.PreferredLanguage);
+        }
+
+        public void Handle(ChangeLocation command)
+        {
+            var root = _repository.Get(command.DataCollectorId);
+            root.ChangeLocation(command.Location);
         }
 
         public void Handle(DeleteDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.DeleteDataCollector(command.DataCollectorId);
+            root.DeleteDataCollector();
         }
 
 
@@ -53,7 +77,7 @@ namespace Domain.DataCollector
         public void Handle(RemovePhoneNumberFromDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId);
-            root.RemovePhoneNumber(command.PhoneNumber);
+            root.RemovePhoneNumbers(command.PhoneNumber);
         }
     }
 }

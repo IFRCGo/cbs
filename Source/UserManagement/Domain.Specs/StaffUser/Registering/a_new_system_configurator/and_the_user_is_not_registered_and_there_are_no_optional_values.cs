@@ -27,14 +27,13 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
             role = cmd.Role;
-            is_new_registration = true;
             sut = new su.StaffUser(role.StaffUserId);
             
         };
 
         private Because of = () =>
         {
-            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
+            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, role.AssignedNationalSocieties,
                     role.BirthYear, role.Sex, now);
         };
@@ -60,12 +59,12 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
 
         It should_create_a_national_society_assigned_for_each_national_society = () =>
         {
-            sut.ShouldHaveEvent<NationalSocietyAssigned>().Instances(2);
+            sut.ShouldHaveEvent<NationalSocietyAssignedToSystemConfigurator>().Instances(2);
         };
 
         It should_create_a_phone_number_registered_event_for_each_phone_number = () =>
         {
-            sut.ShouldHaveEvent<PhoneNumberRegistered>().Instances(2);
+            sut.ShouldHaveEvent<PhoneNumberAddedToSystemConfigurator>().Instances(2);
         };
     }    
 }

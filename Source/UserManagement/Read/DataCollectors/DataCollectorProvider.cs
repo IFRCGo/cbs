@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-using doLittle.Read;
+using Dolittle.Queries;
 
 namespace Read.DataCollectors
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Concepts;
-using doLittle.Events.Processing;
+using Dolittle.Events.Processing;
 using Events;
 using Read.DataCollectors;
 using Read.HealthRisks;
@@ -71,10 +71,9 @@ namespace Read.CaseReportsForListing
              _caseReports.Save(caseReport);
         }
 
-        public async Task Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event)
         {
-            //TODO: Is this correct?
-            await _caseReports.Remove(@event.CaseReportId);
+            _caseReports.Remove(@event.CaseReportId);
         }
 
         public void Process(InvalidReportReceived @event)

@@ -6,9 +6,15 @@ namespace Read.CaseReportsForListing
 {
     public interface ICaseReportsForListing
     {
+        IEnumerable<CaseReportForListing> GetAll();
         Task<IEnumerable<CaseReportForListing>> GetAllAsync();
+        //TODO: Remove this evil abomination
+
         Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last);
-        Task Save(CaseReportForListing caseReport);
-        Task Remove(Guid id);
+        void Save(CaseReportForListing caseReport);
+        Task SaveAsync(CaseReportForListing caseReport);
+
+        void Remove(Guid id);
+        Task RemoveAsync(Guid id);
     }
 }

@@ -7,7 +7,7 @@ using Concepts;
 using Domain;
 using Read.DataCollectors;
 using Read.HealthRisks;
-using doLittle.Domain;
+using Dolittle.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

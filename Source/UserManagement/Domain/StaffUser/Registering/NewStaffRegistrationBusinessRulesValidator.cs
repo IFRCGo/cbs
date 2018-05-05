@@ -1,25 +1,24 @@
 using System;
-using doLittle.FluentValidation.Commands;
+using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.StaffUser.Registering
 {
-    public abstract class NewStaffRegistrationBusinessRulesValidator<TCommand,TRole> : CommandBusinessValidator<TCommand> 
+    public abstract class NewStaffRegistrationBusinessRulesValidator<TCommand,TRole> : CommandBusinessValidatorFor<TCommand> 
     where TCommand : NewStaffRegistration<TRole>
     where TRole : Roles.StaffRole
     {
         readonly StaffUserIsRegistered _isRegistered;
 
-        public NewStaffRegistrationBusinessRulesValidator(StaffUserIsRegistered isRegistered, bool isNewRegistration)
+        public NewStaffRegistrationBusinessRulesValidator(StaffUserIsRegistered isRegistered)
         {
             _isRegistered = isRegistered;
 
-            if (isNewRegistration)
-            {
+            
                 //Use ModelRule when the rule applies to the command as a whole or to multiple properties, not a specific property
-                RuleFor(_ => _.Role.StaffUserId).Must(NotBeAlreadyRegistered)
-                    .WithMessage(_ => $"User '{_.Role.StaffUserId}' is already registered.");
-            }
+            RuleFor(_ => _.Role.StaffUserId).Must(NotBeAlreadyRegistered)
+                .WithMessage(_ => $"User '{_.Role.StaffUserId}' is already registered.");
+            
         }
 
         private bool NotBeAlreadyRegistered(Guid staffUserId)

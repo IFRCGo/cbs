@@ -11,7 +11,7 @@ using Infrastructure.AspNet;
 namespace Web.Controllers
 {
     [Route("api/invalidcasereports")]
-    public class InvalidCaseReportsController : BaseController
+    public class InvalidCaseReportsController : Controller
     {
         private readonly IInvalidCaseReports _invalidCaseReports;
         private readonly IDataCollectors _dataCollectors;

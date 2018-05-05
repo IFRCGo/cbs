@@ -1,12 +1,12 @@
 using System;
-using doLittle.Events;
+using Dolittle.Events;
 
 namespace Events.External
 {
     public class InvalidReportReceived : IEvent
     {
-        public Guid DataCollectorId { get; }
-        public DateTimeOffset Timestamp { get; }
+        public Guid DataCollectorId { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public InvalidReportReceived(Guid dataCollectorId, DateTimeOffset timestamp)
         {

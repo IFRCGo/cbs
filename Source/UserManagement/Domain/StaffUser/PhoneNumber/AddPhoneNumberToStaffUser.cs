@@ -1,6 +1,6 @@
 using System;
 using Concepts;
-using doLittle.Commands;
+using Dolittle.Commands;
 
 namespace Domain.StaffUser.PhoneNumber
 {
@@ -8,5 +8,7 @@ namespace Domain.StaffUser.PhoneNumber
     {
         public Guid StaffUserId { get; set; }
         public string PhoneNumber { get; set; }
+
+        public Role Role { get; set; }
     }
 }

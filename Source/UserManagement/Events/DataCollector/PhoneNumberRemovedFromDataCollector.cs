@@ -1,11 +1,11 @@
-using doLittle.Events;
+using Dolittle.Events;
 using System;
 namespace Events.DataCollector
 {
     public class PhoneNumberRemovedFromDataCollector : IEvent
     {
-        public Guid DataCollectorId { get; }
-        public string PhoneNumber { get; }
+        public Guid DataCollectorId { get; set; }
+        public string PhoneNumber { get; set; }
 
         public PhoneNumberRemovedFromDataCollector(Guid dataCollectorId, string phoneNumber)
         {

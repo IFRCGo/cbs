@@ -1,4 +1,4 @@
-using doLittle.Serialization.Json;
+using Dolittle.Serialization.Json;
 using Infrastructure.Kafka;
 using Microsoft.AspNetCore.Mvc;
 

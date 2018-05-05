@@ -1,6 +1,6 @@
 using System;
-using doLittle.Domain;
-using doLittle.Runtime.Events;
+using Dolittle.Domain;
+using Dolittle.Runtime.Events;
 using Concepts;
 using Events;
 using System.Collections.Generic;

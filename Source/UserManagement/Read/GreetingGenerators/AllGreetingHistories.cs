@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using doLittle.Read;
+using Dolittle.Queries;
 using MongoDB.Driver;
 
 namespace Read.GreetingGenerators

@@ -2,32 +2,35 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using MongoDB.Driver;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Read.HealthRisks;
-using Infrastructure.AspNet;
+using Concepts;
+using Dolittle.Collections;
+using Dolittle.Events;
+using Dolittle.Logging;
+using Dolittle.Runtime.Events.Coordination;
+using Dolittle.Runtime.Transactions;
 using Events;
 using Events.External;
+using Infrastructure.Events;
+using Infrastructure.Kafka.BoundedContexts;
 using Infrastructure.TextMessaging;
-using Read.CaseReports;
-using Read.DataCollectors;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using Newtonsoft.Json;
 using Read.AutomaticReplyMessages;
-using Concepts;
-using Read.Projects;
-using doLittle.Events;
-using Microsoft.Extensions.Configuration;
-using Read.InvalidCaseReports;
+using Read.CaseReports;
 using Read.CaseReportsForListing;
+using Read.DataCollectors;
+using Read.HealthRisks;
+using Read.InvalidCaseReports;
+using Read.Projects;
 
-namespace Web.Controllers
+namespace Web
 {
     [Route("api/testdatagenerator")]
-    public class TestDataGeneratorController : BaseController
+    public class TestDataGeneratorController : Controller
     {
         private readonly IMongoDatabase _database;
         private readonly ITextMessageProcessors _textMessageProcessors;
@@ -39,11 +42,13 @@ namespace Web.Controllers
             "33333333", // DataCollector #3
             "00000000"  // Non existing data collector
         };
+        private readonly IEventReplayer _eventReplayer;
 
-        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors)
+        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IEventReplayer eventReplayer)
         {
             _textMessageProcessors = textMessageProcessors;
             _database = database;
+            _eventReplayer = eventReplayer;
         }
 
         [HttpGet("all")]
@@ -65,7 +70,6 @@ namespace Web.Controllers
             return _database.Client.Settings.Server.Host;
         }
 
-
         [HttpGet("healthrisks")]
         public void CreateHealthRisks()
         {
@@ -73,8 +77,7 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-            foreach (var healthRisk in healthRisks)
-                Apply(healthRisk.Id, healthRisk);
+            _eventReplayer.Replay(healthRisks, _ => _.Id);
         }
 
         [HttpGet("datacollectors")]
@@ -86,15 +89,13 @@ namespace Web.Controllers
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
-            foreach (var dataCollector in dataCollectors)
-            {
-                Apply(dataCollector.DataCollectorId, dataCollector);
-                Apply(dataCollector.DataCollectorId, new PhoneNumberAddedToDataCollector
+            _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
+                eventSource.Apply(new PhoneNumberAddedToDataCollector
                 {
-                    DataCollectorId = dataCollector.DataCollectorId,
+                    DataCollectorId = @event.DataCollectorId,
                     PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
                 });
-            }
+            });
         }
 
 
@@ -202,19 +203,9 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplies.json"));
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
-
+            _eventReplayer.Replay(events, _ => _.Id);
         }
+
         [HttpGet("producejsonfordefaultautomaticreplymessages")]
         public void ProduceJsonForDefaultAutomaticReplyMessages()
         {
@@ -264,17 +255,7 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplies.json"));
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            _eventReplayer.Replay(events, _ => _.Id);
         }
 
         [HttpGet("producejsonforautomaticreplymessages")]
@@ -435,17 +416,7 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<AutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyKeyMessages.json"));
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            _eventReplayer.Replay(events, _ => _.Id);
         }
 
 
@@ -456,17 +427,7 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplyKeyMessages.json"));
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            _eventReplayer.Replay(events, _ => _.Id);
         }
 
 
@@ -477,44 +438,21 @@ namespace Web.Controllers
             _collection.DeleteMany(v => true);
 
             var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            foreach (var project in projects)
-                Apply(project.Id, project);
+            _eventReplayer.Replay(projects, _ => _.Id);            
         }
 
         [HttpGet("testDelete")]
         public void TestDelete()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyRemoved[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyRemoved.json"));
-
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            _eventReplayer.Replay(events, _ => _.Id);
         }
+        
         [HttpGet("testChangeMessage")]
         public void TestChangeMessage()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyChangeTest.json"));
-
-            foreach (var @event in events)
-            {
-                try
-                {
-                    Apply(@event.Id, @event);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            _eventReplayer.Replay(events, _ => _.Id);
         }
-
     }
 }

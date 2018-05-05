@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Domain.Admin;
 using Domain.RuleImplementations;
 using FakeItEasy;
 using Read.ProjectFeatures;
@@ -26,7 +27,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }
@@ -52,7 +53,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }
@@ -80,7 +81,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     DataVerifiers = new[] {new User {Id = userId}},
                 }
@@ -108,7 +109,7 @@ namespace Domain.Tests
 
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Project
+                new Read.ProjectFeatures.Project
                 {
                     DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }

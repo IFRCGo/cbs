@@ -21,17 +21,16 @@ namespace Domain.Specs.StaffUser.Registering.a_new_system_configurator
             now = DateTimeOffset.UtcNow;
             cmd = given.commands.build_valid_instance<RegisterNewSystemConfigurator>();
             role = cmd.Role;
-            is_new_registration = true;
             sut = new su.StaffUser(cmd.Role.StaffUserId);
 
             //register the user so that they are already registered
-            sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
+            sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
                     role.BirthYear, role.Sex, now);
         };
 
         Because of = () => result = Catch.Exception(
-            () => sut.RegisterNewSystemConfigurator(is_new_registration, role.FullName, role.DisplayName, role.Email,
+            () => sut.RegisterNewSystemConfigurator(role.FullName, role.DisplayName, role.Email,
                     role.NationalSociety, role.PreferredLanguage.Value, role.PhoneNumbers, new[] { Guid.NewGuid() },
                     role.BirthYear, role.Sex, now)
         );

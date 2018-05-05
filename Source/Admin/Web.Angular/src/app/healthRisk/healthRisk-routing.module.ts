@@ -19,7 +19,7 @@ const routes: Routes = [
             {
                 path: ':id/update',
                 component: AddEditHealthRiskComponent
-            },
+            }
         ]
     }
 ];

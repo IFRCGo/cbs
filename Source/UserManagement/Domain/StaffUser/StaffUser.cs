@@ -1,8 +1,11 @@
-using doLittle.Domain;
+using Dolittle.Domain;
 using System;
 using System.Collections.Generic;
 using Concepts;
+using Domain.StaffUser.Changing;
 using Domain.StaffUser.Registering;
+using Events.StaffUser;
+using Events.StaffUser.Changing;
 using Events.StaffUser.Registration;
 
 namespace Domain.StaffUser
@@ -16,102 +19,283 @@ namespace Domain.StaffUser
 
         #region Visible Registration Commands
 
-        public void RegisterNewAdminUser(bool isNewRegistration, string fullname, string displayname, string email, DateTimeOffset registeredAt)
+        public void RegisterNewAdminUser(string fullname, string displayname, string email, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterAdmin(fullname, displayname, email, registeredAt);
         }
 
-        public void RegisterNewSystemConfigurator(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewSystemConfigurator(string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                         IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+           
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterSystemConfigurator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
-            RegisterPhoneNumbers(phoneNumbers);
-            RegisterAssignedToNationalSocieties(assignedTo);
+
+            foreach (var number in phoneNumbers)
+            {
+                Apply(new PhoneNumberAddedToSystemConfigurator(
+                    EventSourceId,
+                    number
+                ));
+            }
+
+            foreach (var _nationalSociety in assignedTo)
+            {
+                Apply(new NationalSocietyAssignedToSystemConfigurator(
+                    EventSourceId,
+                    _nationalSociety
+                    ));
+            }
+            
         }
 
-        public void RegisterNewDataCoordinator(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataCoordinator(string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                     IEnumerable<Guid> assignedTo, int? birthYear, Sex? sex, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataCoordinator(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear);
-            RegisterPhoneNumbers(phoneNumbers);
-            RegisterAssignedToNationalSocieties(assignedTo);
+
+            foreach (var number in phoneNumbers)
+            {
+                Apply(new PhoneNumberAddedToDataCoordinator(
+                    EventSourceId,
+                    number
+                ));
+            }
+
+            foreach (var _nationalSociety in assignedTo)
+            {
+                Apply(new NationalSocietyAssignedToDataCoordinator(
+                    EventSourceId,
+                    _nationalSociety
+                    ));
+            }
         }
     
-        public void RegisterNewDataOwner(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataOwner(string fullname, string displayname, string email, 
                                             Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, int? birthYear, 
                                                 Sex? sex, string position, string dutyStation, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataOwner(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, position, dutyStation);
-            RegisterPhoneNumbers(phoneNumbers);
+
+            foreach (var number in phoneNumbers)
+            {
+                Apply(new PhoneNumberAddedToDataOwner(
+                    EventSourceId,
+                    number
+                ));
+            }
         }
 
-        public void RegisterNewDataConsumer(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataConsumer(string fullname, string displayname, string email, 
                                                     Guid nationalSociety, Language language, int? birthYear, Sex? sex, 
                                                         Location location, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
+            
+            Register(fullname, displayname, email, registeredAt);
+            
 
             RegisterDataConsumer(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
         }
 
-        public void RegisterNewDataVerifier(bool isNewRegistration, string fullname, string displayname, string email, 
+        public void RegisterNewDataVerifier(string fullname, string displayname, string email, 
                                                 Guid nationalSociety, Language language, IEnumerable<string> phoneNumbers, 
                                                 int? birthYear, Sex? sex, Location location, DateTimeOffset registeredAt)
         {
-            if (isNewRegistration)
-            {
-                Register(fullname, displayname, email, registeredAt);
-            }
-
+            
+            Register(fullname, displayname, email, registeredAt);
+           
             RegisterStaffDataVerifier(fullname, displayname, email, registeredAt, nationalSociety, language, sex, birthYear, location);
-            RegisterPhoneNumbers(phoneNumbers);
+
+            foreach (var number in phoneNumbers)
+            {
+                Apply(new PhoneNumberAddedToDataVerifier(
+                    EventSourceId,
+                    number
+                    ));
+            }
         }
 
+        #endregion
+
+        #region Changing-Commands
+
+        public void AddAssignedNationalSociety(Guid nationalSociety, Role role)
+        {
+            switch (role)
+            {
+                case Role.DataCoordinator:
+                    Apply(new NationalSocietyAssignedToDataCoordinator(
+                        EventSourceId,
+                        nationalSociety
+                        ));
+                    break;
+                case Role.SystemConfigurator:
+                    Apply(new NationalSocietyAssignedToSystemConfigurator(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(role), role, "This role does not have assigned national societies");
+            }
+        }
+
+        public void RemoveAssignedNationalSociety(Guid nationalSociety, Role role)
+        {
+            switch (role)
+            {
+                case Role.DataCoordinator:
+                    Apply(new NationalSocietyDeasignedFromDataCoordinator(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+                case Role.SystemConfigurator:
+                    Apply(new NationalSocietyDeasignedFromSystemConfigurator(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(role), role, "This role does not have assigned national societies");
+            }
+        }
+
+        public void ChangeAdminInformation(string fullName, string displayName, string email)
+        {
+            Apply(new BaseUserInformationChanged(
+                EventSourceId,
+                fullName,
+                displayName,
+                email
+                ));
+        }
+
+        public void ChangeDataOwnerInformation(string position, string dutyStation)
+        {
+            Apply(new DataOwnerInformationChanged(
+                EventSourceId,
+                dutyStation,
+                position
+                ));
+        }
+
+        public void ChangeLocation(Location location, Role role)
+        {
+            switch (role)
+            {
+                case Role.DataVerifier:
+                    Apply(new DataVerifierLocationChanged(
+                        EventSourceId,
+                        location.Latitude,
+                        location.Longitude
+                    ));
+                    break;
+                case Role.DataConsumer:
+                    Apply(new DataConsumerLocationChanged(
+                        EventSourceId,
+                        location.Latitude,
+                        location.Longitude
+                        ));
+                    break;
+               
+                default:
+                    //TODO: Create a new exception
+                    throw new ArgumentOutOfRangeException(nameof(role), role, "This role does not have a location");
+            }
+        }
+
+        public void ChangeNationalSociety(Guid nationalSociety, Role role)
+        {
+            switch (role)
+            {
+                case Role.DataVerifier:
+                    Apply(new DataVerifierNationalSocietyChanged(
+                        EventSourceId,
+                        nationalSociety
+                        ));
+                    break;
+                
+                case Role.DataCoordinator:
+                    Apply(new DataCoordinatorNationalSocietyChanged(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+                case Role.SystemConfigurator:
+                    Apply(new SystemConfiguratorNationalSocietyChanged(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+                case Role.DataOwner:
+                    Apply(new DataOwnerNationalSocietyChanged(
+                        EventSourceId,
+                        nationalSociety
+                    ));
+                    break;
+
+                default:
+                    //TODO: Create new exception
+                    throw new ArgumentOutOfRangeException(nameof(role), role, "This role does not have a national society");
+            }
+        }
+
+        public void ChangePreferredLanguage(Language language, Role role)
+        {
+            switch (role)
+            {
+                case Role.DataVerifier:
+                    Apply(new DataVerifierPreferredLanguageChanged(
+                        EventSourceId,
+                        (int)language
+                    ));
+                    break;
+
+                case Role.DataCoordinator:
+                    Apply(new DataCoordinatorPreferredLanguageChanged(
+                        EventSourceId,
+                        (int)language
+                    ));
+                    break;
+                case Role.SystemConfigurator:
+                    Apply(new SystemConfiguratorPreferredLanguageChanged(
+                        EventSourceId,
+                        (int)language
+                    ));
+                    break;
+                case Role.DataOwner:
+                    Apply(new DataOwnerPreferredLanguageChanged(
+                        EventSourceId,
+                        (int)language
+                    ));
+                    break;
+
+                default:
+                    //TODO: Create new exception
+                    throw new ArgumentOutOfRangeException(nameof(role), role, "This role does not have a preferred language");
+            }
+        }
 
         #endregion
 
         #region Private Register-methods
-
-        private void RegisterAssignedToNationalSocieties(IEnumerable<Guid> assignedNationalSocieties)
-        {
-            foreach(var nationalSociety in assignedNationalSocieties)
-            {
-                Apply(new NationalSocietyAssigned(EventSourceId, nationalSociety));
-            }
-        }
-        
-        private void RegisterPhoneNumbers(IEnumerable<string> phoneNumbers)
-        {
-            foreach(var phoneNumber in phoneNumbers)
-            {
-                Apply(new PhoneNumberRegistered(EventSourceId,phoneNumber));
-            }
-        }
 
         private void RegisterPreferredLanguage(Language language)
         {
@@ -186,7 +370,6 @@ namespace Domain.StaffUser
         private void On(NewUserRegistered @event)
         {
             _isRegistered = true;
-            //_registeredAt = DateTimeOffset.UtcNow;
         }
 
         #endregion

@@ -9,9 +9,9 @@ import { AuthenticationService } from './authentication.service';
     styleUrls: ['./nav-top-bar.component.scss']
 })
 export class NavTopBarComponent implements OnInit {
-    societies:any[];
-    name:string;
-    loggedIn:boolean;
+    societies: any[];
+    name: string;
+    loggedIn: boolean;
 
     constructor(private authentication:AuthenticationService) {
     }

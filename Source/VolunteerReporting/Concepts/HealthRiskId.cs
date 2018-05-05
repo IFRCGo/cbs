@@ -1,4 +1,4 @@
-using doLittle.Concepts;
+using Dolittle.Concepts;
 using System;
 
 namespace Concepts

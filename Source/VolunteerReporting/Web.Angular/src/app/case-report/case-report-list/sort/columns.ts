@@ -29,11 +29,14 @@ const hasHealthRisk = (c : CaseReportForListing): boolean => {
 
 export const CaseReportColumns: Array<Column> = [
     new SortableColumn(
-        'time', 'Time',
+        'date', 'Date',
         (a: CaseReportForListing, b: CaseReportForListing) =>
             a.timestamp.valueOf() - b.timestamp.valueOf(),
         (c: CaseReportForListing) =>
             true
+    ),
+    new Column(
+        'time', 'Time'
     ),
     new SortableColumn(
         'status', 'Status',

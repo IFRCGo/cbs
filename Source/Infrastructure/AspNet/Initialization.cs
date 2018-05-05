@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using System;
 using Autofac.Extensions.DependencyInjection;
-using doLittle.Applications;
+using Dolittle.Applications;
 using Infrastructure.Logging;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -20,8 +20,6 @@ namespace Infrastructure.AspNet
             Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
-            Internals.BoundedContext = new BoundedContext(boundedContext);
-            
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)

@@ -33,7 +33,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending">
-            <td>{{caseReport.timestamp | date:'medium'}}</td>
+            <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
+            <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
                 <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
                 <span *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
