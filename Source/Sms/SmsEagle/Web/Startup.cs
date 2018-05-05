@@ -14,15 +14,5 @@ namespace Web
             IConfiguration configuration) : base(loggerFactory, env, configuration)
         {
         }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCommon();
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseCommon(env);
-        }
     }
 }
