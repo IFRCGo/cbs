@@ -70,7 +70,7 @@ namespace Infrastructure.AspNet
                 .AllowAnyOrigin()
                 .AllowCredentials());
             app.UseMvc();
-            app.UseSwagger();
+            if( env.IsDevelopment()) app.UseSwagger();
 
             app.UseDolittle();
 
