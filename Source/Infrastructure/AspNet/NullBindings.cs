@@ -36,7 +36,7 @@ namespace Infrastructure.AspNet
             var bridge = new CommittedEventStreamBridge();
             builder.Bind<ICommittedEventStreamBridge>().To(bridge);
 
-            builder.Bind<ICanSendCommittedEventStream>().To<CommittedEventStreamSender>().Singleton();
+            builder.Bind<ICanSendCommittedEventStream>().To<Kafka.BoundedContexts.CommittedEventStreamSender>().Singleton();
 
             var receiver = new CommittedEventStreamReceiver(bridge, new NullLogger());
             builder.Bind<ICanReceiveCommittedEventStream>().To(receiver);
