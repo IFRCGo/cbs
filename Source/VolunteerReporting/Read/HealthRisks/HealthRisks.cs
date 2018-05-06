@@ -2,6 +2,7 @@ using System;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Concepts;
 
 namespace Read.HealthRisks
@@ -64,5 +65,34 @@ namespace Read.HealthRisks
             await _collection.DeleteOneAsync(filter);
         }
 
+        public UpdateResult Update(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update)
+        {
+            return _collection.UpdateOne(filter, update);
+        }
+
+        public Task<UpdateResult> UpdateAsync(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update)
+        {
+            return _collection.UpdateOneAsync(filter, update);
+        }
+
+        public void Remove(FilterDefinition<HealthRisk> filter)
+        {
+            _collection.DeleteOne(filter);
+        }
+
+        public void Remove(Expression<Func<HealthRisk, bool>> filter)
+        {
+            _collection.DeleteOne(filter);
+        }
+
+        public Task RemoveAsync(FilterDefinition<HealthRisk> filter)
+        {
+           return _collection.DeleteOneAsync(filter);
+        }
+
+        public Task RemoveAsync(Expression<Func<HealthRisk, bool>> filter)
+        {
+            return _collection.DeleteOneAsync(filter);
+        }
     }
 }

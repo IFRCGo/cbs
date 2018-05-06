@@ -1,9 +1,5 @@
 using Dolittle.Events.Processing;
 using Events.External;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Read.Projects
 {
     public class ProjectsEventProcessor : ICanProcessEvents

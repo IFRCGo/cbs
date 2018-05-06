@@ -79,7 +79,7 @@ namespace TextMessaging
             }
 
             var healthRiskReadableId = parsingResult.HealthRiskReadableId;
-            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
+            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId.Value);
             if (healthRiskId == HealthRiskId.NotSet)
             {
                 var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
@@ -108,7 +108,7 @@ namespace TextMessaging
             {
                 caseReporting.ReportFromUnknownDataCollector(
                     message.OriginNumber,
-                    healthRiskId,
+                    healthRiskId.Value,
                     parsingResult.MalesUnder5,
                     parsingResult.MalesAged5AndOlder,
                     parsingResult.FemalesUnder5,
@@ -121,7 +121,7 @@ namespace TextMessaging
 
             caseReporting.Report(
                 dataCollector.Id,
-                healthRiskId,
+                healthRiskId.Value,
                 message.OriginNumber,
                 parsingResult.MalesUnder5,
                 parsingResult.MalesAged5AndOlder,
