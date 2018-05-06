@@ -7,6 +7,6 @@ export class ChangePreferredLanguage extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#VolunteerReporting.DataCollector-ChangePreferredLanguage+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector-ChangePreferredLanguage+Command|Domain';
     }
 }
