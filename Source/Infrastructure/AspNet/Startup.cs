@@ -77,8 +77,8 @@ namespace Infrastructure.AspNet
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //BoundedContextListener.Start(app.ApplicationServices);
-            //TextMessageListener.Start(app.ApplicationServices);
+            BoundedContextListener.Start(app.ApplicationServices);
+            TextMessageListener.Start(app.ApplicationServices);
 
             ConfigureCustom(app, env);
 
