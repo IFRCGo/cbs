@@ -74,15 +74,21 @@ namespace Infrastructure.Kafka.BoundedContexts
         {
             try
             {
-                _logger.Trace($"Message received 'eventAsJson'");
+                _logger.Trace($"Message received '{eventAsJson}'");
                 dynamic raw = JsonConvert.DeserializeObject(eventAsJson);
+                _logger.Trace("Enumerate content");
 
                 foreach( var rawContentAndEnvelope in raw ) 
                 {
+                    _logger.Trace("Get EventSourceId");
                     var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Content.EventSourceId.ToString());
+                    _logger.Trace("Get Identifier");
                     var eventIdentifier = _applicationArtifactIdentifierStringConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
+                    _logger.Trace("Get Version");
                     var version = EventSourceVersion.FromCombined((double)rawContentAndEnvelope.Envelope.Version);
+                    _logger.Trace("Get CorrelationId");
                     var correlationId = (TransactionCorrelationId)Guid.Parse(rawContentAndEnvelope.Envelope.CorrelationId.ToString());
+                    _logger.Trace("Get EventSource from Id");
                     var eventSource = new ExternalSource(eventSourceId);
                     CorrelationId = correlationId;
                     
