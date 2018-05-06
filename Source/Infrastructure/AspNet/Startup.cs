@@ -20,33 +20,34 @@ namespace Infrastructure.AspNet
     public class Startup
     {
 
+        readonly ILoggerFactory _loggerFactory;
         readonly IHostingEnvironment _env;
         readonly IConfiguration _configuration;
         BootResult _bootResult;
-        
 
         public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
             _env = env;
             _configuration = configuration;
-        }
+            _loggerFactory = loggerFactory;
 
+            loggerFactory.AddJson(Globals.BoundedContext.Name);
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            if( _env.IsDevelopment() )
+            if (_env.IsDevelopment())
             {
-                services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
+                services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
             }
-            
+
             services
                 .AddCors()
-                .AddMvc();
-            ;
+                .AddMvc();;
             services.Configure<ConnectionStringsOptions>(_configuration);
 
-            _bootResult = services.AddDolittle();
-            
+            _bootResult = services.AddDolittle(_loggerFactory);
+
             ConfigureServicesCustom(services);
         }
 
@@ -55,7 +56,7 @@ namespace Infrastructure.AspNet
             containerBuilder.AddDolittle(_bootResult.Assemblies, _bootResult.Bindings);
             ConfigureContainerCustom(containerBuilder);
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -63,14 +64,14 @@ namespace Infrastructure.AspNet
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             }
-                        
+
             app.UseCors(builder => builder
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowAnyOrigin()
                 .AllowCredentials());
             app.UseMvc();
-            if( env.IsDevelopment()) app.UseSwagger();
+            if (env.IsDevelopment()) app.UseSwagger();
 
             app.UseDolittle();
 
@@ -86,8 +87,8 @@ namespace Infrastructure.AspNet
             app.RunAsSinglePageApplication();
         }
 
-        public virtual void ConfigureServicesCustom(IServiceCollection services) {}
-        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder) {}
-        public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) {}
+        public virtual void ConfigureServicesCustom(IServiceCollection services) { }
+        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder) { }
+        public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
     }
 }

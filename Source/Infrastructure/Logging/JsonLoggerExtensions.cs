@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.Logging
         public static ILoggerFactory AddJson(this ILoggerFactory factory, string source,
             Func<string, LogLevel, bool> filter = null)
         {
-            //factory.AddProvider(new JsonLoggerProvider(source, filter));
+            factory.AddProvider(new JsonLoggerProvider(source, filter));
             return factory;
         }
 

@@ -17,14 +17,11 @@ namespace Infrastructure.Logging
     {
         readonly string _category;
         readonly Func<string, LogLevel, bool> _filter;
-        readonly ICommandContextManager _commandContextManager;
 
-        public JsonLogger(string source, string category, Func<string, LogLevel, bool> filter,
-            ICommandContextManager commandContextManager)
+        public JsonLogger(string source, string category, Func<string, LogLevel, bool> filter)
         {
             _category = category;
             _filter = filter;
-            _commandContextManager = commandContextManager;
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -117,8 +114,6 @@ namespace Infrastructure.Logging
                     StackTrace = exception?.StackTrace ?? string.Empty
                 };
 
-                if (_commandContextManager.HasCurrent)
-                    logMessage.CorrelationId = _commandContextManager.GetCurrent().TransactionCorrelationId;
 
                 var serialized = JsonConvert.SerializeObject(logMessage, new JsonSerializerSettings
                 {

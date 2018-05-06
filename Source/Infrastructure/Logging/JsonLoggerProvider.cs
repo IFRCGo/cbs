@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Logging
 {
-    #if(false)
     public class JsonLoggerProvider : ILoggerProvider
     {
         readonly Func<string, LogLevel, bool> _filter;
@@ -22,17 +21,12 @@ namespace Infrastructure.Logging
 
         public ILogger CreateLogger(string categoryName)
         {
-            ICommandContextManager commandContextManager = null;
-            // Todo: Needs a proper correlation Id from real / current command context manager 
-            // find a way to retrieve this
-            commandContextManager = new NullCommandContextManager();
-
-            return new JsonLogger(_source, categoryName, _filter, commandContextManager);
+            return new JsonLogger(_source, categoryName, _filter);
         }
 
         public void Dispose()
         {
         }
     }
-    #endif
+
 }
