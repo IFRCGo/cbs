@@ -81,19 +81,19 @@ namespace Infrastructure.Kafka.BoundedContexts
                 foreach( var rawContentAndEnvelope in raw ) 
                 {
                     _logger.Trace("Get EventSourceId");
-                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Envelope.EventSourceId.ToString());
+                    EventSourceId eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Envelope.EventSourceId.ToString());
                     _logger.Trace("Get Identifier");
-                    var eventIdentifier = _applicationArtifactIdentifierStringConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
+                    IApplicationArtifactIdentifier eventIdentifier = _applicationArtifactIdentifierStringConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
                     _logger.Trace("Get Version");
-                    var version = EventSourceVersion.FromCombined((double)rawContentAndEnvelope.Envelope.Version);
+                    EventSourceVersion version = EventSourceVersion.FromCombined((double)rawContentAndEnvelope.Envelope.Version);
                     _logger.Trace("Get CorrelationId");
-                    var correlationId = (TransactionCorrelationId)Guid.Parse(rawContentAndEnvelope.Envelope.CorrelationId.ToString());
+                    TransactionCorrelationId correlationId = (TransactionCorrelationId)Guid.Parse(rawContentAndEnvelope.Envelope.CorrelationId.ToString());
                     _logger.Trace("Get EventSource from Id");
                     var eventSource = new ExternalSource(eventSourceId);
                     CorrelationId = correlationId;
                     
-                    _logger.Trace($"Received event of with resource name '{eventIdentifier.Resource.Name}' from '{eventSourceId}' with version '{version}' in correlation '{correlationId}'");
-                    var eventType = _eventTypes.SingleOrDefault(et => et.Name == eventIdentifier.Resource.Name);
+                    _logger.Trace($"Received event of with resource name '{eventIdentifier.Artifact.Name}' from '{eventSourceId}' with version '{version}' in correlation '{correlationId}'");
+                    var eventType = _eventTypes.SingleOrDefault(et => et.Name == eventIdentifier.Artifact.Name);
                     if( eventType != null )
                     {
                         _logger.Trace("Matching Event Type : " + eventType.AssemblyQualifiedName);
