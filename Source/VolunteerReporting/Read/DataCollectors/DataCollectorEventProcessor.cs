@@ -5,7 +5,7 @@
 using Events.External;
 using Dolittle.Events.Processing;
 using Concepts;
-using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {
@@ -26,21 +26,33 @@ namespace Read.DataCollectors
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             _dataCollectors.Save(dataCollector);
         }
+        //TODO: Not tested
+        public void Process(DataCollectorUserInformationChanged @event)
+        {
+            _dataCollectors.ChangeUserInformation(@event.DataCollectorId, @event.FullName, @event.DisplayName);
+        }
+        //TODO: Not tested
+        public void Process(DataCollectorLocationChanged @event)
+        {
+            _dataCollectors.Update(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.Location,
+                    new Location(@event.LocationLatitude, @event.LocationLongitude)));
+        }
+
+        //TODO: Is this something that makes sense, should we be able to remove a datacollector from VR?
+        public void Process(DataCollectorRemoved @event)
+        {
+            _dataCollectors.Remove(d => d.Id == @event.DataCollectorId);
+        }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Add(@event.PhoneNumber);            
-            _dataCollectors.Save(dataCollector);
+            _dataCollectors.AddPhoneNumber(d => d.Id == @event.DataCollectorId, @event.PhoneNumber);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            //TODO: How to handle if datacollector does not exist? SHould not occur since that mean error in event sequence
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Remove(@event.PhoneNumber);
-            _dataCollectors.Save(dataCollector);
+            _dataCollectors.RemovePhoneNumber(d => d.Id == @event.DataCollectorId, @event.PhoneNumber);
         }
     }
 }
