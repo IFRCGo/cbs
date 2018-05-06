@@ -7,6 +7,7 @@ using Concepts;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Read.DataCollectors
 {
@@ -61,6 +62,86 @@ namespace Read.DataCollectors
         {
             var filter = Builders<DataCollector>.Filter.Eq(c => c.Id, dataCollector.Id);
             await _collection.ReplaceOneAsync(filter, dataCollector, new UpdateOptions { IsUpsert = true });
+        }
+
+        public UpdateResult Update(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
+        {
+            return _collection.UpdateOne(filter, update);
+        }
+
+        public Task<UpdateResult> UpdateAsync(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
+        {
+            return _collection.UpdateOneAsync(filter, update);
+        }
+
+        public void Remove(FilterDefinition<DataCollector> filter)
+        {
+            _collection.DeleteOne(filter);
+        }
+
+        public void Remove(Expression<Func<DataCollector, bool>> filter)
+        {
+            _collection.DeleteOne(filter);
+        }
+
+        public Task RemoveAsync(FilterDefinition<DataCollector> filter)
+        {
+            return _collection.DeleteOneAsync(filter);
+        }
+
+        public Task RemoveAsync(Expression<Func<DataCollector, bool>> filter)
+        {
+            return _collection.DeleteOneAsync(filter);
+        }
+
+        public UpdateResult AddPhoneNumber(FilterDefinition<DataCollector> filter, string number)
+        {
+            return _collection.UpdateOne(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+        }
+
+        public UpdateResult AddPhoneNumber(Expression<Func<DataCollector, bool>> filter, string number)
+        {
+            return _collection.UpdateOne(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+        }
+
+        public Task<UpdateResult> AddPhoneNumberAsync(FilterDefinition<DataCollector> filter, string number)
+        {
+            return _collection.UpdateOneAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+        }
+
+        public Task<UpdateResult> AddPhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number)
+        {
+            return _collection.UpdateOneAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+        }
+
+        public UpdateResult RemovePhoneNumber(FilterDefinition<DataCollector> filter, string number)
+        {
+            return _collection.UpdateOne(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+        }
+
+        public UpdateResult RemovePhoneNumber(Expression<Func<DataCollector, bool>> filter, string number)
+        {
+            return _collection.UpdateOne(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+        }
+
+        public Task<UpdateResult> RemovePhoneNumberAsync(FilterDefinition<DataCollector> filter, string number)
+        {
+            return _collection.UpdateOneAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+        }
+
+        public Task<UpdateResult> RemovePhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number)
+        {
+            return _collection.UpdateOneAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+        }
+
+        public UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName)
+        {
+            return _collection.UpdateOne(d => d.Id == dataCollectorId,
+                Builders<DataCollector>.Update.Combine(
+                    Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
+                    Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName)
+                )
+            );
         }
     }
 }

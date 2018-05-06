@@ -4,7 +4,6 @@ using Dolittle.Events.Processing;
 using Events;
 using Read.DataCollectors;
 using Read.HealthRisks;
-using System.Threading.Tasks;
 
 namespace Read.CaseReportsForListing
 {
