@@ -81,7 +81,7 @@ namespace Infrastructure.Kafka.BoundedContexts
                 foreach( var rawContentAndEnvelope in raw ) 
                 {
                     _logger.Trace("Get EventSourceId");
-                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Content.EventSourceId.ToString());
+                    var eventSourceId = (EventSourceId)Guid.Parse(rawContentAndEnvelope.Envelope.EventSourceId.ToString());
                     _logger.Trace("Get Identifier");
                     var eventIdentifier = _applicationArtifactIdentifierStringConverter.FromString(rawContentAndEnvelope.Envelope.Event.ToString());
                     _logger.Trace("Get Version");
