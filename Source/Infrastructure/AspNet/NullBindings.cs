@@ -47,10 +47,12 @@ namespace Infrastructure.AspNet
             builder.Bind<ICallContext>().To(new DefaultCallContext());
             builder.Bind<ICanResolvePrincipal>().To(new DefaultPrincipalResolver());
 
+            builder.Bind<BoundedContext>().To(Globals.BoundedContext);
+
             var applicationConfigurationBuilder = new ApplicationConfigurationBuilder("CBS")
                 .Application(applicationBuilder =>
                     applicationBuilder
-                        .PrefixLocationsWith(new BoundedContext("VolunteerReporting"))
+                        .PrefixLocationsWith(Globals.BoundedContext)
                         .WithStructureStartingWith<BoundedContext>(_ => _
                             .Required.WithChild<Feature>(f => f
                                 .WithChild<SubFeature>(c => c.Recursive)
