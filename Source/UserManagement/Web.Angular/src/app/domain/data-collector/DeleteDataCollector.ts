@@ -5,6 +5,6 @@ export class DeleteDataCollector extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#VolunteerReporting.DataCollector-DeleteDataCollector+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector-DeleteDataCollector+Command|Domain';
     }
 }

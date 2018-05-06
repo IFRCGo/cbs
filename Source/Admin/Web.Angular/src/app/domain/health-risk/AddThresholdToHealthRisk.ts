@@ -11,6 +11,6 @@ export class AddThresholdToHealthRisk extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#VolunteerReporting.HealthRisk-AddThresholdToHealthRisk+Command|Domain';
+        this.type = 'CBS#Admin.HealthRisk-AddThresholdToHealthRisk+Command|Domain';
     }
 }

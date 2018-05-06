@@ -6,6 +6,6 @@ export class RemovePhoneNumberFromDataCollector extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#VolunteerReporting.DataCollector-RemovePhoneNumberFromDataCollector+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector-RemovePhoneNumberFromDataCollector+Command|Domain';
     }
 }
