@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Read.Projects
 {
-    public interface IProjects
+    public interface IProjects : IGenericReadModelRepositoryFor<Project, Guid>
     {
+        IEnumerable<Project> GetAll();
         Task<IEnumerable<Project>> GetAllAsync();
-        Task Save(Project project);
         Project GetById(Guid project);
     }
 }

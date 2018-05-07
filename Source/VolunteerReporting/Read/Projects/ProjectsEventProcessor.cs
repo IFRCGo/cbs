@@ -4,7 +4,7 @@ namespace Read.Projects
 {
     public class ProjectsEventProcessor : ICanProcessEvents
     {
-        private IProjects _projects;
+        private readonly IProjects _projects;
 
         public ProjectsEventProcessor(IProjects projects)
         {
