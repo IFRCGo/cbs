@@ -33,6 +33,11 @@ namespace Domain.DataCollector.Changing
                 .NotEmpty().WithMessage("Year of birth is required")
                 .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
             
+            RuleFor(_ => _.District)
+                .NotEmpty().WithMessage("District is not correct - Has to be defined");
+
+            RuleFor(_ => _.Region)
+                .NotEmpty().WithMessage("Region is not correct - Has to be defined");
 
         }
     }
