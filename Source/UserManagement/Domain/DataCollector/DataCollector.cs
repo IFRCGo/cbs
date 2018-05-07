@@ -23,7 +23,8 @@ namespace Domain.DataCollector
         public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt
+            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
+            string region, string district
             )
         {
             if (_isRegistered)
@@ -41,7 +42,10 @@ namespace Domain.DataCollector
                 (int)preferredLanguage,
                 gpsLocation.Longitude,
                 gpsLocation.Latitude,
-                registeredAt
+                registeredAt,
+                region,
+                district
+                
             ));
 
             foreach (var phoneNumber in phoneNumbers)
@@ -70,14 +74,14 @@ namespace Domain.DataCollector
             Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
         }
 
-        public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex)
+        public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex, string region, string district)
         {
             //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
             //{
             //    throw new Exception("Datacollector not registered");
             //}
 
-            Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex));
+            Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex, region, district));
         }
 
         public void DeleteDataCollector()
@@ -85,6 +89,15 @@ namespace Domain.DataCollector
             Apply(new DataCollectorRemoved(
                 EventSourceId
             ));
+        }
+
+        public void ChangeVillage(string village)
+        {
+            Apply(new DataCollectorVillageChanged
+            {
+                DataCollectorId = EventSourceId,
+                Village = village
+            });
         }
 
         public void AddPhoneNumber(string number)
@@ -127,6 +140,8 @@ namespace Domain.DataCollector
         }
 
         #endregion
+
+        
     }
 }
 

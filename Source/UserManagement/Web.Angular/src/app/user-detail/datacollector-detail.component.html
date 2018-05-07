@@ -6,6 +6,9 @@
     <div><span>National society: </span>{{dataCollector.nationalSociety}}</div>
     <div><span>Preferred Language: </span>{{getLanguageString(dataCollector.preferredLanguage)}}</div>
     <div><span>Location: </span>{{dataCollector.location.latitude}} / {{dataCollector.location.longitude}}</div>
+    <div><span>Region: </span>{{dataCollector.region}}</div>
+    <div><span>District: </span>{{dataCollector.district}}</div>
+    <div><span>Village: </span>{{dataCollector.village}}</div>
     <div><span>Phone numbers: </span><span *ngFor="let phonenumber of dataCollector.phoneNumbers">{{phonenumber.value}}, </span></div>
     <div><span>Registered date: </span>{{dataCollector.registeredAt}}</div>
     <div><span>Last report received at: </span>{{dataCollector.lastReportRecievedAt}}</div>

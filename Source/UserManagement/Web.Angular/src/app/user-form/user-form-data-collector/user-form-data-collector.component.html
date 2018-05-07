@@ -126,6 +126,52 @@
     </div>
     </fieldset>
   </div>
+
+
+  <div class="form-group">
+    <label for="region">Region</label>
+    <input type="text" class="form-control" id="region"
+            required
+            [(ngModel)]="command.region" name="region"
+            #region="ngModel">
+  <div *ngIf="region.invalid && (region.dirty || region.touched)" 
+    class="alert alert-warning">
+
+    <div *ngIf="region.errors?.required">
+      Region is required.
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="district">District</label>
+  <input type="text" class="form-control" id="district"
+          required
+          [(ngModel)]="command.district" name="district"
+          #district="ngModel">
+  <div *ngIf="district.invalid && (district.dirty || district.touched)" 
+    class="alert alert-warning">
+
+    <div *ngIf="district.errors?.required">
+      District is required.
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="village">Village</label>
+  <input type="text" class="form-control" id="village"
+          [(ngModel)]="changeVillageCommand.village" name="village"
+          #village="ngModel">
+  <div *ngIf="village.invalid && (village.dirty || village.touched)" 
+    class="alert alert-warning">
+
+    <div *ngIf="village.errors?.required">
+      Village is required.
+    </div>
+  </div>
+</div>
+
    <label>Phone numbers (comma seperated)</label>
   <div class="form-group">
     <input type="text"

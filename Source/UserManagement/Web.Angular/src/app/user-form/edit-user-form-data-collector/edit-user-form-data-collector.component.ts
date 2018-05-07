@@ -14,6 +14,7 @@ import { ChangePreferredLanguage } from '../../domain/data-collector/ChangePrefe
 import { RemovePhoneNumberFromDataCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
 import { DataCollector } from '../../domain/data-collector';
 import { DataCollectorService } from '../../services/data-collector.service';
+import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -29,6 +30,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
     changeLocationCommand: ChangeLocation = new ChangeLocation();
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
+    changeVillageCommand: ChangeVillage = new ChangeVillage();
 
     languageOptions = [{desc: Language[Language.English], id: Language.English as number},
                         {desc: Language[Language.French], id: Language.French as number}];
@@ -77,8 +79,10 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         this.handleChangeBaseInformation();
         this.handleChangeLocation();
         this.handleChangePreferredLanguage();
+        this.handleChangeVillage();
         this.handleAddPhoneNumbers();
         this.handleRemovePhoneNumbers();
+
         if (this.userHasChanged) {
             this.router.navigate(['list']);
             this.toastr.info('Reload page to see changes');
@@ -92,6 +96,8 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         this.changeBaseInformationCommand.fullName = this.user.fullName;
         this.changeBaseInformationCommand.sex = this.user.sex;
         this.changeBaseInformationCommand.yearOfBirth = this.user.yearOfBirth;
+        this.changeBaseInformationCommand.region = this.user.region;
+        this.changeBaseInformationCommand.district = this.user.district;
     }
 
     private initChangeLocation() {
@@ -107,7 +113,10 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     }
     private initPhoneNumbers() {
         this.phoneNumberString = this.user.phoneNumbers.map(number => number.value).join(', ');
-
+    }
+    private initVillage() {
+        this.changeVillageCommand.dataCollectorId = this.user.dataCollectorId;
+        this.changeVillageCommand.village = this.user.village;
     }
 
 //#region Handling of commands
@@ -213,6 +222,36 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         }
     }
 
+    handleChangeVillage() {
+        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== '') {
+            this.userHasChanged = true;
+
+            this.changeVillageCommand.dataCollectorId = this.user.dataCollectorId;
+            this.commandCoordinator.handle(this.changeVillageCommand)
+            .then(response => {
+                console.log(response);
+                if (response.success)  {
+                    this.toastr.success('Successfully added village to data collector!');
+                } else {
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error('Could not change village of data collector because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error('Could not change village of data collector:\n' + errors);
+                    }
+                }
+            })
+            .catch(response => {
+                console.log(response);
+                if (!response.passedSecurity) { // Security error
+                    this.toastr.error('Could not change village of data collector because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    this.toastr.error('Could not change village of data collector:\n' + errors);
+                }
+            });
+        }
+    }
     private handleAddPhoneNumbers() {
         const prevNumbers = this.user.phoneNumbers.map(number => number.value.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
