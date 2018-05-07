@@ -8,6 +8,9 @@ export class CaseReportForListing implements Report {
     status: CaseReportStatus;
     dataCollectorId: string;
     dataCollectorDisplayName: string;
+    dataCollectorRegion: string;
+    dataCollectorDistrict: string;
+    dataCollectorVillage: string;
     healthRiskId: string;
     healthRisk: string;
     message: string;

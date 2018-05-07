@@ -38,12 +38,21 @@
             <td>
                 <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
                 <span *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
-
             </td>
-            <td>
-                <span *ngIf="caseReport.dataCollectorId">{{caseReport.dataCollectorDisplayName}}&nbsp;</span>
-                <span *ngIf="!caseReport.dataCollectorId">Origin:{{caseReport.origin}}&nbsp;</span>
-            </td>
+            
+            <ng-container *ngIf="caseReport.dataCollectorId">
+                <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
+            </ng-container>
+            <ng-container *ngIf="!caseReport.dataCollectorId">
+                <td>Origin:{{caseReport.origin}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </ng-container>
+            
             <ng-container *ngIf="caseReport.healthRiskId">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>

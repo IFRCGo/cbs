@@ -52,6 +52,24 @@ export const CaseReportColumns: Array<Column> = [
         hasHealthRisk
     ),
     new SortableColumn(
+        'region', 'Region',
+        (a: CaseReportForListing, b: CaseReportForListing) =>
+            stringCompare(a.dataCollectorRegion, b.dataCollectorRegion),
+        hasHealthRisk
+    ),
+    new SortableColumn(
+        'district', 'District',
+        (a: CaseReportForListing, b: CaseReportForListing) =>
+            stringCompare(a.dataCollectorDistrict, b.dataCollectorDistrict),
+        hasHealthRisk
+    ),
+    new SortableColumn(
+        'village', 'Village',
+        (a: CaseReportForListing, b: CaseReportForListing) =>
+            stringCompare(a.dataCollectorVillage, b.dataCollectorVillage),
+        hasHealthRisk
+    ),
+    new SortableColumn(
         'healthRisk', 'Health Risk',
         (a: CaseReportForListing, b: CaseReportForListing) =>
             stringCompare(a.healthRisk, b.healthRisk),

@@ -11,5 +11,8 @@ namespace Events.External
         public string DisplayName { get; set; }
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
+
+        public string Region { get; set; }
+        public string District { get; set; }
     }
 }

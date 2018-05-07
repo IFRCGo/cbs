@@ -16,6 +16,10 @@ namespace Read.DataCollectors
         public List<string> PhoneNumbers { get; set; } = new List<string>();
         public Location Location { get; set; }
 
+        public string Region { get; set; }
+        public string District { get; set; }
+        public string Village { get; set; }
+
         public DataCollector(Guid id)
         {
             Id = id;

@@ -13,6 +13,9 @@ namespace Read.CaseReportsForListing
         public CaseReportStatus Status { get; internal set; }
         public DataCollectorId DataCollectorId { get; internal set; }
         public string DataCollectorDisplayName { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorRegion { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorDistrict { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorVillage { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
         public HealthRiskId HealthRiskId { get; internal set; }
         public string HealthRisk { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
         public string Message { get; internal set; }
@@ -25,6 +28,7 @@ namespace Read.CaseReportsForListing
         public Location Location { get; internal set; }
         public string Origin { get; internal set; }
         public IEnumerable<string> ParsingErrorMessage { get; internal set; }
+        
         //TODO: Remove properties below from model once data is migrated to new property names or can be removed
         //This feels dirty. Waiting for input from @einari on how to handle backwardscompability better
         [Obsolete]
