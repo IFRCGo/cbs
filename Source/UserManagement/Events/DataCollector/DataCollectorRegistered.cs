@@ -13,7 +13,12 @@ namespace Events.DataCollector
         public int PreferredLanguage { get; set; }
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
+
+        public string Region { get; set; }
+        public string District { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+
+        
 
         public DataCollectorRegistered(
             Guid dataCollectorId,
@@ -24,7 +29,9 @@ namespace Events.DataCollector
             int preferredLanguage,
             double locationLongitude, 
             double locationLatitude,
-            DateTimeOffset registeredAt)
+            DateTimeOffset registeredAt,
+            string region,
+            string district)
         {
             DataCollectorId = dataCollectorId;
             FullName = fullName;
@@ -35,6 +42,9 @@ namespace Events.DataCollector
             LocationLongitude = locationLongitude;
             LocationLatitude = locationLatitude;
             RegisteredAt = registeredAt;
+
+            Region = region;
+            District = district;
         }
     }
 }

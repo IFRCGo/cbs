@@ -13,7 +13,8 @@ namespace Domain.DataCollector.Changing
         //TODO: Add later on. public string Email { get; set; }
         public int YearOfBirth { get; set; }
         public Sex Sex { get; set; }
-        //public IEnumerable<string> PhoneNumbersAdded { get; set; }
-        //public IEnumerable<string> PhoneNumbersRemoved { get; set; }
+
+        public string Region { get; set; }
+        public string District { get; set; }
     }
 }

@@ -56,6 +56,13 @@ namespace Domain.DataCollector.Registering
                 .NotEmpty().WithMessage("At least one Phone Number is required")
                 .Must(c => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
 
+            RuleFor(_ => _.District)
+                .NotEmpty()
+                .WithMessage("District is not correct - Has to be defined");
+
+            RuleFor(_ => _.Region)
+                .NotEmpty()
+                .WithMessage("Region is not correct - Has to be defined");
         }
     }
 }

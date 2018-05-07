@@ -8,6 +8,7 @@ import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
 import { RegisterDataCollector } from '../../domain/data-collector/RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
+import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -19,6 +20,7 @@ export class UserFormDataCollectorComponent {
 
     phoneNumberString = '';
     command: RegisterDataCollector = new RegisterDataCollector();
+    changeVillageCommand: ChangeVillage = new ChangeVillage();
 
     languageOptions = [{desc: Language[Language.English], id: Language.English},
                         {desc: Language[Language.French], id: Language.French}];
@@ -41,6 +43,7 @@ export class UserFormDataCollectorComponent {
                 console.log(response);
                 if (response.success)  {
                     this.toastr.success('Successfully registered a new data collector!');
+                    this.handleChangeVillage();
                     this.router.navigate(['list']);
                 } else {
                     if (!response.passedSecurity) { // Security error
@@ -60,5 +63,35 @@ export class UserFormDataCollectorComponent {
                     this.toastr.error('Could not register new data collector:\n' + errors);
                 }
             });
+    }
+
+    handleChangeVillage() {
+        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== '') {
+            this.changeVillageCommand.dataCollectorId = this.command.dataCollectorId;
+
+            this.commandCoordinator.handle(this.changeVillageCommand)
+            .then(response => {
+                console.log(response);
+                if (response.success)  {
+                    this.toastr.success('Successfully added village to data collector!');
+                } else {
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error('Could not change village of data collector because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error('Could not change village of data collector:\n' + errors);
+                    }
+                }
+            })
+            .catch(response => {
+                console.log(response);
+                if (!response.passedSecurity) { // Security error
+                    this.toastr.error('Could not change village of data collector because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    this.toastr.error('Could not change village of data collector:\n' + errors);
+                }
+            });
+        }
     }
 }

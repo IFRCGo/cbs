@@ -13,6 +13,9 @@ export class RegisterDataCollector extends Command {
     gpsLocation: Location;
     phoneNumbers: Array<string>;
 
+    region: string;
+    district: string;
+
     constructor() {
         super();
         this.type = 'CBS#UserManagement.DataCollector-RegisterDataCollector+Command|Domain';

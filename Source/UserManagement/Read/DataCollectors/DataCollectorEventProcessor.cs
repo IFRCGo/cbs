@@ -30,7 +30,9 @@ namespace Read.DataCollectors
                 Sex = (Sex)@event.Sex,
                 RegisteredAt = @event.RegisteredAt,
                 PreferredLanguage = (Language)@event.PreferredLanguage,
-                PhoneNumbers = new List<PhoneNumber>()
+                PhoneNumbers = new List<PhoneNumber>(),
+                District = @event.District,
+                Region = @event.Region
             });
         }
 
@@ -42,7 +44,9 @@ namespace Read.DataCollectors
                     Builders<DataCollector>.Update.Set(d => d.FullName, @event.FullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, @event.DisplayName),
                     Builders<DataCollector>.Update.Set(d => d.Sex, (Sex) @event.Sex),
-                    Builders<DataCollector>.Update.Set(d => d.YearOfBirth, @event.YearOfBirth))
+                    Builders<DataCollector>.Update.Set(d => d.YearOfBirth, @event.YearOfBirth),
+                    Builders<DataCollector>.Update.Set(d => d.District, @event.District),
+                    Builders<DataCollector>.Update.Set(d => d.Region, @event.Region))
                 );
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -82,6 +86,13 @@ namespace Read.DataCollectors
             {
                 throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
             }
+        }
+
+        public void Process(DataCollectorVillageChanged @event)
+        {
+            var res = _dataCollectors.UpdateOne(
+                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.Village, @event.Village));
         }
 
         public async Task Process(DataCollectorRemoved @event)

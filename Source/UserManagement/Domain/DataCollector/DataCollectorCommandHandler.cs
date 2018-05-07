@@ -34,7 +34,9 @@ namespace Domain.DataCollector
                 command.PreferredLanguage,
                 command.GpsLocation,
                 command.PhoneNumbers,
-                DateTimeOffset.UtcNow
+                DateTimeOffset.UtcNow,
+                command.Region,
+                command.District
                 );
         }
 
@@ -45,7 +47,9 @@ namespace Domain.DataCollector
                 command.FullName,
                 command.DisplayName,
                 command.YearOfBirth,
-                command.Sex
+                command.Sex,
+                command.Region,
+                command.District
             );
         }
 
@@ -67,6 +71,11 @@ namespace Domain.DataCollector
             root.DeleteDataCollector();
         }
 
+        public void Handle(ChangeVillage command)
+        {
+            var root = _repository.Get(command.DataCollectorId);
+            root.ChangeVillage(command.Village);
+        }
 
         public void Handle(AddPhoneNumberToDataCollector command)
         {
@@ -79,5 +88,6 @@ namespace Domain.DataCollector
             var root = _repository.Get(command.DataCollectorId);
             root.RemovePhoneNumbers(command.PhoneNumber);
         }
+
     }
 }

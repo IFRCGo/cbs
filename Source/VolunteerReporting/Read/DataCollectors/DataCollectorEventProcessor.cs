@@ -24,19 +24,25 @@ namespace Read.DataCollectors
             dataCollector.FullName = @event.FullName;
             dataCollector.DisplayName = @event.DisplayName;
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+            dataCollector.Region = @event.Region ?? "Unknown";
+            dataCollector.District = @event.District ?? "Unknown";
             _dataCollectors.Save(dataCollector);
         }
-        //TODO: Not tested
         public void Process(DataCollectorUserInformationChanged @event)
         {
-            _dataCollectors.ChangeUserInformation(@event.DataCollectorId, @event.FullName, @event.DisplayName);
+            _dataCollectors.ChangeUserInformation(@event.DataCollectorId, @event.FullName, @event.DisplayName, @event.Region ?? "Unknown", @event.District ?? "Unknown");
         }
-        //TODO: Not tested
         public void Process(DataCollectorLocationChanged @event)
         {
             _dataCollectors.Update(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Location,
                     new Location(@event.LocationLatitude, @event.LocationLongitude)));
+        }
+
+        public void Process(DataCollectorVillageChanged @event)
+        {
+            _dataCollectors.Update(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.Village, @event.Village ?? "Unknown"));
         }
 
         //TODO: Is this something that makes sense, should we be able to remove a datacollector from VR?
