@@ -1,9 +1,10 @@
 using Concepts;
 using System;
+using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
-    public class HealthRisk
+    public class HealthRisk : IReadModel, IHaveReadModelIdOf<Guid>
     {
         public Guid Id { get; set; }
         public int ReadableId { get; set; }

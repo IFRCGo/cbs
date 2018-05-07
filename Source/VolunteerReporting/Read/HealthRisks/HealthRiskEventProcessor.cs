@@ -1,7 +1,5 @@
 using Events.External;
 using Dolittle.Events.Processing;
-using System.Threading.Tasks;
-using System;
 using MongoDB.Driver;
 
 namespace Read.HealthRisks
@@ -28,7 +26,7 @@ namespace Read.HealthRisks
         public void Process(HealthRiskModified @event)
         {
             //TODO: This is a little naive I think, some other changes in this Bounded Context has to be made when this event is emited
-            _healthRisks.Update(Builders<HealthRisk>.Filter.Where(d => d.Id == @event.Id),
+            _healthRisks.UpdateOne(Builders<HealthRisk>.Filter.Where(d => d.Id == @event.Id),
                 Builders<HealthRisk>.Update.Combine(
                     Builders<HealthRisk>.Update.Set(h => h.Name, @event.Name),
                     Builders<HealthRisk>.Update.Set(h => h.ReadableId, @event.ReadableId)
@@ -38,7 +36,7 @@ namespace Read.HealthRisks
 
         public void Process(HealthRiskDeleted @event)
         {
-            _healthRisks.Remove(@event.HealthRiskId);
+            _healthRisks.DeleteOne(@event.HealthRiskId);
         }
     }
 }
