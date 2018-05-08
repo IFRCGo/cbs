@@ -10,7 +10,7 @@ namespace Read
 {
     public class GenericReadModelRepositoryFor<T, TId> : IGenericReadModelRepositoryFor<T, TId>
         where TId : IEquatable<TId>
-        where T : IReadModel, IHaveReadModelIdOf<TId>
+        where T : IReadModel<TId>
     {
         protected readonly IMongoDatabase _database;
         protected readonly IMongoCollection<T> _collection;

@@ -9,7 +9,7 @@ namespace Read
 {
     public interface IGenericReadModelRepositoryFor<T, in TId> : IReadModelRepositoryFor<T>
         where TId : IEquatable<TId>
-        where T : IReadModel, IHaveReadModelIdOf<TId>
+        where T : IReadModel<TId>
     {
         #region Get
 

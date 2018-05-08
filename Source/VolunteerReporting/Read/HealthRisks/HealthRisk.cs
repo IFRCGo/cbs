@@ -4,7 +4,7 @@ using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
-    public class HealthRisk : IReadModel, IHaveReadModelIdOf<Guid>
+    public class HealthRisk : IReadModel<Guid>
     {
         public Guid Id { get; set; }
         public int ReadableId { get; set; }

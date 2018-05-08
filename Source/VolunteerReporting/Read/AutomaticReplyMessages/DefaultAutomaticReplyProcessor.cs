@@ -1,7 +1,5 @@
-using Concepts;
 using Dolittle.Events.Processing;
 using Events.External;
-using System.Threading.Tasks;
 
 namespace Read.AutomaticReplyMessages
 {
