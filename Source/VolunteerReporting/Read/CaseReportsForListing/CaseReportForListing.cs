@@ -12,6 +12,10 @@ namespace Read.CaseReportsForListing
         public CaseReportStatus Status { get; set; }
         public DataCollectorId DataCollectorId { get; set; }
         public string DataCollectorDisplayName { get; set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorRegion { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorDistrict { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorVillage { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        
         public HealthRiskId HealthRiskId { get; set; }
         public string HealthRisk { get; set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
         public string Message { get; set; }

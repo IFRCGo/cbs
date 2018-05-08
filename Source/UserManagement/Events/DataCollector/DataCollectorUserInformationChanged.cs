@@ -12,13 +12,18 @@ namespace Events.DataCollector
         public int YearOfBirth { get; set; }
         public int Sex { get; set; }
 
-        public DataCollectorUserInformationChanged(Guid dataCollectorId, string fullName, string displayName, int yearOfBirth, int sex)
+        public string Region { get; set; }
+        public string District { get; set; }
+
+        public DataCollectorUserInformationChanged(Guid dataCollectorId, string fullName, string displayName, int yearOfBirth, int sex, string region, string district)
         {
             DataCollectorId = dataCollectorId;
             FullName = fullName;
             DisplayName = displayName;
             YearOfBirth = yearOfBirth;
             Sex = sex;
+            Region = region;
+            District = district;
         }
     }
 }

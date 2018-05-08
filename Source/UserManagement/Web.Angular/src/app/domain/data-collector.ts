@@ -18,6 +18,10 @@ export class DataCollector {
     registeredAt: Date;
     lastReportRecievedAt: Date;
 
+    district: string;
+    region: string;
+    village: string;
+
     constructor(o: any) {
 
         this.dataCollectorId = o.dataCollectorId;
@@ -31,6 +35,9 @@ export class DataCollector {
             longitude: o.longitude,
             latitude: o.latitude
         }
+        this.district = o.district;
+        this.region = o.region;
+        this.village = o.village;
         this.registeredAt = o.registeredAt;
     }
 }

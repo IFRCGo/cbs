@@ -9,6 +9,9 @@ export class ChangeBaseInformation extends Command {
     yearOfBirth: number;
     sex: number;
 
+    region: string;
+    district: string;
+
     constructor() {
         super();
         this.type = 'CBS#UserManagement.DataCollector-ChangeBaseInformation+Command|Domain';

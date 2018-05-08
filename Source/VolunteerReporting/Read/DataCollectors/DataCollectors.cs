@@ -111,23 +111,26 @@ namespace Read.DataCollectors
             return UpdateOneAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
         }
 
-        public UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName)
+        public UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
             return UpdateOne(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
-                    Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName)
+                    Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
+                    Builders<DataCollector>.Update.Set(d => d.Region, region),
+                    Builders<DataCollector>.Update.Set(d => d.District, district)
                 )
             );
         }
 
-        public Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName)
+        public Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
             return UpdateOneAsync(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
-                    Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName)
-                )
+                    Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
+                    Builders<DataCollector>.Update.Set(d => d.Region, region),
+                    Builders<DataCollector>.Update.Set(d => d.District, district))
             );
         }
 

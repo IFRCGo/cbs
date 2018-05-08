@@ -17,6 +17,11 @@ namespace Read.DataCollectors
         public Sex Sex { get; set; }
         public Language PreferredLanguage { get; set; }
         public Location Location { get; set; }
+
+        public string District { get; set; }
+        public string Region { get; set; }
+        public string Village { get; set; }
+
         public List<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
 

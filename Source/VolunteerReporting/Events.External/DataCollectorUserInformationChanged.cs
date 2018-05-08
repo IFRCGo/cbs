@@ -9,5 +9,8 @@ namespace Events.External
         public Guid DataCollectorId { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
+
+        public string Region { get; set; }
+        public string District { get; set; }
     }
 }

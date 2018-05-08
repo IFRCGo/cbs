@@ -47,14 +47,17 @@ namespace Web.Utility
                         { "A", "Timestamp" },
                         { "B", "Status" },
                         { "C", "Data Collector" },
-                        { "D", "Health Risk" },
-                        { "E", "Males < 5" },
-                        { "F", "Males ≥ 5" },
-                        { "G", "Females < 5" },
-                        { "H", "Females ≥ 5" },
-                        { "I", "Lat. / Long." },
-                        { "J", "Message" },
-                        { "K", "Errors" }
+                        { "D", "Region" },
+                        { "E", "District" },
+                        { "F", "Village" },
+                        { "G", "Health Risk" },
+                        { "H", "Males < 5" },
+                        { "I", "Males ≥ 5" },
+                        { "J", "Females < 5" },
+                        { "K", "Females ≥ 5" },
+                        { "L", "Lat. / Long." },
+                        { "M", "Message" },
+                        { "N", "Errors" }
                     };
 
                 foreach (var header in headers)
@@ -86,37 +89,52 @@ namespace Web.Utility
                 origin.DataType = new EnumValue<CellValues>(CellValues.String);
                 origin.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorDisplayName : "Origin: " + report.Origin);
 
-                var healthrisk = new Cell { CellReference = "D" + rowIndex };
+                var region = new Cell { CellReference = "D" + rowIndex };
+                row.Append(region);
+                region.DataType = new EnumValue<CellValues>(CellValues.String);
+                region.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorRegion : "");
+
+                var district = new Cell { CellReference = "E" + rowIndex };
+                row.Append(district);
+                district.DataType = new EnumValue<CellValues>(CellValues.String);
+                district.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorDistrict : "");
+
+                var village = new Cell { CellReference = "F" + rowIndex };
+                row.Append(village);
+                village.DataType = new EnumValue<CellValues>(CellValues.String);
+                village.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorVillage : "");
+
+                var healthrisk = new Cell { CellReference = "G" + rowIndex };
                 row.Append(healthrisk);
                 healthrisk.DataType = new EnumValue<CellValues>(CellValues.String);
 
-                var malesUnder5 = new Cell { CellReference = "E" + rowIndex };
+                var malesUnder5 = new Cell { CellReference = "H" + rowIndex };
                 row.Append(malesUnder5);
                 malesUnder5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var malesOver5 = new Cell { CellReference = "F" + rowIndex };
+                var malesOver5 = new Cell { CellReference = "I" + rowIndex };
                 row.Append(malesOver5);
                 malesOver5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var femalesUnder5 = new Cell { CellReference = "G" + rowIndex };
+                var femalesUnder5 = new Cell { CellReference = "J" + rowIndex };
                 row.Append(femalesUnder5);
                 femalesUnder5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var femalesOver5 = new Cell { CellReference = "H" + rowIndex };
+                var femalesOver5 = new Cell { CellReference = "K" + rowIndex };
                 row.Append(femalesOver5);
                 femalesOver5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var location = new Cell { CellReference = "I" + rowIndex };
+                var location = new Cell { CellReference = "L" + rowIndex };
                 row.Append(location);
                 location.DataType = new EnumValue<CellValues>(CellValues.String);
                 location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude + "/" + report.Location.Longitude : "");
 
-                var message = new Cell { CellReference = "J" + rowIndex };
+                var message = new Cell { CellReference = "M" + rowIndex };
                 row.Append(message);
                 message.DataType = new EnumValue<CellValues>(CellValues.String);
                 message.CellValue = new CellValue(report.Message);
 
-                var error = new Cell { CellReference = "K" + rowIndex };
+                var error = new Cell { CellReference = "N" + rowIndex };
                 row.Append(error);
                 error.DataType = new EnumValue<CellValues>(CellValues.String);
 
@@ -138,7 +156,7 @@ namespace Web.Utility
                     malesOver5.CellValue = new CellValue("");
                     femalesUnder5.CellValue = new CellValue("");
                     femalesOver5.CellValue = new CellValue("");
-                    error.CellValue = new CellValue(report.ParsingErrorMessage != null ? String.Join(".", report.ParsingErrorMessage) : "");
+                    error.CellValue = new CellValue(report.ParsingErrorMessage != null ? string.Join(".", report.ParsingErrorMessage) : "");
                 }
             }
 

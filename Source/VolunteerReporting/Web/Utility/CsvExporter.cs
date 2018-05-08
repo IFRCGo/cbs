@@ -24,8 +24,8 @@ namespace Web.Utility
         {
             var writer = new StreamWriter(stream, Encoding.UTF8);
 
-            writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",
-                          "Time", "Status", "Data Collector", "Healthrisk", "Males < 5", "Males >= 5", "Females < 5",
+            writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\"",
+                          "Time", "Status", "Data Collector", "Region", "District", "Village", "Healthrisk", "Males < 5", "Males >= 5", "Females < 5",
                           "Females >= 5", "Lat., Long.", "Message", "Errors"));
 
             foreach (var caseReport in reports)
@@ -36,6 +36,18 @@ namespace Web.Utility
                 var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
                     ? caseReport.DataCollectorDisplayName
                     : "Origin: " + caseReport.Origin;
+
+                var region = caseReport.DataCollectorDisplayName != "Unknown"
+                    ? caseReport.DataCollectorRegion
+                    : "";
+
+                var district = caseReport.DataCollectorDisplayName != "Unknown"
+                    ? caseReport.DataCollectorDistrict
+                    : "";
+
+                var village = caseReport.DataCollectorDisplayName != "Unknown"
+                    ? caseReport.DataCollectorVillage
+                    : "";
 
                 var latLong = caseReport.Location != null && caseReport.Location != Location.NotSet
                     ? caseReport.Location.ToString()
@@ -70,8 +82,8 @@ namespace Web.Utility
                 {
                     errors = string.Join(", ", caseReport.ParsingErrorMessage != null ? String.Join(".", caseReport.ParsingErrorMessage) : "");
                 }
-                writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\"",
-                              time, status ? "Success" : "Error", dataCollector, healthRisk, malesUnder5, malesOver5, femalesUnder5,
+                writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\"",
+                              time, status ? "Success" : "Error", dataCollector, region, district, village, healthRisk, malesUnder5, malesOver5, femalesUnder5,
                               femalesOver5, latLong, message, errors));
             }
 

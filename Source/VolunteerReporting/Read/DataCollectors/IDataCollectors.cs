@@ -37,8 +37,8 @@ namespace Read.DataCollectors
         Task<UpdateResult> RemovePhoneNumberAsync(FilterDefinition<DataCollector> filter, string number);
         Task<UpdateResult> RemovePhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number);
 
-        UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName);
-        Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName);
+        UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName, string region, string district);
+        Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName, string region, string district);
 
         UpdateResult ChangeLocation(Guid dataCollectorId, double latitude, double longitude);
         Task<UpdateResult> ChangeLocationAsync(Guid dataCollectorId, double latitude, double longitude);

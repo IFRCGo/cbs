@@ -32,7 +32,9 @@ namespace Read.DataCollectors
             var updateRes = _dataCollectors.ChangeUserInformation(
                 @event.DataCollectorId, 
                 @event.FullName, 
-                @event.DisplayName);
+                @event.DisplayName,
+                @event.Region,
+                @event.District);
         }
         public void Process(DataCollectorLocationChanged @event)
         {
@@ -41,7 +43,14 @@ namespace Read.DataCollectors
                 @event.LocationLatitude,
                 @event.LocationLongitude);
         }
-        
+
+        public void Process(DataCollectorVillageChanged @event)
+        {
+            _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
+                Builders<DataCollector>.Update.Set(d => d.Village, @event.Village ?? "Unknown"));
+        }
+
+        //TODO: Is this something that makes sense, should we be able to remove a datacollector from VR?
         public void Process(DataCollectorRemoved @event)
         {
             var deleteRes = _dataCollectors.DeleteOne(d => d.Id == @event.DataCollectorId);
