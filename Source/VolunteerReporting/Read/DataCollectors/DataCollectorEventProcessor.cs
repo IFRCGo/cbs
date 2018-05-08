@@ -25,7 +25,9 @@ namespace Read.DataCollectors
                 @event.FullName,
                 @event.DisplayName,
                 @event.LocationLatitude,
-                @event.LocationLongitude);
+                @event.LocationLongitude,
+                @event.Region,
+                @event.District);
         }
         public void Process(DataCollectorUserInformationChanged @event)
         {
@@ -46,7 +48,8 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorVillageChanged @event)
         {
-            _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
+            
+            var updateRes = _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village ?? "Unknown"));
         }
 

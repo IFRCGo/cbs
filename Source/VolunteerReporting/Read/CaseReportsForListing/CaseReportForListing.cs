@@ -11,13 +11,13 @@ namespace Read.CaseReportsForListing
         public Guid Id { get; set; }
         public CaseReportStatus Status { get; set; }
         public DataCollectorId DataCollectorId { get; set; }
-        public string DataCollectorDisplayName { get; set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
-        public string DataCollectorRegion { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
-        public string DataCollectorDistrict { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
-        public string DataCollectorVillage { get; internal set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string DataCollectorDisplayName { get; set; }
+        public string DataCollectorRegion { get; set; }
+        public string DataCollectorDistrict { get; set; }
+        public string DataCollectorVillage { get; set; }
         
         public HealthRiskId HealthRiskId { get; set; }
-        public string HealthRisk { get; set; } = "Unknown"; //TODO: Handle localization for default values or handle in view
+        public string HealthRisk { get; set; }
         public string Message { get; set; }
         public int NumberOfMalesUnder5 { get; set; }
         public int NumberOfMalesAged5AndOlder { get; set; }

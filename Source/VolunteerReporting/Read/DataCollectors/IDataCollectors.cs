@@ -22,8 +22,8 @@ namespace Read.DataCollectors
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);
 
-        void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude);
-        Task SaveDataCollectorAsync(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude);
+        void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
+        Task SaveDataCollectorAsync(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
 
         UpdateResult AddPhoneNumber(FilterDefinition<DataCollector> filter, string number);
         UpdateResult AddPhoneNumber(Expression<Func<DataCollector, bool>> filter, string number);

@@ -1,41 +1,58 @@
-using MongoDB.Driver;
 using System;
+using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Text;
-using Events.External;
 using System.Threading.Tasks;
 using Concepts;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class DefaultAutomaticReplies : IDefaultAutomaticReplies
+    public class DefaultAutomaticReplies : GenericReadModelRepositoryFor<DefaultAutomaticReply, Guid>,
+        IDefaultAutomaticReplies
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<DefaultAutomaticReply> _collection;
-
         public DefaultAutomaticReplies(IMongoDatabase database)
+            : base(database, database.GetCollection<DefaultAutomaticReply>("DefaultAutomaticReply"))
         {
-            _database = database;
-            _collection = database.GetCollection<DefaultAutomaticReply>("DefaultAutomaticReply");
         }
 
-        public async Task<IEnumerable<DefaultAutomaticReply>> GetAllAsync()
+        public IEnumerable<DefaultAutomaticReply> GetAll()
         {
-            var filter = Builders<DefaultAutomaticReply>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetMany(_ => true);
+        }
+
+        public Task<IEnumerable<DefaultAutomaticReply>> GetAllAsync()
+        {
+            return GetManyAsync(_ => true);
+        }
+
+        public void SaveDefaultAutomaticReply(Guid id, int type, string language, string message)
+        {
+            Save(new DefaultAutomaticReply(id)
+            {
+                Language = language,
+                Message = message,
+                Type = (AutomaticReplyType)type
+            });
+        }
+
+        public Task SaveDefaultAutomaticReplyAsync(Guid id, int type, string language, string message)
+        {
+            return SaveAsync(new DefaultAutomaticReply(id)
+            {
+                Language = language,
+                Message = message,
+                Type = (AutomaticReplyType)type
+            });
         }
 
         public DefaultAutomaticReply GetByTypeAndLanguage(AutomaticReplyType type, string language)
         {
-            var filter = Builders<DefaultAutomaticReply>.Filter.Where(v => v.Type == type && v.Language == language);
-            return _collection.Find(filter).FirstOrDefault();
+            return GetOne(v => v.Type == type && v.Language == language);
         }
 
-        public async Task Save(DefaultAutomaticReply automaticReply)
+        public Task<DefaultAutomaticReply> GetByTypeAndLanguageAsync(AutomaticReplyType type, string language)
         {
-            var filter = Builders<DefaultAutomaticReply>.Filter.Where(v => v.Type == automaticReply.Type && v.Language == automaticReply.Language);
-           await  _collection.ReplaceOneAsync(filter, automaticReply, new UpdateOptions { IsUpsert = true });
+            return GetOneAsync(v => v.Type == type && v.Language == language);
         }
+
     }
 }

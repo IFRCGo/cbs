@@ -30,7 +30,7 @@ namespace Read
 
         public void Update(T readModel)
         {
-            _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel);
+            _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions() { IsUpsert = true });
         }
 
         public void Delete(T readModel)
@@ -97,12 +97,12 @@ namespace Read
 
         public void Save(T readModel)
         {
-            _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel);
+            _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions(){IsUpsert = true});
         }
 
         public Task SaveAsync(T readModel)
         {
-            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel);
+            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions(){IsUpsert = true});
         }
 
         public Task InsertAsync(T readModel)
@@ -112,7 +112,7 @@ namespace Read
 
         public Task UpdateAsync(T readModel)
         {
-            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel);
+            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions() { IsUpsert = true });
         }
 
         public Task DeleteAsync(T readModel)
@@ -122,12 +122,12 @@ namespace Read
 
         public ReplaceOneResult ReplaceOne(T readModel)
         {
-            return _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel);
+            return _collection.ReplaceOne(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions(){IsUpsert = true});
         }
 
         public Task<ReplaceOneResult> ReplaceOneAsync(T readModel)
         {
-            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel);
+            return _collection.ReplaceOneAsync(e => e.Id.Equals(readModel.Id), readModel, new UpdateOptions() { IsUpsert = true });
         }
 
         public UpdateResult UpdateOne(Expression<Func<T, bool>> predicate, UpdateDefinition<T> update)

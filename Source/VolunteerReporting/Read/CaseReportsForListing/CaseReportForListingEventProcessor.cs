@@ -39,8 +39,6 @@ namespace Read.CaseReportsForListing
                 healthRisk,
                 @event.Message,
                 @event.Origin,
-                @event.Latitude,
-                @event.Longitude,
                 @event.NumberOfMalesUnder5,
                 @event.NumberOfMalesAged5AndOlder,
                 @event.NumberOfFemalesUnder5,

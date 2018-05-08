@@ -21,7 +21,7 @@ namespace Read.CaseReportsForListing
             int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
 
         void SaveCaseReport(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message, string origin,
-            double latitude, double longitude, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
+            int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
 
         Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
@@ -34,7 +34,7 @@ namespace Read.CaseReportsForListing
             int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
 
         Task SaveCaseReportAsync(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message, string origin,
-            double latitude, double longitude, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
+            int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
     }
 }

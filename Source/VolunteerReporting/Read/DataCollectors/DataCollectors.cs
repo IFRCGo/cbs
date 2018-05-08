@@ -48,26 +48,32 @@ namespace Read.DataCollectors
         }
 
         public void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude,
-            double locationLongitude)
+            double locationLongitude, string region, string district)
         {
             Save(new DataCollector(dataCollectorId)
             {
                 DisplayName = displayName,
                 FullName = fullName,
                 Location = new Location(locationLatitude, locationLongitude),
-                PhoneNumbers = new List<string>()
+                PhoneNumbers = new List<string>(),
+                Region = region ?? "Unknown",
+                District = district ?? "Unknown",
+                Village = "Unknown"
             });
         }
 
         public Task SaveDataCollectorAsync(Guid dataCollectorId, string fullName, string displayName, double locationLatitude,
-            double locationLongitude)
+            double locationLongitude, string region, string district)
         {
             return SaveAsync(new DataCollector(dataCollectorId)
             {
                 DisplayName = displayName,
                 FullName = fullName,
                 Location = new Location(locationLatitude, locationLongitude),
-                PhoneNumbers = new List<string>()
+                PhoneNumbers = new List<string>(),
+                Region = region ?? "Unknown",
+                District = district ?? "Unknown",
+                Village = "Unknown"
             });
         }
 
@@ -117,8 +123,8 @@ namespace Read.DataCollectors
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
-                    Builders<DataCollector>.Update.Set(d => d.Region, region),
-                    Builders<DataCollector>.Update.Set(d => d.District, district)
+                    Builders<DataCollector>.Update.Set(d => d.Region, region ?? "Unknown"),
+                    Builders<DataCollector>.Update.Set(d => d.District, district ?? "Unknown")
                 )
             );
         }
@@ -129,8 +135,8 @@ namespace Read.DataCollectors
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
-                    Builders<DataCollector>.Update.Set(d => d.Region, region),
-                    Builders<DataCollector>.Update.Set(d => d.District, district))
+                    Builders<DataCollector>.Update.Set(d => d.Region, region ?? "Unknown"),
+                    Builders<DataCollector>.Update.Set(d => d.District, district ?? "Unknown"))
             );
         }
 

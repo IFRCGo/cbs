@@ -4,14 +4,8 @@ using System.Threading.Tasks;
 
 namespace Read.CaseReports
 {
-    public interface ICaseReportsFromUnknownDataCollectors
+    public interface ICaseReportsFromUnknownDataCollectors : IGenericReadModelRepositoryFor<CaseReportFromUnknownDataCollector, Guid>
     {
-        void Save(CaseReportFromUnknownDataCollector caseReport);
-        Task SaveAsync(CaseReportFromUnknownDataCollector anonymousCaseReport);
-
-        void Remove(Guid id);
-        Task RemoveAsync(Guid id);
-
         IEnumerable<CaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync();
 
