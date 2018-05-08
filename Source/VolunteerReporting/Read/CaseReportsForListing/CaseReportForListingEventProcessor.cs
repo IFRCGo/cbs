@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.Events.Processing;
@@ -25,7 +26,27 @@ namespace Read.CaseReportsForListing
         public void Process(CaseReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            if (dataCollector == null)
+                throw new Exception("Data collector was not found");
+
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
+            if (healthRisk == null)
+                throw new Exception("Health risk was not found");
+
+            _caseReports.SaveCaseReport(
+                @event.CaseReportId,
+                dataCollector,
+                healthRisk,
+                @event.Message,
+                @event.Origin,
+                @event.Latitude,
+                @event.Longitude,
+                @event.NumberOfMalesUnder5,
+                @event.NumberOfMalesAged5AndOlder,
+                @event.NumberOfFemalesUnder5,
+                @event.NumberOfFemalesAged5AndOlder,
+                @event.Timestamp);
+
             var caseReport = new CaseReportForListing(@event.CaseReportId)
             {
                 Status = CaseReportStatus.Success,
@@ -51,64 +72,53 @@ namespace Read.CaseReportsForListing
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.UnknownDataCollector,                
-                HealthRiskId = @event.HealthRiskId,
-                HealthRisk = healthRisk.Name,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                Message = @event.Message,
-                DataCollectorDisplayName = "Unknown",
-                ParsingErrorMessage = new List<string>(),
-                Location = Location.NotSet
-            };
-             _caseReports.Save(caseReport);
-        }
+            if (healthRisk == null)
+                throw new Exception("Health risk was not found");
 
-        public void Process(CaseReportIdentified @event)
-        {
-            _caseReports.Remove(@event.CaseReportId);
+            _caseReports.SaveCaseReportFromUnknownDataCollector(
+                @event.CaseReportId,
+                healthRisk,
+                @event.Message,
+                @event.Origin,
+                @event.NumberOfMalesUnder5,
+                @event.NumberOfMalesAged5AndOlder,
+                @event.NumberOfFemalesUnder5,
+                @event.NumberOfFemalesAged5AndOlder,
+                @event.Timestamp);
+
         }
 
         public void Process(InvalidReportReceived @event)
         {
+            
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.TextMessageParsingError,
-                DataCollectorId = @event.DataCollectorId,
-                DataCollectorDisplayName = dataCollector.DisplayName,
-                Message = @event.Message,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages,
-                Location = new Location(@event.Latitude, @event.Longitude),
-                HealthRisk = "Unknown"
-            };
-            _caseReports.Save(caseReport);
+            if (dataCollector == null)
+                throw new Exception("Data collector was not found");
+
+            _caseReports.SaveInvalidReport(
+                @event.CaseReportId,
+                dataCollector,
+                @event.Message,
+                @event.Origin,
+                @event.Latitude,
+                @event.Longitude,
+                @event.ErrorMessages,
+                @event.Timestamp);
         }
 
         public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
-        {            
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
-                Message = @event.Message,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages,
-                DataCollectorDisplayName = "Unknown",
-                Location = Location.NotSet,
-                HealthRisk = "Unknown"
-            };
-            _caseReports.Save(caseReport);
+        {
+            _caseReports.SaveInvalidReportFromUnknownDataCollector(
+                @event.CaseReportId,
+                @event.Message,
+                @event.Origin,
+                @event.ErrorMessages,
+                @event.Timestamp);
         }
 
-        //TODO: Remove error reports if they get fixed when we have events for that
+        public void Process(CaseReportIdentified @event)
+        {
+            var deleteRes = _caseReports.DeleteOne(@event.CaseReportId);
+        }
     }
 }

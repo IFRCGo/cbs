@@ -190,7 +190,7 @@ namespace Read
             return _collection.DeleteOne(predicate);
         }
 
-        public Task<DeleteResult> DeleteOneAync(Expression<Func<T, bool>> predicate)
+        public Task<DeleteResult> DeleteOneAsync(Expression<Func<T, bool>> predicate)
         {
             return _collection.DeleteOneAsync(predicate);
         }

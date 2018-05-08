@@ -6,40 +6,49 @@ using System.Threading.Tasks;
 
 namespace Read.InvalidCaseReports
 {
-    public class InvalidCaseReports : IInvalidCaseReports
+    public class InvalidCaseReports : GenericReadModelRepositoryFor<InvalidCaseReport, Guid>, 
+        IInvalidCaseReports
     {
-        public const string CollectionName = "InvalidCaseReport";
-
-        private IMongoDatabase _database;
-        private IMongoCollection<InvalidCaseReport> _collection;
-
         public InvalidCaseReports(IMongoDatabase database)
+            : base(database, database.GetCollection<InvalidCaseReport>("InvalidCaseReport"))
         {
-            _database = database;
-            _collection = database.GetCollection<InvalidCaseReport>(CollectionName);
         }
 
-        public void Save(InvalidCaseReport caseReport)
-        {
-            _collection.ReplaceOne(_=> _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
-        }
-
-        public Task SaveAsync(InvalidCaseReport caseReport)
-        {
-            var filter = Builders<InvalidCaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
-            return _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
-        }
 
         public IEnumerable<InvalidCaseReport> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<InvalidCaseReport>> GetAllAsync()
+        public Task<IEnumerable<InvalidCaseReport>> GetAllAsync()
         {
-            var filter = Builders<InvalidCaseReport>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
+        }
+
+        public void SaveInvalidReport(Guid caseReportId, Guid dataCollectorId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
+        {
+            Save(new InvalidCaseReport(caseReportId)
+            {
+                DataCollectorId = dataCollectorId,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp
+            });
+        }
+
+        public Task SaveInvalidReportAsync(Guid caseReportId, Guid dataCollectorId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
+        {
+            return SaveAsync(new InvalidCaseReport(caseReportId)
+            {
+                DataCollectorId = dataCollectorId,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp
+            });
         }
     }
 }

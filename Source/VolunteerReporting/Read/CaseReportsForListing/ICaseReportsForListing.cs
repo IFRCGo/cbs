@@ -1,20 +1,40 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Read.DataCollectors;
+using Read.HealthRisks;
 
 namespace Read.CaseReportsForListing
 {
-    public interface ICaseReportsForListing
+    public interface ICaseReportsForListing : IGenericReadModelRepositoryFor<CaseReportForListing, Guid>
     {
         IEnumerable<CaseReportForListing> GetAll();
         Task<IEnumerable<CaseReportForListing>> GetAllAsync();
-        //TODO: Remove this evil abomination
 
-        Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, Boolean last);
-        void Save(CaseReportForListing caseReport);
-        Task SaveAsync(CaseReportForListing caseReport);
+        void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin, 
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp);
 
-        void Remove(Guid id);
-        Task RemoveAsync(Guid id);
+        void SaveInvalidReport(Guid caseReportId, DataCollector dataCollector, string message, string origin, 
+            double latitude, double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+
+        void SaveCaseReportFromUnknownDataCollector(Guid caseReportId, HealthRisk healthRisk, string message, string origin, 
+            int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
+
+        void SaveCaseReport(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message, string origin,
+            double latitude, double longitude, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
+            int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
+
+        Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+
+        Task SaveInvalidReportAsync(Guid caseReportId, DataCollector dataCollector, string message, string origin,
+            double latitude, double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+
+        Task SaveCaseReportFromUnknownDataCollectorAsync(Guid caseReportId, HealthRisk healthRisk, string message, string origin,
+            int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
+
+        Task SaveCaseReportAsync(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message, string origin,
+            double latitude, double longitude, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
+            int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp);
     }
 }

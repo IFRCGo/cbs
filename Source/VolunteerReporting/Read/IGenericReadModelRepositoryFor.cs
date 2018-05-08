@@ -15,7 +15,7 @@ namespace Read
 
         T Get(TId id);
         Task<T> GetAsync(TId id);
-        
+
         T GetOne(FilterDefinition<T> filter);
         Task<T> GetOneAsync(FilterDefinition<T> filter);
         T GetOne(Expression<Func<T, bool>> filter);
@@ -68,7 +68,7 @@ namespace Read
 
         DeleteResult DeleteOne(Expression<Func<T, bool>> predicate);
         DeleteResult DeleteOne(FilterDefinition<T> predicate);
-        Task<DeleteResult> DeleteOneAync(Expression<Func<T, bool>> predicate);
+        Task<DeleteResult> DeleteOneAsync(Expression<Func<T, bool>> predicate);
         Task<DeleteResult> DeleteOneAsync(FilterDefinition<T> predicate);
 
         DeleteResult DeleteMany(Expression<Func<T, bool>> predicate);

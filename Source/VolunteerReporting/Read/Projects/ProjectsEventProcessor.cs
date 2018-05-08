@@ -10,20 +10,14 @@ namespace Read.Projects
         {
             _projects = projects;
         }
-        public void Process(ProjectCreated projectCreated)
+        public void Process(ProjectCreated @event)
         {
-            _projects.Save(new Project()
-            {
-                Id = projectCreated.Id,
-                Name = projectCreated.Name
-            });
+            _projects.SaveProject(@event.Id, @event.Name);
         }
 
-        public void Process(ProjectUpdated projectUpdated)
+        public void Process(ProjectUpdated @event)
         {
-            var project = _projects.GetById(projectUpdated.Id);
-            project.Name = projectUpdated.Name;
-            _projects.Save(project);
+            _projects.UpdateProject(@event.Id, @event.Name);
         }
     }
 }

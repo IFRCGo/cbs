@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Dolittle.ReadModels;
 
 namespace Read.InvalidCaseReports
 {
-    public class InvalidCaseReport
+    public class InvalidCaseReport : IReadModel, IHaveReadModelIdOf<Guid>
     {
         public Guid Id { get; set; }
         public Guid DataCollectorId { get; internal set; }
