@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Read;
 
 namespace Web
 {
@@ -15,6 +16,12 @@ namespace Web
             IHostingEnvironment env,
             IConfiguration configuration) : base(loggerFactory, env, configuration)
         {
+            RegisterReadModelBsonClassMaps();
+        }
+
+        public static void RegisterReadModelBsonClassMaps()
+        {
+            ReadModelBsonClassMapRegistrator.RegisterAllReadModelBsonClassMaps();
         }
     }
 }

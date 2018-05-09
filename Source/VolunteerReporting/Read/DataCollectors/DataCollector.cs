@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace Read.DataCollectors
 {

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 using Events.External;
 using Dolittle.Events.Processing;
-using Concepts;
 using MongoDB.Driver;
 
 namespace Read.DataCollectors
