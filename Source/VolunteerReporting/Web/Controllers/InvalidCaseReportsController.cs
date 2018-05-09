@@ -43,7 +43,7 @@ namespace Web.Controllers
             // object - as it should not be having a relationship to repositories
             return invalidCaseReports.Select(caseReport => 
             {
-                var dataCollector = dataCollectors.FirstOrDefault(collector => collector.DataCollectorId == caseReport.DataCollectorId);
+                var dataCollector = dataCollectors.FirstOrDefault(collector => collector.Id == caseReport.DataCollectorId);
                 //var dataCollector2 = _dataCollectors.GetById(caseReport.DataCollectorId);
                 return new InvalidCaseReportExpanded(caseReport, dataCollector);
             });

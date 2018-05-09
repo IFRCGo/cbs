@@ -33,7 +33,7 @@ namespace Read.DataCollectors
 
         public DataCollector GetById(Guid id)
         {
-           return GetOne(d => d.DataCollectorId == id);
+           return GetOne(d => d.Id == id);
         }
 
         public DataCollector GetByPhoneNumber(string phoneNumber)
@@ -45,7 +45,7 @@ namespace Read.DataCollectors
         public DataCollectorId GetIdByPhoneNumber(string phoneNumber)
         {
             var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, phoneNumber);
-            return GetOne(filter)?.DataCollectorId ?? DataCollectorId.NotSet;
+            return GetOne(filter)?.Id ?? DataCollectorId.NotSet;
         }
 
         public void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude,
@@ -120,7 +120,7 @@ namespace Read.DataCollectors
 
         public UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
-            return UpdateOne(d => d.DataCollectorId == dataCollectorId,
+            return UpdateOne(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
@@ -132,7 +132,7 @@ namespace Read.DataCollectors
 
         public Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
-            return UpdateOneAsync(d => d.DataCollectorId == dataCollectorId,
+            return UpdateOneAsync(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
@@ -143,13 +143,13 @@ namespace Read.DataCollectors
 
         public UpdateResult ChangeLocation(Guid dataCollectorId, double latitude, double longitude)
         {
-            return UpdateOne(d => d.DataCollectorId == dataCollectorId,
+            return UpdateOne(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(latitude, longitude)));
         }
 
         public Task<UpdateResult> ChangeLocationAsync(Guid dataCollectorId, double latitude, double longitude)
         {
-            return UpdateOneAsync(d => d.DataCollectorId == dataCollectorId,
+            return UpdateOneAsync(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(latitude, longitude)));
         }
     }

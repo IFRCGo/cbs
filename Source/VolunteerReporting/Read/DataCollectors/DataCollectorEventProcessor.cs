@@ -48,24 +48,24 @@ namespace Read.DataCollectors
         public void Process(DataCollectorVillageChanged @event)
         {
             
-            var updateRes = _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+            var updateRes = _dataCollectors.UpdateOne(Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village ?? "Unknown"));
         }
 
         //TODO: Is this something that makes sense, should we be able to remove a datacollector from VR?
         public void Process(DataCollectorRemoved @event)
         {
-            var deleteRes = _dataCollectors.DeleteOne(d => d.DataCollectorId == @event.DataCollectorId);
+            var deleteRes = _dataCollectors.DeleteOne(d => d.Id == @event.DataCollectorId);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var updateRes = _dataCollectors.AddPhoneNumber(d => d.DataCollectorId == @event.DataCollectorId, @event.PhoneNumber);
+            var updateRes = _dataCollectors.AddPhoneNumber(d => d.Id == @event.DataCollectorId, @event.PhoneNumber);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var updateRes = _dataCollectors.RemovePhoneNumber(d => d.DataCollectorId == @event.DataCollectorId, @event.PhoneNumber);
+            var updateRes = _dataCollectors.RemovePhoneNumber(d => d.Id == @event.DataCollectorId, @event.PhoneNumber);
         }
     }
 }

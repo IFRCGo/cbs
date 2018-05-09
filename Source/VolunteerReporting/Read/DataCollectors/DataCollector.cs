@@ -15,7 +15,7 @@ namespace Read.DataCollectors
 {
     public class DataCollector : IReadModel
     {
-        public Guid DataCollectorId { get; set; }
+        public Guid Id { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
@@ -25,9 +25,9 @@ namespace Read.DataCollectors
         public string District { get; set; }
         public string Village { get; set; }
 
-        public DataCollector(Guid dataCollectorId)
+        public DataCollector(Guid id)
         {
-            DataCollectorId = dataCollectorId;
+            Id = id;
             Location = Location.NotSet;
         }
     }
@@ -39,7 +39,7 @@ namespace Read.DataCollectors
             BsonClassMap.RegisterClassMap<DataCollector>(cm =>
             {
                 cm.AutoMap();
-                cm.MapIdMember(r => r.DataCollectorId);
+                cm.MapIdMember(r => r.Id);
             });
         }
     }

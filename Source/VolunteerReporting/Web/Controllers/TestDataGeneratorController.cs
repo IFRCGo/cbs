@@ -34,9 +34,7 @@ namespace Web
     {
         private readonly IMongoDatabase _database;
         private readonly ITextMessageProcessors _textMessageProcessors;
-
-        private readonly IDataCollectors _dataCollectors;
-
+        
         private string[] _phoneNumbers = new[] {
             "",         // missing
             "11111111", // DataCollector #1
@@ -46,37 +44,11 @@ namespace Web
         };
         private readonly IEventReplayer _eventReplayer;
 
-        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IEventReplayer eventReplayer, IDataCollectors dataCollectors)
+        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IEventReplayer eventReplayer)
         {
             _textMessageProcessors = textMessageProcessors;
             _database = database;
             _eventReplayer = eventReplayer;
-            _dataCollectors = dataCollectors;
-        }
-
-        [HttpGet("test")]
-        public void Test()
-        {
-            var dataCollectorId = Guid.NewGuid();
-            _dataCollectors.SaveDataCollector(dataCollectorId, "Name", "disp", 23.3, 32.2, "Region", "District");
-
-            var allDataCollectors = _dataCollectors.GetAll();
-            var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            var sameDataCollector = _dataCollectors.GetOne(d => d.DataCollectorId == dataCollectorId);
-
-            _dataCollectors.Update(new DataCollector(dataCollectorId)
-            {
-                DisplayName = "New displayname"
-            });
-
-            _dataCollectors.UpdateOne(d => d.DataCollectorId == dataCollectorId,
-                Builders<DataCollector>.Update.Set(d => d.District, "new district"));
-
-            allDataCollectors = _dataCollectors.GetAll();
-            dataCollector = _dataCollectors.GetById(dataCollectorId);
-            sameDataCollector = _dataCollectors.GetOne(d => d.DataCollectorId == dataCollectorId);
-
-            Console.Write("");
         }
 
         [HttpGet("all")]
