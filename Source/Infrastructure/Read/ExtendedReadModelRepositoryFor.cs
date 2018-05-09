@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using Dolittle.Concepts;
 using Dolittle.ReadModels;
@@ -101,7 +102,7 @@ namespace Infrastructure.Read
 
         public void Save(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -125,7 +126,7 @@ namespace Infrastructure.Read
 
         public Task SaveAsync(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -152,7 +153,7 @@ namespace Infrastructure.Read
 
         public ReplaceOneResult ReplaceOne(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             return _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -175,7 +176,7 @@ namespace Infrastructure.Read
 
         public Task<ReplaceOneResult> ReplaceOneAsync(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -202,14 +203,14 @@ namespace Infrastructure.Read
 
         public void Update(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
         public Task UpdateAsync(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -280,14 +281,14 @@ namespace Infrastructure.Read
 
         public void Delete(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.DeleteOne(filter);
         }
 
         public Task DeleteAsync(T readModel)
         {
-            var id = readModel.Get_id();
+            var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             return _collection.DeleteOneAsync(filter);
         }
@@ -378,7 +379,32 @@ namespace Infrastructure.Read
 
         #endregion
 
-        private static BsonValue GetIdAsBsonValue(object id)
+        // This part is copied from https://github.com/dolittle-extensions/ReadModels.MongoDB/blob/master/Source/ReadModelRepositoryFor.cs
+        public BsonValue GetObjectIdFromReadModel(T readModel)
+        {
+            return GetObjectIdFrom(readModel);
+        }
+
+        private BsonValue GetObjectIdFrom(T entity)
+        {
+            try
+            {
+                var propInfo = GetIdProperty(entity);
+                object id = propInfo.GetValue(entity);
+
+                return GetIdAsBsonValue(id);
+            }
+            catch (Exception e) //TODO: Change to catch explicit Exceptions when I know what kind exception this might throw
+            {
+                var type = entity.GetType();
+                throw new ReadModelHasNoIdField(
+                    $"Type {type.FullName} does not provide a BSon Class Mapping for _id",
+                    e
+                );
+            }
+        }
+
+        private BsonValue GetIdAsBsonValue(object id)
         {
             var idVal = id;
             if (id.IsConcept())
@@ -386,6 +412,11 @@ namespace Infrastructure.Read
 
             var idAsValue = BsonValue.Create(idVal);
             return idAsValue;
+        }
+
+        private PropertyInfo GetIdProperty(T entity)
+        {
+            return typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).First(p => p.Name.ToLowerInvariant() == "id");
         }
     }
 }
