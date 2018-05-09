@@ -58,7 +58,7 @@ namespace Read.CaseReportsForListing
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorId = dataCollector.Id,
+                DataCollectorId = dataCollector.DataCollectorId,
                 DataCollectorRegion = dataCollector.Region,
                 DataCollectorDistrict = dataCollector.District,
                 DataCollectorVillage = dataCollector.Village,
@@ -108,7 +108,7 @@ namespace Read.CaseReportsForListing
             {
                 Status = CaseReportStatus.Success,
                 Message = message,
-                DataCollectorId = dataCollector.Id,
+                DataCollectorId = dataCollector.DataCollectorId,
                 DataCollectorDisplayName = dataCollector.DisplayName,
                 DataCollectorDistrict = dataCollector.District,
                 DataCollectorRegion = dataCollector.Region,
@@ -157,7 +157,7 @@ namespace Read.CaseReportsForListing
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorId = dataCollector.Id,
+                DataCollectorId = dataCollector.DataCollectorId,
                 DataCollectorRegion = dataCollector.Region,
                 DataCollectorDistrict = dataCollector.District,
                 DataCollectorVillage = dataCollector.Village,
@@ -207,7 +207,7 @@ namespace Read.CaseReportsForListing
             {
                 Status = CaseReportStatus.Success,
                 Message = message,
-                DataCollectorId = dataCollector.Id,
+                DataCollectorId = dataCollector.DataCollectorId,
                 DataCollectorDisplayName = dataCollector.DisplayName,
                 DataCollectorDistrict = dataCollector.District,
                 DataCollectorRegion = dataCollector.Region,

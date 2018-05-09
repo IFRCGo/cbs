@@ -1,6 +1,7 @@
 using System;
 using Concepts;
 using Dolittle.ReadModels;
+using MongoDB.Bson.Serialization;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -15,6 +16,17 @@ namespace Read.AutomaticReplyMessages
         public AutomaticReply(Guid id)
         {
             Id = id;
+        }
+    }
+    public static class AutomaticReplyBsonClassMapRegistrator
+    {
+        public static void Register()
+        {
+            BsonClassMap.RegisterClassMap<AutomaticReply>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(r => r.Id);
+            });
         }
     }
 }

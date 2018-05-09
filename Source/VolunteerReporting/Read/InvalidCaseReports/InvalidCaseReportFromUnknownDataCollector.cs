@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Dolittle.ReadModels;
+using MongoDB.Bson.Serialization;
 
 namespace Read.InvalidCaseReports
 {
@@ -13,5 +14,17 @@ namespace Read.InvalidCaseReports
         public IEnumerable<string> ParsingErrorMessage { get; set; }
 
         public InvalidCaseReportFromUnknownDataCollector(Guid id) => Id = id;
+    }
+
+    public static class InvalidCaseReportFromUnknownDataCollectorBsonClassMapRegistrator
+    {
+        public static void Register()
+        {
+            BsonClassMap.RegisterClassMap<InvalidCaseReportFromUnknownDataCollector>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(r => r.Id);
+            });
+        }
     }
 }

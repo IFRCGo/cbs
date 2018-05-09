@@ -1,8 +1,8 @@
 using Concepts;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Dolittle.ReadModels;
+using MongoDB.Bson.Serialization;
 
 namespace Read.CaseReportsForListing
 {
@@ -28,30 +28,20 @@ namespace Read.CaseReportsForListing
         public string Origin { get; set; }
         public IEnumerable<string> ParsingErrorMessage { get; set; }
 
-        //TODO: Remove properties below from model once data is migrated to new property names or can be removed
-        //This feels dirty. Waiting for input from @einari on how to handle backwardscompability better
-        [Obsolete]
-        public int? NumberOfFemalesAgedOver4 { get; set; }
-        [Obsolete]
-        public int? NumberOfFemalesAges0To4 { get; set; }
-        [Obsolete]
-        public int? NumberOfMalesAgedOver4 { get; set; }
-        [Obsolete]
-        public int? NumberOfMalesAges0To4 { get; set; }
-
         public CaseReportForListing(Guid id)
         {
             Id = id;
         }
-
-        //This is going to get messy if we do many breaking changes. How should this be done @einari?
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
+    }
+    public static class CaseReportForListingBsonClassMapRegistrator
+    {
+        public static void Register()
         {
-            NumberOfMalesUnder5 = NumberOfMalesAges0To4 ?? NumberOfMalesUnder5;
-            NumberOfMalesAged5AndOlder = NumberOfMalesAgedOver4 ?? NumberOfMalesAged5AndOlder;
-            NumberOfFemalesUnder5 = NumberOfFemalesAges0To4 ?? NumberOfFemalesUnder5;
-            NumberOfFemalesAged5AndOlder = NumberOfFemalesAgedOver4 ?? NumberOfFemalesAged5AndOlder;
+            BsonClassMap.RegisterClassMap<CaseReportForListing>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(r => r.Id);
+            });
         }
     }
 }

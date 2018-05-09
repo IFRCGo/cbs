@@ -68,7 +68,7 @@ namespace TextMessaging
             if (!isTextMessageFormatValid && !unknownDataCollector)
             {
                 caseReporting.ReportInvalidReport(
-                    dataCollector.Id,
+                    dataCollector.DataCollectorId,
                     message.OriginNumber,
                     message.Message,
                     dataCollector.Location.Longitude,
@@ -94,7 +94,7 @@ namespace TextMessaging
                 }
 
                 caseReporting.ReportInvalidReport(
-                    dataCollector.Id,
+                    dataCollector.DataCollectorId,
                     message.OriginNumber,
                     message.Message,
                     dataCollector.Location.Longitude,
@@ -120,7 +120,7 @@ namespace TextMessaging
             }
 
             caseReporting.Report(
-                dataCollector.Id,
+                dataCollector.DataCollectorId,
                 healthRiskId.Value,
                 message.OriginNumber,
                 parsingResult.MalesUnder5,

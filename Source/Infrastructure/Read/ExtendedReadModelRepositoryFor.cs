@@ -394,6 +394,11 @@ namespace Infrastructure.Read
 
                 return GetIdAsBsonValue(id);
             }
+            catch (InvalidOperationException)
+            {
+                var bsonDocument = entity.ToBsonDocument();
+                return bsonDocument["_id"];
+            }
             catch (Exception e) //TODO: Change to catch explicit Exceptions when I know what kind exception this might throw
             {
                 var type = entity.GetType();
