@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.AutomaticReplyMessages
 {
-    public interface IAutomaticReplies : IGenericReadModelRepositoryFor<AutomaticReply, Guid>
+    public interface IAutomaticReplies : IExtendedReadModelRepositoryFor<AutomaticReply>
     {
         AutomaticReply GetByProjectTypeAndLanguage(Guid projectId, AutomaticReplyType type, string language);
         Task<AutomaticReply> GetByProjectTypeAndLanguageAsync(Guid projectId, AutomaticReplyType type, string language);

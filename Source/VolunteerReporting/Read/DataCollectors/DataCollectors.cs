@@ -8,10 +8,11 @@ using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Infrastructure.Read;
 
 namespace Read.DataCollectors
 {
-    public class DataCollectors : GenericReadModelRepositoryFor<DataCollector, Guid>, 
+    public class DataCollectors : ExtendedReadModelRepositoryFor<DataCollector>, 
         IDataCollectors
     {
        

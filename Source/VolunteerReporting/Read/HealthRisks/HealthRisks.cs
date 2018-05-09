@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Concepts;
+using Infrastructure.Read;
 
 namespace Read.HealthRisks
 {
-    public class HealthRisks : GenericReadModelRepositoryFor<HealthRisk, Guid>,
+    public class HealthRisks : ExtendedReadModelRepositoryFor<HealthRisk>,
         IHealthRisks
     {
         public HealthRisks(IMongoDatabase database)

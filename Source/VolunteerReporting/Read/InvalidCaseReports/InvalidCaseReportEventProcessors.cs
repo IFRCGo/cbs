@@ -3,7 +3,7 @@ using Events;
 
 namespace Read.InvalidCaseReports
 {
-    class InvalidCaseReportEventProcessors : ICanProcessEvents
+    public class InvalidCaseReportEventProcessors : ICanProcessEvents
     {
         readonly IInvalidCaseReports _invalidCaseReports;
         readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
@@ -30,7 +30,6 @@ namespace Read.InvalidCaseReports
 
         public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
-          
             _invalidCaseReportsFromUnknownDataCollectors.SaveInvalidReportFromUnknownDataCollector(
                 @event.CaseReportId,
                 @event.Message,
@@ -41,7 +40,7 @@ namespace Read.InvalidCaseReports
 
         public void Process(CaseReportIdentified @event)
         {
-            _invalidCaseReportsFromUnknownDataCollectors.DeleteOne(@event.CaseReportId);
+            _invalidCaseReportsFromUnknownDataCollectors.Delete(@event.CaseReportId);
         }
     }
 }

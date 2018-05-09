@@ -1,12 +1,12 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.InvalidCaseReports
 {
-    public class InvalidCaseReports : GenericReadModelRepositoryFor<InvalidCaseReport, Guid>, 
+    public class InvalidCaseReports : ExtendedReadModelRepositoryFor<InvalidCaseReport>, 
         IInvalidCaseReports
     {
         public InvalidCaseReports(IMongoDatabase database)

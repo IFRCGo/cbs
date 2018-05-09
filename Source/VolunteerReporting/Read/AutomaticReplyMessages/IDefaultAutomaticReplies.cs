@@ -2,10 +2,11 @@ using System;
 using Concepts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.AutomaticReplyMessages
 {
-    public interface IDefaultAutomaticReplies : IGenericReadModelRepositoryFor<DefaultAutomaticReply, Guid>
+    public interface IDefaultAutomaticReplies : IExtendedReadModelRepositoryFor<DefaultAutomaticReply>
     {
         DefaultAutomaticReply GetByTypeAndLanguage(AutomaticReplyType type, string language);
         Task<DefaultAutomaticReply> GetByTypeAndLanguageAsync(AutomaticReplyType type, string language);

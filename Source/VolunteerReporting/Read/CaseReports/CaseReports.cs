@@ -2,10 +2,11 @@ using System;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.CaseReports
 {
-    public class CaseReports : GenericReadModelRepositoryFor<CaseReport, Guid>,
+    public class CaseReports : ExtendedReadModelRepositoryFor<CaseReport>,
         ICaseReports
     {
         public const string CollectionName = "CaseReport";

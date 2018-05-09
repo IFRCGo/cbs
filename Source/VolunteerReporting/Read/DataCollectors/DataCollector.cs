@@ -9,7 +9,7 @@ using Dolittle.ReadModels;
 
 namespace Read.DataCollectors
 {
-    public class DataCollector : IReadModel<Guid>
+    public class DataCollector : IReadModel
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

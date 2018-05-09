@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
+using Infrastructure.Read;
 using Read.DataCollectors;
 using Read.HealthRisks;
 
 namespace Read.CaseReportsForListing
 {
-    public class CaseReportsForListing : GenericReadModelRepositoryFor<CaseReportForListing, Guid>,
+    public class CaseReportsForListing : ExtendedReadModelRepositoryFor<CaseReportForListing>,
         ICaseReportsForListing
     {
         public CaseReportsForListing(IMongoDatabase database)

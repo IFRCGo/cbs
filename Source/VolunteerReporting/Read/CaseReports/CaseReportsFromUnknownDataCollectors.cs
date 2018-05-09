@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.CaseReports
 {
-    public class CaseReportsFromUnknownDataCollectors : GenericReadModelRepositoryFor<CaseReportFromUnknownDataCollector, Guid>,
+    public class CaseReportsFromUnknownDataCollectors : ExtendedReadModelRepositoryFor<CaseReportFromUnknownDataCollector>,
         ICaseReportsFromUnknownDataCollectors
     {
         public const string CollectionName = "CaseReportFromUnknownDataCollector";

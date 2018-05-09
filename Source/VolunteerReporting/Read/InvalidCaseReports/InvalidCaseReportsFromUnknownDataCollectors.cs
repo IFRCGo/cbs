@@ -2,10 +2,11 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.InvalidCaseReports
 {
-    public class InvalidCaseReportsFromUnknownDataCollectors : GenericReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector, Guid>,
+    public class InvalidCaseReportsFromUnknownDataCollectors : ExtendedReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector>,
         IInvalidCaseReportsFromUnknownDataCollectors
     {
         public InvalidCaseReportsFromUnknownDataCollectors(IMongoDatabase database)

@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReplies : GenericReadModelRepositoryFor<AutomaticReply, Guid>,
+    public class AutomaticReplies : ExtendedReadModelRepositoryFor<AutomaticReply>,
         IAutomaticReplies
     {
         public AutomaticReplies(IMongoDatabase database)

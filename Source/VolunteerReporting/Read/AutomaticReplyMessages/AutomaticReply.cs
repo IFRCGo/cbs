@@ -4,7 +4,7 @@ using Dolittle.ReadModels;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReply : IReadModel<Guid>
+    public class AutomaticReply : IReadModel
     {
         public Guid Id { get; set; }
         public Guid ProjectId { get; set; }

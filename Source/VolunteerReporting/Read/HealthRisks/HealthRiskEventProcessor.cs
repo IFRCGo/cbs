@@ -25,7 +25,7 @@ namespace Read.HealthRisks
 
         public void Process(HealthRiskDeleted @event)
         {
-            _healthRisks.DeleteOne(@event.HealthRiskId);
+            _healthRisks.Delete(_ => _.Id == @event.HealthRiskId);
         }
     }
 }

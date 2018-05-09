@@ -29,7 +29,7 @@ namespace Read.AutomaticReplyMessages
 
         public void Process(AutomaticReplyRemoved @event)
         {
-            _automaticReplies.DeleteOne(@event.Id);
+            _automaticReplies.Delete(@event.Id);
         }
 
         public void Process(AutomaticReplyKeyMessageDefined @event)
@@ -46,7 +46,7 @@ namespace Read.AutomaticReplyMessages
 
         public void Process(AutomaticReplyKeyMessageRemoved @event)
         {
-            _keyMessages.DeleteOne(@event.Id);
+            _keyMessages.Delete(@event.Id);
         }
     }
 }

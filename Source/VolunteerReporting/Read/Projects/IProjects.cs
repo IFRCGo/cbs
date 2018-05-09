@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-
+using Infrastructure.Read;
 namespace Read.Projects
 {
-    public interface IProjects : IGenericReadModelRepositoryFor<Project, Guid>
+    public interface IProjects : IExtendedReadModelRepositoryFor<Project>
     {
         IEnumerable<Project> GetAll();
         Task<IEnumerable<Project>> GetAllAsync();

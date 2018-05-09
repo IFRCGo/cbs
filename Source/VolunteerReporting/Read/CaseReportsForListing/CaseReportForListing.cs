@@ -6,7 +6,7 @@ using Dolittle.ReadModels;
 
 namespace Read.CaseReportsForListing
 {
-    public class CaseReportForListing :  IReadModel<Guid>
+    public class CaseReportForListing :  IReadModel
     {
         public Guid Id { get; set; }
         public CaseReportStatus Status { get; set; }

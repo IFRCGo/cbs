@@ -4,7 +4,7 @@ using Dolittle.ReadModels;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class DefaultAutomaticReplyKeyMessage : IReadModel<Guid>
+    public class DefaultAutomaticReplyKeyMessage : IReadModel
     {
         public Guid Id { get; set; }
         public Guid HealthRiskId { get; set; }

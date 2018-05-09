@@ -32,7 +32,6 @@ namespace Read.AutomaticReplyMessages
                 @event.Language,
                 @event.Message,
                 @event.HealthRiskId);
-            
         }
 
     }

@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 using Read.DataCollectors;
 using Read.HealthRisks;
 
 namespace Read.CaseReportsForListing
 {
-    public interface ICaseReportsForListing : IGenericReadModelRepositoryFor<CaseReportForListing, Guid>
+    public interface ICaseReportsForListing : IExtendedReadModelRepositoryFor<CaseReportForListing>
     {
         IEnumerable<CaseReportForListing> GetAll();
         Task<IEnumerable<CaseReportForListing>> GetAllAsync();

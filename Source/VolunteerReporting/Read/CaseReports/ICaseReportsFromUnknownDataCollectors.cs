@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.CaseReports
 {
-    public interface ICaseReportsFromUnknownDataCollectors : IGenericReadModelRepositoryFor<CaseReportFromUnknownDataCollector, Guid>
+    public interface ICaseReportsFromUnknownDataCollectors : IExtendedReadModelRepositoryFor<CaseReportFromUnknownDataCollector>
     {
         IEnumerable<CaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync();

@@ -119,7 +119,7 @@ namespace Read.CaseReportsForListing
 
         public void Process(CaseReportIdentified @event)
         {
-            var deleteRes = _caseReports.DeleteOne(@event.CaseReportId);
+            _caseReports.Delete(@event.CaseReportId);
         }
     }
 }

@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReplyKeyMessages : GenericReadModelRepositoryFor<AutomaticReplyKeyMessage, Guid>,
+    public class AutomaticReplyKeyMessages : ExtendedReadModelRepositoryFor<AutomaticReplyKeyMessage>,
         IAutomaticReplyKeyMessages
     {
 

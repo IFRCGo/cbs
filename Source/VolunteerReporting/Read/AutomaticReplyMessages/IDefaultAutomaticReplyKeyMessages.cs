@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.AutomaticReplyMessages
 {
-    public interface IDefaultAutomaticReplyKeyMessages : IGenericReadModelRepositoryFor<DefaultAutomaticReplyKeyMessage, Guid>
+    public interface IDefaultAutomaticReplyKeyMessages : IExtendedReadModelRepositoryFor<DefaultAutomaticReplyKeyMessage>
     {
         DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId);
         Task<DefaultAutomaticReplyKeyMessage> GetByTypeLanguageAndHealthRiskAsync(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId);

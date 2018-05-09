@@ -11,7 +11,7 @@ namespace Read.DataCollectors
 {
     public class DataCollectorEventProcessor : ICanProcessEvents
     {
-        readonly IDataCollectors _dataCollectors;
+        private readonly IDataCollectors _dataCollectors;
 
         public DataCollectorEventProcessor(IDataCollectors dataCollectors)
         {

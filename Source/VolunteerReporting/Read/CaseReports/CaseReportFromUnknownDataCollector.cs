@@ -4,7 +4,7 @@ using Dolittle.ReadModels;
 
 namespace Read.CaseReports
 {
-    public class CaseReportFromUnknownDataCollector : IReadModel<Guid>
+    public class CaseReportFromUnknownDataCollector : IReadModel
     {
         public Guid Id { get; set; }
         public string Message { get; set; }

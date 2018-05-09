@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.InvalidCaseReports
 {
-    public interface IInvalidCaseReportsFromUnknownDataCollectors : IGenericReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector, Guid>
+    public interface IInvalidCaseReportsFromUnknownDataCollectors : IExtendedReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector>
     {
         IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync();

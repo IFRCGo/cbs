@@ -7,11 +7,12 @@ using Concepts;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {
-    public interface IDataCollectors : IGenericReadModelRepositoryFor<DataCollector, Guid>
+    public interface IDataCollectors : IExtendedReadModelRepositoryFor<DataCollector>
     {
         //TODO: 
         IEnumerable<DataCollector> GetAll();

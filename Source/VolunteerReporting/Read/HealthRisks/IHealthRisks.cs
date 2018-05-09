@@ -2,11 +2,12 @@ using Concepts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.HealthRisks
 {
-    public interface IHealthRisks : IGenericReadModelRepositoryFor<HealthRisk, Guid>
+    public interface IHealthRisks : IExtendedReadModelRepositoryFor<HealthRisk>
     {
         IEnumerable<HealthRisk> GetAll();
         Task<IEnumerable<HealthRisk>> GetAllAsync();
