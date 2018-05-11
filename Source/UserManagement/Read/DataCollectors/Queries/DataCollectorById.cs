@@ -2,7 +2,7 @@ using System;
 using Dolittle.Queries;
 using MongoDB.Driver;
 
-namespace Read.DataCollectors
+namespace Read.DataCollectors.Queries
 {
     public class DataCollectorById : IQueryFor<DataCollector>
     {

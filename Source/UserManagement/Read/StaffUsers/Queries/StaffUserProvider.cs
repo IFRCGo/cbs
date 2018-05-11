@@ -3,7 +3,7 @@ using System.Linq;
 using Dolittle.Queries;
 using Read.StaffUsers.Models;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Queries
 {
     //public abstract class StaffUserProvider<T> : IQueryProviderFor<T>
     //    where T : BaseUser

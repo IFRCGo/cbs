@@ -3,7 +3,7 @@ using Dolittle.Queries;
 using MongoDB.Driver;
 using Read.StaffUsers.Models;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Queries
 {
     public class StaffUserById<T> : IQueryFor<T>
         where T : BaseUser

@@ -1,10 +1,11 @@
 using System;
 using Concepts;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataCoordinator
 {
-    public class DataCoordinatorRepository : ReadModelRepositoryForStaffUser<Models.DataCoordinator>,
+    public class DataCoordinatorRepository : ExtendedReadModelRepositoryFor<Models.DataCoordinator>,
         IDataCoordinatorRepository
     {
         public DataCoordinatorRepository(IMongoDatabase database) 

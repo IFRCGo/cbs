@@ -7,6 +7,7 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events.External\Events.External.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeoCoordinate" Version="2.0.1" />

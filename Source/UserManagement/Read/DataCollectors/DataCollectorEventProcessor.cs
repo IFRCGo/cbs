@@ -95,9 +95,9 @@ namespace Read.DataCollectors
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village));
         }
 
-        public async Task Process(DataCollectorRemoved @event)
+        public void Process(DataCollectorRemoved @event)
         {
-            await _dataCollectors.RemoveAsync(@event.DataCollectorId);
+            _dataCollectors.Delete(@event.DataCollectorId);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)

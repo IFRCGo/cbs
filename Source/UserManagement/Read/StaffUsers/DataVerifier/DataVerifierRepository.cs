@@ -1,10 +1,11 @@
 using System;
 using Concepts;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataVerifier
 {
-    public class DataVerifierRepository : ReadModelRepositoryForStaffUser<Models.DataVerifier>,
+    public class DataVerifierRepository : ExtendedReadModelRepositoryFor<Models.DataVerifier>,
         IDataVerifierRepository
     {
         public DataVerifierRepository(IMongoDatabase database)

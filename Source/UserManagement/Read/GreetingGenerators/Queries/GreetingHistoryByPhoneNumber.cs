@@ -1,7 +1,7 @@
 using Dolittle.Queries;
 using MongoDB.Driver;
 
-namespace Read.GreetingGenerators
+namespace Read.GreetingGenerators.Queries
 {
     public class GreetingHistoryByPhoneNumber : IQueryFor<GreetingHistory>
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Dolittle.Queries;
 using MongoDB.Driver;
 
-namespace Read.GreetingGenerators
+namespace Read.GreetingGenerators.Queries
 {
     public class AllGreetingHistories : IQueryFor<GreetingHistory>
     {

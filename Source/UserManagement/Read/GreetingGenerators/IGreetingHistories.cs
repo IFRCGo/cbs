@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 
 namespace Read.GreetingGenerators
 {
-    public interface IGreetingHistories
+    public interface IGreetingHistories : IExtendedReadModelRepositoryFor<GreetingHistory>
     {
         GreetingHistory GetByPhoneNumber(string phoneNumber);
         Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber);
@@ -18,13 +19,5 @@ namespace Read.GreetingGenerators
         IEnumerable<GreetingHistory> GetAll();
 
         Task<IEnumerable<GreetingHistory>> GetAllAsync();
-
-        void Remove(Guid id);
-        Task RemoveAsync(Guid id);
-
-        void Save(GreetingHistory dataCollector);
-
-        Task SaveAsync(GreetingHistory dataCollector);
-
     }
 }

@@ -1,10 +1,11 @@
 using System;
 using Concepts;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataOwner
 {
-    public class DataOwnerRepository : ReadModelRepositoryForStaffUser<Models.DataOwner>,
+    public class DataOwnerRepository : ExtendedReadModelRepositoryFor<Models.DataOwner>,
         IDataOwnerRepository
     {
         public DataOwnerRepository(IMongoDatabase database) 

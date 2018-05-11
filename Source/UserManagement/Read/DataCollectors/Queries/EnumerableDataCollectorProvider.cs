@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dolittle.Queries;
 
-namespace Read.DataCollectors
+namespace Read.DataCollectors.Queries
 {
     public class EnumerableDataCollectorProvider : IQueryProviderFor<IEnumerable<DataCollector>>
     {

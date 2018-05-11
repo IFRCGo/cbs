@@ -1,9 +1,9 @@
 using System;
 using Dolittle.ReadModels;
+using MongoDB.Bson.Serialization;
 
 namespace Read.StaffUsers.Models
 {
-    
     public abstract class BaseUser : IReadModel
     {
         public Guid StaffUserId { get; set; }
@@ -19,6 +19,19 @@ namespace Read.StaffUsers.Models
             DisplayName = displayName;
             Email = email;
             RegistrationDate = registrationDate;
+        }
+    }
+
+    public static class BaseUserBsoncClassMapRegistrator
+    {
+        public static void Register()
+        {
+            BsonClassMap.RegisterClassMap<BaseUser>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(u => u.StaffUserId);
+            });
+
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dolittle.Queries;
 
-namespace Read.GreetingGenerators
+namespace Read.GreetingGenerators.Queries
 {
     public class EnumerableGreetingProvider : IQueryProviderFor<IEnumerable<GreetingHistory>>
     {

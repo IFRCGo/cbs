@@ -8,7 +8,7 @@ using Read.StaffUsers.DataVerifier;
 using Read.StaffUsers.Models;
 using Read.StaffUsers.SystemConfigurator;
 
-namespace Read.StaffUsers
+namespace Read.StaffUsers.Queries
 {
     
     public class AllStaffUsers : IQueryFor<BaseUser> 
@@ -37,12 +37,12 @@ namespace Read.StaffUsers
         }
 
         public IQueryable<BaseUser> Query => 
-            _adminRepository.Query.Select(_ => _)
+            (_adminRepository.Query.Select(_ => _)
                 .Concat<BaseUser>(_dataConsumerRepository.Query.Select(_ => _))
                 .Concat(_dataCoordinatorRepository.Query.Select(_ => _))
                 .Concat(_dataOwnerRepository.Query.Select(_ => _))
                 .Concat(_dataVerifierRepository.Query.Select(_ => _))
-                .Concat(_systemConfiguratorRepository.Query.Select(_ => _));
+                .Concat(_systemConfiguratorRepository.Query.Select(_ => _))).ToList().AsQueryable();
 
     }
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Dolittle.Queries;
 
-namespace Read.GreetingGenerators
+namespace Read.GreetingGenerators.Queries
 {
     public class GreetingProvider : IQueryProviderFor<GreetingHistory>
     {
