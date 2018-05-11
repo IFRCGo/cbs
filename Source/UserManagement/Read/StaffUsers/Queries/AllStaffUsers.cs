@@ -37,26 +37,12 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<BaseUser> Query => 
-            (_adminRepository.Query.Select(_ => _)
+            _adminRepository.Query.Select(_ => _)
                 .Concat<BaseUser>(_dataConsumerRepository.Query.Select(_ => _))
                 .Concat(_dataCoordinatorRepository.Query.Select(_ => _))
                 .Concat(_dataOwnerRepository.Query.Select(_ => _))
                 .Concat(_dataVerifierRepository.Query.Select(_ => _))
-                .Concat(_systemConfiguratorRepository.Query.Select(_ => _))).ToList().AsQueryable();
+                .Concat(_systemConfiguratorRepository.Query.Select(_ => _));
 
     }
-
-
-    /*
-    public class AllAdmins : IQueryFor<Models.Admin>
-    {
-        private readonly IAdminRepository _admins;
-
-        public AllAdmins(IStaffUserRepositoryContext context)
-        {
-            _admins = context.AdminRepository;
-        }
-
-        public IQueryable<Models.Admin> Query => _admins.Query.Select(a => a);
-    }*/
 }

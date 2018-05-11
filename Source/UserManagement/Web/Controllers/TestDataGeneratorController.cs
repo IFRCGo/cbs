@@ -5,18 +5,16 @@ using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using Read.DataCollectors;
-using Read.GreetingGenerators;
-using Read.StaffUsers;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
+using Read.DataCollectors;
+using Read.GreetingGenerators;
 using Read.StaffUsers.Models;
 using Read.StaffUsers.Admin;
 using Read.StaffUsers.DataConsumer;
 using Read.StaffUsers.DataCoordinator;
 using Read.StaffUsers.DataOwner;
 using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.Models;
 using Read.StaffUsers.SystemConfigurator;
 
 namespace Web.Controllers
@@ -24,7 +22,6 @@ namespace Web.Controllers
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IMongoDatabase _database;
         private readonly ICommandCoordinator _commandCoordinator;
 
         private readonly IAdminRepository _adminRepository;
@@ -34,6 +31,9 @@ namespace Web.Controllers
         private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
         private readonly IDataConsumerRepository _dataConsumerRepository;
 
+        private readonly IDataCollectors _dataCollectors;
+        private readonly IGreetingHistories _greetingHistories;
+
         public TestDataGeneratorController(
             ICommandCoordinator commandCoordinator,
             IAdminRepository adminRepository,
@@ -41,7 +41,11 @@ namespace Web.Controllers
             IDataCoordinatorRepository dataCoordinatorRepository,
             IDataOwnerRepository dataOwnerRepository,
             IDataVerifierRepository dataVerifierRepository,
-            ISystemConfiguratorRepository systemConfiguratorRepository)
+            ISystemConfiguratorRepository systemConfiguratorRepository,
+            
+            IDataCollectors dataCollectors,
+            IGreetingHistories greetingHistories
+            )
         {
             _commandCoordinator = commandCoordinator;
             _adminRepository = adminRepository;
@@ -50,6 +54,9 @@ namespace Web.Controllers
             _dataVerifierRepository = dataVerifierRepository;
             _systemConfiguratorRepository = systemConfiguratorRepository;
             _dataConsumerRepository = dataConsumerRepository;
+
+            _dataCollectors = dataCollectors;
+            _greetingHistories = greetingHistories;
         }
        
 
@@ -270,60 +277,53 @@ namespace Web.Controllers
             DeleteDataCollectors();
             DeleteGreetingHistory();
         }
-
-        private void DeleteCollection<T>(string collectionName)
-        {
-            _database.GetCollection<T>(collectionName).DeleteMany(_ => true);
-        }
-
         #region StaffUser
 
         [HttpGet("deleteallstaffusercollections")]
         public void DeleteAllStaffUserCollections()
         {
-            DeleteCollection<BaseUser>("StaffUsers");
+            DeleteAllAdmins();
+            DeleteAllDataConsumers();
+            DeleteAllDataCoordinators();
+            DeleteAllDataOwners();
+            DeleteAllDataVerifiers();
+            DeleteAllSystemConfigurators();
         }
         
         [HttpGet("deletealladmins")]
         public void DeleteAllAdmins()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<Admin>();
-            //_database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _adminRepository.DeleteMany(_ => true);
         }
 
         [HttpGet("deletealldataconsumers")]
         public void DeleteAllDataConsumers()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<DataConsumer>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _dataConsumerRepository.DeleteMany(_ => true);
         }
 
         [HttpGet("deletealldatacoordinators")]
         public void DeleteAllDataCoordinators()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<DataCoordinator>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _dataCoordinatorRepository.DeleteMany(_ => true);
         }
 
         [HttpGet("deletealldataowners")]
         public void DeleteAllDataOwners()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<DataOwner>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _dataOwnerRepository.DeleteMany(_ => true);
         }
 
         [HttpGet("deletealldataverifiers")]
         public void DeleteAllDataVerifiers()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<DataVerifier>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _dataVerifierRepository.DeleteMany(_ => true);
         }
 
         [HttpGet("deleteallsystemconfigurators")]
         public void DeleteAllSystemConfigurators()
         {
-            var filter = Builders<BaseUser>.Filter.OfType<SystemConfigurator>();
-            _database.GetCollection<BaseUser>("StaffUser").DeleteMany(filter);
+            _systemConfiguratorRepository.DeleteMany(_ => true);
         }
 
         #endregion
@@ -331,13 +331,13 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollectors()
         {
-            DeleteCollection<DataCollector>("DataCollectors");
+            _dataCollectors.DeleteMany(_ => true);
         }
 
         [HttpGet("deletegreetinghistorycollection")]
         public void DeleteGreetingHistory()
         {
-            DeleteCollection<GreetingHistory>("GreetingHistories");
+            _greetingHistories.DeleteMany(_ => true);
         }
 
         #endregion

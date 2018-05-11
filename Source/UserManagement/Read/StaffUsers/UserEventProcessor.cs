@@ -7,7 +7,6 @@ using Read.StaffUsers.DataConsumer;
 using Read.StaffUsers.DataCoordinator;
 using Read.StaffUsers.DataOwner;
 using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.Models;
 using Read.StaffUsers.SystemConfigurator;
 
 namespace Read.StaffUsers
@@ -131,9 +130,54 @@ namespace Read.StaffUsers
             _dataCoordinatorRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
         }
 
+        public void Process(PhoneNumberAddedToDataOwner @event)
+        {
+            _dataOwnerRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(PhoneNumberRemovedFromDataOwner @event)
+        {
+            _dataOwnerRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(PhoneNumberAddedToDataVerifier @event)
+        {
+            _dataVerifierRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(PhoneNumberRemovedFromDataVerifier @event)
+        {
+            _dataVerifierRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(PhoneNumberAddedToSystemConfigurator @event)
+        {
+            _systemConfiguratorRepository.AddPhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
+        public void Process(PhoneNumberRemovedFromSystemConfigurator @event)
+        {
+            _systemConfiguratorRepository.RemovePhoneNumber(@event.StaffUserId, @event.PhoneNumber);
+        }
+
         public void Process(NationalSocietyAssignedToDataCoordinator @event)
         {
             _dataCoordinatorRepository.AddAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
+        }
+
+        public void Process(NationalSocietyAssignedToSystemConfigurator @event)
+        {
+            _systemConfiguratorRepository.AddAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
+        }
+
+        public void Process(NationalSocietyDeasignedFromDataCoordinator @event)
+        {
+            _dataCoordinatorRepository.RemoveAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
+        }
+
+        public void Process(NationalSocietyDeasignedFromSystemConfigurator @event)
+        {
+            _systemConfiguratorRepository.RemoveAssignedNationalSociety(@event.StaffUserId, @event.NationalSociety);
         }
     }
 }

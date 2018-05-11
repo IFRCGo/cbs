@@ -16,22 +16,22 @@ namespace Read.DataCollectors
 
         public DataCollector GetById(Guid id)
         {
-            return _collection.Find(d => d.DataCollectorId == id).SingleOrDefault();
+            return GetOne(d => d.DataCollectorId == id);
         }
 
-        public async Task<DataCollector> GetByIdAsync(Guid id)
+        public Task<DataCollector> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(d => d.DataCollectorId == id)).SingleOrDefault();
+            return GetOneAsync(d => d.DataCollectorId == id);
         }
 
         public IEnumerable<DataCollector> GetAll()
         {
-            return _collection.Find(_ => true).ToEnumerable();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<DataCollector>> GetAllAsync()
+        public Task<IEnumerable<DataCollector>> GetAllAsync()
         {
-            return (await _collection.FindAsync(_ => true)).ToList();
+            return GetManyAsync(_ => true);
         }
     }
 }

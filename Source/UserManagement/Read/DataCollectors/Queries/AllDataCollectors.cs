@@ -1,34 +1,18 @@
-using System.Collections.Generic;
+using System.Linq;
 using Dolittle.Queries;
-using MongoDB.Driver;
 
 namespace Read.DataCollectors.Queries
 {
     public class AllDataCollectors : IQueryFor<DataCollector>
     {
-        private readonly IMongoCollection<DataCollector> _collection;
+        private readonly IDataCollectors _repository;
 
-        public AllDataCollectors(IMongoDatabase database)
+        public AllDataCollectors(IDataCollectors repository)
         {
-            _collection = database.GetCollection<DataCollector>("DataCollectors");
-
+            _repository = repository;
         }
 
-        public IEnumerable<DataCollector> Query => _collection.FindSync(_ => true).ToList();
+        public IQueryable<DataCollector> Query => _repository.GetMany(_ => true).AsQueryable();
         
     }
-
-    //public class AllDataCollectorsAsync : IQueryFor<DataCollector>
-    //{
-    //    private readonly IMongoCollection<DataCollector> _collection;
-
-    //    public AllDataCollectorsAsync(IMongoDatabase database)
-    //    {
-    //        _collection = database.GetCollection<DataCollector>("DataCollectors"); ;
-
-    //    }
-
-    //    public IEnumerable<DataCollector> Query => _collection.FindAsync(_ => true).Result.ToList(); //TODO: Safe?
-    //}
-
 }

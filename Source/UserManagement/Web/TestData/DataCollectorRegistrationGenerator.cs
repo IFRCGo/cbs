@@ -18,7 +18,9 @@ namespace Web.TestData
                 Sex = Sex.Male,
                 PreferredLanguage = Language.English,
                 GpsLocation = new Location(35, 35),
-                PhoneNumbers = new List<string> { "123456789" }
+                PhoneNumbers = new List<string> { "123456789" },
+                Region = "Default Region",
+                District = "Default District"
             };
         }
     }

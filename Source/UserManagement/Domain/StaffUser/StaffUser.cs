@@ -179,12 +179,8 @@ namespace Domain.StaffUser
 
         public void ChangeAdminInformation(string fullName, string displayName, string email)
         {
-            Apply(new BaseUserInformationChanged(
-                EventSourceId,
-                fullName,
-                displayName,
-                email
-                ));
+            // TODO: Cannot change staffusers's base user information until we create commands for changing
+            // base user information based on Role, or have one ModifyUserInformation per staff user role
         }
 
         public void ChangeDataOwnerInformation(string position, string dutyStation)

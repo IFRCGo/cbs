@@ -58,13 +58,6 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorLocationChanged @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId) ??
-                                throw new Exception("Data collector with id " + @event.DataCollectorId + " was not found");
-
-            dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
-
-            _dataCollectors.Save(dataCollector);
-
             var res = _dataCollectors.UpdateOne(
                 Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(@event.LocationLatitude,@event.LocationLongitude)));

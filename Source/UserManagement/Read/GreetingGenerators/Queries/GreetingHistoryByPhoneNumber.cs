@@ -1,3 +1,4 @@
+using System.Linq;
 using Dolittle.Queries;
 using MongoDB.Driver;
 
@@ -5,32 +6,18 @@ namespace Read.GreetingGenerators.Queries
 {
     public class GreetingHistoryByPhoneNumber : IQueryFor<GreetingHistory>
     {
-        private readonly IMongoCollection<GreetingHistory> _collection;
+        private readonly IGreetingHistories _repository;
 
-        public GreetingHistoryByPhoneNumber(IMongoDatabase database, string phoneNumber)
+
+        public string PhoneNumber { get; set; }
+        public GreetingHistoryByPhoneNumber(IGreetingHistories repository, string phoneNumber)
         {
-            _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
+            _repository = repository;
             PhoneNumber = phoneNumber;
         }
 
-        public string PhoneNumber { get; }
 
-        public GreetingHistory Query => _collection.FindSync(g => g.PhoneNumber.Equals(PhoneNumber)).FirstOrDefault();
+        public IQueryable<GreetingHistory> Query => _repository.GetMany(g => g.PhoneNumber.Equals(PhoneNumber)).AsQueryable();
 
-    }
-
-    public class GreetingHistoryByPhoneNumberAsync : IQueryFor<GreetingHistory>
-    {
-        private readonly IMongoCollection<GreetingHistory> _collection;
-
-        public GreetingHistoryByPhoneNumberAsync(IMongoDatabase database, string phoneNumber)
-        {
-            _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
-            PhoneNumber = phoneNumber;
-        }
-
-        public string PhoneNumber { get; }
-
-        public GreetingHistory Query => _collection.FindAsync(g => g.PhoneNumber.Equals(PhoneNumber)).Result.FirstOrDefault(); //TODO: Safe?
     }
 }

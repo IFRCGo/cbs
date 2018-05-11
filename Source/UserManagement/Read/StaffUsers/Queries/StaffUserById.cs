@@ -1,41 +1,23 @@
 using System;
+using System.Linq;
 using Dolittle.Queries;
-using MongoDB.Driver;
-using Read.StaffUsers.Models;
+using Read.StaffUsers.Admin;
 
 namespace Read.StaffUsers.Queries
 {
     public class StaffUserById<T> : IQueryFor<T>
-        where T : BaseUser
+        where T : Models.Admin
     {
-        private readonly IMongoCollection<BaseUser> _collection;
+        private readonly IAdminRepository _repository;
 
-        public StaffUserById(IMongoDatabase database, Guid staffUserId)
+        public Guid StaffUserId { get; set; }
+
+        public StaffUserById(IAdminRepository repository, Guid staffUserId)
         {
-            _collection = database.GetCollection<BaseUser>("StaffUsers");
-            StaffUserId = staffUserId;
-
-        }
-
-        public Guid StaffUserId { get; }
-
-        public T Query => _collection.FindSync(u => u.StaffUserId == StaffUserId).FirstOrDefault() as T;
-
-    }
-
-    public class StaffUserByIdAsync<T> : IQueryFor<T>
-        where T : BaseUser
-    {
-        private readonly IMongoCollection<BaseUser> _collection;
-
-        public StaffUserByIdAsync(IMongoDatabase database, Guid staffUserId)
-        {
-            _collection = database.GetCollection<BaseUser>("StaffUsers");
+            _repository = repository;
             StaffUserId = staffUserId;
         }
 
-        public Guid StaffUserId { get; }
-        public T Query => 
-            _collection.FindAsync(u => u.StaffUserId == StaffUserId).Result.FirstOrDefault() as T; //TODO: Safe?
+        public IQueryable<Models.Admin> Query => _repository.GetMany(u => u.StaffUserId == StaffUserId).AsQueryable();
     }
 }

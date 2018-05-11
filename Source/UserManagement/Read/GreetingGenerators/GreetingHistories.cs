@@ -47,7 +47,7 @@ namespace Read.GreetingGenerators
 
         public void Remove(string phoneNumber)
         {
-            _collection.DeleteMany(g => g.PhoneNumber == phoneNumber);
+            DeleteMany(g => g.PhoneNumber == phoneNumber);
         }
 
         public Task RemoveAsync(string phoneNumber)
