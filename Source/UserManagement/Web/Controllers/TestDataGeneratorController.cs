@@ -5,10 +5,10 @@ using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using Web.TestData;
-using Dolittle.Commands.Coordination;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
+using Web.TestData;
+using Dolittle.Commands.Coordination;
 using Read.StaffUsers.Models;
 using Read.StaffUsers.Admin;
 using Read.StaffUsers.DataConsumer;
@@ -277,6 +277,7 @@ namespace Web.Controllers
             DeleteDataCollectors();
             DeleteGreetingHistory();
         }
+
         #region StaffUser
 
         [HttpGet("deleteallstaffusercollections")]
@@ -294,6 +295,7 @@ namespace Web.Controllers
         public void DeleteAllAdmins()
         {
             _adminRepository.DeleteMany(_ => true);
+            
         }
 
         [HttpGet("deletealldataconsumers")]

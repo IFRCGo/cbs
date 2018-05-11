@@ -1,0 +1,29 @@
+form table {
+    border-spacing: 1em;
+    border-collapse: separate;
+}
+
+form table label {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+form table input[type=radio] {
+    margin-left: 0.5em;
+}
+
+form table tr {
+    vertical-align: top;
+}
+
+form table.fieldTable {
+    border-spacing: 0;
+}
+
+form table.fieldTable label {
+    margin-right: 2em;
+}
+
+div.actions {
+    text-align: right;
+}

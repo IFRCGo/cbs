@@ -33,6 +33,8 @@ import { USER_FORM_ROUTES } from './user-form';
 import { USER_DETAIL_ROUTES } from './user-detail';
 import { ModalModule } from 'ngx-bootstrap';
 import { EditUserFormDataCollectorComponent } from './user-form/edit-user-form-data-collector/edit-user-form-data-collector.component';
+import { DatacollectorExportComponent } from './datacollector-export/datacollector-export.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     UserFormDataConsumerComponent,
     DataCollectorDetailComponent,
     IfLoggedInComponent,
-    NavTopBarComponent
+    NavTopBarComponent,
+    DatacollectorExportComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -70,7 +73,8 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxSmartModalModule.forRoot()
   ],
   providers: [
     StaffUserService,
