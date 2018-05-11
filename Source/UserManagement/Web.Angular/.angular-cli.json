@@ -19,7 +19,8 @@
       "prefix": "cbs",
       "styles": [
         "styles.scss",
-        "../node_modules/ngx-toastr/toastr.css"
+        "../node_modules/ngx-toastr/toastr.css",
+        "../node_modules/ngx-smart-modal/ngx-smart-modal.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
