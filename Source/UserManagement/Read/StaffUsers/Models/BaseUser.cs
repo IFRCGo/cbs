@@ -22,16 +22,16 @@ namespace Read.StaffUsers.Models
         }
     }
 
-    public static class BaseUserBsoncClassMapRegistrator
+    public class BaseUserBsonClassMap : BsonClassMap<BaseUser>
     {
-        public static void Register()
+        public BaseUserBsonClassMap()
         {
-            BsonClassMap.RegisterClassMap<BaseUser>(cm =>
+            RegisterClassMap<BaseUser>(cm =>
             {
                 cm.AutoMap();
                 cm.MapIdMember(u => u.StaffUserId);
             });
-
         }
+        
     }
 }

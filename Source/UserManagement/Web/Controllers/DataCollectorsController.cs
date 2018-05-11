@@ -36,7 +36,7 @@ namespace Web.Controllers
         {
             var result = _queryCoordinator.Execute(new DataCollectorById(_dataCollectors, id), new PagingInfo());
 
-            if (result.Success)
+            if (result.Success || result.TotalItems > 0)
             {
                 return Ok(result.Items);
             }
