@@ -1,6 +1,5 @@
 using System;
 using Autofac;
-using Autofac.Builder;
 using Domain.StaffUser;
 
 namespace Rules.StaffUser.Registering

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -33,15 +34,19 @@ namespace Read.DataCollectors
         }
     }
 
-    public static class DataCollectorBsonClassMapRegistrator
+    public class DataCollectorClassMap : MongoDbClassMap<DataCollector>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<DataCollector> cm)
         {
-            BsonClassMap.RegisterClassMap<DataCollector>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(d => d.DataCollectorId);
-            });
+            cm.AutoMap();
+
+            cm.MapIdMember(d => d.DataCollectorId);
+        }
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(DataCollector)))
+                BsonClassMap.RegisterClassMap<DataCollector>(Map);
         }
     }
 }

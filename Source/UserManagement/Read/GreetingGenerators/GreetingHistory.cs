@@ -1,5 +1,6 @@
 using System;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -16,15 +17,18 @@ namespace Read.GreetingGenerators
         }       
     }
 
-    public static class GreetingHistoryBsonClassMapRegistrator
+    public class GreetingHistoryClassMap : MongoDbClassMap<GreetingHistory>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<GreetingHistory> cm)
         {
-            BsonClassMap.RegisterClassMap<GreetingHistory>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(g => g.DataCollectorId);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(g => g.DataCollectorId);
+        }
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(GreetingHistory)))
+                BsonClassMap.RegisterClassMap<GreetingHistory>(Map);
         }
     }
 }

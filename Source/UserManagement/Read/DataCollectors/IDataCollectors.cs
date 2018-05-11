@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read;
-using MongoDB.Driver;
 
 namespace Read.DataCollectors
 {

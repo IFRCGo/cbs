@@ -1,5 +1,6 @@
 using System;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.StaffUsers.Models
@@ -22,16 +23,18 @@ namespace Read.StaffUsers.Models
         }
     }
 
-    public class BaseUserBsonClassMap : BsonClassMap<BaseUser>
+    public class BaseUserClassMap : MongoDbClassMap<BaseUser>
     {
-        public BaseUserBsonClassMap()
+        public override void Map(BsonClassMap<BaseUser> cm)
         {
-            RegisterClassMap<BaseUser>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(u => u.StaffUserId);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(g => g.StaffUserId);
         }
-        
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(BaseUser)))
+                BsonClassMap.RegisterClassMap<BaseUser>(Map);
+        }
     }
 }
