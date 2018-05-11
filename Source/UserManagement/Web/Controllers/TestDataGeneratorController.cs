@@ -7,7 +7,6 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
-using Read.StaffUsers;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
 using Read.StaffUsers.Models;
@@ -16,7 +15,6 @@ using Read.StaffUsers.DataConsumer;
 using Read.StaffUsers.DataCoordinator;
 using Read.StaffUsers.DataOwner;
 using Read.StaffUsers.DataVerifier;
-using Read.StaffUsers.Models;
 using Read.StaffUsers.SystemConfigurator;
 
 namespace Web.Controllers
