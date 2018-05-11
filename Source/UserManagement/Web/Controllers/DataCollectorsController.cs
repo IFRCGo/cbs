@@ -56,6 +56,7 @@ namespace Web.Controllers
             return new NotFoundResult();
         }
 
+        [HttpGet("export")]
         public async Task<IActionResult> Export(string format = "excel")
         {
             if (!exporters.ContainsKey(format)) return NotFound();
