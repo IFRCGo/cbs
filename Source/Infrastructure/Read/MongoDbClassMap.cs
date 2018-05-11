@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization;
 
 namespace Infrastructure.Read
 {
-    public abstract class MongoDbClassMap<T>
+    public abstract class MongoDbClassMap<T> : IMongoDbClassMap<T>
         where T : IReadModel
     {
         protected MongoDbClassMap()

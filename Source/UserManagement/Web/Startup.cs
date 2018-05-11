@@ -12,6 +12,7 @@ using Dolittle.Types;
 using Infrastructure.Read;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson.Serialization;
 using Read;

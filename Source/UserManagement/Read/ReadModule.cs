@@ -1,6 +1,11 @@
 
-using Read.DataCollectors;
-using Read.GreetingGenerators;
+using System;
+using System.Linq;
+using System.Reflection;
+using Dolittle.Collections;
+using Dolittle.ReadModels;
+using Dolittle.Reflection;
+using Infrastructure.Read;
 using Read.StaffUsers.Models;
 
 namespace Read
@@ -10,9 +15,10 @@ namespace Read
 
         public static void RegisterReadModelClassMaps()
         {
-            new DataCollectorClassMap();
-            new GreetingHistoryClassMap();
-            new BaseUserClassMap();
+            Assembly.GetAssembly(typeof(ReadModule)).GetTypes()
+                .Where(t => t.IsClass && !t.IsAbstract && t.HasInterface(typeof(IMongoDbClassMap<>)))
+                .ForEach(classMapType => Activator.CreateInstance(classMapType));
+            
         }
     }
 }

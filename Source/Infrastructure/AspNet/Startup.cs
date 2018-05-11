@@ -46,8 +46,8 @@ namespace Infrastructure.AspNet
                 .AddMvc();;
             services.Configure<ConnectionStringsOptions>(_configuration);
 
-            _bootResult = services.AddDolittle(_loggerFactory);
-
+            //_bootResult = services.AddDolittle(_loggerFactory); // This goes statement never sometimes for some reason
+            _bootResult = services.AddDolittle(); // this works
             ConfigureServicesCustom(services);
         }
 
