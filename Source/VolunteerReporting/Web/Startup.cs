@@ -2,8 +2,12 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
+using System;
+using Infrastructure.Read;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Read;
 
@@ -16,12 +20,13 @@ namespace Web
             IHostingEnvironment env,
             IConfiguration configuration) : base(loggerFactory, env, configuration)
         {
-            RegisterReadModelBsonClassMaps();
+
         }
 
-        public static void RegisterReadModelBsonClassMaps()
+        public override void ConfigureServicesCustom(IServiceCollection services)
         {
-            ReadModelBsonClassMapRegistrator.RegisterAllReadModelBsonClassMaps();
+            services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
+            services.BuildServiceProvider().GetService<IReadModule>();
         }
     }
 }

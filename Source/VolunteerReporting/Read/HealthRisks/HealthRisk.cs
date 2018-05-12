@@ -1,6 +1,7 @@
 using Concepts;
 using System;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.HealthRisks
@@ -17,15 +18,17 @@ namespace Read.HealthRisks
         }
     }
 
-    public static class HealthRIskBsonClassMapRegistrator
+    public class HealthRiskClassMap : MongoDbClassMap<HealthRisk>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<HealthRisk> cm)
         {
-            BsonClassMap.RegisterClassMap<HealthRisk>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(r => r.Id);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            BsonClassMap.RegisterClassMap<HealthRisk>(Map);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.Projects
@@ -10,15 +11,17 @@ namespace Read.Projects
     public string Name { get; set; }
     }
 
-    public static class ProjectBsonClassMapRegistrator
+    public class ProjectBsonClassMap : MongoDbClassMap<Project>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<Project> cm)
         {
-            BsonClassMap.RegisterClassMap<Project>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(r => r.Id);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            BsonClassMap.RegisterClassMap<Project>(Map);
         }
     }
 }

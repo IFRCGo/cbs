@@ -1,6 +1,7 @@
 using System;
 using Concepts;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.CaseReports
@@ -23,15 +24,18 @@ namespace Read.CaseReports
         }
 
     }
-    public static class CaseReportFromUnknownDataCollectorBsonClassMapRegistrator
+
+    public class CaseReportFromUnknownDataCollectorBsonClassMap : MongoDbClassMap<CaseReportFromUnknownDataCollector>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<CaseReportFromUnknownDataCollector> cm)
         {
-            BsonClassMap.RegisterClassMap<CaseReportFromUnknownDataCollector>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(r => r.Id);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            BsonClassMap.RegisterClassMap<CaseReportFromUnknownDataCollector>(Map);
         }
     }
 

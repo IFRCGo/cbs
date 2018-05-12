@@ -2,6 +2,7 @@
 using System;
 using Concepts;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.AutomaticReplyMessages
@@ -20,15 +21,18 @@ namespace Read.AutomaticReplyMessages
             Id = id;
         } 
     }
-    public static class AutomaticReplyKeyMessageBsonClassMapRegistrator
+
+    public class AutomaticReplyKeyMessageBsonClassMap : MongoDbClassMap<AutomaticReplyKeyMessage>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<AutomaticReplyKeyMessage> cm)
         {
-            BsonClassMap.RegisterClassMap<AutomaticReplyKeyMessage>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(r => r.Id);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            BsonClassMap.RegisterClassMap<AutomaticReplyKeyMessage>(Map);
         }
     }
 }

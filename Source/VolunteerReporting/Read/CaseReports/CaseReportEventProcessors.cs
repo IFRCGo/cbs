@@ -1,8 +1,6 @@
 using Concepts;
 using Dolittle.Events.Processing;
-using Dolittle.Time;
 using Events;
-using System.Threading.Tasks;
 
 namespace Read.CaseReports
 {

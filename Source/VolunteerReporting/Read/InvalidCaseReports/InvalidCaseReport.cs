@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Dolittle.ReadModels;
+using Infrastructure.Read;
 using MongoDB.Bson.Serialization;
 
 namespace Read.InvalidCaseReports
@@ -18,15 +19,17 @@ namespace Read.InvalidCaseReports
         public InvalidCaseReport(Guid id) => Id = id;
     }
 
-    public static class InvalidCaseReportBsonClassMapRegistrator
+    public class InvalidCaseReportBsonClassMap : MongoDbClassMap<InvalidCaseReport>
     {
-        public static void Register()
+        public override void Map(BsonClassMap<InvalidCaseReport> cm)
         {
-            BsonClassMap.RegisterClassMap<InvalidCaseReport>(cm =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(r => r.Id);
-            });
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            BsonClassMap.RegisterClassMap<InvalidCaseReport>(Map);
         }
     }
 }
