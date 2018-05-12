@@ -46,8 +46,8 @@ namespace Infrastructure.AspNet
                 .AddMvc();;
             services.Configure<ConnectionStringsOptions>(_configuration);
 
-            //_bootResult = services.AddDolittle(_loggerFactory); // This goes statement never sometimes for some reason
-            _bootResult = services.AddDolittle(); // this works
+            _bootResult = services.AddDolittle(_loggerFactory); // Sometimes it seems like this goes in an infinite loop with the logger factory for some reason
+            //_bootResult = services.AddDolittle(); // this works
             ConfigureServicesCustom(services);
         }
 
@@ -87,7 +87,7 @@ namespace Infrastructure.AspNet
             app.RunAsSinglePageApplication();
         }
 
-        public virtual void ConfigureServicesCustom(IServiceCollection services) { }
+        public virtual void ConfigureServicesCustom(IServiceCollection services) {}
         public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder) { }
         public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
     }

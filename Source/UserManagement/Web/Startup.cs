@@ -6,17 +6,13 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using Dolittle.Collections;
-using Dolittle.ReadModels;
-using Dolittle.Types;
+using Autofac;
 using Infrastructure.Read;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson.Serialization;
-using Read;
-using Read.StaffUsers.Models;
 
 namespace Web
 {
@@ -27,8 +23,13 @@ namespace Web
             IHostingEnvironment env,
             IConfiguration configuration) : base(loggerFactory, env, configuration)
         {
-            ReadModule.RegisterReadModelClassMaps();
+            
         }
-        
+
+        public override void ConfigureServicesCustom(IServiceCollection services)
+        {
+            services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
+            services.BuildServiceProvider().GetService<IReadModule>();
+        }
     }
 }

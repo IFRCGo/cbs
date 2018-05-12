@@ -42,10 +42,10 @@ namespace Web.Controllers
             IDataOwnerRepository dataOwnerRepository,
             IDataVerifierRepository dataVerifierRepository,
             ISystemConfiguratorRepository systemConfiguratorRepository,
-            
+
             IDataCollectors dataCollectors,
             IGreetingHistories greetingHistories
-            )
+        )
         {
             _commandCoordinator = commandCoordinator;
             _adminRepository = adminRepository;
@@ -57,24 +57,6 @@ namespace Web.Controllers
 
             _dataCollectors = dataCollectors;
             _greetingHistories = greetingHistories;
-        }
-       
-
-        [HttpPut("newTest")]
-        public void TestNew()
-        {
-            var adminId = Guid.NewGuid();
-            
-            _adminRepository.Insert(new Admin(
-                adminId,
-                "name",
-                "dispname",
-                "email@live.no",
-                DateTimeOffset.UtcNow
-                ));
-
-            _adminRepository.UpdateOne(Builders<Admin>.Filter.Where(a => a.StaffUserId == adminId),
-                Builders<Admin>.Update.Set(a => a.FullName, "newName"));
         }
 
         [HttpGet("generatetestdataset")]
