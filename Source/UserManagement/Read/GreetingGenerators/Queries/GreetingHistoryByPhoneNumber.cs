@@ -17,7 +17,7 @@ namespace Read.GreetingGenerators.Queries
         }
 
 
-        public IQueryable<GreetingHistory> Query => _repository.GetMany(g => g.PhoneNumber.Equals(PhoneNumber)).AsQueryable();
+        public IQueryable<GreetingHistory> Query => _repository.Query.Where(g => g.PhoneNumber.Equals(PhoneNumber));
 
     }
 }

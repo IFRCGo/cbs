@@ -12,7 +12,7 @@ namespace Read.GreetingGenerators.Queries
             _repository = repository;
         }
 
-        public IQueryable<GreetingHistory> Query => _repository.GetAll().AsQueryable();
+        public IQueryable<GreetingHistory> Query => _repository.Query;
 
     }
 }

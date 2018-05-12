@@ -16,6 +16,6 @@ namespace Read.DataCollectors.Queries
             DataCollectorId = dataCollectorId;
         }
         
-        public IQueryable<DataCollector> Query => _repository.GetMany(d => d.DataCollectorId == DataCollectorId).AsQueryable();
+        public IQueryable<DataCollector> Query => _repository.Query.Where(d => d.DataCollectorId == DataCollectorId);
     }
 }

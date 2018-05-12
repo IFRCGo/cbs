@@ -27,7 +27,7 @@ namespace Web.Controllers
             _queryCoordinator = queryCoordinator;
         }
 
-        private static Dictionary<string, IDataCollectorExporter> exporters =
+        private static readonly Dictionary<string, IDataCollectorExporter> exporters =
             new Dictionary<string, IDataCollectorExporter>
             {
                 {"excel", new DataCollectorExcelExporter() },

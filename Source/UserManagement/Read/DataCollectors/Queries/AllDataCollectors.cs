@@ -12,7 +12,7 @@ namespace Read.DataCollectors.Queries
             _repository = repository;
         }
 
-        public IQueryable<DataCollector> Query => _repository.GetMany(_ => true).AsQueryable();
+        public IQueryable<DataCollector> Query => _repository.Query;
         
     }
 }

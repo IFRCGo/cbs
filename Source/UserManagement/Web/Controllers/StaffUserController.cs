@@ -3,134 +3,204 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using System.Linq;
 using Dolittle.Concepts;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
 using Microsoft.AspNetCore.Mvc;
 using Read.StaffUsers;
+using Read.StaffUsers.Admin;
+using Read.StaffUsers.DataConsumer;
+using Read.StaffUsers.DataCoordinator;
+using Read.StaffUsers.DataOwner;
+using Read.StaffUsers.DataVerifier;
+using Read.StaffUsers.Queries;
+using Read.StaffUsers.SystemConfigurator;
 
 namespace Web.Controllers
 {
     [Route("api/staffusers")]
     public class StaffUserController : Controller
     {
-        //private readonly IStaffUserRepositoryContext _context;
+        private readonly IAdminRepository _adminRepository;
+        private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
+        private readonly IDataOwnerRepository _dataOwnerRepository;
+        private readonly IDataVerifierRepository _dataVerifierRepository;
+        private readonly ISystemConfiguratorRepository _systemConfiguratorRepository;
+        private readonly IDataConsumerRepository _dataConsumerRepository;
+
         private readonly IQueryCoordinator _queryCoordinator;
 
         public StaffUserController (
-            //IStaffUserRepositoryContext context,
-            IQueryCoordinator queryCoordinator)
+            IQueryCoordinator queryCoordinator,
+            IAdminRepository adminRepository,
+            IDataConsumerRepository dataConsumerRepository,
+            IDataCoordinatorRepository dataCoordinatorRepository,
+            IDataOwnerRepository dataOwnerRepository,
+            IDataVerifierRepository dataVerifierRepository,
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
-            //_context = context;
             _queryCoordinator = queryCoordinator;
+            _adminRepository = adminRepository;
+            _dataCoordinatorRepository = dataCoordinatorRepository;
+            _dataOwnerRepository = dataOwnerRepository;
+            _dataVerifierRepository = dataVerifierRepository;
+            _systemConfiguratorRepository = systemConfiguratorRepository;
+            _dataConsumerRepository = dataConsumerRepository;
         }
 
-        //[HttpGet]
-        //public IActionResult GetAllUsers()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.BaseUser>();
-        //}
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            var res = _queryCoordinator.Execute(
+                new AllStaffUsers(_adminRepository, _dataConsumerRepository, _dataCoordinatorRepository,
+                    _dataOwnerRepository, _dataVerifierRepository, _systemConfiguratorRepository), new PagingInfo());
+
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
 
         [HttpGet("admin")]
         public IActionResult GetAllAdmins()
         {
-            //var res = _queryCoordinator.Execute(new AllAdmins(_context), new PagingInfo());
+            var res = _queryCoordinator.Execute(new AllAdmins(_adminRepository), new PagingInfo());
 
-            return Ok(); // res.Items
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
         }
 
-        //[HttpGet("dataconsumer")]
-        //public IActionResult GetAllDataConsumers()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.DataConsumer>();
-        //}
+        [HttpGet("dataconsumer")]
+        public IActionResult GetAllDataConsumers()
+        {
+            var res = _queryCoordinator.Execute(new AllDataConsumers(_dataConsumerRepository), new PagingInfo());
 
-        //[HttpGet("datacoordinator")]
-        //public IActionResult GetAllDataCoordinator()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.DataCoordinator>();
-        //}
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
 
-        //[HttpGet("dataowner")]
-        //public IActionResult GetAllDataOwners()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.DataOwner>();
-        //}
+        [HttpGet("datacoordinator")]
+        public IActionResult GetAllDataCoordinator()
+        {
+            var res = _queryCoordinator.Execute(new AllDataCoordinators(_dataCoordinatorRepository), new PagingInfo());
 
-        //[HttpGet("dataverifier")]
-        //public IActionResult GetAllDataVerifiers()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.DataVerifier>();
-        //}
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
 
-        //[HttpGet("systemconfigurator")]
-        //public IActionResult GetAllSystemConfigurators()
-        //{
-        //    return GetAllStaffUsers<Read.StaffUsers.Models.SystemConfigurator>();
-        //}
+        [HttpGet("dataowner")]
+        public IActionResult GetAllDataOwners()
+        {
+            var res = _queryCoordinator.Execute(new AllDataOwners(_dataOwnerRepository), new PagingInfo());
+
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
+
+        [HttpGet("dataverifier")]
+        public IActionResult GetAllDataVerifiers()
+        {
+            var res = _queryCoordinator.Execute(new AllDataVerifiers(_dataVerifierRepository), new PagingInfo());
+
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
+
+        [HttpGet("systemconfigurator")]
+        public IActionResult GetAllSystemConfigurators()
+        {
+            var res = _queryCoordinator.Execute(new AllSystemConfigurator(_systemConfiguratorRepository), new PagingInfo());
+
+            if (res.Success)
+                return Ok(res.Items);
+            return StatusCode(500);
+        }
 
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.BaseUser>(id);
-        //}
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var res = _queryCoordinator.Execute(new StaffUserById(_adminRepository, _dataConsumerRepository, _dataCoordinatorRepository,
+                _dataOwnerRepository, _dataVerifierRepository, _systemConfiguratorRepository, id), new PagingInfo());
 
-        //[HttpGet("admin/{id}")]
-        //public IActionResult GetAdminById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.Admin>(id);
-        //}
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
 
-        //[HttpGet("dataconsumer/{id}")]
-        //public IActionResult GetDataConsumerById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.DataConsumer>(id);
-        //}
+        [HttpGet("admin/{id}")]
+        public IActionResult GetAdminById(Guid id)
+        {
+            var res = _queryCoordinator.Execute(new AdminById(_adminRepository, id), new PagingInfo());
 
-        //[HttpGet("datacoordinator/{id}")]
-        //public IActionResult GetDataCoordinatorById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.DataCoordinator>(id);
-        //}
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
 
-        //[HttpGet("dataowner/{id}")]
-        //public IActionResult GetDataOwnerById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.DataOwner>(id);
-        //}
+        [HttpGet("dataconsumer/{id}")]
+        public IActionResult GetDataConsumerById(Guid id)
+        {
 
-        //[HttpGet("dataverifier/{id}")]
-        //public IActionResult GetDataVerifierById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.DataVerifier>(id);
-        //}
+            var res = _queryCoordinator.Execute(new DataConsumerById(_dataConsumerRepository, id), new PagingInfo());
 
-        //[HttpGet("systemconfigurator/{id}")]
-        //public IActionResult GetSystemConfiguratorById(Guid id)
-        //{
-        //    return GetStaffUserById<Read.StaffUsers.Models.SystemConfigurator>(id);
-        //}
- 
-        //private IActionResult GetAllStaffUsers<T>()
-        //    where T : Read.StaffUsers.Models.BaseUser
-        //{
-        //    var result = _queryCoordinator.Execute(new AllStaffUsers(_context), new PagingInfo());
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
 
-        //    return Ok(result.Items);    
-        //}
+        [HttpGet("datacoordinator/{id}")]
+        public IActionResult GetDataCoordinatorById(Guid id)
+        {
+            var res = _queryCoordinator.Execute(new DataCoordinatorById(_dataCoordinatorRepository, id), new PagingInfo());
 
-        //private IActionResult GetStaffUserById<T>(Guid id)
-        //    where T : Read.StaffUsers.Models.BaseUser
-        //{
-        //    var result = _queryCoordinator.Execute(new StaffUserById<T>(_context, id), new PagingInfo());
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
 
-        //    if (result.Success)
-        //    {
-        //        return Ok(result.Items);
-        //    }
+        [HttpGet("dataowner/{id}")]
+        public IActionResult GetDataOwnerById(Guid id)
+        {
 
-        //    return new NotFoundResult();
-        //}
-   }
+            var res = _queryCoordinator.Execute(new DataOwnerById(_dataOwnerRepository, id), new PagingInfo());
+
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
+
+        [HttpGet("dataverifier/{id}")]
+        public IActionResult GetDataVerifierById(Guid id)
+        {
+            var res = _queryCoordinator.Execute(new DataVerifierById(_dataVerifierRepository, id), new PagingInfo());
+
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+        }
+
+        [HttpGet("systemconfigurator/{id}")]
+        public IActionResult GetSystemConfiguratorById(Guid id)
+        {
+            var res = _queryCoordinator.Execute(new AdminById(_adminRepository, id), new PagingInfo());
+
+            if (!res.Success) return StatusCode(500);
+            if (res.TotalItems > 0)
+                return Ok(res.Items);
+            return NotFound();
+
+        }
+    }
 }
