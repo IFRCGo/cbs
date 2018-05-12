@@ -30,11 +30,5 @@ namespace Read.StaffUsers.Models
             cm.AutoMap();
             cm.MapIdMember(g => g.StaffUserId);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(BaseUser)))
-                BsonClassMap.RegisterClassMap<BaseUser>(Map);
-        }
     }
 }

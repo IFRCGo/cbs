@@ -24,11 +24,5 @@ namespace Read.AutomaticReplyMessages
             cm.AutoMap();
             cm.MapIdMember(r => r.Id);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(ReplyMessagesConfig)))
-                BsonClassMap.RegisterClassMap<ReplyMessagesConfig>(Map);
-        }
     }
 }

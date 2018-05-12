@@ -25,11 +25,5 @@ namespace Read.NationalSocietyFeatures
             cm.AutoMap();
             cm.MapIdMember(n => n.Id);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(NationalSociety)))
-                BsonClassMap.RegisterClassMap<NationalSociety>(Map);
-        }
     }
 }

@@ -42,11 +42,5 @@ namespace Read.DataCollectors
 
             cm.MapIdMember(d => d.DataCollectorId);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(DataCollector)))
-                BsonClassMap.RegisterClassMap<DataCollector>(Map);
-        }
     }
 }

@@ -24,11 +24,5 @@ namespace Read.GreetingGenerators
             cm.AutoMap();
             cm.MapIdMember(g => g.DataCollectorId);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(GreetingHistory)))
-                BsonClassMap.RegisterClassMap<GreetingHistory>(Map);
-        }
     }
 }

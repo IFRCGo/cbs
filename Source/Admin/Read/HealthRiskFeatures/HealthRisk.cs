@@ -29,11 +29,5 @@ namespace Read.HealthRiskFeatures
             cm.AutoMap();
             cm.MapIdMember(h => h.Id);
         }
-
-        public override void Register()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(HealthRisk)))
-                BsonClassMap.RegisterClassMap<HealthRisk>(Map);
-        }
     }
 }

@@ -25,11 +25,5 @@ namespace Read.ProjectFeatures
             cm.AutoMap();
             cm.MapIdMember(p => p.Id);
         }
-
-        public override void Register()
-        {
-            if (BsonClassMap.IsClassMapRegistered(typeof(ProjectHealthRiskVersion)))
-                BsonClassMap.RegisterClassMap<ProjectHealthRiskVersion>(Map);
-        }
     }
 }

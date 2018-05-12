@@ -29,11 +29,5 @@ namespace Read.UserFeatures
             cm.AutoMap();
             cm.MapIdMember(u => u.Id);
         }
-
-        public override void Register()
-        {
-            if (BsonClassMap.IsClassMapRegistered(typeof(User)))
-                BsonClassMap.RegisterClassMap<User>(Map);
-        }
     }
 }
