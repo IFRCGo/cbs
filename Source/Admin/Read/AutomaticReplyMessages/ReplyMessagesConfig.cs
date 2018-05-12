@@ -5,12 +5,30 @@
 
 using System;
 using System.Collections.Generic;
+using Dolittle.ReadModels;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class ReplyMessagesConfig
+    public class ReplyMessagesConfig : IReadModel
     {
         public Guid Id { get; set; }
         public IDictionary<string, IDictionary<string,string>> Messages { get; set; }
+    }
+
+    public class ReplyMessagesConfigClassMap : MongoDbClassMap<ReplyMessagesConfig>
+    {
+        public override void Map(BsonClassMap<ReplyMessagesConfig> cm)
+        {
+            cm.AutoMap();
+            cm.MapIdMember(r => r.Id);
+        }
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(ReplyMessagesConfig)))
+                BsonClassMap.RegisterClassMap<ReplyMessagesConfig>(Map);
+        }
     }
 }

@@ -62,7 +62,7 @@ namespace Read.HealthRiskFeatures
 
         public void Process(HealthRiskDeleted @event)
         {
-            _healthRisks.RemoveAsync(@event.HealthRiskId);
+            _healthRisks.Delete(@event.HealthRiskId);
         }
     }
 }

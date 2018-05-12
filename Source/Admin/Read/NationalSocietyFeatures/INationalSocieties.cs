@@ -5,14 +5,14 @@
 
 using System;
 using System.Collections.Generic;
+using Infrastructure.Read;
 
 namespace Read.NationalSocietyFeatures
 {
-    public interface INationalSocieties
+    public interface INationalSocieties : IExtendedReadModelRepositoryFor<NationalSociety>
     {
         IEnumerable<NationalSociety> GetAll();
-
-        void Save(NationalSociety nationalSociety);
+        
         NationalSociety GetById(Guid id);
     }
 }

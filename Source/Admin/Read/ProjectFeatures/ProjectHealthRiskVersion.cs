@@ -4,14 +4,32 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 
 namespace Read.ProjectFeatures
 {
-    public class ProjectHealthRiskVersion
+    public class ProjectHealthRiskVersion : IReadModel
     {
         public Guid Id { get; set; } // Do we really need this?
         public Guid ProjectId { get; set; }
         public ProjectHealthRisk HealthRisk { get; set; }
         public DateTimeOffset EffectiveFromTime { get; set; }
+    }
+
+    public class ProjectHealthRiskVersionClassMap : MongoDbClassMap<ProjectHealthRiskVersion>
+    {
+        public override void Map(BsonClassMap<ProjectHealthRiskVersion> cm)
+        {
+            cm.AutoMap();
+            cm.MapIdMember(p => p.Id);
+        }
+
+        public override void Register()
+        {
+            if (BsonClassMap.IsClassMapRegistered(typeof(ProjectHealthRiskVersion)))
+                BsonClassMap.RegisterClassMap<ProjectHealthRiskVersion>(Map);
+        }
     }
 }

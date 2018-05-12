@@ -4,10 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 
 namespace Read.HealthRiskFeatures
 {
-    public class HealthRisk
+    public class HealthRisk : IReadModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -17,5 +20,20 @@ namespace Read.HealthRiskFeatures
         public string Note { get; set; } //TODO: Should this be removed?
         public string CommunityCase { get; set; } //TODO: Should this be removed?
         public string KeyMessage { get; set; }
+    }
+
+    public class HealthRiskClassMap : MongoDbClassMap<HealthRisk>
+    {
+        public override void Map(BsonClassMap<HealthRisk> cm)
+        {
+            cm.AutoMap();
+            cm.MapIdMember(h => h.Id);
+        }
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(HealthRisk)))
+                BsonClassMap.RegisterClassMap<HealthRisk>(Map);
+        }
     }
 }

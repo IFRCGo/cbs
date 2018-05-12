@@ -51,6 +51,7 @@ namespace Read.ProjectFeatures
 
         public void Process(ProjectUpdated @event)
         {
+            //TODO Use UpdateOne instead
             var project = _projects.GetById(@event.Id);
             project.NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId);
             project.DataOwner = _users.GetById(@event.DataOwnerId);
@@ -67,6 +68,7 @@ namespace Read.ProjectFeatures
 
         public void Process(ProjectHealthRiskAdded @event)
         {
+            //TODO: Use UpdateOne instead
             var project = _projects.GetById(@event.ProjectId);
             project.HealthRisks = new List<ProjectHealthRisk>(project.HealthRisks)
             {
@@ -81,6 +83,7 @@ namespace Read.ProjectFeatures
 
         public void Process(ProjectHealthRiskThresholdUpdate @event)
         {
+            //TODO: Use UpdateOne instad
             var project = _projects.GetById(@event.ProjectId);
             var healthRisk = project.HealthRisks?.FirstOrDefault(v => v.HealthRiskId == @event.HealthRiskId);
 
@@ -100,6 +103,7 @@ namespace Read.ProjectFeatures
 
         public void Process(DataVerifierAdded @event)
         {
+            //TODO: Use UpdateOne instead
             var project = _projects.GetById(@event.ProjectId);
             var user = _users.GetById(@event.UserId);
             project.DataVerifiers = new List<User>(project.DataVerifiers) {user}.ToArray();
@@ -108,6 +112,7 @@ namespace Read.ProjectFeatures
 
         public void Process(DataVerifierRemoved @event)
         {
+            //TODO: Use UpdateOne instead
             var project = _projects.GetById(@event.ProjectId);
             var user = _users.GetById(@event.UserId);
             var list = new List<User>(project.DataVerifiers);

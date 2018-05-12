@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using Infrastructure.Read;
+
 namespace Read.AutomaticReplyMessages
 {
-    public interface IReplyMessages
+    public interface IReplyMessages : IExtendedReadModelRepositoryFor<ReplyMessagesConfig>
     {
-        ReplyMessagesConfig Get();
-        void Save(ReplyMessagesConfig config);
     }
 }

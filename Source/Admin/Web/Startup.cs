@@ -3,7 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using System.IO;
+using Infrastructure.Read;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,8 +23,12 @@ namespace Web
         {
         }
 
+        public override void ConfigureServicesCustom(IServiceCollection services)
+        {
+            services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
+            services.BuildServiceProvider().GetService<IReadModule>();
 
-
+        }
         //public void ConfigureServices(IServiceCollection services)
         //{
         //    services.AddCommon();

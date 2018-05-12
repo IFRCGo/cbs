@@ -2,7 +2,8 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
- 
+
+using System.Linq;
 using Domain;
 using Events;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace Web
         [HttpGet]
         public ReplyMessagesConfig Get()
         {
-            return _replyMessages.Get();
+            return _replyMessages.GetMany(_ => true).FirstOrDefault();
         }
 
         //TODO: Integrate to DoLittle2.0

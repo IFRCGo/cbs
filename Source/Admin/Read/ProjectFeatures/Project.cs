@@ -4,8 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
 using Events;
 using Events.Project;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Read.NationalSocietyFeatures;
@@ -13,7 +16,7 @@ using Read.UserFeatures;
 
 namespace Read.ProjectFeatures
 {
-    public class Project
+    public class Project : IReadModel
     {
         public Guid Id { get; set; }
 
@@ -29,5 +32,20 @@ namespace Read.ProjectFeatures
         public User[] DataVerifiers { get; set; }
 
         public string SmsProxy { get; set; }
+    }
+
+    public class ProjectClassMap : MongoDbClassMap<Project>
+    {
+        public override void Map(BsonClassMap<Project> cm)
+        {
+            cm.AutoMap();
+            cm.MapIdMember(p => p.Id);
+        }
+
+        public override void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Project)))
+                BsonClassMap.RegisterClassMap<Project>(Map);
+        }
     }
 }

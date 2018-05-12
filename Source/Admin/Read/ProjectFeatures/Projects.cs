@@ -6,62 +6,33 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.ProjectFeatures
 {
-    public class Projects : IProjects
+    public class Projects : ExtendedReadModelRepositoryFor<Project>, 
+        IProjects
     {
-        readonly IMongoCollection<Project> _collection;
 
-        readonly IMongoDatabase _database;
-
-        public Projects(IMongoDatabase database)
+        public Projects(IMongoDatabase database) 
+            : base(database, database.GetCollection<Project>("Project"))
         {
-            _database = database;
-            _collection = database.GetCollection<Project>("Project");
         }
 
         public Project GetById(Guid id)
         {
-            var project = _collection.Find(v => v.Id == id).SingleOrDefault();
-            if (project == null)
-            {
-                project = new Project {Name = "Dummy implementation", Id = id};
-                _collection.InsertOne(project);
-            }
-
-            return project;
-        }
-
-        public void Delete(Guid id)
-        {
-            _collection.FindOneAndDelete(p => p.Id == id);
-        }
-
-        public void Save(Project project)
-        {
-            if (GetById(project.Id) == null)
-            {
-                _collection.InsertOne(project);
-            }
-            else
-            {
-                var filter = Builders<Project>.Filter.Eq(v => v.Id, project.Id);
-                _collection.ReplaceOne(filter, project);
-            }
+            return GetOne(_ => _.Id == id);
         }
 
         public IEnumerable<Project> GetAll()
         {
-            return _collection.Find(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<Project>> GetAllASync()
+        public Task<IEnumerable<Project>> GetAllASync()
         {
-            var filter = Builders<Project>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
     }
 }

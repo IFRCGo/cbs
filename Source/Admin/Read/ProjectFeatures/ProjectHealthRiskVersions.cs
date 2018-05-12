@@ -5,24 +5,23 @@
 
 using System;
 using System.Collections.Generic;
+using Infrastructure.Read;
 using MongoDB.Driver;
 
 namespace Read.ProjectFeatures
 {
-    public class ProjectHealthRiskVersions : IProjectHealthRiskVersions
+    public class ProjectHealthRiskVersions :ExtendedReadModelRepositoryFor<ProjectHealthRiskVersion>, 
+        IProjectHealthRiskVersions
     {
-        readonly IMongoCollection<ProjectHealthRiskVersion> _collection;
-        readonly IMongoDatabase _database;
 
         public ProjectHealthRiskVersions(IMongoDatabase database)
+            : base(database, database.GetCollection<ProjectHealthRiskVersion>("ProjectHealthRiskVersion"))
         {
-            _database = database;
-            _collection = database.GetCollection<ProjectHealthRiskVersion>("ProjectHealthRiskVersion");
         }
 
         public void Append(Guid projectId, ProjectHealthRisk healthRisk, DateTimeOffset effectiveFromTime)
         {
-            _collection.InsertOne(new ProjectHealthRiskVersion()
+            Insert(new ProjectHealthRiskVersion
             {
                 Id = Guid.NewGuid(),
                 EffectiveFromTime = effectiveFromTime,
@@ -33,11 +32,7 @@ namespace Read.ProjectFeatures
 
         public IEnumerable<ProjectHealthRiskVersion> GetByProjectIdAndHealthRiskId(Guid projectId, Guid healthRiskId)
         {
-            var projectFilter = Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.ProjectId, projectId);
-            var healthRiskFilter =
-                Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.HealthRisk.HealthRiskId, healthRiskId);
-            var filter = Builders<ProjectHealthRiskVersion>.Filter.And(projectFilter, healthRiskFilter);
-            return _collection.Find(filter).ToEnumerable();
+            return GetMany(p => p.ProjectId == projectId && p.HealthRisk.HealthRiskId == healthRiskId);
         }
     }
 }

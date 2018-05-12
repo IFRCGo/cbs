@@ -5,27 +5,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using MongoDB.Driver;
+using Infrastructure.Read;
 
 namespace Read.HealthRiskFeatures
 {
-    public interface IHealthRisks
+    public interface IHealthRisks : IExtendedReadModelRepositoryFor<HealthRisk>
     {
-        void Save(HealthRisk healthRisk);
-        Task SaveAsync(HealthRisk healthRisk);
-
         IEnumerable<HealthRisk> GetAll();
         Task<IEnumerable<HealthRisk>> GetAllAsync();
 
         HealthRisk GetById(Guid id);
-
-        Task RemoveAsync(Guid id);
-
-        Task ReplaceAsync(HealthRisk healthRisk);
-
-        UpdateResult Update(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update);
-        UpdateResult Update(Expression<Func<HealthRisk, bool>> filter, UpdateDefinition<HealthRisk> update);
     }
 }
