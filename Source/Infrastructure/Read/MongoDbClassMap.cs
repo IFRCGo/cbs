@@ -12,12 +12,15 @@ namespace Infrastructure.Read
     {
         protected MongoDbClassMap()
         {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(T)))
-                BsonClassMap.RegisterClassMap<T>(Map);
+            Register();
         }
 
         public abstract void Map(BsonClassMap<T> cm);
 
-        public abstract void Register();
+        public void Register()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(T)))
+                BsonClassMap.RegisterClassMap<T>(Map);
+        }
     }
 }

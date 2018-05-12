@@ -25,10 +25,5 @@ namespace Read.AutomaticReplyMessages
             cm.AutoMap();
             cm.MapIdMember(r => r.Id);
         }
-
-        public override void Register()
-        {
-            BsonClassMap.RegisterClassMap<DefaultAutomaticReply>(Map);
-        }
     }
 }

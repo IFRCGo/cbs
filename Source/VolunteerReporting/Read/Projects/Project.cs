@@ -19,9 +19,5 @@ namespace Read.Projects
             cm.MapIdMember(r => r.Id);
         }
 
-        public override void Register()
-        {
-            BsonClassMap.RegisterClassMap<Project>(Map);
-        }
     }
 }

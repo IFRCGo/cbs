@@ -42,10 +42,5 @@ namespace Read.DataCollectors
             cm.AutoMap();
             cm.MapIdMember(r => r.Id);
         }
-
-        public override void Register()
-        {
-            BsonClassMap.RegisterClassMap<DataCollector>(Map);
-        }
     }
 }

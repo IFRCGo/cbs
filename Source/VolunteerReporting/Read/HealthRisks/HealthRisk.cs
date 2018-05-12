@@ -25,10 +25,5 @@ namespace Read.HealthRisks
             cm.AutoMap();
             cm.MapIdMember(r => r.Id);
         }
-
-        public override void Register()
-        {
-            BsonClassMap.RegisterClassMap<HealthRisk>(Map);
-        }
     }
 }
