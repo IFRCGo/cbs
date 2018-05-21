@@ -39,7 +39,7 @@ namespace Read.DataCollectors
         public void Process(DataCollectorUserInformationChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, @event.FullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, @event.DisplayName),
@@ -59,7 +59,7 @@ namespace Read.DataCollectors
         public void Process(DataCollectorLocationChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(@event.LocationLatitude,@event.LocationLongitude)));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -72,7 +72,7 @@ namespace Read.DataCollectors
         public void Process(DataCollectorPreferredLanguageChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.PreferredLanguage, (Language)@event.Language));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -84,7 +84,7 @@ namespace Read.DataCollectors
         public void Process(DataCollectorVillageChanged @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village));
         }
 
@@ -96,7 +96,7 @@ namespace Read.DataCollectors
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -108,7 +108,7 @@ namespace Read.DataCollectors
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -120,7 +120,7 @@ namespace Read.DataCollectors
         public void Process(CaseReportReceived @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)
@@ -132,7 +132,7 @@ namespace Read.DataCollectors
         public void Process(InvalidReportReceived @event)
         {
             var res = _dataCollectors.UpdateOne(
-                Builders<DataCollector>.Filter.Where(d => d.DataCollectorId == @event.DataCollectorId),
+                Builders<DataCollector>.Filter.Where(d => d.Id == @event.DataCollectorId),
                 Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
 
             if (res.IsModifiedCountAvailable && res.MatchedCount < 1)

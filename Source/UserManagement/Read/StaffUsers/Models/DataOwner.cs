@@ -7,11 +7,11 @@ namespace Read.StaffUsers.Models
 {
     public class DataOwner : BaseUser
     {
-        public DataOwner(Guid staffUserId, string fullName, string displayName, 
+        public DataOwner(Guid id, string fullName, string displayName, 
             string email, DateTimeOffset registrationDate, int birthYear, Sex sex, 
             Guid nationalSociety, Language preferredLanguage,
             string position, string dutyStation) 
-            : base(staffUserId, fullName, displayName, email, registrationDate)
+            : base(id, fullName, displayName, email, registrationDate)
         {
             BirthYear = birthYear;
             Sex = sex;

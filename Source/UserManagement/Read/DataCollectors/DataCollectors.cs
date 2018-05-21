@@ -16,12 +16,12 @@ namespace Read.DataCollectors
 
         public DataCollector GetById(Guid id)
         {
-            return GetOne(d => d.DataCollectorId == id);
+            return GetOne(d => d.Id == id);
         }
 
         public Task<DataCollector> GetByIdAsync(Guid id)
         {
-            return GetOneAsync(d => d.DataCollectorId == id);
+            return GetOneAsync(d => d.Id == id);
         }
 
         public IEnumerable<DataCollector> GetAll()

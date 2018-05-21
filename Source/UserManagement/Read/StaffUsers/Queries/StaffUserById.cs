@@ -42,12 +42,12 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<BaseUser> Query =>
-            (_adminRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId).AsEnumerable()
-                .Concat<BaseUser>(_dataConsumerRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId)).AsEnumerable()
-                .Concat(_dataCoordinatorRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId)).AsEnumerable()
-                .Concat(_dataOwnerRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId)).AsEnumerable()
-                .Concat(_dataVerifierRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId)).AsEnumerable()
-                .Concat(_systemConfiguratorRepository.Query.Select(_ => _).Where(u => u.StaffUserId == StaffUserId)).AsEnumerable())
+            (_adminRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId).AsEnumerable()
+                .Concat<BaseUser>(_dataConsumerRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId)).AsEnumerable()
+                .Concat(_dataCoordinatorRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId)).AsEnumerable()
+                .Concat(_dataOwnerRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId)).AsEnumerable()
+                .Concat(_dataVerifierRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId)).AsEnumerable()
+                .Concat(_systemConfiguratorRepository.Query.Select(_ => _).Where(u => u.Id == StaffUserId)).AsEnumerable())
                 .AsQueryable();
 
     }
@@ -65,7 +65,7 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.Admin> Query =>
-            _adminRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _adminRepository.Query.Where(u => u.Id == StaffUserId);
 
     }
 
@@ -84,7 +84,7 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.DataConsumer> Query =>
-            _dataConsumerRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _dataConsumerRepository.Query.Where(u => u.Id == StaffUserId);
     }
 
     public class DataCoordinatorById : IQueryFor<Models.DataCoordinator>
@@ -102,7 +102,7 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.DataCoordinator> Query =>
-            _dataCoordinatorRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _dataCoordinatorRepository.Query.Where(u => u.Id == StaffUserId);
     }
 
     public class DataOwnerById : IQueryFor<Models.DataOwner>
@@ -120,7 +120,7 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.DataOwner> Query =>
-            _dataOwnerRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _dataOwnerRepository.Query.Where(u => u.Id == StaffUserId);
     }
 
     public class DataVerifierById : IQueryFor<Models.DataVerifier>
@@ -138,7 +138,7 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.DataVerifier> Query =>
-            _dataVerifierRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _dataVerifierRepository.Query.Where(u => u.Id == StaffUserId);
     }
 
     public class SystemConfiguratorById : IQueryFor<Models.SystemConfigurator>
@@ -156,6 +156,6 @@ namespace Read.StaffUsers.Queries
         }
 
         public IQueryable<Models.SystemConfigurator> Query =>
-            _systemConfiguratorRepository.Query.Where(u => u.StaffUserId == StaffUserId);
+            _systemConfiguratorRepository.Query.Where(u => u.Id == StaffUserId);
     }
 }

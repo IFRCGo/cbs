@@ -15,8 +15,8 @@ namespace Infrastructure.Read
         {
             _readModels = readModels;
 
-            var customClassMapTypes = typeFinder.FindMultiple(typeof(IMongoDbClassMapFor<>)).ToList();
-            var readModelHasCustomClassMap = GetHasCustomClassMapDictionary(customClassMapTypes);
+            var customClassMapTypes = typeFinder.FindMultiple(typeof(IMongoDbClassMapFor<>));
+            var readModelHasCustomClassMap = GetHasCustomClassMapDictionary(customClassMapTypes.ToList());
 
             RegisterBsonClassMaps(readModelHasCustomClassMap);
             
@@ -31,7 +31,7 @@ namespace Infrastructure.Read
 
                 // In a polymorphic IReadModel structure, we want to take the BsonClassMap "closest to the root"
                 var customClassMap = customClassMaps.Count() > 1 
-                    ? customClassMaps.FirstOrDefault(t => TypeHasIMongoDbClassMapForReadModel(t, readModel)) 
+                    ? customClassMaps.FirstOrDefault(t => TypeImplementsIMongoDbClassMapForReadModel(t, readModel)) 
                     : customClassMaps.FirstOrDefault();
 
                 readModelHasCustomClassMap.Add(readModel, customClassMap);
@@ -60,18 +60,19 @@ namespace Infrastructure.Read
         {
             return customClassMapTypes.Where(
                 t => t.IsClass
-                     && (TypeHasIMongoDbClassMapForReadModel(t, readModel)
+                     && (TypeImplementsIMongoDbClassMapForReadModel(t, readModel)
                          || readModel.IsSubclassOf(GetReadModelFromIMongoDbClassMapFor(t)))
             ).ToList();
+        }
+        private static bool TypeImplementsIMongoDbClassMapForReadModel(Type customClassMapType, Type readModel)
+        {
+            return GetReadModelFromIMongoDbClassMapFor(customClassMapType) == readModel;
         }
         private static Type GetReadModelFromIMongoDbClassMapFor(Type customClassMapType)
         {
             return customClassMapType.GetInterface(typeof(IMongoDbClassMapFor<>).Name).GetGenericArguments()
                 .FirstOrDefault();
         }
-        private static bool TypeHasIMongoDbClassMapForReadModel(Type customClassMapType, Type readModel)
-        {
-            return GetReadModelFromIMongoDbClassMapFor(customClassMapType) == readModel;
-        }
+        
     }
 }
