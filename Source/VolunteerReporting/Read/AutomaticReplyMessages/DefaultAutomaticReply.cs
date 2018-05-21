@@ -1,8 +1,6 @@
 using System;
 using Concepts;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -16,14 +14,6 @@ namespace Read.AutomaticReplyMessages
         public DefaultAutomaticReply(Guid id)
         {
             Id = id;
-        }
-    }
-    public class DefaultAutomaticReplyBsonClassMap : MongoDbClassMap<DefaultAutomaticReply>
-    {
-        public override void Map(BsonClassMap<DefaultAutomaticReply> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(r => r.Id);
         }
     }
 }

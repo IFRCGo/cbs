@@ -33,14 +33,4 @@ namespace Read.DataCollectors
             Location = Location.NotSet;
         }
     }
-
-
-    public class DataCollectorClassMap : MongoDbClassMap<DataCollector>
-    {
-        public override void Map(BsonClassMap<DataCollector> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(r => r.Id);
-        }
-    }
 }

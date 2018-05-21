@@ -1,14 +1,11 @@
 using System;
-using Concepts;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
-
 namespace Read.CaseReports
 {
     public class CaseReportFromUnknownDataCollector : IReadModel
     {
         public Guid Id { get; set; }
+
         public string Message { get; set; }
         public string Origin { get; set; }
         public Guid HealthRiskId { get; set; }
@@ -23,15 +20,6 @@ namespace Read.CaseReports
             this.Id = id;
         }
 
-    }
-
-    public class CaseReportFromUnknownDataCollectorBsonClassMap : MongoDbClassMap<CaseReportFromUnknownDataCollector>
-    {
-        public override void Map(BsonClassMap<CaseReportFromUnknownDataCollector> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(r => r.Id);
-        }
     }
 
 }
