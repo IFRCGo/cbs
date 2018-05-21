@@ -5,8 +5,6 @@
 
 using System;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
 
 namespace Read.UserFeatures
 {
@@ -14,20 +12,13 @@ namespace Read.UserFeatures
     {
         public Guid Id { get; set; }
 
+        //TODO: Change to FullName
         public string Firstname { get; set; }
 
+        //TODO:Change to DisplayName 
         public string Lastname { get; set; }
 
         public string Country { get; set; }
         public Guid NationalSocietyId { get; set; }
-    }
-
-    public class UserClassMap : MongoDbClassMap<User>
-    {
-        public override void Map(BsonClassMap<User> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(u => u.Id);
-        }
     }
 }

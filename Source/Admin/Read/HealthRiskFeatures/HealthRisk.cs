@@ -5,14 +5,13 @@
 
 using System;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
 
 namespace Read.HealthRiskFeatures
 {
     public class HealthRisk : IReadModel
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
         public int ReadableId { get; set; }
         public int? Threshold { get; set; }
@@ -21,13 +20,5 @@ namespace Read.HealthRiskFeatures
         public string CommunityCase { get; set; } //TODO: Should this be removed?
         public string KeyMessage { get; set; }
     }
-
-    public class HealthRiskClassMap : MongoDbClassMap<HealthRisk>
-    {
-        public override void Map(BsonClassMap<HealthRisk> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(h => h.Id);
-        }
-    }
+    
 }

@@ -12,18 +12,10 @@ namespace Read.ProjectFeatures
 {
     public class ProjectHealthRiskVersion : IReadModel
     {
-        public Guid Id { get; set; } // Do we really need this?
+        public Guid Id { get; set; }
+
         public Guid ProjectId { get; set; }
         public ProjectHealthRisk HealthRisk { get; set; }
         public DateTimeOffset EffectiveFromTime { get; set; }
-    }
-
-    public class ProjectHealthRiskVersionClassMap : MongoDbClassMap<ProjectHealthRiskVersion>
-    {
-        public override void Map(BsonClassMap<ProjectHealthRiskVersion> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(p => p.Id);
-        }
     }
 }

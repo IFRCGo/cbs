@@ -4,9 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
 
 namespace Read.ProjectFeatures
 {

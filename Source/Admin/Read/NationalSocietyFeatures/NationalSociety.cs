@@ -5,25 +5,15 @@
 
 using System;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
 
 namespace Read.NationalSocietyFeatures
 {
     public class NationalSociety : IReadModel
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
         public string Country { get; set; }
         public int TimezoneOffsetFromUtcInMinutes { get; set; }
-    }
-
-    public class NatinalSocietyClassMap : MongoDbClassMap<NationalSociety>
-    {
-        public override void Map(BsonClassMap<NationalSociety> cm)
-        {
-            cm.AutoMap();
-            cm.MapIdMember(n => n.Id);
-        }
     }
 }

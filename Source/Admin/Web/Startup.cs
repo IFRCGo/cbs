@@ -22,32 +22,5 @@ namespace Web
             IConfiguration configuration) : base(loggerFactory, env, configuration)
         {
         }
-
-        public override void ConfigureServicesCustom(IServiceCollection services)
-        {
-            services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
-            services.BuildServiceProvider().GetService<IReadModule>();
-
-        }
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddCommon();
-        //}
-
-        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        //{
-        //    app.Use(async (context, next) =>
-        //    {
-        //        await next();
-
-        //        if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
-        //        {
-        //            context.Request.Path = "/index.html";
-        //            await next();
-        //        }
-        //    });
-
-        //    app.UseCommon(env);
-        //}
     }
 }
