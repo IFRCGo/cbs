@@ -91,7 +91,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         }
     }
     private initChangeBaseInformation() {
-        this.changeBaseInformationCommand.dataCollectorId = this.user.dataCollectorId;
+        this.changeBaseInformationCommand.dataCollectorId = this.user.id;
         this.changeBaseInformationCommand.displayName = this.user.displayName;
         this.changeBaseInformationCommand.fullName = this.user.fullName;
         this.changeBaseInformationCommand.sex = this.user.sex;
@@ -101,21 +101,21 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     }
 
     private initChangeLocation() {
-        this.changeLocationCommand.dataCollectorId = this.user.dataCollectorId;
+        this.changeLocationCommand.dataCollectorId = this.user.id;
         this.changeLocationCommand.location = new Location();
         this.changeLocationCommand.location.latitude = this.user.location.latitude;
         this.changeLocationCommand.location.longitude = this.user.location.longitude;
 
     }
     private initChangePreferredLanguage() {
-        this.changePreferredLanguageCommand.dataCollectorId = this.user.dataCollectorId;
+        this.changePreferredLanguageCommand.dataCollectorId = this.user.id;
         this.changePreferredLanguageCommand.preferredLanguage = this.user.preferredLanguage;
     }
     private initPhoneNumbers() {
         this.phoneNumberString = this.user.phoneNumbers.map(number => number.value).join(', ');
     }
     private initVillage() {
-        this.changeVillageCommand.dataCollectorId = this.user.dataCollectorId;
+        this.changeVillageCommand.dataCollectorId = this.user.id;
         this.changeVillageCommand.village = this.user.village;
     }
 
@@ -226,7 +226,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== '') {
             this.userHasChanged = true;
 
-            this.changeVillageCommand.dataCollectorId = this.user.dataCollectorId;
+            this.changeVillageCommand.dataCollectorId = this.user.id;
             this.commandCoordinator.handle(this.changeVillageCommand)
             .then(response => {
                 console.log(response);
@@ -264,7 +264,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         addednumbers.forEach(number => {
             this.userHasChanged = true;
             const cmd = new AddPhoneNumberToDataCollector();
-            cmd.dataCollectorId = this.user.dataCollectorId;
+            cmd.dataCollectorId = this.user.id;
             cmd.phoneNumber = number;
             this.commandCoordinator.handle(cmd)
                 .then(response => {
@@ -311,7 +311,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         removednumbers.forEach(number => {
             this.userHasChanged = true;
             const cmd = new RemovePhoneNumberFromDataCollector();
-            cmd.dataCollectorId = this.user.dataCollectorId;
+            cmd.dataCollectorId = this.user.id;
             cmd.phoneNumber = number;
 
             this.commandCoordinator.handle(cmd)

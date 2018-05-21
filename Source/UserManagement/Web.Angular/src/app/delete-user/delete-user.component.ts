@@ -31,7 +31,7 @@ export class DeleteUserComponent {
     }
 
     deleteUser(id: string) {
-        this.command.dataCollectorId = this.user.dataCollectorId;
+        this.command.dataCollectorId = this.user.id;
         if (!environment.production) {
             console.log('Deleting datacollector with id = ' + this.command.dataCollectorId )
         }

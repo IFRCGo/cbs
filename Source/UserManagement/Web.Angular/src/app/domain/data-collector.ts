@@ -7,7 +7,7 @@ class PhoneNumber {
 
 export class DataCollector {
 
-    dataCollectorId: string;
+    id: string;
     fullName: string;
     displayName: string;
     yearOfBirth: number;
@@ -24,7 +24,7 @@ export class DataCollector {
 
     constructor(o: any) {
 
-        this.dataCollectorId = o.dataCollectorId;
+        this.id = o.id;
         this.fullName = o.fullName;
         this.displayName = o.displayName;
         this.yearOfBirth = o.yearOfBirth;

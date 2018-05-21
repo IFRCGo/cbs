@@ -28,7 +28,7 @@
     <tbody>
         <tr *ngFor="let user of users">
             <td>
-                <a routerLink="/detail/{{user.dataCollectorId}}">
+                <a routerLink="/detail/{{user.id}}">
                     <span>
                         {{user.fullName}}
                     </span> 
@@ -45,7 +45,7 @@
             <td>
             </td>
             <td>
-                    <a [routerLink]="['/edit-user/data-collector/',user.dataCollectorId]" routerLinkActive="active">Edit</a> 
+                    <a [routerLink]="['/edit-user/data-collector/',user.id]" routerLinkActive="active">Edit</a> 
                     <cbs-delete-user [user]=user></cbs-delete-user>
             </td>
         </tr>
