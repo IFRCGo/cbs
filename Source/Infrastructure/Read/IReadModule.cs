@@ -1,4 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Dolittle.Types;
+using MongoDB.Bson.Serialization;
 
 namespace Infrastructure.Read
 {
@@ -10,6 +14,6 @@ namespace Infrastructure.Read
     /// </summary>
     public interface IReadModule
     {
-        void RegisterReadModelClassMaps(AppDomain appDomain);
+        //void RegisterReadModelClassMaps(AppDomain appDomain);
     }
 }

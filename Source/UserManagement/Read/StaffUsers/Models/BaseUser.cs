@@ -23,12 +23,22 @@ namespace Read.StaffUsers.Models
         }
     }
 
-    public class BaseUserClassMap : MongoDbClassMap<BaseUser>
+    public class BaseUserClassMap : IMongoDbClassMapFor<BaseUser>
     {
-        public override void Map(BsonClassMap<BaseUser> cm)
+        public void Map(BsonClassMap<BaseUser> cm)
         {
             cm.AutoMap();
             cm.MapIdMember(g => g.StaffUserId);
+        }
+
+        public void Register()
+        {
+            BsonClassMap.RegisterClassMap<BaseUser>(Map);
+        }
+
+        public bool IsRegistered()
+        {
+            return BsonClassMap.IsClassMapRegistered(typeof(BaseUser));
         }
     }
 }

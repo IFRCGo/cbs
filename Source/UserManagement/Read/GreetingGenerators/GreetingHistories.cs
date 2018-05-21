@@ -27,12 +27,12 @@ namespace Read.GreetingGenerators
 
         public GreetingHistory GetById(Guid id)
         {
-            return GetOne(d => d.DataCollectorId == id);
+            return GetOne(d => d.Id == id);
         }
 
         public Task<GreetingHistory> GetByIdAsync(Guid id)
         {
-            return GetOneAsync(d => d.DataCollectorId == id);
+            return GetOneAsync(d => d.Id == id);
         }
 
         public GreetingHistory GetByPhoneNumber(string phoneNumber)

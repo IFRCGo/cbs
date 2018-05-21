@@ -180,7 +180,8 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                _commandCoordinator.Handle(cmd);
+                var res = _commandCoordinator.Handle(cmd);
+                Console.Write(res);
             }
         }
         [HttpGet("alldataownercommands")]

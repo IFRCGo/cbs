@@ -7,6 +7,7 @@ using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.DependencyInversion.Autofac;
 using Infrastructure.AspNet.ConnectionStrings;
 using Infrastructure.Kafka.BoundedContexts;
+using Infrastructure.Read;
 using Infrastructure.TextMessaging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +44,7 @@ namespace Infrastructure.AspNet
 
             services
                 .AddCors()
-                .AddMvc();;
+                .AddMvc();
             services.Configure<ConnectionStringsOptions>(_configuration);
 
             //_bootResult = services.AddDolittle(_loggerFactory); // Sometimes it seems like this goes in an infinite loop with the logger factory for some reason
@@ -55,6 +56,7 @@ namespace Infrastructure.AspNet
         {
             containerBuilder.AddDolittle(_bootResult.Assemblies, _bootResult.Bindings);
             ConfigureContainerCustom(containerBuilder);
+            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -64,7 +66,6 @@ namespace Infrastructure.AspNet
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             }
-
             app.UseCors(builder => builder
                 .AllowAnyHeader()
                 .AllowAnyMethod()
@@ -72,7 +73,7 @@ namespace Infrastructure.AspNet
                 .AllowCredentials());
             app.UseMvc();
             if (env.IsDevelopment()) app.UseSwagger();
-
+            
             app.UseDolittle();
 
             app.UseDefaultFiles();
@@ -87,8 +88,15 @@ namespace Infrastructure.AspNet
             app.RunAsSinglePageApplication();
         }
 
-        public virtual void ConfigureServicesCustom(IServiceCollection services) {}
-        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder) { }
+        public virtual void ConfigureServicesCustom(IServiceCollection services)
+        {
+            services.AddReadModule();
+        }
+
+        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<ReadModule>().As<IReadModule>().AutoActivate();
+        }
         public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
     }
 }

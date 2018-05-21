@@ -1,5 +1,7 @@
 using System;
 using Concepts;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read.StaffUsers.Models

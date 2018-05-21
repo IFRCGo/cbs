@@ -17,7 +17,7 @@ namespace Read.GreetingGenerators.Queries
         }
 
 
-        public IQueryable<GreetingHistory> Query => _repository.Query.Where(g => g.DataCollectorId == DataCollectorId);
+        public IQueryable<GreetingHistory> Query => _repository.Query.Where(g => g.Id == DataCollectorId);
 
     }
 }

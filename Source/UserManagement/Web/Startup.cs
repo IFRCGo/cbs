@@ -26,10 +26,10 @@ namespace Web
             
         }
 
-        public override void ConfigureServicesCustom(IServiceCollection services)
-        {
-            services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
-            services.BuildServiceProvider().GetService<IReadModule>();
-        }
+        //public override void ConfigureServicesCustom(IServiceCollection services)
+        //{
+        //    services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
+        //    services.BuildServiceProvider().GetService<IReadModule>();
+        //}
     }
 }

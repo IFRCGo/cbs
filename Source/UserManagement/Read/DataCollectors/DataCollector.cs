@@ -34,13 +34,23 @@ namespace Read.DataCollectors
         }
     }
 
-    public class DataCollectorClassMap : MongoDbClassMap<DataCollector>
+    public class DataCollectorClassMap : IMongoDbClassMapFor<DataCollector>
     {
-        public override void Map(BsonClassMap<DataCollector> cm)
+        public void Map(BsonClassMap<DataCollector> cm)
         {
             cm.AutoMap();
 
             cm.MapIdMember(d => d.DataCollectorId);
+        }
+
+        public void Register()
+        {
+            BsonClassMap.RegisterClassMap<DataCollector>(Map);
+        }
+
+        public bool IsRegistered()
+        {
+           return BsonClassMap.IsClassMapRegistered(typeof(DataCollector));
         }
     }
 }
