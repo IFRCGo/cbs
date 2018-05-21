@@ -34,6 +34,8 @@ namespace Read.DataCollectors
         }
     }
 
+    //TODO: We can migrate from having this custom ClassMap. Delete this ClassMap and change IdMember field's name to Id.
+    // important that that change also is reflected in Frontend
     public class DataCollectorClassMap : IMongoDbClassMapFor<DataCollector>
     {
         public void Map(BsonClassMap<DataCollector> cm)

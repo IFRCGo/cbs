@@ -22,7 +22,8 @@ namespace Read.StaffUsers.Models
             RegistrationDate = registrationDate;
         }
     }
-
+    //TODO: We can migrate from having this custom ClassMap. Delete this ClassMap and change IdMember field's name to Id.
+    // important that that change also is reflected in Frontend
     public class BaseUserClassMap : IMongoDbClassMapFor<BaseUser>
     {
         public void Map(BsonClassMap<BaseUser> cm)
