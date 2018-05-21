@@ -22,14 +22,7 @@ namespace Web
             ILoggerFactory loggerFactory,
             IHostingEnvironment env,
             IConfiguration configuration) : base(loggerFactory, env, configuration)
-        {
-            
+        {   
         }
-
-        //public override void ConfigureServicesCustom(IServiceCollection services)
-        //{
-        //    services.AddSingleton<IReadModule>(s => new ReadModule(AppDomain.CurrentDomain));
-        //    services.BuildServiceProvider().GetService<IReadModule>();
-        //}
     }
 }

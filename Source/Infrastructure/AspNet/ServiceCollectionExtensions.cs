@@ -1,6 +1,7 @@
+using Infrastructure.Read;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Read
+namespace Infrastructure.AspNet
 {
     public static class ServiceCollectionExtensions
     {

@@ -10,10 +10,4 @@
         <PackageReference Include="Dolittle.SDK.ReadModels" Version="2.0.0-alpha2*" />
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencyinjection.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      </Reference>
-    </ItemGroup>
 </Project>

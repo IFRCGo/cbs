@@ -7,7 +7,6 @@ using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.DependencyInversion.Autofac;
 using Infrastructure.AspNet.ConnectionStrings;
 using Infrastructure.Kafka.BoundedContexts;
-using Infrastructure.Read;
 using Infrastructure.TextMessaging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -95,7 +94,7 @@ namespace Infrastructure.AspNet
 
         public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<ReadModule>().As<IReadModule>().AutoActivate();
+            containerBuilder.AddReadModule();
         }
         public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
     }
