@@ -3,12 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
-using System.Linq;
-using Dolittle.Concepts;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
 using Microsoft.AspNetCore.Mvc;
-using Read.StaffUsers;
 using Read.StaffUsers.Admin;
 using Read.StaffUsers.DataConsumer;
 using Read.StaffUsers.DataCoordinator;

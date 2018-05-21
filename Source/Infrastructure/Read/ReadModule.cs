@@ -16,20 +16,10 @@ namespace Infrastructure.Read
             _readModels = readModels;
 
             var customClassMapTypes = typeFinder.FindMultiple(typeof(IMongoDbClassMapFor<>)).ToList();
-
             var readModelHasCustomClassMap = GetHasCustomClassMapDictionary(customClassMapTypes);
 
-            foreach (var pair in readModelHasCustomClassMap)
-            {
-                if (pair.Value == null)
-                    BsonClassMap.LookupClassMap(pair.Key);
-                else
-                {
-                    var customClassMap = Activator.CreateInstance(pair.Value) as dynamic;
-                    if (!customClassMap.IsRegistered())
-                        customClassMap.Register();
-                }
-            }
+            RegisterBsonClassMaps(readModelHasCustomClassMap);
+            
         }
 
         private Dictionary<Type, Type> GetHasCustomClassMapDictionary(IList<Type> customClassMapTypes)
@@ -37,11 +27,7 @@ namespace Infrastructure.Read
             var readModelHasCustomClassMap = new Dictionary<Type, Type>();
             foreach (var readModel in _readModels)
             {
-                var customClassMaps = customClassMapTypes.Where(
-                    t => t.IsClass
-                         && (TypeHasIMongoDbClassMapForReadModel(t, readModel)
-                             || readModel.IsSubclassOf(GetReadModelFromIMongoDbClassMapFor(t)))
-                ).ToList();
+                var customClassMaps = GetCustomClassMapsForReadModel(customClassMapTypes, readModel);
 
                 // In a polymorphic IReadModel structure, we want to take the BsonClassMap "closest to the root"
                 var customClassMap = customClassMaps.Count() > 1 
@@ -54,12 +40,36 @@ namespace Infrastructure.Read
             return readModelHasCustomClassMap;
         }
 
-        private Type GetReadModelFromIMongoDbClassMapFor(Type customClassMapType)
+        private static void RegisterBsonClassMaps(Dictionary<Type, Type> readModelHasCustomClassMap)
+        {
+            foreach (var pair in readModelHasCustomClassMap)
+            {
+                if (pair.Value == null)
+                    BsonClassMap.LookupClassMap(pair.Key);
+                else
+                {
+                    //TODO: Risky, maybe look for an alternative 
+                    var customClassMap = Activator.CreateInstance(pair.Value) as dynamic;
+                    if (!customClassMap.IsRegistered())
+                        customClassMap.Register();
+                }
+            }
+        }
+
+        private static IList<Type> GetCustomClassMapsForReadModel(IEnumerable<Type> customClassMapTypes, Type readModel)
+        {
+            return customClassMapTypes.Where(
+                t => t.IsClass
+                     && (TypeHasIMongoDbClassMapForReadModel(t, readModel)
+                         || readModel.IsSubclassOf(GetReadModelFromIMongoDbClassMapFor(t)))
+            ).ToList();
+        }
+        private static Type GetReadModelFromIMongoDbClassMapFor(Type customClassMapType)
         {
             return customClassMapType.GetInterface(typeof(IMongoDbClassMapFor<>).Name).GetGenericArguments()
                 .FirstOrDefault();
         }
-        private bool TypeHasIMongoDbClassMapForReadModel(Type customClassMapType, Type readModel)
+        private static bool TypeHasIMongoDbClassMapForReadModel(Type customClassMapType, Type readModel)
         {
             return GetReadModelFromIMongoDbClassMapFor(customClassMapType) == readModel;
         }
