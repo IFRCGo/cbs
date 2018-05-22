@@ -27,9 +27,8 @@ namespace Read.StaffUsers.Queries
             IDataCoordinatorRepository dataCoordinatorRepository,
             IDataOwnerRepository dataOwnerRepository,
             IDataVerifierRepository dataVerifierRepository,
-            ISystemConfiguratorRepository systemConfiguratorRepository,
-            
-            Guid staffUserId)
+            ISystemConfiguratorRepository systemConfiguratorRepository
+            )
         {
             _adminRepository = adminRepository;
             _dataCoordinatorRepository = dataCoordinatorRepository;
@@ -37,8 +36,7 @@ namespace Read.StaffUsers.Queries
             _dataVerifierRepository = dataVerifierRepository;
             _systemConfiguratorRepository = systemConfiguratorRepository;
             _dataConsumerRepository = dataConsumerRepository;
-
-            StaffUserId = staffUserId;
+            
         }
 
         public IQueryable<BaseUser> Query =>
@@ -57,11 +55,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public AdminById(
-            IAdminRepository adminRepository,
-            Guid staffUserId)
+            IAdminRepository adminRepository)
         {
             _adminRepository = adminRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.Admin> Query =>
@@ -76,11 +72,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public DataConsumerById(
-            IDataConsumerRepository dataConsumerRepository,
-            Guid staffUserId)
+            IDataConsumerRepository dataConsumerRepository)
         {
             _dataConsumerRepository = dataConsumerRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.DataConsumer> Query =>
@@ -94,11 +88,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public DataCoordinatorById(
-            IDataCoordinatorRepository dataCoordinatorRepository,
-            Guid staffUserId)
+            IDataCoordinatorRepository dataCoordinatorRepository)
         {
             _dataCoordinatorRepository = dataCoordinatorRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.DataCoordinator> Query =>
@@ -112,11 +104,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public DataOwnerById(
-            IDataOwnerRepository dataOwnerRepository,
-            Guid staffUserId)
+            IDataOwnerRepository dataOwnerRepository)
         {
             _dataOwnerRepository = dataOwnerRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.DataOwner> Query =>
@@ -130,11 +120,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public DataVerifierById(
-            IDataVerifierRepository dataVerifierRepository,
-            Guid staffUserId)
+            IDataVerifierRepository dataVerifierRepository)
         {
             _dataVerifierRepository = dataVerifierRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.DataVerifier> Query =>
@@ -148,11 +136,9 @@ namespace Read.StaffUsers.Queries
 
         public Guid StaffUserId { get; set; }
         public SystemConfiguratorById(
-            ISystemConfiguratorRepository systemConfiguratorRepository,
-            Guid staffUserId)
+            ISystemConfiguratorRepository systemConfiguratorRepository)
         {
             _systemConfiguratorRepository = systemConfiguratorRepository;
-            StaffUserId = staffUserId;
         }
 
         public IQueryable<Models.SystemConfigurator> Query =>

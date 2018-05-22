@@ -10,10 +10,9 @@ namespace Read.DataCollectors.Queries
 
         public Guid DataCollectorId { get; set; }
 
-        public DataCollectorById(IDataCollectors repository, Guid dataCollectorId)
+        public DataCollectorById(IDataCollectors repository)
         {
             _repository = repository;
-            DataCollectorId = dataCollectorId;
         }
         
         public IQueryable<DataCollector> Query => _repository.Query.Where(d => d.Id == DataCollectorId);
