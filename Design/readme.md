@@ -1,7 +1,5 @@
 # CBS Mockup
-We are currently working on the [MVP Mockup](https://balsamiq.cloud/sgyjn/ppbia)
-
-If you want to look at future features take a look at the [1.0 Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp) 
+We are currently working on the [MVP Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp)
 
 All mockups made using [Balsamiq mockups](https://balsamiq.cloud)
  
@@ -18,15 +16,13 @@ MVP
 
 | Page name  | Project / bounded context where the functionality belongs
 |---|---|
-| Data Reopsitories  | Admin
-| Add Data Repository | Admin 
-| Edit Data Repository | Admin 
-| Projects  | Admin
+| Data Reopsitory | Admin
+| Projects | Admin
 | Add Project | Admin 
-| Project Summary | Admin
-| Project Summary need config | Admin
+| Project | Admin
+| Project need config | Admin
 | Project edit | Admin
-| Export Project Summary  | Admin
+| Export Project  | Admin
 | Case Reports | Volunteer Reporting
 | Filter Case Reports | Volunteer Reporting
 | Export Case Reports | Volunteer Reporting
@@ -44,44 +40,8 @@ MVP
 | Edit feedback message 2 admin | Admin
 | Send message Admin | Admin
 
-1.0
-
-| Page name  | Project / bounded context where the functionality belongs
-|---|---|
-| Projects  | Admin
-| Add Project | Admin 
-| Project Summary | Admin
-| Project Summary need config | Admin
-| Project Summary edit | Admin
-| Project Summary export | Admin
-| Project Summary PDF | Admin
-| Case Reports | Volunteer Reporting
-| Case Reports filters | Volunteer Reporting
-| Case Reports export | Volunteer Reporting
-| Save Filter | Volunteer Reporting
-| Saved Filters | Volunteer Reporting
-| Share filter | Volunteer Reporting
-| Feedback messages | Volunteer Reporting
-| Add Feedback message | Volunteer Reporting
-| Edit Feedback message 1 | Volunteer Reporting
-| Edit Feedback message 2 | Volunteer Reporting
-| Send Message reporting | Volunteer Reporting
-| Users List | User Management
-| Add user | User Management
-| Edit user | User Management
-| Health risks | Admin
-| Add health risks | Admin
-| Edit Health risks | Admin
-| SMS gateways | Admin
-| Edit SMS gateway | Admin
-| Feedback messages admin | Admin
-| Add feedback message admin | Admin
-| Edit feedback message 1 admin | Admin
-| Edit feedback message 2 admin | Admin
-| Send message Admin | Admin
 
 ## Notes:
 * The top bar is not active
 * Dashboards not added yet
 * Self-signup not added yet
-
