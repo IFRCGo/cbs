@@ -13,8 +13,9 @@ import { ChangeLocation } from '../../domain/data-collector/ChangeLocation';
 import { ChangePreferredLanguage } from '../../domain/data-collector/ChangePreferredLanguage';
 import { RemovePhoneNumberFromDataCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
 import { DataCollector } from '../../domain/data-collector';
-import { DataCollectorService } from '../../services/data-collector.service';
 import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
+import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { DataCollectorById } from '../../domain/data-collector/queries/DataCollectorById';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
 
@@ -44,7 +45,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private dataCollectorService: DataCollectorService
+        private queryCoordinator: QueryCoordinator
         ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
@@ -52,26 +53,25 @@ export class EditUserFormDataCollectorComponent implements OnInit {
 
         this.route.params.subscribe(params => {
             const id = params['id'];
-
-        this.dataCollectorService.getDataCollectorPromise(id)
+            this.queryCoordinator.handle(new DataCollectorById(id))
                 .then(response => {
-                    this.user = response[0];
-                    if (this.user != null && this.user !== undefined) {
-                        this.initChangeBaseInformation();
-                        this.initChangeLocation();
-                        this.initChangePreferredLanguage();
-                        this.initPhoneNumbers();
+                    if (response.success) {
+                        if (response.items.length > 0) {
+                            this.user = response.items[0] as DataCollector;
+                            this.initChangeBaseInformation();
+                            this.initChangeLocation();
+                            this.initChangePreferredLanguage();
+                            this.initPhoneNumbers();
+                        } else {
+                            // Datacollector with id does not exist
+                        }
                     } else {
                         console.error(response);
-                        this.toastr.error('Could not retrieve data collector from server');
-                        this.router.navigate(['list']);
                     }
                 })
-                .catch(error => {
-                    console.error(error);
-                    this.toastr.error('Could not retrieve data collector from server');
-                    this.router.navigate(['list']);
-                });
+                .catch(response => {
+                    console.error(response);
+                })
         });
     }
 

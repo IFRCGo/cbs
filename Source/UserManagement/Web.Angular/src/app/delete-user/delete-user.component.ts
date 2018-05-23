@@ -2,7 +2,6 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-import { DataCollectorService } from '../services/data-collector.service';
 import { DataCollector } from '../domain/data-collector';
 import { CommandCoordinator } from '../services/CommandCoordinator';
 import { DeleteDataCollector } from '../domain/data-collector/DeleteDataCollector';

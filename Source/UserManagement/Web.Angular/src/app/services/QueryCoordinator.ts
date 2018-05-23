@@ -20,7 +20,6 @@ export class QueryCoordinator {
 
     handle(queryRequest: QueryRequest): Promise<QueryResult> {
         const queryRequestAsJson = JSON.stringify(queryRequest);
-        console.log(queryRequest);
         return this.http
             .post(API_URL, queryRequest, httpOptions)
             .toPromise() as Promise<QueryResult>;

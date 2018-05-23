@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataCollectorService } from '../services/data-collector.service';
 import { DataCollector } from '../domain/data-collector';
 import { QueryCoordinator } from '../services/QueryCoordinator';
 import { AllDataCollectors } from '../domain/data-collector/queries/AllDataCollectors';
