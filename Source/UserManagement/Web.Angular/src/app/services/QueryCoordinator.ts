@@ -14,14 +14,14 @@ const httpOptions = {
 };
 
 @Injectable()
-export class QueryCoordinator {
+export class QueryCoordinator<T> {
 
     constructor(private http: HttpClient) { }
 
-    handle(queryRequest: QueryRequest): Promise<QueryResult> {
+    handle(queryRequest: QueryRequest): Promise<QueryResult<T>> {
         const queryRequestAsJson = JSON.stringify(queryRequest);
         return this.http
             .post(API_URL, queryRequest, httpOptions)
-            .toPromise() as Promise<QueryResult>;
+            .toPromise() as Promise<QueryResult<T>>;
     }
 }

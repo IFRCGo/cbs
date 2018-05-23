@@ -17,7 +17,7 @@ export class DataCollectorDetailComponent implements OnInit {
   dataCollector: DataCollector;
 
   constructor(
-    private queryCoordinator: QueryCoordinator,
+    private queryCoordinator: QueryCoordinator<DataCollector>,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -32,7 +32,7 @@ export class DataCollectorDetailComponent implements OnInit {
       .then(response => {
         if (response.success) {
           if (response.items.length > 0) {
-            this.dataCollector = response.items[0] as DataCollector
+            this.dataCollector = response.items[0]
           } else {
             // Datacollector was not found
             console.error(response)

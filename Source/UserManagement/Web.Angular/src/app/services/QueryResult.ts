@@ -1,7 +1,7 @@
-export class QueryResult {
+export class QueryResult<T> {
     queryName: string;
     totalItems: number;
-    items: ReadonlyArray<any>;
+    items: ReadonlyArray<T>;
     exception: any;
     securityMessages: any[];
     brokenRules: any[];

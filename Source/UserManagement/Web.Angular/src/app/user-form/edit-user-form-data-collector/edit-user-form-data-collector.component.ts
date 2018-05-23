@@ -45,7 +45,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator
+        private queryCoordinator: QueryCoordinator<DataCollector>
         ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
@@ -57,7 +57,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                 .then(response => {
                     if (response.success) {
                         if (response.items.length > 0) {
-                            this.user = response.items[0] as DataCollector;
+                            this.user = response.items[0];
                             this.initChangeBaseInformation();
                             this.initChangeLocation();
                             this.initChangePreferredLanguage();
