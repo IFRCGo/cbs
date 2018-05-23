@@ -35,6 +35,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { EditUserFormDataCollectorComponent } from './user-form/edit-user-form-data-collector/edit-user-form-data-collector.component';
 import { DatacollectorExportComponent } from './datacollector-export/datacollector-export.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { QueryCoordinator } from './services/QueryCoordinator';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -80,7 +81,8 @@ const appRoutes: Routes = [
     StaffUserService,
     DataCollectorService,
     AuthenticationService,
-    CommandCoordinator
+    CommandCoordinator,
+    QueryCoordinator
   ],
   bootstrap: [AppComponent]
 })
