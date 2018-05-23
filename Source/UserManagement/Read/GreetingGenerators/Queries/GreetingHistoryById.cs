@@ -13,7 +13,6 @@ namespace Read.GreetingGenerators.Queries
         public GreetingHistoryById(IGreetingHistories repository)
         {
             _repository = repository;
-            DataCollectorId = dataCollectorId;
         }
 
 
