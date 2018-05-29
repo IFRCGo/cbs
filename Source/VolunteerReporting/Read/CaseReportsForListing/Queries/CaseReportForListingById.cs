@@ -4,13 +4,13 @@ using Dolittle.Queries;
 
 namespace Read.CaseReportsForListing.Queries
 {
-    public class CaseReportById : IQueryFor<CaseReportForListing>
+    public class CaseReportForListingById : IQueryFor<CaseReportForListing>
     {
         private readonly ICaseReportsForListing _collection;
 
         public Guid CaseReportId { get; set; }
 
-        public CaseReportById(ICaseReportsForListing collection)
+        public CaseReportForListingById(ICaseReportsForListing collection)
         {
             _collection = collection;
         }
