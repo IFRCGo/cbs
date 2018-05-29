@@ -9,18 +9,23 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CaseReportModule } from './case-report/case-report.module';
-import { CoreModule } from './core/core.module';
 import { AuthenticationService } from 'navigation/authentication.service';
 import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 import { QueryCoordinator } from './services/QueryCoordinator';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'case-report',
         pathMatch: 'full'
-    }
+    }, 
+    {
+      path: 'reporting',
+      redirectTo: 'case-report',
+      pathMatch: 'full'
+    },
 ];
 
 @NgModule({
@@ -32,8 +37,8 @@ const routes: Routes = [
     imports: [
         BrowserModule,
         CommonModule,
+        HttpClientModule,
         HttpModule,
-        CoreModule,
         NoopAnimationsModule,
         RouterModule.forRoot(routes),
         CaseReportModule
