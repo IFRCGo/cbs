@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { AuthenticationService } from 'navigation/authentication.service';
 import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { QueryCoordinator } from './services/QueryCoordinator';
 
 const routes: Routes = [
     {
@@ -38,7 +39,8 @@ const routes: Routes = [
         CaseReportModule
     ],
     providers: [
-        AuthenticationService
+        AuthenticationService,
+        QueryCoordinator
     ],
     bootstrap: [AppComponent]
 })
