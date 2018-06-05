@@ -6,7 +6,8 @@ RUN ["yarn","global", "add", "@angular/cli@latest"]
 COPY ./Source/UserManagement/Web.Angular /Source/UserManagement/Web.Angular
 COPY ./Source/Navigation /Source/Navigation
 WORKDIR /Source/UserManagement/Web.Angular
-RUN ["yarn", "install"]
+ # For some reasons, it only works when we do npm install RUN ["yarn", "install"]
+RUN ["npm", "install"]
 RUN ["ng", "build", "--prod", "--base-href=/users/", "--deploy-url=/users/"]
 
 FROM nginx:1.13-alpine
