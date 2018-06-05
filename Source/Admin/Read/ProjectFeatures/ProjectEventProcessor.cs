@@ -47,7 +47,7 @@ namespace Read.ProjectFeatures
                 Name = @event.Name,
                 SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext
             };
-            _projects.Save(project);
+            _projects.Insert(project);
         }
 
         public void Process(ProjectUpdated @event)
@@ -59,27 +59,29 @@ namespace Read.ProjectFeatures
             project.Name = @event.Name;
             project.SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext;
             project.SmsProxy = @event.SmsProxy;
-            _projects.Save(project);
+            _projects.Update(p => p.Id == @event.Id, Builders<Project>.Update.Combine(
+                Builders<Project>.Update.Set(p => p.NationalSociety, _nationalSocieties.GetById(@event.NationalSocietyId)),
+                Builders<Project>.Update.Set(p => p.DataOwner, _users.GetById(@event.DataOwnerId)),
+                Builders<Project>.Update.Set(p => p.Name, @event.Name),
+                Builders<Project>.Update.Set(p => p.SurveillanceContext, (ProjectSurveillanceContext)@event.SurveillanceContext),
+                Builders<Project>.Update.Set(p => p.SmsProxy, @event.SmsProxy))
+            );
         }
 
         public void Process(ProjectDeleted @event)
         {
-            _projects.Delete(@event.ProjectId);
+            _projects.Delete(p => p.Id == @event.ProjectId);
         }
 
         public void Process(ProjectHealthRiskAdded @event)
         {
-            //TODO: Use UpdateOne instead
-            var project = _projects.GetById(@event.ProjectId);
-            project.HealthRisks = new List<ProjectHealthRisk>(project.HealthRisks)
-            {
-                new ProjectHealthRisk
+            //TODO: Assumes that project exists. Should be verified in BusinessValidator
+            _projects.Update(p => p.Id == @event.ProjectId,
+                Builders<Project>.Update.AddToSet(p => p.HealthRisks, new ProjectHealthRisk
                 {
                     HealthRiskId = @event.HealthRiskId,
                     Threshold = @event.Threshold
-                }
-            }.ToArray();
-            _projects.Insert(project);
+                }));
         }
 
         public void Process(ProjectHealthRiskThresholdUpdate @event)
