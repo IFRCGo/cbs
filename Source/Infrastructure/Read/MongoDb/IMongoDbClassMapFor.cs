@@ -1,7 +1,7 @@
 using Dolittle.ReadModels;
 using MongoDB.Bson.Serialization;
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
     public interface IMongoDbClassMapFor<T>
         where T : IReadModel

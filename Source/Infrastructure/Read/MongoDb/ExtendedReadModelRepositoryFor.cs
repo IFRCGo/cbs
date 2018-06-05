@@ -9,7 +9,7 @@ using Dolittle.ReadModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
     /// <summary>
     /// An implementation of IReadModelFor\<<typeparamref name="T"/>\>.
@@ -107,19 +107,19 @@ namespace Infrastructure.Read
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public void Save(T readModel, object id)
+        public void Update(T readModel, object id)
         {
             var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public void Save(T readModel, FilterDefinition<T> filter)
+        public void Update(T readModel, FilterDefinition<T> filter)
         {
 
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         } 
 
-        public void Save(T readModel, Expression<Func<T, bool>> filter)
+        public void Update(T readModel, Expression<Func<T, bool>> filter)
         {
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -131,18 +131,18 @@ namespace Infrastructure.Read
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public Task SaveAsync(T readModel, object id)
+        public Task UpdateAsync(T readModel, object id)
         {
             var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
            return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public Task SaveAsync(T readModel, FilterDefinition<T> filter)
+        public Task UpdateAsync(T readModel, FilterDefinition<T> filter)
         {
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public Task SaveAsync(T readModel, Expression<Func<T, bool>> filter)
+        public Task UpdateAsync(T readModel, Expression<Func<T, bool>> filter)
         {
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
@@ -215,12 +215,12 @@ namespace Infrastructure.Read
             return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
 
-        public void Update(Expression<Func<T, bool>> predicate, UpdateDefinition<T> update)
+        public void UpdateAsync(Expression<Func<T, bool>> predicate, UpdateDefinition<T> update)
         {
             _collection.UpdateMany(predicate, update);
         }
 
-        public void Update(FilterDefinition<T> predicate, UpdateDefinition<T> update)
+        public void UpdateAsync(FilterDefinition<T> predicate, UpdateDefinition<T> update)
         {
             _collection.UpdateMany(predicate, update);
         }

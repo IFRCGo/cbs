@@ -1,5 +1,5 @@
 using Autofac;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Infrastructure.AspNet
 {

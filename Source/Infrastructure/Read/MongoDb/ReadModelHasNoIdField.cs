@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
     public class ReadModelHasNoIdField : ArgumentException
     {

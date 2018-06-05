@@ -1,4 +1,4 @@
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.AspNet
