@@ -32,7 +32,6 @@ namespace Infrastructure.Read.MongoDb
             _collection = collection;
         }
 
-
         public T GetById(object id)
         {
             var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
@@ -196,33 +195,29 @@ namespace Infrastructure.Read.MongoDb
         }
 
         #endregion
-
-        // This part is copied from https://github.com/dolittle-extensions/ReadModels.MongoDB/blob/master/Source/ReadModelRepositoryFor.cs
+        
         static BsonValue GetObjectIdFromReadModel(T readModel)
         {
             return GetObjectIdFrom(readModel);
         }
-
+        /// <summary>
+        /// Assumes T to have a registered BsonClassMap
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <exception cref="ReadModelHasNoIdField"></exception>
+        /// <returns></returns>
         static BsonValue GetObjectIdFrom(T entity)
         {
             try
             {
-                var propInfo = GetIdProperty(entity);
-                object id = propInfo.GetValue(entity);
-
-                return GetIdAsBsonValue(id);
-            }
-            catch (InvalidOperationException)
-            {
                 var bsonDocument = entity.ToBsonDocument();
                 return bsonDocument["_id"];
             }
-            catch (Exception e) //TODO: Change to catch explicit Exceptions when I know what kind exception this might throw
+            catch (Exception)
             {
                 var type = entity.GetType();
-                throw new ReadModelHasNoIdField(
-                    $"Type {type.FullName} does not provide a BSon Class Mapping for _id",
-                    e
+                throw new NoBsonClassMapRegistered(
+                    $"Type {type.FullName} has no BsonClassMap registered that has an _id field"
                 );
             }
         }
@@ -236,10 +231,6 @@ namespace Infrastructure.Read.MongoDb
             var idAsValue = BsonValue.Create(idVal);
             return idAsValue;
         }
-
-        static PropertyInfo GetIdProperty(T entity)
-        {
-            return typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).First(p => p.Name.ToLowerInvariant() == "id");
-        }
+        
     }
 }
