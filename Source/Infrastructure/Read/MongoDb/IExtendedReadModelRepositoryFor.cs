@@ -36,7 +36,7 @@ namespace Infrastructure.Read.MongoDb
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        Task<T> GetOneAs(FilterDefinition<T> filter);
+        Task<T> GetOneAsync(FilterDefinition<T> filter);
         /// <summary>
         /// Retrieves a single document matching the filter
         /// </summary>
@@ -77,7 +77,7 @@ namespace Infrastructure.Read.MongoDb
 
         #endregion
 
-        #region Save
+        #region ReplaceOne
 
         /// <summary>
         /// Replaces a single document matching the predicate with readModel
@@ -144,12 +144,7 @@ namespace Infrastructure.Read.MongoDb
         #endregion
 
         #region Delete
-
-        /// <summary>
-        /// Deletes a single Documents with the given id
-        /// </summary>
-        /// <param name="id"></param>
-        DeleteResult Delete(object id);
+        
         /// <summary>
         /// Deletes multiple Documents matching the predicate
         /// </summary>
