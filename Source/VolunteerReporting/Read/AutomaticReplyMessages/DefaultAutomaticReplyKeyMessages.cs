@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.AutomaticReplyMessages
@@ -26,7 +26,7 @@ namespace Read.AutomaticReplyMessages
 
         public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid healthRiskId)
         {
-            Save(new DefaultAutomaticReplyKeyMessage(id)
+            Insert(new DefaultAutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Language = language,
@@ -37,7 +37,7 @@ namespace Read.AutomaticReplyMessages
 
         public Task SaveDefaultAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid healthRiskId)
         {
-            return SaveAsync(new DefaultAutomaticReplyKeyMessage(id)
+            return InsertAsync(new DefaultAutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Language = language,

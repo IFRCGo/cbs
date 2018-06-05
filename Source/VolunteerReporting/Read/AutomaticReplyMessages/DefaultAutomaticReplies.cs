@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -27,7 +27,7 @@ namespace Read.AutomaticReplyMessages
 
         public void SaveDefaultAutomaticReply(Guid id, int type, string language, string message)
         {
-            Save(new DefaultAutomaticReply(id)
+            Insert(new DefaultAutomaticReply(id)
             {
                 Language = language,
                 Message = message,
@@ -37,7 +37,7 @@ namespace Read.AutomaticReplyMessages
 
         public Task SaveDefaultAutomaticReplyAsync(Guid id, int type, string language, string message)
         {
-            return SaveAsync(new DefaultAutomaticReply(id)
+            return InsertAsync(new DefaultAutomaticReply(id)
             {
                 Language = language,
                 Message = message,

@@ -1,7 +1,5 @@
-using Concepts;
 using Dolittle.Events.Processing;
 using Events;
-using System.Threading.Tasks;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -29,7 +27,7 @@ namespace Read.AutomaticReplyMessages
 
         public void Process(AutomaticReplyRemoved @event)
         {
-            _automaticReplies.Delete(@event.Id);
+            _automaticReplies.Delete(e => e.Id == @event.Id);
         }
 
         public void Process(AutomaticReplyKeyMessageDefined @event)
@@ -46,7 +44,7 @@ namespace Read.AutomaticReplyMessages
 
         public void Process(AutomaticReplyKeyMessageRemoved @event)
         {
-            _keyMessages.Delete(@event.Id);
+            _keyMessages.Delete(e => e.Id == @event.Id);
         }
     }
 }

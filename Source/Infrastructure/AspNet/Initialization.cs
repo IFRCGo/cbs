@@ -13,7 +13,6 @@ using Serilog.Events;
 
 namespace Infrastructure.AspNet
 {
-
     public class Initialization
     {
         public static int BuildAndRun<TStartup>(string boundedContext, string[] args,
