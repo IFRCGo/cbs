@@ -1,6 +1,6 @@
 using System;
 using Concepts;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataVerifier
@@ -15,13 +15,13 @@ namespace Read.StaffUsers.DataVerifier
 
         public UpdateResult AddPhoneNumber(Guid staffUserId, string number)
         {
-            return _collection.UpdateOne(Builders<Models.DataVerifier>.Filter.Where(u => u.Id == staffUserId),
+            return Update(u => u.Id == staffUserId,
                 Builders<Models.DataVerifier>.Update.AddToSet(u => u.PhoneNumbers, new PhoneNumber(number)));
         }
 
         public UpdateResult RemovePhoneNumber(Guid staffUserId, string number)
         {
-            return _collection.UpdateOne(Builders<Models.DataVerifier>.Filter.Where(u => u.Id == staffUserId),
+            return Update(u => u.Id == staffUserId,
                 Builders<Models.DataVerifier>.Update.PullFilter(u => u.PhoneNumbers, pn => pn.Value == number));
         }
 
