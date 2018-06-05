@@ -25,7 +25,7 @@ namespace Read.NationalSocietyFeatures
                 Country = @event.Country,
                 TimezoneOffsetFromUtcInMinutes = @event.TimezoneOffsetFromUtcInMinutes
             };
-            _nationalSocieties.Save(nationalSociety);
+            _nationalSocieties.Insert(nationalSociety);
         }
     }
 }

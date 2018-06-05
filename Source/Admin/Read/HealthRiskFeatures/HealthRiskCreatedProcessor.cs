@@ -32,7 +32,7 @@ namespace Read.HealthRiskFeatures
                 //SuspectedCase = @event.SuspectedCase,
                 KeyMessage = @event.KeyMessage
             };
-            _healthRisks.Save(healthRisk);
+            _healthRisks.Insert(healthRisk);
         }
 
         public void Process(ThresholdAddedToHealthRIsk @event)
@@ -43,26 +43,19 @@ namespace Read.HealthRiskFeatures
 
         public void Process(HealthRiskModified @event)
         {
-            //TODO: Use Update instead
-            var healthRisk = new HealthRisk
-            {
-                Id = @event.Id,
-                Name = @event.Name,
-                ReadableId = @event.ReadableId,
-                CaseDefinition = @event.CaseDefinition,
-                //ConfirmedCase = @event.ConfirmedCase,
-                Note = @event.Note,
-                //ProbableCase = @event.ProbableCase,
-                CommunityCase = @event.CommunityCase,
-                //SuspectedCase = @event.SuspectedCase,
-                KeyMessage = @event.KeyMessage
-            };
-            _healthRisks.Save(healthRisk);
+            _healthRisks.Update(risk => risk.Id == @event.Id, Builders<HealthRisk>.Update.Combine(
+                Builders<HealthRisk>.Update.Set(risk => risk.Name, @event.Name),
+                Builders<HealthRisk>.Update.Set(risk => risk.ReadableId, @event.ReadableId),
+                Builders<HealthRisk>.Update.Set(risk => risk.CaseDefinition, @event.CaseDefinition),
+                Builders<HealthRisk>.Update.Set(risk => risk.Note, @event.Note),
+                Builders<HealthRisk>.Update.Set(risk => risk.CommunityCase, @event.CommunityCase),
+                Builders<HealthRisk>.Update.Set(risk => risk.KeyMessage, @event.KeyMessage)
+                ));
         }
 
         public void Process(HealthRiskDeleted @event)
         {
-            _healthRisks.Delete(@event.HealthRiskId);
+            _healthRisks.Delete(risk => risk.Id == @event.HealthRiskId);
         }
     }
 }

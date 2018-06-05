@@ -19,7 +19,7 @@ namespace Read.UserFeatures
 
         public void Process(UserCreated @event)
         {
-            _users.Save(new User
+            _users.Insert(new User
             {
                 Country = @event.Country,
                 Firstname = @event.Firstname,
