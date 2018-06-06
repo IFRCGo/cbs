@@ -177,12 +177,6 @@ namespace Infrastructure.Read.MongoDb
             return _collection.DeleteMany(predicate);
         }
 
-        public Task<DeleteResult> DeleteAsync(object id)
-        {
-            var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
-            return _collection.DeleteManyAsync(filter);
-        }
-
         public Task<DeleteResult> DeleteAsync(Expression<Func<T, bool>> predicate)
         {
             return _collection.DeleteManyAsync(predicate);
@@ -199,12 +193,7 @@ namespace Infrastructure.Read.MongoDb
         {
             return GetObjectIdFrom(readModel);
         }
-        /// <summary>
-        /// Assumes T to have a registered BsonClassMap
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <exception cref="ReadModelHasNoIdField"></exception>
-        /// <returns></returns>
+
         static BsonValue GetObjectIdFrom(T entity)
         {
             try
