@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
 {
@@ -23,7 +23,7 @@ namespace Read.DataCollectors
 
         public IEnumerable<DataCollector> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
         public Task<IEnumerable<DataCollector>> GetAllAsync()
@@ -51,7 +51,7 @@ namespace Read.DataCollectors
         public void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude,
             double locationLongitude, string region, string district)
         {
-            Save(new DataCollector(dataCollectorId)
+            Update(new DataCollector(dataCollectorId)
             {
                 DisplayName = displayName,
                 FullName = fullName,
@@ -66,7 +66,7 @@ namespace Read.DataCollectors
         public Task SaveDataCollectorAsync(Guid dataCollectorId, string fullName, string displayName, double locationLatitude,
             double locationLongitude, string region, string district)
         {
-            return SaveAsync(new DataCollector(dataCollectorId)
+            return UpdateAsync(new DataCollector(dataCollectorId)
             {
                 DisplayName = displayName,
                 FullName = fullName,
@@ -80,48 +80,47 @@ namespace Read.DataCollectors
 
         public UpdateResult AddPhoneNumber(FilterDefinition<DataCollector> filter, string number)
         {
-            return UpdateOne(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
         }
 
         public UpdateResult AddPhoneNumber(Expression<Func<DataCollector, bool>> filter, string number)
         {
-            return UpdateOne(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
         }
 
         public Task<UpdateResult> AddPhoneNumberAsync(FilterDefinition<DataCollector> filter, string number)
         {
-            return UpdateOneAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return UpdateAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
         }
 
         public Task<UpdateResult> AddPhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number)
         {
-            return UpdateOneAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return UpdateAsync(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
         }
 
         public UpdateResult RemovePhoneNumber(FilterDefinition<DataCollector> filter, string number)
         {
-            return UpdateOne(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+            return Update(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
         }
 
         public UpdateResult RemovePhoneNumber(Expression<Func<DataCollector, bool>> filter, string number)
         {
-            return UpdateOne(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+            return Update(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
         }
 
         public Task<UpdateResult> RemovePhoneNumberAsync(FilterDefinition<DataCollector> filter, string number)
         {
-            return UpdateOneAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+            return UpdateAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
         }
 
         public Task<UpdateResult> RemovePhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number)
         {
-            return UpdateOneAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
+            return UpdateAsync(filter, Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn == number));
         }
 
         public UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
-            return UpdateOne(d => d.Id == dataCollectorId,
-                Builders<DataCollector>.Update.Combine(
+            return Update(d => d.Id == dataCollectorId, Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
                     Builders<DataCollector>.Update.Set(d => d.Region, region ?? "Unknown"),
@@ -132,8 +131,7 @@ namespace Read.DataCollectors
 
         public Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName, string region, string district)
         {
-            return UpdateOneAsync(d => d.Id == dataCollectorId,
-                Builders<DataCollector>.Update.Combine(
+            return UpdateAsync(d => d.Id == dataCollectorId, Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, fullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, displayName),
                     Builders<DataCollector>.Update.Set(d => d.Region, region ?? "Unknown"),
@@ -143,13 +141,13 @@ namespace Read.DataCollectors
 
         public UpdateResult ChangeLocation(Guid dataCollectorId, double latitude, double longitude)
         {
-            return UpdateOne(d => d.Id == dataCollectorId,
+            return Update(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(latitude, longitude)));
         }
 
         public Task<UpdateResult> ChangeLocationAsync(Guid dataCollectorId, double latitude, double longitude)
         {
-            return UpdateOneAsync(d => d.Id == dataCollectorId,
+            return UpdateAsync(d => d.Id == dataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(latitude, longitude)));
         }
     }

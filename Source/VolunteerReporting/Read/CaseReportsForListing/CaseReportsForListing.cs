@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using Read.DataCollectors;
 using Read.HealthRisks;
 
@@ -19,20 +19,18 @@ namespace Read.CaseReportsForListing
 
         public IEnumerable<CaseReportForListing> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<CaseReportForListing>> GetAllAsync()
+        public Task<IEnumerable<CaseReportForListing>> GetAllAsync()
         {
-            var filter = Builders<CaseReportForListing>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
 
         public void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            Save(new CaseReportForListing(caseReportId)
+            Update(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -54,7 +52,7 @@ namespace Read.CaseReportsForListing
         public void SaveInvalidReport(Guid caseReportId, DataCollector dataCollector, string message, string origin, double latitude,
             double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            Save(new CaseReportForListing(caseReportId)
+            Update(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorDisplayName = dataCollector.DisplayName,
@@ -79,7 +77,7 @@ namespace Read.CaseReportsForListing
             int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            Save(new CaseReportForListing(caseReportId)
+            Update(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.UnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -104,7 +102,7 @@ namespace Read.CaseReportsForListing
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            Save(new CaseReportForListing(caseReportId)
+            Update(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.Success,
                 Message = message,
@@ -131,7 +129,7 @@ namespace Read.CaseReportsForListing
         public Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            return SaveAsync(new CaseReportForListing(caseReportId)
+            return UpdateAsync(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -153,7 +151,7 @@ namespace Read.CaseReportsForListing
         public Task SaveInvalidReportAsync(Guid caseReportId, DataCollector dataCollector, string message, string origin,
             double latitude, double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            return SaveAsync(new CaseReportForListing(caseReportId)
+            return UpdateAsync(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorDisplayName = dataCollector.DisplayName,
@@ -178,7 +176,7 @@ namespace Read.CaseReportsForListing
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            return SaveAsync(new CaseReportForListing(caseReportId)
+            return UpdateAsync(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.UnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -203,7 +201,7 @@ namespace Read.CaseReportsForListing
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            return SaveAsync(new CaseReportForListing(caseReportId)
+            return UpdateAsync(new CaseReportForListing(caseReportId)
             {
                 Status = CaseReportStatus.Success,
                 Message = message,

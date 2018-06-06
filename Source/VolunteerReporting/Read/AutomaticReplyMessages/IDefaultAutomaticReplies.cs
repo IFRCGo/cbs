@@ -2,7 +2,7 @@ using System;
 using Concepts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.AutomaticReplyMessages
 {

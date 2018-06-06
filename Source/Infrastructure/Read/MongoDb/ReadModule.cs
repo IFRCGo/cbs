@@ -5,7 +5,7 @@ using Dolittle.ReadModels;
 using Dolittle.Types;
 using MongoDB.Bson.Serialization;
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
     public class ReadModule : IReadModule
     {
