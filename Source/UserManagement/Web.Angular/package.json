@@ -1,5 +1,5 @@
 {
-    "name": "example.frontend",
+    "name": "cbs.frontend.user-management",
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
