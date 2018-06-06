@@ -1,5 +1,5 @@
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
     public interface IReadModule
     {

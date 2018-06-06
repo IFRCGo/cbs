@@ -6,12 +6,6 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Serializers;
-using Read.HealthRisks;
 
 namespace Read.DataCollectors
 {

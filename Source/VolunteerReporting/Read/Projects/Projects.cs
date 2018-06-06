@@ -2,7 +2,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.Projects
 {
@@ -31,7 +31,7 @@ namespace Read.Projects
 
         public void SaveProject(Guid id, string name)
         {
-            Save(new Project
+            Update(new Project
             {
                 Id = id,
                 Name = name
@@ -40,7 +40,7 @@ namespace Read.Projects
 
         public Task SaveProjectAsync(Guid id, string name)
         {
-            return SaveAsync(new Project
+            return UpdateAsync(new Project
             {
                 Id = id,
                 Name = name
@@ -49,13 +49,13 @@ namespace Read.Projects
 
         public UpdateResult UpdateProject(Guid id, string name)
         {
-            return UpdateOne(p => p.Id == id,
+            return Update(p => p.Id == id,
                 Builders<Project>.Update.Set(p => p.Name, name));
         }
 
         public Task<UpdateResult> UpdateProjectAsync(Guid id, string name)
         {
-            return UpdateOneAsync(p => p.Id == id,
+            return UpdateAsync(p => p.Id == id,
                 Builders<Project>.Update.Set(p => p.Name, name));
         }
     }

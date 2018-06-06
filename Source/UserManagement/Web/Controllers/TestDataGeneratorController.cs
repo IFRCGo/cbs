@@ -3,13 +3,11 @@ using System.IO;
 using Domain.DataCollector.Registering;
 using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Read.GreetingGenerators;
 using Web.TestData;
 using Dolittle.Commands.Coordination;
-using Read.StaffUsers.Models;
 using Read.StaffUsers.Admin;
 using Read.StaffUsers.DataConsumer;
 using Read.StaffUsers.DataCoordinator;
@@ -277,38 +275,38 @@ namespace Web.Controllers
         [HttpGet("deletealladmins")]
         public void DeleteAllAdmins()
         {
-            _adminRepository.DeleteMany(_ => true);
+            _adminRepository.Delete(_ => true);
             
         }
 
         [HttpGet("deletealldataconsumers")]
         public void DeleteAllDataConsumers()
         {
-            _dataConsumerRepository.DeleteMany(_ => true);
+            _dataConsumerRepository.Delete(_ => true);
         }
 
         [HttpGet("deletealldatacoordinators")]
         public void DeleteAllDataCoordinators()
         {
-            _dataCoordinatorRepository.DeleteMany(_ => true);
+            _dataCoordinatorRepository.Delete(_ => true);
         }
 
         [HttpGet("deletealldataowners")]
         public void DeleteAllDataOwners()
         {
-            _dataOwnerRepository.DeleteMany(_ => true);
+            _dataOwnerRepository.Delete(_ => true);
         }
 
         [HttpGet("deletealldataverifiers")]
         public void DeleteAllDataVerifiers()
         {
-            _dataVerifierRepository.DeleteMany(_ => true);
+            _dataVerifierRepository.Delete(_ => true);
         }
 
         [HttpGet("deleteallsystemconfigurators")]
         public void DeleteAllSystemConfigurators()
         {
-            _systemConfiguratorRepository.DeleteMany(_ => true);
+            _systemConfiguratorRepository.Delete(_ => true);
         }
 
         #endregion
@@ -316,13 +314,13 @@ namespace Web.Controllers
         [HttpGet("deletedatacollectorcollection")]
         public void DeleteDataCollectors()
         {
-            _dataCollectors.DeleteMany(_ => true);
+            _dataCollectors.Delete(_ => true);
         }
 
         [HttpGet("deletegreetinghistorycollection")]
         public void DeleteGreetingHistory()
         {
-            _greetingHistories.DeleteMany(_ => true);
+            _greetingHistories.Delete(_ => true);
         }
 
         #endregion

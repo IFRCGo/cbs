@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -39,7 +39,7 @@ namespace Read.AutomaticReplyMessages
         public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid projectId,
             Guid healthRiskId)
         {
-            Save(new AutomaticReplyKeyMessage(id)
+            Update(new AutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Message = message,
@@ -52,7 +52,7 @@ namespace Read.AutomaticReplyMessages
         public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid projectId,
             Guid healthRiskId)
         {
-            return SaveAsync(new AutomaticReplyKeyMessage(id)
+            return UpdateAsync(new AutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Message = message,

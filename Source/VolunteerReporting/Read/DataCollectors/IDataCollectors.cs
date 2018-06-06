@@ -7,7 +7,7 @@ using Concepts;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.DataCollectors

@@ -17,7 +17,7 @@ namespace Read.CaseReports
 
         public CaseReportFromUnknownDataCollector(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
 
     }

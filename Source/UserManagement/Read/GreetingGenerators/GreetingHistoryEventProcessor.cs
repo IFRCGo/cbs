@@ -21,22 +21,19 @@ namespace Read.GreetingGenerators
                                   new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber;
 
-            
+            _greetingHistories.Update(greetingHistory);
         }
 
         public async void Process(PhoneNumberAddedToDataCollector @event)
         {
-            
             var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber; // Todo: THis does nothing if GetByPhoneNumberAsync doesn't return nul
-            await _greetingHistories.SaveAsync(greetingHistory);
-            
+            await _greetingHistories.UpdateAsync(greetingHistory);
             
         }
 
         public async void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-         
              await _greetingHistories.RemoveAsync(@event.PhoneNumber);
            
         }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.GreetingGenerators
@@ -47,12 +47,12 @@ namespace Read.GreetingGenerators
 
         public void Remove(string phoneNumber)
         {
-            DeleteMany(g => g.PhoneNumber == phoneNumber);
+            Delete(g => g.PhoneNumber == phoneNumber);
         }
 
         public Task RemoveAsync(string phoneNumber)
         {
-            return DeleteManyAsync(g => g.PhoneNumber == phoneNumber);
+            return DeleteAsync(g => g.PhoneNumber == phoneNumber);
         }
     }
 }

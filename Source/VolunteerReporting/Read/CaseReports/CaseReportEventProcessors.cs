@@ -19,7 +19,6 @@ namespace Read.CaseReports
         
         public void Process(CaseReportReceived @event)
         {
-            // Save CaseReport in the CaseReports DB
             var caseReport = new CaseReport(@event.CaseReportId)
             {
                 DataCollectorId = @event.DataCollectorId,
@@ -32,7 +31,7 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReports.Save(caseReport);
+            _caseReports.Update(caseReport);
         }
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
@@ -48,12 +47,12 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReportsFromUnknownDataCollectors.Save(caseReport);
+            _caseReportsFromUnknownDataCollectors.Update(caseReport);
         }   
         
         public void Process(CaseReportIdentified @event)
         {
-            _caseReportsFromUnknownDataCollectors.DeleteOne(@event.CaseReportId);            
+            _caseReportsFromUnknownDataCollectors.Delete(e => e.Id == @event.CaseReportId);            
         }
     }
 }
