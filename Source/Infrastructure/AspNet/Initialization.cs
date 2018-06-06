@@ -32,7 +32,7 @@ namespace Infrastructure.AspNet
 
             //TODO: This seemed to fix the problem where Amin was the only BC that would not startup because of an infinite logging loop.
             // This problem indicates to me that we have to take a look at the logging infrastructure
-            if (boundedContext == "Admin")
+            if (boundedContext == "Admin" || boundedContext == "UserManagement")
             {
                 loggerConfiguration = new LoggerConfiguration()
                     .MinimumLevel.Warning()

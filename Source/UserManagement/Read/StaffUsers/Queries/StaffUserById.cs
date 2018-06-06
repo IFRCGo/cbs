@@ -85,8 +85,8 @@ namespace Read.StaffUsers.Queries
     {
         private readonly IDataCoordinatorRepository _dataCoordinatorRepository;
 
-
         public Guid StaffUserId { get; set; }
+
         public DataCoordinatorById(
             IDataCoordinatorRepository dataCoordinatorRepository)
         {
