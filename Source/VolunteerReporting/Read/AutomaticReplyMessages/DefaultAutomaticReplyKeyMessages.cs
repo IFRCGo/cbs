@@ -26,7 +26,7 @@ namespace Read.AutomaticReplyMessages
 
         public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid healthRiskId)
         {
-            Insert(new DefaultAutomaticReplyKeyMessage(id)
+            Update(new DefaultAutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Language = language,
@@ -37,7 +37,7 @@ namespace Read.AutomaticReplyMessages
 
         public Task SaveDefaultAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid healthRiskId)
         {
-            return InsertAsync(new DefaultAutomaticReplyKeyMessage(id)
+            return UpdateAsync(new DefaultAutomaticReplyKeyMessage(id)
             {
                 HealthRiskId = healthRiskId,
                 Language = language,

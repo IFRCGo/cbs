@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.CaseReports;
 using Read.CaseReportsForListing;

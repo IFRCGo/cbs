@@ -31,7 +31,7 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReports.Insert(caseReport);
+            _caseReports.Update(caseReport);
         }
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
@@ -47,7 +47,7 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReportsFromUnknownDataCollectors.Insert(caseReport);
+            _caseReportsFromUnknownDataCollectors.Update(caseReport);
         }   
         
         public void Process(CaseReportIdentified @event)

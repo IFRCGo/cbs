@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
+
 namespace Read.Projects
 {
     public interface IProjects : IExtendedReadModelRepositoryFor<Project>

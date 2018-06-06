@@ -2,9 +2,8 @@ using System;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Concepts;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.HealthRisks
 {
@@ -58,7 +57,7 @@ namespace Read.HealthRisks
 
         public void SaveHealthRisk(Guid id, int readableId, string name)
         {
-            Save(new HealthRisk(id)
+            Update(new HealthRisk(id)
             {
                 Name = name,
                 ReadableId = readableId
@@ -67,7 +66,7 @@ namespace Read.HealthRisks
 
         public Task SaveHealthRiskAsync(Guid id, int readableId, string name)
         {
-            return SaveAsync(new HealthRisk(id)
+            return UpdateAsync(new HealthRisk(id)
             {
                 Name = name,
                 ReadableId = readableId
@@ -76,8 +75,7 @@ namespace Read.HealthRisks
 
         public UpdateResult UpdateHealthRisk(Guid id, int readableId, string name)
         {
-            return UpdateOne(Builders<HealthRisk>.Filter.Where(d => d.Id == id),
-                Builders<HealthRisk>.Update.Combine(
+            return Update(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
                 Builders<HealthRisk>.Update.Set(h => h.Name, name),
                 Builders<HealthRisk>.Update.Set(h => h.ReadableId, readableId))
                 );
@@ -85,10 +83,9 @@ namespace Read.HealthRisks
 
         public Task<UpdateResult> UpdateHealthRiskAsync(Guid id, int readableId, string name)
         {
-            return UpdateOneAsync(Builders<HealthRisk>.Filter.Where(d => d.Id == id),
-                Builders<HealthRisk>.Update.Combine(
-                Builders<HealthRisk>.Update.Set(h => h.Name, name),
-                Builders<HealthRisk>.Update.Set(h => h.ReadableId, readableId))
+            return UpdateAsync(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
+                    Builders<HealthRisk>.Update.Set(h => h.Name, name),
+                    Builders<HealthRisk>.Update.Set(h => h.ReadableId, readableId))
             );
         }
     }

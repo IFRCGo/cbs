@@ -7,7 +7,7 @@ namespace Infrastructure.AspNet
     {
         public static IServiceCollection AddReadModule(this IServiceCollection services)
         {
-            services.AddTransient<IReadModule>();
+            services.AddSingleton<IReadModule>();
             return services;
         }
     }

@@ -37,7 +37,7 @@ namespace Read.AutomaticReplyMessages
 
         public void SaveAutomaticReply(Guid id, int type, string language, string message, Guid projectId)
         {
-            Insert(new AutomaticReply(id)
+            Update(new AutomaticReply(id)
             {
                 Language = language,
                 Message = message,
@@ -48,7 +48,7 @@ namespace Read.AutomaticReplyMessages
 
         public Task SaveAutomaticReplyAsync(Guid id, int type, string language, string message, Guid projectId)
         {
-            return InsertAsync(new AutomaticReply(id)
+            return UpdateAsync(new AutomaticReply(id)
             {
                 Language = language,
                 Message = message,
