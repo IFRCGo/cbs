@@ -47,7 +47,7 @@ namespace Domain.StaffUser.Changing
             root.ChangeNationalSociety(cmd.NationalSociety, cmd.Role);
         }
 
-        public void Handle(ChangePreferredLanguage cmd)
+        public void Handle(ChangeUserPreferredLanguage cmd)
         {
             var root = _repository.Get(cmd.StaffUserId);
 
