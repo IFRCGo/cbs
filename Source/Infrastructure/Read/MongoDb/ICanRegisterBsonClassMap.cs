@@ -1,6 +1,6 @@
 namespace Infrastructure.Read.MongoDb
 {
-    public interface ICanRegisterMongoDbClassMap
+    public interface ICanRegisterBsonClassMap
     {
         void Register();
         bool IsRegistered();

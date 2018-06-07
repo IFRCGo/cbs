@@ -9,20 +9,16 @@ namespace Infrastructure.Read.MongoDb
 {
     public class ReadModule : IReadModule
     {
-        static bool _loaded = false;
         readonly IImplementationsOf<IReadModel> _readModels;
 
         public ReadModule(IImplementationsOf<IReadModel> readModels, ITypeFinder typeFinder)
         {
-            if (_loaded) return;
-
             _readModels = readModels;
 
-            var customClassMapTypes = typeFinder.FindMultiple(typeof(IBsonClassMapFor<>));
+            var customClassMapTypes = typeFinder.FindMultiple(typeof(IBsonClassMapForReadModel<>));
             var readModelHasCustomClassMap = GetHasCustomClassMapDictionary(customClassMapTypes.ToList());
 
             RegisterBsonClassMaps(readModelHasCustomClassMap);
-            _loaded = true;
 
         }
 
@@ -78,7 +74,7 @@ namespace Infrastructure.Read.MongoDb
         }
         static Type GetReadModelFromIBsonClassMapFor(Type customClassMapType)
         {
-            return customClassMapType.GetInterface(typeof(IBsonClassMapFor<>).Name).GetGenericArguments()
+            return customClassMapType.GetInterface(typeof(IBsonClassMapForReadModel<>).Name).GetGenericArguments()
                 .FirstOrDefault();
         }
         
