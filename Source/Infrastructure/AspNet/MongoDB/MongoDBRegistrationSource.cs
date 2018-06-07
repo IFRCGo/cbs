@@ -11,6 +11,7 @@ using Autofac.Core;
 using Autofac.Core.Activators.Delegate;
 using Autofac.Core.Lifetime;
 using Autofac.Core.Registration;
+using Dolittle.ReadModels.MongoDB;
 using Infrastructure.AspNet.ConnectionStrings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -42,11 +43,15 @@ namespace Infrastructure.AspNet.MongoDB
                     if (connectionString == null)
                         throw new MissingConnectionStringForDatabaseType(ConnectionStringType.MongoDB);
 
-                    var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString.Value));
-                    var mongoClient = new MongoClient(settings);
-                    var database = mongoClient.GetDatabase(connectionString.Database);
+                    var configuration = new Configuration()
+                    {
+                        DefaultDatabase = connectionString.Database,
+                        Url = connectionString.Value,
+                        UseSSL = false
+                    };
+                    var connection = new Connection(configuration);
 
-                    return database;
+                    return connection.Database;
                 }),
                 new CurrentScopeLifetime(),
                 InstanceSharing.Shared,
