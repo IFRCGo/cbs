@@ -1,6 +1,5 @@
 using Events.External;
 using Dolittle.Events.Processing;
-using MongoDB.Driver;
 
 namespace Read.HealthRisks
 {

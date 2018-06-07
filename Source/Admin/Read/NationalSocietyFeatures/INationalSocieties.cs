@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections.Generic;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.NationalSocietyFeatures
 {

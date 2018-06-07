@@ -1,4 +1,4 @@
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.StaffUsers.DataConsumer
 {

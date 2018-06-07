@@ -1,4 +1,4 @@
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.AspNet
@@ -7,7 +7,7 @@ namespace Infrastructure.AspNet
     {
         public static IServiceCollection AddReadModule(this IServiceCollection services)
         {
-            services.AddTransient<IReadModule>();
+            services.AddSingleton<IReadModule>();
             return services;
         }
     }

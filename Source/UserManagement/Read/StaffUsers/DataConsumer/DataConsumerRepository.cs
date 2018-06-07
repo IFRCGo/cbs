@@ -1,4 +1,4 @@
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataConsumer

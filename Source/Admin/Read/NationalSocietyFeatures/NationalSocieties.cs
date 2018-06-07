@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.NationalSocietyFeatures

@@ -10,6 +10,7 @@ using Events;
 using Events.Admin;
 using Events.Project;
 using Events.ReplyMessage;
+using MongoDB.Driver;
 using Read.AutomaticReplyMessages;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
@@ -46,7 +47,7 @@ namespace Read.ProjectFeatures
                 Name = @event.Name,
                 SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext
             };
-            _projects.Save(project);
+            _projects.Insert(project);
         }
 
         public void Process(ProjectUpdated @event)
@@ -58,74 +59,63 @@ namespace Read.ProjectFeatures
             project.Name = @event.Name;
             project.SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext;
             project.SmsProxy = @event.SmsProxy;
-            _projects.Save(project);
+            _projects.Update(p => p.Id == @event.Id, Builders<Project>.Update.Combine(
+                Builders<Project>.Update.Set(p => p.NationalSociety, _nationalSocieties.GetById(@event.NationalSocietyId)),
+                Builders<Project>.Update.Set(p => p.DataOwner, _users.GetById(@event.DataOwnerId)),
+                Builders<Project>.Update.Set(p => p.Name, @event.Name),
+                Builders<Project>.Update.Set(p => p.SurveillanceContext, (ProjectSurveillanceContext)@event.SurveillanceContext),
+                Builders<Project>.Update.Set(p => p.SmsProxy, @event.SmsProxy))
+            );
         }
 
         public void Process(ProjectDeleted @event)
         {
-            _projects.Delete(@event.ProjectId);
+            _projects.Delete(p => p.Id == @event.ProjectId);
         }
 
         public void Process(ProjectHealthRiskAdded @event)
         {
-            //TODO: Use UpdateOne instead
-            var project = _projects.GetById(@event.ProjectId);
-            project.HealthRisks = new List<ProjectHealthRisk>(project.HealthRisks)
-            {
-                new ProjectHealthRisk
+            //TODO: Assumes that project exists. Should be verified in BusinessValidator
+            _projects.Update(p => p.Id == @event.ProjectId,
+                Builders<Project>.Update.AddToSet(p => p.HealthRisks, new ProjectHealthRisk
                 {
                     HealthRiskId = @event.HealthRiskId,
                     Threshold = @event.Threshold
-                }
-            }.ToArray();
-            _projects.Save(project);
+                }));
         }
 
         public void Process(ProjectHealthRiskThresholdUpdate @event)
         {
-            //TODO: Use UpdateOne instad
-            var project = _projects.GetById(@event.ProjectId);
-            var healthRisk = project.HealthRisks?.FirstOrDefault(v => v.HealthRiskId == @event.HealthRiskId);
+            //TODO: Assumes that project and health risk exists. Should be verified in BusinessValidator
+            _projects.Update(p => p.Id == @event.ProjectId,
+                Builders<Project>.Update.Set(
+                    p => p.HealthRisks.FirstOrDefault(risk => risk.HealthRiskId == @event.HealthRiskId)
+                        .Threshold, @event.Threshold));
 
-            if (healthRisk == null)
-            {
-                healthRisk = new ProjectHealthRisk();
-                project.HealthRisks = (project.HealthRisks ?? new ProjectHealthRisk[0]).Union(new[] {healthRisk})
-                    .ToArray();
-            }
-
-            healthRisk.HealthRiskId = @event.HealthRiskId;
-            healthRisk.Threshold = @event.Threshold;
-            _projects.Save(project);
-
+            var project = _projects.GetOne(p => p.Id == @event.ProjectId);
+            var healthRisk = project.HealthRisks.FirstOrDefault(risk => risk.HealthRiskId == @event.HealthRiskId);
             _projectHealthRiskVersions.Append(project.Id, healthRisk, System.DateTimeOffset.UtcNow);
         }
 
         public void Process(DataVerifierAdded @event)
         {
-            //TODO: Use UpdateOne instead
-            var project = _projects.GetById(@event.ProjectId);
+            //TODO: Assumes that user and project exists. Should be verified in BusinessValidator
             var user = _users.GetById(@event.UserId);
-            project.DataVerifiers = new List<User>(project.DataVerifiers) {user}.ToArray();
-            _projects.Save(project);
+            _projects.Update(p => p.Id == @event.ProjectId,
+                Builders<Project>.Update.AddToSet(p => p.DataVerifiers, user));
         }
 
         public void Process(DataVerifierRemoved @event)
         {
-            //TODO: Use UpdateOne instead
-            var project = _projects.GetById(@event.ProjectId);
-            var user = _users.GetById(@event.UserId);
-            var list = new List<User>(project.DataVerifiers);
-            if (list.Remove(user))
-            {
-                project.DataVerifiers = list.ToArray();
-                _projects.Save(project);
-            }
+            //TODO: Assumes that project exists. Should be verified in BusinessValidator
+            _projects.Update(p => p.Id == @event.ProjectId,
+                Builders<Project>.Update.PullFilter(p => p.DataVerifiers, u => u.Id == @event.UserId));
         }
 
         public void Process(ReplyMessageConfigUpdated @event)
         {
-            _replyMessages.Save(new ReplyMessagesConfig
+            //TODO: Event should have Id field
+            _replyMessages.Insert(new ReplyMessagesConfig
             {
                 Messages = @event.Messages
             });

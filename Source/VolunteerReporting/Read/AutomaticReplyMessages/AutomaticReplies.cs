@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.AutomaticReplyMessages
@@ -37,7 +37,7 @@ namespace Read.AutomaticReplyMessages
 
         public void SaveAutomaticReply(Guid id, int type, string language, string message, Guid projectId)
         {
-            Save(new AutomaticReply(id)
+            Update(new AutomaticReply(id)
             {
                 Language = language,
                 Message = message,
@@ -48,7 +48,7 @@ namespace Read.AutomaticReplyMessages
 
         public Task SaveAutomaticReplyAsync(Guid id, int type, string language, string message, Guid projectId)
         {
-            return SaveAsync(new AutomaticReply(id)
+            return UpdateAsync(new AutomaticReply(id)
             {
                 Language = language,
                 Message = message,

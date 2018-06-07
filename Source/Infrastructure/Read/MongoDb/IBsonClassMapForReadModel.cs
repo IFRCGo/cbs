@@ -1,13 +1,11 @@
 using Dolittle.ReadModels;
 using MongoDB.Bson.Serialization;
 
-namespace Infrastructure.Read
+namespace Infrastructure.Read.MongoDb
 {
-    public interface IMongoDbClassMapFor<T>
+    public interface IBsonClassMapForReadModel<T> : ICanRegisterBsonClassMap
         where T : IReadModel
     {
         void Map(BsonClassMap<T> cm);
-        void Register();
-        bool IsRegistered();
     }
 }

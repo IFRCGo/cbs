@@ -2,7 +2,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.InvalidCaseReports
 {
@@ -37,7 +37,7 @@ namespace Read.InvalidCaseReports
         public void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            Save(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
+            Update(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
             {
                 Message = message,
                 ParsingErrorMessage = errorMessages,
@@ -49,7 +49,7 @@ namespace Read.InvalidCaseReports
         public Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            return SaveAsync(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
+            return UpdateAsync(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
             {
                 Message = message,
                 ParsingErrorMessage = errorMessages,

@@ -21,6 +21,8 @@ namespace Infrastructure.AspNet.MongoDB
     {
         public bool IsAdapterForIndividualComponents => false;
 
+        //TODO: Setup a connection with MongoDb using Dolittle.ReadModels.MongoDB Connection for automatic registration of 
+        // serializer for Concept type
         public IEnumerable<IComponentRegistration> RegistrationsFor(Service service,
             Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
         {

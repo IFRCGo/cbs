@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
-using Infrastructure.Read;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
 
 
 namespace Read.DataCollectors

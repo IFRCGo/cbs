@@ -40,7 +40,7 @@ namespace Read.InvalidCaseReports
 
         public void Process(CaseReportIdentified @event)
         {
-            _invalidCaseReportsFromUnknownDataCollectors.Delete(@event.CaseReportId);
+            _invalidCaseReportsFromUnknownDataCollectors.Delete(r => r.Id == @event.CaseReportId);
         }
     }
 }

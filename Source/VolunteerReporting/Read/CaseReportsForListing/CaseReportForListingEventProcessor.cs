@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Concepts;
 using Dolittle.Events.Processing;
 using Events;
 using Read.DataCollectors;
@@ -26,12 +23,7 @@ namespace Read.CaseReportsForListing
         public void Process(CaseReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if (dataCollector == null)
-                throw new Exception("Data collector was not found");
-
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-            if (healthRisk == null)
-                throw new Exception("Health risk was not found");
 
             _caseReports.SaveCaseReport(
                 @event.CaseReportId,
@@ -44,28 +36,6 @@ namespace Read.CaseReportsForListing
                 @event.NumberOfFemalesUnder5,
                 @event.NumberOfFemalesAged5AndOlder,
                 @event.Timestamp);
-
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.Success,
-                DataCollectorId = @event.DataCollectorId,
-                DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorRegion = dataCollector.Region,
-                DataCollectorDistrict = dataCollector.District,
-                DataCollectorVillage = dataCollector.Village,
-                HealthRiskId = @event.HealthRiskId,
-                HealthRisk = healthRisk.Name,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                Location = new Location(@event.Latitude, @event.Longitude),
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                Message = @event.Message,
-                ParsingErrorMessage = new List<string>()
-            };
-             _caseReports.Save(caseReport);
         }
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
@@ -73,8 +43,6 @@ namespace Read.CaseReportsForListing
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-            if (healthRisk == null)
-                throw new Exception("Health risk was not found");
 
             _caseReports.SaveCaseReportFromUnknownDataCollector(
                 @event.CaseReportId,
@@ -91,10 +59,7 @@ namespace Read.CaseReportsForListing
 
         public void Process(InvalidReportReceived @event)
         {
-            
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if (dataCollector == null)
-                throw new Exception("Data collector was not found");
 
             _caseReports.SaveInvalidReport(
                 @event.CaseReportId,
@@ -119,7 +84,7 @@ namespace Read.CaseReportsForListing
 
         public void Process(CaseReportIdentified @event)
         {
-            _caseReports.Delete(@event.CaseReportId);
+            _caseReports.Delete(e => e.Id == @event.CaseReportId);
         }
     }
 }
