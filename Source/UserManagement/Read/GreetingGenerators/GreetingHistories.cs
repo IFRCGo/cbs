@@ -1,81 +1,58 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.GreetingGenerators
 {
-    public class GreetingHistories : IGreetingHistories
+    public class GreetingHistories : ExtendedReadModelRepositoryFor<GreetingHistory>,
+        IGreetingHistories
     {
-        private readonly IMongoDatabase _database;
-        private readonly IMongoCollection<GreetingHistory> _collection;
 
-        public GreetingHistories(IMongoDatabase database)
+        public GreetingHistories(IMongoDatabase database) 
+            : base(database, database.GetCollection<GreetingHistory>("GreetingHistories"))
         {
-            _database = database;
-            _collection = database.GetCollection<GreetingHistory>("GreetingHistories");
         }
 
         public IEnumerable<GreetingHistory> GetAll()
         {
-            return _collection.Find(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<GreetingHistory>> GetAllAsync()
+        public Task<IEnumerable<GreetingHistory>> GetAllAsync()
         {
-            return (await _collection.FindAsync(_ => true)).ToList();
+            return GetManyAsync(_ => true);
         }
 
         public GreetingHistory GetById(Guid id)
         {
-            return _collection.Find(d => d.DataCollectorId == id).SingleOrDefault();
+            return GetOne(d => d.Id == id);
         }
 
-        public async Task<GreetingHistory> GetByIdAsync(Guid id)
+        public Task<GreetingHistory> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(d => d.DataCollectorId == id)).SingleOrDefault();
+            return GetOneAsync(d => d.Id == id);
         }
 
         public GreetingHistory GetByPhoneNumber(string phoneNumber)
         {
-            return _collection.Find(d => d.PhoneNumber == phoneNumber).SingleOrDefault();
+            return GetOne(d => d.PhoneNumber == phoneNumber);
         }
 
-        public async Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber)
+        public Task<GreetingHistory> GetByPhoneNumberAsync(string phoneNumber)
         {
-            return (await _collection.FindAsync(d => d.PhoneNumber == phoneNumber)).SingleOrDefault();
-        }
-
-        public void Remove(Guid id)
-        {
-            _collection.DeleteOne(g => g.DataCollectorId == id);
-        }
-
-        public async Task RemoveAsync(Guid id)
-        {
-            await _collection.DeleteOneAsync(g => g.DataCollectorId == id);
+            return GetOneAsync(d => d.PhoneNumber == phoneNumber);
         }
 
         public void Remove(string phoneNumber)
         {
-            _collection.DeleteOne(g => g.PhoneNumber == phoneNumber);
+            Delete(g => g.PhoneNumber == phoneNumber);
         }
 
-        public async Task RemoveAsync(string phoneNumber)
+        public Task RemoveAsync(string phoneNumber)
         {
-            await _collection.DeleteOneAsync(g => g.PhoneNumber == phoneNumber);
-        }
-
-        public void Save(GreetingHistory greetingHistory)
-        {
-            _collection.ReplaceOne(g => g.DataCollectorId == greetingHistory.DataCollectorId, greetingHistory,
-                new UpdateOptions { IsUpsert = true });
-        }
-
-        public async Task SaveAsync(GreetingHistory greetingHistory)
-        {
-            await _collection.ReplaceOneAsync(g => g.DataCollectorId == greetingHistory.DataCollectorId, greetingHistory, 
-                new UpdateOptions { IsUpsert = true });
+            return DeleteAsync(g => g.PhoneNumber == phoneNumber);
         }
     }
 }

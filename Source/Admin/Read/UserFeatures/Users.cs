@@ -6,59 +6,43 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.UserFeatures
 {
-    public class Users : IUsers
+    public class Users : ExtendedReadModelRepositoryFor<User>,
+        IUsers
     {
-        readonly IMongoCollection<User> _collection;
-
-        readonly IMongoDatabase _database;
-
         public Users(IMongoDatabase database)
+            : base(database, database.GetCollection<User>("User"))
         {
-            _database = database;
-            _collection = database.GetCollection<User>("User");
         }
 
         public User GetById(Guid id)
         {
-            var user = _collection.Find(v => v.Id == id).SingleOrDefault();
-
-            if (user == null)
-            {
-                user = new User {Id = id, Firstname = "Dummy implementation"};
-                _collection.InsertOne(user);
-            }
-
-            return user;
+            return GetOne(_ => _.Id == id);
         }
 
-        public async Task<IEnumerable<User>> GetByNationalSocietyId(Guid id)
+        IEnumerable<User> IUsers.GetByNationalSocietyId(Guid id)
         {
-            var userList = await _collection.FindAsync(_ => _.NationalSocietyId == id);
-            return await userList.ToListAsync();
+            return GetMany(_ => _.NationalSocietyId == id);
         }
 
-        public void Save(User user)
+        public Task<IEnumerable<User>> GetByNationalSocietyIdAsync(Guid id)
         {
-            var filter = Builders<User>.Filter.Eq(v => v.Id, user.Id);
-
-            _collection.ReplaceOne(filter, user);
+            return GetManyAsync(_ => _.NationalSocietyId == id);
         }
 
         public IEnumerable<User> GetAll()
         {
-            return _collection.Find(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<User>> GetAllASync()
+        public Task<IEnumerable<User>> GetAllASync()
         {
-            var filter = Builders<User>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
     }
 }

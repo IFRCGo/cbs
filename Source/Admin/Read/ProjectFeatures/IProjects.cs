@@ -6,18 +6,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.ProjectFeatures
 {
-    public interface IProjects
+    public interface IProjects : IExtendedReadModelRepositoryFor<Project>
     {
         Project GetById(Guid id);
-
-        void Save(Project project);
 
         IEnumerable<Project> GetAll();
 
         Task<IEnumerable<Project>> GetAllASync();
-        void Delete(Guid id);
     }
 }

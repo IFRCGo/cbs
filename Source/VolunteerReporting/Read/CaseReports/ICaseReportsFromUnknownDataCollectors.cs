@@ -1,17 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.CaseReports
 {
-    public interface ICaseReportsFromUnknownDataCollectors
+    public interface ICaseReportsFromUnknownDataCollectors : IExtendedReadModelRepositoryFor<CaseReportFromUnknownDataCollector>
     {
-        void Save(CaseReportFromUnknownDataCollector caseReport);
-        Task SaveAsync(CaseReportFromUnknownDataCollector anonymousCaseReport);
-
-        void Remove(Guid id);
-        Task RemoveAsync(Guid id);
-
         IEnumerable<CaseReportFromUnknownDataCollector> GetAll();
         Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync();
 

@@ -5,7 +5,6 @@ using Events.External;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.InvalidCaseReports;
-using System.Threading.Tasks;
 
 namespace Policy
 {

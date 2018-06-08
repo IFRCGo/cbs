@@ -1,45 +1,30 @@
-using MongoDB.Driver;
 using System;
+using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.CaseReports
 {
-    public class CaseReports : ICaseReports
+    public class CaseReports : ExtendedReadModelRepositoryFor<CaseReport>,
+        ICaseReports
     {
         public const string CollectionName = "CaseReport";
-
-        private IMongoDatabase _database;
-        private IMongoCollection<CaseReport> _collection;
-
+        
         public CaseReports(IMongoDatabase database)
+            : base(database, database.GetCollection<CaseReport>("CaseReport"))
         {
-            _database = database;
-            _collection = database.GetCollection<CaseReport>(CollectionName);
         }
 
         public IEnumerable<CaseReport> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<CaseReport>> GetAllAsync()
+        public Task<IEnumerable<CaseReport>> GetAllAsync()
         {
-            var filter = Builders<CaseReport>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
 
-        public void Save(CaseReport caseReport)
-        {
-            _collection.ReplaceOne(_ => _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
-        }
-
-        public async Task SaveAsync(CaseReport caseReport)
-        {
-            var filter = Builders<CaseReport>.Filter.Eq(c => c.Id, caseReport.Id);
-            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
-        }
     }
 }

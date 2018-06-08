@@ -1,12 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Dolittle.ReadModels;
 
 namespace Read.Projects
 {
-    public class Project
+    public class Project : IReadModel
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
     }
 }

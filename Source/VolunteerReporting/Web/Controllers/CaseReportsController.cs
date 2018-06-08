@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Read.CaseReports;
 using Read.CaseReportsForListing;
@@ -79,20 +78,6 @@ namespace Web.Controllers
         {
             return Ok(await _caseReportsObsolete.GetAllAsync());
         }
-
-        [Obsolete]
-        [HttpGet("getlimitlast")] // Used as api/casereports/getlimitlast?limit=..
-        public async Task<IActionResult> GetLimitLast(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, true));
-        }
-        [Obsolete]
-        [HttpGet("getlimitfirst")] // Used as api/casereports/getlimitfirst?limit=..
-        public async Task<IActionResult> GetLimitFirst(int limit)
-        {
-            return Ok(await _caseReports.GetLimitAsync(limit, false));
-        }
-        
 
         private IEnumerable<CaseReportForListing> ApplyFilteringAndSorting(
             IEnumerable<CaseReportForListing> caseReports, string filter, string orderBy, string direction)

@@ -2,75 +2,227 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Concepts;
+using Infrastructure.Read.MongoDb;
+using Read.DataCollectors;
+using Read.HealthRisks;
 
 namespace Read.CaseReportsForListing
 {
-    public class CaseReportsForListing : ICaseReportsForListing
+    public class CaseReportsForListing : ExtendedReadModelRepositoryFor<CaseReportForListing>,
+        ICaseReportsForListing
     {
-        public const string CollectionName = "CaseReportForListing";
-
-        private IMongoDatabase _database;
-        private IMongoCollection<CaseReportForListing> _collection;
-
         public CaseReportsForListing(IMongoDatabase database)
+            : base(database, database.GetCollection<CaseReportForListing>("CaseReportForListing"))
         {
-            _database = database;
-            _collection = database.GetCollection<CaseReportForListing>(CollectionName);
         }
 
         public IEnumerable<CaseReportForListing> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<CaseReportForListing>> GetAllAsync()
+        public Task<IEnumerable<CaseReportForListing>> GetAllAsync()
         {
-            var filter = Builders<CaseReportForListing>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
 
-        public async Task<IEnumerable<CaseReportForListing>> GetLimitAsync(int limit, bool last)
+        public void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            
-            var filter = Builders<CaseReportForListing>.Filter.Empty;
-
-            // TODO: Can we assume that this explicit conversion is safe?
-            var totalDocuments = (int)await _collection.CountAsync(filter);
-
-            limit = (limit > totalDocuments) ? totalDocuments : limit;
-
-            var options = new FindOptions<CaseReportForListing>()
+            Update(new CaseReportForListing(caseReportId)
             {
-                Skip = last ? totalDocuments - limit : 0,
-                Limit = limit
-            };   
-            var list = await _collection.FindAsync(filter, options);
+                Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+                Location = Location.NotSet,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp,
 
-            return await list.ToListAsync();
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null
+            });
         }
 
-        public void Save(CaseReportForListing caseReport)
+        public void SaveInvalidReport(Guid caseReportId, DataCollector dataCollector, string message, string origin, double latitude,
+            double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            _collection.ReplaceOne(_ => _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
+            Update(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.TextMessageParsingError,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorVillage = dataCollector.Village,
+
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+
+                Location = dataCollector.Location,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp
+                
+            });
         }
 
-        public async Task SaveAsync(CaseReportForListing caseReport)
+        public void SaveCaseReportFromUnknownDataCollector(Guid caseReportId, HealthRisk healthRisk, string message, string origin,
+            int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
+            int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, caseReport.Id);
-            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
+            Update(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.UnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
+
+                HealthRisk = healthRisk.Name,
+                HealthRiskId = healthRisk.Id,
+
+                Location = Location.NotSet,
+                Message = message,
+                Origin = origin,
+                Timestamp = timestamp,
+
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null
+                
+            });
         }
 
-        public void Remove(Guid id)
+        public void SaveCaseReport(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
+            string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
+            int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
-            _collection.DeleteOne(_ => _.Id == id);
+            Update(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.Success,
+                Message = message,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorVillage = dataCollector.Village,
+                Location = dataCollector.Location,
+                Origin = origin,
+
+                HealthRiskId = healthRisk.Id,
+                HealthRisk = healthRisk.Name,
+
+                NumberOfMalesUnder5 = numberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder,
+                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
+                
+                Timestamp = timestamp
+            });
         }
 
-        public async Task RemoveAsync(Guid id)
+        public Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            var filter = Builders<CaseReportForListing>.Filter.Eq(c => c.Id, id);
-            await _collection.DeleteOneAsync(filter);
+            return UpdateAsync(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+                Location = Location.NotSet,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp,
+
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null
+            });
         }
 
+        public Task SaveInvalidReportAsync(Guid caseReportId, DataCollector dataCollector, string message, string origin,
+            double latitude, double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
+        {
+            return UpdateAsync(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.TextMessageParsingError,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorVillage = dataCollector.Village,
+
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+
+                Location = dataCollector.Location,
+                Message = message,
+                Origin = origin,
+                ParsingErrorMessage = errorMessages,
+                Timestamp = timestamp
+
+            });
+        }
+
+        public Task SaveCaseReportFromUnknownDataCollectorAsync(Guid caseReportId, HealthRisk healthRisk, string message,
+            string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
+            int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
+        {
+            return UpdateAsync(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.UnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
+
+                HealthRisk = healthRisk.Name,
+                HealthRiskId = healthRisk.Id,
+
+                Location = Location.NotSet,
+                Message = message,
+                Origin = origin,
+                Timestamp = timestamp,
+
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null
+
+            });
+        }
+
+        public Task SaveCaseReportAsync(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
+            string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
+            int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
+        {
+            return UpdateAsync(new CaseReportForListing(caseReportId)
+            {
+                Status = CaseReportStatus.Success,
+                Message = message,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorVillage = dataCollector.Village,
+                Location = dataCollector.Location,
+                Origin = origin,
+
+                HealthRiskId = healthRisk.Id,
+                HealthRisk = healthRisk.Name,
+
+                NumberOfMalesUnder5 = numberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder,
+                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
+
+                Timestamp = timestamp
+            });
+        }
     }
 }

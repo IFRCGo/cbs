@@ -6,15 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Concepts;
-using Dolittle.Collections;
 using Dolittle.Events;
-using Dolittle.Logging;
-using Dolittle.Runtime.Events.Coordination;
-using Dolittle.Runtime.Transactions;
 using Events;
 using Events.External;
 using Infrastructure.Events;
-using Infrastructure.Kafka.BoundedContexts;
 using Infrastructure.TextMessaging;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -34,7 +29,7 @@ namespace Web
     {
         private readonly IMongoDatabase _database;
         private readonly ITextMessageProcessors _textMessageProcessors;
-
+        
         private string[] _phoneNumbers = new[] {
             "",         // missing
             "11111111", // DataCollector #1

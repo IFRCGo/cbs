@@ -19,13 +19,14 @@ namespace Read.UserFeatures
 
         public void Process(UserCreated @event)
         {
-            var user = _users.GetById(@event.Id);
-            user.Firstname = @event.Firstname;
-            user.Lastname = @event.Lastname;
-            user.Country = @event.Country;
-            user.NationalSocietyId = @event.NationalSocietyId;
-
-            _users.Save(user);
+            _users.Insert(new User
+            {
+                Country = @event.Country,
+                Firstname = @event.Firstname,
+                Id = @event.Id,
+                NationalSocietyId = @event.NationalSocietyId,
+                Lastname = @event.Lastname
+            });
         }
     }
 }

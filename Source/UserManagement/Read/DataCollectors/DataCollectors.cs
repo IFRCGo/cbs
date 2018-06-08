@@ -1,75 +1,37 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
 {
-    public class DataCollectors : IDataCollectors
+    public class DataCollectors : ExtendedReadModelRepositoryFor<DataCollector>,
+        IDataCollectors
     {
-        private readonly IMongoDatabase _database;
-        private readonly IMongoCollection<DataCollector> _collection;
-
         public DataCollectors(IMongoDatabase database)
+            : base(database, database.GetCollection<DataCollector>("DataCollectors"))
         {
-            _database = database;
-            _collection = database.GetCollection<DataCollector>("DataCollectors");
         }
 
         public DataCollector GetById(Guid id)
         {
-            return _collection.Find(d => d.DataCollectorId == id).SingleOrDefault();
+            return GetOne(d => d.Id == id);
         }
 
-        public async Task<DataCollector> GetByIdAsync(Guid id)
+        public Task<DataCollector> GetByIdAsync(Guid id)
         {
-            return (await _collection.FindAsync(d => d.DataCollectorId == id)).SingleOrDefault();
+            return GetOneAsync(d => d.Id == id);
         }
 
         public IEnumerable<DataCollector> GetAll()
         {
-            return _collection.Find(_ => true).ToEnumerable();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<DataCollector>> GetAllAsync()
+        public Task<IEnumerable<DataCollector>> GetAllAsync()
         {
-            return (await _collection.FindAsync(_ => true)).ToList();
-        }
-
-        public void Remove(Guid id)
-        {
-            _collection.DeleteOne(c => c.DataCollectorId == id);
-        }
-
-        public async Task RemoveAsync(Guid id)
-        {
-            await _collection.DeleteOneAsync(c => c.DataCollectorId == id);
-        }
-
-        public UpdateResult UpdateOne(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
-        {
-            return _collection.UpdateOne(filter, update, new UpdateOptions {IsUpsert = false});
-        }
-
-        public UpdateResult UpdateMany(FilterDefinition<DataCollector> filter, UpdateDefinition<DataCollector> update)
-        {
-            return _collection.UpdateMany(filter, update, new UpdateOptions { IsUpsert = false });
-        }
-
-        public void Save(DataCollector dataCollector)
-        {
-            _collection.ReplaceOne(d => d.DataCollectorId == dataCollector.DataCollectorId, dataCollector, new UpdateOptions { IsUpsert = true });
-        }
-
-        public async Task SaveAsync(DataCollector dataCollector)
-        {
-            await _collection.ReplaceOneAsync(d => d.DataCollectorId == dataCollector.DataCollectorId, dataCollector, new UpdateOptions { IsUpsert = true });
-        }
-
-        public IMongoCollection<DataCollector> GetCollection()
-        {
-            return _collection;
+            return GetManyAsync(_ => true);
         }
     }
 }

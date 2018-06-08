@@ -6,10 +6,10 @@ namespace Read.StaffUsers.Models
 {
     public class DataCoordinator : BaseUser
     {
-        public DataCoordinator(Guid staffUserId, string fullName, string displayName, 
+        public DataCoordinator(Guid id, string fullName, string displayName, 
             string email, DateTimeOffset registrationDate, int birthYear, Sex sex, 
             Guid nationalSociety, Language preferredLanguage) 
-            : base(staffUserId, fullName, displayName, email, registrationDate)
+            : base(id, fullName, displayName, email, registrationDate)
         {
             BirthYear = birthYear;
             Sex = sex;

@@ -5,36 +5,29 @@
 
 using System;
 using System.Collections.Generic;
+using Infrastructure.Read;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.NationalSocietyFeatures
 {
-    public class NationalSocieties : INationalSocieties
+    public class NationalSocieties : ExtendedReadModelRepositoryFor<NationalSociety>,
+        INationalSocieties
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<NationalSociety> _collection;
-
         public NationalSocieties(IMongoDatabase database)
+            : base(database, database.GetCollection<NationalSociety>("NationalSociety"))
         {
-            _database = database;
-            _collection = database.GetCollection<NationalSociety>("NationalSociety");
         }
 
         public IEnumerable<NationalSociety> GetAll()
         {
-            return _collection.Find(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
         public NationalSociety GetById(Guid id)
         {
-            var natiaSociety = _collection.Find(v => v.Id == id).SingleOrDefault();
-
-            return natiaSociety;
+            return GetOne(_ => _.Id == id);
         }
 
-        public void Save(NationalSociety nationalSociety)
-        {
-            _collection.InsertOne(nationalSociety);
-        }
     }
 }

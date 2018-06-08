@@ -13,7 +13,6 @@ using Serilog.Events;
 
 namespace Infrastructure.AspNet
 {
-
     public class Initialization
     {
         public static int BuildAndRun<TStartup>(string boundedContext, string[] args,
@@ -23,12 +22,23 @@ namespace Infrastructure.AspNet
         {
             Globals.BoundedContext = new BoundedContext(boundedContext);
 
+            
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .MinimumLevel.Override("System", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.JsonConsole();
+
+            //TODO: This seemed to fix the problem where Amin was the only BC that would not startup because of an infinite logging loop.
+            // This problem indicates to me that we have to take a look at the logging infrastructure
+            if (boundedContext == "Admin")
+            {
+                loggerConfiguration = new LoggerConfiguration()
+                    .MinimumLevel.Warning()
+                    .Enrich.FromLogContext()
+                    .WriteTo.JsonConsole();
+            }
 
             if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 

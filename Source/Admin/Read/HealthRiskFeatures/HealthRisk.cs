@@ -4,12 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
 
 namespace Read.HealthRiskFeatures
 {
-    public class HealthRisk
+    public class HealthRisk : IReadModel
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
         public int ReadableId { get; set; }
         public int? Threshold { get; set; }
@@ -18,4 +20,5 @@ namespace Read.HealthRiskFeatures
         public string CommunityCase { get; set; } //TODO: Should this be removed?
         public string KeyMessage { get; set; }
     }
+    
 }

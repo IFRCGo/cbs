@@ -2,67 +2,60 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.InvalidCaseReports
 {
-    public class InvalidCaseReportsFromUnknownDataCollectors : IInvalidCaseReportsFromUnknownDataCollectors
+    public class InvalidCaseReportsFromUnknownDataCollectors : ExtendedReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector>,
+        IInvalidCaseReportsFromUnknownDataCollectors
     {
-
-        public const string CollectionName = "InvalidCaseReportFromUnknownDataCollector";
-
-        private IMongoDatabase _database;
-        private IMongoCollection<InvalidCaseReportFromUnknownDataCollector> _collection;
-
         public InvalidCaseReportsFromUnknownDataCollectors(IMongoDatabase database)
+            : base(database, database.GetCollection<InvalidCaseReportFromUnknownDataCollector>("InvalidCaseReportFromUnknownDataCollector"))
         {
-            _database = database;
-            _collection = database.GetCollection<InvalidCaseReportFromUnknownDataCollector>(CollectionName);
         }
 
         public IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync()
+        public Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync()
         {
-            var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
 
         public IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber)
         {
-            return _collection.FindSync(_ => _.PhoneNumber == phoneNumber).ToList();
+            return GetMany(r => r.PhoneNumber == phoneNumber);
         }
 
-        public async Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber)
+        public Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber)
         {
-            var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.PhoneNumber, phoneNumber);
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(r => r.PhoneNumber == phoneNumber);
         }
 
-        public void Remove(Guid id)
+        public void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            _collection.DeleteOne(_ => _.Id == id);
+            Update(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
+            {
+                Message = message,
+                ParsingErrorMessage = errorMessages,
+                PhoneNumber = origin,
+                Timestamp = timestamp
+            });
         }
 
-        public void Save(InvalidCaseReportFromUnknownDataCollector caseReport)
+        public Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
+            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
-            _collection.ReplaceOne(_=> _.Id == caseReport.Id, caseReport, new UpdateOptions {IsUpsert = true});
-        }
-
-        public async Task SaveAsync(InvalidCaseReportFromUnknownDataCollector caseReport)
-        {
-            var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, caseReport.Id);
-            await _collection.ReplaceOneAsync(filter, caseReport, new UpdateOptions { IsUpsert = true });
-        }
-
-        public async Task RemoveAsync(Guid id)
-        {
-            var filter = Builders<InvalidCaseReportFromUnknownDataCollector>.Filter.Eq(c => c.Id, id);
-            await _collection.DeleteOneAsync(filter);
+            return UpdateAsync(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
+            {
+                Message = message,
+                ParsingErrorMessage = errorMessages,
+                PhoneNumber = origin,
+                Timestamp = timestamp
+            });
         }
     }
 }

@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Kafka", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Events", "..\Infrastructure\Events\Infrastructure.Events.csproj", "{E2E68594-DEDC-4F7F-811C-F47E912819C7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Read", "..\Infrastructure\Read\Infrastructure.Read.csproj", "{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -252,6 +254,18 @@ Global
 		{E2E68594-DEDC-4F7F-811C-F47E912819C7}.Release|x64.Build.0 = Release|Any CPU
 		{E2E68594-DEDC-4F7F-811C-F47E912819C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{E2E68594-DEDC-4F7F-811C-F47E912819C7}.Release|x86.Build.0 = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|x64.Build.0 = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Debug|x86.Build.0 = Debug|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|x64.ActiveCfg = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|x64.Build.0 = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

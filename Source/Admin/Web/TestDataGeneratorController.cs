@@ -8,11 +8,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Events.External;
+using Events.HealthRisk;
+using Events.Project;
 using Infrastructure.AspNet;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Read.HealthRiskFeatures;
 using Read.NationalSocietyFeatures;
 using Read.ProjectFeatures;
 using Read.UserFeatures;
@@ -22,7 +26,11 @@ namespace Web
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private IMongoDatabase _database;
+        private readonly IEventReplayer _eventReplayer;
+        private readonly IHealthRisks _healthRisks;
+        private readonly IUsers _users;
+        private readonly INationalSocieties _nationalSocieties;
+        private readonly IProjects _projects;
 
         private Guid[] _nationalSocietyIds = new Guid[]
         {
@@ -40,155 +48,160 @@ namespace Web
             new Guid("70736cc9-1194-44ac-a5e5-fb4b7f165b09"), new Guid("c5d92ded-e42f-439f-a559-63d353b73223")
         };
 
-        public TestDataGeneratorController(IMongoDatabase database)
+        public TestDataGeneratorController(
+            IEventReplayer eventReplayer,
+            IHealthRisks healthRisks,
+            IUsers users,
+            INationalSocieties nationalSocieties,
+            IProjects projects)
         {
-            _database = database;
+            _eventReplayer = eventReplayer;
+            _healthRisks = healthRisks;
+            _users = users;
+            _nationalSocieties = nationalSocieties;
+            _projects = projects;
         }
 
         //TODO: Integrate to DoLittle 2.0
 
-        //[HttpGet("all")]
-        //public void CreateAll()
-        //{
-        //    CreateNationalSociety();
-        //    CreateUsers();
-        //    CreateHealthRisks();
-        //    CreateProjects();
-        //    CreateProjectsHealthRisks();
-        //}
+        [HttpGet("all")]
+        public void CreateAll()
+        {
+            CreateNationalSociety();
+            CreateUsers();
+            CreateHealthRisks();
+            CreateProjects();
+            CreateProjectsHealthRisks();
+        }
 
-        //[HttpGet("projectshealthrisks")]
-        //public void CreateProjectsHealthRisks()
-        //{
-        //    var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
-        //        System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-        //    var projects =
-        //        JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+        [HttpGet("projectshealthrisks")]
+        public void CreateProjectsHealthRisks()
+        {
+            var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
+                System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
+            var projects =
+                JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
 
-        //    foreach (var project in projects)
-        //    {
-        //        var healthRiskIds = new List<Guid>();
-        //        var randomizer = new Random();
-        //        for (var i = 0; i < 5; i++)
-        //        {
-        //            var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
-        //            var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-        //            Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdUpdate()
-        //            {
-        //                ProjectId = project.Id,
-        //                HealthRiskId = risk.Id,
-        //                Threshold = risk.Threshold ?? 1
-        //            });
-        //        }
-        //    }
-        //}
+            foreach (var project in projects)
+            {
+                var healthRiskIds = new List<Guid>();
+                var randomizer = new Random();
 
-        //[HttpGet("projects")]
-        //public void CreateProjects()
-        //{
-        //    var _collection = _database.GetCollection<Project>("Project");
-        //    _collection.DeleteMany(v => true);
+                var events = new List<ProjectHealthRiskThresholdUpdate>();
+                for (var i = 0; i < 5; i++)
+                {
+                    var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
+                    var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
+                    events.Add(new ProjectHealthRiskThresholdUpdate()
+                    {
+                        ProjectId = project.Id,
+                        HealthRiskId = risk.Id,
+                        Threshold = 0
+                    });
+                }
+                _eventReplayer.Replay(events, e => e.HealthRiskId);
+            }
+        }
 
-        //    var projects =
-        //        JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-        //    foreach (var project in projects)
-        //        Apply(project.Id, project);
-        //}
+        [HttpGet("projects")]
+        public void CreateProjects()
+        {
+            _projects.Delete(_ => true);
 
-        //[HttpGet("nationalsocieties")]
-        //public void CreateNationalSociety()
-        //{
-        //    var _collection = _database.GetCollection<NationalSociety>("NationalSociety");
-        //    _collection.DeleteMany(v => true);
+            var projects =
+                JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+            _eventReplayer.Replay(projects, e => e.Id);
+        }
 
-        //    var societies =
-        //        JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-        //            System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-        //    foreach (var society in societies)
-        //        Apply(society.Id, society);
-        //}
+        [HttpGet("nationalsocieties")]
+        public void CreateNationalSociety()
+        {
+            _nationalSocieties.Delete(_ => true);
 
-        //[HttpGet("users")]
-        //public void CreateUsers()
-        //{
-        //    var _collection = _database.GetCollection<User>("Users");
-        //    _collection.DeleteMany(v => true);
+            var societies =
+                JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
+                    System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
+            _eventReplayer.Replay(societies, e => e.Id);
+        }
 
-        //    var societies =
-        //        JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-        //            System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-        //    var users = JsonConvert.DeserializeObject<UserCreated[]>(
-        //        System.IO.File.ReadAllText("./TestData/Names.json"));
-        //    var i = 0;
+        [HttpGet("users")]
+        public void CreateUsers()
+        {
+            _users.Delete(_ => true);
+            var societies =
+                JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
+                    System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
+            var users = JsonConvert.DeserializeObject<UserCreated[]>(
+                System.IO.File.ReadAllText("./TestData/Names.json"));
+            var i = 0;
 
-        //    foreach (var user in users)
-        //    {
-        //        // Make sure we have a valid National Society ID
-        //        if (!societies.Any(v => v.Id == user.NationalSocietyId))
-        //            user.NationalSocietyId = societies[i++ % societies.Length].Id;
+            foreach (var user in users)
+            {
+                // Make sure we have a valid National Society ID
+                if (!societies.Any(v => v.Id == user.NationalSocietyId))
+                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
-        //        Apply(user.Id, user);
-        //    }
-        //}
+            }
+            _eventReplayer.Replay(users, e => e.Id);
+        }
 
-        //[HttpGet("createhealthrisks")]
-        //public void CreateHealthRisks()
-        //{
-        //    var _collection = _database.GetCollection<NationalSociety>("HealthRisk");
-        //    _collection.DeleteMany(v => true);
+        [HttpGet("createhealthrisks")]
+        public void CreateHealthRisks()
+        {
+            _healthRisks.Delete(_ => true);
 
-        //    var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
-        //        System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-        //    foreach (var risk in risks)
-        //        Apply(risk.Id, risk);
-        //}
+            var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
+                System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
+            
+            _eventReplayer.Replay(risks, e => e.Id);
+        }
 
-        //[HttpGet("createprojectsjson")]
-        //public void CreateProjecstJson()
-        //{
-        //    var list = new List<ProjectCreated>();
+        [HttpGet("createprojectsjson")]
+        public void CreateProjecstJson()
+        {
+            var list = new List<ProjectCreated>();
 
-        //    var client = new System.Net.WebClient();
-        //    var jsonString =
-        //        client.DownloadString(
-        //            "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freliefweb.int%2Fupdates%2Frss.xml%3Fsource%3D1242%26theme%3D4591.4604.4602");
-        //    var items = JsonConvert.DeserializeObject<JToken>(jsonString).SelectToken("items");
-        //    var i = 0;
-        //    var r = new Random();
-        //    foreach (var item in items)
-        //    {
-        //        var title = item.SelectToken("title").ToString();
-        //        title = title.Split(':').Select(v => v.Trim()).Last();
+            var client = new System.Net.WebClient();
+            var jsonString =
+                client.DownloadString(
+                    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freliefweb.int%2Fupdates%2Frss.xml%3Fsource%3D1242%26theme%3D4591.4604.4602");
+            var items = JsonConvert.DeserializeObject<JToken>(jsonString).SelectToken("items");
+            var i = 0;
+            var r = new Random();
+            foreach (var item in items)
+            {
+                var title = item.SelectToken("title").ToString();
+                title = title.Split(':').Select(v => v.Trim()).Last();
 
-        //        list.Add(new ProjectCreated()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            Name = title,
-        //            NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
-        //            DataOwnerId = _userIds[i % _userIds.Length],
-        //            SurveillanceContext = (ProjectSurveillanceContext) r.Next(0,
-        //                Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
-        //        });
+                list.Add(new ProjectCreated()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = title,
+                    NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
+                    DataOwnerId = _userIds[i % _userIds.Length],
+                    SurveillanceContext = r.Next(0,
+                        Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
+                });
 
-        //        i++;
-        //    }
+                i++;
+            }
 
-        //    System.IO.File.WriteAllText("./TestData/Projects.json", JsonConvert.SerializeObject(list.ToArray()));
-        //}
+            System.IO.File.WriteAllText("./TestData/Projects.json", JsonConvert.SerializeObject(list.ToArray()));
+        }
 
-        //private void ConvertSeparatedFileWithHeadersToJson<T>(string inputFilePath, string outputFilePath,
-        //    string separator, Func<string[], string[], T> callback)
-        //{
-        //    var lines = System.IO.File.ReadAllLines(inputFilePath);
-        //    var columnNames = lines.First().Split(separator);
-        //    var list = new List<T>();
-        //    foreach (var line in lines.Skip(1))
-        //    {
-        //        var values = line.Split(separator);
-        //        list.Add(callback(columnNames, values));
-        //    }
+        private void ConvertSeparatedFileWithHeadersToJson<T>(string inputFilePath, string outputFilePath,
+            string separator, Func<string[], string[], T> callback)
+        {
+            var lines = System.IO.File.ReadAllLines(inputFilePath);
+            var columnNames = lines.First().Split(separator);
+            var list = new List<T>();
+            foreach (var line in lines.Skip(1))
+            {
+                var values = line.Split(separator);
+                list.Add(callback(columnNames, values));
+            }
 
-        //    System.IO.File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(list.ToArray()));
-        //}
+            System.IO.File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(list.ToArray()));
+        }
     }
 }

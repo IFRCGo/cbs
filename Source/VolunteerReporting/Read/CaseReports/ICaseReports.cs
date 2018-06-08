@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.CaseReports
 {
-    public interface ICaseReports
+    public interface ICaseReports : IExtendedReadModelRepositoryFor<CaseReport>
     {
-        void Save(CaseReport caseReport);
-        Task SaveAsync(CaseReport caseReport);
-
         IEnumerable<CaseReport> GetAll();
         Task<IEnumerable<CaseReport>> GetAllAsync();
     }

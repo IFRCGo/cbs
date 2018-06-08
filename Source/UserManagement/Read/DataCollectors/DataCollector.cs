@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
-using MongoDB.Bson.Serialization.Attributes;
 
 
 namespace Read.DataCollectors
 {
     public class DataCollector : IReadModel
     { 
-        [BsonId]
-        public Guid DataCollectorId { get; set; }
+        public Guid Id { get; set; }
+
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
@@ -27,10 +26,9 @@ namespace Read.DataCollectors
 
         public DateTimeOffset? LastReportRecievedAt { get; set; }
 
-        public DataCollector(Guid dataCollectorId)
+        public DataCollector(Guid id)
         {
-            DataCollectorId = dataCollectorId;
+            Id = id;
         }
     }
-
 }

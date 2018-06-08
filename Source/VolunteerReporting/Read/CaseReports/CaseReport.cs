@@ -1,25 +1,26 @@
 using System;
 using Concepts;
+using Dolittle.ReadModels;
 
 namespace Read.CaseReports
 {
-    public class CaseReport
+    public class CaseReport : IReadModel
     {
-        public Guid Id { get; private set; }
-        public string Message { get; internal set; }
-        public Guid DataCollectorId { get; internal set; }
-        public Guid HealthRiskId { get; internal set; }
-        public int NumberOfFemalesAged5AndOlder { get; internal set; }
-        public int NumberOfFemalesUnder5 { get; internal set; }
-        public int NumberOfMalesAged5AndOlder { get; internal set; }
-        public int NumberOfMalesUnder5 { get; internal set; }
-        public DateTimeOffset Timestamp { get; internal set; }
-        public Location Location { get; internal set; }
+        public Guid Id { get; set; }
+
+        public string Message { get; set; }
+        public Guid DataCollectorId { get; set ; }
+        public Guid HealthRiskId { get; set; }
+        public int NumberOfFemalesAged5AndOlder { get; set; }
+        public int NumberOfFemalesUnder5 { get; set; }
+        public int NumberOfMalesAged5AndOlder { get; set; }
+        public int NumberOfMalesUnder5 { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
+        public Location Location { get; set; }
 
         public CaseReport(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
-
     }
 }

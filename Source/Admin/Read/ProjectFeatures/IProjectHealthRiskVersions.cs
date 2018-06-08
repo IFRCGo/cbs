@@ -5,10 +5,11 @@
 
 using System;
 using System.Collections.Generic;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.ProjectFeatures
 {
-    public interface IProjectHealthRiskVersions
+    public interface IProjectHealthRiskVersions : IExtendedReadModelRepositoryFor<ProjectHealthRiskVersion>
     {
         void Append(Guid projectId, ProjectHealthRisk healthRisk, DateTimeOffset effectiveFromTime);
         IEnumerable<ProjectHealthRiskVersion> GetByProjectIdAndHealthRiskId(Guid projectId, Guid healthRiskId);

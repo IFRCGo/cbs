@@ -1,11 +1,9 @@
-using System;
-using System.Linq;
-using System.Linq.Expressions;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.Admin
 {
-    public class AdminRepository : ReadModelRepositoryForStaffUser<Models.Admin>,
+    public class AdminRepository : ExtendedReadModelRepositoryFor<Models.Admin>,
         IAdminRepository
     {
 

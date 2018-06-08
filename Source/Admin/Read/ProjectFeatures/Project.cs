@@ -4,24 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Events;
+using Dolittle.ReadModels;
 using Events.Project;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 
 namespace Read.ProjectFeatures
 {
-    public class Project
+    public class Project : IReadModel
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; }
         public User DataOwner { get; set; }
         public NationalSociety NationalSociety { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
+        
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
         public ProjectHealthRisk[] HealthRisks { get; set; }

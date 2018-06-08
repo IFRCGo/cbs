@@ -43,11 +43,10 @@ namespace Infrastructure.AspNet
 
             services
                 .AddCors()
-                .AddMvc();;
+                .AddMvc();
             services.Configure<ConnectionStringsOptions>(_configuration);
 
             _bootResult = services.AddDolittle(_loggerFactory);
-
             ConfigureServicesCustom(services);
         }
 
@@ -55,6 +54,7 @@ namespace Infrastructure.AspNet
         {
             containerBuilder.AddDolittle(_bootResult.Assemblies, _bootResult.Bindings);
             ConfigureContainerCustom(containerBuilder);
+            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -64,7 +64,6 @@ namespace Infrastructure.AspNet
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             }
-
             app.UseCors(builder => builder
                 .AllowAnyHeader()
                 .AllowAnyMethod()
@@ -72,7 +71,7 @@ namespace Infrastructure.AspNet
                 .AllowCredentials());
             app.UseMvc();
             if (env.IsDevelopment()) app.UseSwagger();
-
+            
             app.UseDolittle();
 
             app.UseDefaultFiles();
@@ -87,8 +86,15 @@ namespace Infrastructure.AspNet
             app.RunAsSinglePageApplication();
         }
 
-        public virtual void ConfigureServicesCustom(IServiceCollection services) { }
-        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder) { }
+        public virtual void ConfigureServicesCustom(IServiceCollection services)
+        {
+            services.AddReadModule();
+        }
+
+        public virtual void ConfigureContainerCustom(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddReadModule();
+        }
         public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
     }
 }

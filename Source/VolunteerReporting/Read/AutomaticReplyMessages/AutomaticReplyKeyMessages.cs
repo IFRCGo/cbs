@@ -2,58 +2,83 @@ using Concepts;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReplyKeyMessages : IAutomaticReplyKeyMessages
+    public class AutomaticReplyKeyMessages : ExtendedReadModelRepositoryFor<AutomaticReplyKeyMessage>,
+        IAutomaticReplyKeyMessages
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<AutomaticReplyKeyMessage> _collection;
 
         public AutomaticReplyKeyMessages(IMongoDatabase database)
+            : base(database, database.GetCollection<AutomaticReplyKeyMessage>("AutomaticReplyKeyMessage"))
         {
-            _database = database;
-            _collection = database.GetCollection<AutomaticReplyKeyMessage>("AutomaticReplyKeyMessage");
         }
 
-        public async Task<IEnumerable<AutomaticReplyKeyMessage>> GetAllAsync()
+        public IEnumerable<AutomaticReplyKeyMessage> GetAll()
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(Guid projectId)
+        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetAllAsync()
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(c => c.ProjectId, projectId);
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
         }
 
-        public async Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(Guid projectId, AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        public IEnumerable<AutomaticReplyKeyMessage> GetByProject(Guid projectId)
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Where(v =>
-                v.ProjectId == projectId &&
-                v.Type == type &&
-                v.Language == language && 
-                v.HealthRiskId == healthRiskId
-            );
-            var automaticReply = await _collection.FindAsync(filter);
-            return automaticReply.FirstOrDefault();
+            return GetMany(_ => _.ProjectId == projectId);
         }
 
-        public async Task Save(AutomaticReplyKeyMessage keyMessage)
+        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(Guid projectId)
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
-            await _collection.ReplaceOneAsync(filter, keyMessage, new UpdateOptions { IsUpsert = true });
+            return GetManyAsync(_ => _.ProjectId == projectId);
         }
 
-        public async Task Remove(Guid keyMessageId)
+        public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid projectId,
+            Guid healthRiskId)
         {
-            var filter = Builders<AutomaticReplyKeyMessage>.Filter.Eq(v => v.Id, keyMessageId);
-            await _collection.DeleteOneAsync(filter);
+            Update(new AutomaticReplyKeyMessage(id)
+            {
+                HealthRiskId = healthRiskId,
+                Message = message,
+                Language = language,
+                ProjectId = projectId,
+                Type = (AutomaticReplyKeyMessageType)type
+            });
+        }
+
+        public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid projectId,
+            Guid healthRiskId)
+        {
+            return UpdateAsync(new AutomaticReplyKeyMessage(id)
+            {
+                HealthRiskId = healthRiskId,
+                Message = message,
+                Language = language,
+                ProjectId = projectId,
+                Type = (AutomaticReplyKeyMessageType)type
+            });
+        }
+
+        public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(Guid projectId, AutomaticReplyKeyMessageType type,
+            string language, Guid healthRiskId)
+        {
+            return GetOne(
+                v => v.ProjectId == projectId
+                     && v.Type == type
+                     && v.Language == language
+                     && v.HealthRiskId == healthRiskId);
+        }
+
+        public Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(Guid projectId, AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        {
+            return GetOneAsync(
+                v => v.ProjectId == projectId
+                     && v.Type == type
+                     && v.Language == language
+                     && v.HealthRiskId == healthRiskId);
         }
     }
 }

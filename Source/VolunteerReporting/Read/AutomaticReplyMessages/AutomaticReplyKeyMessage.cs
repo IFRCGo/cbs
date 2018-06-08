@@ -1,12 +1,12 @@
 
 using System;
 using Concepts;
+using Dolittle.ReadModels;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class AutomaticReplyKeyMessage
+    public class AutomaticReplyKeyMessage : IReadModel
     {
-        public AutomaticReplyKeyMessage(Guid id) => Id = id;
         public Guid Id { get; set; }
         public Guid HealthRiskId { get; set; }
         public Guid ProjectId { get; set; }
@@ -14,5 +14,9 @@ namespace Read.AutomaticReplyMessages
         public string Message { get; set; }
         public string Language { get; set; }
 
+        public AutomaticReplyKeyMessage(Guid id)
+        {
+            Id = id;
+        } 
     }
 }

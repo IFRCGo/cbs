@@ -5,10 +5,11 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
+using Dolittle.ReadModels;
 
 namespace Read.DataCollectors
 {
-    public class DataCollector
+    public class DataCollector : IReadModel
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

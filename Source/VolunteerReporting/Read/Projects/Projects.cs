@@ -1,46 +1,62 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.Projects
 {
-    public class Projects : IProjects
+    public class Projects : ExtendedReadModelRepositoryFor<Project>,
+        IProjects
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<Project> _collection;
-
         public Projects(IMongoDatabase database)
+            : base(database, database.GetCollection<Project>("Project"))
         {
-            _database = database;
-            _collection = database.GetCollection<Project>("Project");
+        }
+
+        public IEnumerable<Project> GetAll()
+        {
+            return _collection.FindSync(_ => true).ToList();
         }
 
         public async Task<IEnumerable<Project>> GetAllAsync()
         {
-            var filter = Builders<Project>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
-        }
-
-        public async Task<Project> GetByIdAsync(Guid projectId)
-        {
-            var filter = Builders<Project>.Filter.Eq(c => c.Id, projectId);
-            var projects = await _collection.FindAsync(filter);
-            return await projects.FirstAsync();
+            return (await _collection.FindAsync(_ => true)).ToList();
         }
 
         public Project GetById(Guid projectId)
         {
-            var filter = Builders<Project>.Filter.Eq(c => c.Id, projectId);
-            return _collection.Find(filter).First();
+            return GetOne(p => p.Id == projectId);
         }
 
-        public async Task Save(Project project)
+        public void SaveProject(Guid id, string name)
         {
-            var filter = Builders<Project>.Filter.Eq(c => c.Id, project.Id);
-            await _collection.ReplaceOneAsync(filter, project, new UpdateOptions { IsUpsert = true });
+            Update(new Project
+            {
+                Id = id,
+                Name = name
+            });
+        }
+
+        public Task SaveProjectAsync(Guid id, string name)
+        {
+            return UpdateAsync(new Project
+            {
+                Id = id,
+                Name = name
+            });
+        }
+
+        public UpdateResult UpdateProject(Guid id, string name)
+        {
+            return Update(p => p.Id == id,
+                Builders<Project>.Update.Set(p => p.Name, name));
+        }
+
+        public Task<UpdateResult> UpdateProjectAsync(Guid id, string name)
+        {
+            return UpdateAsync(p => p.Id == id,
+                Builders<Project>.Update.Set(p => p.Name, name));
         }
     }
 }

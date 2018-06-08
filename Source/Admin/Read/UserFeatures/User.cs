@@ -4,15 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
 
 namespace Read.UserFeatures
 {
-    public class User
+    public class User : IReadModel
     {
         public Guid Id { get; set; }
 
+        //TODO: Change to FullName
         public string Firstname { get; set; }
 
+        //TODO:Change to DisplayName 
         public string Lastname { get; set; }
 
         public string Country { get; set; }

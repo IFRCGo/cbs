@@ -2,97 +2,91 @@ using System;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Concepts;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.HealthRisks
 {
-    public class HealthRisks : IHealthRisks
+    public class HealthRisks : ExtendedReadModelRepositoryFor<HealthRisk>,
+        IHealthRisks
     {
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<HealthRisk> _collection;
-
         public HealthRisks(IMongoDatabase database)
+            : base(database, database.GetCollection<HealthRisk>("HealthRisk"))
         {
-            _database = database;
-            _collection = database.GetCollection<HealthRisk>("HealthRisk");
+        }
+
+        public IEnumerable<HealthRisk> GetAll()
+        {
+            return GetMany(_ => true);
         }
 
         public async Task<IEnumerable<HealthRisk>> GetAllAsync()
         {
-            var filter = Builders<HealthRisk>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return await GetManyAsync(_ => true);
         }
 
         public HealthRisk GetById(Guid id)
         {
-            return _collection.Find(d => d.Id == id).SingleOrDefault();
+            return GetOne(_ => _.Id == id);
+        }
+
+        public Task<HealthRisk> GetByIdAsync(Guid id)
+        {
+            return GetOneAsync(_ => _.Id == id);
         }
 
         public HealthRisk GetByReadableId(int readableId)
         {
-            return _collection.Find(d => d.ReadableId == readableId).Single();
+            return GetOne(_ => _.ReadableId == readableId);
+        }
+
+        public Task<HealthRisk> GetByReadableIdAsync(int readableId)
+        {
+            return GetOneAsync(_ => _.ReadableId == readableId);
         }
 
         public HealthRiskId GetIdFromReadableId(int readbleId)
         {
-            var healthRiskId = _collection.Find(d => d.ReadableId == readbleId).Project(_ => _.Id).FirstOrDefault();
-            return healthRiskId;
+            return GetByReadableId(readbleId).Id;
         }
 
-        public void Save(HealthRisk healthRisk)
+        public async Task<HealthRiskId> GetIdFromReadableIdAsync(int readbleId)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
-            _collection.ReplaceOne(filter, healthRisk, new UpdateOptions { IsUpsert = true });
+            return (await GetByReadableIdAsync(readbleId)).Id;
         }
 
-        public void Remove(Guid healthRiskId)
+        public void SaveHealthRisk(Guid id, int readableId, string name)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
-            _collection.DeleteOne(filter);
+            Update(new HealthRisk(id)
+            {
+                Name = name,
+                ReadableId = readableId
+            });
         }
 
-        public async Task SaveAsync(HealthRisk healthRisk)
+        public Task SaveHealthRiskAsync(Guid id, int readableId, string name)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRisk.Id);
-            await  _collection.ReplaceOneAsync(filter, healthRisk, new UpdateOptions { IsUpsert = true });
+            return UpdateAsync(new HealthRisk(id)
+            {
+                Name = name,
+                ReadableId = readableId
+            });
         }
 
-        public async Task RemoveAsync(Guid healthRiskId)
+        public UpdateResult UpdateHealthRisk(Guid id, int readableId, string name)
         {
-            var filter = Builders<HealthRisk>.Filter.Eq(c => c.Id, healthRiskId);
-            await _collection.DeleteOneAsync(filter);
+            return Update(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
+                Builders<HealthRisk>.Update.Set(h => h.Name, name),
+                Builders<HealthRisk>.Update.Set(h => h.ReadableId, readableId))
+                );
         }
 
-        public UpdateResult Update(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update)
+        public Task<UpdateResult> UpdateHealthRiskAsync(Guid id, int readableId, string name)
         {
-            return _collection.UpdateOne(filter, update);
-        }
-
-        public Task<UpdateResult> UpdateAsync(FilterDefinition<HealthRisk> filter, UpdateDefinition<HealthRisk> update)
-        {
-            return _collection.UpdateOneAsync(filter, update);
-        }
-
-        public void Remove(FilterDefinition<HealthRisk> filter)
-        {
-            _collection.DeleteOne(filter);
-        }
-
-        public void Remove(Expression<Func<HealthRisk, bool>> filter)
-        {
-            _collection.DeleteOne(filter);
-        }
-
-        public Task RemoveAsync(FilterDefinition<HealthRisk> filter)
-        {
-           return _collection.DeleteOneAsync(filter);
-        }
-
-        public Task RemoveAsync(Expression<Func<HealthRisk, bool>> filter)
-        {
-            return _collection.DeleteOneAsync(filter);
+            return UpdateAsync(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
+                    Builders<HealthRisk>.Update.Set(h => h.Name, name),
+                    Builders<HealthRisk>.Update.Set(h => h.ReadableId, readableId))
+            );
         }
     }
 }

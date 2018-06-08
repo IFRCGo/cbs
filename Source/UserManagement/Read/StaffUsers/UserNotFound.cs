@@ -6,7 +6,6 @@ namespace Read.StaffUsers
     {
         public UserNotFound(string msg) : base(msg)
         {
-
         }
     }
 }

@@ -1,15 +1,17 @@
 using System;
 using Concepts;
+using Infrastructure.Read;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read.StaffUsers.Models
 {
     public class DataConsumer : BaseUser
     {
-        public DataConsumer(Guid staffUserId, string fullName, string displayName, 
+        public DataConsumer(Guid id, string fullName, string displayName, 
             string email, DateTimeOffset registrationDate, Location location, 
             Guid nationalSociety, Language preferredLanguage, int birthYear, Sex sex) 
-            : base(staffUserId, fullName, displayName, email, registrationDate)
+            : base(id, fullName, displayName, email, registrationDate)
         {
             Location = location;
             NationalSociety = nationalSociety;

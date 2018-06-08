@@ -1,13 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Read.InvalidCaseReports;
-using Read.DataCollectors;
-using Read.HealthRisks;
-using Web.Models;
-using Infrastructure.AspNet;
 
 namespace Web.Controllers
 {

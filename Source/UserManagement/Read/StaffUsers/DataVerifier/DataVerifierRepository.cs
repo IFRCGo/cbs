@@ -1,10 +1,11 @@
 using System;
 using Concepts;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.StaffUsers.DataVerifier
 {
-    public class DataVerifierRepository : ReadModelRepositoryForStaffUser<Models.DataVerifier>,
+    public class DataVerifierRepository : ExtendedReadModelRepositoryFor<Models.DataVerifier>,
         IDataVerifierRepository
     {
         public DataVerifierRepository(IMongoDatabase database)
@@ -14,13 +15,13 @@ namespace Read.StaffUsers.DataVerifier
 
         public UpdateResult AddPhoneNumber(Guid staffUserId, string number)
         {
-            return _collection.UpdateOne(Builders<Models.DataVerifier>.Filter.Where(u => u.StaffUserId == staffUserId),
+            return Update(u => u.Id == staffUserId,
                 Builders<Models.DataVerifier>.Update.AddToSet(u => u.PhoneNumbers, new PhoneNumber(number)));
         }
 
         public UpdateResult RemovePhoneNumber(Guid staffUserId, string number)
         {
-            return _collection.UpdateOne(Builders<Models.DataVerifier>.Filter.Where(u => u.StaffUserId == staffUserId),
+            return Update(u => u.Id == staffUserId,
                 Builders<Models.DataVerifier>.Update.PullFilter(u => u.PhoneNumbers, pn => pn.Value == number));
         }
 

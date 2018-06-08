@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Concepts;
 using Dolittle.Events.Processing;
 using Events;
 using Read.DataCollectors;
@@ -26,27 +24,18 @@ namespace Read.CaseReportsForListing
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.Success,
-                DataCollectorId = @event.DataCollectorId,
-                DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorRegion = dataCollector.Region,
-                DataCollectorDistrict = dataCollector.District,
-                DataCollectorVillage = dataCollector.Village,
-                HealthRiskId = @event.HealthRiskId,
-                HealthRisk = healthRisk.Name,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                Location = new Location(@event.Latitude, @event.Longitude),
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                Message = @event.Message,
-                ParsingErrorMessage = new List<string>()
-            };
-             _caseReports.Save(caseReport);
+
+            _caseReports.SaveCaseReport(
+                @event.CaseReportId,
+                dataCollector,
+                healthRisk,
+                @event.Message,
+                @event.Origin,
+                @event.NumberOfMalesUnder5,
+                @event.NumberOfMalesAged5AndOlder,
+                @event.NumberOfFemalesUnder5,
+                @event.NumberOfFemalesAged5AndOlder,
+                @event.Timestamp);
         }
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
@@ -54,67 +43,48 @@ namespace Read.CaseReportsForListing
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.UnknownDataCollector,                
-                HealthRiskId = @event.HealthRiskId,
-                HealthRisk = healthRisk.Name,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                Message = @event.Message,
-                DataCollectorDisplayName = "Unknown",
-                ParsingErrorMessage = new List<string>(),
-                Location = Location.NotSet
-            };
-             _caseReports.Save(caseReport);
-        }
 
-        public void Process(CaseReportIdentified @event)
-        {
-            _caseReports.Remove(@event.CaseReportId);
+            _caseReports.SaveCaseReportFromUnknownDataCollector(
+                @event.CaseReportId,
+                healthRisk,
+                @event.Message,
+                @event.Origin,
+                @event.NumberOfMalesUnder5,
+                @event.NumberOfMalesAged5AndOlder,
+                @event.NumberOfFemalesUnder5,
+                @event.NumberOfFemalesAged5AndOlder,
+                @event.Timestamp);
+
         }
 
         public void Process(InvalidReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.TextMessageParsingError,
-                DataCollectorId = @event.DataCollectorId,
-                DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorRegion = dataCollector.Region,
-                DataCollectorDistrict = dataCollector.District,
-                DataCollectorVillage = dataCollector.Village,
-                Message = @event.Message,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages,
-                Location = new Location(@event.Latitude, @event.Longitude),
-                HealthRisk = "Unknown"
-            };
-            _caseReports.Save(caseReport);
+
+            _caseReports.SaveInvalidReport(
+                @event.CaseReportId,
+                dataCollector,
+                @event.Message,
+                @event.Origin,
+                @event.Latitude,
+                @event.Longitude,
+                @event.ErrorMessages,
+                @event.Timestamp);
         }
 
         public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
-        {            
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
-            {
-                Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
-                Message = @event.Message,
-                Timestamp = @event.Timestamp,
-                Origin = @event.Origin,
-                ParsingErrorMessage = @event.ErrorMessages,
-                DataCollectorDisplayName = "Unknown",
-                Location = Location.NotSet,
-                HealthRisk = "Unknown"
-            };
-            _caseReports.Save(caseReport);
+        {
+            _caseReports.SaveInvalidReportFromUnknownDataCollector(
+                @event.CaseReportId,
+                @event.Message,
+                @event.Origin,
+                @event.ErrorMessages,
+                @event.Timestamp);
         }
 
-        //TODO: Remove error reports if they get fixed when we have events for that
+        public void Process(CaseReportIdentified @event)
+        {
+            _caseReports.Delete(e => e.Id == @event.CaseReportId);
+        }
     }
 }

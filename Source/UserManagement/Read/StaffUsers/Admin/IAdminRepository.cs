@@ -1,10 +1,8 @@
-using System;
-using Events.StaffUser.Changing;
-using MongoDB.Driver;
+using Infrastructure.Read.MongoDb;
 
 namespace Read.StaffUsers.Admin
 {
-    public interface IAdminRepository : IReadModelRepositoryForStaffUser<Models.Admin>
+    public interface IAdminRepository : IExtendedReadModelRepositoryFor<Models.Admin>
     {
         
     }

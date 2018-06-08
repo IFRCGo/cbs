@@ -1,41 +1,60 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Concepts;
 using System.Threading.Tasks;
+using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
 namespace Read.AutomaticReplyMessages
 {
-    public class DefaultAutomaticReplyKeyMessages : IDefaultAutomaticReplyKeyMessages
+    public class DefaultAutomaticReplyKeyMessages : ExtendedReadModelRepositoryFor<DefaultAutomaticReplyKeyMessage>,
+        IDefaultAutomaticReplyKeyMessages
     {
-
-        readonly IMongoDatabase _database;
-        readonly IMongoCollection<DefaultAutomaticReplyKeyMessage> _collection;
-
         public DefaultAutomaticReplyKeyMessages(IMongoDatabase database)
+            : base(database, database.GetCollection<DefaultAutomaticReplyKeyMessage>("DefaultAutomaticReplyKeyMessage"))
+        {}
+
+        public IEnumerable<DefaultAutomaticReplyKeyMessage> GetAll()
         {
-            _database = database;
-            _collection = database.GetCollection<DefaultAutomaticReplyKeyMessage>("DefaultAutomaticReplyKeyMessage");
+            return GetMany(_ => true);
         }
 
-        public async Task<IEnumerable<DefaultAutomaticReplyKeyMessage>> GetAllAsync()
+        public Task<IEnumerable<DefaultAutomaticReplyKeyMessage>> GetAllAsync()
         {
-            var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Empty;
-            var list = await _collection.FindAsync(filter);
-            return await list.ToListAsync();
+            return GetManyAsync(_ => true);
+        }
+
+        public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid healthRiskId)
+        {
+            Update(new DefaultAutomaticReplyKeyMessage(id)
+            {
+                HealthRiskId = healthRiskId,
+                Language = language,
+                Message = message,
+                Type = (AutomaticReplyKeyMessageType)type
+            });
+        }
+
+        public Task SaveDefaultAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid healthRiskId)
+        {
+            return UpdateAsync(new DefaultAutomaticReplyKeyMessage(id)
+            {
+                HealthRiskId = healthRiskId,
+                Language = language,
+                Message = message,
+                Type = (AutomaticReplyKeyMessageType)type
+            });
         }
 
         public DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
         {
-            var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Where(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
-            return _collection.Find(filter).FirstOrDefault();
+            return GetOne(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
         }
 
-        public async Task Save(DefaultAutomaticReplyKeyMessage keyMessage)
+        public Task<DefaultAutomaticReplyKeyMessage> GetByTypeLanguageAndHealthRiskAsync(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
         {
-            var filter = Builders<DefaultAutomaticReplyKeyMessage>.Filter.Where(v => v.Type == keyMessage.Type && v.Language == keyMessage.Language && v.HealthRiskId == keyMessage.HealthRiskId);
-            await _collection.ReplaceOneAsync(filter, keyMessage, new UpdateOptions { IsUpsert = true });
-       }
+            return GetOneAsync(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
+        }
+
     }
 }

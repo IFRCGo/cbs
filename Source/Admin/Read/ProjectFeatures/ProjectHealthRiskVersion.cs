@@ -4,12 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.ReadModels;
 
 namespace Read.ProjectFeatures
 {
-    public class ProjectHealthRiskVersion
+    public class ProjectHealthRiskVersion : IReadModel
     {
-        public Guid Id { get; set; } // Do we really need this?
+        public Guid Id { get; set; }
+
         public Guid ProjectId { get; set; }
         public ProjectHealthRisk HealthRisk { get; set; }
         public DateTimeOffset EffectiveFromTime { get; set; }
