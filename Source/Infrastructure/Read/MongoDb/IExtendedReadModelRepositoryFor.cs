@@ -156,11 +156,6 @@ namespace Infrastructure.Read.MongoDb
         /// <param name="predicate"></param>
         DeleteResult Delete(FilterDefinition<T> predicate);
         /// <summary>
-        /// Deletes a single Documents with the given id
-        /// </summary>
-        /// <param name="id"></param>
-        Task<DeleteResult> DeleteAsync(object id);
-        /// <summary>
         /// Deletes multiple Documents matching the predicate
         /// </summary>
         /// <param name="predicate"></param>
