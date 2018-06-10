@@ -30,16 +30,6 @@ namespace Infrastructure.AspNet
                 .Enrich.FromLogContext()
                 .WriteTo.JsonConsole();
 
-            //TODO: This seemed to fix the problem where Amin was the only BC that would not startup because of an infinite logging loop.
-            // This problem indicates to me that we have to take a look at the logging infrastructure
-            if (boundedContext == "Admin")
-            {
-                loggerConfiguration = new LoggerConfiguration()
-                    .MinimumLevel.Warning()
-                    .Enrich.FromLogContext()
-                    .WriteTo.JsonConsole();
-            }
-
             if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 
             var logger = loggerConfiguration.CreateLogger();
