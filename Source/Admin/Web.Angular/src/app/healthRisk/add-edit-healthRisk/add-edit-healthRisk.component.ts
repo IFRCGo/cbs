@@ -9,6 +9,8 @@ import { Guid } from '../../services/Guid';
 import { ModifyHealthRisk } from '../../domain/health-risk/ModifyHealthRisk';
 import { AddThresholdToHealthRisk } from '../../domain/health-risk/AddThresholdToHealthRisk';
 import { ToastrService } from 'ngx-toastr';
+import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { HealthRiskById } from '../../domain/health-risk/queries/HealthRiskById';
 
 @Component({
     selector: 'add-edit-healthRisk',
@@ -26,7 +28,7 @@ export class AddEditHealthRiskComponent implements OnInit {
     isAdd: boolean;
 
     constructor(
-        private healthRiskService: HealthRiskService,
+        private queryCoordinator: QueryCoordinator<HealthRisk>,
         private router: Router,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService
@@ -40,11 +42,20 @@ export class AddEditHealthRiskComponent implements OnInit {
        if (pathSections.indexOf('update') > -1)
        {
            this.isAdd = false;
-           this.healthRiskService.getHealthRisk(pathSections[2])
-                .subscribe((result) => {
-                    this.risk = result
-                },
-                    (error) => { console.log(error); });
+           const id = pathSections[2];
+           
+           this.queryCoordinator.handle(new HealthRiskById(id))
+           .then(response => {
+               if (response.success) {
+                 this.risk = response.items[0];
+               } else {
+                 console.error(response);
+               }
+           })
+           .catch(response => {
+             console.error(response);
+           });           
+           
        }
        else
        {

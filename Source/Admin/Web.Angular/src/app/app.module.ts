@@ -18,6 +18,7 @@ import { HealthRiskListComponent } from './healthRisk/healthRisk-list/healthRisk
 import { AddEditHealthRiskComponent } from './healthRisk/add-edit-healthRisk/add-edit-healthRisk.component';
 import { DeleteHealthRiskComponent } from './healthRisk/delete-health-risk/delete-healthrisk.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QueryCoordinator } from './services/QueryCoordinator';
 
 const routes: Routes = [
     {
@@ -55,7 +56,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
     ],
     providers: [
         AuthenticationService,
-        CommandCoordinator
+        CommandCoordinator,
+        QueryCoordinator
     ],
     bootstrap: [AppComponent]
 })

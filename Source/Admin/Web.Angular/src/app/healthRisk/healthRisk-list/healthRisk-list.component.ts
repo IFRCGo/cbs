@@ -4,6 +4,8 @@ import { HealthRisk } from '../../shared/models/healthRisk.model';
 import { DeleteHealthRisk } from '../../domain/health-risk/DeleteHealthRisk';
 import { CommandCoordinator } from '../../services/CommandCoordinator';
 import { ToastrService } from 'ngx-toastr';
+import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { AllHealthRisks } from '../../domain/health-risk/queries/AllHealthRisks';
 
 @Component({
     selector: 'cbs-healthRisk-list',
@@ -16,14 +18,22 @@ export class HealthRiskListComponent implements OnInit {
 
     deleteHealthRiskCmd: DeleteHealthRisk = new DeleteHealthRisk();
     constructor(
-        private healthRiskService: HealthRiskService,
+        private queryCoordinator: QueryCoordinator<HealthRisk>,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService
     ) { }
 
     ngOnInit() {
-        this.healthRiskService.getHealthRisks()
-            .subscribe((result) => this.risks = result,
-            (error) => { console.log(error); });
+        this.queryCoordinator.handle(new AllHealthRisks())
+      .then(response => {
+          if (response.success) {
+            this.risks = response.items as HealthRisk[];
+          } else {
+            console.error(response);
+          }
+      })
+      .catch(response => {
+        console.error(response);
+      });
     }
 }

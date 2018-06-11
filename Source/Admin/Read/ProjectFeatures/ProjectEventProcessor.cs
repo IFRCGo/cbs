@@ -45,7 +45,11 @@ namespace Read.ProjectFeatures
                 NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId),
                 DataOwner = _users.GetById(@event.DataOwnerId),
                 Name = @event.Name,
-                SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext
+                SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext,
+                HealthRisks = new ProjectHealthRisk[0],
+                DataVerifiers = new User[0],
+                SmsProxy = ""
+
             };
             _projects.Insert(project);
         }
@@ -86,11 +90,19 @@ namespace Read.ProjectFeatures
 
         public void Process(ProjectHealthRiskThresholdUpdate @event)
         {
+
             //TODO: Assumes that project and health risk exists. Should be verified in BusinessValidator
+            var projectHealthRisks = _projects.GetOne(p => p.Id == @event.ProjectId).HealthRisks;
+            projectHealthRisks = projectHealthRisks.Select(r => r.HealthRiskId == @event.HealthRiskId
+                    ? new ProjectHealthRisk
+                    {
+                        HealthRiskId = @event.HealthRiskId,
+                        Threshold = @event.Threshold
+                    }
+                    : r
+                ).ToArray();
             _projects.Update(p => p.Id == @event.ProjectId,
-                Builders<Project>.Update.Set(
-                    p => p.HealthRisks.FirstOrDefault(risk => risk.HealthRiskId == @event.HealthRiskId)
-                        .Threshold, @event.Threshold));
+                Builders<Project>.Update.Set(p => p.HealthRisks, projectHealthRisks));
 
             var project = _projects.GetOne(p => p.Id == @event.ProjectId);
             var healthRisk = project.HealthRisks.FirstOrDefault(risk => risk.HealthRiskId == @event.HealthRiskId);
