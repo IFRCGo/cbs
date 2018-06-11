@@ -12,7 +12,7 @@ namespace Domain.DataCollector.Changing
                 .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.Village)
-                .NotEmpty().WithMessage("Village ID is required");
+                .NotEmpty().WithMessage("Village is required");
 
         }
     }
