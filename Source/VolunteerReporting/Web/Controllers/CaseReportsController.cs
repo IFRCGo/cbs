@@ -39,7 +39,7 @@ namespace Web.Controllers
         };
 
         [HttpGet("export")]
-        public async Task<IActionResult> Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc") {
+        public IActionResult Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc") {
             fields = fields ?? new string[] { "all" };
 
             //TODO: woksin: I think that having a parameter of some kind of datastructure that represents
@@ -49,7 +49,7 @@ namespace Web.Controllers
             {
                 var exporter = exporters[format];
 
-                var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
+                var caseReports = _caseReports.GetAll() ?? new List<CaseReportForListing>();
                 caseReports = ApplyFilteringAndSorting(caseReports, filter, sortBy, order);
 
                 var stream = new MemoryStream();

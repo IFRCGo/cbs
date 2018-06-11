@@ -24,13 +24,14 @@ namespace Web.Utility
         {
             var writer = new StreamWriter(stream, Encoding.UTF8);
 
-            writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\"",
-                          "Time", "Status", "Data Collector", "Region", "District", "Village", "Healthrisk", "Males < 5", "Males >= 5", "Females < 5",
+            writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\"",
+                          "Date", "Time", "Status", "Data Collector", "Region", "District", "Village", "Healthrisk", "Males < 5", "Males >= 5", "Females < 5",
                           "Females >= 5", "Lat., Long.", "Message", "Errors"));
 
             foreach (var caseReport in reports)
             {
-                var time = caseReport.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt");
+                var date = caseReport.Timestamp.ToString("yyyy MMMM dd");
+                var time = caseReport.Timestamp.ToString("HH:mm:ss");
                 var status = caseReport.HealthRiskId != null;
 
                 var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
@@ -82,8 +83,8 @@ namespace Web.Utility
                 {
                     errors = string.Join(", ", caseReport.ParsingErrorMessage != null ? String.Join(".", caseReport.ParsingErrorMessage) : "");
                 }
-                writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\"",
-                              time, status ? "Success" : "Error", dataCollector, region, district, village, healthRisk, malesUnder5, malesOver5, femalesUnder5,
+                writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\"",
+                              date, time, status ? "Success" : "Error", dataCollector, region, district, village, healthRisk, malesUnder5, malesOver5, femalesUnder5,
                               femalesOver5, latLong, message, errors));
             }
 
