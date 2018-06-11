@@ -1,4 +1,5 @@
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 

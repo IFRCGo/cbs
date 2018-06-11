@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Concepts;
 using Concepts.DataCollector;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
