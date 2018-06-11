@@ -43,15 +43,11 @@ namespace Infrastructure.AspNet.MongoDB
                     if (connectionString == null)
                         throw new MissingConnectionStringForDatabaseType(ConnectionStringType.MongoDB);
 
-                    var configuration = new Configuration()
-                    {
-                        DefaultDatabase = connectionString.Database,
-                        Url = connectionString.Value,
-                        UseSSL = false
-                    };
-                    var connection = new Connection(configuration);
+                    var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionString.Value));
+                    var mongoClient = new MongoClient(settings);
+                    var database = mongoClient.GetDatabase(connectionString.Database);
 
-                    return connection.Database;
+                    return database;
                 }),
                 new CurrentScopeLifetime(),
                 InstanceSharing.Shared,

@@ -54,7 +54,6 @@ namespace Infrastructure.AspNet
         {
             containerBuilder.AddDolittle(_bootResult.Assemblies, _bootResult.Bindings);
             ConfigureContainerCustom(containerBuilder);
-            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

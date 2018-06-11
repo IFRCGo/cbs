@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using Concepts;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
-using Dolittle.ReadModels.MongoDB;
-using MongoDB.Bson.Serialization;
 using Read.DataCollectors.Queries;
 using Web.Utility;
 
