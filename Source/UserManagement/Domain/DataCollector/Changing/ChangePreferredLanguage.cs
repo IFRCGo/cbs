@@ -6,7 +6,7 @@ namespace Domain.DataCollector.Changing
 {
     public class ChangePreferredLanguage : ICommand
     {
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
         public Language PreferredLanguage { get; set; }
     }
 }

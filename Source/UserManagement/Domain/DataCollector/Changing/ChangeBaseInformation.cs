@@ -6,7 +6,7 @@ namespace Domain.DataCollector.Changing
 {
     public class ChangeBaseInformation : ICommand
     {
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
 
         public string FullName { get; set; }
         public string DisplayName { get; set; }

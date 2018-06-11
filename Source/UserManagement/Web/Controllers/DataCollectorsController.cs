@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Concepts;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
-using MongoDB.Driver;
+using Dolittle.ReadModels.MongoDB;
+using MongoDB.Bson.Serialization;
 using Read.DataCollectors.Queries;
 using Web.Utility;
 
@@ -43,7 +45,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(DataCollectorId id)
         {
             var result = _queryCoordinator.Execute(
                 new DataCollectorById(_dataCollectors)

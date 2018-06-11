@@ -15,7 +15,6 @@ namespace Domain.DataCollector.Registering
     {
         public RegisterDataCollectorValidator()
         {
-
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set");
 

@@ -6,7 +6,7 @@ namespace Domain.DataCollector.Changing
 {
     public class ChangeLocation : ICommand
     {
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
         public Location Location { get; set; }
     }
 }
