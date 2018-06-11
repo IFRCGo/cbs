@@ -10,10 +10,9 @@ namespace Read.GreetingGenerators.Queries
 
 
         public string PhoneNumber { get; set; }
-        public GreetingHistoryByPhoneNumber(IGreetingHistories repository, string phoneNumber)
+        public GreetingHistoryByPhoneNumber(IGreetingHistories repository)
         {
             _repository = repository;
-            PhoneNumber = phoneNumber;
         }
 
 

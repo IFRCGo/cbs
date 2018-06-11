@@ -45,7 +45,11 @@ namespace Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var result = _queryCoordinator.Execute(new DataCollectorById(_dataCollectors, id), new PagingInfo());
+            var result = _queryCoordinator.Execute(
+                new DataCollectorById(_dataCollectors)
+                    {
+                        DataCollectorId = id
+                    }, new PagingInfo());
 
             if (result.Success || result.TotalItems > 0)
             {

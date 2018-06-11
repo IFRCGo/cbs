@@ -10,10 +10,9 @@ namespace Read.GreetingGenerators.Queries
 
         public Guid DataCollectorId { get; set; }
 
-        public GreetingHistoryById(IGreetingHistories repository, Guid dataCollectorId)
+        public GreetingHistoryById(IGreetingHistories repository)
         {
             _repository = repository;
-            DataCollectorId = dataCollectorId;
         }
 
 

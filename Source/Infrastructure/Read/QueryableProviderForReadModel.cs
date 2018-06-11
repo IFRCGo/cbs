@@ -1,17 +1,18 @@
 using System.Linq;
 using Dolittle.Queries;
-using Read.StaffUsers.Models;
+using Dolittle.ReadModels;
 
-namespace Read.StaffUsers.Queries
+namespace Infrastructure.Read
 {
     public class QueryableProvider<T> : IQueryProviderFor<IQueryable<T>>
-        where T : BaseUser
+        where T : IReadModel
     {
         public QueryProviderResult Execute(IQueryable<T> query, PagingInfo paging)
         {
-            var result = new QueryProviderResult();
-
-            result.TotalItems = query.Count();
+            var result = new QueryProviderResult
+            {
+                TotalItems = query.Count()
+            };
 
             if (paging.Enabled)
             {

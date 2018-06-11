@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Changing
 {
-    public class ChangePreferredLanguageValidator : CommandInputValidatorFor<ChangePreferredLanguage>
+    public class ChangeUserPreferredLanguageValidator : CommandInputValidatorFor<ChangeUserPreferredLanguage>
     {
-        public ChangePreferredLanguageValidator()
+        public ChangeUserPreferredLanguageValidator()
         {
             RuleFor(bi => bi.StaffUserId)
                 .NotEmpty().WithMessage("An Id for the Staff User is required.");
