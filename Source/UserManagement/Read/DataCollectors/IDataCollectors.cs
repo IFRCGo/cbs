@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
+using Concepts.DataCollector;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors

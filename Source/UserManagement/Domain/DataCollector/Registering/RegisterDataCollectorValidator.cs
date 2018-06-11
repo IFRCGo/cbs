@@ -6,6 +6,7 @@
 using System;
 using System.Linq;
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
@@ -16,7 +17,8 @@ namespace Domain.DataCollector.Registering
         public RegisterDataCollectorValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set");
+                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.FullName)
                 .NotEmpty()

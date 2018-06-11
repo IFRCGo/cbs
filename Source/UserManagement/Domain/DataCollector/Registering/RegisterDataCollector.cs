@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Commands;
 
 namespace Domain.DataCollector.Registering
