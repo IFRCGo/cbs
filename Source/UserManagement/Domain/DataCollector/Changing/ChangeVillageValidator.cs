@@ -13,7 +13,6 @@ namespace Domain.DataCollector.Changing
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.Village)
                 .NotEmpty().WithMessage("Village is required");
-
         }
     }
 }
