@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProjectService } from '../../core/project.service';
 import { Project } from '../../shared/models/project.model';
+import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { AllProjects } from '../../domain/project/queries/AllProjects';
 
 @Component({
     selector: 'cbs-project-list',
@@ -12,13 +14,21 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
 
     constructor(
-        private projectService: ProjectService,
+        private queryCoordinator: QueryCoordinator<Project>
     ) { }
 
     ngOnInit() {
-        this.projectService.getProjects()
-            .subscribe((result) => this.projects = result,
-            (error) => { console.log(error); })
+        this.queryCoordinator.handle(new AllProjects())
+      .then(response => {
+          if (response.success) {
+            this.projects = response.items as Project[];
+          } else {
+            console.error(response);
+          }
+      })
+      .catch(response => {
+        console.error(response);
+      });
     }
 
 }

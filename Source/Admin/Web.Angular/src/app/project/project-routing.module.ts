@@ -20,7 +20,7 @@ const routes: Routes = [
             {
                 path: 'add',
                 component: AddProjectComponent
-            }
+            } //TODO: edit
         ]
     }
 ];

@@ -123,7 +123,7 @@ namespace Web.Controllers
         public IActionResult GetById(Guid id)
         {
             var res = _queryCoordinator.Execute(new StaffUserById(_adminRepository, _dataConsumerRepository, _dataCoordinatorRepository,
-                _dataOwnerRepository, _dataVerifierRepository, _systemConfiguratorRepository, id), new PagingInfo());
+                _dataOwnerRepository, _dataVerifierRepository, _systemConfiguratorRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -134,7 +134,7 @@ namespace Web.Controllers
         [HttpGet("admin/{id}")]
         public IActionResult GetAdminById(Guid id)
         {
-            var res = _queryCoordinator.Execute(new AdminById(_adminRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new AdminById(_adminRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -146,7 +146,7 @@ namespace Web.Controllers
         public IActionResult GetDataConsumerById(Guid id)
         {
 
-            var res = _queryCoordinator.Execute(new DataConsumerById(_dataConsumerRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new DataConsumerById(_dataConsumerRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -157,7 +157,7 @@ namespace Web.Controllers
         [HttpGet("datacoordinator/{id}")]
         public IActionResult GetDataCoordinatorById(Guid id)
         {
-            var res = _queryCoordinator.Execute(new DataCoordinatorById(_dataCoordinatorRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new DataCoordinatorById(_dataCoordinatorRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -169,7 +169,7 @@ namespace Web.Controllers
         public IActionResult GetDataOwnerById(Guid id)
         {
 
-            var res = _queryCoordinator.Execute(new DataOwnerById(_dataOwnerRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new DataOwnerById(_dataOwnerRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -180,7 +180,7 @@ namespace Web.Controllers
         [HttpGet("dataverifier/{id}")]
         public IActionResult GetDataVerifierById(Guid id)
         {
-            var res = _queryCoordinator.Execute(new DataVerifierById(_dataVerifierRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new DataVerifierById(_dataVerifierRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
@@ -191,7 +191,7 @@ namespace Web.Controllers
         [HttpGet("systemconfigurator/{id}")]
         public IActionResult GetSystemConfiguratorById(Guid id)
         {
-            var res = _queryCoordinator.Execute(new AdminById(_adminRepository, id), new PagingInfo());
+            var res = _queryCoordinator.Execute(new SystemConfiguratorById(_systemConfiguratorRepository){StaffUserId = id}, new PagingInfo());
 
             if (!res.Success) return StatusCode(500);
             if (res.TotalItems > 0)
