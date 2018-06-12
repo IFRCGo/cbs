@@ -11,7 +11,7 @@ namespace Read.DataCollectors
 {
     public class DataCollector : IReadModel
     {
-        public Guid Id { get; set; }
+        public DataCollectorId Id { get; set; }
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public List<string> PhoneNumbers { get; set; } = new List<string>();
@@ -21,7 +21,7 @@ namespace Read.DataCollectors
         public string District { get; set; }
         public string Village { get; set; }
 
-        public DataCollector(Guid id)
+        public DataCollector(DataCollectorId id)
         {
             Id = id;
             Location = Location.NotSet;

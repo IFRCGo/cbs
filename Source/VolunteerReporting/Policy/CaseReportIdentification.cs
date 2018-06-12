@@ -34,7 +34,7 @@ namespace Policy
             var dataCollector = dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
             {
-                var repo = caseReportingAggregateRootRepository.Get(item.Id);
+                var repo = caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.Report(
                     @event.DataCollectorId,
                     item.HealthRiskId,
@@ -56,7 +56,7 @@ namespace Policy
             var invalidAndUnknownReports = this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
-                var repo = caseReportingAggregateRootRepository.Get(item.Id);
+                var repo = caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.ReportInvalidReport(
                     @event.DataCollectorId,
                     item.PhoneNumber,

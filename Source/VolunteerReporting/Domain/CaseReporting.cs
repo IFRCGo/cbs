@@ -53,8 +53,8 @@ namespace Domain
         }
 
         public void Report(
-            Guid dataCollectorId,
-            Guid healthRiskId,
+            DataCollectorId dataCollectorId,
+            HealthRiskId healthRiskId,
             string origin,
             int numberOfMalesUnder5,
             int numberOfMalesAged5AndOlder,
@@ -84,7 +84,7 @@ namespace Domain
 
         public void ReportFromUnknownDataCollector(
             string origin,
-            Guid healthRiskId,
+            HealthRiskId healthRiskId,
             int numberOfMalesUnder5,
             int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5,
@@ -107,7 +107,7 @@ namespace Domain
         }      
         
         public void ReportFromUnknownDataCollectorIdentiefied(
-            Guid DataCollectorId
+            DataCollectorId DataCollectorId
             )
         {
             Apply(new CaseReportIdentified

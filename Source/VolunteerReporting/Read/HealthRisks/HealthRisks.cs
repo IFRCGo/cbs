@@ -25,37 +25,37 @@ namespace Read.HealthRisks
             return await GetManyAsync(_ => true);
         }
 
-        public HealthRisk GetById(Guid id)
+        public HealthRisk GetById(HealthRiskId id)
         {
             return GetOne(_ => _.Id == id);
         }
 
-        public Task<HealthRisk> GetByIdAsync(Guid id)
+        public Task<HealthRisk> GetByIdAsync(HealthRiskId id)
         {
             return GetOneAsync(_ => _.Id == id);
         }
 
-        public HealthRisk GetByReadableId(int readableId)
+        public HealthRisk GetByReadableId(HealthRiskReadableId readableId)
         {
             return GetOne(_ => _.ReadableId == readableId);
         }
 
-        public Task<HealthRisk> GetByReadableIdAsync(int readableId)
+        public Task<HealthRisk> GetByReadableIdAsync(HealthRiskReadableId readableId)
         {
             return GetOneAsync(_ => _.ReadableId == readableId);
         }
 
-        public HealthRiskId GetIdFromReadableId(int readbleId)
+        public HealthRiskId GetIdFromReadableId(HealthRiskReadableId readbleId)
         {
             return GetByReadableId(readbleId).Id;
         }
 
-        public async Task<HealthRiskId> GetIdFromReadableIdAsync(int readbleId)
+        public async Task<HealthRiskId> GetIdFromReadableIdAsync(HealthRiskReadableId readbleId)
         {
             return (await GetByReadableIdAsync(readbleId)).Id;
         }
 
-        public void SaveHealthRisk(Guid id, int readableId, string name)
+        public void SaveHealthRisk(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             Update(new HealthRisk(id)
             {
@@ -64,7 +64,7 @@ namespace Read.HealthRisks
             });
         }
 
-        public Task SaveHealthRiskAsync(Guid id, int readableId, string name)
+        public Task SaveHealthRiskAsync(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             return UpdateAsync(new HealthRisk(id)
             {
@@ -73,7 +73,7 @@ namespace Read.HealthRisks
             });
         }
 
-        public UpdateResult UpdateHealthRisk(Guid id, int readableId, string name)
+        public UpdateResult UpdateHealthRisk(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             return Update(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
                 Builders<HealthRisk>.Update.Set(h => h.Name, name),
@@ -81,7 +81,7 @@ namespace Read.HealthRisks
                 );
         }
 
-        public Task<UpdateResult> UpdateHealthRiskAsync(Guid id, int readableId, string name)
+        public Task<UpdateResult> UpdateHealthRiskAsync(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             return UpdateAsync(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
                     Builders<HealthRisk>.Update.Set(h => h.Name, name),

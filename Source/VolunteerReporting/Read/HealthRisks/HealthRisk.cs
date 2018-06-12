@@ -1,13 +1,14 @@
 using System;
+using Concepts;
 using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
     public class HealthRisk : IReadModel
     {
-        public Guid Id { get; set; }
+        public HealthRiskId Id { get; set; }
 
-        public int ReadableId { get; set; }
+        public HealthRiskReadableId ReadableId { get; set; }
         public string Name { get; set; }
 
         public HealthRisk(Guid id)

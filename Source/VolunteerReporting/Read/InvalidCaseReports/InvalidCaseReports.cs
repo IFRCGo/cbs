@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts;
 
 namespace Read.InvalidCaseReports
 {
@@ -25,7 +26,7 @@ namespace Read.InvalidCaseReports
             return GetManyAsync(_ => true);
         }
 
-        public void SaveInvalidReport(Guid caseReportId, Guid dataCollectorId, string message, string origin,
+        public void SaveInvalidReport(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new InvalidCaseReport(caseReportId)
@@ -38,7 +39,7 @@ namespace Read.InvalidCaseReports
             });
         }
 
-        public Task SaveInvalidReportAsync(Guid caseReportId, Guid dataCollectorId, string message, string origin,
+        public Task SaveInvalidReportAsync(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             return UpdateAsync(new InvalidCaseReport(caseReportId)

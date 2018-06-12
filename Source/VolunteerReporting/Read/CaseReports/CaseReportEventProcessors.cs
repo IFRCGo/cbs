@@ -52,7 +52,7 @@ namespace Read.CaseReports
         
         public void Process(CaseReportIdentified @event)
         {
-            _caseReportsFromUnknownDataCollectors.Delete(e => e.Id == @event.CaseReportId);            
+            _caseReportsFromUnknownDataCollectors.Delete(e => e.Id.Value == @event.CaseReportId);            
         }
     }
 }

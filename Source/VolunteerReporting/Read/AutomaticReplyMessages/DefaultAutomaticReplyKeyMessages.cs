@@ -24,7 +24,7 @@ namespace Read.AutomaticReplyMessages
             return GetManyAsync(_ => true);
         }
 
-        public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid healthRiskId)
+        public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, HealthRiskId healthRiskId)
         {
             Update(new DefaultAutomaticReplyKeyMessage(id)
             {
@@ -35,7 +35,7 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public Task SaveDefaultAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid healthRiskId)
+        public Task SaveDefaultAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, HealthRiskId healthRiskId)
         {
             return UpdateAsync(new DefaultAutomaticReplyKeyMessage(id)
             {
@@ -46,12 +46,12 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        public DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, HealthRiskId healthRiskId)
         {
             return GetOne(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
         }
 
-        public Task<DefaultAutomaticReplyKeyMessage> GetByTypeLanguageAndHealthRiskAsync(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        public Task<DefaultAutomaticReplyKeyMessage> GetByTypeLanguageAndHealthRiskAsync(AutomaticReplyKeyMessageType type, string language, HealthRiskId healthRiskId)
         {
             return GetOneAsync(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
         }

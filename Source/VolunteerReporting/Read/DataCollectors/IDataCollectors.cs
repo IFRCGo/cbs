@@ -18,13 +18,13 @@ namespace Read.DataCollectors
         IEnumerable<DataCollector> GetAll();
         Task<IEnumerable<DataCollector>> GetAllAsync();
 
-        DataCollector GetById(Guid id);
+        DataCollector GetById(DataCollectorId id);
 
         DataCollector GetByPhoneNumber(string phoneNumber);
         DataCollectorId GetIdByPhoneNumber(string phoneNumber);
 
-        void SaveDataCollector(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
-        Task SaveDataCollectorAsync(Guid dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
+        void SaveDataCollector(DataCollectorId dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
+        Task SaveDataCollectorAsync(DataCollectorId dataCollectorId, string fullName, string displayName, double locationLatitude, double locationLongitude, string region, string district);
 
         UpdateResult AddPhoneNumber(FilterDefinition<DataCollector> filter, string number);
         UpdateResult AddPhoneNumber(Expression<Func<DataCollector, bool>> filter, string number);
@@ -38,10 +38,10 @@ namespace Read.DataCollectors
         Task<UpdateResult> RemovePhoneNumberAsync(FilterDefinition<DataCollector> filter, string number);
         Task<UpdateResult> RemovePhoneNumberAsync(Expression<Func<DataCollector, bool>> filter, string number);
 
-        UpdateResult ChangeUserInformation(Guid dataCollectorId, string fullName, string displayName, string region, string district);
-        Task<UpdateResult> ChangeUserInformationAsync(Guid dataCollectorId, string fullName, string displayName, string region, string district);
+        UpdateResult ChangeUserInformation(DataCollectorId dataCollectorId, string fullName, string displayName, string region, string district);
+        Task<UpdateResult> ChangeUserInformationAsync(DataCollectorId dataCollectorId, string fullName, string displayName, string region, string district);
 
-        UpdateResult ChangeLocation(Guid dataCollectorId, double latitude, double longitude);
-        Task<UpdateResult> ChangeLocationAsync(Guid dataCollectorId, double latitude, double longitude);
+        UpdateResult ChangeLocation(DataCollectorId dataCollectorId, double latitude, double longitude);
+        Task<UpdateResult> ChangeLocationAsync(DataCollectorId dataCollectorId, double latitude, double longitude);
     }
 }

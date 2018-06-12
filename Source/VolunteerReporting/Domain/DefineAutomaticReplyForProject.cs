@@ -8,7 +8,7 @@ namespace Domain
 {
     public class DefineAutomaticReplyForProject : ICommand
     {
-        public Guid ProjectId { get; set; }
+        public ProjectId ProjectId { get; set; }
         public AutomaticReplyType Type { get; set; }
         public string Language { get; set; }
         public string Message { get; set; }

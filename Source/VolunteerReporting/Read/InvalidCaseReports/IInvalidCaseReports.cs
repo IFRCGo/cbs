@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Concepts;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.InvalidCaseReports
@@ -11,7 +12,7 @@ namespace Read.InvalidCaseReports
         Task<IEnumerable<InvalidCaseReport>> GetAllAsync();
 
 
-        void SaveInvalidReport(Guid caseReportId, Guid dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
-        Task SaveInvalidReportAsync(Guid caseReportId, Guid dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+        void SaveInvalidReport(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+        Task SaveInvalidReportAsync(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
     }
 }
