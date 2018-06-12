@@ -29,10 +29,5 @@ namespace Read.HealthRiskFeatures
         {
             return GetOne(v => v.Id == id);
         }
-
-        public Task<IEnumerable<HealthRisk>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
     }
 }

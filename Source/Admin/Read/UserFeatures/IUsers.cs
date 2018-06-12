@@ -15,10 +15,7 @@ namespace Read.UserFeatures
         User GetById(Guid id);
 
         IEnumerable<User> GetByNationalSocietyId(Guid id);
-        Task<IEnumerable<User>> GetByNationalSocietyIdAsync(Guid id);
 
         IEnumerable<User> GetAll();
-
-        Task<IEnumerable<User>> GetAllASync();
     }
 }
