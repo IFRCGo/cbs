@@ -7,6 +7,5 @@ namespace Read.CaseReports
     public interface ICaseReports : IExtendedReadModelRepositoryFor<CaseReport>
     {
         IEnumerable<CaseReport> GetAll();
-        Task<IEnumerable<CaseReport>> GetAllAsync();
     }
 }

@@ -19,11 +19,6 @@ namespace Read.Projects
             return _collection.FindSync(_ => true).ToList();
         }
 
-        public async Task<IEnumerable<Project>> GetAllAsync()
-        {
-            return (await _collection.FindAsync(_ => true)).ToList();
-        }
-
         public Project GetById(Guid projectId)
         {
             return GetOne(p => p.Id == projectId);
@@ -38,24 +33,9 @@ namespace Read.Projects
             });
         }
 
-        public Task SaveProjectAsync(Guid id, string name)
-        {
-            return UpdateAsync(new Project
-            {
-                Id = id,
-                Name = name
-            });
-        }
-
         public UpdateResult UpdateProject(Guid id, string name)
         {
             return Update(p => p.Id == id,
-                Builders<Project>.Update.Set(p => p.Name, name));
-        }
-
-        public Task<UpdateResult> UpdateProjectAsync(Guid id, string name)
-        {
-            return UpdateAsync(p => p.Id == id,
                 Builders<Project>.Update.Set(p => p.Name, name));
         }
     }

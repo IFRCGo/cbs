@@ -19,20 +19,9 @@ namespace Read.AutomaticReplyMessages
         {
             return GetMany(_ => true);
         }
-
-        public Task<IEnumerable<AutomaticReply>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public IEnumerable<AutomaticReply> GetByProject(Guid projectId)
         {
             return GetMany(v => v.ProjectId == projectId);
-        }
-
-        public Task<IEnumerable<AutomaticReply>> GetByProjectAsync(Guid projectId)
-        {
-            return GetManyAsync(v => v.ProjectId == projectId);
         }
 
         public void SaveAutomaticReply(Guid id, int type, string language, string message, Guid projectId)
@@ -46,30 +35,9 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public Task SaveAutomaticReplyAsync(Guid id, int type, string language, string message, Guid projectId)
-        {
-            return UpdateAsync(new AutomaticReply(id)
-            {
-                Language = language,
-                Message = message,
-                ProjectId = projectId,
-                Type = (AutomaticReplyType)type
-            });
-        }
-
         public AutomaticReply GetByProjectTypeAndLanguage(Guid projectId, AutomaticReplyType type, string language)
         {
             return GetOne(
-                v =>
-                    v.ProjectId == projectId
-                    && v.Type == type
-                    && v.Language == language
-            );
-        }
-
-        public Task<AutomaticReply> GetByProjectTypeAndLanguageAsync(Guid projectId, AutomaticReplyType type, string language)
-        {
-            return GetOneAsync(
                 v =>
                     v.ProjectId == projectId
                     && v.Type == type

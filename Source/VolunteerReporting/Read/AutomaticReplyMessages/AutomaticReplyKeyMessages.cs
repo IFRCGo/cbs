@@ -21,21 +21,10 @@ namespace Read.AutomaticReplyMessages
             return GetMany(_ => true);
         }
 
-        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public IEnumerable<AutomaticReplyKeyMessage> GetByProject(Guid projectId)
         {
             return GetMany(_ => _.ProjectId == projectId);
         }
-
-        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(Guid projectId)
-        {
-            return GetManyAsync(_ => _.ProjectId == projectId);
-        }
-
         public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid projectId,
             Guid healthRiskId)
         {
@@ -48,33 +37,10 @@ namespace Read.AutomaticReplyMessages
                 Type = (AutomaticReplyKeyMessageType)type
             });
         }
-
-        public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid projectId,
-            Guid healthRiskId)
-        {
-            return UpdateAsync(new AutomaticReplyKeyMessage(id)
-            {
-                HealthRiskId = healthRiskId,
-                Message = message,
-                Language = language,
-                ProjectId = projectId,
-                Type = (AutomaticReplyKeyMessageType)type
-            });
-        }
-
         public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(Guid projectId, AutomaticReplyKeyMessageType type,
             string language, Guid healthRiskId)
         {
             return GetOne(
-                v => v.ProjectId == projectId
-                     && v.Type == type
-                     && v.Language == language
-                     && v.HealthRiskId == healthRiskId);
-        }
-
-        public Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(Guid projectId, AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
-        {
-            return GetOneAsync(
                 v => v.ProjectId == projectId
                      && v.Type == type
                      && v.Language == language

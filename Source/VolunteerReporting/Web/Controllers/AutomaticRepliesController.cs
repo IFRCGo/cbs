@@ -46,10 +46,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{projectId}")]
-        public async Task<IEnumerable<Models.AutomaticReply>> GetAutomaticRepliesForProject(Guid projectId)
+        public IEnumerable<Models.AutomaticReply> GetAutomaticRepliesForProject(Guid projectId)
         {
-            var projectDefined = await _automaticReplies.GetByProjectAsync(projectId);
-            var defaults = await _defaultAutomaticReplies.GetAllAsync();
+            var projectDefined =  _automaticReplies.GetByProject(projectId);
+            var defaults = _defaultAutomaticReplies.GetAll();
 
             return projectDefined.Select(c => new Web.Models.AutomaticReply()
             {
@@ -71,10 +71,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("keymessages/{projectId}")]
-        public async Task<IEnumerable<Web.Models.AutomaticReplyKeyMessage>> GetAutomaticReplyKeyMessagesForProject(Guid projectId)
+        public IEnumerable<Web.Models.AutomaticReplyKeyMessage> GetAutomaticReplyKeyMessagesForProject(Guid projectId)
         {
-            var projectDefined = await _automaticReplyKeyMessages.GetByProjectAsync(projectId);
-            var defaults = await _defaultAutomaticReplyKeyMessages.GetAllAsync();
+            var projectDefined = _automaticReplyKeyMessages.GetByProject(projectId);
+            var defaults = _defaultAutomaticReplyKeyMessages.GetAll();
 
             return projectDefined.Select(c => new Web.Models.AutomaticReplyKeyMessage()
             {
