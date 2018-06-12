@@ -19,19 +19,10 @@ namespace Read.DataCollectors
             return GetOne(d => d.Id == id);
         }
 
-        public Task<DataCollector> GetByIdAsync(Guid id)
-        {
-            return GetOneAsync(d => d.Id == id);
-        }
-
         public IEnumerable<DataCollector> GetAll()
         {
             return GetMany(_ => true);
         }
 
-        public Task<IEnumerable<DataCollector>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
     }
 }
