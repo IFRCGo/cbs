@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { AggregatedCaseReportService } from '../../core/aggregated-case-report.service';
 import { CaseReportForListing } from '../../shared/models/case-report-for-listing.model';
 import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
 import { QuickFilter, Filter } from './filtering/filter.pipe';
 import { Report } from '../../shared/models/report.model';
+import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { AllCaseReportsForListing } from '../../domain/case-report/queries/AllCaseReportsForListing';
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -37,7 +37,7 @@ export class CaseReportListComponent implements OnInit {
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
     constructor(
-        private caseReportService: AggregatedCaseReportService,
+        private queryCoordinator: QueryCoordinator<CaseReportForListing>,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -69,9 +69,21 @@ export class CaseReportListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.caseReportService.getReports().then(result => {
-            this.listedReports = result || [];
-        }).catch(error => console.error(error));
+        this.queryCoordinator.handle(new AllCaseReportsForListing())
+            .then(response => {
+                if (response.success) {
+                    this.listedReports = response.items as Array<CaseReportForListing>;
+                    this.listedReports.forEach(element => {
+                        element.timestamp = new Date(element.timestamp);
+                    });
+                    
+                } else {
+                    console.error(response);
+                }
+            })
+            .catch(response => {
+                console.error(response);
+            });
 
         this.route.params.subscribe(params => {
             this.currentFilter = QuickFilter.fromName(params.filter);

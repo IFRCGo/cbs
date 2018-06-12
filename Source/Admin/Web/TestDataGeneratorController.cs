@@ -87,12 +87,12 @@ namespace Web
                 var healthRiskIds = new List<Guid>();
                 var randomizer = new Random();
 
-                var events = new List<ProjectHealthRiskThresholdUpdate>();
+                var events = new List<ProjectHealthRiskAdded>();
                 for (var i = 0; i < 5; i++)
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    events.Add(new ProjectHealthRiskThresholdUpdate()
+                    events.Add(new ProjectHealthRiskAdded()
                     {
                         ProjectId = project.Id,
                         HealthRiskId = risk.Id,
