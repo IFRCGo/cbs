@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.ReadModels;
-
+using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
 {
-    public class DataCollector : IReadModel
+    public class DataCollector : IReadModel, IHaveExtraElements
     { 
         public Guid Id { get; set; }
 
@@ -25,10 +25,32 @@ namespace Read.DataCollectors
         public DateTimeOffset RegisteredAt { get; set; }
 
         public DateTimeOffset? LastReportRecievedAt { get; set; }
+        public IDictionary<string, object> ExtraElements { get; set; }
 
         public DataCollector(Guid id)
         {
             Id = id;
+        }
+
+        public void BeginInit()
+        {
+        }
+
+        public void EndInit()
+        {
+            RemoveOldFields();
+        }
+        void RemoveOldFields()
+        {
+            RemoveNationalSociety();
+        }
+        void RemoveNationalSociety()
+        {
+
+            if(ExtraElements.ContainsKey("NationalSociety"))
+            {
+                ExtraElements.Remove("NationalSociety");
+            }
         }
     }
 }

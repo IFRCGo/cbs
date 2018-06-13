@@ -1,0 +1,322 @@
+[
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "6179a2d6-98e4-4bd8-8b46-8dd241023835",
+      "PreferredLanguage": 0,
+      "StaffUserId": "293ad59c-0e84-4ceb-8ebb-4e3eb592112a",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "cc7c4504-959b-4249-b9ba-e26d11d44e00",
+      "PreferredLanguage": 0,
+      "StaffUserId": "eaf1ae29-4125-4e73-ace1-277e6893b322",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "18775114-be2c-42f1-8efd-c198cac8b842",
+      "PreferredLanguage": 0,
+      "StaffUserId": "9ba33f8c-febd-45c3-9682-950503134f16",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "3d53bf20-1bba-49aa-bc5d-03765d3a5635",
+      "PreferredLanguage": 0,
+      "StaffUserId": "74527512-3e2f-45f6-9b07-f936a014bbf9",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "340cc146-af1e-4f1f-b8d4-92e122077353",
+      "PreferredLanguage": 0,
+      "StaffUserId": "cfe66ace-7087-43f8-99d4-66f3c9619054",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "224eb751-2977-4720-b4cd-a498e764934f",
+      "PreferredLanguage": 0,
+      "StaffUserId": "279e031e-bc9b-4fef-9549-34a907f2cdc3",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "b5e4cc32-e038-42f4-93ce-17bb2d344030",
+      "PreferredLanguage": 0,
+      "StaffUserId": "b37e5454-d61b-4f42-bd3a-d29169f4bb91",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "37caa488-272a-4d32-a3f4-5045cfe7521c",
+      "PreferredLanguage": 0,
+      "StaffUserId": "26ac2c00-0e6f-44ec-835b-d3ce92cb4633",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "3e11651a-5f48-499d-99e0-e428bd646704",
+      "PreferredLanguage": 0,
+      "StaffUserId": "2d7c9c18-a5dc-4286-87fc-d3ef6a6ed511",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "23774765-2a72-4d59-9a55-d84054a3ec55",
+      "PreferredLanguage": 0,
+      "StaffUserId": "c8c30d4d-37d2-4c97-baad-dc276648130c",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "d9a5c089-f487-46c5-b7b4-c6157e384e70",
+      "PreferredLanguage": 0,
+      "StaffUserId": "c5522ce0-95ac-44b5-9c05-0cebef4ab584",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "d0615e01-57cf-46a9-b42d-5285fae513d2",
+      "PreferredLanguage": 0,
+      "StaffUserId": "dc314696-dbf4-491f-8208-5966e0acc655",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "cf1c5cb5-117d-49f1-b5e0-7c4a780ffade",
+      "PreferredLanguage": 0,
+      "StaffUserId": "b1201854-ad06-42c7-89e9-128a07a9b3a1",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "f8b8a27e-dfb4-4bef-9bb8-5844d953c435",
+      "PreferredLanguage": 0,
+      "StaffUserId": "207b3868-a481-42c5-9d63-4f0eba1867ea",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "1a3cff6c-ac29-4be0-b9ca-6ad8d63758d5",
+      "PreferredLanguage": 0,
+      "StaffUserId": "52fa3e49-3800-48af-a8cd-de5f6d11d72d",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "3dd63ee3-6fd4-4dbf-898c-9dd5874ffc14",
+      "PreferredLanguage": 0,
+      "StaffUserId": "1ee87b45-82e6-43c9-af8e-55e0839340bd",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "00304999-1a99-489d-9ec1-29ed436b42d0",
+      "PreferredLanguage": 0,
+      "StaffUserId": "952926ec-3777-4143-b1c2-775fd79c9885",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "aae64d76-0d0f-4d0f-a690-18cc735a4201",
+      "PreferredLanguage": 0,
+      "StaffUserId": "11bed201-acbe-403a-9c74-eb28e542ae37",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "73384623-d5d0-4417-a42a-9968ae7ca0ce",
+      "PreferredLanguage": 0,
+      "StaffUserId": "9e779e96-42bd-4901-a384-292c9bdf9544",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "Location": {
+        "Latitude": 45.0,
+        "Longitude": 45.0
+      },
+      "Sex": null,
+      "BirthYear": null,
+      "NationalSociety": "06151056-5e43-4844-9b0a-c73d416bfbcb",
+      "PreferredLanguage": 0,
+      "StaffUserId": "95885ce7-5ea7-496e-93cd-efb32f9d11ef",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  }
+]
