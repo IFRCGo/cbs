@@ -49,6 +49,7 @@ namespace Infrastructure.Read.MongoDb
                 {
                     if(pair.Key.HasInterface<IHaveExtraElements>()) 
                     {
+                        if(BsonClassMap.IsClassMapRegistered(pair.Key)) continue;
                         var classMap = new BsonClassMap(pair.Key);
                         
                         MemberInfo extraElementsMemberInfo = pair.Key.GetMember(nameof(IHaveExtraElements.ExtraElements)).FirstOrDefault();
