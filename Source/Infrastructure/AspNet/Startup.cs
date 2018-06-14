@@ -94,6 +94,6 @@ namespace Infrastructure.AspNet
         {
             containerBuilder.AddReadModule();
         }
-        public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) { }
+        public virtual void ConfigureCustom(IApplicationBuilder application, IHostingEnvironment env) {}
     }
 }

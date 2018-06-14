@@ -9,6 +9,7 @@ using Dolittle.Queries.Coordination;
 using MongoDB.Driver;
 using Read.DataCollectors.Queries;
 using Web.Utility;
+using Read.DataCollectors.Migration;
 
 namespace Web.Controllers
 {
@@ -18,13 +19,15 @@ namespace Web.Controllers
         private readonly IDataCollectors _dataCollectors;
 
         private readonly IQueryCoordinator _queryCoordinator;
-        
+        readonly IDataCollectorMigrator _migrator;
         public DataCollectorsController (
             IDataCollectors dataCollectors,
-            IQueryCoordinator queryCoordinator)
+            IQueryCoordinator queryCoordinator,
+            IDataCollectorMigrator migrator)
         {
             _dataCollectors = dataCollectors;
             _queryCoordinator = queryCoordinator;
+            _migrator = migrator;
         }
 
         private static readonly Dictionary<string, IDataCollectorExporter> exporters =
@@ -37,7 +40,7 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _queryCoordinator.Execute(new AllDataCollectors(_dataCollectors), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllDataCollectors(_dataCollectors, _migrator), new PagingInfo());
 
             return Ok(result.Items);
         }
