@@ -32,25 +32,9 @@ namespace Read.DataCollectors
             Id = id;
         }
 
-        public void BeginInit()
-        {
-        }
-
-        public void EndInit()
-        {
-            RemoveOldFields();
-        }
-        void RemoveOldFields()
-        {
-            RemoveNationalSociety();
-        }
-        void RemoveNationalSociety()
-        {
-
-            if(ExtraElements.ContainsKey("NationalSociety"))
-            {
-                ExtraElements.Remove("NationalSociety");
-            }
-        }
+            // if(ExtraElements.ContainsKey("NationalSociety"))
+            // {
+            //     ExtraElements.Remove("NationalSociety");
+            // }
     }
 }
