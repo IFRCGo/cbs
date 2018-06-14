@@ -17,20 +17,7 @@ namespace Read.DataCollectors.Queries
             _migrator = migrator;
         }
 
-        public IQueryable<DataCollector> Query 
-        { 
-            get 
-            {
-                var queryAsEnumerable = _repository.Query.AsEnumerable();
-                IList<DataCollector> dataCollectors = new List<DataCollector>();
-
-                foreach (var item in queryAsEnumerable)
-                {
-                    dataCollectors.Add(_migrator.Migrate(item));
-                }
-                return dataCollectors.AsQueryable();
-            }
-        }
+        public IQueryable<DataCollector> Query => _repository.Query.MigrateQuery(_migrator);
         
     }
 }

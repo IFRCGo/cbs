@@ -34,27 +34,5 @@ namespace Read.CaseReportsForListing
         {
             Id = id;
         }
-
-        // if(ExtraElements.TryGetValue("NumberOfMalesAgedOver4", out males5AndOlder))
-            // {
-            //     ExtraElements.Remove("NumberOfMalesAgedOver4");
-            //     NumberOfMalesAged5AndOlder = (int)males5AndOlder;
-            // }
-            // if(ExtraElements.TryGetValue("NumberOfMalesAges0To4", out malesUnder5))
-            // {
-            //     ExtraElements.Remove("NumberOfMalesAges0To4");
-            //     NumberOfMalesUnder5 = (int)malesUnder5;
-            // }
-
-            // if(ExtraElements.TryGetValue("NumberOfFemalesAgedOver4", out females5AndOlder))
-            // {
-            //     ExtraElements.Remove("NumberOfMalesAgedOver4");
-            //     NumberOfFemalesAged5AndOlder = (int)females5AndOlder;
-            // }
-            // if(ExtraElements.TryGetValue("NumberOfFemalesAges0To4", out femalesUnder5))
-            // {
-            //     ExtraElements.Remove("NumberOfMalesAges0To4");
-            //     NumberOfFemalesUnder5 = (int)femalesUnder5;
-            // }
     }
 }

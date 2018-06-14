@@ -49,7 +49,7 @@ namespace Web.Controllers
         public IActionResult GetById(Guid id)
         {
             var result = _queryCoordinator.Execute(
-                new DataCollectorById(_dataCollectors)
+                new DataCollectorById(_dataCollectors, _migrator)
                     {
                         DataCollectorId = id
                     }, new PagingInfo());
