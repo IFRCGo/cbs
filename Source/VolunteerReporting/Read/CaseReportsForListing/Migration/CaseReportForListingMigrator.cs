@@ -1,51 +1,34 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dolittle.ReadModels;
 using Dolittle.Types;
-using Infrastructure.Read.MongoDb;
+using Infrastructure.Read.Migration;
 
 namespace Read.CaseReportsForListing.Migration
 {
-    public class CaseReportForListingMigrator : ICaseReportForListingMigrator
+    public class CaseReportForListingMigrator : BaseMigratorFor<CaseReportForListing>,
+        ICaseReportForListingMigrator
     {
-        readonly IInstancesOf<IMigrationStrategyFor<CaseReportForListing>> _strategies; 
         readonly ICaseReportsForListing _repo;
 
         public CaseReportForListingMigrator(IInstancesOf<IMigrationStrategyFor<CaseReportForListing>> strategies,
             ICaseReportsForListing repo) 
+            : base(strategies)
         {
-            _strategies = strategies;
             _repo = repo;
-        }        
-            
-        public CaseReportForListing Migrate(CaseReportForListing readModel)
-        {
-            var migrated = false;
-
-            foreach (var strategy in MigrationStrategies())
-            {
-                if (strategy.NeedsMigration(readModel))
-                {
-                    readModel = strategy.ApplyMigrationStrategy(readModel);
-                    migrated = true;
-                }
-            }
-
-            if (migrated)
-                _repo.Update(readModel);
-            
-            return readModel;
         }
 
-        public IEnumerable<IMigrationStrategyFor<CaseReportForListing>> MigrationStrategies() => _strategies;
-
-        public bool NeedMigration(CaseReportForListing readModel)
+        public override void MigrateAllReadModels()
         {
-            foreach (var strategy in MigrationStrategies())
-            {
-                if (strategy.NeedsMigration(readModel))
-                    return true;
-            }
-            return false;
+            var readModels = _repo.Query.Where(_ => true).AsEnumerable();
+            
+            MigrateReadModels(readModels);
+        }
+
+        public override void MigrateReadModel(CaseReportForListing readModel)
+        {
+            if (readModel.NeedMigration(MigrationStrategies))
+                _repo.Update(GetMigratedReadModel(readModel));
         }
     }
 }

@@ -18,6 +18,6 @@ namespace Read.CaseReportsForListing.Queries
             _migrator = migrator;
         }
 
-        public IQueryable<CaseReportForListing> Query => _collection.Query.Where(c => c.Id == CaseReportId).MigrateQuery(_migrator);
+        public IQueryable<CaseReportForListing> Query => _collection.Query.Where(c => c.Id == CaseReportId);
     }
 }

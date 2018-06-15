@@ -1,4 +1,4 @@
-using Infrastructure.Read.MongoDb;
+using Infrastructure.Read.Migration;
 
 namespace Read.CaseReportsForListing.Migration
 {

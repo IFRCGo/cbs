@@ -1,4 +1,4 @@
-using Infrastructure.Read.MongoDb;
+using Infrastructure.Read.Migration;
 
 namespace Read.CaseReportsForListing.Migration
 {
@@ -40,7 +40,7 @@ namespace Read.CaseReportsForListing.Migration
             return readModel;
         }
 
-        public bool NeedsMigration(CaseReportForListing readModel)
+        public bool CanMigrate(CaseReportForListing readModel)
         {
             if(readModel.ExtraElements == null) return false;
             return readModel.ExtraElements.ContainsKey("NumberOfMalesAgedOver4") ||
