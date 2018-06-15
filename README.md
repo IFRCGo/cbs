@@ -49,6 +49,7 @@ Our biggest shortage at the moment is designers and frond-end developers, but th
 If you need help, please take a look at our [documentation](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions. 
 
 ## Media coverage
+- June 7th, 2018. Developers on fire podcast: ["Karoline Klever - Saving Lives"](http://developeronfire.com/podcast/episode-345-karoline-klever-saving-lives)
 - February 2nd, 2018. Digi.no: ["Utviklere fra norsk IT-bransje jobber frivillig for Røde Kors for å lage løsning som kan redde liv"](https://www.digi.no/artikler/utviklere-fra-norsk-it-bransje-jobber-frivillig-for-rode-kors-for-a-lage-losning-som-kan-redde-liv/428348)
 - December 6th, 2017. Microsoft press release: ["Recoding the Red Cross"](https://news.microsoft.com/europe/features/recoding-the-red-cross/), ["Koding hjelper Røde Kors redde liv"](http://www.mynewsdesk.com/no/microsoft-norge/pressreleases/omkoding-av-roede-kors-2317982)
 - November 16th, 2017. NRK P2 Studio 2: ["Helseapper"](https://radio.nrk.no/serie/studio-2-p2/MKRV20017917/16-11-2017#t=57m14s)
