@@ -1,4 +1,4 @@
-using Infrastructure.Read.MongoDb;
+using Infrastructure.Read.Migration;
 
 namespace Read.DataCollectors.Migration
 {
@@ -10,7 +10,7 @@ namespace Read.DataCollectors.Migration
             return readModel;
         }
 
-        public bool NeedsMigration(DataCollector readModel)
+        public bool CanMigrate(DataCollector readModel)
         {
             if (readModel.ExtraElements == null) return false;
             return readModel.ExtraElements.ContainsKey("NationalSociety");

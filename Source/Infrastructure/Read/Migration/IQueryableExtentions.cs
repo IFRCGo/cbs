@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dolittle.ReadModels;
 
-namespace Infrastructure.Read.MongoDb
+namespace Infrastructure.Read.Migration
 {
     public static class IQueryableExtentions
     {
@@ -14,7 +14,7 @@ namespace Infrastructure.Read.MongoDb
 
             foreach (var item in queryAsEnumerable)
             {
-                readModels.Add(migrator.Migrate(item));
+                readModels.Add(migrator.GetMigratedReadModel(item));
             }
             return readModels.AsQueryable();
 

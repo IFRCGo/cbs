@@ -20,6 +20,6 @@ namespace Read.DataCollectors.Queries
             _migrator = migrator;
         }
         
-        public IQueryable<DataCollector> Query => _repository.Query.Where(d => d.Id == DataCollectorId).MigrateQuery(_migrator);
+        public IQueryable<DataCollector> Query => _repository.Query.Where(d => d.Id == DataCollectorId);
     }
 }

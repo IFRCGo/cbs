@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Dolittle.Collections;
 using Dolittle.ReadModels;
 using Dolittle.Types;
-using Infrastructure.Read.MongoDb;
+using Infrastructure.Read.Migration;
 namespace Read.DataCollectors.Migration
 {
     public class DataCollectorMigrator : IDataCollectorMigrator
@@ -17,12 +17,12 @@ namespace Read.DataCollectors.Migration
 
         public IEnumerable<IMigrationStrategyFor<DataCollector>> MigrationStrategies() => _strategies;
 
-        public DataCollector Migrate(DataCollector readModel)
+        public DataCollector MigrateReadmodel(DataCollector readModel)
         {
             var migrated = false;
             foreach (var strategy in MigrationStrategies())
             {
-                if(strategy.NeedsMigration(readModel)) 
+                if(strategy.CanMigrate(readModel)) 
                 {
                     readModel = strategy.ApplyMigrationStrategy(readModel);
                     migrated = true;
@@ -37,7 +37,7 @@ namespace Read.DataCollectors.Migration
         {
             foreach (var strategy in MigrationStrategies())
             {
-                if (strategy.NeedsMigration(readModel))
+                if (strategy.CanMigrate(readModel))
                     return true;
             }
             return false;

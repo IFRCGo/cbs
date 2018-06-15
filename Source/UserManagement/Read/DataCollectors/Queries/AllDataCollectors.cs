@@ -17,7 +17,7 @@ namespace Read.DataCollectors.Queries
             _migrator = migrator;
         }
 
-        public IQueryable<DataCollector> Query => _repository.Query.MigrateQuery(_migrator);
+        public IQueryable<DataCollector> Query => _repository.Query;
         
     }
 }
