@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Queries;
 
 namespace Read.DataCollectors.Queries

@@ -1,6 +1,8 @@
 using System;
 using Concepts;
 using Dolittle.ReadModels;
+using Concepts.Project;
+using Concepts.AutomaticReply;
 
 namespace Read.AutomaticReplyMessages
 {

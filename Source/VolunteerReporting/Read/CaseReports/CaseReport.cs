@@ -1,5 +1,7 @@
 using System;
-using Concepts;
+using Concepts.CaseReport;
+using Concepts.DataCollector;
+using Concepts.HealthRisk;
 using Dolittle.ReadModels;
 
 namespace Read.CaseReports

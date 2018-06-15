@@ -1,5 +1,6 @@
 using System;
 using Concepts;
+using Concepts.Project;
 using Dolittle.ReadModels;
 
 namespace Read.Projects

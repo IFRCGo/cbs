@@ -1,7 +1,7 @@
 using System;
 using Dolittle.Concepts;
 
-namespace Concepts
+namespace Concepts.CaseReport
 {
     public class CaseReportId : ConceptAs<Guid>
     {

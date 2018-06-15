@@ -1,9 +1,11 @@
-using Concepts;
+using Concepts.AutomaticReply;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts.Project;
+using Concepts.HealthRisk;
 
 namespace Read.AutomaticReplyMessages
 {

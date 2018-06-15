@@ -1,7 +1,8 @@
 using System;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
-using Concepts;
+using Concepts.DataCollector;
+using Concepts.HealthRisk;
 using Events;
 using System.Collections.Generic;
 

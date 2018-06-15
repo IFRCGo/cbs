@@ -1,5 +1,6 @@
 using System;
 using Concepts;
+using Concepts.HealthRisk;
 using Dolittle.ReadModels;
 
 namespace Read.HealthRisks

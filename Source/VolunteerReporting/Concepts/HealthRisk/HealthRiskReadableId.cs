@@ -1,6 +1,6 @@
 using Dolittle.Concepts;
 
-namespace Concepts
+namespace Concepts.HealthRisk
 {
     public class HealthRiskReadableId : ConceptAs<int>
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Concepts;
+using Concepts.HealthRisk;
 using Dolittle.Queries;
 
 namespace Read.HealthRisks.Queries

@@ -1,4 +1,5 @@
-using Concepts;
+using Concepts.Project;
+using Concepts.AutomaticReply;
 using Dolittle.Commands;
 using System;
 using System.Collections.Generic;

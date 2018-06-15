@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Concepts;
+using Concepts.CaseReport;
 using Dolittle.Queries;
 
 namespace Read.CaseReportsForListing.Queries

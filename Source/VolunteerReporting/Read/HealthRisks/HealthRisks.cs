@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Concepts;
 using Infrastructure.Read.MongoDb;
+using Concepts.HealthRisk;
 
 namespace Read.HealthRisks
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Concepts;
+using Concepts.CaseReport;
 using Infrastructure.Read.MongoDb;
 using Read.DataCollectors;
 using Read.HealthRisks;

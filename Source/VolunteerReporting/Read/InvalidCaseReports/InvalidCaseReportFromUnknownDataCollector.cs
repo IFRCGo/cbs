@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
+using Concepts.CaseReport;
 using Dolittle.ReadModels;
 
 namespace Read.InvalidCaseReports

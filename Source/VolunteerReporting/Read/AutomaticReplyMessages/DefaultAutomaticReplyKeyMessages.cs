@@ -4,6 +4,8 @@ using Concepts;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
+using Concepts.HealthRisk;
+using Concepts.AutomaticReply;
 
 namespace Read.AutomaticReplyMessages
 {

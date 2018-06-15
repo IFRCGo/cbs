@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
+using Concepts.DataCollector;
 
 namespace Read.DataCollectors
 {

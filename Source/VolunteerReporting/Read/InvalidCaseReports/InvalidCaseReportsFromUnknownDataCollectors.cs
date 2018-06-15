@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
 using Concepts;
+using Concepts.CaseReport;
 
 namespace Read.InvalidCaseReports
 {

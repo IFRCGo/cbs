@@ -1,6 +1,8 @@
 using Concepts;
 using System;
 using Dolittle.ReadModels;
+using Concepts.HealthRisk;
+using Concepts.AutomaticReply;
 
 namespace Read.AutomaticReplyMessages
 {

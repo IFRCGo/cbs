@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using Infrastructure.Read.MongoDb;
 using Concepts;
+using Concepts.Project;
 
 namespace Read.Projects
 {

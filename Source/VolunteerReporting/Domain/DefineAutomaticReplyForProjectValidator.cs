@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using Concepts;
+using Concepts.Project;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 

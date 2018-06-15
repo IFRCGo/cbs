@@ -6,6 +6,8 @@ using Concepts;
 using Infrastructure.Read.MongoDb;
 using Read.DataCollectors;
 using Read.HealthRisks;
+using Concepts.CaseReport;
+using Concepts.DataCollector;
 
 namespace Read.CaseReportsForListing
 {

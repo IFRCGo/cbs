@@ -1,5 +1,7 @@
 using System;
-using Concepts;
+using Concepts.Project;
+using Concepts.HealthRisk;
+using Concepts.AutomaticReply;
 using Dolittle.Commands;
 
 namespace Domain

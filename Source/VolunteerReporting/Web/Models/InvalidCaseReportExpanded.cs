@@ -22,7 +22,7 @@ namespace Web.Models
 
         public InvalidCaseReportExpanded(InvalidCaseReport invalidCaseReport, DataCollector dataCollector)
         {
-            Id = invalidCaseReport.Id;
+            Id = invalidCaseReport.Id.Value;
             Timestamp = invalidCaseReport.Timestamp;
             Message = invalidCaseReport.Message;
             ParsingErrorMessage = invalidCaseReport.ParsingErrorMessage;
