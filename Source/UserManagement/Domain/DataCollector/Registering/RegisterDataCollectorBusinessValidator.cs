@@ -8,12 +8,14 @@ namespace Domain.DataCollector.Registering
 {
     public class RegisterDataCollectorBusinessValidator : CommandBusinessValidatorFor<RegisterDataCollector>
     {
-        IDataCollectorRegistrationRules _registrationRules;
-        IPhoneNumberRules _phoneNumberRules;
-        public RegisterDataCollectorBusinessValidator(IDataCollectorRegistrationRules registrationRules, IPhoneNumberRules phoneNumberRules) 
+        readonly IDataCollectorRules _dataCollectorRules;
+        readonly IPhoneNumberRules _phoneNumberRules;
+
+        public RegisterDataCollectorBusinessValidator(IDataCollectorRules dataCollectorRules, IPhoneNumberRules phoneNumberRules) 
         {
-            _registrationRules = registrationRules;
+            _dataCollectorRules = dataCollectorRules;
             _phoneNumberRules = phoneNumberRules;
+
             RuleFor(_ => _.DataCollectorId)
                 .Must(NotBeRegistered).WithMessage("Datacollector with same id is already registered");
             
@@ -23,7 +25,7 @@ namespace Domain.DataCollector.Registering
 
         bool NotBeRegistered(DataCollectorId id)
         {
-            return !_registrationRules.DataCollectorIsRegistered(id);
+            return !_dataCollectorRules.DataCollectorIsRegistered(id);
         }
     }
 }

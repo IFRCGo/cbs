@@ -4,7 +4,7 @@ namespace Domain.DataCollector.PhoneNumber
 {
     public class PhoneNumberIsNotRegisteredValidator : AbstractValidator<string>
     {
-        IPhoneNumberRules _rules;
+        readonly IPhoneNumberRules _rules;
         public PhoneNumberIsNotRegisteredValidator(IPhoneNumberRules rules)
         {
             _rules = rules;
