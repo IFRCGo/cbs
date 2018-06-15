@@ -9,13 +9,11 @@ namespace Read.CaseReportsForListing.Queries
     public class CaseReportForListingById : IQueryFor<CaseReportForListing>
     {
         readonly ICaseReportsForListing _collection;
-        readonly ICaseReportForListingMigrator _migrator;
         public Guid CaseReportId { get; set; }
 
-        public CaseReportForListingById(ICaseReportsForListing collection, ICaseReportForListingMigrator migrator)
+        public CaseReportForListingById(ICaseReportsForListing collection)
         {
             _collection = collection;
-            _migrator = migrator;
         }
 
         public IQueryable<CaseReportForListing> Query => _collection.Query.Where(c => c.Id == CaseReportId);

@@ -10,11 +10,9 @@ namespace Read.DataCollectors.Queries
     public class AllDataCollectors : IQueryFor<DataCollector>
     {
         readonly IDataCollectors _repository;
-        readonly IDataCollectorMigrator _migrator;
-        public AllDataCollectors(IDataCollectors repository, IDataCollectorMigrator migrator)
+        public AllDataCollectors(IDataCollectors repository)
         {
             _repository = repository;
-            _migrator = migrator;
         }
 
         public IQueryable<DataCollector> Query => _repository.Query;

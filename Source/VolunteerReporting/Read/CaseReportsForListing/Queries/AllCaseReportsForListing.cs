@@ -9,11 +9,9 @@ namespace Read.CaseReportsForListing.Queries
     public class AllCaseReportsForListing : IQueryFor<CaseReportForListing>
     {
         readonly ICaseReportsForListing _collection;
-        readonly ICaseReportForListingMigrator _migrator;
-        public AllCaseReportsForListing(ICaseReportsForListing collection, ICaseReportForListingMigrator migrator)
+        public AllCaseReportsForListing(ICaseReportsForListing collection)
         {
             _collection = collection;
-            _migrator = migrator;
         }
 
         public IQueryable<CaseReportForListing> Query => _collection.Query;

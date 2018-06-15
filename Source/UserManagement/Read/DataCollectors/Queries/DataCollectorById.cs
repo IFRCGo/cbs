@@ -10,14 +10,12 @@ namespace Read.DataCollectors.Queries
     public class DataCollectorById : IQueryFor<DataCollector>
     {
         readonly IDataCollectors _repository;
-        readonly IDataCollectorMigrator _migrator;
 
         public Guid DataCollectorId { get; set; }
 
-        public DataCollectorById(IDataCollectors repository, IDataCollectorMigrator migrator)
+        public DataCollectorById(IDataCollectors repository)
         {
             _repository = repository;
-            _migrator = migrator;
         }
         
         public IQueryable<DataCollector> Query => _repository.Query.Where(d => d.Id == DataCollectorId);

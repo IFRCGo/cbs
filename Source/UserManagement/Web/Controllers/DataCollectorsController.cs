@@ -19,15 +19,12 @@ namespace Web.Controllers
         private readonly IDataCollectors _dataCollectors;
 
         private readonly IQueryCoordinator _queryCoordinator;
-        readonly IDataCollectorMigrator _migrator;
         public DataCollectorsController (
             IDataCollectors dataCollectors,
-            IQueryCoordinator queryCoordinator,
-            IDataCollectorMigrator migrator)
+            IQueryCoordinator queryCoordinator)
         {
             _dataCollectors = dataCollectors;
             _queryCoordinator = queryCoordinator;
-            _migrator = migrator;
         }
 
         private static readonly Dictionary<string, IDataCollectorExporter> exporters =
@@ -40,7 +37,7 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _queryCoordinator.Execute(new AllDataCollectors(_dataCollectors, _migrator), new PagingInfo());
+            var result = _queryCoordinator.Execute(new AllDataCollectors(_dataCollectors), new PagingInfo());
 
             return Ok(result.Items);
         }
@@ -49,7 +46,7 @@ namespace Web.Controllers
         public IActionResult GetById(Guid id)
         {
             var result = _queryCoordinator.Execute(
-                new DataCollectorById(_dataCollectors, _migrator)
+                new DataCollectorById(_dataCollectors)
                     {
                         DataCollectorId = id
                     }, new PagingInfo());
