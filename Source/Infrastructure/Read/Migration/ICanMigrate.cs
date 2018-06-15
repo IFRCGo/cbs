@@ -22,7 +22,7 @@ namespace Infrastructure.Read.Migration
          /// Performs all migrations on readModel and persists the changes to the database collection
          /// </summary>
          /// <param name="ReadModel"></param>
-         void MigrateReadModel(T ReadModel);
+         void MigrateReadModel(T readModel);
          /// <summary>
          /// Performs all migrations on readModels and persists the changes to the database collection
          /// </summary>

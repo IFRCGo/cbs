@@ -1,46 +1,33 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dolittle.Collections;
 using Dolittle.ReadModels;
 using Dolittle.Types;
 using Infrastructure.Read.Migration;
 namespace Read.DataCollectors.Migration
 {
-    public class DataCollectorMigrator : IDataCollectorMigrator
+    public class DataCollectorMigrator : BaseMigratorFor<DataCollector>,
+        IDataCollectorMigrator
     {
-        IInstancesOf<IMigrationStrategyFor<DataCollector>> _strategies;
         IDataCollectors _repo;
+
         public DataCollectorMigrator(IInstancesOf<IMigrationStrategyFor<DataCollector>> strategies, IDataCollectors repo)
+            : base(strategies)
         {
-            _strategies = strategies;
             _repo = repo;
         }
 
-        public IEnumerable<IMigrationStrategyFor<DataCollector>> MigrationStrategies() => _strategies;
-
-        public DataCollector MigrateReadmodel(DataCollector readModel)
+        public override void MigrateReadModel(DataCollector readModel)
         {
-            var migrated = false;
-            foreach (var strategy in MigrationStrategies())
-            {
-                if(strategy.CanMigrate(readModel)) 
-                {
-                    readModel = strategy.ApplyMigrationStrategy(readModel);
-                    migrated = true;
-                }
-            }
-            if (migrated)
-                _repo.Update(readModel);
-            return readModel;
+            if (readModel.NeedMigration(MigrationStrategies))
+                _repo.Update(GetMigratedReadModel(readModel));
         }
 
-        public bool NeedMigration(DataCollector readModel)
+        public override void MigrateAllReadModels()
         {
-            foreach (var strategy in MigrationStrategies())
-            {
-                if (strategy.CanMigrate(readModel))
-                    return true;
-            }
-            return false;
+            var readModels = _repo.Query.Where(_ => true);
+            MigrateReadModels(readModels);
         }
+
     }
 }
