@@ -20,19 +20,9 @@ namespace Read.CaseReports
             return GetMany(_ => true);
         }
 
-        public Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public IEnumerable<CaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber)
         {
             return GetMany(r => r.Origin == phoneNumber);
-        }
-
-        public Task<IEnumerable<CaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber)
-        {
-            return GetManyAsync(r => r.Origin == phoneNumber);
         }
     }
 }

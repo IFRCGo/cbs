@@ -30,9 +30,9 @@ namespace Web
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Project>> Get()
+        public IEnumerable<Project> Get()
         {
-            return await _projects.GetAllASync();
+            return _projects.GetAll();
         }
 
         [HttpGet("{id}")]

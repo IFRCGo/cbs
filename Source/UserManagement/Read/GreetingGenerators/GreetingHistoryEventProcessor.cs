@@ -15,26 +15,26 @@ namespace Read.GreetingGenerators
         
         //TODO: QUESTION: Shouldn't this listen to MessageGenerated-event?
 
-        public async void Process(MessageGenerated @event)
+        public void Process(MessageGenerated @event)
         {
-            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ??
+            var greetingHistory = _greetingHistories.GetByPhoneNumber(@event.PhoneNumber) ??
                                   new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber;
 
             _greetingHistories.Update(greetingHistory);
         }
 
-        public async void Process(PhoneNumberAddedToDataCollector @event)
+        public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var greetingHistory = await _greetingHistories.GetByPhoneNumberAsync(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
+            var greetingHistory = _greetingHistories.GetByPhoneNumber(@event.PhoneNumber) ?? new GreetingHistory(@event.DataCollectorId);
             greetingHistory.PhoneNumber = @event.PhoneNumber; // Todo: THis does nothing if GetByPhoneNumberAsync doesn't return nul
-            await _greetingHistories.UpdateAsync(greetingHistory);
+            _greetingHistories.Update(greetingHistory);
             
         }
 
-        public async void Process(PhoneNumberRemovedFromDataCollector @event)
+        public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-             await _greetingHistories.RemoveAsync(@event.PhoneNumber);
+            _greetingHistories.Remove(@event.PhoneNumber);
            
         }
     }

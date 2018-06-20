@@ -18,9 +18,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> Get()
+        public IEnumerable<InvalidCaseReportFromUnknownDataCollector> Get()
         {
-            return _invalidCaseReportsFromUnknownDataCollectors.GetAllAsync();
+            return _invalidCaseReportsFromUnknownDataCollectors.GetAll();
         }
     }
 }

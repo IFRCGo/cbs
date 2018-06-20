@@ -36,19 +36,10 @@ namespace Infrastructure.Read.MongoDb
             var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
             return _collection.FindSync(filter).FirstOrDefault();
         }
-        public async Task<T> GetByIdAsync(object id)
-        {
-            var filter = Builders<T>.Filter.Eq("_id", GetIdAsBsonValue(id));
-            return (await _collection.FindAsync(filter)).FirstOrDefault();
-        }
 
         public void Insert(T readModel)
         {
             _collection.InsertOne(readModel);
-        }
-        public Task InsertAsync(T readModel)
-        {
-            return _collection.InsertOneAsync(readModel);
         }
 
         public void Update(T readModel)
@@ -57,24 +48,12 @@ namespace Infrastructure.Read.MongoDb
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.ReplaceOne(filter, readModel, new UpdateOptions() { IsUpsert = true });
         }
-        public Task UpdateAsync(T readModel)
-        {
-            var id = GetObjectIdFromReadModel(readModel);
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions() { IsUpsert = true });
-        }
 
         public void Delete(T readModel)
         {
             var id = GetObjectIdFromReadModel(readModel);
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.DeleteOne(filter);
-        }
-        public Task DeleteAsync(T readModel)
-        {
-            var id = GetObjectIdFromReadModel(readModel);
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            return _collection.DeleteOneAsync(filter);
         }
 
         #region Get
@@ -83,36 +62,20 @@ namespace Infrastructure.Read.MongoDb
         {
             return _collection.FindSync(filter).FirstOrDefault();
         }
-        public async Task<T> GetOneAsync(FilterDefinition<T> filter)
-        {
-            return (await _collection.FindAsync(filter)).FirstOrDefault();
-        }
 
         public T GetOne(Expression<Func<T, bool>> filter)
         {
             return _collection.FindSync(filter).FirstOrDefault();
-        }
-        public async Task<T> GetOneAsync(Expression<Func<T, bool>> filter)
-        {
-            return (await _collection.FindAsync(filter)).FirstOrDefault();
         }
 
         public IEnumerable<T> GetMany(FilterDefinition<T> filter)
         {
             return _collection.Find(filter).ToEnumerable();
         }
-        public async Task<IEnumerable<T>> GetManyAsync(FilterDefinition<T> filter)
-        {
-            return (await _collection.FindAsync(filter)).ToEnumerable();
-        }
 
         public IEnumerable<T> GetMany(Expression<Func<T, bool>> filter)
         {
             return _collection.Find(filter).ToEnumerable();
-        }
-        public async Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter)
-        {
-            return (await _collection.FindAsync(filter)).ToEnumerable();
         }
 
         #endregion
@@ -129,16 +92,6 @@ namespace Infrastructure.Read.MongoDb
             return _collection.ReplaceOne(filter, readModel, new UpdateOptions { IsUpsert = true });
         }
 
-        public Task<ReplaceOneResult> ReplaceOneAsync(T readModel, FilterDefinition<T> filter)
-        {
-            return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions { IsUpsert = true });
-        }
-
-        public Task<ReplaceOneResult> ReplaceOneAsync(T readModel, Expression<Func<T, bool>> filter)
-        {
-            return _collection.ReplaceOneAsync(filter, readModel, new UpdateOptions { IsUpsert = true });
-        }
-
         #endregion
 
         #region Update
@@ -153,16 +106,6 @@ namespace Infrastructure.Read.MongoDb
             return _collection.UpdateMany(predicate, update);
         }
 
-        public Task<UpdateResult> UpdateAsync(Expression<Func<T, bool>> predicate, UpdateDefinition<T> update)
-        {
-            return _collection.UpdateManyAsync(predicate, update);
-        }
-
-        public Task<UpdateResult> UpdateAsync(FilterDefinition<T> predicate, UpdateDefinition<T> update)
-        {
-            return _collection.UpdateManyAsync(predicate, update);
-        }
-
         #endregion
 
         #region Delete
@@ -175,16 +118,6 @@ namespace Infrastructure.Read.MongoDb
         public DeleteResult Delete(FilterDefinition<T> predicate)
         {
             return _collection.DeleteMany(predicate);
-        }
-
-        public Task<DeleteResult> DeleteAsync(Expression<Func<T, bool>> predicate)
-        {
-            return _collection.DeleteManyAsync(predicate);
-        }
-
-        public Task<DeleteResult> DeleteAsync(FilterDefinition<T> predicate)
-        {
-            return _collection.DeleteManyAsync(predicate);
         }
 
         #endregion

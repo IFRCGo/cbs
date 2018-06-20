@@ -30,10 +30,5 @@ namespace Read.ProjectFeatures
         {
             return GetMany(_ => true);
         }
-
-        public Task<IEnumerable<Project>> GetAllASync()
-        {
-            return GetManyAsync(_ => true);
-        }
     }
 }

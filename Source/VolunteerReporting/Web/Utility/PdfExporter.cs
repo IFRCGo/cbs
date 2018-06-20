@@ -6,6 +6,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Read.CaseReportsForListing;
 using Concepts;
+using Concepts.DataCollector;
 
 namespace Web.Utility
 {
@@ -91,7 +92,7 @@ namespace Web.Utility
 
         private static void AddCaseReportDataToTable(PdfPTable table, CaseReportForListing caseReport)
         {
-            var time = caseReport.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt");
+            var time = caseReport.Timestamp.ToString("yyyy MMMM dd, HH:mm:ss");
             var status = caseReport.HealthRiskId != null;
 
             var dataCollector = caseReport.DataCollectorDisplayName != "Unknown"
