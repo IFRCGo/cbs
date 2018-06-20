@@ -15,6 +15,9 @@ import { AllHealthRisks } from '../../domain/health-risk/queries/AllHealthRisks'
 
 export class HealthRiskListComponent implements OnInit {
     risks: HealthRisk[];
+    sortType: string;
+    private sortReverse: boolean = false;
+
 
     deleteHealthRiskCmd: DeleteHealthRisk = new DeleteHealthRisk();
     constructor(
@@ -28,6 +31,7 @@ export class HealthRiskListComponent implements OnInit {
       .then(response => {
           if (response.success) {
             this.risks = response.items as HealthRisk[];
+              this.sortRisks('id')
           } else {
             console.error(response);
           }
@@ -36,4 +40,22 @@ export class HealthRiskListComponent implements OnInit {
         console.error(response);
       });
     }
+
+    sortRisks(property) {
+        this.sortType = property;
+        this.sortReverse = !this.sortReverse;
+        this.risks.sort(this.dynamicSort(property));
+    }
+
+    dynamicSort(property) {
+        let sortRisk = -1;
+        if (this.sortReverse)
+            sortRisk = 1;
+        return function (a, b) {
+            let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+
+            return result * sortRisk;
+        }
+    }
+
 }
