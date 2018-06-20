@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts;
+using Concepts.Project;
 
 namespace Read.Projects
 {
@@ -19,12 +21,12 @@ namespace Read.Projects
             return _collection.FindSync(_ => true).ToList();
         }
 
-        public Project GetById(Guid projectId)
+        public Project GetById(ProjectId projectId)
         {
             return GetOne(p => p.Id == projectId);
         }
 
-        public void SaveProject(Guid id, string name)
+        public void SaveProject(ProjectId id, string name)
         {
             Update(new Project
             {
@@ -33,7 +35,7 @@ namespace Read.Projects
             });
         }
 
-        public UpdateResult UpdateProject(Guid id, string name)
+        public UpdateResult UpdateProject(ProjectId id, string name)
         {
             return Update(p => p.Id == id,
                 Builders<Project>.Update.Set(p => p.Name, name));

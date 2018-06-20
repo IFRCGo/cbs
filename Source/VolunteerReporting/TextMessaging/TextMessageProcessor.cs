@@ -11,6 +11,7 @@ using Dolittle.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Concepts.HealthRisk;
 
 namespace TextMessaging
 {
@@ -79,7 +80,7 @@ namespace TextMessaging
             }
 
             var healthRiskReadableId = parsingResult.HealthRiskReadableId;
-            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId.Value);
+            var healthRiskId = _healthRisks.GetIdFromReadableId(healthRiskReadableId);
             if (healthRiskId == HealthRiskId.NotSet)
             {
                 var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };

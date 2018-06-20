@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Concepts;
+using Concepts.CaseReport;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.InvalidCaseReports
@@ -11,6 +13,6 @@ namespace Read.InvalidCaseReports
         IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber);
 
 
-        void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
+        void SaveInvalidReportFromUnknownDataCollector(CaseReportId caseReportId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
     }
 }

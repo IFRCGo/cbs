@@ -2,6 +2,8 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Concepts;
+using Concepts.DataCollector;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
@@ -14,7 +16,7 @@ namespace Read.DataCollectors
         {
         }
 
-        public DataCollector GetById(Guid id)
+        public DataCollector GetById(DataCollectorId id)
         {
             return GetOne(d => d.Id == id);
         }

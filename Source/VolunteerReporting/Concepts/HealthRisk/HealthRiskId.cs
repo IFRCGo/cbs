@@ -1,7 +1,7 @@
 using Dolittle.Concepts;
 using System;
 
-namespace Concepts
+namespace Concepts.HealthRisk
 {
     public class HealthRiskId : ConceptAs<Guid>
     {

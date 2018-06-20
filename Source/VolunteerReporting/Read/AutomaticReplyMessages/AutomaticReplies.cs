@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Concepts;
+using Concepts.Project;
+using Concepts.AutomaticReply;
 using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 

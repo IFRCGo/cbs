@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts.AutomaticReply;
+using Concepts.HealthRisk;
 
 namespace Read.AutomaticReplyMessages
 {

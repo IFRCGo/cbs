@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Concepts;
 using Infrastructure.Read.MongoDb;
+using Concepts.HealthRisk;
 
 namespace Read.HealthRisks
 {
@@ -19,19 +20,19 @@ namespace Read.HealthRisks
         {
             return GetMany(_ => true);
         }
-        public HealthRisk GetById(Guid id)
+        public HealthRisk GetById(HealthRiskId id)
         {
             return GetOne(_ => _.Id == id);
         }
-        public HealthRisk GetByReadableId(int readableId)
+        public HealthRisk GetByReadableId(HealthRiskReadableId readableId)
         {
             return GetOne(_ => _.ReadableId == readableId);
         }
-        public HealthRiskId GetIdFromReadableId(int readbleId)
+        public HealthRiskId GetIdFromReadableId(HealthRiskReadableId readbleId)
         {
             return GetByReadableId(readbleId).Id;
         }
-        public void SaveHealthRisk(Guid id, int readableId, string name)
+        public void SaveHealthRisk(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             Update(new HealthRisk(id)
             {
@@ -40,7 +41,7 @@ namespace Read.HealthRisks
             });
         }
 
-        public UpdateResult UpdateHealthRisk(Guid id, int readableId, string name)
+        public UpdateResult UpdateHealthRisk(HealthRiskId id, HealthRiskReadableId readableId, string name)
         {
             return Update(d => d.Id == id, Builders<HealthRisk>.Update.Combine(
                 Builders<HealthRisk>.Update.Set(h => h.Name, name),

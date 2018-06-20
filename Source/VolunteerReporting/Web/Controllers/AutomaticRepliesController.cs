@@ -1,4 +1,5 @@
 using Concepts;
+using Concepts.AutomaticReply;
 using Dolittle.Domain;
 using Domain;
 using Events;

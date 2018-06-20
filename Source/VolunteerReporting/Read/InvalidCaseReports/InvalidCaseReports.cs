@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts;
+using Concepts.CaseReport;
+using Concepts.DataCollector;
 
 namespace Read.InvalidCaseReports
 {
@@ -19,7 +22,7 @@ namespace Read.InvalidCaseReports
         {
             return GetMany(_ => true);
         }
-        public void SaveInvalidReport(Guid caseReportId, Guid dataCollectorId, string message, string origin,
+        public void SaveInvalidReport(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new InvalidCaseReport(caseReportId)
