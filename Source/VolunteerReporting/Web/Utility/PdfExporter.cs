@@ -6,6 +6,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Read.CaseReportsForListing;
 using Concepts;
+using Concepts.DataCollector;
 
 namespace Web.Utility
 {

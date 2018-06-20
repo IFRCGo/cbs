@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using Concepts;
+using Concepts.HealthRisk;
 using Dolittle.Queries;
 
 namespace Read.HealthRisks.Queries
@@ -8,7 +10,7 @@ namespace Read.HealthRisks.Queries
     {
         private readonly IHealthRisks _collection;
 
-        public Guid HealthRiskId { get; set; }
+        public HealthRiskId HealthRiskId { get; set; }
 
         public HealthRiskById(IHealthRisks collection)
         {

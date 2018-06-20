@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Web.Models;
 using Read.InvalidCaseReports;
 using Infrastructure.AspNet;
-
+using Concepts.DataCollector;
 namespace Web.Controllers
 {
     [Route("api/invalidcasereports")]

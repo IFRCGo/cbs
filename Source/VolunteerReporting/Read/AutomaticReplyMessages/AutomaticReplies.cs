@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Concepts;
+using Concepts.Project;
+using Concepts.AutomaticReply;
 using Infrastructure.Read.MongoDb;
 using MongoDB.Driver;
 
@@ -25,17 +26,17 @@ namespace Read.AutomaticReplyMessages
             return GetManyAsync(_ => true);
         }
 
-        public IEnumerable<AutomaticReply> GetByProject(Guid projectId)
+        public IEnumerable<AutomaticReply> GetByProject(ProjectId projectId)
         {
             return GetMany(v => v.ProjectId == projectId);
         }
 
-        public Task<IEnumerable<AutomaticReply>> GetByProjectAsync(Guid projectId)
+        public Task<IEnumerable<AutomaticReply>> GetByProjectAsync(ProjectId projectId)
         {
             return GetManyAsync(v => v.ProjectId == projectId);
         }
 
-        public void SaveAutomaticReply(Guid id, int type, string language, string message, Guid projectId)
+        public void SaveAutomaticReply(Guid id, int type, string language, string message, ProjectId projectId)
         {
             Update(new AutomaticReply(id)
             {
@@ -46,7 +47,7 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public Task SaveAutomaticReplyAsync(Guid id, int type, string language, string message, Guid projectId)
+        public Task SaveAutomaticReplyAsync(Guid id, int type, string language, string message, ProjectId projectId)
         {
             return UpdateAsync(new AutomaticReply(id)
             {
@@ -57,7 +58,7 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public AutomaticReply GetByProjectTypeAndLanguage(Guid projectId, AutomaticReplyType type, string language)
+        public AutomaticReply GetByProjectTypeAndLanguage(ProjectId projectId, AutomaticReplyType type, string language)
         {
             return GetOne(
                 v =>
@@ -67,7 +68,7 @@ namespace Read.AutomaticReplyMessages
             );
         }
 
-        public Task<AutomaticReply> GetByProjectTypeAndLanguageAsync(Guid projectId, AutomaticReplyType type, string language)
+        public Task<AutomaticReply> GetByProjectTypeAndLanguageAsync(ProjectId projectId, AutomaticReplyType type, string language)
         {
             return GetOneAsync(
                 v =>

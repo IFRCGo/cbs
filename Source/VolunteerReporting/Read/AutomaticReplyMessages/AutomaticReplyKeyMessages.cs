@@ -1,9 +1,11 @@
-using Concepts;
+using Concepts.AutomaticReply;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts.Project;
+using Concepts.HealthRisk;
 
 namespace Read.AutomaticReplyMessages
 {
@@ -26,18 +28,18 @@ namespace Read.AutomaticReplyMessages
             return GetManyAsync(_ => true);
         }
 
-        public IEnumerable<AutomaticReplyKeyMessage> GetByProject(Guid projectId)
+        public IEnumerable<AutomaticReplyKeyMessage> GetByProject(ProjectId projectId)
         {
             return GetMany(_ => _.ProjectId == projectId);
         }
 
-        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(Guid projectId)
+        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(ProjectId projectId)
         {
             return GetManyAsync(_ => _.ProjectId == projectId);
         }
 
-        public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid projectId,
-            Guid healthRiskId)
+        public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, ProjectId projectId,
+            HealthRiskId healthRiskId)
         {
             Update(new AutomaticReplyKeyMessage(id)
             {
@@ -49,8 +51,8 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, Guid projectId,
-            Guid healthRiskId)
+        public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, ProjectId projectId,
+            HealthRiskId healthRiskId)
         {
             return UpdateAsync(new AutomaticReplyKeyMessage(id)
             {
@@ -62,8 +64,8 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(Guid projectId, AutomaticReplyKeyMessageType type,
-            string language, Guid healthRiskId)
+        public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(ProjectId projectId, AutomaticReplyKeyMessageType type,
+            string language, HealthRiskId healthRiskId)
         {
             return GetOne(
                 v => v.ProjectId == projectId
@@ -72,7 +74,8 @@ namespace Read.AutomaticReplyMessages
                      && v.HealthRiskId == healthRiskId);
         }
 
-        public Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(Guid projectId, AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        public Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(ProjectId projectId, AutomaticReplyKeyMessageType type, 
+            string language, HealthRiskId healthRiskId)
         {
             return GetOneAsync(
                 v => v.ProjectId == projectId

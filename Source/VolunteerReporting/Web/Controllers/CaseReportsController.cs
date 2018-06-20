@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using Concepts;
 
 using CaseReportForListing = Read.CaseReportsForListing.CaseReportForListing;
+using Concepts.HealthRisk;
+using Concepts.DataCollector;
 
 namespace Web.Controllers
 {

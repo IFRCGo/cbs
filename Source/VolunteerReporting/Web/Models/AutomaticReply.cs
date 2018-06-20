@@ -1,4 +1,5 @@
 using Concepts;
+using Concepts.AutomaticReply;
 
 namespace Web.Models
 {

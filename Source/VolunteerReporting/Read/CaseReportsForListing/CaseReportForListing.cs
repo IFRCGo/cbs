@@ -2,12 +2,15 @@ using Concepts;
 using System;
 using System.Collections.Generic;
 using Dolittle.ReadModels;
+using Concepts.DataCollector;
+using Concepts.CaseReport;
+using Concepts.HealthRisk;
+
 namespace Read.CaseReportsForListing
 {
     public class CaseReportForListing :  IReadModel
     {
-        public Guid Id { get; set; }
-
+        public CaseReportId Id { get; set; }
         public CaseReportStatus Status { get; set; }
         public DataCollectorId DataCollectorId { get; set; }
         public string DataCollectorDisplayName { get; set; }
@@ -27,7 +30,7 @@ namespace Read.CaseReportsForListing
         public string Origin { get; set; }
         public IEnumerable<string> ParsingErrorMessage { get; set; }
 
-        public CaseReportForListing(Guid id)
+        public CaseReportForListing(CaseReportId id)
         {
             Id = id;
         }
