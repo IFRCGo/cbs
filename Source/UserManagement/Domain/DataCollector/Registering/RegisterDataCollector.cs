@@ -25,5 +25,7 @@ namespace Domain.DataCollector.Registering
 
         public string Region { get; set; }
         public string District { get; set; }
+
+        public Guid RegisteredBy { get; set; }
     }
 }

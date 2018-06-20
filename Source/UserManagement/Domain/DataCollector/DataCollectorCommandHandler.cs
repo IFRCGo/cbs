@@ -36,7 +36,8 @@ namespace Domain.DataCollector
                 command.PhoneNumbers,
                 DateTimeOffset.UtcNow,
                 command.Region,
-                command.District
+                command.District,
+                command.RegisteredBy
                 );
         }
 

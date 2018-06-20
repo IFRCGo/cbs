@@ -23,6 +23,7 @@ namespace Read.DataCollectors
 
         public List<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+        public Guid RegisteredBy { get; set; }
 
         public DateTimeOffset? LastReportRecievedAt { get; set; }
 

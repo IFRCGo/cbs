@@ -17,8 +17,8 @@ namespace Events.DataCollector
         public string Region { get; set; }
         public string District { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+        public Guid RegisteredBy { get; set; }
 
-        
 
         public DataCollectorRegistered(
             Guid dataCollectorId,
@@ -31,7 +31,8 @@ namespace Events.DataCollector
             double locationLatitude,
             DateTimeOffset registeredAt,
             string region,
-            string district)
+            string district,
+            Guid registeredBy)
         {
             DataCollectorId = dataCollectorId;
             FullName = fullName;
@@ -42,6 +43,7 @@ namespace Events.DataCollector
             LocationLongitude = locationLongitude;
             LocationLatitude = locationLatitude;
             RegisteredAt = registeredAt;
+            RegisteredBy = registeredBy;
 
             Region = region;
             District = district;

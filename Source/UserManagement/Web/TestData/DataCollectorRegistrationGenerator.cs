@@ -20,7 +20,8 @@ namespace Web.TestData
                 GpsLocation = new Location(35, 35),
                 PhoneNumbers = new List<string> { "123456789" },
                 Region = "Default Region",
-                District = "Default District"
+                District = "Default District",
+                RegisteredBy = Guid.NewGuid()
             };
         }
     }

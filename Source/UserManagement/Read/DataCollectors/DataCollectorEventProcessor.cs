@@ -29,6 +29,7 @@ namespace Read.DataCollectors
                 YearOfBirth = @event.YearOfBirth,
                 Sex = (Sex)@event.Sex,
                 RegisteredAt = @event.RegisteredAt,
+                RegisteredBy = @event.RegisteredBy,
                 PreferredLanguage = (Language)@event.PreferredLanguage,
                 PhoneNumbers = new List<PhoneNumber>(),
                 District = @event.District,
