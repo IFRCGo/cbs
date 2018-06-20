@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using Concepts;
+using Concepts.CaseReport;
 using Dolittle.Queries;
 
 namespace Read.CaseReportsForListing.Queries
@@ -8,7 +10,7 @@ namespace Read.CaseReportsForListing.Queries
     {
         private readonly ICaseReportsForListing _collection;
 
-        public Guid CaseReportId { get; set; }
+        public CaseReportId CaseReportId { get; set; }
 
         public CaseReportForListingById(ICaseReportsForListing collection)
         {

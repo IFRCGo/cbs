@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 using Dolittle.Concepts;
 
-namespace Concepts
+namespace Concepts.DataCollector
 {
     /// <summary>
     /// Represents a <see cref="PhoneNumber"/>

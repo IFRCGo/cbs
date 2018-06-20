@@ -25,7 +25,7 @@ namespace Domain.DataCollector
 
         public void Handle(RegisterDataCollector command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.RegisterDataCollector(
                 command.FullName,
                 command.DisplayName,
@@ -42,7 +42,7 @@ namespace Domain.DataCollector
 
         public void Handle(ChangeBaseInformation command)
         {
-            var root =_repository.Get(command.DataCollectorId);
+            var root =_repository.Get(command.DataCollectorId.Value);
             root.ChangeBaseInformation(
                 command.FullName,
                 command.DisplayName,
@@ -55,13 +55,13 @@ namespace Domain.DataCollector
 
         public void Handle(ChangePreferredLanguage command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.ChangePreferredLanguage(command.PreferredLanguage);
         }
 
         public void Handle(ChangeLocation command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.ChangeLocation(command.Location);
         }
 
@@ -73,19 +73,19 @@ namespace Domain.DataCollector
 
         public void Handle(ChangeVillage command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.ChangeVillage(command.Village);
         }
 
         public void Handle(AddPhoneNumberToDataCollector command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.AddPhoneNumber(command.PhoneNumber);
         }
 
         public void Handle(RemovePhoneNumberFromDataCollector command)
         {
-            var root = _repository.Get(command.DataCollectorId);
+            var root = _repository.Get(command.DataCollectorId.Value);
             root.RemovePhoneNumbers(command.PhoneNumber);
         }
 

@@ -3,6 +3,7 @@ using Concepts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.Read.MongoDb;
+using Concepts.AutomaticReply;
 
 namespace Read.AutomaticReplyMessages
 {

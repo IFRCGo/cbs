@@ -11,6 +11,7 @@ using Autofac.Core;
 using Autofac.Core.Activators.Delegate;
 using Autofac.Core.Lifetime;
 using Autofac.Core.Registration;
+using Dolittle.ReadModels.MongoDB;
 using Infrastructure.AspNet.ConnectionStrings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;

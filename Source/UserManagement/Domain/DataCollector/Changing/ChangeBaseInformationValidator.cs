@@ -1,4 +1,5 @@
 using System;
+using Concepts.DataCollector;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
@@ -11,8 +12,9 @@ namespace Domain.DataCollector.Changing
         {
 
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set");
-
+                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .SetValidator(new DataCollectorIdValidator());
+                
             RuleFor(_ => _.FullName)
                 .NotEmpty().WithMessage("Full Name is not correct - Has to be defined");
 

@@ -1,5 +1,6 @@
-using System;
 using System.Linq;
+using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Queries;
 
 namespace Read.DataCollectors.Queries
@@ -8,7 +9,7 @@ namespace Read.DataCollectors.Queries
     {
         private readonly IDataCollectors _repository;
 
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
 
         public DataCollectorById(IDataCollectors repository)
         {

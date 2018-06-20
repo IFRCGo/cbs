@@ -6,6 +6,8 @@ using Concepts;
 using Infrastructure.Read.MongoDb;
 using Read.DataCollectors;
 using Read.HealthRisks;
+using Concepts.CaseReport;
+using Concepts.DataCollector;
 
 namespace Read.CaseReportsForListing
 {
@@ -27,7 +29,7 @@ namespace Read.CaseReportsForListing
             return GetManyAsync(_ => true);
         }
 
-        public void SaveInvalidReportFromUnknownDataCollector(Guid caseReportId, string message, string origin,
+        public void SaveInvalidReportFromUnknownDataCollector(CaseReportId caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new CaseReportForListing(caseReportId)
@@ -49,7 +51,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public void SaveInvalidReport(Guid caseReportId, DataCollector dataCollector, string message, string origin, double latitude,
+        public void SaveInvalidReport(CaseReportId caseReportId, DataCollector dataCollector, string message, string origin, double latitude,
             double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new CaseReportForListing(caseReportId)
@@ -73,7 +75,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public void SaveCaseReportFromUnknownDataCollector(Guid caseReportId, HealthRisk healthRisk, string message, string origin,
+        public void SaveCaseReportFromUnknownDataCollector(CaseReportId caseReportId, HealthRisk healthRisk, string message, string origin,
             int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
@@ -98,7 +100,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public void SaveCaseReport(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
+        public void SaveCaseReport(CaseReportId caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
@@ -126,7 +128,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public Task SaveInvalidReportFromUnknownDataCollectorAsync(Guid caseReportId, string message, string origin,
+        public Task SaveInvalidReportFromUnknownDataCollectorAsync(CaseReportId caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             return UpdateAsync(new CaseReportForListing(caseReportId)
@@ -148,7 +150,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public Task SaveInvalidReportAsync(Guid caseReportId, DataCollector dataCollector, string message, string origin,
+        public Task SaveInvalidReportAsync(CaseReportId caseReportId, DataCollector dataCollector, string message, string origin,
             double latitude, double longitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             return UpdateAsync(new CaseReportForListing(caseReportId)
@@ -172,7 +174,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public Task SaveCaseReportFromUnknownDataCollectorAsync(Guid caseReportId, HealthRisk healthRisk, string message,
+        public Task SaveCaseReportFromUnknownDataCollectorAsync(CaseReportId caseReportId, HealthRisk healthRisk, string message,
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {
@@ -197,7 +199,7 @@ namespace Read.CaseReportsForListing
             });
         }
 
-        public Task SaveCaseReportAsync(Guid caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
+        public Task SaveCaseReportAsync(CaseReportId caseReportId, DataCollector dataCollector, HealthRisk healthRisk, string message,
             string origin, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, DateTimeOffset timestamp)
         {

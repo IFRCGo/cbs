@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Concepts;
+using Concepts.AutomaticReply;
+using Concepts.HealthRisk;
 using Dolittle.Events;
 using Events;
 using Events.External;
@@ -141,7 +143,7 @@ namespace Web
                 return "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0";
         }
 
-        private string CreateValidMessage(int[] healthRiskIds)
+        private string CreateValidMessage(HealthRiskReadableId[] healthRiskIds)
         {
             Random randomizer = new Random();
 
