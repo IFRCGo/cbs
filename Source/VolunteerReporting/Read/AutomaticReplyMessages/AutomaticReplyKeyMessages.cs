@@ -23,21 +23,10 @@ namespace Read.AutomaticReplyMessages
             return GetMany(_ => true);
         }
 
-        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public IEnumerable<AutomaticReplyKeyMessage> GetByProject(ProjectId projectId)
         {
             return GetMany(_ => _.ProjectId == projectId);
         }
-
-        public Task<IEnumerable<AutomaticReplyKeyMessage>> GetByProjectAsync(ProjectId projectId)
-        {
-            return GetManyAsync(_ => _.ProjectId == projectId);
-        }
-
         public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, ProjectId projectId,
             HealthRiskId healthRiskId)
         {
@@ -50,34 +39,10 @@ namespace Read.AutomaticReplyMessages
                 Type = (AutomaticReplyKeyMessageType)type
             });
         }
-
-        public Task SaveAutomaticReplyKeyMessageAsync(Guid id, int type, string language, string message, ProjectId projectId,
-            HealthRiskId healthRiskId)
-        {
-            return UpdateAsync(new AutomaticReplyKeyMessage(id)
-            {
-                HealthRiskId = healthRiskId,
-                Message = message,
-                Language = language,
-                ProjectId = projectId,
-                Type = (AutomaticReplyKeyMessageType)type
-            });
-        }
-
         public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(ProjectId projectId, AutomaticReplyKeyMessageType type,
             string language, HealthRiskId healthRiskId)
         {
             return GetOne(
-                v => v.ProjectId == projectId
-                     && v.Type == type
-                     && v.Language == language
-                     && v.HealthRiskId == healthRiskId);
-        }
-
-        public Task<AutomaticReplyKeyMessage> GetByProjectTypeLanguageAndHealthRiskAsync(ProjectId projectId, AutomaticReplyKeyMessageType type, 
-            string language, HealthRiskId healthRiskId)
-        {
-            return GetOneAsync(
                 v => v.ProjectId == projectId
                      && v.Type == type
                      && v.Language == language

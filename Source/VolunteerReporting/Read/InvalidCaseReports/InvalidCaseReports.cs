@@ -22,29 +22,10 @@ namespace Read.InvalidCaseReports
         {
             return GetMany(_ => true);
         }
-
-        public Task<IEnumerable<InvalidCaseReport>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public void SaveInvalidReport(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new InvalidCaseReport(caseReportId)
-            {
-                DataCollectorId = dataCollectorId,
-                Message = message,
-                Origin = origin,
-                ParsingErrorMessage = errorMessages,
-                Timestamp = timestamp
-            });
-        }
-
-        public Task SaveInvalidReportAsync(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin,
-            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
-        {
-            return UpdateAsync(new InvalidCaseReport(caseReportId)
             {
                 DataCollectorId = dataCollectorId,
                 Message = message,

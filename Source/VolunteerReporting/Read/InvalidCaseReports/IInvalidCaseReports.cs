@@ -11,10 +11,6 @@ namespace Read.InvalidCaseReports
     public interface IInvalidCaseReports : IExtendedReadModelRepositoryFor<InvalidCaseReport>
     {
         IEnumerable<InvalidCaseReport> GetAll();
-        Task<IEnumerable<InvalidCaseReport>> GetAllAsync();
-
-
         void SaveInvalidReport(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
-        Task SaveInvalidReportAsync(CaseReportId caseReportId, DataCollectorId dataCollectorId, string message, string origin, IEnumerable<string> errorMessages, DateTimeOffset timestamp);
     }
 }

@@ -28,9 +28,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            return Ok(await _caseReports.GetAllAsync());
+            return Ok(_caseReports.GetAll());
         }
 
         private static Dictionary<string, IReportExporter> exporters = new Dictionary<string, IReportExporter>()
@@ -76,9 +76,9 @@ namespace Web.Controllers
 
         [HttpGet("obsolete")]
         [Obsolete]
-        public async Task<IActionResult> GetObsolete()
+        public IActionResult GetObsolete()
         {
-            return Ok(await _caseReportsObsolete.GetAllAsync());
+            return Ok( _caseReportsObsolete.GetAll());
         }
 
         private IEnumerable<CaseReportForListing> ApplyFilteringAndSorting(

@@ -20,38 +20,15 @@ namespace Read.InvalidCaseReports
         {
             return GetMany(_ => true);
         }
-
-        public Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
         public IEnumerable<InvalidCaseReportFromUnknownDataCollector> GetByPhoneNumber(string phoneNumber)
         {
             return GetMany(r => r.PhoneNumber == phoneNumber);
-        }
-
-        public Task<IEnumerable<InvalidCaseReportFromUnknownDataCollector>> GetByPhoneNumberAsync(string phoneNumber)
-        {
-            return GetManyAsync(r => r.PhoneNumber == phoneNumber);
         }
 
         public void SaveInvalidReportFromUnknownDataCollector(CaseReportId caseReportId, string message, string origin,
             IEnumerable<string> errorMessages, DateTimeOffset timestamp)
         {
             Update(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
-            {
-                Message = message,
-                ParsingErrorMessage = errorMessages,
-                PhoneNumber = origin,
-                Timestamp = timestamp
-            });
-        }
-
-        public Task SaveInvalidReportFromUnknownDataCollectorAsync(CaseReportId caseReportId, string message, string origin,
-            IEnumerable<string> errorMessages, DateTimeOffset timestamp)
-        {
-            return UpdateAsync(new InvalidCaseReportFromUnknownDataCollector(caseReportId)
             {
                 Message = message,
                 ParsingErrorMessage = errorMessages,
