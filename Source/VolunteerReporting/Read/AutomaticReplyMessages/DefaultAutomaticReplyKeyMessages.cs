@@ -21,7 +21,7 @@ namespace Read.AutomaticReplyMessages
             return GetMany(_ => true);
         }
 
-        public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid healthRiskId)
+        public void SaveDefaultAutomaticReplyKeyMessage(Guid id, int type, string language, string message, HealthRiskId healthRiskId)
         {
             Update(new DefaultAutomaticReplyKeyMessage(id)
             {
@@ -32,7 +32,7 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, Guid healthRiskId)
+        public DefaultAutomaticReplyKeyMessage GetByTypeLanguageAndHealthRisk(AutomaticReplyKeyMessageType type, string language, HealthRiskId healthRiskId)
         {
             return GetOne(v => v.Type == type && v.Language == language && v.HealthRiskId == healthRiskId);
         }

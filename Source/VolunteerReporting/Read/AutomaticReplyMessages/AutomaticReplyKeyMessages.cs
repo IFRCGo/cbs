@@ -23,12 +23,12 @@ namespace Read.AutomaticReplyMessages
             return GetMany(_ => true);
         }
 
-        public IEnumerable<AutomaticReplyKeyMessage> GetByProject(Guid projectId)
+        public IEnumerable<AutomaticReplyKeyMessage> GetByProject(ProjectId projectId)
         {
             return GetMany(_ => _.ProjectId == projectId);
         }
-        public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, Guid projectId,
-            Guid healthRiskId)
+        public void SaveAutomaticReplyKeyMessage(Guid id, int type, string language, string message, ProjectId projectId,
+            HealthRiskId healthRiskId)
         {
             Update(new AutomaticReplyKeyMessage(id)
             {
@@ -39,8 +39,8 @@ namespace Read.AutomaticReplyMessages
                 Type = (AutomaticReplyKeyMessageType)type
             });
         }
-        public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(Guid projectId, AutomaticReplyKeyMessageType type,
-            string language, Guid healthRiskId)
+        public AutomaticReplyKeyMessage GetByProjectTypeLanguageAndHealthRisk(ProjectId projectId, AutomaticReplyKeyMessageType type,
+            string language, HealthRiskId healthRiskId)
         {
             return GetOne(
                 v => v.ProjectId == projectId

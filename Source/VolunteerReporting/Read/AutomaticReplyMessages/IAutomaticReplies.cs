@@ -10,11 +10,11 @@ namespace Read.AutomaticReplyMessages
 {
     public interface IAutomaticReplies : IExtendedReadModelRepositoryFor<AutomaticReply>
     {
-        AutomaticReply GetByProjectTypeAndLanguage(Guid projectId, AutomaticReplyType type, string language);
+        AutomaticReply GetByProjectTypeAndLanguage(ProjectId projectId, AutomaticReplyType type, string language);
 
         IEnumerable<AutomaticReply> GetAll();
 
-        IEnumerable<AutomaticReply> GetByProject(Guid projectId);
+        IEnumerable<AutomaticReply> GetByProject(ProjectId projectId);
 
         void SaveAutomaticReply(Guid id, int type, string language, string message, Guid projectId);
     }

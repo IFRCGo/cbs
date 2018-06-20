@@ -20,7 +20,7 @@ namespace Read.AutomaticReplyMessages
         {
             return GetMany(_ => true);
         }
-        public IEnumerable<AutomaticReply> GetByProject(Guid projectId)
+        public IEnumerable<AutomaticReply> GetByProject(ProjectId projectId)
         {
             return GetMany(v => v.ProjectId == projectId);
         }
@@ -36,7 +36,7 @@ namespace Read.AutomaticReplyMessages
             });
         }
 
-        public AutomaticReply GetByProjectTypeAndLanguage(Guid projectId, AutomaticReplyType type, string language)
+        public AutomaticReply GetByProjectTypeAndLanguage(ProjectId projectId, AutomaticReplyType type, string language)
         {
             return GetOne(
                 v =>
