@@ -21,11 +21,17 @@ namespace Domain.DataCollector.Registering
             
             RuleFor(_ => _.PhoneNumbers)
                 .SetCollectionValidator(new PhoneNumberIsNotRegisteredValidator(_phoneNumberRules));
+
+            RuleFor(_ => _.DisplayName)
+                .Must(DisplayNameNotTaken).WithMessage(_ => $"Datacollector display name {_.DisplayName} is already taken, choose another");
         }
 
         bool NotBeRegistered(DataCollectorId id)
         {
             return !_dataCollectorRules.DataCollectorIsRegistered(id);
+        }
+        bool DisplayNameNotTaken(string displayName) {
+            return !_dataCollectorRules.DataCollectorDisplayNameRegistered(displayName);
         }
     }
 }

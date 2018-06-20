@@ -120,8 +120,6 @@ namespace Domain.DataCollector
 
         #endregion
 
-
-
         #region On-methods
 
         private void On(DataCollectorRegistered @event)
