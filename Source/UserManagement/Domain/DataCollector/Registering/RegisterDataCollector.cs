@@ -6,13 +6,14 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Commands;
 
 namespace Domain.DataCollector.Registering
 {
     public class RegisterDataCollector : ICommand
     {
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
 
         public string FullName { get; set; }
         public string DisplayName { get; set; }

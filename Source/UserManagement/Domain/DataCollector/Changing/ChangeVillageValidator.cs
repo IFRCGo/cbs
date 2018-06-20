@@ -1,3 +1,4 @@
+using Concepts.DataCollector;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
@@ -8,10 +9,10 @@ namespace Domain.DataCollector.Changing
         public ChangeVillageValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Datacollector ID is required");
+                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.Village)
-                .NotEmpty().WithMessage("Village ID is required");
-
+                .NotEmpty().WithMessage("Village is required");
         }
     }
 }

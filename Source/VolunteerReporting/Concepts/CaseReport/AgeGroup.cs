@@ -1,4 +1,4 @@
-namespace Concepts
+namespace Concepts.CaseReport
 {
     public enum AgeGroup
     {

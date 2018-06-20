@@ -30,19 +30,9 @@ namespace Read.UserFeatures
             return GetMany(_ => _.NationalSocietyId == id);
         }
 
-        public Task<IEnumerable<User>> GetByNationalSocietyIdAsync(Guid id)
-        {
-            return GetManyAsync(_ => _.NationalSocietyId == id);
-        }
-
         public IEnumerable<User> GetAll()
         {
             return GetMany(_ => true);
-        }
-
-        public Task<IEnumerable<User>> GetAllASync()
-        {
-            return GetManyAsync(_ => true);
         }
     }
 }

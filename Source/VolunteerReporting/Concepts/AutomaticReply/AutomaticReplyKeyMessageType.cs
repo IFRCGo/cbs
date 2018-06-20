@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Concepts
+namespace Concepts.AutomaticReply
 {
     public enum AutomaticReplyKeyMessageType
     {

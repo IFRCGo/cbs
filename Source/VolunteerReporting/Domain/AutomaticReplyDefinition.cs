@@ -1,5 +1,5 @@
 using System;
-using Concepts;
+using Concepts.AutomaticReply;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events;

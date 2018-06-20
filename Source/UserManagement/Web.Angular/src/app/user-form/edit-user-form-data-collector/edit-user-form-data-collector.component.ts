@@ -62,6 +62,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                             this.initChangeLocation();
                             this.initChangePreferredLanguage();
                             this.initPhoneNumbers();
+                            this.initVillage();
                         } else {
                             // Datacollector with id does not exist
                         }
@@ -223,7 +224,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     }
 
     handleChangeVillage() {
-        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== '') {
+        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== this.user.village) {
             this.userHasChanged = true;
 
             this.changeVillageCommand.dataCollectorId = this.user.id;
