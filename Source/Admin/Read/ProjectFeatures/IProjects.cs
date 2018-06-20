@@ -15,7 +15,5 @@ namespace Read.ProjectFeatures
         Project GetById(Guid id);
 
         IEnumerable<Project> GetAll();
-
-        Task<IEnumerable<Project>> GetAllASync();
     }
 }

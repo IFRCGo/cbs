@@ -59,13 +59,13 @@ namespace Web.Controllers
         }
 
         [HttpGet("export")]
-        public async Task<IActionResult> Export(string format = "excel")
+        public IActionResult Export(string format = "excel")
         {
             if (!exporters.ContainsKey(format)) return NotFound();
 
             var exporter = exporters[format];
 
-            var dataCollectors = await _dataCollectors.GetAllAsync();
+            var dataCollectors = _dataCollectors.GetAll();
 
             var stream = new MemoryStream();
             var result = exporter.WriteDataCollectors(dataCollectors, stream);

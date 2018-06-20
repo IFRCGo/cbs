@@ -20,11 +20,5 @@ namespace Read.CaseReports
         {
             return GetMany(_ => true);
         }
-
-        public Task<IEnumerable<CaseReport>> GetAllAsync()
-        {
-            return GetManyAsync(_ => true);
-        }
-
     }
 }

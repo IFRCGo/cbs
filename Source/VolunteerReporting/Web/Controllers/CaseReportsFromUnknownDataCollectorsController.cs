@@ -27,16 +27,16 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CaseReportFromUnknownDataCollectorExpanded>> Get()
+        public IEnumerable<CaseReportFromUnknownDataCollectorExpanded> Get()
         {
-            var anonymousCaseReports = await _caseReportsFromUnknownDataCollectors.GetAllAsync();
+            var anonymousCaseReports = _caseReportsFromUnknownDataCollectors.GetAll();
 
             // Comment from woksin - 15/02-2018
             // By fetching all risks to memory we should get reduced latency,
             // which was the case when I tested this method using the old method versus fetching the data prior to querying it.
             // In my opinion, the best way to do this is to have a cache-system for these databases (preferably in the classes that deals directly
             // with IMongoDatabase and IMongoCollection 
-            var healthRisks = await _healthRisks.GetAllAsync();
+            var healthRisks = _healthRisks.GetAll();
 
             // Comment from review; einari - 23rd of October 2017
             // Todo: This is a N+1 query - potentially incredibly slow
