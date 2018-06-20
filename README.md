@@ -43,7 +43,7 @@ Ideally, we wish to extend the MVP to also include the creation of "projects" an
 We need your help to take CBS to the next level!
 Read more about how you can [contribute](./Documentation/Contribution/contributing.md) and the different [projects](./Documentation/Projects/index.md) you can contribute to. 
 
-Sign up for one of our [Events](https://www.rodekors.no/en/om-rode-kors/english-pages/red-cross-codeathon-2017/)
+Sign up for one of our [Events](https://www.rodekors.no/en/codeathon2018/)
 
 Join the discussion on [Slack](https://cbsv2.slack.com/messages/C6Q43K09L/convo/C6Q43K09L-1528899130.000380/)
 
@@ -90,7 +90,7 @@ The Red Cross Red Crescent is a volunteer movement, with more than 17 million vo
 Please take a look at our [documentation page](https://github.com/IFRCGo/cbs/tree/master/Documentation), or reach out to the [core team](https://github.com/IFRCGo/cbs/blob/master/Documentation/Projects/Core/index.md) with any questions.
 
 ## Want more information?
-- Read more on the [Norwegian Red Cross Website](https://www.rodekors.no/en/om-rode-kors/english-pages/red-cross-codeathon-2017/)
+- Read more on the [Norwegian Red Cross Website](https://www.rodekors.no/en/codeathon2018/)
 - Check out the IFRC [CBS guiding principles](http://cruzroja-zika.org/wp-content/uploads/2017/10/CommunityBasedSurveillance_Global_LR.pdf) These are aimed at health programme managers and implementers, so they are quite health technical, but provides a good overview of where and why CBS can be useful.
 - Watch videos on our [YouTube Channel](https://www.youtube.com/channel/UCc_fgXmpXxzJiL2uQBGIpqA)
 
