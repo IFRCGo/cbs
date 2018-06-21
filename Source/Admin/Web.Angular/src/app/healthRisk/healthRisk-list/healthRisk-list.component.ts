@@ -16,7 +16,7 @@ import { AllHealthRisks } from '../../domain/health-risk/queries/AllHealthRisks'
 export class HealthRiskListComponent implements OnInit {
     risks: HealthRisk[];
     sortType: string;
-    private sortReverse: boolean = false;
+    sortReverse: boolean = false;
 
 
     deleteHealthRiskCmd: DeleteHealthRisk = new DeleteHealthRisk();
