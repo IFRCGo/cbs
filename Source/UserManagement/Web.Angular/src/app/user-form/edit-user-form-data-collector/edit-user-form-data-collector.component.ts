@@ -50,7 +50,6 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
     ngOnInit(): void {
-
         this.route.params.subscribe(params => {
             const id = params['id'];
             this.queryCoordinator.handle(new DataCollectorById(id))
@@ -74,6 +73,11 @@ export class EditUserFormDataCollectorComponent implements OnInit {
                     console.error(response);
                 })
         });
+    }
+
+    onLocationSelected(event){
+        this.changeLocationCommand.location.latitude = event.coords.lat;
+        this.changeLocationCommand.location.longitude = event.coords.lng;
     }
 
     submit() {
