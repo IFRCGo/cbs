@@ -1,4 +1,5 @@
-using Concepts;
+using Concepts.Project;
+using Concepts.AutomaticReply;
 using Dolittle.Commands;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Domain
 {
     public class DefineAutomaticReplyForProject : ICommand
     {
-        public Guid ProjectId { get; set; }
+        public ProjectId ProjectId { get; set; }
         public AutomaticReplyType Type { get; set; }
         public string Language { get; set; }
         public string Message { get; set; }

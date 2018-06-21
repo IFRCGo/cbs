@@ -84,7 +84,7 @@ namespace Read.CaseReportsForListing
 
         public void Process(CaseReportIdentified @event)
         {
-            _caseReports.Delete(e => e.Id == @event.CaseReportId);
+            _caseReports.Delete(e => e.Id.Value == @event.CaseReportId);
         }
     }
 }

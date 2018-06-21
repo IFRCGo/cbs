@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using Infrastructure.Read.MongoDb;
+using Concepts;
+using Concepts.Project;
 
 namespace Read.Projects
 {
     public interface IProjects : IExtendedReadModelRepositoryFor<Project>
     {
         IEnumerable<Project> GetAll();
-        Task<IEnumerable<Project>> GetAllAsync();
-        Project GetById(Guid project);
+        Project GetById(ProjectId project);
 
-        void SaveProject(Guid id, string name);
-        Task SaveProjectAsync(Guid id, string name);
+        void SaveProject(ProjectId id, string name);
 
-        UpdateResult UpdateProject(Guid id, string name);
-        Task<UpdateResult> UpdateProjectAsync(Guid id, string name);
+        UpdateResult UpdateProject(ProjectId id, string name);
     }
 }

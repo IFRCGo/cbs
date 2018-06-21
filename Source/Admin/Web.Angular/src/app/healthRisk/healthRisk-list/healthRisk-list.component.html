@@ -9,7 +9,9 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th (click)="sortRisks('id')"> ID
+                <span [ngClass]="!sortReverse ? 'fa fa-caret-down' : 'fa fa-caret-up'"></span>
+            </th>
             <th>Health risk</th>
             <th>Case Definition</th>
             <th>Alert Threshold</th>

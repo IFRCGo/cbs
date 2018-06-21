@@ -13,7 +13,6 @@ namespace Read.HealthRiskFeatures
     public interface IHealthRisks : IExtendedReadModelRepositoryFor<HealthRisk>
     {
         IEnumerable<HealthRisk> GetAll();
-        Task<IEnumerable<HealthRisk>> GetAllAsync();
 
         HealthRisk GetById(Guid id);
     }

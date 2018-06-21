@@ -1,6 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Queries;
 using Read.DataCollectors.Migration;
 using Infrastructure.Read.MongoDb;
@@ -11,7 +11,7 @@ namespace Read.DataCollectors.Queries
     {
         readonly IDataCollectors _repository;
 
-        public Guid DataCollectorId { get; set; }
+        public DataCollectorId DataCollectorId { get; set; }
 
         public DataCollectorById(IDataCollectors repository)
         {

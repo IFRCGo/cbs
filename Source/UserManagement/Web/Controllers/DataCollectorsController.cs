@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Concepts.DataCollector;
 using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
-using MongoDB.Driver;
 using Read.DataCollectors.Queries;
 using Web.Utility;
 using Read.DataCollectors.Migration;
@@ -43,7 +43,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(DataCollectorId id)
         {
             var result = _queryCoordinator.Execute(
                 new DataCollectorById(_dataCollectors)
@@ -59,13 +59,13 @@ namespace Web.Controllers
         }
 
         [HttpGet("export")]
-        public async Task<IActionResult> Export(string format = "excel")
+        public IActionResult Export(string format = "excel")
         {
             if (!exporters.ContainsKey(format)) return NotFound();
 
             var exporter = exporters[format];
 
-            var dataCollectors = await _dataCollectors.GetAllAsync();
+            var dataCollectors = _dataCollectors.GetAll();
 
             var stream = new MemoryStream();
             var result = exporter.WriteDataCollectors(dataCollectors, stream);

@@ -27,9 +27,9 @@ namespace Web
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> Get(Guid nationalSocietyId)
+        public IEnumerable<User> Get(Guid nationalSocietyId)
         {
-            return await _users.GetByNationalSocietyIdAsync(nationalSocietyId);
+            return _users.GetByNationalSocietyId(nationalSocietyId);
         }
     }
 }

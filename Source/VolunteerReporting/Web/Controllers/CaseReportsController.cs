@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using Concepts;
 
 using CaseReportForListing = Read.CaseReportsForListing.CaseReportForListing;
+using Concepts.HealthRisk;
+using Concepts.DataCollector;
 
 namespace Web.Controllers
 {
@@ -26,9 +28,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            return Ok(await _caseReports.GetAllAsync());
+            return Ok(_caseReports.GetAll());
         }
 
         private static Dictionary<string, IReportExporter> exporters = new Dictionary<string, IReportExporter>()
@@ -39,7 +41,7 @@ namespace Web.Controllers
         };
 
         [HttpGet("export")]
-        public async Task<IActionResult> Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc") {
+        public IActionResult Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc") {
             fields = fields ?? new string[] { "all" };
 
             //TODO: woksin: I think that having a parameter of some kind of datastructure that represents
@@ -49,7 +51,7 @@ namespace Web.Controllers
             {
                 var exporter = exporters[format];
 
-                var caseReports = await _caseReports.GetAllAsync() ?? new List<CaseReportForListing>();
+                var caseReports = _caseReports.GetAll() ?? new List<CaseReportForListing>();
                 caseReports = ApplyFilteringAndSorting(caseReports, filter, sortBy, order);
 
                 var stream = new MemoryStream();
@@ -74,9 +76,9 @@ namespace Web.Controllers
 
         [HttpGet("obsolete")]
         [Obsolete]
-        public async Task<IActionResult> GetObsolete()
+        public IActionResult GetObsolete()
         {
-            return Ok(await _caseReportsObsolete.GetAllAsync());
+            return Ok( _caseReportsObsolete.GetAll());
         }
 
         private IEnumerable<CaseReportForListing> ApplyFilteringAndSorting(

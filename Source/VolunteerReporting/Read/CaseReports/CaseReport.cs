@@ -1,16 +1,18 @@
 using System;
-using Concepts;
+using Concepts.CaseReport;
+using Concepts.DataCollector;
+using Concepts.HealthRisk;
 using Dolittle.ReadModels;
 
 namespace Read.CaseReports
 {
     public class CaseReport : IReadModel
     {
-        public Guid Id { get; set; }
+        public CaseReportId Id { get; set; }
 
         public string Message { get; set; }
-        public Guid DataCollectorId { get; set ; }
-        public Guid HealthRiskId { get; set; }
+        public DataCollectorId DataCollectorId { get; set ; }
+        public HealthRiskId HealthRiskId { get; set; }
         public int NumberOfFemalesAged5AndOlder { get; set; }
         public int NumberOfFemalesUnder5 { get; set; }
         public int NumberOfMalesAged5AndOlder { get; set; }
@@ -18,7 +20,7 @@ namespace Read.CaseReports
         public DateTimeOffset Timestamp { get; set; }
         public Location Location { get; set; }
 
-        public CaseReport(Guid id)
+        public CaseReport(CaseReportId id)
         {
             Id = id;
         }

@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using Dolittle.ReadModels;
 using Infrastructure.Read.MongoDb;
+using Concepts.DataCollector;
+using Concepts.CaseReport;
+using Concepts.HealthRisk;
 
 namespace Read.CaseReportsForListing
 {
     public class CaseReportForListing :  IReadModel, IHaveExtraElements
     {
-        public Guid Id { get; set; }
+        public CaseReportId Id { get; set; }
         public IDictionary<string, object> ExtraElements { get; set; }
 
         public CaseReportStatus Status { get; set; }
@@ -30,7 +33,7 @@ namespace Read.CaseReportsForListing
         public string Origin { get; set; }
         public IEnumerable<string> ParsingErrorMessage { get; set; }
 
-        public CaseReportForListing(Guid id)
+        public CaseReportForListing(CaseReportId id)
         {
             Id = id;
         }

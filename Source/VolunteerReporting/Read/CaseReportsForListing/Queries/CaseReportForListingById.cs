@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using Concepts;
+using Concepts.CaseReport;
 using Dolittle.Queries;
 using Infrastructure.Read.MongoDb;
 using Read.CaseReportsForListing.Migration;
@@ -9,7 +11,7 @@ namespace Read.CaseReportsForListing.Queries
     public class CaseReportForListingById : IQueryFor<CaseReportForListing>
     {
         readonly ICaseReportsForListing _collection;
-        public Guid CaseReportId { get; set; }
+        public CaseReportId CaseReportId { get; set; }
 
         public CaseReportForListingById(ICaseReportsForListing collection)
         {

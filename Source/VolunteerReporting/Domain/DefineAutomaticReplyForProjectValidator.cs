@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using Concepts.Project;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
@@ -14,7 +15,7 @@ namespace Domain
             RuleFor(v => v.ProjectId).Must(IsValidProject);
         }
 
-        private bool IsValidProject(Guid projectId)
+        private bool IsValidProject(ProjectId projectId)
         {
             // TODO: When project read model is ready, check if this ID exists
             return true;

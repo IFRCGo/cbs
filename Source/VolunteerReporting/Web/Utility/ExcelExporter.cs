@@ -44,20 +44,21 @@ namespace Web.Utility
 
                 var headers = new SortedDictionary<string, string>
                     {
-                        { "A", "Timestamp" },
-                        { "B", "Status" },
-                        { "C", "Data Collector" },
-                        { "D", "Region" },
-                        { "E", "District" },
-                        { "F", "Village" },
-                        { "G", "Health Risk" },
-                        { "H", "Males < 5" },
-                        { "I", "Males ≥ 5" },
-                        { "J", "Females < 5" },
-                        { "K", "Females ≥ 5" },
-                        { "L", "Lat. / Long." },
-                        { "M", "Message" },
-                        { "N", "Errors" }
+                        { "A", "Date" },
+                        { "B", "Time"},
+                        { "C", "Status" },
+                        { "D", "Data Collector" },
+                        { "E", "Region" },
+                        { "F", "District" },
+                        { "G", "Village" },
+                        { "H", "Health Risk" },
+                        { "I", "Males < 5" },
+                        { "J", "Males ≥ 5" },
+                        { "K", "Females < 5" },
+                        { "L", "Females ≥ 5" },
+                        { "M", "Lat. / Long." },
+                        { "N", "Message" },
+                        { "O", "Errors" }
                     };
 
                 foreach (var header in headers)
@@ -75,66 +76,71 @@ namespace Web.Utility
                 var row = new Row { RowIndex = ++rowIndex };
                 data.Append(row);
 
-                var timestamp = new Cell { CellReference = "A" + rowIndex };
+                var date = new Cell { CellReference = "A" + rowIndex };
+                row.Append(date);
+                date.DataType = new EnumValue<CellValues>(CellValues.Date);
+                date.CellValue = new CellValue(report.Timestamp.ToString("yyyy MMMM dd"));
+
+                var timestamp = new Cell { CellReference = "B" + rowIndex };
                 row.Append(timestamp);
                 timestamp.DataType = new EnumValue<CellValues>(CellValues.String);
-                timestamp.CellValue = new CellValue(report.Timestamp.ToString("yyyy MMMM dd, hh:mm:ss tt"));
+                timestamp.CellValue = new CellValue(report.Timestamp.ToString("HH:mm:ss"));
 
-                var status = new Cell { CellReference = "B" + rowIndex };
+                var status = new Cell { CellReference = "C" + rowIndex };
                 row.Append(status);
                 status.DataType = new EnumValue<CellValues>(CellValues.String);
 
-                var origin = new Cell { CellReference = "C" + rowIndex };
+                var origin = new Cell { CellReference = "D" + rowIndex };
                 row.Append(origin);
                 origin.DataType = new EnumValue<CellValues>(CellValues.String);
                 origin.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorDisplayName : "Origin: " + report.Origin);
 
-                var region = new Cell { CellReference = "D" + rowIndex };
+                var region = new Cell { CellReference = "E" + rowIndex };
                 row.Append(region);
                 region.DataType = new EnumValue<CellValues>(CellValues.String);
                 region.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorRegion : "");
 
-                var district = new Cell { CellReference = "E" + rowIndex };
+                var district = new Cell { CellReference = "F" + rowIndex };
                 row.Append(district);
                 district.DataType = new EnumValue<CellValues>(CellValues.String);
                 district.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorDistrict : "");
 
-                var village = new Cell { CellReference = "F" + rowIndex };
+                var village = new Cell { CellReference = "G" + rowIndex };
                 row.Append(village);
                 village.DataType = new EnumValue<CellValues>(CellValues.String);
                 village.CellValue = new CellValue(report.DataCollectorId != null ? report.DataCollectorVillage : "");
 
-                var healthrisk = new Cell { CellReference = "G" + rowIndex };
+                var healthrisk = new Cell { CellReference = "H" + rowIndex };
                 row.Append(healthrisk);
                 healthrisk.DataType = new EnumValue<CellValues>(CellValues.String);
 
-                var malesUnder5 = new Cell { CellReference = "H" + rowIndex };
+                var malesUnder5 = new Cell { CellReference = "I" + rowIndex };
                 row.Append(malesUnder5);
                 malesUnder5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var malesOver5 = new Cell { CellReference = "I" + rowIndex };
+                var malesOver5 = new Cell { CellReference = "J" + rowIndex };
                 row.Append(malesOver5);
                 malesOver5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var femalesUnder5 = new Cell { CellReference = "J" + rowIndex };
+                var femalesUnder5 = new Cell { CellReference = "K" + rowIndex };
                 row.Append(femalesUnder5);
                 femalesUnder5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var femalesOver5 = new Cell { CellReference = "K" + rowIndex };
+                var femalesOver5 = new Cell { CellReference = "L" + rowIndex };
                 row.Append(femalesOver5);
                 femalesOver5.DataType = new EnumValue<CellValues>(CellValues.Number);
 
-                var location = new Cell { CellReference = "L" + rowIndex };
+                var location = new Cell { CellReference = "M" + rowIndex };
                 row.Append(location);
                 location.DataType = new EnumValue<CellValues>(CellValues.String);
                 location.CellValue = new CellValue(report.Location != null ? report.Location.Latitude + "/" + report.Location.Longitude : "");
 
-                var message = new Cell { CellReference = "M" + rowIndex };
+                var message = new Cell { CellReference = "N" + rowIndex };
                 row.Append(message);
                 message.DataType = new EnumValue<CellValues>(CellValues.String);
                 message.CellValue = new CellValue(report.Message);
 
-                var error = new Cell { CellReference = "N" + rowIndex };
+                var error = new Cell { CellReference = "O" + rowIndex };
                 row.Append(error);
                 error.DataType = new EnumValue<CellValues>(CellValues.String);
 

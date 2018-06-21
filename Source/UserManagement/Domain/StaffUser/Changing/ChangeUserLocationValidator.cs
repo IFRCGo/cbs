@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Changing
 {
-    public class ChangeLocationValidator : CommandInputValidatorFor<ChangeLocation>
+    public class ChangeLocationValidator : CommandInputValidatorFor<ChangeUserLocation>
     {
         public ChangeLocationValidator()
         {

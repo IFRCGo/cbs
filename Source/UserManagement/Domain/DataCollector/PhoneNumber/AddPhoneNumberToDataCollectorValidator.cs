@@ -1,4 +1,5 @@
 using System.Linq;
+using Concepts.DataCollector;
 using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
@@ -8,7 +9,8 @@ namespace Domain.DataCollector.PhoneNumber
         public AddPhoneNumberToDataCollectorValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id is required");
+                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.PhoneNumber)
                 .NotEmpty().WithMessage("Phone Number is required")

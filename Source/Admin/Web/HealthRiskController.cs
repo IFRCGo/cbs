@@ -22,9 +22,9 @@ namespace Web
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            return Ok(await _healthRisks.GetAllAsync());
+            return Ok(_healthRisks.GetAll());
         }
 
         [HttpGet("{id}")]
