@@ -90,6 +90,11 @@
 
   <div class="form-group">
     <label>Location</label>
+    <div *ngIf="user != null">
+        <agm-map [latitude]="user.location.latitude" [longitude]="user.location.longitude" (mapClick)="onLocationSelected($event)">
+            <agm-marker [latitude]="changeLocationCommand.location.latitude" [longitude]="changeLocationCommand.location.longitude"></agm-marker>
+          </agm-map>
+        </div>
     <fieldset class="form-inline">
       <label for="latitude">Latitude</label>
       <input

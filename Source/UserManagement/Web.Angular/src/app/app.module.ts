@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { AgmCoreModule } from '@agm/core';
 
 import { DataCollectorService } from './services/data-collector.service';
 import { CommandCoordinator } from './services/CommandCoordinator';
@@ -75,7 +76,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    NgxSmartModalModule.forRoot()
+    NgxSmartModalModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCB2IPddbweufj2myYTB4NhlLmpr58kU04'
+    })
   ],
   providers: [
     StaffUserService,
