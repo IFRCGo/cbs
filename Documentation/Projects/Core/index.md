@@ -20,6 +20,7 @@ to competency:
 |Einar Ingebrigtsen	|Architecture, Tech	|e: einar@dolittle.com, t: einari
 | Bjørn Rasmussen    | Senior Developer                      | e: bjornfos@gmail.com, Velcrow81 | 
 | Alexander Hoset    | UX | e: alexanderhoset@mac.com, alexanderhoset |
+| Hodo Elmi   | UX | e: hodoea@gmail.com|
 | Samson Gejibo | SMS Proxy| e: samson.gejibo@redcross.no, eprom |
 | Roxanne Moore | Red Cross Business Owner | e: roxanne.moore@ifrc.org |
 | Anine Kongelf| Red Cross Business Owner| e: anine.kongelf@redcross.no |
