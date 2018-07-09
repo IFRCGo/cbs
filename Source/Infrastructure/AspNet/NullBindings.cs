@@ -13,6 +13,10 @@ using Dolittle.Runtime.Events.Publishing.InProcess;
 using Dolittle.Runtime.Events.Storage;
 using Dolittle.Runtime.Execution;
 using Dolittle.Security;
+using Dolittle.Runtime.Commands.Handling;
+
+using Read.StaffUsers;
+using Dolittle.Commands.Handling;
 
 namespace Infrastructure.AspNet
 {
@@ -60,15 +64,16 @@ namespace Infrastructure.AspNet
                         )
                 )
                .StructureMappedTo(_ => _
-                    .Domain("Infrastructure.Events.-^{Feature}.-^{SubFeature}*")
-                    .Domain("Domain.-^{Feature}.-^{SubFeature}*")
-                    .Domain("Domain.-^{Module}.-^{Feature}.-^{SubFeature}*")
-                    .Events("Events.-^{Feature}.-^{SubFeature}*")
-                    .Events("Events.-^{Module}.-^{Feature}.-^{SubFeature}*")
-                    .Read("Read.-^{Feature}.-^{SubFeature}*")
-                    .Read("Read.-^{Module}.-^{Feature}.-^{SubFeature}*")
-                    .Frontend("Web.-^{Feature}.-^{SubFeature}*")
-                    .Frontend("Web.-^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Infrastructure.Events.-^{Feature}.-^{SubFeature}*")
+                    .Include("Infrastructure.Events.-^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Domain.-^{Feature}.-^{SubFeature}*")
+                    .Include("Domain.-^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Events.-^{Feature}.-^{SubFeature}*")
+                    .Include("Events.-^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Read.-^{Feature}.-^{SubFeature}*")
+                    .Include("Read.-^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Web.-^{Feature}.-^{SubFeature}*")
+                    .Include("Web.-^{Module}.-^{Feature}.-^{SubFeature}*")
                 );
 
             (IApplication application, IApplicationStructureMap structureMap)applicationConfiguration = applicationConfigurationBuilder.Build();
@@ -83,6 +88,10 @@ namespace Infrastructure.AspNet
                 DefaultDatabase = "Demo"
             });
             builder.Bind(typeof(IReadModelRepositoryFor<>)).To(typeof(ReadModelRepositoryFor<>));
+
+            builder.Bind(typeof(IApplicationArtifacts)).To(typeof(ApplicationArtifacts));
+            builder.Bind(typeof(ICommandHandlerInvoker)).To(typeof(CommandHandlerInvoker));
+            
         }
     }
 }

@@ -15,6 +15,9 @@ using Read.StaffUsers.DataOwner;
 using Read.StaffUsers.DataVerifier;
 using Read.StaffUsers.SystemConfigurator;
 
+using Dolittle.Applications;
+using Dolittle.Runtime.Commands.Handling;
+
 namespace Web.Controllers
 {
     [Route("api/testdatagenerator")]
@@ -32,6 +35,10 @@ namespace Web.Controllers
         private readonly IDataCollectors _dataCollectors;
         private readonly IGreetingHistories _greetingHistories;
 
+        private readonly IApplicationArtifacts _artifacts;
+
+        private readonly ICommandHandlerInvoker _invoker;
+
         public TestDataGeneratorController(
             ICommandCoordinator commandCoordinator,
             IAdminRepository adminRepository,
@@ -42,7 +49,10 @@ namespace Web.Controllers
             ISystemConfiguratorRepository systemConfiguratorRepository,
 
             IDataCollectors dataCollectors,
-            IGreetingHistories greetingHistories
+            IGreetingHistories greetingHistories,
+
+            IApplicationArtifacts artifacts,
+            ICommandHandlerInvoker invoker
         )
         {
             _commandCoordinator = commandCoordinator;
@@ -55,6 +65,10 @@ namespace Web.Controllers
 
             _dataCollectors = dataCollectors;
             _greetingHistories = greetingHistories;
+
+
+            _artifacts = artifacts;
+            _invoker = invoker;
         }
 
         [HttpGet("generatetestdataset")]
@@ -91,6 +105,7 @@ namespace Web.Controllers
             {
                 cmd.DataCollectorId = Guid.NewGuid();
                 var result = _commandCoordinator.Handle(cmd);
+                System.Console.WriteLine();
             }
 
         }
