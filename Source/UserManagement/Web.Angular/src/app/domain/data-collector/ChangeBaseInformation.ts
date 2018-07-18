@@ -14,6 +14,6 @@ export class ChangeBaseInformation extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#UserManagement.DataCollector-ChangeBaseInformation+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector.Changing-ChangeBaseInformation+Command@1';
     }
 }

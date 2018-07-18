@@ -6,6 +6,6 @@ export class AddPhoneNumberToDataCollector extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#UserManagement.DataCollector-AddPhoneNumberToDataCollector+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector.PhoneNumber-AddPhoneNumberToDataCollector+Command@1';
     }
 }

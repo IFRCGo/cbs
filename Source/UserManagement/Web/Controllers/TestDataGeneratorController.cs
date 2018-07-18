@@ -35,10 +35,6 @@ namespace Web.Controllers
         private readonly IDataCollectors _dataCollectors;
         private readonly IGreetingHistories _greetingHistories;
 
-        private readonly IApplicationArtifacts _artifacts;
-
-        private readonly ICommandHandlerInvoker _invoker;
-
         public TestDataGeneratorController(
             ICommandCoordinator commandCoordinator,
             IAdminRepository adminRepository,
@@ -49,10 +45,8 @@ namespace Web.Controllers
             ISystemConfiguratorRepository systemConfiguratorRepository,
 
             IDataCollectors dataCollectors,
-            IGreetingHistories greetingHistories,
+            IGreetingHistories greetingHistories
 
-            IApplicationArtifacts artifacts,
-            ICommandHandlerInvoker invoker
         )
         {
             _commandCoordinator = commandCoordinator;
@@ -65,10 +59,6 @@ namespace Web.Controllers
 
             _dataCollectors = dataCollectors;
             _greetingHistories = greetingHistories;
-
-
-            _artifacts = artifacts;
-            _invoker = invoker;
         }
 
         [HttpGet("generatetestdataset")]
@@ -105,9 +95,7 @@ namespace Web.Controllers
             {
                 cmd.DataCollectorId = Guid.NewGuid();
                 var result = _commandCoordinator.Handle(cmd);
-                System.Console.WriteLine();
             }
-
         }
 
         [HttpGet("allstaffusercommands")]
@@ -143,13 +131,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                //TODO: Einari, this is  really weird
                 var res = _commandCoordinator.Handle(cmd);
-                var validator = new RegisterNewAdminUserInputValidator();
-
-                var resValidation = validator.Validate(cmd);
-                Console.Write(resValidation);
-                Console.Write(res);
             }
         }
         [HttpGet("alldataconsumercommands")]
@@ -194,7 +176,6 @@ namespace Web.Controllers
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
                 var res = _commandCoordinator.Handle(cmd);
-                Console.Write(res);
             }
         }
         [HttpGet("alldataownercommands")]
