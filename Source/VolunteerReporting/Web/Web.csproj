@@ -2,32 +2,33 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <StartupObject>Web.Program</StartupObject>
   </PropertyGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+</ItemGroup> 
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.8.1" />
     <PackageReference Include="FakeItEasy" Version="4.1.0" />
     <PackageReference Include="iTextSharp" Version="5.5.13" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="Dolittle.Runtime.Queries.Coordination" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
-      <ProjectReference Include="..\Events\Events.csproj" />
-      <ProjectReference Include="..\Events.External\Events.External.csproj" />
-      <ProjectReference Include="..\Read\Read.csproj" />
-      <ProjectReference Include="..\Domain\Domain.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\Kafka\Infrastructure.Kafka.csproj" />
-      <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
-      <ProjectReference Include="..\Concepts\Concepts.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Kafka\Infrastructure.Kafka.csproj" />
+    <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
+    <ProjectReference Include="..\Events.External\Events.External.csproj" />
+    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
 </Project>
