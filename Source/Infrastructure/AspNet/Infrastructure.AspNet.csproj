@@ -59,6 +59,5 @@
     <ProjectReference Include="..\Kafka.BoundedContexts\Infrastructure.Kafka.BoundedContexts.csproj" />
     <ProjectReference Include="..\Read\Infrastructure.Read.csproj" />
     <ProjectReference Include="..\TextMessaging\Infrastructure.TextMessaging.csproj" />
-    <ProjectReference Include="..\..\UserManagement\Read\Read.csproj" />
   </ItemGroup>
 </Project>
