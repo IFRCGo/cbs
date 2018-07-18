@@ -34,12 +34,12 @@
     <PackageReference Include="Dolittle.Runtime.Events.Storage" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Runtime.Events.Publishing.InProcess" Version="2.0.0-alpha2*" />
 
-    <PackageReference Include="Dolittle.AspNetCore.Bootstrap" Version="2.0.0-alpha2.15" />
-    <PackageReference Include="Dolittle.AspNetCore.Commands" Version="2.0.0-alpha2.15" />
-    <PackageReference Include="Dolittle.AspNetCore.Commands.Proxies" Version="2.0.0-alpha2.15" />
-    <PackageReference Include="Dolittle.AspNetCore.ReadModels.Proxies" Version="2.0.0-alpha2.15" />
-    <PackageReference Include="Dolittle.AspNetCore.Queries" Version="2.0.0-alpha2.15" />
-    <PackageReference Include="Dolittle.AspNetCore.Queries.Proxies" Version="2.0.0-alpha2.15" />
+    <PackageReference Include="Dolittle.AspNetCore.Bootstrap" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Commands" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Commands.Proxies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.ReadModels.Proxies" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Queries" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.AspNetCore.Queries.Proxies" Version="2.0.0-alpha2*" />
     
     <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.0.0-alpha2*" />
 

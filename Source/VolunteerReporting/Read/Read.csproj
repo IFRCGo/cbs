@@ -14,7 +14,7 @@
     <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.SDK.Events.Processing" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.SDK.ReadModels" Version="2.0.0-alpha2*" />
-    <PackageReference Include="Dolittle.SDK.Queries" Version="2.0.0-alpha2.206" />
+    <PackageReference Include="Dolittle.SDK.Queries" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
