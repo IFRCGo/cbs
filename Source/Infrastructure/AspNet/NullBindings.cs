@@ -67,7 +67,7 @@ namespace Infrastructure.AspNet
                     )
                 )
                .StructureMappedTo(_ => _
-                    .Include("Infrastructure^.Events.^{Module}.-^{Feature}.-^{SubFeature}*")
+                    .Include("Infrastructure.^Events.^{Module}.-^{Feature}.-^{SubFeature}*")
                     .Include("Domain.^{Module}.-^{Feature}.-^{SubFeature}*")
                     .Include("Events.^{Module}.-^{Feature}.-^{SubFeature}*")
                     .Include("Read.^{Module}.-^{Feature}.-^{SubFeature}*")
