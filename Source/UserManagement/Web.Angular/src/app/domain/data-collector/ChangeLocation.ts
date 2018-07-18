@@ -6,7 +6,7 @@ export class ChangeLocation extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#UserManagement.DataCollector-ChangeLocation+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector.Changing-ChangeLocation+Command@1';
         this.location = new Location();
     }
 }

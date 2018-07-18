@@ -33,7 +33,7 @@ namespace Domain.StaffUser.Changing
             root.ChangeDataOwnerInformation(cmd.Position, cmd.DutyStation);
         }
 
-        public void Handle(ChangeUserLocation cmd)
+        public void Handle(ChangeLocation cmd)
         {
             var root = _repository.Get(cmd.StaffUserId);
 
@@ -47,7 +47,7 @@ namespace Domain.StaffUser.Changing
             root.ChangeNationalSociety(cmd.NationalSociety, cmd.Role);
         }
 
-        public void Handle(ChangeUserPreferredLanguage cmd)
+        public void Handle(ChangePreferredLanguage cmd)
         {
             var root = _repository.Get(cmd.StaffUserId);
 

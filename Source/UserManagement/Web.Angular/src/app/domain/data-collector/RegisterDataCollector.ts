@@ -18,7 +18,7 @@ export class RegisterDataCollector extends Command {
 
     constructor() {
         super();
-        this.type = 'CBS#UserManagement.DataCollector-RegisterDataCollector+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector.Registering-RegisterDataCollector+Command@1';
         this.gpsLocation = new Location();
     }
 }

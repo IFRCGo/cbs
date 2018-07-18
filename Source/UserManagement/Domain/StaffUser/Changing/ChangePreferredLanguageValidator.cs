@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Domain.StaffUser.Changing
 {
-    public class ChangeUserPreferredLanguageValidator : CommandInputValidatorFor<ChangeUserPreferredLanguage>
+    public class ChangeUserPreferredLanguageValidator : CommandInputValidatorFor<ChangePreferredLanguage>
     {
         public ChangeUserPreferredLanguageValidator()
         {

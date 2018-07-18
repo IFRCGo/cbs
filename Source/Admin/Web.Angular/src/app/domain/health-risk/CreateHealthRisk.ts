@@ -24,6 +24,6 @@ export class CreateHealthRisk extends Command{
 
     constructor() {
         super();
-        this.type = 'CBS#Admin.HealthRisk-CreateHealthRisk+Command|Domain'
+        this.type = 'CBS#Admin.HealthRisk-CreateHealthRisk+Command@1'
     }
 }

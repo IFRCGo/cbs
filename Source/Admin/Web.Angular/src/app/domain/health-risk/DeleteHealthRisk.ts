@@ -8,6 +8,6 @@ export class DeleteHealthRisk extends Command {
 
    constructor() {
        super();
-       this.type = 'CBS#Admin.HealthRisk-DeleteHealthRisk+Command|Domain'
+       this.type = 'CBS#Admin.HealthRisk-DeleteHealthRisk+Command@1'
    }
 }

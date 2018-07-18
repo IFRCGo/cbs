@@ -5,6 +5,6 @@ export class ChangeVillage extends Command {
     village: string;
     constructor() {
         super();
-        this.type = 'CBS#UserManagement.DataCollector-ChangeVillage+Command|Domain';
+        this.type = 'CBS#UserManagement.DataCollector.Changing-ChangeVillage+Command@1';
     }
 }
