@@ -15,6 +15,9 @@ using Read.StaffUsers.DataOwner;
 using Read.StaffUsers.DataVerifier;
 using Read.StaffUsers.SystemConfigurator;
 
+using Dolittle.Applications;
+using Dolittle.Runtime.Commands.Handling;
+
 namespace Web.Controllers
 {
     [Route("api/testdatagenerator")]
@@ -43,6 +46,7 @@ namespace Web.Controllers
 
             IDataCollectors dataCollectors,
             IGreetingHistories greetingHistories
+
         )
         {
             _commandCoordinator = commandCoordinator;
@@ -92,7 +96,6 @@ namespace Web.Controllers
                 cmd.DataCollectorId = Guid.NewGuid();
                 var result = _commandCoordinator.Handle(cmd);
             }
-
         }
 
         [HttpGet("allstaffusercommands")]
@@ -128,13 +131,7 @@ namespace Web.Controllers
             foreach (var cmd in commands)
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
-                //TODO: Einari, this is  really weird
                 var res = _commandCoordinator.Handle(cmd);
-                var validator = new RegisterNewAdminUserInputValidator();
-
-                var resValidation = validator.Validate(cmd);
-                Console.Write(resValidation);
-                Console.Write(res);
             }
         }
         [HttpGet("alldataconsumercommands")]
@@ -179,7 +176,6 @@ namespace Web.Controllers
             {
                 cmd.Role.StaffUserId = Guid.NewGuid();
                 var res = _commandCoordinator.Handle(cmd);
-                Console.Write(res);
             }
         }
         [HttpGet("alldataownercommands")]

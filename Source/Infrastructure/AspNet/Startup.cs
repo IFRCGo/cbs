@@ -31,7 +31,7 @@ namespace Infrastructure.AspNet
             _configuration = configuration;
             _loggerFactory = loggerFactory;
 
-            loggerFactory.AddJson(Globals.BoundedContext.Name);
+            loggerFactory.AddJson(Globals.BoundedContext.Name.AsString());
         }
 
         public void ConfigureServices(IServiceCollection services)

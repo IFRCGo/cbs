@@ -1,0 +1,272 @@
+[
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "a4e06fe6-3a08-4a02-a1b6-a8ec2acbd510",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "004dfc58-ec53-42cb-8dd3-f52868580262",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "1fa78a57-08f6-4ba8-b9b5-7e3f7bf26131",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "57fc0175-abad-4f27-9ade-019f98eb530d",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "9511c23b-cd6b-4194-ab6b-6969b5817d00",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "99439909-edef-48a1-a743-b14d56ff2d4e",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "3553341a-c43e-4dee-a4da-5373c8668784",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "1cdc8de8-4658-465d-bbdb-6c2848423965",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "d4e8f993-524f-44a3-bd56-6e470b9759d6",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "1ac58e94-def7-4d1f-af8e-0008ffcb146c",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "3103685a-5b31-40b9-86b5-a9c3e48debf4",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "dc0bbecf-7030-4125-8334-7dfb82910fac",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "8a85199a-d1bf-44da-a9f6-e0e4a248c573",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "15e25656-2eda-4ee9-9812-3c758370f789",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "4f8803de-f6c0-4560-8035-77090a0ae45f",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "8154ffd1-13e8-4164-bc1e-ad2688b972e8",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "6f9ad394-5ed2-4af9-8441-f82c35b3c6df",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "9020dd9e-bcb3-44be-9ca1-bb5d2aae5b5d",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "a4139368-ac5e-486b-9c6c-198e86f5a86b",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "5b171d74-34f2-485b-bf3c-2f60e8d9b1b8",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "d8a42370-77eb-4066-8546-f8c63435d161",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "dd00cd6a-7c8c-469e-b9c3-e97cb9a29231",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "1443b4b5-3756-419e-aa09-4ad1a7728d86",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "cb6a0d1e-9ed5-4ab5-af31-35eb6aeb97e3",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "fd8272e7-026e-46a9-8028-fc6bc82146f1",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "f00c1231-74c1-4d94-9a89-397c27feaed0",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "ce89794c-58ee-49ac-9922-a317fd1f8522",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "80fcd650-2968-472e-b3d2-fc08d2ba9b54",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  },
+  {
+    "Role": {
+      "BirthYear": null,
+      "Sex": null,
+      "NationalSociety": "abcd8c50-a5f0-47d4-bfef-d03b82df7a84",
+      "PreferredLanguage": 0,
+      "PhoneNumbers": [
+        "1234567",
+        "2345678"
+      ],
+      "DutyStation": "duty station",
+      "Position": "position",
+      "StaffUserId": "b04a82b1-16ec-408b-8c81-84f129b32869",
+      "FullName": "Our New User",
+      "DisplayName": "Joe",
+      "Email": "user@redcross.no"
+    }
+  }
+]
