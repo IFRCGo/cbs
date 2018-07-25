@@ -9,6 +9,7 @@ using Dolittle.Queries;
 using Dolittle.Queries.Coordination;
 using Read.DataCollectors.Queries;
 using Web.Utility;
+using Read.DataCollectors.Migration;
 
 namespace Web.Controllers
 {
@@ -18,7 +19,6 @@ namespace Web.Controllers
         private readonly IDataCollectors _dataCollectors;
 
         private readonly IQueryCoordinator _queryCoordinator;
-        
         public DataCollectorsController (
             IDataCollectors dataCollectors,
             IQueryCoordinator queryCoordinator)

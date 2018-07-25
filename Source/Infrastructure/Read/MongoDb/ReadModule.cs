@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Dolittle.ReadModels;
+using Dolittle.Reflection;
 using Dolittle.Types;
 using MongoDB.Bson.Serialization;
 
@@ -21,7 +23,7 @@ namespace Infrastructure.Read.MongoDb
             RegisterBsonClassMaps(readModelHasCustomClassMap);
 
         }
-
+        //TODO: Use Dolittle.Reflection 
         Dictionary<Type, Type> GetHasCustomClassMapDictionary(IList<Type> customClassMapTypes)
         {
             var readModelHasCustomClassMap = new Dictionary<Type, Type>();
@@ -43,8 +45,23 @@ namespace Infrastructure.Read.MongoDb
         {
             foreach (var pair in readModelHasCustomClassMap)
             {
-                if (pair.Value == null)
-                    BsonClassMap.LookupClassMap(pair.Key);
+                if (pair.Value == null) 
+                {
+                    if(pair.Key.HasInterface<IHaveExtraElements>()) 
+                    {
+                        if(BsonClassMap.IsClassMapRegistered(pair.Key)) continue;
+                        var classMap = new BsonClassMap(pair.Key);
+                        
+                        MemberInfo extraElementsMemberInfo = pair.Key.GetMember(nameof(IHaveExtraElements.ExtraElements)).FirstOrDefault();
+                        classMap.AutoMap();
+                        classMap.MapExtraElementsMember(extraElementsMemberInfo);
+                        BsonClassMap.RegisterClassMap(classMap);
+                    }
+                    else 
+                    {
+                        BsonClassMap.LookupClassMap(pair.Key);
+                    }
+                }
                 else
                 {
                     if (!(Activator.CreateInstance(pair.Value) is ICanRegisterBsonClassMap customClassMap))

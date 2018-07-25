@@ -1,12 +1,15 @@
+using System.Collections.Generic;
 using System.Linq;
+using Dolittle.Collections;
 using Dolittle.Queries;
+using Infrastructure.Read.MongoDb;
+using Read.DataCollectors.Migration;
 
 namespace Read.DataCollectors.Queries
 {
     public class AllDataCollectors : IQueryFor<DataCollector>
     {
-        private readonly IDataCollectors _repository;
-
+        readonly IDataCollectors _repository;
         public AllDataCollectors(IDataCollectors repository)
         {
             _repository = repository;
