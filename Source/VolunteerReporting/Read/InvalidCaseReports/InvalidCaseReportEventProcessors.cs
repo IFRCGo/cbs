@@ -1,3 +1,4 @@
+using Concepts.CaseReport;
 using Dolittle.Events.Processing;
 using Events;
 
@@ -40,7 +41,7 @@ namespace Read.InvalidCaseReports
 
         public void Process(CaseReportIdentified @event)
         {
-            _invalidCaseReportsFromUnknownDataCollectors.Delete(r => r.Id.Value == @event.CaseReportId);
+            _invalidCaseReportsFromUnknownDataCollectors.Delete(r => r.Id == (CaseReportId)@event.CaseReportId);
         }
     }
 }

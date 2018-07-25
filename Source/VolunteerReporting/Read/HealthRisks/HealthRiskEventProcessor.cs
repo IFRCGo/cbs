@@ -1,5 +1,6 @@
 using Events.External;
 using Dolittle.Events.Processing;
+using Concepts.HealthRisk;
 
 namespace Read.HealthRisks
 {
@@ -24,7 +25,7 @@ namespace Read.HealthRisks
 
         public void Process(HealthRiskDeleted @event)
         {
-            _healthRisks.Delete(_ => _.Id.Value == @event.HealthRiskId);
+            _healthRisks.Delete(_ => _.Id == (HealthRiskId)@event.HealthRiskId);
         }
     }
 }

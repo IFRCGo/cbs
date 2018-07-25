@@ -16,11 +16,15 @@ namespace Infrastructure.Read.MongoDb
         public ReadModule(IImplementationsOf<IReadModel> readModels, ITypeFinder typeFinder)
         {
             _readModels = readModels;
+            
+
+            BsonSerializer.RegisterSerializationProvider(new ConceptSerializationProvider());
 
             var customClassMapTypes = typeFinder.FindMultiple(typeof(IBsonClassMapForReadModel<>));
             var readModelHasCustomClassMap = GetHasCustomClassMapDictionary(customClassMapTypes.ToList());
 
             RegisterBsonClassMaps(readModelHasCustomClassMap);
+            
 
         }
         //TODO: Use Dolittle.Reflection 

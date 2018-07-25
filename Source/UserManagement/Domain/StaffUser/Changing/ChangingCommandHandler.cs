@@ -33,12 +33,12 @@ namespace Domain.StaffUser.Changing
             root.ChangeDataOwnerInformation(cmd.Position, cmd.DutyStation);
         }
 
-        public void Handle(ChangeLocation cmd)
-        {
-            var root = _repository.Get(cmd.StaffUserId);
+        // public void Handle(ChangeLocation cmd)
+        // {
+        //     var root = _repository.Get(cmd.StaffUserId);
 
-            root.ChangeLocation(cmd.Location, cmd.Role);
-        }
+        //     root.ChangeLocation(cmd.Location, cmd.Role);
+        // }
 
         public void Handle(ChangeNationalSociety cmd)
         {
@@ -47,12 +47,12 @@ namespace Domain.StaffUser.Changing
             root.ChangeNationalSociety(cmd.NationalSociety, cmd.Role);
         }
 
-        public void Handle(ChangePreferredLanguage cmd)
-        {
-            var root = _repository.Get(cmd.StaffUserId);
+        // public void Handle(ChangePreferredLanguage cmd)
+        // {
+        //     var root = _repository.Get(cmd.StaffUserId);
 
-            root.ChangePreferredLanguage(cmd.PreferredLanguage, cmd.Role);
-        }
+        //     root.ChangePreferredLanguage(cmd.PreferredLanguage, cmd.Role);
+        // }
 
         public void Handle(RemoveAssignedNationalSociety cmd)
         {
