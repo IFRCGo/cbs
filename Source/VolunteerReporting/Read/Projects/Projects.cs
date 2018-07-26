@@ -18,7 +18,7 @@ namespace Read.Projects
 
         public IEnumerable<Project> GetAll()
         {
-            return _collection.FindSync(_ => true).ToList();
+            return GetMany(_ => true);
         }
 
         public Project GetById(ProjectId projectId)

@@ -42,7 +42,8 @@ namespace Read.CaseReportsForListing
 
                 DataCollectorDistrict = null,
                 DataCollectorRegion = null,
-                DataCollectorVillage = null
+                DataCollectorVillage = null,
+                
             });
         }
 

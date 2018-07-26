@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Domain.DataCollector.PhoneNumber
 {
-    public class RemovePhoneNumberFromDataCollectorBusinessValidator : CommandBusinessValidatorFor<AddPhoneNumberToDataCollector>
+    public class RemovePhoneNumberFromDataCollectorBusinessValidator : CommandBusinessValidatorFor<RemovePhoneNumberFromDataCollector>
     {
         readonly IDataCollectorRules _dataCollectorRules;
         readonly IPhoneNumberRules _phoneNumberRules;

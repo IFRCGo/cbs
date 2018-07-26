@@ -36,24 +36,24 @@
             <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
-                <span *ngIf="caseReport.healthRiskId" class="label label-success">Success</span>
-                <span *ngIf="!caseReport.healthRiskId" class="label label-danger">Error</span>
+                <span *ngIf="caseReport.status === 0 || caseReport.status === 2" class="label label-success">Success</span>
+                <span *ngIf="caseReport.status === 1 || caseReport.status === 3" class="label label-danger">Error</span>
             </td>
             
-            <ng-container *ngIf="caseReport.dataCollectorId">
+            <ng-container *ngIf="caseReport.status === 0 || caseReport.status === 1">
                 <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
             </ng-container>
-            <ng-container *ngIf="!caseReport.dataCollectorId">
+            <ng-container *ngIf="caseReport.status === 2 || caseReport.status === 3">
                 <td>Origin:{{caseReport.origin}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
             </ng-container>
             
-            <ng-container *ngIf="caseReport.healthRiskId">
+            <ng-container *ngIf="caseReport.status === 0 || caseReport.status === 1">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfMalesUnder5}}</td>
@@ -61,7 +61,7 @@
                 <td>{{caseReport.numberOfFemalesUnder5}}</td>
                 <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
             </ng-container>
-            <ng-container *ngIf="!caseReport.healthRiskId">
+            <ng-container *ngIf="caseReport.status === 2 || caseReport.status === 3">
                 <td colspan="5">
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
