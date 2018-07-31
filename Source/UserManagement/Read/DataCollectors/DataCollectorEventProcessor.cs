@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Concepts;
+using Concepts.DataCollector;
 using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.External;
@@ -38,7 +39,7 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorUserInformationChanged @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId, Builders<DataCollector>.Update.Combine(
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId, Builders<DataCollector>.Update.Combine(
                     Builders<DataCollector>.Update.Set(d => d.FullName, @event.FullName),
                     Builders<DataCollector>.Update.Set(d => d.DisplayName, @event.DisplayName),
                     Builders<DataCollector>.Update.Set(d => d.Sex, (Sex) @event.Sex),
@@ -51,53 +52,53 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorLocationChanged @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Location, new Location(@event.LocationLatitude,@event.LocationLongitude)));
 
         }
 
         public void Process(DataCollectorPreferredLanguageChanged @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.PreferredLanguage, (Language)@event.Language));
             
         }
 
         public void Process(DataCollectorVillageChanged @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village));
         }
 
         public void Process(DataCollectorRemoved @event)
         {
-            _dataCollectors.Delete(d => d.Id.Value == @event.DataCollectorId);
+            _dataCollectors.Delete(d => d.Id == (DataCollectorId)@event.DataCollectorId);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, new PhoneNumber(@event.PhoneNumber)));
             
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));
             
         }
 
         public void Process(CaseReportReceived @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id ==  (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
             
         }
 
         public void Process(InvalidReportReceived @event)
         {
-            _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
         }
     }

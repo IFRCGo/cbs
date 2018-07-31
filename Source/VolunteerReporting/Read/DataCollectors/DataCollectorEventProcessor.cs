@@ -5,6 +5,7 @@
 using Events.External;
 using Dolittle.Events.Processing;
 using MongoDB.Driver;
+using Concepts.DataCollector;
 
 namespace Read.DataCollectors
 {
@@ -48,24 +49,24 @@ namespace Read.DataCollectors
         public void Process(DataCollectorVillageChanged @event)
         {
             
-            var updateRes = _dataCollectors.Update(d => d.Id.Value == @event.DataCollectorId,
+            var updateRes = _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.Village, @event.Village ?? "Unknown"));
         }
 
         //TODO: Is this something that makes sense, should we be able to remove a datacollector from VR?
         public void Process(DataCollectorRemoved @event)
         {
-            var deleteRes = _dataCollectors.Delete(d => d.Id.Value == @event.DataCollectorId);
+            var deleteRes = _dataCollectors.Delete(d => d.Id == (DataCollectorId)@event.DataCollectorId);
         }
 
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var updateRes = _dataCollectors.AddPhoneNumber(d => d.Id.Value == @event.DataCollectorId, @event.PhoneNumber);
+            var updateRes = _dataCollectors.AddPhoneNumber(d => d.Id == (DataCollectorId)@event.DataCollectorId, @event.PhoneNumber);
         }
 
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            var updateRes = _dataCollectors.RemovePhoneNumber(d => d.Id.Value == @event.DataCollectorId, @event.PhoneNumber);
+            var updateRes = _dataCollectors.RemovePhoneNumber(d => d.Id == (DataCollectorId)@event.DataCollectorId, @event.PhoneNumber);
         }
     }
 }
