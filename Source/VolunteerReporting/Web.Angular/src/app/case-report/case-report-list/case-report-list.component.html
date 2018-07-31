@@ -53,7 +53,7 @@
                 <td></td>
             </ng-container>
             
-            <ng-container *ngIf="caseReport.status === 0 || caseReport.status === 1">
+            <ng-container *ngIf="caseReport.status === 0 || caseReport.status === 2">
                 <!-- <td>{{caseReport.healthRisk?.readableId}}: {{caseReport.healthRisk?.name}}</td> !-->
                 <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfMalesUnder5}}</td>
@@ -61,7 +61,7 @@
                 <td>{{caseReport.numberOfFemalesUnder5}}</td>
                 <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
             </ng-container>
-            <ng-container *ngIf="caseReport.status === 2 || caseReport.status === 3">
+            <ng-container *ngIf="caseReport.status === 1 || caseReport.status === 3">
                 <td colspan="5">
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
