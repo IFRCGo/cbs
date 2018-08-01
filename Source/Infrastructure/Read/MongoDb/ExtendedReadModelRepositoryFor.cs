@@ -23,6 +23,11 @@ namespace Infrastructure.Read.MongoDb
         protected readonly IMongoDatabase _database;
         protected readonly IMongoCollection<T> _collection;
 
+        /// <summary>
+        /// CosmosDb is apparently not liking it when we are not filtering the queries...
+        /// When using this, be sure to define a Where-clause or sommething.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<T> Query => _collection.AsQueryable();
 
         public ExtendedReadModelRepositoryFor(IMongoDatabase database, IMongoCollection<T> collection)

@@ -12,6 +12,6 @@ namespace Read.ProjectFeatures.Queries
             _collection = collection;
         }
 
-        public IQueryable<Project> Query => _collection.Query;
+        public IQueryable<Project> Query => _collection.Query.Where(_ => true);
     }
 }

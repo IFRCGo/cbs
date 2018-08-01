@@ -13,6 +13,6 @@ namespace Read.AutomaticReplyMessages.Queries
             _collection = collection;
         }
 
-        public IQueryable<ReplyMessagesConfig> Query => _collection.Query;
+        public IQueryable<ReplyMessagesConfig> Query => _collection.Query.Where(_ => true);
     }
 }
