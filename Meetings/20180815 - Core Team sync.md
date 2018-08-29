@@ -74,9 +74,12 @@ The team from Redcross and UX team will discuss updates on UX design next week, 
 
 ## Updates from the Core team:
 
-Alex will check Angular component replacement for google map with openstreet map, DoLittle will be request to update production server to match the dev server.
-Alex will check use of Trello board for list of Bounded context event migration. There is a concensences to keep Events as Github issue for discussion and document approved issue in one location as Markdown. 
-Jacob will reach out professors who works at Sintef and Oslo univeristy and Høgskolan professor for possible collaboration on use of CBS for master's degree projects 
+* Alex will check Angular component replacement for google map with openstreet map, DoLittle will be request to update
+production server to match the dev server.
+
+* Alex will check use of Trello board for list of Bounded context event migration. There is a concensences to keep Events as Github issue for discussion and document approved issue in one location as Markdown. 
+
+* Jacob will reach out professors who works at Sintef and Oslo univeristy and Høgskolan professor for possible collaboration on use of CBS for master's degree projects 
 
 
 
