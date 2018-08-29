@@ -67,9 +67,10 @@ Pushed "Setup test and production environment" to Milestone 5.
 
 ## Before Codeathon 3.0
 
-44 volunteers have been registered so far.
-Rebecca will send out list of volunteers to the core team, this help us to group and assign them tasks before codeathon
-The team from Redcross and UX team will discuss updates on UX design next week, possible on Monday 3.9 or Tuesday 4.9
+* 44 volunteers have been registered so far.
+
+* Rebecca will send out list of registered volunteers to the core team, this help us to group and assign them tasks before codeathon
+* Red cross team and UX team will discuss updates on UX design next week, possiblely on Monday 3.9 or Tuesday 4.9
 
 
 ## Updates from the Core team:
@@ -77,9 +78,9 @@ The team from Redcross and UX team will discuss updates on UX design next week, 
 * Alex will check Angular component replacement for google map with openstreet map, DoLittle will be request to update
 production server to match the dev server.
 
-* Alex will check use of Trello board for list of Bounded context event migration. There is a concensences to keep Events as Github issue for discussion and document approved issue in one location as Markdown. 
+* Alex will check use of Trello board for list of Bounded context event migration. There is a consensus to keep Events as Github issue for discussion and document approved events in one location as Markdown. 
 
-* Jacob will reach out professors who works at Sintef and Oslo univeristy and Høgskolan professor for possible collaboration on use of CBS for master's degree projects 
+* Jacob will reach out professors who works at Sintef and Oslo university and Høgskolan for possible collaboration on use of CBS for master's degree projects
 
 
 
