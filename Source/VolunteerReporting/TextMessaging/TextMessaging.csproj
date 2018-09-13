@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
@@ -14,8 +13,6 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Dolittle.SDK.Domain" Version="2.0.0-alpha2*"/>
-    <PackageReference Include="Dolittle.SDK.Events" Version="2.0.0-alpha2*"/>
   </ItemGroup>
   
 

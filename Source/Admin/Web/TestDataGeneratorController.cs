@@ -11,7 +11,6 @@ using Events.External;
 using Events.HealthRisk;
 using Events.Project;
 using Infrastructure.AspNet;
-using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -26,7 +25,6 @@ namespace Web
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IEventReplayer _eventReplayer;
         private readonly IHealthRisks _healthRisks;
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
@@ -49,13 +47,11 @@ namespace Web
         };
 
         public TestDataGeneratorController(
-            IEventReplayer eventReplayer,
             IHealthRisks healthRisks,
             IUsers users,
             INationalSocieties nationalSocieties,
             IProjects projects)
         {
-            _eventReplayer = eventReplayer;
             _healthRisks = healthRisks;
             _users = users;
             _nationalSocieties = nationalSocieties;
@@ -99,7 +95,7 @@ namespace Web
                         Threshold = 0
                     });
                 }
-                _eventReplayer.Replay(events, e => e.HealthRiskId);
+                // _eventReplayer.Replay(events, e => e.HealthRiskId);
             }
         }
 
@@ -110,7 +106,7 @@ namespace Web
 
             var projects =
                 JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            _eventReplayer.Replay(projects, e => e.Id);
+            // _eventReplayer.Replay(projects, e => e.Id);
         }
 
         [HttpGet("nationalsocieties")]
@@ -121,7 +117,7 @@ namespace Web
             var societies =
                 JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
                     System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            _eventReplayer.Replay(societies, e => e.Id);
+            // _eventReplayer.Replay(societies, e => e.Id);
         }
 
         [HttpGet("users")]
@@ -142,7 +138,7 @@ namespace Web
                     user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
             }
-            _eventReplayer.Replay(users, e => e.Id);
+            // _eventReplayer.Replay(users, e => e.Id);
         }
 
         [HttpGet("createhealthrisks")]
@@ -153,7 +149,7 @@ namespace Web
             var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
                 System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
             
-            _eventReplayer.Replay(risks, e => e.Id);
+            // _eventReplayer.Replay(risks, e => e.Id);
         }
 
         [HttpGet("createprojectsjson")]
