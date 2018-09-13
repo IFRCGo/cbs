@@ -6,8 +6,6 @@ using Autofac;
 using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.DependencyInversion.Autofac;
 using Infrastructure.AspNet.ConnectionStrings;
-using Infrastructure.Kafka.BoundedContexts;
-using Infrastructure.TextMessaging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,8 +28,8 @@ namespace Infrastructure.AspNet
             _env = env;
             _configuration = configuration;
             _loggerFactory = loggerFactory;
-
-            loggerFactory.AddJson(Globals.BoundedContext.Name.AsString());
+            /// Setup logging for a bounded context
+            loggerFactory.AddJson("");
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -75,9 +73,6 @@ namespace Infrastructure.AspNet
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
-            BoundedContextListener.Start(app.ApplicationServices);
-            TextMessageListener.Start(app.ApplicationServices);
 
             ConfigureCustom(app, env);
 
