@@ -1,5 +1,5 @@
 using Dolittle.Domain;
-using Events;
+using Events.MessageGenerator;
 using System;
 
 namespace Domain.MessageGenerator

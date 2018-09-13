@@ -1,6 +1,7 @@
 using Concepts.CaseReport;
 using Dolittle.Events.Processing;
 using Events;
+using Events.CaseReports;
 using Read.DataCollectors;
 using Read.HealthRisks;
 

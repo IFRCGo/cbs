@@ -14,7 +14,9 @@ namespace Read.HealthRiskFeatures
 
         public string Name { get; set; }
         public int ReadableId { get; set; }
-        public int? Threshold { get; set; }
+        
+        //TODO: Have this again when dolittle build tool supports nullables 
+        // public int? Threshold { get; set; }
         public string CaseDefinition { get; set; }
         public string Note { get; set; } //TODO: Should this be removed?
         public string CommunityCase { get; set; } //TODO: Should this be removed?

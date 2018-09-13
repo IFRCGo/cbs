@@ -22,8 +22,9 @@ namespace Read.DataCollectors
 
         public void Process(DataCollectorRegistered @event)
         {
-            _dataCollectors.Insert(new DataCollector(@event.DataCollectorId)
+            _dataCollectors.Insert(new DataCollector()
             {
+                Id = @event.DataCollectorId,
                 DisplayName = @event.DisplayName,
                 FullName = @event.FullName,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
@@ -91,15 +92,17 @@ namespace Read.DataCollectors
 
         public void Process(CaseReportReceived @event)
         {
-            _dataCollectors.Update(d => d.Id ==  (DataCollectorId)@event.DataCollectorId,
-                Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+            // TODO:
+            // _dataCollectors.Update(d => d.Id ==  (DataCollectorId)@event.DataCollectorId,
+            //     Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
             
         }
 
         public void Process(InvalidReportReceived @event)
         {
-            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
-                Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+            // TODO:
+            // _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
+            //     Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
         }
     }
 }

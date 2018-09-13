@@ -10,6 +10,7 @@ using Concepts.AutomaticReply;
 using Concepts.HealthRisk;
 using Dolittle.Events;
 using Events;
+using Events.AutomaticReplyMessages;
 using Events.External;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;

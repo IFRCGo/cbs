@@ -1,8 +1,8 @@
-namespace Domain.StaffUser
-{
+// namespace Domain.StaffUser
+// {
 
-    public interface IRequirePosition 
-    {
-        string Position { get; }
-    }
-}
+//     public interface IRequirePosition 
+//     {
+//         string Position { get; }
+//     }
+// }

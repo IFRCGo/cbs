@@ -6,9 +6,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Events;
 using Events.External;
 using Events.HealthRisk;
+using Events.NationalSociety;
 using Events.Project;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;

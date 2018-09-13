@@ -1,6 +1,7 @@
 using Dolittle.Events.Processing;
 using Events;
 using Events.DataCollector;
+using Events.MessageGenerator;
 
 namespace Read.GreetingGenerators
 {

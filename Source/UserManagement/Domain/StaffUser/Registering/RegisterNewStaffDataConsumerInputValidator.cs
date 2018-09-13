@@ -1,8 +1,8 @@
 
-namespace Domain.StaffUser.Registering
-{
-    public class RegisterNewStaffDataConsumerInputValidator 
-                    : NewStaffRegistrationInputValidator<RegisterNewStaffDataConsumer, Roles.DataConsumer>
-    {
-    }    
-}
+// namespace Domain.StaffUser.Registering
+// {
+//     public class RegisterNewStaffDataConsumerInputValidator 
+//                     : NewStaffRegistrationInputValidator<RegisterNewStaffDataConsumer, Roles.DataConsumer>
+//     {
+//     }    
+// }

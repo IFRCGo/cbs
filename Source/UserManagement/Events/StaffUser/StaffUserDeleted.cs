@@ -1,15 +1,15 @@
-using System;
-using Dolittle.Events;
+// using System;
+// using Dolittle.Events;
 
-namespace Events.StaffUser
-{
-    public class StaffUserDeleted : IEvent
-    {
-        public Guid StaffUserId { get; set; }
+// namespace Events.StaffUser
+// {
+//     public class StaffUserDeleted : IEvent
+//     {
+//         public Guid StaffUserId { get; set; }
 
-        public StaffUserDeleted(Guid staffUserId)
-        {
-            StaffUserId = staffUserId;
-        }
-    }
-}
+//         public StaffUserDeleted(Guid staffUserId)
+//         {
+//             StaffUserId = staffUserId;
+//         }
+//     }
+// }

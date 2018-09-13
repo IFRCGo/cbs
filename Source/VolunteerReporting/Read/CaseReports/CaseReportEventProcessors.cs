@@ -3,6 +3,7 @@ using Concepts.DataCollector;
 using Dolittle.Events.Processing;
 using Events;
 using Concepts.CaseReport;
+using Events.CaseReports;
 
 namespace Read.CaseReports
 {

@@ -37,8 +37,9 @@ namespace Read.HealthRiskFeatures
 
         public void Process(ThresholdAddedToHealthRIsk @event)
         {
-            _healthRisks.Update(_ => _.Id == @event.HealthRiskId,
-                Builders<HealthRisk>.Update.Set(_ => _.Threshold, @event.Threshold));
+        //TODO: Have this again when dolittle build tool supports nullables 
+            // _healthRisks.Update(_ => _.Id == @event.HealthRiskId,
+            //     Builders<HealthRisk>.Update.Set(_ => _.Threshold, /*@event.Threshold));
         }
 
         public void Process(HealthRiskModified @event)

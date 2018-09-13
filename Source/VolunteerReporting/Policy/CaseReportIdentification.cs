@@ -7,6 +7,7 @@ using Read.DataCollectors;
 using Read.InvalidCaseReports;
 using Concepts.CaseReport;
 using Concepts.DataCollector;
+using Domain.CaseReports;
 
 namespace Policy
 {

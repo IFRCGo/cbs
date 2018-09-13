@@ -1,9 +1,9 @@
 
-namespace Domain.StaffUser
-{
+// namespace Domain.StaffUser
+// {
 
-    public interface ISupportBirthYear 
-    {
-        int? BirthYear { get; }
-    }
-}
+//     public interface ISupportBirthYear 
+//     {
+//         int? BirthYear { get; }
+//     }
+// }

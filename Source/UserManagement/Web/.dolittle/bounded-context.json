@@ -1,0 +1,66 @@
+{
+  "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+  "boundedContext": "c0d4476e-3a9e-4fd4-a734-fa151dff9c98",
+  "boundedContextName": "User Management",
+  "useModules": false,
+  "proxiesBasePath": "../Web.Angular/src/proxies",
+  "namespaceSegmentsToStrip": {},
+  "topology": {
+    "modules": [],
+    "features": [
+      {
+        "feature": "98ce5271-2da3-4ac3-a47d-ef7b06b0e19c",
+        "name": "MessageGenerator",
+        "subFeatures": []
+      },
+      {
+        "feature": "54490188-b3b4-4eb2-b901-3d240cd0a4c6",
+        "name": "DataCollector",
+        "subFeatures": [
+          {
+            "feature": "e22bc7e4-1d99-4c99-bc72-18ac9f66f654",
+            "name": "Registering",
+            "subFeatures": []
+          },
+          {
+            "feature": "20851dea-2e72-48ea-a0f3-505f32ce6ce3",
+            "name": "PhoneNumber",
+            "subFeatures": []
+          },
+          {
+            "feature": "1ebd3feb-2791-45f9-b2c1-c679b4848a94",
+            "name": "Changing",
+            "subFeatures": []
+          }
+        ]
+      },
+      {
+        "feature": "b5384ff7-de9d-4f6d-8d05-2f61f59cfc48",
+        "name": "External",
+        "subFeatures": []
+      },
+      {
+        "feature": "588ef784-23d8-447b-b8dc-23689771da4f",
+        "name": "GreetingGenerators",
+        "subFeatures": [
+          {
+            "feature": "0c2d78f4-b506-495d-9204-720f17faee10",
+            "name": "Queries",
+            "subFeatures": []
+          }
+        ]
+      },
+      {
+        "feature": "1074668a-c716-40f0-b114-10675114af2f",
+        "name": "DataCollectors",
+        "subFeatures": [
+          {
+            "feature": "70e266a0-b869-430c-a812-0e56deb03d78",
+            "name": "Queries",
+            "subFeatures": []
+          }
+        ]
+      }
+    ]
+  }
+}
