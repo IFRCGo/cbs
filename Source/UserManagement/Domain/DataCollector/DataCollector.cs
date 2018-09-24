@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Concepts;
 using Dolittle.Domain;
-using Domain.DataCollector.Changing;
 using Domain.DataCollector.Registering;
 using Events.DataCollector;
 
@@ -24,7 +23,8 @@ namespace Domain.DataCollector
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
-            string region, string district
+            string region, string district,
+            Guid registeredBy
             )
         {
             if (_isRegistered)
@@ -44,8 +44,8 @@ namespace Domain.DataCollector
                 gpsLocation.Latitude,
                 registeredAt,
                 region,
-                district
-                
+                district,
+                registeredBy
             ));
 
             foreach (var phoneNumber in phoneNumbers)
