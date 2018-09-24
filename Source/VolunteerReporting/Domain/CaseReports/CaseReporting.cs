@@ -24,17 +24,7 @@ namespace Domain.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidReportReceived
-            {
-                CaseReportId = EventSourceId,
-                DataCollectorId = collector,
-                Origin = origin,
-                Message = originalMessage,
-                ErrorMessages = errorMessages,
-                Timestamp = timestamp,
-                Longitude = longitude,
-                Latitude = latitude
-            });
+            Apply(new InvalidReportReceived(EventSourceId, collector, origin, originalMessage, longitude, latitude, timestamp));
         }
 
         public void ReportInvalidReportFromUnknownDataCollector(
@@ -43,14 +33,7 @@ namespace Domain.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidReportFromUnknownDataCollectorReceived
-            {
-                CaseReportId = EventSourceId,
-                Origin = origin,
-                Message = originalMessage,
-                ErrorMessages = errorMessages,
-                Timestamp = timestamp
-            });
+            Apply(new InvalidReportFromUnknownDataCollectorReceived(EventSourceId, origin, originalMessage, errorMessages, timestamp));
 
         }
 
@@ -67,21 +50,9 @@ namespace Domain.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportReceived
-            {
-                CaseReportId = EventSourceId,
-                DataCollectorId = dataCollectorId,
-                HealthRiskId = healthRiskId,
-                Origin = origin,
-                NumberOfMalesUnder5 = numberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder,
-                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
-                Longitude = longitude,
-                Latitude = latitude,
-                Timestamp = timestamp,
-                Message = message
-            });
+            Apply(new CaseReportReceived(EventSourceId, dataCollectorId, healthRiskId, origin, message, 
+                numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
+                longitude, latitude, timestamp));
         }        
 
         public void ReportFromUnknownDataCollector(
@@ -94,29 +65,15 @@ namespace Domain.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportFromUnknownDataCollectorReceived
-            {
-                CaseReportId = EventSourceId,
-                Origin = origin,
-                HealthRiskId = healthRiskId,
-                NumberOfFemalesUnder5 = numberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder,
-                NumberOfMalesUnder5 = numberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder,
-                Timestamp = timestamp,
-                Message = message
-            });
+            Apply(new CaseReportFromUnknownDataCollectorReceived(EventSourceId, healthRiskId, origin, message, timestamp,
+                numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder));
         }      
         
         public void ReportFromUnknownDataCollectorIdentiefied(
-            DataCollectorId DataCollectorId
+            DataCollectorId dataCollectorId
             )
         {
-            Apply(new CaseReportIdentified
-            {
-                CaseReportId = EventSourceId,
-                DataCollectorId = DataCollectorId
-            });
+            Apply(new CaseReportIdentified(EventSourceId, dataCollectorId));
         }
     }
 }

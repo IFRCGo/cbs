@@ -9,14 +9,27 @@ namespace Events.CaseReports
 {
     public class CaseReportFromUnknownDataCollectorReceived : IEvent
     {
-        public Guid CaseReportId { get; set; }
-        public Guid HealthRiskId { get; set; }
-        public string Origin { get; set; }
-        public string Message { get; set; }
-        public DateTimeOffset Timestamp { get; set; }
-        public int NumberOfMalesUnder5 { get; set; }
-        public int NumberOfMalesAged5AndOlder { get; set; }
-        public int NumberOfFemalesUnder5 { get; set; }
-        public int NumberOfFemalesAged5AndOlder { get; set; }       
+        public CaseReportFromUnknownDataCollectorReceived(Guid caseReportId, Guid healthRiskId, string origin, string message, DateTimeOffset timestamp, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder) 
+        {
+            this.CaseReportId = caseReportId;
+            this.HealthRiskId = healthRiskId;
+            this.Origin = origin;
+            this.Message = message;
+            this.Timestamp = timestamp;
+            this.NumberOfMalesUnder5 = numberOfMalesUnder5;
+            this.NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder;
+            this.NumberOfFemalesUnder5 = numberOfFemalesUnder5;
+            this.NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder;
+               
+        }
+        public Guid CaseReportId { get; }
+        public Guid HealthRiskId { get; }
+        public string Origin { get; }
+        public string Message { get; }
+        public DateTimeOffset Timestamp { get; }
+        public int NumberOfMalesUnder5 { get; }
+        public int NumberOfMalesAged5AndOlder { get; }
+        public int NumberOfFemalesUnder5 { get; }
+        public int NumberOfFemalesAged5AndOlder { get; }       
     }
 }

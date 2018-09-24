@@ -10,13 +10,25 @@ namespace Events.CaseReports
 {
     public class InvalidReportReceived : IEvent
     {
-        public Guid CaseReportId { get; set; }
-        public Guid DataCollectorId { get; set; }
-        public string Origin { get; set; }
-        public string Message { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
-        public IEnumerable<string> ErrorMessages { get; set; }
-        public DateTimeOffset Timestamp { get; set; }
+        public InvalidReportReceived(Guid caseReportId, Guid dataCollectorId, string origin, 
+            string message, double longitude, double latitude, DateTimeOffset timestamp) 
+        {
+            this.CaseReportId = caseReportId;
+            this.DataCollectorId = dataCollectorId;
+            this.Origin = origin;
+            this.Message = message;
+            this.Longitude = longitude;
+            this.Latitude = latitude;
+            this.Timestamp = timestamp;
+               
+        }
+        public Guid CaseReportId { get; }
+        public Guid DataCollectorId { get; }
+        public string Origin { get; }
+        public string Message { get; }
+        public double Longitude { get; }
+        public double Latitude { get; }
+        public IEnumerable<string> ErrorMessages { get; }
+        public DateTimeOffset Timestamp { get; }
     }
 }

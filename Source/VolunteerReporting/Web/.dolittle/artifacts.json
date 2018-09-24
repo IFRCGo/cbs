@@ -120,31 +120,6 @@
       "commands": [],
       "events": [
         {
-          "artifact": "10ce443c-63d3-4240-a1bd-4a6cca6db07f",
-          "generation": 1,
-          "type": "Events.External.DataCollectorLocationChanged, Events.External"
-        },
-        {
-          "artifact": "3971ef19-9e3f-430f-aa75-d0aa65b7eb98",
-          "generation": 1,
-          "type": "Events.External.DataCollectorRegistered, Events.External"
-        },
-        {
-          "artifact": "af62a7a4-e5f7-4d25-b73b-80d4b05621bb",
-          "generation": 1,
-          "type": "Events.External.DataCollectorRemoved, Events.External"
-        },
-        {
-          "artifact": "ecc050d8-ee96-4161-9075-011ae41c61d7",
-          "generation": 1,
-          "type": "Events.External.DataCollectorUserInformationChanged, Events.External"
-        },
-        {
-          "artifact": "56b725bd-61f6-408c-9dc4-4bf9b79747ca",
-          "generation": 1,
-          "type": "Events.External.DataCollectorVillageChanged, Events.External"
-        },
-        {
           "artifact": "30c198f0-cc69-44a7-bfd8-7eead00cf0c9",
           "generation": 1,
           "type": "Events.External.DefaultAutomaticReplyDefined, Events.External"
@@ -155,37 +130,62 @@
           "type": "Events.External.DefaultAutomaticReplyKeyMessageDefined, Events.External"
         },
         {
-          "artifact": "cdbec43f-8a45-4835-a0e4-25079c76f2da",
+          "artifact": "c7343b03-263f-4920-908e-64234a5151ec",
+          "generation": 1,
+          "type": "Events.External.DataCollectorLocationChanged, Events.External"
+        },
+        {
+          "artifact": "e32459e9-02c1-4da8-b2c8-d4c26f534856",
+          "generation": 1,
+          "type": "Events.External.DataCollectorRegistered, Events.External"
+        },
+        {
+          "artifact": "b0121c6e-fe6f-45e6-a669-6fc0382fac29",
+          "generation": 1,
+          "type": "Events.External.DataCollectorRemoved, Events.External"
+        },
+        {
+          "artifact": "5c95f21a-1790-4f80-b7a5-dbe2416ef7d4",
+          "generation": 1,
+          "type": "Events.External.DataCollectorUserInformationChanged, Events.External"
+        },
+        {
+          "artifact": "019edaf2-25ab-49e8-95eb-fbd034654025",
+          "generation": 1,
+          "type": "Events.External.DataCollectorVillageChanged, Events.External"
+        },
+        {
+          "artifact": "43c5c245-40ff-426d-a6f7-226427c142bb",
           "generation": 1,
           "type": "Events.External.HealthRiskCreated, Events.External"
         },
         {
-          "artifact": "43af61c2-42ad-499a-9bfb-bb8eadce4c4f",
+          "artifact": "52a974ab-383c-4750-b788-528f43b7ebf8",
           "generation": 1,
           "type": "Events.External.HealthRiskDeleted, Events.External"
         },
         {
-          "artifact": "f5214225-886f-4efb-a112-19c1db63b178",
+          "artifact": "8ba78d0d-1944-463e-bcad-11a037adf743",
           "generation": 1,
           "type": "Events.External.HealthRiskModified, Events.External"
         },
         {
-          "artifact": "891f61b8-5d8f-4027-8fec-e4f4d0fd9d5e",
+          "artifact": "f04ec357-cac5-468f-9fab-9e822be1360e",
           "generation": 1,
           "type": "Events.External.PhoneNumberAddedToDataCollector, Events.External"
         },
         {
-          "artifact": "d5c39a7d-f11d-4f87-a784-5b12c5c2e939",
+          "artifact": "0a4fa57d-082b-4229-a508-d13e20376d31",
           "generation": 1,
           "type": "Events.External.PhoneNumberRemovedFromDataCollector, Events.External"
         },
         {
-          "artifact": "2e47260c-3a80-4b57-bef3-c9d5bcb26426",
+          "artifact": "8c120f9a-1f56-43b4-a12a-2bfa5699bc21",
           "generation": 1,
           "type": "Events.External.ProjectCreated, Events.External"
         },
         {
-          "artifact": "68fc677d-e88d-433b-8106-78e6a1f52d19",
+          "artifact": "753c49a2-8b97-4823-8e76-c5fe80a432db",
           "generation": 1,
           "type": "Events.External.ProjectUpdated, Events.External"
         }

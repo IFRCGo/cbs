@@ -7,10 +7,19 @@ namespace Events.AutomaticReplyMessages
 {
     public class AutomaticReplyDefined : IEvent
     {
-        public Guid Id { get; set; }
-        public Guid ProjectId { get; set; }
-        public int Type { get; set; }
-        public string Language { get; set; }
-        public string Message { get; set; }
+        public AutomaticReplyDefined(Guid id, Guid projectId, int type, string language, string message) 
+        {
+            this.Id = id;
+            this.ProjectId = projectId;
+            this.Type = type;
+            this.Language = language;
+            this.Message = message;
+               
+        }
+        public Guid Id { get; }
+        public Guid ProjectId { get; }
+        public int Type { get; }
+        public string Language { get; }
+        public string Message { get; }
     }
 }

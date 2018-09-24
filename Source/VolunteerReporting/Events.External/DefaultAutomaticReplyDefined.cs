@@ -1,3 +1,4 @@
+using Dolittle.Artifacts;
 using Dolittle.Events;
 using System;
 

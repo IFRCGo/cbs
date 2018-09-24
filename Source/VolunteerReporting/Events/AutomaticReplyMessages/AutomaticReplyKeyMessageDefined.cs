@@ -7,12 +7,22 @@ namespace Events.AutomaticReplyMessages
 {
     public class AutomaticReplyKeyMessageDefined : IEvent
     {
-
-        public Guid Id { get; set; }
-        public Guid ProjectId { get; set; }
-        public Guid HealthRiskId { get; set; }
-        public int Type { get; set; }
-        public string Language { get; set; }
-        public string Message { get; set; }
+        
+        public AutomaticReplyKeyMessageDefined(Guid id, Guid projectId, Guid healthRiskId, int type, string language, string message) 
+        {
+            this.Id = id;
+            this.ProjectId = projectId;
+            this.HealthRiskId = healthRiskId;
+            this.Type = type;
+            this.Language = language;
+            this.Message = message;
+               
+        }
+        public Guid Id { get;}
+        public Guid ProjectId { get; }
+        public Guid HealthRiskId { get; }
+        public int Type { get; }
+        public string Language { get; }
+        public string Message { get; }
     }
 }

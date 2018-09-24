@@ -10,6 +10,10 @@ namespace Events.AutomaticReplyMessages
 {
     public class AutomaticReplyRemoved : IEvent
     {
-        public Guid Id { get; set; }
+        public AutomaticReplyRemoved(Guid id)
+        {
+            Id = id;
+        }
+        public Guid Id { get; }
     }
 }

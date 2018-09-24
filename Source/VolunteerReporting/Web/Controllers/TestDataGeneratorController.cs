@@ -276,14 +276,7 @@ namespace Web
             {
                 foreach (var type in replies[language].Keys)
                 {
-                    events.Add(new AutomaticReplyDefined()
-                    {
-                        Id = Guid.NewGuid(),
-                        ProjectId = project.Id,
-                        Language = language,
-                        Message = replies[language][type],
-                        Type = (int)type
-                    });
+                    events.Add(new AutomaticReplyDefined(Guid.NewGuid(), project.Id, (int)type, language, replies[language][type]));
                 }
             }
 
@@ -326,15 +319,7 @@ namespace Web
                 {
                     foreach (var type in keymessages[language][healthRiskId].Keys)
                     {
-                        events.Add(new AutomaticReplyKeyMessageDefined()
-                        {
-                            Id = Guid.NewGuid(),
-                            HealthRiskId = healthRiskId,
-                            ProjectId = project.Id,
-                            Language = language,
-                            Message = keymessages[language][healthRiskId][type],
-                            Type = (int)type
-                        });
+                        events.Add(new AutomaticReplyKeyMessageDefined(Guid.NewGuid(), project.Id, healthRiskId, (int)type, language, keymessages[language][healthRiskId][type]));
                     }
                 }
             }

@@ -16,27 +16,12 @@ namespace Domain.AutomaticReplyMessages
 
         public void Define(Guid projectId, AutomaticReplyType type, string language, string message)
         {
-            Apply(new AutomaticReplyDefined()
-            {
-                Id = Guid.NewGuid(),
-                    ProjectId = projectId,
-                    Type = (int)type,
-                    Language = language,
-                    Message = message
-            });
+            Apply(new AutomaticReplyDefined(Guid.NewGuid(), projectId, (int)type, language, message));
         }
 
         public void DefineKeyMessage(Guid projectId, Guid healthRiskId, AutomaticReplyKeyMessageType type, string language, string message)
         {
-            Apply(new AutomaticReplyKeyMessageDefined()
-            {
-                Id = Guid.NewGuid(),
-                    HealthRiskId = healthRiskId,
-                    ProjectId = projectId,
-                    Type = (int)type,
-                    Language = language,
-                    Message = message
-            });
+            Apply(new AutomaticReplyKeyMessageDefined(Guid.NewGuid(), projectId, healthRiskId, (int)type, language, message));
         }
     }
 }

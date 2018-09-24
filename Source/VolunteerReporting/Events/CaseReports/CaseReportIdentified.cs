@@ -10,7 +10,13 @@ namespace Events.CaseReports
 {
     public class CaseReportIdentified : IEvent
     {
-        public Guid CaseReportId { get; set; }
-        public Guid DataCollectorId { get; set; }
+        public CaseReportIdentified(Guid caseReportId, Guid dataCollectorId) 
+        {
+            this.CaseReportId = caseReportId;
+            this.DataCollectorId = dataCollectorId;
+               
+        }
+        public Guid CaseReportId { get; }
+        public Guid DataCollectorId { get; }
     }
 }
