@@ -33,9 +33,6 @@ namespace Infrastructure.AspNet
                 DefaultDatabase = "Demo"
             });
             builder.Bind(typeof(IReadModelRepositoryFor<>)).To(typeof(ReadModelRepositoryFor<>));
-
-            builder.Bind(typeof(ICommandHandlerInvoker)).To(typeof(CommandHandlerInvoker));
-            
         }
     }
 }
