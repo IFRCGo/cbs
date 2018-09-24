@@ -6,10 +6,15 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.Project
-{
-    public class ProjectDeleted : IEvent
+namespace Events.Project {
+    public class ProjectDeleted : IEvent 
     {
-        public Guid ProjectId { get; set; }
+        
+        public ProjectDeleted (Guid projectId) 
+        {
+            this.ProjectId = projectId;
+
+        }
+        public Guid ProjectId { get; }
     }
 }

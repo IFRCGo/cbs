@@ -10,7 +10,7 @@ namespace Events.Project
 {
     public class ProjectHealthRiskAdded : IEvent
     {
-        public Guid ProjectId { get; set; }
+        public Guid ProjectId { get; }
         public Guid HealthRiskId { get; set; }
         public int Threshold { get; set; }
     }

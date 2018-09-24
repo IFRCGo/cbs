@@ -10,14 +10,24 @@ namespace Events.Project
 {
     public class ProjectUpdated : IEvent
     {
-        public Guid Id { get; set; }
+        public ProjectUpdated(Guid id, string name, Guid nationalSocietyId, Guid dataOwnerId, int surveillanceContext, string smsProxy) 
+        {
+            this.Id = id;
+            this.Name = name;
+            this.NationalSocietyId = nationalSocietyId;
+            this.DataOwnerId = dataOwnerId;
+            this.SurveillanceContext = surveillanceContext;
+            this.SmsProxy = smsProxy;
+               
+        }
+        public Guid Id { get; }
 
-        public string Name { get; set; }
-        public Guid NationalSocietyId { get; set; }
-        public Guid DataOwnerId { get; set; }
+        public string Name { get;  }
+        public Guid NationalSocietyId { get; }
+        public Guid DataOwnerId { get; }
 
-        public int SurveillanceContext { get; set; }
+        public int SurveillanceContext { get; }
 
-        public string SmsProxy { get; set; }
+        public string SmsProxy { get; }
     }
 }

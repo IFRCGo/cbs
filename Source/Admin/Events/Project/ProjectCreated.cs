@@ -6,16 +6,24 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.Project
-{
-    public class ProjectCreated : IEvent
+namespace Events.Project {
+    public class ProjectCreated : IEvent 
     {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
-        public Guid NationalSocietyId { get; set; }
-        public Guid DataOwnerId { get; set; }
         
-        public int SurveillanceContext { get; set; }
+        public ProjectCreated (Guid id, string name, Guid nationalSocietyId, Guid dataOwnerId, int surveillanceContext) 
+        {
+            this.Id = id;
+            this.Name = name;
+            this.NationalSocietyId = nationalSocietyId;
+            this.DataOwnerId = dataOwnerId;
+            this.SurveillanceContext = surveillanceContext;
+
+        }
+        public Guid Id { get; }
+        public string Name { get; }
+        public Guid NationalSocietyId { get; }
+        public Guid DataOwnerId { get; }
+
+        public int SurveillanceContext { get; }
     }
 }

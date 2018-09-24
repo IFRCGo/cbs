@@ -10,7 +10,14 @@ namespace Events.ReplyMessage
 {
     public class MessageUpdated : IEvent
     {
-        public Guid Id { get; set; }
-        public string Message { get; set; }
+        
+        public MessageUpdated(Guid id, string message) 
+        {
+            this.Id = id;
+            this.Message = message;
+               
+        }
+        public Guid Id { get; }
+        public string Message { get; }
     }
 }

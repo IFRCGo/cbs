@@ -10,6 +10,12 @@ namespace Events.ReplyMessage
 {
     public class ReplyMessageConfigUpdated : IEvent
     {
-        public IDictionary<string,IDictionary<string,string>> Messages { get; set; }
+        // Comment: This is a really bad event.
+        //TODO: This event will actually now work, Events cannot currently have dictionaries in it
+        public ReplyMessageConfigUpdated(IDictionary<string, IDictionary<string, string>> messages)
+        {
+            Messages = messages;
+        }
+        public IDictionary<string,IDictionary<string,string>> Messages { get; }
     }
 }

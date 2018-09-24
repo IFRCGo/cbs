@@ -6,18 +6,25 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.External
-{
-    public class UserCreated : IEvent
-    {
-        public Guid Id { get; set; }
+namespace Events.External {
+    public class UserCreated : IEvent {
+        
+        public UserCreated (Guid id, string firstname, string lastname, string country, Guid nationalSocietyId) {
+            this.Id = id;
+            this.Firstname = firstname;
+            this.Lastname = lastname;
+            this.Country = country;
+            this.NationalSocietyId = nationalSocietyId;
 
-        public string Firstname { get; set; }
+        }
+        public Guid Id { get; }
 
-        public string Lastname { get; set; }
+        public string Firstname { get; }
 
-        public string Country { get; set; }
+        public string Lastname { get; }
 
-        public Guid NationalSocietyId { get; set; }
+        public string Country { get; }
+
+        public Guid NationalSocietyId { get; }
     }
 }
