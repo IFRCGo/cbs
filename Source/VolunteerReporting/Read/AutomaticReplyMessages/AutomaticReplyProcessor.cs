@@ -14,7 +14,7 @@ namespace Read.AutomaticReplyMessages
             _automaticReplies = automaticReplies;
             _keyMessages = keyMessages;
         }
-
+        [EventProcessor("86e465ce-9267-4930-9cd3-903c854081cb")]
         public void Process(AutomaticReplyDefined @event)
         {
             _automaticReplies.SaveAutomaticReply(
@@ -25,12 +25,12 @@ namespace Read.AutomaticReplyMessages
                 @event.ProjectId);
             
         }
-
+        [EventProcessor("da96f8e2-7ddf-42c2-ba06-b81736d98ca7")]
         public void Process(AutomaticReplyRemoved @event)
         {
             _automaticReplies.Delete(e => e.Id == @event.Id);
         }
-
+        [EventProcessor("5b939ea7-16f2-4423-aa03-66c30c888795")]
         public void Process(AutomaticReplyKeyMessageDefined @event)
         {
             _keyMessages.SaveAutomaticReplyKeyMessage(
@@ -42,7 +42,7 @@ namespace Read.AutomaticReplyMessages
                 @event.HealthRiskId);
             
         }
-
+        [EventProcessor("0a354e24-99ed-46df-93bd-38571c49fb5c")]
         public void Process(AutomaticReplyKeyMessageRemoved @event)
         {
             _keyMessages.Delete(e => e.Id == @event.Id);
