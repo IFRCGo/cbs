@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
+using Domain.Project;
 using Xunit;
 
 namespace Domain.Tests

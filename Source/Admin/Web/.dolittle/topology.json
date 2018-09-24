@@ -1,0 +1,90 @@
+{
+  "modules": [],
+  "features": [
+    {
+      "feature": "4b353633-c346-4c9f-b0aa-e543f45f2404",
+      "name": "ReplyMessage",
+      "subFeatures": []
+    },
+    {
+      "feature": "13cba3af-8594-41e6-949c-ea80baf70c2a",
+      "name": "Project",
+      "subFeatures": []
+    },
+    {
+      "feature": "adbc1685-c54a-4f89-8028-4be3914e86c0",
+      "name": "HealthRisk",
+      "subFeatures": []
+    },
+    {
+      "feature": "7490d587-47d2-46aa-8ab8-1314aff6f69a",
+      "name": "Admin",
+      "subFeatures": []
+    },
+    {
+      "feature": "a503ca4d-2949-4299-80e0-826d4672f2bc",
+      "name": "NationalSociety",
+      "subFeatures": []
+    },
+    {
+      "feature": "53c219bc-34d8-42a7-b4a8-14a1ffb82736",
+      "name": "External",
+      "subFeatures": []
+    },
+    {
+      "feature": "974ebfb5-5bfd-4fd1-9692-099b48fd44fb",
+      "name": "UserFeatures",
+      "subFeatures": [
+        {
+          "feature": "714ff74e-fa37-44a7-a3ae-6cc0f23d6113",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "752b9306-5644-4d4d-a8a5-086157cabb8b",
+      "name": "ProjectFeatures",
+      "subFeatures": [
+        {
+          "feature": "b4f9fc4e-476e-4d6e-995c-cf72568bdd6d",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "80349301-3610-4af5-be83-b2bc11e49f19",
+      "name": "NationalSocietyFeatures",
+      "subFeatures": [
+        {
+          "feature": "e7f50f90-a44e-4809-b5d7-df711d0200dc",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "2840b9a9-c937-4b2c-9aca-6138d7a7677e",
+      "name": "HealthRiskFeatures",
+      "subFeatures": [
+        {
+          "feature": "b6981f08-228e-4ddb-ab4b-b961f70c7722",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "ce4031b4-3033-466f-a132-c58ab26b13c3",
+      "name": "AutomaticReplyMessages",
+      "subFeatures": [
+        {
+          "feature": "de2a4f53-1c4e-43a1-9c89-be2a0cb659fa",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    }
+  ]
+}
