@@ -16,7 +16,7 @@ namespace Read.UserFeatures
         {
             _users = users;
         }
-
+        [EventProcessor("2b354035-128e-470f-b0ef-e5cc449b0ebb")]
         public void Process(UserCreated @event)
         {
             _users.Insert(new User

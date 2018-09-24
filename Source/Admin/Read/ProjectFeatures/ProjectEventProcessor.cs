@@ -36,7 +36,7 @@ namespace Read.ProjectFeatures
             _projectHealthRiskVersions = projectHealthRiskVersions;
             _replyMessages = replyMessages;
         }
-
+        [EventProcessor("2ddde142-2195-40e4-a177-d17292df9b90")]
         public void Process(ProjectCreated @event)
         {
             var project = new Project
@@ -53,7 +53,7 @@ namespace Read.ProjectFeatures
             };
             _projects.Insert(project);
         }
-
+        [EventProcessor("cb32f42e-5142-4e19-a4e0-04afd8bada9b")]
         public void Process(ProjectUpdated @event)
         {
             //TODO Use UpdateOne instead
@@ -71,12 +71,12 @@ namespace Read.ProjectFeatures
                 Builders<Project>.Update.Set(p => p.SmsProxy, @event.SmsProxy))
             );
         }
-
+        [EventProcessor("6db72e4b-cadc-43a7-b12f-ed9275a60ac1")]
         public void Process(ProjectDeleted @event)
         {
             _projects.Delete(p => p.Id == @event.ProjectId);
         }
-
+        [EventProcessor("56aa04c3-b5bc-48ac-a45a-9f1efcadce62")]
         public void Process(ProjectHealthRiskAdded @event)
         {
             //TODO: Assumes that project exists. Should be verified in BusinessValidator
@@ -87,7 +87,7 @@ namespace Read.ProjectFeatures
                     Threshold = @event.Threshold
                 }));
         }
-
+        [EventProcessor("914923d5-21c5-43bf-956a-123218e4d8d1")]
         public void Process(ProjectHealthRiskThresholdUpdate @event)
         {
 
@@ -108,7 +108,7 @@ namespace Read.ProjectFeatures
             var healthRisk = project.HealthRisks.FirstOrDefault(risk => risk.HealthRiskId == @event.HealthRiskId);
             _projectHealthRiskVersions.Append(project.Id, healthRisk, System.DateTimeOffset.UtcNow);
         }
-
+        [EventProcessor("ea4b9ace-f4b1-4526-8e4b-601f6727a60f")]
         public void Process(DataVerifierAdded @event)
         {
             //TODO: Assumes that user and project exists. Should be verified in BusinessValidator
@@ -116,14 +116,14 @@ namespace Read.ProjectFeatures
             _projects.Update(p => p.Id == @event.ProjectId,
                 Builders<Project>.Update.AddToSet(p => p.DataVerifiers, user));
         }
-
+        [EventProcessor("15e22196-e233-468f-922c-8ac2b4eda660")]
         public void Process(DataVerifierRemoved @event)
         {
             //TODO: Assumes that project exists. Should be verified in BusinessValidator
             _projects.Update(p => p.Id == @event.ProjectId,
                 Builders<Project>.Update.PullFilter(p => p.DataVerifiers, u => u.Id == @event.UserId));
         }
-
+        [EventProcessor("fc262fe1-4aaf-497d-91ad-b9876e032f88")]
         public void Process(ReplyMessageConfigUpdated @event)
         {
             //TODO: Event should have Id field
