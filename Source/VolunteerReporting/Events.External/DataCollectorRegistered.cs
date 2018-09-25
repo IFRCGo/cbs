@@ -19,13 +19,13 @@ namespace Events.External
             this.District = district;
                
         }
-        public Guid DataCollectorId { get; set; }
-        public string FullName { get; set; }
-        public string DisplayName { get; set; }
-        public double LocationLongitude { get; set; }
-        public double LocationLatitude { get; set; }
+        public Guid DataCollectorId { get; }
+        public string FullName { get; }
+        public string DisplayName { get; }
+        public double LocationLongitude { get; }
+        public double LocationLatitude { get; }
 
-        public string Region { get; set; }
-        public string District { get; set; }
+        public string Region { get; }
+        public string District { get; }
     }
 }

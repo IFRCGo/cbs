@@ -18,15 +18,15 @@ namespace Events.External
             this.Name = name;
                
         }
-        public Guid Id { get; set; }
-        public int ReadableId { get; set; }
-        public string Name { get; set; }
-        //public int? Threshold { get; set; }
-        //public string ConfirmedCase { get; set; }
-        //public string Note { get; set; }
-        //public string SuspectedCase { get; set; }
-        //public string ProbableCase { get; set; }
-        //public string CommunityCase { get; set; }
-        //public string KeyMessage { get; set; }
+        public Guid Id { get; }
+        public int ReadableId { get; }
+        public string Name { get; }
+        //public int? Threshold { get; }
+        //public string ConfirmedCase { get; }
+        //public string Note { get; }
+        //public string SuspectedCase { get; }
+        //public string ProbableCase { get; }
+        //public string CommunityCase { get; }
+        //public string KeyMessage { get; }
     }
 }

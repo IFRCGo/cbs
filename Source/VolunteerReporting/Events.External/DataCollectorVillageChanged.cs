@@ -13,7 +13,7 @@ namespace Events.External
             this.Village = village;
                
         }
-        public Guid DataCollectorId { get; set; }
-        public string Village { get; set; }
+        public Guid DataCollectorId { get; }
+        public string Village { get; }
     }
 }

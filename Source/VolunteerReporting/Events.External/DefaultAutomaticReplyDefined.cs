@@ -1,3 +1,4 @@
+// CANNOT FIND THIS EVENT IN ANY BOUNDED CONTEXT
 using Dolittle.Artifacts;
 using Dolittle.Events;
 using System;
@@ -6,9 +7,9 @@ namespace Events.External
 {
     public class DefaultAutomaticReplyDefined : IEvent
     {
-        public Guid Id { get; set; }
-        public int Type { get; set; }
-        public string Language { get; set; }
-        public string Message { get; set; }
+        public Guid Id { get; }
+        public int Type { get; }
+        public string Language { get; }
+        public string Message { get; }
     }
 }

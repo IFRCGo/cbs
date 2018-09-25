@@ -12,7 +12,7 @@ namespace Events.External
             this.DataCollectorId = dataCollectorId;
                
         }
-        public Guid DataCollectorId { get; set; }
+        public Guid DataCollectorId { get; }
 
     }
 }

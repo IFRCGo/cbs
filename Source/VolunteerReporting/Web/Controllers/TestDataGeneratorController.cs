@@ -222,20 +222,20 @@ namespace Web
                     { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" }
                 }
             };
-
-            foreach (var language in messages.Keys)
-            {
-                foreach(var type in messages[language].Keys)
-                {
-                    events.Add(new DefaultAutomaticReplyDefined()
-                    {
-                        Id = Guid.NewGuid(),
-                        Language = language,
-                        Message = messages[language][type],
-                        Type = (int)type
-                    });
-                }
-            }
+            // TODO: Fix later, this event isn't in use
+            // foreach (var language in messages.Keys)
+            // {
+            //     foreach(var type in messages[language].Keys)
+            //     {
+            //         events.Add(new DefaultAutomaticReplyDefined())
+            //         {
+            //             Id = Guid.NewGuid(),
+            //             Language = language,
+            //             Message = messages[language][type],
+            //             Type = (int)type
+            //         });
+            //     }
+            // }
 
             System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
         }

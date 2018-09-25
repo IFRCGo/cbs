@@ -15,7 +15,7 @@ namespace Events.External
             this.Name = name;
                
         }
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; }
+        public string Name { get; }
     }
 }

@@ -14,8 +14,8 @@ namespace Events.External
             this.LocationLongitude = locationLongitude;
                
         }
-        public Guid DataCollectorId { get; set; }
-        public double LocationLatitude { get; set; }
-        public double LocationLongitude { get; set; }
+        public Guid DataCollectorId { get; }
+        public double LocationLatitude { get; }
+        public double LocationLongitude { get; }
     }
 }

@@ -12,6 +12,6 @@ namespace Events.External
             this.HealthRiskId = healthRiskId;
                
         }
-        public Guid HealthRiskId { get; set; }
+        public Guid HealthRiskId { get; }
     }
 }

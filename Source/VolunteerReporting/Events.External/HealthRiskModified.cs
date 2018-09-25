@@ -14,8 +14,8 @@ namespace Events.External
             this.ReadableId = readableId;
                
         }
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public int ReadableId { get; set; }
+        public Guid Id { get; }
+        public string Name { get; }
+        public int ReadableId { get; }
     }
 }

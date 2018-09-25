@@ -1,3 +1,4 @@
+// CANNOT FIND THIS EVENT IN ANY BOUNDED CONTEXT
 using Dolittle.Events;
 using System;
 
