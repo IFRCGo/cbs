@@ -14,16 +14,7 @@ namespace Domain.HealthRisk
         public void CreateHealthRisk(string caseDefinition, string communityCase, string keyMessage, 
             string name, string note, int readableId)
         {
-            Apply(new HealthRiskCreated
-            {
-                Id = EventSourceId,
-                CaseDefinition = caseDefinition,
-                ReadableId = readableId,
-                CommunityCase = communityCase,
-                KeyMessage = keyMessage,
-                Note = note,
-                Name = name
-            });
+            Apply(new HealthRiskCreated(EventSourceId, name, readableId, caseDefinition, note, communityCase, keyMessage));
         }
 
         public void AddThresholdToHealthRisk(int threshold)
@@ -33,24 +24,12 @@ namespace Domain.HealthRisk
 
         public void ModifyHealthRisk(string caseDefinition, string communityCase, string keyMessage, string name, string note, int readableId)
         {
-            Apply(new HealthRiskModified
-            {
-                Id = EventSourceId,
-                CaseDefinition = caseDefinition,
-                ReadableId = readableId,
-                CommunityCase = communityCase,
-                KeyMessage = keyMessage,
-                Note = note,
-                Name = name
-            });
+            Apply(new HealthRiskModified(EventSourceId, name, readableId, caseDefinition, note, communityCase, keyMessage));
         }
 
         public void DeleteHealthRisk()
         {
-            Apply(new HealthRiskDeleted
-            {
-                HealthRiskId = EventSourceId
-            });
+            Apply(new HealthRiskDeleted(EventSourceId));
         }
     }
 }

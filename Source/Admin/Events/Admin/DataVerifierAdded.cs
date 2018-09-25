@@ -6,8 +6,10 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.Admin {
-    public class DataVerifierAdded : IEvent {
+namespace Events.Admin 
+{
+    public class DataVerifierAdded : IEvent 
+    {
         public DataVerifierAdded (Guid projectId, Guid userId) 
         {
             ProjectId = projectId;

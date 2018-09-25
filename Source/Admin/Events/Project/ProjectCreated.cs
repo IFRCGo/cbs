@@ -6,7 +6,8 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.Project {
+namespace Events.Project 
+{
     public class ProjectCreated : IEvent 
     {
         

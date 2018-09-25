@@ -6,10 +6,13 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.NationalSociety {
-    public class NationalSocietyCreated : IEvent {
+namespace Events.NationalSociety 
+{
+    public class NationalSocietyCreated : IEvent 
+    {
         
-        public NationalSocietyCreated (string name, string country, Guid id, int timezoneOffsetFromUtcInMinutes) {
+        public NationalSocietyCreated (string name, string country, Guid id, int timezoneOffsetFromUtcInMinutes) 
+        {
             this.Name = name;
             this.Country = country;
             this.Id = id;

@@ -1,10 +1,13 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.HealthRisk {
-    public class HealthRiskModified : IEvent {
+namespace Events.HealthRisk 
+{
+    public class HealthRiskModified : IEvent 
+    {
         
-        public HealthRiskModified (Guid id, string name, int readableId, string caseDefinition, string confirmedCase, string note, string suspectedCase, string probableCase, string communityCase, string keyMessage) {
+        public HealthRiskModified (Guid id, string name, int readableId, string caseDefinition, string note, string communityCase, string keyMessage) 
+        {
             this.Id = id;
             this.Name = name;
             this.ReadableId = readableId;
@@ -18,10 +21,10 @@ namespace Events.HealthRisk {
         public string Name { get; }
         public int ReadableId { get; }
         public string CaseDefinition { get; }
-        //public string ConfirmedCase { get; set; }
+        //public string ConfirmedCase { get; }
         public string Note { get; }
-        //public string SuspectedCase { get; set; }
-        //public string ProbableCase { get; set; }
+        //public string SuspectedCase { get; }
+        //public string ProbableCase { get; }
         public string CommunityCase { get; }
         public string KeyMessage { get; }
 

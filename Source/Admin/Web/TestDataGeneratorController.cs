@@ -88,12 +88,7 @@ namespace Web
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    events.Add(new ProjectHealthRiskAdded()
-                    {
-                        ProjectId = project.Id,
-                        HealthRiskId = risk.Id,
-                        Threshold = 0
-                    });
+                    events.Add(new ProjectHealthRiskAdded(project.Id, risk.Id, 0));
                 }
                 // _eventReplayer.Replay(events, e => e.HealthRiskId);
             }
@@ -123,21 +118,22 @@ namespace Web
         [HttpGet("users")]
         public void CreateUsers()
         {
-            _users.Delete(_ => true);
-            var societies =
-                JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-                    System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            var users = JsonConvert.DeserializeObject<UserCreated[]>(
-                System.IO.File.ReadAllText("./TestData/Names.json"));
-            var i = 0;
+            //TODO: 
+            // _users.Delete(_ => true);
+            // var societies =
+            //     JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
+            //         System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
+            // var users = JsonConvert.DeserializeObject<UserCreated[]>(
+            //     System.IO.File.ReadAllText("./TestData/Names.json"));
+            // var i = 0;
 
-            foreach (var user in users)
-            {
-                // Make sure we have a valid National Society ID
-                if (!societies.Any(v => v.Id == user.NationalSocietyId))
-                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
+            // foreach (var user in users)
+            // {
+            //     // Make sure we have a valid National Society ID
+            //     if (!societies.Any(v => v.Id == user.NationalSocietyId))
+            //         user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
-            }
+            // }
             // _eventReplayer.Replay(users, e => e.Id);
         }
 
@@ -169,15 +165,8 @@ namespace Web
                 var title = item.SelectToken("title").ToString();
                 title = title.Split(':').Select(v => v.Trim()).Last();
 
-                list.Add(new ProjectCreated()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = title,
-                    NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
-                    DataOwnerId = _userIds[i % _userIds.Length],
-                    SurveillanceContext = r.Next(0,
-                        Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
-                });
+                list.Add(new ProjectCreated(Guid.NewGuid(), title, _nationalSocietyIds[i % _nationalSocietyIds.Length], _userIds[i % _userIds.Length], 
+                    r.Next(0, Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)));
 
                 i++;
             }
