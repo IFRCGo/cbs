@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Dolittle.Execution;
 using Dolittle.Runtime.Commands.Coordination;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -17,11 +18,13 @@ namespace Infrastructure.Logging
     {
         readonly string _category;
         readonly Func<string, LogLevel, bool> _filter;
+        readonly Func<ExecutionContext> _getCurrentExecutionContext;
 
-        public JsonLogger(string source, string category, Func<string, LogLevel, bool> filter)
+        public JsonLogger(Func<ExecutionContext> getCurrentExecutionContext, string source, string category, Func<string, LogLevel, bool> filter)
         {
             _category = category;
             _filter = filter;
+            _getCurrentExecutionContext = getCurrentExecutionContext;
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -102,6 +105,8 @@ namespace Infrastructure.Logging
                     content = list.ToDictionary(x => x.Key, x => x.Value);
                 }
 
+                var executionContext = _getCurrentExecutionContext();
+
                 var logMessage = new LogMessage
                 {
                     Message = message,
@@ -110,7 +115,7 @@ namespace Infrastructure.Logging
                     Content = content,
                     Method = file,
                     Line = line,
-                    CorrelationId = Guid.Empty,
+                    CorrelationId = executionContext.CorrelationId,
                     StackTrace = exception?.StackTrace ?? string.Empty
                 };
 

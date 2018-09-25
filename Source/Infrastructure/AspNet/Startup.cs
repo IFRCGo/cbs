@@ -2,9 +2,14 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+using System;
+using System.Globalization;
 using Autofac;
+using Dolittle.Applications;
 using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.DependencyInversion.Autofac;
+using Dolittle.Execution;
+using Dolittle.Security;
 using Infrastructure.AspNet.ConnectionStrings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,11 +22,11 @@ namespace Infrastructure.AspNet
 {
     public class Startup
     {
-
+        static IExecutionContextManager _executionContextManager;
+        BootResult _bootResult;
         readonly ILoggerFactory _loggerFactory;
         readonly IHostingEnvironment _env;
-        readonly IConfiguration _configuration;
-        BootResult _bootResult;
+        readonly IConfiguration _configuration;      
 
         public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
@@ -29,7 +34,29 @@ namespace Infrastructure.AspNet
             _configuration = configuration;
             _loggerFactory = loggerFactory;
             /// Setup logging for a bounded context
-            loggerFactory.AddJson("");
+            loggerFactory.AddJson(GetCurrentExecutionContext,"");
+        }
+
+        internal static ExecutionContext GetCurrentExecutionContext()
+        {
+            ExecutionContext executionContext=null;
+            if( _executionContextManager != null ) {
+                try {
+                    executionContext = _executionContextManager.Current;
+                } catch { }
+            }
+
+            if( executionContext == null ) 
+                executionContext = new ExecutionContext(
+                    Guid.Empty,
+                    Guid.Empty,
+                    Guid.Empty,
+                    "unknown",
+                    CorrelationId.Empty,
+                    new Claims(new Claim[0]),
+                    CultureInfo.CurrentCulture);
+
+            return executionContext;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -56,6 +83,8 @@ namespace Infrastructure.AspNet
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            _executionContextManager = app.ApplicationServices.GetService(typeof(IExecutionContextManager)) as IExecutionContextManager;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
