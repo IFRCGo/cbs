@@ -85,6 +85,11 @@
           "subFeatures": []
         }
       ]
+    },
+    {
+      "feature": "e4c38a5a-bc86-4bd0-a5cf-cd5a06576de8",
+      "name": "Events",
+      "subFeatures": []
     }
   ]
 }

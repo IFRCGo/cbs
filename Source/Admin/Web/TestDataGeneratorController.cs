@@ -11,6 +11,7 @@ using Events.HealthRisk;
 using Events.NationalSociety;
 using Events.Project;
 using Infrastructure.AspNet;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -29,6 +30,8 @@ namespace Web
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
         private readonly IProjects _projects;
+
+        readonly IEventReplayer _eventReplayer;
 
         private Guid[] _nationalSocietyIds = new Guid[]
         {
@@ -50,15 +53,15 @@ namespace Web
             IHealthRisks healthRisks,
             IUsers users,
             INationalSocieties nationalSocieties,
-            IProjects projects)
+            IProjects projects,
+            IEventReplayer eventReplayer)
         {
             _healthRisks = healthRisks;
             _users = users;
             _nationalSocieties = nationalSocieties;
             _projects = projects;
+            _eventReplayer = eventReplayer;
         }
-
-        //TODO: Integrate to DoLittle 2.0
 
         [HttpGet("all")]
         public void CreateAll()
@@ -90,7 +93,7 @@ namespace Web
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
                     events.Add(new ProjectHealthRiskAdded(project.Id, risk.Id, 0));
                 }
-                // _eventReplayer.Replay(events, e => e.HealthRiskId);
+                _eventReplayer.Replay(events, e => e.HealthRiskId);
             }
         }
 
@@ -101,7 +104,7 @@ namespace Web
 
             var projects =
                 JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            // _eventReplayer.Replay(projects, e => e.Id);
+            _eventReplayer.Replay(projects, e => e.Id);
         }
 
         [HttpGet("nationalsocieties")]
@@ -112,13 +115,12 @@ namespace Web
             var societies =
                 JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
                     System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            // _eventReplayer.Replay(societies, e => e.Id);
+            _eventReplayer.Replay(societies, e => e.Id);
         }
 
         [HttpGet("users")]
         public void CreateUsers()
         {
-            //TODO: 
             // _users.Delete(_ => true);
             // var societies =
             //     JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
@@ -145,7 +147,7 @@ namespace Web
             var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
                 System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
             
-            // _eventReplayer.Replay(risks, e => e.Id);
+            _eventReplayer.Replay(risks, e => e.Id);
         }
 
         [HttpGet("createprojectsjson")]
