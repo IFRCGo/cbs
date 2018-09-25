@@ -142,12 +142,12 @@
       "commands": [],
       "events": [
         {
-          "artifact": "2e57a442-b648-4299-ad0f-46f961517610",
+          "artifact": "e6d941c9-f9eb-4123-828b-7f814386c154",
           "generation": 1,
           "type": "Events.External.CaseReportReceived, Events.External"
         },
         {
-          "artifact": "095c8754-242e-44cd-8af3-76e36c747896",
+          "artifact": "256396b8-bb23-4ef4-97ab-973575cb4ba6",
           "generation": 1,
           "type": "Events.External.InvalidReportReceived, Events.External"
         }

@@ -93,11 +93,7 @@ namespace Domain.DataCollector
 
         public void ChangeVillage(string village)
         {
-            Apply(new DataCollectorVillageChanged
-            {
-                DataCollectorId = EventSourceId,
-                Village = village
-            });
+            Apply(new DataCollectorVillageChanged(EventSourceId, village));
         }
 
         public void AddPhoneNumber(string number)

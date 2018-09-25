@@ -10,12 +10,7 @@ namespace Domain.MessageGenerator
 
         public void GenerateMessage(GenerateMessage command) 
         {
-            Apply(new MessageGenerated
-            {
-                DataCollectorId = command.Id,
-                PhoneNumber = command.PhoneNumber,
-                Message = command.Message
-            });
+            Apply(new MessageGenerated(command.Id, command.PhoneNumber, command.Message));
         }
     }
 }
