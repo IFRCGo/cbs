@@ -20,8 +20,6 @@ namespace Infrastructure.AspNet
             Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
-            Globals.BoundedContext = new BoundedContext(boundedContext);
-
             
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()

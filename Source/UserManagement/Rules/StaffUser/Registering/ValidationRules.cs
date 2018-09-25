@@ -1,19 +1,19 @@
-using System;
-using Autofac;
-using Domain.StaffUser;
+// using System;
+// using Autofac;
+// using Domain.StaffUser;
 
-namespace Rules.StaffUser.Registering
-{
-    public class ValidationRules : Module
-    {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterInstance<StaffUserIsRegistered>(IsStaffUserRegistered).As<StaffUserIsRegistered>();
-        }
+// namespace Rules.StaffUser.Registering
+// {
+//     public class ValidationRules : Module
+//     {
+//         protected override void Load(ContainerBuilder builder)
+//         {
+//             builder.RegisterInstance<StaffUserIsRegistered>(IsStaffUserRegistered).As<StaffUserIsRegistered>();
+//         }
 
-        bool IsStaffUserRegistered(Guid staffUserId)
-        {
-            return false;
-        }
-    }
-}
+//         bool IsStaffUserRegistered(Guid staffUserId)
+//         {
+//             return false;
+//         }
+//     }
+// }

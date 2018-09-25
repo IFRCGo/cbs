@@ -5,7 +5,7 @@
 
 using Dolittle.Commands;
 
-namespace Domain
+namespace Domain.Project
 {
     public class UpdateProjectHealthRiskThreshold : ICommand
     {

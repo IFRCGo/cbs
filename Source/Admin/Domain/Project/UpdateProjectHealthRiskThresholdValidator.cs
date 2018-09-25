@@ -6,7 +6,7 @@
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
-namespace Domain
+namespace Domain.Project
 {
     public class UpdateProjectHealthRiskThresholdValidator : CommandInputValidatorFor<UpdateProjectHealthRiskThreshold>
     {

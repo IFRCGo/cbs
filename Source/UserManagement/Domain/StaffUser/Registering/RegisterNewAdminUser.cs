@@ -1,12 +1,12 @@
 
-namespace Domain.StaffUser.Registering
-{
+// namespace Domain.StaffUser.Registering
+// {
 
-    public class RegisterNewAdminUser : NewStaffRegistration<Roles.Admin>
-    {
-        public RegisterNewAdminUser()
-        {
-            Role = new Roles.Admin();
-        }
-    }
-}
+//     public class RegisterNewAdminUser : NewStaffRegistration<Roles.Admin>
+//     {
+//         public RegisterNewAdminUser()
+//         {
+//             Role = new Roles.Admin();
+//         }
+//     }
+// }

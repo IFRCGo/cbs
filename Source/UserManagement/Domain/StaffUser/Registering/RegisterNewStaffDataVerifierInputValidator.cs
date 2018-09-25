@@ -1,7 +1,7 @@
-namespace Domain.StaffUser.Registering
-{
-    public class RegisterNewStaffDataVerifierInputValidator 
-        : NewStaffRegistrationInputValidator<RegisterNewStaffDataVerifier, Roles.DataVerifier>
-    {
-    }
-}
+// namespace Domain.StaffUser.Registering
+// {
+//     public class RegisterNewStaffDataVerifierInputValidator 
+//         : NewStaffRegistrationInputValidator<RegisterNewStaffDataVerifier, Roles.DataVerifier>
+//     {
+//     }
+// }

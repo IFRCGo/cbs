@@ -1,7 +1,7 @@
 
-namespace Domain.StaffUser.Registering
-{
-    public class RegisterNewDataOwnerInputValidator : NewStaffRegistrationInputValidator<RegisterNewDataOwner, Roles.DataOwner>
-    {
-    }
-}
+// namespace Domain.StaffUser.Registering
+// {
+//     public class RegisterNewDataOwnerInputValidator : NewStaffRegistrationInputValidator<RegisterNewDataOwner, Roles.DataOwner>
+//     {
+//     }
+// }

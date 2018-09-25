@@ -5,23 +5,23 @@
 
 namespace TextMessaging
 {
-    public class TextMessageFragment
-    {
-        public TextMessageFragment(string value)
-        {
-            Value = value;
+    // public class TextMessageFragment
+    // {
+    //     public TextMessageFragment(string value)
+    //     {
+    //         Value = value;
 
-            Number = int.TryParse(value, out var tmp) ? tmp : default(int?);
-        }
+    //         Number = int.TryParse(value, out var tmp) ? tmp : default(int?);
+    //     }
 
-        public string Value { get; }
+    //     public string Value { get; }
 
-        public int? Number { get; }
+    //     public int? Number { get; }
 
-        public bool HasValue => 
-            Value != null && !Value.Equals(string.Empty);
+    //     public bool HasValue => 
+    //         Value != null && !Value.Equals(string.Empty);
 
-        public bool IsValid => 
-            HasValue && Number.HasValue;
-    }
+    //     public bool IsValid => 
+    //         HasValue && Number.HasValue;
+    // }
 }

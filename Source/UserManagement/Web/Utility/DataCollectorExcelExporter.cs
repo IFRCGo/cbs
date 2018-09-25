@@ -133,7 +133,7 @@ namespace Web.Utility
                 var lastReportRecievedAt = new Cell { CellReference = "L" + rowIndex };
                 row.Append(lastReportRecievedAt);
                 lastReportRecievedAt.DataType = new EnumValue<CellValues>(CellValues.Date);
-                lastReportRecievedAt.CellValue = new CellValue(dataCollector.LastReportRecievedAt ?? dataCollector.RegisteredAt);
+                lastReportRecievedAt.CellValue = new CellValue(DateTimeOffset.UtcNow/* TODO: dataCollector.LastReportRecievedAt ?? dataCollector.RegisteredAt*/);
             }
 
             // Save the document in memory, and serve to client

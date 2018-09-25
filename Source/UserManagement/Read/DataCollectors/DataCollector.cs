@@ -22,20 +22,14 @@ namespace Read.DataCollectors
         public string Region { get; set; }
         public string Village { get; set; }
 
-        public List<PhoneNumber> PhoneNumbers { get; set; }
+        public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
 
-        public DateTimeOffset? LastReportRecievedAt { get; set; }
-        public IDictionary<string, object> ExtraElements { get; set; } = new Dictionary<string, object>();
+        //TODO: Have this again when dolittle build tool supports nullables 
+        //public DateTimeOffset? LastReportRecievedAt { get; set; }
 
-        public DataCollector(Guid id)
-        {
-            Id = id;
-        }
+        /// Comment from woksin 13.09-18: The dictionary might or might not work with dolittles platform as of now. 
+         public IDictionary<string, object> ExtraElements { get; set; } = new Dictionary<string, object>();
 
-            // if(ExtraElements.ContainsKey("NationalSociety"))
-            // {
-            //     ExtraElements.Remove("NationalSociety");
-            // }
     }
 }

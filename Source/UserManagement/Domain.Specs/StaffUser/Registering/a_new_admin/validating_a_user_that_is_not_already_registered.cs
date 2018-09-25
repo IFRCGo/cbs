@@ -1,29 +1,29 @@
-using Machine.Specifications;
-using Domain.StaffUser;
-using Domain.StaffUser.Registering;
-using System;
-using FluentValidation.Results;
-using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
+// using Machine.Specifications;
+// using Domain.StaffUser;
+// using Domain.StaffUser.Registering;
+// using System;
+// using FluentValidation.Results;
+// using given = Domain.Specs.StaffUser.Roles.UserInfo.given;
 
-namespace Domain.Specs.StaffUser.Registering.a_new_admin
-{
+// namespace Domain.Specs.StaffUser.Registering.a_new_admin
+// {
 
-    [Subject("Registering")]
-    public class validating_a_user_that_is_not_already_registered
-    {
-        static RegisterNewAdminUser register;
-        static RegisterNewAdminUserBusinessRulesValidator sut;
-        static StaffUserIsRegistered staff_user_is_registered;
-        static ValidationResult validation_results;
+//     [Subject("Registering")]
+//     public class validating_a_user_that_is_not_already_registered
+//     {
+//         static RegisterNewAdminUser register;
+//         static RegisterNewAdminUserBusinessRulesValidator sut;
+//         static StaffUserIsRegistered staff_user_is_registered;
+//         static ValidationResult validation_results;
 
-        private Establish context = () => {
-            register = given.commands.build_valid_instance<RegisterNewAdminUser>();
-            staff_user_is_registered = (id) => false;
-            sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);
-        };
+//         private Establish context = () => {
+//             register = given.commands.build_valid_instance<RegisterNewAdminUser>();
+//             staff_user_is_registered = (id) => false;
+//             sut = new RegisterNewAdminUserBusinessRulesValidator(staff_user_is_registered);
+//         };
 
-        Because of = () => validation_results = sut.Validate(register);
+//         Because of = () => validation_results = sut.Validate(register);
 
-        It should_be_valid = () => validation_results.ShouldBeValid();
-    }    
-}
+//         It should_be_valid = () => validation_results.ShouldBeValid();
+//     }    
+// }

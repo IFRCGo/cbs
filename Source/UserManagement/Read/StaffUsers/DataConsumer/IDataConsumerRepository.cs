@@ -1,9 +1,9 @@
-using Infrastructure.Read.MongoDb;
+// using Infrastructure.Read.MongoDb;
 
-namespace Read.StaffUsers.DataConsumer
-{
-    public interface IDataConsumerRepository : IExtendedReadModelRepositoryFor<Models.DataConsumer>
-    {
+// namespace Read.StaffUsers.DataConsumer
+// {
+//     public interface IDataConsumerRepository : IExtendedReadModelRepositoryFor<Models.DataConsumer>
+//     {
         
-    }
-}
+//     }
+// }

@@ -1,7 +1,7 @@
-namespace Domain.StaffUser
-{
-    public interface IRequireBirthYear
-    {
-         int BirthYear { get; }
-    }
-}
+// namespace Domain.StaffUser
+// {
+//     public interface IRequireBirthYear
+//     {
+//          int BirthYear { get; }
+//     }
+// }

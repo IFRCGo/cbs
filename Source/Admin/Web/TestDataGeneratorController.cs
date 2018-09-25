@@ -6,12 +6,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Events;
 using Events.External;
 using Events.HealthRisk;
+using Events.NationalSociety;
 using Events.Project;
 using Infrastructure.AspNet;
-using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -26,7 +25,6 @@ namespace Web
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IEventReplayer _eventReplayer;
         private readonly IHealthRisks _healthRisks;
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
@@ -49,13 +47,11 @@ namespace Web
         };
 
         public TestDataGeneratorController(
-            IEventReplayer eventReplayer,
             IHealthRisks healthRisks,
             IUsers users,
             INationalSocieties nationalSocieties,
             IProjects projects)
         {
-            _eventReplayer = eventReplayer;
             _healthRisks = healthRisks;
             _users = users;
             _nationalSocieties = nationalSocieties;
@@ -92,14 +88,9 @@ namespace Web
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    events.Add(new ProjectHealthRiskAdded()
-                    {
-                        ProjectId = project.Id,
-                        HealthRiskId = risk.Id,
-                        Threshold = 0
-                    });
+                    events.Add(new ProjectHealthRiskAdded(project.Id, risk.Id, 0));
                 }
-                _eventReplayer.Replay(events, e => e.HealthRiskId);
+                // _eventReplayer.Replay(events, e => e.HealthRiskId);
             }
         }
 
@@ -110,7 +101,7 @@ namespace Web
 
             var projects =
                 JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            _eventReplayer.Replay(projects, e => e.Id);
+            // _eventReplayer.Replay(projects, e => e.Id);
         }
 
         [HttpGet("nationalsocieties")]
@@ -121,28 +112,29 @@ namespace Web
             var societies =
                 JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
                     System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            _eventReplayer.Replay(societies, e => e.Id);
+            // _eventReplayer.Replay(societies, e => e.Id);
         }
 
         [HttpGet("users")]
         public void CreateUsers()
         {
-            _users.Delete(_ => true);
-            var societies =
-                JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-                    System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            var users = JsonConvert.DeserializeObject<UserCreated[]>(
-                System.IO.File.ReadAllText("./TestData/Names.json"));
-            var i = 0;
+            //TODO: 
+            // _users.Delete(_ => true);
+            // var societies =
+            //     JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
+            //         System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
+            // var users = JsonConvert.DeserializeObject<UserCreated[]>(
+            //     System.IO.File.ReadAllText("./TestData/Names.json"));
+            // var i = 0;
 
-            foreach (var user in users)
-            {
-                // Make sure we have a valid National Society ID
-                if (!societies.Any(v => v.Id == user.NationalSocietyId))
-                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
+            // foreach (var user in users)
+            // {
+            //     // Make sure we have a valid National Society ID
+            //     if (!societies.Any(v => v.Id == user.NationalSocietyId))
+            //         user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
-            }
-            _eventReplayer.Replay(users, e => e.Id);
+            // }
+            // _eventReplayer.Replay(users, e => e.Id);
         }
 
         [HttpGet("createhealthrisks")]
@@ -153,7 +145,7 @@ namespace Web
             var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
                 System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
             
-            _eventReplayer.Replay(risks, e => e.Id);
+            // _eventReplayer.Replay(risks, e => e.Id);
         }
 
         [HttpGet("createprojectsjson")]
@@ -173,15 +165,8 @@ namespace Web
                 var title = item.SelectToken("title").ToString();
                 title = title.Split(':').Select(v => v.Trim()).Last();
 
-                list.Add(new ProjectCreated()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = title,
-                    NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
-                    DataOwnerId = _userIds[i % _userIds.Length],
-                    SurveillanceContext = r.Next(0,
-                        Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
-                });
+                list.Add(new ProjectCreated(Guid.NewGuid(), title, _nationalSocietyIds[i % _nationalSocietyIds.Length], _userIds[i % _userIds.Length], 
+                    r.Next(0, Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)));
 
                 i++;
             }

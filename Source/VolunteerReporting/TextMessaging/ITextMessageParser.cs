@@ -2,7 +2,6 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Infrastructure.TextMessaging;
 
 namespace TextMessaging
 {
@@ -21,6 +20,6 @@ namespace TextMessaging
         /// Expected format of sms content: Event [delimiter] sex of case [delimiter] Age of case [delimiter]
         /// or Event # Number of male cases five or under # Number of male cases over 5	# Number of female cases five or under # Number of female cases over five
         /// </remarks>
-        TextMessageParsingResult Parse(TextMessage textMessage);
+        // TextMessageParsingResult Parse(TextMessage textMessage); 
     }
 }

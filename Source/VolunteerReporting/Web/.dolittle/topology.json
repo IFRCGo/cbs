@@ -1,0 +1,63 @@
+{
+  "modules": [],
+  "features": [
+    {
+      "feature": "e729ab21-2f04-44d0-831d-c38a90599687",
+      "name": "CaseReports",
+      "subFeatures": []
+    },
+    {
+      "feature": "291d0ce3-0869-49e8-ae7c-491b21def4db",
+      "name": "AutomaticReplyMessages",
+      "subFeatures": []
+    },
+    {
+      "feature": "b8be9d6a-2bf5-43ac-899f-9e22ce76470a",
+      "name": "External",
+      "subFeatures": []
+    },
+    {
+      "feature": "f2ba447d-71ef-42e9-8b81-be25379bd84f",
+      "name": "Projects",
+      "subFeatures": []
+    },
+    {
+      "feature": "e9bdac67-a1ce-486c-924d-c73cd4b506a4",
+      "name": "InvalidCaseReports",
+      "subFeatures": []
+    },
+    {
+      "feature": "44a07296-1bce-4b7a-a611-e55d6bd01858",
+      "name": "HealthRisks",
+      "subFeatures": [
+        {
+          "feature": "d16cb463-3f43-4925-a4f2-608862925483",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "81428760-3fae-4fe5-95bf-26369a2f883e",
+      "name": "DataCollectors",
+      "subFeatures": [
+        {
+          "feature": "2daae196-d35e-4e05-85eb-8e0554fe403e",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "4a746773-0a69-4236-8aa3-41fa184fcb78",
+      "name": "CaseReportsForListing",
+      "subFeatures": [
+        {
+          "feature": "c75bd806-61c9-4c5f-8f6d-38b3ad62dbb4",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    }
+  ]
+}

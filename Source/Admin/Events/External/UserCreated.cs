@@ -2,22 +2,32 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
+// CANNOT FIND THIS EVENT IN ANY BOUNDED CONTEXT
 using System;
 using Dolittle.Events;
 
-namespace Events.External
+namespace Events.External 
 {
-    public class UserCreated : IEvent
+    public class UserCreated : IEvent 
     {
-        public Guid Id { get; set; }
+        
+        public UserCreated (Guid id, string firstname, string lastname, string country, Guid nationalSocietyId) 
+        {
+            this.Id = id;
+            this.Firstname = firstname;
+            this.Lastname = lastname;
+            this.Country = country;
+            this.NationalSocietyId = nationalSocietyId;
 
-        public string Firstname { get; set; }
+        }
+        public Guid Id { get; }
 
-        public string Lastname { get; set; }
+        public string Firstname { get; }
 
-        public string Country { get; set; }
+        public string Lastname { get; }
 
-        public Guid NationalSocietyId { get; set; }
+        public string Country { get; }
+
+        public Guid NationalSocietyId { get; }
     }
 }

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <DolittleUseModules>False</DolittleUseModules>
+    <DolittleGenerateProxies>False</DolittleGenerateProxies>
+    <DolittleProxiesBasePath>../Web.Angular/src/proxies</DolittleProxiesBasePath>
+  </PropertyGroup>
+
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
 </ItemGroup> 
@@ -16,14 +23,13 @@
     <PackageReference Include="iTextSharp" Version="5.5.13" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    
+    <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.0.0-alpha2*" />
     <PackageReference Include="Dolittle.Runtime.Queries.Coordination" Version="2.0.0-alpha2*" />
+    <PackageReference Include="Dolittle.Build" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\TextMessaging\Infrastructure.TextMessaging.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\TextMessaging.Web\Infrastructure.TextMessaging.Web.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Kafka\Infrastructure.Kafka.csproj" />
     <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
     <ProjectReference Include="..\Events.External\Events.External.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />

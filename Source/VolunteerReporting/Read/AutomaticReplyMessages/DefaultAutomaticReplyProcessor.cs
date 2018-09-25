@@ -13,7 +13,7 @@ namespace Read.AutomaticReplyMessages
             _defaultAutomaticReplies = defaultAutomaticReplies;
             _defaultKeyMessages = defaultKeyMessages;
         }
-
+        [EventProcessor("9e039492-a02f-4ffd-b99c-e745618f3f80")]
         public void Process(DefaultAutomaticReplyDefined @event)
         {
             _defaultAutomaticReplies.SaveDefaultAutomaticReply(
@@ -23,7 +23,7 @@ namespace Read.AutomaticReplyMessages
                 @event.Message);
             
         }
-
+        [EventProcessor("5c591794-d3ac-4190-bbbc-d7f7445a8967")]
         public void Process(DefaultAutomaticReplyKeyMessageDefined @event)
         {
             _defaultKeyMessages.SaveDefaultAutomaticReplyKeyMessage(

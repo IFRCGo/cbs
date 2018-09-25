@@ -16,7 +16,7 @@ namespace Read.HealthRiskFeatures
         {
             _healthRisks = healthRisks;
         }
-
+        [EventProcessor("c13a6652-5bd2-428e-b446-7646c2a6e991")]
         public void Process(HealthRiskCreated @event)
         {
             var healthRisk = new HealthRisk
@@ -34,13 +34,14 @@ namespace Read.HealthRiskFeatures
             };
             _healthRisks.Insert(healthRisk);
         }
-
+        [EventProcessor("365fe247-dd3c-4f85-9d24-052f954c3cf8")]
         public void Process(ThresholdAddedToHealthRIsk @event)
         {
-            _healthRisks.Update(_ => _.Id == @event.HealthRiskId,
-                Builders<HealthRisk>.Update.Set(_ => _.Threshold, @event.Threshold));
+        //TODO: Have this again when dolittle build tool supports nullables 
+            // _healthRisks.Update(_ => _.Id == @event.HealthRiskId,
+            //     Builders<HealthRisk>.Update.Set(_ => _.Threshold, /*@event.Threshold));
         }
-
+        [EventProcessor("ef9fe8d4-eb58-4649-bc96-0e3e472a0689")]
         public void Process(HealthRiskModified @event)
         {
             _healthRisks.Update(risk => risk.Id == @event.Id, Builders<HealthRisk>.Update.Combine(
@@ -52,7 +53,7 @@ namespace Read.HealthRiskFeatures
                 Builders<HealthRisk>.Update.Set(risk => risk.KeyMessage, @event.KeyMessage)
                 ));
         }
-
+        [EventProcessor("11de10e1-fa78-447c-8ce9-34eb46ade455")]
         public void Process(HealthRiskDeleted @event)
         {
             _healthRisks.Delete(risk => risk.Id == @event.HealthRiskId);

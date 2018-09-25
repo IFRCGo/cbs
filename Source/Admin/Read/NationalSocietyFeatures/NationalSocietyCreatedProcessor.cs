@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Dolittle.Events.Processing;
-using Events;
+using Events.NationalSociety;
 
 namespace Read.NationalSocietyFeatures
 {
@@ -15,7 +15,7 @@ namespace Read.NationalSocietyFeatures
         {
             _nationalSocieties = nationalSocieties;
         }
-
+        [EventProcessor("6cd67e88-9246-4318-8155-a7433e3eebca")]
         public void Process(NationalSocietyCreated @event)
         {
             var nationalSociety = new NationalSociety()

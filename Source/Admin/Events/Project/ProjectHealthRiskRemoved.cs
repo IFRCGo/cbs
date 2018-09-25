@@ -10,7 +10,13 @@ namespace Events.Project
 {
     public class ProjectHealthRiskRemoved : IEvent
     {
-        public Guid ProjectId { get; set; }
-        public Guid HealthRiskId { get; set; }
+        
+        public ProjectHealthRiskRemoved(Guid projectId, Guid healthRiskId) 
+        {
+            this.ProjectId = projectId;
+            this.HealthRiskId = healthRiskId;
+        }
+        public Guid ProjectId { get; }
+        public Guid HealthRiskId { get; }
     }
 }

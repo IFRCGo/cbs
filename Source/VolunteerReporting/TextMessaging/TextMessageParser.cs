@@ -4,25 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 using System.Linq;
 using Concepts;
-using Infrastructure.TextMessaging;
-
 namespace TextMessaging
 {
-    /// summary
-    /// Represents an implementation of <see cref="ITextMessageContentParser"/>
-    /// summary
-    public class TextMessageParser : ITextMessageParser
-    {
-        private static readonly char[] Separators = new[] { '#', '*' };
+    // /// summary
+    // /// Represents an implementation of <see cref="ITextMessageContentParser"/>
+    // /// summary
+    // public class TextMessageParser : ITextMessageParser
+    // {
+    //     private static readonly char[] Separators = new[] { '#', '*' };
 
-        /// <inheritdoc/>
-        public TextMessageParsingResult Parse(TextMessage textMessage)
-        {
-            var content = textMessage.Message;
+    //     /// <inheritdoc/>
+    //     public TextMessageParsingResult Parse(TextMessage textMessage)
+    //     {
+    //         var content = textMessage.Message;
             
-            var fragments = content.Replace(" ", string.Empty).Split(Separators).Select(s => new TextMessageFragment(s));
-            var result = new TextMessageParsingResult(fragments);
-            return result;
-        }
-    }
+    //         var fragments = content.Replace(" ", string.Empty).Split(Separators).Select(s => new TextMessageFragment(s));
+    //         var result = new TextMessageParsingResult(fragments);
+    //         return result;
+    //     }
+    // }
 }

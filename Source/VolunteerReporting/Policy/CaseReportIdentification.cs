@@ -7,6 +7,7 @@ using Read.DataCollectors;
 using Read.InvalidCaseReports;
 using Concepts.CaseReport;
 using Concepts.DataCollector;
+using Domain.CaseReports;
 
 namespace Policy
 {
@@ -28,7 +29,7 @@ namespace Policy
             this.invalidAndUnknownReports = invalidAndUnknownReports;
             this.dataCollectors = dataCollectors;
         }
-
+        [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             
