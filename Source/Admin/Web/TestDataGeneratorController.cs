@@ -6,26 +6,29 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Events.External;
-using Events.HealthRisk;
-using Events.NationalSociety;
-using Events.Project;
+using Events.UserManagement;
+using Events.HealthRisks;
+using Events.NationalSocieties;
+using Events.Projects;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Read.HealthRiskFeatures;
-using Read.NationalSocietyFeatures;
-using Read.ProjectFeatures;
-using Read.UserFeatures;
+using Read.HealthRisks;
+using Read.NationalSocieties;
+using Read.Projects;
+using Read.Users;
+using Dolittle.ReadModels;
+using Infrastructure.Read.MongoDb;
+using Concepts.Projects;
 
 namespace Web
 {
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IHealthRisks _healthRisks;
+        private readonly IExtendedReadModelRepositoryFor<HealthRisk> _healthRisks;
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
         private readonly IProjects _projects;
@@ -47,7 +50,7 @@ namespace Web
         };
 
         public TestDataGeneratorController(
-            IHealthRisks healthRisks,
+            IExtendedReadModelRepositoryFor<HealthRisk> healthRisks,
             IUsers users,
             INationalSocieties nationalSocieties,
             IProjects projects)

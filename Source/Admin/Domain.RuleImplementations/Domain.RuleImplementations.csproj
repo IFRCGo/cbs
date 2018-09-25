@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="autofac" Version="4.6.2" />
+    <PackageReference Include="autofac" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
