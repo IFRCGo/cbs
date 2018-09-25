@@ -28,3 +28,6 @@ Want to know more? Visit our [website](https://src.cbsrc.org/).
 | Alert  | [![Build status](https://ci.appveyor.com/api/projects/status/2lab71gqtq8hkxn8/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-q2clx/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-q2clx/branch/master/tests) |
 
 <!-- [![CircleCI](https://circleci.com/gh/sheeeng/cbs.png?style=shield&circle-token=df3dc5f6efbc2a267f7805f05a5e91d2878be9fd)](https://circleci.com/gh/sheeeng/cbs) | [![TravisCI Status](https://travis-ci.org/sheeeng/cbs.svg?branch=master)] -->
+
+## Quick links
+[Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
