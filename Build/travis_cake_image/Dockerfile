@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2-sdk-jessie
+FROM microsoft/dotnet:2.2-sdk-stretch
 
 # Install Mono
 
@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     --keyserver hkp://keyserver.ubuntu.com:80 \
     --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 
-RUN echo "deb http://download.mono-project.com/repo/debian jessie main" \
+RUN echo "deb http://download.mono-project.com/repo/debian stretch main" \
   | tee /etc/apt/sources.list.d/mono-official.list
 
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -31,7 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     locales
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -	
-RUN curl https://packages.microsoft.com/config/debian/8/prod.list | tee /etc/apt/sources.list.d/microsoft.list
+RUN curl https://packages.microsoft.com/config/debian/9/prod.list | tee /etc/apt/sources.list.d/microsoft.list
 
 RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update \

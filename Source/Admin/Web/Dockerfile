@@ -10,7 +10,7 @@ RUN dotnet restore --no-cache
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/aspnetcore:2.0.9
+FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 WORKDIR /app
 COPY --from=dotnet-build /src/Source/Admin/Web/out .
 ENTRYPOINT ["dotnet", "Web.dll"]
