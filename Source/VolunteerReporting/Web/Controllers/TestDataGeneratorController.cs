@@ -372,14 +372,7 @@ namespace Web
                 {
                     foreach (var type in keymessages[language][healthRiskId].Keys)
                     {
-                        events.Add(new DefaultAutomaticReplyKeyMessageDefined()
-                        {
-                            Id = Guid.NewGuid(),
-                            HealthRiskId = healthRiskId,
-                            Language = language,
-                            Message = keymessages[language][healthRiskId][type],
-                            Type = (int)type
-                        });
+                        events.Add(new DefaultAutomaticReplyKeyMessageDefined(Guid.NewGuid(), healthRiskId, (int)type, language, keymessages[language][healthRiskId][type]));
                     }
                 }
             }

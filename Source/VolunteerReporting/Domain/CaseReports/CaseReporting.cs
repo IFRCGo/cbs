@@ -24,7 +24,7 @@ namespace Domain.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidReportReceived(EventSourceId, collector, origin, originalMessage, longitude, latitude, timestamp));
+            Apply(new InvalidReportReceived(EventSourceId, collector, origin, originalMessage, longitude, latitude, errorMessages, timestamp));
         }
 
         public void ReportInvalidReportFromUnknownDataCollector(

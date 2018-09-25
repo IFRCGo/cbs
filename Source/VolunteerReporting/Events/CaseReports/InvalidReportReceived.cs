@@ -11,7 +11,7 @@ namespace Events.CaseReports
     public class InvalidReportReceived : IEvent
     {
         public InvalidReportReceived(Guid caseReportId, Guid dataCollectorId, string origin, 
-            string message, double longitude, double latitude, DateTimeOffset timestamp) 
+            string message, double longitude, double latitude, IEnumerable<string> errorMessages, DateTimeOffset timestamp) 
         {
             this.CaseReportId = caseReportId;
             this.DataCollectorId = dataCollectorId;
@@ -19,6 +19,7 @@ namespace Events.CaseReports
             this.Message = message;
             this.Longitude = longitude;
             this.Latitude = latitude;
+            this.ErrorMessages = errorMessages;
             this.Timestamp = timestamp;
                
         }
