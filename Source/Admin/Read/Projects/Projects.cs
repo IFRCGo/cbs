@@ -16,7 +16,7 @@ namespace Read.Projects
     {
 
         public Projects(IMongoDatabase database) 
-            : base(database, database.GetCollection<Project>("Project"))
+            : base(database)
         {
         }
 

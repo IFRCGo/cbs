@@ -14,7 +14,7 @@ namespace Read.Projects
     {
 
         public ProjectHealthRiskVersions(IMongoDatabase database)
-            : base(database, database.GetCollection<ProjectHealthRiskVersion>("ProjectHealthRiskVersion"))
+            : base(database)
         {
         }
 

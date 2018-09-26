@@ -7,11 +7,11 @@ using System;
 using Domain.Admin;
 using Domain.RuleImplementations;
 using FakeItEasy;
-using Read.ProjectFeatures;
-using Read.UserFeatures;
+using Read.Projects;
+using Read.Users;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.Admin
 {
     public class AddVerifierValidatorTests
     {
@@ -27,7 +27,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Read.ProjectFeatures.Project
+                new Read.Projects.Project
                 {
                     DataVerifiers = new[] {new User {Id = Guid.NewGuid()}},
                 }

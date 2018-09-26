@@ -18,6 +18,7 @@ namespace Read.HealthRisks
         {
             _repository = repository;
         }
+        
         [EventProcessor("c13a6652-5bd2-428e-b446-7646c2a6e991")]
         public void Process(HealthRiskCreated @event)
         {

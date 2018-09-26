@@ -16,7 +16,7 @@ namespace Read.Users
         IUsers
     {
         public Users(IMongoDatabase database)
-            : base(database, database.GetCollection<User>("User"))
+            : base(database)
         {
         }
 

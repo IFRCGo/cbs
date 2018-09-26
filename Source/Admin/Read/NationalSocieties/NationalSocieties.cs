@@ -14,7 +14,7 @@ namespace Read.NationalSocieties
         INationalSocieties
     {
         public NationalSocieties(IMongoDatabase database)
-            : base(database, database.GetCollection<NationalSociety>("NationalSociety"))
+            : base(database)
         {
         }
 

@@ -5,12 +5,12 @@
 
 using System;
 using System.Linq;
-using Domain.Project;
+using Domain.Projects;
 using Events;
-using Events.Project;
+using Events.Projects;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.Projects
 {
     public class UpdateProjectValidatorTests
     {

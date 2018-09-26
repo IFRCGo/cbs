@@ -10,6 +10,8 @@ using Dolittle.Runtime.Events.Coordination;
 using Dolittle.ReadModels;
 using Dolittle.Events.Coordination;
 using Dolittle.ReadModels.MongoDB;
+using Dolittle.Runtime.Events.Processing;
+using Dolittle.Runtime.Events.Processing.MongoDB;
 
 namespace Infrastructure.AspNet
 {
@@ -33,6 +35,7 @@ namespace Infrastructure.AspNet
                 DefaultDatabase = "Demo"
             });
             builder.Bind(typeof(IReadModelRepositoryFor<>)).To(typeof(ReadModelRepositoryFor<>));
+            builder.Bind<IEventProcessorOffsetRepository>().To<EventProcessorOffsetRepository>();
         }
     }
 }

@@ -25,10 +25,15 @@ namespace Infrastructure.Read.MongoDb
 
         public IQueryable<T> Query => _collection.AsQueryable();
 
-        public ExtendedReadModelRepositoryFor(IMongoDatabase database, IMongoCollection<T> collection)
+        public ExtendedReadModelRepositoryFor(IMongoDatabase database)
         {
             _database = database;
-            _collection = collection;
+            _collection = GetCollection();
+        }
+
+        public virtual IMongoCollection<T> GetCollection()
+        {
+            return _database.GetCollection<T>(typeof(T).Name);
         }
 
         public T GetById(object id)

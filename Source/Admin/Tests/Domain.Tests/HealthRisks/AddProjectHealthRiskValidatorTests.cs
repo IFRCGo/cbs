@@ -6,15 +6,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.HealthRisk;
-using Domain.Project;
+using Domain.HealthRisks;
+using Domain.Projects;
 using Domain.RuleImplementations;
 using FakeItEasy;
-using Read.HealthRiskFeatures;
-using Read.ProjectFeatures;
+using Infrastructure.Read.MongoDb;
+using Read.HealthRisks;
+using Read.Projects;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.HealthRisks
 {
     public class AddProjectHealthRiskValidatorTests
     {
@@ -30,7 +31,7 @@ namespace Domain.Tests
             var projectId = Guid.NewGuid();
 
             A.CallTo(() => projects.GetById(A<Guid>._)).Returns(
-                new Read.ProjectFeatures.Project
+                new Read.Projects.Project
                 {
                     Id = projectId,
                     HealthRisks =
@@ -40,9 +41,9 @@ namespace Domain.Tests
                 }
             );
 
-            var healthRisks = A.Fake<IHealthRisks>();
+            var healthRisks = A.Fake<IExtendedReadModelRepositoryFor<HealthRisk>>();
             A.CallTo(() => healthRisks.GetById(A<Guid>._)).Returns(
-                new Read.HealthRiskFeatures.HealthRisk());
+                new Read.HealthRisks.HealthRisk());
 
             IProjectHealthRiskRules projectHealthRiskRules = new ProjectHealthRiskRules(projects, healthRisks);
             var validator = new AddProjectHealthRiskValidator(projectHealthRiskRules);

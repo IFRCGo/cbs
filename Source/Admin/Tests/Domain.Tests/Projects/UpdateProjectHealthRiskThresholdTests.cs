@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
-using Domain.Project;
+using Domain.Projects;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.Projects
 {
     public class UpdateProjectHealthRiskThresholdTests
     {

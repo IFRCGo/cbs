@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
-using Domain.ReplyMessage;
+using Domain.AutomaticReplyMessages;
 using Domain.RuleImplementations;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.AutomaticReplyMessages
 {
     public class ReplyMessageConfigUpValidatorTests
     {

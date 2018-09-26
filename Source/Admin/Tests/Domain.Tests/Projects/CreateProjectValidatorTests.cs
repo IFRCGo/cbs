@@ -4,15 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Project;
+using Domain.Projects;
 using Domain.RuleImplementations;
 using Events;
-using Events.Project;
+using Events.Projects;
+using Read.Projects;
 using FakeItEasy;
-using Read.ProjectFeatures;
 using Xunit;
 
-namespace Domain.Tests
+namespace Domain.Tests.Projects
 {
     public class CreateProjectValidatorTests
     {
@@ -25,7 +25,7 @@ namespace Domain.Tests
         {
             var projects = A.Fake<IProjects>();
             A.CallTo(() => projects.GetAll()).Returns(
-                new[] {new Read.ProjectFeatures.Project {Name = "name"}}
+                new[] {new Read.Projects.Project {Name = "name"}}
             );
 
             var validator = new CreateProjectValidator(new ProjectRules(projects));
