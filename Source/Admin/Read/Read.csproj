@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
 
   </ItemGroup>

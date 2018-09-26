@@ -5,7 +5,7 @@
 
 using System;
 using Domain.Admin;
-using Read.UserFeatures;
+using Read.Users;
 
 namespace Domain.RuleImplementations
 {

@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using Dolittle.Execution;
 using Dolittle.Runtime.Commands;
 using Microsoft.Extensions.Logging;
 
@@ -12,16 +13,18 @@ namespace Infrastructure.Logging
     {
         readonly Func<string, LogLevel, bool> _filter;
         readonly string _source;
+        readonly Func<ExecutionContext> _getCurrentExecutionContext;
 
-        public JsonLoggerProvider(string source, Func<string, LogLevel, bool> filter)
+        public JsonLoggerProvider(Func<ExecutionContext> getCurrentExecutionContext,string source, Func<string, LogLevel, bool> filter)
         {
             _filter = filter;
             _source = source;
+            _getCurrentExecutionContext = getCurrentExecutionContext;
         }
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new JsonLogger(_source, categoryName, _filter);
+            return new JsonLogger(_getCurrentExecutionContext, _source, categoryName, _filter);
         }
 
         public void Dispose()

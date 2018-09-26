@@ -20,13 +20,12 @@ namespace Infrastructure.AspNet
             Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
-            
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .MinimumLevel.Override("System", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.JsonConsole();
+                .WriteTo.JsonConsole(Startup.GetCurrentExecutionContext);
 
             if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 

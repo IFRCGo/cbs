@@ -23,17 +23,7 @@ namespace Infrastructure.AspNet
         /// <inheritdoc/>
         public void Provide(IBindingProviderBuilder builder)
         {
-
             builder.Bind<IEventStore>().To<Dolittle.Runtime.Events.Store.MongoDB.EventStore>();
-
-            builder.Bind<IUncommittedEventStreamCoordinator>().To<UncommittedEventStreamCoordinator>();
-
-            builder.Bind<Dolittle.ReadModels.MongoDB.Configuration>().To(new Dolittle.ReadModels.MongoDB.Configuration
-            {
-                Url = "mongodb://localhost:27017",
-                UseSSL = false,
-                DefaultDatabase = "Demo"
-            });
             builder.Bind(typeof(IReadModelRepositoryFor<>)).To(typeof(ReadModelRepositoryFor<>));
             builder.Bind<IEventProcessorOffsetRepository>().To<EventProcessorOffsetRepository>();
         }

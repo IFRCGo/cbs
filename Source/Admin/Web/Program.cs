@@ -11,6 +11,7 @@ namespace Web
     {
         public static int Main(string[] args)
         {
+            //while(!System.Diagnostics.Debugger.IsAttached) System.Threading.Thread.Sleep(10);
             return Initialization.BuildAndRun<Startup>("Admin", args);
         }
     }
