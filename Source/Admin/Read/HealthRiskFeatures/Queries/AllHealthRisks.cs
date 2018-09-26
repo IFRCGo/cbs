@@ -12,6 +12,6 @@ namespace Read.HealthRiskFeatures.Queries
             _collection = collection;
         }
 
-        public IQueryable<HealthRisk> Query => _collection.Query;
+        public IQueryable<HealthRisk> Query => _collection.Query.Where(_ => true);
     }
 }

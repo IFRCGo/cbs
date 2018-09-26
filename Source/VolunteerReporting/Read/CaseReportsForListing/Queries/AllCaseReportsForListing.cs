@@ -14,6 +14,6 @@ namespace Read.CaseReportsForListing.Queries
             _collection = collection;
         }
 
-        public IQueryable<CaseReportForListing> Query => _collection.Query;
+        public IQueryable<CaseReportForListing> Query => _collection.Query.Where(_ => true);
     }
 }

@@ -13,6 +13,6 @@ namespace Read.NationalSocietyFeatures.Queries
             _collection = collection;
         }
 
-        public IQueryable<NationalSociety> Query => _collection.Query;
+        public IQueryable<NationalSociety> Query => _collection.Query.Where(_ => true);
     }
 }

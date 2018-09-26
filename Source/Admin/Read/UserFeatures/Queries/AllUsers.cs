@@ -13,6 +13,6 @@ namespace Read.UserFeatures.Queries
             _collection = collection;
         }
 
-        public IQueryable<User> Query => _collection.Query;
+        public IQueryable<User> Query => _collection.Query.Where(_ => true);
     }
 }

@@ -12,6 +12,6 @@ namespace Read.DataCollectors.Queries
             _collection = collection;
         }
 
-        public IQueryable<DataCollector> Query => _collection.Query;
+        public IQueryable<DataCollector> Query => _collection.Query.Where(_ => true);
     }
 }

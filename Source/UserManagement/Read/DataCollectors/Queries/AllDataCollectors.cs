@@ -15,7 +15,7 @@ namespace Read.DataCollectors.Queries
             _repository = repository;
         }
 
-        public IQueryable<DataCollector> Query => _repository.Query;
+        public IQueryable<DataCollector> Query => _repository.Query.Where(_ => true);
         
     }
 }
