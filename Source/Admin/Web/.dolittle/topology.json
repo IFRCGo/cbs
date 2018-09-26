@@ -38,7 +38,11 @@
     },
     {
       "feature": "004004f0-a60e-4460-a51a-93b2d6e13cf1",
-      "name": "Users",
+      "name": "Users"
+    },
+    {
+      "feature": "e4c38a5a-bc86-4bd0-a5cf-cd5a06576de8",
+      "name": "Events",
       "subFeatures": []
     }
   ]
