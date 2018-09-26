@@ -1,5 +1,8 @@
 {
   "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
   "boundedContext": "1db9523a-7db5-46f6-a442-714f1ab93e01",
-  "boundedContextName": "Volunteer Reporting"
+  "boundedContextName": "Volunteer Reporting",
+  "backend": {
+    "language": "csharp"
+  }
 }
