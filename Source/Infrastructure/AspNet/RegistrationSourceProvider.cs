@@ -15,6 +15,7 @@ namespace Infrastructure.AspNet
         {
             return new IRegistrationSource[] { 
                 new MongoDB.MongoDBRegistrationSource(),
+                new MongoDB.ReadModelRepositoryDBRegistrationSource(),
                 new LocalizedStringsRegistrationsSource(new LocalizedStringsParser(),new UnparsedStringsProvider())
             };
         }
