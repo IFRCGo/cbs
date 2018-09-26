@@ -284,6 +284,19 @@
           "type": "Read.Users.UserById, Read"
         }
       ]
+    },
+    "e4c38a5a-bc86-4bd0-a5cf-cd5a06576de8": {
+      "commands": [],
+      "events": [],
+      "eventSources": [
+        {
+          "artifact": "ac906057-a640-44c3-8e01-09bb6fa51f2d",
+          "generation": 1,
+          "type": "Infrastructure.Events.ExternalSource, Infrastructure.Events"
+        }
+      ],
+      "readModels": [],
+      "queries": []
     }
   }
 }

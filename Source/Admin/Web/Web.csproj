@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
     <ProjectReference Include="..\Domain.RuleImplementations\Domain.RuleImplementations.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />
