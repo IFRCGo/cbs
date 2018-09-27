@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5000/",
+      "applicationUrl": "http://localhost:5001/",
       "sslPort": 0
     }
   },
@@ -28,7 +28,7 @@
             "KAFKA_BOUNDED_CONTEXT_TOPIC": "volunteerreporting"
 
         },
-      "applicationUrl": "http://localhost:5000/"
+      "applicationUrl": "http://localhost:5001/"
     }
   }
 }

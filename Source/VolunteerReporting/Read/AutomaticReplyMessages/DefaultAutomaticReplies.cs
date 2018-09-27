@@ -12,7 +12,7 @@ namespace Read.AutomaticReplyMessages
         IDefaultAutomaticReplies
     {
         public DefaultAutomaticReplies(IMongoDatabase database)
-            : base(database, database.GetCollection<DefaultAutomaticReply>("DefaultAutomaticReply"))
+            : base(database)
         {
         }
 
