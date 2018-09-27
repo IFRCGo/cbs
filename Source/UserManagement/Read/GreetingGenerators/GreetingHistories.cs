@@ -11,10 +11,10 @@ namespace Read.GreetingGenerators
     {
 
         public GreetingHistories(IMongoDatabase database) 
-            : base(database, database.GetCollection<GreetingHistory>("GreetingHistories"))
+            : base(database)
         {
         }
-
+        
         public IEnumerable<GreetingHistory> GetAll()
         {
             return GetMany(_ => true);

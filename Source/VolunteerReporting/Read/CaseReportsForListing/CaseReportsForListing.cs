@@ -15,7 +15,7 @@ namespace Read.CaseReportsForListing
         ICaseReportsForListing
     {
         public CaseReportsForListing(IMongoDatabase database)
-            : base(database, database.GetCollection<CaseReportForListing>("CaseReportForListing"))
+            : base(database)
         {
         }
 

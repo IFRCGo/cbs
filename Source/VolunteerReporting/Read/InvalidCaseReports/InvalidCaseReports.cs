@@ -13,7 +13,7 @@ namespace Read.InvalidCaseReports
         IInvalidCaseReports
     {
         public InvalidCaseReports(IMongoDatabase database)
-            : base(database, database.GetCollection<InvalidCaseReport>("InvalidCaseReport"))
+            : base(database)
         {
         }
 

@@ -12,7 +12,7 @@ namespace Read.HealthRisks
         IHealthRisks
     {
         public HealthRisks(IMongoDatabase database)
-            : base(database, database.GetCollection<HealthRisk>("HealthRisk"))
+            : base(database)
         {
         }
 
