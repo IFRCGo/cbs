@@ -1,0 +1,111 @@
+<form #form= "ngForm" ngNativeValidate class="form-horizontal">
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="readableId">Readable ID:</label>
+        <div class="col-sm-9">
+            <input type="number" class="form-control" 
+            required
+            [(ngModel)]="risk.readableId" 
+            name="readableId" id="readableId" 
+            #readable_id="ngModel"/>
+            
+            <div *ngIf="readable_id.invalid && (readable_id.dirty || readable_id.touched)" 
+                class="alert alert-warning">
+
+                <div *ngIf="readable_id.errors?.required">
+                    Readable ID is required and must be a number.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Health risk name:</label>
+        <div class="col-sm-9">
+            <input type="text" 
+            [(ngModel)]="risk.name" name="name" id="name" 
+            required
+            class="form-control"
+            #risk_name="ngModel"/>
+
+            <div *ngIf="risk_name.invalid && (risk_name.dirty || risk_name.touched)" 
+                class="alert alert-warning">
+
+                <div *ngIf="risk_name.errors?.required">
+                    Healthrisk Name is required.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="case">Case Definition:</label>
+        <div class="col-sm-9">
+            <textarea  ref-textarea  
+            [(ngModel)]="risk.caseDefinition" name="case" id="case" cols="30" rows="10" 
+            required
+            class="form-control"
+            #case_definition="ngModel"></textarea>
+
+            <div *ngIf="case_definition.invalid && (case_definition.dirty || case_definition.touched)" 
+                class="alert alert-warning">
+
+                <div *ngIf="case_definition.errors?.required">
+                    Case Definition is required.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="threshold">Alert Threshold:</label>
+        <div class="col-sm-3">
+            <input type="number" 
+            [(ngModel)]="risk.threshold" name="threshold" id="threshold" 
+            class="form-control" 
+            #threshold="ngModel"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="keyMessage">Key Message:</label>
+        <div class="col-sm-9">
+            <input type="text" 
+            [(ngModel)]="risk.keyMessage" name="keyMessage" id="keyMessage" 
+            required
+            class="form-control" 
+            #key_message="ngModel"/>
+            
+            <div *ngIf="key_message.invalid && (key_message.dirty || key_message.touched)" 
+                class="alert alert-warning">
+
+                <div *ngIf="key_message.errors?.required">
+                    Key message is required
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="note">Note:</label>
+        <div class="col-sm-9">
+            <input type="text" 
+            [(ngModel)]="risk.note" name="note" id="note"
+            class="form-control" 
+            #note="ngModel"/>
+            
+        </div>    
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="community-case">Community case:</label>
+        <div class="col-sm-9">
+            <input type="text" 
+            [(ngModel)]="risk.communityCase" name="community-case" id="community-case"
+            class="form-control" 
+            #community_case="ngModel"/>
+            
+        </div>    
+    </div>
+    <div>
+        <button (click)="submit()" type="submit" class="btn btn-primary pull-right" [disabled]="!form.form.valid">Save</button>
+    </div>
+</form>

@@ -15,7 +15,7 @@ namespace Read.AutomaticReplyMessages
     {
 
         public ReplyMessages(IMongoDatabase database)
-            : base(database, database.GetCollection<ReplyMessagesConfig>("ReplyMessagesConfig"))
+            : base(database)
         {
         }
         

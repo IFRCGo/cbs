@@ -9,7 +9,7 @@ using Events;
 using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read.NationalSocietyFeatures;
+using Read.NationalSocieties;
 
 namespace Web
 {

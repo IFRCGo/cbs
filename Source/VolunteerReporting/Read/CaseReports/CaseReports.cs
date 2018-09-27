@@ -12,7 +12,7 @@ namespace Read.CaseReports
         public const string CollectionName = "CaseReport";
         
         public CaseReports(IMongoDatabase database)
-            : base(database, database.GetCollection<CaseReport>("CaseReport"))
+            : base(database)
         {
         }
 

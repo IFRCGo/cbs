@@ -13,7 +13,7 @@ namespace Read.AutomaticReplyMessages
         IDefaultAutomaticReplyKeyMessages
     {
         public DefaultAutomaticReplyKeyMessages(IMongoDatabase database)
-            : base(database, database.GetCollection<DefaultAutomaticReplyKeyMessage>("DefaultAutomaticReplyKeyMessage"))
+            : base(database)
         {}
 
         public IEnumerable<DefaultAutomaticReplyKeyMessage> GetAll()

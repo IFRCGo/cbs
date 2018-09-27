@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.ReplyMessage;
+using Domain.AutomaticReplyMessages;
 
 namespace Domain.RuleImplementations
 {

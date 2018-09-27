@@ -5,8 +5,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <DolittleUseModules>False</DolittleUseModules>
-    <DolittleGenerateProxies>False</DolittleGenerateProxies>
-    <DolittleProxiesBasePath>../Web.Angular/src/proxies</DolittleProxiesBasePath>
+    <DolittleGenerateProxies>True</DolittleGenerateProxies>
+    <DolittleProxiesBasePath>../Web.Angular/src/app</DolittleProxiesBasePath>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
     <ProjectReference Include="..\Domain.RuleImplementations\Domain.RuleImplementations.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>

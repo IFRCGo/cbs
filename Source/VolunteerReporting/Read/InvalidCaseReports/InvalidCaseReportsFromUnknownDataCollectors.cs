@@ -12,7 +12,7 @@ namespace Read.InvalidCaseReports
         IInvalidCaseReportsFromUnknownDataCollectors
     {
         public InvalidCaseReportsFromUnknownDataCollectors(IMongoDatabase database)
-            : base(database, database.GetCollection<InvalidCaseReportFromUnknownDataCollector>("InvalidCaseReportFromUnknownDataCollector"))
+            : base(database)
         {
         }
 

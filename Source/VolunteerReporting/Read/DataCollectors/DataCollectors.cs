@@ -18,7 +18,7 @@ namespace Read.DataCollectors
     {
        
         public DataCollectors(IMongoDatabase database)
-            : base(database, database.GetCollection<DataCollector>("DataCollector"))
+            : base(database)
         {
         }
 

@@ -5,8 +5,8 @@
 
 using Autofac;
 using Domain.Admin;
-using Domain.Project;
-using Domain.ReplyMessage;
+using Domain.Projects;
+using Domain.AutomaticReplyMessages;
 
 namespace Domain.RuleImplementations
 {
