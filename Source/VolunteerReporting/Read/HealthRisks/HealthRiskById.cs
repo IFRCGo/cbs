@@ -4,7 +4,7 @@ using Concepts;
 using Concepts.HealthRisk;
 using Dolittle.Queries;
 
-namespace Read.HealthRisks.Queries
+namespace Read.HealthRisks
 {
     public class HealthRiskById : IQueryFor<HealthRisk>
     {

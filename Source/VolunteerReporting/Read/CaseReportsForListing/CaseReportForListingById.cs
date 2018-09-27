@@ -6,7 +6,7 @@ using Dolittle.Queries;
 using Infrastructure.Read.MongoDb;
 using Read.CaseReportsForListing.Migration;
 
-namespace Read.CaseReportsForListing.Queries
+namespace Read.CaseReportsForListing
 {
     public class CaseReportForListingById : IQueryFor<CaseReportForListing>
     {

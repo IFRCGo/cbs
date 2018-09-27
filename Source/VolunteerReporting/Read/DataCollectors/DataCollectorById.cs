@@ -4,7 +4,7 @@ using Concepts;
 using Concepts.DataCollector;
 using Dolittle.Queries;
 
-namespace Read.DataCollectors.Queries
+namespace Read.DataCollectors
 {
     public class DataCollectorById : IQueryFor<DataCollector>
     {

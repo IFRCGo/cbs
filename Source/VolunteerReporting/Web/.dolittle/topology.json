@@ -29,35 +29,22 @@
     {
       "feature": "44a07296-1bce-4b7a-a611-e55d6bd01858",
       "name": "HealthRisks",
-      "subFeatures": [
-        {
-          "feature": "d16cb463-3f43-4925-a4f2-608862925483",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
+      "subFeatures": []
     },
     {
       "feature": "81428760-3fae-4fe5-95bf-26369a2f883e",
       "name": "DataCollectors",
-      "subFeatures": [
-        {
-          "feature": "2daae196-d35e-4e05-85eb-8e0554fe403e",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
+      "subFeatures": []
     },
     {
       "feature": "4a746773-0a69-4236-8aa3-41fa184fcb78",
       "name": "CaseReportsForListing",
-      "subFeatures": [
-        {
-          "feature": "c75bd806-61c9-4c5f-8f6d-38b3ad62dbb4",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
+      "subFeatures": []
+    },
+    {
+      "feature": "39309367-f9da-442c-9bee-13df671846bc",
+      "name": "Events",
+      "subFeatures": []
     }
   ]
 }

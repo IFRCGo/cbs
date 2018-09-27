@@ -1,7 +1,7 @@
 using System.Linq;
 using Dolittle.Queries;
 
-namespace Read.DataCollectors.Queries
+namespace Read.DataCollectors
 {
     public class AllDataCollectors : IQueryFor<DataCollector>
     {

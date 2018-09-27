@@ -1,7 +1,7 @@
 using System.Linq;
 using Dolittle.Queries;
 
-namespace Read.HealthRisks.Queries
+namespace Read.HealthRisks
 {
     public class AllHealthRisks : IQueryFor<HealthRisk>
     {
