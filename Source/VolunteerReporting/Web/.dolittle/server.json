@@ -1,0 +1,10 @@
+{
+    "interaction": {
+        "port": 50052,
+        "unixSocket": "/var/run/dolittle.interaction.server.sock"
+    },
+    "management": {
+        "port": 50053,
+        "unixSocket": "/var/run/dolittle.management.server.sock"
+    }
+}
