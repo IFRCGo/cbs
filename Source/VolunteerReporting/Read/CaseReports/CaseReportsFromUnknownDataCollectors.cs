@@ -8,13 +8,10 @@ namespace Read.CaseReports
     public class CaseReportsFromUnknownDataCollectors : ExtendedReadModelRepositoryFor<CaseReportFromUnknownDataCollector>,
         ICaseReportsFromUnknownDataCollectors
     {
-        public const string CollectionName = "CaseReportFromUnknownDataCollector";
-
         public CaseReportsFromUnknownDataCollectors(IMongoDatabase database)
-            : base(database, database.GetCollection<CaseReportFromUnknownDataCollector>("CaseReportFromUnknownDataCollector"))
+            : base(database)
         {
         }
-
         public IEnumerable<CaseReportFromUnknownDataCollector> GetAll()
         {
             return GetMany(_ => true);

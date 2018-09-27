@@ -14,7 +14,7 @@ namespace Read.AutomaticReplyMessages
     {
 
         public AutomaticReplyKeyMessages(IMongoDatabase database)
-            : base(database, database.GetCollection<AutomaticReplyKeyMessage>("AutomaticReplyKeyMessage"))
+            : base(database)
         {
         }
 
