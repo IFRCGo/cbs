@@ -1,5 +1,8 @@
 {
   "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
   "boundedContext": "c0d4476e-3a9e-4fd4-a734-fa151dff9c98",
-  "boundedContextName": "User Management"
+  "boundedContextName": "User Management",
+  "backend": {
+    "language": "csharp"
+  }
 }
