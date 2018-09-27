@@ -26,7 +26,7 @@ namespace Infrastructure.AspNet
             builder.Bind<IEventStore>().To<Dolittle.Runtime.Events.Store.MongoDB.EventStore>();
             builder.Bind(typeof(IReadModelRepositoryFor<>)).To(typeof(ReadModelRepositoryFor<>));
             builder.Bind<IEventProcessorOffsetRepository>().To<EventProcessorOffsetRepository>();
-            // builder.Bind<Dolittle.Runtime.Events.Relativity.IGeodesics>().To<Dolittle.Runtime.Events.Relativity.MongoDB.Geodesics>();
+            builder.Bind<Dolittle.Runtime.Events.Relativity.IGeodesics>().To<Dolittle.Runtime.Events.Relativity.MongoDB.Geodesics>();
         }
     }
 }
