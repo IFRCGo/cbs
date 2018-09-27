@@ -44,9 +44,6 @@ namespace Web.Controllers
         public IActionResult Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc") {
             fields = fields ?? new string[] { "all" };
 
-            //TODO: woksin: I think that having a parameter of some kind of datastructure that represents
-            // the filtering and order by is the way to go(?)
-
             if (exporters.ContainsKey(format))
             {
                 var exporter = exporters[format];

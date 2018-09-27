@@ -12,6 +12,7 @@ using Dolittle.Events;
 using Events;
 using Events.AutomaticReplyMessages;
 using Events.External;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -28,10 +29,10 @@ namespace Web
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IMongoDatabase _database;
-        // private readonly ITextMessageProcessors _textMessageProcessors;
+        readonly IMongoDatabase _database;
+        readonly IEventReplayer _eventReplayer;
         
-        private string[] _phoneNumbers = new[] {
+        readonly string[] _phoneNumbers = new[] {
             "",         // missing
             "11111111", // DataCollector #1
             "22222222", // DataCollector #2
@@ -70,7 +71,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-            // _eventReplayer.Replay(healthRisks, _ => _.Id);
+            _eventReplayer.Replay(healthRisks, _ => _.Id);
         }
 
         [HttpGet("datacollectors")]
@@ -82,13 +83,9 @@ namespace Web
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
-            // _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
-            //     eventSource.Apply(new PhoneNumberAddedToDataCollector
-            //     {
-            //         DataCollectorId = @event.DataCollectorId,
-            //         PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
-            //     });
-            // });
+            _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
+                eventSource.Apply(new PhoneNumberAddedToDataCollector(@event.DataCollectorId, _phoneNumbers[1 + (i++ % 3)]));
+            });
         }
 
 
