@@ -6,7 +6,7 @@ using Dolittle.Artifacts;
 using Dolittle.Events;
 using System;
 
-namespace Events.External
+namespace Events.Admin.HealthRisks
 {
     [Artifact("43c5c245-40ff-426d-a6f7-226427c142bb")]
     public class HealthRiskCreated : IEvent
