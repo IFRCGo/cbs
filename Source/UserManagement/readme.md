@@ -1,7 +1,7 @@
 # User management
 
 ## Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/yyxiq56hy52iyv50/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-83l5k/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-83l5k/branch/master/tests)
+[![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3)
 
 ## Prerequisites
 
