@@ -13,6 +13,8 @@
 *.woff2 binary
 *.eot   binary
 *.pptx  binary
+*.pdf   binary
+*.PDF   binary
 
 *.cs eol=lf diff=csharp 
 *.sln text eol=crlf
