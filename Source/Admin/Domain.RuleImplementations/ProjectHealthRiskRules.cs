@@ -12,6 +12,7 @@ using Read.Projects;
 
 namespace Domain.RuleImplementations
 {
+
     public class ProjectHealthRiskRules : IProjectHealthRiskRules
     {
         private readonly IProjects _projects;
