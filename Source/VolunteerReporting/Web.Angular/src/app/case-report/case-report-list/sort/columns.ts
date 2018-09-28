@@ -98,8 +98,5 @@ export const CaseReportColumns: Array<Column> = [
         (a: CaseReportForListing, b: CaseReportForListing) =>
             a.numberOfFemalesAged5AndOlder - b.numberOfFemalesAged5AndOlder,
         hasHealthRisk
-    ),
-    new Column(
-      'latLong', 'Lat./Long.'
-    ),
+    )
 ];
