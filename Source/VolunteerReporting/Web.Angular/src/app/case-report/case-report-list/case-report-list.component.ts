@@ -68,6 +68,14 @@ export class CaseReportListComponent implements OnInit {
         }
     }
 
+    isSuccessStatus(status: number): boolean {
+        return status === 0 || status === 2;
+    }
+
+    isOriginStatus(status:number): boolean {
+        return status === 2 || status === 3;
+    }
+
     ngOnInit() {
         this.queryCoordinator.handle(new AllCaseReportsForListing())
             .then(response => {

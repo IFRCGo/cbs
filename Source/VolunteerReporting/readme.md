@@ -38,12 +38,15 @@ Download nuget dependencies
 Build
 > `dotnet build`   
 
-(Active path: `cbs\source\VolunteerReporting\web`)  
+Open the Web folder
+> `cd Web` 
+
+(Active path: `cbs\source\VolunteerReporting\Web`) 
 
 Run locally
 > `dotnet run`
 
-Open browser at address http://localhost:5000/swagger to access Swagger.
+Open browser at address http://localhost:5001/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
