@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Concepts.DataCollector;
+using Concepts.DataVerifier;
 using Dolittle.ReadModels;
 using Infrastructure.Read.MongoDb;
 
@@ -24,12 +25,13 @@ namespace Read.DataCollectors
 
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+        public DataVerifierId DataVerifier { get; set; }
 
         //TODO: Have this again when dolittle build tool supports nullables 
         //public DateTimeOffset? LastReportRecievedAt { get; set; }
 
         /// Comment from woksin 13.09-18: The dictionary might or might not work with dolittles platform as of now. 
-         public IDictionary<string, object> ExtraElements { get; set; } = new Dictionary<string, object>();
+        public IDictionary<string, object> ExtraElements { get; set; } = new Dictionary<string, object>();
 
     }
 }

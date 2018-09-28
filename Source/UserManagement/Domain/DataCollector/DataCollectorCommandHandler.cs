@@ -7,6 +7,7 @@ using System;
 using Dolittle.Domain;
 using Dolittle.Commands.Handling;
 using Domain.DataCollector.Changing;
+using Domain.DataCollector.DataVerifier;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
 
@@ -89,5 +90,10 @@ namespace Domain.DataCollector
             root.RemovePhoneNumbers(command.PhoneNumber);
         }
 
+        public void Handle(ChangeDataVerifier command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.ChangeDataVerifier(command.DataVerifierId);
+        }
     }
 }

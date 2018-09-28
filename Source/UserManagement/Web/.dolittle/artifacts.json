@@ -48,6 +48,11 @@
           "artifact": "0a4fa57d-082b-4229-a508-d13e20376d31",
           "generation": 1,
           "type": "Events.DataCollector.PhoneNumberRemovedFromDataCollector, Events"
+        },
+        {
+          "artifact": "1ad2d504-f2f0-44ad-8215-2214dab13c2f",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorDataVerifierChanged, Events"
         }
       ],
       "eventSources": [
@@ -222,6 +227,32 @@
           "type": "Read.DataCollectors.Queries.DataCollectorById, Read"
         }
       ]
+    },
+    "16bfc05d-891c-4d00-8bd1-895aed754cea": {
+      "commands": [
+        {
+          "artifact": "284941ba-5be8-48b0-878b-ed85a339c5de",
+          "generation": 1,
+          "type": "Domain.DataCollector.DataVerifier.ChangeDataVerifier, Domain"
+        }
+      ],
+      "events": [],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
+    },
+    "bb94259d-c7df-4bd0-a44b-51c464939fab": {
+      "commands": [],
+      "events": [],
+      "eventSources": [],
+      "readModels": [
+        {
+          "artifact": "6335ea66-68c2-45b5-b6c5-2c447d88766e",
+          "generation": 1,
+          "type": "Read.DataVerifiers.DataVerifier, Read"
+        }
+      ],
+      "queries": []
     }
   }
 }

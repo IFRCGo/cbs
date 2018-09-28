@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Concepts;
+using Concepts.DataVerifier;
 using Dolittle.Domain;
-using Domain.DataCollector.Changing;
 using Domain.DataCollector.Registering;
 using Events.DataCollector;
 
@@ -24,7 +23,8 @@ namespace Domain.DataCollector
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
-            string region, string district
+            string region, string district,
+            DataVerifierId dataVerifierId
             )
         {
             if (_isRegistered)
@@ -52,6 +52,8 @@ namespace Domain.DataCollector
             {
                 AddPhoneNumber(phoneNumber);
             }
+
+            ChangeDataVerifier(dataVerifierId);
         }
 
         public void ChangeLocation(Location location)
@@ -114,6 +116,14 @@ namespace Domain.DataCollector
 
         }
 
+        public void ChangeDataVerifier(DataVerifierId dataVerifierId)
+        {
+            Apply(new DataCollectorDataVerifierChanged(
+                EventSourceId,
+                dataVerifierId
+            ));
+        }
+
         #endregion
 
         #region On-methods
@@ -134,8 +144,6 @@ namespace Domain.DataCollector
         }
 
         #endregion
-
-        
     }
 }
 

@@ -24,6 +24,11 @@
           "feature": "ceb431f5-3173-44a8-aaeb-c7b8c73509eb",
           "name": "Changing",
           "subFeatures": []
+        },
+        {
+          "feature": "16bfc05d-891c-4d00-8bd1-895aed754cea",
+          "name": "DataVerifier",
+          "subFeatures": []
         }
       ]
     },
@@ -53,6 +58,11 @@
           "subFeatures": []
         }
       ]
+    },
+    {
+      "feature": "bb94259d-c7df-4bd0-a44b-51c464939fab",
+      "name": "DataVerifiers",
+      "subFeatures": []
     }
   ]
 }

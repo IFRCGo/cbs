@@ -4,10 +4,12 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Concepts;
 using Concepts.DataCollector;
+using Concepts.DataVerifier;
 using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.External;
 using MongoDB.Driver;
+using Read.DataVerifiers;
 
 namespace Read.DataCollectors
 {
@@ -103,6 +105,13 @@ namespace Read.DataCollectors
             // TODO:
             // _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
             //     Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+        }
+
+        [EventProcessor("cfd0bcf3-e490-492d-b14c-f992fa9fd59b")]
+        public void Process(DataCollectorDataVerifierChanged @event)
+        {
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
+                Builders<DataCollector>.Update.Set(d => d.DataVerifier, (DataVerifierId)@event.DataVerifierId));
         }
     }
 }
