@@ -1,14 +1,11 @@
-
 using System.Linq;
 using Dolittle.Queries;
-using Infrastructure.Read.MongoDb;
-using Read.CaseReportsForListing.Migration;
 
 namespace Read.CaseReportsForListing.Queries
 {
     public class AllCaseReportsForListing : IQueryFor<CaseReportForListing>
     {
-        readonly ICaseReportsForListing _collection;
+        private readonly ICaseReportsForListing _collection;
         public AllCaseReportsForListing(ICaseReportsForListing collection)
         {
             _collection = collection;
@@ -21,7 +18,7 @@ namespace Read.CaseReportsForListing.Queries
         {
             get
             {
-                if (PageSize > 0)
+                if (PageSize > 0 && PageNumber > 0)
                 {
                     return _collection.Query.Skip(PageSize * (PageNumber - 1)).Take(PageSize);
                 }

@@ -1,17 +1,6 @@
-using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Read.CaseReports;
 using Read.CaseReportsForListing;
-using System.Threading.Tasks;
-using Web.Utility;
-using System.IO;
-using System.Collections.Generic;
-using Concepts;
-
-using CaseReportForListing = Read.CaseReportsForListing.CaseReportForListing;
-using Concepts.HealthRisk;
-using Concepts.DataCollector;
 
 namespace Web.Controllers
 {
@@ -19,12 +8,10 @@ namespace Web.Controllers
     public class CaseReportsTotalController : Controller
     {
         private readonly ICaseReportsForListing _caseReports;
-        private readonly ICaseReports _caseReportsObsolete;
 
-        public CaseReportsTotalController(ICaseReportsForListing caseReports, ICaseReports caseReportsObsolete)
+        public CaseReportsTotalController(ICaseReportsForListing caseReports)
         {
             _caseReports = caseReports;
-            _caseReportsObsolete = caseReportsObsolete;
         }
 
         [HttpGet]
