@@ -5,8 +5,8 @@
     </PropertyGroup>
     <PropertyGroup>
         <DolittleUseModules>False</DolittleUseModules>
-        <DolittleGenerateProxies>False</DolittleGenerateProxies>
-        <DolittleProxiesBasePath>../Web.Angular/src/proxies</DolittleProxiesBasePath>
+        <DolittleGenerateProxies>True</DolittleGenerateProxies>
+        <DolittleProxiesBasePath>../Web.Angular/src/app</DolittleProxiesBasePath>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="wwwroot\" />
