@@ -1,7 +1,7 @@
 # Volunteer Reporting
 
 ## Build status
-Todo: Get Azure DevOps build status
+[![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1)
 
 ## Prerequisites
 
