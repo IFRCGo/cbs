@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Events.External
+namespace Events.Admin.Projects
 {
     [Artifact("753c49a2-8b97-4823-8e76-c5fe80a432db")]
     public class ProjectUpdated : IEvent

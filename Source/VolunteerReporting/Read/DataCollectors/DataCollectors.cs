@@ -34,13 +34,13 @@ namespace Read.DataCollectors
 
         public DataCollector GetByPhoneNumber(string phoneNumber)
         {
-            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, phoneNumber);
+            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
             return GetOne(filter);
         }
 
         public DataCollectorId GetIdByPhoneNumber(string phoneNumber)
         {
-            var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, phoneNumber);
+            var filter = Builders<DataCollector>.Filter.AnyEq(dc => dc.PhoneNumbers, (PhoneNumber)phoneNumber);
             return GetOne(filter)?.Id ?? DataCollectorId.NotSet;
         }
 
@@ -52,7 +52,7 @@ namespace Read.DataCollectors
                 DisplayName = displayName,
                 FullName = fullName,
                 Location = new Location(locationLatitude, locationLongitude),
-                PhoneNumbers = new List<string>(),
+                PhoneNumbers = new List<PhoneNumber>(),
                 Region = region ?? "Unknown",
                 District = district ?? "Unknown",
                 Village = "Unknown"
@@ -61,12 +61,12 @@ namespace Read.DataCollectors
 
         public UpdateResult AddPhoneNumber(FilterDefinition<DataCollector> filter, string number)
         {
-            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, (PhoneNumber)number));
         }
 
         public UpdateResult AddPhoneNumber(Expression<Func<DataCollector, bool>> filter, string number)
         {
-            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, number));
+            return Update(filter, Builders<DataCollector>.Update.AddToSet(d => d.PhoneNumbers, (PhoneNumber)number));
         }
 
         public UpdateResult RemovePhoneNumber(FilterDefinition<DataCollector> filter, string number)

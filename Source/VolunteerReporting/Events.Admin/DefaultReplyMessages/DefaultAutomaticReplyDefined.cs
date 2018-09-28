@@ -3,7 +3,7 @@ using Dolittle.Artifacts;
 using Dolittle.Events;
 using System;
 
-namespace Events.External
+namespace Events.Admin.DefaultReplyMessages
 {
     public class DefaultAutomaticReplyDefined : IEvent
     {

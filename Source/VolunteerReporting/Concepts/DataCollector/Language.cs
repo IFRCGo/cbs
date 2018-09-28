@@ -1,4 +1,4 @@
-namespace Concepts
+namespace Concepts.DataCollector
 {
     public enum Language
     {
