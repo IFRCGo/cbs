@@ -1,71 +1,36 @@
 {
   "artifacts": {
-    "2d214e7f-83c0-4115-9b06-ddc9048d49c1": {
+    "9dd67cdf-8816-48c2-83db-172e4fd2e234": {
       "commands": [
         {
-          "artifact": "320cbe93-b7a6-4df1-8422-a38925cf30d6",
+          "artifact": "6d0e638a-e52b-41bd-ae83-a2e0cf170a5a",
           "generation": 1,
-          "type": "Domain.DataCollector.DeleteDataCollector, Domain"
+          "type": "Domain.DataCollectors.DeleteDataCollector, Domain"
         }
       ],
-      "events": [
-        {
-          "artifact": "c7343b03-263f-4920-908e-64234a5151ec",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorLocationChanged, Events"
-        },
-        {
-          "artifact": "55bc2531-9fc9-4c08-8578-5f96c0ed23b1",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorPreferredLanguageChanged, Events"
-        },
-        {
-          "artifact": "e32459e9-02c1-4da8-b2c8-d4c26f534856",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorRegistered, Events"
-        },
-        {
-          "artifact": "b0121c6e-fe6f-45e6-a669-6fc0382fac29",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorRemoved, Events"
-        },
-        {
-          "artifact": "5c95f21a-1790-4f80-b7a5-dbe2416ef7d4",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorUserInformationChanged, Events"
-        },
-        {
-          "artifact": "019edaf2-25ab-49e8-95eb-fbd034654025",
-          "generation": 1,
-          "type": "Events.DataCollector.DataCollectorVillageChanged, Events"
-        },
-        {
-          "artifact": "f04ec357-cac5-468f-9fab-9e822be1360e",
-          "generation": 1,
-          "type": "Events.DataCollector.PhoneNumberAddedToDataCollector, Events"
-        },
-        {
-          "artifact": "0a4fa57d-082b-4229-a508-d13e20376d31",
-          "generation": 1,
-          "type": "Events.DataCollector.PhoneNumberRemovedFromDataCollector, Events"
-        }
-      ],
+      "events": [],
       "eventSources": [
         {
-          "artifact": "6c80d890-e88c-4050-9dd5-2d95960594be",
+          "artifact": "7e6e82a8-4809-431d-a999-d83d61a7284a",
           "generation": 1,
-          "type": "Domain.DataCollector.DataCollector, Domain"
+          "type": "Domain.DataCollectors.DataCollector, Domain"
         }
       ],
-      "readModels": [],
+      "readModels": [
+        {
+          "artifact": "31a5d2e3-ca25-4126-97a1-63c5508e661c",
+          "generation": 1,
+          "type": "Read.DataCollectors.DataCollector, Read"
+        }
+      ],
       "queries": []
     },
-    "4a12c42c-338c-45fa-bc9b-9a5c98cab835": {
+    "ca21e693-30ae-4afa-92f0-3eb8d212c2f0": {
       "commands": [
         {
-          "artifact": "268e0a13-ef67-4b4b-99cf-05baca8a4dea",
+          "artifact": "8d36d0b9-f6da-405d-852c-6f31fdcb349d",
           "generation": 1,
-          "type": "Domain.DataCollector.Registering.RegisterDataCollector, Domain"
+          "type": "Domain.DataCollectors.Registering.RegisterDataCollector, Domain"
         }
       ],
       "events": [],
@@ -73,17 +38,17 @@
       "readModels": [],
       "queries": []
     },
-    "72817316-52d2-4dc5-bee5-59894604eb22": {
+    "e61155bf-5727-4c19-a79c-642a5c1b8623": {
       "commands": [
         {
-          "artifact": "48863de9-d9fb-44e9-b2cb-c15fe017ef4a",
+          "artifact": "250a9dfb-1102-4b3e-b49c-401da84a1ecd",
           "generation": 1,
-          "type": "Domain.DataCollector.PhoneNumber.AddPhoneNumberToDataCollector, Domain"
+          "type": "Domain.DataCollectors.PhoneNumber.AddPhoneNumberToDataCollector, Domain"
         },
         {
-          "artifact": "47d3eedf-9d90-4b2f-a77d-0cff747310c7",
+          "artifact": "a6f7f738-83f2-4554-89fc-bc83e5409704",
           "generation": 1,
-          "type": "Domain.DataCollector.PhoneNumber.RemovePhoneNumberFromDataCollector, Domain"
+          "type": "Domain.DataCollectors.PhoneNumber.RemovePhoneNumberFromDataCollector, Domain"
         }
       ],
       "events": [],
@@ -91,27 +56,27 @@
       "readModels": [],
       "queries": []
     },
-    "ceb431f5-3173-44a8-aaeb-c7b8c73509eb": {
+    "4a0c5474-76fd-4058-8752-568ee54a1977": {
       "commands": [
         {
-          "artifact": "b3144b9d-68c1-4f33-8614-5e5124fe094f",
+          "artifact": "e9549fae-83e6-4ea6-92b3-698d170bef6a",
           "generation": 1,
-          "type": "Domain.DataCollector.Changing.ChangeBaseInformation, Domain"
+          "type": "Domain.DataCollectors.Changing.ChangeBaseInformation, Domain"
         },
         {
-          "artifact": "ed022d54-fbcf-4fc8-8d5b-2764c8108c33",
+          "artifact": "ace97994-a74b-467d-8990-0a9dcd092bec",
           "generation": 1,
-          "type": "Domain.DataCollector.Changing.ChangeLocation, Domain"
+          "type": "Domain.DataCollectors.Changing.ChangeLocation, Domain"
         },
         {
-          "artifact": "c401b4cc-ea40-4752-adc0-a95604c66ee4",
+          "artifact": "906bc320-a6f8-4bd6-a43f-5201788b6418",
           "generation": 1,
-          "type": "Domain.DataCollector.Changing.ChangePreferredLanguage, Domain"
+          "type": "Domain.DataCollectors.Changing.ChangePreferredLanguage, Domain"
         },
         {
-          "artifact": "d4390576-5840-4f00-83ce-7d1a49dfa819",
+          "artifact": "8713b193-55e9-41c8-95bb-9889815575df",
           "generation": 1,
-          "type": "Domain.DataCollector.Changing.ChangeVillage, Domain"
+          "type": "Domain.DataCollectors.Changing.ChangeVillage, Domain"
         }
       ],
       "events": [],
@@ -119,18 +84,18 @@
       "readModels": [],
       "queries": []
     },
-    "4795ea44-d870-4806-9b4a-dc59a299008a": {
+    "4ed164c0-8db8-40cf-be35-2df9783d97fa": {
       "commands": [],
       "events": [
         {
-          "artifact": "41ee79c8-f5e9-4054-b626-bf231b3c3392",
+          "artifact": "d698d9ac-d12e-433c-8033-2d3c39afc0bd",
           "generation": 1,
           "type": "Events.MessageGenerator.MessageGenerated, Events"
         }
       ],
       "eventSources": [
         {
-          "artifact": "f8b89084-4c7f-4064-8b55-14a8a1ecf2a2",
+          "artifact": "5476d6e9-1835-402b-8089-3179a149f779",
           "generation": 1,
           "type": "Domain.MessageGenerator.MessageGenerator, Domain"
         }
@@ -138,7 +103,55 @@
       "readModels": [],
       "queries": []
     },
-    "4e9b1b11-e0f3-4345-ab40-9a4e29d0ff80": {
+    "db309298-74c9-4e86-a138-5a2cf0215c0f": {
+      "commands": [],
+      "events": [
+        {
+          "artifact": "15e202e6-1f09-44f9-ab47-3025dd692c30",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorLocationChanged, Events"
+        },
+        {
+          "artifact": "564fffb7-16b5-40eb-884c-01af22137615",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorPreferredLanguageChanged, Events"
+        },
+        {
+          "artifact": "db408de7-aa5c-4d9a-8728-5a9c82ca20e1",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorRegistered, Events"
+        },
+        {
+          "artifact": "5c5240f3-4d8c-4420-b89b-6d1f4082b5c5",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorRemoved, Events"
+        },
+        {
+          "artifact": "d53b0a44-b566-4b7a-859d-2130f7f2d360",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorUserInformationChanged, Events"
+        },
+        {
+          "artifact": "9cd3cb7f-3925-4e9a-b7be-1036582863b6",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorVillageChanged, Events"
+        },
+        {
+          "artifact": "6422449b-0312-408f-8e20-08ebb502658a",
+          "generation": 1,
+          "type": "Events.DataCollector.PhoneNumberAddedToDataCollector, Events"
+        },
+        {
+          "artifact": "e76a9171-a1a6-4a45-a92e-9aee3c7f21bd",
+          "generation": 1,
+          "type": "Events.DataCollector.PhoneNumberRemovedFromDataCollector, Events"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
+    },
+    "8a3fd8b1-6acb-4b23-b8ec-1a2664f20eb9": {
       "commands": [],
       "events": [
         {
@@ -156,68 +169,55 @@
       "readModels": [],
       "queries": []
     },
-    "9758c8a8-84d3-4530-9de2-47c6cf52536a": {
+    "9708b589-1497-4746-af97-121efe527c43": {
       "commands": [],
       "events": [],
       "eventSources": [],
       "readModels": [
         {
-          "artifact": "c933d721-30ef-44d0-a473-b78ae9deea8b",
+          "artifact": "a4cebda6-efa6-46ec-9348-538062acc0e6",
           "generation": 1,
           "type": "Read.GreetingGenerators.GreetingHistory, Read"
         }
       ],
       "queries": []
     },
-    "a129c371-e7c4-4e04-a557-b4a4f0dff394": {
-      "commands": [],
-      "events": [],
-      "eventSources": [],
-      "readModels": [
-        {
-          "artifact": "ae7f7619-04c2-49eb-8ca5-266e7a90d9e2",
-          "generation": 1,
-          "type": "Read.DataCollectors.DataCollector, Read"
-        }
-      ],
-      "queries": []
-    },
-    "d787a1da-5b09-4b2b-837a-338b11d7c6fa": {
+    "a14f8267-e310-4aba-8b01-f621a99ad6aa": {
       "commands": [],
       "events": [],
       "eventSources": [],
       "readModels": [],
       "queries": [
         {
-          "artifact": "c5b9e080-a187-4619-8c0b-7e96e5decf6c",
+          "artifact": "75360526-161d-4613-8695-542beefe7c34",
           "generation": 1,
           "type": "Read.GreetingGenerators.Queries.AllGreetingHistories, Read"
         },
         {
-          "artifact": "df03d143-0966-464f-b331-92214e37f674",
+          "artifact": "77be85ef-3c1e-4921-b883-1996106a9b4c",
           "generation": 1,
           "type": "Read.GreetingGenerators.Queries.GreetingHistoryById, Read"
         },
         {
-          "artifact": "adefee3c-0100-4081-93b5-090e06c7b0a8",
+          "artifact": "94245aa8-aaaa-46b7-a992-1bacb790d705",
           "generation": 1,
           "type": "Read.GreetingGenerators.Queries.GreetingHistoryByPhoneNumber, Read"
         }
       ]
     },
-    "776f70d5-9f55-4c96-9f49-a4a44862ca47": {
+    "832ab460-8b31-4861-ba7c-bbabc10c9cac": {
       "commands": [],
       "events": [],
       "eventSources": [],
       "readModels": [],
       "queries": [
         {
-          "artifact": "96d92ba4-5986-4eba-b88b-922c9914def5",
+          "artifact": "ba3e0aba-b3c6-477d-bd51-15a3472f50dd",
           "generation": 1,
           "type": "Read.DataCollectors.Queries.AllDataCollectors, Read"
         },
         {
-          "artifact": "807c1285-5301-4007-8549-49ecd0f42f80",
+          "artifact": "d9e629b3-6fc9-4e7f-947a-546814be60f5",
           "generation": 1,
           "type": "Read.DataCollectors.Queries.DataCollectorById, Read"
         }

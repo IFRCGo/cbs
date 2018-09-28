@@ -2,53 +2,52 @@
   "modules": [],
   "features": [
     {
-      "feature": "4795ea44-d870-4806-9b4a-dc59a299008a",
+      "feature": "4ed164c0-8db8-40cf-be35-2df9783d97fa",
       "name": "MessageGenerator",
       "subFeatures": []
     },
     {
-      "feature": "2d214e7f-83c0-4115-9b06-ddc9048d49c1",
-      "name": "DataCollector",
+      "feature": "9dd67cdf-8816-48c2-83db-172e4fd2e234",
+      "name": "DataCollectors",
       "subFeatures": [
         {
-          "feature": "4a12c42c-338c-45fa-bc9b-9a5c98cab835",
+          "feature": "ca21e693-30ae-4afa-92f0-3eb8d212c2f0",
           "name": "Registering",
           "subFeatures": []
         },
         {
-          "feature": "72817316-52d2-4dc5-bee5-59894604eb22",
+          "feature": "e61155bf-5727-4c19-a79c-642a5c1b8623",
           "name": "PhoneNumber",
           "subFeatures": []
         },
         {
-          "feature": "ceb431f5-3173-44a8-aaeb-c7b8c73509eb",
+          "feature": "4a0c5474-76fd-4058-8752-568ee54a1977",
           "name": "Changing",
           "subFeatures": []
-        }
-      ]
-    },
-    {
-      "feature": "4e9b1b11-e0f3-4345-ab40-9a4e29d0ff80",
-      "name": "External",
-      "subFeatures": []
-    },
-    {
-      "feature": "9758c8a8-84d3-4530-9de2-47c6cf52536a",
-      "name": "GreetingGenerators",
-      "subFeatures": [
+        },
         {
-          "feature": "d787a1da-5b09-4b2b-837a-338b11d7c6fa",
+          "feature": "832ab460-8b31-4861-ba7c-bbabc10c9cac",
           "name": "Queries",
           "subFeatures": []
         }
       ]
     },
     {
-      "feature": "a129c371-e7c4-4e04-a557-b4a4f0dff394",
-      "name": "DataCollectors",
+      "feature": "db309298-74c9-4e86-a138-5a2cf0215c0f",
+      "name": "DataCollector",
+      "subFeatures": []
+    },
+    {
+      "feature": "8a3fd8b1-6acb-4b23-b8ec-1a2664f20eb9",
+      "name": "External",
+      "subFeatures": []
+    },
+    {
+      "feature": "9708b589-1497-4746-af97-121efe527c43",
+      "name": "GreetingGenerators",
       "subFeatures": [
         {
-          "feature": "776f70d5-9f55-4c96-9f49-a4a44862ca47",
+          "feature": "a14f8267-e310-4aba-8b01-f621a99ad6aa",
           "name": "Queries",
           "subFeatures": []
         }
