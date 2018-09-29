@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using Concepts;
 using Concepts.DataCollector;
+using Concepts.DataVerifier;
 using Dolittle.Commands;
 
 namespace Domain.DataCollector.Registering
@@ -25,5 +26,7 @@ namespace Domain.DataCollector.Registering
 
         public string Region { get; set; }
         public string District { get; set; }
+
+        public DataVerifierId DataVerifierId { get; set; }
     }
 }

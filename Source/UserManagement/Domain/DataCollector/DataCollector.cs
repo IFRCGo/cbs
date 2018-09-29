@@ -45,7 +45,6 @@ namespace Domain.DataCollector
                 registeredAt,
                 region,
                 district
-                
             ));
 
             foreach (var phoneNumber in phoneNumbers)
