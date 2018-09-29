@@ -12,6 +12,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { DataCollectorService } from './services/data-collector.service';
 import { CommandCoordinator } from '@dolittle/commands';
+import { CommandCoordinator2 } from './services/CommandCoordinator';
 import { QueryCoordinator } from '@dolittle/queries';
 import { QueryCoordinator2 } from './services/QueryCoordinator';
 import { StaffUserService } from './services/staff-user.service';
@@ -87,6 +88,7 @@ const appRoutes: Routes = [
     DataCollectorService,
     AuthenticationService,
     CommandCoordinator,
+    CommandCoordinator2,
     QueryCoordinator,
     QueryCoordinator2
   ],

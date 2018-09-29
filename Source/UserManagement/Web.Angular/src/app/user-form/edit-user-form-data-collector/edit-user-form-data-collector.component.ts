@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CommandCoordinator } from '../../services/CommandCoordinator';
+import { CommandCoordinator2 } from '../../services/CommandCoordinator';
 import { Command } from '../../services/Command';
 import { Language } from '../../domain/language.model';
 import {Location } from '../../domain/location.model';
@@ -43,7 +43,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commandCoordinator: CommandCoordinator,
+        private commandCoordinator: CommandCoordinator2,
         private toastr: ToastrService,
         private queryCoordinator: QueryCoordinator2<DataCollector>
         ) {
