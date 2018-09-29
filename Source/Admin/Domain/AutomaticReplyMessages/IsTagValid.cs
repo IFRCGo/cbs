@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Domain.Admin
+namespace Domain.AutomaticReplyMessages
 {
-    public interface IUserRules
-    {
-        bool IsUserExisting(Guid userId);
-    }
+    public delegate bool IsTagValid(string tag);
 }
