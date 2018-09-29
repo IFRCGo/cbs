@@ -97,12 +97,10 @@ export class CaseReportListComponent implements OnInit {
         const queryRequest = new AllCaseReportsForListing();
         this.page.isLoading = true;
         queryRequest.parameters = this.buildListParams();
-        console.log(queryRequest);
         this.queryCoordinator.handle(queryRequest)
             .then(response => {
                 if (response.success) {
                     this.listedReports = response.items as Array<fromModels.CaseReportForListing>;
-                    console.log(this.listedReports);
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
