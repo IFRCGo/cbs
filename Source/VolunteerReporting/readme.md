@@ -1,7 +1,7 @@
 # Volunteer Reporting
 
 ## Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master)
+[![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1)
 
 ## Prerequisites
 
