@@ -3,30 +3,28 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using System.Linq;
 using Domain.Projects;
+using Infrastructure.Rules;
 using Read.Projects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Domain.RuleImplementations
+namespace Domain.RuleImplementations.Projects
 {
-    public class ProjectRules : IProjectRules
+    public class IsUserNotAVerifierRule : IRuleImplementationFor<IsUserNotAVerifier>
     {
-        private readonly IProjects _projects;
+        private readonly IProjects _projects; 
 
-        public ProjectRules(IProjects projects)
+        public IsUserNotAVerifierRule(IProjects projects)
         {
-            _projects = projects;
+            _projects = projects; 
         }
 
-        public bool IsProjectNameUnique(string name)
-        {
-            return _projects.GetAll().All(p => !p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
-        }
-
-        public bool IsUserNotAVerifier(Guid projectId, Guid userId)
+        public IsUserNotAVerifier Rule => (Guid projectId, Guid userId) =>
         {
             return _projects.GetById(projectId).DataVerifiers.All(v => v.Id != userId);
-        }
+        }; 
     }
 }
