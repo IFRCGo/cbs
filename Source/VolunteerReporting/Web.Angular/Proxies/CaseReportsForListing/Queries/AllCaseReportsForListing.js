@@ -13,5 +13,8 @@ export class AllCaseReportsForListing extends Query
 
         this.pageSize = 0;
         this.pageNumber = 0;
+
+        this.sortAscending = false;
+        this.sortField = "";
     }
 }

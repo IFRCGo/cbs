@@ -1,5 +1,8 @@
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Dolittle.Queries;
+using Infrastructure.Read.Migration;
 
 namespace Read.CaseReportsForListing.Queries
 {
@@ -13,18 +16,22 @@ namespace Read.CaseReportsForListing.Queries
 
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
+        public bool SortAscending { get; set; } 
+        public string SortField { get; set; }
 
         public IQueryable<CaseReportForListing> Query
         {
             get
             {
-                if (PageSize > 0 && PageNumber > 0)
+                var sortField = string.IsNullOrEmpty(SortField) ? nameof(CaseReportForListing.Timestamp) : SortField;
+                var query = _collection.Query.OrderByField(sortField, SortAscending);
+
+                if (PageSize > 0 && PageNumber >= 0)
                 {
-                    return _collection.Query.Skip(PageSize * (PageNumber - 1)).Take(PageSize);
+                    return query.Skip(PageSize * PageNumber).Take(PageSize);
                 }
-                return _collection.Query;
+                return query;
             }
         }
-
     }
 }
