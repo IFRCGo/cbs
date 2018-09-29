@@ -1,5 +1,5 @@
 
-using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollectors.PhoneNumber;
 using Machine.Specifications;
 using FluentValidation.Results;
 
