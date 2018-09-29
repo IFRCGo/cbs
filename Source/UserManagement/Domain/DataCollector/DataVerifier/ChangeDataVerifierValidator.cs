@@ -12,9 +12,9 @@ namespace Domain.DataCollector.DataVerifier
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
-            RuleFor(_ => _.DataVerifierId)
-                .NotEmpty().WithMessage("Data Verifier Id must be set")
-                .SetValidator(new DataVerifierIdValidator());
+            //RuleFor(_ => _.DataVerifierId)
+            //    .NotEmpty().WithMessage("Data Verifier Id must be set")
+            //    .SetValidator(new DataVerifierIdValidator());
         }
     }
 }
