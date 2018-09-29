@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "d3": "^5.7.0",
+    "d3-fetch": "^1.1.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "1.1.5"

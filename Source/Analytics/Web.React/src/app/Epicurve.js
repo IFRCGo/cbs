@@ -1,43 +1,51 @@
-import { select } from 'd3-selection';
-import * as React from 'react';
-import * as d3 from "d3";
 
-interface Props {
-  data: number[];
-  width: number;
-  height: number;
-}
+import React, {Component} from 'react';
+import * as d3 from 'd3';
 
-class Epicurve extends React.Component<Props> {
-    constructor(props) {
-        super(props);
-        this.svgRef = React.createRef();
-    }
+class BarChart extends Component {
+  chartRef = React.createRef ();
 
-  drawChart(data: number[]) {
-    /* ...Draw the chart with D3... */
-      const svg = select(this.svgRef.current);
-      svg.append("circle").attr("cx",50)
-          .append("div")
-        .html("First!");
-      console.log("HI");
+  componentDidUpdate () {
+    console.log(this.props.width);
+    //if(Object.keys(this.props.data).length==0){
+    //  return;
+    //}
+    console.log(this.props.data);
+    var dataVals = this.props.data.map(function(d) {
+      return d.n
+    });
 
-
+    const chart = d3.select (this.chartRef.current);
+    const barHeight = 20;
+    const chartWidth = 200;
+    const xScale = d3
+      .scaleLinear()
+      .domain ([0, d3.max (dataVals)])
+      .range ([0, chartWidth]);
+    const bar = chart
+      .selectAll ('g')
+      .data (dataVals)
+      .enter ()
+      .append ('g')
+      .attr ('transform', (value, i) => `translate(0,${i * barHeight})`);
+    bar
+      .append ('rect')
+      .attr ('width', value => xScale (value))
+      .attr ('height', barHeight - 1)
+      .attr ('style', 'fill: steelblue;');
+    bar
+      .append ('text')
+      .attr ('x', value => xScale (value) - 5)
+      .attr ('y', barHeight / 2)
+      .attr ('dy', '.35em')
+      .attr ('style', 'fill: white; font: 14px sans-serif; text-anchor: end;')
+      .text (value => value);
+      
   }
 
-    componentDidMount() {
-
-      console.log(this.svg);
-        var data = [4, 8, 15, 16, 23, 42];
-        this.drawChart(data);
-    }
-
-  render() {
-    const { width, height } = this.props;
-    return (
-      <circle width={width} height={height} ref={this.svg} />
-    );
+  render () {
+    return <svg width={this.props.width} height={this.props.height} ref={this.chartRef} />;
   }
 }
 
-export default Epicurve;
+export default BarChart;

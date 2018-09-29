@@ -6,16 +6,25 @@ class BarChart extends Component {
   chartRef = React.createRef ();
 
   componentDidMount () {
+    console.log(this.props.width);
+    if(length(this.props.data)==0){
+      return;
+    }
+
+    var dataVals = this.props.data.map(function(d) {
+      return d.n
+    });
+
     const chart = d3.select (this.chartRef.current);
     const barHeight = 20;
     const chartWidth = 200;
     const xScale = d3
       .scaleLinear()
-      .domain ([0, d3.max (this.props.data)])
+      .domain ([0, d3.max (dataVals)])
       .range ([0, chartWidth]);
     const bar = chart
       .selectAll ('g')
-      .data (this.props.data)
+      .data (dataVals)
       .enter ()
       .append ('g')
       .attr ('transform', (value, i) => `translate(0,${i * barHeight})`);
