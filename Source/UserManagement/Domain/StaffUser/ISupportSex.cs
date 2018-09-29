@@ -1,10 +1,10 @@
-using Concepts;
+// using Concepts;
 
-namespace Domain.StaffUser
-{
+// namespace Domain.StaffUser
+// {
 
-    public interface ISupportSex 
-    {
-        Sex? Sex { get; }
-    }
-}
+//     public interface ISupportSex 
+//     {
+//         Sex? Sex { get; }
+//     }
+// }

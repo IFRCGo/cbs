@@ -1,0 +1,302 @@
+{
+  "artifacts": {
+    "026806d3-a715-42f8-b894-2d6b448ad70f": {
+      "commands": [
+        {
+          "artifact": "e91861c1-6b62-40ab-b5fa-c5192d5f4f94",
+          "generation": 1,
+          "type": "Domain.Projects.CreateProject, Domain"
+        },
+        {
+          "artifact": "153d54a2-d106-4023-a73a-a7d1322fde2b",
+          "generation": 1,
+          "type": "Domain.Projects.UpdateProject, Domain"
+        },
+        {
+          "artifact": "34cb1a3c-1e37-4e49-8480-b031cb647447",
+          "generation": 1,
+          "type": "Domain.Projects.UpdateProjectHealthRiskThreshold, Domain"
+        }
+      ],
+      "events": [
+        {
+          "artifact": "1d572f69-d4f8-4940-b4c4-aa59d31ab9f3",
+          "generation": 1,
+          "type": "Events.Projects.ProjectCreated, Events"
+        },
+        {
+          "artifact": "51c5dcfe-a69e-4fca-9070-b6e24267254b",
+          "generation": 1,
+          "type": "Events.Projects.ProjectDeleted, Events"
+        },
+        {
+          "artifact": "3e00312d-5cea-4cda-8402-105f80ea439b",
+          "generation": 1,
+          "type": "Events.Projects.ProjectHealthRiskAdded, Events"
+        },
+        {
+          "artifact": "27be461a-d33b-42bf-a23b-477b3e3337eb",
+          "generation": 1,
+          "type": "Events.Projects.ProjectHealthRiskRemoved, Events"
+        },
+        {
+          "artifact": "ee3a0c44-654f-4882-9593-a60e0d03b742",
+          "generation": 1,
+          "type": "Events.Projects.ProjectHealthRiskThresholdUpdate, Events"
+        },
+        {
+          "artifact": "658c639e-1c99-4932-bec1-591eafdadab7",
+          "generation": 1,
+          "type": "Events.Projects.ProjectUpdated, Events"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [
+        {
+          "artifact": "abce02d1-cb8e-4da7-b094-82b591d35301",
+          "generation": 1,
+          "type": "Read.Projects.Project, Read"
+        },
+        {
+          "artifact": "a72c0cd7-b4f1-4c8b-a8c1-09bfa4ef5a51",
+          "generation": 1,
+          "type": "Read.Projects.ProjectHealthRiskVersion, Read"
+        }
+      ],
+      "queries": [
+        {
+          "artifact": "620e4364-0fb0-4b60-bd88-1d41198c71d3",
+          "generation": 1,
+          "type": "Read.Projects.AllProjects, Read"
+        },
+        {
+          "artifact": "1c7a36dd-2d0c-4905-aaa9-da7d722641df",
+          "generation": 1,
+          "type": "Read.Projects.ProjectById, Read"
+        }
+      ]
+    },
+    "48b96847-088e-49c5-b3b5-db4af785a303": {
+      "commands": [
+        {
+          "artifact": "50b24c28-494d-4e69-a114-65b4cd7b2e62",
+          "generation": 1,
+          "type": "Domain.HealthRisks.AddProjectHealthRisk, Domain"
+        },
+        {
+          "artifact": "60ddc137-8dd8-45c8-94dc-41c09d8530b2",
+          "generation": 1,
+          "type": "Domain.HealthRisks.AddThresholdToHealthRisk, Domain"
+        },
+        {
+          "artifact": "f519fe4c-e353-4b86-8289-2a1cef497350",
+          "generation": 1,
+          "type": "Domain.HealthRisks.CreateHealthRisk, Domain"
+        },
+        {
+          "artifact": "5384e999-4264-4ca9-ab18-7ee2e5268757",
+          "generation": 1,
+          "type": "Domain.HealthRisks.DeleteHealthRisk, Domain"
+        },
+        {
+          "artifact": "016afd4f-e190-48a4-8e04-3d13b95c0414",
+          "generation": 1,
+          "type": "Domain.HealthRisks.ModifyHealthRisk, Domain"
+        }
+      ],
+      "events": [
+        {
+          "artifact": "b9c99747-55da-4d25-9a6b-667efcecba47",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskCreated, Events"
+        },
+        {
+          "artifact": "fb1cc9e2-7151-4440-9709-c462a4ae03ee",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskDeleted, Events"
+        },
+        {
+          "artifact": "9fa902fb-6606-4147-b3fd-54cbb802762e",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskModified, Events"
+        },
+        {
+          "artifact": "3cec8cd0-e4ea-4f85-95fe-da61da615d69",
+          "generation": 1,
+          "type": "Events.HealthRisks.ThresholdAddedToHealthRIsk, Events"
+        }
+      ],
+      "eventSources": [
+        {
+          "artifact": "1cee0f83-e19f-4534-b8d4-b1c7f95b2187",
+          "generation": 1,
+          "type": "Domain.HealthRisks.HealthRisk, Domain"
+        }
+      ],
+      "readModels": [
+        {
+          "artifact": "4e1acd10-3091-415c-b659-e238da425ee5",
+          "generation": 1,
+          "type": "Read.HealthRisks.HealthRisk, Read"
+        }
+      ],
+      "queries": [
+        {
+          "artifact": "632c735a-8440-48b0-9f55-549537f0c0eb",
+          "generation": 1,
+          "type": "Read.HealthRisks.AllHealthRisks, Read"
+        },
+        {
+          "artifact": "5535943b-f379-457f-afee-0c3d142a66fa",
+          "generation": 1,
+          "type": "Read.HealthRisks.HealthRiskById, Read"
+        }
+      ]
+    },
+    "cf551208-9e5b-4a37-8e45-e13b634ce037": {
+      "commands": [
+        {
+          "artifact": "33d12c18-b906-401b-8e56-fcd3eed791a1",
+          "generation": 1,
+          "type": "Domain.AutomaticReplyMessages.UpdateReplyMessagesConfig, Domain"
+        }
+      ],
+      "events": [
+        {
+          "artifact": "58d72af7-7749-4d51-a346-2a08c29f7e6a",
+          "generation": 1,
+          "type": "Events.AutomaticReplyMessages.MessageUpdated, Events"
+        },
+        {
+          "artifact": "ba99c451-ea40-4e97-b732-f68e47820653",
+          "generation": 1,
+          "type": "Events.AutomaticReplyMessages.ReplyMessageConfigUpdated, Events"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [
+        {
+          "artifact": "e36024d0-04fe-417e-96a6-f0eebfe5c958",
+          "generation": 1,
+          "type": "Read.AutomaticReplyMessages.ReplyMessagesConfig, Read"
+        }
+      ],
+      "queries": [
+        {
+          "artifact": "01722444-ff73-453d-a573-584d05ef284c",
+          "generation": 1,
+          "type": "Read.AutomaticReplyMessages.AllReplyMessages, Read"
+        },
+        {
+          "artifact": "ba91a9ae-6ea5-41f9-81ff-463acbdf9653",
+          "generation": 1,
+          "type": "Read.AutomaticReplyMessages.ReplyMessageById, Read"
+        }
+      ]
+    },
+    "b93462dd-4dc7-483e-b9b5-1c6f38fade6f": {
+      "commands": [
+        {
+          "artifact": "abadae4a-c197-436e-ae66-06ff2a11122b",
+          "generation": 1,
+          "type": "Domain.Admin.AddDataVerifier, Domain"
+        }
+      ],
+      "events": [
+        {
+          "artifact": "71c426fc-6f9d-4785-b64b-86fcd1728011",
+          "generation": 1,
+          "type": "Events.Admin.DataVerifierAdded, Events"
+        },
+        {
+          "artifact": "f9935329-8ea7-45f0-8d6e-a78377a2fa66",
+          "generation": 1,
+          "type": "Events.Admin.DataVerifierRemoved, Events"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
+    },
+    "af43ae09-9f1f-4e33-a5e3-69f2d3ef4993": {
+      "commands": [],
+      "events": [
+        {
+          "artifact": "95cd65b4-822c-4ab8-8070-1cbfa5e1ce2f",
+          "generation": 1,
+          "type": "Events.NationalSocieties.NationalSocietyCreated, Events"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [
+        {
+          "artifact": "2d4e2ccf-410c-4bf2-8ef5-e9b54bbef081",
+          "generation": 1,
+          "type": "Read.NationalSocieties.NationalSociety, Read"
+        }
+      ],
+      "queries": [
+        {
+          "artifact": "c5282076-deb0-45b8-8af3-e1ad11427c2f",
+          "generation": 1,
+          "type": "Read.NationalSocieties.AllNationalSocieties, Read"
+        },
+        {
+          "artifact": "c9237b5b-16a9-4d4d-ac32-1366754eb17c",
+          "generation": 1,
+          "type": "Read.NationalSocieties.NationalSocietyById, Read"
+        }
+      ]
+    },
+    "228add62-6fc7-40b0-848d-e5ea0c4a3061": {
+      "commands": [],
+      "events": [
+        {
+          "artifact": "08e83682-f069-4df5-80c5-9da9a9d500d2",
+          "generation": 1,
+          "type": "Events.UserManagement.UserCreated, Events.UserManagement"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
+    },
+    "004004f0-a60e-4460-a51a-93b2d6e13cf1": {
+      "commands": [],
+      "events": [],
+      "eventSources": [],
+      "readModels": [
+        {
+          "artifact": "20537c49-3ddc-4e0a-812b-7fdfbc1329ac",
+          "generation": 1,
+          "type": "Read.Users.User, Read"
+        }
+      ],
+      "queries": [
+        {
+          "artifact": "034219ea-41fe-4df8-8155-788b8c20f495",
+          "generation": 1,
+          "type": "Read.Users.AllUsers, Read"
+        },
+        {
+          "artifact": "47d49f9f-a391-4a64-8800-2d1404889ce4",
+          "generation": 1,
+          "type": "Read.Users.UserById, Read"
+        }
+      ]
+    },
+    "e4c38a5a-bc86-4bd0-a5cf-cd5a06576de8": {
+      "commands": [],
+      "events": [],
+      "eventSources": [
+        {
+          "artifact": "ac906057-a640-44c3-8e01-09bb6fa51f2d",
+          "generation": 1,
+          "type": "Infrastructure.Events.ExternalSource, Infrastructure.Events"
+        }
+      ],
+      "readModels": [],
+      "queries": []
+    }
+  }
+}

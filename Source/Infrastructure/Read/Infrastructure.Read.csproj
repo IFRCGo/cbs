@@ -7,8 +7,9 @@
 
     <ItemGroup>
         <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-        <PackageReference Include="Dolittle.SDK.ReadModels" Version="2.0.0-alpha2*" />
-        <PackageReference Include="Dolittle.SDK.Queries" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.0.0-alpha2*" />
+
+        <PackageReference Include="Dolittle.Runtime.Queries" Version="2.0.0-alpha2*" />
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     </ItemGroup>
 </Project>

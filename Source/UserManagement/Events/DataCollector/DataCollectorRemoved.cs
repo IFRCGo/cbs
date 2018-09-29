@@ -5,7 +5,7 @@ namespace Events.DataCollector
 {
     public class DataCollectorRemoved : IEvent
     {
-        public Guid DataCollectorId { get; set; }
+        public Guid DataCollectorId { get;}
 
         public DataCollectorRemoved(Guid dataCollectorId)
         {

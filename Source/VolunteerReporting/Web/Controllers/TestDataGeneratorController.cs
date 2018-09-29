@@ -10,9 +10,8 @@ using Concepts.AutomaticReply;
 using Concepts.HealthRisk;
 using Dolittle.Events;
 using Events;
+using Events.AutomaticReplyMessages;
 using Events.External;
-using Infrastructure.Events;
-using Infrastructure.TextMessaging;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -30,7 +29,7 @@ namespace Web
     public class TestDataGeneratorController : Controller
     {
         private readonly IMongoDatabase _database;
-        private readonly ITextMessageProcessors _textMessageProcessors;
+        // private readonly ITextMessageProcessors _textMessageProcessors;
         
         private string[] _phoneNumbers = new[] {
             "",         // missing
@@ -39,13 +38,10 @@ namespace Web
             "33333333", // DataCollector #3
             "00000000"  // Non existing data collector
         };
-        private readonly IEventReplayer _eventReplayer;
-
-        public TestDataGeneratorController(IMongoDatabase database, ITextMessageProcessors textMessageProcessors, IEventReplayer eventReplayer)
+        
+        public TestDataGeneratorController(IMongoDatabase database)
         {
-            _textMessageProcessors = textMessageProcessors;
             _database = database;
-            _eventReplayer = eventReplayer;
         }
 
         [HttpGet("all")]
@@ -74,7 +70,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-            _eventReplayer.Replay(healthRisks, _ => _.Id);
+            // _eventReplayer.Replay(healthRisks, _ => _.Id);
         }
 
         [HttpGet("datacollectors")]
@@ -86,52 +82,52 @@ namespace Web
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
-            _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
-                eventSource.Apply(new PhoneNumberAddedToDataCollector
-                {
-                    DataCollectorId = @event.DataCollectorId,
-                    PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
-                });
-            });
+            // _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
+            //     eventSource.Apply(new PhoneNumberAddedToDataCollector
+            //     {
+            //         DataCollectorId = @event.DataCollectorId,
+            //         PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
+            //     });
+            // });
         }
 
 
         [HttpGet("producejsonfortextmessages")]
         public void ProduceJsonForTextMessages()
         {
-            var events = new List<TextMessage>();
-            var randomizer = new Random();
-            var keywords = new[] { "" };
-            var healthRisks = _database.GetCollection<HealthRisk>("HealthRisk").Find(Builders<HealthRisk>.Filter.Empty).ToList();
-            var healthRiskIds = healthRisks.Take(5).Select(v => v.ReadableId).ToArray();
-            var numbers = _phoneNumbers;
+            // var events = new List<TextMessage>();
+            // var randomizer = new Random();
+            // var keywords = new[] { "" };
+            // var healthRisks = _database.GetCollection<HealthRisk>("HealthRisk").Find(Builders<HealthRisk>.Filter.Empty).ToList();
+            // var healthRiskIds = healthRisks.Take(5).Select(v => v.ReadableId).ToArray();
+            // var numbers = _phoneNumbers;
 
-            for (int i = 0; i < 100; i++)
-            {
-                var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
+            // for (int i = 0; i < 100; i++)
+            // {
+            //     var message = randomizer.NextDouble() < 0.9 ? CreateValidMessage(healthRiskIds) : CreateInvalidMessage();
 
-                var textMessage = new TextMessage()
-                {
-                    Id = Guid.NewGuid(),
-                    Keyword = keywords[randomizer.Next(keywords.Length)],
-                    OriginNumber = numbers[randomizer.Next(numbers.Length)],
-                    Sent = DateTimeOffset.Now.AddSeconds(-randomizer.NextDouble() * 60 * 60 * 24 * 7 * 26), // last 26 weeks
-                    ReceivedAtGatewayNumber = "0123456789",
-                    Message = message
-                };
+            //     var textMessage = new TextMessage()
+            //     {
+            //         Id = Guid.NewGuid(),
+            //         Keyword = keywords[randomizer.Next(keywords.Length)],
+            //         OriginNumber = numbers[randomizer.Next(numbers.Length)],
+            //         Sent = DateTimeOffset.Now.AddSeconds(-randomizer.NextDouble() * 60 * 60 * 24 * 7 * 26), // last 26 weeks
+            //         ReceivedAtGatewayNumber = "0123456789",
+            //         Message = message
+            //     };
 
-                // Create location for half the messages
-                /* DEPCRECATED
-                if (randomizer.NextDouble() > 0.5)
-                {
-                    textMessage.Latitude = -80d + randomizer.NextDouble() * 80d;    // Latitude between -80 and 80 degrees
-                    textMessage.Longitude = randomizer.NextDouble() * 360d;         // Longitude between 0 and 360 degrees
-                }
-                */
-                events.Add(textMessage);
-            }
+            //     // Create location for half the messages
+            //     /* DEPCRECATED
+            //     if (randomizer.NextDouble() > 0.5)
+            //     {
+            //         textMessage.Latitude = -80d + randomizer.NextDouble() * 80d;    // Latitude between -80 and 80 degrees
+            //         textMessage.Longitude = randomizer.NextDouble() * 360d;         // Longitude between 0 and 360 degrees
+            //     }
+            //     */
+            //     events.Add(textMessage);
+            // }
 
-            System.IO.File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events, Formatting.Indented));
+            // System.IO.File.WriteAllText("./TestData/TextMessagesReceived.json", JsonConvert.SerializeObject(events, Formatting.Indented));
         }
 
         private string CreateInvalidMessage()
@@ -176,18 +172,18 @@ namespace Web
             _col4.DeleteMany(v => true);
             _col5.DeleteMany(v => true);
 
-            var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
-            foreach (var message in textMessagesEvents)
-            {
-                try
-                {
-                    _textMessageProcessors.Process(message);
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.ToString());
-                }
-            }
+            // var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
+            // foreach (var message in textMessagesEvents)
+            // {
+            //     try
+            //     {
+            //         _textMessageProcessors.Process(message);
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         Console.Error.WriteLine(ex.ToString());
+            //     }
+            // }
 
         }
 
@@ -200,7 +196,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplies.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
 
         [HttpGet("producejsonfordefaultautomaticreplymessages")]
@@ -226,20 +222,20 @@ namespace Web
                     { AutomaticReplyType.Incidents, "Thsnks for reporting {event} in {location}. {nationalsociety} is monitoring the situation. {keymessage}" }
                 }
             };
-
-            foreach (var language in messages.Keys)
-            {
-                foreach(var type in messages[language].Keys)
-                {
-                    events.Add(new DefaultAutomaticReplyDefined()
-                    {
-                        Id = Guid.NewGuid(),
-                        Language = language,
-                        Message = messages[language][type],
-                        Type = (int)type
-                    });
-                }
-            }
+            // TODO: Fix later, this event isn't in use
+            // foreach (var language in messages.Keys)
+            // {
+            //     foreach(var type in messages[language].Keys)
+            //     {
+            //         events.Add(new DefaultAutomaticReplyDefined())
+            //         {
+            //             Id = Guid.NewGuid(),
+            //             Language = language,
+            //             Message = messages[language][type],
+            //             Type = (int)type
+            //         });
+            //     }
+            // }
 
             System.IO.File.WriteAllText("./TestData/DefaultAutomaticReplies.json", JsonConvert.SerializeObject(events, Formatting.Indented));
         }
@@ -252,7 +248,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplies.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
 
         [HttpGet("producejsonforautomaticreplymessages")]
@@ -280,14 +276,7 @@ namespace Web
             {
                 foreach (var type in replies[language].Keys)
                 {
-                    events.Add(new AutomaticReplyDefined()
-                    {
-                        Id = Guid.NewGuid(),
-                        ProjectId = project.Id,
-                        Language = language,
-                        Message = replies[language][type],
-                        Type = (int)type
-                    });
+                    events.Add(new AutomaticReplyDefined(Guid.NewGuid(), project.Id, (int)type, language, replies[language][type]));
                 }
             }
 
@@ -330,15 +319,7 @@ namespace Web
                 {
                     foreach (var type in keymessages[language][healthRiskId].Keys)
                     {
-                        events.Add(new AutomaticReplyKeyMessageDefined()
-                        {
-                            Id = Guid.NewGuid(),
-                            HealthRiskId = healthRiskId,
-                            ProjectId = project.Id,
-                            Language = language,
-                            Message = keymessages[language][healthRiskId][type],
-                            Type = (int)type
-                        });
+                        events.Add(new AutomaticReplyKeyMessageDefined(Guid.NewGuid(), project.Id, healthRiskId, (int)type, language, keymessages[language][healthRiskId][type]));
                     }
                 }
             }
@@ -391,14 +372,7 @@ namespace Web
                 {
                     foreach (var type in keymessages[language][healthRiskId].Keys)
                     {
-                        events.Add(new DefaultAutomaticReplyKeyMessageDefined()
-                        {
-                            Id = Guid.NewGuid(),
-                            HealthRiskId = healthRiskId,
-                            Language = language,
-                            Message = keymessages[language][healthRiskId][type],
-                            Type = (int)type
-                        });
+                        events.Add(new DefaultAutomaticReplyKeyMessageDefined(Guid.NewGuid(), healthRiskId, (int)type, language, keymessages[language][healthRiskId][type]));
                     }
                 }
             }
@@ -413,7 +387,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<AutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyKeyMessages.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
 
 
@@ -424,7 +398,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplyKeyMessages.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
 
 
@@ -435,21 +409,21 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            _eventReplayer.Replay(projects, _ => _.Id);            
+            // _eventReplayer.Replay(projects, _ => _.Id);            
         }
 
         [HttpGet("testDelete")]
         public void TestDelete()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyRemoved[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyRemoved.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
         
         [HttpGet("testChangeMessage")]
         public void TestChangeMessage()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyChangeTest.json"));
-            _eventReplayer.Replay(events, _ => _.Id);
+            // _eventReplayer.Replay(events, _ => _.Id);
         }
     }
 }

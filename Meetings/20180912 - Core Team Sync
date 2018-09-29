@@ -1,0 +1,87 @@
+#Core team sync,
+12.09.2018
+
+##Participants
+* Alexander
+* Bjørn
+* Sindre
+* Jakob
+* Hodo
+* Anine
+* Rebecca
+
+##Agenda
+* Tech updates from core team and Samson 
+* Codeathon
+- The agenda/plan (see attached)
+- Breakout sessions/deep dives
+- Core team member sign up to bounded contexts/team formation
+- Review of core team feedback (see attached)
+- Plan moving forward: new meeting? 
+- Adding to events
+* AOB
+
+##Tech updates
+* Alexander has started working on the design for alerts and functionality for codeathon.
+* Several mentioned worries that the volunteers won't feel "coordinated" enough due to lack of issues. Worried that people spend a lot of time trying to find
+solutions. This is time consuming - is it useful? Many agree that the codeathon discussions are of use. Coreteam might not be in roles where they can programme
+lots, but rather in guidance to others in their team. 
+- Defining of issues can also occur within the teams during the codeathon. Not everything needs to be designed from above – it is in the discussions that
+volunteers get ownership of their ideas and the creation process.
+
+#The role of the core team during codeathon will be as the heads of teams. 
+- Each member signs up as the lead of a bounded context which they then coordinate during codeathon. Each team should also have a domain expert. It would also be great if each core team
+member can go through and clean up some of the issues within their bounded contexts in preperation for codeathon.
+
+
+##ROLES:
+
+* Bjørn volunteer reporting/Sindre - user management (collaboration)
+- Dolittle: can we split data collectors from users in the BC? How do the user roles work? Can we delete user management? How would this work?
+- What happens if we remove a bounded context (e.g. user management). Can user management fit into another bounded context?
+- Users can currently access the system and as such it works "without" user management - do we then need the BC? Don't we already have what we need? 
+- The idea from dolittle's side is that if you make a change (e.g. the name of a BC) it will be considered as something brand new in the system. A change therefore becomes a
+new "thing" and the old is deleted (? is this correct?)
+##To be discussed at codeathon + dolittle need to have an internal discussion on this. Sindre will follow up! 
+
+* Reporting: invited data analysts
+
+* Alerts:Karoline
+
+* Admin: Hodo
+- The admin BC is a little undefined still. Names used within BC are unclear and it is difficult to understand what it is and does. It is a compilation of everything “project-y” (e.g. health
+risks, new languages, user roles). Could languages and messages be its own bounded context? Or is it best that everything without a “home” falls under the
+admin BC? Is admin taking in to much? A way to split it is to have “project BC” which contains health risks and languages.
+- Currently, admin also contains all the roles – should these be split? Do they need to be under admin? To be discussed at codeathon!
+- Does it need redesigning (name changes)? Could use a bit of an update on design!
+- Also, when data collectors are in training, should they have their own test-environment where reports are registered? Can we note when a volunteer is “in training”?
+
+* SMS Proxy
+- Not really a bounded context yet and thus not very central for codeathon. When started it should include SMS eagle, trillo and cisco reps.
+
+* Infrastructure: Einar
+
+* Flow diagram:Rebecca
+- Before codeathon we should have a flow chart which explains the whole system and how it all flows and hangs together. Rebecca can make online and ask for input. If completed, it
+could be printed out and hung up during the codeathon. It was very beneficial to do the event mapping together, so this could also be a good exercise for us
+to wrap our heads around everything before the codeathon. Should begin at the beginning – Hodo has experience with this.
+
+##Dolittle:
+* Are focusing on creating the basis for a good user experience during the codeathon. Plan to ensure that volunteers have enough documentation to get started, including quick start
+films and documents. NorCross will likely not have to feed in/adapt these to become CBS specific prior to the codeathon. 
+
+##Codeathon agenda
+* Core team to come at 2 pm 
+* Do we need skills labs for GitHub etc? No, best to take it in the teams and google it!
+* No requests for change in programme – nice to have enough time to get things done
+
+#Role of designers
+* Last time designers were a bit isolated. We now think it would be best if there is a designer in each team. Hodo will try to look at issues for
+designers. Designers also need to be part of creating their own tasks in dialogue with their teams and the core team. 
+
+#Actions : 
+* Core team members to familiarise themselves with the issues within their representative BCs
+* Dolittle to discuss the user management bounded context 
+* Rebecca to make flow diagram, everyone to provide input
+* Dolittle to update and keep us in loop of system updates + documentation
+* Hodo to look at issues for designers

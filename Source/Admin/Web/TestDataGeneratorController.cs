@@ -6,31 +6,35 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Events;
-using Events.External;
-using Events.HealthRisk;
-using Events.Project;
+using Events.UserManagement;
+using Events.HealthRisks;
+using Events.NationalSocieties;
+using Events.Projects;
 using Infrastructure.AspNet;
 using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Read.HealthRiskFeatures;
-using Read.NationalSocietyFeatures;
-using Read.ProjectFeatures;
-using Read.UserFeatures;
+using Read.HealthRisks;
+using Read.NationalSocieties;
+using Read.Projects;
+using Read.Users;
+using Dolittle.ReadModels;
+using Infrastructure.Read.MongoDb;
+using Concepts.Projects;
 
 namespace Web
 {
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IEventReplayer _eventReplayer;
-        private readonly IHealthRisks _healthRisks;
+        private readonly IExtendedReadModelRepositoryFor<HealthRisk> _healthRisks;
         private readonly IUsers _users;
         private readonly INationalSocieties _nationalSocieties;
         private readonly IProjects _projects;
+
+        readonly IEventReplayer _eventReplayer;
 
         private Guid[] _nationalSocietyIds = new Guid[]
         {
@@ -49,20 +53,18 @@ namespace Web
         };
 
         public TestDataGeneratorController(
-            IEventReplayer eventReplayer,
-            IHealthRisks healthRisks,
+            IExtendedReadModelRepositoryFor<HealthRisk> healthRisks,
             IUsers users,
             INationalSocieties nationalSocieties,
-            IProjects projects)
+            IProjects projects,
+            IEventReplayer eventReplayer)
         {
-            _eventReplayer = eventReplayer;
             _healthRisks = healthRisks;
             _users = users;
             _nationalSocieties = nationalSocieties;
             _projects = projects;
+            _eventReplayer = eventReplayer;
         }
-
-        //TODO: Integrate to DoLittle 2.0
 
         [HttpGet("all")]
         public void CreateAll()
@@ -92,12 +94,7 @@ namespace Web
                 {
                     var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    events.Add(new ProjectHealthRiskAdded()
-                    {
-                        ProjectId = project.Id,
-                        HealthRiskId = risk.Id,
-                        Threshold = 0
-                    });
+                    events.Add(new ProjectHealthRiskAdded(project.Id, risk.Id, 0));
                 }
                 _eventReplayer.Replay(events, e => e.HealthRiskId);
             }
@@ -127,22 +124,22 @@ namespace Web
         [HttpGet("users")]
         public void CreateUsers()
         {
-            _users.Delete(_ => true);
-            var societies =
-                JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-                    System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
-            var users = JsonConvert.DeserializeObject<UserCreated[]>(
-                System.IO.File.ReadAllText("./TestData/Names.json"));
-            var i = 0;
+            // _users.Delete(_ => true);
+            // var societies =
+            //     JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
+            //         System.IO.File.ReadAllText("./TestData/NationalSocieties.json"));
+            // var users = JsonConvert.DeserializeObject<UserCreated[]>(
+            //     System.IO.File.ReadAllText("./TestData/Names.json"));
+            // var i = 0;
 
-            foreach (var user in users)
-            {
-                // Make sure we have a valid National Society ID
-                if (!societies.Any(v => v.Id == user.NationalSocietyId))
-                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
+            // foreach (var user in users)
+            // {
+            //     // Make sure we have a valid National Society ID
+            //     if (!societies.Any(v => v.Id == user.NationalSocietyId))
+            //         user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
-            }
-            _eventReplayer.Replay(users, e => e.Id);
+            // }
+            // _eventReplayer.Replay(users, e => e.Id);
         }
 
         [HttpGet("createhealthrisks")]
@@ -173,15 +170,8 @@ namespace Web
                 var title = item.SelectToken("title").ToString();
                 title = title.Split(':').Select(v => v.Trim()).Last();
 
-                list.Add(new ProjectCreated()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = title,
-                    NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
-                    DataOwnerId = _userIds[i % _userIds.Length],
-                    SurveillanceContext = r.Next(0,
-                        Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
-                });
+                list.Add(new ProjectCreated(Guid.NewGuid(), title, _nationalSocietyIds[i % _nationalSocietyIds.Length], _userIds[i % _userIds.Length], 
+                    r.Next(0, Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)));
 
                 i++;
             }

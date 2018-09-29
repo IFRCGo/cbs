@@ -1,5 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {CaseReportForListing} from '../../../shared/models/case-report-for-listing.model';
+import {CaseReportStatus} from '../../../shared/models/case-report-status.model';
 
 export class QuickFilter {
     constructor(
@@ -12,13 +13,16 @@ export class QuickFilter {
         return true;
     });
     static Success: QuickFilter = new QuickFilter('success', 'Success', report => {
-        return !!report.healthRiskId;
+        return report.status === CaseReportStatus.Success
+            || report.status === CaseReportStatus.UnknownDataCollector;
     });
     static Error: QuickFilter = new QuickFilter('error', 'Data error', report => {
-        return !report.healthRiskId;
+        return report.status === CaseReportStatus.TextMessageParsingError
+            || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
     static UnknownSender: QuickFilter = new QuickFilter('unknownSender', 'Unknown sender', report => {
-        return !report.dataCollectorId;
+        return report.status === CaseReportStatus.UnknownDataCollector
+            || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
 
     static Filters: Array<QuickFilter> = [

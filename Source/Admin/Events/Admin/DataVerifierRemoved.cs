@@ -10,7 +10,14 @@ namespace Events.Admin
 {
     public class DataVerifierRemoved : IEvent
     {
-        public Guid ProjectId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid ProjectId { get; }
+        public Guid UserId { get; }
+        
+        public DataVerifierRemoved(Guid projectId, Guid userId) 
+        {
+            ProjectId = projectId;
+            UserId = userId;
+        }
+        
     }
 }

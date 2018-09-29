@@ -1,12 +1,12 @@
 
-using Dolittle.Commands.Validation;
-using FluentValidation;
+// using Dolittle.Commands.Validation;
+// using FluentValidation;
 
-namespace Domain.StaffUser.Registering
-{
+// namespace Domain.StaffUser.Registering
+// {
 
-    public class RegisterNewAdminUserInputValidator : NewStaffRegistrationInputValidator<RegisterNewAdminUser, Roles.Admin>
-    {
+//     public class RegisterNewAdminUserInputValidator : NewStaffRegistrationInputValidator<RegisterNewAdminUser, Roles.Admin>
+//     {
         
-    }
-}
+//     }
+// }

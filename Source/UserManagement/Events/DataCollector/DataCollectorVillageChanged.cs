@@ -5,7 +5,15 @@ namespace Events.DataCollector
 {
     public class DataCollectorVillageChanged : IEvent
     {
-        public Guid DataCollectorId { get; set; }
-        public string Village { get; set; }
+        public DataCollectorVillageChanged(Guid dataCollectorId, string village) 
+        {
+            this.DataCollectorId = dataCollectorId;
+            this.Village = village;
+               
+        }
+        public Guid DataCollectorId { get; }
+        public string Village { get; }
+
+        
     }
 }

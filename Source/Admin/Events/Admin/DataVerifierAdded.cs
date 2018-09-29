@@ -6,11 +6,18 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.Admin
+namespace Events.Admin 
 {
-    public class DataVerifierAdded : IEvent
+    public class DataVerifierAdded : IEvent 
     {
-        public Guid ProjectId { get; set; }
-        public Guid UserId { get; set; }
+        public DataVerifierAdded (Guid projectId, Guid userId) 
+        {
+            ProjectId = projectId;
+            UserId = userId;
+        }
+        public Guid ProjectId { get; }
+        public Guid UserId { get; }
+
+
     }
 }

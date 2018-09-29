@@ -2,12 +2,16 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+using System;
+using System.Globalization;
 using Autofac;
+using Dolittle.Applications;
 using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.DependencyInversion.Autofac;
+using Dolittle.Execution;
+using Dolittle.Security;
 using Infrastructure.AspNet.ConnectionStrings;
-using Infrastructure.Kafka.BoundedContexts;
-using Infrastructure.TextMessaging;
+using Infrastructure.Rules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,23 +23,46 @@ namespace Infrastructure.AspNet
 {
     public class Startup
     {
-
+        static IExecutionContextManager _executionContextManager;
+        BootResult _bootResult;
         readonly ILoggerFactory _loggerFactory;
         readonly IHostingEnvironment _env;
-        readonly IConfiguration _configuration;
-        BootResult _bootResult;
+        readonly IConfiguration _configuration;      
 
         public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
             _env = env;
             _configuration = configuration;
             _loggerFactory = loggerFactory;
+            /// Setup logging for a bounded context
+            loggerFactory.AddJson(GetCurrentExecutionContext,"");
+        }
 
-            loggerFactory.AddJson(Globals.BoundedContext.Name.AsString());
+        internal static ExecutionContext GetCurrentExecutionContext()
+        {
+            ExecutionContext executionContext=null;
+            if( _executionContextManager != null ) {
+                try {
+                    executionContext = _executionContextManager.Current;
+                } catch { }
+            }
+
+            if( executionContext == null ) 
+                executionContext = new ExecutionContext(
+                    Guid.Empty,
+                    Guid.Empty,
+                    Guid.Empty,
+                    "unknown",
+                    CorrelationId.Empty,
+                    new Claims(new Claim[0]),
+                    CultureInfo.CurrentCulture);
+
+            return executionContext;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             if (_env.IsDevelopment())
             {
                 services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
@@ -58,6 +85,10 @@ namespace Infrastructure.AspNet
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            RuleRegistrationSource.Container = app.ApplicationServices.GetService(typeof(Dolittle.DependencyInversion.IContainer)) as Dolittle.DependencyInversion.IContainer;
+
+            _executionContextManager = app.ApplicationServices.GetService(typeof(IExecutionContextManager)) as IExecutionContextManager;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -75,9 +106,6 @@ namespace Infrastructure.AspNet
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
-            BoundedContextListener.Start(app.ApplicationServices);
-            TextMessageListener.Start(app.ApplicationServices);
 
             ConfigureCustom(app, env);
 

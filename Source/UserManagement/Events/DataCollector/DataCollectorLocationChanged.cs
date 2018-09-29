@@ -5,9 +5,9 @@ namespace Events.DataCollector
 {
     public class DataCollectorLocationChanged : IEvent
     {
-        public Guid DataCollectorId { get; set; }
-        public double LocationLatitude { get; set; }
-        public double LocationLongitude { get; set; }
+        public Guid DataCollectorId { get; }
+        public double LocationLatitude { get; }
+        public double LocationLongitude { get; }
 
         public DataCollectorLocationChanged(Guid dataCollectorId, double locationLatitude, double locationLongitude)
         {

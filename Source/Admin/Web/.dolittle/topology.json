@@ -1,0 +1,49 @@
+{
+  "modules": [],
+  "features": [
+    {
+      "feature": "026806d3-a715-42f8-b894-2d6b448ad70f",
+      "name": "Projects",
+      "subFeatures": []
+    },
+    {
+      "feature": "48b96847-088e-49c5-b3b5-db4af785a303",
+      "name": "HealthRisks",
+      "subFeatures": []
+    },
+    {
+      "feature": "4422ba5f-05e2-41fe-8f34-ff6105ecc1e9",
+      "name": "AutomaticReplyMessage",
+      "subFeatures": []
+    },
+    {
+      "feature": "b93462dd-4dc7-483e-b9b5-1c6f38fade6f",
+      "name": "Admin",
+      "subFeatures": []
+    },
+    {
+      "feature": "af43ae09-9f1f-4e33-a5e3-69f2d3ef4993",
+      "name": "NationalSocieties",
+      "subFeatures": []
+    },
+    {
+      "feature": "cf551208-9e5b-4a37-8e45-e13b634ce037",
+      "name": "AutomaticReplyMessages",
+      "subFeatures": []
+    },
+    {
+      "feature": "228add62-6fc7-40b0-848d-e5ea0c4a3061",
+      "name": "UserManagement",
+      "subFeatures": []
+    },
+    {
+      "feature": "004004f0-a60e-4460-a51a-93b2d6e13cf1",
+      "name": "Users"
+    },
+    {
+      "feature": "e4c38a5a-bc86-4bd0-a5cf-cd5a06576de8",
+      "name": "Events",
+      "subFeatures": []
+    }
+  ]
+}

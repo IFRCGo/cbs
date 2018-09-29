@@ -5,15 +5,15 @@ namespace Events.DataCollector
 {
     public class DataCollectorUserInformationChanged : IEvent
     {
-        public Guid DataCollectorId { get; set; }
-        public string FullName { get; set; }
-        public string DisplayName { get; set; }
+        public Guid DataCollectorId { get; }
+        public string FullName { get; }
+        public string DisplayName { get; }
 
-        public int YearOfBirth { get; set; }
-        public int Sex { get; set; }
+        public int YearOfBirth { get; }
+        public int Sex { get; }
 
-        public string Region { get; set; }
-        public string District { get; set; }
+        public string Region { get; }
+        public string District { get; }
 
         public DataCollectorUserInformationChanged(Guid dataCollectorId, string fullName, string displayName, int yearOfBirth, int sex, string region, string district)
         {

@@ -10,7 +10,7 @@ using Domain;
 using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Read.ProjectFeatures;
+using Read.Projects;
 
 namespace Web
 {

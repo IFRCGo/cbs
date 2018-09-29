@@ -10,8 +10,6 @@ using Dolittle.Concepts.Serialization.Json;
 using Dolittle.Logging;
 using Dolittle.Applications;
 using Dolittle.Runtime.Events;
-using Dolittle.Runtime.Events.Publishing;
-using Dolittle.Runtime.Events.Publishing.InProcess;
 using Dolittle.Serialization.Json;
 using Newtonsoft.Json;
 

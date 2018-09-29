@@ -20,7 +20,7 @@ If you an unfamiliar with Git, this e-book is a great way to get started: [Pro G
 ## Backend: .NET Core
 
 The backend code is written using C# and .NET.  
-Download and install the [.NET Core 2.0 SDK and runtime](https://www.microsoft.com/net/download/core).
+Download and install the [.NET Core 2.1 SDK and runtime](https://www.microsoft.com/net/download/core).
 
 ## Storage: MongoDB
 

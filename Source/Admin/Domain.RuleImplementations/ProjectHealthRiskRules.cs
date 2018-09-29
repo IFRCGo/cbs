@@ -5,19 +5,21 @@
 
 using System;
 using System.Linq;
-using Domain.Project;
-using Read.HealthRiskFeatures;
-using Read.ProjectFeatures;
+using Domain.Projects;
+using Infrastructure.Read.MongoDb;
+using Read.HealthRisks;
+using Read.Projects;
 
 namespace Domain.RuleImplementations
 {
+
     public class ProjectHealthRiskRules : IProjectHealthRiskRules
     {
         private readonly IProjects _projects;
-        private readonly IHealthRisks _healthRisks;
+        private readonly IExtendedReadModelRepositoryFor<HealthRisk> _healthRisks;
         private const int MaxNumberOfHealthRisksForProject = 5;
 
-        public ProjectHealthRiskRules(IProjects projects, IHealthRisks healthRisks)
+        public ProjectHealthRiskRules(IProjects projects, IExtendedReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _projects = projects;
             _healthRisks = healthRisks;

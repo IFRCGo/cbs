@@ -5,8 +5,8 @@ namespace Events.DataCollector
 {
     public class DataCollectorPreferredLanguageChanged : IEvent
     {
-        public Guid DataCollectorId { get; set; }
-        public int Language { get; set; }
+        public Guid DataCollectorId { get; }
+        public int Language { get; }
 
         public DataCollectorPreferredLanguageChanged(Guid dataCollectorId, int language)
         {

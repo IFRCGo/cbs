@@ -11,9 +11,17 @@ namespace Read.DataCollectors
     public class DataCollectors : ExtendedReadModelRepositoryFor<DataCollector>,
         IDataCollectors
     {
+
+
         public DataCollectors(IMongoDatabase database)
-            : base(database, database.GetCollection<DataCollector>("DataCollectors"))
+            : base(database)
         {
+
+        }
+
+        public override IMongoCollection<DataCollector> GetCollection()
+        {
+            return this._database.GetCollection<DataCollector>("DataCollectors");
         }
 
         public DataCollector GetById(DataCollectorId id)
