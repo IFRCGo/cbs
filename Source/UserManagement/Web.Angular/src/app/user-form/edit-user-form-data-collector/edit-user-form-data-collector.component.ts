@@ -14,7 +14,7 @@ import { ChangePreferredLanguage } from '../../domain/data-collector/ChangePrefe
 import { RemovePhoneNumberFromDataCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
 import { DataCollector } from '../../domain/data-collector';
 import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
-import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { QueryCoordinator2 } from '../../services/QueryCoordinator';
 import { DataCollectorById } from '../../domain/data-collector/queries/DataCollectorById';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
@@ -45,7 +45,7 @@ export class EditUserFormDataCollectorComponent implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>
+        private queryCoordinator: QueryCoordinator2<DataCollector>
         ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }

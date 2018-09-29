@@ -14,7 +14,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class QueryCoordinator<T> {
+export class QueryCoordinator2<T> {
 
     constructor(private http: HttpClient) { }
 

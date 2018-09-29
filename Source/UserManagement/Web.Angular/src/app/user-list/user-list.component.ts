@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataCollector } from '../domain/data-collector';
-import { QueryCoordinator } from '../services/QueryCoordinator';
+import { QueryCoordinator2 } from '../services/QueryCoordinator';
 import { AllDataCollectors } from '../domain/data-collector/queries/AllDataCollectors';
 import { QueryResult } from '../services/QueryResult';
 
@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
 
   selectedUser: DataCollector;
 
-  constructor(private queryCoordinator: QueryCoordinator<DataCollector>) {
+  constructor(private queryCoordinator: QueryCoordinator2<DataCollector>) {
   }
 
   ngOnInit() {

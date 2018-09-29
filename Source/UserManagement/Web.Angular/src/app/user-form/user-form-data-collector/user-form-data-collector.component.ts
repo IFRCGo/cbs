@@ -48,6 +48,7 @@ export class UserFormDataCollectorComponent {
     }
 
     submit() {
+        console.log("inni submit")
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
         this.commandCoordinator.handle(this.command)
