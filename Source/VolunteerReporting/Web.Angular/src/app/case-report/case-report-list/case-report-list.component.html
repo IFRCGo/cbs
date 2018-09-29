@@ -8,21 +8,19 @@
     <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
 </div>
 
-<table class="table table-bordered table-striped">
-    <tbody>
-        <tr>
-            <td>
-                Quick Filters:
-                <span *ngFor="let filter of allFilters">
-                  <button [ngStyle]="filterButtonStyle(filter)" (click)="clickFilter(filter)">{{filter.description}}</button>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
 <div class="paging row">
-    <div class="col-md-3 paging-size">
+    <div class="col-md-7 paging-filters">
+        Quick Filters:
+        <span *ngFor="let filter of allFilters">
+            <button
+                class="small"
+                [ngClass]="{'current': this.currentFilter === filter}"
+                (click)="clickFilter(filter)">
+                {{filter.description}}
+            </button>
+        </span>
+    </div>
+    <div class="col-md-2 paging-size">
         Page size:
         &nbsp;
         <select
@@ -35,7 +33,7 @@
             </option>
         </select>
     </div>
-    <div class="col-md-9 paging-pages">
+    <div class="col-md-4 paging-pages">
         <button
             class="small"
             (click)="showPrevPage()"
@@ -48,7 +46,7 @@
         <button
             class="small"
             (click)="showNextPage()"
-            [disabled]="page.size > listedReports?.length">
+            [disabled]="page.isLoading || isLastPage()">
             next >
         </button>
     </div>
@@ -61,11 +59,12 @@
                   [current-sorted]="currentSortColumn"
                   [sort-descending]="sortDescending"
                   (click)="toggleSortColum(column)"
+                  [ngClass]="{'sortable': column.isSortable}"
             ></th>
         </tr>
     </thead>
     <tbody *ngIf="!page.isLoading">
-        <tr *ngFor="let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending">
+        <tr *ngFor="let caseReport of listedReports | filter:currentFilter">
             <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
