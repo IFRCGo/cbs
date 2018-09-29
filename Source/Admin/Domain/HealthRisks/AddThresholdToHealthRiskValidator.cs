@@ -8,10 +8,12 @@ namespace Domain.HealthRisks
         public AddThresholdToHealthRiskValidator()
         {
             RuleFor(_ => _.HealthRiskId)
-                .NotEmpty().WithMessage("Health risk id is required");
+                .NotEmpty()
+                .WithMessage("Health risk id is required");
 
             RuleFor(_ => _.Threshold)
-                .NotEmpty().WithMessage("Threshold is required");
+                .NotEmpty()
+                .WithMessage("Threshold is required");
 
         }
     }
