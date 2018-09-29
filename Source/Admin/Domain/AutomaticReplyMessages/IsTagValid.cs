@@ -5,22 +5,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Domain.AutomaticReplyMessages;
+using System.Text;
 
-namespace Domain.RuleImplementations
+namespace Domain.AutomaticReplyMessages
 {
-    public class ReplyMessagesConfigRules : IReplyMessagesConfigRules
-    {
-
-        public bool IsTagsValid(IEnumerable<string> tags)
-        {
-            return tags.All(IsTagValid);
-        }
-
-        private bool IsTagValid(string tag)
-        {
-            return !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
-        }
-    }
+    public delegate bool IsTagValid(string tag);
 }
