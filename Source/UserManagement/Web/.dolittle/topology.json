@@ -24,6 +24,11 @@
           "feature": "ceb431f5-3173-44a8-aaeb-c7b8c73509eb",
           "name": "Changing",
           "subFeatures": []
+        },
+        {
+          "feature": "3994ace4-2b2f-4f3b-9f65-ebed79541889",
+          "name": "TrainingStatus",
+          "subFeatures": []
         }
       ]
     },

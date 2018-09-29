@@ -48,6 +48,16 @@
           "artifact": "0a4fa57d-082b-4229-a508-d13e20376d31",
           "generation": 1,
           "type": "Events.DataCollector.PhoneNumberRemovedFromDataCollector, Events"
+        },
+        {
+          "artifact": "6b3505f9-0384-4b6d-871b-cdb996b42a12",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorBeganTraining, Events"
+        },
+        {
+          "artifact": "29f078cf-aa4e-4e7a-a567-93c29c8cc5b6",
+          "generation": 1,
+          "type": "Events.DataCollector.DataCollectorCompletedTraining, Events"
         }
       ],
       "eventSources": [
@@ -222,6 +232,24 @@
           "type": "Read.DataCollectors.Queries.DataCollectorById, Read"
         }
       ]
+    },
+    "3994ace4-2b2f-4f3b-9f65-ebed79541889": {
+      "commands": [
+        {
+          "artifact": "1815636c-cb73-4fcc-8fbd-545e0136908e",
+          "generation": 1,
+          "type": "Domain.DataCollector.TrainingStatus.BeginTraining, Domain"
+        },
+        {
+          "artifact": "098884c4-8b88-4391-845f-73a394ea1a99",
+          "generation": 1,
+          "type": "Domain.DataCollector.TrainingStatus.EndTraining, Domain"
+        }
+      ],
+      "events": [],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
     }
   }
 }
