@@ -49,6 +49,8 @@ namespace Domain.DataCollector
             {
                 AddPhoneNumber(phoneNumber);
             }
+
+            BeginTraining();
         }
 
         public void ChangeLocation(Location location)
