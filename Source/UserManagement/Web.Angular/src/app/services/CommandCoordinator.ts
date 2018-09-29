@@ -23,7 +23,7 @@ export class CommandResult {
     success: boolean;
 }
 @Injectable()
-export class CommandCoordinator {
+export class CommandCoordinator2 {
 
     static commandResultIsSuccess(response) {
         return response.success;

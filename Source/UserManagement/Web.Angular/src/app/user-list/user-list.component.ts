@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataCollector } from '../domain/data-collector';
-import { QueryCoordinator } from '../services/QueryCoordinator';
-import { AllDataCollectors } from '../domain/data-collector/queries/AllDataCollectors';
+import { QueryCoordinator } from '@dolittle/queries';
+import { AllDataCollectors } from '../../app/DataCollectors/Queries/AllDataCollectors';
 import { QueryResult } from '../services/QueryResult';
 
 @Component({
@@ -16,11 +16,12 @@ export class UserListComponent implements OnInit {
 
   selectedUser: DataCollector;
 
-  constructor(private queryCoordinator: QueryCoordinator<DataCollector>) {
-  }
+  constructor(
+    private queryCoordinator: QueryCoordinator
+  ) { }
 
   ngOnInit() {
-    this.queryCoordinator.handle(new AllDataCollectors())
+    this.queryCoordinator.execute(new AllDataCollectors())
       .then(response => {
           if (response.success) {
             this.users = response.items;
