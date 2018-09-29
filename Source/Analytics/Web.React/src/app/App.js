@@ -35,8 +35,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-          <Epicurve width={500} height={500} data={this.state.data}/>
+          <Epicurve width={750} height={500} data={this.state.data}/>
         </p>
       </div>
     );
