@@ -9,6 +9,7 @@ using Dolittle.Commands.Handling;
 using Domain.DataCollector.Changing;
 using Domain.DataCollector.Registering;
 using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollector.TrainingStatus;
 
 namespace Domain.DataCollector
 {
@@ -89,5 +90,16 @@ namespace Domain.DataCollector
             root.RemovePhoneNumbers(command.PhoneNumber);
         }
 
+        public void Handle(BeginTraining command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.BeginTraining();
+        }
+
+        public void Handle(EndTraining command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.EndTraining();
+        }
     }
 }
