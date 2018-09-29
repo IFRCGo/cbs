@@ -1,15 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
 using Concepts;
 using Concepts.DataCollector;
-using Concepts.DataVerifier;
 using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.External;
 using MongoDB.Driver;
-using Read.DataVerifiers;
 
 namespace Read.DataCollectors
 {
@@ -111,7 +106,7 @@ namespace Read.DataCollectors
         public void Process(DataCollectorDataVerifierChanged @event)
         {
             _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
-                Builders<DataCollector>.Update.Set(d => d.DataVerifier, (DataVerifierId)@event.DataVerifierId));
+                Builders<DataCollector>.Update.Set(d => d.DataVerifier, @event.DataVerifierId));
         }
     }
 }

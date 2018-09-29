@@ -1,11 +1,11 @@
-using Concepts.DataVerifier;
+using System;
 using Dolittle.ReadModels;
 
 namespace Read.DataVerifiers
 {
     public class DataVerifier : IReadModel
     {
-        public DataVerifierId Id { get; set; }
+        public Guid Id { get; set; }
         public string FullName { get; set; }
     }
 }

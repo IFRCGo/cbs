@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Concepts.DataCollector;
-using Concepts.DataVerifier;
 using Dolittle.ReadModels;
 using Infrastructure.Read.MongoDb;
 
@@ -25,7 +24,7 @@ namespace Read.DataCollectors
 
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
-        public DataVerifierId DataVerifier { get; set; }
+        public Guid DataVerifier { get; set; }
 
         //TODO: Have this again when dolittle build tool supports nullables 
         //public DateTimeOffset? LastReportRecievedAt { get; set; }

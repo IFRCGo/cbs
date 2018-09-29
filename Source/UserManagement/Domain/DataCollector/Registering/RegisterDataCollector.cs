@@ -2,11 +2,11 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
- 
+
+using System;
 using System.Collections.Generic;
 using Concepts;
 using Concepts.DataCollector;
-using Concepts.DataVerifier;
 using Dolittle.Commands;
 
 namespace Domain.DataCollector.Registering
@@ -27,6 +27,6 @@ namespace Domain.DataCollector.Registering
         public string Region { get; set; }
         public string District { get; set; }
 
-        public DataVerifierId DataVerifierId { get; set; }
+        public Guid DataVerifierId { get; set; }
     }
 }
