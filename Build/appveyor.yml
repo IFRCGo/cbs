@@ -13,6 +13,7 @@ install:
   - ps: Install-Product node 8.6.0 x64
 
 environment:
+  TestsFolder: <path to the test folder>
   SlnFile: <path to the solution file>
   WebBinFolder: <path to the bin folder of the web project>
   AngularFolder: <path to the Angular folder of the web project>
@@ -22,4 +23,6 @@ only_commits:
     - <baseSourceforlder>
 
 build_script:
-- ps: ./Build/build.ps1
+  - ps: ./Build/build.ps1
+
+test: off

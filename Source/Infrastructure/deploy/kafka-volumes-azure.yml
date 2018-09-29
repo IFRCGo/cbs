@@ -1,0 +1,45 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: kafka
+  labels:
+    type: azure-file
+    name: kafka
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: azure-storage-secret
+    shareName: kafka
+    readOnly: false
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000    
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: zookeeper
+  labels:
+    type: azure-file
+    name: zookeeper
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: azure-storage-secret
+    shareName: zookeeper
+    readOnly: false
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000    

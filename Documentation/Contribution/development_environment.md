@@ -20,7 +20,7 @@ If you an unfamiliar with Git, this e-book is a great way to get started: [Pro G
 ## Backend: .NET Core
 
 The backend code is written using C# and .NET.  
-Download and install the [.NET Core 2.0 SDK and runtime](https://www.microsoft.com/net/download/core).
+Download and install the [.NET Core 2.1 SDK and runtime](https://www.microsoft.com/net/download/core).
 
 ## Storage: MongoDB
 
@@ -41,9 +41,9 @@ Choose the editor or IDE you prefer.
 Visual Studio code is a free, open source, cross platform editor:
 Download it [here](https://code.visualstudio.com/).
 
-### IDE: Visual Studio 2017 or for Mac
+### IDE: Visual Studio 2017 or Visual Studio for Mac
 
-The Community edition of Visual Studio 2017 and Visual Studio 2017 for Mac can be used for free in open source development: 
+The Community edition of Visual Studio 2017 and Visual Studio for Mac can be used for free in open source development: 
 Download it [here](https://www.visualstudio.com/vs/community/).
 
 ## Terminal

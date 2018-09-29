@@ -1,46 +1,38 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Domain;
-using Events;
-using Infrastructure.Application;
-using Infrastructure.Events;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Read;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain;
+using Events;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Read.Projects;
 
 namespace Web
 {
     [Route("api/project")]
     public class ProjectController : Controller
     {
-        public static readonly Feature Feature = "Project";
-
-        readonly IEventEmitter _eventEmitter;
-
         readonly ILogger<ProjectController> _logger;
 
         readonly IProjects _projects;
 
         public ProjectController(
             IProjects projects,
-            IEventEmitter eventEmitter,
             ILogger<ProjectController> logger)
         {
-            _eventEmitter = eventEmitter;
             _logger = logger;
             _projects = projects;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Project>> Get()
+        public IEnumerable<Project> Get()
         {
-            return await _projects.GetAllASync();
+            return _projects.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -49,21 +41,59 @@ namespace Web
             return _projects.GetById(id);
         }
 
-        [HttpPost]
-        public void Post([FromBody] CreateProject command)
-        {
-            _eventEmitter.Emit(Feature, new ProjectCreated
-            {
-                Name = command.Name,
-                Id = command.Id,
-                NationalSocietyId = command.NationalSocietyId,
-                OwnerUserId = command.OwnerUserId
-            });
-        }
+        //TODO: Integrate to DoLittle2.0
 
-        [HttpDelete("items/{id}")]
-        public void Remove(Guid id)
-        {
-        }
+        //[HttpPost]
+        //public void Post([FromBody] CreateProject command)
+        //{
+        //    Apply(command.Id, new ProjectCreated
+        //    {
+        //        Name = command.Name,
+        //        Id = command.Id,
+        //        NationalSocietyId = command.NationalSocietyId,
+        //        DataOwnerId = command.DataOwnerId,
+        //    });
+        //}
+
+        //[HttpPut("{id}")]
+        //public void Put(Guid id, [FromBody] UpdateProject command)
+        //{
+        //    Apply(id, new ProjectUpdated
+        //    {
+        //        Id = command.Id = id,
+        //        Name = command.Name,
+        //        NationalSocietyId = command.NationalSocietyId,
+        //        DataOwnerId = command.DataOwnerId,
+        //    });
+        //}
+
+        //[HttpPost("{id}/dataverifiers")]
+        //public void AddDataVerifier(Guid id, [FromBody] AddDataVerifier command)
+        //{
+        //    Apply(id, new DataVerifierAdded
+        //    {
+        //        ProjectId = command.ProjectId = id,
+        //        UserId = command.UserId
+        //    });
+        //}
+
+        //[HttpDelete("{id}/dataverifiers/{userId}")]
+        //public void RemoveDataVerifier(Guid id, Guid userId)
+        //{
+        //    Apply(id, new DataVerifierRemoved
+        //    {
+        //        ProjectId = id,
+        //        UserId = userId
+        //    });
+        //}
+
+        //[HttpDelete("{id}")]
+        //public void Delete(Guid id)
+        //{
+        //    Apply(id, new ProjectDeleted
+        //    {
+        //        ProjectId = id
+        //    });
+        //}
     }
 }

@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  
   "project": {
     "name": "cbs.frontend.admin"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "../Web/wwwroot",
       "assets": [
         "assets",
         "favicon.ico"
@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "cbs",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/ngx-toastr/toastr.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -54,6 +55,9 @@
     }
   },
   "defaults": {
+    "build": {
+        "preserveSymlinks": true
+    },
     "styleExt": "scss",
     "component": {
       "spec": false,

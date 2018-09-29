@@ -1,7 +1,6 @@
 //////////////////////////////////////////////////////////////////////
 // FETCH TOOLS
 //////////////////////////////////////////////////////////////////////
-
 #addin "Cake.Npm"
 
 //////////////////////////////////////////////////////////////////////
@@ -16,11 +15,12 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Example/Catalog/Web/bin";
+var cleanFolder = Environment.GetEnvironmentVariable("WebBinFolder") ?? "../Source/Admin/Web/bin";
 var buildDir = Directory(cleanFolder) + Directory(configuration);
 
-var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Example/Catalog/Catalog.sln";
-var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Example/Catalog/Web.Angular";
+var slnFile = Environment.GetEnvironmentVariable("SlnFile") ?? "../Source/Admin/Admin.sln";
+var angularFolder = Environment.GetEnvironmentVariable("AngularFolder") ?? "../Source/Admin/Web.Angular";
+var testsFolder = Environment.GetEnvironmentVariable("TestsFolder") ?? "../Source/Admin/Tests";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -70,7 +70,7 @@ Task("Build-Frontend")
     runSettings.Arguments.Add("--prod");
     runSettings.Arguments.Add("--build-optimizer");
     runSettings.Arguments.Add("--progress false");
-    
+
     NpmRunScript(runSettings);
 });
 
@@ -78,7 +78,19 @@ Task("Run-Backend-Tests")
     .IsDependentOn("Build-Backend")
     .Does(() =>
 {
-    Information("Not quite sure which unit testing framework we're using yet?");
+    Information("Looking for tests in folder: " + testsFolder);
+    var projects = GetFiles(testsFolder + "/**/*.csproj");
+    foreach(var project in projects)
+    {
+        Information("Running tests for " + project.FullPath);
+        DotNetCoreTest(
+            project.FullPath,
+            new DotNetCoreTestSettings()
+            {
+                Configuration = configuration,
+                NoBuild = true
+            });
+    }
 });
 
 Task("Run-Frontend-Tests")

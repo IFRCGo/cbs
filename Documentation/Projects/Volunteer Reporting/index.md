@@ -6,7 +6,7 @@ author: molokai
 ---
 # Volunteer Reporting
 
-The volunteer reporting bounded context is responsible for processing all incoming SMS messages from Data Collectors in the field.
+The volunteer reporting bounded context is responsible for processing all incoming text messages from Data Collectors in the field.
 
 In V1, registered Data Collectors submit Case Reports via SMS messaging in predefined formats. Those reports are parsed and passed on to the rest of the CBS solution, particularly to the Alerts bounded context for aggregation and processing.
 

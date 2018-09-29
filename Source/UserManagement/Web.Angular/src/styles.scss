@@ -1,1 +1,22 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'assets/bootstrap/variables';
+@import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import 'assets/bootstrap/theme';
+
+form { // TODO: Style the user-form with properly scoped CSS
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.form-group {
+  select,
+  input {
+    background-color: #fafafa;
+    border: 1px solid #363534;
+    border-radius: 0 ;
+  }
+}
+
+.back-button {
+    display: block;
+    margin: 20px 0;
+}

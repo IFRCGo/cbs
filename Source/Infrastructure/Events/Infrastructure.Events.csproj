@@ -1,18 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Infrastructure.Events</AssemblyName>
-  </PropertyGroup>
-  <Import Project="../../../Build/MSBuild/default.props" />
 
-  <ItemGroup>
-    <ProjectReference Include="..\Application\Infrastructure.Application.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <DocumentationFile/>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="doLittle.Types" Version="2.0.0-*"/>
-    <PackageReference Include="doLittle.Concepts" Version="2.0.0-*"/>
-    <PackageReference Include="Autofac" Version="4.6.1"/>
-  </ItemGroup>
-
+    <ItemGroup>
+        <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
+        <PackageReference Include="Dolittle.Runtime.Events" Version="2.0.0-alpha2*" />
+    </ItemGroup>
 </Project>

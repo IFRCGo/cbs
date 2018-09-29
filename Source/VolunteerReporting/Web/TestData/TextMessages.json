@@ -1,0 +1,1012 @@
+[
+    {
+        "Id": "a95d10ef-2141-49e6-ac69-bdb33441b7c4",
+        "Sent": "2017-07-26T09:30:40.2923004+02:00",
+        "OriginNumber": "11111111",
+        "Message": "24#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 13.578119545047228,
+        "Latitude": -32.979689404824612
+    },
+    {
+        "Id": "a95d10ef-2141-49e6-ac69-bdb33441b7f7",
+        "Sent": "2018-04-09T09:30:40.2923004+02:00",
+        "OriginNumber": "11111111",
+        "Message": "12334",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 13.578119545047228,
+        "Latitude": -32.979689404824612
+    },
+    {
+        "Id": "df401d31-4f1f-43c0-9a93-0193b53d7421",
+        "Sent": "2017-04-29T15:01:13.3334231+02:00",
+        "OriginNumber": "00000000",
+        "Message": "24#2#0#2#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 171.68851377986766,
+        "Latitude": -56.727701526474071
+    },
+    {
+        "Id": "9cc6c155-5ab7-4a29-bc51-fe164f642c1e",
+        "Sent": "2017-05-12T18:03:40.4184325+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "f553d68d-3a82-4e3e-adc6-650f7e7e8dde",
+        "Sent": "2017-08-21T21:33:02.8644381+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "3fef0dac-011d-4ffe-879c-b3bb207cf17c",
+        "Sent": "2017-09-04T05:40:34.531446+02:00",
+        "OriginNumber": "11111111",
+        "Message": "8#0#0#1#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 338.92207569392491,
+        "Latitude": -4.1869969685501331
+    },
+    {
+        "Id": "9014f061-2cb1-47d3-8320-1f89865ab91b",
+        "Sent": "2017-08-04T21:13:42.9614538+02:00",
+        "OriginNumber": "",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 33.506982826398215,
+        "Latitude": -20.82288467363589
+    },
+    {
+        "Id": "f94416b3-db51-4ebf-b799-f66c5828bd4e",
+        "Sent": "2017-06-09T04:52:43.7484613+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#1#3#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 30.515995561385527,
+        "Latitude": -56.491960797687973
+    },
+    {
+        "Id": "77bc7914-d483-4b2a-8987-72d5aad0e67a",
+        "Sent": "2017-08-22T14:00:13.3104692+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "eac9f4c8-82f5-4659-9c61-7c9699ec303b",
+        "Sent": "2017-06-21T22:12:24.9094756+02:00",
+        "OriginNumber": "22222222",
+        "Message": "5#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "c14b84f8-d69a-48dd-a12c-31256195d0a4",
+        "Sent": "2017-05-02T22:44:03.6874819+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 285.13532473013515,
+        "Latitude": -62.546016379513787
+    },
+    {
+        "Id": "830719bb-1b16-44fb-95f1-e0ded8980b5c",
+        "Sent": "2017-07-23T18:02:20.5064937+02:00",
+        "OriginNumber": "00000000",
+        "Message": "5#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 23.208824034411844,
+        "Latitude": -70.22718779287635
+    },
+    {
+        "Id": "283a8eee-1fce-44b3-a282-0608d1668375",
+        "Sent": "2017-08-25T19:45:36.2055041+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 107.34034923247077,
+        "Latitude": -79.598261564782945
+    },
+    {
+        "Id": "a6326c52-32b6-47d3-aa07-85197510a9cb",
+        "Sent": "2017-10-07T03:06:57.15151+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "888b7e82-91c9-4690-9f0d-d2de34a31417",
+        "Sent": "2017-09-26T09:49:24.6575187+02:00",
+        "OriginNumber": "",
+        "Message": "1#2#0#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 112.58743453425701,
+        "Latitude": -5.5094667549754774
+    },
+    {
+        "Id": "e59e14f4-1c0c-4c2d-85e5-95cf9b565af4",
+        "Sent": "2017-05-10T09:51:37.5308617+02:00",
+        "OriginNumber": "33333333",
+        "Message": "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "19481275-e48e-456b-afa6-b47ddecd4e49",
+        "Sent": "2017-07-26T03:04:58.886874+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "af79b60f-920b-49fd-a368-d9b340bc077b",
+        "Sent": "2017-07-11T13:59:10.6918846+02:00",
+        "OriginNumber": "33333333",
+        "Message": "8#0#1#1#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 136.51616112166838,
+        "Latitude": -1.7298982672998164
+    },
+    {
+        "Id": "5b79c244-e9b6-4879-9730-8c9750c925ca",
+        "Sent": "2017-06-22T20:08:30.6168933+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#3#1#0#3",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 27.020330888694303,
+        "Latitude": -39.053165409273085
+    },
+    {
+        "Id": "8b40e731-b69a-4077-be75-65aa8faddb73",
+        "Sent": "2017-06-15T12:36:53.8068996+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 19.346582190760682,
+        "Latitude": -73.720269908066967
+    },
+    {
+        "Id": "a5828155-0227-4545-9898-50570ecf5740",
+        "Sent": "2017-09-19T12:12:10.6049055+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#60",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "e8ce2663-0b50-416c-bbb1-0e602519f654",
+        "Sent": "2017-07-26T22:36:08.987913+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#3#2#1#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "ca50662f-8f9c-4718-9173-d428171af623",
+        "Sent": "2017-06-21T03:17:30.2449217+02:00",
+        "OriginNumber": "33333333",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 201.00089889066334,
+        "Latitude": -44.365848845041285
+    },
+    {
+        "Id": "ab485a0d-9626-4951-a387-5a4f62396dc4",
+        "Sent": "2017-10-08T12:41:02.511928+02:00",
+        "OriginNumber": "00000000",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "5d6f2816-01a9-4417-94ea-1f42783e7254",
+        "Sent": "2017-08-21T03:44:08.0459348+02:00",
+        "OriginNumber": "",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 108.306763390222,
+        "Latitude": -52.593043173008155
+    },
+    {
+        "Id": "e35b7114-4855-4d90-b239-63441eb49b7e",
+        "Sent": "2017-08-09T09:57:22.6339427+02:00",
+        "OriginNumber": "",
+        "Message": "1#0#0#1#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "a1cc5b7c-8b0c-4d43-bead-5757565ed4be",
+        "Sent": "2017-08-10T00:33:55.8959478+02:00",
+        "OriginNumber": "",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 108.84794834481923,
+        "Latitude": -51.77610086825495
+    },
+    {
+        "Id": "456f9d90-208c-4372-87af-3cc1befeea10",
+        "Sent": "2017-07-01T13:07:39.1979541+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "1e0f34bd-cbe7-4da7-b397-05ba65315638",
+        "Sent": "2017-08-03T20:01:31.0979596+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#2#3",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "e487c756-0225-4bcd-a8d0-71da30c04e16",
+        "Sent": "2017-04-20T14:08:30.3979648+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "e851c6d9-6b61-4fbd-8369-967d91127b6f",
+        "Sent": "2017-05-06T22:58:19.7109719+02:00",
+        "OriginNumber": "",
+        "Message": "37#2#0#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 105.07789737781411,
+        "Latitude": -21.25846509880315
+    },
+    {
+        "Id": "5d84c720-203b-438d-a530-c39a7240056b",
+        "Sent": "2017-07-30T00:54:39.4549778+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#2#-52",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "1f685615-26f7-4dfb-925d-9f9cf14c4e7e",
+        "Sent": "2017-09-17T06:11:16.4599857+02:00",
+        "OriginNumber": "11111111",
+        "Message": "37#1#2#1#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "7b20988a-b530-4371-b55c-ded4c5ec5dc6",
+        "Sent": "2017-06-13T18:32:24.0209916+02:00",
+        "OriginNumber": "22222222",
+        "Message": "0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 349.97757983858583,
+        "Latitude": -74.985972044517268
+    },
+    {
+        "Id": "ddbaac42-504b-4926-963d-59471fb8d9f1",
+        "Sent": "2017-05-11T07:25:01.0970015+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#0#0#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "ea28f817-227e-4dc4-8ec5-edbe0f2e72c8",
+        "Sent": "2017-08-10T06:18:21.0920078+02:00",
+        "OriginNumber": "",
+        "Message": "37#1#54",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 74.056604315553145,
+        "Latitude": -35.510160529757925
+    },
+    {
+        "Id": "164b9e20-7442-44da-a486-e47b2924b7bb",
+        "Sent": "2017-07-07T13:22:53.5260141+02:00",
+        "OriginNumber": "11111111",
+        "Message": "24#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "a312e250-fc6c-455f-b3e8-5fdb24e5e0b4",
+        "Sent": "2017-06-25T15:41:27.8930204+02:00",
+        "OriginNumber": "33333333",
+        "Message": "37#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 71.884697299396947,
+        "Latitude": -23.469353440901898
+    },
+    {
+        "Id": "83cacde5-8beb-4b84-80a3-46d848ad6637",
+        "Sent": "2017-08-23T12:00:09.1540279+02:00",
+        "OriginNumber": "33333333",
+        "Message": "5#1#1#0#3",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 124.9285616934898,
+        "Latitude": -46.953561327864215
+    },
+    {
+        "Id": "a2609b7a-3dc6-459f-baf8-d21ebd6f1a6d",
+        "Sent": "2017-07-26T17:34:44.2970334+02:00",
+        "OriginNumber": "",
+        "Message": "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 147.32801842844486,
+        "Latitude": -61.186069241345891
+    },
+    {
+        "Id": "1c8e758e-9db9-40db-b1d8-20d639da6c31",
+        "Sent": "2017-08-18T21:47:54.3570402+02:00",
+        "OriginNumber": "33333333",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 31.568112164534678,
+        "Latitude": -15.382463380406818
+    },
+    {
+        "Id": "ed8dbe34-3874-44fe-924b-2d450087d11d",
+        "Sent": "2017-09-06T00:23:27.5380465+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 103.56747658158069,
+        "Latitude": -47.885408461040541
+    },
+    {
+        "Id": "1d3f5f5b-6f25-4cef-b795-b1223411b6eb",
+        "Sent": "2017-05-23T02:28:27.9030516+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 298.48728326078844,
+        "Latitude": -56.046773035101019
+    },
+    {
+        "Id": "f9e00d7b-dd62-4562-bd1e-9e120a13805e",
+        "Sent": "2017-08-20T03:35:12.0930575+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 221.1829603562052,
+        "Latitude": -35.570227781110546
+    },
+    {
+        "Id": "97826ea9-5dc1-42af-8495-8e801bad1395",
+        "Sent": "2017-07-02T22:34:26.8520642+02:00",
+        "OriginNumber": "",
+        "Message": "24#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "32dc4c91-2684-494e-a78e-7a0b2a61c45c",
+        "Sent": "2017-05-11T06:43:46.2260706+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "1ab9c09a-8f72-4aea-b080-e4729ea5429b",
+        "Sent": "2017-05-09T03:32:47.6870781+02:00",
+        "OriginNumber": "",
+        "Message": "37#2#2#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "0e0b6c49-4b4a-498f-8094-1bcb08fbfa8d",
+        "Sent": "2017-10-16T19:54:11.9380871+02:00",
+        "OriginNumber": "00000000",
+        "Message": "5#0#0#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "788240d5-2b18-43e6-a1f2-071d4e61fec1",
+        "Sent": "2017-06-23T13:53:12.2040938+02:00",
+        "OriginNumber": "00000000",
+        "Message": "5#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "c38f4f4c-729f-4d49-9a55-16f8a107206a",
+        "Sent": "2017-08-24T04:26:49.9880986+02:00",
+        "OriginNumber": "00000000",
+        "Message": "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 324.19150749416627,
+        "Latitude": -79.454427472993
+    },
+    {
+        "Id": "a113271c-1e78-4025-a446-d2612c616a8a",
+        "Sent": "2017-06-01T03:20:56.2391061+02:00",
+        "OriginNumber": "33333333",
+        "Message": "37#1#0#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "0fb572ff-2873-4fce-b899-6907e2bc47d4",
+        "Sent": "2017-10-15T08:21:14.9771124+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "e655d0dc-255e-4680-b259-414b45530c73",
+        "Sent": "2017-06-29T05:18:21.4091183+02:00",
+        "OriginNumber": "",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "bfae4f13-2b65-40b6-b733-710f28039a56",
+        "Sent": "2017-05-26T00:51:00.5541235+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "ec261ae9-a09c-4d4b-8c4a-b878fd3a385a",
+        "Sent": "2017-04-20T21:18:07.7631282+02:00",
+        "OriginNumber": "22222222",
+        "Message": "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "57985678-5a00-446d-950c-0d22608ca6ac",
+        "Sent": "2017-09-13T21:26:53.6531341+02:00",
+        "OriginNumber": "11111111",
+        "Message": "8#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "3110df96-4ee2-478b-92bd-42cc71244cc5",
+        "Sent": "2017-05-16T07:40:15.9581404+02:00",
+        "OriginNumber": "11111111",
+        "Message": "37#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 46.404169800879515,
+        "Latitude": -28.904125927437157
+    },
+    {
+        "Id": "5522499d-13ee-476c-b708-45e23ceeaeb4",
+        "Sent": "2017-09-02T16:37:18.1821479+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#3#0#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "6b300caf-507c-407c-a817-4b0c710813ef",
+        "Sent": "2017-06-02T14:27:15.3281554+02:00",
+        "OriginNumber": "00000000",
+        "Message": "8#1#0#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 269.40023086471496,
+        "Latitude": -28.539422838268536
+    },
+    {
+        "Id": "ba4da819-3dcb-41db-b3e9-0f6fd55426fe",
+        "Sent": "2017-10-02T20:47:01.3401617+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 272.27204993007331,
+        "Latitude": -4.6105912349236178
+    },
+    {
+        "Id": "49a08060-fd95-48fa-b67d-a291c5ca3cb5",
+        "Sent": "2017-05-15T23:18:26.30717+02:00",
+        "OriginNumber": "22222222",
+        "Message": "8#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "6081f1dc-92c7-48bd-b75c-d3e857df1917",
+        "Sent": "2017-08-22T04:54:45.8021763+02:00",
+        "OriginNumber": "33333333",
+        "Message": "5#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 74.551812184300189,
+        "Latitude": -20.057195881408269
+    },
+    {
+        "Id": "e8f3716d-0065-4957-82e9-a996a132c4c5",
+        "Sent": "2017-04-24T04:31:42.1101811+02:00",
+        "OriginNumber": "00000000",
+        "Message": "Hello! My report is #1#0#0#2#3#0#2#3#0#2#3#0#2#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 80.455121547195645,
+        "Latitude": -50.4079355534203
+    },
+    {
+        "Id": "5f69f97f-fbe7-4333-a2d9-348bc55d58d4",
+        "Sent": "2017-09-25T18:41:52.9851878+02:00",
+        "OriginNumber": "",
+        "Message": "5#2#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 249.49753806437252,
+        "Latitude": -4.0308959055835771
+    },
+    {
+        "Id": "8e6df2d7-28ab-4895-a3c7-9cf8ea9500a1",
+        "Sent": "2017-07-07T01:58:27.0001945+02:00",
+        "OriginNumber": "33333333",
+        "Message": "5#1#2",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 328.58648499873766,
+        "Latitude": -19.0315001546552
+    },
+    {
+        "Id": "158da05f-b581-4fff-8fbd-7f27fffd6ab4",
+        "Sent": "2017-05-26T10:45:41.3012024+02:00",
+        "OriginNumber": "11111111",
+        "Message": "5#2#0#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 19.635187545621388,
+        "Latitude": -69.9449365911749
+    },
+    {
+        "Id": "71780075-b75a-43cc-80a8-705616a66869",
+        "Sent": "2017-08-20T00:40:25.5302079+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "05a94867-9935-4f10-8029-2687b82ea456",
+        "Sent": "2017-05-19T02:37:51.1802154+02:00",
+        "OriginNumber": "",
+        "Message": "24#0#0#3#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 258.64877019945942,
+        "Latitude": -31.267854287879473
+    },
+    {
+        "Id": "ba64cdda-9819-4231-890e-3729c6f59e3d",
+        "Sent": "2017-05-09T21:02:27.3342214+02:00",
+        "OriginNumber": "11111111",
+        "Message": "5#2#16",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 326.66717954290431,
+        "Latitude": -10.943663982182585
+    },
+    {
+        "Id": "ad2f19e3-af29-46d2-94c7-1cda76ab7e4f",
+        "Sent": "2017-10-08T15:25:53.2782277+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#2#15",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 355.3843692296112,
+        "Latitude": -29.282714924441052
+    },
+    {
+        "Id": "f737f149-6386-44c7-b520-1d780c2a528e",
+        "Sent": "2017-07-29T11:43:41.7352336+02:00",
+        "OriginNumber": "00000000",
+        "Message": "1#2#40",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "019a1363-7ecb-49e2-bb8a-31979b22ec78",
+        "Sent": "2017-06-26T14:02:46.9192395+02:00",
+        "OriginNumber": "",
+        "Message": "5#2#63",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "3c698685-e796-47f8-8f28-417a572001f2",
+        "Sent": "2017-07-06T11:31:46.1512474+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#39",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "3d59ebe9-1ff2-4d6c-8f09-dc14a10568ab",
+        "Sent": "2017-04-26T22:44:57.5612549+02:00",
+        "OriginNumber": "00000000",
+        "Message": "1#0#1#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "18175d6f-9fb5-4b95-89fc-943f5f2056af",
+        "Sent": "2017-05-16T10:59:27.0372608+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#52",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 3.3860536866756408,
+        "Latitude": -5.099912995984738
+    },
+    {
+        "Id": "1ee4ac71-130e-488f-b47e-d87b7194fe37",
+        "Sent": "2017-08-24T19:44:24.3492683+02:00",
+        "OriginNumber": "",
+        "Message": "37#1#0#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 8.5264115447767139,
+        "Latitude": -24.378303189006772
+    },
+    {
+        "Id": "21c225b0-eca2-4438-8cc0-649e315745c8",
+        "Sent": "2017-08-08T13:41:05.2552742+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#1#51",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 170.73226552956376,
+        "Latitude": -34.858946257670851
+    },
+    {
+        "Id": "e1a0e176-8118-4151-9cc8-af4dee31f857",
+        "Sent": "2017-09-22T08:59:40.2322794+02:00",
+        "OriginNumber": "11111111",
+        "Message": "37#1#65",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 120.02547489480369,
+        "Latitude": -55.867910709170587
+    },
+    {
+        "Id": "1f20232f-9384-4561-8155-5c9562aba42c",
+        "Sent": "2017-09-17T11:38:13.1932873+02:00",
+        "OriginNumber": "",
+        "Message": "24#0#0#0#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 191.07421263636752,
+        "Latitude": -44.151798693533891
+    },
+    {
+        "Id": "39bc8c4c-70f9-4ae8-9afc-bdefb0ae2ed8",
+        "Sent": "2017-06-07T13:24:46.8192944+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#0#1#1#0",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "7ce50b89-4ffb-4242-ade3-26faa761b526",
+        "Sent": "2017-07-07T02:50:14.4273019+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#2#2#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 37.008054497189846,
+        "Latitude": -61.421104437402036
+    },
+    {
+        "Id": "6d805383-be50-445c-b013-ffd5ed342cec",
+        "Sent": "2017-10-09T05:12:24.6593078+02:00",
+        "OriginNumber": "22222222",
+        "Message": "5#1#63",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "a12f46e8-53d8-42f8-8035-b87b308c0a05",
+        "Sent": "2017-08-21T18:27:14.1423137+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#2#63",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 255.00030209077536,
+        "Latitude": -48.994465306864335
+    },
+    {
+        "Id": "322ddece-329c-407c-ad4d-d5d9ceda419f",
+        "Sent": "2017-05-05T02:56:17.3343212+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#2#51",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "1565fdde-1c0e-4212-94ea-3554a9866698",
+        "Sent": "2017-09-03T23:08:57.5343271+02:00",
+        "OriginNumber": "33333333",
+        "Message": "5#1#51",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "9694cdfd-becb-4ed4-8492-341de61d9045",
+        "Sent": "2017-06-20T23:03:14.2463331+02:00",
+        "OriginNumber": "22222222",
+        "Message": "24#1#49",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "79f30eb7-0595-439b-a283-708f002f0f67",
+        "Sent": "2017-09-18T07:46:21.5293406+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#1#0#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "c1f72376-c031-41b7-ab49-b8ba230de29d",
+        "Sent": "2017-05-18T22:46:40.7753453+02:00",
+        "OriginNumber": "33333333",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "b43ddb7a-1b75-4370-9f4c-8443f87bb3a7",
+        "Sent": "2017-08-09T09:05:05.5873516+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#1#30",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 339.09466427708725,
+        "Latitude": -63.112841166142765
+    },
+    {
+        "Id": "726f2b0e-301c-463e-835d-d04a9b7fd916",
+        "Sent": "2017-06-30T14:01:35.3513575+02:00",
+        "OriginNumber": "00000000",
+        "Message": "37#1#53",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "ee421a37-d920-4603-b350-c750e5af116e",
+        "Sent": "2017-06-20T02:10:57.6433635+02:00",
+        "OriginNumber": "33333333",
+        "Message": "24#1#34",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 16.180499818260085,
+        "Latitude": -11.549483394040493
+    },
+    {
+        "Id": "774b1b67-90e0-4f5f-847a-d5e8cd3ddf46",
+        "Sent": "2017-06-21T13:56:57.3063694+02:00",
+        "OriginNumber": "33333333",
+        "Message": "24#2#22",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 348.82622234002974,
+        "Latitude": -10.519793373774633
+    },
+    {
+        "Id": "6486d9c9-1ef3-4584-96b5-e935f3d7dc05",
+        "Sent": "2017-05-27T08:09:30.4813753+02:00",
+        "OriginNumber": "00000000",
+        "Message": "5#1#30",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "93bad826-1721-4f0c-ab08-76beb33cd013",
+        "Sent": "2017-08-15T12:17:05.8933812+02:00",
+        "OriginNumber": "33333333",
+        "Message": "8#2#46",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "9ac960fc-6932-4a0a-b51f-3bf45e0ea416",
+        "Sent": "2017-08-28T15:44:03.7023868+02:00",
+        "OriginNumber": "22222222",
+        "Message": "37#2#56",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "25255cce-0b4b-4423-ad86-d54250fee95b",
+        "Sent": "2017-06-10T19:39:18.6253927+02:00",
+        "OriginNumber": "33333333",
+        "Message": "5#2#68",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "0e1ccf3e-2db5-4762-868c-ca84830fef3c",
+        "Sent": "2017-06-05T09:46:48.7853982+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "3d610c28-0fbb-4524-8671-ee8a1a0cdb01",
+        "Sent": "2017-05-13T07:13:25.1784049+02:00",
+        "OriginNumber": "33333333",
+        "Message": "37#1#39",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "cc47498c-e576-4080-aecb-4fa2975b540f",
+        "Sent": "2017-06-01T06:11:44.5004108+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#2#23",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    },
+    {
+        "Id": "9354ddb4-0f48-4da5-a906-df89b7009f8c",
+        "Sent": "2017-06-06T19:50:17.1014168+02:00",
+        "OriginNumber": "22222222",
+        "Message": "1#1#6",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 27.384534304674965,
+        "Latitude": -38.068797904098773
+    },
+    {
+        "Id": "64c311fa-80bf-4d0d-8ec8-ba1527e8708c",
+        "Sent": "2017-09-18T19:42:42.3524215+02:00",
+        "OriginNumber": "11111111",
+        "Message": "1#2#1#1#2#1",
+        "Keyword": "",
+        "ReceivedAtGatewayNumber": "0123456789",
+        "Longitude": 0.0,
+        "Latitude": 0.0
+    }
+]

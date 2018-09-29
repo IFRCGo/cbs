@@ -1,3 +1,4 @@
+
 # CBS Example frontend application
 
 ## Prerequisites
@@ -8,7 +9,7 @@
 
 ## Local build & run
 
-(Active path: `cbs/Source/Example/Web.Angular`)
+(Active path: `cbs/Source/Admin/Web.Angular`)
 
 Restore dependencies
 
@@ -18,9 +19,30 @@ Build and host locally
 
 > `ng serve` or `npm start`
 
+This then host on http://localhost:4200
+
+
+###  Local navbar build & run
+
+Prerequisites
+
+- Webpack (`npm install -g webpack`)
+
+(Active path: `cbs/Source/Navigation/Web/`)
+
+Restore dependencies
+
+> `npm install`
+
+Build and host locally
+
+> `npm start`
+
+
+
 ## Scaffold new Angular components
 
-(Active path: `cbs/Source/Example/Frontend`)
+(Active path: `cbs/Source/Admin/Web.Angular`)
 
 Create new component
 

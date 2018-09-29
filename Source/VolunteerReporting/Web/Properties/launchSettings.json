@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5000/",
+      "applicationUrl": "http://localhost:5001/",
       "sslPort": 0
     }
   },
@@ -11,17 +11,24 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "launchUrl": "swagger",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS": "admin;alert;usermanagement",
+            "KAFKA_BOUNDED_CONTEXT_TOPIC": "volunteerreporting"
+        }
     },
     "Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5000/"
+      "launchUrl": "swagger",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "KAFKA_BOUNDED_CONTEXT_SEND_TOPICS": "admin;alert;usermanagement",
+            "KAFKA_BOUNDED_CONTEXT_TOPIC": "volunteerreporting"
+
+        },
+      "applicationUrl": "http://localhost:5001/"
     }
   }
 }

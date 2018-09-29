@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: smseagle
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sms
+        environment: dev
+    spec:
+      containers:
+      - name: smseagle-tunnel
+        image: redcrossredcrescent/smsproxy:tunnel-1
+        ports:
+        - containerPort: 7001
+          name: smsproxy-tunnel
+        - containerPort: 7002
+          name: smsproxy-tunnel-api

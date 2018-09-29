@@ -1,0 +1,13 @@
+# ignore all . files (.git, .editorconfig, etc.)
+.*
+
+# ignore folders
+Codeathons
+Documentation
+Meetings
+Design
+**/Example
+**/node_modules
+
+# ignore markdown files
+*.md

@@ -1,38 +1,62 @@
-import { CartService } from './cart/cart.service';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SharedModule } from './shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CartComponent } from './cart/cart.component';
-import { ProjectModule } from './project/project.module';
+import { ProjectModule } from './Projects/projects.module';
+import { HealthRiskModule } from './HealthRisks/healthRisks.module';
+
 import { CoreModule } from './core/core.module';
+import { ModalModule } from 'ngx-bootstrap';
+import { AuthenticationService } from 'navigation/authentication.service';
+import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
+import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CommandCoordinator } from '@dolittle/commands';
+import { QueryCoordinator } from '@dolittle/queries';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'project',
+        redirectTo: 'projects',
         pathMatch: 'full'
-    }
+    },
+    {
+        path: 'healthrisks',
+        redirectTo: "healthrisks",
+        pathMatch: "full"
+    },
+
 ];
+
+const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     declarations: [
         AppComponent,
-        CartComponent
+        IfLoggedInComponent,
+        NavTopBarComponent
     ],
     imports: [
         BrowserModule,
-        CommonModule,
-        HttpModule,
+        SharedModule.forRoot(),
         CoreModule,
-        RouterModule.forRoot(routes),
-        ProjectModule
+        rootRouting,
+        ProjectModule,
+        HealthRiskModule,
+        BrowserAnimationsModule,
+        ModalModule.forRoot(),
+        ToastrModule.forRoot()
     ],
-    providers: [],
+    providers: [
+        AuthenticationService,
+        CommandCoordinator,
+        QueryCoordinator
+    ],
     bootstrap: [AppComponent]
 })
 

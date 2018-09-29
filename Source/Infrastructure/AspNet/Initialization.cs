@@ -1,24 +1,31 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using System;
+using Autofac.Extensions.DependencyInjection;
+using Dolittle.Applications;
+using Infrastructure.Logging;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
-using Autofac.Extensions.DependencyInjection;
 
 namespace Infrastructure.AspNet
 {
     public class Initialization
     {
-        public static int BuildAndRun<TStartup>(string boundedContext, string[] args, Action<IWebHostBuilder> builderCallback = null, Action<LoggerConfiguration> loggerConfigurationCallback = null)
+        public static int BuildAndRun<TStartup>(string boundedContext, string[] args,
+            Action<IWebHostBuilder> builderCallback = null,
+            Action<LoggerConfiguration> loggerConfigurationCallback = null)
             where TStartup : class
         {
-            Internals.BoundedContext = boundedContext;
-
             var loggerConfiguration = new LoggerConfiguration()
-                .MinimumLevel.Debug()
+                .MinimumLevel.Verbose()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("System", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.Console();
+                .WriteTo.JsonConsole(Startup.GetCurrentExecutionContext);
 
             if (loggerConfigurationCallback != null) loggerConfigurationCallback(loggerConfiguration);
 
@@ -28,7 +35,6 @@ namespace Infrastructure.AspNet
 
             try
             {
-
                 var builder = WebHost.CreateDefaultBuilder(args)
                     .ConfigureServices(services => services.AddAutofac())
                     .UseStartup<TStartup>()

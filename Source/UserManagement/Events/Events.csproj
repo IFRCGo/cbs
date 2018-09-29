@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
+  </ItemGroup>
 </Project>

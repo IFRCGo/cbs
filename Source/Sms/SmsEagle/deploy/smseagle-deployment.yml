@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: smseagle
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: smseagle
+        environment: dev
+    spec:
+      containers:
+      - name: smseagle
+        image: redcrossredcrescent/smseagle
+        ports:
+        - containerPort: 80
+          name: incoming

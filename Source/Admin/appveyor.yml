@@ -13,13 +13,16 @@ install:
   - ps: Install-Product node 8.6.0 x64
 
 environment:
-  CleanFolder: ../Source/Admin/Catalog/Web/bin
-  SolutionFolder: ../Source/Admin/Catalog/Catalog.sln
-  AngularFolder: ../Source/Admin/Catalog/Web.Angular
+  TestsFolder: ../Source/Admin/Tests
+  SlnFile: ../Source/Admin/Admin.sln
+  WebBinFolder: ../Source/Admin/Web/bin
+  AngularFolder: ../Source/Admin/Web.Angular
 
-# only_commits:
-#   files:
-#     - Source/Admin/Catalog
+only_commits:
+   files:
+     - Source/Admin/
 
 build_script:
 - ps: ./Build/build.ps1
+
+test: off

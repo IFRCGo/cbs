@@ -1,0 +1,27 @@
+version: '3'
+services:
+  cbs-admin-db:
+    image: mongo
+    ports:
+        - "27017:27017"
+
+  cbs-admin-backend:
+    build:
+        context: ../../
+        dockerfile: Source/Admin/Web/Dockerfile
+    links:
+        - cbs-admin-db
+    depends_on:
+        - cbs-admin-db
+    ports:
+        - "5000:80"
+
+  cbs-admin-frontend:
+    build:
+        context: ../../
+        dockerfile: Source/Admin/Web.Angular/Dockerfile
+    depends_on:
+        - cbs-admin-db
+        - cbs-admin-backend
+    ports:
+        - "4200:80"

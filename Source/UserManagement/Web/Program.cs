@@ -6,7 +6,9 @@ namespace Web
     {
         public static int Main(string[] args)
         {
-            return Initialization.BuildAndRun<Startup>("Catalog", args);
+            // while(!System.Diagnostics.Debugger.IsAttached)
+            //     System.Threading.Thread.Sleep(19);
+            return Initialization.BuildAndRun<Startup>("UserManagement", args);
         }
     }
 }

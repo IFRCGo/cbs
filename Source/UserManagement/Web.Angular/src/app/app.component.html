@@ -1,6 +1,6 @@
-<body>
+<cbs-if-logged-in>
+    <cbs-nav-top-bar></cbs-nav-top-bar>
     <div class="container">
-        <cbs-home>
-        </cbs-home>
+        <router-outlet></router-outlet>
     </div>
-</body>
+</cbs-if-logged-in>

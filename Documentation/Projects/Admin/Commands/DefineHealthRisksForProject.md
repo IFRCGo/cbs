@@ -25,7 +25,7 @@ TimeWindow | The number of days that the threshold must be exceeded within for t
 * [CBS coordinator (global level)](../../actors.md#cbs-coordinator---global-level)
 
 ## Affected data
-* [Project](../Aggregates/Project.md)
+* [Project](../ReadModels/Project.md)
 
 ## Events raised
 * [Project Health Risks Set](../Events/ProjectHealthRisksSet.md)

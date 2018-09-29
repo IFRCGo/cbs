@@ -10,6 +10,10 @@
         "lint": "ng lint",
         "e2e": "ng e2e"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/IFRCGo/cbs"
+    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^4.4.4",
@@ -21,12 +25,21 @@
         "@angular/platform-browser": "^4.4.4",
         "@angular/platform-browser-dynamic": "^4.4.4",
         "@angular/router": "^4.4.4",
-        "core-js": "^2.5.1",
-        "rxjs": "^5.4.3",
-        "zone.js": "^0.8.18"
+        "@dolittle/commands": "^1.0.9",
+        "@dolittle/core": "^1.0.4",
+        "@dolittle/queries": "^1.0.11",
+        "@dolittle/readmodels": "^1.0.0",
+        "bootstrap-sass": "^3.3.7",
+        "core-js": "^2.5.3",
+        "navigation": "file:../../Navigation",
+        "ngx-bootstrap": "^2.0.0-rc.0",
+        "ngx-toastr": "^6.4.1-beta.0",
+        "oidc-client": "^1.4.1",
+        "rxjs": "^5.5.6",
+        "zone.js": "^0.8.20"
     },
     "devDependencies": {
-        "@angular/cli": "1.4.4",
+        "@angular/cli": "^1.7.2",
         "@angular/compiler-cli": "^4.4.4",
         "@angular/language-service": "^4.4.4",
         "typescript": "~2.5.3"

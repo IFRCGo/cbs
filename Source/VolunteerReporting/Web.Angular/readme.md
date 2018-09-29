@@ -1,4 +1,4 @@
-# CBS Example frontend application
+# CBS - Volunteer Reporting WebApp
 
 ## Prerequisites
 
@@ -6,34 +6,55 @@
 - Typescript (`npm install -g typescript`)
 - Angular CLI (`npm install -g @angular/cli@latest`)
 
-## Local build & run
+## Building and running 
 
-(Active path: `cbs/Source/Example/Web.Angular`)
+Install dependencies
 
-Restore dependencies
+```sh 
+$ npm install
+```
 
-> `npm install`
+Build and run locally
 
-Build and host locally
+```sh 
+$ npm start
+```
 
-> `ng serve` or `npm start`
+## While coding
+We follow the official [Angular style guidelines](https://angular.io/guide/styleguide).
+
+### Linter rules (tslint):
+
+- Indentation: 2 spaces
+- Quote mark: single quotes, except to avoid escaping
+- Semicolons: always use
+
+To run the linter:
+```sh
+$ npm run lint
+``` 
+
 
 ## Scaffold new Angular components
 
-(Active path: `cbs/Source/Example/Frontend`)
-
 Create new component
 
-> `ng g c folder/componentname`
+```sh 
+$ ng g c folder/componentname
+```
 
 Creat new service
 
-> `ng g s core/services/servicename`
+```sh
+$ ng g s core/services/servicename
+```
 
 Creat new pipe
 
-> `ng g p shared/pipes/pipename`
+```sh 
+$ ng g p shared/pipes/pipename
+```
 
-## While coding
 
-We follow the official [Angular style guidelines](https://angular.io/guide/styleguide)
+
+
