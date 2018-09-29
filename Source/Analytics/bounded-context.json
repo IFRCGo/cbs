@@ -1,0 +1,8 @@
+{
+  "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+  "boundedContext": "18d63e1c-db23-0f7f-0a41-c1dd7067bc18",
+  "boundedContextName": "Analytics",
+  "backend": {
+    "language": "csharp"
+  }
+}
