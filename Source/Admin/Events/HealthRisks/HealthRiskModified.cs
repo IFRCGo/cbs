@@ -4,8 +4,7 @@ using Dolittle.Events;
 namespace Events.HealthRisks
 {
     public class HealthRiskModified : IEvent 
-    {
-        
+    {       
         public HealthRiskModified (Guid id, string name, int readableId, string caseDefinition, string note, string communityCase, string keyMessage) 
         {
             this.Id = id;
@@ -21,12 +20,9 @@ namespace Events.HealthRisks
         public string Name { get; }
         public int ReadableId { get; }
         public string CaseDefinition { get; }
-        //public string ConfirmedCase { get; }
-        public string Note { get; }
-        //public string SuspectedCase { get; }
-        //public string ProbableCase { get; }
-        public string CommunityCase { get; }
         public string KeyMessage { get; }
 
+        public string Note { get; }
+        public string CommunityCase { get; }
     }
 }
