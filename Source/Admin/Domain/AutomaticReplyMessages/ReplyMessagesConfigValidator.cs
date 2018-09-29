@@ -10,10 +10,14 @@ namespace Domain.AutomaticReplyMessages
 {
     public class ReplyMessagesConfigValidator : CommandInputValidatorFor<UpdateReplyMessagesConfig>
     {
-        public ReplyMessagesConfigValidator(IReplyMessagesConfigRules rules)
+        public ReplyMessagesConfigValidator(IsTagsValid isTagsValid)
         {
-            RuleFor(v => v.Messages).NotNull().WithMessage("Messages is missing");
-            RuleFor(v => v.Messages.Keys).Must(rules.IsTagsValid).WithMessage("Tags are not valid");
+            RuleFor(v => v.Messages)
+                .NotNull()
+                .WithMessage("Messages is missing");
+            RuleFor(v => v.Messages.Keys)
+                .Must(_ => isTagsValid(_))
+                .WithMessage("Tags are not valid");
         }
     }
 }
