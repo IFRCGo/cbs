@@ -6,6 +6,7 @@ using Dolittle.Events;
 
 namespace Events.External
 {
+    [Artifact("635304c5-c8aa-4b09-a968-408d2d81a08b")]
     class MessageReceived : IEvent
     {
         public MessageReceived(Guid id, string message, string number, DateTimeOffset timestamp)
