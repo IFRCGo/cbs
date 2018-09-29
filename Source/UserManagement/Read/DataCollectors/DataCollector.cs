@@ -25,6 +25,8 @@ namespace Read.DataCollectors
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
 
+        public bool InTraining { get; set; }
+
         //TODO: Have this again when dolittle build tool supports nullables 
         //public DateTimeOffset? LastReportRecievedAt { get; set; }
 

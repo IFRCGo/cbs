@@ -9,13 +9,13 @@ namespace Domain.Projects
 {
     public class CreateProjectValidator : CommandInputValidatorFor<CreateProject>
     {
-        public CreateProjectValidator(IProjectRules projectRules)
+        public CreateProjectValidator(ProjectNameUnique projectNameUnique)
         {
             RuleFor(_ => _.Name)
                 .NotEmpty()
                 .WithMessage("Name is mandatory");
             RuleFor(_ => _)
-                .Must(p => projectRules.IsProjectNameUnique(p.Name))
+                .Must(p => projectNameUnique(p.Name))
                 .WithMessage("Project name is already in use");
             RuleFor(_ => _.DataOwnerId)
                 .NotEmpty()
