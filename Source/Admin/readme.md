@@ -2,7 +2,7 @@
 
 ## Build status
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5u26suwgd9co1rgp/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-0ntrh/branch/master) [![Test status](https://img.shields.io/appveyor/tests/karolikl/cbs-0ntrh/master.svg)](https://ci.appveyor.com/project/karolikl/cbs-0ntrh/branch/master/tests)
+[![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Admin%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=0)
 
 ## Prerequisites
 
