@@ -5,7 +5,7 @@ import { CommandCoordinator } from '@dolittle/commands';
 import { Guid } from '@dolittle/core';
 import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
-import { RegisterDataCollector } from '../../../app/DataCollectors/Registering/RegisterDataCollector'
+import { RegisterDataCollector } from '../../../app/DataCollectors/Registering/RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
 import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
 
