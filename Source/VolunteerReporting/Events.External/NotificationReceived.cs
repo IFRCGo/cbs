@@ -7,18 +7,18 @@ using Dolittle.Events;
 namespace Events.External
 {
     [Artifact("635304c5-c8aa-4b09-a968-408d2d81a08b")]
-    class MessageReceived : IEvent
+    public class NotificationReceived : IEvent
     {
-        public MessageReceived(Guid id, string message, string number, DateTimeOffset timestamp)
+        public NotificationReceived(Guid id, string message, string originNumber, DateTimeOffset sent)
         {
             this.Id = id;
             this.Message = message;
-            this.Number = number;
-            this.Timestamp = timestamp;
+            this.OriginNumber = originNumber;
+            this.Sent = sent;
         }
         public Guid Id { get; }
         public string Message { get; }
-        public string Number { get; }
-        public DateTimeOffset Timestamp { get; }
+        public string OriginNumber { get; }
+        public DateTimeOffset Sent { get; }
     }
 }

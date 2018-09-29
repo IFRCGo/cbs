@@ -188,6 +188,11 @@
           "artifact": "753c49a2-8b97-4823-8e76-c5fe80a432db",
           "generation": 1,
           "type": "Events.External.ProjectUpdated, Events.External"
+        },
+        {
+          "artifact": "635304c5-c8aa-4b09-a968-408d2d81a08b",
+          "generation": 1,
+          "type": "Events.External.NotificationReceived, Events.External"
         }
       ],
       "eventSources": [],
