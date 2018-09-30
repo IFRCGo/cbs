@@ -3,28 +3,27 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using Domain.AutomaticReplyMessages;
 using Infrastructure.Rules;
-using Read.Projects;
 using System;
-using System.Linq; 
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using Domain.Projects;
 
-namespace Domain.RuleImplementations.Projects
+namespace Rules.AutomaticReplyMessages
 {
-    public class ProjectUniqueRule : IRuleImplementationFor<ProjectNameUnique>
+    public class IsTagsValidRule : IRuleImplementationFor<IsTagsValid>
     {
-        private readonly IProjects _projects; 
-
-        public ProjectUniqueRule(IProjects projects)
+        private readonly IsTagValid _isTagValid; 
+        public IsTagsValidRule(IsTagValid isTagValid)
         {
-            _projects = projects; 
+            _isTagValid = isTagValid; 
         }
 
-        public ProjectNameUnique Rule => (string name) =>
+        public IsTagsValid Rule => (IEnumerable<string> tags) =>
         {
-            return _projects.GetAll().All(p => !p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return tags.All(_ =>_isTagValid(_));
         };
+
     }
 }

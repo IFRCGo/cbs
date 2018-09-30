@@ -2,28 +2,27 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-using Domain.AutomaticReplyMessages;
+using Domain.Admin;
 using Infrastructure.Rules;
+using Read.Users;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
-namespace Domain.RuleImplementations.AutomaticReplyMessages
+namespace Rules.Admin
 {
-    public class IsTagsValidRule : IRuleImplementationFor<IsTagsValid>
+    public class IsUserExistingRule : IRuleImplementationFor<UserExist>
     {
-        private readonly IsTagValid _isTagValid; 
-        public IsTagsValidRule(IsTagValid isTagValid)
+        private readonly IUsers _users;
+
+        public IsUserExistingRule(IUsers users)
         {
-            _isTagValid = isTagValid; 
+            _users = users; 
         }
 
-        public IsTagsValid Rule => (IEnumerable<string> tags) =>
+        public UserExist Rule => (Guid userId) =>
         {
-            return tags.All(_ =>_isTagValid(_));
+            return _users.GetById(userId) != null;
         };
-
     }
 }

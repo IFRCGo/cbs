@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using HealthRisk = Read.HealthRisks.HealthRisk;
 
-namespace Domain.RuleImplementations.HealthRisks
+namespace Rules.HealthRisks
 {
     public class IsWithinNumberOfHealthRisksLimitRule : IRuleImplementationFor<IsWithinNumberOfHealthRisksLimit>
     {

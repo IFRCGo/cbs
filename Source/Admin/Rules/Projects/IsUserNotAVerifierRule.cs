@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Domain.RuleImplementations.Projects
+namespace Rules.Projects
 {
     public class IsUserNotAVerifierRule : IRuleImplementationFor<IsUserNotAVerifier>
     {

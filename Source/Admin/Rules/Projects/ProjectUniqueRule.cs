@@ -2,27 +2,29 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Domain.Admin;
+
 using Infrastructure.Rules;
-using Read.Users;
+using Read.Projects;
 using System;
+using System.Linq; 
 using System.Collections.Generic;
 using System.Text;
+using Domain.Projects;
 
-namespace Domain.RuleImplementations.Admin
+namespace Rules.Projects
 {
-    public class IsUserExistingRule : IRuleImplementationFor<UserExist>
+    public class ProjectUniqueRule : IRuleImplementationFor<ProjectNameUnique>
     {
-        private readonly IUsers _users;
+        private readonly IProjects _projects; 
 
-        public IsUserExistingRule(IUsers users)
+        public ProjectUniqueRule(IProjects projects)
         {
-            _users = users; 
+            _projects = projects; 
         }
 
-        public UserExist Rule => (Guid userId) =>
+        public ProjectNameUnique Rule => (string name) =>
         {
-            return _users.GetById(userId) != null;
+            return _projects.GetAll().All(p => !p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         };
     }
 }
