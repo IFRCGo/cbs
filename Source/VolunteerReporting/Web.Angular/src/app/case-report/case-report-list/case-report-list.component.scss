@@ -5,7 +5,11 @@ div.actions {
 
 .paging {
     display: flex;
+    border: 1px solid lightgray;
+    border-radius: 2px;
     margin: 3rem 0 2rem;
+    padding: 1rem 0;
+    
 
     &-filters {
         .current {
@@ -44,3 +48,6 @@ th {
     }
 }
 
+.label {
+    margin-right: 2px;
+}

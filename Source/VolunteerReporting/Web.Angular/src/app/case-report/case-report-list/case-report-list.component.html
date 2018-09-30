@@ -13,7 +13,7 @@
         Quick Filters:
         <span *ngFor="let filter of allFilters">
             <button
-                class="small"
+                class="small {{ filter.cssClass }}"
                 [ngClass]="{'current': this.currentFilter === filter}"
                 (click)="clickFilter(filter)">
                 {{filter.description}}
@@ -68,25 +68,29 @@
             <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
-                <span *ngIf="isSuccessStatus(caseReport.status)" class="label label-success">Success</span>
-                <span *ngIf="!isSuccessStatus(caseReport.status)" class="label label-danger">Error</span>
+                <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
+                    Success
+                </span>
+                <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
+                    Error
+                </span>
+                <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
+                    Unknown sender
+                </span>
             </td>
-            
-            <ng-container *ngIf="!isOriginStatus(caseReport.status)">
+
+            <ng-container *ngIf="isSuccess(caseReport.status) || isError(caseReport.status)">
                 <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
             </ng-container>
 
-            <ng-container *ngIf="isOriginStatus(caseReport.status)">
-                <td>Origin:{{caseReport.origin}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
+                <td colspan="4">Origin: {{caseReport.origin || "Unknown"}}</td>
             </ng-container>
             
-            <ng-container *ngIf="isSuccessStatus(caseReport.status)">
+            <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
                 <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfMalesUnder5}}</td>
                 <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
@@ -94,7 +98,7 @@
                 <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
             </ng-container>
 
-            <ng-container *ngIf="!isSuccessStatus(caseReport.status)">
+            <ng-container *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)">
                 <td colspan="5">
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
