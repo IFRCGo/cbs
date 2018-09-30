@@ -2,62 +2,65 @@
   "modules": [],
   "features": [
     {
-      "feature": "e729ab21-2f04-44d0-831d-c38a90599687",
+      "feature": "ac187cc3-d4ca-4e96-ac89-0cc9d0fddfe8",
+      "name": "DataCollectors",
+      "subFeatures": [
+        {
+          "feature": "32e2ed7d-a8f4-4fa2-b57e-d3bf80d75913",
+          "name": "Registration",
+          "subFeatures": []
+        },
+        {
+          "feature": "02a8e1cf-3952-40b0-9688-966889c01d9c",
+          "name": "PhoneNumber",
+          "subFeatures": []
+        },
+        {
+          "feature": "4461cd53-7984-4318-8855-ae6aa2c3b50b",
+          "name": "Changing",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "6db4f46f-3199-490d-a75d-f1d82e704155",
       "name": "CaseReports",
       "subFeatures": []
     },
     {
-      "feature": "291d0ce3-0869-49e8-ae7c-491b21def4db",
+      "feature": "0c179556-eab7-4dfa-9a87-a6f4dff90b61",
       "name": "AutomaticReplyMessages",
       "subFeatures": []
     },
     {
-      "feature": "b8be9d6a-2bf5-43ac-899f-9e22ce76470a",
-      "name": "External",
-      "subFeatures": []
-    },
-    {
-      "feature": "f2ba447d-71ef-42e9-8b81-be25379bd84f",
+      "feature": "01673091-2ca3-4329-bf05-e4db7428cbbd",
       "name": "Projects",
       "subFeatures": []
     },
     {
-      "feature": "e9bdac67-a1ce-486c-924d-c73cd4b506a4",
+      "feature": "1433f479-8666-4d73-b81b-8a8955cd6c8b",
+      "name": "HealthRisks",
+      "subFeatures": []
+    },
+    {
+      "feature": "b0399949-0c89-44b0-8f65-a3bb6c0e78c6",
+      "name": "DefaultReplyMessages",
+      "subFeatures": []
+    },
+    {
+      "feature": "740bdf45-8f60-4a17-8b32-da63e355cc8c",
+      "name": "Events",
+      "subFeatures": []
+    },
+    {
+      "feature": "5c54f572-78e4-4f09-9048-bce44c13c00e",
       "name": "InvalidCaseReports",
       "subFeatures": []
     },
     {
-      "feature": "44a07296-1bce-4b7a-a611-e55d6bd01858",
-      "name": "HealthRisks",
-      "subFeatures": [
-        {
-          "feature": "d16cb463-3f43-4925-a4f2-608862925483",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
-    },
-    {
-      "feature": "81428760-3fae-4fe5-95bf-26369a2f883e",
-      "name": "DataCollectors",
-      "subFeatures": [
-        {
-          "feature": "2daae196-d35e-4e05-85eb-8e0554fe403e",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
-    },
-    {
-      "feature": "4a746773-0a69-4236-8aa3-41fa184fcb78",
+      "feature": "94b23cfd-f2d9-4294-aeec-00382b1e598d",
       "name": "CaseReportsForListing",
-      "subFeatures": [
-        {
-          "feature": "c75bd806-61c9-4c5f-8f6d-38b3ad62dbb4",
-          "name": "Queries",
-          "subFeatures": []
-        }
-      ]
+      "subFeatures": []
     }
   ]
 }

@@ -23,5 +23,11 @@ namespace Concepts.DataCollector
         public double Longitude { get; private set; }
 
         public override string ToString() => Latitude.ToString("##.###") + ", " + Longitude.ToString("##.###");
+
+
+        public bool IsValid()
+        {
+            return (Latitude >= -90 && Latitude <= 90) && (Longitude >= -180 && Longitude <= 180);
+        }
     }
 }

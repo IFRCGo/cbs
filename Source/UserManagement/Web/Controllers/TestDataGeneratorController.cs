@@ -70,7 +70,7 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-             CreateDataCollectorCommands();
+            CreateDataCollectorCommands();
             //  CreateAllStaffUserCommands();
         }
         

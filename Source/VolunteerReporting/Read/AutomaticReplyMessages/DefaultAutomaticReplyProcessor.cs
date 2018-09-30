@@ -1,5 +1,5 @@
 using Dolittle.Events.Processing;
-using Events.External;
+using Events.Admin.DefaultReplyMessages;
 
 namespace Read.AutomaticReplyMessages
 {
