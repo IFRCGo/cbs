@@ -2,13 +2,9 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using System;
 using Dolittle.Domain;
 using Dolittle.Commands.Handling;
-using Domain.DataCollectors.Changing;
-using Domain.DataCollectors.Registering;
-using Domain.DataCollectors.PhoneNumber;
 
 namespace Domain.DataCollectors
 {
@@ -89,5 +85,16 @@ namespace Domain.DataCollectors
             root.RemovePhoneNumbers(command.PhoneNumber);
         }
 
+        public void Handle(BeginTraining command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.BeginTraining();
+        }
+
+        public void Handle(EndTraining command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.EndTraining();
+        }
     }
 }
