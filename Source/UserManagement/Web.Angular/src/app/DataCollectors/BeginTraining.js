@@ -8,7 +8,7 @@ export class BeginTraining extends Command
 {
     constructor() {
         super();
-        this.type = '0748c2b6-c7bd-4a60-a087-181113311f64';
+        this.type = 'b00833ee-123e-418a-9a4d-99eb4e587a0a';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
     }
