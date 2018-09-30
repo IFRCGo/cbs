@@ -1,7 +1,7 @@
 using Concepts.DataCollector;
 using Dolittle.Commands;
 
-namespace Domain.DataCollector.TrainingStatus
+namespace Domain.DataCollectors.TrainingStatus
 {
     public class EndTraining : ICommand
     {
