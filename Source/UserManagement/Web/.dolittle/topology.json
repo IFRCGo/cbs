@@ -2,23 +2,28 @@
   "modules": [],
   "features": [
     {
-      "feature": "762befc9-6d8f-4f30-8aff-ee976282ec8a",
+      "feature": "79403e18-025e-4841-9d79-c8dda6086ef1",
       "name": "DataCollectors",
       "subFeatures": []
     },
     {
-      "feature": "f58d376f-45a7-4119-ac8b-e52e4d807975",
+      "feature": "426fc285-c7fb-4274-84b8-7cba4e488820",
       "name": "MessageGenerator",
       "subFeatures": []
     },
     {
-      "feature": "223a9af6-e709-4a60-885e-afdde7eacbdc",
+      "feature": "6d58ede7-3ce7-4217-a69e-2336c62a3f39",
       "name": "DataCollector",
       "subFeatures": []
     },
     {
-      "feature": "a1c7d5ad-0254-4092-9625-d10a0f6844ac",
+      "feature": "b35d4b62-24f4-48a1-9fe3-4facb62443b6",
       "name": "VolunteerReporting",
+      "subFeatures": []
+    },
+    {
+      "feature": "d3632655-d2e2-4533-8033-d768cd69544a",
+      "name": "DataVerifiers",
       "subFeatures": []
     }
   ]

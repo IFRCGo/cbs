@@ -115,5 +115,12 @@ namespace Read.DataCollectors
             _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
                 Builders<DataCollector>.Update.Set(d => d.InTraining, false));
         }
+
+        [EventProcessor("cfd0bcf3-e490-492d-b14c-f992fa9fd59b")]
+        public void Process(DataCollectorDataVerifierChanged @event)
+        {
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
+                Builders<DataCollector>.Update.Set(d => d.DataVerifier, @event.DataVerifierId));
+        }
     }
 }

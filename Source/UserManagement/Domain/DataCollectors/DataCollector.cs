@@ -16,7 +16,8 @@ namespace Domain.DataCollectors
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
-            string region, string district
+            string region, string district,
+            Guid dataVerifierId
             )
         {
             Apply(new DataCollectorRegistered
@@ -40,25 +41,16 @@ namespace Domain.DataCollectors
             }
 
             BeginTraining();
+            ChangeDataVerifier(dataVerifierId);
         }
 
         public void ChangeLocation(Location location)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorLocationChanged(EventSourceId, location.Latitude, location.Longitude));
         }
 
         public void ChangePreferredLanguage(Language language)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
         }
 
@@ -74,11 +66,6 @@ namespace Domain.DataCollectors
 
         public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex, string region, string district)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex, region, district));
         }
 
@@ -110,6 +97,13 @@ namespace Domain.DataCollectors
                 number
             ));
         }
+
+        public void ChangeDataVerifier(Guid dataVerifierId)
+        {
+            Apply(new DataCollectorDataVerifierChanged(
+                EventSourceId,
+                dataVerifierId
+            ));
+        }
     }
 }
-

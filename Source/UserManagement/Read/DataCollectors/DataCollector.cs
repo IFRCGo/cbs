@@ -23,6 +23,7 @@ namespace Read.DataCollectors
 
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+        public Guid DataVerifier { get; set; }
 
         public bool InTraining { get; set; }
     }
