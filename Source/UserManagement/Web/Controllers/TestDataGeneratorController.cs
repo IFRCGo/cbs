@@ -1,11 +1,11 @@
 using System;
 using System.IO;
+using Dolittle.Commands.Coordination;
+using Domain.DataCollectors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Read.DataCollectors;
 using Web.TestData;
-using Dolittle.Commands.Coordination;
-using Domain.DataCollectors;
 
 namespace Web.Controllers
 {
@@ -34,9 +34,9 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-             CreateDataCollectorCommands();
+            CreateDataCollectorCommands();
         }
-        
+
         [HttpGet("datacollectorcommands")]
         public void CreateDataCollectorCommands()
         {
@@ -45,7 +45,7 @@ namespace Web.Controllers
             try
             {
                 commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-                        System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
             }
             catch (FileNotFoundException)
             {

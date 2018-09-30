@@ -1,23 +1,41 @@
 [
-    {
-        "DataCollectorId": "c50dcc5e-5c04-455d-a3e3-d8aaefeafe8b",
-        "FullName": "Vanessa Wallace",
-        "DisplayName": "Vanessa Wallace",
-        "LocationLatitude": 59.913869,
-        "LocationLongitude": 10.752245
-    },
-    {
-        "DataCollectorId": "c9d3a4d8-f5b4-40a9-83c8-3a021a6f9262",
-        "FullName": "Billie Mclaughlin",
-        "DisplayName": "Billie Mclaughlin",
-        "LocationLatitude": 59.913869,
-        "LocationLongitude": 10.752245
-    },
-    {
-        "DataCollectorId": "a2106176-4186-4e94-9606-bc78ad26072c",
-        "FullName": "Abraham Watson",
-        "DisplayName": "Abraham Watson",
-        "LocationLatitude": 59.913869,
-        "LocationLongitude": 10.752245
-    }
+  {
+    "DataCollectorId": "e1638158-2017-42ae-a37c-e42acdb1c701",
+    "FullName": "DataCollector",
+    "DisplayName": "Daty",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "PreferredLanguage": 0,
+    "LocationLongitude": 35.0,
+    "LocationLatitude": 35.0,
+    "Region": "Default Region",
+    "District": "Default District",
+    "RegisteredAt": "2018-09-28T09:51:16.904071+02:00"
+  },
+  {
+    "DataCollectorId": "0eefe93a-e299-43d4-bccb-c39db0211ec4",
+    "FullName": "DataCollector",
+    "DisplayName": "Daty",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "PreferredLanguage": 0,
+    "LocationLongitude": 35.0,
+    "LocationLatitude": 35.0,
+    "Region": "Default Region",
+    "District": "Default District",
+    "RegisteredAt": "2018-09-28T09:51:29.975256+02:00"
+  },
+  {
+    "DataCollectorId": "d5bb9005-4f69-46cb-8e7e-ca64a0517511",
+    "FullName": "DataCollector",
+    "DisplayName": "Daty",
+    "YearOfBirth": 1980,
+    "Sex": 1,
+    "PreferredLanguage": 0,
+    "LocationLongitude": 35.0,
+    "LocationLatitude": 35.0,
+    "Region": "Default Region",
+    "District": "Default District",
+    "RegisteredAt": "2018-09-28T09:51:29.975279+02:00"
+  }
 ]

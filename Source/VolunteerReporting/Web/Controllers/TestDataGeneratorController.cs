@@ -5,13 +5,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concepts;
 using Concepts.AutomaticReply;
 using Concepts.HealthRisk;
 using Dolittle.Events;
-using Events;
+using Events.Admin.DefaultReplyMessages;
+using Events.Admin.HealthRisks;
+using Events.Admin.Projects;
 using Events.AutomaticReplyMessages;
-using Events.External;
+using Events.DataCollectors.PhoneNumber;
+using Events.DataCollectors.Registration;
+using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Newtonsoft.Json;
@@ -22,16 +25,17 @@ using Read.DataCollectors;
 using Read.HealthRisks;
 using Read.InvalidCaseReports;
 using Read.Projects;
+using Web.TestData;
 
 namespace Web
 {
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : Controller
     {
-        private readonly IMongoDatabase _database;
-        // private readonly ITextMessageProcessors _textMessageProcessors;
+        readonly IMongoDatabase _database;
+        readonly IEventReplayer _eventReplayer;
         
-        private string[] _phoneNumbers = new[] {
+        readonly string[] _phoneNumbers = new[] {
             "",         // missing
             "11111111", // DataCollector #1
             "22222222", // DataCollector #2
@@ -39,9 +43,10 @@ namespace Web
             "00000000"  // Non existing data collector
         };
         
-        public TestDataGeneratorController(IMongoDatabase database)
+        public TestDataGeneratorController(IMongoDatabase database, IEventReplayer eventReplayer)
         {
             _database = database;
+            _eventReplayer = eventReplayer;
         }
 
         [HttpGet("all")]
@@ -49,7 +54,7 @@ namespace Web
         {
             CreateHealthRisks();
             CreateDataCollectors();
-            CreateTextMessages();
+            // CreateTextMessages();
             CreateDefaultAutomaticReplyMessages();
             CreateDefaultAutomaticReplyKeyMessages();
             CreateProjects();
@@ -70,7 +75,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var healthRisks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
-            // _eventReplayer.Replay(healthRisks, _ => _.Id);
+            _eventReplayer.Replay(healthRisks, _ => _.Id);
         }
 
         [HttpGet("datacollectors")]
@@ -79,16 +84,14 @@ namespace Web
             var _collection = _database.GetCollection<DataCollector>("DataCollector");
             _collection.DeleteMany(v => true);
 
+            if (!System.IO.File.Exists("./TestData/DataCollectors.json"))
+                GenerateTestDataSet();
             var dataCollectors = JsonConvert.DeserializeObject<DataCollectorRegistered[]>(System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
 
             int i = 0;
-            // _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
-            //     eventSource.Apply(new PhoneNumberAddedToDataCollector
-            //     {
-            //         DataCollectorId = @event.DataCollectorId,
-            //         PhoneNumber = _phoneNumbers[1 + (i++ % 3)] // Only using the middle 3 phone numbers
-            //     });
-            // });
+            _eventReplayer.Replay(dataCollectors, _ => _.DataCollectorId, (eventSource, @event) => {
+                eventSource.Apply(new PhoneNumberAddedToDataCollector(@event.DataCollectorId, _phoneNumbers[1 + (i++ % 3)]));
+            });
         }
 
 
@@ -187,8 +190,6 @@ namespace Web
 
         }
 
-
-
         [HttpGet("defaultautomaticreplymessages")]
         public void CreateDefaultAutomaticReplyMessages()
         {
@@ -196,7 +197,13 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplies.json"));
-            // _eventReplayer.Replay(events, _ => _.Id);
+            _eventReplayer.Replay(events, _ => _.Id);
+        }
+
+        [HttpGet("generatetestdataset")]
+        public void GenerateTestDataSet()
+        {
+            TestDataGenerator.GenerateAllTestData();
         }
 
         [HttpGet("producejsonfordefaultautomaticreplymessages")]
@@ -398,7 +405,7 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var events = JsonConvert.DeserializeObject<DefaultAutomaticReplyKeyMessageDefined[]>(System.IO.File.ReadAllText("./TestData/DefaultAutomaticReplyKeyMessages.json"));
-            // _eventReplayer.Replay(events, _ => _.Id);
+            _eventReplayer.Replay(events, _ => _.Id);
         }
 
 
@@ -409,21 +416,21 @@ namespace Web
             _collection.DeleteMany(v => true);
 
             var projects = JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
-            // _eventReplayer.Replay(projects, _ => _.Id);            
+            _eventReplayer.Replay(projects, _ => _.Id);            
         }
 
         [HttpGet("testDelete")]
         public void TestDelete()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyRemoved[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyRemoved.json"));
-            // _eventReplayer.Replay(events, _ => _.Id);
+            _eventReplayer.Replay(events, _ => _.Id);
         }
         
         [HttpGet("testChangeMessage")]
         public void TestChangeMessage()
         {
             var events = JsonConvert.DeserializeObject<AutomaticReplyDefined[]>(System.IO.File.ReadAllText("./TestData/AutomaticReplyChangeTest.json"));
-            // _eventReplayer.Replay(events, _ => _.Id);
+            _eventReplayer.Replay(events, _ => _.Id);
         }
     }
 }
