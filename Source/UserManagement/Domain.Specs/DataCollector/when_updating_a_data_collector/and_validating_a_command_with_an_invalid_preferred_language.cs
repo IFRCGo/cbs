@@ -1,7 +1,7 @@
 using FluentValidation.Results;
 using Machine.Specifications;
 using Concepts;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 
 namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 {

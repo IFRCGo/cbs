@@ -1,5 +1,5 @@
 using System;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 using FluentValidation.Results;
 using Machine.Specifications;
 

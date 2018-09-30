@@ -102,6 +102,31 @@
           "artifact": "016afd4f-e190-48a4-8e04-3d13b95c0414",
           "generation": 1,
           "type": "Domain.HealthRisks.ModifyHealthRisk, Domain"
+        },
+        {
+          "artifact": "416ef422-e526-4879-b1d0-ef7e56855f59",
+          "generation": 1,
+          "type": "Domain.HealthRisks.AddKeyMessageToHealthRisk, Domain"
+        },
+        {
+          "artifact": "ecd8f993-4e77-460d-946c-33e98aa0d7ac",
+          "generation": 1,
+          "type": "Domain.HealthRisks.OverrideCaseDefinition, Domain"
+        },
+        {
+          "artifact": "a7cb3b44-7382-4a13-9065-8d4e11d4a946",
+          "generation": 1,
+          "type": "Domain.HealthRisks.OverrideHealthRiskName, Domain"
+        },
+        {
+          "artifact": "16b6727f-6faf-4194-8eee-1c99bc5974ef",
+          "generation": 1,
+          "type": "Domain.HealthRisks.SetCaseDefinition, Domain"
+        },
+        {
+          "artifact": "ed247e99-0f13-46b5-b53c-85dc18f69d90",
+          "generation": 1,
+          "type": "Domain.HealthRisks.SetHealthRiskName, Domain"
         }
       ],
       "events": [
@@ -124,6 +149,31 @@
           "artifact": "3cec8cd0-e4ea-4f85-95fe-da61da615d69",
           "generation": 1,
           "type": "Events.HealthRisks.ThresholdAddedToHealthRIsk, Events"
+        },
+        {
+          "artifact": "098b595f-5641-4c2d-af8d-7fdbd20ecc74",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskCaseDefinitionOverridden, Events"
+        },
+        {
+          "artifact": "71c533b9-dc22-455c-8323-d4e83fce69f6",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskCaseDefinitionSet, Events"
+        },
+        {
+          "artifact": "df883e33-945f-479b-82a4-982037780d55",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskNameOverridden, Events"
+        },
+        {
+          "artifact": "0985657e-fae1-4d7a-a6e7-89a66bd7d367",
+          "generation": 1,
+          "type": "Events.HealthRisks.HealthRiskNameSet, Events"
+        },
+        {
+          "artifact": "20991b26-6f81-4e2a-a222-dfbb2cf5b4d4",
+          "generation": 1,
+          "type": "Events.HealthRisks.KeyMessageAddedToHealthRisk, Events"
         }
       ],
       "eventSources": [

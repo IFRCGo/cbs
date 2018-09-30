@@ -1,4 +1,4 @@
-using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollectors.PhoneNumber;
 using Read.DataCollectors;
 
 namespace Rules.DataCollector.PhoneNumber

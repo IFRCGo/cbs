@@ -6,21 +6,21 @@ export class QuickFilter {
     constructor(
         public name: string,
         public description: string,
+        public cssClass: string,
         public evaluate: (report:CaseReportForListing) => boolean
     ) {}
 
-    static All: QuickFilter = new QuickFilter('all', 'All', report => {
+    static All: QuickFilter = new QuickFilter('all', 'All', '', () => {
         return true;
     });
-    static Success: QuickFilter = new QuickFilter('success', 'Success', report => {
-        return report.status === CaseReportStatus.Success
-            || report.status === CaseReportStatus.UnknownDataCollector;
+    static Success: QuickFilter = new QuickFilter('success', 'Success', 'btn-success', report => {
+        return report.status === CaseReportStatus.Success;
     });
-    static Error: QuickFilter = new QuickFilter('error', 'Data error', report => {
+    static Error: QuickFilter = new QuickFilter('error', 'Error', 'btn-danger', report => {
         return report.status === CaseReportStatus.TextMessageParsingError
             || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
-    static UnknownSender: QuickFilter = new QuickFilter('unknownSender', 'Unknown sender', report => {
+    static UnknownSender: QuickFilter = new QuickFilter('unknownSender', 'Unknown sender', 'btn-warning', report => {
         return report.status === CaseReportStatus.UnknownDataCollector
             || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
