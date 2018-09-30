@@ -8,21 +8,19 @@
     <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
 </div>
 
-<table class="table table-bordered table-striped">
-    <tbody>
-        <tr>
-            <td>
-                Quick Filters:
-                <span *ngFor="let filter of allFilters">
-                  <button [ngStyle]="filterButtonStyle(filter)" (click)="clickFilter(filter)">{{filter.description}}</button>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
 <div class="paging row">
-    <div class="col-md-3 paging-size">
+    <div class="col-md-7 paging-filters">
+        Quick Filters:
+        <span *ngFor="let filter of allFilters">
+            <button
+                class="small {{ filter.cssClass }}"
+                [ngClass]="{'current': this.currentFilter === filter}"
+                (click)="clickFilter(filter)">
+                {{filter.description}}
+            </button>
+        </span>
+    </div>
+    <div class="col-md-2 paging-size">
         Page size:
         &nbsp;
         <select
@@ -35,7 +33,7 @@
             </option>
         </select>
     </div>
-    <div class="col-md-9 paging-pages">
+    <div class="col-md-4 paging-pages">
         <button
             class="small"
             (click)="showPrevPage()"
@@ -48,7 +46,7 @@
         <button
             class="small"
             (click)="showNextPage()"
-            [disabled]="page.size > listedReports?.length">
+            [disabled]="page.isLoading || isLastPage()">
             next >
         </button>
     </div>
@@ -61,33 +59,38 @@
                   [current-sorted]="currentSortColumn"
                   [sort-descending]="sortDescending"
                   (click)="toggleSortColum(column)"
+                  [ngClass]="{'sortable': column.isSortable}"
             ></th>
         </tr>
     </thead>
     <tbody *ngIf="!page.isLoading">
-        <tr *ngFor="let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending">
+        <tr *ngFor="let caseReport of listedReports | filter:currentFilter">
             <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
-                <span *ngIf="isSuccessStatus(caseReport.status)" class="label label-success">Success</span>
-                <span *ngIf="!isSuccessStatus(caseReport.status)" class="label label-danger">Error</span>
+                <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
+                    Success
+                </span>
+                <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
+                    Error
+                </span>
+                <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
+                    Unknown sender
+                </span>
             </td>
-            
-            <ng-container *ngIf="!isOriginStatus(caseReport.status)">
+
+            <ng-container *ngIf="isSuccess(caseReport.status) || isError(caseReport.status)">
                 <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
             </ng-container>
 
-            <ng-container *ngIf="isOriginStatus(caseReport.status)">
-                <td>Origin:{{caseReport.origin}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
+                <td colspan="4">Origin: {{caseReport.origin || "Unknown"}}</td>
             </ng-container>
             
-            <ng-container *ngIf="isSuccessStatus(caseReport.status)">
+            <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
                 <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfMalesUnder5}}</td>
                 <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
@@ -95,7 +98,7 @@
                 <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
             </ng-container>
 
-            <ng-container *ngIf="!isSuccessStatus(caseReport.status)">
+            <ng-container *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)">
                 <td colspan="5">
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>

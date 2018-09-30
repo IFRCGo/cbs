@@ -11,9 +11,7 @@ export class SortableColumn extends Column {
     constructor(
         public name: string,
         public description: string,
-        // The compare function should return < 0 if a is to come before b when sorted in ascending order
-        public compare: (a: CaseReportForListing, b: CaseReportForListing) => number,
-        public predicate: (c: CaseReportForListing) => boolean
+        public isSortable: boolean
     ) { super(name, description); }
 }
 
@@ -29,74 +27,39 @@ const hasHealthRisk = (c : CaseReportForListing): boolean => {
 
 export const CaseReportColumns: Array<Column> = [
     new SortableColumn(
-        'date', 'Date',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            a.timestamp.valueOf() - b.timestamp.valueOf(),
-        (c: CaseReportForListing) =>
-            true
+        'Timestamp', 'Date', true
     ),
     new Column(
         'time', 'Time'
     ),
     new SortableColumn(
-        'status', 'Status',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            Number(!!a.healthRiskId) - Number(!!b.healthRiskId),
-        (c: CaseReportForListing) =>
-            true
+        'Status', 'Status', true
     ),
     new SortableColumn(
-        'dataCollector', 'Data Collector',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            stringCompare(a.dataCollectorDisplayName, b.dataCollectorDisplayName),
-        hasHealthRisk
+        'DataCollectorDisplayName', 'Data Collector', true
+    ),
+    new Column(
+        'region', 'Region'
+    ),
+    new Column(
+        'district', 'District'
+    ),
+    new Column(
+        'village', 'Village'
     ),
     new SortableColumn(
-        'region', 'Region',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            stringCompare(a.dataCollectorRegion, b.dataCollectorRegion),
-        hasHealthRisk
+        'HealthRisk', 'Health Risk', true
     ),
     new SortableColumn(
-        'district', 'District',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            stringCompare(a.dataCollectorDistrict, b.dataCollectorDistrict),
-        hasHealthRisk
+        'NumberOfMalesUnder5', 'Males < 5', true
     ),
     new SortableColumn(
-        'village', 'Village',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            stringCompare(a.dataCollectorVillage, b.dataCollectorVillage),
-        hasHealthRisk
+        'NumberOfMalesAged5AndOlder', 'Males ≥ 5', true
     ),
     new SortableColumn(
-        'healthRisk', 'Health Risk',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            stringCompare(a.healthRisk, b.healthRisk),
-        hasHealthRisk
+        'NumberOfFemalesUnder5', 'Females < 5', true
     ),
     new SortableColumn(
-        'malesAges0To4', 'Males < 5',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            a.numberOfMalesUnder5 - b.numberOfMalesUnder5,
-        hasHealthRisk
-    ),
-    new SortableColumn(
-        'malesAgedOver4', 'Males ≥ 5',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            a.numberOfMalesAged5AndOlder - b.numberOfMalesAged5AndOlder,
-        hasHealthRisk
-    ),
-    new SortableColumn(
-        'femalesAges0To4', 'Females < 5',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            a.numberOfFemalesUnder5 - b.numberOfFemalesUnder5,
-        hasHealthRisk
-    ),
-    new SortableColumn(
-        'femalesAgesOver4', 'Females ≥ 5',
-        (a: CaseReportForListing, b: CaseReportForListing) =>
-            a.numberOfFemalesAged5AndOlder - b.numberOfFemalesAged5AndOlder,
-        hasHealthRisk
+        'NumberOfFemalesAged5AndOlder', 'Females ≥ 5', true
     )
 ];
