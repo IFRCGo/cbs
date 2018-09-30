@@ -20,6 +20,39 @@
         </tr>
     </tbody>
 </table>
+
+<div class="paging row">
+    <div class="col-md-3 paging-size">
+        Page size:
+        &nbsp;
+        <select
+            [(ngModel)]="page.size"
+            (change)="resetPage()">
+            <option
+                *ngFor="let size of page.sizes"
+                [ngValue]="size">
+                {{ size }}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-9 paging-pages">
+        <button
+            class="small"
+            (click)="showPrevPage()"
+            [disabled]="!page.number">
+            < previous
+        </button>
+        <span class="paging-pages-number">
+            Page: <strong>{{ page.number + 1 }}</strong>
+        </span>
+        <button
+            class="small"
+            (click)="showNextPage()"
+            [disabled]="page.size > listedReports?.length">
+            next >
+        </button>
+    </div>
+</div>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -31,7 +64,7 @@
             ></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!page.isLoading">
         <tr *ngFor="let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending">
             <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
@@ -70,3 +103,6 @@
         </tr>
     </tbody>
 </table>
+<div *ngIf="page.isLoading">
+    <p class="text-center">Loading data...</p>
+</div>

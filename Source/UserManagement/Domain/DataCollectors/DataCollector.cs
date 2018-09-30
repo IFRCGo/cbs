@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Concepts;
 using Dolittle.Domain;
 using Domain.DataCollectors.Changing;
@@ -45,13 +44,14 @@ namespace Domain.DataCollectors
                 registeredAt,
                 region,
                 district
-                
             ));
 
             foreach (var phoneNumber in phoneNumbers)
             {
                 AddPhoneNumber(phoneNumber);
             }
+
+            BeginTraining();
         }
 
         public void ChangeLocation(Location location)
@@ -72,6 +72,16 @@ namespace Domain.DataCollectors
             //}
 
             Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
+        }
+
+        public void BeginTraining()
+        {
+            Apply(new DataCollectorBeganTraining(EventSourceId));
+        }
+
+        public void EndTraining()
+        {
+            Apply(new DataCollectorCompletedTraining(EventSourceId));
         }
 
         public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex, string region, string district)

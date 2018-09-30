@@ -46,6 +46,3 @@ Thumbs.db
 ##############
 Build/tools/
 .buildsettings
-
-Source/UserManagement/Web.Angular/src/app/DataCollectors/**/*.js
-Source/UserManagement/Web.Angular/src/app/GreetingGenerators/**/*.js
