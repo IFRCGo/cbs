@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
 using Concepts;
 using Concepts.DataCollector;
 using Dolittle.Events.Processing;
@@ -103,6 +100,20 @@ namespace Read.DataCollectors
             // TODO:
             // _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
             //     Builders<DataCollector>.Update.Set(d => d.LastReportRecievedAt, @event.Timestamp));
+        }
+
+        [EventProcessor("fde6dd03-d4ad-4d90-99a9-faf20fca0521")]
+        public void Process(DataCollectorBeganTraining @event)
+        {
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
+                Builders<DataCollector>.Update.Set(d => d.InTraining, true));
+        }
+
+        [EventProcessor("ec986665-1a59-43a0-aa88-f4e7f749ffda")]
+        public void Process(DataCollectorCompletedTraining @event)
+        {
+            _dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
+                Builders<DataCollector>.Update.Set(d => d.InTraining, false));
         }
     }
 }

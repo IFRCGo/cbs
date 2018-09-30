@@ -16,12 +16,6 @@ namespace Domain.RuleImplementations
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ProjectHealthRiskRules>().As<IProjectHealthRiskRules>();
-            builder.RegisterType<ProjectRules>().As<IProjectRules>();
-            builder.RegisterType<UserRules>().As<IUserRules>();
-            builder.RegisterType<ReplyMessagesConfigRules>().As<IReplyMessagesConfigRules>();
-
-            //builder.RegisterType<TestHealthRiskRule<Guid>>();  
         }
     }
 }
