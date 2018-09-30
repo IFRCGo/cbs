@@ -4,12 +4,20 @@ div.actions {
 }
 
 .paging {
-    margin: 2rem 0;
+    display: flex;
+    margin: 3rem 0 2rem;
+
+    &-filters {
+        .current {
+            border: 1px solid black;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            margin: 0 .5rem;
+        }
+    }
 
     &-size {
         display: flex;
-        height: 3rem;
-        align-items: center;
     }
 
     &-pages {
@@ -23,7 +31,16 @@ div.actions {
 
 button {
     &.small {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+}
+
+th {
+    font-weight: 500;
+
+    &.sortable {
+        cursor: pointer;
+        font-weight: 700;
     }
 }
 
