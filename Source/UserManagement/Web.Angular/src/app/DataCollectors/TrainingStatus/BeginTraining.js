@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class DeleteDataCollector extends Command
+export class BeginTraining extends Command
 {
     constructor() {
         super();
-        this.type = '5e1e18fc-0b75-47cd-ba8e-6799aa9fd5de';
+        this.type = '69fc8a89-c8a3-4704-90c3-c27dbbc60bb1';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
     }

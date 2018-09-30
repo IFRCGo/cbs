@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class DeleteDataCollector extends Command
+export class ChangeLocation extends Command
 {
     constructor() {
         super();
-        this.type = '5e1e18fc-0b75-47cd-ba8e-6799aa9fd5de';
+        this.type = '508fa289-1da4-4855-8fcc-90f26491b5cb';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
+        this.location = {};
     }
 }

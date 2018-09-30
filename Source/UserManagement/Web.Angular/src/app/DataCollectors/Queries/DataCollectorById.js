@@ -1,14 +1,15 @@
 ﻿/*---------------------------------------------------------------------------------------------
- *  This file is an automatically generated Command Proxy
+ *  This file is an automatically generated Query Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands';
+import { Query } from  '@dolittle/queries';
 
-export class DeleteDataCollector extends Command
+export class DataCollectorById extends Query
 {
     constructor() {
         super();
-        this.type = '5e1e18fc-0b75-47cd-ba8e-6799aa9fd5de';
+        this.nameOfQuery = 'DataCollectorById';
+        this.generatedFrom = 'Read.DataCollectors.Queries.DataCollectorById';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
     }

@@ -4,26 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class DataCollector extends ReadModel
+export class GreetingHistory extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '263f8d5b-1852-4bdf-9efb-748604178c5b',
+           id: '4784cf5c-6afc-46a1-97d4-47c822d291c0',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
-        this.fullName = '';
-        this.displayName = '';
-        this.yearOfBirth = 0;
-        this.sex = {};
-        this.preferredLanguage = {};
-        this.location = {};
-        this.district = '';
-        this.region = '';
-        this.village = '';
-        this.phoneNumbers = [];
-        this.registeredAt = new Date();
-        this.inTraining = false;
+        this.phoneNumber = '';
     }
 }
