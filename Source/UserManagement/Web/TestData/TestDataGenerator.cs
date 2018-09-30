@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Concepts;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 // using Domain.StaffUser.Registering;
 using Newtonsoft.Json;
 

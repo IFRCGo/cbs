@@ -2,58 +2,57 @@
   "modules": [],
   "features": [
     {
-      "feature": "4795ea44-d870-4806-9b4a-dc59a299008a",
+      "feature": "392f79e1-7efa-4858-aee7-c816aa90ed37",
       "name": "MessageGenerator",
       "subFeatures": []
     },
     {
-      "feature": "2d214e7f-83c0-4115-9b06-ddc9048d49c1",
-      "name": "DataCollector",
+      "feature": "4a60669b-bd38-411a-acdd-9bddb5df664d",
+      "name": "DataCollectors",
       "subFeatures": [
         {
-          "feature": "4a12c42c-338c-45fa-bc9b-9a5c98cab835",
+          "feature": "ce7d7f32-c592-4338-a135-f6930ca8d4d7",
+          "name": "TrainingStatus",
+          "subFeatures": []
+        },
+        {
+          "feature": "6dce9754-2e82-41c4-a830-3ae92c568ac6",
           "name": "Registering",
           "subFeatures": []
         },
         {
-          "feature": "72817316-52d2-4dc5-bee5-59894604eb22",
+          "feature": "7ab14258-b1de-495b-a848-874b7e45b47f",
           "name": "PhoneNumber",
           "subFeatures": []
         },
         {
-          "feature": "ceb431f5-3173-44a8-aaeb-c7b8c73509eb",
+          "feature": "f687f8f6-690d-430e-8e09-a7d1e8014e34",
           "name": "Changing",
           "subFeatures": []
         },
         {
-          "feature": "3994ace4-2b2f-4f3b-9f65-ebed79541889",
-          "name": "TrainingStatus",
-          "subFeatures": []
-        }
-      ]
-    },
-    {
-      "feature": "4e9b1b11-e0f3-4345-ab40-9a4e29d0ff80",
-      "name": "External",
-      "subFeatures": []
-    },
-    {
-      "feature": "9758c8a8-84d3-4530-9de2-47c6cf52536a",
-      "name": "GreetingGenerators",
-      "subFeatures": [
-        {
-          "feature": "d787a1da-5b09-4b2b-837a-338b11d7c6fa",
+          "feature": "252bc0aa-9278-4ea5-8803-f8ca503a0174",
           "name": "Queries",
           "subFeatures": []
         }
       ]
     },
     {
-      "feature": "a129c371-e7c4-4e04-a557-b4a4f0dff394",
-      "name": "DataCollectors",
+      "feature": "cc8ed0d8-ef2a-4afc-b785-6fdff3ee3767",
+      "name": "DataCollector",
+      "subFeatures": []
+    },
+    {
+      "feature": "b293d995-1950-4ebe-93e8-3507e4169dd5",
+      "name": "External",
+      "subFeatures": []
+    },
+    {
+      "feature": "6f73fd4e-a469-4c8e-9760-60b7d572fbe9",
+      "name": "GreetingGenerators",
       "subFeatures": [
         {
-          "feature": "776f70d5-9f55-4c96-9f49-a4a44862ca47",
+          "feature": "40f310ee-6a19-42df-b74f-922b78daee3b",
           "name": "Queries",
           "subFeatures": []
         }
