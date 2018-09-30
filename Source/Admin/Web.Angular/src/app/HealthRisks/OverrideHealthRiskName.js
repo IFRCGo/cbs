@@ -4,15 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class CreateHealthRisk extends Command
+export class OverrideHealthRiskName extends Command
 {
     constructor() {
         super();
-        this.type = 'f519fe4c-e353-4b86-8289-2a1cef497350';
+        this.type = 'a7cb3b44-7382-4a13-9065-8d4e11d4a946';
 
-        this.id = '00000000-0000-0000-0000-000000000000';
+        this.healthRisk = '00000000-0000-0000-0000-000000000000';
         this.name = '';
-        this.caseDefinition = '';
-        this.number = 0;
     }
 }

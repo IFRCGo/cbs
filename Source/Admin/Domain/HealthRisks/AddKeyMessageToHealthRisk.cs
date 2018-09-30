@@ -2,22 +2,17 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using System;
-using System.Collections.Generic;
 using Concepts.HealthRisks;
-using Dolittle.ReadModels;
+using Dolittle.Commands;
+using Dolittle.Commands.Validation;
 
-namespace Read.HealthRisks
+namespace Domain.HealthRisks
 {
-    public class HealthRisk : IReadModel
+    public class AddKeyMessageToHealthRisk : ICommand
     {
-        public int ReadableId { get; set; }
-        public Guid Id { get; set; }
+        public HealthRiskId HealthRisk { get; set; }
 
-        public string Name { get; set; }
-        public string CaseDefinition { get; set; }
-        public IEnumerable<KeyMessage> KeyMessages { get; set; }
+        public KeyMessage KeyMessage { get; set; }
     }
-    
 }

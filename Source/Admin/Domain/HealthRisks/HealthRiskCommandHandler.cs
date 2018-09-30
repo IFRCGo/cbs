@@ -15,21 +15,13 @@ namespace Domain.HealthRisks
         public void Handle(CreateHealthRisk cmd)
         {
             var root = _aggregate.Get(cmd.Id);
-            root.CreateHealthRisk(cmd.CaseDefinition, cmd.CommunityCase, cmd.KeyMessage, cmd.Name,
-                cmd.Note, cmd.ReadableId);
+            root.CreateHealthRisk(cmd.Name, cmd.CaseDefinition, cmd.Number);
         }
 
         public void Handle(AddThresholdToHealthRisk cmd)
         {
             var root = _aggregate.Get(cmd.HealthRiskId);
             root.AddThresholdToHealthRisk(cmd.Threshold);
-        }
-
-        public void Handle(ModifyHealthRisk cmd)
-        {
-            var root = _aggregate.Get(cmd.Id);
-            root.ModifyHealthRisk(cmd.CaseDefinition, cmd.CommunityCase, cmd.KeyMessage, cmd.Name,
-                cmd.Note, cmd.ReadableId);
         }
 
         public void Handle(DeleteHealthRisk cmd)

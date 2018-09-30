@@ -1,3 +1,4 @@
+using Concepts.HealthRisks;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events.HealthRisks;
@@ -11,10 +12,33 @@ namespace Domain.HealthRisks
         }
 
 
-        public void CreateHealthRisk(string caseDefinition, string communityCase, string keyMessage, 
-            string name, string note, int readableId)
+        public void CreateHealthRisk(
+            HealthRiskName name,
+            CaseDefinition caseDefinition,
+            HealthRiskNumber healthRiskNumber)
         {
-            Apply(new HealthRiskCreated(EventSourceId, name, readableId, caseDefinition, note, communityCase, keyMessage));
+            Apply(new HealthRiskCreated(EventSourceId, name, caseDefinition, healthRiskNumber));
+        }
+
+        public void SetName(string name)
+        {
+            Apply(new HealthRiskNameSet(name));
+        }
+
+        public void OverrideName(string name)
+        {
+            Apply(new HealthRiskNameOverridden(name));
+        }
+
+
+        public void SetCaseDefinition(string name)
+        {
+            Apply(new HealthRiskCaseDefinitionSet(name));
+        }
+
+        public void OverrideCaseDefinition(string name)
+        {
+            Apply(new HealthRiskCaseDefinitionOverridden(name));
         }
 
         public void AddThresholdToHealthRisk(int threshold)
@@ -22,14 +46,15 @@ namespace Domain.HealthRisks
             Apply(new ThresholdAddedToHealthRIsk(EventSourceId, threshold));
         }
 
-        public void ModifyHealthRisk(string caseDefinition, string communityCase, string keyMessage, string name, string note, int readableId)
-        {
-            Apply(new HealthRiskModified(EventSourceId, name, readableId, caseDefinition, note, communityCase, keyMessage));
-        }
-
         public void DeleteHealthRisk()
         {
             Apply(new HealthRiskDeleted(EventSourceId));
+        }
+
+        public void AddKeyMessage(KeyMessage keyMessage)
+        {
+            Apply(new KeyMessageAddedToHealthRisk(EventSourceId, keyMessage.Id, keyMessage.Message, keyMessage.Language));
+
         }
     }
 }

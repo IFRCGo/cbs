@@ -2,34 +2,24 @@
  *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using System;
 using Dolittle.Events;
 
 namespace Events.HealthRisks
 {
     public class HealthRiskCreated : IEvent 
-    {
-        public HealthRiskCreated (Guid id, string name, int readableId, string caseDefinition, string note, string communityCase, string keyMessage) 
+{
+        public HealthRiskCreated (Guid id, string name, string caseDefinition, int healthRiskNumber) 
         {
-            this.Id = id;
-            this.Name = name;
-            this.ReadableId = readableId;
-            this.CaseDefinition = caseDefinition;
-            this.Note = note;
-            this.CommunityCase = communityCase;
-            this.KeyMessage = keyMessage;
-
+            Id = id;
+            Name = name;
+            CaseDefinition = caseDefinition;
+            HealthRiskNumber = healthRiskNumber;
         }
+
         public Guid Id { get; }
         public string Name { get; }
-        public int ReadableId { get; }
         public string CaseDefinition { get; }
-        //public string ConfirmedCase { get; }
-        public string Note { get; }
-        //public string SuspectedCase { get; }
-        //public string ProbableCase { get; }
-        public string CommunityCase { get; }
-        public string KeyMessage { get; }
+        public int HealthRiskNumber { get; }
     }
 }
