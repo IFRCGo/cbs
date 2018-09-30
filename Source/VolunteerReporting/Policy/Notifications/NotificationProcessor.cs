@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Concepts.HealthRisk;
+using Dolittle.Events.Processing;
 using Domain.CaseReports;
 using Events.External;
 
@@ -19,7 +20,7 @@ namespace Policy.Notifications
     /// <summary>
     /// Represents an implementation of <see cref="ICanProcessTextMessage"/>
     /// </summary>
-    public class NotificationProcessor : ICanProcessNotification
+    public class NotificationProcessor : ICanProcessEvents
     {
         readonly IDataCollectors _dataCollectors;
         readonly IHealthRisks _healthRisks;
