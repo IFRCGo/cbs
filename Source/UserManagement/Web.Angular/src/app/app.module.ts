@@ -11,7 +11,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
 
 import { DataCollectorService } from './services/data-collector.service';
-import { CommandCoordinator } from './services/CommandCoordinator';
+import { CommandCoordinator } from '@dolittle/commands';
+import { CommandCoordinator2 } from './services/CommandCoordinator';
+import { QueryCoordinator } from '@dolittle/queries';
+import { QueryCoordinator2 } from './services/QueryCoordinator';
 import { StaffUserService } from './services/staff-user.service';
 
 import { AppComponent } from './app.component';
@@ -36,7 +39,6 @@ import { ModalModule } from 'ngx-bootstrap';
 import { EditUserFormDataCollectorComponent } from './user-form/edit-user-form-data-collector/edit-user-form-data-collector.component';
 import { DatacollectorExportComponent } from './datacollector-export/datacollector-export.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { QueryCoordinator } from './services/QueryCoordinator';
 
 const appRoutes: Routes = [
   ...USER_FORM_ROUTES,
@@ -86,7 +88,9 @@ const appRoutes: Routes = [
     DataCollectorService,
     AuthenticationService,
     CommandCoordinator,
-    QueryCoordinator
+    CommandCoordinator2,
+    QueryCoordinator,
+    QueryCoordinator2
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,8 @@
+{
+  "application": "",
+  "boundedContext": "bc18a7a0-e1f6-cec0-6368-50a2efb0ac46",
+  "boundedContextName": "Alerts",
+  "backend": {
+    "language": "csharp"
+  }
+}

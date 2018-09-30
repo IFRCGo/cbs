@@ -3,7 +3,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { DataCollector } from '../domain/data-collector';
-import { CommandCoordinator } from '../services/CommandCoordinator';
+import { CommandCoordinator2 } from '../services/CommandCoordinator';
 import { DeleteDataCollector } from '../domain/data-collector/DeleteDataCollector';
 import { environment } from '../../environments/environment.prod';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class DeleteUserComponent {
     modalRef: BsModalRef;
 
     constructor(
-        private commandCoordinator: CommandCoordinator,
+        private commandCoordinator: CommandCoordinator2,
         private modalService: BsModalService,
         private router: Router
     ) {

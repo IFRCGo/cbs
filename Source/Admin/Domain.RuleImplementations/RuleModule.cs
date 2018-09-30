@@ -7,6 +7,8 @@ using Autofac;
 using Domain.Admin;
 using Domain.Projects;
 using Domain.AutomaticReplyMessages;
+using Domain.HealthRisks;
+using System;
 
 namespace Domain.RuleImplementations
 {
@@ -14,10 +16,6 @@ namespace Domain.RuleImplementations
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ProjectHealthRiskRules>().As<IProjectHealthRiskRules>();
-            builder.RegisterType<ProjectRules>().As<IProjectRules>();
-            builder.RegisterType<UserRules>().As<IUserRules>();
-            builder.RegisterType<ReplyMessagesConfigRules>().As<IReplyMessagesConfigRules>();
         }
     }
 }

@@ -1,27 +1,16 @@
-form table {
-    border-spacing: 1em;
-    border-collapse: separate;
-}
+form {
+    h3 {
+        font-size: 2rem;
+    }
 
-form table label {
-    font-weight: normal;
-    margin-bottom: 0;
-}
+    .format-options {
+        margin: 1rem 0;
+    }
 
-form table input[type=radio] {
-    margin-left: 0.5em;
-}
-
-form table tr {
-    vertical-align: top;
-}
-
-form table.fieldTable {
-    border-spacing: 0;
-}
-
-form table.fieldTable label {
-    margin-right: 2em;
+    label {
+        cursor: pointer;
+        padding: 1rem;
+    }
 }
 
 div.actions {

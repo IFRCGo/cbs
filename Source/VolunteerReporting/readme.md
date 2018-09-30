@@ -1,7 +1,7 @@
 # Volunteer Reporting
 
 ## Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/tt50700nylx40eml/branch/master?svg=true)](https://ci.appveyor.com/project/karolikl/cbs-g81xy/branch/master)
+[![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1)
 
 ## Prerequisites
 
@@ -38,12 +38,15 @@ Download nuget dependencies
 Build
 > `dotnet build`   
 
-(Active path: `cbs\source\VolunteerReporting\web`)  
+Open the Web folder
+> `cd Web` 
+
+(Active path: `cbs\source\VolunteerReporting\Web`) 
 
 Run locally
 > `dotnet run`
 
-Open browser at address http://localhost:5000/swagger to access Swagger.
+Open browser at address http://localhost:5001/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 

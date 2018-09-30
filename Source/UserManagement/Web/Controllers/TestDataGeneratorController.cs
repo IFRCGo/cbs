@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 // using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

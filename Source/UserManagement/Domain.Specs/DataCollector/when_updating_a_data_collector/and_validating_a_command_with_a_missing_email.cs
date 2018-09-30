@@ -6,7 +6,7 @@
 // using Machine.Specifications;
 // using FluentValidation.Results;
 // using System.Collections.Generic;
-// using Domain.DataCollector.Update;
+// using Domain.DataCollectors.Update;
 
 //namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 // {

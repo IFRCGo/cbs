@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CommandCoordinator } from '../../services/CommandCoordinator';
+import { CommandCoordinator2 } from '../../services/CommandCoordinator';
 import { Command } from '../../services/Command';
 import { Language } from '../../domain/language.model';
 import {Location } from '../../domain/location.model';
@@ -14,7 +14,7 @@ import { ChangePreferredLanguage } from '../../domain/data-collector/ChangePrefe
 import { RemovePhoneNumberFromDataCollector } from '../../domain/data-collector/RemovePhoneNumberFromDataCollector';
 import { DataCollector } from '../../domain/data-collector';
 import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
-import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { QueryCoordinator2 } from '../../services/QueryCoordinator';
 import { DataCollectorById } from '../../domain/data-collector/queries/DataCollectorById';
 
 export const DATA_COLLECTOR_PATH = 'data-collector';
@@ -43,9 +43,9 @@ export class EditUserFormDataCollectorComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commandCoordinator: CommandCoordinator,
+        private commandCoordinator: CommandCoordinator2,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>
+        private queryCoordinator: QueryCoordinator2<DataCollector>
         ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }

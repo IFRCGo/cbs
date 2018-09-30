@@ -11,5 +11,10 @@ export class AllCaseReportsForListing extends Query
         this.nameOfQuery = 'AllCaseReportsForListing';
         this.generatedFrom = 'Read.CaseReportsForListing.AllCaseReportsForListing';
 
+        this.pageSize = 0;
+        this.pageNumber = 0;
+
+        this.sortAscending = false;
+        this.sortField = "";
     }
 }

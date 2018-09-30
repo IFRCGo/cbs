@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 using Machine.Specifications;
 using FluentValidation.Results;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 
 namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 {

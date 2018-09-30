@@ -1,6 +1,6 @@
 using Autofac;
-using Domain.DataCollector;
-using Domain.DataCollector.PhoneNumber;
+using Domain.DataCollectors;
+using Domain.DataCollectors.PhoneNumber;
 using Rules.DataCollector.PhoneNumber;
 
 namespace Rules.DataCollector

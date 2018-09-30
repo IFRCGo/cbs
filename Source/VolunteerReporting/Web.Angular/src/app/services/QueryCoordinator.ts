@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Observable';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,7 +18,6 @@ export class QueryCoordinator<T> {
     constructor(private http: HttpClient) { }
 
     handle(queryRequest: QueryRequest): Promise<QueryResult<T>> {
-        const queryRequestAsJson = JSON.stringify(queryRequest);
         return this.http
             .post(API_URL, queryRequest, httpOptions)
             .toPromise() as Promise<QueryResult<T>>;

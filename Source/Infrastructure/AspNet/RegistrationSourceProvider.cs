@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Autofac.Core;
 using Dolittle.DependencyInversion.Autofac;
 using Infrastructure.AspNet.StringLocalization;
+using Infrastructure.Rules;
 
 namespace Infrastructure.AspNet
 {
@@ -13,9 +14,10 @@ namespace Infrastructure.AspNet
     {
         public IEnumerable<IRegistrationSource> Provide()
         {
-            return new IRegistrationSource[] { 
+            return new IRegistrationSource[] {
                 new MongoDB.MongoDBRegistrationSource(),
                 new MongoDB.ReadModelRepositoryDBRegistrationSource(),
+                new RuleRegistrationSource(), 
                 new LocalizedStringsRegistrationsSource(new LocalizedStringsParser(),new UnparsedStringsProvider())
             };
         }

@@ -11,16 +11,16 @@ namespace Domain.HealthRisks
 {
     public class AddProjectHealthRiskValidator : CommandInputValidatorFor<AddProjectHealthRisk>
     {
-        public AddProjectHealthRiskValidator(IProjectHealthRiskRules projectHealthRiskRules)
+        public AddProjectHealthRiskValidator(IsWithinNumberOfHealthRisksLimit isWithinNumberOfHealthRisksLimit, IsHealthRiskUniqueWithinProject isHealthRiskUniqueWithinProject, IsHealthRiskExisting isHealthRiskExisting)
         {
             RuleFor(_ => _.ProjectId)
-                .Must(projectHealthRiskRules.IsWithinNumberOfHealthRisksLimit)
+                .Must(_ => isWithinNumberOfHealthRisksLimit(_))
                 .WithMessage("Project does not allow health risks to be added");
             RuleFor(_ => _)
-                .Must(p => projectHealthRiskRules.IsHealthRiskUniqueWithinProject(p.HealthRiskId, p.ProjectId))
+                .Must(p => isHealthRiskUniqueWithinProject(p.HealthRiskId, p.ProjectId))
                 .WithMessage("Project does not allow health risks to be added");
             RuleFor(_ => _)
-                .Must(p => projectHealthRiskRules.IsHealthRiskExisting(p.HealthRiskId))
+                .Must(p => isHealthRiskExisting(p.HealthRiskId))
                 .WithMessage("Project does not allow health risks to be added");
         }
     }

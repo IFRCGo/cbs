@@ -1,7 +1,7 @@
 using System.Linq;
 using Concepts.DataCollector;
-using Domain.DataCollector;
-using Domain.DataCollector.Changing;
+using Domain.DataCollectors;
+using Domain.DataCollectors.Changing;
 using Read.DataCollectors;
 
 namespace Rules.DataCollector

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CaseReportForListing } from '../../shared/models/case-report-for-listing.model';
 import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
-import { QuickFilter, Filter } from './filtering/filter.pipe';
-import { Report } from '../../shared/models/report.model';
-import { QueryCoordinator } from '../../services/QueryCoordinator';
+import { QuickFilter } from './filtering/filter.pipe';
 import { AllCaseReportsForListing } from '../../domain/case-report/queries/AllCaseReportsForListing';
+
+import * as fromServices from '../../services';
+import * as fromModels from '../../shared/models';
+
+
 
 @Component({
     selector: 'cbs-case-report-list',
@@ -27,7 +29,7 @@ import { AllCaseReportsForListing } from '../../domain/case-report/queries/AllCa
  */
 export class CaseReportListComponent implements OnInit {
 
-    listedReports: Array<CaseReportForListing>;
+    listedReports: Array<fromModels.CaseReportForListing>;
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -36,11 +38,29 @@ export class CaseReportListComponent implements OnInit {
     sortDescending: boolean = true;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
+    page = {
+        isLoading: false,
+        number: 0,
+        size: 50,
+        sizes: [10, 20, 50, 100, 200, 500, 1000]
+    };
+
     constructor(
-        private queryCoordinator: QueryCoordinator<CaseReportForListing>,
+        private queryCoordinator: fromServices.QueryCoordinator<fromModels.CaseReportForListing>,
         private route: ActivatedRoute,
         private router: Router
     ) { }
+
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        if (event.keyCode === 37) {
+            this.showPrevPage();
+        }
+
+        if (event.keyCode === 39) {
+            this.showNextPage();
+        }
+    }
 
     updateNavigation(filter: QuickFilter, column: SortableColumn, sortDescending: boolean) {
       this.router.navigate(['../'+filter.name], { relativeTo: this.route, queryParams: {
@@ -68,11 +88,21 @@ export class CaseReportListComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-        this.queryCoordinator.handle(new AllCaseReportsForListing())
+    buildListParams(): fromModels.ListParams {
+        return {
+            pageNumber: this.page.number,
+            pageSize: this.page.size 
+        };
+    }
+
+    laodListData(): void {
+        const queryRequest = new AllCaseReportsForListing();
+        this.page.isLoading = true;
+        queryRequest.parameters = this.buildListParams();
+        this.queryCoordinator.handle(queryRequest)
             .then(response => {
                 if (response.success) {
-                    this.listedReports = response.items as Array<CaseReportForListing>;
+                    this.listedReports = response.items as Array<fromModels.CaseReportForListing>;
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
@@ -80,10 +110,42 @@ export class CaseReportListComponent implements OnInit {
                 } else {
                     console.error(response);
                 }
+
+                this.page.isLoading = false;
             })
             .catch(response => {
                 console.error(response);
+                this.page.isLoading = false;
             });
+    }
+
+    resetPage(): void {
+        this.page.number = 0;
+        this.laodListData();
+    }
+
+    showPrevPage(): void {
+        if (this.page.number) {
+            this.page.number--;
+            this.laodListData();
+        }
+    }
+
+    showNextPage(): void {
+        this.page.number++;
+        this.laodListData();
+    }
+
+    isSuccessStatus(status: number): boolean {
+        return status === 0 || status === 2;
+    }
+
+    isOriginStatus(status:number): boolean {
+        return status === 2 || status === 3;
+    }
+
+    ngOnInit() {
+        this.laodListData();
 
         this.route.params.subscribe(params => {
             this.currentFilter = QuickFilter.fromName(params.filter);

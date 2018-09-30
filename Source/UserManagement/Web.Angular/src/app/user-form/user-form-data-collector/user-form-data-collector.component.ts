@@ -1,12 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CommandCoordinator } from '../../services/CommandCoordinator';
-import { Command } from '../../services/Command';
-import { Guid } from '../../services/Guid';
+import { CommandCoordinator } from '@dolittle/commands';
+import { Guid } from '@dolittle/core';
 import { Language } from '../../domain/language.model';
 import { Sex } from '../../domain/sex';
-import { RegisterDataCollector } from '../../domain/data-collector/RegisterDataCollector';
+import { RegisterDataCollector } from '../../../app/DataCollectors/Registering/RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
 import { ChangeVillage } from '../../domain/data-collector/ChangeVillage';
 
@@ -49,6 +48,7 @@ export class UserFormDataCollectorComponent {
     }
 
     submit() {
+        console.log("inni submit")
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
         this.commandCoordinator.handle(this.command)
