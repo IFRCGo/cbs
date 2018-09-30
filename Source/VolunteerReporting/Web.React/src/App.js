@@ -6,7 +6,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL || '/'}>
+      <Router>
         <div>
           {this.props.routes.map((route, index) => {
             let component;
@@ -16,12 +16,21 @@ class App extends Component {
               component = route.component;
             }
 
-            return <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={component}
-            />
+            return Array.isArray(route.path) ?
+              <div key={index}>{route.path.map((childRoute, childIndex) => {
+                return <Route
+                  key={childIndex}
+                  path={childRoute}
+                  exact={route.exact}
+                  component={component}
+                />
+              })}</div>:
+              <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  component={component}
+                />
           })}
         </div>
       </Router>

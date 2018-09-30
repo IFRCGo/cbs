@@ -4,13 +4,14 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {StoreManager} from 'repertoire';
 
-import App from './components/App.js';
-import VolunteerReporting from './components/VolunteerReporting.js';
+import App from './App.js';
+import VolunteerReporting from './case-report/index.js';
 
 import './assets/main.scss';
 
 const routes = [{
-  path: '*',
+  path: ['/', '/list/:filter'],
+  exact: true,
   component: VolunteerReporting
 }];
 
