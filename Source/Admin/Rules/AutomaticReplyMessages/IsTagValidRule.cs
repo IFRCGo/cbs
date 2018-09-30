@@ -7,7 +7,7 @@ using Domain.AutomaticReplyMessages;
 using Infrastructure.Rules;
 using System.Linq;
 
-namespace Domain.RuleImplementations.AutomaticReplyMessages
+namespace Rules.AutomaticReplyMessages
 {
     public class IsTagValidRule : IRuleImplementationFor<IsTagValid>
     {
