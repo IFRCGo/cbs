@@ -1,0 +1,62 @@
+{
+  "modules": [],
+  "features": [
+    {
+      "feature": "392f79e1-7efa-4858-aee7-c816aa90ed37",
+      "name": "MessageGenerator",
+      "subFeatures": []
+    },
+    {
+      "feature": "4a60669b-bd38-411a-acdd-9bddb5df664d",
+      "name": "DataCollectors",
+      "subFeatures": [
+        {
+          "feature": "ce7d7f32-c592-4338-a135-f6930ca8d4d7",
+          "name": "TrainingStatus",
+          "subFeatures": []
+        },
+        {
+          "feature": "6dce9754-2e82-41c4-a830-3ae92c568ac6",
+          "name": "Registering",
+          "subFeatures": []
+        },
+        {
+          "feature": "7ab14258-b1de-495b-a848-874b7e45b47f",
+          "name": "PhoneNumber",
+          "subFeatures": []
+        },
+        {
+          "feature": "f687f8f6-690d-430e-8e09-a7d1e8014e34",
+          "name": "Changing",
+          "subFeatures": []
+        },
+        {
+          "feature": "252bc0aa-9278-4ea5-8803-f8ca503a0174",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    },
+    {
+      "feature": "cc8ed0d8-ef2a-4afc-b785-6fdff3ee3767",
+      "name": "DataCollector",
+      "subFeatures": []
+    },
+    {
+      "feature": "b293d995-1950-4ebe-93e8-3507e4169dd5",
+      "name": "External",
+      "subFeatures": []
+    },
+    {
+      "feature": "6f73fd4e-a469-4c8e-9760-60b7d572fbe9",
+      "name": "GreetingGenerators",
+      "subFeatures": [
+        {
+          "feature": "40f310ee-6a19-42df-b74f-922b78daee3b",
+          "name": "Queries",
+          "subFeatures": []
+        }
+      ]
+    }
+  ]
+}

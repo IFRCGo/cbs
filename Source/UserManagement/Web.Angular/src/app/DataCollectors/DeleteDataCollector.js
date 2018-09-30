@@ -8,7 +8,7 @@ export class DeleteDataCollector extends Command
 {
     constructor() {
         super();
-        this.type = '6d0e638a-e52b-41bd-ae83-a2e0cf170a5a';
+        this.type = '15ca832e-a210-499a-8b1e-209edc432193';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
     }

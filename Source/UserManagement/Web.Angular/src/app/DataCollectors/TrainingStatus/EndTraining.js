@@ -4,13 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class AddPhoneNumberToDataCollector extends Command
+export class EndTraining extends Command
 {
     constructor() {
         super();
-        this.type = '45149f45-433d-4189-a800-3b9e915178ca';
+        this.type = '43d3bacb-8171-4507-a5a6-39e7f5af9367';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.phoneNumber = '';
     }
 }
