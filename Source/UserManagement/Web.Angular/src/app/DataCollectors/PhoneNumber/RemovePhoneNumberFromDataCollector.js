@@ -8,7 +8,7 @@ export class RemovePhoneNumberFromDataCollector extends Command
 {
     constructor() {
         super();
-        this.type = 'a6f7f738-83f2-4554-89fc-bc83e5409704';
+        this.type = '9a3a1fce-d41b-4f0d-b88a-30ea6c0c9e71';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.phoneNumber = '';

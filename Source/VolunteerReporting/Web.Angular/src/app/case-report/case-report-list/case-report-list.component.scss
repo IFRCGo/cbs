@@ -1,4 +1,29 @@
 div.actions {
     text-align: right;
-    padding: 8px;
+    padding: .5rem;
 }
+
+.paging {
+    margin: 2rem 0;
+
+    &-size {
+        display: flex;
+        height: 3rem;
+        align-items: center;
+    }
+
+    &-pages {
+        text-align: right;
+
+        &-number {
+            margin: 0 2rem;
+        }
+    }
+}
+
+button {
+    &.small {
+        font-size: 1rem;
+    }
+}
+

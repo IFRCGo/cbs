@@ -8,7 +8,7 @@ export class AddPhoneNumberToDataCollector extends Command
 {
     constructor() {
         super();
-        this.type = '250a9dfb-1102-4b3e-b49c-401da84a1ecd';
+        this.type = '45149f45-433d-4189-a800-3b9e915178ca';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.phoneNumber = '';
