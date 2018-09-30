@@ -32,7 +32,8 @@ namespace Domain.DataCollectors
                 command.PhoneNumbers,
                 DateTimeOffset.UtcNow,
                 command.Region,
-                command.District
+                command.District,
+                command.DataVerifierId
                 );
         }
 
@@ -95,6 +96,12 @@ namespace Domain.DataCollectors
         {
             var root = _repository.Get(command.DataCollectorId.Value);
             root.EndTraining();
+        }
+
+        public void Handle(ChangeDataVerifier command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.ChangeDataVerifier(command.DataVerifierId);
         }
     }
 }

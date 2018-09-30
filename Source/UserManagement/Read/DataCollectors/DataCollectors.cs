@@ -1,22 +1,14 @@
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Concepts;
 using Concepts.DataCollectors;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
 {
-    public class DataCollectors : ExtendedReadModelRepositoryFor<DataCollector>,
-        IDataCollectors
+    public class DataCollectors : ExtendedReadModelRepositoryFor<DataCollector>, IDataCollectors
     {
-
-
-        public DataCollectors(IMongoDatabase database)
-            : base(database)
+        public DataCollectors(IMongoDatabase database) : base(database)
         {
-
         }
 
         public override IMongoCollection<DataCollector> GetCollection()
@@ -33,6 +25,5 @@ namespace Read.DataCollectors
         {
             return GetMany(_ => true);
         }
-
     }
 }

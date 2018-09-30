@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class AddPhoneNumberToDataCollector extends Command
+export class ChangeDataVerifier extends Command
 {
     constructor() {
         super();
-        this.type = 'dcb8fa2b-d09e-4d5a-bb69-02a8a3e8bd2c';
+        this.type = 'e2cca7bb-7be8-4715-90dd-117ca19d6312';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.phoneNumber = '';
+        this.dataVerifierId = '00000000-0000-0000-0000-000000000000';
     }
 }

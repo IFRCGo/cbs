@@ -8,7 +8,7 @@ export class RegisterDataCollector extends Command
 {
     constructor() {
         super();
-        this.type = '30a612d7-b971-4cde-b8dd-094d0183d7d2';
+        this.type = '0683e31a-02b1-4ac6-9d42-d2aa699ce77c';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.fullName = '';
@@ -20,5 +20,6 @@ export class RegisterDataCollector extends Command
         this.phoneNumbers = [];
         this.region = '';
         this.district = '';
+        this.dataVerifierId = '00000000-0000-0000-0000-000000000000';
     }
 }

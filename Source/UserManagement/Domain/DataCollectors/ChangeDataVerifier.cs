@@ -1,12 +1,12 @@
-using Concepts;
+using System;
 using Concepts.DataCollectors;
 using Dolittle.Commands;
 
 namespace Domain.DataCollectors
 {
-    public class ChangeLocation : ICommand
+    public class ChangeDataVerifier : ICommand
     {
         public DataCollectorId DataCollectorId { get; set; }
-        public Location Location { get; set; }
+        public Guid DataVerifierId { get; set; }
     }
 }
