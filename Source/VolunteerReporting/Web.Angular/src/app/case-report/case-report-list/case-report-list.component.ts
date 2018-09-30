@@ -49,7 +49,8 @@ export class CaseReportListComponent implements OnInit {
     constructor(
         private queryCoordinator: fromServices.QueryCoordinator<fromModels.CaseReportForListing>,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private logService: fromServices.LogService
     ) { }
 
     @HostListener('window:keyup', ['$event'])
@@ -104,15 +105,14 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
-                    
+                    this.logService.log(this.listedReports);         
                 } else {
-                    console.error(response);
+                    this.logService.logError(response);
                 }
-
                 this.page.isLoading = false;
             })
             .catch(response => {
-                console.error(response);
+                this.logService.logError(response);
                 this.page.isLoading = false;
             });
     }
@@ -140,12 +140,20 @@ export class CaseReportListComponent implements OnInit {
         return this.page.size > this.listedReports.length;
     }
 
-    isSuccessStatus(status: number): boolean {
-        return status === 0 || status === 2;
+    isSuccess(status: number): boolean {
+        return status === 0;
     }
 
-    isOriginStatus(status:number): boolean {
-        return status === 2 || status === 3;
+    isError(status: number): boolean {
+        return status === 1;
+    }
+
+    isSuccessUnknown(status: number): boolean {
+        return status === 2;
+    }
+
+    isErrorUnknown(status: number): boolean {
+        return status === 3;
     }
 
     ngOnInit() {
