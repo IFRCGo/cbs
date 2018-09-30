@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 15.0.26124.0
@@ -28,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Logging", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Read", "..\Infrastructure\Read\Infrastructure.Read.csproj", "{FE7B4DA7-56DA-455D-A661-AD33F2A70C78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concepts.csproj", "{DB3D60E5-EDE9-4B3A-8195-3B878A5C0AED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concepts", "Concepts\Concepts.csproj", "{DB3D60E5-EDE9-4B3A-8195-3B878A5C0AED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Rules", "..\Infrastructure\Rules\Infrastructure.Rules.csproj", "{161F64E0-CF09-4160-8E85-17169C02355F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -196,6 +199,18 @@ Global
 		{DB3D60E5-EDE9-4B3A-8195-3B878A5C0AED}.Release|x64.Build.0 = Release|Any CPU
 		{DB3D60E5-EDE9-4B3A-8195-3B878A5C0AED}.Release|x86.ActiveCfg = Release|Any CPU
 		{DB3D60E5-EDE9-4B3A-8195-3B878A5C0AED}.Release|x86.Build.0 = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|x64.Build.0 = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Debug|x86.Build.0 = Debug|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|x64.ActiveCfg = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|x64.Build.0 = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|x86.ActiveCfg = Release|Any CPU
+		{161F64E0-CF09-4160-8E85-17169C02355F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

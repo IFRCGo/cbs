@@ -10,7 +10,7 @@ namespace Domain.Admin
 {
     public class AddDataVerifierValidator : CommandInputValidatorFor<AddDataVerifier>
     {
-        public AddDataVerifierValidator(IUserRules userRules, IProjectRules projectRules)
+        public AddDataVerifierValidator(UserExist userExist, IsUserNotAVerifier isUserNotAVerifier)
         {
             RuleFor(_ => _.ProjectId)
                 .NotEmpty()
@@ -19,10 +19,10 @@ namespace Domain.Admin
                 .NotEmpty()
                 .WithMessage("UserId must be specified");
             RuleFor(_ => _)
-                .Must(p => userRules.IsUserExisting(p.UserId))
+                .Must(p => userExist(p.UserId))
                 .WithMessage("User is not existing");
             RuleFor(_ => _)
-                .Must(p => projectRules.IsUserNotAVerifier(p.ProjectId, p.UserId))
+                .Must(p => isUserNotAVerifier(p.ProjectId, p.UserId))
                 .WithMessage("User is already a verifier");
         }
     }

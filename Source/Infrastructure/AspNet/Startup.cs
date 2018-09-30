@@ -11,6 +11,7 @@ using Dolittle.DependencyInversion.Autofac;
 using Dolittle.Execution;
 using Dolittle.Security;
 using Infrastructure.AspNet.ConnectionStrings;
+using Infrastructure.Rules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -61,6 +62,7 @@ namespace Infrastructure.AspNet
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             if (_env.IsDevelopment())
             {
                 services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
@@ -83,6 +85,8 @@ namespace Infrastructure.AspNet
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            RuleRegistrationSource.Container = app.ApplicationServices.GetService(typeof(Dolittle.DependencyInversion.IContainer)) as Dolittle.DependencyInversion.IContainer;
+
             _executionContextManager = app.ApplicationServices.GetService(typeof(IExecutionContextManager)) as IExecutionContextManager;
 
             if (env.IsDevelopment())
