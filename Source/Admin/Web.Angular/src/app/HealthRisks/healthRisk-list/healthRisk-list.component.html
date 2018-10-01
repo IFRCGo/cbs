@@ -15,8 +15,6 @@
             </th>
             <th>Health risk</th>
             <th>Case Definition</th>
-            <th>Alert Threshold</th>
-            <th>Key Messages</th>
             <th>Key Actions</th>
         </tr>
     </thead>
@@ -25,8 +23,6 @@
             <td>{{ risk.readableId }}</td>
             <td>{{ risk.name }}</td>
             <td>{{ risk.caseDefinition }}</td>
-            <td>{{ risk.threshold }}</td>
-            <td>{{ risk.keyMessage }}</td>
             <td>
                 <a [routerLink]="[risk.id,'update']" routerLinkActive="active">Edit</a> | <cbs-delete-healthrisk [risk]=risk></cbs-delete-healthrisk>
             </td>
