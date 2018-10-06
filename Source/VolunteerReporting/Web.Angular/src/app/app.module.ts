@@ -12,8 +12,9 @@ import { CaseReportModule } from './case-report/case-report.module';
 import { AuthenticationService } from 'navigation/authentication.service';
 import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
-import { QueryCoordinator } from './services/QueryCoordinator';
 import { HttpClientModule } from '@angular/common/http';
+
+import * as fromServices from './services';
 
 const routes: Routes = [
     {
@@ -45,7 +46,8 @@ const routes: Routes = [
     ],
     providers: [
         AuthenticationService,
-        QueryCoordinator
+        fromServices.QueryCoordinator,
+        fromServices.LogService
     ],
     bootstrap: [AppComponent]
 })

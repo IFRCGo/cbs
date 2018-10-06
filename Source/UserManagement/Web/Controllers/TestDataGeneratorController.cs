@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 // using Domain.StaffUser.Registering;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -70,7 +70,7 @@ namespace Web.Controllers
         [HttpGet("all")]
         public void CreateAll()
         {
-             CreateDataCollectorCommands();
+            CreateDataCollectorCommands();
             //  CreateAllStaffUserCommands();
         }
         

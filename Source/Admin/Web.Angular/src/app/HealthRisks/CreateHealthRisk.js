@@ -12,10 +12,7 @@ export class CreateHealthRisk extends Command
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.name = '';
-        this.readableId = 0;
         this.caseDefinition = '';
-        this.note = '';
-        this.communityCase = '';
-        this.keyMessage = '';
+        this.number = 0;
     }
 }

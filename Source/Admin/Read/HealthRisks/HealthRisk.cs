@@ -4,21 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
+using Concepts.HealthRisks;
 using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
     public class HealthRisk : IReadModel
     {
+        public int ReadableId { get; set; }
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-        public int ReadableId { get; set; }
-         public int Threshold { get; set; }
         public string CaseDefinition { get; set; }
-        public string Note { get; set; } //TODO: Should this be removed?
-        public string CommunityCase { get; set; } //TODO: Should this be removed?
-        public string KeyMessage { get; set; }
+        public IEnumerable<KeyMessage> KeyMessages { get; set; }
     }
     
 }

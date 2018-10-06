@@ -3,7 +3,7 @@
   *  Licensed under the MIT License. See LICENSE in the project root for license information.
   *--------------------------------------------------------------------------------------------*/
 
-using Domain.DataCollector.Registering;
+using Domain.DataCollectors.Registering;
 using Machine.Specifications;
  using FluentValidation.Results;
 

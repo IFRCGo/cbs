@@ -1,0 +1,7 @@
+node_modules
+*.html
+*.log
+*.json
+*.md
+*.yaml
+*.ejs

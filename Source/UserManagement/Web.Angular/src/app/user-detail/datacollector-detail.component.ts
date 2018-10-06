@@ -4,7 +4,7 @@ import { DataCollector } from '../domain/data-collector';
 import { Location } from '@angular/common';
 import { Sex } from '../domain/sex';
 import { Language } from '../domain/language.model';
-import { QueryCoordinator } from '../services/QueryCoordinator';
+import { QueryCoordinator2 } from '../services/QueryCoordinator';
 import { DataCollectorById } from '../domain/data-collector/queries/DataCollectorById';
 
 @Component({
@@ -17,7 +17,7 @@ export class DataCollectorDetailComponent implements OnInit {
   dataCollector: DataCollector;
 
   constructor(
-    private queryCoordinator: QueryCoordinator<DataCollector>,
+    private queryCoordinator: QueryCoordinator2<DataCollector>,
     private route: ActivatedRoute,
     private location: Location
   ) {}

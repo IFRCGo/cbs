@@ -1,22 +1,22 @@
 using Dolittle.Domain;
 using Dolittle.Events.Processing;
 using Domain;
-using Events.External;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.InvalidCaseReports;
 using Concepts.CaseReport;
 using Concepts.DataCollector;
 using Domain.CaseReports;
+using Events.DataCollectors.PhoneNumber;
 
 namespace Policy
 {
     public class CaseReportIdentification : ICanProcessEvents
     {
-        private readonly IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository;
-        private readonly ICaseReportsFromUnknownDataCollectors unknownReports;
-        private readonly IInvalidCaseReportsFromUnknownDataCollectors invalidAndUnknownReports;
-        private readonly IDataCollectors dataCollectors;
+        readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregateRootRepository;
+        readonly ICaseReportsFromUnknownDataCollectors _unknownReports;
+        readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidAndUnknownReports;
+        readonly IDataCollectors _dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
@@ -24,20 +24,20 @@ namespace Policy
             IInvalidCaseReportsFromUnknownDataCollectors invalidAndUnknownReports,
             IDataCollectors dataCollectors)
         {
-            this.caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
-            this.unknownReports = unknownReports;
-            this.invalidAndUnknownReports = invalidAndUnknownReports;
-            this.dataCollectors = dataCollectors;
+            _caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
+            _unknownReports = unknownReports;
+            _invalidAndUnknownReports = invalidAndUnknownReports;
+            _dataCollectors = dataCollectors;
         }
         [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             
-            var unknownReports = this.unknownReports.GetByPhoneNumber(@event.PhoneNumber);
-            var dataCollector = dataCollectors.GetById(@event.DataCollectorId); 
+            var unknownReports = this._unknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
             {
-                var repo = caseReportingAggregateRootRepository.Get(item.Id.Value);
+                var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.Report(
                     @event.DataCollectorId,
                     item.HealthRiskId,
@@ -56,10 +56,10 @@ namespace Policy
             } 
             
             
-            var invalidAndUnknownReports = this.invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var invalidAndUnknownReports = this._invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
-                var repo = caseReportingAggregateRootRepository.Get(item.Id.Value);
+                var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.ReportInvalidReport(
                     @event.DataCollectorId,
                     item.PhoneNumber,

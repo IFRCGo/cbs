@@ -29,13 +29,14 @@ import * as fromModels from '../../shared/models';
  */
 export class CaseReportListComponent implements OnInit {
 
-    listedReports: Array<fromModels.CaseReportForListing>;
+    listedReports: Array<fromModels.CaseReportForListing> = [];
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
 
     allColumns: Array<Column> = CaseReportColumns;
     sortDescending: boolean = true;
+    sortField: string;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
     page = {
@@ -48,7 +49,8 @@ export class CaseReportListComponent implements OnInit {
     constructor(
         private queryCoordinator: fromServices.QueryCoordinator<fromModels.CaseReportForListing>,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private logService: fromServices.LogService
     ) { }
 
     @HostListener('window:keyup', ['$event'])
@@ -69,11 +71,6 @@ export class CaseReportListComponent implements OnInit {
       }});
     }
 
-    filterButtonStyle(filter: QuickFilter) {
-        return {
-            'font-weight': this.currentFilter === filter ? 'bold' : 'normal'
-        };
-    }
     clickFilter(filter: QuickFilter) {
         this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
     }
@@ -91,11 +88,13 @@ export class CaseReportListComponent implements OnInit {
     buildListParams(): fromModels.ListParams {
         return {
             pageNumber: this.page.number,
-            pageSize: this.page.size 
+            pageSize: this.page.size,
+            sortField: this.sortField,
+            sortAscending: !this.sortDescending
         };
     }
 
-    laodListData(): void {
+    loadListData(): void {
         const queryRequest = new AllCaseReportsForListing();
         this.page.isLoading = true;
         queryRequest.parameters = this.buildListParams();
@@ -106,56 +105,71 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
-                    
+                    this.logService.log(this.listedReports);         
                 } else {
-                    console.error(response);
+                    this.logService.logError(response);
                 }
-
                 this.page.isLoading = false;
             })
             .catch(response => {
-                console.error(response);
+                this.logService.logError(response);
                 this.page.isLoading = false;
             });
     }
 
     resetPage(): void {
         this.page.number = 0;
-        this.laodListData();
+        this.loadListData();
     }
 
     showPrevPage(): void {
-        if (this.page.number) {
+        if (this.page.number && !this.page.isLoading) {
             this.page.number--;
-            this.laodListData();
+            this.loadListData();
         }
     }
 
     showNextPage(): void {
-        this.page.number++;
-        this.laodListData();
+        if (!this.isLastPage() && !this.page.isLoading) {
+            this.page.number++;
+            this.loadListData();
+        }
     }
 
-    isSuccessStatus(status: number): boolean {
-        return status === 0 || status === 2;
+    isLastPage(): boolean {
+        return this.page.size > this.listedReports.length;
     }
 
-    isOriginStatus(status:number): boolean {
-        return status === 2 || status === 3;
+    isSuccess(status: number): boolean {
+        return status === 0;
+    }
+
+    isError(status: number): boolean {
+        return status === 1;
+    }
+
+    isSuccessUnknown(status: number): boolean {
+        return status === 2;
+    }
+
+    isErrorUnknown(status: number): boolean {
+        return status === 3;
     }
 
     ngOnInit() {
-        this.laodListData();
-
         this.route.params.subscribe(params => {
             this.currentFilter = QuickFilter.fromName(params.filter);
         });
 
         this.route.queryParams.subscribe(query => {
-            this.sortDescending = query.order != 'asc';
+            this.sortDescending = query.order === 'desc';
+            this.sortField = query.sortBy;
+
             this.currentSortColumn = this.allColumns.find(column => {
                 return column instanceof SortableColumn && column.name == query.sortBy;
             }) as SortableColumn || this.currentSortColumn;
+
+            this.resetPage();
         });
     }
 }
