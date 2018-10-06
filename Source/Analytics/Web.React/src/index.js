@@ -1,8 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './app/App';
-import registerServiceWorker from './registerServiceWorker';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import {StoreManager} from 'repertoire';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from './components/App.js';
+import VolunteerReporting from './components/VolunteerReporting.js';
+
+import './assets/main.scss';
+
+const routes = [{
+  path: '*',
+  component: VolunteerReporting
+}];
+
+const storeManager = new StoreManager(routes);
+
+ReactDOM.render (<Provider store={storeManager.getStore()}>
+    <BrowserRouter>
+      <App routes={routes}/>
+    </BrowserRouter>
+  </Provider>, document.getElementById('app'));
