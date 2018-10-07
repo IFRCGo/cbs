@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Domain/Domain.csproj" />
+    <ProjectReference Include="../../Infrastructure/MSpec/Infrastructure.MSpec.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="StaffUser\Updating\" />

@@ -12,11 +12,10 @@ namespace Read.HealthRisks
 {
     public class HealthRisk : IReadModel
     {
-        public int ReadableId { get; set; }
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
-        public string CaseDefinition { get; set; }
+        public HealthRiskId Id { get; set; }
+        public HealthRiskNumber HealthRiskNumber { get; set; }
+        public HealthRiskName Name { get; set; }
+        public CaseDefinition CaseDefinition { get; set; }
         public IEnumerable<KeyMessage> KeyMessages { get; set; }
     }
     

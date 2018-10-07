@@ -76,18 +76,13 @@ export class AddEditHealthRiskComponent implements OnInit {
         this.risk.id = Guid.create();
         this.createCmd.id = this.risk.id;
         this.createCmd.caseDefinition = this.risk.caseDefinition;
-        this.createCmd.readableId = this.risk.readableId;
         this.createCmd.name = this.risk.name;
-        this.createCmd.communityCase = this.risk.communityCase || "";
-        this.createCmd.keyMessage = this.risk.keyMessage;
-        this.createCmd.note = this.risk.note || "";
 
         console.log(this.createCmd);
         this.commandCoordinator.handle(this.createCmd)
             .then(response => {
                 console.log(response);
                 if (response.success)  {
-                    this.checkThreshold();
                     this.toastr.success('Successfully create a new health risk!');
                     
                     this.router.navigate(['healthrisk']);
@@ -115,11 +110,7 @@ export class AddEditHealthRiskComponent implements OnInit {
     modifyHealthRisk() {
         this.modifyCmd.id = this.risk.id;
         this.modifyCmd.caseDefinition = this.risk.caseDefinition;
-        this.modifyCmd.readableId = this.risk.readableId;
         this.modifyCmd.name = this.risk.name;
-        this.modifyCmd.communityCase = this.risk.communityCase || "";
-        this.modifyCmd.keyMessage = this.risk.keyMessage;
-        this.modifyCmd.note = this.risk.note || "";
 
         console.log(this.modifyCmd);
 
@@ -127,7 +118,6 @@ export class AddEditHealthRiskComponent implements OnInit {
         .then(response => {
             console.log(response);
             if (response.success)  {
-                this.checkThreshold();
                 this.toastr.success('Successfully modified new health risk!');
                 this.router.navigate(['healthrisk']);
                 
@@ -150,40 +140,5 @@ export class AddEditHealthRiskComponent implements OnInit {
                 this.toastr.error('Could not modify health risk:\n' + errors);
             }
         });
-    }
-    checkThreshold() {
-        if (this.risk.threshold != null) {
-            this.addThresholdCmd.healthRiskId = this.risk.id;
-            this.addThresholdCmd.threshold = this.risk.threshold.valueOf();
-
-            console.log("Threshold cmd");
-            
-            console.log(this.addThresholdCmd);
-            this.commandCoordinator.handle(this.addThresholdCmd)
-                .then(response => {
-                    console.log(response);
-                    if (response.success)  {
-                        this.toastr.success('Successfully added threshold!');
-                        this.router.navigate(['healthrisk']);
-                    } else {
-                        if (!response.passedSecurity) { // Security error
-                            this.toastr.error('Could not add threshold because of security issues');
-                        } else {
-                            const errors = response.allValidationMessages.join('\n');
-                            this.toastr.error('Could not add threshold:\n' + errors);
-                        }
-                    }
-                })
-                .catch(response => {
-                    console.log(response);
-
-                    if (!response.passedSecurity) { // Security error
-                        this.toastr.error('Could not add threshold because of security issues');
-                    } else {
-                        const errors = response.allValidationMessages.join('\n');
-                        this.toastr.error('Could not add threshold:\n' + errors);
-                    }
-                });
-        } 
     }
 }

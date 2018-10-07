@@ -2,35 +2,24 @@ using System;
 using System.Collections.Generic;
 using Concepts;
 using Dolittle.Domain;
-using Domain.DataCollectors.Changing;
-using Domain.DataCollectors.Registering;
 using Events.DataCollector;
 
 namespace Domain.DataCollectors
 {
     public class DataCollector : AggregateRoot
     {
-        private readonly List<string> _numbers = new List<string>();
-        private bool _isRegistered;
-
         public DataCollector(Guid id) : base(id)
         {
         }
-
-        #region VisibleCommands
 
         public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
             Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
-            string region, string district
+            string region, string district,
+            Guid dataVerifierId
             )
         {
-            if (_isRegistered)
-            {
-                throw new DataCollectorAlreadyRegistered($"DataCollector '{EventSourceId} {fullName} {displayName} is already registered'");
-            }
-
             Apply(new DataCollectorRegistered
             (
                 EventSourceId,
@@ -52,25 +41,16 @@ namespace Domain.DataCollectors
             }
 
             BeginTraining();
+            ChangeDataVerifier(dataVerifierId);
         }
 
         public void ChangeLocation(Location location)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorLocationChanged(EventSourceId, location.Latitude, location.Longitude));
         }
 
         public void ChangePreferredLanguage(Language language)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
         }
 
@@ -86,11 +66,6 @@ namespace Domain.DataCollectors
 
         public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex, string region, string district)
         {
-            //if (!_isRegistered) //TODO: State is not persisted at the moment it seems
-            //{
-            //    throw new Exception("Datacollector not registered");
-            //}
-
             Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex, region, district));
         }
 
@@ -121,31 +96,14 @@ namespace Domain.DataCollectors
                 EventSourceId,
                 number
             ));
-
         }
 
-        #endregion
-
-        #region On-methods
-
-        private void On(DataCollectorRegistered @event)
+        public void ChangeDataVerifier(Guid dataVerifierId)
         {
-            _isRegistered = true;
+            Apply(new DataCollectorDataVerifierChanged(
+                EventSourceId,
+                dataVerifierId
+            ));
         }
-
-        private void On(PhoneNumberAddedToDataCollector @event)
-        {
-            _numbers.Add(@event.PhoneNumber);
-        }
-
-        private void On(PhoneNumberRemovedFromDataCollector @event)
-        {
-            _numbers.Remove(@event.PhoneNumber);
-        }
-
-        #endregion
-
-        
     }
 }
-
