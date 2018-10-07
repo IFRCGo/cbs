@@ -1,0 +1,27 @@
+{
+  "name": "cbs-navigation",
+  "version": "0.2.0",
+  "description": "",
+  "author": "John Martin",
+  "license": "MIT",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1"
+  },
+  "dependencies": {
+    "react": "^16.5.2",
+    "webpack": "^2.7.0"
+  }
+}
