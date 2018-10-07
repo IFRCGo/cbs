@@ -2,14 +2,9 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 using System;
 using Dolittle.Domain;
 using Dolittle.Commands.Handling;
-using Domain.DataCollectors.Changing;
-using Domain.DataCollectors.Registering;
-using Domain.DataCollectors.PhoneNumber;
-using Domain.DataCollectors.TrainingStatus;
 
 namespace Domain.DataCollectors
 {
@@ -37,7 +32,8 @@ namespace Domain.DataCollectors
                 command.PhoneNumbers,
                 DateTimeOffset.UtcNow,
                 command.Region,
-                command.District
+                command.District,
+                command.DataVerifierId
                 );
         }
 
@@ -100,6 +96,12 @@ namespace Domain.DataCollectors
         {
             var root = _repository.Get(command.DataCollectorId.Value);
             root.EndTraining();
+        }
+
+        public void Handle(ChangeDataVerifier command)
+        {
+            var root = _repository.Get(command.DataCollectorId.Value);
+            root.ChangeDataVerifier(command.DataVerifierId);
         }
     }
 }

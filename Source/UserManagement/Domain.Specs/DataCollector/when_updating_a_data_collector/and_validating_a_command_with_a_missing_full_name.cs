@@ -2,10 +2,9 @@
   *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
   *  Licensed under the MIT License. See LICENSE in the project root for license information.
   *--------------------------------------------------------------------------------------------*/
-
-using Domain.DataCollectors.Registering;
+using Domain.DataCollectors;
+using FluentValidation.Results;
 using Machine.Specifications;
- using FluentValidation.Results;
 
  namespace Domain.Specs.DataCollector.when_updating_a_data_collector
  {
@@ -16,7 +15,7 @@ using Machine.Specifications;
          static RegisterDataCollectorValidator validator;
          static ValidationResult validation_results;
 
-         Establish context = () => 
+         Establish context = () =>
          {
              validator = new RegisterDataCollectorValidator();
 

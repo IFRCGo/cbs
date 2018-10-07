@@ -4,10 +4,9 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="4.6.2" />
-    </ItemGroup>
-    <ItemGroup>
+        <ProjectReference Include="..\Concepts\Concepts.csproj" />
         <ProjectReference Include="..\Domain\Domain.csproj" />
         <ProjectReference Include="..\Read\Read.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\Rules\Infrastructure.Rules.csproj" />
     </ItemGroup>
 </Project>

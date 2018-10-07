@@ -2,10 +2,9 @@
   *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
   *  Licensed under the MIT License. See LICENSE in the project root for license information.
   *--------------------------------------------------------------------------------------------*/
-
  using Machine.Specifications;
  using FluentValidation.Results;
- using Domain.DataCollectors.Registering;
+ using Domain.DataCollectors;
 
  namespace Domain.Specs.DataCollector.when_registering_a_data_collector
  {

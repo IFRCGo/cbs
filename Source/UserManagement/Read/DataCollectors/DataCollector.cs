@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using Concepts.DataCollector;
+using Concepts.DataCollectors;
 using Dolittle.ReadModels;
 using Infrastructure.Read.MongoDb;
 
 namespace Read.DataCollectors
 {
-    public class DataCollector : IReadModel, IHaveExtraElements
+    public class DataCollector : IReadModel
     { 
         public DataCollectorId Id { get; set; }
-
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public int YearOfBirth { get; set; }
@@ -24,14 +23,8 @@ namespace Read.DataCollectors
 
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
+        public Guid DataVerifier { get; set; }
 
         public bool InTraining { get; set; }
-
-        //TODO: Have this again when dolittle build tool supports nullables 
-        //public DateTimeOffset? LastReportRecievedAt { get; set; }
-
-        /// Comment from woksin 13.09-18: The dictionary might or might not work with dolittles platform as of now. 
-         public IDictionary<string, object> ExtraElements { get; set; } = new Dictionary<string, object>();
-
     }
 }

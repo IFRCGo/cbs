@@ -1,7 +1,7 @@
  using System;
  using Concepts;
  using System.Collections.Generic;
- using Domain.DataCollectors.Registering;
+ using Domain.DataCollectors;
 
  namespace Domain.Specs.DataCollector.when_registering_a_data_collector.given
  {
