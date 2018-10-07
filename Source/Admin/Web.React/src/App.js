@@ -4,6 +4,7 @@ import { QueryCoordinator } from '@dolittle/queries';
 import { CommandCoordinator } from '@dolittle/commands';
 import './App.css';
 import { AddDataVerifier } from './dolittle.imports'; 
+import { Fancy } from 'cbs-navigation';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload. 
+            <Fancy></Fancy>
           </p>
           <a
             className="App-link"

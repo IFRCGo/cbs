@@ -1,5 +1,5 @@
 {
-  "name": "cbs.navigation",
+  "name": "cbs-navigation",
   "version": "0.2.0",
   "description": "",
   "author": "John Martin",
@@ -7,7 +7,8 @@
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack --watch"
   },
   "peerDependencies": {
     "react": "^16.5.2"

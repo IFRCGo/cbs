@@ -1,10 +1,9 @@
 import React from 'react';
 
-class Fancy extends React.Component {
+export class Fancy extends React.Component {
   render() {
     return (
-      <div>This is so Fancy!</div>
+      <div>This is a freaking test!</div>
     );
   }
 }
-export default Fancy;
