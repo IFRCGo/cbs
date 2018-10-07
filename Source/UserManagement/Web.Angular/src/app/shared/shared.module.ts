@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AgmCoreModule } from '@agm/core';
 
-console.log("SHARED MODULE");
-
 @NgModule({
     imports: [
         CommonModule,
