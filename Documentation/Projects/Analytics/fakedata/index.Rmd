@@ -30,4 +30,5 @@ It has been decided that React will be used for the frontend, and D3 will be use
 - These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
 - We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a hollistic manner
 - Fake data (.json) is provided at `cbs/Source/Analytics/Web.React/src/assets/data` for some of these graphs
+- 
 
