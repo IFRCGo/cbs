@@ -49,7 +49,6 @@ export class DataCollectorRegisterComponent {
     }
 
     submit() {
-        console.log("inni submit")
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
         this.commandCoordinator.handle(this.command)
@@ -58,7 +57,7 @@ export class DataCollectorRegisterComponent {
                 if (response.success)  {
                     this.toastr.success('Successfully registered a new data collector!');
                     this.handleChangeVillage();
-                    this.router.navigate(['list']);
+                    this.router.navigate(['']);
                 } else {
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not register a new data collector because of security issues');

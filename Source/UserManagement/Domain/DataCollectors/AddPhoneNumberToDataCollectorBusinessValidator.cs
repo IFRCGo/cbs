@@ -6,18 +6,14 @@ namespace Domain.DataCollectors
 {
     public class AddPhoneNumberToDataCollectorBusinessValidator : CommandBusinessValidatorFor<AddPhoneNumberToDataCollector>
     {
-        readonly IPhoneNumberRules _phoneNumberRules;
-
-        public AddPhoneNumberToDataCollectorBusinessValidator(DataCollectorExists dataCollectorExists, IPhoneNumberRules phoneNumberRules)
+        public AddPhoneNumberToDataCollectorBusinessValidator(MustExist beAnActualDataCollector, PhoneNumberShouldNotBeRegistered notBeARegisteredNumber)
         {
-            _phoneNumberRules = phoneNumberRules;
-
             RuleFor(_ => _.DataCollectorId)
-                .Must((dataCollector) => dataCollectorExists(dataCollector))
+                .Must(_ => beAnActualDataCollector(_))
                 .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
 
             RuleFor(_ => _.PhoneNumber)
-                .SetValidator(new PhoneNumberIsNotRegisteredValidator(_phoneNumberRules));
+                .Must(_ => notBeARegisteredNumber(_)).WithMessage(number => $"Phone number {number} is already registered");
         }
     }
 }

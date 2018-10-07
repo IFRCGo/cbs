@@ -6,10 +6,10 @@ namespace Domain.DataCollectors
 {
     public class ChangePreferredLanguageBusinessValidator : CommandBusinessValidatorFor<ChangePreferredLanguage>
     {
-        public ChangePreferredLanguageBusinessValidator(DataCollectorExists dataCollectorExists)
+        public ChangePreferredLanguageBusinessValidator(MustExist beAnActualDataCollector)
         {
             RuleFor(_ => _.DataCollectorId)
-                .Must(dataCollector => dataCollectorExists(dataCollector))
+                .Must(_ => beAnActualDataCollector(_))
                 .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
         }
     }

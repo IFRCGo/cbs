@@ -5,16 +5,16 @@ using Machine.Specifications;
 
 namespace Domain.Specs.DataCollector.when_adding_a_phone_number
 {
-    [Subject(typeof(AddPhoneNumberToDataCollectorValidator))]
+    [Subject(typeof(AddPhoneNumberToDataCollectorInputValidator))]
     public class and_validating_a_valid_command
     {
         static AddPhoneNumberToDataCollector cmd;
-        static AddPhoneNumberToDataCollectorValidator validator;
+        static AddPhoneNumberToDataCollectorInputValidator validator;
         static ValidationResult validation_results;
 
         Establish context = () => 
         {
-            validator = new AddPhoneNumberToDataCollectorValidator();
+            validator = new AddPhoneNumberToDataCollectorInputValidator();
 
             cmd = new AddPhoneNumberToDataCollector 
             {

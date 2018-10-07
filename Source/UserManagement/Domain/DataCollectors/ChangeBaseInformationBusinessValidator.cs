@@ -6,14 +6,16 @@ namespace Domain.DataCollectors
 {
     public class ChangeBaseInformationBusinessValidator : CommandBusinessValidatorFor<ChangeBaseInformation>
     {
-        public ChangeBaseInformationBusinessValidator(DataCollectorExists dataCollectorExists, CanDataCollectorChangeDisplayName beAbleToChangeDisplayName)
+        public ChangeBaseInformationBusinessValidator(
+            MustExist beAnActualDataCollector,
+            MustBeAllowedToChangeDisplayName beAllowedToChangeDisplayName)
         {
             RuleFor(_ => _.DataCollectorId)
-                .Must(dataCollector => dataCollectorExists(dataCollector))
+                .Must(_ => beAnActualDataCollector(_))
                 .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
 
             ModelRule()
-                .Must(_ => beAbleToChangeDisplayName(_.DataCollectorId, _.DisplayName))
+                .Must(_ => beAllowedToChangeDisplayName(_.DataCollectorId, _.DisplayName))
                 .WithMessage(_ => $"Datacollector display name {_.DisplayName} is already taken, choose another");
         }
     }

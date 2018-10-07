@@ -5,11 +5,11 @@ using Read.DataCollectors;
 
 namespace Rules.DataCollectors
 {
-    public class CanDataCollectorChangeDisplayNameImplementation : IRuleImplementationFor<CanDataCollectorChangeDisplayName>
+    public class CanDataCollectorChangeDisplayName : IRuleImplementationFor<Domain.DataCollectors.MustBeAllowedToChangeDisplayName>
     {
         readonly IDataCollectors _dataCollectors;
-        public CanDataCollectorChangeDisplayNameImplementation(IDataCollectors dataCollectors) => _dataCollectors = dataCollectors;
-        public CanDataCollectorChangeDisplayName Rule => 
+        public CanDataCollectorChangeDisplayName(IDataCollectors dataCollectors) => _dataCollectors = dataCollectors;
+        public Domain.DataCollectors.MustBeAllowedToChangeDisplayName Rule => 
             (dataCollector, displayName) => 
                 _dataCollectors.Query.SingleOrDefault(d => d.DisplayName == displayName && d.Id != dataCollector) == null;
     }

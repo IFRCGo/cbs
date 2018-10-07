@@ -7,20 +7,20 @@ namespace Domain.DataCollectors
 {
     public class RegisterDataCollectorBusinessValidator : CommandBusinessValidatorFor<RegisterDataCollector>
     {
-        readonly IPhoneNumberRules _phoneNumberRules;
-
-        public RegisterDataCollectorBusinessValidator(DataCollectorExists dataCollectorExists, IsDataCollectorDisplayNameTaken displayNameNotBeTaken, IPhoneNumberRules phoneNumberRules)
+        public RegisterDataCollectorBusinessValidator(
+            CantExist notExistAlready,
+            DisplayNameMustBeUnique haveUniqueDisplayName,
+            PhoneNumberShouldNotBeRegistered notBeARegisteredNumber)
         {
-            _phoneNumberRules = phoneNumberRules;
             RuleFor(_ => _.DataCollectorId)
-                .Must(dataCollector => !dataCollectorExists(dataCollector))
+                .Must(_ => notExistAlready(_))
                 .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
 
-            RuleFor(_ => _.PhoneNumbers)
-                .SetCollectionValidator(new PhoneNumberIsNotRegisteredValidator(_phoneNumberRules));
+            RuleForEach(_ => _.PhoneNumbers)
+                .Must(_ => notBeARegisteredNumber(_)).WithMessage(number => $"Phone number {number} is already registered");
 
             RuleFor(_ => _.DisplayName)
-                .Must(_ => !displayNameNotBeTaken(_)).WithMessage(_ => $"Datacollector display name {_.DisplayName} is already taken, choose another");
+                .Must(_ => haveUniqueDisplayName(_)).WithMessage(_ => $"Datacollector display name {_.DisplayName} is already taken, choose another");
         }
     }
 }

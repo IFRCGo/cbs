@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace Domain.DataCollectors
 {
-    public class AddPhoneNumberToDataCollectorValidator : AbstractValidator<AddPhoneNumberToDataCollector>
+    public class AddPhoneNumberToDataCollectorInputValidator : AbstractValidator<AddPhoneNumberToDataCollector>
     {
-        public AddPhoneNumberToDataCollectorValidator()
+        public AddPhoneNumberToDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set")
