@@ -25,20 +25,29 @@ Technology
 It has been decided that React will be used for the frontend, and D3
 will be used to create the graphs/dashboards.
 
-Graphs
+The React frontend is prototyped by `VolunteerReporting` and we just copy what they do.
+
+Fake data (.xlsx, .json) and R
+-----------------
+
+`cbs/Documentation/Projects/Analytics/fakedata` contains `report.Rmd` that reads in the fake data (data/*.xlsx) and produces a number of graphs that we want to be included in the cbs system. If you like R, you can use this `report.Rmd` file to prototype and test out new possible graphs. We also plan on using this `.Rmd` file as an easy way to produce fake .json data that will be stored at `cbs/Source/Analytics/Web.React/src/assets/data/` and used for prototyping the D3 graphs.
+
+What has been done
 ------
 
--   We have sketched out a number of graphs that we want implemented in
-    the frontend
--   These graphs were designed by 'domain experts' and have zero UX
-    input (leading to the next point)
--   We strongly suspect that these graphs should be presented in some
-    sort of dashboard, but due to the lack of UX input/experience we
-    have not considered how they should be displayed in a hollistic
-    manner
--   Fake data (.json) is provided at
-    `cbs/Source/Analytics/Web.React/src/assets/data` for some of these
-    graphs
+- We have sketched out a number of graphs that we want implemented in the frontend
+- These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
+- Fake data (.json) is provided at `cbs/Source/Analytics/Web.React/src/assets/data` for some of these graphs
+- The back-end queries have been written for one graph, but we can't get it to work
+
+What needs to be done
+----------------
+
+- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner
+- Code all the back end queries to provide data to the front-end
+- Code the front end
+- Link the back and the front end
+
 
 Epicurve by week
 ----------------
@@ -53,6 +62,13 @@ Important to note:
 -   Weeks with zero cases must be displayed
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+
+
+There is fake json data available at `cbs/Source/Analytics/Web.React/src/assets/data/epicurve_by_week.json`.
+
+We have also implemented a back-end query to provide data for this, but it does not work. 
+
+We also tried to implement a simple D3 graph as a skeleton example for linking the back and front end (`cbs/Source/Analytics/Web.React/src/components/Epicurve.js`) but this has not been completed as we couldn't get the back-end query to work.
 
 Epicurve by day
 ---------------

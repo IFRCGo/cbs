@@ -3,7 +3,7 @@ import moment from 'moment';
 import Controller from '../controller.js';
 import {CaseReportForListing} from "../../../Web.Angular/src/app/shared/models/case-report-for-listing.model";
 import Epicurve from './Epicurve.js';
-import data from '../assets/data/epicurve.json';
+import data from '../assets/data/epicurve_by_week.json';
 
 
 const Success = 'Success';

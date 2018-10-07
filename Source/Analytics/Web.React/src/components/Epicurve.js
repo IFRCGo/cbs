@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import * as d3 from 'd3';
-import data from '../assets/data/epicurve.json';
+import data from '../assets/data/epicurve_by_week.json';
 
 class BarChart extends Component {
   constructor(props) {
