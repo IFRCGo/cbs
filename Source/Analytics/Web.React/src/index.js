@@ -5,13 +5,13 @@ import {BrowserRouter} from 'react-router-dom';
 import {StoreManager} from 'repertoire';
 
 import App from './components/App.js';
-import VolunteerReporting from './components/VolunteerReporting.js';
+import Analytics from './components/Analytics.js';
 
 import './assets/main.scss';
 
 const routes = [{
   path: '*',
-  component: VolunteerReporting
+  component: Analytics
 }];
 
 const storeManager = new StoreManager(routes);

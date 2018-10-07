@@ -4,6 +4,7 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "d3": "^5.7.0",
     "defined": "^1.0.0",
     "moment": "^2.22.2",
     "navigation": "file:../../Navigation",

@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import Controller from '../controller.js';
 import {CaseReportForListing} from "../../../Web.Angular/src/app/shared/models/case-report-for-listing.model";
+import Epicurve from './Epicurve.js';
+import data from '../assets/data/epicurve.json';
+
 
 const Success = 'Success';
 const TextMessageParsingError = 'TextMessageParsingError';
@@ -46,7 +49,7 @@ const CaseReportStatus = {
   TextMessageParsingErrorAndUnknownDataCollector
 };
 
-class VolunteerReporting extends Component {
+class Analytics extends Component {
 
   static get Filters () {
     return {
@@ -69,8 +72,27 @@ class VolunteerReporting extends Component {
     }
   }
 
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      data : null
+    };
+  }
+
+
   componentDidMount() {
-    this.props.fetchAllCaseReports();
+    //this.props.fetchAllCaseReports();
+
+/*
+    var that = this;
+    json("data/epicurve.json").then(function(data) {
+      //console.log(data); // [{"Hello": "world"}, …]
+      that.setState({
+        data: data
+      });
+    });
+*/
   }
 
   componentDidUpdate(prevProps) {
@@ -139,123 +161,14 @@ class VolunteerReporting extends Component {
 
       <div className="container">
         <h3>
-          Case Reports
+            Analytics
         </h3>
 
-        {/*<cbs-case-report-export #exporter></cbs-case-report-export>*/}
-
-        <div className="actions">
-          <button onClick={this.openExporter()}>Export</button>
-        </div>
-
-        <table className="table table-bordered table-striped">
-          <tbody>
-            <tr>
-              <td>
-                Quick Filters:
-                <span>
-                  {Object.keys(VolunteerReporting.Filters).map((filterKey, index) => {
-                    const filter = Array.isArray(VolunteerReporting.Filters[filterKey]) ?
-                      VolunteerReporting.Filters[filterKey] :
-                      [VolunteerReporting.Filters[filterKey]];
-
-                    return <button key={index}
-                                   style={{
-                                     fontWeight: currentFilter === filterKey ? 'bold' : 'normal'
-                                   }}
-                                   onClick={this.clickFilter.bind(this, filter)}>{filter[0]}</button>
-                  })}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table className="table table-bordered table-striped">
-          <thead>
-            <tr>
-
-                {Object.keys(CaseReportColumns).map((columnKey, index) => {
-                  const column = Array.isArray(CaseReportColumns[columnKey]) ? CaseReportColumns[columnKey] : [CaseReportColumns[columnKey]];
-
-                  return <th key={index}>{column[0]}</th>;
-                })}
-
-                {/* *ngFor="let column of allColumns"
-                [column]="column"
-                        [current-sorted]=" currentSortColumn"
-                        [sort-descending]=" sortDescending"
-                        (click)=" toggleSortColum(column)"*/}
-            </tr>
-          </thead>
-
-          <tbody> {
-            caseReports.map((caseReport, index) => {
-              // "let caseReport of listedReports | filter:currentFilter | sort:currentSortColumn:sortDescending"
-              return <tr key={index}>
-                <td>{this.formatDate(caseReport.timestamp)}</td>
-                <td>{this.formateTime(caseReport.timestamp)}</td>
-                <td>
-                  {
-                    this.isSuccessStatus(caseReport.status) ?
-                      <span className="label label-success">Success</span>:
-                      <span className="label label-danger">Error</span>
-                  }
-                </td>
-
-                {
-                  this.isOriginStatus(caseReport.origin) ?
-                    <td>Origin: {caseReport.origin}</td> :
-                    <td>{caseReport.dataCollectorDisplayName || 'Unknown'}</td>
-                }
-
-                {
-                  this.isOriginStatus(caseReport.origin) ?
-                    <td></td> :
-                    <td>{caseReport.dataCollectorRegion || 'Unknown'}</td>
-                }
-
-                {
-                  this.isOriginStatus(caseReport.origin) ?
-                    <td></td> :
-                    <td>{caseReport.dataCollectorDistrict || 'Unknown'}</td>
-                }
-
-                {
-                  this.isOriginStatus(caseReport.origin) ?
-                    <td></td> :
-                    <td>{caseReport.dataCollectorVillage || 'Unknown'}</td>
-                }
-
-                {
-                  this.isSuccessStatus(caseReport.status) ?
-                    <td>{caseReport.healthRisk}</td> :
-                    <td colSpan="5">
-                      {caseReport.message} Parsing errors: {caseReport.parsingErrorMessage}
-                    </td>
-                }
-
-                {
-                  this.isSuccessStatus(caseReport.status) ? <td>{caseReport.numberOfMalesUnder5}</td> : null
-                }
-                {
-                  this.isSuccessStatus(caseReport.status) ? <td>{caseReport.numberOfMalesAged5AndOlder}</td> : null
-                }
-                {
-                  this.isSuccessStatus(caseReport.status) ? <td>{caseReport.numberOfFemalesUnder5}</td> : null
-                }
-                {
-                  this.isSuccessStatus(caseReport.status) ? <td>{caseReport.numberOfFemalesAged5AndOlder}</td> : null
-                }
-              </tr>
-            })
-          }
-        </tbody>
-        </table>
+         <Epicurve width={750} height={500} data={data}/>
 
       </div>
     </div>;
   }
 }
 
-export default new Controller(VolunteerReporting);
+export default new Controller(Analytics);

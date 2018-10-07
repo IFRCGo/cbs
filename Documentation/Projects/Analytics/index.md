@@ -1,0 +1,41 @@
+Introduction
+------------
+
+This bounded context is supposed to be a "high level explanation of what
+is happening on the ground". Think along the lines of national
+societies.
+
+The overriding questions that we want to answer are:
+
+-   Who (...is sick - male/female, children/adults?)
+-   What (...are the illnesses of most concern)
+-   Where (...are people getting sick)
+-   When (is the danger starting/increasing/decreasing/over?)
+
+Project view
+------------
+
+In theory this should be located here, but it is out of date
+
+<https://github.com/IFRCGo/cbs/projects/5>
+
+Technology
+----------
+
+It has been decided that React will be used for the frontend, and D3
+will be used to create the graphs/dashboards.
+
+Graphs
+------
+
+-   We have sketched out a number of graphs that we want implemented in
+    the frontend
+-   These graphs were designed by 'domain experts' and have zero UX
+    input (leading to the next point)
+-   We strongly suspect that these graphs should be presented in some
+    sort of dashboard, but due to the lack of UX input/experience we
+    have not considered how they should be displayed in a hollistic
+    manner
+-   Fake data (.json) is provided at
+    `cbs/Source/Analytics/Web.React/src/assets/data` for some of these
+    graphs
