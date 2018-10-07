@@ -6,14 +6,13 @@
   <PropertyGroup>
     <DolittleUseModules>False</DolittleUseModules>
     <DolittleGenerateProxies>True</DolittleGenerateProxies>
-    <DolittleProxiesBasePath>../Web.Angular/src/app</DolittleProxiesBasePath>
+    <DolittleProxiesBasePath>../Web.React/src/dolittle</DolittleProxiesBasePath>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-
     <PackageReference Include="Dolittle.Build" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
