@@ -4,9 +4,6 @@ import { List } from './list/list';
 import { Edit } from './edit/edit';
 import { Register } from './register/register';
 import { Details } from './details/details';
-import { Delete } from './delete/delete';
-import { Export } from './export/export';
-
 
 const routes: Routes = [
     {
