@@ -6,11 +6,11 @@ import { environment } from '../../../environments/environment';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
-    selector: 'cbs-datacollector-export',
-    templateUrl: './datacollector-export.component.html',
-    styles: ['./datacollector-export.component.scss']
+    selector: 'export',
+    templateUrl: './export.html',
+    styles: ['./export.scss']
 })
-export class DataCollectorExportComponent {
+export class Export {
     readonly exportBackendUrl: string = `${environment.api}/api/datacollectors/export`;
 
     constructor(

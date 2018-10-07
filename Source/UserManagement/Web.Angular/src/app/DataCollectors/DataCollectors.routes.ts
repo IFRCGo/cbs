@@ -1,11 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { DataCollectorListComponent } from './datacollector-list/datacollector-list.component';
-import { DataCollectorEditComponent } from './datacollector-edit/datacollector-edit.component';
-import { DataCollectorRegisterComponent } from './datacollector-register/datacollector-register.component';
-import { DataCollectorDetailComponent } from './datacollector-detail/datacollector-detail.component';
-import { DataCollectorDeleteComponent } from './datacollector-delete/datacollector-delete.component';
-import { DataCollectorExportComponent } from './datacollector-export/datacollector-export.component';
+import { List } from './list/list';
+import { Edit } from './edit/edit';
+import { Register } from './register/register';
+import { Details } from './details/details';
+import { Delete } from './delete/delete';
+import { Export } from './export/export';
 
 
 const routes: Routes = [
@@ -14,25 +14,22 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: DataCollectorListComponent
+                component: List
             },
             {
                 path: 'register',
-                component: DataCollectorRegisterComponent
+                component: Register
             },
             {
-                path: 'edit',
-                component: DataCollectorEditComponent
+                path: 'edit/:id',
+                component: Edit
+            },
+            { 
+                path: 'details/:id', 
+                component: Details 
             }
         ]
     }
 ]
 
 export const DataCollectorsRoutes = RouterModule.forChild(routes);
-
-/*
-  { path: 'list', component: DataCollectorListComponent },
-  { path: '', component: DataCollectorListComponent },
-  { path: '**', component: DataCollectorListComponent }
-
-*/

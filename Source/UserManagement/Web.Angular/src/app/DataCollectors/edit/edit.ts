@@ -16,13 +16,11 @@ import { ChangeVillage } from '../ChangeVillage';
 import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 
-export const DATA_COLLECTOR_PATH = 'data-collector';
-
 @Component({
-    templateUrl: './datacollector-edit.component.html',
-    styleUrls: ['./datacollector-edit.component.scss']
+    templateUrl: './edit.html',
+    styleUrls: ['./edit.scss']
 })
-export class DataCollectorEditComponent implements OnInit {
+export class Edit implements OnInit {
     error = false;
     user: DataCollector;
     phoneNumberString = '';
@@ -90,7 +88,7 @@ export class DataCollectorEditComponent implements OnInit {
         this.handleRemovePhoneNumbers();
 
         if (this.userHasChanged) {
-            this.router.navigate(['list']);
+            this.router.navigate(['']);
             this.toastr.info('Reload page to see changes');
         } else {
             this.toastr.warning('No changes has been made');
@@ -156,7 +154,7 @@ export class DataCollectorEditComponent implements OnInit {
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
                              + ` base information:\n${errors}`);
                     }
-                    this.router.navigate(['list']);
+                    this.router.navigate(['']);
                 });
         }
     }
@@ -204,7 +202,7 @@ export class DataCollectorEditComponent implements OnInit {
                     } else {
                         if (!response.passedSecurity) { // Security error
                             this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
-                                ' preferred languagebecause of security issues');
+                                ' preferred language because of security issues');
                         } else {
                             const errors = response.allValidationMessages.join('\n');
                             this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`

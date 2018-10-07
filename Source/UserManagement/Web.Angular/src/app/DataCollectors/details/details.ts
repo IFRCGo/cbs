@@ -8,11 +8,11 @@ import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 
 @Component({
-    selector: 'cbs-user-detail',
-    templateUrl: './datacollector-detail.component.html',
-    styleUrls: ['./datacollector-detail.component.scss']
+    selector: 'user-details',
+    templateUrl: './details.html',
+    styleUrls: ['./details.scss']
 })
-export class DataCollectorDetailComponent implements OnInit {
+export class Details implements OnInit {
 
     dataCollector: DataCollector;
 

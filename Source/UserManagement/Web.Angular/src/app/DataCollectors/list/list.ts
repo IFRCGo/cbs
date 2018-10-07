@@ -4,10 +4,10 @@ import { QueryCoordinator } from '@dolittle/queries';
 import { AllDataCollectors } from '../AllDataCollectors';
 
 @Component({
-  templateUrl: './datacollector-list.component.html',
-  styleUrls: ['./datacollector-list.component.scss']
+  templateUrl: './list.html',
+  styleUrls: ['./list.scss']
 })
-export class DataCollectorListComponent implements OnInit {
+export class List implements OnInit {
   users: ReadonlyArray<DataCollector>;
 
   public error: boolean;

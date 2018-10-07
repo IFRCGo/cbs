@@ -5,28 +5,30 @@
             Add Data Collector
         </button>
     </a>
-    <a><cbs-datacollector-export></cbs-datacollector-export></a>
+    <a>
+        <export></export>
+    </a>
 </div>
 <div class="alert-danger" *ngIf="error">
     {{errorMsg}}
 </div>
 <table class="table table-striped" *ngIf="!error">
     <thead>
-    <tr>
-        <th>Full Name</th>
-        <th>Display Name</th>
-        <th>Phone Numbers</th>
-        <th></th>
-        <th>Actions</th>
-    </tr>
+        <tr>
+            <th>Full Name</th>
+            <th>Display Name</th>
+            <th>Phone Numbers</th>
+            <th></th>
+            <th>Actions</th>
+        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
             <td>
-                <a routerLink="/detail/{{user.id}}">
+                <a routerLink="/datacollectors/details/{{user.id}}">
                     <span>
                         {{user.fullName}}
-                    </span> 
+                    </span>
                 </a>
             </td>
             <td>
@@ -34,14 +36,14 @@
             </td>
             <td>
                 <span *ngFor="let number of user.phoneNumbers">
-                    {{number.value}} 
+                    {{number.value}}
                 </span>
             </td>
             <td>
             </td>
             <td>
-                    <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a> 
-                    <cbs-delete-user [user]=user></cbs-delete-user>
+                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
+                <delete-user [user]=user></delete-user>
             </td>
         </tr>
     </tbody>

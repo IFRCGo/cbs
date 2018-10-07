@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 import { CommandCoordinator } from '@dolittle/commands';
 
 @Component({
-    selector: 'cbs-delete-user',
-    templateUrl: './datacollector-delete.component.html'
+    selector: 'delete-user',
+    templateUrl: './delete.html'
 })
-export class DataCollectorDeleteComponent {
+export class Delete {
     command: DeleteDataCollector = new DeleteDataCollector();
 
     @Input() user: DataCollector;

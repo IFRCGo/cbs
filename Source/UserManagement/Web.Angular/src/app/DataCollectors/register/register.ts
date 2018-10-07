@@ -9,14 +9,11 @@ import { RegisterDataCollector } from '../RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
 import { ChangeVillage } from '../ChangeVillage';
 
-export const DATA_COLLECTOR_PATH = 'data-collector';
-
 @Component({
-    templateUrl: './datacollector-register.component.html',
-    styleUrls: ['./datacollector-register.component.scss']
+    templateUrl: './register.html',
+    styleUrls: ['./register.scss']
 })
-
-export class DataCollectorRegisterComponent {
+export class Register {
     locationSelected = false;
     defaultLat: number = 9.216515;
     defaultLng: number = 45.523637;
