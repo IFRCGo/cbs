@@ -1,6 +1,6 @@
 <div class="header">
     <h2>Data collectors</h2>
-    <a [routerLink]="['/add-user/data-collector']" routerLinkActive="active">
+    <a [routerLink]="['/datacollectors/register']" routerLinkActive="active">
         <button class="btn btn-primary">
             Add Data Collector
         </button>
@@ -40,7 +40,7 @@
             <td>
             </td>
             <td>
-                    <a [routerLink]="['/edit-user/data-collector/',user.id]" routerLinkActive="active">Edit</a> 
+                    <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a> 
                     <cbs-delete-user [user]=user></cbs-delete-user>
             </td>
         </tr>
