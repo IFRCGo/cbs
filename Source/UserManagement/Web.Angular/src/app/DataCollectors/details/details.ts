@@ -8,7 +8,6 @@ import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 
 @Component({
-    selector: 'user-details',
     templateUrl: './details.html',
     styleUrls: ['./details.scss']
 })
