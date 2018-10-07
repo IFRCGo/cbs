@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { CommandCoordinator } from '@dolittle/commands';
 import { Language } from '../../Language';
-import {Location } from '../../Location';
+import { Location } from '../../Location';
 import { Sex } from '../../Sex';
 import { AddPhoneNumberToDataCollector } from '../AddPhoneNumberToDataCollector';
 import { ChangeBaseInformation } from '../ChangeBaseInformation';
@@ -22,7 +22,7 @@ import { DataCollectorById } from '../DataCollectorById';
 })
 export class Edit implements OnInit {
     error = false;
-    user: DataCollector;
+    dataCollector: DataCollector;
     phoneNumberString = '';
 
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
@@ -30,10 +30,10 @@ export class Edit implements OnInit {
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
     changeVillageCommand: ChangeVillage = new ChangeVillage();
 
-    languageOptions = [{desc: Language[Language.English], id: Language.English as number},
-                        {desc: Language[Language.French], id: Language.French as number}];
+    languageOptions = [{ desc: Language[Language.English], id: Language.English as number },
+    { desc: Language[Language.French], id: Language.French as number }];
     sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male as number },
-                 { desc: Sex[Sex.Female], id: Sex.Female as number }];
+    { desc: Sex[Sex.Female], id: Sex.Female as number }];
 
     private userHasChanged = false;
 
@@ -43,38 +43,43 @@ export class Edit implements OnInit {
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
         private queryCoordinator: QueryCoordinator<DataCollector>
-        ) {
+    ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
     ngOnInit(): void {
         this.route.params.subscribe(params => {
-            const id = params['id'];
-            let query = new DataCollectorById();
-            query.dataCollectorId = id;
-            this.queryCoordinator.handle(query)
-                .then(response => {
-                    if (response.success) {
-                        if (response.items.length > 0) {
-                            this.user = response.items[0];
-                            this.initChangeBaseInformation();
-                            this.initChangeLocation();
-                            this.initChangePreferredLanguage();
-                            this.initPhoneNumbers();
-                            this.initVillage();
-                        } else {
-                            // Datacollector with id does not exist
-                        }
-                    } else {
-                        console.error(response);
-                    }
-                })
-                .catch(response => {
-                    console.error(response);
-                })
+            this.getDataCollector();
         });
     }
 
-    onLocationSelected(event){
+    getDataCollector(): void {
+        const id = this.route.snapshot.paramMap.get('id');
+        let query = new DataCollectorById();
+        query.dataCollectorId = id;
+        this.queryCoordinator.execute(query)
+            .then(response => {
+                if (response.success) {
+                    if (response.items.length > 0) {
+                        this.dataCollector = response.items[0]
+                        this.initChangeBaseInformation();
+                        this.initChangeLocation();
+                        this.initChangePreferredLanguage();
+                        this.initPhoneNumbers();
+                        this.initVillage();                        
+                    } else {
+                        console.error(response)
+                    }
+                } else {
+                    console.error(response);
+                }
+            })
+            .catch(response => {
+                console.error(response);
+            })
+    }
+
+
+    onLocationSelected(event) {
         this.changeLocationCommand.location.latitude = event.coords.lat;
         this.changeLocationCommand.location.longitude = event.coords.lng;
     }
@@ -95,32 +100,32 @@ export class Edit implements OnInit {
         }
     }
     private initChangeBaseInformation() {
-        this.changeBaseInformationCommand.dataCollectorId = this.user.id;
-        this.changeBaseInformationCommand.displayName = this.user.displayName;
-        this.changeBaseInformationCommand.fullName = this.user.fullName;
-        this.changeBaseInformationCommand.sex = this.user.sex;
-        this.changeBaseInformationCommand.yearOfBirth = this.user.yearOfBirth;
-        this.changeBaseInformationCommand.region = this.user.region;
-        this.changeBaseInformationCommand.district = this.user.district;
+        this.changeBaseInformationCommand.dataCollectorId = this.dataCollector.id;
+        this.changeBaseInformationCommand.displayName = this.dataCollector.displayName;
+        this.changeBaseInformationCommand.fullName = this.dataCollector.fullName;
+        this.changeBaseInformationCommand.sex = this.dataCollector.sex;
+        this.changeBaseInformationCommand.yearOfBirth = this.dataCollector.yearOfBirth;
+        this.changeBaseInformationCommand.region = this.dataCollector.region;
+        this.changeBaseInformationCommand.district = this.dataCollector.district;
     }
 
     private initChangeLocation() {
-        this.changeLocationCommand.dataCollectorId = this.user.id;
+        this.changeLocationCommand.dataCollectorId = this.dataCollector.id;
         this.changeLocationCommand.location = new Location();
-        this.changeLocationCommand.location.latitude = this.user.location.latitude;
-        this.changeLocationCommand.location.longitude = this.user.location.longitude;
+        this.changeLocationCommand.location.latitude = this.dataCollector.location.latitude;
+        this.changeLocationCommand.location.longitude = this.dataCollector.location.longitude;
 
     }
     private initChangePreferredLanguage() {
-        this.changePreferredLanguageCommand.dataCollectorId = this.user.id;
-        this.changePreferredLanguageCommand.preferredLanguage = this.user.preferredLanguage;
+        this.changePreferredLanguageCommand.dataCollectorId = this.dataCollector.id;
+        this.changePreferredLanguageCommand.preferredLanguage = this.dataCollector.preferredLanguage;
     }
     private initPhoneNumbers() {
-        this.phoneNumberString = this.user.phoneNumbers.map(number => number.value).join(', ');
+        this.phoneNumberString = this.dataCollector.phoneNumbers.map(number => number.value).join(', ');
     }
     private initVillage() {
-        this.changeVillageCommand.dataCollectorId = this.user.id;
-        this.changeVillageCommand.village = this.user.village;
+        this.changeVillageCommand.dataCollectorId = this.dataCollector.id;
+        this.changeVillageCommand.village = this.dataCollector.village;
     }
 
     private handleChangeBaseInformation() {
@@ -130,7 +135,7 @@ export class Edit implements OnInit {
                 .then(response => {
                     console.log('Response from ChangeBaseInformation command')
                     console.log(response);
-                    if (response.success)  {
+                    if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s base information`);
                     } else {
                         if (!response.passedSecurity) { // Security error
@@ -139,7 +144,7 @@ export class Edit implements OnInit {
                         } else {
                             const errors = response.allValidationMessages.join('\n');
                             this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
-                             + ` base information :\n${errors}`);
+                                + ` base information :\n${errors}`);
                         }
                     }
                 })
@@ -148,11 +153,11 @@ export class Edit implements OnInit {
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
-                                ' base information because of security issues');
+                            ' base information because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
-                             + ` base information:\n${errors}`);
+                            + ` base information:\n${errors}`);
                     }
                     this.router.navigate(['']);
                 });
@@ -165,7 +170,7 @@ export class Edit implements OnInit {
                 .then(response => {
                     console.log('Response from ChangeLocation command')
                     console.log(response);
-                    if (response.success)  {
+                    if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s location`);
                     } else {
                         if (!response.passedSecurity) { // Security error
@@ -182,7 +187,7 @@ export class Edit implements OnInit {
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
-                                ' location because of security issues');
+                            ' location because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s location:\n${errors}`);
@@ -197,7 +202,7 @@ export class Edit implements OnInit {
                 .then(response => {
                     console.log('Response from ChangePreferredLanguage command')
                     console.log(response);
-                    if (response.success)  {
+                    if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s preferred language`);
                     } else {
                         if (!response.passedSecurity) { // Security error
@@ -206,7 +211,7 @@ export class Edit implements OnInit {
                         } else {
                             const errors = response.allValidationMessages.join('\n');
                             this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
-                             + ` preferred language:\n${errors}`);
+                                + ` preferred language:\n${errors}`);
                         }
                     }
                 })
@@ -215,48 +220,48 @@ export class Edit implements OnInit {
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
-                                ' preferred language because of security issues');
+                            ' preferred language because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
-                             + ` preferred language:\n${errors}`);
+                            + ` preferred language:\n${errors}`);
                     }
                 });
         }
     }
 
     handleChangeVillage() {
-        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== this.user.village) {
+        if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== this.dataCollector.village) {
             this.userHasChanged = true;
 
-            this.changeVillageCommand.dataCollectorId = this.user.id;
+            this.changeVillageCommand.dataCollectorId = this.dataCollector.id;
             this.commandCoordinator.handle(this.changeVillageCommand)
-            .then(response => {
-                console.log(response);
-                if (response.success)  {
-                    this.toastr.success('Successfully added village to data collector!');
-                } else {
+                .then(response => {
+                    console.log(response);
+                    if (response.success) {
+                        this.toastr.success('Successfully added village to data collector!');
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error('Could not change village of data collector because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error('Could not change village of data collector:\n' + errors);
+                        }
+                    }
+                })
+                .catch(response => {
+                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not change village of data collector because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error('Could not change village of data collector:\n' + errors);
                     }
-                }
-            })
-            .catch(response => {
-                console.log(response);
-                if (!response.passedSecurity) { // Security error
-                    this.toastr.error('Could not change village of data collector because of security issues');
-                } else {
-                    const errors = response.allValidationMessages.join('\n');
-                    this.toastr.error('Could not change village of data collector:\n' + errors);
-                }
-            });
+                });
         }
     }
     private handleAddPhoneNumbers() {
-        const prevNumbers = this.user.phoneNumbers.map(number => number.value.trim());
+        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.value.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const addednumbers = [];
         newNumbers.forEach(number => {
@@ -267,15 +272,15 @@ export class Edit implements OnInit {
         addednumbers.forEach(number => {
             this.userHasChanged = true;
             const cmd = new AddPhoneNumberToDataCollector();
-            cmd.dataCollectorId = this.user.id;
+            cmd.dataCollectorId = this.dataCollector.id;
             cmd.phoneNumber = number;
             this.commandCoordinator.handle(cmd)
                 .then(response => {
                     console.log('Response from AddPhoneNumberToDataCollector command')
                     console.log(response);
-                    if (response.success)  {
+                    if (response.success) {
                         this.toastr.success(`Successfully added ${cmd.phoneNumber} ${this.changeBaseInformationCommand.displayName}s`
-                        + ' phone numbers');
+                            + ' phone numbers');
                     } else {
                         if (!response.passedSecurity) { // Security error
                             this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
@@ -292,18 +297,18 @@ export class Edit implements OnInit {
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
-                                ' phone numbers because of security issues');
+                            ' phone numbers because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s`
-                                + ` phone numbers:\n${errors}`);
+                            + ` phone numbers:\n${errors}`);
                     }
                 });
         });
     }
 
     private handleRemovePhoneNumbers() {
-        const prevNumbers = this.user.phoneNumbers.map(number => number.value.trim());
+        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.value.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const removednumbers = [];
         prevNumbers.forEach(number => {
@@ -314,16 +319,16 @@ export class Edit implements OnInit {
         removednumbers.forEach(number => {
             this.userHasChanged = true;
             const cmd = new RemovePhoneNumberFromDataCollector();
-            cmd.dataCollectorId = this.user.id;
+            cmd.dataCollectorId = this.dataCollector.id;
             cmd.phoneNumber = number;
 
             this.commandCoordinator.handle(cmd)
                 .then(response => {
                     console.log('Response from Remove PhoneNumberFromDataCollector command')
                     console.log(response);
-                    if (response.success)  {
+                    if (response.success) {
                         this.toastr.success(`Successfully removed ${cmd.phoneNumber} from`
-                        + ` ${this.changeBaseInformationCommand.displayName} sphone numbers`);
+                            + ` ${this.changeBaseInformationCommand.displayName} sphone numbers`);
                     } else {
                         if (!response.passedSecurity) { // Security error
                             this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
@@ -336,31 +341,31 @@ export class Edit implements OnInit {
                     }
                 })
                 .catch(response => {
-                        console.log('Response from Remove PhoneNumberFromDataCollector command')
-                        console.log(response);
+                    console.log('Response from Remove PhoneNumberFromDataCollector command')
+                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
-                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers because of security issues`);
+                            + ` ${this.changeBaseInformationCommand.displayName}s phone numbers because of security issues`);
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
-                                + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
+                            + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
                     }
                 });
         });
     }
 
     private hasChangedBaseInformation() {
-        return (this.changeBaseInformationCommand.displayName !== this.user.displayName
-            || this.changeBaseInformationCommand.fullName !== this.user.fullName
-            || this.changeBaseInformationCommand.sex !== this.user.sex
-            || this.changeBaseInformationCommand.yearOfBirth !== this.user.yearOfBirth);
+        return (this.changeBaseInformationCommand.displayName !== this.dataCollector.displayName
+            || this.changeBaseInformationCommand.fullName !== this.dataCollector.fullName
+            || this.changeBaseInformationCommand.sex !== this.dataCollector.sex
+            || this.changeBaseInformationCommand.yearOfBirth !== this.dataCollector.yearOfBirth);
     }
     private hasChangedLocation() {
-        return (this.user.location.latitude !== this.changeLocationCommand.location.latitude
-            || this.user.location.longitude !== this.changeLocationCommand.location.longitude);
+        return (this.dataCollector.location.latitude !== this.changeLocationCommand.location.latitude
+            || this.dataCollector.location.longitude !== this.changeLocationCommand.location.longitude);
     }
     private hasChangedPreferredLanguage() {
-        return this.changePreferredLanguageCommand.preferredLanguage !== this.user.preferredLanguage;
+        return this.changePreferredLanguageCommand.preferredLanguage !== this.dataCollector.preferredLanguage;
     }
 }
