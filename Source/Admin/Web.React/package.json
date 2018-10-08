@@ -9,7 +9,8 @@
     "@dolittle/commands": "^1.0.9",
     "@dolittle/core": "^1.0.4",
     "@dolittle/queries": "^1.0.11",
-    "@dolittle/readmodels": "^1.0.0"
+    "@dolittle/readmodels": "^1.0.0",
+    "cbs-navigation": "file:../../cbs.Navigation"
   },
   "scripts": {
     "start": "react-scripts start",

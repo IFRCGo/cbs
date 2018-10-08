@@ -3,3 +3,4 @@
 //export * from './components';
 export * from './components/Fancy'; 
 export * from './components/Test';
+export * from './navigation/Navigation';
