@@ -1,6 +1,20 @@
 :head {
-    --brand-primary : blue; 
-    --link-color: blue;
-    --pre-border-color:blue; 
-
-}
+    --screen-sm: 768px;
+    --screen-sm-min: var(--screen-sm);
+    --screen-md: 992px;
+    --screen-md-min: var(--screen-md);
+    --brand-primary: #363534;
+    --brand-success: rgb(40, 182, 44);
+    --brand-info: rgb(117, 202, 235);
+    --brand-warning: rgb(255, 133, 27);
+    --brand-danger: rgb(255, 65, 54);
+    --link-color: rgb(206, 23, 30);
+    --gray-base: rgb(31, 30, 29);
+    --gray-darker: lighten(#000, 13.5%);
+    --gray-dark: lighten(#000, 20%);
+    --gray: lighten(#000, 33.5%);
+    --gray-light: lighten(#000, 60%);
+    --gray-lighter: lighten(#000, 93.5%);
+    --link-color: rgb(206, 23, 30);
+    --pre-border-color: rgb(204, 204, 204);
+  }
