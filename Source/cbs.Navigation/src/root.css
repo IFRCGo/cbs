@@ -3,6 +3,11 @@
     --screen-sm-min: var(--screen-sm);
     --screen-md: 992px;
     --screen-md-min: var(--screen-md);
+    --screen-lg: 1200px;
+    --screen-lg-min: var(--screen-lg);
+    --screen-xs-max: var(--screen-sm-min) - 1;
+    --screen-sm-max: var(--screen-md-min) - 1;
+    --screen-md-max: var(--screen-lg-min) - 1;
     --brand-primary: #363534;
     --brand-success: rgb(40, 182, 44);
     --brand-info: rgb(117, 202, 235);
