@@ -10,7 +10,6 @@
 
 ## Updates
 
-* Core team members haven't worked on CBS since the codeathon 3.0
 * Alex, Hodo, Tine, Rebecca, Anine, and Rebecca met at the Red Cross office and made significant progress on updating the design using a tool called UXPin. UXPin is recommdned by Alex and Hodo and it will be a standard CBS UX/UI design tool. It costs us $35/user/month, so, we will purchase a license for 5 users ($175/month). 
 * Alex will present and share the finalized design on the next sync (31. Oct 2018)
 * Alex and Samson will be presenting CBS platform to Telenor developers. Alex secured a 45 minutes slot. Hoping to recruit more volunteers. 
