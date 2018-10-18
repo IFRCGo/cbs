@@ -1,4 +1,4 @@
-:head {
+:navigation-header {
     --screen-sm: 768px;
     --screen-sm-min: var(--screen-sm);
     --screen-md: 992px;
