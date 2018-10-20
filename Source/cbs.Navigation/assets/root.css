@@ -1,4 +1,4 @@
-:navigation-header {
+:root {
     --screen-sm: 768px;
     --screen-sm-min: var(--screen-sm);
     --screen-md: 992px;
@@ -20,6 +20,5 @@
     --gray: lighten(#000, 33.5%);
     --gray-light: lighten(#000, 60%);
     --gray-lighter: lighten(#000, 93.5%);
-    --link-color: rgb(206, 23, 30);
     --pre-border-color: rgb(204, 204, 204);
-  }
+}
