@@ -13,12 +13,9 @@ export class HealthRisk extends ReadModel
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
+        this.healthRiskNumber = 0;
         this.name = '';
-        this.readableId = 0;
-        this.threshold = 0;
         this.caseDefinition = '';
-        this.note = '';
-        this.communityCase = '';
-        this.keyMessage = '';
+        this.keyMessages = [];
     }
 }
