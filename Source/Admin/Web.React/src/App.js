@@ -6,7 +6,7 @@ import './App.css';
 import { AddDataVerifier } from './dolittle.imports'; 
 import { Navigation } from 'cbs-navigation'; 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { HealthRiskList, ProjectList, Project } from './components'; 
+import { HealthRiskList, ProjectList, Project, Navbar } from './components'; 
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <div className="App">
             <Navigation></Navigation>
-
+            <Navbar></Navbar>
             <Switch>
               <Route
                 path="/project"
