@@ -7,6 +7,7 @@ import { AddDataVerifier } from './dolittle.imports';
 import { Navigation } from 'cbs-navigation'; 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { HealthRiskList, ProjectList, Project, Navbar } from './components'; 
+import './assets/bootstrap.css';
 
 
 class App extends Component {
