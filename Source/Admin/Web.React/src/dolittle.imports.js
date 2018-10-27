@@ -1,3 +1,5 @@
+// NB This file is not auto generated. 
+
 import { AddDataVerifier } from './dolittle/Admin/AddDataVerifier'; 
 import { AllReplyMessages } from './dolittle/AutomaticReplyMessages/AllReplyMessages'; 
 import { ReplyMessageById } from './dolittle/AutomaticReplyMessages/ReplyMessageById'; 
