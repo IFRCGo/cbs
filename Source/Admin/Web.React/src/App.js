@@ -6,7 +6,7 @@ import './App.css';
 import { AddDataVerifier } from './dolittle.imports'; 
 import { Navigation } from 'cbs-navigation'; 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { HealthRiskList, ProjectList, Project, Navbar } from './app/components'; 
+import { HealthRisks, ProjectList, Project, Navbar } from './app/components'; 
 import './assets/bootstrap.css';
 
 class App extends Component {
@@ -30,8 +30,8 @@ class App extends Component {
                 path="/healthrisk"
                 render={({ match: { url } }) => (
                   <>
-                    <Route exact path={`${url}/`} component={HealthRiskList} />
-                    <Route path={`${url}/list`} component={HealthRiskList} />
+                    <Route exact path={`${url}/`} component={HealthRisks} />
+                    <Route path={`${url}/list`} component={HealthRisks} />
                   </>
                 )}
                 />

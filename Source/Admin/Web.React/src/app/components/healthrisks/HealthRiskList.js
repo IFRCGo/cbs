@@ -8,40 +8,36 @@ import  queryCoordinator from '../../utils/QueryConfig';
 export class HealthRiskList extends React.Component{
     constructor(props) {
         super(props);
-        
-        console.warn(queryCoordinator); 
-
-        queryCoordinator.execute(new AllHealthRisks())
-            .then(response => {
-                console.warn(response); 
-                if (response.success) {
-                    this.risks = response.items;
-                    this.sortRisks('id')
-                } else {
-                    console.error(response);
-                }
-            })
-            .catch(response => {
-                console.error(response);
-            });
-
-        /*this.queryCoordinator.execute(new AllHealthRisks())
-            .then(response => {
-                if (response.success) {
-                    this.risks = response.items;
-                    this.sortRisks('id')
-                } else {
-                    console.error(response);
-                }
-            })
-            .catch(response => {
-                console.error(response);
-            });*/
+        console.warn(props);
     }
-    
+
+    async componentDidMount() {
+       
+    }
+
+    async showHealthRisk() { 
+        return (await this._getAllHealthRisks()).map(healthrisk => {
+            return this.props.render(healthrisk);
+        });
+    }
+
+    _getAllHealthRisks = async () => { 
+        var result =  await queryCoordinator.execute(new AllHealthRisks());
+
+        console.warn(result); 
+
+        if(result.success) { 
+            return result.items; 
+        } else {
+            return []; 
+        }
+    }; 
+
     render() {
         return (
-          <div>This is the health risk component.</div>
+            this.showHealthRisk().then(x => {
+                return x; 
+            })
         );
     }
 }
