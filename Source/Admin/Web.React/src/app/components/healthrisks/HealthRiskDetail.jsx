@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-export class HealthRiskDetail extends React.Component{
+class HealthRiskDetail extends React.Component{
     constructor(props) {
         super(props);
         console.warn(props);
@@ -24,3 +23,5 @@ export class HealthRiskDetail extends React.Component{
         );
     }
 }
+
+export default HealthRiskDetail;

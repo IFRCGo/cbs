@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 
-export class Navbar extends React.Component{
+class Navbar extends React.Component{
     render() {
         return (
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="container">
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
+            <nav className="navbar navbar-default navbar-static-top">
+                <div className="container">
+                    <div id="navbar" className="navbar-collapse collapse">
+                        <ul className="nav navbar-nav">
+                            <li className="active">
                                 <Link to="/project/list">Projects</Link>
                             </li>
                             <li>
@@ -22,3 +22,5 @@ export class Navbar extends React.Component{
         );
     }
 }
+
+export default Navbar;
