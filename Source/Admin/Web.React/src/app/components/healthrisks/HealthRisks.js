@@ -1,10 +1,6 @@
 import React from 'react';
-import { AllHealthRisks, DeleteHealthRisk, HealthRisk } from '../../../dolittle.imports'; 
-import { CommandCoordinator } from '@dolittle/commands';
-import { QueryCoordinator } from '@dolittle/queries';
-import  queryCoordinator from '../../utils/QueryConfig'; 
 
-import { HealthRiskItem, HealthRiskList} from './index';
+import { HealthRiskList, HealthRiskItem } from './index';
 
 
 export class HealthRisks extends React.Component{
@@ -19,22 +15,11 @@ export class HealthRisks extends React.Component{
 
     }
 
-    show = async () => {
-
-
-    }
-
-
     render() {
         return (
-            <tbody>
-                <HealthRiskList render={(healthRisk) => {
-                    console.warn(healthRisk); 
-                    return  <HealthRiskItem healthRisk={healthRisk}></HealthRiskItem>
-                }
-                }></HealthRiskList>
-            </tbody>
-            
+            <HealthRiskList render={(healthRisk) => 
+                <HealthRiskItem healthRisk={healthRisk}></HealthRiskItem>
+            }></HealthRiskList>
         );
     }
 }

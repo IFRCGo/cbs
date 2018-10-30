@@ -13,7 +13,7 @@ export class Navbar extends React.Component{
                                 <Link to="/project/list">Projects</Link>
                             </li>
                             <li>
-                                <Link to="/healthrisk">Health risks</Link>
+                                <Link to="/healthrisk/list">Health risks</Link>
                             </li>
                         </ul>
                     </div>
