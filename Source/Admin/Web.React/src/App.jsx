@@ -1,21 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import logo from './logo.svg';
+import './App.css';
+import './assets/bootstrap.css'; //?????
+
 import { QueryCoordinator } from '@dolittle/queries';
 import { CommandCoordinator } from '@dolittle/commands';
-import './App.css';
-import { AddDataVerifier } from './dolittle.imports'; 
-import { Navigation } from 'cbs-navigation'; 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { HealthRisks, HealthRiskDetail, ProjectList, Project, Navbar } from './app/components'; 
-import './assets/bootstrap.css';
+import AddDataVerifier from './dolittle/Admin/AddDataVerifier';
+import { Navigation } from 'cbs-navigation';
 
-class App extends Component {
+import Navbar from './app/components/Navbar';
+import HealthRisks from './app/components/healthrisks/HealthRisks'
+import HealthRiskDetail from './app/components/healthrisks/HealthRiskDetail'
+import Project from './app/components/projects/Project'
+import ProjectList from './app/components/projects/ProjectList'
+
+class App extends React.Component {
   render() {
     return (
       <Router>
         <div className="App">
-            <Navigation></Navigation>
-            <Navbar></Navbar>
+            <Navigation />
+            <Navbar />
             <Switch>
               <Route
                 path="/project"

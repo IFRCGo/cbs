@@ -1,10 +1,11 @@
 import React from 'react';
 
-
-export class Project extends React.Component{
+class Project extends React.Component{
     render() {
         return (
             ""
         );
     }
 }
+
+export default Project;
