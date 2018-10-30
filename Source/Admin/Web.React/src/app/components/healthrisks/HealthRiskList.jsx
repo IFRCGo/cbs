@@ -1,28 +1,14 @@
 import React from 'react';
-import { AllHealthRisks } from '../../../dolittle/HealthRisks/AllHealthRisks';
-import  { default as execute } from '../../js/utils/QueryConfig';
-
+import { getAllHealthRisks } from '../../js/utils/HealthRisk'; 
 
 class HealthRiskList extends React.Component{
     constructor(props) {
         super(props);
-        console.warn(props);
         this.state = { elements: [] };
     }
 
-    _getAllHealthRisks = async () => {
-        var result =  await execute(new AllHealthRisks());
-
-        if(result.success) {
-            return result.items;
-        } else {
-            return [];
-        }
-    };
-
     async showHealthRisks() {
-        return (await this._getAllHealthRisks()).map(healthrisk => {
-            console.warn(healthrisk); 
+        return (await getAllHealthRisks()).map(healthrisk => {
             return this.props.render(healthrisk);
         });
     }

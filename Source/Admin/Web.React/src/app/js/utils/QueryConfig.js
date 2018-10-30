@@ -11,6 +11,8 @@ QueryCoordinator.apiBaseUrl = URL;
 CommandCoordinator.apiBaseUrl = URL;
 
 var queryCoordinator = new QueryCoordinator();
+var commandCoordinator = new CommandCoordinator();
 
 
-export default queryCoordinator.execute;
+export const execute = queryCoordinator.execute;
+export const handle = commandCoordinator.handle; 
