@@ -1,6 +1,6 @@
 import React from 'react';
 import { AllHealthRisks } from '../../../dolittle/HealthRisks/AllHealthRisks';
-import  { execute } from '../../js/utils/QueryConfig';
+import  { default as execute } from '../../js/utils/QueryConfig';
 
 
 class HealthRiskList extends React.Component{
@@ -22,11 +22,10 @@ class HealthRiskList extends React.Component{
 
     async showHealthRisks() {
         return (await this._getAllHealthRisks()).map(healthrisk => {
+            console.warn(healthrisk); 
             return this.props.render(healthrisk);
         });
     }
-
-
 
     async componentDidMount() {
         this.setState({ elements : await this.showHealthRisks() });
