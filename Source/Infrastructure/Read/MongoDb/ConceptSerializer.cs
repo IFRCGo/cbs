@@ -20,18 +20,17 @@ namespace Infrastructure.Read.MongoDb
     {
         public Type ValueType { get; }
 
-        public ConceptSerializer()
+        public Type Type { get;  }
+
+        public ConceptSerializer(Type type)
         {
-            if (!typeof(T).IsConcept())
+            if (!type.IsConcept())
                 throw new Exception("Not a concept");
 
-            ValueType = typeof(T); 
+            ValueType = typeof(T);
+            Type = type; 
         }
 
-        public ConceptSerializer(T value)
-        {
-            ValueType = value.GetType(); 
-        }
 
         public T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
         {
@@ -64,11 +63,9 @@ namespace Infrastructure.Read.MongoDb
                 value = GetDeserializedValue(valueType, ref bsonReader);
             }
 
-            var concept = ConceptFactory.CreateConceptInstance(typeof(T), value);
+            dynamic concept = ConceptFactory.CreateConceptInstance(Type, value);
 
-            var ret = concept != null ? (T)concept : default(T);
-
-            return ret;
+            return concept;
         }
 
         object IBsonSerializer.Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
