@@ -21,21 +21,21 @@ class HealthRiskList extends React.Component{
         return (
             <table className="table table-bordered table-striped">
                 <thead>
-                <tr>
-                    <th> ID
-                        <span></span>
-                    </th>
-                    <th>Health risk</th>
-                    <th>Case Definition</th>
-                    <th>Key Actions</th>
-                </tr>
+                    <tr>
+                        <th> ID
+                            <span></span>
+                        </th>
+                        <th>Health risk</th>
+                        <th>Case Definition</th>
+                        <th>Key Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                 { this.state.elements.map(el => {
                     return el
                 }) }
                 </tbody>
-            </table>
+            </table>            
         );
     }
 }

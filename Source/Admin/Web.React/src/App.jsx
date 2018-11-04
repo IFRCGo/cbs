@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import logo from './logo.svg';
 import './App.css';
-import './assets/bootstrap.css'; //?????
+import './assets/bootstrap.css';
 
 import { QueryCoordinator } from '@dolittle/queries';
 import { CommandCoordinator } from '@dolittle/commands';
@@ -23,27 +23,29 @@ class App extends React.Component {
         <div className="App">
             <Navigation />
             <Navbar />
-            <Switch>
-              <Route
-                path="/project"
-                render={({ match: { url } }) => (
-                  <>
-                    <Route exact path={`${url}/`} component={Project} />
-                    <Route path={`${url}/list`} component={ProjectList} />
-                  </>
-                )}
-              />
-              <Route 
-                path="/healthrisk"
-                render={({ match: { url } }) => (
-                  <>
-                    <Route exact path={`${url}/`} component={HealthRisks} />
-                    <Route path={`${url}/detail/:healthRiskId`} component={HealthRiskDetail} />
-                    <Route path={`${url}/list`} component={HealthRisks} />
-                  </>
-                )}
+            <div class="container"> 
+              <Switch>
+                <Route
+                  path="/project"
+                  render={({ match: { url } }) => (
+                    <>
+                      <Route exact path={`${url}/`} component={Project} />
+                      <Route path={`${url}/list`} component={ProjectList} />
+                    </>
+                  )}
                 />
-            </Switch>
+                <Route 
+                  path="/healthrisk"
+                  render={({ match: { url } }) => (
+                    <>
+                      <Route exact path={`${url}/`} component={HealthRisks} />
+                      <Route path={`${url}/detail/:healthRiskId`} component={HealthRiskDetail} />
+                      <Route path={`${url}/list`} component={HealthRisks} />
+                    </>
+                  )}
+                  />
+              </Switch>
+            </div>
         </div>
       </Router>
     );

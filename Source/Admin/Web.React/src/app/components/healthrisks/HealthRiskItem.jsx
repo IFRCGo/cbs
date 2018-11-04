@@ -14,7 +14,7 @@ class HealthRiskItem extends React.Component{
                 <td>{ this.state.healthrisk.id }</td>
                 <td>{ this.state.healthrisk.name }}</td>
                 <td>{ this.state.healthrisk.caseDefinition }</td>
-                <td><Link to={`/healthrisk/detail/${this.state.healthrisk.id}`}>Test</Link></td>
+                <td><Link to={`/healthrisk/detail/${this.state.healthrisk.id}`}>Edit</Link></td>
             </tr>
         );
     }
