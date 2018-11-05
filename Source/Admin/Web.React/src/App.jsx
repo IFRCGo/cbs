@@ -12,7 +12,7 @@ import { Navigation } from 'cbs-navigation';
 
 import Navbar from './app/components/Navbar';
 import HealthRisks from './app/components/healthrisks/HealthRisks'
-import HealthRiskDetail from './app/components/healthrisks/HealthRiskDetail'
+import HealthRisk from './app/components/healthrisks/HealthRisk'
 import Project from './app/components/projects/Project'
 import ProjectList from './app/components/projects/ProjectList'
 
@@ -39,8 +39,11 @@ class App extends React.Component {
                   render={({ match: { url } }) => (
                     <>
                       <Route exact path={`${url}/`} component={HealthRisks} />
-                      <Route path={`${url}/detail/:healthRiskId`} component={HealthRiskDetail} />
                       <Route path={`${url}/list`} component={HealthRisks} />
+                      <Route path={`${url}/create`} render= {(props) => <HealthRisk {...props} type="create"></HealthRisk>}/>
+                      <Route path={`${url}/edit/:healthRiskId`} render= {(props) => <HealthRisk {...props} type="edit"></HealthRisk>}/>
+                      <Route path={`${url}/delete/:healthRiskId`} render= {(props) => <HealthRisk {...props} type="delete"></HealthRisk>}/>
+                      <Route path={`${url}/show/:healthRiskId`} render= {(props) => <HealthRisk {...props} type="show"></HealthRisk>}/>
                     </>
                   )}
                   />

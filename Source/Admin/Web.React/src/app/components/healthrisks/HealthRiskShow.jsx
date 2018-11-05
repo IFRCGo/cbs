@@ -1,15 +1,18 @@
 import React from 'react';
 import { getHealthRiskById } from '../../js/utils/HealthRisk'; 
 
-class HealthRiskDetail extends React.Component{
+class HealthRiskShow extends React.Component{
     constructor(props) {
         super(props);
         console.warn(props);
 
         this.state = { healthRiskId : null }
+        console.warn(this.props.type); 
+        
     }
 
     async componentDidMount() {
+
         var params = this.props.match.params;
 
         if(params && params.healthRiskId) {
@@ -20,9 +23,12 @@ class HealthRiskDetail extends React.Component{
 
     render() {
         return (
-            "The health risk details works " + this.state.healthRisk
+            <div class="form-group">
+                { "The health risk details works " + this.state.healthRisk} 
+
+            </div>
         );
     }
 }
 
-export default HealthRiskDetail;
+export default HealthRiskShow;

@@ -9,7 +9,6 @@ class HealthRisks extends React.Component{
     constructor(props) {
         super(props);
         console.warn(props);
-
     }
 
     componentDidMount() {
