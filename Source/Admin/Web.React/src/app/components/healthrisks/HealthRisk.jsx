@@ -1,5 +1,6 @@
 import React from 'react';
 import { getHealthRiskById } from '../../js/utils/HealthRisk'; 
+import {  } from './HealthRiskDetail';
 
 class HealthRisk extends React.Component{
     state = {
@@ -27,8 +28,6 @@ class HealthRisk extends React.Component{
 
     render() {
         let showHealthRisk = null; 
-
-        console.warn(this.props); 
 
         if(this.state.type === 'edit') {
             showHealthRisk = "edit";

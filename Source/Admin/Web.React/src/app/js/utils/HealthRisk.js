@@ -30,6 +30,13 @@ export async function getHealthRiskById(healthRiskId) {
     } else {
         return null; 
     }
+}
+
+export async function postHealthRisk(healthRisk) {  
+    
+}
+
+export async function deleteHealthRisk(healthRisk) {
 
 }
 
