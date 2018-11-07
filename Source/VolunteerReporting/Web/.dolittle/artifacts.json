@@ -294,32 +294,7 @@
         {
           "artifact": "8ba78d0d-1944-463e-bcad-11a037adf743",
           "generation": 1,
-          "type": "Events.External.HealthRiskModified, Events.External"
-        },
-        {
-          "artifact": "f04ec357-cac5-468f-9fab-9e822be1360e",
-          "generation": 1,
-          "type": "Events.External.PhoneNumberAddedToDataCollector, Events.External"
-        },
-        {
-          "artifact": "0a4fa57d-082b-4229-a508-d13e20376d31",
-          "generation": 1,
-          "type": "Events.External.PhoneNumberRemovedFromDataCollector, Events.External"
-        },
-        {
-          "artifact": "8c120f9a-1f56-43b4-a12a-2bfa5699bc21",
-          "generation": 1,
-          "type": "Events.External.ProjectCreated, Events.External"
-        },
-        {
-          "artifact": "753c49a2-8b97-4823-8e76-c5fe80a432db",
-          "generation": 1,
-          "type": "Events.External.ProjectUpdated, Events.External"
-        },
-        {
-          "artifact": "635304c5-c8aa-4b09-a968-408d2d81a08b",
-          "generation": 1,
-          "type": "Events.External.NotificationReceived, Events.External"
+          "type": "Events.Admin.HealthRisks.HealthRiskModified, Events.Admin"
         }
       ],
       "eventSources": [],
@@ -415,6 +390,19 @@
           "type": "Read.CaseReportsForListing.CaseReportForListingById, Read"
         }
       ]
+    },
+    "1a1d9d25-3422-48f2-9db4-17ea11f11e33": {
+      "commands": [],
+      "events": [
+        {
+          "artifact": "635304c5-c8aa-4b09-a968-408d2d81a08b",
+          "generation": 1,
+          "type": "Events.External.NotificationReceived, Events.Admin"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
     }
   }
 }
