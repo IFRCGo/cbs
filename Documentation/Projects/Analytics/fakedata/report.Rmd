@@ -3,6 +3,8 @@ title: "Analytics"
 output: md_document
 params:
   healthRisk: "AWD"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -29,6 +31,23 @@ Year <- function (date = lubridate::today())
 {
     yr <- as.numeric(format.Date(date, "%G"))
     return(yr)
+}
+
+MonthC <- function (date = lubridate::today()) 
+{
+    m <- as.numeric(format.Date(date, "%m"))
+    m <- formatC(m, flag = "0", width = 2)
+    return(m)
+}
+
+Month <- function (date = lubridate::today()) 
+{
+    yr <- as.numeric(format.Date(date, "%m"))
+    return(yr)
+}
+
+YearMonth <- function(date){
+  return(sprintf("%s-%s", Year(date), MonthC(date)))
 }
 
 YearWeek <- function(date){
@@ -83,6 +102,7 @@ weeks[,epiMinDate:=min(Date),by=epiWeek]
 weeks[,epiMaxDate:=max(Date),by=epiWeek]
 weeks[,rollingx:=max(rollingWeek)-rollingWeek]
 weeks[,epix:=max(epiWeekN)-epiWeekN]
+weeks[,epiMonth:=YearMonth(Date)]
 
 weeksNoDate <- copy(weeks)
 weeksNoDate[,Date:=NULL]
@@ -101,12 +121,15 @@ d <- merge(skeleton,dr,by=c("Date","datacollector"),all.x=T,allow.cartesian = T)
 nrow(d)
 d[,isMessage:=ifelse(is.na(Time),0,1)]
 xtabs(~d$isMessage)
+d[,isMessageValid:=isMessage]
+d[isMessage==1,isMessageValid:=sample(c(1,0),size=.N,replace=T,prob=c(0.7,0.3))]
 
 d[is.na(mu5),mu5:=0]
 d[is.na(mo5),mo5:=0]
 d[is.na(fu5),fu5:=0]
 d[is.na(fo5),fo5:=0]
 
+dWide <- d
 n <- names(d)[!names(d) %in% c("mu5","mo5","fu5","fo5")]
 d <- melt.data.table(d,id.vars=n)
 
@@ -337,5 +360,103 @@ q <- q + labs(title="Cases in epiweek X")
 #q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
 q
 ```
+
+## District/Person reporting funnel plot A
+
+The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of correctly sent messages. From this, we generate an "expected proportion of received messages that are correct" (e.g. 80%). Then, for i = 1, ..., 100 (or higher, as necessary) we calculate the 2.5th and 97.5th percentiles according to the binomial distribution. That is, (e.g. for i=40) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8) distribution. These percentiles are our boundaries as displayed in the graph.
+
+Important to note:
+
+- We should be able to switch between district/people/other grouping measure
+- We should be able to change the time-frame
+- Maybe only the people/groups who are "lower than expected" should be highlighted in some way?
+
+```{r message=FALSE, warning=FALSE}
+
+lastTwoEpiMonths <- rev(sort(unique(dWide$epiMonth)))[1:2]
+
+reporters <- dWide[epiMonth %in% lastTwoEpiMonths,.(
+  reporters=length(unique(datacollector)),
+  reported=max(isMessage),
+  messages=sum(isMessage),
+  messagesValid=sum(isMessageValid)
+  ),keyby=.(
+  epiMonth,
+  district
+  )]
+reporters[,epiMonthOrdered:=factor(epiMonth,levels=rev(sort(unique(epiMonth))))]
+
+reporters[,propValid:=sum(messagesValid)/sum(messages),by=.(epiMonth)]
+reporters[,threshold025:= qbinom(0.025, messages, propValid)]
+reporters[,threshold975:= qbinom(0.975, messages, propValid)]
+
+thresholdsBase <- unique(reporters[,c("epiMonth","epiMonthOrdered","propValid")])
+thresholds <- vector("list",length=nrow(thresholdsBase))
+for(i in 1:nrow(thresholdsBase)){
+  thresholds[[i]] <- data.table(
+    messages=1:max(reporters$messages+5),
+    propValid=thresholdsBase[i]$propValid,
+    epiMonth=thresholdsBase[i]$epiMonth,
+    epiMonthOrdered=thresholdsBase[i]$epiMonthOrdered
+    )
+}
+thresholds <- rbindlist(thresholds)
+thresholds[,threshold025:= qbinom(0.025, messages, propValid)]
+thresholds[,threshold975:= qbinom(0.975, messages, propValid)]
+
+q <- ggplot(mapping=aes(x=messages))
+q <- q + geom_ribbon(data=thresholds,mapping=aes(ymin = -Inf, ymax = threshold025/messages, fill = "0low"), alpha = 0.4)
+q <- q + geom_ribbon(data=thresholds,mapping=aes(ymin = threshold025/messages, ymax = threshold975/messages, fill = "1normal"), alpha = 0.4)
+q <- q + geom_ribbon(data=thresholds,mapping=aes(ymin = threshold975/messages, ymax = Inf, fill = "2high"), alpha = 0.4)
+q <- q + geom_point(data=reporters,mapping=aes(y=messagesValid/messages))
+q <- q + ggrepel::geom_label_repel(data=reporters,mapping=aes(y=messagesValid/messages,label=district),alpha=0.4)
+q <- q + facet_wrap(~epiMonthOrdered, ncol=1)
+q <- q + scale_fill_manual("",values=c("red","blue","yellow"),labels=c("Lower than expected","As expected","Higher than expected"))
+q <- q + guides(fill = guide_legend(reverse=T))
+q <- q + scale_x_continuous("Number of messages received")
+q <- q + scale_y_continuous("Percent of received messages that were valid",labels=scales::percent)
+q
+```
+
+## District/Person reporting funnel plot B
+
+The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of correctly sent messages. From this, we generate an "expected proportion of received messages that are correct" (e.g. 80%). Then, for each district/person, we calculate the 2.5th and 97.5th percentiles according to the binomial distribution. That is, (e.g. if Oslo sent 40 messages) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8) distribution. These percentiles are our boundaries as displayed in the graph.
+
+Important to note:
+
+- We should be able to switch between district/people/other grouping measure
+- We should be able to change the time-frame
+- Maybe only the people/groups who are "lower than expected" should be highlighted in some way?
+
+
+```{r}
+q <- ggplot(reporters[epiMonth %in% lastTwoEpiMonths],aes(x=reorder(district,messagesValid/messages),y=messagesValid/messages))
+#q <- ggplot(x,aes(x=reorder(priority1_cat,-perc),y=perc))
+#q <- q + geom_col(alpha=0.0)
+q <- q + geom_linerange(mapping=aes(ymin=0,ymax=threshold025/messages),lwd=4,alpha=0.6,colour="red")
+q <- q + geom_linerange(mapping=aes(ymin=threshold025/messages,ymax=threshold975/messages),lwd=4,alpha=0.6,colour="blue")
+q <- q + geom_linerange(mapping=aes(ymin=threshold975/messages,ymax=1),lwd=4,alpha=0.6,colour="yellow")
+q <- q + scale_y_continuous("Percent of received messages that were valid",labels = scales::percent_format(),lim=c(0,1))
+q <- q + geom_point(size=5)
+q <- q + scale_x_discrete("")
+q <- q + coord_flip()
+q <- q + facet_wrap(~epiMonthOrdered, ncol=1)
+q
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
