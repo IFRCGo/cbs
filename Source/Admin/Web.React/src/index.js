@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { unregister, register } from "./serviceWorker";
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import {StoreManager} from 'repertoire';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/App.js';
+import VolunteerReporting from './components/VolunteerReporting.js';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-unregister();
+import './assets/main.scss';
+
+const routes = [{
+  path: '*',
+  component: VolunteerReporting
+}];
+
+const storeManager = new StoreManager(routes);
+
+ReactDOM.render (<Provider store={storeManager.getStore()}>
+    <BrowserRouter>
+      <App routes={routes}/>
+    </BrowserRouter>
+  </Provider>, document.getElementById('app'));
