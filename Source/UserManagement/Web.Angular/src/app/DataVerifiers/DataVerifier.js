@@ -9,7 +9,7 @@ export class DataVerifier extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: '737fbffa-b8cc-4b8f-a9f9-f9c0da1cd8e7',
+           id: 'd51a2731-068f-40ca-86c0-44d755e6864b',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

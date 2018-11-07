@@ -4,6 +4,7 @@ using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Events.DataCollector;
 using Events.VolunteerReporting;
+using Events.VolunteerReporting.CaseReports;
 using MongoDB.Driver;
 
 namespace Read.DataCollectors
