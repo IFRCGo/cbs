@@ -132,3 +132,53 @@ Important to note:
     number of reported cases per 10.000 population).
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+
+District/Person reporting funnel plot A
+---------------------------------------
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for i = 1, ...,
+100 (or higher, as necessary) we calculate the 2.5th and 97.5th
+percentiles according to the binomial distribution. That is, (e.g. for
+i=40) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+District/Person reporting funnel plot B
+---------------------------------------
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for each
+district/person, we calculate the 2.5th and 97.5th percentiles according
+to the binomial distribution. That is, (e.g. if Oslo sent 40 messages)
+what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-11-1.png)

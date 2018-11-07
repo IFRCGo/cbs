@@ -15,9 +15,7 @@ The overriding questions that we want to answer are:
 Project view
 ------------
 
-In theory this should be located here, but it is out of date
-
-<https://github.com/IFRCGo/cbs/projects/5>
+https://github.com/IFRCGo/cbs/projects/5
 
 Technology
 ----------
@@ -52,6 +50,9 @@ What needs to be done
 Epicurve by week
 ----------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/845
+Backend issue: https://github.com/IFRCGo/cbs/issues/846
+
 Here we display a weekly `epicurve` (the epidemiological term for a time
 series graph showing the number of reported cases on the y-axis and time
 on the x-axis).
@@ -73,6 +74,9 @@ We also tried to implement a simple D3 graph as a skeleton example for linking t
 Epicurve by day
 ---------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/848
+Backend issue: https://github.com/IFRCGo/cbs/issues/849
+
 Here we display a daily `epicurve`.
 
 Important to note:
@@ -84,6 +88,9 @@ Important to note:
 
 Epicurve by week dodged by age
 ------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/850
+Backend issue: https://github.com/IFRCGo/cbs/issues/851
 
 Here we display a weekly `epicurve` with two columns for each week,
 showing the ages side-by-side.
@@ -98,6 +105,9 @@ Important to note:
 Epicurve by day dodged by age
 -----------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/852
+Backend issue: https://github.com/IFRCGo/cbs/issues/853
+
 Here we display a daily `epicurve` with two columns for each day,
 showing the ages side-by-side.
 
@@ -111,6 +121,9 @@ Important to note:
 Age and sex distribution over different time frames
 ---------------------------------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/854
+Backend issue: https://github.com/IFRCGo/cbs/issues/855
+
 -   We display the number of cases, split by age/sex on the x-axis
 -   We need the ability to display different time frames (e.g. per week,
     last week, over multiple weeks)
@@ -119,6 +132,9 @@ Age and sex distribution over different time frames
 
 Weekly epicurves by age/sex
 ---------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/856
+Backend issue: https://github.com/IFRCGo/cbs/issues/857
 
 Here we display four weekly epicurves, one for each age/sex combination.
 
@@ -133,6 +149,9 @@ Important to note:
 
 Weekly epicurves by geographical area
 -------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/858
+Backend issue: https://github.com/IFRCGo/cbs/issues/859
 
 Here we display multiple weekly epicurves, one for each geographical
 area.
@@ -155,6 +174,9 @@ Important to note:
 Map by geographical area
 ------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/860
+Backend issue: https://github.com/IFRCGo/cbs/issues/861
+
 Here we display a map with categorized number of cases.
 
 Important to note:
@@ -175,6 +197,9 @@ Important to note:
 Barcharts by district
 ---------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/862
+Backend issue: https://github.com/IFRCGo/cbs/issues/863
+
 This is very similar to the above map, but allows for a more nuanced
 view of the numbers.
 
@@ -190,3 +215,59 @@ Important to note:
     number of reported cases per 10.000 population).
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+
+District/Person reporting funnel plot A
+---------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/869
+Backend issue: https://github.com/IFRCGo/cbs/issues/870
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for i = 1, ...,
+100 (or higher, as necessary) we calculate the 2.5th and 97.5th
+percentiles according to the binomial distribution. That is, (e.g. for
+i=40) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+District/Person reporting funnel plot B
+---------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/871
+Backend issue: https://github.com/IFRCGo/cbs/issues/872
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for each
+district/person, we calculate the 2.5th and 97.5th percentiles according
+to the binomial distribution. That is, (e.g. if Oslo sent 40 messages)
+what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-11-1.png)
