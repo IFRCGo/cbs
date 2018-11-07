@@ -61,6 +61,11 @@
       "feature": "94b23cfd-f2d9-4294-aeec-00382b1e598d",
       "name": "CaseReportsForListing",
       "subFeatures": []
+    },
+    {
+      "feature": "1a1d9d25-3422-48f2-9db4-17ea11f11e33",
+      "name": "External",
+      "subFeatures": []
     }
   ]
 }

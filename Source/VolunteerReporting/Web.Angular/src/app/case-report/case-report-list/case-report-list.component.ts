@@ -7,8 +7,6 @@ import { AllCaseReportsForListing } from '../../domain/case-report/queries/AllCa
 import * as fromServices from '../../services';
 import * as fromModels from '../../shared/models';
 
-
-
 @Component({
     selector: 'cbs-case-report-list',
     templateUrl: './case-report-list.component.html',
