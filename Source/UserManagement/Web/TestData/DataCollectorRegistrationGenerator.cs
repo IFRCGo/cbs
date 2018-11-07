@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Concepts;
-using Domain.DataCollectors.Registering;
+using Domain.DataCollectors;
 
 namespace Web.TestData
 {

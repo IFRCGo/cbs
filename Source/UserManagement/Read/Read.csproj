@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
-    <ProjectReference Include="..\Events.External\Events.External.csproj" />
+    <ProjectReference Include="..\Events.VolunteerReporting\Events.VolunteerReporting.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
   </ItemGroup>

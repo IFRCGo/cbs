@@ -1,20 +1,20 @@
 using System;
-using Domain.DataCollectors.PhoneNumber;
+using Domain.DataCollectors;
 using FluentValidation.Results;
 using Machine.Specifications;
 
 namespace Domain.Specs.DataCollector.when_adding_a_phone_number
 {
-    [Subject(typeof(AddPhoneNumberToDataCollectorValidator))]
+    [Subject(typeof(AddPhoneNumberToDataCollectorInputValidator))]
     public class and_validating_a_command_with_a_missing_phone_number
     {
         static AddPhoneNumberToDataCollector cmd;
-        static AddPhoneNumberToDataCollectorValidator validator;
+        static AddPhoneNumberToDataCollectorInputValidator validator;
         static ValidationResult validation_result;
 
         Establish the_command = () =>
         {
-            validator = new AddPhoneNumberToDataCollectorValidator();
+            validator = new AddPhoneNumberToDataCollectorInputValidator();
 
             cmd = new AddPhoneNumberToDataCollector
             {

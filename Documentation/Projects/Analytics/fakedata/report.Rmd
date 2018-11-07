@@ -1,0 +1,341 @@
+---
+title: "Analytics"
+output: md_document
+params:
+  healthRisk: "AWD"
+---
+
+```{r setup, include=FALSE}
+library(data.table)
+library(ggplot2)
+knitr::opts_chunk$set(echo = F)
+
+map <- readRDS("data/gadm36_NOR_1_sp.rds")
+  #map <- rmapshaper::ms_simplify(map,keep = 0.5)
+map <- broom::tidy(x=map,region="NAME_1")
+setDT(map)
+unique(map$id)
+#saveRDS(map,"data/map_supervisor.RDS")
+
+
+WeekC <- function (date = lubridate::today()) 
+{
+    wk <- as.numeric(format.Date(date, "%V"))
+    wk <- formatC(wk, flag = "0", width = 2)
+    return(wk)
+}
+
+Year <- function (date = lubridate::today()) 
+{
+    yr <- as.numeric(format.Date(date, "%G"))
+    return(yr)
+}
+
+YearWeek <- function(date){
+  return(sprintf("%s-%s", Year(date), WeekC(date)))
+}
+
+YearWeekN <- function(date){
+  return(as.numeric(sprintf("%s%s", Year(date), WeekC(date))))
+}
+
+dr <- readxl::read_excel("data/casereports-2018-September-28 (1).xlsx")
+dc <- readxl::read_excel("data/datacollectors-2018-September-28 (1).xlsx")
+
+setDT(dr)
+setDT(dc)
+
+
+setnames(dr,"Data Collector","datacollector")
+setnames(dr,"Males < 5","mu5")
+setnames(dr,"Males ≥ 5","mo5")
+setnames(dr,"Females < 5","fu5")
+setnames(dr,"Females ≥ 5","fo5")
+
+dr <- rbind(dr,dr,dr,dr,dr)
+
+dr[,n:=floor(1:.N/2),by=datacollector]
+dr[,Date:=lubridate::today()-n]
+dr[,n:=NULL]
+
+dr <- dr[`Health Risk`==params$healthRisk]
+dr[,`Health Risk`:=NULL]
+setnames(dr,"Lat. / Long.","latlong")
+
+dr[,Region:=NULL]
+dr[,District:=NULL]
+dr[,Village:=NULL]
+dr[,latlong:=NULL]
+
+locs <- dc[,c("Display Name","Lat. / Long.","Region","District","Village")]
+setnames(locs,c("datacollector","latlong","region","district","village"))
+
+
+minDate <- min(dr$Date)
+maxDate <- max(dr$Date)
+weeks <- data.table(Date=seq.Date(minDate,maxDate,1))
+weeks[,rollingWeek:=floor(as.numeric(difftime(max(Date),Date,units="days"))/7)]
+weeks[,epiWeek:=YearWeek(Date)]
+weeks[,epiWeekN := YearWeekN(Date)]
+weeks[,rollingMinDate:=min(Date),by=rollingWeek]
+weeks[,rollingMaxDate:=max(Date),by=rollingWeek]
+weeks[,epiMinDate:=min(Date),by=epiWeek]
+weeks[,epiMaxDate:=max(Date),by=epiWeek]
+weeks[,rollingx:=max(rollingWeek)-rollingWeek]
+weeks[,epix:=max(epiWeekN)-epiWeekN]
+
+weeksNoDate <- copy(weeks)
+weeksNoDate[,Date:=NULL]
+weeksNoDate <- unique(weeksNoDate)
+
+skeleton <- vector("list",length=nrow(locs))
+for(i in 1:nrow(locs)){
+  skeleton[[i]] <- copy(weeks)
+  skeleton[[i]][,datacollector:=locs$datacollector[i]]
+}
+skeleton <- rbindlist(skeleton)
+nrow(skeleton)
+skeleton <- merge(skeleton,locs,by=c("datacollector"),all.x=T,allow.cartesian = T)
+nrow(skeleton)
+d <- merge(skeleton,dr,by=c("Date","datacollector"),all.x=T,allow.cartesian = T)
+nrow(d)
+d[,isMessage:=ifelse(is.na(Time),0,1)]
+xtabs(~d$isMessage)
+
+d[is.na(mu5),mu5:=0]
+d[is.na(mo5),mo5:=0]
+d[is.na(fu5),fu5:=0]
+d[is.na(fo5),fo5:=0]
+
+n <- names(d)[!names(d) %in% c("mu5","mo5","fu5","fo5")]
+d <- melt.data.table(d,id.vars=n)
+
+d[,sex:="Male"]
+d[variable %in% c("fu5","fo5"),sex:="Female"]
+
+d[,age:="Age <5"]
+d[variable %in% c("mo5","fo5"),age:="Age 5+"]
+
+```
+
+## Epicurve by week
+
+Here we display a weekly `epicurve` (the epidemiological term for a time series graph showing the number of reported cases on the y-axis and time on the x-axis).
+
+Important to note:
+
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Epicurve by day
+
+Here we display a daily `epicurve`.
+
+Important to note:
+
+- Unclear the best way to display date on the x-axis
+- Days with zero cases must be displayed
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(Date)]
+
+q <- ggplot(toplot,aes(x=Date,y=n))
+q <- q + geom_col(alpha=0.7,width=0.5)
+q <- q + labs(title=sprintf("Daily epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+#q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Epicurve by week dodged by age
+
+Here we display a weekly `epicurve` with two columns for each week, showing the ages side-by-side.
+
+Important to note:
+
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek,age)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n,fill=age))
+q <- q + geom_col(pos="dodge")
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + scale_fill_brewer("Age",palette="Set1")
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Epicurve by day dodged by age
+
+Here we display a daily `epicurve` with two columns for each day, showing the ages side-by-side.
+
+Important to note:
+
+- Unclear the best way to display date on the x-axis
+- Days with zero cases must be displayed
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(Date,age)]
+
+q <- ggplot(toplot,aes(x=Date,y=n,fill=age))
+q <- q + geom_col(pos="dodge",width=0.5)
+q <- q + labs(title=sprintf("Daily epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+#q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + scale_fill_brewer("Age",palette="Set1")
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+
+## Age and sex distribution over different time frames
+
+- We display the number of cases, split by age/sex on the x-axis
+- We need the ability to display different time frames (e.g. per week, last week, over multiple weeks)
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[epiWeek==max(epiWeek),.(n=sum(value)),by=.(epiWeek,age,sex)]
+toplot[,var:=sprintf("%s, %s",age,sex)]
+
+q <- ggplot(toplot,aes(x=var,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Age and sex distribution %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("")
+q <- q + scale_y_continuous("Number of reported cases")
+#q <- q + facet_grid(.~sex)
+#q <- q + coord_flip()
+q
+```
+
+## Weekly epicurves by age/sex
+
+Here we display four weekly epicurves, one for each age/sex combination.
+
+Important to note:
+
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+- Y-axis remains the same height for all panels, to allow for easy comparison
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek,sex,age)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n))
+q <- q + geom_col()
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_grid(sex~age)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Weekly epicurves by geographical area
+
+Here we display multiple weekly epicurves, one for each geographical area.
+
+Important to note:
+
+- We should probably be able to choose the granularity of geographical area (region/district/village)
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+- Y-axis remains the same height for all panels, to allow for easy comparison (this should probably be a toggle?)
+- Very important: We should also implement one version where the outcome is: `(number of reported cases)/(estimation population)*10000` (i.e. number of reported cases per 10.000 population).
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek,district)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_wrap(~district)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Map by geographical area
+
+Here we display a map with categorized number of cases.
+
+Important to note:
+
+- We should probably be able to choose the granularity of geographical area (region/district/village)
+- We should be able to change the time-frame
+- Not reporting regions should be highlighted
+- The graphing/outcome should be categorical NOT a continuous gradient. Probably no more than 4 categories.
+- Very important: We should also implement one version where the outcome is: `(number of reported cases)/(estimation population)*10000` (i.e. number of reported cases per 10.000 population).
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[epiWeek==max(epiWeek),.(n=sum(value)),by=.(epiWeek,district)]
+m <- merge(map,toplot,by.x="id",by.y="district",all.x=T)
+b <- unique(quantile(m$n,na.rm=T))
+m[,fillVal:=cut(n,breaks = b)]
+l <- levels(m$fillVal)
+m[,fillVal:=as.character(fillVal)]
+m[is.na(fillVal),fillVal:="Not reporting"]
+m[,fillVal:=factor(fillVal,levels=c("Not reporting",l))]
+
+q <- ggplot()
+q <- q + geom_map(data = m, aes(x = long, y = lat, map_id = id, fill=fillVal),
+map = m, colour = "black", size=0.1)
+q <- q + coord_map("albers",  at0 = 45.5, lat1 = 29.5)
+q <- q + scale_fill_manual("",values=c("grey","#ffffb2","#fecc5c","#fd8d3c","#e31a1c"),drop=F)
+q <- q + scale_x_continuous("")
+q <- q + scale_y_continuous("")
+q <- q + labs(title="Reported cases in epiweek X")
+q
+```
+
+## Barcharts by district
+
+This is very similar to the above map, but allows for a more nuanced view of the numbers.
+
+Important to note:
+
+- We should probably be able to choose the granularity of geographical area (region/district/village)
+- We should be able to change the time-frame
+- The graphing/outcome should be CONTINUOUS
+- Very important: We should also implement one version where the outcome is: `(number of reported cases)/(estimation population)*10000` (i.e. number of reported cases per 10.000 population).
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[epiWeek==max(epiWeek),.(n=sum(value)),by=.(epiWeek,district)]
+
+q <- ggplot(toplot,aes(x=district,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("")
+q <- q + scale_y_continuous("Number of reported alerts")
+q <- q + coord_flip()
+q <- q + labs(title="Cases in epiweek X")
+#q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+

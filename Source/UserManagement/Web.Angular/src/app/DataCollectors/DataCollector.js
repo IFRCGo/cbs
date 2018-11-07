@@ -9,7 +9,7 @@ export class DataCollector extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: '32b149dc-8e25-4d05-87ba-6afe9aa1ff57',
+           id: 'c1f66425-6a07-414b-9ca6-3a2ff2f25c75',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
@@ -24,7 +24,7 @@ export class DataCollector extends ReadModel
         this.village = '';
         this.phoneNumbers = [];
         this.registeredAt = new Date();
+        this.dataVerifier = '00000000-0000-0000-0000-000000000000';
         this.inTraining = false;
-        this.extraElements = [];
     }
 }
