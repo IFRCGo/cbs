@@ -13,4 +13,5 @@ RUN dotnet publish -c Release -o out
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 WORKDIR /app
 COPY --from=dotnet-build /src/Source/Analytics/Web/out .
+COPY --from=dotnet-build /src/Source/Analytics/Web/.dolittle ./.dolittle
 ENTRYPOINT ["dotnet", "Web.dll"]
