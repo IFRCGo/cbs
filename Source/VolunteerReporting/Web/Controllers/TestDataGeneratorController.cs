@@ -175,6 +175,25 @@ namespace Web
             _col4.DeleteMany(v => true);
             _col5.DeleteMany(v => true);
 
+            for (int i = 1; i < 100; i++)
+            {
+                _col5.InsertOne(new CaseReportForListing(Guid.NewGuid())
+                {
+                    DataCollectorId = Guid.NewGuid(),
+                    HealthRiskId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
+                    Message = "1#2#1",
+                    NumberOfFemalesAged5AndOlder = i % 2,
+                    NumberOfFemalesUnder5 = i % 3,
+                    NumberOfMalesAged5AndOlder = i % 4,
+                    NumberOfMalesUnder5 = 1 % 5,
+                    Timestamp = DateTimeOffset.Now.AddMinutes(-1 * i * 2),
+                    DataCollectorDisplayName = "Collector " + i % 5,
+                    HealthRisk = "AWD",
+                    Status = i % 7 == 0 ? CaseReportStatus.TextMessageParsingError : CaseReportStatus.Success
+                });
+            }
+
             // var textMessagesEvents = JsonConvert.DeserializeObject<TextMessage[]>(System.IO.File.ReadAllText("./TestData/TextMessages.json"));
             // foreach (var message in textMessagesEvents)
             // {
