@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Events.UserManagement;
 using Events.HealthRisks;
 using Events.NationalSocieties;
 using Events.Projects;

@@ -8,7 +8,7 @@ export class CreateHealthRisk extends Command
 {
     constructor() {
         super();
-        this.type = 'f519fe4c-e353-4b86-8289-2a1cef497350';
+        this.type = '92a4690f-afa5-4128-8c8f-63f81ff9b73d';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.name = '';
