@@ -13,9 +13,18 @@ namespace Infrastructure.Read.MongoDb
         public IBsonSerializer GetSerializer(Type type)
         {
             if (type.IsConcept())
-                return new ConceptSerializer(type);
-
+            {
+                var createConceptSerializerGenericMethod = this.GetType().GetMethod("CreateConceptSerializer").MakeGenericMethod(type);
+                dynamic serializer = createConceptSerializerGenericMethod.Invoke(null, new object[]{});
+                return serializer;
+            }
+                
             return null;
+        }
+
+        public static ConceptSerializer<T> CreateConceptSerializer<T>()
+        {
+            return new ConceptSerializer<T>();
         }
     }
 }
