@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concepts.csproj", "{3ABD948F-92F1-4C1E-AA68-15F553857D32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concepts", "Concepts\Concepts.csproj", "{3ABD948F-92F1-4C1E-AA68-15F553857D32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{8C25579F-1041-440C-96B0-44869E2A7B82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{8C25579F-1041-440C-96B0-44869E2A7B82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read", "Read\Read.csproj", "{3BA3F62A-DD53-4EF2-8D3A-50400DF9FD99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Read", "Read\Read.csproj", "{3BA3F62A-DD53-4EF2-8D3A-50400DF9FD99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{BCB881B8-91CC-48AA-92F7-CF9CE8630573}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events", "Events\Events.csproj", "{BCB881B8-91CC-48AA-92F7-CF9CE8630573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryPoint", "EntryPoint\EntryPoint.csproj", "{CF2DFA73-C784-46F2-BEA3-CAF23882CA06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntryPoint", "EntryPoint\EntryPoint.csproj", "{CF2DFA73-C784-46F2-BEA3-CAF23882CA06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy", "Policy\Policy.csproj", "{CF6C7CC4-B7E8-4805-B37B-FBD907267E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Policy", "Policy\Policy.csproj", "{CF6C7CC4-B7E8-4805-B37B-FBD907267E7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Reporting", "Events.Reporting\Events.Reporting.csproj", "{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3ABD948F-92F1-4C1E-AA68-15F553857D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -100,5 +99,23 @@ Global
 		{CF6C7CC4-B7E8-4805-B37B-FBD907267E7C}.Release|x64.Build.0 = Release|Any CPU
 		{CF6C7CC4-B7E8-4805-B37B-FBD907267E7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{CF6C7CC4-B7E8-4805-B37B-FBD907267E7C}.Release|x86.Build.0 = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|x64.Build.0 = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Debug|x86.Build.0 = Debug|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|x64.ActiveCfg = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|x64.Build.0 = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|x86.ActiveCfg = Release|Any CPU
+		{53BF4A82-4B5A-4913-8D5C-49A09B71D7D2}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA8D46EB-D35F-4E89-9EB3-3F45B054FB0F}
 	EndGlobalSection
 EndGlobal
