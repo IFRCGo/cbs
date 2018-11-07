@@ -390,6 +390,19 @@
           "type": "Read.CaseReportsForListing.CaseReportForListingById, Read"
         }
       ]
+    },
+    "1a1d9d25-3422-48f2-9db4-17ea11f11e33": {
+      "commands": [],
+      "events": [
+        {
+          "artifact": "635304c5-c8aa-4b09-a968-408d2d81a08b",
+          "generation": 1,
+          "type": "Events.External.NotificationReceived, Events.Admin"
+        }
+      ],
+      "eventSources": [],
+      "readModels": [],
+      "queries": []
     }
   }
 }
