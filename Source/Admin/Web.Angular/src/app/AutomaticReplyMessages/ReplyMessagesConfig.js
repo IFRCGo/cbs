@@ -9,7 +9,7 @@ export class ReplyMessagesConfig extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: 'e36024d0-04fe-417e-96a6-f0eebfe5c958',
+           id: 'db67e017-02be-4b87-abb8-cf01c1805f8b',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

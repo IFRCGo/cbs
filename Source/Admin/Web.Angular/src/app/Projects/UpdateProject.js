@@ -8,7 +8,7 @@ export class UpdateProject extends Command
 {
     constructor() {
         super();
-        this.type = '153d54a2-d106-4023-a73a-a7d1322fde2b';
+        this.type = '58b6d538-f759-4ffc-ab6a-0e08d01c8a17';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.name = '';
