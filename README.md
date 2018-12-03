@@ -8,6 +8,10 @@ Public health crises, such as disease outbreaks and famine, most often occur whe
 **The solution:**
 Community Based Surveillance (CBS) allows communities, volunteers and the Red Cross Red Crescent Movement to identify and alert of potential outbreaks themselves. This means that we can respond to emerging public health crises much quicker and therefore prevent excess death and illness.
 
+**READ MORE ABOUT THE CBS PROJECT ON OUR [WEBSITE](https://cbsrc.org/)**
+
+Got questions? Send an email to rebecca.madeleine.bushby@redcross.no 
+
 
 ![](https://img.shields.io/github/stars/ifrcgo/cbs.svg)
 ![](https://img.shields.io/github/forks/ifrcgo/cbs.svg)
