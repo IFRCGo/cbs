@@ -1,4 +1,6 @@
-Present: 
+# Core team sync, 29.11.2018
+
+## Present: 
 * Anine
 * Hodo
 * Bjørn
@@ -8,7 +10,7 @@ Present:
 * Samson
 * Rebecca 
 
-##Updates:
+## Updates:
 * Moved into new UX tool (UXPIN) 
 * Analytics are ready to go – now with static json data. Needs backend and frontend to be kickstarted at same time. Jacob will look into it. Issues need to be created.
 * We need to document that we have a local and a global version of CBS – Alex taking this with Einar. He will then share the slide to the requirement change. 
