@@ -3,10 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Dolittle.Events.Processing;
-using Dolittle.ReadModels;
 using Events.HealthRisks;
 using Infrastructure.Read.MongoDb;
-using MongoDB.Driver;
 
 namespace Read.HealthRisks
 {

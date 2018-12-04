@@ -27,7 +27,7 @@ namespace Infrastructure.AspNet.MongoDB
         {
             var serviceWithType = service as IServiceWithType;
 
-            if (serviceWithType == null || serviceWithType.ServiceType != typeof(Dolittle.ReadModels.MongoDB.Configuration))
+            if (serviceWithType == null || serviceWithType.ServiceType != typeof(Dolittle.ReadModels.MongoDB.ReadModelRepositoryConfiguration))
                 return Enumerable.Empty<IComponentRegistration>();
 
             var registration = new ComponentRegistration(
@@ -41,11 +41,11 @@ namespace Infrastructure.AspNet.MongoDB
                     if (connectionString == null)
                         throw new MissingConnectionStringForDatabaseType(ConnectionStringType.MongoDB);
 
-                    var configuration = new Dolittle.ReadModels.MongoDB.Configuration
+                    var configuration = new Dolittle.ReadModels.MongoDB.ReadModelRepositoryConfiguration
                     {
-                        Url = connectionString.Value,
+                        ConnectionString = connectionString.Value,
                         UseSSL = false,
-                        DefaultDatabase = connectionString.Database 
+                        Database = connectionString.Database
                     };
                     return configuration;
                 }),

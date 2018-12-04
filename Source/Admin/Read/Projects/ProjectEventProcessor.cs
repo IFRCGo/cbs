@@ -131,7 +131,8 @@ namespace Read.Projects
             //TODO: Event should have Id field
             _replyMessages.Insert(new ReplyMessagesConfig
             {
-                Messages = @event.Messages
+                //FIXME! Event needs to look different!
+                //Messages = @event.Messages
             });
 
         }
