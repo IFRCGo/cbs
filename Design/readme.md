@@ -13,7 +13,7 @@ All user stories can be found on [Trello](https://trello.com/b/6xbowfgP/user-sto
 
 ## Project mappings
 
-To understand which bounded context or project each page belongs to, refer to sitemap to the left in UXpin. All pages are prefixed with bounded context.
+To understand which bounded context or project each page belongs to, refer to sitemap to the left in UXpin.
 
 ## Notes:
 * The top bar is not active
