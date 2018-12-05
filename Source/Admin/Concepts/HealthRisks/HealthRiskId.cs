@@ -1,5 +1,4 @@
 using System;
-using Dolittle.Concepts;
 using Dolittle.Runtime.Events;
 
 namespace Concepts.HealthRisks

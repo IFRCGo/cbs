@@ -4,14 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Events.Processing;
+using Dolittle.ReadModels;
 
 namespace Read.Users
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        readonly IUsers _users;
+        readonly IReadModelRepositoryFor<User> _users;
 
-        public UserEventProcessor(IUsers users)
+        public UserEventProcessor(IReadModelRepositoryFor<User> users)
         {
             _users = users;
         }

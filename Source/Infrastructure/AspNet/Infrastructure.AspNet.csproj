@@ -28,7 +28,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logging\Infrastructure.Logging.csproj" />
-    <ProjectReference Include="..\Read\Infrastructure.Read.csproj" />
-    <ProjectReference Include="..\Rules\Infrastructure.Rules.csproj" />
   </ItemGroup>
 </Project>

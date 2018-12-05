@@ -1,4 +1,3 @@
-using System;
 using Dolittle.Events;
 
 namespace Events.HealthRisks

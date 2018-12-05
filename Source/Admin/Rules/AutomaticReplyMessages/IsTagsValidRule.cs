@@ -4,11 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Domain.AutomaticReplyMessages;
-using Infrastructure.Rules;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Rules.AutomaticReplyMessages
 {
@@ -24,6 +21,5 @@ namespace Rules.AutomaticReplyMessages
         {
             return tags.All(_ =>_isTagValid(_));
         };
-
     }
 }

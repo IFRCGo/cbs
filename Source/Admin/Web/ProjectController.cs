@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Read.Projects;
 
 namespace Web
-{
+{/*
     [Route("api/project")]
     public class ProjectController : Controller
     {
@@ -96,4 +96,4 @@ namespace Web
         //    });
         //}
     }
-}
+*/}

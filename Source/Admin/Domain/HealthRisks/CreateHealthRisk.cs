@@ -1,4 +1,3 @@
-using System;
 using Concepts.HealthRisks;
 using Dolittle.Commands;
 

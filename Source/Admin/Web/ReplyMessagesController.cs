@@ -9,7 +9,7 @@ using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.AutomaticReplyMessages;
-
+/*
 namespace Web
 {
     [Route("api/replymessages")]
@@ -50,4 +50,4 @@ namespace Web
         //}
     }
  
-}
+}*/

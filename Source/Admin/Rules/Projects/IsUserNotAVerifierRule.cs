@@ -4,20 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Domain.Projects;
-using Infrastructure.Rules;
 using Read.Projects;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Dolittle.ReadModels;
 
 namespace Rules.Projects
 {
     public class IsUserNotAVerifierRule : IRuleImplementationFor<IsUserNotAVerifier>
     {
-        private readonly IProjects _projects; 
+        private readonly IReadModelRepositoryFor<Project> _projects; 
 
-        public IsUserNotAVerifierRule(IProjects projects)
+        public IsUserNotAVerifierRule(IReadModelRepositoryFor <Project> projects)
         {
             _projects = projects; 
         }

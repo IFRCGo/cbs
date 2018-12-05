@@ -1,22 +1,18 @@
 using Domain.HealthRisks;
-using Infrastructure.Read.MongoDb;
-using Infrastructure.Rules;
-using Read.HealthRisks;
 using Read.Projects;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Dolittle.ReadModels;
 using HealthRisk = Read.HealthRisks.HealthRisk;
 
 namespace Rules.HealthRisks
 {
     public class IsHealthRiskUniqueWithinProjectRule : IRuleImplementationFor<IsHealthRiskUniqueWithinProject>
     {
-        private readonly IProjects _projects;
-        private readonly IExtendedReadModelRepositoryFor<HealthRisk> _healthRisks;
+        private readonly IReadModelRepositoryFor<Project> _projects;
+        private readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
-        public IsHealthRiskUniqueWithinProjectRule(IProjects projects, IExtendedReadModelRepositoryFor<HealthRisk> healthRisks)
+        public IsHealthRiskUniqueWithinProjectRule(IReadModelRepositoryFor<Project> projects, IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _projects = projects;
             _healthRisks = healthRisks;

@@ -30,6 +30,5 @@ namespace Read.HealthRisks
             };
             _repository.Update(healthRisk);
         }
-
     }
 }

@@ -7,11 +7,9 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
 
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
     <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
   </ItemGroup>
 </Project>

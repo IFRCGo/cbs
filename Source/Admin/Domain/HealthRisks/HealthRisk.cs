@@ -10,8 +10,6 @@ namespace Domain.HealthRisks
         public HealthRisk(EventSourceId id) : base(id)
         {
         }
-
-
         public void CreateHealthRisk(
             HealthRiskName name,
             CaseDefinition caseDefinition,
@@ -54,7 +52,6 @@ namespace Domain.HealthRisks
         public void AddKeyMessage(KeyMessage keyMessage)
         {
             Apply(new KeyMessageAddedToHealthRisk(EventSourceId, keyMessage.Id, keyMessage.Message, keyMessage.Language));
-
         }
     }
 }

@@ -1,13 +1,14 @@
 using System.Linq;
 using Dolittle.Queries;
+using Dolittle.ReadModels;
 
 namespace Read.Users
 {
     public class AllUsers : IQueryFor<User>
     {
-        readonly IUsers _collection;
+        readonly IReadModelRepositoryFor<User> _collection;
 
-        public AllUsers(IUsers collection)
+        public AllUsers(IReadModelRepositoryFor <User> collection)
         {
             _collection = collection;
         }

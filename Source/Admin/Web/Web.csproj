@@ -11,16 +11,34 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <ItemGroup>
+        <PackageReference Include="Dolittle.Resources.Configuration" Version="2.0.0-alpha2.194" />
 
-    <PackageReference Include="Dolittle.Build" Version="2.0.0-alpha2*" />
-  </ItemGroup>
+        <PackageReference Include="Dolittle.Tenancy.Configuration" Version="2.0.0-alpha2.194" />
+        <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+
+
+        <PackageReference Include="Dolittle.AspNetCore" Version="2.0.0-alpha2.58" />
+
+        <PackageReference Include="Dolittle.AspNetCore.Execution" Version="2.0.0-alpha2.58" />
+        <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2.289" />
+        <PackageReference Include="Dolittle.Build" Version="2.0.0-alpha2.289" />
+
+        <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.0.0-alpha2.34" />
+        <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="2.0.0-alpha2.56" />
+        <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.0.0-alpha2.26" />
+
+        <PackageReference Include="Dolittle.Serialization.Json" Version="2.0.0-alpha2.194" />
+        <PackageReference Include="Dolittle.Concepts.Serialization.Json" Version="2.0.0-alpha2.194" />
+
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
+        <PackageReference Include="Autofac" Version="4.8.1" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
+
+    </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Rules\Infrastructure.Rules.csproj" />
     <ProjectReference Include="..\Rules\Rules.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using Read.Users;
 
 namespace Web
-{
+{/*
     [Route("api/user")]
     public class UserController : Controller
     {
@@ -31,5 +31,5 @@ namespace Web
         {
             return _users.GetByNationalSocietyId(nationalSocietyId);
         }
-    }
+    }*/
 }

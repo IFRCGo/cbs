@@ -1,18 +1,23 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Autofac.Extensions.DependencyInjection;
+using System.IO;
+using Web;
 
-using Infrastructure.AspNet;
-
-namespace Web
+namespace Core
 {
     public class Program
     {
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
-            //while(!System.Diagnostics.Debugger.IsAttached) System.Threading.Thread.Sleep(10);
-            return Initialization.BuildAndRun<Startup>("Admin", args);
+            CreateWebHostBuilder(args).Build().Run();
         }
+        static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+
+                .ConfigureServices(services => services.AddAutofac())
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>();
     }
 }

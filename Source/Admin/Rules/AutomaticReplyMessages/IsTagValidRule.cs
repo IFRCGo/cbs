@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Domain.AutomaticReplyMessages;
-using Infrastructure.Rules;
 using System.Linq;
 
 namespace Rules.AutomaticReplyMessages

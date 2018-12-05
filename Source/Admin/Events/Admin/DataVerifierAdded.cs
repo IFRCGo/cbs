@@ -17,7 +17,5 @@ namespace Events.Admin
         }
         public Guid ProjectId { get; }
         public Guid UserId { get; }
-
-
     }
 }

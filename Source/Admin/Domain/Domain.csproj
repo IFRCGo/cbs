@@ -8,7 +8,6 @@
     <PackageReference Include="FluentValidation" Version="7.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Rules\Infrastructure.Rules.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
   </ItemGroup>

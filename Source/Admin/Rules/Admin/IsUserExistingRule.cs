@@ -3,19 +3,17 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Domain.Admin;
-using Infrastructure.Rules;
 using Read.Users;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Dolittle.ReadModels;
 
 namespace Rules.Admin
 {
     public class IsUserExistingRule : IRuleImplementationFor<UserExist>
     {
-        private readonly IUsers _users;
+        private readonly IReadModelRepositoryFor<User> _users;
 
-        public IsUserExistingRule(IUsers users)
+        public IsUserExistingRule(IReadModelRepositoryFor<User> users)
         {
             _users = users; 
         }

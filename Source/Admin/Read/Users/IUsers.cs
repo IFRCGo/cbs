@@ -6,16 +6,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.Read.MongoDb;
+//using Infrastructure.Read.MongoDb;
 
 namespace Read.Users
 {
-    public interface IUsers : IExtendedReadModelRepositoryFor<User>
-    {
-        User GetById(Guid id);
+    //public interface IUsers : IExtendedReadModelRepositoryFor<User>
+    //{
+    //    User GetById(Guid id);
 
-        IEnumerable<User> GetByNationalSocietyId(Guid id);
+    //    IEnumerable<User> GetByNationalSocietyId(Guid id);
 
-        IEnumerable<User> GetAll();
-    }
+    //    IEnumerable<User> GetAll();
+    //}
 }

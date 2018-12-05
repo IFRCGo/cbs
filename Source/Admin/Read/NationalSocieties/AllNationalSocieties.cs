@@ -1,13 +1,14 @@
 using System.Linq;
 using Dolittle.Queries;
+using Dolittle.ReadModels;
 
 namespace Read.NationalSocieties
 {
     public class AllNationalSocieties : IQueryFor<NationalSociety>
     {
-        readonly INationalSocieties _collection;
+        readonly IReadModelRepositoryFor<NationalSociety> _collection;
 
-        public AllNationalSocieties(INationalSocieties collection)
+        public AllNationalSocieties(IReadModelRepositoryFor<NationalSociety> collection)
         {
             _collection = collection;
         }

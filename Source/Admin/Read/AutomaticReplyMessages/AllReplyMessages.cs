@@ -1,14 +1,14 @@
 using System.Linq;
 using Dolittle.Queries;
-using MongoDB.Driver.Core.WireProtocol.Messages;
+using Dolittle.ReadModels;
 
 namespace Read.AutomaticReplyMessages
 {
     public class AllReplyMessages : IQueryFor<ReplyMessagesConfig>
     {
-        readonly IReplyMessages _collection;
+        readonly IReadModelRepositoryFor<ReplyMessagesConfig> _collection;
 
-        public AllReplyMessages(IReplyMessages collection)
+        public AllReplyMessages(IReadModelRepositoryFor<ReplyMessagesConfig> collection)
         {
             _collection = collection;
         }

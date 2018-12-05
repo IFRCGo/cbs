@@ -9,20 +9,13 @@ using System.Linq;
 using Events.HealthRisks;
 using Events.NationalSocieties;
 using Events.Projects;
-using Infrastructure.AspNet;
 using Infrastructure.Events;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Read.HealthRisks;
-using Read.NationalSocieties;
-using Read.Projects;
-using Read.Users;
-using Dolittle.ReadModels;
-using Infrastructure.Read.MongoDb;
 using Concepts.Projects;
-
+/*
 namespace Web
 {
     [Route("api/testdatagenerator")]
@@ -193,4 +186,4 @@ namespace Web
             System.IO.File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(list.ToArray()));
         }
     }
-}
+}*/

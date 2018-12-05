@@ -1,13 +1,14 @@
 using System.Linq;
 using Dolittle.Queries;
+using Dolittle.ReadModels;
 
 namespace Read.Projects
 {
     public class AllProjects : IQueryFor<Project>
     {
-        private readonly IProjects _collection;
+        private readonly IReadModelRepositoryFor<Project> _collection;
 
-        public AllProjects(IProjects collection)
+        public AllProjects(IReadModelRepositoryFor<Project> collection)
         {
             _collection = collection;
         }

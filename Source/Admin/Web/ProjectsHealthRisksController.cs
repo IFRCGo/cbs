@@ -3,34 +3,26 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using System.Linq;
-using Domain;
-using Events;
-using Infrastructure.AspNet;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Read.HealthRisks;
-using Read.Projects;
 
 namespace Web
 {
     [Route("api/projects/{projectId}")]
     public class ProjectsHealthRiskController : Controller
     {
-        readonly ILogger<ProjectsHealthRiskController> _logger;
-        readonly IProjects _projects;
-        private readonly IProjectHealthRiskVersions _healthRiskVersions;
+        //readonly ILogger<ProjectsHealthRiskController> _logger;
+        //readonly IProjects _projects;
+        //private readonly IProjectHealthRiskVersions _healthRiskVersions;
 
-        public ProjectsHealthRiskController(
-            IProjects projects,
-            IProjectHealthRiskVersions healthRiskVersions,
-            ILogger<ProjectsHealthRiskController> logger)
-        {
-            _projects = projects;
-            _healthRiskVersions = healthRiskVersions;
-            _logger = logger;
-        }
+        //public ProjectsHealthRiskController(
+        //    IProjects projects,
+        //    IProjectHealthRiskVersions healthRiskVersions,
+        //    ILogger<ProjectsHealthRiskController> logger)
+        //{
+        //    _projects = projects;
+        //    _healthRiskVersions = healthRiskVersions;
+        //    _logger = logger;
+        //}
 
 
         //TODO: Integrate to DoLittle2.0

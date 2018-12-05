@@ -3,28 +3,22 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Infrastructure.Rules;
 using Read.Projects;
 using System;
-using System.Linq; 
-using System.Collections.Generic;
-using System.Text;
+using Dolittle.ReadModels;
 using Domain.Projects;
 
 namespace Rules.Projects
 {
     public class ProjectUniqueRule : IRuleImplementationFor<ProjectNameUnique>
     {
-        private readonly IProjects _projects; 
+        private readonly IReadModelRepositoryFor<Project> _projects; 
 
-        public ProjectUniqueRule(IProjects projects)
+        public ProjectUniqueRule(IReadModelRepositoryFor<Project> projects)
         {
             _projects = projects; 
         }
 
-        public ProjectNameUnique Rule => (string name) =>
-        {
-            return _projects.GetAll().All(p => !p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
-        };
+        public ProjectNameUnique Rule => (string name) => throw new NotImplementedException();
     }
 }

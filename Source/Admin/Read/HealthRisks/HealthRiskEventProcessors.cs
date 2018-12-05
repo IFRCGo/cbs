@@ -3,16 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using Dolittle.Events.Processing;
+using Dolittle.ReadModels;
 using Events.HealthRisks;
-using Infrastructure.Read.MongoDb;
 
 namespace Read.HealthRisks
 {
     public class HealthRiskEventProcessors : ICanProcessEvents
     {
-        private readonly IExtendedReadModelRepositoryFor<HealthRisk> _repository;
+        private readonly IReadModelRepositoryFor<HealthRisk> _repository;
 
-        public HealthRiskEventProcessors(IExtendedReadModelRepositoryFor<HealthRisk> repository)
+        public HealthRiskEventProcessors(IReadModelRepositoryFor<HealthRisk> repository)
         {
             _repository = repository;
         }
@@ -32,7 +32,8 @@ namespace Read.HealthRisks
         [EventProcessor("11de10e1-fa78-447c-8ce9-34eb46ade455")]
         public void Process(HealthRiskDeleted @event)
         {
-            _repository.Delete(risk => risk.Id == @event.HealthRiskId);
+            var healthRisk = _repository.GetById(@event.HealthRiskId);
+            _repository.Delete(healthRisk);
         }
     }
 }
