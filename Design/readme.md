@@ -1,47 +1,21 @@
 # CBS Mockup
-We are currently working on the [MVP Mockup](https://balsamiq.cloud/sgyjn/pz5f9qp)
 
-All mockups made using [Balsamiq mockups](https://balsamiq.cloud)
- 
- 
+We are moving from Balsamiq to UXPin.
+
+Follow [this link](https://preview.uxpin.com/19a223e47b1f89a1ddf508490f8d0a8693166969#/pages/94929752). for how the work of sketches is in progress:
+
+There is a sitemap to the left, use this to navigate between the sketches..
+Please use the comment mode to leave your thoughts and such 
+  
 # User stories
 
 All user stories can be found on [Trello](https://trello.com/b/6xbowfgP/user-stories).
 
 ## Project mappings
 
-To understand which bounded context or project each page belongs to, refer to the list below. The name of the page can be found on the top of each page in the sidebar of Balsamiq .
-
-MVP
-
-| Page name  | Project / bounded context where the functionality belongs
-|---|---|
-| Data Reopsitory | Admin
-| Projects | Admin
-| Add Project | Admin 
-| Project | Admin
-| Project need config | Admin
-| Project edit | Admin
-| Export Project  | Admin
-| Case Reports | Volunteer Reporting
-| Filter Case Reports | Volunteer Reporting
-| Export Case Reports | Volunteer Reporting
-| Users List | User Management
-| Add user | User Management
-| Edit user | User Management
-| Health risks | Admin
-| Add health risk | Admin
-| Edit Health risk | Admin
-| SMS gateways | Admin
-| Edit SMS gateway | Admin
-| Feedback messages admin | Admin
-| Add feedback message admin | Admin
-| Edit feedback message 1 admin | Admin
-| Edit feedback message 2 admin | Admin
-| Send message Admin | Admin
-
+To understand which bounded context or project each page belongs to, refer to sitemap to the left in UXpin. All pages are prefixed with bounded context.
 
 ## Notes:
 * The top bar is not active
-* Dashboards not added yet
+* Dashboards / Analytics bounded context not added yet 
 * Self-signup not added yet
