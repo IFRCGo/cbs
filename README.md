@@ -17,7 +17,7 @@ The CBS platform is built by technology contributors and the open source communi
 We are constantly looking for engaged contributors to help us with the development of our community based surveillance platform.
 
 There are several ways to start contributing:
-* Read the guide on [How to contribute](https://github.com/IFRCGo/cbs/wiki).
+* Read the guide on [How to contribute](https://github.com/IFRCGo/cbs/wiki/How-to-contribute).
 * Sign up for one of our coding [events](https://cbsrc.org/contribute/events/).
 * Join the discussion on [Slack](https://cbsv2.slack.com/)
 
