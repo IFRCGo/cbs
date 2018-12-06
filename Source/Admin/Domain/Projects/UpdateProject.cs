@@ -17,13 +17,11 @@ namespace Domain.Projects
 
         public Guid NationalSocietyId { get; set; }
 
-        /// <summary>
-        /// Data owner user id.
-        /// </summary>
         public Guid DataOwnerId { get; set; }
         
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
+        // ReSharper disable once InconsistentNaming
         public string SMSGateWay { get; set; }
     }
 }

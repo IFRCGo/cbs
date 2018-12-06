@@ -5,7 +5,6 @@
 
 namespace Concepts.Projects
 {
-    //TODO: Move to concepts
     public enum ProjectSurveillanceContext
     {
         SingleReports,

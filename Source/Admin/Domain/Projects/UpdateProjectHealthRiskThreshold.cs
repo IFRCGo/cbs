@@ -9,7 +9,7 @@ namespace Domain.Projects
 {
     public class UpdateProjectHealthRiskThreshold : ICommand
     {
-        //TODO: Probaly needs an project ID aswell
+        //@todo Probaly needs an project ID aswell
         public int Threshold { get; set; }
     }
 }

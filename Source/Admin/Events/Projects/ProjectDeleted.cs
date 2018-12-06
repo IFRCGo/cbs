@@ -10,12 +10,11 @@ namespace Events.Projects
 {
     public class ProjectDeleted : IEvent 
     {
-        
+        public Guid ProjectId { get; }
+
         public ProjectDeleted (Guid projectId) 
         {
             ProjectId = projectId;
-
         }
-        public Guid ProjectId { get; }
     }
 }

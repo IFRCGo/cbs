@@ -21,7 +21,6 @@ namespace Domain.HealthRisks
         {
             var healthRisk = _repository.Get(command.HealthRisk);
             healthRisk.AddKeyMessage(command.KeyMessage);
-
         }        
     }
 }

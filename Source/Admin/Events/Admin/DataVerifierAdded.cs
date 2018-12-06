@@ -10,12 +10,13 @@ namespace Events.Admin
 {
     public class DataVerifierAdded : IEvent 
     {
+        public Guid ProjectId { get; }
+        public Guid UserId { get; }
+
         public DataVerifierAdded (Guid projectId, Guid userId) 
         {
             ProjectId = projectId;
             UserId = userId;
         }
-        public Guid ProjectId { get; }
-        public Guid UserId { get; }
     }
 }

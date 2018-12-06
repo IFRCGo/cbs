@@ -7,8 +7,13 @@ using Dolittle.Events;
 
 namespace Events.HealthRisks
 {
-    public class HealthRiskCreated : IEvent 
-{
+    public class HealthRiskCreated : IEvent
+    {
+        public Guid Id { get; }
+        public string Name { get; }
+        public string CaseDefinition { get; }
+        public int HealthRiskNumber { get; }
+
         public HealthRiskCreated (Guid id, string name, string caseDefinition, int healthRiskNumber) 
         {
             Id = id;
@@ -16,10 +21,5 @@ namespace Events.HealthRisks
             CaseDefinition = caseDefinition;
             HealthRiskNumber = healthRiskNumber;
         }
-
-        public Guid Id { get; }
-        public string Name { get; }
-        public string CaseDefinition { get; }
-        public int HealthRiskNumber { get; }
     }
 }

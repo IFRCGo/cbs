@@ -12,10 +12,10 @@ namespace Read.Users
     {
         public Guid Id { get; set; }
 
-        //TODO: Change to FullName
+        //@todo Change to FullName
         public string Firstname { get; set; }
 
-        //TODO:Change to DisplayName 
+        //@todo Change to DisplayName 
         public string Lastname { get; set; }
 
         public string Country { get; set; }

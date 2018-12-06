@@ -9,16 +9,15 @@ namespace Events.Projects
 {
     public class ProjectHealthRiskThresholdUpdate : IEvent
     {
-        
+        public Guid ProjectId { get; }
+        public Guid HealthRiskId { get; }
+        public int Threshold { get; }
+
         public ProjectHealthRiskThresholdUpdate(Guid projectId, Guid healthRiskId, int threshold) 
         {
             ProjectId = projectId;
             HealthRiskId = healthRiskId;
-            Threshold = threshold;
-               
+            Threshold = threshold;               
         }
-        public Guid ProjectId { get; }
-        public Guid HealthRiskId { get; }
-        public int Threshold { get; }
     }
 }

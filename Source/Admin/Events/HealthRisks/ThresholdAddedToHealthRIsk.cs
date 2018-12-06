@@ -10,13 +10,13 @@ namespace Events.HealthRisks
 {
     public class ThresholdAddedToHealthRIsk : IEvent
     {
+        public Guid HealthRiskId { get; }
+        public int Threshold { get; }
 
         public ThresholdAddedToHealthRIsk(Guid healthRiskId, int threshold)
         {
             HealthRiskId = healthRiskId;
             Threshold = threshold;
         }
-        public Guid HealthRiskId { get; }
-        public int Threshold { get; }
     }
 }

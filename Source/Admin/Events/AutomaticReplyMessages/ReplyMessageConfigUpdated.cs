@@ -9,10 +9,10 @@ namespace Events.AutomaticReplyMessages
 {
     public class ReplyMessageConfigUpdated : IEvent
     {
-        //FIXME! The structure of this event is not allowed
+        //@todo FIXME! The structure of this event is not allowed
 
         // Comment: This is a really bad event.
-        //TODO: This event will actually now work, Events cannot currently have dictionaries in it
+        //@todo This event will actually now work, Events cannot currently have dictionaries in it
         public ReplyMessageConfigUpdated(/*IDictionary<string, IDictionary<string, string>> messages*/)
         {
             //Messages = messages;

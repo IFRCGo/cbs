@@ -17,7 +17,6 @@ namespace Events.Admin
         {
             ProjectId = projectId;
             UserId = userId;
-        }
-        
+        }        
     }
 }

@@ -9,6 +9,13 @@ namespace Events.Projects
 {
     public class ProjectUpdated : IEvent
     {
+        public Guid Id { get; }
+        public string Name { get; }
+        public Guid NationalSocietyId { get; }
+        public Guid DataOwnerId { get; }
+        public int SurveillanceContext { get; }
+        public string SmsProxy { get; }
+
         public ProjectUpdated(Guid id, string name, Guid nationalSocietyId, Guid dataOwnerId, int surveillanceContext, string smsProxy) 
         {
             Id = id;
@@ -19,14 +26,5 @@ namespace Events.Projects
             SmsProxy = smsProxy;
                
         }
-        public Guid Id { get; }
-
-        public string Name { get;  }
-        public Guid NationalSocietyId { get; }
-        public Guid DataOwnerId { get; }
-
-        public int SurveillanceContext { get; }
-
-        public string SmsProxy { get; }
     }
 }

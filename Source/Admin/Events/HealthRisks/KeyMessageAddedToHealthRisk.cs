@@ -10,6 +10,11 @@ namespace Events.HealthRisks
 {
     public class KeyMessageAddedToHealthRisk : IEvent
     {
+        public Guid HealthRiskId { get; }
+        public Guid KeyMessageId { get; }
+        public string Message { get; }
+        public string Language { get; }
+
         public KeyMessageAddedToHealthRisk(Guid healthRiskId, Guid keyMessageId, string message, string language)
         {
             HealthRiskId = healthRiskId;
@@ -17,10 +22,5 @@ namespace Events.HealthRisks
             Message = message;
             Language = language;
         }
-
-        public Guid HealthRiskId { get; }
-        public Guid KeyMessageId { get; }
-        public string Message { get; }
-        public string Language { get; }
     }
 }

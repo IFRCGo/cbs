@@ -10,10 +10,11 @@ namespace Events.HealthRisks
 {
     public class HealthRiskDeleted : IEvent
     {
+        public Guid HealthRiskId { get; }
+
         public HealthRiskDeleted(Guid healthRiskId)
         {
             HealthRiskId = healthRiskId;
         }
-        public Guid HealthRiskId { get; }
     }
 }

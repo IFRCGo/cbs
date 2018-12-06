@@ -19,9 +19,9 @@ namespace Read.Projects
         public NationalSociety NationalSociety { get; set; }
         public ProjectSurveillanceContext SurveillanceContext { get; set; }
 
-        //TODO: Change to IList<ProjectHealthRisk>
+        //@todo Change to IList<ProjectHealthRisk>
         public ProjectHealthRisk[] HealthRisks { get; set; }
-        //TODO: Change to IList<User>
+        //@todo Change to IList<User>
         public User[] DataVerifiers { get; set; }
 
         public string SmsProxy { get; set; }

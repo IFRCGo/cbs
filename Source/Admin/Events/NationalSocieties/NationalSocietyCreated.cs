@@ -10,18 +10,17 @@ namespace Events.NationalSocieties
 {
     public class NationalSocietyCreated : IEvent 
     {
-        
-        public NationalSocietyCreated (string name, string country, Guid id, int timezoneOffsetFromUtcInMinutes) 
-        {
-            this.Name = name;
-            this.Country = country;
-            this.Id = id;
-            this.TimezoneOffsetFromUtcInMinutes = timezoneOffsetFromUtcInMinutes;
-
-        }
         public string Name { get; }
         public string Country { get; }
         public Guid Id { get; }
         public int TimezoneOffsetFromUtcInMinutes { get; }
+
+        public NationalSocietyCreated (string name, string country, Guid id, int timezoneOffsetFromUtcInMinutes) 
+        {
+            Name = name;
+            Country = country;
+            Id = id;
+            TimezoneOffsetFromUtcInMinutes = timezoneOffsetFromUtcInMinutes;
+        }
     }
 }

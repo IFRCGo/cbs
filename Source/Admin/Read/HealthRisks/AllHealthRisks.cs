@@ -9,7 +9,6 @@ using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
-
     public class AllHealthRisks : IQueryFor<HealthRisk>
     {
         readonly IReadModelRepositoryFor<HealthRisk> _repository;
