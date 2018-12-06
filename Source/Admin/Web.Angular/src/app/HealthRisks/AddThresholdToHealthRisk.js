@@ -8,7 +8,7 @@ export class AddThresholdToHealthRisk extends Command
 {
     constructor() {
         super();
-        this.type = 'f4b963b7-b24f-4c5d-9c01-d782659edeb9';
+        this.type = '6f1457ac-b4df-41dd-87a4-205011c26bc7';
 
         this.healthRiskId = '00000000-0000-0000-0000-000000000000';
         this.threshold = 0;

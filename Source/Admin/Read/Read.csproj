@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-    <ProjectReference Include="..\Events\Events.csproj" />
-    <ProjectReference Include="..\Events.UserManagement\Events.UserManagement.csproj" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
 
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Events\Events.csproj" />
+        <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2.289" />
+    </ItemGroup>
+
 </Project>

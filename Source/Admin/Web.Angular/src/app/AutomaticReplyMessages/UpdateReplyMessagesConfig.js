@@ -8,7 +8,7 @@ export class UpdateReplyMessagesConfig extends Command
 {
     constructor() {
         super();
-        this.type = '389857c2-1757-4f58-8bcd-13fabbaa16ef';
+        this.type = '1b35b9a0-6ef9-4401-9558-5ec725b545b0';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.messages = [];

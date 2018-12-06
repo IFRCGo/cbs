@@ -3,18 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Events.HealthRisks;
-using Events.NationalSocieties;
-using Events.Projects;
-using Infrastructure.Events;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Read.HealthRisks;
-using Concepts.Projects;
+
 /*
 namespace Web
 {

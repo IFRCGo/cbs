@@ -8,7 +8,7 @@ export class OverrideHealthRiskName extends Command
 {
     constructor() {
         super();
-        this.type = '39649169-2418-448d-a2fc-af53271822f8';
+        this.type = '669f197b-f46c-4465-86f5-18c38b779b00';
 
         this.healthRisk = '00000000-0000-0000-0000-000000000000';
         this.name = '';
