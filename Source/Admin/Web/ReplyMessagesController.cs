@@ -1,7 +1,9 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
+/*
 
 using System.Linq;
 using Domain;
@@ -9,7 +11,7 @@ using Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Read.AutomaticReplyMessages;
-/*
+
 namespace Web
 {
     [Route("api/replymessages")]

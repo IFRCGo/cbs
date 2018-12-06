@@ -14,7 +14,6 @@ export class ModifyHealthRisk extends Command
         this.name = '';
         this.readableId = 0;
         this.caseDefinition = '';
-        this.note = '';
         this.communityCase = '';
         this.keyMessage = '';
     }
