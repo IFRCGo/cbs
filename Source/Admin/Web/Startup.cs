@@ -55,6 +55,13 @@ namespace Web
                 //});
             }
 
+            // Todo: CORS this probably is a bit too lose.. 
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .AllowCredentials());
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 

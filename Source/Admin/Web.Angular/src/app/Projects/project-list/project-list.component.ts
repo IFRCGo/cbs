@@ -14,21 +14,27 @@ export class ProjectListComponent implements OnInit {
 
     constructor(
         private queryCoordinator: QueryCoordinator
-    ) { }
+    ) { 
 
-    ngOnInit() {
-        /*
-        this.queryCoordinator.handle(new AllProjects())
-      .then(response => {
-          if (response.success) {
-            this.projects = response.items as Project[];
-          } else {
-            console.error(response);
-          }
-      })
-      .catch(response => {
-        console.error(response);
-      });*/
+        this.queryCoordinator = new QueryCoordinator();
     }
 
+    ngOnInit() {
+        this.allProjects();
+    }
+
+    allProjects = () => {
+        console.log("AllProjects");
+        let query = new AllProjects();
+        this.queryCoordinator.execute(query).then(result => {
+            if (result.success) {
+                console.log("AllProjects", result);
+                const sortItems = result.items;
+                this.projects = [...sortItems];
+            } else {
+                console.error(result);
+            }
+
+        });
+    };
 }
