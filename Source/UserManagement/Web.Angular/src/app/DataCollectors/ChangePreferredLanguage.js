@@ -8,7 +8,7 @@ export class ChangePreferredLanguage extends Command
 {
     constructor() {
         super();
-        this.type = '7c0cbe47-1000-4519-801b-53b358e854db';
+        this.type = '27dd1558-8a70-4cf8-8fa2-7f4c36bc9667';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.preferredLanguage = {};

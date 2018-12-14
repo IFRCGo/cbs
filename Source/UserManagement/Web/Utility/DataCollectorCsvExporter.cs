@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +29,7 @@ namespace Web.Utility
         {
             var writer = new StreamWriter(stream, Encoding.UTF8);
 
-            writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\"",
-                          "Full Name", "Display Name", "Year of birth", "Sex", "Preferred language", "Lat. / Long.", "Region", "District", "Village",
-                          "Phonenumbers", "Registered at", "Last report received at"));
+            writer.WriteLine("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\"", "Full Name", "Display Name", "Year of birth", "Sex", "Preferred language", "Lat. / Long.", "Region", "District", "Village", "Phonenumbers", "Registered at", "Last report received at");
 
             foreach (var dataCollector in dataCollectors)
             {
@@ -47,9 +50,7 @@ namespace Web.Utility
                 //     : "";
 
 
-                writer.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\"",
-                              fullName, displayName, yearOfBirth, sex, preferredLanguage, location, region, district, village, phoneNumbers, registeredAt,
-                              /*TODO: lastReportReceivedAt */ DateTimeOffset.UtcNow));
+                writer.WriteLine("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\"", fullName, displayName, yearOfBirth, sex, preferredLanguage, location, region, district, village, phoneNumbers, registeredAt, DateTimeOffset.UtcNow);
             }
 
             writer.Flush();

@@ -48,6 +48,8 @@ export class Register {
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
+        console.log(this.command);
+
         this.commandCoordinator.handle(this.command)
             .then(response => {
                 console.log(response);

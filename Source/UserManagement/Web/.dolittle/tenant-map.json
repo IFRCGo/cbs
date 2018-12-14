@@ -1,0 +1,9 @@
+{
+    "strategy": "hostname",
+    "fallbackToDeveloperTenant": true,
+    "configuration": {
+        "segments": "first"
+    },
+    "map": {
+    }
+}

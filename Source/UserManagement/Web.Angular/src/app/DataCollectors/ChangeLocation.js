@@ -8,7 +8,7 @@ export class ChangeLocation extends Command
 {
     constructor() {
         super();
-        this.type = '80910d23-093b-4225-9f41-c024869c93ed';
+        this.type = '2e12d72c-9dcd-441c-b738-820a6c3e4715';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.location = {};

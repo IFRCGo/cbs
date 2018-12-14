@@ -1,9 +1,16 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Microsoft.AspNetCore.Mvc;
-using Read.DataCollectors;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Dolittle.Queries.Coordination;
+using Dolittle.ReadModels;
+using Read.DataCollectors;
 using Web.Utility;
 
 namespace Web.Controllers
@@ -11,11 +18,11 @@ namespace Web.Controllers
     [Route("api/datacollectors")]
     public class DataCollectorsController : Controller
     {
-        private readonly IDataCollectors _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
         private readonly IQueryCoordinator _queryCoordinator;
         
         public DataCollectorsController (
-            IDataCollectors dataCollectors,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
             IQueryCoordinator queryCoordinator)
         {
             _dataCollectors = dataCollectors;
@@ -37,7 +44,7 @@ namespace Web.Controllers
 
             var exporter = exporters[format];
 
-            var dataCollectors = _dataCollectors.GetAll();
+            var dataCollectors = _dataCollectors.Query.AsParallel();
 
             var stream = new MemoryStream();
             var result = exporter.WriteDataCollectors(dataCollectors, stream);

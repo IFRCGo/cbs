@@ -1,76 +1,80 @@
-using System;
-using System.IO;
-using Dolittle.Commands.Coordination;
-using Domain.DataCollectors;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Read.DataCollectors;
-using Web.TestData;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
-namespace Web.Controllers
-{
-    [Route("api/testdatagenerator")]
-    public class TestDataGeneratorController : Controller
-    {
-        private readonly ICommandCoordinator _commandCoordinator;
+//using System;
+//using System.IO;
+//using Dolittle.Commands.Coordination;
+//using Domain.DataCollectors;
+//using Microsoft.AspNetCore.Mvc;
+//using Newtonsoft.Json;
+//using Web.TestData;
 
-        private readonly IDataCollectors _dataCollectors;
+//namespace Web.Controllers
+//{
+//    [Route("api/testdatagenerator")]
+//    public class TestDataGeneratorController : Controller
+//    {
+//        private readonly ICommandCoordinator _commandCoordinator;
 
-        public TestDataGeneratorController(
-            ICommandCoordinator commandCoordinator,
-            IDataCollectors dataCollectors
-        )
-        {
-            _commandCoordinator = commandCoordinator;
-            _dataCollectors = dataCollectors;
-        }
+//        private readonly IDataCollectors _dataCollectors;
 
-        [HttpGet("generatetestdataset")]
-        public void GenerateTestDataSet()
-        {
-            TestDataGenerator.GenerateAllTestData();
-        }
+//        public TestDataGeneratorController(
+//            ICommandCoordinator commandCoordinator,
+//            IDataCollectors dataCollectors
+//        )
+//        {
+//            _commandCoordinator = commandCoordinator;
+//            _dataCollectors = dataCollectors;
+//        }
 
-        [HttpGet("all")]
-        public void CreateAll()
-        {
-            CreateDataCollectorCommands();
-        }
+//        [HttpGet("generatetestdataset")]
+//        public void GenerateTestDataSet()
+//        {
+//            TestDataGenerator.GenerateAllTestData();
+//        }
 
-        [HttpGet("datacollectorcommands")]
-        public void CreateDataCollectorCommands()
-        {
-            DeleteDataCollectors();
-            RegisterDataCollector[] commands;
-            try
-            {
-                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
-            catch (FileNotFoundException)
-            {
-                TestDataGenerator.GenerateCorrectRegisterDataCollectorCommands();
-                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
-            }
+//        [HttpGet("all")]
+//        public void CreateAll()
+//        {
+//            CreateDataCollectorCommands();
+//        }
 
-            foreach (var cmd in commands)
-            {
-                cmd.DataCollectorId = Guid.NewGuid();
-                var result = _commandCoordinator.Handle(cmd);
-            }
-        }
+//        [HttpGet("datacollectorcommands")]
+//        public void CreateDataCollectorCommands()
+//        {
+//            DeleteDataCollectors();
+//            RegisterDataCollector[] commands;
+//            try
+//            {
+//                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+//                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+//            }
+//            catch (FileNotFoundException)
+//            {
+//                TestDataGenerator.GenerateCorrectRegisterDataCollectorCommands();
+//                commands = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
+//                    System.IO.File.ReadAllText("./TestData/DataCollectors.json"));
+//            }
 
-        [HttpGet("deleteall")]
-        public void DeleteAll()
-        {
-            DeleteDataCollectors();
-        }
+//            foreach (var cmd in commands)
+//            {
+//                cmd.DataCollectorId = Guid.NewGuid();
+//                var result = _commandCoordinator.Handle(cmd);
+//            }
+//        }
 
-        [HttpGet("deletedatacollectorcollection")]
-        public void DeleteDataCollectors()
-        {
-            _dataCollectors.Delete(_ => true);
-        }
-    }
-}
+//        [HttpGet("deleteall")]
+//        public void DeleteAll()
+//        {
+//            DeleteDataCollectors();
+//        }
+
+//        [HttpGet("deletedatacollectorcollection")]
+//        public void DeleteDataCollectors()
+//        {
+//            _dataCollectors.Delete(_ => true);
+//        }
+//    }
+//}

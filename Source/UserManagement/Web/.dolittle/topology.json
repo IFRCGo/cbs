@@ -25,6 +25,17 @@
       "feature": "65fd28aa-11fb-462e-8b67-d421ee4ac302",
       "name": "DataVerifiers",
       "subFeatures": []
+    },
+    {
+      "feature": "47e0c7e7-6fc9-432f-8232-6540fd871f34",
+      "name": "VolunteerReporting",
+      "subFeatures": [
+        {
+          "feature": "c7073a40-d10f-49cf-978e-e284d92fdd63",
+          "name": "CaseReports",
+          "subFeatures": []
+        }
+      ]
     }
   ]
 }

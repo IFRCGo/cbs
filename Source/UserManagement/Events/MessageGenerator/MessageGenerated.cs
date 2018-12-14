@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using Dolittle.Events;
 
@@ -5,17 +10,15 @@ namespace Events.MessageGenerator
 {
     public class MessageGenerated : IEvent
     {
-        public MessageGenerated(Guid dataCollectorId, string phoneNumber, string message) 
-        {
-            this.DataCollectorId = dataCollectorId;
-            this.PhoneNumber = phoneNumber;
-            this.Message = message;
-               
-        }
         public Guid DataCollectorId { get; }
         public string PhoneNumber { get; }
         public string Message { get; }
 
-        
+        public MessageGenerated(Guid dataCollectorId, string phoneNumber, string message) 
+        {
+            DataCollectorId = dataCollectorId;
+            PhoneNumber = phoneNumber;
+            Message = message;               
+        }        
     }
 }
