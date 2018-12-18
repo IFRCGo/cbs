@@ -25,8 +25,8 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector
 
         Because of = () => { validation_results = validator.Validate(cmd); };
 
-        It should_be_invalid = () => validation_results.ShouldBeInvalid();
-        It should_identify_the_display_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DisplayName));
+        //It should_be_invalid = () => validation_results.ShouldBeInvalid();
+        //It should_identify_the_display_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DisplayName));
     }
 
  }

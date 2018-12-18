@@ -1,0 +1,34 @@
+{
+  "modules": {},
+  "features": {
+    "cf54dd4d-2b62-410e-a011-05f927738380": {
+      "name": "DataCollectors",
+      "subFeatures": {}
+    },
+    "770c53f2-714e-4e52-961d-7cf986f857a8": {
+      "name": "MessageGenerator",
+      "subFeatures": {}
+    },
+    "a445a025-2a7b-4d5f-a186-4563c8a8c247": {
+      "name": "DataCollector",
+      "subFeatures": {}
+    },
+    "1f71ef5c-3a2b-48b0-9606-34f2d0af1c36": {
+      "name": "CaseReports",
+      "subFeatures": {}
+    },
+    "65fd28aa-11fb-462e-8b67-d421ee4ac302": {
+      "name": "DataVerifiers",
+      "subFeatures": {}
+    },
+    "47e0c7e7-6fc9-432f-8232-6540fd871f34": {
+      "name": "VolunteerReporting",
+      "subFeatures": {
+        "c7073a40-d10f-49cf-978e-e284d92fdd63": {
+          "name": "CaseReports",
+          "subFeatures": {}
+        }
+      }
+    }
+  }
+}
