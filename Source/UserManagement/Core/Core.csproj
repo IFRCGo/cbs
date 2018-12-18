@@ -26,7 +26,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include=".dolittle\**\*" CopyToPublishDirectory="Always"/>
+        <Content Include=".dolittle\**\*" CopyToPublishDirectory="Always" />
     </ItemGroup>
 
     <ItemGroup>
@@ -47,6 +47,7 @@
         <ProjectReference Include="..\Events\Events.csproj" />
         <ProjectReference Include="..\Read\Read.csproj" />
         <ProjectReference Include="..\Policies\Policies.csproj" />
+        <ProjectReference Include="..\Rules\Rules.csproj" />
     </ItemGroup>
 
     <ItemGroup>
