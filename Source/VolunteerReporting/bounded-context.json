@@ -1,8 +1,19 @@
 {
-  "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
-  "boundedContext": "1db9523a-7db5-46f6-a442-714f1ab93e01",
-  "boundedContextName": "Volunteer Reporting",
-  "backend": {
-    "language": "csharp"
-  }
+    "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+    "boundedContext": "1db9523a-7db5-46f6-a442-714f1ab93e01",
+    "boundedContextName": "Volunteer Reporting",
+    "resources": {
+        "readModels": {
+            "production": "MongoDB",
+            "development": "MongoDB"
+        },
+        "eventStore": {
+            "production": "MongoDB",
+            "development": "MongoDB"
+        }
+    },
+    "core": {
+        "language": "csharp"
+    },
+    "interaction": []
 }
