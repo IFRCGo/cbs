@@ -1,15 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2.289" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Concepts\Concepts.csproj" />
+        <PackageReference Include="Dolittle.SDK" Version="2.*" />
     </ItemGroup>
 
 </Project>

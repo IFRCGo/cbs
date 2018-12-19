@@ -14,5 +14,6 @@
     },
     "core": {
         "language": "csharp"
-    }
+    },
+    "interaction": []
 }

@@ -4,19 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Autofac;
+using Dolittle.Booting;
 using Dolittle.DependencyInversion.Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
-namespace Web
+namespace Core
 {
     public partial class Startup
     {
         readonly IHostingEnvironment _hostingEnvironment;
         readonly ILoggerFactory _loggerFactory;
-        Dolittle.AspNetCore.Bootstrap.BootResult _bootResult;
+        BootloaderResult _bootResult;
 
         public Startup(IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
@@ -26,14 +28,18 @@ namespace Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-            //});
-
+            if (_hostingEnvironment.IsDevelopment())
+            {
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                });
+            }
             services.AddMvc();
+
             _bootResult = services.AddDolittle(_loggerFactory);
         }
+
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
@@ -42,17 +48,14 @@ namespace Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var container = app.ApplicationServices.GetService(typeof(Dolittle.DependencyInversion.IContainer)) as Dolittle.DependencyInversion.IContainer;
-            RuleRegistrationSource.Container = container;
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c =>
-                //{
-                //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                //});
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
             }
 
             // Todo: CORS this probably is a bit too lose.. 

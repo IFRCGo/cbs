@@ -1,40 +1,33 @@
 {
-  "modules": [],
-  "features": [
-    {
-      "feature": "b9c26487-ae80-42f8-9bf7-d63baf3a3a68",
+  "modules": {},
+  "features": {
+    "b9c26487-ae80-42f8-9bf7-d63baf3a3a68": {
       "name": "Projects",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "8f2421e3-5ca8-485a-bb99-ad4f19e7d082",
+    "8f2421e3-5ca8-485a-bb99-ad4f19e7d082": {
       "name": "HealthRisks",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "81072014-63c4-4279-90f8-0f17d93c024f",
+    "81072014-63c4-4279-90f8-0f17d93c024f": {
       "name": "AutomaticReplyMessages",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "1e9841e5-6463-40a6-a4b9-3e04a852f889",
+    "1e9841e5-6463-40a6-a4b9-3e04a852f889": {
       "name": "Admin",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "2b0633d3-a9c2-4247-8a01-d8be372d94f4",
+    "2b0633d3-a9c2-4247-8a01-d8be372d94f4": {
       "name": "NationalSocieties",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "289cef21-f859-4e96-ae5f-09574b0df04a",
+    "289cef21-f859-4e96-ae5f-09574b0df04a": {
       "name": "Events",
-      "subFeatures": []
+      "subFeatures": {}
     },
-    {
-      "feature": "93a7e37f-f55c-4f7e-a91a-e285cd11585d",
+    "93a7e37f-f55c-4f7e-a91a-e285cd11585d": {
       "name": "Users",
-      "subFeatures": []
+      "subFeatures": {}
     }
-  ]
+  }
 }
