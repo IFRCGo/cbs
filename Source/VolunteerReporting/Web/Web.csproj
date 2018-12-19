@@ -27,7 +27,6 @@
     <PackageReference Include="Dolittle.Build" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\AspNet\Infrastructure.AspNet.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Events\Infrastructure.Events.csproj" />
     <ProjectReference Include="..\TextMessaging\TextMessaging.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />

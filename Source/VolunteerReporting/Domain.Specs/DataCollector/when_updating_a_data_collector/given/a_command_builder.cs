@@ -1,6 +1,10 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
-using Concepts;
 using Concepts.DataCollector;
 using Domain.DataCollectors.Registration;
 
@@ -18,9 +22,7 @@ namespace Domain.Specs.DataCollectors.when_updating_a_data_collector.given
                  PreferredLanguage = Language.English,
                  GpsLocation = new Location(123,123),
                  PhoneNumbers = new [] {"123456789"},
-                 //Email = "test@test.com",
-                 
-                 
+                 //Email = "test@test.com",                                  
              };
          }
 
@@ -33,7 +35,6 @@ namespace Domain.Specs.DataCollectors.when_updating_a_data_collector.given
              }
              return cmd;
          }
-
 
          public static RegisterDataCollector get_invalid_command(Action<RegisterDataCollector> invalidate)
          {

@@ -1,11 +1,13 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Domain;
 using Dolittle.Events.Processing;
-using Domain;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.InvalidCaseReports;
-using Concepts.CaseReport;
-using Concepts.DataCollector;
 using Domain.CaseReports;
 using Events.DataCollectors.PhoneNumber;
 
@@ -31,9 +33,8 @@ namespace Policy
         }
         [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
         public void Process(PhoneNumberAddedToDataCollector @event)
-        {
-            
-            var unknownReports = this._unknownReports.GetByPhoneNumber(@event.PhoneNumber);
+        {            
+            var unknownReports = _unknownReports.GetByPhoneNumber(@event.PhoneNumber);
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
             {
@@ -56,7 +57,7 @@ namespace Policy
             } 
             
             
-            var invalidAndUnknownReports = this._invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var invalidAndUnknownReports = _invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
                 var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);

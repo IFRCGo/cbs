@@ -1,8 +1,11 @@
-using Concepts;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using System.Collections.Generic;
 using Dolittle.ReadModels;
-using Infrastructure.Read.MongoDb;
 using Concepts.DataCollector;
 using Concepts.CaseReport;
 using Concepts.HealthRisk;

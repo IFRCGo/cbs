@@ -1,19 +1,17 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Concepts;
-using Domain;
+
 using Read.DataCollectors;
 using Read.HealthRisks;
 using Dolittle.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Concepts.HealthRisk;
 using Dolittle.Events.Processing;
 using Domain.CaseReports;
-using Events.External;
+using Events.Admin.HealthRisks;
 
 namespace Policy.Notifications
 {

@@ -2,11 +2,11 @@
  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Events.Processing;
 using MongoDB.Driver;
 using Concepts.DataCollector;
 using Events.DataCollectors.Registration;
-using Concepts;
 using System.Collections.Generic;
 using Events.DataCollectors.Changing;
 using Events.DataCollectors.PhoneNumber;
