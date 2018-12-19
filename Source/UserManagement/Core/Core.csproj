@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -22,7 +22,7 @@
         <DolittleGenerateProxies>True</DolittleGenerateProxies>
 
         <!-- The relative path to put proxies if generated-->
-        <DolittleProxiesBasePath>../Web.Angular/src/app</DolittleProxiesBasePath>
+        <DolittleProxiesBasePath>../Web/src/app</DolittleProxiesBasePath>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,17 +1,14 @@
-# Build the .NET part
-FROM microsoft/dotnet:2.2-sdk-bionic AS dotnet-build
+# Build the static content part
+FROM node:latest AS angular-build
 WORKDIR /src
-COPY ./NuGet.Config ./
-COPY ./Build/MSBuild ./Build/MSBuild
-COPY ./Source/Infrastructure ./Source/Infrastructure
-COPY ./Source/Admin ./Source/Admin
-WORKDIR /src/Source/Admin/Web
-RUN dotnet restore --no-cache
-RUN dotnet publish -c Release -o out
+RUN ["yarn","global", "add", "typescript"]
+RUN ["yarn","global", "add", "@angular/cli@latest"]
+COPY ./Source/Admin/Web.Angular /Source/Admin/Web.Angular
+COPY ./Source/Navigation /Source/Navigation
+WORKDIR /Source/Admin/Web.Angular
+RUN ["yarn", "install"]
+RUN ["ng", "build", "--prod"]
 
-# Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
-WORKDIR /app
-COPY --from=dotnet-build /src/Source/Admin/Web/out .
-COPY --from=dotnet-build /src/Source/Admin/Web/.dolittle ./.dolittle
-ENTRYPOINT ["dotnet", "Web.dll"]
+FROM nginx:1.13-alpine
+COPY --from=angular-build /Source/Admin/Web.Angular/dist /usr/share/nginx/html
+COPY --from=angular-build /Source/Admin/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
