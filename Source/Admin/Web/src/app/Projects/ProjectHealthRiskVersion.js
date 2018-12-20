@@ -9,7 +9,7 @@ export class ProjectHealthRiskVersion extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: 'e808ce3a-00c2-4c48-a969-5e6f5315e82c',
+           id: '883b13b3-ee32-4d86-93ac-7022384e4ba7',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

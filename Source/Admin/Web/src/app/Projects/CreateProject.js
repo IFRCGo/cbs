@@ -8,7 +8,7 @@ export class CreateProject extends Command
 {
     constructor() {
         super();
-        this.type = '4c3d6848-b221-4def-bb23-29580b8c2605';
+        this.type = 'c05b3993-36b6-4782-b968-9a59dea86bba';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.name = '';

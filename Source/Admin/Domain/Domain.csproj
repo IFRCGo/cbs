@@ -7,6 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Tests\HealthRisks.json" />
+      <None Remove="Tests\Names.json" />
+      <None Remove="Tests\NationalSocieties.json" />
+      <None Remove="Tests\Projects.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Tests\Data\HealthRisks.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\Names.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\NationalSocieties.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\Projects.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\Events\Events.csproj" />
         <ProjectReference Include="..\Concepts\Concepts.csproj" />
     </ItemGroup>

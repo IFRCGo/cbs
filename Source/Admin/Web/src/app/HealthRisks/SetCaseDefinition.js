@@ -8,7 +8,7 @@ export class SetCaseDefinition extends Command
 {
     constructor() {
         super();
-        this.type = 'ba726381-d8c6-4d53-baf0-8dc0559df0f8';
+        this.type = '25f068e1-d51e-4b9e-8a17-cd8f8f77bda5';
 
         this.healthRisk = '00000000-0000-0000-0000-000000000000';
         this.caseDefinition = '';

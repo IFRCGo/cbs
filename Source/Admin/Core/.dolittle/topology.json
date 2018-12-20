@@ -28,6 +28,10 @@
     "93a7e37f-f55c-4f7e-a91a-e285cd11585d": {
       "name": "Users",
       "subFeatures": {}
+    },
+    "5bba2d83-1a84-4ba1-8a1e-919e73318db6": {
+      "name": "Tests",
+      "subFeatures": {}
     }
   }
 }

@@ -8,7 +8,7 @@ export class UpdateProjectHealthRiskThreshold extends Command
 {
     constructor() {
         super();
-        this.type = '1fff36fd-f6e0-4b86-ab69-d20a65c1d50e';
+        this.type = '30ebc645-9c1f-4887-89e2-34b412401fe2';
 
         this.threshold = 0;
     }

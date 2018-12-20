@@ -48,7 +48,7 @@ Open browser at address http://localhost:5001/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
-(Active path: `cbs/Source/Admin/Web.Angular`)
+(Active path: `cbs/Source/Admin/Web`)
 
 Restore dependencies
 > `npm install`
@@ -61,3 +61,9 @@ Open http://localhost:4200/ in your browser to access the UI.
 ## Populating the database with test data
 
 To populate the database with test data, go to http://localhost:5001/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
+/api/Dolittle/Commands
+{
+    "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+    "type": "269f0087-f2a7-4fce-bfb6-5a136d614201",
+    "content": {}
+}

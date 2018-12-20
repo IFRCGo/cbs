@@ -8,7 +8,7 @@ export class SetHealthRiskName extends Command
 {
     constructor() {
         super();
-        this.type = 'e70d0217-07de-4812-8d1b-b7d003e5a19a';
+        this.type = '54b69ddc-5317-4b6d-9c48-dedf01904327';
 
         this.healthRisk = '00000000-0000-0000-0000-000000000000';
     }

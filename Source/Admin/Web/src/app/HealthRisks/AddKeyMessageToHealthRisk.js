@@ -8,7 +8,7 @@ export class AddKeyMessageToHealthRisk extends Command
 {
     constructor() {
         super();
-        this.type = '30e118a7-4cc1-465a-a4ce-994e06963ab1';
+        this.type = 'dde83ad7-4ab0-4144-8d50-f173e7966acf';
 
         this.healthRisk = '00000000-0000-0000-0000-000000000000';
         this.keyMessage = {};

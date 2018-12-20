@@ -11,5 +11,7 @@ namespace Concepts.HealthRisks
     public class HealthRiskId : EventSourceId
     {
         public static implicit operator HealthRiskId(Guid id) => new HealthRiskId { Value = id };
+        public static implicit operator HealthRiskId(string id) => new HealthRiskId { Value = new Guid(id) };
+
     }
 }

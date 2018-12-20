@@ -14,5 +14,7 @@ namespace Domain.HealthRisks
         public HealthRiskName Name {  get; set; }
         public CaseDefinition CaseDefinition { get; set; }
         public HealthRiskNumber Number { get; set; }
+
+        // TODO public KeyMessages KeyMessages { get; set; }
     }
 }
