@@ -9,7 +9,7 @@ export class HealthRisk extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: 'a5f89b8c-5c34-4e57-bd2b-a85f86f62edf',
+           id: '6a57c08a-d0c3-4c17-a280-85683cd36ac3',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

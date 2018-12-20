@@ -9,7 +9,7 @@ export class InvalidCaseReport extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: 'c6e5af86-ed3c-41a4-95d2-8b0498e09dda',
+           id: '25364d05-99f7-4ae0-814a-0013fd2a656f',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

@@ -8,7 +8,7 @@ export class ChangeBaseInformation extends Command
 {
     constructor() {
         super();
-        this.type = 'ff1cb79c-371a-4f68-92cf-9ef03772cbc0';
+        this.type = '8c617d26-59bd-47d0-81a3-0d8c767e6658';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.fullName = '';

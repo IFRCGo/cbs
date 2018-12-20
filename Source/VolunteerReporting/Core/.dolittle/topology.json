@@ -58,6 +58,10 @@
     "71205618-0de6-49e6-ac94-b4a959ce1267": {
       "name": "CaseReportsForListing",
       "subFeatures": {}
+    },
+    "e4241369-0894-4226-b3d3-50d48d95e431": {
+      "name": "Events",
+      "subFeatures": {}
     }
   }
 }

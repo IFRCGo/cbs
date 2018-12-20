@@ -8,7 +8,7 @@ export class DefineAutomaticReplyForProject extends Command
 {
     constructor() {
         super();
-        this.type = '255d31a3-86f9-44da-b62e-1d95e18ee344';
+        this.type = 'bf8d57df-c7aa-49ad-bd7e-38cf5fc0e1a9';
 
         this.projectId = '00000000-0000-0000-0000-000000000000';
         this.type = {};
