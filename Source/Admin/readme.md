@@ -44,7 +44,7 @@ Build
 Run locally
 > `dotnet run`
 
-Open browser at address http://localhost:5000/swagger to access Swagger.
+Open browser at address http://localhost:5001/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
@@ -60,4 +60,4 @@ Open http://localhost:4200/ in your browser to access the UI.
 
 ## Populating the database with test data
 
-To populate the database with test data, go to http://localhost:5000/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
+To populate the database with test data, go to http://localhost:5001/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
