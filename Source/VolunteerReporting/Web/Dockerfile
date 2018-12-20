@@ -1,17 +1,15 @@
-# Build the .NET part
-FROM microsoft/dotnet:2.2-sdk-bionic AS dotnet-build
+# Build the static content part
+FROM node:latest AS angular-build
 WORKDIR /src
-COPY ./NuGet.Config ./
-COPY ./Build/MSBuild ./Build/MSBuild
-COPY ./Source/Infrastructure ./Source/Infrastructure
-COPY ./Source/VolunteerReporting ./Source/VolunteerReporting
-WORKDIR /src/Source/VolunteerReporting/Web
-RUN dotnet restore --no-cache
-RUN dotnet publish -c Release -o out
+RUN ["yarn","global", "add", "typescript"]
+RUN ["yarn","global", "add", "@angular/cli@latest"]
+COPY ./Source/VolunteerReporting/Web.Angular /Source/VolunteerReporting/Web.Angular
+COPY ./Source/Navigation /Source/Navigation
+WORKDIR /Source/VolunteerReporting/Web.Angular
+RUN ["yarn", "install"]
+RUN ["yarn", "lint"]
+RUN ["ng", "build", "--prod", "--base-href=/reporting/", "--deploy-url=/reporting/"]
 
-# Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
-WORKDIR /app
-COPY --from=dotnet-build /src/Source/VolunteerReporting/Web/out .
-COPY --from=dotnet-build /src/Source/VolunteerReporting/Web/.dolittle ./.dolittle
-ENTRYPOINT ["dotnet", "Web.dll"]
+FROM nginx:1.13-alpine
+COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/dist /usr/share/nginx/html
+COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf

@@ -3,20 +3,20 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Concepts.CaseReport;
 using Dolittle.Events.Processing;
+using Dolittle.ReadModels;
 using Events.CaseReports;
 
 namespace Read.InvalidCaseReports
 {
     public class InvalidCaseReportEventProcessors : ICanProcessEvents
     {
-        readonly IInvalidCaseReports _invalidCaseReports;
-        readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidCaseReportsFromUnknownDataCollectors;
+        readonly IReadModelRepositoryFor<InvalidCaseReport> _invalidCaseReports;
+        readonly IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> _invalidCaseReportsFromUnknownDataCollectors;
 
         public InvalidCaseReportEventProcessors(
-            IInvalidCaseReports invalidCaseReports,
-            IInvalidCaseReportsFromUnknownDataCollectors invalidCaseReportsFromUnknownDataCollectors)
+            IReadModelRepositoryFor<InvalidCaseReport> invalidCaseReports,
+            IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> invalidCaseReportsFromUnknownDataCollectors)
         {
             _invalidCaseReports = invalidCaseReports;
             _invalidCaseReportsFromUnknownDataCollectors = invalidCaseReportsFromUnknownDataCollectors;
@@ -24,28 +24,33 @@ namespace Read.InvalidCaseReports
         [EventProcessor("4d97e492-54f2-4637-99f1-1aa8686562ba")]
         public void Process(InvalidReportReceived @event)
         {
-            _invalidCaseReports.SaveInvalidReport(
-                @event.CaseReportId,
-                @event.DataCollectorId,
-                @event.Message,
-                @event.Origin,
-                @event.ErrorMessages,
-                @event.Timestamp);
+            var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId)
+            {
+                DataCollectorId = @event.DataCollectorId,
+                Message = @event.Message,
+                Origin = @event.Origin,
+                ParsingErrorMessage = @event.ErrorMessages,
+                Timestamp = @event.Timestamp
+            };
+            _invalidCaseReports.Insert(invalidCaseReport);
         }
         [EventProcessor("11f46b98-2b48-42d3-b060-ced0238822c0")]
         public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
-            _invalidCaseReportsFromUnknownDataCollectors.SaveInvalidReportFromUnknownDataCollector(
-                @event.CaseReportId,
-                @event.Message,
-                @event.Origin,
-                @event.ErrorMessages,
-                @event.Timestamp);
+            var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId)
+            {
+                Message = @event.Message,
+                ParsingErrorMessage = @event.ErrorMessages,
+                PhoneNumber = @event.Origin,
+                Timestamp = @event.Timestamp
+            };
+            _invalidCaseReportsFromUnknownDataCollectors.Insert(invalidCaseReport);
         }
         [EventProcessor("06a22439-570f-4cbf-ba34-b5e874b96a2c")]
         public void Process(CaseReportIdentified @event)
         {
-            _invalidCaseReportsFromUnknownDataCollectors.Delete(r => r.Id == (CaseReportId)@event.CaseReportId);
+            var caseReport = _invalidCaseReportsFromUnknownDataCollectors.GetById(@event.CaseReportId);
+            _invalidCaseReportsFromUnknownDataCollectors.Delete(caseReport);
         }
     }
 }

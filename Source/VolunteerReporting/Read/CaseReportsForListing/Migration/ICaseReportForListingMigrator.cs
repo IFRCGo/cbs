@@ -3,10 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-namespace Read.CaseReportsForListing.Migration
-{
-    public interface ICaseReportForListingMigrator : ICanMigrate<CaseReportForListing>
-    {
-         
-    }
-}
+// TODO
+//namespace Read.CaseReportsForListing.Migration
+//{
+//    public interface ICaseReportForListingMigrator : ICanMigrate<CaseReportForListing>
+//    {
+
+//    }
+//}

@@ -10,7 +10,7 @@ using Dolittle.ReadModels;
 
 namespace Read.DataCollectors
 {
-    public class DataCollector : IReadModel, IHaveExtraElements
+    public class DataCollector : IReadModel
     { 
         public DataCollector(DataCollectorId id)
         {

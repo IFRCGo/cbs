@@ -12,7 +12,7 @@ using Concepts.HealthRisk;
 
 namespace Read.CaseReportsForListing
 {
-    public class CaseReportForListing :  IReadModel, IHaveExtraElements
+    public class CaseReportForListing :  IReadModel//, IHaveExtraElements
     {
         public CaseReportId Id { get; set; }
         public IDictionary<string, object> ExtraElements { get; set; }

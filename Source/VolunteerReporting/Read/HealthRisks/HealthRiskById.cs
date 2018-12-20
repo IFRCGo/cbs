@@ -6,16 +6,17 @@
 using System.Linq;
 using Concepts.HealthRisk;
 using Dolittle.Queries;
+using Dolittle.ReadModels;
 
 namespace Read.HealthRisks
 {
     public class HealthRiskById : IQueryFor<HealthRisk>
     {
-        private readonly IHealthRisks _collection;
+        private readonly IReadModelRepositoryFor<HealthRisk> _collection;
 
         public HealthRiskId HealthRiskId { get; set; }
 
-        public HealthRiskById(IHealthRisks collection)
+        public HealthRiskById(IReadModelRepositoryFor<HealthRisk> collection)
         {
             _collection = collection;
         }
