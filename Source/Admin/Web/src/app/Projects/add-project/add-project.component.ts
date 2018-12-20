@@ -35,22 +35,32 @@ export class AddProjectComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-
-        this.queryCoordinator.execute(new AllNationalSocieties()).then(
-            result => {
-                this.societies = result.items as NationalSociety[];
-            },
-            error => {
-                this.formError = `Error getting national societies: ${error}`;
-            }
-        );
         this.resetForm();
+
+        this.allNationalSocieties();
         this.surveillanceOptions = [
             { id: '0', name: 'Single Reports' },
             { id: '1', name: 'Aggregated Reports' },
             { id: '2', name: 'Both' }
         ];
     }
+
+    allNationalSocieties = () => {
+        console.log("AllNationalSocieties");
+        let query = new AllNationalSocieties();
+        this.queryCoordinator.execute(query).then(result => {
+            if (result.success) {
+                console.log("AllNationalSocieties", result);
+                const sortItems = result.items;
+                this.societies = [...sortItems];
+            } else {
+                console.error(result);
+                this.formError = `Error getting national societies: ${result}`;
+            }
+
+        });
+    };
+
 
     resetForm() {
         this.formError = '';
