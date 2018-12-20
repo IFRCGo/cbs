@@ -56,14 +56,14 @@ namespace Core
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 });
-            }
 
-            // Todo: CORS this probably is a bit too lose.. 
-            app.UseCors(builder => builder
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowAnyOrigin()
-                .AllowCredentials());
+                // TODO: CORS this probably is a bit too lose.. 
+                app.UseCors(builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials());
+            }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

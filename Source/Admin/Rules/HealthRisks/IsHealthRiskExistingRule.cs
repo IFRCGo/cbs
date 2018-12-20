@@ -19,9 +19,6 @@ namespace Rules.HealthRisks
             _healthRisks = healthRisks;
         }
 
-        public IsHealthRiskExisting Rule => (Guid healthRiskId) =>
-        {
-            return _healthRisks.GetById(healthRiskId) != null;
-        };
+        public IsHealthRiskExisting Rule => healthRiskId => _healthRisks.GetById(healthRiskId) != null;
     }
 }
