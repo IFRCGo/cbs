@@ -15,11 +15,11 @@ namespace Events.NationalSocieties
         public Guid Id { get; }
         public int TimezoneOffsetFromUtcInMinutes { get; }
 
-        public NationalSocietyCreated (string name, string country, Guid id, int timezoneOffsetFromUtcInMinutes) 
+        public NationalSocietyCreated (Guid id, string name, string country, int timezoneOffsetFromUtcInMinutes) 
         {
+            Id = id;
             Name = name;
             Country = country;
-            Id = id;
             TimezoneOffsetFromUtcInMinutes = timezoneOffsetFromUtcInMinutes;
         }
     }

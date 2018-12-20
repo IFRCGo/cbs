@@ -251,14 +251,24 @@
     "queries": {}
   },
   "2b0633d3-a9c2-4247-8a01-d8be372d94f4": {
-    "commands": {},
+    "commands": {
+      "9eb1cdd7-2b23-43fe-b93b-3100454d19d4": {
+        "generation": 1,
+        "type": "Domain.NationalSocieties.CreateNationalSociety, Domain"
+      }
+    },
     "events": {
       "b02b8acf-d464-48cd-8f0f-e5580d0d2bab": {
         "generation": 1,
         "type": "Events.NationalSocieties.NationalSocietyCreated, Events"
       }
     },
-    "eventSources": {},
+    "eventSources": {
+      "23e41d8d-87da-4b8d-ad27-51012bdb4d04": {
+        "generation": 1,
+        "type": "Domain.NationalSocieties.NationalSociety, Domain"
+      }
+    },
     "readModels": {
       "aa96e2e3-76b4-46c1-834f-4442b694b45a": {
         "generation": 1,

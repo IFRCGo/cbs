@@ -1,6 +1,12 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Domain.HealthRisks;
+using Domain.NationalSocieties;
 using Newtonsoft.Json;
 
 namespace Domain.Tests
@@ -48,11 +54,13 @@ namespace Domain.Tests
         //    new Guid("70736cc9-1194-44ac-a5e5-fb4b7f165b09"), new Guid("c5d92ded-e42f-439f-a559-63d353b73223")
         //};
 
-        private readonly IAggregateRootRepositoryFor<HealthRisk> _aggregate;
+        private readonly IAggregateRootRepositoryFor<HealthRisk> _healthRiskAggregate;
+        private readonly IAggregateRootRepositoryFor<NationalSociety> _nationalSocietyAggregate;
 
-        public TestDataCommandHandler(IAggregateRootRepositoryFor<HealthRisk> aggregate)
+        public TestDataCommandHandler(IAggregateRootRepositoryFor<HealthRisk> healthRiskAggregate, IAggregateRootRepositoryFor<NationalSociety> nationalSocietyAggregate)
         {
-            _aggregate = aggregate;
+            _healthRiskAggregate = healthRiskAggregate;
+            _nationalSocietyAggregate = nationalSocietyAggregate;
         }
 
         public void Handle(CreateHealthRiskTestData cmd)
@@ -62,19 +70,23 @@ namespace Domain.Tests
 
             foreach (var risk in risks)
             {
-                var root = _aggregate.Get(risk.Id);
+                var root = _healthRiskAggregate.Get(risk.Id);
                 root.CreateHealthRisk(risk.Name, risk.CaseDefinition, risk.Number);
             }
         }
 
-        //public void Handle(CreateNationalSocietyTestData cmd)
-        //{
-        //    var societies =
-        //        JsonConvert.DeserializeObject<CreateNationalSociety[]>(
-        //            System.IO.File.ReadAllText("./Data/NationalSocieties.json"));
+        public void Handle(CreateNationalSocietyTestData cmd)
+        {
+            var societies =
+                JsonConvert.DeserializeObject<CreateNationalSociety[]>(
+                    System.IO.File.ReadAllText("../Domain/Tests/Data/NationalSocieties.json"));
 
-        //    TODO EventHor(societies, e => e.Id);
-        //}
+            foreach (var society in societies)
+            {
+                var root = _nationalSocietyAggregate.Get(society.Id.Value);
+                root.CreateNationalSociety(society.Name.Value, society.Country, society.TimezoneOffsetFromUtcInMinutes);
+            }
+        }
 
         //public void Handle(CreateProjectsHealthRiskTestData cmd)
         //{
