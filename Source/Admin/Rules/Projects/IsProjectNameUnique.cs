@@ -3,21 +3,22 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
+using System.Linq;
 using Dolittle.ReadModels;
-using Domain.Projects;
 
 namespace Rules.Projects
 {
-    public class ProjectUniqueRule : IRuleImplementationFor<ProjectNameUnique>
+    public class IsProjectNameUnique : IRuleImplementationFor<Domain.Projects.IsProjectNameUnique>
     {
         private readonly IReadModelRepositoryFor<Read.Projects.Project> _projects; 
 
-        public ProjectUniqueRule(IReadModelRepositoryFor<Read.Projects.Project> projects)
+        public IsProjectNameUnique(IReadModelRepositoryFor<Read.Projects.Project> projects)
         {
             _projects = projects; 
         }
-
-        public ProjectNameUnique Rule => (string name) => throw new NotImplementedException();
+        public Domain.Projects.IsProjectNameUnique Rule => name =>
+        {
+            return _projects.Query.Count(p => p.Name == name) == 0;
+        };
     }
 }

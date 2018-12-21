@@ -9,16 +9,16 @@ using Dolittle.ReadModels;
 
 namespace Rules.Projects
 {
-    public class IsUserNotAVerifierRule : IRuleImplementationFor<Domain.Projects.Rules>
+    public class IsUserNotVerifier : IRuleImplementationFor<Domain.Projects.IsUserNotVerifier>
     {
         private readonly IReadModelRepositoryFor<Read.Projects.Project> _projects; 
 
-        public IsUserNotAVerifierRule(IReadModelRepositoryFor <Read.Projects.Project> projects)
+        public IsUserNotVerifier(IReadModelRepositoryFor <Read.Projects.Project> projects)
         {
             _projects = projects; 
         }
 
-        public Domain.Projects.Rules Rule => (Guid projectId, Guid userId) =>
+        public Domain.Projects.IsUserNotVerifier Rule => (Guid projectId, Guid userId) =>
         {
             return _projects.GetById(projectId).DataVerifiers.All(v => v.Id != userId);
         }; 

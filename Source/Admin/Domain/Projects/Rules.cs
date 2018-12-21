@@ -7,5 +7,7 @@ using System;
 
 namespace Domain.Projects
 {
-    public delegate bool Rules(Guid projectId, Guid userId);
+    public delegate bool IsProjectNameUnique(string name);
+
+    public delegate bool IsUserNotVerifier(Guid projectId, Guid userId);
 }

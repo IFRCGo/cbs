@@ -9,16 +9,16 @@ using Dolittle.ReadModels;
 
 namespace Rules.Admin
 {
-    public class IsUserExistingRule : IRuleImplementationFor<Domain.Admin.Rules>
+    public class IsUserExisting : IRuleImplementationFor<Domain.Admin.IsUserExisting>
     {
         private readonly IReadModelRepositoryFor<User> _users;
 
-        public IsUserExistingRule(IReadModelRepositoryFor<User> users)
+        public IsUserExisting(IReadModelRepositoryFor<User> users)
         {
             _users = users; 
         }
 
-        public Domain.Admin.Rules Rule => (Guid userId) =>
+        public Domain.Admin.IsUserExisting Rule => (Guid userId) =>
         {
             return _users.GetById(userId) != null;
         };

@@ -20,6 +20,7 @@ interface FormData {
     templateUrl: './add-project.component.html',
     styleUrls: ['./add-project.component.scss']
 })
+
 export class AddProjectComponent implements OnInit {
     societies: NationalSociety[];
     projectOwners: User[];
@@ -51,10 +52,13 @@ export class AddProjectComponent implements OnInit {
         this.formData = { selectedSociety: '', selectedOwner: '', projectName: '', selectedSurveillanceOptionId: '' };
     }
 
-    findInArray(id:string, array: any[]) {
+    findInArray(id: string, array: any[]) {
         if (!array) {
             return {};
         }
+
+        console.log("findInArray", id);
+
         const found = array.find(element => element.id === id);
         return found || {};            
     }
@@ -65,6 +69,8 @@ export class AddProjectComponent implements OnInit {
 
     allNationalSocieties = () => {
         console.log("AllNationalSocieties");
+        this.formData.selectedSociety = '';
+
         let query = new AllNationalSocieties();
         this.queryCoordinator.execute(query).then(result => {
             if (result.success) {
@@ -81,6 +87,8 @@ export class AddProjectComponent implements OnInit {
 
     getProjectOwners(nationalSocietyId: string) {
         console.log("getProjectOwners");
+        this.formData.selectedOwner = '';;
+
         let query = new AllUsers();
         query.nationalSocietyId = nationalSocietyId;
         this.queryCoordinator.execute(query).then(result => {
@@ -123,6 +131,8 @@ export class AddProjectComponent implements OnInit {
                     console.log('Could not create a new project :\n' + errors);
                 }
                 this.formError = "Could not create a new project.";
+
+                this.isFormSubmitted = false;
             }
         }).catch(response => {
             console.log(response);
@@ -135,7 +145,7 @@ export class AddProjectComponent implements OnInit {
             }
 
             this.formError = "Could not create a new project.";
-
+            this.isFormSubmitted = false;
         });
     }
 }
