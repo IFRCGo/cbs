@@ -45,19 +45,16 @@
     }
   },
   "defaults": {
-    "build": {
-        "preserveSymlinks": true
-    },
     "styleExt": "scss",
+    "class": {
+      "spec": false
+    },
     "component": {
       "spec": false,
       "inlineStyle": true,
       "inlineTemplate": true
     },
     "directive": {
-      "spec": false
-    },
-    "class": {
       "spec": false
     },
     "guard": {
@@ -71,6 +68,12 @@
     },
     "service": {
       "spec": false
-    } 
+    },
+    "build": {
+      "preserveSymlinks": true
+    },
+    "serve": {
+      "port": 4203
+    }
   }
 }
