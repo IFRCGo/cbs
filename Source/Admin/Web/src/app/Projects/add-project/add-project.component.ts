@@ -22,7 +22,6 @@ interface FormData {
 })
 export class AddProjectComponent implements OnInit {
     societies: NationalSociety[];
-    owners: User[];
     projectOwners: User[];
     surveillanceOptions: object[];
     formError: string = '';
@@ -38,28 +37,13 @@ export class AddProjectComponent implements OnInit {
         this.resetForm();
 
         this.allNationalSocieties();
+
         this.surveillanceOptions = [
             { id: '0', name: 'Single Reports' },
             { id: '1', name: 'Aggregated Reports' },
             { id: '2', name: 'Both' }
         ];
     }
-
-    allNationalSocieties = () => {
-        console.log("AllNationalSocieties");
-        let query = new AllNationalSocieties();
-        this.queryCoordinator.execute(query).then(result => {
-            if (result.success) {
-                console.log("AllNationalSocieties", result);
-                const sortItems = result.items;
-                this.societies = [...sortItems];
-            } else {
-                console.error(result);
-                this.formError = `Error getting national societies: ${result}`;
-            }
-
-        });
-    };
 
     resetForm() {
         this.formError = '';
@@ -79,6 +63,22 @@ export class AddProjectComponent implements OnInit {
         this.getProjectOwners(selectedNationalSocietyId);
     }
 
+    allNationalSocieties = () => {
+        console.log("AllNationalSocieties");
+        let query = new AllNationalSocieties();
+        this.queryCoordinator.execute(query).then(result => {
+            if (result.success) {
+                console.log("AllNationalSocieties", result);
+                const sortItems = result.items;
+                this.societies = [...sortItems];
+            } else {
+                console.error(result);
+                this.formError = `Error getting national societies: ${result}`;
+            }
+
+        });
+    };
+
     getProjectOwners(nationalSocietyId: string) {
         console.log("getProjectOwners");
         let query = new AllUsers();
@@ -90,25 +90,52 @@ export class AddProjectComponent implements OnInit {
                 this.projectOwners = [...sortItems];
             } else {
                 console.error(result);
-                this.formError = `Error getting project owners: ${result}`;
+                this.formError = `Error getting project projectOwners: ${result}`;
             }
-
         });
     }
 
-    async addProject() {
+    addProject = () => {
+
         const projectId = Guid.create();
         const { selectedOwner, selectedSociety, selectedSurveillanceOptionId, projectName } = this.formData;
+        console.log('addProject' + '\n selectedOwner:' + selectedOwner + '\n selectedSociety:' + selectedSociety + '\n projectName:' + projectName);
 
         let command = new CreateProject();
         command.id = projectId;
-        command.dataOwnerId = selectedOwner;
         command.name = projectName;
         command.nationalSocietyId = selectedSociety;
-        //project.surveillanceContext = selectedSurveillanceOptionId;
+        command.dataOwnerId = selectedOwner;
+        command.surveillanceContext = 0;//selectedSurveillanceOptionId;
 
-        await this.commandCoordinator.handle(command);
-        console.log('project created successfully');
-        this.isFormSubmitted = true;
+        console.log(command);
+
+        this.commandCoordinator.handle(command).then(response => {
+                console.log(response);
+            if (response.success) {
+                console.log('Successfully create a new health risk!');
+                this.isFormSubmitted = true;
+            } else {
+                if (!response.passedSecurity) { // Security error
+                    console.log('Could not create a new project because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    console.log('Could not create a new project :\n' + errors);
+                }
+                this.formError = "Could not create a new project.";
+            }
+        }).catch(response => {
+            console.log(response);
+
+            if (!response.passedSecurity) { // Security error
+                console.log('Could not create a new project because of security issues');
+            } else {
+                const errors = response.allValidationMessages.join('\n');
+                console.log('Could not create a new project:\n' + errors);
+            }
+
+            this.formError = "Could not create a new project.";
+
+        });
     }
 }

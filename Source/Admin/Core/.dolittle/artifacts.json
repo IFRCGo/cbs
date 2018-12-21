@@ -68,7 +68,12 @@
         "type": "Events.Projects.ProjectUpdated, Events"
       }
     },
-    "eventSources": {},
+    "eventSources": {
+      "de293996-0f2d-4a53-a682-6d675982a9c5": {
+        "generation": 1,
+        "type": "Domain.Projects.Project, Domain"
+      }
+    },
     "readModels": {
       "63ff50bc-0cab-4af8-9f7d-deb6ba5b1367": {
         "generation": 1,

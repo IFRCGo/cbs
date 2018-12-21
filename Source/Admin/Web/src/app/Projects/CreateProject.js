@@ -14,6 +14,6 @@ export class CreateProject extends Command
         this.name = '';
         this.nationalSocietyId = '00000000-0000-0000-0000-000000000000';
         this.dataOwnerId = '00000000-0000-0000-0000-000000000000';
-        this.surveillanceContext = {};
+        this.surveillanceContext = 0;
     }
 }

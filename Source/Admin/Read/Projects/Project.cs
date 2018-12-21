@@ -17,11 +17,11 @@ namespace Read.Projects
         public string Name { get; set; }
         public User DataOwner { get; set; }
         public NationalSociety NationalSociety { get; set; }
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public int SurveillanceContext { get; set; }
 
-        //@todo Change to IList<ProjectHealthRisk>
+        //TODO Change to IList<ProjectHealthRisk>
         public ProjectHealthRisk[] HealthRisks { get; set; }
-        //@todo Change to IList<User>
+        //TODO Change to IList<User>
         public User[] DataVerifiers { get; set; }
 
         public string SmsProxy { get; set; }

@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Read.Projects;
 using System;
 using Dolittle.ReadModels;
 using Domain.Projects;
@@ -12,9 +11,9 @@ namespace Rules.Projects
 {
     public class ProjectUniqueRule : IRuleImplementationFor<ProjectNameUnique>
     {
-        private readonly IReadModelRepositoryFor<Project> _projects; 
+        private readonly IReadModelRepositoryFor<Read.Projects.Project> _projects; 
 
-        public ProjectUniqueRule(IReadModelRepositoryFor<Project> projects)
+        public ProjectUniqueRule(IReadModelRepositoryFor<Read.Projects.Project> projects)
         {
             _projects = projects; 
         }

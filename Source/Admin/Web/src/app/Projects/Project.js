@@ -16,7 +16,7 @@ export class Project extends ReadModel
         this.name = '';
         this.dataOwner = {};
         this.nationalSociety = {};
-        this.surveillanceContext = {};
+        this.surveillanceContext = 0;
         this.healthRisks = [];
         this.dataVerifiers = [];
         this.smsProxy = '';

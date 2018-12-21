@@ -9,23 +9,24 @@ namespace Domain.Projects
 {
     public class CreateProjectValidator : CommandInputValidatorFor<CreateProject>
     {
-        public CreateProjectValidator(ProjectNameUnique projectNameUnique)
-        {
-            RuleFor(_ => _.Name)
-                .NotEmpty()
-                .WithMessage("Name is mandatory");
-            RuleFor(_ => _)
-                .Must(p => projectNameUnique(p.Name))
-                .WithMessage("Project name is already in use");
-            RuleFor(_ => _.DataOwnerId)
-                .NotEmpty()
-                .WithMessage("Data owner id is mandatory");
-            RuleFor(_ => _.NationalSocietyId)
-                .NotEmpty()
-                .WithMessage("National society id is mandatory");
-            RuleFor(_ => _.SurveillanceContext)
-                .NotEmpty()
-                .WithMessage("Surveillance context is mandatory");
-        }
+        // TODO
+        //public CreateProjectValidator(ProjectNameUnique projectNameUnique)
+        //{
+        //    RuleFor(_ => _.Name)
+        //        .NotEmpty()
+        //        .WithMessage("Name is mandatory");
+        //    RuleFor(_ => _)
+        //        .Must(p => projectNameUnique(p.Name))
+        //        .WithMessage("Project name is already in use");
+        //    RuleFor(_ => _.DataOwnerId)
+        //        .NotEmpty()
+        //        .WithMessage("Data owner id is mandatory");
+        //    RuleFor(_ => _.NationalSocietyId)
+        //        .NotEmpty()
+        //        .WithMessage("National society id is mandatory");
+        //    RuleFor(_ => _.SurveillanceContext)
+        //        .NotEmpty()
+        //        .WithMessage("Surveillance context is mandatory");
+        //}
     }
 }

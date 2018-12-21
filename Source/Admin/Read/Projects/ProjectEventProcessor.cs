@@ -47,7 +47,7 @@ namespace Read.Projects
                 NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId),
                 DataOwner = _users.GetById(@event.DataOwnerId),
                 Name = @event.Name,
-                SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext,
+                SurveillanceContext = @event.SurveillanceContext,
                 HealthRisks = new ProjectHealthRisk[0],
                 DataVerifiers = new User[0],
                 SmsProxy = ""
@@ -63,7 +63,7 @@ namespace Read.Projects
             project.NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId);
             project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
-            project.SurveillanceContext = (ProjectSurveillanceContext)@event.SurveillanceContext;
+            project.SurveillanceContext = @event.SurveillanceContext;
             project.SmsProxy = @event.SmsProxy;
 
             _projects.Update(project);
