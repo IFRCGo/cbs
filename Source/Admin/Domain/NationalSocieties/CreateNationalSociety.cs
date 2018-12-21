@@ -4,15 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Concepts.NationalSocieties;
-using Dolittle.ReadModels;
+using Dolittle.Commands;
 
-namespace Read.NationalSocieties
+namespace Domain.NationalSocieties
 {
-    public class NationalSociety : IReadModel
+    public class CreateNationalSociety : ICommand
     {
         public NationalSocietyId Id { get; set; }
         public NationalSocietyName Name { get; set; }
         public string Country { get; set; }
         public int TimezoneOffsetFromUtcInMinutes { get; set; }
+
     }
 }

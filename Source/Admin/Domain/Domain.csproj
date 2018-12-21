@@ -37,4 +37,8 @@
         <PackageReference Include="Dolittle.SDK" Version="2.*" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="NationalSocieties\" />
+    </ItemGroup>
+
 </Project>
