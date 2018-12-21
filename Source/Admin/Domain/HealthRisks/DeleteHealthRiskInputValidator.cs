@@ -3,9 +3,17 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
+using Dolittle.Commands.Validation;
+using FluentValidation;
 
-namespace Domain.Admin
+namespace Domain.HealthRisks
 {
-    public delegate bool Rules(Guid userId); 
+    public class DeleteHealthRiskInputValidator : CommandInputValidatorFor<DeleteHealthRisk>
+    {
+        public DeleteHealthRiskInputValidator()
+        {
+            RuleFor(_ => _.HealthRiskId)
+                .NotEmpty().WithMessage("Healthrisk id is required");
+        }
+    }
 }

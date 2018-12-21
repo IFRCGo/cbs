@@ -8,23 +8,18 @@ using FluentValidation;
 
 namespace Domain.HealthRisks
 {
-    public class AddKeyMessageToHealthRiskInputValidator : CommandInputValidatorFor<AddKeyMessageToHealthRisk>
+    public class AddThresholdToHealthRiskInputValidator : CommandInputValidatorFor<AddThresholdToHealthRisk>
     {
-        public AddKeyMessageToHealthRiskInputValidator()
+        public AddThresholdToHealthRiskInputValidator()
         {
-            RuleFor(_ => _.KeyMessage)
-                .NotNull()
-                .WithMessage("Keymessage is required");
-
-            RuleFor(_ => _.KeyMessage.Message)
-                .NotNull()
+            RuleFor(_ => _.HealthRiskId)
                 .NotEmpty()
-                .WithMessage("Message on keymessage is required");
+                .WithMessage("Health risk id is required");
 
-            RuleFor(_ => _.KeyMessage.Language)
-                .NotNull()
+            RuleFor(_ => _.Threshold)
                 .NotEmpty()
-                .WithMessage("Language on keymessage is required");
+                .WithMessage("Threshold is required");
+
         }
     }
 }

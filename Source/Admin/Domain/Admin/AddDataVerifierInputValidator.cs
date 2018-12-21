@@ -9,9 +9,9 @@ using FluentValidation;
 
 namespace Domain.Admin
 {
-    public class AddDataVerifierValidator : CommandInputValidatorFor<AddDataVerifier>
+    public class AddDataVerifierInputValidator : CommandInputValidatorFor<AddDataVerifier>
     {
-        public AddDataVerifierValidator(Rules userExist, Projects.Rules isUserNotAVerifier)
+        public AddDataVerifierInputValidator()
         {
             RuleFor(_ => _.ProjectId)
                 .NotEmpty()
@@ -19,12 +19,13 @@ namespace Domain.Admin
             RuleFor(_ => _.UserId)
                 .NotEmpty()
                 .WithMessage("UserId must be specified");
-            RuleFor(_ => _)
-                .Must(p => userExist(p.UserId))
-                .WithMessage("User is not existing");
-            RuleFor(_ => _)
-                .Must(p => isUserNotAVerifier(p.ProjectId, p.UserId))
-                .WithMessage("User is already a verifier");
+            // TODO
+            //RuleFor(_ => _)
+            //    .Must(Exist)
+            //    .WithMessage("User is not existing");
+            //RuleFor(_ => _)
+            //    .Must(p => isUserNotAVerifier(p.ProjectId, p.UserId))
+            //    .WithMessage("User is already a verifier");
         }
     }
 }

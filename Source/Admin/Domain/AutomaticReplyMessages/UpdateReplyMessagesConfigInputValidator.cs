@@ -6,14 +6,18 @@
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
-namespace Domain.HealthRisks
+namespace Domain.AutomaticReplyMessages
 {
-    public class DeleteHealthRiskValidator : CommandInputValidatorFor<DeleteHealthRisk>
+    public class UpdateReplyMessagesConfigInputValidator : CommandInputValidatorFor<UpdateReplyMessagesConfig>
     {
-        public DeleteHealthRiskValidator()
+        public UpdateReplyMessagesConfigInputValidator(IsTagsValid isTagsValid)
         {
-            RuleFor(_ => _.HealthRiskId)
-                .NotEmpty().WithMessage("Healthrisk id is required");
+            RuleFor(v => v.Messages)
+                .NotNull()
+                .WithMessage("Messages is missing");
+            RuleFor(v => v.Messages.Keys)
+                .Must(_ => isTagsValid(_))
+                .WithMessage("Tags are not valid");
         }
     }
 }

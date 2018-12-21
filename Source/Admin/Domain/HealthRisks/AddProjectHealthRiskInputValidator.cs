@@ -8,9 +8,9 @@ using FluentValidation;
 
 namespace Domain.HealthRisks
 {
-    public class AddProjectHealthRiskValidator : CommandInputValidatorFor<AddProjectHealthRisk>
+    public class AddProjectHealthRiskInputValidator : CommandInputValidatorFor<AddProjectHealthRisk>
     {
-        public AddProjectHealthRiskValidator(IsWithinNumberOfHealthRisksLimit isWithinNumberOfHealthRisksLimit, IsHealthRiskUniqueWithinProject isHealthRiskUniqueWithinProject, IsHealthRiskExisting isHealthRiskExisting)
+        public AddProjectHealthRiskInputValidator(IsWithinNumberOfHealthRisksLimit isWithinNumberOfHealthRisksLimit, IsHealthRiskUniqueWithinProject isHealthRiskUniqueWithinProject, IsHealthRiskExisting isHealthRiskExisting)
         {
             RuleFor(_ => _.ProjectId)
                 .Must(_ => isWithinNumberOfHealthRisksLimit(_))
