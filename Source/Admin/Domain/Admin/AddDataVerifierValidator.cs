@@ -11,7 +11,7 @@ namespace Domain.Admin
 {
     public class AddDataVerifierValidator : CommandInputValidatorFor<AddDataVerifier>
     {
-        public AddDataVerifierValidator(UserExist userExist, IsUserNotAVerifier isUserNotAVerifier)
+        public AddDataVerifierValidator(Rules userExist, IsUserNotAVerifier isUserNotAVerifier)
         {
             RuleFor(_ => _.ProjectId)
                 .NotEmpty()

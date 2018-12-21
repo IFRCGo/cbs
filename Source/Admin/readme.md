@@ -62,16 +62,26 @@ Open http://localhost:4200/ in your browser to access the UI.
 
 To populate the database with test data, go to http://localhost:5001/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
 > `/api/Dolittle/Commands
+
+Generate test data:
 > `{
 > `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
 > `"type": "269f0087-f2a7-4fce-bfb6-5a136d614201",
 > `"content": {}
 > `}
 
-or
-
+Generate test data:
 > `{
 > `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
 > `"type": "c60d8362-ab0b-4537-8913-75212990200f",
 > `"content": {}
 > `}
+
+Generate test data: users/project owners
+> `{
+> `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+> `"type": "d344314a-8349-405c-96fb-6e39f31b42b5",
+> `"content": {}
+> `}
+
+

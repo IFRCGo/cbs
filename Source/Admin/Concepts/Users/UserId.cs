@@ -3,24 +3,22 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Read.Users;
 using System;
-using Dolittle.ReadModels;
+using Dolittle.Concepts;
 
-namespace Rules.Admin
+namespace Concepts.Users
 {
-    public class IsUserExistingRule : IRuleImplementationFor<Domain.Admin.Rules>
+    public class UserId : ConceptAs<Guid>
     {
-        private readonly IReadModelRepositoryFor<User> _users;
+        public static readonly UserId Empty = Guid.Empty;
 
-        public IsUserExistingRule(IReadModelRepositoryFor<User> users)
+        public static implicit operator UserId(Guid value)
         {
-            _users = users; 
+            return new UserId { Value = value };
         }
-
-        public Domain.Admin.Rules Rule => (Guid userId) =>
+        public static implicit operator UserId(string value)
         {
-            return _users.GetById(userId) != null;
-        };
+            return new UserId { Value = Guid.Parse(value) };
+        }
     }
 }

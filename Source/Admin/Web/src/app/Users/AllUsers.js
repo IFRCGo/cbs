@@ -11,5 +11,6 @@ export class AllUsers extends Query
         this.nameOfQuery = 'AllUsers';
         this.generatedFrom = 'Read.Users.AllUsers';
 
+        this.nationalSocietyId = '00000000-0000-0000-0000-000000000000';
     }
 }

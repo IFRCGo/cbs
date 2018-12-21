@@ -5,6 +5,7 @@
 
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
+
 namespace Domain.NationalSocieties
 {
     public class NationalSocietyCommandHandler : ICanHandleCommands

@@ -5,6 +5,7 @@
 
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Events.Users;
 
 namespace Read.Users
 {
@@ -16,17 +17,17 @@ namespace Read.Users
         {
             _users = users;
         }
-        // [EventProcessor("2b354035-128e-470f-b0ef-e5cc449b0ebb")]
-        // public void Process(UserCreated @event)
-        // {
-        //     _users.Insert(new User
-        //     {
-        //         Country = @event.Country,
-        //         Firstname = @event.Firstname,
-        //         Id = @event.Id,
-        //         NationalSocietyId = @event.NationalSocietyId,
-        //         Lastname = @event.Lastname
-        //     });
-        // }
+        [EventProcessor("2b354035-128e-470f-b0ef-e5cc449b0ebb")]
+        public void Process(UserCreated @event)
+        {
+            _users.Insert(new User
+            {
+                Country = @event.Country,
+                FullName = @event.FullName,
+                Id = @event.Id,
+                NationalSocietyId = @event.NationalSocietyId,
+                DisplayName = @event.DisplayName
+            });
+        }
     }
 }

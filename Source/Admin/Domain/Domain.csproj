@@ -17,7 +17,7 @@
       <Content Include="Tests\Data\HealthRisks.json">
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Include="Tests\Data\Names.json">
+      <Content Include="Tests\Data\Users.json">
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
       <Content Include="Tests\Data\NationalSocieties.json">

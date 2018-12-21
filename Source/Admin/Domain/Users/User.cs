@@ -6,25 +6,20 @@
 using Concepts.NationalSocieties;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
-using Events.NationalSocieties;
+using Events.Users;
 
-namespace Domain.NationalSocieties
+namespace Domain.Users
 {
-    public class NationalSociety : AggregateRoot
+    public class User : AggregateRoot
     {
-        public NationalSociety(EventSourceId id) : base(id)
+        public User(EventSourceId id) : base(id)
         { 
             
         }
 
-        public void CreateNationalSociety(
-            NationalSocietyName name,
-            string country,
-            int timezoneOffsetFromUtcInMinutes
-        )
+        public void CreateUser(string fullName, string displayName, string country, NationalSocietyId nationalSocietyId)
         {
-            Apply(new NationalSocietyCreated(EventSourceId, name, country, timezoneOffsetFromUtcInMinutes));
+            Apply(new UserCreated(EventSourceId, fullName, displayName, country, nationalSocietyId));
         }
-
     }
 }

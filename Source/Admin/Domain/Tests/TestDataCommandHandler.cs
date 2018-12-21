@@ -3,10 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System.Linq;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Domain.HealthRisks;
 using Domain.NationalSocieties;
+using Domain.Users;
 using Newtonsoft.Json;
 
 namespace Domain.Tests
@@ -56,11 +58,13 @@ namespace Domain.Tests
 
         private readonly IAggregateRootRepositoryFor<HealthRisk> _healthRiskAggregate;
         private readonly IAggregateRootRepositoryFor<NationalSociety> _nationalSocietyAggregate;
+        private readonly IAggregateRootRepositoryFor<User> _userAggregate;
 
-        public TestDataCommandHandler(IAggregateRootRepositoryFor<HealthRisk> healthRiskAggregate, IAggregateRootRepositoryFor<NationalSociety> nationalSocietyAggregate)
+        public TestDataCommandHandler(IAggregateRootRepositoryFor<HealthRisk> healthRiskAggregate, IAggregateRootRepositoryFor<NationalSociety> nationalSocietyAggregate, IAggregateRootRepositoryFor<User> userAggregate)
         {
             _healthRiskAggregate = healthRiskAggregate;
             _nationalSocietyAggregate = nationalSocietyAggregate;
+            _userAggregate = userAggregate;
         }
 
         public void Handle(CreateHealthRiskTestData cmd)
@@ -119,24 +123,25 @@ namespace Domain.Tests
         //    TODO EventHor(projects, e => e.Id);
         //}
 
-        //public void Handle(CreateUserTestData cmd)
-        //{
-        //    _users.Delete(_ => true);
-        //    var societies =
-        //        JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
-        //            System.IO.File.ReadAllText("./Data/NationalSocieties.json"));
-        //    var users = JsonConvert.DeserializeObject<UserCreated[]>(
-        //        System.IO.File.ReadAllText("./TestData/Names.json"));
-        //    var i = 0;
+        public void Handle(CreateUserTestData cmd)
+        {
+            var societies =
+                JsonConvert.DeserializeObject<CreateNationalSociety[]>(
+                    System.IO.File.ReadAllText("../Domain/Tests/Data/NationalSocieties.json"));
 
-        //    foreach (var user in users)
-        //    {
-        //        // Make sure we have a valid National Society ID
-        //        if (!societies.Any(v => v.Id == user.NationalSocietyId))
-        //            user.NationalSocietyId = societies[i++ % societies.Length].Id;
+            var users = JsonConvert.DeserializeObject<CreateUser[]>(
+                System.IO.File.ReadAllText("../Domain/Tests/Data/Users.json"));
+            var i = 0;
 
-        //    }
-        //    TODO No longer in use(?)
-        //}
+            foreach (var user in users)
+            {
+                // Make sure we have a valid National Society ID
+                if (societies.All(v => v.Id != user.NationalSocietyId))
+                    user.NationalSocietyId = societies[i++ % societies.Length].Id;
+
+                var root = _userAggregate.Get(user.Id.Value);
+                root.CreateUser(user.FullName, user.DisplayName, user.Country, user.NationalSocietyId);
+            }
+        }
     }
 }

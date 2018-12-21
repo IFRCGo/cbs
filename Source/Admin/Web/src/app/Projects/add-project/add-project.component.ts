@@ -61,7 +61,6 @@ export class AddProjectComponent implements OnInit {
         });
     };
 
-
     resetForm() {
         this.formError = '';
         this.isFormSubmitted = false;
@@ -81,15 +80,20 @@ export class AddProjectComponent implements OnInit {
     }
 
     getProjectOwners(nationalSocietyId: string) {
-        this.queryCoordinator.execute(new AllUsers()).then(
-            users => {
-                this.projectOwners = users;
-            },
-            error => {
-                this.formError = `Error getting project owners: ${error}`;
-                console.error(error);
+        console.log("getProjectOwners");
+        let query = new AllUsers();
+        query.nationalSocietyId = nationalSocietyId;
+        this.queryCoordinator.execute(query).then(result => {
+            if (result.success) {
+                console.log("getProjectOwners", result);
+                const sortItems = result.items;
+                this.projectOwners = [...sortItems];
+            } else {
+                console.error(result);
+                this.formError = `Error getting project owners: ${result}`;
             }
-        );
+
+        });
     }
 
     async addProject() {

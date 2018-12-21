@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
+using Concepts.NationalSocieties;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
 
@@ -13,11 +14,13 @@ namespace Read.Users
     {
         readonly IReadModelRepositoryFor<User> _collection;
 
+        public NationalSocietyId NationalSocietyId { set; private get; }
+
         public AllUsers(IReadModelRepositoryFor <User> collection)
         {
             _collection = collection;
         }
 
-        public IQueryable<User> Query => _collection.Query;
+        public IQueryable<User> Query => _collection.Query.Where(x=>x.NationalSocietyId == NationalSocietyId);
     }
 }

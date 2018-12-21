@@ -287,9 +287,24 @@
     }
   },
   "93a7e37f-f55c-4f7e-a91a-e285cd11585d": {
-    "commands": {},
-    "events": {},
-    "eventSources": {},
+    "commands": {
+      "66ea93be-e70e-4164-9dce-abecc5b3e80f": {
+        "generation": 1,
+        "type": "Domain.Users.CreateUser, Domain"
+      }
+    },
+    "events": {
+      "8385a70f-568e-4660-9e3e-d175ca5d98ff": {
+        "generation": 1,
+        "type": "Events.Users.UserCreated, Events"
+      }
+    },
+    "eventSources": {
+      "c119cd26-c8f0-4869-ac9c-24e4fcf39855": {
+        "generation": 1,
+        "type": "Domain.Users.User, Domain"
+      }
+    },
     "readModels": {
       "6fcb2c5d-e1ae-48dc-ac04-954c099fc5f6": {
         "generation": 1,
