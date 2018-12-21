@@ -3,23 +3,23 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Domain.HealthRisks;
 using Read.Projects;
 using Dolittle.ReadModels;
+using Dolittle.Rules;
 
 namespace Rules.HealthRisks
 {
-    public class IsWithinNumberOfHealthRisksLimitRule : IRuleImplementationFor<IsWithinNumberOfHealthRisksLimit>
+    public class IsWithinNumberOfHealthRisksLimit : IRuleImplementationFor<Domain.HealthRisks.IsWithinNumberOfHealthRisksLimit>
     {
         private readonly IReadModelRepositoryFor<Project> _projects;
         private const int MaxNumberOfHealthRisksForProject = 5;
 
-        public IsWithinNumberOfHealthRisksLimitRule(IReadModelRepositoryFor<Project> projects)
+        public IsWithinNumberOfHealthRisksLimit(IReadModelRepositoryFor<Project> projects)
         {
             _projects = projects;
         }
 
-        public IsWithinNumberOfHealthRisksLimit Rule => projectId =>
+        public Domain.HealthRisks.IsWithinNumberOfHealthRisksLimit Rule => projectId =>
         {
             var project = _projects.GetById(projectId);
             var numberOfRisks = project.HealthRisks?.Length ?? 0;

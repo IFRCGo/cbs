@@ -12,7 +12,6 @@ using Events.AutomaticReplyMessages;
 using Read.AutomaticReplyMessages;
 using Read.NationalSocieties;
 using Read.Users;
-using Concepts.Projects;
 using Dolittle.ReadModels;
 
 namespace Read.Projects
@@ -96,7 +95,7 @@ namespace Read.Projects
             var project = _projects.GetById(@event.ProjectId);
             var healthRisk = project.HealthRisks.Single(r => r.HealthRiskId == @event.HealthRiskId);
             healthRisk.Threshold = @event.Threshold;
-            //@todo need to be tested
+            //TODO need to be tested
             _projects.Update(project);
 
             var projectHealthRiskVersion = new ProjectHealthRiskVersion
@@ -111,7 +110,7 @@ namespace Read.Projects
         [EventProcessor("ea4b9ace-f4b1-4526-8e4b-601f6727a60f")]
         public void Process(DataVerifierAdded @event)
         {
-            //@todo Assumes that user and project exists. Should be verified in BusinessValidator
+            //TODO Assumes that user and project exists. Should be verified in BusinessValidator
             var user = _users.GetById(@event.UserId);
             var project = _projects.GetById(@event.ProjectId);
             project.DataVerifiers.Append(user);
@@ -119,14 +118,14 @@ namespace Read.Projects
         [EventProcessor("15e22196-e233-468f-922c-8ac2b4eda660")]
         public void Process(DataVerifierRemoved @event)
         {
-            //@todo Assumes that project exists. Should be verified in BusinessValidator
+            //TODO Assumes that project exists. Should be verified in BusinessValidator
             //_projects.Update(p => p.Id == @event.ProjectId,
             //    Builders<Project>.Update.PullFilter(p => p.DataVerifiers, u => u.Id == @event.UserId));
         }
         [EventProcessor("fc262fe1-4aaf-497d-91ad-b9876e032f88")]
         public void Process(ReplyMessageConfigUpdated @event)
         {
-            //@todo Event should have Id field
+            //TODO Event should have Id field
             _replyMessages.Insert(new ReplyMessagesConfig
             {
                 //FIXME! Event needs to look different!

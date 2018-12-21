@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Commands.Validation;
-using Domain.Projects;
 using FluentValidation;
 
 namespace Domain.Admin

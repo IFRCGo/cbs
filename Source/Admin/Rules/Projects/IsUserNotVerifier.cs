@@ -6,6 +6,7 @@
 using System;
 using System.Linq;
 using Dolittle.ReadModels;
+using Dolittle.Rules;
 
 namespace Rules.Projects
 {

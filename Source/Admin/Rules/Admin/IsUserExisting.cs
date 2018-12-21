@@ -6,6 +6,7 @@
 using Read.Users;
 using System;
 using Dolittle.ReadModels;
+using Dolittle.Rules;
 
 namespace Rules.Admin
 {

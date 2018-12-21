@@ -14,8 +14,8 @@ namespace Events.AutomaticReplyMessages
 
         public MessageUpdated(Guid id, string message) 
         {
-            this.Id = id;
-            this.Message = message;               
+            Id = id;
+            Message = message;               
         }
     }
 }

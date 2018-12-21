@@ -4,15 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Domain.AutomaticReplyMessages;
+using System.Collections.Generic;
 using System.Linq;
+using Dolittle.Rules;
 
 namespace Rules.AutomaticReplyMessages
 {
-    public class IsTagValidRule : IRuleImplementationFor<IsTagValid>
+    public class IsTagsValid : IRuleImplementationFor<Domain.AutomaticReplyMessages.IsTagsValid>
     {
-        public IsTagValid Rule => (string tag) =>
+        private readonly Domain.AutomaticReplyMessages.IsTagValid _isTagValid; 
+        public IsTagsValid(Domain.AutomaticReplyMessages.IsTagValid isTagValid)
         {
-            return !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
+            _isTagValid = isTagValid; 
+        }
+
+        public Domain.AutomaticReplyMessages.IsTagsValid Rule => (IEnumerable<string> tags) =>
+        {
+            return tags.All(_ =>_isTagValid(_));
         };
     }
 }

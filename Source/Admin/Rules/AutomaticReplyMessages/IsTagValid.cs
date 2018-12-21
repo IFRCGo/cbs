@@ -3,10 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-namespace Rules
+using System.Linq;
+using Dolittle.Rules;
+
+namespace Rules.AutomaticReplyMessages
 {
-    public interface IRuleImplementationFor<TDelegate>
+    public class IsTagValid : IRuleImplementationFor<Domain.AutomaticReplyMessages.IsTagValid>
     {
-        TDelegate Rule { get; }
+        public Domain.AutomaticReplyMessages.IsTagValid Rule => tag => !string.IsNullOrWhiteSpace(tag) && tag.All(char.IsLetterOrDigit);
     }
 }
