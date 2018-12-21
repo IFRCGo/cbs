@@ -70,17 +70,16 @@ namespace Domain.Tests
         //            var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
         //            events.Add(new ProjectHealthRiskAdded(project.Id, risk.Id, 0));
         //        }
-        //        TODO EventHor(events, e => e.HealthRiskId);
+        // TODO: Generate test data for projects with healthriskadded
         //    }
         //}
 
-        //public void Handle(CreateProjectTestData cmd)
-        //{
+        public void Handle(CreateProjectTestData cmd)
+        {
         //    var projects =
-        //        JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./Data/Projects.json"));
-
-        //    TODO EventHor(projects, e => e.Id);
-        //}
+        //        JsonConvert.DeserializeObject<CreateProject[]>(System.IO.File.ReadAllText("../Domain/Tests/Data/Projects.json"));
+        // TODO: Generate test data for projects
+        }
 
         public void Handle(CreateUserTestData cmd)
         {

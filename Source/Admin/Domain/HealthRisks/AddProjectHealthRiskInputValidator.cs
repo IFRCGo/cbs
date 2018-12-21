@@ -4,23 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Commands.Validation;
+using FluentValidation;
 
 namespace Domain.HealthRisks
 {
     public class AddProjectHealthRiskInputValidator : CommandInputValidatorFor<AddProjectHealthRisk>
     {
-        // TODO:
-        //public AddProjectHealthRiskInputValidator(IsWithinNumberOfHealthRisksLimit isWithinNumberOfHealthRisksLimit, IsHealthRiskUniqueWithinProject isHealthRiskUniqueWithinProject, IsHealthRiskExisting isHealthRiskExisting)
-        //{
-        //    RuleFor(_ => _.ProjectId)
-        //        .Must(_ => isWithinNumberOfHealthRisksLimit(_))
-        //        .WithMessage("Project does not allow health risks to be added");
-        //    RuleFor(_ => _)
-        //        .Must(p => isHealthRiskUniqueWithinProject(p.HealthRiskId, p.ProjectId))
-        //        .WithMessage("Project does not allow health risks to be added");
-        //    RuleFor(_ => _)
-        //        .Must(p => isHealthRiskExisting(p.HealthRiskId))
-        //        .WithMessage("Project does not allow health risks to be added");
-        //}
+        public AddProjectHealthRiskInputValidator(IsWithinNumberOfHealthRisksLimit isWithinNumberOfHealthRisksLimit, IsHealthRiskUniqueWithinProject isHealthRiskUniqueWithinProject, IsHealthRiskExisting isHealthRiskExisting)
+        {
+            RuleFor(_ => _.ProjectId)
+                .Must(_ => isWithinNumberOfHealthRisksLimit(_))
+                .WithMessage("Project does not allow health risks to be added");
+            RuleFor(_ => _)
+                .Must(p => isHealthRiskUniqueWithinProject(p.HealthRiskId, p.ProjectId))
+                .WithMessage("Project does not allow health risks to be added");
+            RuleFor(_ => _)
+                .Must(p => isHealthRiskExisting(p.HealthRiskId))
+                .WithMessage("Project does not allow health risks to be added");
+        }
     }
 }
