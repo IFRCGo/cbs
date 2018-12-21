@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --base-href=/datacollectors/ --deploy-url=/datacollectors/ --public-host=localhost:4202",
+    "build": "ng build --base-href=/datacollectors/ --deploy-url=/datacollectors/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
