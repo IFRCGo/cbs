@@ -1,0 +1,24 @@
+{
+  "name": "raspberry_reactjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/raubreywhite/raspberry_reactjs.git",
+  "author": "Richard White <w@rwhite.no>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "dependencies": {
+    "d3": "^5.7.0",
+    "json5": "^2.1.0",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.10.3"
+  }
+}

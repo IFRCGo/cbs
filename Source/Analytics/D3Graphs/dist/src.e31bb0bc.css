@@ -1,0 +1,12 @@
+.axis { font: 14px sans-serif; }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+img {
+  width: 50%;
+  height: auto;
+  }
