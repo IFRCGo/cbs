@@ -23984,167 +23984,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"components/Camera.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactDom = require("react-dom");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var App =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(App, _Component);
-
-  function App(props) {
-    var _this;
-
-    _classCallCheck(this, App);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("img", {
-        src: "/camera/image.jpg"
-      }));
-    }
-  }]);
-
-  return App;
-}(_react.Component);
-
-exports.default = App;
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"components/LiveImage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var LiveImage =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(LiveImage, _React$Component);
-
-  function LiveImage(props) {
-    var _this;
-
-    _classCallCheck(this, LiveImage);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(LiveImage).call(this, props));
-
-    _this.loadImage = function () {
-      var component = _assertThisInitialized(_assertThisInitialized(_this));
-
-      var img = new Image();
-      img.crossOrigin = "Anonymous";
-
-      img.onload = function () {
-        var canvas = document.createElement("canvas");
-        canvas.width = this.width;
-        canvas.height = this.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(this, 0, 0);
-        var dataURL = canvas.toDataURL("image/jpeg", 1.0);
-        component.setState({
-          liveImage: dataURL
-        });
-      };
-
-      img.src = "".concat(_this.props.image, "?").concat(new Date().getTime());
-
-      _this.setState({
-        loadingImage: img
-      });
-    };
-
-    _this.state = {
-      loadingImage: null,
-      liveImage: null
-    };
-    return _this;
-  }
-
-  _createClass(LiveImage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.loadImage();
-      this.interval = setInterval(this.loadImage, this.props.interval);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      clearInterval(this.interval);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("img", _extends({
-        src: this.state.liveImage
-      }, this.props));
-    }
-  }]);
-
-  return LiveImage;
-}(_react.default.Component);
-
-exports.default = LiveImage;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/d3/dist/package.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52157,10 +51997,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Camera = _interopRequireDefault(require("./Camera.js"));
-
-var _LiveImage = _interopRequireDefault(require("./LiveImage.js"));
-
 var _Log = _interopRequireDefault(require("./Log.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52207,32 +52043,12 @@ function (_Component) {
     key: "render",
     value: function render() {
       var name = this.state.name;
-      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "1.750L water, 250ml acid!!!"), _react.default.createElement("p", null, "pH Short"), _react.default.createElement(_Log.default, {
-        width: 800,
-        height: 300,
-        datapoints: -720,
-        dataurl: "/logs/ph_short.json"
-      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "pH long"), _react.default.createElement(_Log.default, {
-        width: 800,
-        height: 300,
-        datapoints: -480,
-        dataurl: "/logs/ph.json"
-      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "pump run"), _react.default.createElement(_Log.default, {
-        width: 800,
-        height: 300,
-        datapoints: -480,
-        dataurl: "/logs/pump_run.json"
-      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "pump"), _react.default.createElement(_Log.default, {
-        width: 800,
-        height: 300,
-        datapoints: -48,
-        dataurl: "/logs/pump.json"
-      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "ph very long"), _react.default.createElement(_Log.default, {
+      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "1.750L water, 250ml acid!!!"), _react.default.createElement("p", null, "ph"), _react.default.createElement(_Log.default, {
         width: 800,
         height: 300,
         datapoints: -5760,
         dataurl: "/logs/ph.json"
-      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "I am ", name));
+      }), _react.default.createElement("br", null), _react.default.createElement("p", null, "Hello: \"", name, "\""));
     }
   }]);
 
@@ -52240,7 +52056,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = App;
-},{"react":"../node_modules/react/index.js","./Camera.js":"components/Camera.js","./LiveImage.js":"components/LiveImage.js","./Log.js":"components/Log.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Log.js":"components/Log.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
