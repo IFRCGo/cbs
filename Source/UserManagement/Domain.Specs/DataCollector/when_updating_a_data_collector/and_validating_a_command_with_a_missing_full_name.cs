@@ -25,9 +25,10 @@ using Machine.Specifications;
 
          Because of = () => { validation_results = validator.Validate(cmd); };
 
-         //It should_be_invalid = () => validation_results.ShouldBeInvalid();
-         //It should_have_a_single_validation_error = () => validation_results.ShouldHaveInvalidCountOf(1);
-         //It should_identify_the_first_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.FullName));
-     }
+        // TODO: Fix spec
+        // It should_be_invalid = () => validation_results.ShouldBeInvalid();
+        // It should_have_a_single_validation_error = () => validation_results.ShouldHaveInvalidCountOf(1);
+        // It should_identify_the_first_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.FullName));
+    }
 
- }
+}

@@ -27,6 +27,7 @@ namespace Domain.Specs.DataCollector.when_adding_a_phone_number
             };
         };
 
+        // TODO: Fix spec
         //Because of = () => { validation_result = validator.Validate(cmd); };
 
         //It should_be_invalid = () => validation_result.ShouldBeInvalid();
@@ -35,6 +36,6 @@ namespace Domain.Specs.DataCollector.when_adding_a_phone_number
 
         //It should_identify_the_data_collector_id_as_the_problem =
         //    () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
-            
+
     }
 }
