@@ -4,6 +4,50 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Tests\Data\AutomaticReplies.json" />
+    <None Remove="Tests\Data\AutomaticReplyChangeTest.json" />
+    <None Remove="Tests\Data\AutomaticReplyKeyMessages.json" />
+    <None Remove="Tests\Data\AutomaticReplyRemoved.json" />
+    <None Remove="Tests\Data\DataCollectors.json" />
+    <None Remove="Tests\Data\DefaultAutomaticReplies.json" />
+    <None Remove="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
+    <None Remove="Tests\Data\HealthRisks.json" />
+    <None Remove="Tests\Data\Projects.json" />
+    <None Remove="Tests\Data\TextMessages.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tests\Data\AutomaticReplies.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\AutomaticReplyChangeTest.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\AutomaticReplyKeyMessages.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\AutomaticReplyRemoved.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\DataCollectors.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\DefaultAutomaticReplies.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\DefaultAutomaticReplyKeyMessages.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\HealthRisks.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\Projects.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Tests\Data\TextMessages.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
   </ItemGroup>
   <ItemGroup>
