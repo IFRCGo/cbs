@@ -11,6 +11,7 @@ COPY ./Admin/Web /CBS/Source/Admin/Web
 WORKDIR /CBS/Source/Admin/Web
 RUN ["npm", "run", "build"]
 
+# Build runtime image
 FROM nginx:1.15-alpine
 COPY --from=build /CBS/Source/Admin/Web/dist /usr/share/nginx/html
 COPY --from=build /CBS/Source/Admin/Web/nginx-default.conf /etc/nginx/conf.d/default.conf
