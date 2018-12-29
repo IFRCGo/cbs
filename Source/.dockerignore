@@ -1,0 +1,6 @@
+# Ignore Node modules
+**/node_modules/
+
+# Ignore C# binaries
+**/bin/
+**/obj/
