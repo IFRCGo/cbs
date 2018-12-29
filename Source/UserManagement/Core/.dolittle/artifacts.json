@@ -161,5 +161,17 @@
       }
     },
     "queries": {}
+  },
+  "f932bf63-8d02-4a9f-ab73-4310be9e89aa": {
+    "commands": {
+      "8d7bc6a3-c8fb-487f-84f2-c133057074d9": {
+        "generation": 1,
+        "type": "Domain.Tests.CreateDataCollectorTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
   }
 }

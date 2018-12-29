@@ -4,6 +4,38 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
+    <ItemGroup>
+      <None Remove="Tests\Data\Admins.json" />
+      <None Remove="Tests\Data\DataCollectors.json" />
+      <None Remove="Tests\Data\DataConsumers.json" />
+      <None Remove="Tests\Data\DataCoordinators.json" />
+      <None Remove="Tests\Data\DataOwners.json" />
+      <None Remove="Tests\Data\DataVerifiers.json" />
+      <None Remove="Tests\Data\SystemConfigurators.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Tests\Data\Admins.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\DataCollectors.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\DataConsumers.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\DataCoordinators.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\DataOwners.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\DataVerifiers.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Tests\Data\SystemConfigurators.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Events\Events.csproj" />
