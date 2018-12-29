@@ -1,13 +1,16 @@
-# ignore all . files (.git, .editorconfig, etc.)
-.*
-
-# ignore folders
+# Ignore non-code folders
 Codeathons
-Documentation
-Meetings
 Design
-**/Example
-**/node_modules
+Documentation
+Logs
+Meetings
 
-# ignore markdown files
-*.md
+# Ignore Node modules
+**/node_modules/
+
+# Ignore web binaries
+**/Web/dist/
+
+# Ignore C# binaries
+**/bin/
+**/obj/
