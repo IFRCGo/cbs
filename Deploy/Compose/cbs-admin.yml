@@ -2,13 +2,6 @@ version: '3'
 networks:
   cbs-network:
 services:
-  cbs-admin-mongo:
-    image: "mongo"
-    expose:
-      - "27017"
-    networks:
-      - "cbs-network"
-
   cbs-admin-core:
     build:
       context: "../../"
