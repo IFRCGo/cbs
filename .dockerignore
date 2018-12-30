@@ -1,4 +1,5 @@
 # Ignore non-code folders
+.git
 Codeathons
 Design
 Documentation

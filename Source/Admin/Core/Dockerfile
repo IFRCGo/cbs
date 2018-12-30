@@ -11,12 +11,12 @@ COPY ./Source/Admin/Read/Read.csproj /CBS/Source/Admin/Read/Read.csproj
 COPY ./Source/Admin/Rules/Rules.csproj /CBS/Source/Admin/Rules/Rules.csproj
 
 WORKDIR /CBS/Source/Admin
-RUN ["dotnet", "restore"]
+RUN dotnet restore
 
 # Build production code
 COPY ./Source/Admin /CBS/Source/Admin
 WORKDIR /CBS/Source/Admin/Core
-RUN ["dotnet", "publish", "--no-restore", "-c", "Release", "-o", "out"]
+RUN dotnet publish --no-restore -c Release -o out
 
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
