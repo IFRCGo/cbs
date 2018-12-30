@@ -1,0 +1,15 @@
+version: '3'
+networks:
+  cbs-network:
+services:
+
+  cbs-usermanagement-web:
+    build:
+      context: "../../Source/"
+      dockerfile: "UserManagement/Web/Dockerfile"
+      args:
+        mode: "build-test"
+    expose:
+      - "80"
+    networks:
+      - "cbs-network"
