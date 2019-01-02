@@ -16,6 +16,9 @@ namespace Concepts.HealthRisk
         {
             return new HealthRiskId { Value = id };
         }
-
+        public static implicit operator HealthRiskId(string id)
+        {
+            return new HealthRiskId { Value = Guid.Parse(id) };
+        }
     }
 }

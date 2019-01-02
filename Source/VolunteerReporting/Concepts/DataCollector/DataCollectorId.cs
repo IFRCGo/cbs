@@ -15,6 +15,11 @@ namespace Concepts.DataCollector
         public static implicit operator DataCollectorId(Guid id)
         {
             return new DataCollectorId { Value = id };
-        }        
+        }
+
+        public static implicit operator DataCollectorId(string id)
+        {
+            return new DataCollectorId { Value = Guid.Parse(id) };
+        }
     }
 }

@@ -8,12 +8,16 @@
     <None Remove="Tests\Data\AutomaticReplyChangeTest.json" />
     <None Remove="Tests\Data\AutomaticReplyKeyMessages.json" />
     <None Remove="Tests\Data\AutomaticReplyRemoved.json" />
+    <None Remove="Tests\Data\CaseReports.json" />
     <None Remove="Tests\Data\DataCollectors.json" />
     <None Remove="Tests\Data\DefaultAutomaticReplies.json" />
     <None Remove="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
     <None Remove="Tests\Data\HealthRisks.json" />
     <None Remove="Tests\Data\Projects.json" />
     <None Remove="Tests\Data\TextMessages.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tests\Data\CaseReports.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tests\Data\AutomaticReplies.json">
@@ -52,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
 </Project>

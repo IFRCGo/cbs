@@ -62,6 +62,10 @@
     "e4241369-0894-4226-b3d3-50d48d95e431": {
       "name": "Events",
       "subFeatures": {}
+    },
+    "7dd5481f-a93f-4542-baf8-a751767926a3": {
+      "name": "Tests",
+      "subFeatures": {}
     }
   }
 }

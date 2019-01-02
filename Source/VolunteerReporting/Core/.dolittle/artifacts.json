@@ -301,7 +301,12 @@
   "86833d83-8485-4381-ba7b-11ed25b904f6": {
     "commands": {},
     "events": {},
-    "eventSources": {},
+    "eventSources": {
+      "43bee04d-3ad2-453b-b06e-2afbcdaa94bf": {
+        "generation": 1,
+        "type": "Domain.HealthRisks.HealthRisk, Domain"
+      }
+    },
     "readModels": {
       "6a57c08a-d0c3-4c17-a280-85683cd36ac3": {
         "generation": 1,
@@ -339,5 +344,25 @@
         "type": "Read.CaseReportsForListing.CaseReportForListingById, Read"
       }
     }
+  },
+  "7dd5481f-a93f-4542-baf8-a751767926a3": {
+    "commands": {
+      "660480a6-831a-44d5-ba08-c2031efab757": {
+        "generation": 1,
+        "type": "Domain.Tests.CreateDataCollectorTestData, Domain"
+      },
+      "6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3": {
+        "generation": 1,
+        "type": "Domain.Tests.CreateHealthRiskTestData, Domain"
+      },
+      "a6f7a6ff-c77b-4173-bf1a-45ada8d6715a": {
+        "generation": 1,
+        "type": "Domain.Tests.CreateCaseReportTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
   }
 }

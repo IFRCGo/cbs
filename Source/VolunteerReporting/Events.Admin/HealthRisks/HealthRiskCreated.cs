@@ -23,7 +23,7 @@ namespace Events.Admin.HealthRisks
         //public string CommunityCase { get; }
         //public string KeyMessage { get; }
 
-        public HealthRiskCreated(Guid id, int readableId, string name, string confirmedCase, string note, string suspectedCase, string probableCase, string communityCase, string keyMessage) 
+        public HealthRiskCreated(Guid id, int readableId, string name /*, string confirmedCase, string note, string suspectedCase, string probableCase, string communityCase, string keyMessage*/) 
         {
             Id = id;
             ReadableId = readableId;
