@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Concepts.DataCollector;
 using Dolittle.Domain;
 using Domain.DataCollectors.Registration;

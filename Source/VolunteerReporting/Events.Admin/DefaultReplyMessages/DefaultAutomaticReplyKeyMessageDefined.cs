@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-// CANNOT FIND THIS EVENT IN ANY BOUNDED CONTEXT
+// TODO: CANNOT FIND THIS EVENT IN ANY BOUNDED CONTEXT
 using Dolittle.Events;
 using System;
 
