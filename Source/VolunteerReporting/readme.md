@@ -64,27 +64,28 @@ Open http://localhost:4200/ in your browser to access the UI.
 
 To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
 
-Generate test data: 
 ```
-"660480a6-831a-44d5-ba08-c2031efab757" "CreateDataCollectorTestData"
+Create DataCollector testdata: "660480a6-831a-44d5-ba08-c2031efab757"
+
 {
   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4", 
    "type": "660480a6-831a-44d5-ba08-c2031efab757",
    "content": {}
 }
 
-"6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3" "CreateHealthRiskTestData"
-> `{
-> `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
-> `"type": "6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3",
-> `"content": {}
-> `}
+Create HealthRisk testdata: "6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3"
+{
+   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+   "type": "6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3",
+   "content": {}
+}
    
-"a6f7a6ff-c77b-4173-bf1a-45ada8d6715a" "CreateCaseReportTestData"
-> `{
-> `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
-> `"type": "a6f7a6ff-c77b-4173-bf1a-45ada8d6715a",
-> `"content": {}
-> `}
+Create CaseReport testdata: "a6f7a6ff-c77b-4173-bf1a-45ada8d6715a"
+
+{
+   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+   "type": "a6f7a6ff-c77b-4173-bf1a-45ada8d6715a",
+   "content": {}
+}
     
 ```
