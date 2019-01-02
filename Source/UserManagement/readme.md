@@ -79,14 +79,13 @@ The backend APIs are available on http://localhost:5002/ (Swagger is unavailable
 
 ## Populating the database with test data
 
-Note: This project does not yet contains any TestData files. 
+To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
 
-To populate the database with test data, go to http://localhost:5001/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
-> `/api/Dolittle/Commands
-
-Generate test data: Data collectors
-> `{
-> `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
-> `"type": "8d7bc6a3-c8fb-487f-84f2-c133057074d9",
-> `"content": {}
-> `}
+Create DataCollector testdata: "269f0087-f2a7-4fce-bfb6-5a136d614201"
+```
+{
+  "correlationId": "8d7bc6a3-c8fb-487f-84f2-c133057074d9", 
+   "type": "8d7bc6a3-c8fb-487f-84f2-c133057074d9",
+   "content": {}
+}
+```
