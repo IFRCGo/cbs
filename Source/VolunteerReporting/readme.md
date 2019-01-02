@@ -62,7 +62,7 @@ Open http://localhost:4200/ in your browser to access the UI.
 
 ## Populating the database with test data
 
-To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
+To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
 
 ```
 Create DataCollector testdata: "660480a6-831a-44d5-ba08-c2031efab757"
