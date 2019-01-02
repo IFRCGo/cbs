@@ -64,7 +64,6 @@ To populate the database with test data, go to http://localhost:5001/swagger and
 
 ```
 Create HealthRisk testdata: "269f0087-f2a7-4fce-bfb6-5a136d614201"
-
 {
   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4", 
    "type": "269f0087-f2a7-4fce-bfb6-5a136d614201",
@@ -78,8 +77,7 @@ Create NationalSociety testdata: "c60d8362-ab0b-4537-8913-75212990200f"
    "content": {}
 }
    
-Create CreateUser testdata: "d344314a-8349-405c-96fb-6e39f31b42b5"
-
+Create User testdata: "d344314a-8349-405c-96fb-6e39f31b42b5"
 {
    "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
    "type": "d344314a-8349-405c-96fb-6e39f31b42b5",
