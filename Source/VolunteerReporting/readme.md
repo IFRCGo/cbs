@@ -69,9 +69,13 @@ Generate test data:
 
 "660480a6-831a-44d5-ba08-c2031efab757" "CreateDataCollectorTestData"
 > `{
+
 > `"correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+
 > `"type": "660480a6-831a-44d5-ba08-c2031efab757",
+
 > `"content": {}
+
 > `}
 
 "6dd04a67-7fbc-49f9-98e3-e4e05e4edcf3" "CreateHealthRiskTestData"
