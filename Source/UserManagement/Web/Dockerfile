@@ -1,15 +1,18 @@
-# Build the static content part
-FROM node:latest AS angular-build
-WORKDIR /src
-RUN ["yarn","global", "add", "typescript"]
-RUN ["yarn","global", "add", "@angular/cli@latest"]
-COPY ./Source/UserManagement/Web.Angular /Source/UserManagement/Web.Angular
-COPY ./Source/Navigation /Source/Navigation
-WORKDIR /Source/UserManagement/Web.Angular
-RUN ["yarn", "install"]
-#RUN ["npm", "install"]
-RUN ["ng", "build", "--prod", "--base-href=/users/", "--deploy-url=/users/"]
+FROM node:11.6-slim AS build
+ARG mode=build
 
-FROM nginx:1.13-alpine
-COPY --from=angular-build /Source/UserManagement/Web.Angular/dist /usr/share/nginx/html
-COPY --from=angular-build /Source/UserManagement/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
+# Install dependencies
+COPY ./Navigation /CBS/Source/Navigation
+COPY ./UserManagement/Web/package.json /CBS/Source/UserManagement/Web/package.json
+WORKDIR /CBS/Source/UserManagement/Web
+RUN yarn install
+
+# Build production code
+COPY ./UserManagement/Web /CBS/Source/UserManagement/Web
+WORKDIR /CBS/Source/UserManagement/Web
+RUN npm run ${mode}
+
+# Build runtime image
+FROM nginx:1.15-alpine
+COPY --from=build /CBS/Source/UserManagement/Web/dist /usr/share/nginx/html
+COPY --from=build /CBS/Source/UserManagement/Web/nginx-default.conf /etc/nginx/conf.d/default.conf

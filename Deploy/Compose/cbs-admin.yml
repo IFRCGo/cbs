@@ -1,0 +1,23 @@
+version: '3'
+networks:
+  cbs-network:
+services:
+  cbs-admin-core:
+    build:
+      context: "../../"
+      dockerfile: "Source/Admin/Core/Dockerfile"
+    volumes:
+      - "./cbs-admin-resources.json:/CBS/Core/.dolittle/resources.json"
+    networks:
+      - "cbs-network"
+
+  cbs-admin-web:
+    build:
+      context: "../../Source/"
+      dockerfile: "Admin/Web/Dockerfile"
+      args:
+        mode: "build-test"
+    expose:
+      - "80"
+    networks:
+      - "cbs-network"

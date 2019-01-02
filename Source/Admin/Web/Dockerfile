@@ -1,14 +1,18 @@
-# Build the static content part
-FROM node:latest AS angular-build
-WORKDIR /src
-RUN ["yarn","global", "add", "typescript"]
-RUN ["yarn","global", "add", "@angular/cli@latest"]
-COPY ./Source/Admin/Web.Angular /Source/Admin/Web.Angular
-COPY ./Source/Navigation /Source/Navigation
-WORKDIR /Source/Admin/Web.Angular
-RUN ["yarn", "install"]
-RUN ["ng", "build", "--prod"]
+FROM node:11.6-slim AS build
+ARG mode=build
 
-FROM nginx:1.13-alpine
-COPY --from=angular-build /Source/Admin/Web.Angular/dist /usr/share/nginx/html
-COPY --from=angular-build /Source/Admin/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
+# Install dependencies
+COPY ./Navigation /CBS/Source/Navigation
+COPY ./Admin/Web/package.json /CBS/Source/Admin/Web/package.json
+WORKDIR /CBS/Source/Admin/Web
+RUN yarn install
+
+# Build production code
+COPY ./Admin/Web /CBS/Source/Admin/Web
+WORKDIR /CBS/Source/Admin/Web
+RUN npm run ${mode}
+
+# Build runtime image
+FROM nginx:1.15-alpine
+COPY --from=build /CBS/Source/Admin/Web/dist /usr/share/nginx/html
+COPY --from=build /CBS/Source/Admin/Web/nginx-default.conf /etc/nginx/conf.d/default.conf

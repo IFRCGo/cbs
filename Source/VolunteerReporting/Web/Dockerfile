@@ -1,15 +1,18 @@
-# Build the static content part
-FROM node:latest AS angular-build
-WORKDIR /src
-RUN ["yarn","global", "add", "typescript"]
-RUN ["yarn","global", "add", "@angular/cli@latest"]
-COPY ./Source/VolunteerReporting/Web.Angular /Source/VolunteerReporting/Web.Angular
-COPY ./Source/Navigation /Source/Navigation
-WORKDIR /Source/VolunteerReporting/Web.Angular
-RUN ["yarn", "install"]
-RUN ["yarn", "lint"]
-RUN ["ng", "build", "--prod", "--base-href=/reporting/", "--deploy-url=/reporting/"]
+FROM node:11.6-slim AS build
+ARG mode=build
 
-FROM nginx:1.13-alpine
-COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/dist /usr/share/nginx/html
-COPY --from=angular-build /Source/VolunteerReporting/Web.Angular/nginx-default.conf /etc/nginx/conf.d/default.conf
+# Install dependencies
+COPY ./Navigation /CBS/Source/Navigation
+COPY ./VolunteerReporting/Web/package.json /CBS/Source/VolunteerReporting/Web/package.json
+WORKDIR /CBS/Source/VolunteerReporting/Web
+RUN yarn install
+
+# Build production code
+COPY ./VolunteerReporting/Web /CBS/Source/VolunteerReporting/Web
+WORKDIR /CBS/Source/VolunteerReporting/Web
+RUN npm run ${mode}
+
+# Build runtime image
+FROM nginx:1.15-alpine
+COPY --from=build /CBS/Source/VolunteerReporting/Web/dist /usr/share/nginx/html
+COPY --from=build /CBS/Source/VolunteerReporting/Web/nginx-default.conf /etc/nginx/conf.d/default.conf

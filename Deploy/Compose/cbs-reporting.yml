@@ -1,0 +1,23 @@
+version: '3'
+networks:
+  cbs-network:
+services:
+  cbs-reporting-core:
+    build:
+      context: "../../"
+      dockerfile: "Source/VolunteerReporting/Core/Dockerfile"
+    volumes:
+      - "./cbs-reporting-resources.json:/CBS/Core/.dolittle/resources.json"
+    networks:
+      - "cbs-network"
+
+  cbs-reporting-web:
+    build:
+      context: "../../Source/"
+      dockerfile: "VolunteerReporting/Web/Dockerfile"
+      args:
+        mode: "build-test"
+    expose:
+      - "80"
+    networks:
+      - "cbs-network"

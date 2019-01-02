@@ -1,11 +1,3 @@
-# Ignore non-code folders
-.git
-Codeathons
-Design
-Documentation
-Logs
-Meetings
-
 # Ignore Node modules
 **/node_modules/
 

@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --base-href=/datacollectors/ --deploy-url=/datacollectors/ --public-host=localhost:4202",
-    "build": "ng build --base-href=/datacollectors/ --deploy-url=/datacollectors/",
+    "build-test": "ng build --base-href=/datacollectors/ --deploy-url=/datacollectors/ --prod --env=test",
+    "build": "ng build --base-href=/datacollectors/ --deploy-url=/datacollectors/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
