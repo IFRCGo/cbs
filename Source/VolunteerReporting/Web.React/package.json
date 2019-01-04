@@ -5,9 +5,12 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "defined": "^1.0.0",
+    "font-awesome": "^4.7.0",
     "moment": "^2.22.2",
     "navigation": "file:../../Navigation",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -17,7 +20,7 @@
     "repertoire": "0.1.6"
   },
   "scripts": {
-    "dev": "parcel ./src/index.html",
+    "dev": "parcel ./src/index.html --log-level=5",
     "build": "parcel build ./src/index.html/"
   },
   "devDependencies": {
