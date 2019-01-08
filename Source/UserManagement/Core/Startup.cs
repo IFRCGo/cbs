@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using Autofac;
 using Dolittle.Booting;
 using Dolittle.DependencyInversion.Autofac;
@@ -19,11 +20,13 @@ namespace Core
         readonly IHostingEnvironment _hostingEnvironment;
         readonly ILoggerFactory _loggerFactory;
         BootloaderResult _bootResult;
+        readonly string _swaggerPrefix;
 
         public Startup(IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             _hostingEnvironment = hostingEnvironment;
             _loggerFactory = loggerFactory;
+            _swaggerPrefix = Environment.GetEnvironmentVariable("SWAGGER_PREFIX") ?? "";
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -32,7 +35,7 @@ namespace Core
             {
                 services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                    c.SwaggerDoc("v2", new Info { Title = "UserManagement API", Version = "v2" });
                 });
             }
             services.AddMvc();
@@ -51,10 +54,16 @@ namespace Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
+                app.UseSwagger(c => {
+                    c.PreSerializeFilters.Add((doc, req) => {
+                        doc.BasePath = "/"+_swaggerPrefix;
+                    });
+                    c.RouteTemplate = _swaggerPrefix+"swagger/{documentName}/swagger.json";
+                });
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.SwaggerEndpoint("/"+_swaggerPrefix+"swagger/v2/swagger.json", "UserManagement API V2");
+                    c.RoutePrefix = _swaggerPrefix+"swagger";
                 });
 
                 // Todo: CORS this probably is a bit too lose.. 
