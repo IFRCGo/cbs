@@ -21,12 +21,14 @@ namespace Core
         readonly ILoggerFactory _loggerFactory;
         BootloaderResult _bootResult;
         readonly string _swaggerPrefix;
+        readonly string _swaggerBasePath;
 
         public Startup(IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             _hostingEnvironment = hostingEnvironment;
             _loggerFactory = loggerFactory;
             _swaggerPrefix = Environment.GetEnvironmentVariable("SWAGGER_PREFIX") ?? "";
+            _swaggerBasePath = Environment.GetEnvironmentVariable("SWAGGER_BASE_PATH") ?? "";
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -56,7 +58,7 @@ namespace Core
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger(c => {
                     c.PreSerializeFilters.Add((doc, req) => {
-                        doc.BasePath = "/"+_swaggerPrefix;
+                        doc.BasePath = "/"+_swaggerBasePath;
                     });
                     c.RouteTemplate = _swaggerPrefix+"swagger/{documentName}/swagger.json";
                 });
