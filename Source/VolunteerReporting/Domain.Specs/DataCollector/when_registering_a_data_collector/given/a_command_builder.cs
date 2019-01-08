@@ -16,15 +16,17 @@ namespace Domain.Specs.DataCollectors.when_registering_a_data_collector.given
          {
              return  new RegisterDataCollector
              {
-                 DataCollectorId = Guid.NewGuid(),
-                 FullName = "Data Collector",
-                 DisplayName = "Daty",
-                 YearOfBirth = 1980,
-                 Sex = Sex.Male,
-                 PreferredLanguage = Language.English,
-                 GpsLocation = new Location(123,123),
-                 PhoneNumbers = new List<string>{"123456789"}
-             };
+                DataCollectorId = Guid.NewGuid(),
+                FullName = "FullName",
+                DisplayName = "DisplayName",
+                YearOfBirth = 1980,
+                Sex = Sex.Male,
+                PreferredLanguage = Language.English,
+                GpsLocation = new Location(90,90),
+                PhoneNumbers = new List<string>{"123456789"},
+                Region = "Region",
+                District = "Distric"
+            };
          }
 
          public static RegisterDataCollector get_invalid_command(IEnumerable<Action<RegisterDataCollector>> invalidations)

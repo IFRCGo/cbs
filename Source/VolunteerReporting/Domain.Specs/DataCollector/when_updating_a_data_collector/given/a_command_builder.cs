@@ -17,12 +17,16 @@ namespace Domain.Specs.DataCollectors.when_updating_a_data_collector.given
              return new RegisterDataCollector()
              {
                  DataCollectorId = Guid.NewGuid(),
-                 FullName = "Data Collector",
-                 DisplayName = "Daty",
+                 FullName = "FullName",
+                 DisplayName = "DisplayName",
+                 YearOfBirth = 1980,
+                 Sex = Sex.Male,
                  PreferredLanguage = Language.English,
-                 GpsLocation = new Location(123,123),
-                 PhoneNumbers = new [] {"123456789"},
-                 //Email = "test@test.com",                                  
+                 GpsLocation = new Location(90, 90),
+                 PhoneNumbers = new List<string> { "123456789" },
+                 Region = "Region",
+                 District = "Distric"
+
              };
          }
 
