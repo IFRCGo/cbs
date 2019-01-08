@@ -36,6 +36,10 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 | User Management  | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3) |
 | VolunteerReporting  | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1) |
 
+| Command | Description |
+| --- | --- |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
 
 ## Quick links
 [Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
