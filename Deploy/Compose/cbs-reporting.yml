@@ -3,7 +3,7 @@ networks:
   cbs-network:
 services:
   cbs-reporting-core:
-    image: cbs-reporting-core:latest
+    image: redcrossredcrescent/cbs-reporting-core:latest
     build:
       context: "../../"
       dockerfile: "Source/VolunteerReporting/Core/Dockerfile"
@@ -13,7 +13,7 @@ services:
       - "cbs-network"
 
   cbs-reporting-web:
-    image: cbs-reporting-web:latest
+    image: redcrossredcrescent/cbs-reporting-web:latest
     build:
       context: "../../Source/"
       dockerfile: "VolunteerReporting/Web/Dockerfile"
