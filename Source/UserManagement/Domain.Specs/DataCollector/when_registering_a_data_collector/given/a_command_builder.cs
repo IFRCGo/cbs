@@ -22,8 +22,11 @@ using System;
                  YearOfBirth = 1980,
                  Sex = Sex.Male,
                  PreferredLanguage = Language.English,
-                 GpsLocation = new Location(123,123),
-                 PhoneNumbers = new List<string>{"123456789"}
+                 GpsLocation = new Location(90,90),                 
+                 PhoneNumbers = new List<string>{"123456789"},
+                 DataVerifierId = Guid.NewGuid(),
+                 District = "District",
+                 Region = "Region"
              };
          }
 

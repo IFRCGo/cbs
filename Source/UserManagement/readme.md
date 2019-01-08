@@ -63,7 +63,7 @@ Restore dependencies
 Build and host locally
 > `npm start`
 
-Open http://localhost:4200/ in your browser to access the UI. 
+Open http://localhost:4202/ in your browser to access the UI. 
 
 ### Run locally using docker-compose
 
@@ -74,12 +74,12 @@ Note: Make sure you have [docker-compose](https://docs.docker.com/compose/) inst
 Build the images: 'docker-compose build'
 Run the images: 'docker-compose up'
 
-Open http://localhost:4200/ in your browser to access the UI. 
+Open http://localhost:4202/ in your browser to access the UI. 
 The backend APIs are available on http://localhost:5002/ (Swagger is unavailable, use Postman or a similar tool)
 
 ## Populating the database with test data
 
-To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
+To populate the database with test data, go to http://localhost:5002/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
 
 Create DataCollector testdata: "269f0087-f2a7-4fce-bfb6-5a136d614201"
 ```

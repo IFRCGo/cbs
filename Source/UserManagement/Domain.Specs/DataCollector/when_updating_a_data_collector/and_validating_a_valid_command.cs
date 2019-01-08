@@ -25,7 +25,6 @@ using FluentValidation.Results;
 
          Because of = () => { validation_results = validator.Validate(cmd); };
 
-        // TODO: Fix spec
-        // It should_be_valid = () => validation_results.ShouldBeValid();
+        It should_be_valid = () => validation_results.ShouldBeValid();
     }
 }

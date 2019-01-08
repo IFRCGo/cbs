@@ -30,7 +30,6 @@ namespace Domain.Specs.DataCollector.when_adding_a_phone_number
 
         Because of = () => { validation_results = validator.Validate(cmd); };
 
-        // TODO: Fix spec
-        //It should_be_invalid = () => validation_results.ShouldBeValid();
+        It should_be_invalid = () => validation_results.ShouldBeValid();
     }
 }
