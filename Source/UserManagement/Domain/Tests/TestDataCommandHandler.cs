@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Domain.DataCollectors;
@@ -21,10 +23,20 @@ namespace Domain.Tests
             _dataCollectorAggregate = dataCollectorAggregate;
         }
 
+        T DeserializeTestData<T>(string path)
+        {
+            var assembly = typeof(TestDataCommandHandler).GetTypeInfo().Assembly;
+            using (var stream = assembly.GetManifestResourceStream(assembly.GetName().Name+"."+path))
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                var result = new JsonSerializer().Deserialize<T>(reader);
+                return result;
+            }
+        }
+
         public void Handle(CreateDataCollectorTestData cmd)
         {
-            var dataCollectors = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-                System.IO.File.ReadAllText("../Domain/Tests/Data/DataCollectors.json"));
+            var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("Tests.Data.DataCollectors.json");
 
             foreach (var dataCollector in dataCollectors)
             {

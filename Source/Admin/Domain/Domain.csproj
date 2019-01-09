@@ -7,25 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Tests\HealthRisks.json" />
-      <None Remove="Tests\Names.json" />
-      <None Remove="Tests\NationalSocieties.json" />
-      <None Remove="Tests\Projects.json" />
+      <Content Remove="Tests\Data\HealthRisks.json" />
+      <Content Remove="Tests\Data\Users.json" />
+      <Content Remove="Tests\Data\NationalSocieties.json" />
+      <Content Remove="Tests\Data\Projects.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Tests\Data\HealthRisks.json">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Tests\Data\Users.json">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Tests\Data\NationalSocieties.json">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Tests\Data\Projects.json">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
+      <EmbeddedResource Include="Tests\Data\HealthRisks.json" />
+      <EmbeddedResource Include="Tests\Data\Users.json" />
+      <EmbeddedResource Include="Tests\Data\NationalSocieties.json" />
+      <EmbeddedResource Include="Tests\Data\Projects.json" />
     </ItemGroup>
 
     <ItemGroup>

@@ -3,57 +3,39 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <None Remove="Tests\Data\AutomaticReplies.json" />
-    <None Remove="Tests\Data\AutomaticReplyChangeTest.json" />
-    <None Remove="Tests\Data\AutomaticReplyKeyMessages.json" />
-    <None Remove="Tests\Data\AutomaticReplyRemoved.json" />
-    <None Remove="Tests\Data\CaseReports.json" />
-    <None Remove="Tests\Data\DataCollectors.json" />
-    <None Remove="Tests\Data\DefaultAutomaticReplies.json" />
-    <None Remove="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
-    <None Remove="Tests\Data\HealthRisks.json" />
-    <None Remove="Tests\Data\Projects.json" />
-    <None Remove="Tests\Data\TextMessages.json" />
+    <Content Remove="Tests\Data\AutomaticReplies.json" />
+    <Content Remove="Tests\Data\AutomaticReplyChangeTest.json" />
+    <Content Remove="Tests\Data\AutomaticReplyKeyMessages.json" />
+    <Content Remove="Tests\Data\AutomaticReplyRemoved.json" />
+    <Content Remove="Tests\Data\CaseReports.json" />
+    <Content Remove="Tests\Data\DataCollectors.json" />
+    <Content Remove="Tests\Data\DefaultAutomaticReplies.json" />
+    <Content Remove="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
+    <Content Remove="Tests\Data\HealthRisks.json" />
+    <Content Remove="Tests\Data\Projects.json" />
+    <Content Remove="Tests\Data\TextMessages.json" />
   </ItemGroup>
+
   <ItemGroup>
-    <Content Include="Tests\Data\CaseReports.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplies.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyChangeTest.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyKeyMessages.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyRemoved.json" />
+    <EmbeddedResource Include="Tests\Data\CaseReports.json" />
+    <EmbeddedResource Include="Tests\Data\DataCollectors.json" />
+    <EmbeddedResource Include="Tests\Data\DefaultAutomaticReplies.json" />
+    <EmbeddedResource Include="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
+    <EmbeddedResource Include="Tests\Data\HealthRisks.json" />
+    <EmbeddedResource Include="Tests\Data\Projects.json" />
+    <EmbeddedResource Include="Tests\Data\TextMessages.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Tests\Data\AutomaticReplies.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\AutomaticReplyChangeTest.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\AutomaticReplyKeyMessages.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\AutomaticReplyRemoved.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\DataCollectors.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\DefaultAutomaticReplies.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\DefaultAutomaticReplyKeyMessages.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\HealthRisks.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\Projects.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Tests\Data\TextMessages.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
   </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />

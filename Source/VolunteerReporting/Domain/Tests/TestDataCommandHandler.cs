@@ -5,6 +5,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Concepts.DataCollector;
 using Concepts.HealthRisk;
 using Dolittle.Commands.Handling;
@@ -30,11 +32,20 @@ namespace Domain.Tests
             _healthRiskAggregate = healthRiskAggregate;
         }
 
+        T DeserializeTestData<T>(string path)
+        {
+            var assembly = typeof(TestDataCommandHandler).GetTypeInfo().Assembly;
+            using (var stream = assembly.GetManifestResourceStream(assembly.GetName().Name+"."+path))
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                var result = new JsonSerializer().Deserialize<T>(reader);
+                return result;
+            }
+        }
+
         public void Handle(CreateDataCollectorTestData cmd)
         {
-
-            var dataCollectors = JsonConvert.DeserializeObject<RegisterDataCollector[]>(
-                System.IO.File.ReadAllText("../Domain/Tests/Data/DataCollectors.json"));
+            var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("Tests.Data.DataCollectors.json");
 
             foreach (var dataCollector in dataCollectors)
             {
@@ -54,8 +65,7 @@ namespace Domain.Tests
 
         public void Handle(CreateHealthRiskTestData cmd)
         {
-            var risks = JsonConvert.DeserializeObject<HealthRiskHelper[]>(
-                System.IO.File.ReadAllText("../Domain/Tests/Data/HealthRisks.json"));
+            var risks = DeserializeTestData<HealthRiskHelper[]>("Tests.Data.HealthRisks.json");
 
             foreach (var risk in risks)
             {
@@ -66,8 +76,7 @@ namespace Domain.Tests
  
         public void Handle(CreateCaseReportTestData cmd)
         {
-            var dataCaseReportHelpers = JsonConvert.DeserializeObject<CaseReportHelper[]>(
-                System.IO.File.ReadAllText("../Domain/Tests/Data/CaseReports.json"));
+            var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Tests.Data.CaseReports.json");
 
             foreach (var dataCaseReportHelper in dataCaseReportHelpers)
             {
