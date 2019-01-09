@@ -24,9 +24,8 @@ namespace Domain.Specs.DataCollector.when_registering_a_data_collector
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.Sex = (Sex)(-1));
         };
 
-        // TODO: Fix spec
-        //Because of = () => { validation_results = validator.Validate(cmd); };
-        //It should_be_invalid = () => validation_results.ShouldBeInvalid();
-        //It should_identify_the_first_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.Sex));
+        Because of = () => { validation_results = validator.Validate(cmd); };
+        It should_be_invalid = () => validation_results.ShouldBeInvalid();
+        It should_identify_the_first_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.Sex));
     }
 }

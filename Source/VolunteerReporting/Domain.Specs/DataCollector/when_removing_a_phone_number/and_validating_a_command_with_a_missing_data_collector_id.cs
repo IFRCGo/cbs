@@ -32,7 +32,7 @@ namespace Domain.Specs.DataCollectors.when_removing_a_phone_number
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
 
         It should_identitfy_the_data_collector_id_as_the_error = () =>
-            validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
+            validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId)+".Value");
 
     }
 }

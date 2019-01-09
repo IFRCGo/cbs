@@ -20,8 +20,8 @@ namespace Concepts.DataCollector
             Longitude = longitude;
          }
 
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
+        public double Latitude { get; }
+        public double Longitude { get; }
 
         public override string ToString() => Latitude.ToString("##.###") + ", " + Longitude.ToString("##.###");
 

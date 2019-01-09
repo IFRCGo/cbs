@@ -27,15 +27,13 @@ namespace Domain.Specs.DataCollector.when_adding_a_phone_number
             };
         };
 
-        // TODO: Fix spec
-        //Because of = () => { validation_result = validator.Validate(cmd); };
+        Because of = () => { validation_result = validator.Validate(cmd); };
 
-        //It should_be_invalid = () => validation_result.ShouldBeInvalid();
+        It should_be_invalid = () => validation_result.ShouldBeInvalid();
 
-        //It should_have_one_validation_result = () => validation_result.ShouldHaveInvalidCountOf(1);
+        It should_have_one_validation_result = () => validation_result.ShouldHaveInvalidCountOf(1);
 
-        //It should_identify_the_data_collector_id_as_the_problem =
-        //    () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
-
+        It should_identify_the_data_collector_id_as_the_problem =
+            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
     }
 }
