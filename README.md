@@ -29,13 +29,13 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 
 ## Build Status
 
-| Projects | Azure DevOps build status |
-| --- | --- |
+| Projects  | Azure DevOps build status  |
+| --------- | -------------------------- |
 | Admin | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Admin%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=4) |
-| Alerts | ToDo |
-| Analytics | ToDo |
-| User Management  | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3) |
-| VolunteerReporting  | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1) |
+| Alerts | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Alerts%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=5) |
+| Analytics | |
+| User Management | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3) |
+| Volunteer Reporting | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1) |
 
 ## Quick links
 [Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
