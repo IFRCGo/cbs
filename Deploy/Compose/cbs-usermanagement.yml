@@ -3,7 +3,7 @@ networks:
   cbs-network:
 services:
   cbs-usermanagement-core:
-    image: redcrossredcrescent/cbs-usermanagement-core:latest
+    image: redcrossredcrescent/cbs-usermgmt-backend:latest
     build:
       context: "../../"
       dockerfile: "Source/UserManagement/Core/Dockerfile"
@@ -13,7 +13,7 @@ services:
       - "cbs-network"
 
   cbs-usermanagement-web:
-    image: redcrossredcrescent/cbs-usermanagement-web:latest
+    image: redcrossredcrescent/cbs-usermgmt-frontend:latest
     build:
       context: "../../Source/"
       dockerfile: "UserManagement/Web/Dockerfile"

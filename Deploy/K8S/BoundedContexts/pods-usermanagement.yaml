@@ -37,8 +37,7 @@ spec:
     spec:
       containers:
       - name: usermanagement-core
-        image: redcrossredcrescent/cbs-usermanagement-core:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-usermgmt-backend:latest
         ports:
         - containerPort: 80
           name: api
@@ -74,8 +73,7 @@ spec:
     spec:
       containers:
       - name: usermanagement-core
-        image: redcrossredcrescent/cbs-usermanagement-web:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-usermgmt-frontend:latest
         ports:
         - containerPort: 80
           name: ui

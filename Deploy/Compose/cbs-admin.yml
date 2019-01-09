@@ -3,7 +3,7 @@ networks:
   cbs-network:
 services:
   cbs-admin-core:
-    image: redcrossredcrescent/cbs-admin-core:latest
+    image: redcrossredcrescent/cbs-admin-backend:latest
     build:
       context: "../../"
       dockerfile: "Source/Admin/Core/Dockerfile"
@@ -13,7 +13,7 @@ services:
       - "cbs-network"
 
   cbs-admin-web:
-    image: redcrossredcrescent/cbs-admin-web:latest
+    image: redcrossredcrescent/cbs-admin-frontend:latest
     build:
       context: "../../Source/"
       dockerfile: "Admin/Web/Dockerfile"

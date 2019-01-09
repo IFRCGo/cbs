@@ -37,8 +37,7 @@ spec:
     spec:
       containers:
       - name: admin-core
-        image: redcrossredcrescent/cbs-admin-core:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-admin-backend:latest
         ports:
         - containerPort: 80
           name: api
@@ -74,8 +73,7 @@ spec:
     spec:
       containers:
       - name: admin-web
-        image: redcrossredcrescent/cbs-admin-web:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-admin-frontend:latest
         ports:
         - containerPort: 80
           name: ui

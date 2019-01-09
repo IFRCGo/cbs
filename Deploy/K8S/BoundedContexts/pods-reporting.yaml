@@ -37,8 +37,7 @@ spec:
     spec:
       containers:
       - name: reporting-core
-        image: redcrossredcrescent/cbs-reporting-core:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-vr-backend:latest
         ports:
         - containerPort: 80
           name: api
@@ -74,8 +73,7 @@ spec:
     spec:
       containers:
       - name: reporting-web
-        image: redcrossredcrescent/cbs-reporting-web:latest
-        imagePullPolicy: IfNotPresent
+        image: redcrossredcrescent/cbs-vr-frontend:latest
         ports:
         - containerPort: 80
           name: ui
