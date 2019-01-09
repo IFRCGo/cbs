@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: usermanagement-core-dolittle-config
+  namespace: cbs-app
+data:
+  resources.json: |
+    {
+      "445f8ea8-1a6f-40d7-b2fc-796dba92dc44": {
+        "readModels": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "usermanagement_read_models",
+            "useSSL": false
+        },
+        "eventStore": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "usermanagement_event_store",
+            "useSSL": false
+        }
+      }
+    }
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: usermanagement-core
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-usermanagement-core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-usermanagement-core
+    spec:
+      containers:
+      - name: usermanagement-core
+        image: redcrossredcrescent/cbs-usermanagement-core:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: api
+        volumeMounts:
+          - mountPath: /CBS/Core/.dolittle/resources.json
+            subPath: resources.json
+            name: dolittle-config-volume
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: SWAGGER_PREFIX
+            value: swagger/usermanagement/
+          - name: SWAGGER_BASE_PATH
+            value: usermanagementbackend/
+      volumes:
+        - name: dolittle-config-volume
+          configMap:
+            name: usermanagement-core-dolittle-config
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: usermanagement-web
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-usermanagement-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-usermanagement-web
+    spec:
+      containers:
+      - name: usermanagement-core
+        image: redcrossredcrescent/cbs-usermanagement-web:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: ui

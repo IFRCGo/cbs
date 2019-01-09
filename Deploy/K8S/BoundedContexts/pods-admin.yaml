@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: admin-core-dolittle-config
+  namespace: cbs-app
+data:
+  resources.json: |
+    {
+      "445f8ea8-1a6f-40d7-b2fc-796dba92dc44": {
+        "readModels": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "admin_read_models",
+            "useSSL": false
+        },
+        "eventStore": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "admin_event_store",
+            "useSSL": false
+        }
+      }
+    }
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: admin-core
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-admin-core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-admin-core
+    spec:
+      containers:
+      - name: admin-core
+        image: redcrossredcrescent/cbs-admin-core:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: api
+        volumeMounts:
+          - mountPath: /CBS/Core/.dolittle/resources.json
+            subPath: resources.json
+            name: dolittle-config-volume
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: SWAGGER_PREFIX
+            value: swagger/admin/
+          - name: SWAGGER_BASE_PATH
+            value: adminbackend/
+      volumes:
+        - name: dolittle-config-volume
+          configMap:
+            name: admin-core-dolittle-config
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: admin-web
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-admin-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-admin-web
+    spec:
+      containers:
+      - name: admin-web
+        image: redcrossredcrescent/cbs-admin-web:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: ui

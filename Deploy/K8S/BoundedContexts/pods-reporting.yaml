@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reporting-core-dolittle-config
+  namespace: cbs-app
+data:
+  resources.json: |
+    {
+      "445f8ea8-1a6f-40d7-b2fc-796dba92dc44": {
+        "readModels": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "reporting_read_models",
+            "useSSL": false
+        },
+        "eventStore": {
+            "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+            "database": "reporting_event_store",
+            "useSSL": false
+        }
+      }
+    }
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: reporting-core
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-reporting-core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-reporting-core
+    spec:
+      containers:
+      - name: reporting-core
+        image: redcrossredcrescent/cbs-reporting-core:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: api
+        volumeMounts:
+          - mountPath: /CBS/Core/.dolittle/resources.json
+            subPath: resources.json
+            name: dolittle-config-volume
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: SWAGGER_PREFIX
+            value: swagger/reporting/
+          - name: SWAGGER_BASE_PATH
+            value: volunteerreportingbackend/
+      volumes:
+        - name: dolittle-config-volume
+          configMap:
+            name: reporting-core-dolittle-config
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: reporting-web
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-reporting-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-reporting-web
+    spec:
+      containers:
+      - name: reporting-web
+        image: redcrossredcrescent/cbs-reporting-web:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: ui
