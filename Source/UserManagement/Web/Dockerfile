@@ -1,5 +1,5 @@
 FROM node:11.6-slim AS build
-ARG mode=build
+ARG mode=build-test
 
 # Install dependencies
 COPY ./Navigation /CBS/Source/Navigation
