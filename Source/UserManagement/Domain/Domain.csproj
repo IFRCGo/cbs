@@ -31,6 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dolittle.SDK" Version="2.0.2" />
+        <PackageReference Include="Dolittle.SDK" Version="2.*" />
     </ItemGroup>
 </Project>
