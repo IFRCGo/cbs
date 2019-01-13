@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using Domain.DataCollectors;
 using FluentValidation.Results;
@@ -23,9 +28,10 @@ namespace Domain.Specs.DataCollector.when_removing_a_phone_number
         };
 
         Because of = () => { validation_results = validator.Validate(cmd); };
+
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
 
         It should_identify_the_phone_number_as_the_error = () =>
-            validation_results.ShouldHaveInvalidProperty(nameof(cmd.PhoneNumber));
+        validation_results.ShouldHaveInvalidProperty(nameof(cmd.PhoneNumber));
     }
 }

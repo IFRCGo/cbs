@@ -1,34 +1,36 @@
-using System.Collections.Generic;
-using System.Linq;
-using Dolittle.ReadModels;
-using Dolittle.Types;
-using Infrastructure.Read.Migration;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
-namespace Read.CaseReportsForListing.Migration
-{
-    public class CaseReportForListingMigrator : BaseMigratorFor<CaseReportForListing>,
-        ICaseReportForListingMigrator
-    {
-        readonly ICaseReportsForListing _repo;
+// TODO
+//using Dolittle.Types;
 
-        public CaseReportForListingMigrator(IInstancesOf<IMigrationStrategyFor<CaseReportForListing>> strategies,
-            ICaseReportsForListing repo) 
-            : base(strategies)
-        {
-            _repo = repo;
-        }
+//namespace Read.CaseReportsForListing.Migration
+//{
+//    public class CaseReportForListingMigrator : BaseMigratorFor<CaseReportForListing>,
+//        ICaseReportForListingMigrator
+//    {
+//        readonly ICaseReportsForListing _repo;
 
-        public override void MigrateAllReadModels()
-        {
-            var readModels = _repo.Query.Where(_ => true).AsEnumerable();
+//        public CaseReportForListingMigrator(IInstancesOf<IMigrationStrategyFor<CaseReportForListing>> strategies,
+//            ICaseReportsForListing repo) 
+//            : base(strategies)
+//        {
+//            _repo = repo;
+//        }
+
+//        public override void MigrateAllReadModels()
+//        {
+//            var readModels = _repo.Query.Where(_ => true).AsEnumerable();
             
-            MigrateReadModels(readModels);
-        }
+//            MigrateReadModels(readModels);
+//        }
 
-        public override void MigrateReadModel(CaseReportForListing readModel)
-        {
-            if (readModel.NeedMigration(MigrationStrategies))
-                _repo.Update(GetMigratedReadModel(readModel));
-        }
-    }
-}
+//        public override void MigrateReadModel(CaseReportForListing readModel)
+//        {
+//            if (readModel.NeedMigration(MigrationStrategies))
+//                _repo.Update(GetMigratedReadModel(readModel));
+//        }
+//    }
+//}

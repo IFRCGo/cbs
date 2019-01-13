@@ -44,11 +44,11 @@ Build
 Run locally
 > `dotnet run`
 
-Open browser at address http://localhost:5000/swagger to access Swagger.
+Open browser at address http://localhost:5001/swagger to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
-(Active path: `cbs/Source/Admin/Web.Angular`)
+(Active path: `cbs/Source/Admin/Web`)
 
 Restore dependencies
 > `npm install`
@@ -60,4 +60,32 @@ Open http://localhost:4200/ in your browser to access the UI.
 
 ## Populating the database with test data
 
-To populate the database with test data, go to http://localhost:5000/swagger and use the TestDataGenerator API. This will retrieve test data from the /Web/TestData folder and add it to the database. 
+To populate the database with test data, go to http://localhost:5001/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
+
+Create HealthRisk testdata: "269f0087-f2a7-4fce-bfb6-5a136d614201"
+```
+{
+  "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4", 
+   "type": "269f0087-f2a7-4fce-bfb6-5a136d614201",
+   "content": {}
+}
+```
+
+Create NationalSociety testdata: "c60d8362-ab0b-4537-8913-75212990200f"
+```
+{
+   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+   "type": "c60d8362-ab0b-4537-8913-75212990200f",
+   "content": {}
+}
+```
+
+Create User testdata: "d344314a-8349-405c-96fb-6e39f31b42b5"
+```
+{
+   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
+   "type": "d344314a-8349-405c-96fb-6e39f31b42b5",
+   "content": {}
+}    
+```
+

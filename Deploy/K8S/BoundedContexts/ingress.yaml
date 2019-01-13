@@ -1,0 +1,49 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: web-bcs
+  namespace: cbs-app
+spec:
+  rules:
+  - host: dev.cbsrc.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: admin-web
+          servicePort: 80
+      - path: /reporting/
+        backend:
+          serviceName: reporting-web
+          servicePort: 80
+      - path: /datacollectors/
+        backend:
+          serviceName: usermanagement-web
+          servicePort: 80
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: core-bcs
+  namespace: cbs-app
+  annotations:
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: dev.cbsrc.org
+    http:
+      paths:
+      - path: /adminbackend/
+        backend:
+          serviceName: admin-core
+          servicePort: 80
+      - path: /volunteerreportingbackend/
+        backend:
+          serviceName: reporting-core
+          servicePort: 80
+      - path: /usermanagementbackend/
+        backend:
+          serviceName: usermanagement-core
+          servicePort: 80

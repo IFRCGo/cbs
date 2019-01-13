@@ -1,17 +1,18 @@
-# Build the .NET part
-FROM microsoft/dotnet:2.2-sdk-bionic AS dotnet-build
-WORKDIR /src
-COPY ./NuGet.Config ./
-COPY ./Build/MSBuild ./Build/MSBuild
-COPY ./Source/Infrastructure ./Source/Infrastructure
-COPY ./Source/UserManagement ./Source/UserManagement
-WORKDIR /src/Source/UserManagement/Web
-RUN dotnet restore --no-cache
-RUN dotnet publish -c Release -o out
+FROM node:11.6-slim AS build
+ARG mode=build
+
+# Install dependencies
+COPY ./Navigation /CBS/Source/Navigation
+COPY ./UserManagement/Web/package.json /CBS/Source/UserManagement/Web/package.json
+WORKDIR /CBS/Source/UserManagement/Web
+RUN yarn install
+
+# Build production code
+COPY ./UserManagement/Web /CBS/Source/UserManagement/Web
+WORKDIR /CBS/Source/UserManagement/Web
+RUN npm run ${mode}
 
 # Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
-WORKDIR /app
-COPY --from=dotnet-build /src/Source/UserManagement/Web/out .
-COPY --from=dotnet-build /src/Source/UserManagement/Web/.dolittle ./.dolittle
-ENTRYPOINT ["dotnet", "Web.dll"]
+FROM nginx:1.15-alpine
+COPY --from=build /CBS/Source/UserManagement/Web/dist /usr/share/nginx/html
+COPY --from=build /CBS/Source/UserManagement/Web/nginx-default.conf /etc/nginx/conf.d/default.conf

@@ -7,7 +7,6 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Read\Infrastructure.Read.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />

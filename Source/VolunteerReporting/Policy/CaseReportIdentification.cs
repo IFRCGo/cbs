@@ -1,11 +1,15 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+using System.Linq;
 using Dolittle.Domain;
 using Dolittle.Events.Processing;
-using Domain;
+using Dolittle.ReadModels;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.InvalidCaseReports;
-using Concepts.CaseReport;
-using Concepts.DataCollector;
 using Domain.CaseReports;
 using Events.DataCollectors.PhoneNumber;
 
@@ -14,15 +18,15 @@ namespace Policy
     public class CaseReportIdentification : ICanProcessEvents
     {
         readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregateRootRepository;
-        readonly ICaseReportsFromUnknownDataCollectors _unknownReports;
-        readonly IInvalidCaseReportsFromUnknownDataCollectors _invalidAndUnknownReports;
-        readonly IDataCollectors _dataCollectors;
+        readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _unknownReports;
+        readonly IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> _invalidAndUnknownReports;
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
-            ICaseReportsFromUnknownDataCollectors unknownReports,
-            IInvalidCaseReportsFromUnknownDataCollectors invalidAndUnknownReports,
-            IDataCollectors dataCollectors)
+            IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> unknownReports,
+            IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> invalidAndUnknownReports,
+            IReadModelRepositoryFor<DataCollector> dataCollectors)
         {
             _caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
             _unknownReports = unknownReports;
@@ -32,8 +36,7 @@ namespace Policy
         [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            
-            var unknownReports = this._unknownReports.GetByPhoneNumber(@event.PhoneNumber);
+            var unknownReports = _unknownReports.Query.Where(r => r.Origin == @event.PhoneNumber);
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId); 
             foreach (var item in unknownReports)
             {
@@ -54,9 +57,8 @@ namespace Policy
                     );
                 repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
             } 
-            
-            
-            var invalidAndUnknownReports = this._invalidAndUnknownReports.GetByPhoneNumber(@event.PhoneNumber);
+                        
+            var invalidAndUnknownReports = _invalidAndUnknownReports.Query.Where(r => r.PhoneNumber == @event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
                 var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);

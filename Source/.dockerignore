@@ -1,0 +1,9 @@
+# Ignore Node modules
+**/node_modules/
+
+# Ignore web binaries
+**/Web/dist/
+
+# Ignore C# binaries
+**/bin/
+**/obj/

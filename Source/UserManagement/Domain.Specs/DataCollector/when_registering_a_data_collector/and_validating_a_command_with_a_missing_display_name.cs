@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------------------
-*  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
-*  Licensed under the MIT License. See LICENSE in the project root for license information.
-*--------------------------------------------------------------------------------------------*/
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 using Machine.Specifications;
 using FluentValidation.Results;
 using Domain.DataCollectors;
@@ -27,5 +27,4 @@ namespace Domain.Specs.DataCollector.when_registering_a_data_collector
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
         It should_identify_the_display_name_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DisplayName));
     }
-
- }
+}
