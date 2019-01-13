@@ -1,0 +1,8 @@
+@import '../../styles/Settings/all.scss';
+@import '../../styles/Tools/all.scss';
+
+.sendform {
+  padding: $grid-gutter;
+  @extend %flex-container-vertical;
+
+}
