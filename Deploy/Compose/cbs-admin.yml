@@ -13,6 +13,7 @@ services:
       - SWAGGER_BASE_PATH=adminbackend/
     volumes:
       - "./cbs-admin-resources.json:/CBS/Core/.dolittle/resources.json"
+      - "./cbs-admin-event-horizons.json:/CBS/Core/.dolittle/event-horizons.json"
     networks:
       - "cbs-network"
 
