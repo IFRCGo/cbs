@@ -364,5 +364,17 @@
     "eventSources": {},
     "readModels": {},
     "queries": {}
+  },
+  "f177d8b6-f4a5-443c-b23d-dead722a29e9": {
+    "commands": {},
+    "events": {
+      "573d4609-fa75-4c2f-8d7c-f7cf7da3de53": {
+        "generation": 1,
+        "type": "Events.NotificationGateway.SMS.TextMessageReceived, Events.NotificationGateway"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
   }
 }
