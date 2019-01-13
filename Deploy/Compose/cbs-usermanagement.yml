@@ -7,6 +7,10 @@ services:
     build:
       context: "../../"
       dockerfile: "Source/UserManagement/Core/Dockerfile"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SWAGGER_PREFIX=swagger/users/
+      - SWAGGER_BASE_PATH=usermanagementbackend/
     volumes:
       - "./cbs-usermanagement-resources.json:/CBS/Core/.dolittle/resources.json"
     networks:
