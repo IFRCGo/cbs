@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Concepts;
 
 namespace Concepts
@@ -10,14 +15,12 @@ namespace Concepts
         {
             Value = value;
         }
-
         
         //TODO: This value should default to false after the MVP and when there is logic for phone number confirmation
         public bool Confirmed { get; private set; } = true;
 
         public bool IsValid => ! Value.Contains(" ");
         
-
         public override bool Equals(object obj)
         {
             var item = obj as PhoneNumber;
@@ -27,13 +30,11 @@ namespace Concepts
                 return false;
             }
 
-            return this.Value.Equals(item.Value);
+            return Value.Equals(item.Value);
         }
-
         public override int GetHashCode()
         {
-            return this.Value.GetHashCode();
-        }
-        
+            return Value.GetHashCode();
+        }        
     }
 }

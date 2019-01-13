@@ -1,0 +1,15 @@
+{
+  "name": "reverseproxy",
+  "version": "1.0.0",
+  "description": "Reverse http-proxy for running all the CBS B.C. on your machine during dev.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakob",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1"
+  }
+}

@@ -1,19 +1,21 @@
-using System;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System.Linq;
-using Concepts;
 using Concepts.CaseReport;
 using Dolittle.Queries;
-using Infrastructure.Read.MongoDb;
-using Read.CaseReportsForListing.Migration;
+using Dolittle.ReadModels;
 
 namespace Read.CaseReportsForListing
 {
     public class CaseReportForListingById : IQueryFor<CaseReportForListing>
     {
-        readonly ICaseReportsForListing _collection;
+        readonly IReadModelRepositoryFor<CaseReportForListing> _collection;
         public CaseReportId CaseReportId { get; set; }
 
-        public CaseReportForListingById(ICaseReportsForListing collection)
+        public CaseReportForListingById(IReadModelRepositoryFor<CaseReportForListing> collection)
         {
             _collection = collection;
         }

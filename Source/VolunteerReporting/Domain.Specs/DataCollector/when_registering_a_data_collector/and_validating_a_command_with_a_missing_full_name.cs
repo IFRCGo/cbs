@@ -1,15 +1,15 @@
- /*---------------------------------------------------------------------------------------------
-  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
-  *  Licensed under the MIT License. See LICENSE in the project root for license information.
-  *--------------------------------------------------------------------------------------------*/
- using Machine.Specifications;
- using FluentValidation.Results;
- using System.Collections.Generic;
- using Domain.DataCollectors.Registration;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
- namespace Domain.Specs.DataCollectors.when_registering_a_data_collector
- {
-     [Subject("Registration")]
+using Machine.Specifications;
+using FluentValidation.Results;
+using Domain.DataCollectors.Registration;
+
+namespace Domain.Specs.DataCollectors.when_registering_a_data_collector
+{
+    [Subject("Registration")]
      public class and_validating_a_command_with_a_missing_full_name
      {
          static RegisterDataCollector cmd;

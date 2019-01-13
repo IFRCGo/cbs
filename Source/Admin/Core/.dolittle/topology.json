@@ -1,0 +1,37 @@
+{
+  "modules": {},
+  "features": {
+    "b9c26487-ae80-42f8-9bf7-d63baf3a3a68": {
+      "name": "Projects",
+      "subFeatures": {}
+    },
+    "8f2421e3-5ca8-485a-bb99-ad4f19e7d082": {
+      "name": "HealthRisks",
+      "subFeatures": {}
+    },
+    "81072014-63c4-4279-90f8-0f17d93c024f": {
+      "name": "AutomaticReplyMessages",
+      "subFeatures": {}
+    },
+    "1e9841e5-6463-40a6-a4b9-3e04a852f889": {
+      "name": "Admin",
+      "subFeatures": {}
+    },
+    "2b0633d3-a9c2-4247-8a01-d8be372d94f4": {
+      "name": "NationalSocieties",
+      "subFeatures": {}
+    },
+    "289cef21-f859-4e96-ae5f-09574b0df04a": {
+      "name": "Events",
+      "subFeatures": {}
+    },
+    "93a7e37f-f55c-4f7e-a91a-e285cd11585d": {
+      "name": "Users",
+      "subFeatures": {}
+    },
+    "5bba2d83-1a84-4ba1-8a1e-919e73318db6": {
+      "name": "Tests",
+      "subFeatures": {}
+    }
+  }
+}

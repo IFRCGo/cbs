@@ -1,0 +1,29 @@
+version: '3'
+networks:
+  cbs-network:
+services:
+  cbs-admin-core:
+    image: redcrossredcrescent/cbs-admin-backend:latest
+    build:
+      context: "../../"
+      dockerfile: "Source/Admin/Core/Dockerfile"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SWAGGER_PREFIX=swagger/admin/
+      - SWAGGER_BASE_PATH=adminbackend/
+    volumes:
+      - "./cbs-admin-resources.json:/CBS/Core/.dolittle/resources.json"
+    networks:
+      - "cbs-network"
+
+  cbs-admin-web:
+    image: redcrossredcrescent/cbs-admin-frontend:latest
+    build:
+      context: "../../Source/"
+      dockerfile: "Admin/Web/Dockerfile"
+      args:
+        mode: "build-test"
+    expose:
+      - "80"
+    networks:
+      - "cbs-network"

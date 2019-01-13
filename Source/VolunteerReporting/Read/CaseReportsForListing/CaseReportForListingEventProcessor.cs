@@ -1,6 +1,11 @@
-using Concepts.CaseReport;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+using Concepts.DataCollector;
 using Dolittle.Events.Processing;
-using Events;
+using Dolittle.ReadModels;
 using Events.CaseReports;
 using Read.DataCollectors;
 using Read.HealthRisks;
@@ -9,36 +14,48 @@ namespace Read.CaseReportsForListing
 {
     public class CaseReportForListingEventProcessor : ICanProcessEvents
     {
-        private readonly ICaseReportsForListing _caseReports;
-        private readonly IDataCollectors _dataCollectors;
-        private readonly IHealthRisks _healthRisks;
+        private readonly IReadModelRepositoryFor<CaseReportForListing> _caseReports;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public CaseReportForListingEventProcessor(
-            ICaseReportsForListing caseReports,
-            IDataCollectors dataCollectors,
-            IHealthRisks healthRisks)
+            IReadModelRepositoryFor<CaseReportForListing> caseReports,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
+            IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _caseReports = caseReports;
             _dataCollectors = dataCollectors;
             _healthRisks = healthRisks;
         }
+
         [EventProcessor("0d17954b-eaeb-4936-a7a6-153b61767206")]
         public void Process(CaseReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            _caseReports.SaveCaseReport(
-                @event.CaseReportId,
-                dataCollector,
-                healthRisk,
-                @event.Message,
-                @event.Origin,
-                @event.NumberOfMalesUnder5,
-                @event.NumberOfMalesAged5AndOlder,
-                @event.NumberOfFemalesUnder5,
-                @event.NumberOfFemalesAged5AndOlder,
-                @event.Timestamp);
+            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            {
+                Status = CaseReportStatus.Success,
+                Message = @event.Message,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorVillage = dataCollector.Village,
+                Location = dataCollector.Location,
+                Origin = @event.Origin,
+
+                HealthRiskId = healthRisk.Id,
+                HealthRisk = healthRisk.Name,
+
+                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
+                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
+                Timestamp = @event.Timestamp
+            };
+            _caseReports.Insert(caseReport);
         }
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
@@ -47,47 +64,83 @@ namespace Read.CaseReportsForListing
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            _caseReports.SaveCaseReportFromUnknownDataCollector(
-                @event.CaseReportId,
-                healthRisk,
-                @event.Message,
-                @event.Origin,
-                @event.NumberOfMalesUnder5,
-                @event.NumberOfMalesAged5AndOlder,
-                @event.NumberOfFemalesUnder5,
-                @event.NumberOfFemalesAged5AndOlder,
-                @event.Timestamp);
+            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            {
+                Status = CaseReportStatus.UnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
 
+                HealthRisk = healthRisk.Name,
+                HealthRiskId = healthRisk.Id,
+
+                Location = Location.NotSet,
+                Message = @event.Message,
+                Origin = @event.Origin,
+                Timestamp = @event.Timestamp,
+
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null
+            };
+            _caseReports.Insert(caseReport);
         }
+
         [EventProcessor("c44c06e9-822f-41de-9d1e-0cdddcf1da0a")]
         public void Process(InvalidReportReceived @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
 
-            _caseReports.SaveInvalidReport(
-                @event.CaseReportId,
-                dataCollector,
-                @event.Message,
-                @event.Origin,
-                @event.Latitude,
-                @event.Longitude,
-                @event.ErrorMessages,
-                @event.Timestamp);
+            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            {
+                Status = CaseReportStatus.TextMessageParsingError,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorVillage = dataCollector.Village,
+
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+
+                Location = dataCollector.Location,
+                Message = @event.Message,
+                Origin = @event.Origin,
+                ParsingErrorMessage = @event.ErrorMessages,
+                Timestamp = @event.Timestamp
+            };
+
+            _caseReports.Insert(caseReport);
         }
+
         [EventProcessor("d4f5e727-c2fa-4140-b5de-d14ba3a22f13")]
         public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
         {
-            _caseReports.SaveInvalidReportFromUnknownDataCollector(
-                @event.CaseReportId,
-                @event.Message,
-                @event.Origin,
-                @event.ErrorMessages,
-                @event.Timestamp);
+            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            {
+                Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
+                DataCollectorDisplayName = "Unknown",
+                DataCollectorId = null,
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+                Location = Location.NotSet,
+                Message = @event.Message,
+                Origin = @event.Origin,
+                ParsingErrorMessage = @event.ErrorMessages,
+                Timestamp = @event.Timestamp,
+
+                DataCollectorDistrict = null,
+                DataCollectorRegion = null,
+                DataCollectorVillage = null,
+            };
+            _caseReports.Insert(caseReport);
         }
+
         [EventProcessor("46928d1f-987a-4a2d-804f-8e4b686d2262")]
         public void Process(CaseReportIdentified @event)
         {
-            _caseReports.Delete(e => e.Id == (CaseReportId)@event.CaseReportId);
+            var caseReport = _caseReports.GetById(@event.CaseReportId);
+
+            _caseReports.Delete(caseReport);
         }
     }
 }

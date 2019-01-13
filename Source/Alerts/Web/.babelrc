@@ -1,0 +1,5 @@
+{
+    "presets": [
+      "./node_modules/@dolittle/build/.babelrc.js"
+    ]
+}

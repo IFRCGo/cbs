@@ -33,7 +33,7 @@ npm-debug.log
 #########
 Source/Artifacts
 wwwroot
-Source/Navigation/Web/dist/
+**/Web/dist
 
 
 # OS generated files #
