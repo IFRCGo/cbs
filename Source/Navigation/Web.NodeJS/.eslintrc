@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": false,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "no-extra-boolean-cast": 2,
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "curly": [
+      "error",
+      "all"
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "error"
+        ]
+      }
+    ],
+    "no-trailing-spaces": 1,
+    "no-else-return": 0,
+    "no-extra-bind": 0,
+    "no-implicit-coercion": 0,
+    "no-useless-call": 0,
+    "no-return-assign": 0,
+    "eol-last": 0,
+    "no-unused-vars": 0,
+    "no-extra-semi": 1,
+    "no-underscore-dangle": 1,
+    "no-lone-blocks": 0,
+    "one-var": [
+      "error",
+      "never"
+    ],
+    "no-var": 0,
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ]
+  }
+}
