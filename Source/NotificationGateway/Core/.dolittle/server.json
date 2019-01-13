@@ -1,10 +1,10 @@
 {
     "interaction": {
-        "port": 50052,
-        "unixSocket": "/var/run/dolittle.interaction.server.sock"
+        "port": 50060,
+        "unixSocket": "/var/run/cbs.notifications.interaction.server.sock"
     },
     "management": {
-        "port": 50053,
-        "unixSocket": "/var/run/dolittle.management.server.sock"
+        "port": 50160,
+        "unixSocket": "/var/run/cbs.notifications.management.server.sock"
     }
 }
