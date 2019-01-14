@@ -84,3 +84,32 @@ spec:
     name: ui
   selector:
     k9s-app: cbs-usermanagement-web
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-core
+  namespace: cbs-app
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    name: api
+  selector:
+    k9s-app: cbs-notification-core
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-web
+  namespace: cbs-app
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    name: ui
+  selector:
+    k9s-app: cbs-notification-web
