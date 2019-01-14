@@ -12,6 +12,8 @@ services:
       - SWAGGER_PREFIX=swagger/users/
       - SWAGGER_BASE_PATH=usermanagementbackend/
     volumes:
+      - "./cbs-tenants.json:/CBS/Core/.dolittle/tenants.json"
+      - "./cbs-tenant-map.json:/CBS/Core/.dolittle/tenant-map.json"
       - "./cbs-usermanagement-resources.json:/CBS/Core/.dolittle/resources.json"
     networks:
       - "cbs-network"
