@@ -56,6 +56,20 @@ data:
         }
       }
     }
+  event-horizons.json: |
+    [
+      {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "07f31e26-809d-3e14-3a9c-edc092366924",
+        "url": "notification-core.cbs-app.svc.cluster.local:50060",
+        "events": [
+          {
+              "id": "573d4609-fa75-4c2f-8d7c-f7cf7da3de53",
+              "generation": 1
+          }
+        ]
+      }
+    ]
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -80,6 +94,9 @@ spec:
         volumeMounts:
           - mountPath: /CBS/Core/.dolittle/resources.json
             subPath: resources.json
+            name: dolittle-config-volume
+          - mountPath: /CBS/Core/.dolittle/event-horizons.json
+            subPath: event-horizons.json
             name: dolittle-config-volume
           - mountPath: /CBS/Core/.dolittle/tenants.json
             subPath: tenants.json
