@@ -97,6 +97,9 @@ spec:
   - protocol: TCP
     port: 80
     name: api
+  - protocol: TCP
+    port: 50060
+    name: events
   selector:
     k9s-app: cbs-notification-core
 ---
