@@ -22,10 +22,6 @@ spec:
         backend:
           serviceName: usermanagement-web
           servicePort: 80
-      - path: /notification/
-        backend:
-          serviceName: notification-web
-          servicePort: 80
 
 ---
 apiVersion: extensions/v1beta1
@@ -52,7 +48,11 @@ spec:
         backend:
           serviceName: usermanagement-core
           servicePort: 80
-      - path: /notificationbackend/
+      - path: /notifications/
+        backend:
+          serviceName: notification-web
+          servicePort: 80
+      - path: /notificationsbackend/
         backend:
           serviceName: notification-core
           servicePort: 80
