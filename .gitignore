@@ -27,12 +27,14 @@ packages
 ##########
 node_modules
 yarn.lock
+npm-debug.log
 
 # Other #
 #########
 Source/Artifacts
 wwwroot
 **/Web/dist
+
 
 # OS generated files #
 ######################
@@ -41,6 +43,7 @@ wwwroot
 ehthumbs.db
 Icon?
 Thumbs.db
+.idea
 
 #Build tools #
 ##############
