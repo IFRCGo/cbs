@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-If you haven't already familiarized yourself with the [contributor guide](../../Documentation/Contribution/contributing.md), please do so before proceeding. Make sure the required [development environment](../../Documentation/Contribution/development_environment.md) has been set up.
+If you haven't already familiarized yourself with the [how to contribute guide](https://github.com/IFRCGo/cbs/wiki/How-to-contribute), please do so before proceeding. 
 
 See if you can find an issue labeled "good first issue" relating to this project [here.](https://github.com/IFRCGo/cbs/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22good+first+issue%22+project%3AIFRCGo%2Fcbs%2F2+)
 
