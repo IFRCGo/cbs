@@ -1,0 +1,34 @@
+{
+  "1fe47770-08ec-4642-801c-afc0ccf02fff": {
+    "commands": {
+      "827042da-422c-4f98-9820-489c61db9b53": {
+        "generation": 1,
+        "type": "Domain.SMS.SimulateReceivedMessage, Domain"
+      }
+    },
+    "events": {
+      "573d4609-fa75-4c2f-8d7c-f7cf7da3de53": {
+        "generation": 1,
+        "type": "Events.SMS.TextMessageReceived, Events"
+      }
+    },
+    "eventSources": {
+      "2b4d5244-8d30-4cd1-8459-0efacaefdf28": {
+        "generation": 1,
+        "type": "Domain.SMS.TextMessage, Domain"
+      }
+    },
+    "readModels": {
+      "7dac8377-4e4b-453d-8b6a-bca11940b5c5": {
+        "generation": 1,
+        "type": "Read.SMS.ReceivedMessage, Read"
+      }
+    },
+    "queries": {
+      "d21b40f9-8666-45c7-9ec6-b3ea4cd717b2": {
+        "generation": 1,
+        "type": "Read.SMS.AllReceivedMessages, Read"
+      }
+    }
+  }
+}

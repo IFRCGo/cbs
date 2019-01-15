@@ -53,11 +53,11 @@ metadata:
   name: swagger
   namespace: cbs-system
   annotations:
-    traefik.frontend.rule.type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/preserve-host: "true"
 spec:
   rules:
-  - host: dev.cbsrc.org
-    http:
+  - http:
       paths:
       - path: /swagger/
         backend:
@@ -69,10 +69,11 @@ kind: Ingress
 metadata:
   name: swagger-bcs
   namespace: cbs-app
+  annotations:
+    traefik.ingress.kubernetes.io/preserve-host: "true"
 spec:
   rules:
-  - host: dev.cbsrc.org
-    http:
+  - http:
       paths:
       - path: /swagger/admin/
         backend:

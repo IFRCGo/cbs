@@ -66,6 +66,15 @@
     "7dd5481f-a93f-4542-baf8-a751767926a3": {
       "name": "Tests",
       "subFeatures": {}
+    },
+    "f186472d-292b-43da-a784-d228041fb8ee": {
+      "name": "NotificationGateway",
+      "subFeatures": {
+        "f177d8b6-f4a5-443c-b23d-dead722a29e9": {
+          "name": "SMS",
+          "subFeatures": {}
+        }
+      }
     }
   }
 }
