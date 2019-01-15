@@ -40,6 +40,7 @@ Source/**/Web.Frontend/dist
 Source/**/Web.Frontend/.cache
 Source/**/Web.Frontend/tests_output
 
+
 # OS generated files #
 ######################
 .DS_Store
@@ -47,6 +48,7 @@ Source/**/Web.Frontend/tests_output
 ehthumbs.db
 Icon?
 Thumbs.db
+.idea
 
 #Build tools #
 ##############

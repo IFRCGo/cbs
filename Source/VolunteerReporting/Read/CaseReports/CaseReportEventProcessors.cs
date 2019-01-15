@@ -5,20 +5,25 @@
 
 using Concepts.DataCollector;
 using Dolittle.Events.Processing;
+using Dolittle.Logging;
 using Dolittle.ReadModels;
 using Events.CaseReports;
+using Events.NotificationGateway.SMS;
 
 namespace Read.CaseReports
 {
     public class CaseReportEventProcessor : ICanProcessEvents
     {
+        readonly ILogger _logger;
         readonly IReadModelRepositoryFor<CaseReport> _caseReports;
         readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
 
         public CaseReportEventProcessor(
+            ILogger logger,
             IReadModelRepositoryFor<CaseReport> caseReports,
             IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> caseReportsFromUnknownDataCollectors)
         {
+            _logger = logger;
             _caseReports = caseReports;
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
         }
@@ -61,6 +66,12 @@ namespace Read.CaseReports
         {
             var caseReport = _caseReportsFromUnknownDataCollectors.GetById(@event.CaseReportId);
             _caseReportsFromUnknownDataCollectors.Delete(caseReport);            
+        }
+
+        [EventProcessor("97a8eba1-3f86-401e-a7c5-41f4c6172cfe")]
+        public void Process(TextMessageReceived @event)
+        {
+            _logger.Warning($"TextMessageReceieved in VolunteerReporting. Add some action here :)");
         }
     }
 }

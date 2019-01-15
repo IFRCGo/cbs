@@ -9,6 +9,7 @@ COPY ./Source/VolunteerReporting/Domain/Domain.csproj /CBS/Source/VolunteerRepor
 COPY ./Source/VolunteerReporting/Domain.Specs/Domain.Specs.csproj /CBS/Source/VolunteerReporting/Domain.Specs/Domain.Specs.csproj
 COPY ./Source/VolunteerReporting/Events/Events.csproj /CBS/Source/VolunteerReporting/Events/Events.csproj
 COPY ./Source/VolunteerReporting/Events.Admin/Events.Admin.csproj /CBS/Source/VolunteerReporting/Events.Admin/Events.Admin.csproj
+COPY ./Source/VolunteerReporting/Events.NotificationGateway/Events.NotificationGateway.csproj /CBS/Source/VolunteerReporting/Events.NotificationGateway/Events.NotificationGateway.csproj
 COPY ./Source/VolunteerReporting/Policy/Policy.csproj /CBS/Source/VolunteerReporting/Policy/Policy.csproj
 COPY ./Source/VolunteerReporting/Read/Read.csproj /CBS/Source/VolunteerReporting/Read/Read.csproj
 COPY ./Source/VolunteerReporting/TextMessaging/TextMessaging.csproj /CBS/Source/VolunteerReporting/TextMessaging/TextMessaging.csproj

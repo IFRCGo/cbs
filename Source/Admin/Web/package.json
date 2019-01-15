@@ -32,7 +32,7 @@
         "@dolittle/readmodels": "1.0.0",
         "bootstrap-sass": "^3.3.7",
         "core-js": "^2.5.3",
-        "navigation": "file:../../Navigation",
+        "navigation": "file:../../Navigation/Web.Angular",
         "ngx-bootstrap": "^2.0.0-rc.0",
         "ngx-toastr": "^6.4.1-beta.0",
         "oidc-client": "^1.4.1",
