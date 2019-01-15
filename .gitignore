@@ -27,13 +27,18 @@ packages
 ##########
 node_modules
 yarn.lock
-npm-debug.log
+*.log
 
 # Other #
 #########
+.idea
 Source/Artifacts
 wwwroot
 **/Web/dist
+Source/**/Web.Frontend/es
+Source/**/Web.Frontend/dist
+Source/**/Web.Frontend/.cache
+Source/**/Web.Frontend/tests_output
 
 
 # OS generated files #
