@@ -1,15 +1,18 @@
-using System;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System.Linq;
-using System.Linq.Expressions;
 using Dolittle.Queries;
-using Infrastructure.Read.Migration;
+using Dolittle.ReadModels;
 
 namespace Read.CaseReportsForListing
 {
     public class AllCaseReportsForListing : IQueryFor<CaseReportForListing>
     {
-        private readonly ICaseReportsForListing _collection;
-        public AllCaseReportsForListing(ICaseReportsForListing collection)
+        private readonly IReadModelRepositoryFor<CaseReportForListing> _collection;
+        public AllCaseReportsForListing(IReadModelRepositoryFor<CaseReportForListing> collection)
         {
             _collection = collection;
         }
@@ -23,8 +26,9 @@ namespace Read.CaseReportsForListing
         {
             get
             {
+                // TODO implementd sortfield
                 var sortField = string.IsNullOrEmpty(SortField) ? nameof(CaseReportForListing.Timestamp) : SortField;
-                var query = _collection.Query.OrderByField(sortField, SortAscending);
+                var query = _collection.Query.OrderBy(x=>x.Timestamp);//.OrderBy(SortAscending);
 
                 if (PageSize > 0 && PageNumber >= 0)
                 {

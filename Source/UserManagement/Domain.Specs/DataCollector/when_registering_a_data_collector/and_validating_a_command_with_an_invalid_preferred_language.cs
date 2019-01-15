@@ -1,7 +1,13 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Domain.DataCollectors;
 using FluentValidation.Results;
 using Machine.Specifications;
 using Concepts;
+
 namespace Domain.Specs.DataCollector.when_registering_a_data_collector
 {
     [Subject("Registration")]

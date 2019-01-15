@@ -1,15 +1,21 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Queries;
 using System;
 using System.Linq;
+using Dolittle.ReadModels;
 
 namespace Read.Users
 {
     public class UserById : IQueryFor<User>
     {
-        readonly IUsers _collection;
+        readonly IReadModelRepositoryFor<User> _collection;
 
         public Guid UserId { get; set; }
-        public UserById(IUsers collection)
+        public UserById(IReadModelRepositoryFor<User> collection)
         {
             _collection = collection;
         }

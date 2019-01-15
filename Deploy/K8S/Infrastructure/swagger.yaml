@@ -1,0 +1,89 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: swagger
+  namespace: cbs-system
+  labels:
+    k9s-app: cbs-swagger
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-swagger
+    spec:
+      containers:
+      - name: swagger
+        image: swaggerapi/swagger-ui:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: ui
+        env:
+          - name: URL
+            value: "/swagger/admin/swagger/v2/swagger.json"
+          - name: URLS
+            value: |
+              [
+                { url: "/swagger/admin/swagger/v2/swagger.json", name: "Admin" },
+                { url: "/swagger/reporting/swagger/v2/swagger.json", name: "Volunteer Reporting" },
+                { url: "/swagger/usermanagement/swagger/v2/swagger.json", name: "User Management" },
+              ]
+          - name: VALIDATOR_URL
+            value: null
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: swagger
+  namespace: cbs-system
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    name: api
+  selector:
+    k9s-app: cbs-swagger
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: swagger
+  namespace: cbs-system
+  annotations:
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/preserve-host: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /swagger/
+        backend:
+          serviceName: swagger
+          servicePort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: swagger-bcs
+  namespace: cbs-app
+  annotations:
+    traefik.ingress.kubernetes.io/preserve-host: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /swagger/admin/
+        backend:
+          serviceName: admin-core
+          servicePort: 80
+      - path: /swagger/reporting/
+        backend:
+          serviceName: reporting-core
+          servicePort: 80
+      - path: /swagger/usermanagement/
+        backend:
+          serviceName: usermanagement-core
+          servicePort: 80

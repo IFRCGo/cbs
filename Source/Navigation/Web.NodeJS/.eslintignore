@@ -1,0 +1,8 @@
+node_modules
+public
+*.html
+*.log
+*.json
+*.md
+*.yaml
+*.ejs

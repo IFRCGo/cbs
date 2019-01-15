@@ -3,11 +3,42 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
+    <Content Remove="Tests\Data\AutomaticReplies.json" />
+    <Content Remove="Tests\Data\AutomaticReplyChangeTest.json" />
+    <Content Remove="Tests\Data\AutomaticReplyKeyMessages.json" />
+    <Content Remove="Tests\Data\AutomaticReplyRemoved.json" />
+    <Content Remove="Tests\Data\CaseReports.json" />
+    <Content Remove="Tests\Data\DataCollectors.json" />
+    <Content Remove="Tests\Data\DefaultAutomaticReplies.json" />
+    <Content Remove="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
+    <Content Remove="Tests\Data\HealthRisks.json" />
+    <Content Remove="Tests\Data\Projects.json" />
+    <Content Remove="Tests\Data\TextMessages.json" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Tests\Data\AutomaticReplies.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyChangeTest.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyKeyMessages.json" />
+    <EmbeddedResource Include="Tests\Data\AutomaticReplyRemoved.json" />
+    <EmbeddedResource Include="Tests\Data\CaseReports.json" />
+    <EmbeddedResource Include="Tests\Data\DataCollectors.json" />
+    <EmbeddedResource Include="Tests\Data\DefaultAutomaticReplies.json" />
+    <EmbeddedResource Include="Tests\Data\DefaultAutomaticReplyKeyMessages.json" />
+    <EmbeddedResource Include="Tests\Data\HealthRisks.json" />
+    <EmbeddedResource Include="Tests\Data\Projects.json" />
+    <EmbeddedResource Include="Tests\Data\TextMessages.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dolittle.SDK" Version="2.*" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
   </ItemGroup>
 </Project>

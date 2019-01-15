@@ -27,12 +27,19 @@ packages
 ##########
 node_modules
 yarn.lock
+*.log
 
 # Other #
 #########
+.idea
 Source/Artifacts
 wwwroot
-Source/Navigation/Web/dist/
+**/Web/dist
+Source/**/Web.Frontend/es
+Source/**/Web.Frontend/dist
+Source/**/Web.Frontend/.cache
+Source/**/Web.Frontend/tests_output
+
 
 # OS generated files #
 ######################
@@ -41,6 +48,7 @@ Source/Navigation/Web/dist/
 ehthumbs.db
 Icon?
 Thumbs.db
+.idea
 
 #Build tools #
 ##############

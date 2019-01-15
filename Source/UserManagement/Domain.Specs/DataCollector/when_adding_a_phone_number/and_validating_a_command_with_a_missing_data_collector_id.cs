@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
 using Domain.DataCollectors;
 using Machine.Specifications;
@@ -31,6 +35,5 @@ namespace Domain.Specs.DataCollector.when_adding_a_phone_number
 
         It should_identify_the_data_collector_id_as_the_problem =
             () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
-            
     }
 }

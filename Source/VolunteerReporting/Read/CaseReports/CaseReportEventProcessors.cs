@@ -1,21 +1,29 @@
-using Concepts;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Concepts.DataCollector;
 using Dolittle.Events.Processing;
-using Events;
-using Concepts.CaseReport;
+using Dolittle.Logging;
+using Dolittle.ReadModels;
 using Events.CaseReports;
+using Events.NotificationGateway.SMS;
 
 namespace Read.CaseReports
 {
     public class CaseReportEventProcessor : ICanProcessEvents
     {
-        readonly ICaseReports _caseReports;
-        readonly ICaseReportsFromUnknownDataCollectors _caseReportsFromUnknownDataCollectors;
+        readonly ILogger _logger;
+        readonly IReadModelRepositoryFor<CaseReport> _caseReports;
+        readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
 
         public CaseReportEventProcessor(
-            ICaseReports caseReports,
-            ICaseReportsFromUnknownDataCollectors caseReportsFromUnknownDataCollectors)
+            ILogger logger,
+            IReadModelRepositoryFor<CaseReport> caseReports,
+            IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> caseReportsFromUnknownDataCollectors)
         {
+            _logger = logger;
             _caseReports = caseReports;
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
         }
@@ -34,12 +42,12 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReports.Update(caseReport);
+
+            _caseReports.Insert(caseReport);
         }
         [EventProcessor("980f8db1-2e3a-4609-b7e6-29cee5190ea8")]
         public void Process(CaseReportFromUnknownDataCollectorReceived @event)
         {
-            // Save CaseReport in the CaseReportsFromUnkown... DB
             var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId)
             {
                 Origin = @event.Origin,
@@ -51,12 +59,19 @@ namespace Read.CaseReports
                 Timestamp = @event.Timestamp,
                 Message = @event.Message
             };
-            _caseReportsFromUnknownDataCollectors.Update(caseReport);
-        }   
+            _caseReportsFromUnknownDataCollectors.Insert(caseReport);
+        }
         [EventProcessor("cc5e94eb-7944-419d-9637-1a6807e8991c")]
         public void Process(CaseReportIdentified @event)
         {
-            _caseReportsFromUnknownDataCollectors.Delete(e => e.Id == (CaseReportId)@event.CaseReportId);            
+            var caseReport = _caseReportsFromUnknownDataCollectors.GetById(@event.CaseReportId);
+            _caseReportsFromUnknownDataCollectors.Delete(caseReport);            
+        }
+
+        [EventProcessor("97a8eba1-3f86-401e-a7c5-41f4c6172cfe")]
+        public void Process(TextMessageReceived @event)
+        {
+            _logger.Warning($"TextMessageReceieved in VolunteerReporting. Add some action here :)");
         }
     }
 }

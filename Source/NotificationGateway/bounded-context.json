@@ -1,0 +1,19 @@
+{
+  "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+  "boundedContext": "07f31e26-809d-3e14-3a9c-edc092366924",
+  "boundedContextName": "NotificationGateway",
+  "resources": {
+    "readModels": {
+      "production": "MongoDB",
+      "development": "MongoDB"
+    },
+    "eventStore": {
+      "production": "MongoDB",
+      "development": "MongoDB"
+    }
+  },
+  "core": {
+    "language": "csharp"
+  },
+  "interaction": []
+}

@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
 using Domain.DataCollectors;
 using FluentValidation.Results;
@@ -22,6 +27,8 @@ namespace Domain.Specs.DataCollector.when_updating_a_data_collector
         Because of = () => { validation_results = validator.Validate(cmd); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
-        It should_identify_the_data_collector_id_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
+
+        It should_identify_the_data_collector_id_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId) + ".Value");
+
     }
 }

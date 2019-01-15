@@ -1,0 +1,12 @@
+@import '../styles/Settings/all.scss';
+@import '../styles/Tools/all.scss';
+
+.home {
+  height: 100%;
+  padding: $grid-gutter;
+  @extend %flex-container-vertical;
+
+  svg {
+    width: 100%;
+  }
+}
