@@ -1,10 +1,10 @@
 {
-  "name": "@ifrc-cbs/reporting",
+  "name": "@ifrc-cbs/admin",
   "publishConfig": {
     "access": "public"
   },
   "version": "0.0.4",
-  "description": "CBS Reporting frontend React component",
+  "description": "CBS Admin frontend React component",
   "scripts": {
     "start:dev": "npm-run-all -l -p start:server start",
     "test": "cross-env HEADLESS_MODE=1 nightwatch",

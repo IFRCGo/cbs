@@ -1,13 +1,19 @@
+require('dotenv').config();
+
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const helmet = require('helmet');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = JSON.parse(process.env.TESTING_MODE || 0) ?
+  require('./routes/test-data/index') :
+  require('./routes/index');
 
 const app = express();
+app.enable('trust proxy');
+app.set('trust proxy', 1);
 app.use(bodyParser.json());
 app.use(cookieParser('secretkeycookie'));
 app.use(session({
@@ -16,6 +22,7 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,7 +36,24 @@ app.use(function(req, res, next) {
 
   next();
 });
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(indexRouter);
+
+app.use((req, res, next) => {
+  res.status(404).send('404 Not Found.');
+});
+
+app.use((err, req, res, next) => {
+  let type = err.type || err.data;
+  if (type) {
+    console.error(type, ':', err.message);
+  } else {
+    console.error(err);
+  }
+
+  let statusCode = err.statusCode || 500;
+  let responseText = err.response || 'Internal Server Error.';
+
+  res.status(statusCode).send(responseText);
+});
 
 module.exports = app;
