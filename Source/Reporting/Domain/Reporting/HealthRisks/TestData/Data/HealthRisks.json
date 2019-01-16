@@ -1,0 +1,267 @@
+[
+    {
+        "Id": "719d10d7-2792-4b55-ae6f-f17578995eeb",
+        "Name": "Acute haemorrhagic fever syndrome",
+        "ReadableId": "1"
+    },
+    {
+        "Id": "0b197966-2eaf-4340-ab55-1d40d597e989",
+        "Name": "Acute viral hepatitis",
+        "ReadableId": "2"
+    },
+    {
+        "Id": "ead70ad0-164f-4ef9-b156-91cab8238afe",
+        "Name": "Adverse events following immunization (AEFI)",
+        "ReadableId": "3"
+    },
+    {
+        "Id": "39f7b018-50cc-4ab7-a8a8-d1047a42ee99",
+        "Name": "Anthrax",
+        "ReadableId": "4"
+    },
+    {
+        "Id": "14ce4bb1-2f4c-4ec9-90e9-b3b6faadb51c",
+        "Name": "Buruli ulcer (Mycobacterium ulcerans disease)",
+        "ReadableId": "5"
+    },
+    {
+        "Id": "6ff128c6-1b77-469a-84ac-e8382a04790a",
+        "Name": "Chikungunya ",
+        "ReadableId": "6"
+    },
+    {
+        "Id": "51b92f4d-f14f-4ce9-9134-d766db5c3f80",
+        "Name": "Cholera ",
+        "ReadableId": "7"
+    },
+    {
+        "Id": "e4adf471-bfcd-46dd-aa69-e2c80e43eb2f",
+        "Name": "Dengue Fever",
+        "ReadableId": "8"
+    },
+    {
+        "Id": "eda26149-61c1-4cde-a18e-cdb7a544a0c8",
+        "Name": "Dengue Haemorrhagic Fever",
+        "ReadableId": "9"
+    },
+    {
+        "Id": "fd9dc00d-722c-4163-8eb3-358319826437",
+        "Name": "Dengue Shock Syndrome",
+        "ReadableId": "10"
+    },
+    {
+        "Id": "1700b918-8fb0-4950-889d-0f897e50b61c",
+        "Name": "Diabetes",
+        "ReadableId": "11"
+    },
+    {
+        "Id": "eff0c4f2-35b8-447f-a792-ae4db8129f97",
+        "Name": "Diarrhoea with blood (dysentery/Shigella) ",
+        "ReadableId": "12"
+    },
+    {
+        "Id": "3a52b4ba-5f78-4ede-8d60-a26d0c8b41c1",
+        "Name": "Dracunculiasis",
+        "ReadableId": "13"
+    },
+    {
+        "Id": "ad8a1d0d-4ff2-4d75-8c7f-2171666f6def",
+        "Name": "Ebola or Marburg viral hemorrhagic Fevers",
+        "ReadableId": "14"
+    },
+    {
+        "Id": "096fd16e-d3a7-4015-80a8-1140cfa980b0",
+        "Name": "Foodborne Illnesses",
+        "ReadableId": "15"
+    },
+    {
+        "Id": "de45d5c1-9586-47ba-92aa-dde7938a2a27",
+        "Name": "Human influenza (caused by a new subtype) ",
+        "ReadableId": "16"
+    },
+    {
+        "Id": "56bec214-ee82-4292-993d-18253b2eb44b",
+        "Name": "Pandemic (H1N1) 2009 virus infection",
+        "ReadableId": "17"
+    },
+    {
+        "Id": "a415cd57-4422-41d5-be50-f8c489411422",
+        "Name": "Hypertension",
+        "ReadableId": "18"
+    },
+    {
+        "Id": "e5e8e61e-2eb4-4d2e-8c0f-4603f9497957",
+        "Name": "Influenza-like Illness (ILI)",
+        "ReadableId": "19"
+    },
+    {
+        "Id": "fbf36558-e50a-402b-b5e8-9be286b1cca6",
+        "Name": "Crimean-Congo Haemorrhagic Fever (CCHF)",
+        "ReadableId": "20"
+    },
+    {
+        "Id": "2f47ea74-ecfb-4168-a687-072156e23c99",
+        "Name": "Lassa Fever",
+        "ReadableId": "21"
+    },
+    {
+        "Id": "270fbe99-4cf8-43f9-ad9a-25638cd85d7a",
+        "Name": "Leprosy",
+        "ReadableId": "22"
+    },
+    {
+        "Id": "4b270307-09c0-4572-b106-d2e216898efc",
+        "Name": "Lymphatic Filariasis",
+        "ReadableId": "23"
+    },
+    {
+        "Id": "3b9e3ab0-36aa-4efa-abb6-8c53ebe1d89e",
+        "Name": "Malaria (uncomplicated)",
+        "ReadableId": "24"
+    },
+    {
+        "Id": "b2746148-f97e-467c-8b17-52f6a91414ea",
+        "Name": "Malaria (severe)",
+        "ReadableId": "25"
+    },
+    {
+        "Id": "f989d4e7-5845-4a91-808a-dd4f0545981c",
+        "Name": "Malnutrition (newborns)",
+        "ReadableId": "26"
+    },
+    {
+        "Id": "41d4e537-2f88-4dc5-a894-c6bad10a672d",
+        "Name": "Malnutrition (children)",
+        "ReadableId": "27"
+    },
+    {
+        "Id": "ab49339c-2a8e-4047-b248-e31ad162119a",
+        "Name": "Malnutrition (pregnant women)",
+        "ReadableId": "28"
+    },
+    {
+        "Id": "8fbfcb95-c9f3-44a8-a3f1-498e4b627b01",
+        "Name": "Maternal Deaths",
+        "ReadableId": "29"
+    },
+    {
+        "Id": "7f1e4c0b-9178-47fb-98be-a211085de25d",
+        "Name": "Measles",
+        "ReadableId": "30"
+    },
+    {
+        "Id": "218b3035-85de-40ae-8c23-4e24f5923c71",
+        "Name": "Meningococcal Meningitis",
+        "ReadableId": "31"
+    },
+    {
+        "Id": "46177b67-7de6-4e85-b469-ec520455d049",
+        "Name": "Neonatal tetanus",
+        "ReadableId": "32"
+    },
+    {
+        "Id": "9aad7671-3ba3-4841-a7a8-3cb4eae4db9b",
+        "Name": "New AIDS Cases",
+        "ReadableId": "33"
+    },
+    {
+        "Id": "3d7a1ae4-e410-44fc-aa79-84921e558553",
+        "Name": "Noma",
+        "ReadableId": "34"
+    },
+    {
+        "Id": "6299860f-fd28-4835-a355-bc76053e261f",
+        "Name": "Onchocerciasis",
+        "ReadableId": "35"
+    },
+    {
+        "Id": "40d28dcb-b423-4e9d-ac83-690227f9da72",
+        "Name": "Plague",
+        "ReadableId": "36"
+    },
+    {
+        "Id": "c241455b-31a3-440a-a0a0-c06310c45c24",
+        "Name": "Poliomyelitis (Acute flaccid paralysis)",
+        "ReadableId": "37"
+    },
+    {
+        "Id": "e37b65bf-0c3f-40c1-867c-f7249914dace",
+        "Name": "Rabies",
+        "ReadableId": "38"
+    },
+    {
+        "Id": "99d35d51-6718-4330-912b-94f31ceb5bca",
+        "Name": "Rift Valley Fever (RVF)",
+        "ReadableId": "39"
+    },
+    {
+        "Id": "f061c65c-0eb0-432d-b43a-7978523adeca",
+        "Name": "Severe Acute Respiratory Infections (SARIs) (persons ≥ 5 years old)",
+        "ReadableId": "40"
+    },
+    {
+        "Id": "2a9c8276-6ac5-4155-8423-9e8d1da2fe14",
+        "Name": "Severe Acute Respiratory Syndrome (SARS)",
+        "ReadableId": "41"
+    },
+    {
+        "Id": "4bb9e122-4cb4-4c18-928f-fa6965ff097f",
+        "Name": "Pneumonia (Children under 5)",
+        "ReadableId": "42"
+    },
+    {
+        "Id": "77f32dac-6fe2-4a6d-812b-d0c139347bb0",
+        "Name": "Severe Pneumonia (Children under 5)",
+        "ReadableId": "43"
+    },
+    {
+        "Id": "0862e2c0-7b34-4507-b0b1-243e2728bca6",
+        "Name": "Genital ulcer syndrome (non-vesicular)",
+        "ReadableId": "44"
+    },
+    {
+        "Id": "d7e83c6b-2823-4f72-a3df-688aadcdbaea",
+        "Name": "Urethral discharge syndrome",
+        "ReadableId": "45"
+    },
+    {
+        "Id": "111096e1-d87e-4e6c-ac93-fbf21a248c74",
+        "Name": "Smallpox (Variola)",
+        "ReadableId": "46"
+    },
+    {
+        "Id": "2e947975-dc7c-45df-8b2b-5819b511f08f",
+        "Name": "Trachoma",
+        "ReadableId": "47"
+    },
+    {
+        "Id": "c0d06b12-5ad6-4885-87d1-69ace69fe646",
+        "Name": "Trypanosomiasis",
+        "ReadableId": "48"
+    },
+    {
+        "Id": "64602424-30ed-4111-9fd2-511815c6ed86",
+        "Name": "Tuberculosis",
+        "ReadableId": "49"
+    },
+    {
+        "Id": "3f01f890-0a9c-46ed-9041-035cefc77fbd",
+        "Name": "Typhoid Fever",
+        "ReadableId": "50"
+    },
+    {
+        "Id": "b275f3c2-e607-4af4-8582-648dd7b27b02",
+        "Name": "West Nile Fever",
+        "ReadableId": "51"
+    },
+    {
+        "Id": "82203268-3065-40ef-b7d8-7fc4ba14f304",
+        "Name": "Yellow fever",
+        "ReadableId": "52"
+    },
+    {
+        "Id": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "Name": "Yellow fever",
+        "ReadableId": "52"
+    }
+]
