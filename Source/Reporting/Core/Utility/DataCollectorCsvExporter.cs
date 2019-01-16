@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Concepts;
+using Concepts.DataCollectors;
 using Read.Management.DataCollectors;
 
 namespace Core.Utility
