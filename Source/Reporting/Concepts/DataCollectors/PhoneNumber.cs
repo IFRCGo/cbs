@@ -7,18 +7,34 @@ using Dolittle.Concepts;
 
 namespace Concepts.DataCollectors
 {
-    /// <summary>
-    /// Represents a <see cref="PhoneNumber"/>
-    /// </summary>
-    public class PhoneNumber : ConceptAs<string>
+    public class PhoneNumber : Value<PhoneNumber>
     {
-        /// <summary>
-        /// Implicitly convert from a string representation of a Phonenumber <see cref="PhoneNumber"/>
-        /// </summary>
-        /// <param name="number">The phone number</param>
-        public static implicit operator PhoneNumber(string number)
+        public string Value { get; private set; }
+
+        public PhoneNumber(string value)
         {
-            return new PhoneNumber { Value = number };
+            Value = value;
         }
+        
+        //TODO: This value should default to false after the MVP and when there is logic for phone number confirmation
+        public bool Confirmed { get; private set; } = true;
+
+        public bool IsValid => ! Value.Contains(" ");
+        
+        public override bool Equals(object obj)
+        {
+            var item = obj as PhoneNumber;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return Value.Equals(item.Value);
+        }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }        
     }
 }

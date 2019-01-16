@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>

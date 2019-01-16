@@ -15,15 +15,15 @@ namespace Policies.Reporting
     public class CaseReportIdentification : ICanProcessEvents
     {
         readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregateRootRepository;
-        readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _unknownReports;
-        readonly IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> _invalidAndUnknownReports;
-        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        readonly IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> _unknownReports;
+        readonly IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> _invalidAndUnknownReports;
+        readonly IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector> _dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
-            IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> unknownReports,
-            IReadModelRepositoryFor<InvalidCaseReportFromUnknownDataCollector> invalidAndUnknownReports,
-            IReadModelRepositoryFor<DataCollector> dataCollectors)
+            IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> unknownReports,
+            IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> invalidAndUnknownReports,
+            IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector> dataCollectors)
         {
             _caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
             _unknownReports = unknownReports;
