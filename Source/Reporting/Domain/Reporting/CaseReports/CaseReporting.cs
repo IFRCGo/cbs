@@ -7,6 +7,7 @@ using System;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using System.Collections.Generic;
+using Events.Reporting.CaseReports;
 
 namespace Domain.Reporting.CaseReports
 {

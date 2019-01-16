@@ -10,7 +10,7 @@ using Concepts.Projects;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
-namespace Domain.AutomaticReplyMessages
+namespace Domain.Reporting.AutomaticReplyMessages
 {
     public class DefineAutomaticReplyForProjectValidator : CommandInputValidatorFor<DefineAutomaticReplyForProject>
     {

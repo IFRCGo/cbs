@@ -7,7 +7,7 @@ using Dolittle.Commands;
 using Concepts.AutomaticReplies;
 using Concepts.Projects;
 
-namespace Domain.AutomaticReplyMessages
+namespace Domain.Reporting.AutomaticReplyMessages
 {
     public class DefineAutomaticReplyForProject : ICommand
     {

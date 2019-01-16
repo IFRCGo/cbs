@@ -8,12 +8,16 @@ using System.Collections.Generic;
 using Concepts.DataCollectors;
 using Concepts.DataVerifiers;
 using Dolittle.Domain;
+using Dolittle.Runtime.Events;
+using Events.Management.DataCollectors.EditInformation;
+using Events.Management.DataCollectors.Registration;
+using Events.Management.DataCollectors.Training;
 
 namespace Domain.Management.DataCollectors
 {
     public class DataCollector : AggregateRoot
     {
-        public DataCollector(Guid id) : base(id)
+        public DataCollector(EventSourceId id) : base(id)
         {
         }
 

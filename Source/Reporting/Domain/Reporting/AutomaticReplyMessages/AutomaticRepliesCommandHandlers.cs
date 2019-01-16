@@ -7,7 +7,7 @@ using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using System;
 
-namespace Domain.AutomaticReplyMessages
+namespace Domain.Reporting.AutomaticReplyMessages
 {
     public class AutomaticRepliesCommandHandlers : ICanHandleCommands
     {
@@ -24,7 +24,7 @@ namespace Domain.AutomaticReplyMessages
             var repository = _automaticReplyRepository.Get(eventId);
             repository.Define(
                 automaticReply.ProjectId,
-                (int)automaticReply.Type,
+                automaticReply.Type,
                 automaticReply.Language,
                 automaticReply.Message
                 );
@@ -35,9 +35,9 @@ namespace Domain.AutomaticReplyMessages
             var eventId = Guid.NewGuid();
             var repository = _automaticReplyRepository.Get(eventId);
             repository.DefineKeyMessage(
-                automaticReplyKeyMessage.HealthRiskId,
                 automaticReplyKeyMessage.ProjectId,
-                (int)automaticReplyKeyMessage.Type,
+                automaticReplyKeyMessage.HealthRiskId,
+                automaticReplyKeyMessage.Type,
                 automaticReplyKeyMessage.Language,
                 automaticReplyKeyMessage.Message
                 );

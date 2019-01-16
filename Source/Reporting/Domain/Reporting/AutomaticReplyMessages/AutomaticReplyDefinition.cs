@@ -4,10 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Concepts.AutomaticReplies;
+using Concepts.HealthRisks;
+using Concepts.Projects;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
+using Events.Reporting.AutomaticReplyMessages;
 
-namespace Domain.AutomaticReplyMessages
+namespace Domain.Reporting.AutomaticReplyMessages
 {
     public class AutomaticReplyDefinition : AggregateRoot
     {
@@ -16,12 +20,12 @@ namespace Domain.AutomaticReplyMessages
 
         }
 
-        public void Define(Guid projectId, int type, string language, string message)
+        public void Define(ProjectId projectId, AutomaticReplyType type, string language, string message)
         {
             Apply(new AutomaticReplyDefined(Guid.NewGuid(), projectId, (int)type, language, message));
         }
 
-        public void DefineKeyMessage(Guid projectId, Guid healthRiskId, int type, string language, string message)
+        public void DefineKeyMessage(ProjectId projectId, HealthRiskId healthRiskId, AutomaticReplyKeyMessageType type, string language, string message)
         {
             Apply(new AutomaticReplyKeyMessageDefined(Guid.NewGuid(), projectId, healthRiskId, (int)type, language, message));
         }

@@ -8,7 +8,7 @@ using Concepts.HealthRisks;
 using Concepts.AutomaticReplies;
 using Dolittle.Commands;
 
-namespace Domain.AutomaticReplyMessages
+namespace Domain.Reporting.AutomaticReplyMessages
 {
     public class DefineAutomaticReplyKeyMessageForProject : ICommand
     {
