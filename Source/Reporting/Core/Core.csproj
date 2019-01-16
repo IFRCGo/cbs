@@ -16,7 +16,7 @@
     <DolittleUseModules>True</DolittleUseModules>
     
     <!--  A | separated Key/Value pair map of namespace segments to strip -->
-    <DolittleNamespaceSegmentsToStrip></DolittleNamespaceSegmentsToStrip>
+    <DolittleNamespaceSegmentsToStrip>Events=Admin|Events=NotificationGateway</DolittleNamespaceSegmentsToStrip>
     
     <!-- Whether or not the build tool should generate proxies -->
     <DolittleGenerateProxies>False</DolittleGenerateProxies>
@@ -45,6 +45,8 @@
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
+    <ProjectReference Include="..\Events.NotificationGateway\Events.NotificationGateway.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Policies\Policies.csproj" />
   </ItemGroup>
@@ -61,7 +63,7 @@
     <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.*" />
     <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.*" />
     <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="2.*" />   
-    
+
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.0.0" />
 
