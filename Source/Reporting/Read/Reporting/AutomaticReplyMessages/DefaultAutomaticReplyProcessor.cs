@@ -6,7 +6,7 @@
 using Concepts.AutomaticReplies;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
-using Events.Admin.DefaultReplyMessages;
+using Events.Admin.Reporting.DefaultReplyMessages;
 
 namespace Read.Reporting.AutomaticReplyMessages
 {
