@@ -4,13 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class ChangeVillage extends Command
+export class DefineAutomaticReplyKeyMessageForProject extends Command
 {
     constructor() {
         super();
-        this.type = 'b453679b-bf5f-4b87-9bc9-7aff67abf975';
+        this.type = '7b6a7f78-092e-46ca-a7f9-90cf1a35c629';
 
-        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.village = '';
+        this.healthRiskId = '00000000-0000-0000-0000-000000000000';
+        this.projectId = '00000000-0000-0000-0000-000000000000';
+        this.type = {};
+        this.language = '';
+        this.message = '';
     }
 }

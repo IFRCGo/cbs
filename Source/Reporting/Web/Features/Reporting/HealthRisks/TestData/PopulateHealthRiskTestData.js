@@ -4,13 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class ChangeVillage extends Command
+export class PopulateHealthRiskTestData extends Command
 {
     constructor() {
         super();
-        this.type = 'b453679b-bf5f-4b87-9bc9-7aff67abf975';
+        this.type = '4a0bc1c1-854e-46aa-a201-ac01a1d87848';
 
-        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.village = '';
+        this.id = '00000000-0000-0000-0000-000000000000';
     }
 }

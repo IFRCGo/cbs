@@ -4,16 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class HealthRisk extends ReadModel
+export class DefaultAutomaticReply extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '4b5236d8-8108-4718-83cd-8e51fd181362',
+           id: '09085a22-52d8-4e7c-bd03-b5a5ce7e5926',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
-        this.readableId = 0;
-        this.name = '';
+        this.type = {};
+        this.message = '';
+        this.language = '';
     }
 }

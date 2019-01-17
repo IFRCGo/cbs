@@ -4,13 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class ChangeVillage extends Command
+export class DefineAutomaticReplyForProject extends Command
 {
     constructor() {
         super();
-        this.type = 'b453679b-bf5f-4b87-9bc9-7aff67abf975';
+        this.type = '8abf7e86-cedc-4006-b10d-8a151dcc38fe';
 
-        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.village = '';
+        this.projectId = '00000000-0000-0000-0000-000000000000';
+        this.type = {};
+        this.language = '';
+        this.message = '';
     }
 }
