@@ -8,6 +8,8 @@ COPY ./Source/Reporting/Core/Core.csproj /CBS/Source/Reporting/Core/Core.csproj
 COPY ./Source/Reporting/Domain/Domain.csproj /CBS/Source/Reporting/Domain/Domain.csproj
 COPY ./Source/Reporting/Domain.Specs/Domain.Specs.csproj /CBS/Source/Reporting/Domain.Specs/Domain.Specs.csproj
 COPY ./Source/Reporting/Events/Events.csproj /CBS/Source/Reporting/Events/Events.csproj
+COPY ./Source/Reporting/Events.Admin/Events.Admin.csproj /CBS/Source/Reporting/Events.Admin/Events.Admin.csproj
+COPY ./Source/Reporting/Events.NotificationGateway/Events.NotificationGateway.csproj /CBS/Source/Reporting/Events.NotificationGateway/Events.NotificationGateway.csproj
 COPY ./Source/Reporting/Policies/Policies.csproj /CBS/Source/Reporting/Policies/Policies.csproj
 COPY ./Source/Reporting/Policies.Specs/Policies.Specs.csproj /CBS/Source/Reporting/Policies.Specs/Policies.Specs.csproj
 COPY ./Source/Reporting/Read/Read.csproj /CBS/Source/Reporting/Read/Read.csproj
