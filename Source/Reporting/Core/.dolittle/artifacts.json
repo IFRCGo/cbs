@@ -445,7 +445,7 @@
     "readModels": {
       "f62854d5-8f53-44f0-b538-92f80462ba51": {
         "generation": 1,
-        "type": "Read.Reporting.DataCollectors.DataCollector, Read"
+        "type": "Read.Reporting.DataCollectors.DataCollector_, Read"
       }
     },
     "queries": {

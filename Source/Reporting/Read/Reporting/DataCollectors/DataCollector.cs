@@ -10,9 +10,9 @@ using Dolittle.ReadModels;
 
 namespace Read.Reporting.DataCollectors
 {
-    public class DataCollector : IReadModel
+    public class DataCollector_ : IReadModel
     { 
-        public DataCollector(DataCollectorId id)
+        public DataCollector_(DataCollectorId id)
         {
             Id = id;
         }

@@ -15,16 +15,16 @@ namespace Read.Reporting.DataCollectors
 {
     public class DataCollectorEventProcessor : ICanProcessEvents
     {
-        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector_> _dataCollectors;
 
-        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector> dataCollectors)
+        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector_> dataCollectors)
         {
             _dataCollectors = dataCollectors;
         }
         [EventProcessor("e5772c2d-2891-4abe-ac62-1adadc353f9b")]
         public void Process(DataCollectorRegistered @event)
         {
-            _dataCollectors.Insert(new DataCollector(@event.DataCollectorId)
+            _dataCollectors.Insert(new DataCollector_(@event.DataCollectorId)
             {
                 DisplayName = @event.DisplayName,
                 FullName = @event.FullName,
