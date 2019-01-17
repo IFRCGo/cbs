@@ -1,0 +1,45 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# Docker
+.config
+.ash_history
+*.log
+# dependencies
+/node_modules
+es
+*.iml
+dist
+.cache
+.idea
+.settings
+
+# testing
+/coverage
+selenium-debug.log
+selenium-server.log
+tests_output
+browserstack.log
+browserstack.err
+local.log
+local.err
+
+# generated files
+/src/**/css/*
+!/src/**/css/README
+/build
+version.json
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+tests_output
+
+npm-debug.log*
+
+# We used Yarn in the past
+yarn.lock
+yarn-debug.log*
+yarn-error.log*

@@ -3,23 +3,16 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {StoreManager} from 'repertoire';
 import {Provider} from 'react-redux';
-
 import {Application} from '@ifrc-cbs/common-react-ui';
-import Reporting from '@ifrc-cbs/reporting';
-import Projects from '@ifrc-cbs/admin';
+import Projects from './src/components/Projects';
 
 import '@ifrc-cbs/common-react-ui/src/assets/main.scss';
+import './src/assets/main.scss';
 
 const routes = [
   {
-    component: Reporting,
-    path: '/reporting/:filter',
-    exact: false
-  },
-
-  {
     component: Projects,
-    path: '/projects',
+    path: '/projects/',
     exact: false
   }
 ];

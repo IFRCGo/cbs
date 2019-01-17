@@ -14,7 +14,7 @@ export default () => (
     </figure>
 
     <nav>
-      <Link to="/">Project administration</Link>
+      <Link to="/projects">Project administration</Link>
       <Link to="/users">User management</Link>
       <Link to="/reporting/all">Reporting</Link>
       <Link to="/alerts">Alerts</Link>

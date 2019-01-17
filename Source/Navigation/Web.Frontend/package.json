@@ -5,8 +5,9 @@
   },
   "version": "0.0.1",
   "scripts": {
-    "start:server": "node ./server/bin/www",
+    "start": "npm run dev",
     "dev": "parcel ./public/index.html --log-level=4",
+    "node:server": "cross-env PORT=3000 NODE_ENV=development cbs-node-server",
     "build": "parcel build ./public/index.html",
     "eslint": "eslint src"
   },
@@ -18,7 +19,6 @@
   "dependencies": {
     "bootstrap-sass": "^3.4.0",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
     "express": "~4.16.0",
     "react-loadable": "^5.5.0",
     "express-session": "^1.15.6",
@@ -30,8 +30,10 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "repertoire": "^0.1.6",
-    "@ifrc-cbs/reporting": "^0.0.2",
-    "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common"
+    "@ifrc-cbs/reporting": "^0.0.4",
+    "@ifrc-cbs/admin": "^0.0.4",
+    "@ifrc-cbs/common-react-ui": "^0.0.2",
+    "@ifrc-cbs/nodejs-server": "file:../Web.NodeJS"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -45,11 +47,6 @@
     "eslint": "^5.12.0",
     "parcel-bundler": "^1.11.0",
     "rimraf": "^2.6.3",
-    "sass": "^1.15.3",
-    "react-dom": "^16.7.0",
-    "react-helmet": "^5.2.0",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "repertoire": "^0.1.6"
+    "sass": "^1.15.3"
   }
 }
