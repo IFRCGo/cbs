@@ -1,5 +1,5 @@
-require('dotenv').config();
-
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
 
-const indexRouter = JSON.parse(process.env.TESTING_MODE || 0) ?
+const testingMode = JSON.parse(process.env.TESTING_MODE || 0);
+const indexRouter = testingMode ?
   require('./routes/test-data/index') :
   require('./routes/index');
 
