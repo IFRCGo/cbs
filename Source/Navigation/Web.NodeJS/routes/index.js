@@ -5,7 +5,7 @@ const Admin = require('../services/Admin.js');
 
 router.get('/api/case-reports', (req, res, next) => {
   const service = new Reporting({
-    baseUrl: process.env.BACKEND_API_URL
+    baseUrl: process.env.UPSTREAM_API_URL
   });
 
   return service.getCaseReports().then(response => {
@@ -15,7 +15,7 @@ router.get('/api/case-reports', (req, res, next) => {
 
 router.get('/api/projects', (req, res, next) => {
   const service = new Admin({
-    baseUrl: process.env.BACKEND_API_URL
+    baseUrl: process.env.UPSTREAM_API_URL
   });
 
   return service.getAllProjects().then(response => {
@@ -25,7 +25,7 @@ router.get('/api/projects', (req, res, next) => {
 
 router.get('/api/health-risks', (req, res, next) => {
   const service = new Admin({
-    baseUrl: process.env.BACKEND_API_URL
+    baseUrl: process.env.UPSTREAM_API_URL
   });
 
   return service.getAllHealthRisks().then(response => {
