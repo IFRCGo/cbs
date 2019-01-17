@@ -12,8 +12,13 @@
   "license": "MIT",
   "files": [
     "bin",
+    "lib",
     "routes",
-    "app.js"
+    "services",
+    "utils",
+    ".env",
+    "app.js",
+    "index.js"
   ],
   "bin": {
     "cbs-node-server": "./bin/www"
