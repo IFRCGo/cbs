@@ -1,1 +1,0 @@
-export const ACTION_TYPE = "STANDARD_ACTION_TYPE";
