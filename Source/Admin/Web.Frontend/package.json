@@ -28,13 +28,18 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.2.0",
+    "@dolittle/commands": "1.0.10",
+    "@dolittle/core": "1.0.4",
+    "@dolittle/queries": "1.0.12",
+    "@dolittle/readmodels": "1.0.0",
+    "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
+    "@ifrc-cbs/reporting": "0.0.4",
     "bootstrap-sass": "^3.4.0",
     "dotenv": "^6.2.0",
+    "evergreen-ui": "^4.9.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "redux": "^4.0.1",
-    "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
-    "@ifrc-cbs/reporting": "0.0.4"
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
