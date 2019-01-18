@@ -8,7 +8,7 @@ export class PopulateCaseReportTestData extends Command
 {
     constructor() {
         super();
-        this.type = 'ee49147c-e90f-47a4-b185-e57cab429991';
+        this.type = 'e2426d26-5715-48ec-97cf-2d64fac66643';
 
     }
 }

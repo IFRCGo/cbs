@@ -8,7 +8,7 @@ export class DefineAutomaticReplyKeyMessageForProject extends Command
 {
     constructor() {
         super();
-        this.type = '7b6a7f78-092e-46ca-a7f9-90cf1a35c629';
+        this.type = 'a68d1665-18ba-4a67-839f-41e37db4a7e5';
 
         this.healthRiskId = '00000000-0000-0000-0000-000000000000';
         this.projectId = '00000000-0000-0000-0000-000000000000';

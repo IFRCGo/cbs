@@ -1,16 +1,16 @@
 ﻿/*---------------------------------------------------------------------------------------------
- *  This file is an automatically generated Command Proxy
+ *  This file is an automatically generated Query Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands';
+import { Query } from  '@dolittle/queries';
 
-export class ChangePreferredLanguage extends Command
+export class ListedDataCollectorById extends Query
 {
     constructor() {
         super();
-        this.type = '18504540-45e7-44b7-abf1-b7211e3c5ca6';
+        this.nameOfQuery = 'ListedDataCollectorById';
+        this.generatedFrom = 'Read.Reporting.DataCollectors.ListedDataCollectorById';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.preferredLanguage = {};
     }
 }
