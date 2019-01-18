@@ -25,17 +25,22 @@ will be used to create the graphs/dashboards.
 
 The React frontend is prototyped by `VolunteerReporting` and we just copy what they do.
 
-Fake data (.xlsx, .json) and R
+Fake data (.xlsx) and R
 -----------------
 
-`cbs/Documentation/Projects/Analytics/fakedata` contains `report.Rmd` that reads in the fake data (data/*.xlsx) and produces a number of graphs that we want to be included in the cbs system. If you like R, you can use this `report.Rmd` file to prototype and test out new possible graphs. We also plan on using this `.Rmd` file as an easy way to produce fake .json data that will be stored at `cbs/Source/Analytics/Web.React/src/assets/data/` and used for prototyping the D3 graphs.
+`cbs/Documentation/Projects/Analytics/fakedata` contains `report.Rmd` that reads in the fake data (data/*.xlsx) and produces a number of graphs that we want to be included in the cbs system. If you like R, you can use this `report.Rmd` file to prototype and test out new possible graphs.
+
+Fake data (.json)
+-----------------
+
+`cbs/Documentation/Projects/Analytics/fakejson` contains a lot of fake .json datafiles that are to be used for prototyping the D3 graphs.
 
 What has been done
 ------
 
 - We have sketched out a number of graphs that we want implemented in the frontend
 - These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
-- Fake data (.json) is provided at `cbs/Source/Analytics/Web.React/src/assets/data` for some of these graphs
+- Fake data (.json) is provided at `cbs/Documentation/Projects/Analytics/fakejson` for some of these graphs
 - The back-end queries have been written for one graph, but we can't get it to work
 
 What needs to be done
@@ -52,6 +57,30 @@ Epicurve by week
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/845
 Backend issue: https://github.com/IFRCGo/cbs/issues/846
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
 
 Here we display a weekly `epicurve` (the epidemiological term for a time
 series graph showing the number of reported cases on the y-axis and time
@@ -76,6 +105,30 @@ Epicurve by day
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/848
 Backend issue: https://github.com/IFRCGo/cbs/issues/849
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
 
 Here we display a daily `epicurve`.
 
@@ -91,6 +144,9 @@ Epicurve by week dodged by age
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/850
 Backend issue: https://github.com/IFRCGo/cbs/issues/851
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display a weekly `epicurve` with two columns for each week,
 showing the ages side-by-side.
@@ -107,6 +163,9 @@ Epicurve by day dodged by age
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/852
 Backend issue: https://github.com/IFRCGo/cbs/issues/853
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+
+This is an extension of the graph Epicurve by day" (frontend issue: https://github.com/IFRCGo/cbs/issues/848, backend issue: https://github.com/IFRCGo/cbs/issues/849).
 
 Here we display a daily `epicurve` with two columns for each day,
 showing the ages side-by-side.
@@ -123,10 +182,12 @@ Age and sex distribution over different time frames
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/854
 Backend issue: https://github.com/IFRCGo/cbs/issues/855
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
 
 -   We display the number of cases, split by age/sex on the x-axis
 -   We need the ability to display different time frames (e.g. per week,
     last week, over multiple weeks)
+-   We need to display over different geographical regions as well
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
@@ -135,6 +196,9 @@ Weekly epicurves by age/sex
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/856
 Backend issue: https://github.com/IFRCGo/cbs/issues/857
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display four weekly epicurves, one for each age/sex combination.
 
@@ -152,6 +216,9 @@ Weekly epicurves by geographical area
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/858
 Backend issue: https://github.com/IFRCGo/cbs/issues/859
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display multiple weekly epicurves, one for each geographical
 area.
@@ -199,6 +266,9 @@ Barcharts by district
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/862
 Backend issue: https://github.com/IFRCGo/cbs/issues/863
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 This is very similar to the above map, but allows for a more nuanced
 view of the numbers.
