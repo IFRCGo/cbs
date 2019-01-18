@@ -17,6 +17,7 @@
     "parcel:dev": "cross-env NODE_ENV=development parcel ./public/index.html",
     "prepare": "npm run clean && npm run export",
     "eslint": "eslint src",
+    "preinstall": "cd ../../Navigation/Web.Common && npm install",
     "build": "npm run eslint && npm run prepare"
   },
   "main": "es/exports.js",
