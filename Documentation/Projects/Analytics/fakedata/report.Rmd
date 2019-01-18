@@ -151,9 +151,32 @@ Important to note:
 - Weeks with zero cases must be displayed
 
 ```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(epiWeek)]
+toplotNational <- d[,.(n=sum(value)),keyby=.(epiWeek,age,sex)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotRegion <- d[,.(n=sum(value)),keyby=.(region,epiWeek,age,sex)]
+toplotRegion[,level:="region"]
+setnames(toplotRegion,"region","geo")
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(district,epiWeek,age,sex)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(village,epiWeek,age,sex)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave1 <- rbind(toplotNational,toplotRegion,toplotDistrict,toplotVillage)
+tosave2 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek,age)]
+tosave2[,sex:="All"]
+tosave3 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek,sex)]
+tosave3[,age:="All"]
+tosave4 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek)]
+tosave4[,sex:="All"]
+tosave4[,age:="All"]
+tosave <- rbind(tosave4,tosave3,tosave2,tosave1)
+tosave[,pop:=10000]
 
-q <- ggplot(toplot,aes(x=epiWeek,y=n))
+readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-week.json")
+
+q <- ggplot(tosave4,aes(x=epiWeek,y=n))
 q <- q + geom_col(alpha=0.7)
 q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
 q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
@@ -173,9 +196,32 @@ Important to note:
 - Days with zero cases must be displayed
 
 ```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(Date)]
+toplotNational <- d[,.(n=sum(value)),keyby=.(Date,age,sex)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotRegion <- d[,.(n=sum(value)),keyby=.(region,Date,age,sex)]
+toplotRegion[,level:="region"]
+setnames(toplotRegion,"region","geo")
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(district,Date,age,sex)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(village,Date,age,sex)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave1 <- rbind(toplotNational,toplotRegion,toplotDistrict,toplotVillage)
+tosave2 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,Date,age)]
+tosave2[,sex:="All"]
+tosave3 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,Date,sex)]
+tosave3[,age:="All"]
+tosave4 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,Date)]
+tosave4[,sex:="All"]
+tosave4[,age:="All"]
+tosave <- rbind(tosave4,tosave3,tosave2,tosave1)
+tosave[,pop:=10000]
 
-q <- ggplot(toplot,aes(x=Date,y=n))
+readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-day.json")
+
+q <- ggplot(tosave4,aes(x=Date,y=n))
 q <- q + geom_col(alpha=0.7,width=0.5)
 q <- q + labs(title=sprintf("Daily epicurve from %s to %s",minDate,maxDate))
 q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
@@ -195,9 +241,21 @@ Important to note:
 - Weeks with zero cases must be displayed
 
 ```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(epiWeek,age)]
+toplotNational <- d[,.(n=sum(value)),keyby=.(age,epiWeek)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(age,district,epiWeek)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(age,village,epiWeek)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave <- rbind(toplotNational,toplotDistrict,toplotVillage)
+tosave[,pop:=10000]
 
-q <- ggplot(toplot,aes(x=epiWeek,y=n,fill=age))
+#readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-week-dodged-by-age.json")
+
+q <- ggplot(toplotNational,aes(x=epiWeek,y=n,fill=age))
 q <- q + geom_col(pos="dodge")
 q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
 q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
@@ -218,9 +276,21 @@ Important to note:
 - Days with zero cases must be displayed
 
 ```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(Date,age)]
+toplotNational <- d[,.(n=sum(value)),keyby=.(age,Date)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(age,district,Date)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(age,village,Date)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave <- rbind(toplotNational,toplotDistrict,toplotVillage)
+tosave[,pop:=10000]
 
-q <- ggplot(toplot,aes(x=Date,y=n,fill=age))
+#readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-day-dodged-by-age.json")
+
+q <- ggplot(toplotNational,aes(x=Date,y=n,fill=age))
 q <- q + geom_col(pos="dodge",width=0.5)
 q <- q + labs(title=sprintf("Daily epicurve from %s to %s",minDate,maxDate))
 q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
@@ -238,7 +308,21 @@ q
 - We need the ability to display different time frames (e.g. per week, last week, over multiple weeks)
 
 ```{r message=FALSE, warning=FALSE}
-toplot <- d[epiWeek==max(epiWeek),.(n=sum(value)),by=.(epiWeek,age,sex)]
+toplotNational <- d[,.(n=sum(value)),keyby=.(age,sex,epiWeek)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(age,sex,district,epiWeek)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(age,sex,village,epiWeek)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave <- rbind(toplotNational,toplotDistrict,toplotVillage)
+tosave[,pop:=10000]
+
+#readr::write_lines(jsonlite::toJSON(tosave),path="json/age-and-sex-dist-over-different-time.json")
+
+toplot <- toplotNational[epiWeek==max(epiWeek)]
 toplot[,var:=sprintf("%s, %s",age,sex)]
 
 q <- ggplot(toplot,aes(x=var,y=n))
