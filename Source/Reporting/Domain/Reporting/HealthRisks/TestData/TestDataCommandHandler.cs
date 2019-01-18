@@ -11,6 +11,7 @@ using Concepts.DataCollectors;
 using Concepts.HealthRisks;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
+using Events.Admin.Reporting.HealthRisks;
 using Newtonsoft.Json;
 
 namespace Domain.Reporting.HealthRisks.TestData
@@ -37,11 +38,11 @@ namespace Domain.Reporting.HealthRisks.TestData
 
         public void Handle(PopulateHealthRiskTestData cmd)
         {
-            var risks = DeserializeTestData<HealthRiskHelper[]>("Tests.Data.HealthRisks.json");
+            var risks = DeserializeTestData<HealthRiskCreated[]>("Tests.Data.HealthRisks.json");
 
             foreach (var risk in risks)
             {
-                var root = _healthRiskAggregate.Get(risk.Id.Value);
+                var root = _healthRiskAggregate.Get(risk.Id);
                 root.CreateHealthRisk(risk.Name, risk.ReadableId);
             }
         }

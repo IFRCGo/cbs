@@ -1,5 +1,6 @@
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
+using Events.Admin.Reporting.HealthRisks;
 using Events.Management.HealthRisks;
 
 namespace Domain.Reporting.HealthRisks
@@ -13,7 +14,7 @@ namespace Domain.Reporting.HealthRisks
             string name,
             int readableId)
         {
-            Apply(new HealthRiskRegistered(EventSourceId.Value, readableId, name));
+            Apply(new HealthRiskCreated(EventSourceId.Value, readableId, name));
         }
     }
 }
