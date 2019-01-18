@@ -9,15 +9,15 @@ using Dolittle.ReadModels;
 
 namespace Read.Reporting.DataCollectors
 {
-    public class AllDataCollectors : IQueryFor<DataCollector>
+    public class AllDataCollectors : IQueryFor<DataCollector_>
     {
-        private readonly IReadModelRepositoryFor<DataCollector> _collection;
+        private readonly IReadModelRepositoryFor<DataCollector_> _collection;
 
-        public AllDataCollectors(IReadModelRepositoryFor<DataCollector> collection)
+        public AllDataCollectors(IReadModelRepositoryFor<DataCollector_> collection)
         {
             _collection = collection;
         }
 
-        public IQueryable<DataCollector> Query => _collection.Query;
+        public IQueryable<DataCollector_> Query => _collection.Query;
     }
 }

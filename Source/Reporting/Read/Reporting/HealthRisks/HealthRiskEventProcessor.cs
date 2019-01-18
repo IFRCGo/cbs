@@ -5,7 +5,7 @@
 
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
-using Events.Admin.HealthRisks;
+using Events.Admin.Reporting.HealthRisks;
 
 namespace Read.Reporting.HealthRisks
 {

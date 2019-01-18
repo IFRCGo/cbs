@@ -15,12 +15,12 @@ namespace Read.Reporting.CaseReportsForListing
     public class CaseReportForListingEventProcessor : ICanProcessEvents
     {
         private readonly IReadModelRepositoryFor<CaseReportForListing> _caseReports;
-        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector_> _dataCollectors;
         private readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public CaseReportForListingEventProcessor(
             IReadModelRepositoryFor<CaseReportForListing> caseReports,
-            IReadModelRepositoryFor<DataCollector> dataCollectors,
+            IReadModelRepositoryFor<DataCollector_> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _caseReports = caseReports;

@@ -1,4 +1,94 @@
 {
-    "modules": {},
-    "features": {}
+  "modules": {
+    "538159b7-1851-4c62-b2c0-86509937b841": {
+      "name": "Reporting",
+      "features": {
+        "bd296785-162c-4964-95a6-3a07616f2c70": {
+          "name": "HealthRisks",
+          "subFeatures": {
+            "edde39cc-0187-4e28-bfc4-142d51fd261d": {
+              "name": "TestData",
+              "subFeatures": {}
+            }
+          }
+        },
+        "b5d59541-37df-4bae-8c39-54ae0ad4fdd4": {
+          "name": "CaseReports",
+          "subFeatures": {
+            "4535aa00-8bc4-47e7-84e4-5e3e0cae9389": {
+              "name": "TestData",
+              "subFeatures": {}
+            }
+          }
+        },
+        "c760bdeb-8ba8-429f-9fd5-c88386d8fbe9": {
+          "name": "AutomaticReplyMessages",
+          "subFeatures": {}
+        },
+        "a086be17-ef6e-43af-9a47-00711aa556ad": {
+          "name": "Projects",
+          "subFeatures": {}
+        },
+        "685380d6-efc3-491e-8633-7a33d9d0782d": {
+          "name": "DefaultReplyMessages",
+          "subFeatures": {}
+        },
+        "085cf676-c78a-42d8-aa7c-d8d965a340bf": {
+          "name": "SMS",
+          "subFeatures": {}
+        },
+        "6501517d-26be-4ac3-8bcf-218c1a1ae103": {
+          "name": "InvalidCaseReports",
+          "subFeatures": {}
+        },
+        "1f619abf-b9c3-4752-b7fd-1ce9e02980aa": {
+          "name": "CaseReportsForListing",
+          "subFeatures": {}
+        },
+        "3f19c4e3-9c79-4ba4-83f4-26967787c9ca": {
+          "name": "DataCollectors",
+          "subFeatures": {}
+        }
+      }
+    },
+    "be9b5059-a649-417a-a23b-6c9c7e47f13e": {
+      "name": "Management",
+      "features": {
+        "fc5b50a9-4e7e-47c3-8a7b-369bdd7fbee8": {
+          "name": "DataCollectors",
+          "subFeatures": {
+            "25299bc8-4d69-42eb-8988-718ba391d93a": {
+              "name": "Training",
+              "subFeatures": {}
+            },
+            "ea2a7fa0-c757-4192-b83b-3af9453a6402": {
+              "name": "TestData",
+              "subFeatures": {}
+            },
+            "f140a64f-f3a0-438b-8767-4a7f92651425": {
+              "name": "Registration",
+              "subFeatures": {}
+            },
+            "5f2f47d5-eb83-4c98-bfd9-49ca1b87db4e": {
+              "name": "EditInformation",
+              "subFeatures": {}
+            }
+          }
+        },
+        "b607d881-0e91-4153-b036-2e64bbf1bc97": {
+          "name": "MessageGenerators",
+          "subFeatures": {}
+        },
+        "03c26112-1a5f-4fc8-8e79-c6539970a769": {
+          "name": "HealthRisks",
+          "subFeatures": {}
+        },
+        "4cde4f89-9cb1-4409-b532-830d82b6fe19": {
+          "name": "DataVerifiers",
+          "subFeatures": {}
+        }
+      }
+    }
+  },
+  "features": {}
 }

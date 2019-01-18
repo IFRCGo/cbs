@@ -5,7 +5,7 @@
 
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
-using Events.Admin.Projects;
+using Events.Admin.Reporting.Projects;
 
 namespace Read.Reporting.Projects
 {

@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Events.Admin.HealthRisks;
+using Events.Admin.Reporting.HealthRisks;
 
 namespace Policies.Reporting.Notifications
 {

@@ -15,16 +15,16 @@ namespace Read.Reporting.DataCollectors
 {
     public class DataCollectorEventProcessor : ICanProcessEvents
     {
-        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector_> _dataCollectors;
 
-        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector> dataCollectors)
+        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector_> dataCollectors)
         {
             _dataCollectors = dataCollectors;
         }
-        [EventProcessor("eac98aa0-b429-47c3-9097-e68bd54adb10")]
+        [EventProcessor("e5772c2d-2891-4abe-ac62-1adadc353f9b")]
         public void Process(DataCollectorRegistered @event)
         {
-            _dataCollectors.Insert(new DataCollector(@event.DataCollectorId)
+            _dataCollectors.Insert(new DataCollector_(@event.DataCollectorId)
             {
                 DisplayName = @event.DisplayName,
                 FullName = @event.FullName,
@@ -38,7 +38,7 @@ namespace Read.Reporting.DataCollectors
                 Region = @event.Region           
             });
         }
-        [EventProcessor("50631704-fa1e-44d6-b35c-d71fb750d2f8")]
+        [EventProcessor("4075fedc-1167-4be7-8b87-32d5d00b3802")]
         public void Process(DataCollectorUserInformationChanged @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
@@ -52,41 +52,41 @@ namespace Read.Reporting.DataCollectors
 
             _dataCollectors.Update(dataCollector);
         }
-        [EventProcessor("6d09763d-30c4-45fd-be82-da5f1dfd6ed0")]
+        [EventProcessor("894563de-2ec4-43b7-8278-4e747beb479a")]
         public void Process(DataCollectorLocationChanged @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
             _dataCollectors.Update(dataCollector);
         }
-        [EventProcessor("c9d24ec7-8788-4b45-857f-5f1d034dbaaf")]
+        [EventProcessor("81db77e9-8bce-4e07-b5d3-79f567689d7a")]
         public void Process(DataCollectorPreferredLanguageChanged @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.PreferredLanguage = (Language)@event.Language;
             _dataCollectors.Update(dataCollector);
         }
-        [EventProcessor("ba24c6a3-ff6a-413d-8505-45dadc587187")]
+        [EventProcessor("267c49a8-63af-459f-9f4e-dc262de4145f")]
         public void Process(DataCollectorVillageChanged @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.Village = @event.Village;
             _dataCollectors.Update(dataCollector);
         }
-        [EventProcessor("32689875-b7e9-419e-b852-f78db6707d58")]
+        [EventProcessor("90dd0dff-448e-4def-9f21-40707b489345")]
         public void Process(DataCollectorRemoved @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             _dataCollectors.Delete(dataCollector);
         }
-        [EventProcessor("1b40d894-2304-49ce-b630-9dffec733cc1")]
+        [EventProcessor("50e8f518-2121-4b2a-869e-3d60119244d7")]
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             dataCollector.PhoneNumbers.Append(new PhoneNumber(@event.PhoneNumber));
             _dataCollectors.Update(dataCollector);            
         }
-        [EventProcessor("70edb6fb-dae6-4019-96bd-022c89597ea8")]
+        [EventProcessor("b78408e8-bf7a-45a8-935a-a50f14cba7e0")]
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
