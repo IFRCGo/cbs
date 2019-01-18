@@ -3,10 +3,11 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import {utils} from '@ifrc-cbs/common-react-ui';
 import AlertsController from '../AlertsController';
+import { removeAllListeners } from 'cluster';
 
 const {parseQueryString} = utils;
 
-class Projects extends React.Component {
+class Rules extends React.Component {
   static get contextTypes () {
     return {
       router: PropTypes.shape({
@@ -23,7 +24,6 @@ class Projects extends React.Component {
     super(component);
 
     this.state = {
-
     };
   }
 
@@ -43,7 +43,7 @@ class Projects extends React.Component {
   }
 
   render() {
-    const title = 'Projects';
+    const title = 'Rules';
     const description = '';
 
     return (
@@ -54,11 +54,9 @@ class Projects extends React.Component {
           <meta property="og:description" content={description}/>
           <meta name="description" content={description}/>
         </Helmet>
-        <article id="projects-list">
+        <article id="rules-list">
           <section className="container">
             <h3>CBS Alerts</h3>
-
-
           </section>
         </article>
       </React.Fragment>
@@ -66,4 +64,4 @@ class Projects extends React.Component {
   }
 }
 
-export default new AlertsController(Projects);
+export default new AlertsController(Rules);

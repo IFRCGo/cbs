@@ -12,13 +12,13 @@ export default class AlertsController extends BaseController {
   constructor(component) {
     super(component);
 
-    this.reportsService = new AlertsService({
+    this.rulesService = new AlertsService({
       baseUrl: ApiBaseUrl
     });
 
     this.state = {
-      projects(state) {
-        return state.projects || [];
+      rules(state) {
+        return state.rules || [];
       }
     };
 
