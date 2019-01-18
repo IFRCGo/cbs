@@ -4,20 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
+using Concepts.DataCollectors;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
 
 namespace Read.Reporting.DataCollectors
 {
-    public class AllDataCollectors : IQueryFor<DataCollector_>
+    public class ListedDataCollectorById : IQueryFor<ListedDataCollector>
     {
-        private readonly IReadModelRepositoryFor<DataCollector_> _collection;
+        readonly IReadModelRepositoryFor<ListedDataCollector> _collection;
 
-        public AllDataCollectors(IReadModelRepositoryFor<DataCollector_> collection)
+        public DataCollectorId DataCollectorId { get; set; }
+
+        public ListedDataCollectorById(IReadModelRepositoryFor<ListedDataCollector> collection)
         {
             _collection = collection;
         }
 
-        public IQueryable<DataCollector_> Query => _collection.Query;
+        public IQueryable<ListedDataCollector> Query => _collection.Query.Where(d => d.Id == DataCollectorId);
     }
 }
