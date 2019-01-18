@@ -3,38 +3,32 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using Domain.Management.DataCollectors.EditInformation;
-using Machine.Specifications;
 using FluentValidation.Results;
+using Machine.Specifications;
 
-namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
+namespace Domain.Specs.Management.for_data_collectors.when_adding_a_phone_number
 {
-    
     [Subject(typeof(AddPhoneNumberToDataCollectorInputValidator))]
-    public class and_validating_a_command_with_a_missing_data_collector_id { 
-
+    public class and_validating_a_valid_command
+    {
         static AddPhoneNumberToDataCollector cmd;
         static AddPhoneNumberToDataCollectorInputValidator validator;
-        static ValidationResult validation_result;
+        static ValidationResult validation_results;
 
-        Establish the_command = () =>
+        Establish context = () => 
         {
             validator = new AddPhoneNumberToDataCollectorInputValidator();
 
-            cmd = new AddPhoneNumberToDataCollector
+            cmd = new AddPhoneNumberToDataCollector 
             {
-                PhoneNumber = "123"
+                DataCollectorId = Guid.NewGuid(),
+                PhoneNumber = "11223344"
             };
         };
 
-        Because of = () => { validation_result = validator.Validate(cmd); };
-
-        It should_be_invalid = () => validation_result.ShouldBeInvalid();
-
-        It should_have_one_validation_result = () => validation_result.ShouldHaveInvalidCountOf(1);
-
-        It should_identify_the_data_collector_id_as_the_problem =
-            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
-            
+        Because of = () => { validation_results = validator.Validate(cmd); };
+        It should_be_invalid = () => validation_results.ShouldBeValid();
     }
 }

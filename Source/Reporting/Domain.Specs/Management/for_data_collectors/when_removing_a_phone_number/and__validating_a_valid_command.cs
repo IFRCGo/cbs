@@ -8,7 +8,7 @@ using Domain.Management.DataCollectors.EditInformation;
 using FluentValidation.Results;
 using Machine.Specifications;
 
-namespace Domain.Specs.Management.DataCollectors.when_removing_a_phone_number
+namespace Domain.Specs.Management.for_data_collectors.when_removing_a_phone_number
 {
     [Subject(typeof(RemovePhoneNumberFromDataCollectorValidator))]
     public class and_validating_a_valid_command

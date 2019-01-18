@@ -3,16 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Domain.Management.DataCollectors.EditInformation;
-using FluentValidation.Results;
 using Machine.Specifications;
+using FluentValidation.Results;
 
-namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
+namespace Domain.Specs.Management.for_data_collectors.when_adding_a_phone_number
 {
+    
     [Subject(typeof(AddPhoneNumberToDataCollectorInputValidator))]
-    public class and_validating_a_command_with_a_missing_phone_number
-    {
+    public class and_validating_a_command_with_a_missing_data_collector_id { 
+
         static AddPhoneNumberToDataCollector cmd;
         static AddPhoneNumberToDataCollectorInputValidator validator;
         static ValidationResult validation_result;
@@ -23,8 +23,7 @@ namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
 
             cmd = new AddPhoneNumberToDataCollector
             {
-                DataCollectorId = Guid.NewGuid(),
-                PhoneNumber = string.Empty
+                PhoneNumber = "123"
             };
         };
 
@@ -34,7 +33,8 @@ namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
 
         It should_have_one_validation_result = () => validation_result.ShouldHaveInvalidCountOf(1);
 
-        It should_identify_the_phone_number_as_the_problem =
-            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.PhoneNumber));
+        It should_identify_the_data_collector_id_as_the_problem =
+            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
+            
     }
 }

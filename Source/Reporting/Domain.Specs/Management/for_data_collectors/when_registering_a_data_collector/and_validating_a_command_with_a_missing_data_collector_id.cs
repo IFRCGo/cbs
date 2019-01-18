@@ -8,7 +8,7 @@ using Domain.Management.DataCollectors.Registration;
 using FluentValidation.Results;
 using Machine.Specifications;
 
-namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collector
+namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_collector
 {
     [Subject("Registration")]
     public class and_validating_a_command_with_a_missing_data_collector_id
