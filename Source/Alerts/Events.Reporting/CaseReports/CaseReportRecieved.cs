@@ -4,7 +4,7 @@ using System;
 
 namespace Events.Reporting.CaseReports
 {
-    [Artifact("540464b9-7262-4060-b609-b6902769ee50")]
+    [Artifact("30c0e44c-0ef8-4a1e-a726-ee755b09e3d8")]
     public class CaseReportReceived : IEvent
     {
         public CaseReportReceived(Guid caseReportId, Guid dataCollectorId, Guid healthRiskId,
