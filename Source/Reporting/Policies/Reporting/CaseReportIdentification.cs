@@ -17,13 +17,13 @@ namespace Policies.Reporting
         readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregateRootRepository;
         readonly IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> _unknownReports;
         readonly IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> _invalidAndUnknownReports;
-        readonly IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector_> _dataCollectors;
+        readonly IReadModelRepositoryFor<Read.Reporting.DataCollectors.ListedDataCollector> _dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
             IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> unknownReports,
             IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> invalidAndUnknownReports,
-            IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector_> dataCollectors)
+            IReadModelRepositoryFor<Read.Reporting.DataCollectors.ListedDataCollector> dataCollectors)
         {
             _caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
             _unknownReports = unknownReports;
