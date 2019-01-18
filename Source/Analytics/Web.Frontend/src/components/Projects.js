@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import {utils} from '@ifrc-cbs/common-react-ui';
-import AdminController from '../AdminController';
+import AnalyticsController from '../AnalyticsController';
 
 const {parseQueryString} = utils;
 
@@ -66,4 +66,4 @@ class Projects extends React.Component {
   }
 }
 
-export default new AdminController(Projects);
+export default new AnalyticsController(Projects);

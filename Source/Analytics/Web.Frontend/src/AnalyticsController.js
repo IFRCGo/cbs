@@ -1,10 +1,10 @@
 import {BaseController} from 'repertoire';
 
-import AdminService from './AdminService';
+import AdminService from './AnalyticsService';
 
 const ApiBaseUrl = process.env.API_URL;
 
-export default class AdminController extends BaseController {
+export default class AnalyticsController extends BaseController {
   get stateNamespace() {
     return 'app';
   }
