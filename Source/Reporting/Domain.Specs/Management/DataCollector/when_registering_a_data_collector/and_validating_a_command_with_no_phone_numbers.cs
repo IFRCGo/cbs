@@ -13,12 +13,12 @@ namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collect
     public class and_validating_a_command_with_no_phone_numbers
     {
         static RegisterDataCollector cmd;
-        static RegisterDataCollectorValidator validator;
+        static RegisterDataCollectorInputValidator validator;
         static ValidationResult validation_results;
 
         Establish context = () => 
         {
-            validator = new RegisterDataCollectorValidator();
+            validator = new RegisterDataCollectorInputValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PhoneNumbers = new string[0]);
         };

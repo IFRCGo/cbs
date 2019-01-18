@@ -25,7 +25,8 @@ namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collect
                 GpsLocation = new Location(90,90),
                 PhoneNumbers = new List<string>{"123456789"},
                 Region = "Region",
-                District = "Distric"
+                District = "Distric",
+                DataVerifierId = Guid.NewGuid()
             };
          }
 
@@ -45,4 +46,3 @@ namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collect
          }
      }
  }
-
