@@ -16,7 +16,7 @@
     "@dolittle/build.aurelia": "1.1.0",
     "@dolittle/styles": "^2.9.5",
     "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.10",
     "webpack-notifier": "^1.7.0"
   },
@@ -25,6 +25,8 @@
     "@dolittle/core": "^1.0.4",
     "@dolittle/queries": "^1.0.12",
     "aurelia-http-client": "^1.2.1",
-    "dotenv": "^6.1.0"
+    "dotenv": "^6.1.0",
+    "lightercollective": "^0.2.0",
+    "postinstall": "^0.4.2"
   }
 }
