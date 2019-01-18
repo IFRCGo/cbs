@@ -1,1 +1,1 @@
-export default GET_QYERY = "GET_QUERY";
+export const ACTION_TYPE = "STANDARD_ACTION_TYPE";
