@@ -26,14 +26,14 @@ namespace Read.CaseReportsForListing
         {
             get
             {
-                // TODO implementd sortfield
-                var sortField = string.IsNullOrEmpty(SortField) ? nameof(CaseReportForListing.Timestamp) : SortField;
-                var query = _collection.Query.OrderBy(x=>x.Timestamp);//.OrderBy(SortAscending);
+                IQueryable<CaseReportForListing> query = _collection.Query;
+                if (string.IsNullOrWhiteSpace(SortField))
+                    query = SortAscending ? query.OrderBy(x => x.Timestamp) : query.OrderByDescending(x => x.Timestamp);
+                else
+                    query = query.OrderByFieldName(SortField, SortAscending);
 
-                if (PageSize > 0 && PageNumber >= 0)
-                {
-                    return query.Skip(PageSize * PageNumber).Take(PageSize);
-                }
+                if (PageSize > 0 && PageNumber >= 0) query = query.Skip(PageSize * PageNumber).Take(PageSize);
+
                 return query;
             }
         }
