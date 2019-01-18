@@ -183,7 +183,7 @@
         "generation": 1,
         "type": "Events.CaseReports.CaseReportIdentified, Events"
       },
-      "fde7fe54-1228-4f08-974c-d27e7a85b541": {
+      "30c0e44c-0ef8-4a1e-a726-ee755b09e3d8": {
         "generation": 1,
         "type": "Events.CaseReports.CaseReportReceived, Events"
       },

@@ -1,4 +1,22 @@
 {
   "modules": {},
-  "features": {}
+  "features": {
+    "4bd111b1-81e0-4b08-b4b6-f32d3026c447": {
+      "name": "Events",
+      "subFeatures": {}
+    },
+    "92664e48-7b54-4014-a069-52541b14f597": {
+      "name": "CaseReports",
+      "subFeatures": {}
+    },
+    "d19b3a5e-00a1-497a-8ab1-fbf37b0fe1a1": {
+      "name": "Reporting",
+      "subFeatures": {
+        "9936feea-7716-4d62-97e7-1e0167b0fce8": {
+          "name": "CaseReports",
+          "subFeatures": {}
+        }
+      }
+    }
+  }
 }
