@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    ["@babel/proposal-decorators", {"legacy": true }],
+    "@babel/syntax-dynamic-import",
+    "@babel/proposal-object-rest-spread",
+    "@babel/transform-react-jsx",
+    "@babel/transform-runtime"
+  ]
+}
