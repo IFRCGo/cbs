@@ -20,7 +20,8 @@ const routes = [
   {
     component: Projects,
     path: '/projects',
-    exact: false  }
+    exact: false
+  }
 ];
 
 const storeManager = new StoreManager(routes);
