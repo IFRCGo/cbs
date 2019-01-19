@@ -1,13 +1,12 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
-import { InputWithLabel } from "./InputWithLabel";
-import { Heading, TextInput, Button } from "evergreen-ui";
+import { Heading, Button, TextInputField, Pane, Dialog } from "evergreen-ui";
 import { PhoneNumber } from "./PhoneNumber";
-import { YearOfBirth } from "./YearOfBirth";
 import { ComboboxWithLabel } from "./ComboboxWithLabel";
 import { MapWithLabel } from "./MapWithLabel";
-import { CoordinateInputWithLabel } from "./CoordinateInputWithLabel";
+
+import UserManagementController from "../controllers/UserManagement";
 
 class AddDataCollector extends React.Component {
     static get contextTypes() {
@@ -22,8 +21,79 @@ class AddDataCollector extends React.Component {
         };
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = { showConfirmDialog: false, showGeolocationDialog: false };
+    }
+
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position =>
+                this.props.addDataCollector({
+                    longitude: position.coords.longitude,
+                    latitude: position.coords.latitude
+                })
+            );
+        } else {
+            this.setState({ ...this.state, showGeolocationDialog: true });
+        }
+    }
+
+    noGeolocationDialog() {
+        return (
+            <Pane>
+                <Dialog
+                    hasCancel={false}
+                    isShown={this.state.showGeolocationDialog}
+                    title="Geolocation is not supported"
+                    onCloseComplete={() =>
+                        this.setState({
+                            ...this.state,
+                            showGeolocationDialog: false
+                        })
+                    }
+                    confirmLabel="OK"
+                >
+                    Geolocation is not supported by your browser
+                </Dialog>
+            </Pane>
+        );
+    }
+
+    confirmDialog() {
+        return (
+            <Pane>
+                <Dialog
+                    isShown={this.state.showConfirmDialog}
+                    title="Clear input form"
+                    intent="danger"
+                    onCloseComplete={() => {
+                        this.props.clearDataCollector();
+                        this.setState({
+                            ...this.state,
+                            showConfirmDialog: false
+                        });
+                    }}
+                    onComfirm={() => {
+                        this.setState({
+                            ...this.state,
+                            showConfirmDialog: false
+                        });
+                    }}
+                    confirmLabel="Clear input"
+                >
+                    Do you really want to reset the input form?
+                </Dialog>
+            </Pane>
+        );
+    }
+
     render() {
-        const title = "Add Data Collector";
+        const title =
+            this.props.mode === "Edit"
+                ? "Edit Data Collector"
+                : "Add Data Collector";
         const description = "";
 
         return (
@@ -34,96 +104,251 @@ class AddDataCollector extends React.Component {
                     <meta property="og:description" content={description} />
                     <meta name="description" content={description} />
                 </Helmet>
+                {this.noGeolocationDialog()}
+                {this.confirmDialog()}
+
                 <div className="addDataCollector--container">
                     <div className="addDataCollector--center">
                         <div className="addDataCollector--grid">
                             <Heading size={700} paddingBottom="20px">
-                                Edit data collector
+                                {this.props.mode === "Edit"
+                                    ? "Edit Data Collector"
+                                    : "Add Data Collector"}
                             </Heading>
                             <div className="addDataCollector--gridElement">
-                                <InputWithLabel
+                                <TextInputField
+                                    width="280px"
                                     label="Full name"
                                     placeholder="Somaliland Cholera Preperedness"
+                                    value={
+                                        this.props.dataCollectorToAdd
+                                            .fullName || ""
+                                    }
+                                    onChange={e => {
+                                        this.props.addDataCollector({
+                                            fullName: e.target.value
+                                        });
+                                    }}
                                 />
-                                <InputWithLabel
+
+                                <TextInputField
+                                    width="280px"
                                     label="Display name"
                                     placeholder="Somaliland Cholera Preperedness"
+                                    value={
+                                        this.props.dataCollectorToAdd
+                                            .displayName || ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            displayName: e.target.value
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--gridElement">
                                 <PhoneNumber
                                     label="Phone number"
                                     countryCodePlaceholder="+61"
+                                    countryCodeValue={
+                                        this.props.dataCollectorToAdd
+                                            .countryCode || ""
+                                    }
                                     numberPlaceholder="123412432"
+                                    numberValue={
+                                        this.props.dataCollectorToAdd
+                                            .phoneNumber || ""
+                                    }
+                                    onCountryCodeChange={countryCode =>
+                                        this.props.addDataCollector({
+                                            countryCode: countryCode
+                                        })
+                                    }
+                                    onPhoneNumberChange={phoneNumber =>
+                                        this.props.addDataCollector({
+                                            phoneNumber: phoneNumber
+                                        })
+                                    }
                                 />
-                                <YearOfBirth
-                                    label="Year of birth"
-                                    placeholder="1975"
-                                />
+                                <div style={{ width: "280px" }}>
+                                    <TextInputField
+                                        width="100px"
+                                        marginRight="20px"
+                                        label="Year of birth"
+                                        placeholder="1975"
+                                        value={
+                                            this.props.dataCollectorToAdd
+                                                .yearOfBirth || ""
+                                        }
+                                        onChange={e =>
+                                            this.props.addDataCollector({
+                                                yearOfBirth: e.target.value
+                                            })
+                                        }
+                                    />
+                                </div>
                             </div>
                             <div className="addDataCollector--gridElement">
-                                <PhoneNumber
-                                    label="Phone number"
-                                    countryCodePlaceholder="+61"
-                                    numberPlaceholder="123412432"
-                                />
-                                <YearOfBirth
-                                    label="Year of birth"
-                                    placeholder="1975"
+                                <ComboboxWithLabel
+                                    label="Sex"
+                                    items={["Male", "Female"]}
+                                    placeholder="Male"
+                                    selectedItem={
+                                        this.props.dataCollectorToAdd.sex || ""
+                                    }
+                                    onChange={sex =>
+                                        this.props.addDataCollector({
+                                            sex: sex
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--gridElement">
                                 <ComboboxWithLabel
                                     label="Prefered language"
-                                    values={["English", "French"]}
+                                    items={["English", "French"]}
+                                    selectedItem={
+                                        this.props.dataCollectorToAdd
+                                            .preferedLanguage || ""
+                                    }
                                     placeholder="English"
+                                    onChange={language =>
+                                        this.props.addDataCollector({
+                                            preferedLanguage: language
+                                        })
+                                    }
                                 />
                                 <ComboboxWithLabel
                                     label="Status"
-                                    values={["Training", "Not Training"]}
+                                    items={["Training", "No Training"]}
                                     placeholder="Training"
+                                    selectedItem={
+                                        this.props.dataCollectorToAdd
+                                            .training || ""
+                                    }
+                                    onChange={training =>
+                                        this.props.addDataCollector({
+                                            training: training
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--gridElement">
                                 <MapWithLabel
                                     label="Location"
-                                    longitude={-34.397}
-                                    latitude={150.644}
+                                    longitude={
+                                        this.props.dataCollectorToAdd
+                                            .longitude || -34.397
+                                    }
+                                    latitude={
+                                        this.props.dataCollectorToAdd
+                                            .latitude || 150.644
+                                    }
+                                    apiKey={
+                                        "AIzaSyCB2IPddbweufj2myYTB4NhlLmpr58kU04"
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--coordinate">
-                                <CoordinateInputWithLabel
+                                <TextInputField
+                                    width="150px"
                                     label="Longitude"
-                                    placeholder="8"
+                                    placeholder="12"
+                                    value={
+                                        this.props.dataCollectorToAdd
+                                            .longitude || ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            longitude: e.target.value
+                                        })
+                                    }
                                 />
-                                <CoordinateInputWithLabel
+                                <TextInputField
+                                    width="150px"
                                     label="Latitude"
                                     placeholder="123"
+                                    value={
+                                        this.props.dataCollectorToAdd
+                                            .latitude || ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            latitude: e.target.value
+                                        })
+                                    }
                                 />
-                                <Button>Get from device</Button>
+                                <Button
+                                    marginBottom="24px"
+                                    onClick={() => this.getLocation()}
+                                >
+                                    Get from device
+                                </Button>
                             </div>
                             <div className="addDataCollector--gridElement">
-                                <InputWithLabel
+                                <TextInputField
+                                    width="280px"
                                     label="Region"
                                     placeholder="Puntland"
+                                    value={
+                                        this.props.dataCollectorToAdd.region ||
+                                        ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            region: e.target.value
+                                        })
+                                    }
                                 />
-                                <InputWithLabel
+                                <TextInputField
+                                    width="280px"
                                     label="District"
                                     placeholder="Boroma"
+                                    value={
+                                        this.props.dataCollectorToAdd
+                                            .district || ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            district: e.target.value
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--gridElement">
-                                <InputWithLabel
+                                <TextInputField
+                                    width="280px"
                                     label="Village"
                                     placeholder="Nas"
+                                    value={
+                                        this.props.dataCollectorToAdd.village ||
+                                        ""
+                                    }
+                                    onChange={e =>
+                                        this.props.addDataCollector({
+                                            village: e.target.value
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="addDataCollector--gridElement">
                                 <div>
-                                    <Button>Cancel</Button>
+                                    <Button
+                                        onClick={() =>
+                                            this.setState({
+                                                ...this.state,
+                                                showConfirmDialog: true
+                                            })
+                                        }
+                                    >
+                                        Cancel
+                                    </Button>
                                     <Button
                                         marginLeft="20px"
                                         appearance="primary"
+                                        onClick={() =>
+                                            this.props.getDataCollectorToAdd()
+                                        }
                                     >
                                         Save
                                     </Button>
@@ -137,4 +362,4 @@ class AddDataCollector extends React.Component {
     }
 }
 
-export default AddDataCollector;
+export default new UserManagementController(AddDataCollector);

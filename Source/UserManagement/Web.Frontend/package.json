@@ -30,6 +30,7 @@
     "@babel/runtime": "^7.2.0",
     "@ifrc-cbs/admin": "0.0.4",
     "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
+    "@reach/component-component": "^0.1.1",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "evergreen-ui": "^4.9.0",

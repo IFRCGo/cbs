@@ -3,14 +3,21 @@ import { Combobox, Label } from "evergreen-ui";
 
 export class ComboboxWithLabel extends React.Component {
     render() {
-        const { label, values, placeholder } = this.props;
+        const {
+            label,
+            items,
+            placeholder,
+            onChange,
+            selectedItem
+        } = this.props;
         return (
             <div className="comboboxWithLabel--container">
                 <Label>{label}</Label>
                 <Combobox
                     width="280px"
-                    items={values}
-                    onChange={selected => console.log(selected)}
+                    items={items}
+                    selectedItem={selectedItem}
+                    onChange={selected => !!onChange && onChange(selected)}
                     placeholder={placeholder}
                 />
             </div>
