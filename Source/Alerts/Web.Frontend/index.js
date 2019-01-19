@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { StoreManager } from 'repertoire';
 import { Provider } from 'react-redux';
 import { Application } from '@ifrc-cbs/common-react-ui';
-import Rules from './src/components/Rules';
+
+import App from './src/App';
+import store from './src/store';
 
 import '@ifrc-cbs/common-react-ui/src/assets/main.scss';
 import './src/assets/main.scss';
@@ -17,12 +18,12 @@ const routes = [
     },
 ];
 
-const storeManager = new StoreManager(routes);
-
 ReactDOM.render(
-    <Provider store={storeManager.getStore()}>
+    <Provider store={store}>
         <BrowserRouter>
-            <Application routes={routes} store={storeManager.getStore()} />
+            <Application routes={routes} store={store}>
+                <App />
+            </Application>
         </BrowserRouter>
     </Provider>,
     document.getElementById('app')

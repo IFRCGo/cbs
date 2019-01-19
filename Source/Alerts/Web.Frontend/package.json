@@ -59,7 +59,6 @@
         "react-helmet": "^5.2.0",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
-        "repertoire": "^0.1.6",
         "rimraf": "^2.6.3",
         "sass": "^1.16.0"
     }
