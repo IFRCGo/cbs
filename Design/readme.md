@@ -2,7 +2,17 @@
 
 We are moving from Balsamiq to UXPin.
 
-Follow [this link](https://preview.uxpin.com/19a223e47b1f89a1ddf508490f8d0a8693166969#/pages/94929752). for how the work of sketches is in progress:
+Follow these links belong for the sketches, the links are the same even when we update the content:
+
+
+Admin - :[https://preview.uxpin.com/edc4018168cad2c4a051b5bd84f1c986184736e9#/pages/101789043 ]
+
+Reporting - [https://preview.uxpin.com/6fe1059e581ead11550dd9bc9312290631e4f192f]
+
+Notification gateway - [https://preview.uxpin.com/c61ff368af16ef257ab1479b65ab5d26af7131ef]
+
+Alerts - [https://preview.uxpin.com/cdf72b60c80d94cf32507cadfaa0b1888f3d66f2]
+
 
 There is a sitemap to the left, use this to navigate between the sketches..
 Please use the comment mode to leave your thoughts and such 

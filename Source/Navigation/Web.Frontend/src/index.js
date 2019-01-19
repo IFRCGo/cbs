@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 
 import {Application} from '@ifrc-cbs/common-react-ui';
 import Reporting from '@ifrc-cbs/reporting';
+import Projects from '@ifrc-cbs/admin';
 
 import '@ifrc-cbs/common-react-ui/src/assets/main.scss';
 
@@ -13,6 +14,12 @@ const routes = [
   {
     component: Reporting,
     path: '/reporting/:filter',
+    exact: false
+  },
+
+  {
+    component: Projects,
+    path: '/projects',
     exact: false
   }
 ];

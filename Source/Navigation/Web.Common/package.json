@@ -3,18 +3,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.1-4",
+  "version": "0.0.2",
   "scripts": {
     "export": "babel src --verbose --out-dir es && cp -R src/assets es",
     "clean": "rimraf es",
     "eslint": "eslint src",
-    "prepare": "npm run clean && npm run export"
+    "prepare": "npm run clean && npm run export",
+    "postinstall": "npm run prepare"
   },
   "module": "es/exports.js",
   "files": [
     "es",
     "src",
-    "server"
+    ".sassrc"
   ],
   "dependencies": {
     "@babel/runtime": "^7.2.0",

@@ -33,7 +33,8 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 | --------- | -------------------------- |
 | Admin | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Admin%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=4) |
 | Alerts | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Alerts%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=5) |
-| Analytics | |
+| Analytics | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Analytics%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=7) |
+| Notification Gateway | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/NotificationGateway%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=6) |
 | User Management | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3) |
 | Volunteer Reporting | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1) |
 
