@@ -38,7 +38,8 @@ namespace Policies.CaseReports
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
                 NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                Message = @event.Message
+                Message = @event.Message,
+                PhoneNumber = @event.Origin
             };
 
             root.ProcessReport(data);

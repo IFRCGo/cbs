@@ -67,7 +67,8 @@ namespace Domain.CaseReports
                     caseReportData.Timestamp,
                     caseReportData.DataCollectorId,
                     caseReportData.HealthRiskId,
-                    healthRiskNumber);
+                    healthRiskNumber,
+                    caseReportData.PhoneNumber);
 
                 Apply(caseRegistered);
             }

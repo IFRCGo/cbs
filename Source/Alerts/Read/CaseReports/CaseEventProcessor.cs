@@ -28,6 +28,7 @@ namespace Read.CaseReports
             {
                 CaseReportId = @event.CaseReportId,
                 DataCollectorId = @event.DataCollectorId,
+                OriginPhoneNumber = @event.OriginPhoneNumber,
                 AgeGroup = (AgeGroup)@event.AgeGroup,
                 Sex = (Sex)@event.Sex,
                 HealthRiskId = @event.HealthRiskId,

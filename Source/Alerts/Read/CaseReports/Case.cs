@@ -21,5 +21,6 @@ namespace Read.CaseReports
         public Guid DataCollectorId { get; set; }
         public Guid HealthRiskId { get; set; }
         public int HealthRiskNumber { get; set; }
+        public string OriginPhoneNumber { get; set; }
     }
 }
