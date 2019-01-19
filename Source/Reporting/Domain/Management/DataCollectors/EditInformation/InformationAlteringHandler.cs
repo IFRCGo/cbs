@@ -15,7 +15,7 @@ namespace Domain.Management.DataCollectors.EditInformation
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId.Value);
-            root.AddPhoneNumber(command.PhoneNumber);
+            root.AddPhoneNumber(command.PhoneNumber.Value);
         }
 
         public void Handle(ChangeBaseInformation command)

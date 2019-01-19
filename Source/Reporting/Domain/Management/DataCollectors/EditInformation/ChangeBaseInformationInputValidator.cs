@@ -11,9 +11,9 @@ using FluentValidation;
 namespace Domain.Management.DataCollectors.EditInformation
 {
    
-    public class ChangeBaseInformationValidator : CommandInputValidatorFor<ChangeBaseInformation>
+    public class ChangeBaseInformationInputValidator : CommandInputValidatorFor<ChangeBaseInformation>
     {
-        public ChangeBaseInformationValidator()
+        public ChangeBaseInformationInputValidator()
         {
 
             RuleFor(_ => _.DataCollectorId)

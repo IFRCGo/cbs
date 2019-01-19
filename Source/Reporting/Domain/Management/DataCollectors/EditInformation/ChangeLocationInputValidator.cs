@@ -10,9 +10,9 @@ using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class ChangeLocationValidator : CommandInputValidatorFor<ChangeLocation>
+    public class ChangeLocationInputValidator : CommandInputValidatorFor<ChangeLocation>
     {
-        public ChangeLocationValidator()
+        public ChangeLocationInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set")

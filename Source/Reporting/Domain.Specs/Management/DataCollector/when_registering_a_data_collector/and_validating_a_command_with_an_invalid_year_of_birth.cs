@@ -28,7 +28,3 @@ namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collect
         It should_identify_the_year_of_birth_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.YearOfBirth) + ".Value");
     }
 }
-
-namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collector
-{
-}

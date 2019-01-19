@@ -5,7 +5,6 @@
 
 using System;
 using Domain.Management.DataCollectors.Registration;
-using Domain.Management.DataCollectors.Training;
 using FluentValidation.Results;
 using Machine.Specifications;
 

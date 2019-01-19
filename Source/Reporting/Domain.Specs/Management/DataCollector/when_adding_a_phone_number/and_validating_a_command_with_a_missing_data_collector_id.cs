@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using Concepts.DataCollectors;
 using Domain.Management.DataCollectors.EditInformation;
 using Machine.Specifications;
 using FluentValidation.Results;
@@ -23,7 +24,7 @@ namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
 
             cmd = new AddPhoneNumberToDataCollector
             {
-                PhoneNumber = "123"
+                PhoneNumber = new PhoneNumber("123")
             };
         };
 

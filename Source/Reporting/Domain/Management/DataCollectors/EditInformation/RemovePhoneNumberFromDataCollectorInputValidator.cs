@@ -8,18 +8,17 @@ using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class AddPhoneNumberToDataCollectorInputValidator : AbstractValidator<AddPhoneNumberToDataCollector>
+    public class RemovePhoneNumberFromDataCollectorInputValidator : AbstractValidator<RemovePhoneNumberFromDataCollector>
     {
-        public AddPhoneNumberToDataCollectorInputValidator()
+        public RemovePhoneNumberFromDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
                 .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
 
-            RuleFor(_ => _.PhoneNumber.Value)
+            RuleFor(_ => _.PhoneNumber)
                 .NotEmpty().WithMessage("Phone Number is required")
                 .Must(_ => !_.Contains(" ")).WithMessage("Phone number is not valid");
-
         }
     }
 }
