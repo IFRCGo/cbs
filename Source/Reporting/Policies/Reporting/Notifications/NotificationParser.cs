@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
-using Events.Admin.Reporting.HealthRisks;
+using Events.NotificationGateway.Reporting.SMS;
 
 namespace Policies.Reporting.Notifications
 {
@@ -13,9 +13,9 @@ namespace Policies.Reporting.Notifications
         private static readonly char[] Separators = { '#', '*' };
 
         /// <inheritdoc/>
-        public NotificationParsingResult Parse(NotificationReceived notification)
+        public NotificationParsingResult Parse(TextMessageReceived notification)
         {
-            var content = notification.Message;
+            var content = notification.Text;
 
             var fragments = content.Replace(" ", string.Empty).Split(Separators).Select(s => new NotificationFragment(s));
             var result = new NotificationParsingResult(fragments);

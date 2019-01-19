@@ -13,7 +13,8 @@ using Concepts.HealthRisks;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Domain.Reporting.CaseReports;
-using Events.Admin.Reporting.HealthRisks;
+using Events.NotificationGateway.Reporting.SMS;
+using Dolittle.Runtime.Commands.Coordination;
 
 namespace Policies.Reporting.Notifications
 {
@@ -22,28 +23,33 @@ namespace Policies.Reporting.Notifications
        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
        readonly INotificationParser _textMessageParser;
+       readonly ICommandContextManager _commandContextManager;
        private readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
 
        public NotificationProcessor(
+           ICommandContextManager commandContextManager,
            IReadModelRepositoryFor<DataCollector> dataCollectors,
            IReadModelRepositoryFor<HealthRisk> healthRisks,
            INotificationParser textMessageParser,
            IAggregateRootRepositoryFor<CaseReporting> caseReportingRepository)
        {
+           _commandContextManager = commandContextManager;
            _dataCollectors = dataCollectors;
            _healthRisks = healthRisks;
            _textMessageParser = textMessageParser;
            _caseReportingRepository = caseReportingRepository;
        }
 
-       public void Process(NotificationReceived notification)
+        [EventProcessor("acb536fe-38ae-46c9-b655-a8839d05abb7")]
+       public void Process(TextMessageReceived notification)
        {
+            var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.NewGuid(), 1, new Dictionary<string, object>()));
            var parsingResult = _textMessageParser.Parse(notification);
 
            //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
            var isTextMessageFormatValid = parsingResult.IsValid;
 
-           var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber(notification.OriginNumber))).FirstOrDefault();
+           var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber(notification.Sender))).FirstOrDefault();
 
            var unknownDataCollector = dataCollector == null;
 
@@ -53,10 +59,12 @@ namespace Policies.Reporting.Notifications
            if (!isTextMessageFormatValid && unknownDataCollector)
            {
                caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                   notification.OriginNumber,
-                   notification.Message,
+                   notification.Sender,
+                   notification.Text,
                    parsingResult.ErrorMessages,
-                   notification.Sent);
+                   notification.Received);
+
+                    transaction.Commit();
                return;
            }
 
@@ -64,12 +72,14 @@ namespace Policies.Reporting.Notifications
            {
                caseReporting.ReportInvalidReport(
                    dataCollector.Id,
-                   notification.OriginNumber,
-                   notification.Message,
+                   notification.Sender,
+                   notification.Text,
                    dataCollector.Location.Longitude,
                    dataCollector.Location.Latitude,
                    parsingResult.ErrorMessages,
-                   notification.Sent);
+                   notification.Received);
+
+                    transaction.Commit();
                return;
            }
 
@@ -81,52 +91,56 @@ namespace Policies.Reporting.Notifications
                if (unknownDataCollector)
                {
                    caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                       notification.OriginNumber,
-                       notification.Message,
+                       notification.Sender,
+                       notification.Text,
                        errorMessages,
-                       notification.Sent);
+                       notification.Received);
+                    transaction.Commit();
                    return;
                }
 
                caseReporting.ReportInvalidReport(
                    dataCollector.Id,
-                   notification.OriginNumber,
-                   notification.Message,
+                   notification.Sender,
+                   notification.Text,
                    dataCollector.Location.Longitude,
                    dataCollector.Location.Latitude,
                    errorMessages,
-                   notification.Sent);
+                   notification.Received);
+                transaction.Commit();
                return;
            }
 
            if (unknownDataCollector)
            {
                caseReporting.ReportFromUnknownDataCollector(
-                   notification.OriginNumber,
+                   notification.Sender,
                    healthRiskId.Value,
                    parsingResult.MalesUnder5,
                    parsingResult.MalesAged5AndOlder,
                    parsingResult.FemalesUnder5,
                    parsingResult.FemalesAged5AndOlder,
-                   notification.Sent,
-                   notification.Message
+                   notification.Received,
+                   notification.Text
                );
+                transaction.Commit();
                return;
            }
 
            caseReporting.Report(
                dataCollector.Id,
                healthRiskId.Value,
-               notification.OriginNumber,
+               notification.Sender,
                parsingResult.MalesUnder5,
                parsingResult.MalesAged5AndOlder,
                parsingResult.FemalesUnder5,
                parsingResult.FemalesAged5AndOlder,
                dataCollector.Location.Longitude,
                dataCollector.Location.Latitude,
-               notification.Sent,
-               notification.Message
+               notification.Received,
+               notification.Text
            );
+            transaction.Commit();
        }
    }
 }
