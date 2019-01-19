@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { TextInputField, Button } from 'evergreen-ui';
-import { CommandCoordinator } from '@dolittle/commands/dist/commonjs';
 import { CreateAlertRule } from '../../Features/AlertRules/CreateAlertRule';
 
 class AddAlertRule extends Component {
     constructor(props) {
         super(props);
 
-        CommandCoordinator.apiBaseUrl = "http://localhost:5000";
-        this.commandCoordinator = new CommandCoordinator();
-        
-
         this.state = {
-            healthRiskName: "",
-            healthRiskNumber: ""
+            healthRiskName: '',
+            healthRiskNumber: '',
         };
     }
 
     addRule() {
-        let command = new CreateAlertRule();
+        let rule = {
+            ...new CreateAlertRule(),
+            alertRuleName: this.state.healthRiskName,
+            healthRiskNumber: this.state.healthRiskNumber,
+        };
 
-        command.alertRuleName = this.state.healthRiskName;
-        command.numberOfCasesThreshold = 1;
-        command.thresholdTimeframeInHours = 24;
-        command.healthRiskNumber = this.state.healthRiskNumber;
-        command.distanceBetweenCasesInMeters = 500;
-
-        this.commandCoordinator.handle(command).then(result => {
-            console.log(result, "Created");
-        });
+        this.props.requestCreateRule(rule);
     }
 
     updateState(updates) {
@@ -42,12 +34,14 @@ class AddAlertRule extends Component {
                 <p>Here you can set rules for health risk alerts.</p>
                 <TextInputField
                     label="Health risk name"
-                    onChange={e => this.setState({healthRiskName: e.target.value})}
-                    value={this.state.healthRiskName} />
+                    onChange={e => this.setState({ healthRiskName: e.target.value })}
+                    value={this.state.healthRiskName}
+                />
                 <TextInputField
                     label="Health risk number"
-                    onChange={e => this.setState({healthRiskNumber: e.target.value})}
-                    value={this.state.healthRiskNumber} />
+                    onChange={e => this.setState({ healthRiskNumber: e.target.value })}
+                    value={this.state.healthRiskNumber}
+                />
 
                 {/* The 3 inputs beneath are not included in the MVP */}
                 {/* <TextInputField
@@ -59,10 +53,17 @@ class AddAlertRule extends Component {
             <TextInputField
                 label="Max distance between cases (km)" /> */}
                 <Button appearance="default">Cancel</Button>
-                <Button appearance="primary" onClick={() => this.addRule()}>Create</Button>
+                <Button appearance="primary" onClick={() => this.addRule()}>
+                    Create
+                </Button>
             </div>
         );
     }
 }
 
-export default AddAlertRule;
+export default connect(
+    _ => ({}),
+    dispatch => ({
+        requestCreateRule: rule => dispatch({ type: 'REQUEST_CREATE_RULE', payload: rule }),
+    })
+)(AddAlertRule);

@@ -3,33 +3,12 @@ import { connect } from 'react-redux';
 import { Table } from 'evergreen-ui';
 import { TableHead } from 'evergreen-ui/commonjs/table';
 import TableBody from 'evergreen-ui/commonjs/table/src/TableBody';
-import { QueryCoordinator } from '@dolittle/queries/dist/commonjs';
-import { AllAlertRules } from '../../Features/AlertRules/AllAlertRules';
-
 
 import AlertRule from './AlertRule';
 
 class AlertRuleList extends Component {
-    constructor(props) {
-        super(props);
-
-        QueryCoordinator.apiBaseUrl = "http://localhost:5000";
-        this.queryCoordinator = new QueryCoordinator();
-
-        let query = new AllAlertRules();
-
-        this.queryCoordinator.execute(query).then(result => {
-            this.setState({rules: result.items});
-            console.log(result)
-        })
-
-        this.state = {
-            rules: []
-        };
-    }
-
     render() {
-        const { rules } = this.state;
+        const { rules } = this.props;
         return (
             <Table>
                 <TableHead>
