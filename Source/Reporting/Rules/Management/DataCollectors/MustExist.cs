@@ -7,7 +7,7 @@ using Dolittle.ReadModels;
 using Dolittle.Rules;
 using Read.Management.DataCollectors;
 
-namespace Rules.DataCollectors
+namespace Rules.Management.DataCollectors
 {
     public class MustExist : IRuleImplementationFor<Domain.Management.DataCollectors.MustExist>
     {

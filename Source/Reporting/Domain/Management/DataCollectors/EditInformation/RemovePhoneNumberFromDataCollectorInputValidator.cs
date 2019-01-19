@@ -17,8 +17,7 @@ namespace Domain.Management.DataCollectors.EditInformation
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("Phone Number is required")
-                .Must(_ => !_.Contains(" ")).WithMessage("Phone number is not valid");
+                .NotEmpty().WithMessage("Phone Numbe is required");
         }
     }
 }

@@ -15,17 +15,18 @@ namespace Read.Reporting.DataCollectors
 {
     public class DataCollectorEventProcessor : ICanProcessEvents
     {
-        private readonly IReadModelRepositoryFor<DataCollector_> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
-        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector_> dataCollectors)
+        public DataCollectorEventProcessor(IReadModelRepositoryFor<DataCollector> dataCollectors)
         {
             _dataCollectors = dataCollectors;
         }
         [EventProcessor("e5772c2d-2891-4abe-ac62-1adadc353f9b")]
         public void Process(DataCollectorRegistered @event)
         {
-            _dataCollectors.Insert(new DataCollector_(@event.DataCollectorId)
+            _dataCollectors.Insert(new DataCollector
             {
+                Id = @event.DataCollectorId,
                 DisplayName = @event.DisplayName,
                 FullName = @event.FullName,
                 Location = new Location(@event.LocationLatitude, @event.LocationLongitude),
@@ -82,8 +83,12 @@ namespace Read.Reporting.DataCollectors
         [EventProcessor("50e8f518-2121-4b2a-869e-3d60119244d7")]
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.PhoneNumbers.Append(new PhoneNumber(@event.PhoneNumber));
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);            
+
+            var phoneNumbers = (List<PhoneNumber>) dataCollector.PhoneNumbers;
+            phoneNumbers.Add(@event.PhoneNumber);
+            dataCollector.PhoneNumbers = phoneNumbers;
+
             _dataCollectors.Update(dataCollector);            
         }
         [EventProcessor("b78408e8-bf7a-45a8-935a-a50f14cba7e0")]

@@ -24,7 +24,7 @@ namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
 
             cmd = new AddPhoneNumberToDataCollector
             {
-                PhoneNumber = new PhoneNumber("123")
+                PhoneNumber = "123"
             };
         };
 

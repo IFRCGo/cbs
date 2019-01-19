@@ -8,7 +8,7 @@ using Domain.Management.DataCollectors.EditInformation;
 using FluentValidation.Results;
 using Machine.Specifications;
 
-namespace Domain.Specs.Management.DataCollectors.when_removing_a_phone_number
+namespace Domain.Specs.Management.DataCollector.when_removing_a_phone_number
 {
     [Subject(typeof(RemovePhoneNumberFromDataCollectorInputValidator))]
     public class and_validating_a_command_with_a_missing_phone_number
@@ -20,11 +20,7 @@ namespace Domain.Specs.Management.DataCollectors.when_removing_a_phone_number
         Establish context = () =>
         {
             validator = new RemovePhoneNumberFromDataCollectorInputValidator();
-            cmd = new RemovePhoneNumberFromDataCollector
-            {
-                DataCollectorId = Guid.NewGuid(),
-                PhoneNumber = string.Empty
-            };
+            cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PhoneNumber = null);
         };
 
         Because of = () => { validation_results = validator.Validate(cmd); };

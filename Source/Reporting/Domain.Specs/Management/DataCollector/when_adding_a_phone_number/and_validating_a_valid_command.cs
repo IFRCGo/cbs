@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Concepts.DataCollectors;
 using Domain.Management.DataCollectors.EditInformation;
 using FluentValidation.Results;
 using Machine.Specifications;

@@ -10,17 +10,17 @@ using Dolittle.ReadModels;
 
 namespace Read.Reporting.DataCollectors
 {
-    public class DataCollectorById : IQueryFor<DataCollector_>
+    public class DataCollectorById : IQueryFor<DataCollector>
     {
-        private readonly IReadModelRepositoryFor<DataCollector_> _collection;
+        private readonly IReadModelRepositoryFor<DataCollector> _collection;
 
         public DataCollectorId DataCollectorId { get; set; }
 
-        public DataCollectorById(IReadModelRepositoryFor<DataCollector_> collection)
+        public DataCollectorById(IReadModelRepositoryFor<DataCollector> collection)
         {
             _collection = collection;
         }
 
-        public IQueryable<DataCollector_> Query => _collection.Query.Where(d => d.Id == DataCollectorId);
+        public IQueryable<DataCollector> Query => _collection.Query.Where(d => d.Id == DataCollectorId);
     }
 }

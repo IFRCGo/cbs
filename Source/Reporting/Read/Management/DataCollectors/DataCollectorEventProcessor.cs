@@ -89,8 +89,11 @@ namespace Read.Management.DataCollectors
         public void Process(PhoneNumberAddedToDataCollector @event)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            var phoneNumbers = dataCollector.PhoneNumbers;
-            phoneNumbers.Append(new PhoneNumber(@event.PhoneNumber));
+
+            var phoneNumbers = (List<PhoneNumber>)dataCollector.PhoneNumbers;
+            phoneNumbers.Add(@event.PhoneNumber);
+            dataCollector.PhoneNumbers = phoneNumbers;
+
             _dataCollectors.Update(dataCollector);
         }
         [EventProcessor("70edb6fb-dae6-4019-96bd-022c89597ea8")]

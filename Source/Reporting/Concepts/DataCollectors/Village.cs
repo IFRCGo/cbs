@@ -8,13 +8,13 @@ using Dolittle.Concepts;
 
 namespace Concepts.DataCollectors
 {
-    public class District : ConceptAs<string>
+    public class Village : ConceptAs<string>
     {
-        public static readonly District NotSet = String.Empty;
+        public static readonly Village NotSet = String.Empty;
 
-        public static implicit operator District(string value)
+        public static implicit operator Village(string value)
         {
-            return new District { Value = value };
+            return new Village { Value = value };
         }
     }
 }

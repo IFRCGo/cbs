@@ -3,10 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Concepts.DataCollectors;
-using Concepts.DataVerifiers;
 using Dolittle.Commands.Validation;
-using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {

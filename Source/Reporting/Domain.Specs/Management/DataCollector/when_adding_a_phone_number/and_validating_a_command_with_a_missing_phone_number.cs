@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Concepts.DataCollectors;
 using Domain.Management.DataCollectors.EditInformation;
 using FluentValidation.Results;
 using Machine.Specifications;
@@ -35,6 +36,6 @@ namespace Domain.Specs.Management.DataCollectors.when_adding_a_phone_number
         It should_have_one_validation_result = () => validation_result.ShouldHaveInvalidCountOf(1);
 
         It should_identify_the_phone_number_as_the_problem =
-            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.PhoneNumber));
+            () => validation_result.ShouldHaveInvalidProperty(nameof(cmd.PhoneNumber)+".Value");
     }
 }
