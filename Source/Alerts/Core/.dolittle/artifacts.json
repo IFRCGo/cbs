@@ -79,5 +79,37 @@
     "eventSources": {},
     "readModels": {},
     "queries": {}
+  },
+  "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
+    "commands": {
+      "1aa6e9cb-82b2-47c0-a5fa-0e44d56bf44c": {
+        "generation": 1,
+        "type": "Domain.DataOwners.RegisterDataOwner, Domain"
+      }
+    },
+    "events": {
+      "ccbdab0e-e5ef-4cd5-8b83-81e338b39c5d": {
+        "generation": 1,
+        "type": "Events.DataOwners.DataOwnerRegistered, Events"
+      }
+    },
+    "eventSources": {
+      "e8c75ef8-3923-47b3-a8dd-6b3a5fe15d6e": {
+        "generation": 1,
+        "type": "Domain.DataOwners.DataOwner, Domain"
+      }
+    },
+    "readModels": {
+      "48cb4e91-741b-4669-b17a-77464e76c8c3": {
+        "generation": 1,
+        "type": "Read.DataOwners.DataOwner, Read"
+      }
+    },
+    "queries": {
+      "58d881f0-5e50-4a33-987c-d3e187055702": {
+        "generation": 1,
+        "type": "Read.DataOwners.GetDataOwner, Read"
+      }
+    }
   }
 }
