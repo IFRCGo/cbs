@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Table } from 'evergreen-ui';
 import { TableHead } from 'evergreen-ui/commonjs/table';
 import TableBody from 'evergreen-ui/commonjs/table/src/TableBody';
+
 import AlertRule from './AlertRule';
 
 class AlertRuleList extends Component {
     render() {
-        function rule(id) {
-            return {
-                Id: id,
-                Name: 'Ebola',
-                HealthRiskId: '1',
-                Threshold: '1',
-                TimeFrame: '24 hours',
-                DistanceBetweenCases: '2 km',
-            };
-        }
-        const rules = [rule(0), rule(1), rule(2), rule(3)];
+        const { rules } = this.props;
 
         return (
             <Table>
@@ -38,4 +30,6 @@ class AlertRuleList extends Component {
     }
 }
 
-export default AlertRuleList;
+export default connect(state => ({
+    rules: state.root.rules,
+}))(AlertRuleList);

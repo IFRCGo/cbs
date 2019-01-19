@@ -4,6 +4,10 @@ import AlertRuleOverview from './AlertRuleOverview';
 import AddAlertRule from './AddAlertRule';
 
 class App extends Component {
+    componentWillMount() {
+        this.props.requestRules();
+    }
+
     render() {
         return (
             <div className="alerts">
@@ -14,6 +18,13 @@ class App extends Component {
     }
 }
 
-export default connect(state => ({
-    baseUrl: state.root.baseUrl,
-}))(App);
+export default connect(
+    state => ({
+        baseUrl: state.root.baseUrl,
+    }),
+    dispatch => ({
+        requestRules: () => {
+            dispatch({ type: 'REQUEST_RULES' });
+        },
+    })
+)(App);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInputField, Button } from 'evergreen-ui';
 import { CommandCoordinator } from '@dolittle/commands/dist/commonjs';
- import { CreateAlertRule } from '../../Features/AlertRules/CreateAlertRule';
+import { CreateAlertRule } from '../../Features/AlertRules/CreateAlertRule';
 
 class AddAlertRule extends Component {
     constructor(props) {
