@@ -27,7 +27,7 @@ namespace Domain.AlertRules
         public void Handle(UpdateAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskNumber, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters, cmd.ThresholdTimeframeInHours);
+            root.UpdateAlertRule(cmd.AlertRuleName, cmd.HealthRiskNumber, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters, cmd.ThresholdTimeframeInHours);
         }
 
         public void Handle(DeleteAlertRule cmd)

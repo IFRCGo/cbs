@@ -37,6 +37,11 @@ namespace Read.AlertRules
         public void Process(AlertRuleUpdated @event)
         {
             var alertRule = _alertRules.GetById(@event.Id);
+            alertRule.AlertRuleName = @event.AlertRuleName;
+            alertRule.DistanceBetweenCasesInMeters = @event.DistanceBetweenCasesInMeters;
+            alertRule.HealthRiskId = @event.HealthRiskId;
+            alertRule.NumberOfCasesThreshold = @event.NumberOfCasesThreshold;
+            alertRule.ThresholdTimeframeInHours = @event.ThresholdTimeframeInHours;
             _alertRules.Update(alertRule);
         }
 
