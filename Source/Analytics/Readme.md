@@ -60,7 +60,22 @@ Build and host locally
 
 Open http://localhost:4200/ in your browser to access the UI. 
 
-## Querying the MongoDB
+Open http://localhost:4200/ in your browser to access the UI. 
+
+## Populating the database with test data
+
+To populate the database with test data, go to http://localhost:5000/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests/Data folder and add it to the database. 
+   
+**Create testdata:** 
+```
+{
+  "correlationId": "cb01aaaf-7998-4692-81ef-1ceb5ab38e12",
+  "type": "7d2fec41-7907-4ada-8b67-77449136e56e",
+  "content": {}
+}
+```
+
+## Querying the MongoDB through Swagger
 
 Go to http://localhost:5000/swagger and use the POST /api/Dolittle/Queries API. This will query the MongoDB. 
 
