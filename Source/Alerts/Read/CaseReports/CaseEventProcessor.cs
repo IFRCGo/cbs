@@ -1,19 +1,24 @@
 using Concepts;
+using Dolittle.Collections;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Dolittle.Types;
 using Events.CaseReports;
 
 namespace Read.CaseReports
 {
-    public class CaseEventProcessor : ICanProcessEvents
+    public partial class CaseEventProcessor : ICanProcessEvents
     {
-        readonly IReadModelRepositoryFor<Case> _repositoryForCase;
+        private readonly IReadModelRepositoryFor<Case> _repositoryForCase;
+        private readonly IInstancesOf<ICaseNotificationService> _services;
 
         public CaseEventProcessor(
-            IReadModelRepositoryFor<Case> repositoryForCase            
+            IReadModelRepositoryFor<Case> repositoryForCase,
+            IInstancesOf<ICaseNotificationService> services
         )
         {
             _repositoryForCase = repositoryForCase;
+            _services = services;
         }
         
         [EventProcessor("9eb306f7-e761-a0da-f000-34d915b8ff44")]
@@ -33,6 +38,7 @@ namespace Read.CaseReports
             };
 
             _repositoryForCase.Insert(caseItem);
+            _services.ForEach(s => s.Changed(caseItem));
         }
     }
 }

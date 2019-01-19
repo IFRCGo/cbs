@@ -65,8 +65,18 @@
         "type": "Domain.CaseReports.CaseReport, Domain"
       }
     },
-    "readModels": {},
-    "queries": {}
+    "readModels": {
+      "14671609-5572-4932-9210-4268b62b1a9d": {
+        "generation": 1,
+        "type": "Read.CaseReports.Case, Read"
+      }
+    },
+    "queries": {
+      "9a07a9a6-0b22-44d0-a23d-0fb8222e4f3d": {
+        "generation": 1,
+        "type": "Read.CaseReports.AllCases, Read"
+      }
+    }
   },
   "9936feea-7716-4d62-97e7-1e0167b0fce8": {
     "commands": {},
@@ -77,6 +87,23 @@
       }
     },
     "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
+    "commands": {},
+    "events": {
+      "707db944-6452-4db9-83db-e181460c2de8": {
+        "generation": 1,
+        "type": "Events.Alerts.AlertOpened, Events"
+      }
+    },
+    "eventSources": {
+      "f0dac236-22a8-4b70-9e5f-648c0c1d979b": {
+        "generation": 1,
+        "type": "Domain.Alerts.Alerts, Domain"
+      }
+    },
     "readModels": {},
     "queries": {}
   }

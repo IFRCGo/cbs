@@ -4,7 +4,7 @@ using Dolittle.ReadModels;
 
 namespace Read.AlertRules
 {
-    public class AllAlertRules : IQueryFor<AlertRule>
+    public class AllAlertRules : IQueryFor<AlertRule>, IAllQuery<AlertRule>
     {
         private readonly IReadModelRepositoryFor<AlertRule> _collection;
 
