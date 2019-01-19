@@ -26,13 +26,14 @@ class AddAlertRule extends Component {
         command.healthRiskNumber = this.state.healthRiskNumber;
         command.distanceBetweenCasesInMeters = 500;
 
-        this.commandCoordinator.handle(command).then(result => {
-            console.log(result, "Created");
-        });
+        this.commandCoordinator.handle(command);
     }
 
-    updateState(updates) {
-        this.setState(...this.state, ...updates);
+    resetState() {
+        this.setState({
+            healthRiskName: "",
+            healthRiskNumber: ""
+        });
     }
 
     render() {
@@ -58,7 +59,7 @@ class AddAlertRule extends Component {
                 description="I want to cound threshold of cases that is notified within this timeframe" />
             <TextInputField
                 label="Max distance between cases (km)" /> */}
-                <Button appearance="default">Cancel</Button>
+                <Button appearance="default" onClick={() => this.resetState()}>Cancel</Button>
                 <Button appearance="primary" onClick={() => this.addRule()}>Create</Button>
             </div>
         );

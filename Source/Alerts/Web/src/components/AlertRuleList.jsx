@@ -20,7 +20,6 @@ class AlertRuleList extends Component {
 
         this.queryCoordinator.execute(query).then(result => {
             this.setState({rules: result.items});
-            console.log(result)
         })
 
         this.state = {
