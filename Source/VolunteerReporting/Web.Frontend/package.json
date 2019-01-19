@@ -36,9 +36,9 @@
         "cross-env": "^5.2.0",
         "dotenv": "^6.2.0",
         "evergreen-ui": "^4.9.0",
-        "google-map-react": "^1.1.2",
         "prop-types": "^15.6.2",
         "react": "^16.7.0",
+        "react-google-maps": "^9.4.5",
         "redux": "^4.0.1"
     },
     "devDependencies": {
