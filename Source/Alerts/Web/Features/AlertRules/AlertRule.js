@@ -13,5 +13,10 @@ export class AlertRule extends ReadModel
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
+        this.alertRuleName = '';
+        this.healthRiskId = 0;
+        this.numberOfCasesThreshold = 0;
+        this.distanceBetweenCasesInMeters = 0;
+        this.thresholdTimeframeInHours = 0;
     }
 }

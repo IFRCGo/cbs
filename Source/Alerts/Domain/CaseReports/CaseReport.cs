@@ -1,5 +1,6 @@
 using System;
 using Concepts;
+using Concepts.CaseReports;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events.CaseReports;

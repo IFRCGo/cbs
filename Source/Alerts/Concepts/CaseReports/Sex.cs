@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Dolittle.Commands.Validation;
-
-namespace Domain.AlertRules
+namespace Concepts.CaseReports
 {
-    public class CreateAlertRuleInputValidator : CommandInputValidatorFor<CreateAlertRule>
+    public enum Sex
     {
-        
+        NotSet = 0,
+        Male = 1,
+        Female = 2
     }
 }
