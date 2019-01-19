@@ -32,6 +32,7 @@
         "@ifrc-cbs/reporting": "0.0.4",
         "bootstrap-sass": "^3.4.0",
         "dotenv": "^6.2.0",
+        "evergreen-ui": "^4.9.0",
         "prop-types": "^15.6.2",
         "react": "^16.7.0",
         "redux": "^4.0.1",
