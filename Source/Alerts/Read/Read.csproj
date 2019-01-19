@@ -15,5 +15,9 @@
     <PackageReference Include="Dolittle.SDK" Version="2.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CaseReports\" />
+  </ItemGroup>
+
 
 </Project>
