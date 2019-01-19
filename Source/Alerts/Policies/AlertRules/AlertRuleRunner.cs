@@ -17,10 +17,9 @@ namespace Policies.AlertRules
         }
         public AlertRuleRunResult RunAlertRule(IAllQuery<Case> casesAllQuery)
         {
-            // TODO Get from AlertRule
-            int casesThreshold = 1;
-            int healthRiskNumber = 1;
-            TimeSpan alertRuleInterval = new TimeSpan(24, 0, 0);
+            int casesThreshold = _alertRule.NumberOfCasesThreshold;
+            int healthRiskNumber = _alertRule.HealthRiskId;
+            TimeSpan alertRuleInterval = new TimeSpan(_alertRule.ThresholdTimeframeInHours, 0, 0);
 
             DateTimeOffset horizont = DateTimeOffset.UtcNow - alertRuleInterval;
             List<Guid> cases = casesAllQuery.Query.Where(

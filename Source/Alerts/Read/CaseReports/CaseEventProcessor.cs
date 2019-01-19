@@ -1,4 +1,4 @@
-using Concepts;
+using Concepts.CaseReports;
 using Dolittle.Collections;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;

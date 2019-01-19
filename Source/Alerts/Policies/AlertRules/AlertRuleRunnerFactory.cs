@@ -16,8 +16,8 @@ namespace Policies.AlertRules
 
         public IEnumerable<IAlertRuleRunner> GetRelevantAlertRules(int healthRiskNumber)
         {
-            //TODO filter by healthrisk
-            return _alertRulesAllQuery.Query.Select(r => new AlertRuleRunner(r));
+            return _alertRulesAllQuery.Query.Where(r => r.HealthRiskId == healthRiskNumber)
+                .Select(r => new AlertRuleRunner(r));
         }
     }
 }
