@@ -1,3 +1,4 @@
+using Concepts;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events;
@@ -11,17 +12,17 @@ namespace Domain.AlertRules
         {
         }
 
-        public void CreateAlertRule()
+        public void CreateAlertRule(AlertRuleName alertRuleName, HealthRiskId healthRiskId, NumberOfCasesThreshold numberOfCasesThreshold, DistanceBetweenCasesInMeters distanceBetweenCasesInMeters)
         {
-            Apply(new AlertRuleCreated(EventSourceId));
+            Apply(new AlertRuleCreated(EventSourceId, alertRuleName, healthRiskId, numberOfCasesThreshold, distanceBetweenCasesInMeters));
         }
 
-        public void UpdateAlertRule()
+        public void UpdateAlertRule(AlertRuleName alertRuleName, HealthRiskId healthRiskId, NumberOfCasesThreshold numberOfCasesThreshold, DistanceBetweenCasesInMeters distanceBetweenCasesInMeters)
         {
-            Apply(new AlertRuleUpdated(EventSourceId));
+            Apply(new AlertRuleUpdated(EventSourceId, alertRuleName, healthRiskId, numberOfCasesThreshold, distanceBetweenCasesInMeters));
         }
 
-        public void DeleteAlertRule()
+        public void DeleteAlertRule(EventSourceId id)
         {
             Apply(new AlertRuleDeleted(EventSourceId));
         }

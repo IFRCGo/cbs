@@ -38,7 +38,7 @@ namespace Read.AlertRules
         [EventProcessor("27907C3D-C338-46D9-A069-067C8307095B")]
         public void Process(AlertRuleDeleted @event)
         {
-            var alertRule = _alertRules.GetById(@event.Id);
+            var alertRule = _alertRules.GetById(@event.AlertRuleId);
             _alertRules.Delete(alertRule);
         }
     }

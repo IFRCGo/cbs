@@ -15,19 +15,19 @@ namespace Domain.AlertRules
         public void Handle(CreateAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.CreateAlertRule();
+            root.CreateAlertRule(cmd.AlertRuleName,cmd.HealthRiskId,cmd.NumberOfCasesThreshold,cmd.DistanceBetweenCasesInMeters);
         }
 
         public void Handle(UpdateAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.CreateAlertRule();
+            root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskId, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters);
         }
 
         public void Handle(DeleteAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.DeleteAlertRule();
+            root.DeleteAlertRule(cmd.Id.Value);
         }
     }
 }

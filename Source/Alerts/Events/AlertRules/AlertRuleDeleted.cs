@@ -5,11 +5,13 @@ namespace Events.AlertRules
 {
     public class AlertRuleDeleted : IEvent
     {
-        public AlertRuleDeleted(Guid id)
+        public Guid AlertRuleId { get; }
+
+        public AlertRuleDeleted(Guid alertRuleId)
         {
-            Id = id;
+            AlertRuleId = alertRuleId;
         }
 
-        public Guid Id { get; }
+
     }
 }
