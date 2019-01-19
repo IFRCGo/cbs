@@ -1,0 +1,10 @@
+{
+    "interaction": {
+        "port": 50053,
+        "unixSocket": "/var/run/cbs.reporting.interaction.server.sock"
+    },
+    "management": {
+        "port": 50153,
+        "unixSocket": "/var/run/cbs.reporting.management.server.sock"
+    }
+}

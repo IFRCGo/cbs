@@ -3,14 +3,14 @@ networks:
   cbs-network:
 services:
   cbs-reporting-core:
-    image: redcrossredcrescent/cbs-vr-backend:latest
+    image: redcrossredcrescent/cbs-reporting-backend:latest
     build:
       context: "../../"
-      dockerfile: "Source/VolunteerReporting/Core/Dockerfile"
+      dockerfile: "Source/Reporting/Core/Dockerfile"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - SWAGGER_PREFIX=swagger/reporting/
-      - SWAGGER_BASE_PATH=volunteerreportingbackend/
+      - SWAGGER_BASE_PATH=reportingbackend/
     volumes:
       - "./cbs-tenants.json:/CBS/Core/.dolittle/tenants.json"
       - "./cbs-tenant-map.json:/CBS/Core/.dolittle/tenant-map.json"
@@ -24,6 +24,18 @@ services:
     build:
       context: "../../Source/"
       dockerfile: "VolunteerReporting/Web/Dockerfile"
+      args:
+        mode: "build-test"
+    expose:
+      - "80"
+    networks:
+      - "cbs-network"
+
+  cbs-usermanagement-web:
+    image: redcrossredcrescent/cbs-usermgmt-frontend:latest
+    build:
+      context: "../../Source/"
+      dockerfile: "UserManagement/Web/Dockerfile"
       args:
         mode: "build-test"
     expose:
