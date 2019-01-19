@@ -63,6 +63,13 @@ namespace Core
                     c.SwaggerEndpoint("/" + _swaggerPrefix + "swagger/v1/swagger.json", "Alerts API V1");
                     c.RoutePrefix = _swaggerPrefix + "swagger";
                 });
+
+                app.UseCors(c => {
+                    c.AllowAnyHeader();
+                    c.AllowAnyMethod();
+                    c.AllowCredentials();
+                    c.AllowAnyOrigin();
+                });
             }
 
             app.UseDefaultFiles();
