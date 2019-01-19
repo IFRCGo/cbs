@@ -3,13 +3,16 @@ import { Label } from "evergreen-ui";
 import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
 
 export class MapWithLabel extends React.Component {
-    shouldComponentUpdate() {
-        return false;
+    shouldComponentUpdate(nextProps) {
+        return (
+            nextProps.latitude !== this.props.latitude ||
+            nextProps.longitude !== this.props.longitude
+        );
     }
     render() {
         const { label, longitude, latitude, apiKey } = this.props;
         const MapComponent = withScriptjs(
-            withGoogleMap(props => (
+            withGoogleMap(_props => (
                 <GoogleMap
                     defaultZoom={0}
                     defaultCenter={{ lat: latitude, lng: longitude }}

@@ -1,14 +1,6 @@
 import React from "react";
 import { TextInput, Label } from "evergreen-ui";
 
-const valueOrPlaceholder = (value, placeholder) => {
-    if (!!value) {
-        return { value: value };
-    }
-
-    return { placeholder: placeholder };
-};
-
 export class PhoneNumber extends React.Component {
     render() {
         const {

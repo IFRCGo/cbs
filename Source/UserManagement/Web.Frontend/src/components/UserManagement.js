@@ -1,7 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
-// import ReportingController from "../controllers/Reporting";
 import { Button } from "evergreen-ui";
 
 class UserManagement extends React.Component {
@@ -47,10 +46,8 @@ class UserManagement extends React.Component {
                         <Button>Add Data Collectors</Button>
                     </div>
                 </div>
-                <Button>blAaaa</Button>
             </React.Fragment>
         );
     }
 }
 export default UserManagement;
-// export default new ReportingController(Reporting);
