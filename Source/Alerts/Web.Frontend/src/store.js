@@ -11,7 +11,7 @@ const reducers = combineReducers({
     root: rootReducer,
 });
 
-if (process.env.NODE_ENV === `development`) {
+if (process.env.NODE_ENV === 'development') {
     console.log('You are running the develpment version of the app...');
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     middlewares.push(logger);
