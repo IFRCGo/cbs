@@ -1,17 +1,15 @@
 using System;
+using Dolittle.Commands;
 
 namespace Domain.CaseReports
 {
-    /// <summary>
-    /// Case report data DTO
-    /// </summary>
-    public class CaseReportData
+    public class ForcePublishNewCaseReport : ICommand
     {
         public Guid CaseReportId { get; set; }
         public Guid DataCollectorId { get; set; }
         public Guid HealthRiskId { get; set; }
+        public string Origin { get; set; }
         public string Message { get; set; }
-        public string PhoneNumber { get; set; }
         public int NumberOfMalesUnder5 { get; set; }
         public int NumberOfMalesAged5AndOlder { get; set; }
         public int NumberOfFemalesUnder5 { get; set; }

@@ -9,7 +9,7 @@ export class DataOwner extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: '48cb4e91-741b-4669-b17a-77464e76c8c3',
+           id: '58f22206-ac0f-4dc0-a5b9-f745fe401254',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

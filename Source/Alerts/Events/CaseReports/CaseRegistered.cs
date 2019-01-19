@@ -14,7 +14,9 @@ namespace Events.CaseReports
             double longitude, 
             DateTimeOffset timestamp, 
             Guid dataCollectorId, 
-            Guid healthRiskId)
+            Guid healthRiskId,
+            int healthRiskNumber,
+            string originPhoneNumber)
         {
             CaseId = caseId;
             CaseReportId = caseReportId;
@@ -25,6 +27,8 @@ namespace Events.CaseReports
             Timestamp = timestamp;
             DataCollectorId = dataCollectorId;
             HealthRiskId = healthRiskId;
+            HealthRiskNumber = healthRiskNumber;
+            OriginPhoneNumber = originPhoneNumber;
         }
 
         public Guid CaseId { get; }
@@ -36,5 +40,7 @@ namespace Events.CaseReports
         public DateTimeOffset Timestamp { get; }
         public Guid DataCollectorId { get; }
         public Guid HealthRiskId { get; }
+        public int HealthRiskNumber { get; }
+        public string OriginPhoneNumber { get; }
     }
 }

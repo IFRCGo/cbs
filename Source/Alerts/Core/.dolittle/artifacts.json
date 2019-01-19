@@ -52,7 +52,12 @@
     }
   },
   "92664e48-7b54-4014-a069-52541b14f597": {
-    "commands": {},
+    "commands": {
+      "10a4d610-294a-4148-bd6b-74ff1a879d0d": {
+        "generation": 1,
+        "type": "Domain.CaseReports.ForcePublishNewCaseReport, Domain"
+      }
+    },
     "events": {
       "e68891d0-31f9-417c-96f4-c9f33abc5dad": {
         "generation": 1,
@@ -65,8 +70,18 @@
         "type": "Domain.CaseReports.CaseReport, Domain"
       }
     },
-    "readModels": {},
-    "queries": {}
+    "readModels": {
+      "14671609-5572-4932-9210-4268b62b1a9d": {
+        "generation": 1,
+        "type": "Read.CaseReports.Case, Read"
+      }
+    },
+    "queries": {
+      "9a07a9a6-0b22-44d0-a23d-0fb8222e4f3d": {
+        "generation": 1,
+        "type": "Read.CaseReports.AllCases, Read"
+      }
+    }
   },
   "9936feea-7716-4d62-97e7-1e0167b0fce8": {
     "commands": {},
@@ -80,33 +95,50 @@
     "readModels": {},
     "queries": {}
   },
+  "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
+    "commands": {},
+    "events": {
+      "707db944-6452-4db9-83db-e181460c2de8": {
+        "generation": 1,
+        "type": "Events.Alerts.AlertOpened, Events"
+      }
+    },
+    "eventSources": {
+      "f0dac236-22a8-4b70-9e5f-648c0c1d979b": {
+        "generation": 1,
+        "type": "Domain.Alerts.Alerts, Domain"
+      }
+    },
+    "readModels": {},
+    "queries": {}
+  },
   "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
     "commands": {
-      "1aa6e9cb-82b2-47c0-a5fa-0e44d56bf44c": {
+      "39481830-b188-4786-99d5-223e6c17ac24": {
         "generation": 1,
         "type": "Domain.DataOwners.RegisterDataOwner, Domain"
       }
     },
     "events": {
-      "ccbdab0e-e5ef-4cd5-8b83-81e338b39c5d": {
+      "a15ea0c3-3e8d-4525-8cf5-910124596bb5": {
         "generation": 1,
         "type": "Events.DataOwners.DataOwnerRegistered, Events"
       }
     },
     "eventSources": {
-      "e8c75ef8-3923-47b3-a8dd-6b3a5fe15d6e": {
+      "92e7c2ec-d3e3-44c8-a9a6-8c858fd3e704": {
         "generation": 1,
         "type": "Domain.DataOwners.DataOwner, Domain"
       }
     },
     "readModels": {
-      "48cb4e91-741b-4669-b17a-77464e76c8c3": {
+      "58f22206-ac0f-4dc0-a5b9-f745fe401254": {
         "generation": 1,
         "type": "Read.DataOwners.DataOwner, Read"
       }
     },
     "queries": {
-      "58d881f0-5e50-4a33-987c-d3e187055702": {
+      "8bd672bb-c1d2-4d65-aaf0-edf0a8d3e2c2": {
         "generation": 1,
         "type": "Read.DataOwners.GetDataOwner, Read"
       }

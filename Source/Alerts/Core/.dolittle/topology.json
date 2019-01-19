@@ -22,6 +22,10 @@
       "name": "AlertRules",
       "subFeatures": {}
     },
+    "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
+      "name": "Alerts",
+      "subFeatures": {}
+    },
     "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
       "name": "DataOwners",
       "subFeatures": {}

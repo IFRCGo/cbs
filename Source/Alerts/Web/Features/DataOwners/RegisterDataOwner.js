@@ -8,7 +8,7 @@ export class RegisterDataOwner extends Command
 {
     constructor() {
         super();
-        this.type = '1aa6e9cb-82b2-47c0-a5fa-0e44d56bf44c';
+        this.type = '39481830-b188-4786-99d5-223e6c17ac24';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.name = '';
