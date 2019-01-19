@@ -37,7 +37,7 @@ namespace Domain.Management.DataCollectors.TestData
 
         public void Handle(PopulateDataCollectorTestData cmd)
         {
-            var dataCollectors = DeserializeTestData<Registration.RegisterDataCollector[]>("Tests.Data.DataCollectors.json");
+            var dataCollectors = DeserializeTestData<Registration.RegisterDataCollector[]>("Management.DataCollectors.TestData.Data.DataCollectors.json");
 
             foreach (var dataCollector in dataCollectors)
             {

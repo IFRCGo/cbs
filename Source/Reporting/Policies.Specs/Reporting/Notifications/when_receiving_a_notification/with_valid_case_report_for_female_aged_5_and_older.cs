@@ -29,7 +29,7 @@ namespace Policies.Specs.Reporting.Notifications.when_receiving_a_notification
 
         Establish context = () =>
         {
-            notification = given.a_notification_builder.get_valid_notification_s01_lasondra_day_1();
+            notification = given.a_notification_builder.get_valid_notification_aged_5_and_older();
             notificationParsingResult = new NotificationParsingResult(notification);
         };
 

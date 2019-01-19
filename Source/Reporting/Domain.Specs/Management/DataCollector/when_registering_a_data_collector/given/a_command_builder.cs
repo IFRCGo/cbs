@@ -5,10 +5,10 @@
 
 using System;
 using System.Collections.Generic;
-using Domain.Management.DataCollectors.Registration;
 using Concepts.DataCollectors;
+using Domain.Management.DataCollectors.Registration;
 
-namespace Domain.Specs.Management.DataCollectors.when_registering_a_data_collector.given
+namespace Domain.Specs.Management.DataCollector.when_registering_a_data_collector.given
  {
      public class a_command_builder
      {

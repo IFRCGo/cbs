@@ -37,7 +37,7 @@ namespace Domain.Reporting.HealthRisks.TestData
 
         public void Handle(PopulateHealthRiskTestData cmd)
         {
-            var risks = DeserializeTestData<HealthRiskHelper[]>("Tests.Data.HealthRisks.json");
+            var risks = DeserializeTestData<HealthRiskHelper[]>("Reporting.HealthRisks.TestData.Data.HealthRisks.json");
 
             foreach (var risk in risks)
             {

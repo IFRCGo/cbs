@@ -4,10 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.Artifacts;
 using Dolittle.Events;
 
 namespace Events.CaseReports
 {
+    [Artifact("fde7fe54-1228-4f08-974c-d27e7a85b541")]
     public class CaseReportReceived : IEvent
     {
         public Guid CaseReportId { get; }

@@ -8,7 +8,7 @@ export class RegisterDataCollector extends Command
 {
     constructor() {
         super();
-        this.type = '71023292-68b5-4334-903d-a5f1ec23edfc';
+        this.type = '865328db-d000-496f-8809-5cb4f6943ece';
 
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.fullName = '';

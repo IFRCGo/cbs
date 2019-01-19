@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Events.Admin.Reporting.HealthRisks;
+using Events.NotificationGateway.Reporting.SMS;
 
 namespace Policies.Reporting.Notifications
 {
     public interface INotificationParser
     {
-        NotificationParsingResult Parse(NotificationReceived notification);
+        NotificationParsingResult Parse(TextMessageReceived notification);
     }
 }

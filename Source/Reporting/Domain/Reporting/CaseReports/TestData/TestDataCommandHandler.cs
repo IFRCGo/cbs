@@ -35,7 +35,7 @@ namespace Domain.Reporting.CaseReports.TestData
         }
         public void Handle(PopulateCaseReportTestData cmd)
         {
-            var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Tests.Data.CaseReports.json");
+            var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Reporting.CaseReports.TestData.Data.CaseReports.json");
 
             foreach (var dataCaseReportHelper in dataCaseReportHelpers)
             {

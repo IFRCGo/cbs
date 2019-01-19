@@ -9,6 +9,7 @@ using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Domain.Reporting.CaseReports;
 using Events.Management.DataCollectors.EditInformation;
+using Read.Reporting.DataCollectorNames;
 
 namespace Policies.Reporting
 {
@@ -17,13 +18,13 @@ namespace Policies.Reporting
         readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregateRootRepository;
         readonly IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> _unknownReports;
         readonly IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> _invalidAndUnknownReports;
-        readonly IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector> _dataCollectors;
+        readonly IReadModelRepositoryFor<ListedDataCollector> _dataCollectors;
 
         public CaseReportIdentification(
             IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregateRootRepository,
             IReadModelRepositoryFor<Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector> unknownReports,
             IReadModelRepositoryFor<Read.Reporting.InvalidCaseReports.InvalidCaseReportFromUnknownDataCollector> invalidAndUnknownReports,
-            IReadModelRepositoryFor<Read.Reporting.DataCollectors.DataCollector> dataCollectors)
+            IReadModelRepositoryFor<ListedDataCollector> dataCollectors)
         {
             _caseReportingAggregateRootRepository = caseReportingAggregateRootRepository;
             _unknownReports = unknownReports;

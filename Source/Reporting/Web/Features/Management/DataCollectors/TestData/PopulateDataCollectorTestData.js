@@ -8,7 +8,7 @@ export class PopulateDataCollectorTestData extends Command
 {
     constructor() {
         super();
-        this.type = '1d4d6fed-e586-4ae0-a41c-d6f6c99f7931';
+        this.type = 'c8862422-ec59-40c5-b02e-21022d76069e';
 
     }
 }

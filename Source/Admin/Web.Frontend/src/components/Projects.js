@@ -1,8 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import {utils} from '@ifrc-cbs/common-react-ui';
+import { utils } from '@ifrc-cbs/common-react-ui';
 import AdminController from '../AdminController';
+
+import ProjectsPage from './Projects/ProjectsPage';
 
 const {parseQueryString} = utils;
 
@@ -56,9 +58,7 @@ class Projects extends React.Component {
         </Helmet>
         <article id="projects-list">
           <section className="container">
-            <h3>Projects Administration</h3>
-
-
+            <ProjectsPage />
           </section>
         </article>
       </React.Fragment>

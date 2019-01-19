@@ -1,89 +1,89 @@
 {
   "modules": {
-    "538159b7-1851-4c62-b2c0-86509937b841": {
+    "3c402941-9734-4633-ab90-2acc4a6095b7": {
       "name": "Reporting",
       "features": {
-        "bd296785-162c-4964-95a6-3a07616f2c70": {
+        "489931bc-a929-4d24-b985-881f705f276b": {
           "name": "HealthRisks",
           "subFeatures": {
-            "edde39cc-0187-4e28-bfc4-142d51fd261d": {
+            "c5f8a9be-a9e3-4305-a2af-cf64cf651fa1": {
               "name": "TestData",
               "subFeatures": {}
             }
           }
         },
-        "b5d59541-37df-4bae-8c39-54ae0ad4fdd4": {
+        "2b37f877-532e-4e35-ba76-1977d56739ac": {
           "name": "CaseReports",
           "subFeatures": {
-            "4535aa00-8bc4-47e7-84e4-5e3e0cae9389": {
+            "ff5478ae-99b7-486f-b7fa-480e34736bba": {
               "name": "TestData",
               "subFeatures": {}
             }
           }
         },
-        "c760bdeb-8ba8-429f-9fd5-c88386d8fbe9": {
+        "f27726b8-19e6-4efd-bf33-8fe71ea28b15": {
           "name": "AutomaticReplyMessages",
           "subFeatures": {}
         },
-        "a086be17-ef6e-43af-9a47-00711aa556ad": {
+        "de853448-04f0-4437-abef-927eb41b3fb5": {
           "name": "Projects",
           "subFeatures": {}
         },
-        "685380d6-efc3-491e-8633-7a33d9d0782d": {
+        "309f0e90-7d1c-48e4-811d-aab2a2aeef48": {
           "name": "DefaultReplyMessages",
           "subFeatures": {}
         },
-        "085cf676-c78a-42d8-aa7c-d8d965a340bf": {
+        "94e7e50b-0ae4-486a-b59d-5958c153d7cd": {
           "name": "SMS",
           "subFeatures": {}
         },
-        "6501517d-26be-4ac3-8bcf-218c1a1ae103": {
+        "a19e0bfe-e8e2-4c91-9075-a492c46a22ca": {
           "name": "InvalidCaseReports",
           "subFeatures": {}
         },
-        "1f619abf-b9c3-4752-b7fd-1ce9e02980aa": {
+        "76c3f174-3c3f-407c-81f9-af26dd75e1ce": {
+          "name": "DataCollectors",
+          "subFeatures": {}
+        },
+        "08a93ca4-7596-4d2b-9746-053bafc124da": {
           "name": "CaseReportsForListing",
           "subFeatures": {}
         },
-        "3f19c4e3-9c79-4ba4-83f4-26967787c9ca": {
-          "name": "DataCollectors",
+        "167a894d-2992-4ec3-9bef-0dbc174aca08": {
+          "name": "DataCollectorNames",
           "subFeatures": {}
         }
       }
     },
-    "be9b5059-a649-417a-a23b-6c9c7e47f13e": {
+    "60020240-2055-48c5-89b7-d977475711fd": {
       "name": "Management",
       "features": {
-        "fc5b50a9-4e7e-47c3-8a7b-369bdd7fbee8": {
+        "c9da8008-c368-4c72-8b97-5822c286d9dd": {
           "name": "DataCollectors",
           "subFeatures": {
-            "25299bc8-4d69-42eb-8988-718ba391d93a": {
+            "d4495ad1-3e03-427a-aa01-13c8ab469fc8": {
               "name": "Training",
               "subFeatures": {}
             },
-            "ea2a7fa0-c757-4192-b83b-3af9453a6402": {
+            "4ad30706-6d6c-4dda-9c82-60b9e10bf9e8": {
               "name": "TestData",
               "subFeatures": {}
             },
-            "f140a64f-f3a0-438b-8767-4a7f92651425": {
+            "a9c9c5a6-d18b-46ce-b14e-f5203ed5e543": {
               "name": "Registration",
               "subFeatures": {}
             },
-            "5f2f47d5-eb83-4c98-bfd9-49ca1b87db4e": {
+            "ead01ce5-ec3e-41be-be9b-447bf549bef2": {
               "name": "EditInformation",
               "subFeatures": {}
             }
           }
         },
-        "b607d881-0e91-4153-b036-2e64bbf1bc97": {
+        "96c4f3b8-9655-483e-bf94-0a2542383049": {
           "name": "MessageGenerators",
           "subFeatures": {}
         },
-        "03c26112-1a5f-4fc8-8e79-c6539970a769": {
-          "name": "HealthRisks",
-          "subFeatures": {}
-        },
-        "4cde4f89-9cb1-4409-b532-830d82b6fe19": {
+        "a9eac352-abea-4bf7-b1e9-266b6e63bc78": {
           "name": "DataVerifiers",
           "subFeatures": {}
         }
