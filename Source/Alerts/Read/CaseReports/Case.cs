@@ -8,10 +8,10 @@ namespace Read.CaseReports
     {
         public Case(Guid id)
         {
-            CaseId = id;
+            Id = id;
         }
 
-        public Guid CaseId { get; }
+        public Guid Id { get; set; }
         public Guid CaseReportId { get; set; }
         public AgeGroup AgeGroup { get; set; }
         public Sex Sex { get; set; }

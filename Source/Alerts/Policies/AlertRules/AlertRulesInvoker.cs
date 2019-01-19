@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Dolittle.Domain;
+using Dolittle.ReadModels;
+using Dolittle.Runtime.Commands.Coordination;
 using Read;
-using Read.AlertRules;
 using Read.CaseReports;
 using AlertsDomain = Domain.Alerts;
 
@@ -9,16 +11,19 @@ namespace Policies.AlertRules
 {
     public class AlertRulesInvoker : ICaseNotificationService
     {
-        private readonly IAllQuery<Case> _casesAllQuery;
+        private readonly ICommandContextManager _commandContextManager;
+        private readonly IReadModelRepositoryFor<Case> _casesRepository;
         private readonly IAlertRuleRunnerFactory _alertRuleRunnerFactory;
         private readonly IAggregateRootRepositoryFor<AlertsDomain.Alerts> _aggregateRootRepository;
 
         public AlertRulesInvoker(
-            IAllQuery<Case> casesAllQuery, 
+            ICommandContextManager commandContextManager,
+            IReadModelRepositoryFor<Case> casesRepository, 
             IAlertRuleRunnerFactory alertRuleRunnerFactory,
             IAggregateRootRepositoryFor<AlertsDomain.Alerts> aggregateRootRepository)
         {
-            _casesAllQuery = casesAllQuery;
+            _commandContextManager = commandContextManager;
+            _casesRepository = casesRepository;
             _alertRuleRunnerFactory = alertRuleRunnerFactory;
             _aggregateRootRepository = aggregateRootRepository;
         }
@@ -29,16 +34,24 @@ namespace Policies.AlertRules
             var alertRules = _alertRuleRunnerFactory.GetRelevantAlertRules(updatedItem.HealthRiskNumber);
             foreach (IAlertRuleRunner alertRunner in alertRules)
             {
-                AlertRuleRunResult result = alertRunner.RunAlertRule(_casesAllQuery);
+                AlertRuleRunResult result = alertRunner.RunAlertRule(_casesRepository);
                 if (result.Triggered)
                 {
                     var alertId = Guid.NewGuid();
+                    var transaction = _commandContextManager.EstablishForCommand(
+                        new Dolittle.Runtime.Commands.CommandRequest(
+                            Guid.NewGuid(), 
+                            Guid.NewGuid(), 
+                            1, 
+                            new Dictionary<string, object>()));
+
                     var alertRuleAggrRoot = _aggregateRootRepository.Get(alertId);
                     alertRuleAggrRoot.OpenAlert(
                         alertId,
                         result.AlertRuleId,
                         result.Cases
                         );
+                    transaction.Commit();
                 }
             }
         }

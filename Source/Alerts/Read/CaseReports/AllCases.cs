@@ -5,7 +5,7 @@ using Dolittle.ReadModels;
 
 namespace Read.CaseReports
 {
-    public class AllCases : IQueryFor<Case>, IAllQuery<Case>
+    public class AllCases : IQueryFor<Case>
     {
         readonly IReadModelRepositoryFor<Case> _repositoryForCase;
 

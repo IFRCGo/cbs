@@ -12,6 +12,7 @@ export class Case extends ReadModel
            id: '14671609-5572-4932-9210-4268b62b1a9d',
            generation: '1'
         };
+        this.id = '00000000-0000-0000-0000-000000000000';
         this.caseReportId = '00000000-0000-0000-0000-000000000000';
         this.ageGroup = {};
         this.sex = {};

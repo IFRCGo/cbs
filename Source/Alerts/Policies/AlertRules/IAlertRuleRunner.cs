@@ -1,10 +1,10 @@
-using Read;
+using Dolittle.ReadModels;
 using Read.CaseReports;
 
 namespace Policies.AlertRules
 {
     public interface IAlertRuleRunner
     {
-        AlertRuleRunResult RunAlertRule(IAllQuery<Case> casesAllQuery);
+        AlertRuleRunResult RunAlertRule(IReadModelRepositoryFor<Case> casesAllQuery);
     }
 }

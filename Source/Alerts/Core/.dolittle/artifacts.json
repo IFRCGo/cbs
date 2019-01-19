@@ -52,7 +52,12 @@
     }
   },
   "92664e48-7b54-4014-a069-52541b14f597": {
-    "commands": {},
+    "commands": {
+      "10a4d610-294a-4148-bd6b-74ff1a879d0d": {
+        "generation": 1,
+        "type": "Domain.CaseReports.ForcePublishNewCaseReport, Domain"
+      }
+    },
     "events": {
       "e68891d0-31f9-417c-96f4-c9f33abc5dad": {
         "generation": 1,

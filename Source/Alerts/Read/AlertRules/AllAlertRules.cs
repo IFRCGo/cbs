@@ -9,7 +9,7 @@ using Dolittle.ReadModels;
 
 namespace Read.AlertRules
 {
-    public class AllAlertRules : IQueryFor<AlertRule>, IAllQuery<AlertRule>
+    public class AllAlertRules : IQueryFor<AlertRule>
     {
         private readonly IReadModelRepositoryFor<AlertRule> _collection;
 
