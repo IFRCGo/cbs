@@ -70,7 +70,7 @@ class UserManagement extends React.Component {
                               ? "caret-down"
                               : "caret-up"
                   }
-                : { icon: null };
+                : { icon: " " };
         return {
             ...icon,
             onClick: () =>
