@@ -24,9 +24,20 @@ namespace Domain.Management.DataCollectors.TestData
             _dataCollectorAggregate = dataCollectorAggregate;
         }
 
+        T DeserializeTestData<T>(string path)
+        {
+            var assembly = typeof(TestDataCommandHandler).GetTypeInfo().Assembly;
+            using (var stream = assembly.GetManifestResourceStream(assembly.GetName().Name+"."+path))
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                var result = new JsonSerializer().Deserialize<T>(reader);
+                return result;
+            }
+        }
+
         public void Handle(PopulateDataCollectorTestData cmd)
         {
-            var dataCollectors = JsonConvert.DeserializeObject<Registration.RegisterDataCollector[]>(File.ReadAllText("../Domain/Management/DataCollectors/TestData/Data/DataCollectors.json"));
+            var dataCollectors = DeserializeTestData<Registration.RegisterDataCollector[]>("Management.DataCollectors.TestData.Data.DataCollectors.json");
 
             foreach (var dataCollector in dataCollectors)
             {
