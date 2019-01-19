@@ -25,6 +25,7 @@ class AddAlertRule extends Component {
         };
 
         this.props.requestCreateRule(request);
+        this.resetState();
     }
 
     resetState() {
