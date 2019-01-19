@@ -3,13 +3,13 @@ import { Table } from 'evergreen-ui';
 
 const AlertRule = ({ rule }) => {
     return (
-        <Table.Row key={rule.Id}>
-            <Table.TextCell>{rule.Name}</Table.TextCell>
-            <Table.TextCell>{rule.HealthRiskId}</Table.TextCell>
-            <Table.TextCell>{rule.Threshold}</Table.TextCell>
-            <Table.TextCell>{rule.TimeFrame}</Table.TextCell>
-            <Table.TextCell>{rule.DistanceBetweenCases}</Table.TextCell>
-            <Table.TextCell>...</Table.TextCell>
+        <Table.Row>
+            <Table.TextCell>{rule.alertRuleName}</Table.TextCell>
+            <Table.TextCell>{rule.healthRiskId}</Table.TextCell>
+            {/* <Table.TextCell>{rule.threshold}</Table.TextCell>
+            <Table.TextCell>{rule.thresholdTimeframeInHours}</Table.TextCell>
+            <Table.TextCell>{rule.distanceBetweenCasesInMeters}</Table.TextCell>
+            <Table.TextCell>...</Table.TextCell> */}
         </Table.Row>
     );
 };

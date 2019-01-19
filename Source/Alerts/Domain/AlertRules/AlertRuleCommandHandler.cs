@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 
+using System;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 
@@ -20,7 +21,8 @@ namespace Domain.AlertRules
 
         public void Handle(CreateAlertRule cmd)
         {
-            var root = _aggregate.Get(cmd.Id.Value);
+            var id = Guid.NewGuid();
+            var root = _aggregate.Get(id);
             root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskNumber, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters, cmd.ThresholdTimeframeInHours);
         }
 

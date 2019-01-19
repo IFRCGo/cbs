@@ -20,10 +20,9 @@ class AddAlertRule extends Component {
     addRule() {
         let command = new CreateAlertRule();
 
-        command.id = '61ef2abf-73f9-4e4d-8deb-711585ca73f6';
         command.alertRuleName = this.state.healthRiskName;
         command.numberOfCasesThreshold = 1;
-        command.thresholdTimeframe = new Date(2019, 6, 15);
+        command.thresholdTimeframeInHours = 24;
         command.healthRiskNumber = this.state.healthRiskNumber;
         command.distanceBetweenCasesInMeters = 500;
 
