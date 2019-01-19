@@ -36,6 +36,8 @@ class AddDataCollector extends React.Component {
             showGeolocationDialog: false,
             mode: this.props.match.params.id ? "edit" : "add"
         };
+
+        this._mapsRef = {};
     }
 
     componentDidMount() {
@@ -46,12 +48,16 @@ class AddDataCollector extends React.Component {
 
     getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position =>
+            navigator.geolocation.getCurrentPosition(position => {
                 this.props.addDataCollector({
                     longitude: position.coords.longitude,
                     latitude: position.coords.latitude
-                })
-            );
+                });
+                this._mapsRef.getMapsRef().panTo({
+                    lat: parseFloat(position.coords.latitude),
+                    lng: parseFloat(position.coords.longitude)
+                });
+            });
         } else {
             this.setState({ ...this.state, showGeolocationDialog: true });
         }
@@ -104,6 +110,18 @@ class AddDataCollector extends React.Component {
                 </Dialog>
             </Pane>
         );
+    }
+
+    updateCoordinates() {
+        if (
+            this.props.dataCollectorToAdd.latitude &&
+            this.props.dataCollectorToAdd.longitude
+        ) {
+            this._mapsRef.getMapsRef().panTo({
+                lat: parseFloat(this.props.dataCollectorToAdd.latitude),
+                lng: parseFloat(this.props.dataCollectorToAdd.longitude)
+            });
+        }
     }
 
     render() {
@@ -198,6 +216,9 @@ class AddDataCollector extends React.Component {
                                 />
                                 <div style={{ width: "280px" }}>
                                     <TextInputField
+                                        type="number"
+                                        min="1900"
+                                        max="2200"
                                         width="100px"
                                         marginRight="20px"
                                         label="Year of birth"
@@ -261,14 +282,15 @@ class AddDataCollector extends React.Component {
                             </div>
                             <div className="addDataCollector--gridElement">
                                 <MapWithLabel
+                                    ref={ref => (this._mapsRef = ref)}
                                     label="Location"
-                                    longitude={
-                                        this.props.dataCollectorToAdd
-                                            .longitude || -34.397
-                                    }
                                     latitude={
                                         this.props.dataCollectorToAdd
-                                            .latitude || 150.644
+                                            .latitude || 9
+                                    }
+                                    longitude={
+                                        this.props.dataCollectorToAdd
+                                            .longitude || 44
                                     }
                                     apiKey={
                                         "AIzaSyCB2IPddbweufj2myYTB4NhlLmpr58kU04"
@@ -284,11 +306,12 @@ class AddDataCollector extends React.Component {
                                         this.props.dataCollectorToAdd
                                             .longitude || ""
                                     }
-                                    onChange={e =>
+                                    onChange={e => {
+                                        this.updateCoordinates();
                                         this.props.addDataCollector({
                                             longitude: e.target.value
-                                        })
-                                    }
+                                        });
+                                    }}
                                 />
                                 <TextInputField
                                     width="150px"
@@ -298,15 +321,18 @@ class AddDataCollector extends React.Component {
                                         this.props.dataCollectorToAdd
                                             .latitude || ""
                                     }
-                                    onChange={e =>
+                                    onChange={e => {
+                                        this.updateCoordinates();
                                         this.props.addDataCollector({
                                             latitude: e.target.value
-                                        })
-                                    }
+                                        });
+                                    }}
                                 />
                                 <Button
                                     marginBottom="24px"
-                                    onClick={() => this.getLocation()}
+                                    onClick={() => {
+                                        this.getLocation();
+                                    }}
                                 >
                                     Get from device
                                 </Button>

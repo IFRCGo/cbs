@@ -19,6 +19,8 @@ export class PhoneNumber extends React.Component {
                     <TextInput
                         width="60px"
                         marginRight="20px"
+                        type="tel"
+                        pattern="\+\d+"
                         className="phoneNumber--countryCode"
                         placeholder={countryCodePlaceholder}
                         value={countryCodeValue || ""}
@@ -28,6 +30,7 @@ export class PhoneNumber extends React.Component {
                         }
                     />
                     <TextInput
+                        type="tel"
                         width="200px"
                         placeholder={numberPlaceholder}
                         value={numberValue}

@@ -9,6 +9,7 @@ export class CoordinateInputWithLabel extends React.Component {
             <div className="coordinateInputWithLabel--container">
                 <Label>{label}</Label>
                 <TextInput
+                    type="number"
                     placeholder={placeholder}
                     width="150px"
                     onChange={e => !!onChange && onChange(e.target.value)}
