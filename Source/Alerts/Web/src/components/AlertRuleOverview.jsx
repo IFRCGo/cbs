@@ -9,14 +9,14 @@ class AlertRuleOverview extends Component {
                 <h1>Alert rule overview</h1>
                 <p>Here are the alert rules you have registered</p>
                 {/* Here we will add the search */}
-                <Button
+                {/* <Button
                     appearance="primary"
                     onClick={() => {
                         console.log('click');
                     }}
                 >
                     Add alert rule
-                </Button>
+                </Button> */}
                 <AlertRuleList />
             </div>
         );

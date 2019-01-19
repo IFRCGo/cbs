@@ -15,7 +15,7 @@ const routes = [
         component: App,
         route: '/alerts/',
         exact: false,
-    },
+    }
 ];
 
 ReactDOM.render(
