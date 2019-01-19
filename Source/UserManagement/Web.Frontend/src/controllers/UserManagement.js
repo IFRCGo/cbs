@@ -28,24 +28,7 @@ export default class UserManagementController extends BaseController {
         super(component);
         this.state = {
             dataCollectorToAdd(store) {
-                return (
-                    store.dataCollectorToAdd ||
-                    {} || {
-                        countryCode: "61",
-                        displayName: "display",
-                        district: "district",
-                        fullName: "fullname",
-                        latitude: "lat",
-                        longitude: "long",
-                        phoneNumber: "123213",
-                        preferedLanguage: "English",
-                        region: "regian",
-                        sex: "Male",
-                        training: "Training",
-                        village: "village",
-                        yearOfBirth: "year"
-                    }
-                );
+                return store.dataCollectorToAdd || {};
             }
         };
 
