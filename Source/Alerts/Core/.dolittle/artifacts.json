@@ -1,1 +1,54 @@
-{}
+{
+  "1a9e4670-b130-4223-8a34-966194f4a795": {
+    "commands": {
+      "f1c0f0da-f5b8-4bed-b013-0953f3a9a4d0": {
+        "generation": 1,
+        "type": "Domain.AlertRules.CreateAlertRule, Domain"
+      },
+      "47206c48-61b2-47a9-ba28-5d5d2e25ede8": {
+        "generation": 1,
+        "type": "Domain.AlertRules.DeleteAlertRule, Domain"
+      },
+      "8616098d-0bbc-4285-81e0-05bb68cd576b": {
+        "generation": 1,
+        "type": "Domain.AlertRules.UpdateAlertRule, Domain"
+      }
+    },
+    "events": {
+      "10283aa5-11ac-4991-a4ba-98b38a7842a8": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleCreated, Events"
+      },
+      "b4a92995-ae2c-4342-a7b5-82396047aa84": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleDeleted, Events"
+      },
+      "af7bce66-aa19-4e78-9d3c-634522a56865": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleUpdated, Events"
+      }
+    },
+    "eventSources": {
+      "82673631-52a8-4302-b733-95d72d17a15c": {
+        "generation": 1,
+        "type": "Domain.AlertRules.AlertRule, Domain"
+      }
+    },
+    "readModels": {
+      "ab393d51-e863-4a3d-9ba6-59ed73b4b885": {
+        "generation": 1,
+        "type": "Read.AlertRules.AlertRule, Read"
+      }
+    },
+    "queries": {
+      "f1799db5-98c9-43a2-adfb-20e5f2628eb7": {
+        "generation": 1,
+        "type": "Read.AlertRules.AlertRuleById, Read"
+      },
+      "b4fc20fe-9b33-4252-bbdc-2c412d82087b": {
+        "generation": 1,
+        "type": "Read.AlertRules.AllAlertRules, Read"
+      }
+    }
+  }
+}
