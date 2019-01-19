@@ -17,6 +17,7 @@ namespace Policies.CaseReports
             _caseReportAggregateRootRepository = caseReportAggregateRootRepository;
         }
 
+        [EventProcessor("780c53e3-6989-4f47-a523-b55eb31957cd")]
         public void Process(CaseReportReceived @event)
         {
             var root = _caseReportAggregateRootRepository.Get(@event.CaseReportId);
