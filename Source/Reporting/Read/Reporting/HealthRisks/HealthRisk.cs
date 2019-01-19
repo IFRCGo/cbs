@@ -14,7 +14,7 @@ namespace Read.Reporting.HealthRisks
         public HealthRiskId Id { get; set; }
 
         public HealthRiskReadableId ReadableId { get; set; }
-        public string Name { get; set; }
+        public HealthRiskName Name { get; set; }
 
         public HealthRisk(Guid id)
         {

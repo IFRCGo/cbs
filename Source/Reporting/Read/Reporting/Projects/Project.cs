@@ -12,6 +12,6 @@ namespace Read.Reporting.Projects
     {
         public ProjectId Id { get; set; }
 
-        public string Name { get; set; }
+        public ProjectName Name { get; set; }
     }
 }
