@@ -6,10 +6,8 @@ const AlertRule = ({ rule }) => {
         <Table.Row>
             <Table.TextCell>{rule.alertRuleName}</Table.TextCell>
             <Table.TextCell>{rule.healthRiskId}</Table.TextCell>
-            {/* <Table.TextCell>{rule.threshold}</Table.TextCell>
+            <Table.TextCell>{rule.numberOfCasesThreshold}</Table.TextCell>
             <Table.TextCell>{rule.thresholdTimeframeInHours}</Table.TextCell>
-            <Table.TextCell>{rule.distanceBetweenCasesInMeters}</Table.TextCell>
-            <Table.TextCell>...</Table.TextCell> */}
         </Table.Row>
     );
 };

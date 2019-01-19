@@ -33,11 +33,10 @@ class AlertRuleList extends Component {
             <Table>
                 <TableHead>
                     <Table.TextHeaderCell>Alert rule name</Table.TextHeaderCell>
-                    <Table.TextHeaderCell>Health risk ID</Table.TextHeaderCell>
-                    {/* <Table.TextHeaderCell>Alert threshold</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Health risk number</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Alert threshold</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Timeframe</Table.TextHeaderCell>
-                    <Table.TextHeaderCell>Distance between cases</Table.TextHeaderCell>
-                    <Table.TextHeaderCell /> */}
+                    <Table.TextHeaderCell />
                 </TableHead>
                 <TableBody>
                     {rules.map(rule => (

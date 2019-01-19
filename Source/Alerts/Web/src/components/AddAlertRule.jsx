@@ -21,18 +21,19 @@ class AddAlertRule extends Component {
         let command = new CreateAlertRule();
 
         command.alertRuleName = this.state.healthRiskName;
-        command.numberOfCasesThreshold = 1;
-        command.thresholdTimeframeInHours = 24;
+        command.numberOfCasesThreshold = this.state.numberOfCasesThreshold;
+        command.thresholdTimeframeInHours = this.state.thresholdTimeframeInHours;
         command.healthRiskNumber = this.state.healthRiskNumber;
-        command.distanceBetweenCasesInMeters = 500;
 
         this.commandCoordinator.handle(command);
     }
 
     resetState() {
         this.setState({
-            healthRiskName: "",
-            healthRiskNumber: ""
+            alertRuleName: "",
+            healthRiskNumber: "",
+            numberOfCasesThreshold: "",
+            thresholdTimeframeInHours: ""
         });
     }
 
@@ -42,25 +43,30 @@ class AddAlertRule extends Component {
                 <h1>Alert Rule</h1>
                 <p>Here you can set rules for health risk alerts.</p>
                 <TextInputField
-                    label="Health risk name"
+                    label="Alert rule name"
+                    placeholder="i.e. Acute watery diarrhoea"
                     onChange={e => this.setState({healthRiskName: e.target.value})}
                     value={this.state.healthRiskName} />
                 <TextInputField
                     label="Health risk number"
+                    placeholder="i.e. 1"
                     onChange={e => this.setState({healthRiskNumber: e.target.value})}
                     value={this.state.healthRiskNumber} />
+                <TextInputField
+                    label="Alert threshold"
+                    placeholder="i.e. 2"
+                    description="Number of cases to rise an alert"
+                    onChange={e => this.setState({numberOfCasesThreshold: e.target.value})}
+                    value={this.state.numberOfCasesThreshold} />
+                <TextInputField
+                    label="Threshold interval (in hours)"
+                    description="Timeframe within cases should be included"
+                    placeholder="i.e. 24"
+                    onChange={e => this.setState({thresholdTimeframeInHours: e.target.value})}
+                    value={this.state.thresholdTimeframeInHours} />
 
-                {/* The 3 inputs beneath are not included in the MVP */}
-                {/* <TextInputField
-                label="Alert threshold"
-                description="Number of cases to rise an alert" />
-            <TextInputField
-                label="Threshold intervall"
-                description="I want to cound threshold of cases that is notified within this timeframe" />
-            <TextInputField
-                label="Max distance between cases (km)" /> */}
-                <Button appearance="default" onClick={() => this.resetState()}>Cancel</Button>
                 <Button appearance="primary" onClick={() => this.addRule()}>Create</Button>
+                <Button appearance="default" onClick={() => this.resetState()}>Cancel</Button>
             </div>
         );
     }
