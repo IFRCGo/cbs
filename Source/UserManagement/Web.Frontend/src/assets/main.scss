@@ -8,9 +8,19 @@ $inputCompontentWidth: 280px;
     color: aqua;
 }
 
+.userManagement--container {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+.userManagement--center {
+    width: 800px;
+}
+
 .userManagement--headerContainer {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .comboboxWithLabel--container {
@@ -39,6 +49,10 @@ $inputCompontentWidth: 280px;
 .addDataCollector--center {
     display: flex;
     justify-content: center;
+}
+
+.addDataCollector--heading {
+    display: flex;
 }
 
 .addDataCollector--container {

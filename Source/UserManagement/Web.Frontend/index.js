@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import { Application } from "@ifrc-cbs/common-react-ui";
 import UserManagement from "./src/components/UserManagement";
 import AddDataCollector from "./src/components/AddDataCollector";
-// import Projects from "@ifrc-cbs/admin";
 
 import "@ifrc-cbs/common-react-ui/src/assets/main.scss";
 import "./src/assets/main.scss";
@@ -17,7 +16,8 @@ const routes = [
         path: "/users",
         exact: true
     },
-    { component: AddDataCollector, path: "/users/add", exact: false }
+    { component: AddDataCollector, path: "/users/add", exact: true },
+    { component: AddDataCollector, path: "/users/edit/:id", exact: false }
 ];
 
 const storeManager = new StoreManager(routes);

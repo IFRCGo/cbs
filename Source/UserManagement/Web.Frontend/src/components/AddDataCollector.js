@@ -1,7 +1,14 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
-import { Heading, Button, TextInputField, Pane, Dialog } from "evergreen-ui";
+import {
+    Heading,
+    Button,
+    TextInputField,
+    Pane,
+    Dialog,
+    BackButton
+} from "evergreen-ui";
 import { PhoneNumber } from "./PhoneNumber";
 import { ComboboxWithLabel } from "./ComboboxWithLabel";
 import { MapWithLabel } from "./MapWithLabel";
@@ -24,7 +31,17 @@ class AddDataCollector extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { showConfirmDialog: false, showGeolocationDialog: false };
+        this.state = {
+            showConfirmDialog: false,
+            showGeolocationDialog: false,
+            mode: this.props.match.params.id ? "edit" : "add"
+        };
+    }
+
+    componentDidMount() {
+        if (this.state.mode === "edit") {
+            this.props.loadDataCollector(this.props.match.params.id);
+        }
     }
 
     getLocation() {
@@ -110,11 +127,20 @@ class AddDataCollector extends React.Component {
                 <div className="addDataCollector--container">
                     <div className="addDataCollector--center">
                         <div className="addDataCollector--grid">
-                            <Heading size={700} paddingBottom="20px">
-                                {this.props.mode === "Edit"
-                                    ? "Edit Data Collector"
-                                    : "Add Data Collector"}
-                            </Heading>
+                            <div className="addDataCollector--heading">
+                                <BackButton
+                                    onClick={() => this.props.history.goBack()}
+                                />
+                                <Heading
+                                    marginLeft="20px"
+                                    size={700}
+                                    paddingBottom="20px"
+                                >
+                                    {this.props.mode === "edit"
+                                        ? "Edit Data Collector"
+                                        : "Add Data Collector"}
+                                </Heading>
+                            </div>
                             <div className="addDataCollector--gridElement">
                                 <TextInputField
                                     width="280px"
@@ -347,7 +373,7 @@ class AddDataCollector extends React.Component {
                                         marginLeft="20px"
                                         appearance="primary"
                                         onClick={() =>
-                                            this.props.getDataCollectorToAdd()
+                                            this.props.saveNewDataCollector()
                                         }
                                     >
                                         Save
