@@ -1,7 +1,7 @@
 using Dolittle.Events;
 using System;
 
-namespace Alerts.Events
+namespace Events.CaseReports
 {
     public class CaseRegistered : IEvent
     {

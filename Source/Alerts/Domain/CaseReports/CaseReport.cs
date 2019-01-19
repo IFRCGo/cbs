@@ -1,8 +1,8 @@
-using Alerts.Concepts;
-using Alerts.Events;
+using System;
+using Concepts;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
-using System;
+using Events.CaseReports;
 
 namespace Domain.CaseReports
 {
