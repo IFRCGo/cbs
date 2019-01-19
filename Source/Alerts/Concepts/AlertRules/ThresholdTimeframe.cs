@@ -3,12 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Dolittle.Commands.Validation;
+using System;
+using Dolittle.Concepts;
 
-namespace Domain.AlertRules
+namespace Concepts.AlertRules
 {
-    public class CreateAlertRuleInputValidator : CommandInputValidatorFor<CreateAlertRule>
+    public class ThresholdTimeframe : ConceptAs<TimeSpan>
     {
-        
+        public static implicit operator ThresholdTimeframe(TimeSpan value)
+        {
+            return new ThresholdTimeframe { Value = value };
+        }
     }
 }

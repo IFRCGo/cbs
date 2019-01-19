@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Dolittle.Commands.Validation;
+using Dolittle.Concepts;
 
-namespace Domain.AlertRules
+namespace Concepts.HealthRisks
 {
-    public class CreateAlertRuleInputValidator : CommandInputValidatorFor<CreateAlertRule>
+    public class HealthRiskNumber : ConceptAs<int>
     {
-        
+        public static implicit operator HealthRiskNumber(int id) => new HealthRiskNumber { Value = id };
     }
 }

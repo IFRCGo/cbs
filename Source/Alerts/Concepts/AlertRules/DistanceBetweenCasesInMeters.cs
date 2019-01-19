@@ -3,12 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-namespace Concepts
+using Dolittle.Concepts;
+
+namespace Concepts.AlertRules
 {
-    public enum Sex
+    public class DistanceBetweenCasesInMeters : ConceptAs<int>
     {
-        NotSet = 0,
-        Male = 1,
-        Female = 2
+        public static implicit operator DistanceBetweenCasesInMeters(int value)
+        {
+            return new DistanceBetweenCasesInMeters { Value = value };
+        }
     }
 }

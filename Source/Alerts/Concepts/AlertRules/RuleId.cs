@@ -4,19 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Dolittle.Events;
+using Dolittle.Concepts;
 
-namespace Events.AlertRules
+namespace Concepts.AlertRules
 {
-    public class AlertRuleDeleted : IEvent
+    public class RuleId:ConceptAs<Guid>
     {
-        public Guid AlertRuleId { get; }
+        public static readonly RuleId Empty = Guid.Empty;
 
-        public AlertRuleDeleted(Guid alertRuleId)
+        public static implicit operator RuleId(Guid value)
         {
-            AlertRuleId = alertRuleId;
+            return new RuleId { Value = value };
         }
-
-
+        public static implicit operator RuleId(string value)
+        {
+            return new RuleId { Value = Guid.Parse(value) };
+        }
     }
 }

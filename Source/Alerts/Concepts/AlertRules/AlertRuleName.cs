@@ -3,12 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using Dolittle.Commands.Validation;
+using Dolittle.Concepts;
 
-namespace Domain.AlertRules
+namespace Concepts.AlertRules
 {
-    public class CreateAlertRuleInputValidator : CommandInputValidatorFor<CreateAlertRule>
+    public class AlertRuleName : ConceptAs<string>
     {
-        
+        public static implicit operator AlertRuleName(string value)
+        {
+            return new AlertRuleName { Value = value };
+        }
     }
 }

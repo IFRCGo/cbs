@@ -1,3 +1,9 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 
@@ -15,13 +21,13 @@ namespace Domain.AlertRules
         public void Handle(CreateAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.CreateAlertRule(cmd.AlertRuleName,cmd.HealthRiskId,cmd.NumberOfCasesThreshold,cmd.DistanceBetweenCasesInMeters);
+            root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskNumber, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters, cmd.ThresholdTimeframe);
         }
 
         public void Handle(UpdateAlertRule cmd)
         {
             var root = _aggregate.Get(cmd.Id.Value);
-            root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskId, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters);
+            root.CreateAlertRule(cmd.AlertRuleName, cmd.HealthRiskNumber, cmd.NumberOfCasesThreshold, cmd.DistanceBetweenCasesInMeters, cmd.ThresholdTimeframe);
         }
 
         public void Handle(DeleteAlertRule cmd)

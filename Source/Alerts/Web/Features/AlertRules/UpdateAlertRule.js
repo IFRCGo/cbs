@@ -14,7 +14,7 @@ export class UpdateAlertRule extends Command
         this.alertRuleName = '';
         this.numberOfCasesThreshold = 0;
         this.thresholdTimeframe = new Date();
-        this.healthRiskId = 0;
+        this.healthRiskNumber = 0;
         this.distanceBetweenCasesInMeters = 0;
     }
 }
