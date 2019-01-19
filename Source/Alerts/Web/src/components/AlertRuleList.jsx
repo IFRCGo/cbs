@@ -8,7 +8,8 @@ import AlertRule from './AlertRule';
 
 class AlertRuleList extends Component {
     render() {
-        const { rules } = this.props;
+        let { rules } = this.props;
+        rules = rules || [];
 
         return (
             <Table>
