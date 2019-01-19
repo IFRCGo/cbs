@@ -15,17 +15,17 @@ namespace Events.AlertRules
         public int HealthRiskId { get; }
         public int NumberOfCasesThreshold { get; }
         public int DistanceBetweenCasesInMeters { get; }
-        public TimeSpan ThresholdTimeframe { get; }
+        public int ThresholdTimeframeInHours { get; }
 
         public AlertRuleCreated(Guid id, string alertRuleName, int healthRiskId, int numberOfCasesThreshold,
-            int distanceBetweenCasesInMeters, TimeSpan thresholdTimeframe)
+            int distanceBetweenCasesInMeters, int thresholdTimeframeInHours)
         {
             Id = id;
             AlertRuleName = alertRuleName;
             HealthRiskId = healthRiskId;
             NumberOfCasesThreshold = numberOfCasesThreshold;
             DistanceBetweenCasesInMeters = distanceBetweenCasesInMeters;
-            ThresholdTimeframe = thresholdTimeframe;
+            ThresholdTimeframeInHours = thresholdTimeframeInHours;
         }
     }
 }

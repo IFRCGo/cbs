@@ -13,7 +13,7 @@ export class UpdateAlertRule extends Command
         this.id = '00000000-0000-0000-0000-000000000000';
         this.alertRuleName = '';
         this.numberOfCasesThreshold = 0;
-        this.thresholdTimeframe = new Date();
+        this.thresholdTimeframeInHours = 0;
         this.healthRiskNumber = 0;
         this.distanceBetweenCasesInMeters = 0;
     }

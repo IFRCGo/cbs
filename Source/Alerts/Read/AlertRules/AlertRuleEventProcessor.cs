@@ -1,4 +1,4 @@
-﻿/*---------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------
  *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
@@ -23,8 +23,13 @@ namespace Read.AlertRules
         {
             var alertRule = new AlertRule
             {
-                Id = @event.Id
-            };
+                Id = @event.Id,
+                HealthRiskId = @event.HealthRiskId,
+                DistanceBetweenCasesInMeters = @event.DistanceBetweenCasesInMeters,
+                AlertRuleName = @event.AlertRuleName,
+                NumberOfCasesThreshold = @event.NumberOfCasesThreshold,
+                ThresholdTimeframeInHours = @event.ThresholdTimeframeInHours,
+                };
             _alertRules.Insert(alertRule);
         }
 
@@ -32,6 +37,11 @@ namespace Read.AlertRules
         public void Process(AlertRuleUpdated @event)
         {
             var alertRule = _alertRules.GetById(@event.Id);
+            alertRule.AlertRuleName = @event.AlertRuleName;
+            alertRule.DistanceBetweenCasesInMeters = @event.DistanceBetweenCasesInMeters;
+            alertRule.HealthRiskId = @event.HealthRiskId;
+            alertRule.NumberOfCasesThreshold = @event.NumberOfCasesThreshold;
+            alertRule.ThresholdTimeframeInHours = @event.ThresholdTimeframeInHours;
             _alertRules.Update(alertRule);
         }
 

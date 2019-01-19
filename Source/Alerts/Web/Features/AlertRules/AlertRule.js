@@ -17,6 +17,6 @@ export class AlertRule extends ReadModel
         this.healthRiskId = 0;
         this.numberOfCasesThreshold = 0;
         this.distanceBetweenCasesInMeters = 0;
-        this.thresholdTimeframe = new Date();
+        this.thresholdTimeframeInHours = 0;
     }
 }
