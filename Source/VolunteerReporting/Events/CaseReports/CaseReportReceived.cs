@@ -9,7 +9,7 @@ using Dolittle.Events;
 
 namespace Events.CaseReports
 {
-    [Artifact("30c0e44c-0ef8-4a1e-a726-ee755b09e3d8")]
+    [Artifact("fde7fe54-1228-4f08-974c-d27e7a85b541")]
     public class CaseReportReceived : IEvent
     {
         public Guid CaseReportId { get; }
