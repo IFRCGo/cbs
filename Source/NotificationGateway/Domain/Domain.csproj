@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="2.*" />
+    <PackageReference Include="FluentValidation" Version="8.1.2" />
   </ItemGroup>
 
 </Project>

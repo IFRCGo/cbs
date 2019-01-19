@@ -1,33 +1,81 @@
 {
   "1fe47770-08ec-4642-801c-afc0ccf02fff": {
     "commands": {
-      "827042da-422c-4f98-9820-489c61db9b53": {
+      "1b7b588a-59c3-4a75-b625-898b6384c071": {
         "generation": 1,
         "type": "Domain.SMS.SimulateReceivedMessage, Domain"
       }
     },
     "events": {
-      "573d4609-fa75-4c2f-8d7c-f7cf7da3de53": {
+      "191714a9-1c30-4509-8fdc-7a84a0544fc1": {
         "generation": 1,
         "type": "Events.SMS.TextMessageReceived, Events"
       }
     },
     "eventSources": {
-      "2b4d5244-8d30-4cd1-8459-0efacaefdf28": {
+      "54cefa37-2ae4-4a1b-8f7f-11f35233a210": {
         "generation": 1,
         "type": "Domain.SMS.TextMessage, Domain"
       }
     },
     "readModels": {
-      "7dac8377-4e4b-453d-8b6a-bca11940b5c5": {
+      "1cc91e9e-5aae-47f3-82c4-98ddf22fc353": {
         "generation": 1,
         "type": "Read.SMS.ReceivedMessage, Read"
       }
     },
     "queries": {
-      "d21b40f9-8666-45c7-9ec6-b3ea4cd717b2": {
+      "0474b131-3622-4d85-af5b-0969b453f5e2": {
         "generation": 1,
         "type": "Read.SMS.AllReceivedMessages, Read"
+      }
+    }
+  },
+  "1e4338a5-859f-423c-9c4e-a975217ddbd9": {
+    "commands": {
+      "5939f609-d02b-4479-86f0-f66fc9d6ba53": {
+        "generation": 1,
+        "type": "Domain.SMS.Gateways.AssignPhoneNumberToSmsGateway, Domain"
+      },
+      "fae555c2-d136-45d8-a317-5375843831c2": {
+        "generation": 1,
+        "type": "Domain.SMS.Gateways.RegisterSmsGateway, Domain"
+      }
+    },
+    "events": {
+      "bf1adc37-934c-412d-b26f-09eadc37a65c": {
+        "generation": 1,
+        "type": "Events.SMS.Gateways.SmsGatewayEnabled, Events"
+      },
+      "96bc4541-4269-468a-8e2c-7ce6b9f6319f": {
+        "generation": 1,
+        "type": "Events.SMS.Gateways.SmsGatewayNumberAssigned, Events"
+      },
+      "1951534b-e284-4802-ac11-193d4a2835e4": {
+        "generation": 1,
+        "type": "Events.SMS.Gateways.SmsGatewayRegistered, Events"
+      }
+    },
+    "eventSources": {
+      "04f3beaa-75f2-40fd-8149-f9cabdd9b179": {
+        "generation": 1,
+        "type": "Domain.SMS.Gateways.SmsGatewayAggregate, Domain"
+      }
+    },
+    "readModels": {
+      "cd7b6ecf-acea-4da9-b6d6-6fd09ffe0a5e": {
+        "generation": 1,
+        "type": "Read.SMS.Gateways.SmsGateway, Read"
+      }
+    },
+    "queries": {
+      "2e1c6647-13f2-4296-9afb-1250347acf76": {
+        "generation": 1,
+        "type": "Read.SMS.Gateways.SmsGatewayGetAllQuery, Read"
+      },
+      "1e9409b9-e73b-464b-acb3-c8e4a26c8c06": {
+        "generation": 1,
+        "type": "Read.SMS.Gateways.SmsGatewayGetEnabledQuery, Read"
       }
     }
   }
