@@ -294,10 +294,6 @@
       "8ba78d0d-1944-463e-bcad-11a037adf743": {
         "generation": 1,
         "type": "Events.Admin.Reporting.HealthRisks.HealthRiskModified, Events.Admin"
-      },
-      "635304c5-c8aa-4b09-a968-408d2d81a08b": {
-        "generation": 1,
-        "type": "Events.Admin.Reporting.HealthRisks.NotificationReceived, Events.Admin"
       }
     },
     "eventSources": {
