@@ -3,8 +3,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { utils } from '@ifrc-cbs/common-react-ui';
 import AdminController from '../AdminController';
-
-import ProjectsPage from './Projects/ProjectsPage';
+import Nav from './Nav';
 
 const {parseQueryString} = utils;
 
@@ -45,7 +44,7 @@ class Projects extends React.Component {
   }
 
   render() {
-    const title = 'Projects';
+    const title = 'Health Risks';
     const description = '';
 
     return (
@@ -56,9 +55,10 @@ class Projects extends React.Component {
           <meta property="og:description" content={description}/>
           <meta name="description" content={description}/>
         </Helmet>
-        <article id="projects-list">
+        <article id="healthRisks-list">
           <section className="container">
-            <ProjectsPage />
+            <Nav />
+            <h3>Health risks Overview</h3>
           </section>
         </article>
       </React.Fragment>
