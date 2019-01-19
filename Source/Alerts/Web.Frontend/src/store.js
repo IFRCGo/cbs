@@ -1,15 +1,19 @@
+import 'regenerator-runtime/runtime';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
+import saga from './saga';
 import rootReducer from './reducer';
 
 let composeEnhancers = compose;
 
-const middlewares = [];
-
+const sagaMiddleware = createSagaMiddleware();
 const reducers = combineReducers({
     root: rootReducer,
 });
+
+const middlewares = [sagaMiddleware];
 
 if (process.env.NODE_ENV === 'development') {
     console.log('You are running the develpment version of the app...');
@@ -17,4 +21,8 @@ if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
 }
 
-export default createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)));
+const store = createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)));
+
+sagaMiddleware.run(saga);
+
+export default store;
