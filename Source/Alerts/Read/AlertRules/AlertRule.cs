@@ -16,6 +16,6 @@ namespace Read.AlertRules
         public int HealthRiskId { get; set; }
         public int NumberOfCasesThreshold { get; set; }
         public int DistanceBetweenCasesInMeters { get; set; }
-        public TimeSpan ThresholdTimeframe { get; set; }
+        public int ThresholdTimeframeInHours { get; set; }
     }
 }

@@ -3,16 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Dolittle.Concepts;
 
 namespace Concepts.AlertRules
 {
-    public class ThresholdTimeframe : ConceptAs<TimeSpan>
+    public class ThresholdTimeframeInHours : ConceptAs<int>
     {
-        public static implicit operator ThresholdTimeframe(TimeSpan value)
+        public static implicit operator ThresholdTimeframeInHours(int value)
         {
-            return new ThresholdTimeframe { Value = value };
+            return new ThresholdTimeframeInHours { Value = value };
         }
     }
 }

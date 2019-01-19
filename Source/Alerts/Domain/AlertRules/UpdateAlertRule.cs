@@ -15,7 +15,7 @@ namespace Domain.AlertRules
         public AlertRuleName AlertRuleName { get; set; }
 
         public NumberOfCasesThreshold NumberOfCasesThreshold { get; set; }
-        public ThresholdTimeframe ThresholdTimeframe { get; set; }
+        public ThresholdTimeframeInHours ThresholdTimeframeInHours { get; set; }
         public HealthRiskNumber HealthRiskNumber { get; set; }
         public DistanceBetweenCasesInMeters DistanceBetweenCasesInMeters { get; set; }
     }

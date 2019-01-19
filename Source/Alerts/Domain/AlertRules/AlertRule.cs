@@ -20,14 +20,14 @@ namespace Domain.AlertRules
 
         public void CreateAlertRule(AlertRuleName alertRuleName, HealthRiskNumber healthRiskNumber,
             NumberOfCasesThreshold numberOfCasesThreshold, DistanceBetweenCasesInMeters distanceBetweenCasesInMeters,
-            ThresholdTimeframe thresholdTimeframe)
+            ThresholdTimeframeInHours thresholdTimeframeInHours)
         {
-            Apply(new AlertRuleCreated(EventSourceId, alertRuleName, healthRiskNumber, numberOfCasesThreshold, distanceBetweenCasesInMeters, thresholdTimeframe));
+            Apply(new AlertRuleCreated(EventSourceId, alertRuleName, healthRiskNumber, numberOfCasesThreshold, distanceBetweenCasesInMeters, thresholdTimeframeInHours));
         }
 
-        public void UpdateAlertRule(AlertRuleName alertRuleName, HealthRiskNumber healthRiskNumber, NumberOfCasesThreshold numberOfCasesThreshold, DistanceBetweenCasesInMeters distanceBetweenCasesInMeters, ThresholdTimeframe thresholdTimeframe)
+        public void UpdateAlertRule(AlertRuleName alertRuleName, HealthRiskNumber healthRiskNumber, NumberOfCasesThreshold numberOfCasesThreshold, DistanceBetweenCasesInMeters distanceBetweenCasesInMeters, ThresholdTimeframeInHours thresholdTimeframeInHours)
         {
-            Apply(new AlertRuleUpdated(EventSourceId, alertRuleName, healthRiskNumber, numberOfCasesThreshold, distanceBetweenCasesInMeters, thresholdTimeframe));
+            Apply(new AlertRuleUpdated(EventSourceId, alertRuleName, healthRiskNumber, numberOfCasesThreshold, distanceBetweenCasesInMeters, thresholdTimeframeInHours));
         }
 
         public void DeleteAlertRule(EventSourceId id)
