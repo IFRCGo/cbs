@@ -33,15 +33,14 @@ class AddDataCollector extends React.Component {
 
         this.state = {
             showConfirmDialog: false,
-            showGeolocationDialog: false,
-            mode: this.props.match.params.id ? "edit" : "add"
+            showGeolocationDialog: false
         };
 
         this._mapsRef = {};
     }
 
     componentDidMount() {
-        if (this.state.mode === "edit") {
+        if (this.props.match.params.id) {
             this.props.loadDataCollector(this.props.match.params.id);
         }
     }
@@ -125,10 +124,9 @@ class AddDataCollector extends React.Component {
     }
 
     render() {
-        const title =
-            this.props.mode === "Edit"
-                ? "Edit Data Collector"
-                : "Add Data Collector";
+        const title = this.props.match.params.id
+            ? "Edit Data Collector"
+            : "Add Data Collector";
         const description = "";
 
         return (
@@ -154,9 +152,7 @@ class AddDataCollector extends React.Component {
                                     size={700}
                                     paddingBottom="20px"
                                 >
-                                    {this.props.mode === "edit"
-                                        ? "Edit Data Collector"
-                                        : "Add Data Collector"}
+                                    {title}
                                 </Heading>
                             </div>
                             <div className="addDataCollector--gridElement">
