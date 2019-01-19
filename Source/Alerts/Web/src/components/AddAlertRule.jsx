@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { TextInputField, Button } from 'evergreen-ui';
-import { CommandCoordinator } from '@dolittle/commands/dist/commonjs';
 import { CreateAlertRule } from '../../Features/AlertRules/CreateAlertRule';
 
 class AddAlertRule extends Component {
     constructor(props) {
         super(props);
 
-        CommandCoordinator.apiBaseUrl = "http://localhost:5000";
-        this.commandCoordinator = new CommandCoordinator();
-        
-
-        this.state = {
-            healthRiskName: "",
-            healthRiskNumber: ""
-        };
+        this.state = new CreateAlertRule()
     }
 
     addRule() {
-        let command = new CreateAlertRule();
-
-        command.alertRuleName = this.state.healthRiskName;
-        command.numberOfCasesThreshold = this.state.numberOfCasesThreshold;
-        command.thresholdTimeframeInHours = this.state.thresholdTimeframeInHours;
-        command.healthRiskNumber = this.state.healthRiskNumber;
-
-        this.commandCoordinator.handle(command);
+        this.props.requestCreateRule(this.state);
     }
 
     resetState() {
@@ -59,8 +45,8 @@ class AddAlertRule extends Component {
                     onChange={e => this.setState({numberOfCasesThreshold: e.target.value})}
                     value={this.state.numberOfCasesThreshold} />
                 <TextInputField
-                    label="Threshold interval (in hours)"
-                    description="Timeframe within cases should be included"
+                    label="Threshold timeframe (in hours)"
+                    description="Timeframe within which cases should be included"
                     placeholder="i.e. 24"
                     onChange={e => this.setState({thresholdTimeframeInHours: e.target.value})}
                     value={this.state.thresholdTimeframeInHours} />
@@ -72,4 +58,9 @@ class AddAlertRule extends Component {
     }
 }
 
-export default AddAlertRule;
+export default connect(
+    _ => ({}),
+    dispatch => ({
+        requestCreateRule: rule => dispatch({ type: 'REQUEST_CREATE_RULE', payload: rule }),
+    })
+)(AddAlertRule);
