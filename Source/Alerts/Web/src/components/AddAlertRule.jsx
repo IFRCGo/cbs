@@ -7,11 +7,24 @@ class AddAlertRule extends Component {
     constructor(props) {
         super(props);
 
-        this.state = new CreateAlertRule()
+        this.state = {
+            alertRuleName: "",
+            healthRiskNumber: "",
+            numberOfCasesThreshold: "",
+            thresholdTimeframeInHours: ""
+        };
     }
 
     addRule() {
-        this.props.requestCreateRule(this.state);
+        let request = {
+            ...new CreateAlertRule(),
+            alertRuleName: this.state.alertRuleName,
+            healthRiskNumber: this.state.healthRiskNumber,
+            numberOfCasesThreshold: this.state.numberOfCasesThreshold,
+            thresholdTimeframeInHours: this.state.thresholdTimeframeInHours
+        };
+
+        this.props.requestCreateRule(request);
     }
 
     resetState() {
@@ -31,8 +44,8 @@ class AddAlertRule extends Component {
                 <TextInputField
                     label="Alert rule name"
                     placeholder="i.e. Acute watery diarrhoea"
-                    onChange={e => this.setState({healthRiskName: e.target.value})}
-                    value={this.state.healthRiskName} />
+                    onChange={e => this.setState({alertRuleName: e.target.value})}
+                    value={this.state.alertRuleName} />
                 <TextInputField
                     label="Health risk number"
                     placeholder="i.e. 1"
