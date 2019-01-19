@@ -23,19 +23,9 @@ namespace Domain.Reporting.CaseReports.TestData
             _caseReportingAggregate = caseReportingAggregate;
         }
 
-        T DeserializeTestData<T>(string path)
-        {
-            var assembly = typeof(TestDataCommandHandler).GetTypeInfo().Assembly;
-            using (var stream = assembly.GetManifestResourceStream(assembly.GetName().Name+"."+path))
-            using (var reader = new JsonTextReader(new StreamReader(stream)))
-            {
-                var result = new JsonSerializer().Deserialize<T>(reader);
-                return result;
-            }
-        }
         public void Handle(PopulateCaseReportTestData cmd)
         {
-            var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Tests.Data.CaseReports.json");
+            var dataCaseReportHelpers = JsonConvert.DeserializeObject<CaseReportHelper[]>(File.ReadAllText("../Domain/Reporting/CaseReports/TestData/Data/CaseReports.json"));
 
             foreach (var dataCaseReportHelper in dataCaseReportHelpers)
             {
