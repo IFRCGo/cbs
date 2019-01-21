@@ -10,20 +10,19 @@ using Machine.Specifications;
 
 namespace Domain.Specs.Management.for_data_collectors.when_removing_a_phone_number
 {
-    [Subject(typeof(RemovePhoneNumberFromDataCollectorValidator))]
+    [Subject(typeof(RemovePhoneNumberFromDataCollectorInputValidator))]
     public class and_validating_a_command_with_a_missing_phone_number
     {
         static ValidationResult validation_results;
-        static RemovePhoneNumberFromDataCollectorValidator validator;
+        static RemovePhoneNumberFromDataCollectorInputValidator validator;
         static RemovePhoneNumberFromDataCollector cmd;
 
         Establish context = () =>
         {
-            validator = new RemovePhoneNumberFromDataCollectorValidator();
+            validator = new RemovePhoneNumberFromDataCollectorInputValidator();
             cmd = new RemovePhoneNumberFromDataCollector
             {
-                DataCollectorId = Guid.NewGuid(),
-                PhoneNumber = string.Empty
+                DataCollectorId = Guid.NewGuid()
             };
         };
 

@@ -4,22 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Domain.Management.DataCollectors.Registration;
+using Domain.Management.DataCollectors.Training;
 using FluentValidation.Results;
 using Machine.Specifications;
 
-namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_collector
+namespace Domain.Specs.Management.for_data_collectors.when_beginning_training
 {
-    [Subject("Registration")]
+    [Subject("BeginTraining")]
     public class and_validating_a_command_with_a_missing_data_collector_id
     {
-        static RegisterDataCollector cmd;
-        static RegisterDataCollectorInputValidator validator;
+        static BeginTraining cmd;
+        static BeginTrainingInputValidator validator;
         static ValidationResult validation_results;
 
-        Establish context = () => 
+        Establish context = () =>
         {
-            validator = new RegisterDataCollectorInputValidator();
+            validator = new BeginTrainingInputValidator();
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.DataCollectorId = null);
         };
@@ -27,6 +27,7 @@ namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_co
         Because of = () => { validation_results = validator.Validate(cmd); };
 
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
+        It should_have_a_single_validation_error = () => validation_results.ShouldHaveInvalidCountOf(1);
         It should_identify_the_data_collector_id_as_the_problem = () => validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
     }
 }

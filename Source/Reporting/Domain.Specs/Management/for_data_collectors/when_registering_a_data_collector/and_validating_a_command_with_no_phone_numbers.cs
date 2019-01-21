@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using Concepts.DataCollectors;
 using Domain.Management.DataCollectors.Registration;
 using FluentValidation.Results;
 using Machine.Specifications;
@@ -13,14 +14,14 @@ namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_co
     public class and_validating_a_command_with_no_phone_numbers
     {
         static RegisterDataCollector cmd;
-        static RegisterDataCollectorValidator validator;
+        static RegisterDataCollectorInputValidator validator;
         static ValidationResult validation_results;
 
         Establish context = () => 
         {
-            validator = new RegisterDataCollectorValidator();
+            validator = new RegisterDataCollectorInputValidator();
 
-            cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PhoneNumbers = new string[0]);
+            cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PhoneNumbers = new PhoneNumber[0]);
         };
 
         Because of = () => { validation_results = validator.Validate(cmd); };
