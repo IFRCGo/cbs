@@ -90,7 +90,7 @@ namespace Read.Management.DataCollectors
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var phoneNumbers = dataCollector.PhoneNumbers;
-            phoneNumbers.Append(new PhoneNumber(@event.PhoneNumber));
+            phoneNumbers.Append(new PhoneNumber(){Value = @event.PhoneNumber});
             _dataCollectors.Update(dataCollector);
         }
         [EventProcessor("70edb6fb-dae6-4019-96bd-022c89597ea8")]
