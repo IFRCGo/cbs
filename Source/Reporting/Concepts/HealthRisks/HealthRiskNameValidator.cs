@@ -6,16 +6,16 @@
 using Dolittle.Validation;
 using FluentValidation;
 
-namespace Concepts.DataVerifiers
+namespace Concepts.HealthRisks
 {
-    public class DataVerifierIdValidator : InputValidator<DataVerifierId>
+    public class HealthRiskNameValidator : AbstractValidator<HealthRiskName>
     {
-        public DataVerifierIdValidator()
+        public HealthRiskNameValidator()
         {
             RuleFor(_ => _)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataVerifier Id is required")
-                .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
+                .NotNull().WithMessage("HealthRisk Name is required")
+                .NotEqual(HealthRiskName.NotSet).WithMessage($"HealthRisk Name must not be '{HealthRiskName.NotSet.Value.ToString()}'");
         }
     }
 }

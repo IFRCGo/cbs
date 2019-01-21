@@ -3,22 +3,17 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Dolittle.Concepts;
 
-namespace Concepts.Projects
+namespace Concepts.DataCollectors
 {
-    public class ProjectId : ConceptAs<Guid>
+    public class YearOfBirth : ConceptAs<int>
     {
-        public static ProjectId NotSet = Guid.Empty;
-        public static implicit operator ProjectId (Guid value) 
-        {
-            return new ProjectId{ Value = value };
-        }
+        public static readonly YearOfBirth NotSet = 0;
 
-        public static implicit operator ProjectId(string id)
+        public static implicit operator YearOfBirth(int value)
         {
-            return new ProjectId { Value = Guid.Parse(id) };
+            return new YearOfBirth { Value = value };
         }
     }
 }

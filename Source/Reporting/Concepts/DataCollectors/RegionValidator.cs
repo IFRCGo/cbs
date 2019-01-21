@@ -6,16 +6,16 @@
 using Dolittle.Validation;
 using FluentValidation;
 
-namespace Concepts.DataVerifiers
+namespace Concepts.DataCollectors
 {
-    public class DataVerifierIdValidator : InputValidator<DataVerifierId>
+    public class RegionValidator : InputValidator<Region>
     {
-        public DataVerifierIdValidator()
+        public RegionValidator()
         {
             RuleFor(_ => _)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataVerifier Id is required")
-                .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
+                .NotEmpty().WithMessage("Region is required")
+                .NotEqual(Region.NotSet).WithMessage($"Region must not be '{Region.NotSet.Value.ToString()}'");
         }
     }
 }

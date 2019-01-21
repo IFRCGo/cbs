@@ -6,19 +6,15 @@
 using System;
 using Dolittle.Concepts;
 
-namespace Concepts.Projects
+namespace Concepts.DataCollectors
 {
-    public class ProjectId : ConceptAs<Guid>
+    public class DisplayName : ConceptAs<string>
     {
-        public static ProjectId NotSet = Guid.Empty;
-        public static implicit operator ProjectId (Guid value) 
-        {
-            return new ProjectId{ Value = value };
-        }
+        public static readonly DisplayName NotSet = String.Empty;
 
-        public static implicit operator ProjectId(string id)
+        public static implicit operator DisplayName(string id)
         {
-            return new ProjectId { Value = Guid.Parse(id) };
+            return new DisplayName { Value = id };
         }
     }
 }

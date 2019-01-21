@@ -6,16 +6,18 @@
 using Dolittle.Validation;
 using FluentValidation;
 
-namespace Concepts.DataVerifiers
+namespace Concepts.DataCollectors
 {
-    public class DataVerifierIdValidator : InputValidator<DataVerifierId>
+    public class PhoneNumberValidator : InputValidator<PhoneNumber>
     {
-        public DataVerifierIdValidator()
+        public PhoneNumberValidator()
         {
             RuleFor(_ => _)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataVerifier Id is required")
-                .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
+                .NotEmpty().WithMessage("PhoneNumber is required")
+                .NotEqual(PhoneNumber.NotSet).WithMessage($"PhoneNumber must not be '{PhoneNumber.NotSet.Value.ToString()}'")
+                .Must(notContainSpaces).WithMessage("Phone number is not valid - it contains spaces");
         }
+        bool notContainSpaces(PhoneNumber _) => !((string)_).Contains(" ");
     }
 }

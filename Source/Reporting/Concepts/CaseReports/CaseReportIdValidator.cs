@@ -12,8 +12,11 @@ namespace Concepts.CaseReports
     {
         public CaseReportIdValidator()
         {
-            RuleFor(_ => _.Value)
-                .NotEmpty().WithMessage("Case Report It cannot be empty");
+            RuleFor(_ => _)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("CaseReport Id must not be null")
+                .NotEqual(CaseReportId.NotSet).WithMessage($"CaseReport Id must not be '{CaseReportId.NotSet.Value.ToString()}'");
+
         }
     }
 }

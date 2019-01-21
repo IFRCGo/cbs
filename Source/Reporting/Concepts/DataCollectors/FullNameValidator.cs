@@ -6,16 +6,16 @@
 using Dolittle.Validation;
 using FluentValidation;
 
-namespace Concepts.DataVerifiers
+namespace Concepts.DataCollectors
 {
-    public class DataVerifierIdValidator : InputValidator<DataVerifierId>
+    public class FullNameValidator : InputValidator<FullName>
     {
-        public DataVerifierIdValidator()
+        public FullNameValidator()
         {
             RuleFor(_ => _)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataVerifier Id is required")
-                .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
+                .NotEmpty().WithMessage("FullName is required")
+                .NotEqual(FullName.NotSet).WithMessage($"DisplayName must not be '{FullName.NotSet.Value.ToString()}'");
         }
     }
 }
