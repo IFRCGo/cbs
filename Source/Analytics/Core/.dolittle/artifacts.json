@@ -1,1 +1,60 @@
-{}
+{
+  "8a88cfed-e2d5-4170-bba5-932d8daa7a4b": {
+    "commands": {},
+    "events": {
+      "d615a603-d87d-4d04-9b87-2f03bbfb2c8b": {
+        "generation": 1,
+        "type": "Events.VolunteerReporting.CaseReports.CaseReportReceived, Events.VolunteerReporting"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "082b543a-e61b-4dea-b261-1396475b40b7": {
+    "commands": {},
+    "events": {},
+    "eventSources": {
+      "0e102b17-4f58-45f3-8c27-bcf58a76bd2b": {
+        "generation": 1,
+        "type": "Domain.CaseReports.CaseReport, Domain"
+      }
+    },
+    "readModels": {
+      "893b09bd-5d69-4a05-bc2a-420ba95cd169": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReport, Read"
+      }
+    },
+    "queries": {}
+  },
+  "7d227a67-619e-4e5f-a23f-5484e491ae00": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "97056220-5a4f-4443-92f4-3132e6b9d59d": {
+        "generation": 1,
+        "type": "Read.AgeAndSexDistribution.AgeAndSexDistribution, Read"
+      }
+    },
+    "queries": {
+      "d1193015-fead-4290-a9cd-4c19f6afa43c": {
+        "generation": 1,
+        "type": "Read.AgeAndSexDistribution.AgeAndSexDistributionAggregationByDateRange, Read"
+      }
+    }
+  },
+  "5d5abc2c-2149-4bca-bcf1-56df2014eadc": {
+    "commands": {
+      "7d2fec41-7907-4ada-8b67-77449136e56e": {
+        "generation": 1,
+        "type": "Domain.CaseReports.TestData.PopulateCaseReportTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  }
+}
