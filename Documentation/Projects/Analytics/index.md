@@ -20,10 +20,10 @@ https://github.com/IFRCGo/cbs/projects/5
 Technology
 ----------
 
-It has been decided that React will be used for the frontend, and D3
-will be used to create the graphs/dashboards.
+It has been decided that React will be used for the frontend, and [Highcharts](https://www.highcharts.com/)
+will be used to create the charts on the dashboard.
 
-The React frontend is prototyped by `VolunteerReporting` and we just copy what they do.
+We did consider using D3, but concluded that the Red Cross will not need such advanced features and that it therefore would be wise to choose something simpler. 
 
 Fake data (.xlsx) and R
 -----------------
@@ -41,16 +41,22 @@ What has been done
 - We have sketched out a number of graphs that we want implemented in the frontend
 - These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
 - Fake data (.json) is provided at `cbs/Documentation/Projects/Analytics/fakejson` for some of these graphs
-- The back-end queries have been written for one graph, but we can't get it to work
+- We have created a static html pages at `cbs/Documentation/Projects/Analytics/Web Mockup` where we are generating the graphs using Highcharts. A couple are still missing. We chose to create this as the React frontend was not yet running and we didn't want this to speed down our progress.
+- We have moved 3 of the graphs in the Web Mockup to the React frontend.
+- We have created a way of populating MongoDB with test data, see [documentation here](https://github.com/IFRCGo/cbs/tree/master/Source/Analytics#populating-the-database-with-test-data)
+- The back-end query towards MongoDB have been written for one graph (AgeAndSexDistributionAggregationByDateRange). 
 
 What needs to be done
 ----------------
 
-- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner
-- Code all the back end queries to provide data to the front-end
-- Code the front end
-- Link the back and the front end
-
+- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner. We have asked the UX team to provide us with this, and they will update [UXPin](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap) with a design. 
+- Add the missing charts to the Web Mockup
+- Code the frontend (move the charts from the Web Mockup to the React frontend)
+- Code all the backend queries to provide data to the frontend (see `Source\Analytics\Read\AgeAndSexDistribution\AgeAndSexDistributionAggregationByDateRange.cs` for reference)
+- Link the backend and the frontend (currently, the charts in the React frontend are generated from static data in the javascript)
+- Generate the graph based on user input (currently all the graphs are simply displayed on the page, the user cannot specify timerange, age, sex etc. to display on the graphs)
+- Figure out where to extract geographical values (district, region, village) from the GPS coordinates. Currently, all the generated graphs show all the data (national level).
+- Figure out where to get the population number (today, this does not exist in CBS). The graphs do not account for this today. 
 
 Epicurve by week
 ----------------
@@ -58,6 +64,7 @@ Epicurve by week
 Frontend issue: https://github.com/IFRCGo/cbs/issues/845
 Backend issue: https://github.com/IFRCGo/cbs/issues/846
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebyweek.html`
 
 This fake json data file has 4 'levels':
 
@@ -106,6 +113,7 @@ Epicurve by day
 Frontend issue: https://github.com/IFRCGo/cbs/issues/848
 Backend issue: https://github.com/IFRCGo/cbs/issues/849
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyday.html`
 
 This fake json data file has 4 'levels':
 
@@ -145,6 +153,7 @@ Epicurve by week dodged by age
 Frontend issue: https://github.com/IFRCGo/cbs/issues/850
 Backend issue: https://github.com/IFRCGo/cbs/issues/851
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyweekdodgedbyage.html`
 
 This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
@@ -164,6 +173,7 @@ Epicurve by day dodged by age
 Frontend issue: https://github.com/IFRCGo/cbs/issues/852
 Backend issue: https://github.com/IFRCGo/cbs/issues/853
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: **Not generated yet**
 
 This is an extension of the graph Epicurve by day" (frontend issue: https://github.com/IFRCGo/cbs/issues/848, backend issue: https://github.com/IFRCGo/cbs/issues/849).
 
@@ -183,6 +193,7 @@ Age and sex distribution over different time frames
 Frontend issue: https://github.com/IFRCGo/cbs/issues/854
 Backend issue: https://github.com/IFRCGo/cbs/issues/855
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
 
 -   We display the number of cases, split by age/sex on the x-axis
 -   We need the ability to display different time frames (e.g. per week,
@@ -197,6 +208,7 @@ Weekly epicurves by age/sex
 Frontend issue: https://github.com/IFRCGo/cbs/issues/856
 Backend issue: https://github.com/IFRCGo/cbs/issues/857
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Weeklyepicurvesbyagesex.html`
 
 This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
@@ -217,6 +229,7 @@ Weekly epicurves by geographical area
 Frontend issue: https://github.com/IFRCGo/cbs/issues/858
 Backend issue: https://github.com/IFRCGo/cbs/issues/859
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
 
 This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
@@ -243,6 +256,7 @@ Map by geographical area
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/860
 Backend issue: https://github.com/IFRCGo/cbs/issues/861
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Mapbygeographicalarea.html`
 
 Here we display a map with categorized number of cases.
 
@@ -267,6 +281,7 @@ Barcharts by district
 Frontend issue: https://github.com/IFRCGo/cbs/issues/862
 Backend issue: https://github.com/IFRCGo/cbs/issues/863
 Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
 
 This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
@@ -291,6 +306,7 @@ District/Person reporting funnel plot A
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/869
 Backend issue: https://github.com/IFRCGo/cbs/issues/870
+Chart in Web Template: **Not generated yet**
 
 The idea of this funnel plot is to identify districts/people who are
 reporting worse than expected.
@@ -319,6 +335,7 @@ District/Person reporting funnel plot B
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/871
 Backend issue: https://github.com/IFRCGo/cbs/issues/872
+Chart in Web Template: **Not generated yet**
 
 The idea of this funnel plot is to identify districts/people who are
 reporting worse than expected.
