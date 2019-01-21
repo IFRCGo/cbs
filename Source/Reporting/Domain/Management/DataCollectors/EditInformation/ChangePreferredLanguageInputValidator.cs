@@ -9,12 +9,11 @@ using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class ChangePreferredLanguageValidator : CommandInputValidatorFor<ChangePreferredLanguage>
+    public class ChangePreferredLanguageInputValidator : CommandInputValidatorFor<ChangePreferredLanguage>
     {
-        public ChangePreferredLanguageValidator()
+        public ChangePreferredLanguageInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.PreferredLanguage)

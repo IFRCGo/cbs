@@ -13,12 +13,10 @@ namespace Domain.Management.DataCollectors.EditInformation
         public AddPhoneNumberToDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("Phone Number is required")
-                .Must(_ => !_.Contains(" ")).WithMessage("Phone number is not valid");
+                .SetValidator(new PhoneNumberValidator());
 
         }
     }

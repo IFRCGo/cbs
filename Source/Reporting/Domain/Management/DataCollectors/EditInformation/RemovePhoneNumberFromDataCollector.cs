@@ -11,6 +11,6 @@ namespace Domain.Management.DataCollectors.EditInformation
     public class RemovePhoneNumberFromDataCollector : ICommand
     {
         public DataCollectorId DataCollectorId { get; set; }
-        public string PhoneNumber { get; set; }
+        public PhoneNumber PhoneNumber { get; set; }
     }
 }

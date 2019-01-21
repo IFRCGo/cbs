@@ -3,13 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
+using Dolittle.Commands.Validation;
 
-namespace Domain.Management.DataCollectors.Registration
+namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class DataCollectorAlreadyRegistered : Exception
+    public class ChangeDataVerifierBusinessValidator : CommandBusinessValidatorFor<ChangeDataVerifier>
     {
-        public DataCollectorAlreadyRegistered(string message) : base(message)
+        public ChangeDataVerifierBusinessValidator()
         {
         }
     }

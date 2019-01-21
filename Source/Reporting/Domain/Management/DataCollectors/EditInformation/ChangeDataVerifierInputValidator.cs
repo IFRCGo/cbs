@@ -10,15 +10,13 @@ using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class ChangeDataVerifierValidator : CommandInputValidatorFor<ChangeDataVerifier>
+    public class ChangeDataVerifierInputValidator : CommandInputValidatorFor<ChangeDataVerifier>
     {
-        public ChangeDataVerifierValidator()
+        public ChangeDataVerifierInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.DataVerifierId)
-                .NotEmpty().WithMessage("Data Verifier Id must be set")
                 .SetValidator(new DataVerifierIdValidator());
         }
     }

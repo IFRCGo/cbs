@@ -24,7 +24,7 @@ namespace Domain.Management.DataCollectors
         public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
+            Location gpsLocation, IEnumerable<PhoneNumber> phoneNumbers, DateTimeOffset registeredAt,
             string region, string district,
             Guid dataVerifierId
             )

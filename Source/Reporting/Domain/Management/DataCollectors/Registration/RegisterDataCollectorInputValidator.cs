@@ -5,19 +5,18 @@
 
 using System;
 using System.Linq;
-using Concepts;
 using Concepts.DataCollectors;
+using Concepts.DataVerifiers;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.Management.DataCollectors.Registration
 {
-    public class RegisterDataCollectorValidator : CommandInputValidatorFor<RegisterDataCollector>
+    public class RegisterDataCollectorInputValidator : CommandInputValidatorFor<RegisterDataCollector>
     {
-        public RegisterDataCollectorValidator()
+        public RegisterDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.FullName)
@@ -27,11 +26,6 @@ namespace Domain.Management.DataCollectors.Registration
             RuleFor(_ => _.DisplayName)
                 .NotEmpty()
                 .WithMessage("Display Name is not correct - Has to be defined");
-
-            //TODO: Add later
-            //RuleFor(_ => _.Email)
-            //    .Cascade(CascadeMode.StopOnFirstFailure)
-            //    .EmailAddress().WithMessage("Email address must be valid");
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
@@ -47,7 +41,7 @@ namespace Domain.Management.DataCollectors.Registration
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
 
-            RuleFor(_ => _.YearOfBirth)
+            RuleFor(_ => _.YearOfBirth.Value)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Year of birth is required")
                 .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
@@ -64,6 +58,9 @@ namespace Domain.Management.DataCollectors.Registration
             RuleFor(_ => _.Region)
                 .NotEmpty()
                 .WithMessage("Region is not correct - Has to be defined");
+
+            RuleFor(_ => _.DataVerifierId)
+                .SetValidator(new DataVerifierIdValidator());
         }
     }
 }

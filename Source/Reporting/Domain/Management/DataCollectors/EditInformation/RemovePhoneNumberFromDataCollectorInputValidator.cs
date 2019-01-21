@@ -4,20 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Concepts.DataCollectors;
-using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class ChangeVillageValidator : CommandInputValidatorFor<ChangeVillage>
+    public class RemovePhoneNumberFromDataCollectorInputValidator : AbstractValidator<RemovePhoneNumberFromDataCollector>
     {
-        public ChangeVillageValidator()
+        public RemovePhoneNumberFromDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
-            RuleFor(_ => _.Village)
-                .NotEmpty().WithMessage("Village is required");
+
+            RuleFor(_ => _.PhoneNumber)
+                .SetValidator(new PhoneNumberValidator());
         }
     }
 }

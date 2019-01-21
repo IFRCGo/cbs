@@ -11,34 +11,31 @@ using FluentValidation;
 namespace Domain.Management.DataCollectors.EditInformation
 {
    
-    public class ChangeBaseInformationValidator : CommandInputValidatorFor<ChangeBaseInformation>
+    public class ChangeBaseInformationInputValidator : CommandInputValidatorFor<ChangeBaseInformation>
     {
-        public ChangeBaseInformationValidator()
+        public ChangeBaseInformationInputValidator()
         {
 
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
                 .SetValidator(new DataCollectorIdValidator());
                 
             RuleFor(_ => _.FullName)
-                .NotEmpty().WithMessage("Full Name is not correct - Has to be defined");
+                .SetValidator(new FullNameValidator());
 
             RuleFor(_ => _.DisplayName)
-                .NotEmpty().WithMessage("Display Name is not correct - Has to be defined");
+                .SetValidator(new DisplayNameValidator());
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
 
             RuleFor(_ => _.YearOfBirth)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Year of birth is required")
-                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
+                .SetValidator(new YearOfBirthValidator());
             
             RuleFor(_ => _.District)
-                .NotEmpty().WithMessage("District is not correct - Has to be defined");
+                .SetValidator(new DistrictValidator());
 
             RuleFor(_ => _.Region)
-                .NotEmpty().WithMessage("Region is not correct - Has to be defined");
+                .SetValidator(new RegionValidator());
 
         }
     }
