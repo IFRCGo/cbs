@@ -48,8 +48,8 @@ export class Register {
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
-        console.log(this.command);
 
+        this.command.dataVerifierId = Guid.create(); //TODO: THis is just temporary, dataVerifier should be bound through the form
         this.commandCoordinator.handle(this.command)
             .then(response => {
                 console.log(response);
