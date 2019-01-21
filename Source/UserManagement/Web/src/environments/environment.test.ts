@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  api: '/usermanagementbackend'
+  api: '/reportingbackend'
 };

@@ -1,0 +1,217 @@
+Country code,Country name,Population density 2016
+afg,Afghanistan,53
+alb,Albania,105
+dza,Algeria,17
+asm,American Samoa,278
+and,Andorra,164
+ago,Angola,23
+atg,Antigua and Barbuda,229
+arg,Argentina,16
+arm,Armenia,103
+abw,Aruba,582
+aus,Australia,3
+aut,Austria,106
+aze,Azerbaijan,118
+bhs,Bahamas, The,39
+bhr,Bahrain,1848
+bgd,Bangladesh,1252
+brb,Barbados,663
+blr,Belarus,47
+bel,Belgium,375
+blz,Belize,16
+ben,Benin,96
+bmu,Bermuda,1307
+btn,Bhutan,21
+bol,Bolivia,10
+bih,Bosnia and Herzegovina,69
+bwa,Botswana,4
+bra,Brazil,25
+vgb,British Virgin Islands,204
+brn,Brunei Darussalam,80
+bgr,Bulgaria,66
+bfa,Burkina Faso,68
+bdi,Burundi,410
+cpv,Cabo Verde,134
+khm,Cambodia,89
+cmr,Cameroon,50
+can,Canada,4
+cym,Cayman Islands,253
+caf,Central African Republic,7
+tcd,Chad,11
+chi,Channel Islands,866
+chl,Chile,24
+chn,China,147
+col,Colombia,44
+com,Comoros,428
+cod,Congo, Dem. Rep.,35
+cog,Congo, Rep.,15
+cri,Costa Rica,95
+civ,Cote d'Ivoire,75
+hrv,Croatia,75
+cub,Cuba,110
+cuw,Curacao,360
+cyp,Cyprus,127
+cze,Czech Republic,137
+dnk,Denmark,136
+dji,Djibouti,41
+dma,Dominica,98
+dom,Dominican Republic,220
+ecu,Ecuador,66
+egy,Egypt, Arab Rep.,96
+slv,El Salvador,306
+gnq,Equatorial Guinea,44
+est,Estonia,31
+eth,Ethiopia,102
+fro,Faroe Islands,35
+fji,Fiji,49
+fin,Finland,18
+fra,France,122
+pyf,French Polynesia,77
+gab,Gabon,8
+gmb,Gambia, The,201
+geo,Georgia,54
+deu,Germany,237
+gha,Ghana,124
+gib,Gibraltar,3441
+grc,Greece,83
+grl,Greenland,0
+grd,Grenada,316
+gum,Guam,302
+gtm,Guatemala,155
+gin,Guinea,50
+gnb,Guinea-Bissau,65
+guy,Guyana,4
+hti,Haiti,394
+hnd,Honduras,81
+hkg,Hong Kong SAR, China,6997
+hun,Hungary,108
+isl,Iceland,3
+ind,India,445
+idn,Indonesia,144
+irn,Iran, Islamic Rep.,49
+irq,Iraq,86
+irl,Ireland,69
+imn,Isle of Man,147
+isr,Israel,395
+ita,Italy,206
+jam,Jamaica,266
+jpn,Japan,348
+jor,Jordan,107
+kaz,Kazakhstan,7
+ken,Kenya,85
+kir,Kiribati,141
+prk,Korea, Dem. People’s Rep.,211
+kor,Korea, Rep.,526
+xkx,Kosovo,167
+kwt,Kuwait,227
+kgz,Kyrgyz Republic,32
+lao,Lao PDR,29
+lva,Latvia,32
+lbn,Lebanon,587
+lso,Lesotho,73
+lbr,Liberia,48
+lby,Libya,4
+lie,Liechtenstein,235
+ltu,Lithuania,46
+lux,Luxembourg,225
+mac,Macao SAR, China,20406
+mkd,Macedonia, FYR,83
+mdg,Madagascar,43
+mwi,Malawi,192
+mys,Malaysia,95
+mdv,Maldives,1392
+mli,Mali,15
+mlt,Malta,1365
+mhl,Marshall Islands,295
+mrt,Mauritania,4
+mus,Mauritius,622
+mex,Mexico,66
+fsm,Micronesia, Fed. Sts.,150
+mda,Moldova,108
+mco,Monaco,19250
+mng,Mongolia,2
+mne,Montenegro,46
+mar,Morocco,79
+moz,Mozambique,37
+mmr,Myanmar,81
+nam,Namibia,3
+nru,Nauru,652
+npl,Nepal,202
+nld,Netherlands,505
+ncl,New Caledonia,15
+nzl,New Zealand,18
+nic,Nicaragua,51
+ner,Niger,16
+nga,Nigeria,204
+nac,North America,20
+mnp,Northern Mariana Islands,120
+nor,Norway,14
+omn,Oman,14
+pak,Pakistan,251
+plw,Palau,47
+pan,Panama,54
+png,Papua New Guinea,18
+pry,Paraguay,17
+per,Peru,25
+phl,Philippines,347
+pol,Poland,124
+prt,Portugal,113
+pri,Puerto Rico,385
+qat,Qatar,221
+rou,Romania,86
+rus,Russian Federation,9
+rwa,Rwanda,483
+wsm,Samoa,69
+smr,San Marino,553
+stp,Sao Tome and Principe,208
+sau,Saudi Arabia,15
+sen,Senegal,80
+srb,Serbia,81
+syc,Seychelles,206
+sle,Sierra Leone,102
+sgp,Singapore,7909
+sxm,Sint Maarten (Dutch part),1177
+svk,Slovak Republic,113
+svn,Slovenia,103
+slb,Solomon Islands,21
+som,Somalia,23
+zaf,South Africa,46
+esp,Spain,93
+lka,Sri Lanka,338
+kna,St. Kitts and Nevis,211
+lca,St. Lucia,292
+maf,St. Martin (French part),592
+vct,St. Vincent and the Grenadines,281
+sdn,Sudan,17
+sur,Suriname,4
+swz,Swaziland,78
+swe,Sweden,24
+che,Switzerland,212
+syr,Syrian Arab Republic,100
+tjk,Tajikistan,63
+tza,Tanzania,63
+tha,Thailand,135
+tls,Timor-Leste,85
+tgo,Togo,140
+ton,Tonga,149
+tto,Trinidad and Tobago,266
+tun,Tunisia,73
+tur,Turkey,103
+tkm,Turkmenistan,12
+tca,Turks and Caicos Islands,37
+tuv,Tuvalu,370
+uga,Uganda,207
+ukr,Ukraine,78
+are,United Arab Emirates,111
+gbr,United Kingdom,271
+usa,United States,35
+ury,Uruguay,20
+uzb,Uzbekistan,75
+vut,Vanuatu,22
+ven,Venezuela, RB,36
+vnm,Vietnam,299
+vir,Virgin Islands (U.S.),294
+pse,West Bank and Gaza,756
+yem,Yemen, Rep.,52
+zmb,Zambia,22
+zwe,Zimbabwe,42
