@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public RegionValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Region is required")
                 .NotEqual(Region.NotSet).WithMessage($"Region must not be '{Region.NotSet.Value.ToString()}'");
         }
     }

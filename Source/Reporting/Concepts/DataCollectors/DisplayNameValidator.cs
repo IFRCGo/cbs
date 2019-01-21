@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public DisplayNameValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("DisplayName is required")
                 .NotEqual(DisplayName.NotSet).WithMessage($"DisplayName must not be '{DisplayName.NotSet.Value.ToString()}'");
         }
     }

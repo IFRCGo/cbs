@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public DataCollectorIdValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataCollector Id is required")
                 .NotEqual(DataCollectorId.NotSet).WithMessage($"DataCollector Id must not be '{DataCollectorId.NotSet.Value.ToString()}'");
         }
     }

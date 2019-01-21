@@ -17,15 +17,19 @@ namespace Domain.Management.DataCollectors.Registration
         public RegisterDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.FullName)
-                .NotEmpty()
-                .WithMessage("Full Name is not correct - Has to be defined");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("FullName is required")
+                .SetValidator(new FullNameValidator());
 
             RuleFor(_ => _.DisplayName)
-                .NotEmpty()
-                .WithMessage("Display Name is not correct - Has to be defined");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DisplayName is required")
+                .SetValidator(new DisplayNameValidator());
 
             RuleFor(_ => _.Sex)
                 .IsInEnum().WithMessage("Sex is invalid").When(s => s != null);
@@ -41,25 +45,34 @@ namespace Domain.Management.DataCollectors.Registration
             RuleFor(_ => _.PreferredLanguage)
                 .IsInEnum().WithMessage("Preferred Language is required and must be valid");
 
-            RuleFor(_ => _.YearOfBirth.Value)
+            RuleFor(_ => _.YearOfBirth)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Year of birth is required")
-                .InclusiveBetween(1900, DateTime.UtcNow.Year).WithMessage("Year of birth must be greater than 1900 and less than " + DateTimeOffset.UtcNow.Year);
+                .NotNull().WithMessage("YearOfBirth is required")
+                .SetValidator(new YearOfBirthValidator());
+
 
             RuleFor(_ => _.PhoneNumbers)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("At least one Phone Number is required")
-                .Must(c => c.Any(s => !string.IsNullOrWhiteSpace(s))).WithMessage("All phonenumbers must be valid");
+                .NotEmpty().WithMessage("At least one Phone Number is required");
+
+            RuleForEach(_ => _.PhoneNumbers)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("PhoneNumbers cannot contain a PhoneNumber that is null")
+                .SetValidator(new PhoneNumberValidator());
 
             RuleFor(_ => _.District)
-                .NotEmpty()
-                .WithMessage("District is not correct - Has to be defined");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("District is required")
+                .SetValidator(new DistrictValidator());
 
             RuleFor(_ => _.Region)
-                .NotEmpty()
-                .WithMessage("Region is not correct - Has to be defined");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("Region is required")
+                .SetValidator(new RegionValidator());
 
             RuleFor(_ => _.DataVerifierId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataVerifier Id is required")
                 .SetValidator(new DataVerifierIdValidator());
         }
     }

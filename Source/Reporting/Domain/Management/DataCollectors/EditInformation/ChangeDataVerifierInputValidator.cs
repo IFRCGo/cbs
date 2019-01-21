@@ -15,8 +15,12 @@ namespace Domain.Management.DataCollectors.EditInformation
         public ChangeDataVerifierInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.DataVerifierId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataVerifier Id is required")
                 .SetValidator(new DataVerifierIdValidator());
         }
     }

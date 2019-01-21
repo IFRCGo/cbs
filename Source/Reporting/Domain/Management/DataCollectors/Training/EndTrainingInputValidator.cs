@@ -14,6 +14,8 @@ namespace Domain.Management.DataCollectors.Training
         public EndTrainingInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
         }
     }

@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public FullNameValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("FullName is required")
                 .NotEqual(FullName.NotSet).WithMessage($"DisplayName must not be '{FullName.NotSet.Value.ToString()}'");
         }
     }

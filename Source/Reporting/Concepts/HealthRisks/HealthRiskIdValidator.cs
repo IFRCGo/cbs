@@ -13,8 +13,6 @@ namespace Concepts.HealthRisks
         public HealthRiskIdValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("HealthRisk Id is required")
                 .NotEqual(HealthRiskId.NotSet).WithMessage($"HealthRisk Id must not be '{HealthRiskId.NotSet.Value.ToString()}'");
         }
     }

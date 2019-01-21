@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public PhoneNumberValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("PhoneNumber is required")
                 .NotEqual(PhoneNumber.NotSet).WithMessage($"PhoneNumber must not be '{PhoneNumber.NotSet.Value.ToString()}'")
                 .Must(notContainSpaces).WithMessage("Phone number is not valid - it contains spaces");
         }

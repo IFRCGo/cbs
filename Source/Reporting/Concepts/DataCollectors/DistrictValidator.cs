@@ -13,8 +13,6 @@ namespace Concepts.DataCollectors
         public DistrictValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("District is required")
                 .NotEqual(District.NotSet).WithMessage($"District must not be '{District.NotSet.Value.ToString()}'");
         }
     }

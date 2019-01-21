@@ -14,6 +14,8 @@ namespace Domain.Management.DataCollectors.EditInformation
         public ChangeVillageInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.Village)
                 .NotEmpty().WithMessage("Village is required");

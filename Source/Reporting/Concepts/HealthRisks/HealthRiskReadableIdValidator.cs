@@ -13,8 +13,6 @@ namespace Concepts.HealthRisks
         public HealthRiskReadableIdValidator()
         {
             RuleFor(_ => _.Value)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("HealthRisk Readable Id is required")
                 .NotEqual(HealthRiskReadableId.NotSet).WithMessage($"HealthRisk Readable Id must not be '{HealthRiskReadableId.NotSet.Value.ToString()}'");
         }
     }

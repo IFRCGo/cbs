@@ -13,9 +13,13 @@ namespace Domain.Management.DataCollectors.EditInformation
         public RemovePhoneNumberFromDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
 
             RuleFor(_ => _.PhoneNumber)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("PhoneNumber is required")
                 .SetValidator(new PhoneNumberValidator());
         }
     }

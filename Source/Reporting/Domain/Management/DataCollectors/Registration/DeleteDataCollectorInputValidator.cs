@@ -9,6 +9,8 @@ namespace Domain.Management.DataCollectors.Registration
         public DeleteDataCollectorInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
         }
     }

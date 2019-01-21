@@ -13,8 +13,6 @@ namespace Concepts.Projects
         public ProjectIdValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("Project Id is required")
                 .NotEqual(ProjectId.NotSet).WithMessage($"Project Id must not be '{ProjectId.NotSet.Value.ToString()}'");
         }
     }

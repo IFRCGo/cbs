@@ -14,8 +14,6 @@ namespace Concepts.DataCollectors
         public YearOfBirthValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Year of birth is required")
                 .NotEqual(YearOfBirth.NotSet).WithMessage($"YearOfBirth must not be '{YearOfBirth.NotSet.Value.ToString()}'")
                 .Must(beBetween1900AndNow).WithMessage("Year of birth must be greater or equal than 1900 and less than or equal to " + DateTimeOffset.UtcNow.Year);
         }

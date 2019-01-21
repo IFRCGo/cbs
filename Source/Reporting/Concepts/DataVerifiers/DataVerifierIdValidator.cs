@@ -13,8 +13,6 @@ namespace Concepts.DataVerifiers
         public DataVerifierIdValidator()
         {
             RuleFor(_ => _)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("DataVerifier Id is required")
                 .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
         }
     }
