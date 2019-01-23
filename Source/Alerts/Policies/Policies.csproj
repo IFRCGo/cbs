@@ -11,6 +11,7 @@
     <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
     <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
   </ItemGroup>
 
   <ItemGroup>
