@@ -29,13 +29,18 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.2.0",
+    "@ifrc-cbs/admin": "0.0.4",
+    "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
+    "@types/googlemaps": "^3.30.16",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.7.20",
+    "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
+    "evergreen-ui": "^4.9.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "cross-env": "^5.2.0",
-    "redux": "^4.0.1",
-    "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
-    "@ifrc-cbs/admin": "0.0.4"
+    "react-google-maps": "^9.4.5",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

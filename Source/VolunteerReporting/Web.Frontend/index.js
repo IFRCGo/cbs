@@ -19,11 +19,6 @@ const routes = [
         exact: false
     },
 
-  {
-    component: Projects,
-    path: '/projects',
-    exact: false
-  }
     {
         component: Projects,
         path: "/projects",
