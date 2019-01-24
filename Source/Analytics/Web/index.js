@@ -5,7 +5,6 @@ import {StoreManager} from 'repertoire';
 import {Provider} from 'react-redux';
 import {Application} from '@ifrc-cbs/common-react-ui';
 import {routes} from './src/utils/routes';
-import Analytics from './src/components/Analytics';
 
 import '@ifrc-cbs/common-react-ui/src/assets/main.scss';
 import './src/assets/main.scss';
