@@ -91,16 +91,17 @@ namespace Read.Management.DataCollectors
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var phoneNumbers = dataCollector.PhoneNumbers;
             phoneNumbers.Append(new PhoneNumber(){Value = @event.PhoneNumber});
+            dataCollector.PhoneNumbers = phoneNumbers;
             _dataCollectors.Update(dataCollector);
         }
         [EventProcessor("70edb6fb-dae6-4019-96bd-022c89597ea8")]
         public void Process(PhoneNumberRemovedFromDataCollector @event)
         {
-            throw new NotImplementedException();
-            
-            // TODO
-            //_dataCollectors.Update(d => d.Id == (DataCollectorId)@event.DataCollectorId,
-            //    Builders<DataCollector>.Update.PullFilter(d => d.PhoneNumbers, pn => pn.Value == @event.PhoneNumber));            
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var phoneNumbers = dataCollector.PhoneNumbers.ToList();
+            phoneNumbers.RemoveAll(_ => _.Value == @event.PhoneNumber);
+            dataCollector.PhoneNumbers = phoneNumbers;
+            _dataCollectors.Update(dataCollector);         
         }
         [EventProcessor("2426cf91-a2e9-4c5e-b891-ba30c4250b0c")]
         public void Process(CaseReportReceived @event)
