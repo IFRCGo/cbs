@@ -20,7 +20,6 @@ namespace Domain.Management.DataCollectors.Registration
         public Language PreferredLanguage { get; set; }
         public Location GpsLocation { get; set; }
 
-        // TODO: Add consept
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
 
         public Region Region { get; set; }
