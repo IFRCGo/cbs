@@ -8,8 +8,7 @@
     "export": "babel src --verbose --out-dir es && cp -R src/assets es",
     "clean": "rimraf es",
     "eslint": "eslint src",
-    "prepare": "npm run clean && npm run export",
-    "postinstall": "npm run prepare"
+    "prepare": "npm run clean && npm run export"
   },
   "module": "es/exports.js",
   "files": [
