@@ -39,8 +39,8 @@ namespace Policies.Reporting
             var dataCollector = _dataCollectors.GetById(dataCollectorId); 
             foreach (var item in unknownReports)
             {
-                var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
-                repo.Report(
+                var caseReport = _caseReportingAggregateRootRepository.Get(item.Id.Value);
+                caseReport.Report(
                     dataCollectorId,
                     item.HealthRiskId,
                     item.Origin,
@@ -54,14 +54,14 @@ namespace Policies.Reporting
                     item.Message
                     
                     );
-                repo.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
+                caseReport.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
             } 
                         
             var invalidAndUnknownReports = _invalidAndUnknownReports.Query.Where(r => r.PhoneNumber == @event.PhoneNumber);
             foreach (var item in invalidAndUnknownReports)
             {
-                var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
-                repo.ReportInvalidReport(
+                var caseReport = _caseReportingAggregateRootRepository.Get(item.Id.Value);
+                caseReport.ReportInvalidReport(
                     dataCollectorId,
                     item.PhoneNumber,
                     item.Message,
@@ -71,7 +71,7 @@ namespace Policies.Reporting
                     item.Timestamp
                     
                     );
-                repo.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
+                caseReport.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
             }
         }
     }

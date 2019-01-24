@@ -10,12 +10,10 @@ namespace Events.Reporting.CaseReports
 {
     public class CaseReportIdentified : IEvent
     {
-        public Guid CaseReportId { get; }
         public Guid DataCollectorId { get; }
 
-        public CaseReportIdentified(Guid caseReportId, Guid dataCollectorId) 
+        public CaseReportIdentified(Guid dataCollectorId) 
         {
-            CaseReportId = caseReportId;
             DataCollectorId = dataCollectorId;               
         }
     }

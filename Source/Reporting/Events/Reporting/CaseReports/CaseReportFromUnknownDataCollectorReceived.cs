@@ -10,7 +10,6 @@ namespace Events.Reporting.CaseReports
 {
     public class CaseReportFromUnknownDataCollectorReceived : IEvent
     {
-        public Guid CaseReportId { get; }
         public Guid HealthRiskId { get; }
         public string Origin { get; }
         public string Message { get; }
@@ -20,9 +19,8 @@ namespace Events.Reporting.CaseReports
         public int NumberOfFemalesUnder5 { get; }
         public int NumberOfFemalesAged5AndOlder { get; }
 
-        public CaseReportFromUnknownDataCollectorReceived(Guid caseReportId, Guid healthRiskId, string origin, string message, DateTimeOffset timestamp, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder) 
+        public CaseReportFromUnknownDataCollectorReceived(Guid healthRiskId, string origin, string message, DateTimeOffset timestamp, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder) 
         {
-            CaseReportId = caseReportId;
             HealthRiskId = healthRiskId;
             Origin = origin;
             Message = message;
