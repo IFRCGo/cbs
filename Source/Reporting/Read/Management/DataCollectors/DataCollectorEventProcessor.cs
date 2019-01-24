@@ -39,7 +39,8 @@ namespace Read.Management.DataCollectors
                 PreferredLanguage = (Language)@event.PreferredLanguage,
                 PhoneNumbers = new List<PhoneNumber>(),
                 District = @event.District,
-                Region = @event.Region
+                Region = @event.Region,
+                DataVerifier = @event.DataVerifierId
             });
         }
         [EventProcessor("50631704-fa1e-44d6-b35c-d71fb750d2f8")]
@@ -122,9 +123,8 @@ namespace Read.Management.DataCollectors
         [EventProcessor("fde6dd03-d4ad-4d90-99a9-faf20fca0521")]
         public void Process(DataCollectorBeganTraining @event)
         {
-            var inTraining = true;
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.InTraining = inTraining;
+            dataCollector.InTraining = true;
 
             _dataCollectors.Update(dataCollector);
         }
@@ -132,9 +132,8 @@ namespace Read.Management.DataCollectors
         [EventProcessor("ec986665-1a59-43a0-aa88-f4e7f749ffda")]
         public void Process(DataCollectorCompletedTraining @event)
         {
-            var inTraining = false;
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            dataCollector.InTraining = inTraining;
+            dataCollector.InTraining = false;
 
             _dataCollectors.Update(dataCollector);
         }

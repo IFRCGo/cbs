@@ -41,7 +41,8 @@ namespace Domain.Management.DataCollectors
                 gpsLocation.Latitude,
                 registeredAt,
                 region,
-                district
+                district,
+                dataVerifierId
             ));
 
             foreach (var phoneNumber in phoneNumbers)
@@ -50,7 +51,6 @@ namespace Domain.Management.DataCollectors
             }
 
             BeginTraining();
-            ChangeDataVerifier(dataVerifierId);
         }
 
         public void ChangeLocation(Location location)
