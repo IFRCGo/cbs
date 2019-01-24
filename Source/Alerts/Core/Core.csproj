@@ -19,7 +19,7 @@
     <DolittleNamespaceSegmentsToStrip></DolittleNamespaceSegmentsToStrip>
     
     <!-- Whether or not the build tool should generate proxies -->
-    <DolittleGenerateProxies>True</DolittleGenerateProxies>
+    <DolittleGenerateProxies>False</DolittleGenerateProxies>
     
     <!-- The relative path to put proxies if generated-->
     <DolittleProxiesBasePath>../Web/Features</DolittleProxiesBasePath>

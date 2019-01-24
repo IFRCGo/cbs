@@ -1,9 +1,0 @@
-name: cbs
-version: 0.1.0
-appVersion: 0.1.0
-description: A chart containing all deployment files needed to deploy cbs
-sources:
-  - http://github.com/IFRCGo/cbs/
-maintainers:
-  - name: karolikl
-    email: karolikl@gmail.com

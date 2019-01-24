@@ -28,6 +28,10 @@
   <!-- Main CSS-->
   <link href="css/theme.css" rel="stylesheet" media="all">
   <link href="css/Weeklyepicurvesbyagesex.css" rel="stylesheet" media="all">
+  <!-- Make highcharts using json global-->
+  <script src="js/fakejsonGlobal/epicurve-by-week.json"></script>
+  <script src="js/commonData.js"></script>
+
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="http://code.highcharts.com/maps/highmaps.js"></script>
 
@@ -219,7 +223,10 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="au-card recent-report">
-                  <div class="au-card-inner">
+                  <div class="au-card-inner" id="weekAll">
+                    <h1>CHART HERE!</h1>
+                  </div>
+                  <div class="au-card-inner" id="weekSexAge">
                     <h1>CHART HERE!</h1>
                   </div>
                 </div>
