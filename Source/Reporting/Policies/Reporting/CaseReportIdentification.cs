@@ -7,6 +7,7 @@ using System.Linq;
 using Dolittle.Domain;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Dolittle.Runtime.Events;
 using Domain.Reporting.CaseReports;
 using Events.Management.DataCollectors.EditInformation;
 
@@ -32,15 +33,15 @@ namespace Policies.Reporting
         }
         
         [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
-        public void Process(PhoneNumberAddedToDataCollector @event)
+        public void Process(PhoneNumberAddedToDataCollector @event, EventSourceId dataCollectorId)
         {
             var unknownReports = _unknownReports.Query.Where(r => r.Origin == @event.PhoneNumber);
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId); 
+            var dataCollector = _dataCollectors.GetById(dataCollectorId); 
             foreach (var item in unknownReports)
             {
                 var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.Report(
-                    @event.DataCollectorId,
+                    dataCollectorId,
                     item.HealthRiskId,
                     item.Origin,
                     item.NumberOfMalesUnder5,
@@ -53,7 +54,7 @@ namespace Policies.Reporting
                     item.Message
                     
                     );
-                repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
+                repo.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
             } 
                         
             var invalidAndUnknownReports = _invalidAndUnknownReports.Query.Where(r => r.PhoneNumber == @event.PhoneNumber);
@@ -61,7 +62,7 @@ namespace Policies.Reporting
             {
                 var repo = _caseReportingAggregateRootRepository.Get(item.Id.Value);
                 repo.ReportInvalidReport(
-                    @event.DataCollectorId,
+                    dataCollectorId,
                     item.PhoneNumber,
                     item.Message,
                     dataCollector.Location.Longitude,
@@ -70,7 +71,7 @@ namespace Policies.Reporting
                     item.Timestamp
                     
                     );
-                repo.ReportFromUnknownDataCollectorIdentiefied(@event.DataCollectorId);
+                repo.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
             }
         }
     }

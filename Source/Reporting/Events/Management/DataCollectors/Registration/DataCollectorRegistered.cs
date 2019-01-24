@@ -10,7 +10,6 @@ namespace Events.Management.DataCollectors.Registration
 {
     public class DataCollectorRegistered : IEvent
     {
-        public Guid DataCollectorId { get; }
         public string FullName { get; }
         public string DisplayName { get; }
         public int YearOfBirth { get; }
@@ -28,7 +27,6 @@ namespace Events.Management.DataCollectors.Registration
         
 
         public DataCollectorRegistered (
-                Guid dataCollectorId,
                 string fullName,
                 string displayName,            
                 int yearOfBirth,
@@ -42,7 +40,6 @@ namespace Events.Management.DataCollectors.Registration
                 Guid dataVerifierId
             )
         {
-            DataCollectorId = dataCollectorId;
             FullName = fullName;
             DisplayName = displayName;
             YearOfBirth = yearOfBirth;

@@ -10,12 +10,10 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class DataCollectorVillageChanged : IEvent
     {
-        public Guid DataCollectorId { get; }
         public string Village { get; }
 
-        public DataCollectorVillageChanged(Guid dataCollectorId, string village) 
+        public DataCollectorVillageChanged(string village) 
         {
-            this.DataCollectorId = dataCollectorId;
             this.Village = village;               
         }        
     }

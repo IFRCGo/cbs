@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dolittle.ReadModels;
 using Events.Management.DataCollectors.EditInformation;
+using Dolittle.Runtime.Events;
 
 namespace Read.Reporting.DataCollectors
 {
@@ -22,9 +23,9 @@ namespace Read.Reporting.DataCollectors
             _dataCollectors = dataCollectors;
         }
         [EventProcessor("e5772c2d-2891-4abe-ac62-1adadc353f9b")]
-        public void Process(DataCollectorRegistered @event)
+        public void Process(DataCollectorRegistered @event, EventSourceId dataCollectorId)
         {
-            _dataCollectors.Insert(new ListedDataCollector(@event.DataCollectorId)
+            _dataCollectors.Insert(new ListedDataCollector(dataCollectorId.Value)
             {
                 DisplayName = @event.DisplayName,
                 Region = @event.Region,
@@ -34,21 +35,27 @@ namespace Read.Reporting.DataCollectors
             });
         }
         [EventProcessor("4075fedc-1167-4be7-8b87-32d5d00b3802")]
-        public void Process(DataCollectorUserInformationChanged @event)
+        public void Process(DataCollectorUserInformationChanged @event, EventSourceId dataCollectorId)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(dataCollectorId.Value);
             dataCollector.Region = @event.Region;
             dataCollector.District = @event.District;
-            dataCollector.Village = "";
             dataCollector.DisplayName = @event.DisplayName;
-
             _dataCollectors.Update(dataCollector);
         }
         [EventProcessor("80adcc97-a070-4b3a-a445-9e0e234c1869")]
-        public void Process(DataCollectorLocationChanged @event)
+        public void Process(DataCollectorLocationChanged @event, EventSourceId dataCollectorId)
         {
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(dataCollectorId.Value);
             dataCollector.Location = new Location(@event.LocationLatitude, @event.LocationLongitude);
+
+            _dataCollectors.Update(dataCollector);
+        }
+        [EventProcessor("bc0e593a-0e61-4504-93fb-32916e85dd90")]
+        public void Process(DataCollectorVillageChanged @event, EventSourceId dataCollectorId)
+        {
+            var dataCollector = _dataCollectors.GetById(dataCollectorId.Value);
+            dataCollector.Village = @event.Village;
 
             _dataCollectors.Update(dataCollector);
         }
