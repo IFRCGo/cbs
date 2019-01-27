@@ -23,8 +23,7 @@ namespace Domain.Specs.Management.for_data_collectors.when_adding_a_phone_number
 
             cmd = new AddPhoneNumberToDataCollector
             {
-                DataCollectorId = Guid.NewGuid(),
-                PhoneNumber = string.Empty
+                DataCollectorId = Guid.NewGuid()
             };
         };
 

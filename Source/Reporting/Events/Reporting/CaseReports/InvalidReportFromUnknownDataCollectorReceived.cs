@@ -11,15 +11,13 @@ namespace Events.Reporting.CaseReports
 {
     public class InvalidReportFromUnknownDataCollectorReceived : IEvent
     {
-        public Guid CaseReportId { get; }
         public string Origin { get; }
         public string Message { get; }
         public IEnumerable<string> ErrorMessages { get; }
         public DateTimeOffset Timestamp { get; }
 
-        public InvalidReportFromUnknownDataCollectorReceived(Guid caseReportId, string origin, string message, IEnumerable<string> errorMessages, DateTimeOffset timestamp) 
+        public InvalidReportFromUnknownDataCollectorReceived(string origin, string message, IEnumerable<string> errorMessages, DateTimeOffset timestamp) 
         {
-            CaseReportId = caseReportId;
             Origin = origin;
             Message = message;
             ErrorMessages = errorMessages;

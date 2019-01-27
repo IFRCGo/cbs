@@ -8,14 +8,13 @@ using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    // TODO
-    //public class ChangeLocationBusinessValidator : CommandBusinessValidatorFor<ChangeLocation>
-    //{
-    //    public ChangeLocationBusinessValidator(MustExist beAnActualDataCollector)
-    //    {
-    //        RuleFor(_ => _.DataCollectorId)
-    //            .Must(_ => beAnActualDataCollector(_))
-    //            .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
-    //    }
-    //}
+    public class ChangeLocationBusinessValidator : CommandBusinessValidatorFor<ChangeLocation>
+    {
+        public ChangeLocationBusinessValidator(MustExist beAnActualDataCollector)
+        {
+            RuleFor(_ => _.DataCollectorId)
+                .Must(_ => beAnActualDataCollector(_))
+                .WithMessage(_ => $"Data Collector with id {_.DataCollectorId.Value} is not registered");
+        }
+    }
 }

@@ -3,11 +3,11 @@ using Dolittle.Domain;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class InformationAlteringHandler : ICanHandleCommands
+    public class InformationCommandHandler : ICanHandleCommands
     {
         readonly IAggregateRootRepositoryFor<DataCollector> _repository; 
 
-        public InformationAlteringHandler(IAggregateRootRepositoryFor<DataCollector> repository) 
+        public InformationCommandHandler(IAggregateRootRepositoryFor<DataCollector> repository) 
         {
             _repository = repository;
         }
@@ -15,7 +15,7 @@ namespace Domain.Management.DataCollectors.EditInformation
         public void Handle(AddPhoneNumberToDataCollector command)
         {
             var root = _repository.Get(command.DataCollectorId.Value);
-            root.AddPhoneNumber(command.PhoneNumber);
+            root.AddPhoneNumber(command.PhoneNumber.Value);
         }
 
         public void Handle(ChangeBaseInformation command)

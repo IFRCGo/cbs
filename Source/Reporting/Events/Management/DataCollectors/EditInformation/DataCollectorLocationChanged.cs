@@ -10,13 +10,11 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class DataCollectorLocationChanged : IEvent
     {
-        public Guid DataCollectorId { get; }
         public double LocationLatitude { get; }
         public double LocationLongitude { get; }
 
-        public DataCollectorLocationChanged(Guid dataCollectorId, double locationLatitude, double locationLongitude)
+        public DataCollectorLocationChanged(double locationLatitude, double locationLongitude)
         {
-            DataCollectorId = dataCollectorId;
             LocationLatitude = locationLatitude;
             LocationLongitude = locationLongitude;
         }

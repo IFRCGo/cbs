@@ -8,17 +8,12 @@ using FluentValidation;
 
 namespace Concepts.HealthRisks
 {
-    public class HealthRiskReadableIdValidator : InputValidator<HealthRiskReadableId>
+    public class HealthRiskReadableIdValidator : AbstractValidator<HealthRiskReadableId>
     {
         public HealthRiskReadableIdValidator()
         {
             RuleFor(_ => _.Value)
-                .Must(BeValid).WithMessage($"HealthRisk ReadableId cannot be {HealthRiskReadableId.NotSet}");
-        }
-
-        bool BeValid(int readableId)
-        {
-            return readableId != HealthRiskReadableId.NotSet;
+                .NotEqual(HealthRiskReadableId.NotSet).WithMessage($"HealthRisk Readable Id must not be '{HealthRiskReadableId.NotSet.Value.ToString()}'");
         }
     }
 }

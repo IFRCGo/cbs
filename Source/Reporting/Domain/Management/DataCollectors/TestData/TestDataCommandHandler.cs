@@ -47,7 +47,7 @@ namespace Domain.Management.DataCollectors.TestData
                     dataCollector.GpsLocation = new Location(0,0);
 
                 if (dataCollector.PhoneNumbers == null)
-                    dataCollector.PhoneNumbers = new List<string>();
+                    dataCollector.PhoneNumbers = new List<PhoneNumber>();
 
                 root.RegisterDataCollector(dataCollector.FullName, dataCollector.DisplayName, dataCollector.YearOfBirth,
                     dataCollector.Sex, dataCollector.PreferredLanguage, dataCollector.GpsLocation

@@ -11,6 +11,6 @@ namespace Domain.Management.DataCollectors.EditInformation
     public class ChangeVillage : ICommand
     {
         public DataCollectorId DataCollectorId { get; set; }
-        public string Village { get; set; }
+        public Village Village { get; set; }
     }
 }

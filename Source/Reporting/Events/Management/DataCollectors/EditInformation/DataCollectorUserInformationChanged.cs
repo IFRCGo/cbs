@@ -10,7 +10,6 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class DataCollectorUserInformationChanged : IEvent
     {
-        public Guid DataCollectorId { get; }
         public string FullName { get; }
         public string DisplayName { get; }
 
@@ -20,9 +19,8 @@ namespace Events.Management.DataCollectors.EditInformation
         public string Region { get; }
         public string District { get; }
 
-        public DataCollectorUserInformationChanged(Guid dataCollectorId, string fullName, string displayName, int yearOfBirth, int sex, string region, string district)
+        public DataCollectorUserInformationChanged(string fullName, string displayName, int yearOfBirth, int sex, string region, string district)
         {
-            DataCollectorId = dataCollectorId;
             FullName = fullName;
             DisplayName = displayName;
             YearOfBirth = yearOfBirth;

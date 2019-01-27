@@ -6,6 +6,7 @@
 using Domain.Management.DataCollectors.EditInformation;
 using Machine.Specifications;
 using FluentValidation.Results;
+using Concepts.DataCollectors;
 
 namespace Domain.Specs.Management.for_data_collectors.when_adding_a_phone_number
 {
@@ -27,7 +28,7 @@ namespace Domain.Specs.Management.for_data_collectors.when_adding_a_phone_number
             };
         };
 
-        Because of = () => { validation_result = validator.Validate(cmd); };
+        Because of = () => validation_result = validator.Validate(cmd);
 
         It should_be_invalid = () => validation_result.ShouldBeInvalid();
 

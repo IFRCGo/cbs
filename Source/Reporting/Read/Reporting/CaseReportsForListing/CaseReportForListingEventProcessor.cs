@@ -6,6 +6,7 @@
 using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
 using Read.Reporting.DataCollectors;
 using Read.Reporting.HealthRisks;
@@ -29,12 +30,12 @@ namespace Read.Reporting.CaseReportsForListing
         }
 
         [EventProcessor("0d17954b-eaeb-4936-a7a6-153b61767206")]
-        public void Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.Success,
                 Message = @event.Message,
@@ -60,11 +61,11 @@ namespace Read.Reporting.CaseReportsForListing
 
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
         [EventProcessor("9b505b35-54e3-4e35-bccd-79d330de9c54")]
-        public void Process(CaseReportFromUnknownDataCollectorReceived @event)
+        public void Process(CaseReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
         {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.UnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -86,11 +87,11 @@ namespace Read.Reporting.CaseReportsForListing
         }
 
         [EventProcessor("c44c06e9-822f-41de-9d1e-0cdddcf1da0a")]
-        public void Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
 
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.TextMessageParsingError,
                 DataCollectorDisplayName = dataCollector.DisplayName,
@@ -113,9 +114,9 @@ namespace Read.Reporting.CaseReportsForListing
         }
 
         [EventProcessor("d4f5e727-c2fa-4140-b5de-d14ba3a22f13")]
-        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public void Process(InvalidReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
         {
-            var caseReport = new CaseReportForListing(@event.CaseReportId)
+            var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector,
                 DataCollectorDisplayName = "Unknown",
@@ -136,9 +137,9 @@ namespace Read.Reporting.CaseReportsForListing
         }
 
         [EventProcessor("46928d1f-987a-4a2d-804f-8e4b686d2262")]
-        public void Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event, EventSourceId caseReportId)
         {
-            var caseReport = _caseReports.GetById(@event.CaseReportId);
+            var caseReport = _caseReports.GetById(caseReportId.Value);
 
             _caseReports.Delete(caseReport);
         }

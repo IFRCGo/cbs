@@ -12,8 +12,8 @@ namespace Concepts.DataVerifiers
     {
         public DataVerifierIdValidator()
         {
-            RuleFor(_ => _.Value)
-                .NotEmpty().WithMessage("DataVerifier Id cannot be empty");
+            RuleFor(_ => _)
+                .NotEqual(DataVerifierId.NotSet).WithMessage($"DataVerifier Id must not be '{DataVerifierId.NotSet.Value.ToString()}'");
         }
     }
 }

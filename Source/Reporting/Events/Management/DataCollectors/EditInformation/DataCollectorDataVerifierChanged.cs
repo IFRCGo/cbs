@@ -10,12 +10,10 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class DataCollectorDataVerifierChanged : IEvent
     {
-        public Guid DataCollectorId { get; }
         public Guid DataVerifierId { get; }
 
-        public DataCollectorDataVerifierChanged(Guid dataCollectorId, Guid dataVerifierId)
+        public DataCollectorDataVerifierChanged(Guid dataVerifierId)
         {
-            DataCollectorId = dataCollectorId;
             DataVerifierId = dataVerifierId;
         }
     }

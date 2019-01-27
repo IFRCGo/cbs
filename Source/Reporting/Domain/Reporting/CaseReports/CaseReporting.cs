@@ -26,7 +26,7 @@ namespace Domain.Reporting.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidReportReceived(EventSourceId, collector, origin, originalMessage, longitude, latitude, errorMessages, timestamp));
+            Apply(new InvalidReportReceived(collector, origin, originalMessage, longitude, latitude, errorMessages, timestamp));
         }
 
         public void ReportInvalidReportFromUnknownDataCollector(
@@ -35,7 +35,7 @@ namespace Domain.Reporting.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidReportFromUnknownDataCollectorReceived(EventSourceId, origin, originalMessage, errorMessages, timestamp));
+            Apply(new InvalidReportFromUnknownDataCollectorReceived(origin, originalMessage, errorMessages, timestamp));
 
         }
 
@@ -52,7 +52,7 @@ namespace Domain.Reporting.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportReceived(EventSourceId, dataCollectorId, healthRiskId, origin, message, 
+            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message, 
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
                 longitude, latitude, timestamp));
         }        
@@ -67,7 +67,7 @@ namespace Domain.Reporting.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportFromUnknownDataCollectorReceived(EventSourceId, healthRiskId, origin, message, timestamp,
+            Apply(new CaseReportFromUnknownDataCollectorReceived(healthRiskId, origin, message, timestamp,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder));
         }      
         
@@ -75,7 +75,7 @@ namespace Domain.Reporting.CaseReports
             Guid dataCollectorId
         )
         {
-            Apply(new CaseReportIdentified(EventSourceId, dataCollectorId));
+            Apply(new CaseReportIdentified(dataCollectorId));
         }
     }
 }

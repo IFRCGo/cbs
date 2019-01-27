@@ -12,8 +12,8 @@ namespace Concepts.DataCollectors
     {
         public DataCollectorIdValidator()
         {
-            RuleFor(_ => _.Value)
-                .NotEmpty().WithMessage("DataCollector Id cannot be empty");
+            RuleFor(_ => _)
+                .NotEqual(DataCollectorId.NotSet).WithMessage($"DataCollector Id must not be '{DataCollectorId.NotSet.Value.ToString()}'");
         }
     }
 }

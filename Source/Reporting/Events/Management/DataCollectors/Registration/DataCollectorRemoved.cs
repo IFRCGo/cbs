@@ -10,11 +10,9 @@ namespace Events.Management.DataCollectors.Registration
 {
     public class DataCollectorRemoved : IEvent
     {
-        public Guid DataCollectorId { get;}
 
-        public DataCollectorRemoved(Guid dataCollectorId)
+        public DataCollectorRemoved()
         {
-            DataCollectorId = dataCollectorId;
         }
     }
 }

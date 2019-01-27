@@ -10,11 +10,9 @@ namespace Events.Management.DataCollectors.Training
 {
     public class DataCollectorBeganTraining : IEvent
     {
-        public Guid DataCollectorId { get;  }
 
-        public DataCollectorBeganTraining(Guid dataCollectorId)
+        public DataCollectorBeganTraining()
         {
-            DataCollectorId = dataCollectorId;
         }
     }
 }

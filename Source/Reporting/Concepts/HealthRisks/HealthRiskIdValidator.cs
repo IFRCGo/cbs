@@ -8,12 +8,12 @@ using FluentValidation;
 
 namespace Concepts.HealthRisks
 {
-    public class HealthRiskIdValidator : InputValidator<HealthRiskId>
+    public class HealthRiskIdValidator : AbstractValidator<HealthRiskId>
     {
         public HealthRiskIdValidator()
         {
-            RuleFor(_ => _.Value)
-                .NotEmpty().WithMessage("HealthRisk Id cannot be empty");
+            RuleFor(_ => _)
+                .NotEqual(HealthRiskId.NotSet).WithMessage($"HealthRisk Id must not be '{HealthRiskId.NotSet.Value.ToString()}'");
         }
     }
 }

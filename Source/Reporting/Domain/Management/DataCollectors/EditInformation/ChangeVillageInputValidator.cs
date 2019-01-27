@@ -4,22 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Concepts.DataCollectors;
-using Concepts.DataVerifiers;
 using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class ChangeDataVerifierValidator : CommandInputValidatorFor<ChangeDataVerifier>
+    public class ChangeVillageInputValidator : CommandInputValidatorFor<ChangeVillage>
     {
-        public ChangeDataVerifierValidator()
+        public ChangeVillageInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
-            RuleFor(_ => _.DataVerifierId)
-                .NotEmpty().WithMessage("Data Verifier Id must be set")
-                .SetValidator(new DataVerifierIdValidator());
+            RuleFor(_ => _.Village)
+                .NotEmpty().WithMessage("Village is required");
         }
     }
 }

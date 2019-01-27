@@ -10,12 +10,10 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class DataCollectorPreferredLanguageChanged : IEvent
     {
-        public Guid DataCollectorId { get; }
         public int Language { get; }
 
-        public DataCollectorPreferredLanguageChanged(Guid dataCollectorId, int language)
+        public DataCollectorPreferredLanguageChanged(int language)
         {
-            DataCollectorId = dataCollectorId;
             Language = language;
         }
     }

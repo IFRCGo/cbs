@@ -4,13 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using Dolittle.Concepts;
 
-namespace Domain.Management.DataCollectors.Registration
+namespace Concepts.DataCollectors
 {
-    public class DataCollectorAlreadyRegistered : Exception
+    public class District : ConceptAs<string>
     {
-        public DataCollectorAlreadyRegistered(string message) : base(message)
+        public static readonly District NotSet = String.Empty;
+
+        public static implicit operator District(string value)
         {
+            return new District { Value = value };
         }
     }
 }

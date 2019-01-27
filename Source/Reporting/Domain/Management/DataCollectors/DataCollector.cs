@@ -24,14 +24,13 @@ namespace Domain.Management.DataCollectors
         public void RegisterDataCollector(
             string fullName, string displayName,
             int yearOfBirth, Sex sex, Language preferredLanguage,
-            Location gpsLocation, IEnumerable<string> phoneNumbers, DateTimeOffset registeredAt,
+            Location gpsLocation, IEnumerable<PhoneNumber> phoneNumbers, DateTimeOffset registeredAt,
             string region, string district,
             Guid dataVerifierId
             )
         {
             Apply(new DataCollectorRegistered
             (
-                EventSourceId,
                 fullName,
                 displayName,
                 yearOfBirth,
@@ -41,78 +40,67 @@ namespace Domain.Management.DataCollectors
                 gpsLocation.Latitude,
                 registeredAt,
                 region,
-                district
+                district,
+                dataVerifierId
             ));
 
             foreach (var phoneNumber in phoneNumbers)
             {
                 AddPhoneNumber(phoneNumber);
             }
-
             BeginTraining();
-            ChangeDataVerifier(dataVerifierId);
         }
 
         public void ChangeLocation(Location location)
         {
-            Apply(new DataCollectorLocationChanged(EventSourceId, location.Latitude, location.Longitude));
+            Apply(new DataCollectorLocationChanged(location.Latitude, location.Longitude));
         }
 
         public void ChangePreferredLanguage(Language language)
         {
-            Apply(new DataCollectorPreferredLanguageChanged(EventSourceId, (int)language));
+            Apply(new DataCollectorPreferredLanguageChanged((int)language));
         }
 
         public void BeginTraining()
         {
-            Apply(new DataCollectorBeganTraining(EventSourceId));
+            Apply(new DataCollectorBeganTraining());
         }
 
         public void EndTraining()
         {
-            Apply(new DataCollectorCompletedTraining(EventSourceId));
+            Apply(new DataCollectorCompletedTraining());
         }
 
         public void ChangeBaseInformation(string fullName, string displayName, int yearOfBirth, Sex sex, string region, string district)
         {
-            Apply(new DataCollectorUserInformationChanged(EventSourceId, fullName, displayName, yearOfBirth, (int)sex, region, district));
+            Apply(new DataCollectorUserInformationChanged(fullName, displayName, yearOfBirth, (int)sex, region, district));
         }
 
         public void DeleteDataCollector()
         {
-            Apply(new DataCollectorRemoved(
-                EventSourceId
-            ));
+            Apply(new DataCollectorRemoved());
         }
 
         public void ChangeVillage(string village)
         {
-            Apply(new DataCollectorVillageChanged(EventSourceId, village));
+            Apply(new DataCollectorVillageChanged(village));
         }
 
         public void AddPhoneNumber(string number)
         {
             
-            Apply(new PhoneNumberAddedToDataCollector(
-                EventSourceId,
-                number));
+            Apply(new PhoneNumberAddedToDataCollector(number));
 
         }
 
         public void RemovePhoneNumbers(string number)
         {
-            Apply(new PhoneNumberRemovedFromDataCollector(
-                EventSourceId,
-                number
-            ));
+            Apply(new PhoneNumberRemovedFromDataCollector(number));
         }
 
         public void ChangeDataVerifier(DataVerifierId dataVerifierId)
         {
-            Apply(new DataCollectorDataVerifierChanged(
-                EventSourceId,
-                dataVerifierId
-            ));
+            Apply(new DataCollectorDataVerifierChanged(dataVerifierId));
         }
     }
 }

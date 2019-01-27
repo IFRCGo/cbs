@@ -4,21 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Concepts.DataCollectors;
+using Dolittle.Commands.Validation;
 using FluentValidation;
 
 namespace Domain.Management.DataCollectors.EditInformation
 {
-    public class RemovePhoneNumberFromDataCollectorValidator : AbstractValidator<RemovePhoneNumberFromDataCollector>
+    public class ChangePreferredLanguageInputValidator : CommandInputValidatorFor<ChangePreferredLanguage>
     {
-        public RemovePhoneNumberFromDataCollectorValidator()
+        public ChangePreferredLanguageInputValidator()
         {
             RuleFor(_ => _.DataCollectorId)
-                .NotEmpty().WithMessage("Data Collector Id must be set")
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
 
-            RuleFor(_ => _.PhoneNumber)
-                .NotEmpty().WithMessage("Phone Number is required")
-                .Must(_ => !_.Contains(" ")).WithMessage("Phone number is not valid");
+            RuleFor(_ => _.PreferredLanguage)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .IsInEnum().WithMessage("Preferred Language must be valid");
         }
     }
 }

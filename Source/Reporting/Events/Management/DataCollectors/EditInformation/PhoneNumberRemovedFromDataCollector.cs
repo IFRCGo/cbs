@@ -10,12 +10,10 @@ namespace Events.Management.DataCollectors.EditInformation
 {
     public class PhoneNumberRemovedFromDataCollector : IEvent
     {
-        public Guid DataCollectorId { get; }
         public string PhoneNumber { get; }
 
-        public PhoneNumberRemovedFromDataCollector(Guid dataCollectorId, string phoneNumber)
+        public PhoneNumberRemovedFromDataCollector(string phoneNumber)
         {
-            DataCollectorId = dataCollectorId;
             PhoneNumber = phoneNumber;
         }
     }
