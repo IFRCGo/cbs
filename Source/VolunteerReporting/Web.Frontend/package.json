@@ -12,7 +12,7 @@
     "node:server": "cross-env PORT=3001 NODE_ENV=development cbs-node-server",
     "local:server": "cross-env PORT=3001 TESTING_MODE=true NODE_ENV=development cbs-node-server",
     "test": "cross-env HEADLESS_MODE=1 nightwatch",
-    "export": "babel --config-file=./.babel/.babelrc --verbose --out-dir=es src && cp -R src/assets es",
+    "export": "babel --config-file=./.babel/.babelrc --verbose --out-dir=es src && ncp src/assets es/assets",
     "clean": "rimraf es",
     "parcel:dev": "cross-env NODE_ENV=development parcel ./public/index.html",
     "prepare": "npm run clean && npm run export",
@@ -66,6 +66,7 @@
     "react-router-dom": "^4.3.1",
     "repertoire": "^0.1.6",
     "rimraf": "^2.6.3",
+    "ncp": "^2.0.0",
     "sass": "^1.16.0"
   }
 }
