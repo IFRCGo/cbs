@@ -7,6 +7,7 @@ namespace Events.SMS.Gateways
     {
         public Guid Id { get; }
         public string PhoneNumber { get; }
+
         public SmsGatewayNumberAssigned(Guid id, string phoneNumber)
         {
             this.PhoneNumber = phoneNumber;

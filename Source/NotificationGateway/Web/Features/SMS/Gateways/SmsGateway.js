@@ -16,5 +16,6 @@ export class SmsGateway extends ReadModel
         this.name = '';
         this.enabled = false;
         this.phoneNumber = '';
+        this.apiKey = '';
     }
 }

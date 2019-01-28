@@ -19,7 +19,8 @@ namespace Read.SMS.Gateways
         public void Process(SmsGatewayRegistered @event)
         { 
             _repository.Insert(new SmsGateway(@event.Id) {
-                Name = @event.Name
+                Name = @event.Name,
+                ApiKey = @event.ApiKey
             });
         }
         

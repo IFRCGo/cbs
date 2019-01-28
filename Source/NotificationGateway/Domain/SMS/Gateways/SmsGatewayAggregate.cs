@@ -10,9 +10,9 @@ namespace Domain.SMS.Gateways
         {
         }
 
-        public void RegisterSmsGateway(string name)
+        public void RegisterSmsGateway(string name, string apiKey)
         {
-            Apply(new SmsGatewayRegistered(EventSourceId, name));
+            Apply(new SmsGatewayRegistered(EventSourceId, name, apiKey));
         }
 
         public void AssignPhoneNumberToSmsGateway(string phoneNumber)
