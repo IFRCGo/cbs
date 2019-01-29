@@ -1,10 +1,15 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Artifacts;
 using Dolittle.Events;
 using System;
 
 namespace Events.Reporting.CaseReports
 {
-    [Artifact("540464b9-7262-4060-b609-b6902769ee50")]
+    [Artifact("fde7fe54-1228-4f08-974c-d27e7a85b541")]
     public class CaseReportReceived : IEvent
     {
         public CaseReportReceived(Guid caseReportId, Guid dataCollectorId, Guid healthRiskId,

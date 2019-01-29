@@ -1,0 +1,90 @@
+{
+  "modules": {
+    "3c402941-9734-4633-ab90-2acc4a6095b7": {
+      "name": "Reporting",
+      "features": {
+        "489931bc-a929-4d24-b985-881f705f276b": {
+          "name": "HealthRisks",
+          "subFeatures": {
+            "c5f8a9be-a9e3-4305-a2af-cf64cf651fa1": {
+              "name": "TestData",
+              "subFeatures": {}
+            }
+          }
+        },
+        "2b37f877-532e-4e35-ba76-1977d56739ac": {
+          "name": "CaseReports",
+          "subFeatures": {
+            "ff5478ae-99b7-486f-b7fa-480e34736bba": {
+              "name": "TestData",
+              "subFeatures": {}
+            }
+          }
+        },
+        "f27726b8-19e6-4efd-bf33-8fe71ea28b15": {
+          "name": "AutomaticReplyMessages",
+          "subFeatures": {}
+        },
+        "de853448-04f0-4437-abef-927eb41b3fb5": {
+          "name": "Projects",
+          "subFeatures": {}
+        },
+        "309f0e90-7d1c-48e4-811d-aab2a2aeef48": {
+          "name": "DefaultReplyMessages",
+          "subFeatures": {}
+        },
+        "94e7e50b-0ae4-486a-b59d-5958c153d7cd": {
+          "name": "SMS",
+          "subFeatures": {}
+        },
+        "a19e0bfe-e8e2-4c91-9075-a492c46a22ca": {
+          "name": "InvalidCaseReports",
+          "subFeatures": {}
+        },
+        "76c3f174-3c3f-407c-81f9-af26dd75e1ce": {
+          "name": "DataCollectors",
+          "subFeatures": {}
+        },
+        "08a93ca4-7596-4d2b-9746-053bafc124da": {
+          "name": "CaseReportsForListing",
+          "subFeatures": {}
+        }
+      }
+    },
+    "60020240-2055-48c5-89b7-d977475711fd": {
+      "name": "Management",
+      "features": {
+        "c9da8008-c368-4c72-8b97-5822c286d9dd": {
+          "name": "DataCollectors",
+          "subFeatures": {
+            "d4495ad1-3e03-427a-aa01-13c8ab469fc8": {
+              "name": "Training",
+              "subFeatures": {}
+            },
+            "4ad30706-6d6c-4dda-9c82-60b9e10bf9e8": {
+              "name": "TestData",
+              "subFeatures": {}
+            },
+            "a9c9c5a6-d18b-46ce-b14e-f5203ed5e543": {
+              "name": "Registration",
+              "subFeatures": {}
+            },
+            "ead01ce5-ec3e-41be-be9b-447bf549bef2": {
+              "name": "EditInformation",
+              "subFeatures": {}
+            }
+          }
+        },
+        "96c4f3b8-9655-483e-bf94-0a2542383049": {
+          "name": "MessageGenerators",
+          "subFeatures": {}
+        },
+        "a9eac352-abea-4bf7-b1e9-266b6e63bc78": {
+          "name": "DataVerifiers",
+          "subFeatures": {}
+        }
+      }
+    }
+  },
+  "features": {}
+}

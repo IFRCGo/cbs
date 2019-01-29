@@ -1,5 +1,9 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using System;
-using Concepts;
 using System.Collections.Generic;
 using Domain.DataCollectors.Registration;
 using Concepts.DataCollector;
@@ -12,15 +16,17 @@ namespace Domain.Specs.DataCollectors.when_registering_a_data_collector.given
          {
              return  new RegisterDataCollector
              {
-                 DataCollectorId = Guid.NewGuid(),
-                 FullName = "Data Collector",
-                 DisplayName = "Daty",
-                 YearOfBirth = 1980,
-                 Sex = Sex.Male,
-                 PreferredLanguage = Language.English,
-                 GpsLocation = new Location(123,123),
-                 PhoneNumbers = new List<string>{"123456789"}
-             };
+                DataCollectorId = Guid.NewGuid(),
+                FullName = "FullName",
+                DisplayName = "DisplayName",
+                YearOfBirth = 1980,
+                Sex = Sex.Male,
+                PreferredLanguage = Language.English,
+                GpsLocation = new Location(90,90),
+                PhoneNumbers = new List<string>{"123456789"},
+                Region = "Region",
+                District = "Distric"
+            };
          }
 
          public static RegisterDataCollector get_invalid_command(IEnumerable<Action<RegisterDataCollector>> invalidations)
@@ -32,7 +38,6 @@ namespace Domain.Specs.DataCollectors.when_registering_a_data_collector.given
              }
              return cmd;
          }
-
 
          public static RegisterDataCollector get_invalid_command(Action<RegisterDataCollector> invalidate)
          {

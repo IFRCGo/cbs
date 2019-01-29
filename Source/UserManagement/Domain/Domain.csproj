@@ -1,15 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Dolittle.SDK" Version="2.0.0-alpha2*" />
-    <PackageReference Include="FluentValidation" Version="7.1.1" />
-    <PackageReference Include="GeoCoordinate" Version="2.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-    <ProjectReference Include="..\Events\Events.csproj" />
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Remove="Tests\Data\Admins.json" />
+      <Content Remove="Tests\Data\DataCollectors.json" />
+      <Content Remove="Tests\Data\DataConsumers.json" />
+      <Content Remove="Tests\Data\DataCoordinators.json" />
+      <Content Remove="Tests\Data\DataOwners.json" />
+      <Content Remove="Tests\Data\DataVerifiers.json" />
+      <Content Remove="Tests\Data\SystemConfigurators.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Tests\Data\Admins.json" />
+      <EmbeddedResource Include="Tests\Data\DataCollectors.json" />
+      <EmbeddedResource Include="Tests\Data\DataConsumers.json" />
+      <EmbeddedResource Include="Tests\Data\DataCoordinators.json" />
+      <EmbeddedResource Include="Tests\Data\DataOwners.json" />
+      <EmbeddedResource Include="Tests\Data\DataVerifiers.json" />
+      <EmbeddedResource Include="Tests\Data\SystemConfigurators.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Events\Events.csproj" />
+        <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dolittle.SDK" Version="2.*" />
+    </ItemGroup>
 </Project>

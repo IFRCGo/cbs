@@ -1,11 +1,11 @@
- /*---------------------------------------------------------------------------------------------
-  *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
-  *  Licensed under the MIT License. See LICENSE in the project root for license information.
-  *--------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
 using Domain.DataCollectors.Registration;
 using Machine.Specifications;
- using FluentValidation.Results;
+using FluentValidation.Results;
 
  namespace Domain.Specs.DataCollectors.when_updating_a_data_collector
  {

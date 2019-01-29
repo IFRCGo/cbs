@@ -1,0 +1,141 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reporting-core-dolittle-config
+  namespace: cbs-app
+data:
+  resources.json: |
+    {
+      "445f8ea8-1a6f-40d7-b2fc-796dba92dc44": {
+        "readModels": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_read_models_dev",
+          "useSSL": false
+        },
+        "eventStore": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_event_store_dev",
+          "useSSL": false
+        }
+      },
+      "5d1cc845-8874-4cd0-b975-6242ea270b75": {
+        "readModels": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_read_models_admin",
+          "useSSL": false
+        },
+        "eventStore": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_event_store_admin",
+          "useSSL": false
+        }
+      },
+      "b3a3d542-dd0c-4ef2-bafe-cc5dc9de3da4": {
+        "readModels": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_read_models_country_one",
+          "useSSL": false
+        },
+        "eventStore": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_event_store_country_one",
+          "useSSL": false
+        }
+      },
+      "255c3e7c-a7ad-43aa-ad03-a5cf71bd04b2": {
+        "readModels": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_read_models_country_two",
+          "useSSL": false
+        },
+        "eventStore": {
+          "host": "mongodb://mongo-db-service.cbs-system.svc.cluster.local:27017",
+          "database": "reporting_event_store_country_two",
+          "useSSL": false
+        }
+      }
+    }
+  event-horizons.json: |
+    [
+      {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "07f31e26-809d-3e14-3a9c-edc092366924",
+        "url": "notification-core.cbs-app.svc.cluster.local:50060",
+        "events": [
+          {
+              "id": "573d4609-fa75-4c2f-8d7c-f7cf7da3de53",
+              "generation": 1
+          }
+        ]
+      }
+    ]
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: reporting-core
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-reporting-core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-reporting-core
+    spec:
+      containers:
+      - name: reporting-core
+        image: redcrossredcrescent/cbs-vr-backend:latest
+        ports:
+        - containerPort: 80
+          name: api
+        volumeMounts:
+          - mountPath: /CBS/Core/.dolittle/resources.json
+            subPath: resources.json
+            name: dolittle-config-volume
+          - mountPath: /CBS/Core/.dolittle/event-horizons.json
+            subPath: event-horizons.json
+            name: dolittle-config-volume
+          - mountPath: /CBS/Core/.dolittle/tenants.json
+            subPath: tenants.json
+            name: dolittle-tenants-config-volume
+          - mountPath: /CBS/Core/.dolittle/tenant-map.json
+            subPath: tenant-map.json
+            name: dolittle-tenants-config-volume
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: SWAGGER_PREFIX
+            value: swagger/reporting/
+          - name: SWAGGER_BASE_PATH
+            value: volunteerreportingbackend/
+      volumes:
+        - name: dolittle-config-volume
+          configMap:
+            name: reporting-core-dolittle-config
+        - name: dolittle-tenants-config-volume
+          configMap:
+            name: tenants-dolittle-config
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: reporting-web
+  namespace: cbs-app
+  labels:
+    k9s-app: cbs-reporting-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k9s-app: cbs-reporting-web
+    spec:
+      containers:
+      - name: reporting-web
+        image: redcrossredcrescent/cbs-vr-frontend:latest
+        ports:
+        - containerPort: 80
+          name: ui

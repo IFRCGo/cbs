@@ -1,7 +1,8 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017 International Federation of Red Cross. All rights reserved.
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Concepts;
 
 namespace Concepts.DataCollector
@@ -19,8 +20,8 @@ namespace Concepts.DataCollector
             Longitude = longitude;
          }
 
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
+        public double Latitude { get; }
+        public double Longitude { get; }
 
         public override string ToString() => Latitude.ToString("##.###") + ", " + Longitude.ToString("##.###");
 

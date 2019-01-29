@@ -1,0 +1,147 @@
+{
+  "1a9e4670-b130-4223-8a34-966194f4a795": {
+    "commands": {
+      "f1c0f0da-f5b8-4bed-b013-0953f3a9a4d0": {
+        "generation": 1,
+        "type": "Domain.AlertRules.CreateAlertRule, Domain"
+      },
+      "47206c48-61b2-47a9-ba28-5d5d2e25ede8": {
+        "generation": 1,
+        "type": "Domain.AlertRules.DeleteAlertRule, Domain"
+      },
+      "8616098d-0bbc-4285-81e0-05bb68cd576b": {
+        "generation": 1,
+        "type": "Domain.AlertRules.UpdateAlertRule, Domain"
+      }
+    },
+    "events": {
+      "10283aa5-11ac-4991-a4ba-98b38a7842a8": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleCreated, Events"
+      },
+      "b4a92995-ae2c-4342-a7b5-82396047aa84": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleDeleted, Events"
+      },
+      "af7bce66-aa19-4e78-9d3c-634522a56865": {
+        "generation": 1,
+        "type": "Events.AlertRules.AlertRuleUpdated, Events"
+      }
+    },
+    "eventSources": {
+      "82673631-52a8-4302-b733-95d72d17a15c": {
+        "generation": 1,
+        "type": "Domain.AlertRules.AlertRule, Domain"
+      }
+    },
+    "readModels": {
+      "ab393d51-e863-4a3d-9ba6-59ed73b4b885": {
+        "generation": 1,
+        "type": "Read.AlertRules.AlertRule, Read"
+      }
+    },
+    "queries": {
+      "f1799db5-98c9-43a2-adfb-20e5f2628eb7": {
+        "generation": 1,
+        "type": "Read.AlertRules.AlertRuleById, Read"
+      },
+      "b4fc20fe-9b33-4252-bbdc-2c412d82087b": {
+        "generation": 1,
+        "type": "Read.AlertRules.AllAlertRules, Read"
+      }
+    }
+  },
+  "92664e48-7b54-4014-a069-52541b14f597": {
+    "commands": {
+      "10a4d610-294a-4148-bd6b-74ff1a879d0d": {
+        "generation": 1,
+        "type": "Domain.CaseReports.ForcePublishNewCaseReport, Domain"
+      }
+    },
+    "events": {
+      "e68891d0-31f9-417c-96f4-c9f33abc5dad": {
+        "generation": 1,
+        "type": "Events.CaseReports.CaseRegistered, Events"
+      }
+    },
+    "eventSources": {
+      "b067997d-2dcf-4036-b50d-3cc244ed4ef9": {
+        "generation": 1,
+        "type": "Domain.CaseReports.CaseReport, Domain"
+      }
+    },
+    "readModels": {
+      "14671609-5572-4932-9210-4268b62b1a9d": {
+        "generation": 1,
+        "type": "Read.CaseReports.Case, Read"
+      }
+    },
+    "queries": {
+      "9a07a9a6-0b22-44d0-a23d-0fb8222e4f3d": {
+        "generation": 1,
+        "type": "Read.CaseReports.AllCases, Read"
+      }
+    }
+  },
+  "9936feea-7716-4d62-97e7-1e0167b0fce8": {
+    "commands": {},
+    "events": {
+      "fde7fe54-1228-4f08-974c-d27e7a85b541": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
+    "commands": {},
+    "events": {
+      "707db944-6452-4db9-83db-e181460c2de8": {
+        "generation": 1,
+        "type": "Events.Alerts.AlertOpened, Events"
+      }
+    },
+    "eventSources": {
+      "f0dac236-22a8-4b70-9e5f-648c0c1d979b": {
+        "generation": 1,
+        "type": "Domain.Alerts.Alerts, Domain"
+      }
+    },
+    "readModels": {},
+    "queries": {}
+  },
+  "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
+    "commands": {
+      "39481830-b188-4786-99d5-223e6c17ac24": {
+        "generation": 1,
+        "type": "Domain.DataOwners.RegisterDataOwner, Domain"
+      }
+    },
+    "events": {
+      "a15ea0c3-3e8d-4525-8cf5-910124596bb5": {
+        "generation": 1,
+        "type": "Events.DataOwners.DataOwnerRegistered, Events"
+      }
+    },
+    "eventSources": {
+      "92e7c2ec-d3e3-44c8-a9a6-8c858fd3e704": {
+        "generation": 1,
+        "type": "Domain.DataOwners.DataOwner, Domain"
+      }
+    },
+    "readModels": {
+      "58f22206-ac0f-4dc0-a5b9-f745fe401254": {
+        "generation": 1,
+        "type": "Read.DataOwners.DataOwner, Read"
+      }
+    },
+    "queries": {
+      "8bd672bb-c1d2-4d65-aaf0-edf0a8d3e2c2": {
+        "generation": 1,
+        "type": "Read.DataOwners.GetDataOwner, Read"
+      }
+    }
+  }
+}

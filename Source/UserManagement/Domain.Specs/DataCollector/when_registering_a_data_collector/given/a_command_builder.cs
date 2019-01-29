@@ -1,4 +1,9 @@
- using System;
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+using System;
  using Concepts;
  using System.Collections.Generic;
  using Domain.DataCollectors;
@@ -17,8 +22,11 @@
                  YearOfBirth = 1980,
                  Sex = Sex.Male,
                  PreferredLanguage = Language.English,
-                 GpsLocation = new Location(123,123),
-                 PhoneNumbers = new List<string>{"123456789"}
+                 GpsLocation = new Location(90,90),                 
+                 PhoneNumbers = new List<string>{"123456789"},
+                 DataVerifierId = Guid.NewGuid(),
+                 District = "District",
+                 Region = "Region"
              };
          }
 
@@ -31,7 +39,6 @@
              }
              return cmd;
          }
-
 
          public static RegisterDataCollector get_invalid_command(Action<RegisterDataCollector> invalidate)
          {

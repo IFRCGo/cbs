@@ -1,0 +1,43 @@
+{
+  "name": "@ifrc-cbs/nodejs-server",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node ./bin/www",
+    "eslint": "eslint ."
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "lib",
+    "routes",
+    "services",
+    "utils",
+    ".env",
+    "app.js",
+    "index.js"
+  ],
+  "bin": {
+    "cbs-node-server": "./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "helmet": "^3.15.0",
+    "morgan": "~1.9.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.12.0",
+    "rimraf": "^2.6.3"
+  }
+}

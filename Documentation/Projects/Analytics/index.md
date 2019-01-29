@@ -15,42 +15,79 @@ The overriding questions that we want to answer are:
 Project view
 ------------
 
-In theory this should be located here, but it is out of date
-
-<https://github.com/IFRCGo/cbs/projects/5>
+https://github.com/IFRCGo/cbs/projects/5
 
 Technology
 ----------
 
-It has been decided that React will be used for the frontend, and D3
-will be used to create the graphs/dashboards.
+It has been decided that React will be used for the frontend, and [Highcharts](https://www.highcharts.com/)
+will be used to create the charts on the dashboard.
 
-The React frontend is prototyped by `VolunteerReporting` and we just copy what they do.
+We did consider using D3, but concluded that the Red Cross will not need such advanced features and that it therefore would be wise to choose something simpler. 
 
-Fake data (.xlsx, .json) and R
+Fake data (.xlsx) and R
 -----------------
 
-`cbs/Documentation/Projects/Analytics/fakedata` contains `report.Rmd` that reads in the fake data (data/*.xlsx) and produces a number of graphs that we want to be included in the cbs system. If you like R, you can use this `report.Rmd` file to prototype and test out new possible graphs. We also plan on using this `.Rmd` file as an easy way to produce fake .json data that will be stored at `cbs/Source/Analytics/Web.React/src/assets/data/` and used for prototyping the D3 graphs.
+`cbs/Documentation/Projects/Analytics/fakedata` contains `report.Rmd` that reads in the fake data (data/*.xlsx) and produces a number of graphs that we want to be included in the cbs system. If you like R, you can use this `report.Rmd` file to prototype and test out new possible graphs.
+
+Fake data (.json)
+-----------------
+
+`cbs/Documentation/Projects/Analytics/fakejson` contains a lot of fake .json datafiles that are to be used for prototyping the D3 graphs.
 
 What has been done
 ------
 
 - We have sketched out a number of graphs that we want implemented in the frontend
 - These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
-- Fake data (.json) is provided at `cbs/Source/Analytics/Web.React/src/assets/data` for some of these graphs
-- The back-end queries have been written for one graph, but we can't get it to work
+- Fake data (.json) is provided at `cbs/Documentation/Projects/Analytics/fakejson` for some of these graphs
+- We have created a static html pages at `cbs/Documentation/Projects/Analytics/Web Mockup` where we are generating the graphs using Highcharts. A couple are still missing. We chose to create this as the React frontend was not yet running and we didn't want this to speed down our progress.
+- We have moved 3 of the graphs in the Web Mockup to the React frontend.
+- We have created a way of populating MongoDB with test data, see [documentation here](https://github.com/IFRCGo/cbs/tree/master/Source/Analytics#populating-the-database-with-test-data)
+- The back-end query towards MongoDB have been written for one graph (AgeAndSexDistributionAggregationByDateRange). 
 
 What needs to be done
 ----------------
 
-- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner
-- Code all the back end queries to provide data to the front-end
-- Code the front end
-- Link the back and the front end
-
+- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner. We have asked the UX team to provide us with this, and they will update [UXPin](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap) with a design. 
+- Add the missing charts to the Web Mockup
+- Code the frontend (move the charts from the Web Mockup to the React frontend)
+- Code all the backend queries to provide data to the frontend (see `Source\Analytics\Read\AgeAndSexDistribution\AgeAndSexDistributionAggregationByDateRange.cs` for reference)
+- Link the backend and the frontend (currently, the charts in the React frontend are generated from static data in the javascript)
+- Generate the graph based on user input (currently all the graphs are simply displayed on the page, the user cannot specify timerange, age, sex etc. to display on the graphs)
+- Figure out where to extract geographical values (district, region, village) from the GPS coordinates. Currently, all the generated graphs show all the data (national level).
+- Figure out where to get the population number (today, this does not exist in CBS). The graphs do not account for this today. 
 
 Epicurve by week
 ----------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/845
+Backend issue: https://github.com/IFRCGo/cbs/issues/846
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebyweek.html`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
 
 Here we display a weekly `epicurve` (the epidemiological term for a time
 series graph showing the number of reported cases on the y-axis and time
@@ -73,6 +110,34 @@ We also tried to implement a simple D3 graph as a skeleton example for linking t
 Epicurve by day
 ---------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/848
+Backend issue: https://github.com/IFRCGo/cbs/issues/849
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyday.html`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
+
 Here we display a daily `epicurve`.
 
 Important to note:
@@ -84,6 +149,13 @@ Important to note:
 
 Epicurve by week dodged by age
 ------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/850
+Backend issue: https://github.com/IFRCGo/cbs/issues/851
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyweekdodgedbyage.html`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display a weekly `epicurve` with two columns for each week,
 showing the ages side-by-side.
@@ -98,6 +170,13 @@ Important to note:
 Epicurve by day dodged by age
 -----------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/852
+Backend issue: https://github.com/IFRCGo/cbs/issues/853
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: **Not generated yet**
+
+This is an extension of the graph Epicurve by day" (frontend issue: https://github.com/IFRCGo/cbs/issues/848, backend issue: https://github.com/IFRCGo/cbs/issues/849).
+
 Here we display a daily `epicurve` with two columns for each day,
 showing the ages side-by-side.
 
@@ -111,14 +190,27 @@ Important to note:
 Age and sex distribution over different time frames
 ---------------------------------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/854
+Backend issue: https://github.com/IFRCGo/cbs/issues/855
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
+
 -   We display the number of cases, split by age/sex on the x-axis
 -   We need the ability to display different time frames (e.g. per week,
     last week, over multiple weeks)
+-   We need to display over different geographical regions as well
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
 Weekly epicurves by age/sex
 ---------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/856
+Backend issue: https://github.com/IFRCGo/cbs/issues/857
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Weeklyepicurvesbyagesex.html`
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display four weekly epicurves, one for each age/sex combination.
 
@@ -133,6 +225,13 @@ Important to note:
 
 Weekly epicurves by geographical area
 -------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/858
+Backend issue: https://github.com/IFRCGo/cbs/issues/859
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
 
 Here we display multiple weekly epicurves, one for each geographical
 area.
@@ -155,6 +254,10 @@ Important to note:
 Map by geographical area
 ------------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/860
+Backend issue: https://github.com/IFRCGo/cbs/issues/861
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Mapbygeographicalarea.html`
+
 Here we display a map with categorized number of cases.
 
 Important to note:
@@ -175,6 +278,13 @@ Important to note:
 Barcharts by district
 ---------------------
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/862
+Backend issue: https://github.com/IFRCGo/cbs/issues/863
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
+
+This is an extension of the graph Epicurve by week" (frontend issue: https://github.com/IFRCGo/cbs/issues/845, backend issue: https://github.com/IFRCGo/cbs/issues/846).
+
 This is very similar to the above map, but allows for a more nuanced
 view of the numbers.
 
@@ -190,3 +300,61 @@ Important to note:
     number of reported cases per 10.000 population).
 
 ![](report_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+
+District/Person reporting funnel plot A
+---------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/869
+Backend issue: https://github.com/IFRCGo/cbs/issues/870
+Chart in Web Template: **Not generated yet**
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for i = 1, ...,
+100 (or higher, as necessary) we calculate the 2.5th and 97.5th
+percentiles according to the binomial distribution. That is, (e.g. for
+i=40) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+District/Person reporting funnel plot B
+---------------------------------------
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/871
+Backend issue: https://github.com/IFRCGo/cbs/issues/872
+Chart in Web Template: **Not generated yet**
+
+The idea of this funnel plot is to identify districts/people who are
+reporting worse than expected.
+
+For each month, we count the number of messages sent, and the number of
+correctly sent messages. From this, we generate an "expected proportion
+of received messages that are correct" (e.g. 80%). Then, for each
+district/person, we calculate the 2.5th and 97.5th percentiles according
+to the binomial distribution. That is, (e.g. if Oslo sent 40 messages)
+what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
+distribution. These percentiles are our boundaries as displayed in the
+graph.
+
+Important to note:
+
+-   We should be able to switch between district/people/other grouping
+    measure
+-   We should be able to change the time-frame
+-   Maybe only the people/groups who are "lower than expected" should be
+    highlighted in some way?
+
+![](report_files/figure-markdown_strict/unnamed-chunk-11-1.png)

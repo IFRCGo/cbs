@@ -1,18 +1,19 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2017-2018 The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Events.Processing;
-using Events.UserManagement;
+using Dolittle.ReadModels;
+using Events.Users;
 
 namespace Read.Users
 {
     public class UserEventProcessor : ICanProcessEvents
     {
-        readonly IUsers _users;
+        readonly IReadModelRepositoryFor<User> _users;
 
-        public UserEventProcessor(IUsers users)
+        public UserEventProcessor(IReadModelRepositoryFor<User> users)
         {
             _users = users;
         }
@@ -22,10 +23,10 @@ namespace Read.Users
             _users.Insert(new User
             {
                 Country = @event.Country,
-                Firstname = @event.Firstname,
+                FullName = @event.FullName,
                 Id = @event.Id,
                 NationalSocietyId = @event.NationalSocietyId,
-                Lastname = @event.Lastname
+                DisplayName = @event.DisplayName
             });
         }
     }

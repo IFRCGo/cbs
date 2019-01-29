@@ -1,0 +1,10 @@
+{
+    "interaction": {
+        "port": 50060,
+        "unixSocket": "/var/run/cbs.notifications.interaction.server.sock"
+    },
+    "management": {
+        "port": 50160,
+        "unixSocket": "/var/run/cbs.notifications.management.server.sock"
+    }
+}
