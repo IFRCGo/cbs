@@ -12,7 +12,7 @@ library(data.table)
 library(ggplot2)
 knitr::opts_chunk$set(echo = F)
 
-map <- readRDS("data/gadm36_NOR_1_sp.rds")
+map <- readRDS("fakedata/data/NOR_adm1.rds")
   #map <- rmapshaper::ms_simplify(map,keep = 0.5)
 map <- broom::tidy(x=map,region="NAME_1")
 setDT(map)
@@ -58,8 +58,8 @@ YearWeekN <- function(date){
   return(as.numeric(sprintf("%s%s", Year(date), WeekC(date))))
 }
 
-dr <- readxl::read_excel("data/casereports-2018-September-28 (1).xlsx")
-dc <- readxl::read_excel("data/datacollectors-2018-September-28 (1).xlsx")
+dr <- readxl::read_excel("fakedata/data/casereports-2018-September-28 (1).xlsx")
+dc <- readxl::read_excel("fakedata/data/datacollectors-2018-September-28 (1).xlsx")
 
 setDT(dr)
 setDT(dc)
@@ -141,7 +141,95 @@ d[variable %in% c("mo5","fo5"),age:="Age 5+"]
 
 ```
 
+# STATUS
+
+Codeathon 2019-01-19
+
+Codeathon 2018-09
+
+# IMPORTANT NOTES ON EPICURVES
+
+```{r message=FALSE, warning=FALSE}
+toplotNational <- d[,.(n=sum(value)),keyby=.(epiWeek,age,sex)]
+toplotNational[,level:="all"]
+toplotNational[,geo:="all"]
+toplotRegion <- d[,.(n=sum(value)),keyby=.(region,epiWeek,age,sex)]
+toplotRegion[,level:="region"]
+setnames(toplotRegion,"region","geo")
+toplotDistrict <- d[,.(n=sum(value)),keyby=.(district,epiWeek,age,sex)]
+toplotDistrict[,level:="district"]
+setnames(toplotDistrict,"district","geo")
+toplotVillage <- d[,.(n=sum(value)),keyby=.(village,epiWeek,age,sex)]
+toplotVillage[,level:="village"]
+setnames(toplotVillage,"village","geo")
+tosave1 <- rbind(toplotNational,toplotRegion,toplotDistrict,toplotVillage)
+tosave2 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek,age)]
+tosave2[,sex:="All"]
+tosave3 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek,sex)]
+tosave3[,age:="All"]
+tosave4 <- tosave1[,.(n=sum(n)),keyby=.(level,geo,epiWeek)]
+tosave4[,sex:="All"]
+tosave4[,age:="All"]
+tosave <- rbind(tosave4,tosave3,tosave2,tosave1)
+tosave[,pop:=10000]
+```
+
+Epicurves is the epidemiological term for a time series graph showing the number of reported cases on the y-axis and time on the x-axis.
+
+Right now (codeathon 2019-01-19), we are hard coding each epicurve into its own page. However, in the future, we will make one "Epicurve" page that has a number of options that allows all possible/desirable epicurves to be generated on the same page (see: https://github.com/IFRCGo/cbs/issues/922).
+
+We now demonstrate the important definitions:
+
+**facet_grid**
+
+Here we have a facet_grid with `x=age` and `y=sex`. We tend to use facet_grid when we have a small amount of values to facet on, and we know how many there will be (e.g. age and sex, maybe health factor).
+
+```{r message=FALSE, warning=FALSE}
+q <- ggplot(tosave,aes(x=epiWeek,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_grid(sex~age)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+**facet_wrap**
+
+Here we have a facet_wrap on `sex`. We use facet_wrap when there will be a lot of values to facet on, and we don't know how many there will be in advance (e.g. geography is a good one)
+
+```{r message=FALSE, warning=FALSE}
+q <- ggplot(tosave,aes(x=epiWeek,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_wrap(~sex,ncol=2)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+**dodge**
+
+Here we dodge on `sex`. This means we put the values side-by-side in the same graph (and colour them differently). We dodge when there are a small amount of values to compare against.
+
+```{r message=FALSE, warning=FALSE}
+q <- ggplot(tosave,aes(x=epiWeek,y=n,fill=sex))
+q <- q + geom_col(alpha=1,position="dodge")
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
 ## Epicurve by week
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
 Here we display a weekly `epicurve` (the epidemiological term for a time series graph showing the number of reported cases on the y-axis and time on the x-axis).
 
@@ -174,7 +262,7 @@ tosave4[,age:="All"]
 tosave <- rbind(tosave4,tosave3,tosave2,tosave1)
 tosave[,pop:=10000]
 
-readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-week.json")
+#readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-week.json")
 
 q <- ggplot(tosave4,aes(x=epiWeek,y=n))
 q <- q + geom_col(alpha=0.7)
@@ -187,6 +275,8 @@ q
 ```
 
 ## Epicurve by day
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
 Here we display a daily `epicurve`.
 
@@ -219,7 +309,7 @@ tosave4[,age:="All"]
 tosave <- rbind(tosave4,tosave3,tosave2,tosave1)
 tosave[,pop:=10000]
 
-readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-day.json")
+#readr::write_lines(jsonlite::toJSON(tosave),path="json/epicurve-by-day.json")
 
 q <- ggplot(tosave4,aes(x=Date,y=n))
 q <- q + geom_col(alpha=0.7,width=0.5)
@@ -232,6 +322,8 @@ q
 ```
 
 ## Epicurve by week dodged by age
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
 Here we display a weekly `epicurve` with two columns for each week, showing the ages side-by-side.
 
@@ -268,6 +360,8 @@ q
 
 ## Epicurve by day dodged by age
 
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
 Here we display a daily `epicurve` with two columns for each day, showing the ages side-by-side.
 
 Important to note:
@@ -302,7 +396,63 @@ q
 ```
 
 
+## Weekly epicurves by age/sex
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
+Here we display four weekly epicurves, one for each age/sex combination.
+
+Important to note:
+
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+- Y-axis remains the same height for all panels, to allow for easy comparison
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek,sex,age)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n))
+q <- q + geom_col()
+q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_grid(sex~age)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
+## Weekly epicurves by geographical area
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
+Here we display multiple weekly epicurves, one for each geographical area.
+
+Important to note:
+
+- We should probably be able to choose the granularity of geographical area (region/district/village)
+- We display `year-isoweek` on the x-axis
+- Weeks with zero cases must be displayed
+- Y-axis remains the same height for all panels, to allow for easy comparison (this should probably be a toggle?)
+- Very important: We should also implement one version where the outcome is: `(number of reported cases)/(estimation population)*10000` (i.e. number of reported cases per 10.000 population).
+
+```{r message=FALSE, warning=FALSE}
+toplot <- d[,.(n=sum(value)),by=.(epiWeek,district)]
+
+q <- ggplot(toplot,aes(x=epiWeek,y=n))
+q <- q + geom_col(alpha=0.7)
+q <- q + labs(title=sprintf("Epicurve from %s to %s",minDate,maxDate))
+q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
+q <- q + scale_x_discrete("Epiweek")
+q <- q + scale_y_continuous("Number of reported cases")
+q <- q + facet_wrap(~district)
+q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+q
+```
+
 ## Age and sex distribution over different time frames
+
+Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
 - We display the number of cases, split by age/sex on the x-axis
 - We need the ability to display different time frames (e.g. per week, last week, over multiple weeks)
@@ -336,57 +486,7 @@ q <- q + scale_y_continuous("Number of reported cases")
 q
 ```
 
-## Weekly epicurves by age/sex
-
-Here we display four weekly epicurves, one for each age/sex combination.
-
-Important to note:
-
-- We display `year-isoweek` on the x-axis
-- Weeks with zero cases must be displayed
-- Y-axis remains the same height for all panels, to allow for easy comparison
-
-```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(epiWeek,sex,age)]
-
-q <- ggplot(toplot,aes(x=epiWeek,y=n))
-q <- q + geom_col()
-q <- q + labs(title=sprintf("Weekly epicurve from %s to %s",minDate,maxDate))
-q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
-q <- q + scale_x_discrete("Epiweek")
-q <- q + scale_y_continuous("Number of reported cases")
-q <- q + facet_grid(sex~age)
-q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
-q
-```
-
-## Weekly epicurves by geographical area
-
-Here we display multiple weekly epicurves, one for each geographical area.
-
-Important to note:
-
-- We should probably be able to choose the granularity of geographical area (region/district/village)
-- We display `year-isoweek` on the x-axis
-- Weeks with zero cases must be displayed
-- Y-axis remains the same height for all panels, to allow for easy comparison (this should probably be a toggle?)
-- Very important: We should also implement one version where the outcome is: `(number of reported cases)/(estimation population)*10000` (i.e. number of reported cases per 10.000 population).
-
-```{r message=FALSE, warning=FALSE}
-toplot <- d[,.(n=sum(value)),by=.(epiWeek,district)]
-
-q <- ggplot(toplot,aes(x=epiWeek,y=n))
-q <- q + geom_col(alpha=0.7)
-q <- q + labs(title=sprintf("Epicurve from %s to %s",minDate,maxDate))
-q <- q + labs(caption=sprintf("Created %s",lubridate::today()))
-q <- q + scale_x_discrete("Epiweek")
-q <- q + scale_y_continuous("Number of reported cases")
-q <- q + facet_wrap(~district)
-q <- q + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
-q
-```
-
-## Map by geographical area
+# Map by geographical area
 
 Here we display a map with categorized number of cases.
 
@@ -419,7 +519,7 @@ q <- q + labs(title="Reported cases in epiweek X")
 q
 ```
 
-## Barcharts by district
+# Barcharts by district
 
 This is very similar to the above map, but allows for a more nuanced view of the numbers.
 
@@ -446,6 +546,8 @@ q
 ```
 
 ## District/Person reporting funnel plot A
+
+NOTE: THIS SECTION HAS BEEN DOWNGRADED. FOR THE MOMENT, DO NOT IMPLEMENT.
 
 The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
 
@@ -505,6 +607,8 @@ q
 ```
 
 ## District/Person reporting funnel plot B
+
+NOTE: THIS SECTION HAS BEEN DOWNGRADED. FOR THE MOMENT, DO NOT IMPLEMENT.
 
 The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
 
