@@ -465,9 +465,14 @@ District/Person reporting funnel plot A
 NOTE: THIS SECTION HAS BEEN DOWNGRADED IN PRIORITY. FOR THE MOMENT, DO
 NOT IMPLEMENT.
 
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/869> Backend
-issue: <https://github.com/IFRCGo/cbs/issues/870> Chart in Web Template:
-**NOT COMPLETED YET** Chart in React frontend: **NOT COMPLETED YET**
+Frontend issue: <https://github.com/IFRCGo/cbs/issues/869>
+
+Backend issue: <https://github.com/IFRCGo/cbs/issues/870>
+
+Chart in Web Template: **NOT COMPLETED YET**
+
+Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
 
 The idea of this funnel plot is to identify districts/people who are
@@ -498,9 +503,14 @@ District/Person reporting funnel plot B
 NOTE: THIS SECTION HAS BEEN DOWNGRADED IN PRIORITY. FOR THE MOMENT, DO
 NOT IMPLEMENT.
 
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/871> Backend
-issue: <https://github.com/IFRCGo/cbs/issues/872> Chart in Web Template:
-**NOT COMPLETED YET** Chart in React frontend: **NOT COMPLETED YET**
+Frontend issue: <https://github.com/IFRCGo/cbs/issues/871>
+
+Backend issue: <https://github.com/IFRCGo/cbs/issues/872>
+
+Chart in Web Template: **NOT COMPLETED YET**
+
+Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
 
 The idea of this funnel plot is to identify districts/people who are
