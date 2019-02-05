@@ -282,10 +282,15 @@ The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then mayb
 ## Weekly epicurve
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/845
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/846
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebyweek.html`
+
 Chart in React frontend: `cbs/Source/Analytics/Web/src/components/Epicurvebyweek.js`
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display a weekly `epicurve` (the epidemiological term for a time series graph showing the number of reported cases on the y-axis and time on the x-axis).
@@ -334,10 +339,15 @@ q
 ## Daily epicurve
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/848
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/849
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyday.html`
+
 Chart in React frontend: `cbs/Source/Analytics/Web/src/components/Epicurvebyday.js`
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display a daily `epicurve`.
@@ -386,10 +396,15 @@ q
 ## Weekly epicurve dodged by age
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/850
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/851
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyweekdodgedbyage.html`
+
 Chart in React frontend: `cbs/Source/Analytics/Web/src/components/Epicurvebyweekdodgedbyage.js`
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display a weekly `epicurve` with two columns for each week, showing the ages side-by-side.
@@ -428,10 +443,15 @@ q
 ## Daily epicurve dodged by age
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/852
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/853
+
 Chart in Web Template: **Not generated yet**
+
 Chart in React frontend: **Not generated yet**
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display a daily `epicurve` with two columns for each day, showing the ages side-by-side.
@@ -473,10 +493,15 @@ q
 Note: The current chart in Web Template has created the graph **dodged** by age/sex, but we need it to be **facet_grid** by age/sex. As mentioned above, this might not be possible in Highcharts and might need some React trickery to get it working.
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/856
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/857
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Weeklyepicurvesbyagesex.html`
+
 Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display four weekly epicurves, one for each age/sex combination.
@@ -506,10 +531,15 @@ q
 Note: As mentioned above, **facet_wrap** might not be possible in Highcharts and might need some React trickery to get it working.
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/858
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/859
+
 Chart in Web Template: **NOT COMPLETED YET**
+
 Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
+
 Included in dynamic epicurve (https://github.com/IFRCGo/cbs/issues/922): **NOT COMPLETED YET**
 
 Here we display multiple weekly epicurves, one for each geographical area.
@@ -541,9 +571,13 @@ q
 Note: This is not an epicurve, as the x-axis is not time.
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/854
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/855
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
+
 Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
 
 - We display the number of cases, split by age/sex on the x-axis
@@ -581,9 +615,13 @@ q
 # Map by geographical area
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/860
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/861
+
 Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Mapbygeographicalarea.html`
+
 Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
 
 Here we display a map with categorized number of cases.
@@ -620,9 +658,13 @@ q
 # Barcharts by district
 
 Frontend issue: https://github.com/IFRCGo/cbs/issues/862
+
 Backend issue: https://github.com/IFRCGo/cbs/issues/863
+
 Chart in Web Template: **NOT COMPLETED YET**
+
 Chart in React frontend: **NOT COMPLETED YET**
+
 Query backend for data: **NOT COMPLETED YET**
 
 This is very similar to the above map, but allows for a more nuanced view of the numbers.
