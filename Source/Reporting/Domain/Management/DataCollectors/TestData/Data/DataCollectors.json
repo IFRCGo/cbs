@@ -1,0 +1,54 @@
+[
+    {
+        "DataCollectorId": "9459498b-c76b-4f0d-8f3d-ada18da8642d",
+        "FullName": "DataCollector 1",
+        "DisplayName": "DataCollector 1",
+        "YearOfBirth": 1980,
+        "Sex": 1,
+        "PreferredLanguage": 0,
+        "LocationLongitude": 35.0,
+        "LocationLatitude": 35.0,
+        "Region": "Default Region",
+        "District": "Default District",
+        "RegisteredAt": "2018-09-28T09:51:16.904071+02:00"
+    },
+    {
+        "DataCollectorId": "e1638158-2017-42ae-a37c-e42acdb1c701",
+        "FullName": "DataCollector 2",
+        "DisplayName": "DataCollector 2",
+        "YearOfBirth": 1980,
+        "Sex": 2,
+        "PreferredLanguage": 0,
+        "LocationLongitude": 35.0,
+        "LocationLatitude": 35.0,
+        "Region": "Default Region",
+        "District": "Default District",
+        "RegisteredAt": "2018-09-28T09:51:16.904071+02:00"
+    },
+    {
+        "DataCollectorId": "0eefe93a-e299-43d4-bccb-c39db0211ec4",
+        "FullName": "DataCollector 3",
+        "DisplayName": "DataCollector 3",
+        "YearOfBirth": 1980,
+        "Sex": 1,
+        "PreferredLanguage": 0,
+        "LocationLongitude": 35.0,
+        "LocationLatitude": 35.0,
+        "Region": "Default Region",
+        "District": "Default District",
+        "RegisteredAt": "2018-09-28T09:51:29.975256+02:00"
+    },
+    {
+        "DataCollectorId": "d5bb9005-4f69-46cb-8e7e-ca64a0517511",
+        "FullName": "DataCollector 4",
+        "DisplayName": "DataCollector 4",
+        "YearOfBirth": 1980,
+        "Sex": 2,
+        "PreferredLanguage": 0,
+        "LocationLongitude": 35.0,
+        "LocationLatitude": 35.0,
+        "Region": "Default Region",
+        "District": "Default District",
+        "RegisteredAt": "2018-09-28T09:51:29.975279+02:00"
+    }
+]

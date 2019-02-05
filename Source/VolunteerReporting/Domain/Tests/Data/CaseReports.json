@@ -10,5 +10,17 @@
         "Longitude": 1,
         "Latitude": "1.",
         "Message": "Test messages"
+    },
+    {
+        "DataCollectorId": "e1638158-2017-42ae-a37c-e42acdb1c701",
+        "HealthRiskId": "39f7b018-50cc-4ab7-a8a8-d1047a42ee99",
+        "Origin": 1,
+        "NumberOfMalesUnder5": 3,
+        "NumberOfMalesAged5AndOlder": 3,
+        "NumberOfFemalesUnder5": 3,
+        "NumberOfFemalesAged5AndOlder": 3,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages"
     }
 ]

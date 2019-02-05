@@ -143,9 +143,25 @@ d[variable %in% c("mo5","fo5"),age:="Age 5+"]
 
 # STATUS
 
-Codeathon 2019-01-19
+- We have sketched out a number of graphs that we want implemented in the frontend
+- These graphs were designed by 'domain experts' and have zero UX input (leading to the next point)
+- Fake data (.json) is provided at `cbs/Documentation/Projects/Analytics/fakejson` for some of these graphs
+- We have created a static html pages at `cbs/Documentation/Projects/Analytics/Web Mockup` where we are generating the graphs using Highcharts. A couple are still missing. We chose to create this as the React frontend was not yet running and we didn't want this to speed down our progress.
+- We have moved 3 of the graphs in the Web Mockup to the React frontend.
+- We have created a way of populating MongoDB with test data, see [documentation here](https://github.com/IFRCGo/cbs/tree/master/Source/Analytics#populating-the-database-with-test-data)
+- The back-end query towards MongoDB have been written for one graph (AgeAndSexDistributionAggregationByDateRange). 
 
-Codeathon 2018-09
+What needs to be done
+----------------
+
+- We strongly suspect that these graphs should be presented in some sort of dashboard, but due to the lack of UX input/experience we have not considered how they should be displayed in a holistic manner. We have asked the UX team to provide us with this, and they will update [UXPin](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap) with a design. 
+- Add the missing charts to the Web Mockup
+- Code the frontend (move the charts from the Web Mockup to the React frontend)
+- Code all the backend queries to provide data to the frontend (see `Source\Analytics\Read\AgeAndSexDistribution\AgeAndSexDistributionAggregationByDateRange.cs` for reference)
+- Link the backend and the frontend (currently, the charts in the React frontend are generated from static data in the javascript)
+- Generate the graph based on user input (currently all the graphs are simply displayed on the page, the user cannot specify timerange, age, sex etc. to display on the graphs)
+- Figure out where to extract geographical values (district, region, village) from the GPS coordinates. Currently, all the generated graphs show all the data (national level).
+- Figure out where to get the population number (today, this does not exist in CBS). The graphs do not account for this today. 
 
 # IMPORTANT NOTES ON EPICURVES
 
@@ -238,6 +254,34 @@ Important to note:
 - We display `year-isoweek` on the x-axis
 - Weeks with zero cases must be displayed
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/845
+Backend issue: https://github.com/IFRCGo/cbs/issues/846
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebyweek.html`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
+
 ```{r message=FALSE, warning=FALSE}
 toplotNational <- d[,.(n=sum(value)),keyby=.(epiWeek,age,sex)]
 toplotNational[,level:="all"]
@@ -285,6 +329,34 @@ Important to note:
 - Unclear the best way to display date on the x-axis
 - Days with zero cases must be displayed
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/848
+Backend issue: https://github.com/IFRCGo/cbs/issues/849
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyday.html`
+
+This fake json data file has 4 'levels':
+
+- all (i.e. all the data -- national level)
+- district
+- region
+- village
+
+The 'geographical value' is stored in 'geo'. i.e. if `level=district`, then maybe `geo=Western Norway`. If `level=village` then maybe `geo=Oslo`.
+
+`Sex` is:
+
+- All
+- Male
+- Female
+
+`Age` is:
+
+- All
+- Age <5
+- Age 5+
+
+`pop` contains the population if it exists. Otherwise it is -9.
+
 ```{r message=FALSE, warning=FALSE}
 toplotNational <- d[,.(n=sum(value)),keyby=.(Date,age,sex)]
 toplotNational[,level:="all"]
@@ -325,6 +397,11 @@ q
 
 Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/850
+Backend issue: https://github.com/IFRCGo/cbs/issues/851
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyweekdodgedbyage.html`
+
 Here we display a weekly `epicurve` with two columns for each week, showing the ages side-by-side.
 
 Important to note:
@@ -361,6 +438,11 @@ q
 ## Epicurve by day dodged by age
 
 Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/852
+Backend issue: https://github.com/IFRCGo/cbs/issues/853
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-day.json`
+Chart in Web Template: **Not generated yet**
 
 Here we display a daily `epicurve` with two columns for each day, showing the ages side-by-side.
 
@@ -400,6 +482,11 @@ q
 
 Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/856
+Backend issue: https://github.com/IFRCGo/cbs/issues/857
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Weeklyepicurvesbyagesex.html`
+
 Here we display four weekly epicurves, one for each age/sex combination.
 
 Important to note:
@@ -425,6 +512,11 @@ q
 ## Weekly epicurves by geographical area
 
 Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/858
+Backend issue: https://github.com/IFRCGo/cbs/issues/859
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
 
 Here we display multiple weekly epicurves, one for each geographical area.
 
@@ -453,6 +545,12 @@ q
 ## Age and sex distribution over different time frames
 
 Please note that in principle, this will be superseded by: https://github.com/IFRCGo/cbs/issues/922 (also see the top of this document: `IMPORTANT NOTES ON EPICURVES`).
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/854
+Backend issue: https://github.com/IFRCGo/cbs/issues/855
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
+
 
 - We display the number of cases, split by age/sex on the x-axis
 - We need the ability to display different time frames (e.g. per week, last week, over multiple weeks)
@@ -488,6 +586,10 @@ q
 
 # Map by geographical area
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/860
+Backend issue: https://github.com/IFRCGo/cbs/issues/861
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/Mapbygeographicalarea.html`
+
 Here we display a map with categorized number of cases.
 
 Important to note:
@@ -521,6 +623,11 @@ q
 
 # Barcharts by district
 
+Frontend issue: https://github.com/IFRCGo/cbs/issues/862
+Backend issue: https://github.com/IFRCGo/cbs/issues/863
+Fake json data: `cbs/Documentation/Projects/Analytics/fakejson/epicurve-by-week.json`
+Chart in Web Template: **Not generated yet**
+
 This is very similar to the above map, but allows for a more nuanced view of the numbers.
 
 Important to note:
@@ -548,6 +655,10 @@ q
 ## District/Person reporting funnel plot A
 
 NOTE: THIS SECTION HAS BEEN DOWNGRADED. FOR THE MOMENT, DO NOT IMPLEMENT.
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/869
+Backend issue: https://github.com/IFRCGo/cbs/issues/870
+Chart in Web Template: **Not generated yet**
 
 The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
 
@@ -609,6 +720,10 @@ q
 ## District/Person reporting funnel plot B
 
 NOTE: THIS SECTION HAS BEEN DOWNGRADED. FOR THE MOMENT, DO NOT IMPLEMENT.
+
+Frontend issue: https://github.com/IFRCGo/cbs/issues/871
+Backend issue: https://github.com/IFRCGo/cbs/issues/872
+Chart in Web Template: **Not generated yet**
 
 The idea of this funnel plot is to identify districts/people who are reporting worse than expected.
 
