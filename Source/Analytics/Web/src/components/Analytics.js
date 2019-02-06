@@ -4,7 +4,7 @@ import Epicurvebyweek from './Epicurvebyweek.js';
 import Epicurvebyday from './Epicurvebyday.js';
 
 import Epicurvebyweekdodgedbyage from './Epicurvebyweekdodgedbyage.js';
-
+import Ageandsexdistribution from './Ageandsexdistribution.js';
 
 
 class Analytics extends Component {
@@ -24,6 +24,7 @@ class Analytics extends Component {
                 <Epicurvebyweek/>
                 <Epicurvebyday/>
                 <Epicurvebyweekdodgedbyage/>
+                <Ageandsexdistribution />
             </div>
             </section>
             </article>

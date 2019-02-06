@@ -324,7 +324,7 @@ Backend issue: <https://github.com/IFRCGo/cbs/issues/855>
 Chart in Web Template:
 `cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
 
-Chart in React frontend: **NOT COMPLETED YET**
+Chart in React frontend: `cbs/Source/Analytics/Web/src/components/AgeAndSexDistribution.js`
 
 Query backend for data: **NOT COMPLETED YET**
 

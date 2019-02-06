@@ -77,7 +77,7 @@ To populate the database with test data, go to http://localhost:5000/swagger and
 
 ## Querying the MongoDB through Swagger
 
-Go to http://localhost:5000/swagger and use the POST /api/Dolittle/Queries API. This will query the MongoDB. 
+Go to http://localhost:5000/swagger and use the POST /api/Dolittle/Queries API. This will query the MongoDB. Remember to change the dates below to today's date and time as the testdata generator uses DateTimeOffset.UtcNow when generating reports. 
 
 Query for AgeAndSexDistributionAggregationByDateRange
 ```
