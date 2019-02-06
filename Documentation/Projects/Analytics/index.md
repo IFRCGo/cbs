@@ -223,7 +223,7 @@ Frontend issue: <https://github.com/IFRCGo/cbs/issues/852>
 
 Backend issue: <https://github.com/IFRCGo/cbs/issues/853>
 
-Chart in Web Template: **Not generated yet**
+Chart in Web Template: `cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebydaydodgedbyage.html`
 
 Chart in React frontend: **Not generated yet**
 
