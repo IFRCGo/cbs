@@ -143,5 +143,82 @@
         "type": "Read.DataOwners.GetDataOwner, Read"
       }
     }
+  },
+  "fd85491b-59ff-4131-95a6-9c1f82290cc5": {
+    "commands": {},
+    "events": {
+      "0a28c9e9-a67a-4b91-805e-512dca4f0579": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Registration.DataCollectorRegistered, Events"
+      },
+      "7d725c1e-28d9-47d6-9961-52e90ef1009b": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Registration.DataCollectorRemoved, Events"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "4ce8fc4f-edc9-4ab8-9a3b-d7727ef937cc": {
+    "commands": {},
+    "events": {
+      "ed16baf4-7055-4c0e-a20e-bfae59044b5c": {
+        "generation": 1,
+        "type": "Events.DataCollectors.PhoneNumber.PhoneNumberAddedToDataCollector, Events"
+      },
+      "a45ecbf6-ff70-427f-ae0c-c1d9101cec12": {
+        "generation": 1,
+        "type": "Events.DataCollectors.PhoneNumber.PhoneNumberRemovedFromDataCollector, Events"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "c26a7752-a57a-44b6-be49-5903847a30ef": {
+    "commands": {},
+    "events": {
+      "754cabfd-e382-4b04-b04e-16812cfd5d27": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Changing.DataCollectorLocationChanged, Events"
+      },
+      "1baa72cc-e121-4d9e-8fd7-8577abf0de57": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Changing.DataCollectorPreferredLanguageChanged, Events"
+      },
+      "376e1b6f-41f6-4769-a0ad-17edf3b46650": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Changing.DataCollectorUserInformationChanged, Events"
+      },
+      "56193c3f-7a7a-4de9-a5f2-bc8fba9e21bc": {
+        "generation": 1,
+        "type": "Events.DataCollectors.Changing.DataCollectorVillageChanged, Events"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "8c14dffe-1638-4d15-bf21-091cb8054b65": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "1f746a67-1ee4-451f-97f3-3258916084bc": {
+        "generation": 1,
+        "type": "Read.DataCollectors.DataCollector, Read"
+      }
+    },
+    "queries": {
+      "40c98ea4-bcbf-426e-836d-4667f796aad8": {
+        "generation": 1,
+        "type": "Read.DataCollectors.AllDataCollectors, Read"
+      },
+      "458af4ad-29d6-4b58-abcf-d7832af7c52c": {
+        "generation": 1,
+        "type": "Read.DataCollectors.DataCollectorById, Read"
+      }
+    }
   }
 }
