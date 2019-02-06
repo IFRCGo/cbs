@@ -23,9 +23,10 @@ namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_co
                 Sex = Sex.Male,
                 PreferredLanguage = Language.English,
                 GpsLocation = new Location(90,90),
-                PhoneNumbers = new List<string>{"123456789"},
+                PhoneNumbers = new List<PhoneNumber>{"123456789"},
                 Region = "Region",
-                District = "Distric"
+                District = "District",
+                DataVerifierId = Guid.NewGuid()
             };
          }
 

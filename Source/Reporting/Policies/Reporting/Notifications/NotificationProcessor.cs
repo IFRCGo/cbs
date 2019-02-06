@@ -49,7 +49,7 @@ namespace Policies.Reporting.Notifications
            //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
            var isTextMessageFormatValid = parsingResult.IsValid;
 
-           var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber(notification.Sender))).FirstOrDefault();
+           var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber(){Value = notification.Sender})).FirstOrDefault();
 
            var unknownDataCollector = dataCollector == null;
 

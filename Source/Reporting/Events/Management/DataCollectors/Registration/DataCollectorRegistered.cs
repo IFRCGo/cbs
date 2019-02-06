@@ -10,7 +10,6 @@ namespace Events.Management.DataCollectors.Registration
 {
     public class DataCollectorRegistered : IEvent
     {
-        public Guid DataCollectorId { get; }
         public string FullName { get; }
         public string DisplayName { get; }
         public int YearOfBirth { get; }
@@ -21,24 +20,26 @@ namespace Events.Management.DataCollectors.Registration
 
         public string Region { get; }
         public string District { get; }
+        
+        public Guid DataVerifierId {get; } 
         public DateTimeOffset RegisteredAt { get; }
 
         
 
-        public DataCollectorRegistered(
-            Guid dataCollectorId,
-            string fullName,
-            string displayName,            
-            int yearOfBirth,
-            int sex,
-            int preferredLanguage,
-            double locationLongitude, 
-            double locationLatitude,
-            DateTimeOffset registeredAt,
-            string region,
-            string district)
+        public DataCollectorRegistered (
+                string fullName,
+                string displayName,            
+                int yearOfBirth,
+                int sex,
+                int preferredLanguage,
+                double locationLongitude, 
+                double locationLatitude,
+                DateTimeOffset registeredAt,
+                string region,
+                string district,
+                Guid dataVerifierId
+            )
         {
-            DataCollectorId = dataCollectorId;
             FullName = fullName;
             DisplayName = displayName;
             YearOfBirth = yearOfBirth;
@@ -49,6 +50,7 @@ namespace Events.Management.DataCollectors.Registration
             RegisteredAt = registeredAt;
             Region = region;
             District = district;
+            DataVerifierId = dataVerifierId;
         }
     }
 }

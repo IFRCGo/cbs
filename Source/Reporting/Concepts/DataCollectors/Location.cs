@@ -9,11 +9,8 @@ namespace Concepts.DataCollectors
 {
     public class Location : Value<Location>
     {
-        public static readonly Location NotSet;
-        static Location()
-        {
-            NotSet = new Location(-1d, -1d);
-        }
+        public static readonly Location NotSet = new Location(double.MinValue, double.MinValue);
+        
         public Location(double latitude, double longitude)
         {
             Latitude = latitude;

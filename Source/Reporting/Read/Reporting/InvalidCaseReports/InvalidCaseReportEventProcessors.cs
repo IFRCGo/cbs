@@ -6,6 +6,7 @@
 using Concepts.CaseReports;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
 
 namespace Read.Reporting.InvalidCaseReports
@@ -23,9 +24,9 @@ namespace Read.Reporting.InvalidCaseReports
             _invalidCaseReportsFromUnknownDataCollectors = invalidCaseReportsFromUnknownDataCollectors;
         }
         [EventProcessor("4d97e492-54f2-4637-99f1-1aa8686562ba")]
-        public void Process(InvalidReportReceived @event)
+        public void Process(InvalidReportReceived @event, EventSourceId caseReportId)
         {
-            var invalidCaseReport = new InvalidCaseReport(@event.CaseReportId)
+            var invalidCaseReport = new InvalidCaseReport(caseReportId.Value)
             {
                 DataCollectorId = @event.DataCollectorId,
                 Message = @event.Message,
@@ -36,9 +37,9 @@ namespace Read.Reporting.InvalidCaseReports
             _invalidCaseReports.Insert(invalidCaseReport);
         }
         [EventProcessor("11f46b98-2b48-42d3-b060-ced0238822c0")]
-        public void Process(InvalidReportFromUnknownDataCollectorReceived @event)
+        public void Process(InvalidReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
         {
-            var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(@event.CaseReportId)
+            var invalidCaseReport = new InvalidCaseReportFromUnknownDataCollector(caseReportId.Value)
             {
                 Message = @event.Message,
                 ParsingErrorMessage = @event.ErrorMessages,
@@ -48,9 +49,9 @@ namespace Read.Reporting.InvalidCaseReports
             _invalidCaseReportsFromUnknownDataCollectors.Insert(invalidCaseReport);
         }
         [EventProcessor("06a22439-570f-4cbf-ba34-b5e874b96a2c")]
-        public void Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event, EventSourceId caseReportId)
         {
-            var caseReport = _invalidCaseReportsFromUnknownDataCollectors.GetById(@event.CaseReportId);
+            var caseReport = _invalidCaseReportsFromUnknownDataCollectors.GetById(caseReportId.Value);
             _invalidCaseReportsFromUnknownDataCollectors.Delete(caseReport);
         }
     }

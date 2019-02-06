@@ -17,6 +17,18 @@
           "subFeatures": {}
         }
       }
+    },
+    "1a9e4670-b130-4223-8a34-966194f4a795": {
+      "name": "AlertRules",
+      "subFeatures": {}
+    },
+    "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
+      "name": "Alerts",
+      "subFeatures": {}
+    },
+    "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
+      "name": "DataOwners",
+      "subFeatures": {}
     }
   }
 }

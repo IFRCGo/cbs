@@ -10,20 +10,19 @@ using Machine.Specifications;
 
 namespace Domain.Specs.Management.for_data_collectors.when_removing_a_phone_number
 {
-    [Subject(typeof(RemovePhoneNumberFromDataCollectorValidator))]
+    [Subject(typeof(RemovePhoneNumberFromDataCollectorInputValidator))]
     public class and_validating_a_command_with_a_missing_data_collector_id
     {
-        static RemovePhoneNumberFromDataCollectorValidator validator;
+        static RemovePhoneNumberFromDataCollectorInputValidator validator;
         static ValidationResult validation_results;
 
         static RemovePhoneNumberFromDataCollector cmd;
 
         private Establish context = () =>
         {
-            validator = new RemovePhoneNumberFromDataCollectorValidator();
+            validator = new RemovePhoneNumberFromDataCollectorInputValidator();
             cmd = new RemovePhoneNumberFromDataCollector
             {
-                DataCollectorId = Guid.Empty,
                 PhoneNumber = "11223344"
             };
         };
@@ -32,7 +31,7 @@ namespace Domain.Specs.Management.for_data_collectors.when_removing_a_phone_numb
         It should_be_invalid = () => validation_results.ShouldBeInvalid();
 
         It should_identitfy_the_data_collector_id_as_the_error = () =>
-            validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId)+".Value");
+            validation_results.ShouldHaveInvalidProperty(nameof(cmd.DataCollectorId));
 
     }
 }

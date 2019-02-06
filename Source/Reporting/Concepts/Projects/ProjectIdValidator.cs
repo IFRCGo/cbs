@@ -8,12 +8,12 @@ using FluentValidation;
 
 namespace Concepts.Projects
 {
-    public class ProjectIdValidator : InputValidator<ProjectId>
+    public class ProjectIdValidator : AbstractValidator<ProjectId>
     {
         public ProjectIdValidator()
         {
-            RuleFor(_ => _.Value)
-                .NotEmpty().WithMessage("Project Id cannot be empty");
+            RuleFor(_ => _)
+                .NotEqual(ProjectId.NotSet).WithMessage($"Project Id must not be '{ProjectId.NotSet.Value.ToString()}'");
         }
     }
 }

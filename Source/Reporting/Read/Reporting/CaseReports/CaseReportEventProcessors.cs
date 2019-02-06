@@ -9,6 +9,7 @@ using Dolittle.Logging;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
 using Events.NotificationGateway.Reporting.SMS;
+using Dolittle.Runtime.Events;
 
 namespace Read.Reporting.CaseReports
 {
@@ -28,9 +29,9 @@ namespace Read.Reporting.CaseReports
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
         }
         [EventProcessor("7f3b6037-6b2f-448b-8f14-0735330a50e0")]
-        public void Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
-            var caseReport = new CaseReport(@event.CaseReportId)
+            var caseReport = new CaseReport(caseReportId.Value)
             {
                 DataCollectorId = @event.DataCollectorId,
                 HealthRiskId = @event.HealthRiskId,
@@ -46,9 +47,9 @@ namespace Read.Reporting.CaseReports
             _caseReports.Insert(caseReport);
         }
         [EventProcessor("980f8db1-2e3a-4609-b7e6-29cee5190ea8")]
-        public void Process(CaseReportFromUnknownDataCollectorReceived @event)
+        public void Process(CaseReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
         {
-            var caseReport = new CaseReportFromUnknownDataCollector(@event.CaseReportId)
+            var caseReport = new CaseReportFromUnknownDataCollector(caseReportId.Value)
             {
                 Origin = @event.Origin,
                 HealthRiskId = @event.HealthRiskId,
@@ -62,16 +63,10 @@ namespace Read.Reporting.CaseReports
             _caseReportsFromUnknownDataCollectors.Insert(caseReport);
         }
         [EventProcessor("cc5e94eb-7944-419d-9637-1a6807e8991c")]
-        public void Process(CaseReportIdentified @event)
+        public void Process(CaseReportIdentified @event, EventSourceId caseReportId)
         {
-            var caseReport = _caseReportsFromUnknownDataCollectors.GetById(@event.CaseReportId);
+            var caseReport = _caseReportsFromUnknownDataCollectors.GetById(caseReportId.Value);
             _caseReportsFromUnknownDataCollectors.Delete(caseReport);            
-        }
-
-        [EventProcessor("97a8eba1-3f86-401e-a7c5-41f4c6172cfe")]
-        public void Process(TextMessageReceived @event)
-        {
-            _logger.Warning($"TextMessageReceieved in VolunteerReporting. Add some action here :)");
         }
     }
 }

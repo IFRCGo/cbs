@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Events.Processing;
 using Dolittle.Domain;
 using Domain.CaseReports;
@@ -32,7 +37,9 @@ namespace Policies.CaseReports
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder
+                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
+                Message = @event.Message,
+                PhoneNumber = @event.Origin
             };
 
             root.ProcessReport(data);
