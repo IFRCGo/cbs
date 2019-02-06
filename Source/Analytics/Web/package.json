@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.2.0",
+    "@dolittle/queries": "^1.0.14",
     "@ifrc-cbs/common-react-ui": "file:../../Navigation/Web.Common",
     "@ifrc-cbs/reporting": "0.0.4",
     "bootstrap-sass": "^3.4.0",
