@@ -55,7 +55,6 @@ namespace Domain.Specs
 
         public static void ShouldHaveInvalidCountOf(this fv.ValidationResult validationResults, int expected)
         {
-            System.Console.WriteLine(validationResults.Errors.Count());
             validationResults.Errors.Count().ShouldEqual(expected);
         }
     }
