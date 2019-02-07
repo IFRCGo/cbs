@@ -12,12 +12,12 @@ using Policies.Reporting.Notifications;
 namespace Policies.Specs.Reporting.for_notifications.when_receiving_a_notification_with_a_correctly_formated_single_case_report.separated_by_hash
 {
     [Subject("Notification")]
-    public class and_parsing_a_report_with_an_invalid_age_group : given.a_text_message_received_builder_for_single_case_report_separated_by_hash
+    public class and_parsing_a_report_with_an_invalid_health_risk : given.a_text_message_received_builder_for_single_case_report_separated_by_hash
     {
         static readonly NotificationParser parser = new NotificationParser();
         static TextMessageReceived received_text_message;
         static NotificationParsingResult result;
-        Establish context = () => received_text_message = text_message_received_with_invalid_age_group(false);
+        Establish context = () => received_text_message = text_message_received_with_invalid_health_risk_id(false, false);
         
         Because of = () => result = parser.Parse(received_text_message);
 
