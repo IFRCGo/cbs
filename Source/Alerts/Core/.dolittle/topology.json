@@ -1,55 +1,47 @@
 {
   "modules": {},
   "features": {
-    "4bd111b1-81e0-4b08-b4b6-f32d3026c447": {
-      "name": "Events",
+    "fa2dc64d-8d1c-4910-ab62-43a5473c39ac": {
+      "name": "Reports",
       "subFeatures": {}
     },
-    "92664e48-7b54-4014-a069-52541b14f597": {
-      "name": "CaseReports",
-      "subFeatures": {}
-    },
-    "d19b3a5e-00a1-497a-8ab1-fbf37b0fe1a1": {
-      "name": "Reporting",
-      "subFeatures": {
-        "9936feea-7716-4d62-97e7-1e0167b0fce8": {
-          "name": "CaseReports",
-          "subFeatures": {}
-        }
-      }
-    },
-    "1a9e4670-b130-4223-8a34-966194f4a795": {
-      "name": "AlertRules",
-      "subFeatures": {}
-    },
-    "1a4f6641-d267-4bf1-9528-9b632ac8fa46": {
-      "name": "Alerts",
-      "subFeatures": {}
-    },
-    "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
+    "d2f10faf-7f8e-424a-bbc4-2e74f5ce3bac": {
       "name": "DataOwners",
       "subFeatures": {}
     },
-    "8c14dffe-1638-4d15-bf21-091cb8054b65": {
+    "c2778e6d-ba03-4e8e-9d5d-dce46b34eed9": {
+      "name": "Alerts",
+      "subFeatures": {}
+    },
+    "60f798cf-54c4-48b5-bf04-c535c805d419": {
+      "name": "AlertRules",
+      "subFeatures": {}
+    },
+    "a1f016d7-d558-4203-848d-befaeb32993e": {
       "name": "DataCollectors",
       "subFeatures": {
-        "fd85491b-59ff-4131-95a6-9c1f82290cc5": {
+        "b4ce0cf9-a2d5-4ab9-b9fb-3cf41e05cb32": {
           "name": "Registration",
           "subFeatures": {}
         },
-        "4ce8fc4f-edc9-4ab8-9a3b-d7727ef937cc": {
+        "2222f685-8e99-4939-aeb7-c7016c0b1c70": {
           "name": "PhoneNumber",
           "subFeatures": {}
         },
-        "c26a7752-a57a-44b6-be49-5903847a30ef": {
+        "e79355cd-966f-4eaf-a758-5efe83477f29": {
           "name": "Changing",
           "subFeatures": {}
         }
       }
     },
-    "b3c9ab1a-e3e6-4313-9249-68178ee29eda": {
-      "name": "Reports",
-      "subFeatures": {}
+    "10f188b4-44d2-4bb5-a794-24028eec37f6": {
+      "name": "Reporting",
+      "subFeatures": {
+        "b0f3a78b-9d49-4768-a70d-5a0cdbd9b051": {
+          "name": "CaseReports",
+          "subFeatures": {}
+        }
+      }
     }
   }
 }

@@ -19,7 +19,7 @@ namespace Policies.Alerts
         public AlertsEventProcessor(
             IMailSender mailSender,
             IReadModelRepositoryFor<DataOwner> dataOwnersRepository,
-            IReadModelRepositoryFor<DataCollector> dataCollectorRepository)
+            IReadModelRepositoryFor<DataCollector> dataCollectorRepository,
             IReadModelRepositoryFor<Report> reportsRepository)
         {
             this._mailSender = mailSender;
@@ -32,18 +32,14 @@ namespace Policies.Alerts
         public void Process(AlertOpened @event)
         {
             var owners = _dataOwnersRepository.Query.ToList();
-            var caseItems = @event.Cases.Select(c => _casesRepository.GetById(c));
-            var caseItem = caseItems.First();
-
-            var orderedCollectors = caseItems.GroupBy(c => c.DataCollectorId).OrderByDescending(g => g.Count());
+            var items = @event.Reports.Select(c => _reportsRepository.GetById(c));
+            var item = items.First();
+            var orderedCollectors = items.GroupBy(c => c.DataCollectorId).OrderByDescending(g => g.Count());
             var dataCollectors = orderedCollectors.Select(g => new { incidents = g.Count(), collector = _dataCollectorRepository.GetById(g.Key) });
-
-            var collectorsDescription = dataCollectors.Select(c => $"{c.collector.FullName}, phone:{string.Join(",", c.collector.PhoneNumbers)}, number of cases: {c.incidents} ");
-
-            var caseItem = _reportsRepository.GetById(@event.Reports[0]);
+            var collectorsDescription = dataCollectors.Select(c => $"{c.collector.FullName}, phone:{string.Join(",", c.collector.PhoneNumbers)}, number of cases: {c.incidents} ");                        
             foreach (var owner in owners)
             {
-                var message = $"Dear {owner.Name},\nAlert opened on health risk {caseItem.HealthRiskNumber} with {@event.Cases.Length} case(s). Please follow up using the Reporting module in CBS.\n";
+                var message = $"Dear {owner.Name},\nAlert opened on health risk {item.HealthRiskNumber} with {@event.Reports.Length} case(s). Please follow up using the Reporting module in CBS.\n";
                 message += collectorsDescription.Select(d => $"{d}\n");
                 _mailSender.Send(owner.Email, $"CBS Alert opened", message);
             }
