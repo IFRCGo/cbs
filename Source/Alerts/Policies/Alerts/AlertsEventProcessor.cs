@@ -3,6 +3,7 @@ using System.Linq;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Alerts;
+using Read.DataCollectors;
 using Read.Reports;
 using Read.DataOwners;
 
@@ -13,29 +14,40 @@ namespace Policies.Alerts
         private readonly IMailSender _mailSender;
         private readonly IReadModelRepositoryFor<DataOwner> _dataOwnersRepository;
         private readonly IReadModelRepositoryFor<Report> _reportsRepository;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectorRepository;
 
         public AlertsEventProcessor(
-            IMailSender mailSender, 
+            IMailSender mailSender,
             IReadModelRepositoryFor<DataOwner> dataOwnersRepository,
+            IReadModelRepositoryFor<DataCollector> dataCollectorRepository)
             IReadModelRepositoryFor<Report> reportsRepository)
         {
             this._mailSender = mailSender;
             this._dataOwnersRepository = dataOwnersRepository;
+            _dataCollectorRepository = dataCollectorRepository;
             this._reportsRepository = reportsRepository;
         }
-        
+
         [EventProcessor("042ec98c-ed13-061c-f175-c15b3a9363f2")]
         public void Process(AlertOpened @event)
         {
-            List<DataOwner> owners = _dataOwnersRepository.Query.ToList();
+            var owners = _dataOwnersRepository.Query.ToList();
+            var caseItems = @event.Cases.Select(c => _casesRepository.GetById(c));
+            var caseItem = caseItems.First();
+
+            var orderedCollectors = caseItems.GroupBy(c => c.DataCollectorId).OrderByDescending(g => g.Count());
+            var dataCollectors = orderedCollectors.Select(g => new { incidents = g.Count(), collector = _dataCollectorRepository.GetById(g.Key) });
+
+            var collectorsDescription = dataCollectors.Select(c => $"{c.collector.FullName}, phone:{string.Join(",", c.collector.PhoneNumbers)}, number of cases: {c.incidents} ");
 
             var caseItem = _reportsRepository.GetById(@event.Reports[0]);
             foreach (var owner in owners)
             {
-                string message = $"Dear {owner.Name},\nAlert opened on health risk {caseItem.HealthRiskNumber} with {@event.Reports.Length} report(s). Please follow up using the Reporting module in CBS.";
+                var message = $"Dear {owner.Name},\nAlert opened on health risk {caseItem.HealthRiskNumber} with {@event.Cases.Length} case(s). Please follow up using the Reporting module in CBS.\n";
+                message += collectorsDescription.Select(d => $"{d}\n");
                 _mailSender.Send(owner.Email, $"CBS Alert opened", message);
             }
         }
-        
+
     }
 }

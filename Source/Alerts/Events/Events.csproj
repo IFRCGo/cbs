@@ -10,4 +10,8 @@
     <PackageReference Include="Dolittle.SDK" Version="2.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataCollectors\" />
+  </ItemGroup>
+
 </Project>
