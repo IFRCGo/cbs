@@ -24,7 +24,7 @@ namespace Policies.Reporting.Notifications
        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
        readonly INotificationParser _textMessageParser;
        readonly ICommandContextManager _commandContextManager;
-       private readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
+       readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
 
        public NotificationProcessor(
            ICommandContextManager commandContextManager,
@@ -71,16 +71,16 @@ namespace Policies.Reporting.Notifications
            if (!isTextMessageFormatValid && !unknownDataCollector)
            {
                caseReporting.ReportInvalidReport(
-                   dataCollector.Id,
-                   notification.Sender,
-                   notification.Text,
-                   dataCollector.Location.Longitude,
-                   dataCollector.Location.Latitude,
-                   parsingResult.ErrorMessages,
-                   notification.Received);
+                    dataCollector.Id,
+                    notification.Sender,
+                    notification.Text,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
+                    parsingResult.ErrorMessages,
+                    notification.Received);
 
-                    transaction.Commit();
-               return;
+                transaction.Commit();
+                return;
            }
 
            var healthRiskReadableId = parsingResult.HealthRiskReadableId;
@@ -91,55 +91,55 @@ namespace Policies.Reporting.Notifications
                if (unknownDataCollector)
                {
                    caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                       notification.Sender,
-                       notification.Text,
-                       errorMessages,
-                       notification.Received);
+                        notification.Sender,
+                        notification.Text,
+                        errorMessages,
+                        notification.Received);
                     transaction.Commit();
-                   return;
+                    return;
                }
 
                caseReporting.ReportInvalidReport(
-                   dataCollector.Id,
-                   notification.Sender,
-                   notification.Text,
-                   dataCollector.Location.Longitude,
-                   dataCollector.Location.Latitude,
-                   errorMessages,
-                   notification.Received);
+                    dataCollector.Id,
+                    notification.Sender,
+                    notification.Text,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
+                    errorMessages,
+                    notification.Received);
                 transaction.Commit();
-               return;
+                return;
            }
 
            if (unknownDataCollector)
            {
-               caseReporting.ReportFromUnknownDataCollector(
-                   notification.Sender,
-                   healthRiskId.Value,
-                   parsingResult.MalesUnder5,
-                   parsingResult.MalesAged5AndOlder,
-                   parsingResult.FemalesUnder5,
-                   parsingResult.FemalesAged5AndOlder,
-                   notification.Received,
-                   notification.Text
+                caseReporting.ReportFromUnknownDataCollector(
+                    notification.Sender,
+                    healthRiskId.Value,
+                    parsingResult.MalesUnder5,
+                    parsingResult.MalesAged5AndOlder,
+                    parsingResult.FemalesUnder5,
+                    parsingResult.FemalesAged5AndOlder,
+                    notification.Received,
+                    notification.Text
                );
                 transaction.Commit();
-               return;
+                return;
            }
 
-           caseReporting.Report(
-               dataCollector.Id,
-               healthRiskId.Value,
-               notification.Sender,
-               parsingResult.MalesUnder5,
-               parsingResult.MalesAged5AndOlder,
-               parsingResult.FemalesUnder5,
-               parsingResult.FemalesAged5AndOlder,
-               dataCollector.Location.Longitude,
-               dataCollector.Location.Latitude,
-               notification.Received,
-               notification.Text
-           );
+            caseReporting.Report(
+                dataCollector.Id,
+                healthRiskId.Value,
+                notification.Sender,
+                parsingResult.MalesUnder5,
+                parsingResult.MalesAged5AndOlder,
+                parsingResult.FemalesUnder5,
+                parsingResult.FemalesAged5AndOlder,
+                dataCollector.Location.Longitude,
+                dataCollector.Location.Latitude,
+                notification.Received,
+                notification.Text
+            );
             transaction.Commit();
        }
    }
