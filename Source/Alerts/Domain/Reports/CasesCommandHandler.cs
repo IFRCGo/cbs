@@ -1,7 +1,7 @@
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 
-namespace Domain.CaseReports
+namespace Domain.Reports
 {
     public class CasesCommandHandler : ICanHandleCommands
     {

@@ -2,13 +2,13 @@
  *  This file is an automatically generated Command Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands';
+import { Command } from  '@dolittle/commands/dist/commonjs';
 
 export class ForcePublishNewCaseReport extends Command
 {
     constructor() {
         super();
-        this.type = '10a4d610-294a-4148-bd6b-74ff1a879d0d';
+        this.type = '3e0652fd-e8ca-42a8-8275-e42560a8bb21';
 
         this.caseReportId = '00000000-0000-0000-0000-000000000000';
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';

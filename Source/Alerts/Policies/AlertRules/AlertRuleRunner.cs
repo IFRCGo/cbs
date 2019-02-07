@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dolittle.ReadModels;
 using Read.AlertRules;
-using Read.CaseReports;
+using Read.Reports;
 
 namespace Policies.AlertRules
 {
@@ -15,24 +15,24 @@ namespace Policies.AlertRules
         {
             _alertRule = alertRule;
         }
-        public AlertRuleRunResult RunAlertRule(IReadModelRepositoryFor<Case> casesRepository)
+        public AlertRuleRunResult RunAlertRule(IReadModelRepositoryFor<Report> reportsRepository)
         {
             int casesThreshold = _alertRule.NumberOfCasesThreshold;
             int healthRiskNumber = _alertRule.HealthRiskId;
             TimeSpan alertRuleInterval = new TimeSpan(_alertRule.ThresholdTimeframeInHours, 0, 0);
 
             DateTimeOffset horizont = DateTimeOffset.UtcNow - alertRuleInterval;
-            List<Guid> cases = casesRepository.Query.Where(
+            List<Guid> reports = reportsRepository.Query.Where(
                 c => c.Timestamp >= horizont && c.HealthRiskNumber == healthRiskNumber)
-                .AsEnumerable<Case>()
+                .AsEnumerable<Report>()
                 .Select(c => c.Id).ToList();
 
-            if(cases.Count < casesThreshold)
+            if(reports.Count < casesThreshold)
             {
                 return AlertRuleRunResult.NotTriggeredResult;
             }
 
-            return new AlertRuleRunResult(cases, _alertRule.Id);
+            return new AlertRuleRunResult(reports, _alertRule.Id);
         }
     }
 }

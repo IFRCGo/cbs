@@ -3,9 +3,9 @@ using Concepts;
 using Concepts.CaseReports;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
-using Events.CaseReports;
+using Events.Reports;
 
-namespace Domain.CaseReports
+namespace Domain.Reports
 {
     public class CaseReport : AggregateRoot
     {
@@ -24,10 +24,10 @@ namespace Domain.CaseReports
 
             int healthRiskNumber = this.GetHealthRiskNumber(caseReportData.Message);
 
-            GenerateCaseReceivedEvents(caseReportData, AgeGroup.AgeUnder5, Sex.Male, caseReportData.NumberOfMalesUnder5, healthRiskNumber);
-            GenerateCaseReceivedEvents(caseReportData, AgeGroup.Age5AndOver, Sex.Male, caseReportData.NumberOfMalesAged5AndOlder, healthRiskNumber);
-            GenerateCaseReceivedEvents(caseReportData, AgeGroup.AgeUnder5, Sex.Female, caseReportData.NumberOfFemalesUnder5, healthRiskNumber);
-            GenerateCaseReceivedEvents(caseReportData, AgeGroup.Age5AndOver, Sex.Female, caseReportData.NumberOfFemalesAged5AndOlder, healthRiskNumber);
+            GenerateReportRegisteredEvents(caseReportData, AgeGroup.AgeUnder5, Sex.Male, caseReportData.NumberOfMalesUnder5, healthRiskNumber);
+            GenerateReportRegisteredEvents(caseReportData, AgeGroup.Age5AndOver, Sex.Male, caseReportData.NumberOfMalesAged5AndOlder, healthRiskNumber);
+            GenerateReportRegisteredEvents(caseReportData, AgeGroup.AgeUnder5, Sex.Female, caseReportData.NumberOfFemalesUnder5, healthRiskNumber);
+            GenerateReportRegisteredEvents(caseReportData, AgeGroup.Age5AndOver, Sex.Female, caseReportData.NumberOfFemalesAged5AndOlder, healthRiskNumber);
         }
 
         private int GetHealthRiskNumber(string message)
@@ -48,7 +48,7 @@ namespace Domain.CaseReports
             return healthRiskNumber;
         }
 
-        private void GenerateCaseReceivedEvents(
+        private void GenerateReportRegisteredEvents(
             CaseReportData caseReportData, 
             AgeGroup group, 
             Sex sex, 
@@ -57,7 +57,7 @@ namespace Domain.CaseReports
         {
             for (int i = 0; i < count; i++)
             {
-                var caseRegistered = new CaseRegistered(
+                var reportRegistered = new ReportRegistered(
                     Guid.NewGuid(),
                     caseReportData.CaseReportId,
                     (int)group,
@@ -70,11 +70,11 @@ namespace Domain.CaseReports
                     healthRiskNumber,
                     caseReportData.PhoneNumber);
 
-                Apply(caseRegistered);
+                Apply(reportRegistered);
             }
         }
 
-        private void On(CaseRegistered @event)
+        private void On(ReportRegistered @event)
         {
             _isProcessed = true;
         }

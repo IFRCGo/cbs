@@ -1,6 +1,6 @@
 using Dolittle.Commands.Validation;
 
-namespace Domain.CaseReports
+namespace Domain.Reports
 {
     public class ForcePublishNewCaseReportBusinessValidator : CommandBusinessValidatorFor<ForcePublishNewCaseReport>
     {

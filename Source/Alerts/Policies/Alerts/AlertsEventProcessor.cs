@@ -3,7 +3,7 @@ using System.Linq;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Alerts;
-using Read.CaseReports;
+using Read.Reports;
 using Read.DataOwners;
 
 namespace Policies.Alerts
@@ -12,16 +12,16 @@ namespace Policies.Alerts
     {
         private readonly IMailSender _mailSender;
         private readonly IReadModelRepositoryFor<DataOwner> _dataOwnersRepository;
-        private readonly IReadModelRepositoryFor<Case> _casesRepository;
+        private readonly IReadModelRepositoryFor<Report> _reportsRepository;
 
         public AlertsEventProcessor(
             IMailSender mailSender, 
             IReadModelRepositoryFor<DataOwner> dataOwnersRepository,
-            IReadModelRepositoryFor<Case> casesRepository)
+            IReadModelRepositoryFor<Report> reportsRepository)
         {
             this._mailSender = mailSender;
             this._dataOwnersRepository = dataOwnersRepository;
-            this._casesRepository = casesRepository;
+            this._reportsRepository = reportsRepository;
         }
         
         [EventProcessor("042ec98c-ed13-061c-f175-c15b3a9363f2")]
@@ -29,10 +29,10 @@ namespace Policies.Alerts
         {
             List<DataOwner> owners = _dataOwnersRepository.Query.ToList();
 
-            var caseItem = _casesRepository.GetById(@event.Cases[0]);
+            var caseItem = _reportsRepository.GetById(@event.Reports[0]);
             foreach (var owner in owners)
             {
-                string message = $"Dear {owner.Name},\nAlert opened on health risk {caseItem.HealthRiskNumber} with {@event.Cases.Length} case(s). Please follow up using the Reporting module in CBS.";
+                string message = $"Dear {owner.Name},\nAlert opened on health risk {caseItem.HealthRiskNumber} with {@event.Reports.Length} report(s). Please follow up using the Reporting module in CBS.";
                 _mailSender.Send(owner.Email, $"CBS Alert opened", message);
             }
         }

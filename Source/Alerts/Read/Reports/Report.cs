@@ -2,11 +2,11 @@ using System;
 using Concepts.CaseReports;
 using Dolittle.ReadModels;
 
-namespace Read.CaseReports
+namespace Read.Reports
 {
-    public class Case : IReadModel
+    public class Report : IReadModel
     {
-        public Case(Guid id)
+        public Report(Guid id)
         {
             Id = id;
         }

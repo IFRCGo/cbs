@@ -29,6 +29,10 @@
     "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
       "name": "DataOwners",
       "subFeatures": {}
+    },
+    "b3c9ab1a-e3e6-4313-9249-68178ee29eda": {
+      "name": "Reports",
+      "subFeatures": {}
     }
   }
 }

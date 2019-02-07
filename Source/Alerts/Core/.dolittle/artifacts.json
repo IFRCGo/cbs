@@ -51,38 +51,6 @@
       }
     }
   },
-  "92664e48-7b54-4014-a069-52541b14f597": {
-    "commands": {
-      "10a4d610-294a-4148-bd6b-74ff1a879d0d": {
-        "generation": 1,
-        "type": "Domain.CaseReports.ForcePublishNewCaseReport, Domain"
-      }
-    },
-    "events": {
-      "e68891d0-31f9-417c-96f4-c9f33abc5dad": {
-        "generation": 1,
-        "type": "Events.CaseReports.CaseRegistered, Events"
-      }
-    },
-    "eventSources": {
-      "b067997d-2dcf-4036-b50d-3cc244ed4ef9": {
-        "generation": 1,
-        "type": "Domain.CaseReports.CaseReport, Domain"
-      }
-    },
-    "readModels": {
-      "14671609-5572-4932-9210-4268b62b1a9d": {
-        "generation": 1,
-        "type": "Read.CaseReports.Case, Read"
-      }
-    },
-    "queries": {
-      "9a07a9a6-0b22-44d0-a23d-0fb8222e4f3d": {
-        "generation": 1,
-        "type": "Read.CaseReports.AllCases, Read"
-      }
-    }
-  },
   "9936feea-7716-4d62-97e7-1e0167b0fce8": {
     "commands": {},
     "events": {
@@ -141,6 +109,38 @@
       "8bd672bb-c1d2-4d65-aaf0-edf0a8d3e2c2": {
         "generation": 1,
         "type": "Read.DataOwners.GetDataOwner, Read"
+      }
+    }
+  },
+  "b3c9ab1a-e3e6-4313-9249-68178ee29eda": {
+    "commands": {
+      "3e0652fd-e8ca-42a8-8275-e42560a8bb21": {
+        "generation": 1,
+        "type": "Domain.Reports.ForcePublishNewCaseReport, Domain"
+      }
+    },
+    "events": {
+      "5c21ab54-1eb9-4da8-bdba-d2414064065e": {
+        "generation": 1,
+        "type": "Events.Reports.ReportRegistered, Events"
+      }
+    },
+    "eventSources": {
+      "907dc6d9-798d-4e4e-81b8-66228c6f0c64": {
+        "generation": 1,
+        "type": "Domain.Reports.CaseReport, Domain"
+      }
+    },
+    "readModels": {
+      "1b55e958-24d5-4b19-b70c-d77a7a141052": {
+        "generation": 1,
+        "type": "Read.Reports.Report, Read"
+      }
+    },
+    "queries": {
+      "2ca6fc9f-f606-4db7-b3bf-2cde878a3331": {
+        "generation": 1,
+        "type": "Read.Reports.AllReports, Read"
       }
     }
   }
