@@ -29,6 +29,23 @@
     "38207b7e-9a52-4b51-9fa9-bfba1c331cb5": {
       "name": "DataOwners",
       "subFeatures": {}
+    },
+    "8c14dffe-1638-4d15-bf21-091cb8054b65": {
+      "name": "DataCollectors",
+      "subFeatures": {
+        "fd85491b-59ff-4131-95a6-9c1f82290cc5": {
+          "name": "Registration",
+          "subFeatures": {}
+        },
+        "4ce8fc4f-edc9-4ab8-9a3b-d7727ef937cc": {
+          "name": "PhoneNumber",
+          "subFeatures": {}
+        },
+        "c26a7752-a57a-44b6-be49-5903847a30ef": {
+          "name": "Changing",
+          "subFeatures": {}
+        }
+      }
     }
   }
 }
