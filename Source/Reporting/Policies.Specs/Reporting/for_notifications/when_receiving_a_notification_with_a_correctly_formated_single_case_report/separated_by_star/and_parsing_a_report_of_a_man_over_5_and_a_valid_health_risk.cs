@@ -9,23 +9,30 @@ using Events.NotificationGateway.Reporting.SMS;
 using Machine.Specifications;
 using Policies.Reporting.Notifications;
 
-namespace Policies.Specs.Reporting.for_notifications.when_receiving_a_notification_with_a_correctly_formated_single_case_report.separated_by_hash
+namespace Policies.Specs.Reporting.for_notifications.when_receiving_a_notification_with_a_correctly_formated_single_case_report.separated_by_star
 {
     [Subject("Notification")]
-    public class and_parsing_a_report_with_an_out_of_range_sex : given.a_text_message_received_builder_for_single_case_report_separated_by_hash
+    public class and_parsing_a_report_of_a_man_over_5_and_a_valid_health_risk : given.a_text_message_received_builder_for_single_case_report_separated_by_star
     {
+        static readonly bool is_female = false;
+        static readonly bool age_is_under_5 = false;
         static readonly NotificationParser parser = new NotificationParser();
         static TextMessageReceived received_text_message;
         static NotificationParsingResult result;
-        Establish context = () => received_text_message = text_message_received_with_out_of_range_sex(false);
+        Establish context = () => received_text_message = valid_text_message_received(is_female, age_is_under_5);
         
         Because of = () => result = parser.Parse(received_text_message);
 
-        It should_not_be_a_valid_case_report = () => result.IsValid.ShouldBeFalse();
-        It should_have_one_error_messages = () => result.ErrorMessages.Count.ShouldEqual(1);
+        It should_be_a_valid_case_report = () => result.IsValid.ShouldBeTrue();
+        It should_not_have_error_messages = () => result.ErrorMessages.Count.ShouldEqual(0);
         It should_be_a_valid_format = () => result.IsInvalidFormat.ShouldBeFalse();
         It should_a_human_case_report = () => result.IsNonHumanCaseReport.ShouldBeFalse();
         It should_be_a_single_case_report = () => result.IsSingleCaseReport.ShouldBeTrue();
         It should_not_be_a_multiple_case_report = () => result.IsMultipleCaseReport.ShouldBeFalse();
+        It should_have_a_valid_health_risk_readable_id = () => result.HealthRiskReadableId.ShouldEqual(new Concepts.HealthRisks.HealthRiskReadableId{Value = valid_health_risk_id});
+        It should_not_be_female_aged_under_5 = () => result.FemalesUnder5.ShouldEqual(0);
+        It should_not_be_female_aged_over_5 = () => result.FemalesAged5AndOlder.ShouldEqual(0);
+        It should_not_be_male_aged_under_5 = () => result.MalesUnder5.ShouldEqual(0);
+        It should_be_male_aged_over_5 = () => result.MalesAged5AndOlder.ShouldEqual(1);
     }
 }
