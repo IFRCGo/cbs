@@ -27,6 +27,7 @@ local.err
 !/src/**/css/README
 /build
 version.json
+package-lock.json
 
 # misc
 .DS_Store
