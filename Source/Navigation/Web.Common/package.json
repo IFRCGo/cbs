@@ -5,11 +5,10 @@
   },
   "version": "0.0.2",
   "scripts": {
-    "export": "babel src --verbose --out-dir es && cp -R src/assets es",
+    "export": "babel src --verbose --out-dir es && ncp src/assets es/assets",
     "clean": "rimraf es",
     "eslint": "eslint src",
-    "prepare": "npm run clean && npm run export",
-    "postinstall": "npm run prepare"
+    "prepare": "npm run clean && npm run export"
   },
   "module": "es/exports.js",
   "files": [
@@ -44,6 +43,7 @@
     "eslint": "^5.12.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.12.3",
+    "ncp": "^2.0.0",
     "rimraf": "^2.6.3"
   }
 }
