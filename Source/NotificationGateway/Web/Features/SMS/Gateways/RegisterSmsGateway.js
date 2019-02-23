@@ -4,15 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class SimulateReceivedMessage extends Command
+export class RegisterSmsGateway extends Command
 {
     constructor() {
         super();
-        this.type = '1b7b588a-59c3-4a75-b625-898b6384c071';
+        this.type = 'fae555c2-d136-45d8-a317-5375843831c2';
 
-        this.id = '00000000-0000-0000-0000-000000000000';
-        this.sender = '';
-        this.text = '';
-        this.received = new Date();
+        this.smsGatewayId = '00000000-0000-0000-0000-000000000000';
+        this.name = '';
     }
 }

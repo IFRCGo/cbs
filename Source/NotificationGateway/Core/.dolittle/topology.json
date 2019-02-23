@@ -3,7 +3,12 @@
   "features": {
     "1fe47770-08ec-4642-801c-afc0ccf02fff": {
       "name": "SMS",
-      "subFeatures": {}
+      "subFeatures": {
+        "1e4338a5-859f-423c-9c4e-a975217ddbd9": {
+          "name": "Gateways",
+          "subFeatures": {}
+        }
+      }
     }
   }
 }
