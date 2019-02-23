@@ -25,6 +25,7 @@
     "@dolittle/commands": "^1.0.10",
     "@dolittle/core": "^1.0.4",
     "@dolittle/queries": "^1.0.12",
+    "formik": "^1.5.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   }
