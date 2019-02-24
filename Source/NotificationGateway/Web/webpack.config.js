@@ -16,6 +16,9 @@ const modified = (env, argv) => {
             path: './Environments/'+argv.mode+'.env'
         })
     );
+    base.devServer = {
+        port: 4010
+    };
     return base;
 }
 
