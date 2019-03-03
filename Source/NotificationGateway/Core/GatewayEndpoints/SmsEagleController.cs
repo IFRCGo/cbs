@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using Dolittle.Commands;
 using Dolittle.Commands.Coordination;
+using Dolittle.DependencyInversion;
 using Dolittle.Execution;
 using Dolittle.Logging;
 using Dolittle.Tenancy;
@@ -16,18 +17,15 @@ namespace Core.GatewayEndpoints
         readonly ITenantMapper _mapper;
         readonly IExecutionContextManager _contextManager;
         readonly ICommandCoordinator _commandCoordinator;
-        readonly ILogger _logger;
 
         public SmsEagleController(
             ITenantMapper mapper,
             IExecutionContextManager contextManager,
-            ICommandCoordinator commandCoordinator,
-            ILogger logger)
+            ICommandCoordinator commandCoordinator)
         {
             _mapper = mapper;
             _contextManager = contextManager;
             _commandCoordinator = commandCoordinator;
-            _logger = logger;
         }
 
         [HttpPost("incoming")]
