@@ -1,5 +1,11 @@
+using System;
+using System.Globalization;
+using Dolittle.Commands;
+using Dolittle.Commands.Coordination;
 using Dolittle.Execution;
+using Dolittle.Logging;
 using Dolittle.Tenancy;
+using Domain.SMS.Gateways;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core.GatewayEndpoints
@@ -9,11 +15,19 @@ namespace Core.GatewayEndpoints
     {
         readonly ITenantMapper _mapper;
         readonly IExecutionContextManager _contextManager;
+        readonly ICommandCoordinator _commandCoordinator;
+        readonly ILogger _logger;
 
-        public SmsEagleController(ITenantMapper mapper, IExecutionContextManager contextManager)
+        public SmsEagleController(
+            ITenantMapper mapper,
+            IExecutionContextManager contextManager,
+            ICommandCoordinator commandCoordinator,
+            ILogger logger)
         {
             _mapper = mapper;
             _contextManager = contextManager;
+            _commandCoordinator = commandCoordinator;
+            _logger = logger;
         }
 
         [HttpPost("incoming")]
@@ -28,18 +42,37 @@ namespace Core.GatewayEndpoints
 
             _contextManager.CurrentFor(tenantId);
 
+            
+            var command = new ReceiveMessageFromSMSGateway {
+                Id = Guid.NewGuid(),
+                Sender = sms.Sender,
+                Text = sms.Text,
+                Received = DateTimeOffset.ParseExact(sms.Timestamp, "yyyyMMddHHmmss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal),
+                ApiKey = sms.ApiKey,
+                GatewayId = sms.MsgID,
+                OID = sms.OID,
+                ModemNumber = sms.ModemNo,
+            };
+
+            var result = _commandCoordinator.Handle(command);
+            
+            if (!result.Success)
+            {
+                // TODO: Write more usefull information here
+                throw new Exception("Handling message from SMSEagle failed");
+            }
+
             return Ok();
         }
-
 
         public class SMS
         {
             public string ApiKey {  get; set; }
             public string Sender {  get; set; }
             public string Timestamp {  get; set; }
-            public string MsgID {  get; set; }
+            public int MsgID {  get; set; }
             public string OID { get; set; }
-            public string ModemNo {  get; set; }
+            public int ModemNo {  get; set; }
             public string Text {  get; set; }
         }
     }
