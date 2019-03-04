@@ -2,14 +2,15 @@
  *  This file is an automatically generated Query Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Query } from  '@dolittle/queries';
+import { Query } from  '@dolittle/queries/dist/commonjs';
 
-export class AllCases extends Query
+export class DataCollectorById extends Query
 {
     constructor() {
         super();
-        this.nameOfQuery = 'AllCases';
-        this.generatedFrom = 'Read.CaseReports.AllCases';
+        this.nameOfQuery = 'DataCollectorById';
+        this.generatedFrom = 'Read.DataCollectors.DataCollectorById';
 
+        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
     }
 }

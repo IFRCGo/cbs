@@ -2,14 +2,14 @@
  *  This file is an automatically generated ReadModel Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { ReadModel } from  '@dolittle/readmodels';
+import { ReadModel } from  '@dolittle/readmodels/dist/commonjs';
 
-export class Case extends ReadModel
+export class Report extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '14671609-5572-4932-9210-4268b62b1a9d',
+           id: '777df906-2a3e-4b5d-9bf1-ce0df9f99dd6',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';

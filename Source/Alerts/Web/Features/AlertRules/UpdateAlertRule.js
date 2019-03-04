@@ -8,7 +8,7 @@ export class UpdateAlertRule extends Command
 {
     constructor() {
         super();
-        this.type = '8616098d-0bbc-4285-81e0-05bb68cd576b';
+        this.type = '7d56b36f-5cd6-46d5-aa8c-278fe3a06aab';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.alertRuleName = '';
