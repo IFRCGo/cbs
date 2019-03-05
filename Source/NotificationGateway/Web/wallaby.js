@@ -1,2 +1,1 @@
-const wallaby = require('@dolittle/build.aurelia/wallaby')
-module.exports = wallaby('Features');
+module.exports = require('@dolittle/build.react/wallaby.js')('Features', () => {});

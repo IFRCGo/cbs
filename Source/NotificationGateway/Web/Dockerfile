@@ -1,4 +1,5 @@
-FROM node:11.6 AS build
+FROM node:11.6-stretch AS build
+ARG mode=build-test
 
 # Install dependencies
 COPY ./NotificationGateway/Web/package.json /CBS/Source/NotificationGateway/Web/package.json
@@ -7,12 +8,10 @@ RUN yarn install
 
 # Build production code
 COPY ./NotificationGateway/Web /CBS/Source/NotificationGateway/Web
-COPY ./NotificationGateway/Web/Features/environment.prod.js /CBS/Source/NotificationGateway/Web/Features/environment.js
 WORKDIR /CBS/Source/NotificationGateway/Web
-RUN mkdir -p /CBS/Source/NotificationGateway/Core/wwwroot
-RUN npm run build
+RUN yarn build
 
 # Build runtime image
 FROM nginx:1.15-alpine
-COPY --from=build /CBS/Source/NotificationGateway/Core/wwwroot /usr/share/nginx/html
 COPY --from=build /CBS/Source/NotificationGateway/Web/nginx-default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /CBS/Source/NotificationGateway/Web/dist /usr/share/nginx/html
