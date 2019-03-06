@@ -13,21 +13,22 @@ using Dolittle.AspNetCore.Execution;
 using Dolittle.Tenancy;
 using System.Security.Claims;
 using Dolittle.Security;
+using Dolittle.DependencyInversion;
 
 namespace Web.Controllers
 {
     [Route("api/casereportexport")]
     public class CaseReportsExportController : Controller
     {
-        private readonly AllCaseReportsForListing _caseReports;
+        private readonly FactoryFor<AllCaseReportsForListing> _caseReportsFactory;
         private readonly IExecutionContextConfigurator _executionContextConfigurator;
         private readonly ITenantResolver _tenantResolver;
 
-        public CaseReportsExportController(AllCaseReportsForListing caseReports,
+        public CaseReportsExportController(FactoryFor<AllCaseReportsForListing> caseReportsFactory,
             IExecutionContextConfigurator executionContextConfigurator,
             ITenantResolver tenantResolver)
         {
-            _caseReports = caseReports;
+            _caseReportsFactory = caseReportsFactory;
             _executionContextConfigurator = executionContextConfigurator;
             _tenantResolver = tenantResolver;
         }
@@ -43,6 +44,7 @@ namespace Web.Controllers
         public IActionResult Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc")
         {
             _executionContextConfigurator.ConfigureFor(_tenantResolver.Resolve(HttpContext.Request), Dolittle.Execution.CorrelationId.New(), ClaimsPrincipal.Current.ToClaims());
+            var _caseReports = _caseReportsFactory();
 
             fields = fields ?? new string[] { "all" };
 
