@@ -5,7 +5,7 @@
 
 using Dolittle.Events.Processing;
 using Dolittle.Domain;
-using Domain.CaseReports;
+using Domain.Reports;
 using Events.Reporting.CaseReports;
 
 namespace Policies.CaseReports

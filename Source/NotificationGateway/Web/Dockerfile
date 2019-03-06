@@ -13,5 +13,5 @@ RUN yarn build
 
 # Build runtime image
 FROM nginx:1.15-alpine
-COPY --from=build /CBS/Source/NotificationGateway/Web/dist /usr/share/nginx/html
 COPY --from=build /CBS/Source/NotificationGateway/Web/nginx-default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /CBS/Source/NotificationGateway/Web/dist /usr/share/nginx/html

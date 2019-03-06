@@ -4,37 +4,37 @@ using Dolittle.Domain;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Commands.Coordination;
 using Read;
-using Read.CaseReports;
+using Read.Reports;
 using AlertsDomain = Domain.Alerts;
 
 namespace Policies.AlertRules
 {
-    public class AlertRulesInvoker : ICaseNotificationService
+    public class AlertRulesInvoker : IReportNotificationService
     {
         private readonly ICommandContextManager _commandContextManager;
-        private readonly IReadModelRepositoryFor<Case> _casesRepository;
+        private readonly IReadModelRepositoryFor<Report> _reportsRepository;
         private readonly IAlertRuleRunnerFactory _alertRuleRunnerFactory;
         private readonly IAggregateRootRepositoryFor<AlertsDomain.Alerts> _aggregateRootRepository;
 
         public AlertRulesInvoker(
             ICommandContextManager commandContextManager,
-            IReadModelRepositoryFor<Case> casesRepository, 
+            IReadModelRepositoryFor<Report> reportsRepository, 
             IAlertRuleRunnerFactory alertRuleRunnerFactory,
             IAggregateRootRepositoryFor<AlertsDomain.Alerts> aggregateRootRepository)
         {
             _commandContextManager = commandContextManager;
-            _casesRepository = casesRepository;
+            _reportsRepository = reportsRepository;
             _alertRuleRunnerFactory = alertRuleRunnerFactory;
             _aggregateRootRepository = aggregateRootRepository;
         }
 
-        public void Changed(Case updatedItem)
+        public void Changed(Report updatedItem)
         {
             //TODO if there's open alert with same Health risk, we should just add the case to that alert.
             var alertRules = _alertRuleRunnerFactory.GetRelevantAlertRules(updatedItem.HealthRiskNumber);
             foreach (IAlertRuleRunner alertRunner in alertRules)
             {
-                AlertRuleRunResult result = alertRunner.RunAlertRule(_casesRepository);
+                AlertRuleRunResult result = alertRunner.RunAlertRule(_reportsRepository);
                 if (result.Triggered)
                 {
                     var alertId = Guid.NewGuid();

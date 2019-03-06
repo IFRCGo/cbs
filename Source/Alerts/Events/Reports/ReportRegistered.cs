@@ -1,12 +1,12 @@
 using Dolittle.Events;
 using System;
 
-namespace Events.CaseReports
+namespace Events.Reports
 {
-    public class CaseRegistered : IEvent
+    public class ReportRegistered : IEvent
     {
-        public CaseRegistered(
-            Guid caseId, 
+        public ReportRegistered(
+            Guid reportId, 
             Guid caseReportId, 
             int ageGroup, 
             int sex,
@@ -18,7 +18,7 @@ namespace Events.CaseReports
             int healthRiskNumber,
             string originPhoneNumber)
         {
-            CaseId = caseId;
+            ReportId = reportId;
             CaseReportId = caseReportId;
             AgeGroup = ageGroup;
             Sex = sex;
@@ -31,7 +31,7 @@ namespace Events.CaseReports
             OriginPhoneNumber = originPhoneNumber;
         }
 
-        public Guid CaseId { get; }
+        public Guid ReportId { get; }
         public Guid CaseReportId { get; }
         public int AgeGroup { get; }
         public int Sex { get; }
