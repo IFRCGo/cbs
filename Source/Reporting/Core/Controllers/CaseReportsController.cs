@@ -9,34 +9,41 @@ using Concepts;
 using Core.Utility;
 using Concepts.HealthRisks;
 using Concepts.DataCollectors;
+using Dolittle.AspNetCore.Execution;
+using Dolittle.Tenancy;
+using System.Security.Claims;
+using Dolittle.Security;
 
 namespace Web.Controllers
 {
-    [Route("api/casereports")]
-    public class CaseReportsController : Controller
+    [Route("api/casereportexport")]
+    public class CaseReportsExportController : Controller
     {
         private readonly AllCaseReportsForListing _caseReports;
+        private readonly IExecutionContextConfigurator _executionContextConfigurator;
+        private readonly ITenantResolver _tenantResolver;
 
-        public CaseReportsController(AllCaseReportsForListing caseReports)
+        public CaseReportsExportController(AllCaseReportsForListing caseReports,
+            IExecutionContextConfigurator executionContextConfigurator,
+            ITenantResolver tenantResolver)
         {
             _caseReports = caseReports;
+            _executionContextConfigurator = executionContextConfigurator;
+            _tenantResolver = tenantResolver;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(_caseReports.Query.ToList());
-        }
-
-        private static Dictionary<string, IReportExporter> exporters = new Dictionary<string, IReportExporter>()
-                {
-                    { "excel", new ExcelExporter() },
-                    { "csv", new CsvExporter() }
-                };
+        private static Dictionary<string, IReportExporter> exporters = 
+            new Dictionary<string, IReportExporter>()
+            {
+                { "excel", new ExcelExporter() },
+                { "csv", new CsvExporter() }
+            };
 
         [HttpGet("export")]
         public IActionResult Export(string format = "excel", string[] fields = null, string filter = "all", string sortBy = "time", string order = "desc")
         {
+            _executionContextConfigurator.ConfigureFor(_tenantResolver.Resolve(HttpContext.Request), Dolittle.Execution.CorrelationId.New(), ClaimsPrincipal.Current.ToClaims());
+
             fields = fields ?? new string[] { "all" };
 
             if (exporters.ContainsKey(format))
