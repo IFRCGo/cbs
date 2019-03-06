@@ -1,0 +1,3 @@
+#!/bin/bash
+REPO_ROOT=../../..
+source $REPO_ROOT/Build/docker_cloud/pre_push

@@ -1,0 +1,33 @@
+version: '3'
+networks:
+  cbs-network:
+services:
+  cbs-alerts-core:
+    image: redcrossredcrescent/cbs-alerts-backend:latest
+    build:
+      context: "../../"
+      dockerfile: "Source/Alerts/Core/Dockerfile"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SWAGGER_PREFIX=swagger/alerts/
+      - SWAGGER_BASE_PATH=alertsbackend/
+    volumes:
+      - "./cbs-tenants.json:/CBS/Core/.dolittle/tenants.json"
+      - "./cbs-tenant-map.json:/CBS/Core/.dolittle/tenant-map.json"
+      - "./cbs-alerts-resources.json:/CBS/Core/.dolittle/resources.json"
+      - "./cbs-alerts-event-horizons.json:/CBS/Core/.dolittle/event-horizons.json"
+    networks:
+      - "cbs-network"
+      
+  # Commented out since build is very unreliable locally and does not work in docker. Maybe check out NotificationGateway and how front end is configured with webpack etc?
+  # cbs-alerts-web:
+  #   image: redcrossredcrescent/cbs-vr-frontend:latest
+  #   build:
+  #     context: "../../Source/"
+  #     dockerfile: "Alerts/Web/Dockerfile"
+  #     args:
+  #       mode: "build-test"
+  #   expose:
+  #     - "80"
+  #   networks:
+  #     - "cbs-network"
