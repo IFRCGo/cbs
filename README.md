@@ -37,6 +37,7 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 | Notification Gateway | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/NotificationGateway%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=6) |
 | User Management | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/User%20Management%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=3) |
 | Volunteer Reporting | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Voluntenteer%20Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=1) |
+| Reporting | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=8)
 
 ## Quick links
 [Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
