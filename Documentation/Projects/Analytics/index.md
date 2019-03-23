@@ -198,32 +198,34 @@ Please reference the section
 `VOLUNTEER INFORMATION - Individual level information (complicated)` for
 inspiration.
 
--   A map containing:
-    -   Display each Data collectors GPS position (as registered on the
-        Data collectors profile information)
-    -   Mark each Data collectors position on the map where the mark has
-        different colors based on the Data collector status:
+A map containing:
+
+-   Display each Data collectors GPS position (as registered on the Data
+    collectors profile information)
+-   Mark each Data collectors position on the map where the mark has
+    different colors based on the Data collector status:
     -   Blue if active and reporting without errors
     -   Yellow if active and reporting, but x out of y last reports were
         in error or dismissed
     -   Red if inactive (no case or activity reports sent for more than
         7 days)
-    -   Click the Data collectors position on the map to see Data
-        collector info (linked to the table below).
--   In a table, for each Data collector, display:
-    -   Name
-    -   Location (Village, but call it Community)
-    -   Phone number
-    -   days since last report (case or activity report)
-        ================================================
+-   Click the Data collectors position on the map to see Data collector
+    info (linked to the table below).
 
-    -   Weekly status over the last 8 weeks. Have a color coded
-        mark/indicator per week:
-        -   Blue if active and reporting without errors
-        -   Yellow if active and reporting, but one or more of the
-            reports that week where in error or dismissed
-        -   Red if inactive (no case or activity reports sent that week)
+In a table, for each Data collector, display:
 
+-   Name
+-   Location (Village, but call it Community)
+-   Phone number
+-   days since last report (case or activity report)
+    ================================================
+
+-   Weekly status over the last 8 weeks. Have a color coded
+    mark/indicator per week:
+    -   Blue if active and reporting without errors
+    -   Yellow if active and reporting, but one or more of the reports
+        that week where in error or dismissed
+    -   Red if inactive (no case or activity reports sent that week)
 -   Supervisors can only see Data collectors they supervise, not Data
     collectors supervised by other Supervisors. Data owner sees all
 
