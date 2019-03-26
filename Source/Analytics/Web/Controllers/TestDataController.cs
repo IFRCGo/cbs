@@ -26,7 +26,7 @@ namespace Web.Controllers
                     caseReport.NumberOfFemalesUnder5,
                     caseReport.NumberOfFemalesAged5AndOlder,
                     caseReport.NumberOfMalesUnder5,
-                    DateTime.UtcNow.GetDateTimeFormats(),
+                    DateTimeOffset.UtcNow,
                     caseReport.HealthRiskId,
                     caseReport.Origin,
                     caseReport.Longitude,

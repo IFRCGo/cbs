@@ -7,7 +7,7 @@ namespace Web
 {
     public class DbCaseEntry
     {
-        public DbCaseEntry(Guid dataCollectorId, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, int numberOfMalesUnder5, string[] timestamp, Guid healthRisk, string origin, double longitude, double latitude)
+        public DbCaseEntry(Guid dataCollectorId, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, int numberOfMalesUnder5, DateTimeOffset timestamp, Guid healthRisk, string origin, double longitude, double latitude)
         {
             DataCollectorId = dataCollectorId;
             NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder;
@@ -21,10 +21,10 @@ namespace Web
             Latitude = latitude;
         }
 
-        public DbCaseEntry()
-        {}
+        public DbCaseEntry() {}
 
         public Guid DataCollectorId { get; set; }
+
         public int NumberOfMalesAged5AndOlder { get; set; }
 
         public int NumberOfFemalesUnder5 { get; set; }
@@ -33,9 +33,10 @@ namespace Web
 
         public int NumberOfMalesUnder5 { get; set; }
 
-        public string[] Timestamp { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public Guid HealthRisk { get; set; }
+
         public string Origin { get; set; }
 
         public double Longitude { get; set; }
