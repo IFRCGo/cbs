@@ -15,7 +15,7 @@ namespace Web
         {
             this.setUpConnectionAsync();
             string[] test = new string[] { "x", "x1" };
-            var dbEntry = new DbCaseEntry(2, 2, 2, 2, test, new Guid(), 0.0, 0.0);
+            var dbEntry = new DbCaseEntry(new Guid(), 2, 2, 2, 2, test, new Guid(), "origin", 0.0, 0.0);
 
             this.insertRecordToDB(dbEntry);
 
@@ -33,7 +33,7 @@ namespace Web
             }
         }
 
-        private void insertRecordToDB(DbCaseEntry dbEntry)
+        public void insertRecordToDB(DbCaseEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);

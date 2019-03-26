@@ -17,6 +17,23 @@ namespace Web.Controllers
         public ActionResult<IEnumerable<string>> GenerateTestData()
         {
             var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
+            var mongoDbHandler = new MongoDBHandler();
+
+            foreach (var caseReport in caseReports)
+            {
+                var dbCaseEntry = new DbCaseEntry(caseReport.DataCollectorId,
+                    caseReport.NumberOfMalesAged5AndOlder,
+                    caseReport.NumberOfFemalesUnder5,
+                    caseReport.NumberOfFemalesAged5AndOlder,
+                    caseReport.NumberOfMalesUnder5,
+                    DateTime.UtcNow.GetDateTimeFormats(),
+                    caseReport.HealthRiskId,
+                    caseReport.Origin,
+                    caseReport.Longitude,
+                    caseReport.Latitude);
+
+                mongoDbHandler.insertRecordToDB(dbCaseEntry);
+            }
             
             return caseReports.Select(x => x.Message).ToArray();
         }
