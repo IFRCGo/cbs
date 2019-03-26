@@ -13,12 +13,12 @@ namespace Web
         private readonly string connectionString = "mongodb://localhost";
 
         public MongoDBHandler()
-        {}
-        
+        { }
+
         private void setUpConnectionAsync()
         {
             MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase("read_model_database");  
+            IMongoDatabase database = client.GetDatabase("read_model_database");
             var collection = database.GetCollection<BsonDocument>("CaseReport");
             var list = collection.Find(new BsonDocument()).ToEnumerable();
 
@@ -43,10 +43,10 @@ namespace Web
 
             //Use the MongoClient to access the server
             IMongoDatabase database = client.GetDatabase("read_model_database");
-            
+
             //get mongodb collection
-            var collection = database.GetCollection<DbCaseEntry>("CaseReport");           
-            collection.InsertOneAsync(dbEntry);           
+            var collection = database.GetCollection<DbCaseEntry>("CaseReport");
+            collection.InsertOneAsync(dbEntry);
         }
     }
 }
