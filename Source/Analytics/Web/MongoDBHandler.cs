@@ -14,6 +14,7 @@ namespace Web
         public MongoDBHandler()
         {
             this.setUpConnectionAsync();
+            string[] test = new string[] { "x", "x1" };
             var dbEntry = new DbCaseEntry(2, 2, 2, 2, test, new Guid(), 0.0, 0.0);
 
             this.insertRecordToDB(dbEntry);
@@ -39,7 +40,7 @@ namespace Web
 
             //Use the MongoClient to access the server
             IMongoDatabase database = client.GetDatabase("read_model_database");
-            string[] test = new string[] {"x", "x1"};
+            
 
 
             //get mongodb collection
