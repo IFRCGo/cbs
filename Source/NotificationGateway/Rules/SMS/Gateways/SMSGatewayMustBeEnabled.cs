@@ -17,7 +17,7 @@ namespace Rules.SMS.Gateways
 
         public Domain.SMS.Gateways.SMSGatewayMustBeEnabled Rule => (ApiKey apiKey) =>
         {
-            return _gateways.Query.FirstOrDefault(_ => _.ApiKey.Equals(apiKey.Value)).Enabled;
+            return _gateways.Query.FirstOrDefault(_ => _.ApiKey == apiKey.Value)?.Enabled ?? false;
         };
     }
 }
