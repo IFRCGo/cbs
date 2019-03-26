@@ -6,15 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        // GET api/values/5
+        [HttpGet("values")]
+        public ActionResult<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            MongoDBHandler handler = new MongoDBHandler();           
+            return "HelloBro";
         }
 
         // GET api/values/5
