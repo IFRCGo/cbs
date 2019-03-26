@@ -1,10 +1,10 @@
 {
-  "name": "@ifrc-cbs/admin",
+  "name": "@ifrc-cbs/analytics",
   "publishConfig": {
     "access": "public"
   },
   "version": "0.0.4",
-  "description": "CBS Admin frontend React component",
+  "description": "CBS Analtyics frontend React component",
   "scripts": {
     "start": "npm-run-all -l -p node:server parcel:dev",
     "start:local": "npm-run-all -l -p local:server parcel:dev",
