@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.VolunteerReporting",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{67BCDBE9-1AD8-4D42-9DF9-C0D8A5C4FEF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read", "Read\Read.csproj", "{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{67BCDBE9-1AD8-4D42-9DF9-C0D8A5C4FEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67BCDBE9-1AD8-4D42-9DF9-C0D8A5C4FEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67BCDBE9-1AD8-4D42-9DF9-C0D8A5C4FEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
