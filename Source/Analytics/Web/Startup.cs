@@ -59,8 +59,8 @@ namespace Web
     {
         public static void RegisterDependencies(this IServiceCollection service)
         {
-            service.AddSingleton<AnalyticsService>();
+            service.AddSingleton<AnalysisService>();
+            service.AddSingleton<MongoDBHandler>();
         }
     }
-
 }
