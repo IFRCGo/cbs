@@ -37,5 +37,14 @@ namespace Web.Controllers
             
             return caseReports.Select(x => x.Message).ToArray();
         }
+
+        // GET api/TestData/delete
+        [HttpGet("delete")]
+        public string DeleteTestData()
+        {
+            var mongoDbHandler = new MongoDBHandler();
+            mongoDbHandler.deleteAllRecordsFromDB();
+            return "test";
+        }
     }
 }

@@ -41,6 +41,15 @@ namespace Web
             collection.InsertOneAsync(dbEntry);           
         }
 
+        public void deleteAllRecordsFromDB()
+        {
+            var client = new MongoClient(connectionString);
+
+            //Use the MongoClient to access the server
+            IMongoDatabase database = client.GetDatabase("read_model_database");
+            database.DropCollection("CaseReport");
+        }
+
         private void getFilteredResultsFromDB()
         {
             MongoClient client = new MongoClient(connectionString);
