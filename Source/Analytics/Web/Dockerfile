@@ -1,20 +1,25 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+FROM microsoft/dotnet:2.2-sdk-bionic AS build
 
-FROM microsoft/dotnet:2.2-sdk AS build
-WORKDIR /src
-COPY ["Web/Web.csproj", "Web/"]
-RUN dotnet restore "Web/Web.csproj"
-COPY . .
-WORKDIR "/src/Web"
-RUN dotnet build "Web.csproj" -c Release -o /app
+# Install dependencies
+COPY ./NuGet.Config /CBS/Source/NuGet.Config
+COPY ./Source/Analytics/Analytics.sln /CBS/Source/Analytics/Analytics.sln
+COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events.csproj
+COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
+COPY ./Source/Analytics/Read/Read.csproj /CBS/Source/Analytics/Read/Read.csproj
+COPY ./Source/Analytics/Web/Web.csproj /CBS/Source/Analytics/Web/Web.csproj
 
-FROM build AS publish
-RUN dotnet publish "Web.csproj" -c Release -o /app
+WORKDIR /CBS/Source/Analytics
+RUN dotnet restore
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Web.dll"]
+# Build production code
+COPY ./Source/Analytics /CBS/Source/Analytics
+WORKDIR /CBS/Source/Analytics/Web
+RUN dotnet publish --no-restore -c Release -o out
+
+# Build runtime image
+FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY --from=build /CBS/Source/Analytics/Web/out /CBS/Web/
+#COPY --from=build /CBS/Source/Analytics/Web/.dolittle /CBS/Web/.dolittle
+#COPY ./Source/Analytics/bounded-context.json /CBS/bounded-context.json
+WORKDIR /CBS/Web
+ENTRYPOINT ["dotnet", "/CBS/Web/Web.dll"]
