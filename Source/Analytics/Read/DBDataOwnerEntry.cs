@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Web
+namespace Read
 {
-    public class DBDataOwnerEntry
+    public class DbDataOwnerEntry
     {
-        public DBDataOwnerEntry(Guid dataOwnerId, string name, double longitude, double latitude, List<Guid> dataCollectors)
+        public DbDataOwnerEntry(Guid dataOwnerId, string name, double longitude, double latitude, List<Guid> dataCollectors)
         {
             DataOwnerId = dataOwnerId;
             Name = name;

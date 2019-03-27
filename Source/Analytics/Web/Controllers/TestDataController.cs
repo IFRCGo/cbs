@@ -48,7 +48,7 @@ namespace Web.Controllers
 
             foreach (var dataOwner in dataOwners)
             {
-                var dbDataOwnerEntry = new DBDataOwnerEntry(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
+                var dbDataOwnerEntry = new DbDataOwnerEntry(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
                 mongoDbHandler.insertDataOwnerRecordToDB(dbDataOwnerEntry);
             }

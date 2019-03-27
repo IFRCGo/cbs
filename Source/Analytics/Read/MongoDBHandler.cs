@@ -56,7 +56,7 @@ namespace Read
             collection.InsertOneAsync(dbEntry);
         }
 
-        public void insertDataOwnerRecordToDB(DBDataOwnerEntry dbEntry)
+        public void insertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);
@@ -65,7 +65,7 @@ namespace Read
             IMongoDatabase database = client.GetDatabase("read_model_database");
 
             //get mongodb collection
-            var collection = database.GetCollection<DBDataOwnerEntry>("DataOwners");
+            var collection = database.GetCollection<DbDataOwnerEntry>("DataOwners");
             collection.InsertOneAsync(dbEntry);
         }
     }
