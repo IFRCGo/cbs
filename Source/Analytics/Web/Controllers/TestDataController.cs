@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +63,16 @@ namespace Web.Controllers
             var mongoDbHandler = new MongoDBHandler();
            // mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
+        }
+
+        // GET api/TestData/{dataowner}
+        [HttpGet("guid")]
+        public string FetchTestDataOwner()
+        {
+            var mongoDbHandler = new MongoDBHandler();
+            var testDataService = new TestDataService(mongoDbHandler);
+            var guid = new Guid("a987c35c-1c7a-4bd3-a449-a071ffeb71e7");
+            return testDataService.GetDataOwner(guid);
         }
     }
 }

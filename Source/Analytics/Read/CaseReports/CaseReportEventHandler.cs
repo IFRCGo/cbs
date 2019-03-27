@@ -9,9 +9,9 @@ namespace Read.CaseReports
             _dbHandler = dbHandler;
         }
 
-        public void Handle(CaseReport caseRepor)
+        public void Handle(CaseReport caseReport)
         {
-
+            //_dbHandler.InsertRecordToDB()
         }
     }
 }

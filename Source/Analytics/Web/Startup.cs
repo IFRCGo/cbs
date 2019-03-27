@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Web.Controllers;
 using Read.CaseReports;
 using Read;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using System;
 
 namespace Web
 {
@@ -19,12 +22,13 @@ namespace Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
             services.AddSwaggerDocument();
-            services.RegisterDependencies();
+
+            return services.RegisterDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,11 +56,16 @@ namespace Web
 
     public static class DependenciesExtensions
     {
-        public static void RegisterDependencies(this IServiceCollection service)
+        public static AutofacServiceProvider RegisterDependencies(this IServiceCollection services)
         {
-            service.AddSingleton<AnalysisService>();
-            service.AddSingleton<MongoDBHandler>();
-            service.AddTransient<ICaseReportsEventHandler, CaseReportsEventHandler>();
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterType<AnalysisService>();
+            containerBuilder.RegisterType<MongoDBHandler>();
+            containerBuilder.RegisterType<CaseReportsEventHandler>().As<ICaseReportsEventHandler>();
+            containerBuilder.Populate(services);
+
+            var container = containerBuilder.Build();
+            return new AutofacServiceProvider(container);
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿import React , { Component } from "react";
+﻿import React, { Component } from "react";
 import { render } from 'react-dom'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import * as actions from '../actions/analysis.actions';
 
 
 const options = {
@@ -27,7 +30,7 @@ const options = {
       '29.07.2018',
       '01.08.2018',
       '05.08.2018',
-      '12.08.2018',     
+      '12.08.2018',
       '14.08.2018',
       '19.08.2018',
       '26.08.2018',
@@ -54,18 +57,18 @@ const options = {
       borderWidth: 0
     }
   },
-  
+
   options: {
-  barPercentage: 1.0,
-  categoryPercentage: 1.0
-},
-  
+    barPercentage: 1.0,
+    categoryPercentage: 1.0
+  },
+
   series: [{
     name: 'Number of cases in total',
     data: [
-    
-    4, 31, 50, 50, 56,  69, 70,  87, 78, 90, 86, 135, 148, 99, 116, 100, 94,  85, 70, 54, 30
-    
+
+      4, 31, 50, 50, 56, 69, 70, 87, 78, 90, 86, 135, 148, 99, 116, 100, 94, 85, 70, 54, 30
+
     ]
 
   }]
@@ -74,20 +77,30 @@ const options = {
 class Epicurvebyday extends Component {
 
   constructor(props) {
-      super(props);
-
+    super(props);
   }
 
   //TODO Implement component and diagrams
   render() {
-      return (
-        <HighchartsReact
-    highcharts={Highcharts}
-    options={options}
-  />
-      );
+
+    return (
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={ options }
+      />
+    );
   }
 
 }
 
-export default Epicurvebyday
+function mapStateToProps(state) {
+  return {
+    analytics: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Epicurvebyday);
