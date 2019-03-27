@@ -24,14 +24,14 @@ namespace Web.Controllers
         [HttpGet("values")]
         public ActionResult<string> Get()
         {
-            var queryable = mongoDbHandler.getQueryable().Where(x => x.Id == ObjectId.Parse("5c9a0d8afe28b239e7da280d")).ToList();
+            var queryable = mongoDbHandler.GetQueryable<CaseReport>().Where(x => x.Id == ObjectId.Parse("5c9a0d8afe28b239e7da280d")).ToList();
 
             SomeGenericClass y = new SomeGenericClass("war", "huh");
 
-            mongoDbHandler.insertGenericRecordToDB(y);
+            mongoDbHandler.InsertRecordToDb(y);
 
             y = new SomeGenericClass("UPDATE ME", "PLZ");
-            mongoDbHandler.updateRecordInDB(y, "5c9b76e7fe28b239e7da3453");
+            mongoDbHandler.UpdateRecordInDb(y, "5c9b76e7fe28b239e7da3453");
 
             return "HelloBro";
         }

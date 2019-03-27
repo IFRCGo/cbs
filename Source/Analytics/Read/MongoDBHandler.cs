@@ -20,70 +20,52 @@ namespace Read
             this.connectionString = connectionString;
             this.databaseName = databaseName;
         }
-
-        public IQueryable<CaseReport> getQueryable()
+        
+        /**
+         * Gets a queryable for a collection associated with a specific object type
+        */
+        public IQueryable<T> GetQueryable<T>()
         {
-            MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase(this.databaseName);
-            var collection = database.GetCollection<CaseReport>("CaseReport");
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
             return collection.AsQueryable().AsQueryable();
         }
 
-        public void insertRecordToDB(CaseReport dbEntry)
+        /**
+         * Adds generic object to database into collection named as typeof the object
+         */
+        public void InsertRecordToDb<T>(T objectToImplement)
         {
-            // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
-
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
-
-            //get mongodb collection
-            var collection = database.GetCollection<CaseReport>("CaseReport");
-            collection.InsertOneAsync(dbEntry);
-        }
-
-        public void insertDataOwnerRecordToDB(DataOwner dbEntry)
-        {
-            // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
-
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
-
-            //get mongodb collection
-            var collection = database.GetCollection<DataOwner>("DataOwner");
-            collection.InsertOneAsync(dbEntry);
-        }
-
-        //Add ability to update a record
-
-        //Add ability to add any generic thing 
-        public void insertGenericRecordToDB<T>(T objectToImplement)
-        {
-            // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
-
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
-
-            //get mongodb collection
-            var collection = database.GetCollection<T>(typeof(T).Name);
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
             collection.InsertOneAsync(objectToImplement);
         }
 
+        /*
+         * Provides ability to update a database element T with a given ObjectID
+         */
+        public void UpdateRecordInDb<T>(T updatedElement, ObjectId id)
+        {
+            //Get collection associated with this object
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
 
-        public void updateRecordInDB<T>(T updatedElement, ObjectId id)
+            //Create filter to get element to update
+            var filter = Builders<T>.Filter.Eq("_id", id);
+
+            //Replace DB element with updated element
+            collection.ReplaceOne(filter, updatedElement, new UpdateOptions() { IsUpsert = false });
+        }
+
+        /*
+         * gets an object of the databaseName using class level connectionstring & dbName
+         */
+        private IMongoDatabase SetupDataBase()
         {
             // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
+            var client = new MongoClient(this.connectionString);
 
             //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
+            IMongoDatabase database = client.GetDatabase(this.databaseName);
 
-            var collection = database.GetCollection<T>(typeof(T).Name);
-
-            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
-            collection.ReplaceOne(filter, updatedElement, new UpdateOptions() { IsUpsert = false });
+            return database;
         }
     }
 }

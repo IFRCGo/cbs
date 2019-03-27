@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.TestData;
 using Read;
+using CaseReport = Read.CaseReport;
 
 namespace Web.Controllers
 {
@@ -17,12 +18,12 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> GenerateTestData()
         {
-            var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
+            var caseReports = JsonConvert.DeserializeObject<TestData.CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
             var mongoDbHandler = new MongoDBHandler();
 
             foreach (var caseReport in caseReports)
             {
-                var dbCaseEntry = new DbCaseEntry(caseReport.DataCollectorId,
+                var dbCaseEntry = new CaseReport(caseReport.DataCollectorId,
                     caseReport.NumberOfMalesAged5AndOlder,
                     caseReport.NumberOfFemalesUnder5,
                     caseReport.NumberOfFemalesAged5AndOlder,
@@ -33,7 +34,7 @@ namespace Web.Controllers
                     caseReport.Longitude,
                     caseReport.Latitude);
 
-                mongoDbHandler.insertRecordToDB(dbCaseEntry);
+                mongoDbHandler.insertGenericRecordToDB(dbCaseEntry);
             }
             
             return caseReports.Select(x => x.Message).ToArray();
@@ -48,9 +49,9 @@ namespace Web.Controllers
 
             foreach (var dataOwner in dataOwners)
             {
-                var dbDataOwnerEntry = new DbDataOwnerEntry(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
+                var dbDataOwnerEntry = new DataOwner(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
-                mongoDbHandler.insertDataOwnerRecordToDB(dbDataOwnerEntry);
+                mongoDbHandler.insertGenericRecordToDB(dbDataOwnerEntry);
             }
 
             return dataOwners.Select(x => x.Name).ToArray();
