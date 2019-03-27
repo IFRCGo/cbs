@@ -22,7 +22,7 @@ namespace Web.Controllers
             TimeAggregation timeAggregation,
             SelectedSeries[] selectedSeries)
         {
-            var dbCaseEntry = _dbHandler.GetQueryable()
+            var dbCaseEntry = _dbHandler.GetQueryable<CaseReport>()
                 .Where(x => x.Timestamp >= from && x.Timestamp < to)
                 .ToList();
 

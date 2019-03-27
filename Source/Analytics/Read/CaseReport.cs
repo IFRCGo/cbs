@@ -4,9 +4,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read
 {
-    public class DbCaseEntry
+    public class CaseReport
     {
-        public DbCaseEntry(Guid dataCollectorId, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, int numberOfMalesUnder5, DateTimeOffset timestamp, Guid healthRisk, string origin, double longitude, double latitude)
+        public CaseReport(Guid dataCollectorId, int numberOfMalesAged5AndOlder, int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, int numberOfMalesUnder5, DateTimeOffset timestamp, int healthRisk, string origin, double longitude, double latitude)
         {
             DataCollectorId = dataCollectorId;
             NumberOfMalesAged5AndOlder = numberOfMalesAged5AndOlder;
@@ -20,7 +20,7 @@ namespace Read
             Latitude = latitude;
         }
 
-        public DbCaseEntry() {}
+        public CaseReport() {}
 
         [BsonElement("_id")]
         public ObjectId Id { get; set; }
@@ -37,7 +37,7 @@ namespace Read
 
         public DateTimeOffset Timestamp { get; set; }
 
-        public Guid HealthRisk { get; set; }
+        public int HealthRisk { get; set; }
 
         public string Origin { get; set; }
 

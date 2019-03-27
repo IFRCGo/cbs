@@ -5,6 +5,7 @@ using MongoDB.Driver;
 
 namespace Read
 {
+    //TODO: ADD ERROR HANDLING & REPORTING BACK TO CALLER
     public class MongoDBHandler
     {
         private string connectionString = "mongodb://localhost";
@@ -19,61 +20,52 @@ namespace Read
             this.connectionString = connectionString;
             this.databaseName = databaseName;
         }
-
-        private void SetUpConnectionAsync()
+        
+        /**
+         * Gets a queryable for a collection associated with a specific object type
+        */
+        public IQueryable<T> GetQueryable<T>()
         {
-            MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase(this.databaseName);
-            var collection = database.GetCollection<BsonDocument>("CaseReport");
-            var list = collection.Find(new BsonDocument()).ToEnumerable();
-
-            foreach (var element in list)
-            {
-                Console.WriteLine(element);
-            }
-        }
-
-        public IQueryable<DbCaseEntry> GetQueryable()
-        {
-            MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase(this.databaseName);
-            var collection = database.GetCollection<DbCaseEntry>("CaseReport");
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
             return collection.AsQueryable().AsQueryable();
         }
 
-        public void DeleteAllRecordsFromDB()
+        /**
+         * Adds generic object to database into collection named as typeof the object
+         */
+        public void InsertRecordToDb<T>(T objectToImplement)
         {
-            var client = new MongoClient(connectionString);
-
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
-            database.DropCollection("CaseReport");
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
+            collection.InsertOneAsync(objectToImplement);
         }
 
-        public void InsertRecordToDB(DbCaseEntry dbEntry)
+        /*
+         * Provides ability to update a database element T with a given ObjectID
+         */
+        public void UpdateRecordInDb<T>(T updatedElement, ObjectId id)
         {
-            // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
+            //Get collection associated with this object
+            var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
 
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
+            //Create filter to get element to update
+            var filter = Builders<T>.Filter.Eq("_id", id);
 
-            //get mongodb collection
-            var collection = database.GetCollection<DbCaseEntry>("CaseReport");
-            collection.InsertOneAsync(dbEntry);
+            //Replace DB element with updated element
+            collection.ReplaceOne(filter, updatedElement, new UpdateOptions() { IsUpsert = false });
         }
 
-        public void InsertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
+        /*
+         * gets an object of the databaseName using class level connectionstring & dbName
+         */
+        private IMongoDatabase SetupDataBase()
         {
             // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
+            var client = new MongoClient(this.connectionString);
 
             //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
+            IMongoDatabase database = client.GetDatabase(this.databaseName);
 
-            //get mongodb collection
-            var collection = database.GetCollection<DbDataOwnerEntry>("DataOwners");
-            collection.InsertOneAsync(dbEntry);
+            return database;
         }
     }
 }

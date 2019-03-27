@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Read;
 
 namespace Web.Controllers
@@ -24,8 +24,6 @@ namespace Web.Controllers
         [HttpGet("values")]
         public ActionResult<string> Get()
         {
-            var queryable = mongoDbHandler.GetQueryable().AsQueryable();
-
             return "HelloBro";
         }
 
