@@ -47,7 +47,7 @@ namespace Web.Controllers
             //}
 
             //report.Categories = categories.ToArray();
-            //report.Series = new[] {new Serie() {Label = "Males under 5", Data = series.ToArray()}};
+            //report.Series = new[] {new Serie() {Name = "Males under 5", Data = series.ToArray()}};
 
             return report;
         }
@@ -96,7 +96,7 @@ namespace Web.Controllers
             List<Serie> series = new List<Serie>();
             foreach (var serie in serieDict)
             {
-                series.Add(new Serie() { Label = serie.Key.ToString(), Data = serie.Value.ToArray() });
+                series.Add(new Serie() { Name = serie.Key.ToString(), Data = serie.Value.ToArray() });
             }
 
             return series.ToArray();

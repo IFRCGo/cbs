@@ -3,6 +3,8 @@ import analytics from './analyticsReducer'
 import counters from './counterReducer'
 
 export default combineReducers({
-  analytics,
+  epicurveByDay: analytics("Day"),
+  epicurveByWeek: analytics("Week"),
+  epicurveByWeekByAge: analytics("WeekByAge"),
   counters
 })

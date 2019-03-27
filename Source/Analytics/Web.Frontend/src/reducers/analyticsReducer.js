@@ -1,21 +1,56 @@
-const analytics = (state = [], action) => {
+const baseState = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Epicurve by day'
+  },
+  subtitle: {
+    text: 'Source: CSB'
+  },
+  xAxis: {
+    categories: [],
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Number in cases in total'
+    }
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.1,
+      borderWidth: 0
+    }
+  },
+
+  options: {
+    barPercentage: 1.0,
+    categoryPercentage: 1.0
+  },
+
+  series: []
+}
+
+function analytics(typeName = '') {
+  return (state = baseState, action) => {
+    const { name } = action
+    if (name !== typeName) return state
+
     switch (action.type) {
-      case 'ADD_TODO':
-        return [
+      case "FETCH_REQUEST":
+        return state;
+      case "FETCH_SUCCESS":
+        return {
           ...state,
-          {
-            id: action.id,
-            text: action.text,
-            completed: false
-          }
-        ]
-      case 'TOGGLE_TODO':
-        return state.map(todo =>
-          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-        )
+          series: action.payload.series,
+          xAxis: { categories: action.payload.categories }
+        };
       default:
-        return state
+        return state;
     }
   }
-  
-  export default analytics
+}
+
+export default analytics
