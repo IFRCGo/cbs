@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
-namespace Web
+namespace Read
 {
     public class MongoDBHandler
     {
@@ -15,7 +12,7 @@ namespace Web
         public MongoDBHandler()
         { }
 
-        private void setUpConnectionAsync()
+        private void SetUpConnectionAsync()
         {
             MongoClient client = new MongoClient(connectionString);
             IMongoDatabase database = client.GetDatabase("read_model_database");
@@ -28,7 +25,7 @@ namespace Web
             }
         }
 
-        public IQueryable<DbCaseEntry> getQueryable()
+        public IQueryable<DbCaseEntry> GetQueryable()
         {
             MongoClient client = new MongoClient(connectionString);
             IMongoDatabase database = client.GetDatabase("read_model_database");
@@ -36,7 +33,7 @@ namespace Web
             return collection.AsQueryable().AsQueryable();
         }
 
-        public void deleteAllRecordsFromDB()
+        public void DeleteAllRecordsFromDB()
         {
             var client = new MongoClient(connectionString);
 
@@ -45,7 +42,7 @@ namespace Web
             database.DropCollection("CaseReport");
         }
 
-        public void insertRecordToDB(DbCaseEntry dbEntry)
+        public void InsertRecordToDB(DbCaseEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);

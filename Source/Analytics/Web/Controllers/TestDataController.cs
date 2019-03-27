@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.TestData;
+using Read;
 
 namespace Web.Controllers
 {
@@ -32,7 +33,7 @@ namespace Web.Controllers
                     caseReport.Longitude,
                     caseReport.Latitude);
 
-                mongoDbHandler.insertRecordToDB(dbCaseEntry);
+                mongoDbHandler.InsertRecordToDB(dbCaseEntry);
             }
             
             return caseReports.Select(x => x.Message).ToArray();
@@ -43,7 +44,7 @@ namespace Web.Controllers
         public string DeleteTestData()
         {
             var mongoDbHandler = new MongoDBHandler();
-            mongoDbHandler.deleteAllRecordsFromDB();
+            mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
         }
     }

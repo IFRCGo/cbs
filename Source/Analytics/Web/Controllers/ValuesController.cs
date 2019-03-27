@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Read;
 
 namespace Web.Controllers
 {
@@ -18,7 +14,7 @@ namespace Web.Controllers
         {
             MongoDBHandler handler = new MongoDBHandler();
 
-            var queryable = handler.getQueryable().AsQueryable();         
+            var queryable = handler.GetQueryable().AsQueryable();         
 
             return "HelloBro";
         }
