@@ -64,5 +64,27 @@ namespace Web.Controllers
             mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
         }
+
+        // GET api/TestData/{dataowner}
+        [HttpGet("guid")]
+        public string FetchTestDataOwner()
+        {
+            var mongoDbHandler = new MongoDBHandler();
+            var testDataService = new TestDataService(mongoDbHandler);
+            var guid = new Guid("a987c35c-1c7a-4bd3-a449-a071ffeb71e7");
+            var dataOwner = testDataService.GetDataOwner(guid);
+
+            string result = "DataOwner: " + dataOwner.DataOwnerId;
+            foreach (var dataCollector in dataOwner.DataCollectorReports)
+            {
+                result = string.Concat(result, " DataCollector: ", dataCollector.DataCollectorId);
+                foreach (var report in dataCollector.HealthRiskAggregatedReports)
+                {
+                    result = string.Concat(result, "HealthReport: ", report.HealthRiskId, " ", report.NumberOfFemalesAged5AndOlder, "\n");
+                }
+            }
+
+            return result;
+        }
     }
 }

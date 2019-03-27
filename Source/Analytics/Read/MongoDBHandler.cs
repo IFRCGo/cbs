@@ -33,6 +33,14 @@ namespace Read
             return collection.AsQueryable().AsQueryable();
         }
 
+        public IQueryable<DbDataOwnerEntry> GetDataOwnerQueryable()
+        {
+            MongoClient client = new MongoClient(connectionString);
+            IMongoDatabase database = client.GetDatabase("read_model_database");
+            var collection = database.GetCollection<DbDataOwnerEntry>("DataOwners");
+            return collection.AsQueryable();
+        }
+
         public void DeleteAllRecordsFromDB()
         {
             var client = new MongoClient(connectionString);
