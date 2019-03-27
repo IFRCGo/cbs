@@ -2,6 +2,6 @@
  * This is only used for defining what this module exports
  *  If you're looking for the index, check the index.js located in the Admin/Web.Frontend root folder
  */
-import Projects from './components/Projects';
+import Analytics from './components/Analytics';
 
-export default Projects;
+export default Analytics;

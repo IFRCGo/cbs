@@ -1,10 +1,9 @@
-import React , { Component } from "react";
+import React, { Component } from "react";
+import { connect } from 'react-redux';
 import Epicurvebyweek from './Epicurvebyweek.js';
-
 import Epicurvebyday from './Epicurvebyday.js';
-
 import Epicurvebyweekdodgedbyage from './Epicurvebyweekdodgedbyage.js';
-
+// import Counter from './Counter.js';
 
 
 class Analytics extends Component {
@@ -18,18 +17,19 @@ class Analytics extends Component {
     render() {
         return (
             <article id="introduction">
-          <section className="container">
-          <h3>Epicurves</h3>
-            <div>
-                <Epicurvebyweek/>
-                <Epicurvebyday/>
-                <Epicurvebyweekdodgedbyage/>
-            </div>
-            </section>
+                <section className="container">
+                    <h3>Epicurves</h3>
+                    <div>
+                        {/* <Counter /> */}
+                        <Epicurvebyweek />
+                        <Epicurvebyday />
+                        <Epicurvebyweekdodgedbyage />
+                    </div>
+                </section>
             </article>
         );
     }
 
 }
 
-export default Analytics
+export default Analytics;

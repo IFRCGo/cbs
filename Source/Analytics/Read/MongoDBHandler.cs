@@ -7,15 +7,23 @@ namespace Read
 {
     public class MongoDBHandler
     {
-        private readonly string connectionString = "mongodb://localhost";
+        private string connectionString = "mongodb://localhost";
+        private string databaseName = "read_model_database";
 
         public MongoDBHandler()
-        { }
+        {
+        }
+
+        public MongoDBHandler(string connectionString, string databaseName)
+        {
+            this.connectionString = connectionString;
+            this.databaseName = databaseName;
+        }
 
         private void SetUpConnectionAsync()
         {
             MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase("read_model_database");
+            IMongoDatabase database = client.GetDatabase(this.databaseName);
             var collection = database.GetCollection<BsonDocument>("CaseReport");
             var list = collection.Find(new BsonDocument()).ToEnumerable();
 
@@ -28,7 +36,7 @@ namespace Read
         public IQueryable<DbCaseEntry> GetQueryable()
         {
             MongoClient client = new MongoClient(connectionString);
-            IMongoDatabase database = client.GetDatabase("read_model_database");
+            IMongoDatabase database = client.GetDatabase(this.databaseName);
             var collection = database.GetCollection<DbCaseEntry>("CaseReport");
             return collection.AsQueryable().AsQueryable();
         }
@@ -48,7 +56,6 @@ namespace Read
             //Use the MongoClient to access the server
             IMongoDatabase database = client.GetDatabase("read_model_database");
             database.DropCollection("CaseReport");
-            database.DropCollection("DataOwners");
         }
 
         public void InsertRecordToDB(DbCaseEntry dbEntry)
@@ -64,7 +71,7 @@ namespace Read
             collection.InsertOneAsync(dbEntry);
         }
 
-        public void insertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
+        public void InsertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);
