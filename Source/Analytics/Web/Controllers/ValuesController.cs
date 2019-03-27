@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Read;
 
 namespace Web.Controllers
 {
@@ -12,13 +13,18 @@ namespace Web.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly MongoDBHandler mongoDbHandler;
+
+        public ValuesController(MongoDBHandler mongoDbHandler)
+        {
+            this.mongoDbHandler = mongoDbHandler;
+        }
+
         // GET api/values/5
         [HttpGet("values")]
         public ActionResult<string> Get()
         {
-            MongoDBHandler handler = new MongoDBHandler();
-
-            var queryable = handler.getQueryable().AsQueryable();         
+            var queryable = mongoDbHandler.GetQueryable().AsQueryable();
 
             return "HelloBro";
         }
