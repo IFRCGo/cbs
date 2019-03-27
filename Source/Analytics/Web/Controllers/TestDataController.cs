@@ -49,7 +49,7 @@ namespace Web.Controllers
             {
                 var dbDataOwnerEntry = new DbDataOwnerEntry(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
-                mongoDbHandler.insertDataOwnerRecordToDB(dbDataOwnerEntry);
+                mongoDbHandler.InsertDataOwnerRecordToDB(dbDataOwnerEntry);
             }
 
             return dataOwners.Select(x => x.Name).ToArray();

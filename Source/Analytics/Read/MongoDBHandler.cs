@@ -20,7 +20,7 @@ namespace Read
             this.databaseName = databaseName;
         }
 
-        private void setUpConnectionAsync()
+        private void SetUpConnectionAsync()
         {
             MongoClient client = new MongoClient(connectionString);
             IMongoDatabase database = client.GetDatabase(this.databaseName);
@@ -33,7 +33,7 @@ namespace Read
             }
         }
 
-        public IQueryable<DbCaseEntry> getQueryable()
+        public IQueryable<DbCaseEntry> GetQueryable()
         {
             MongoClient client = new MongoClient(connectionString);
             IMongoDatabase database = client.GetDatabase(this.databaseName);
@@ -50,7 +50,7 @@ namespace Read
             database.DropCollection("CaseReport");
         }
 
-        public void insertRecordToDB(DbCaseEntry dbEntry)
+        public void InsertRecordToDB(DbCaseEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);
@@ -63,7 +63,7 @@ namespace Read
             collection.InsertOneAsync(dbEntry);
         }
 
-        public void insertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
+        public void InsertDataOwnerRecordToDB(DbDataOwnerEntry dbEntry)
         {
             // Create a MongoClient object by using the connection string
             var client = new MongoClient(connectionString);
