@@ -33,7 +33,7 @@ namespace Web.Controllers
                     caseReport.Longitude,
                     caseReport.Latitude);
 
-                mongoDbHandler.InsertRecordToDB(dbCaseEntry);
+                mongoDbHandler.insertRecordToDB(dbCaseEntry);
             }
             
             return caseReports.Select(x => x.Message).ToArray();
@@ -61,7 +61,7 @@ namespace Web.Controllers
         public string DeleteTestData()
         {
             var mongoDbHandler = new MongoDBHandler();
-            mongoDbHandler.DeleteAllRecordsFromDB();
+           // mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
         }
     }
