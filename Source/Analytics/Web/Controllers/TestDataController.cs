@@ -34,7 +34,7 @@ namespace Web.Controllers
                     caseReport.Longitude,
                     caseReport.Latitude);
 
-                mongoDbHandler.insertGenericRecordToDB(dbCaseEntry);
+                mongoDbHandler.InsertRecordToDb(dbCaseEntry);
             }
             
             return caseReports.Select(x => x.Message).ToArray();
@@ -51,7 +51,7 @@ namespace Web.Controllers
             {
                 var dbDataOwnerEntry = new DataOwner(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
-                mongoDbHandler.insertGenericRecordToDB(dbDataOwnerEntry);
+                mongoDbHandler.InsertRecordToDb(dbDataOwnerEntry);
             }
 
             return dataOwners.Select(x => x.Name).ToArray();

@@ -7,9 +7,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read
 {
-    public class DbDataOwnerEntry
+    public class DataOwner
     {
-        public DbDataOwnerEntry(Guid dataOwnerId, string name, double longitude, double latitude, List<Guid> dataCollectors)
+        public DataOwner(Guid dataOwnerId, string name, double longitude, double latitude, List<Guid> dataCollectors)
         {
             DataOwnerId = dataOwnerId;
             Name = name;
