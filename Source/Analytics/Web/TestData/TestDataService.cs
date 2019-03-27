@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Read;
 
 namespace Web.TestData
@@ -14,7 +15,7 @@ namespace Web.TestData
             _dbHandler = dbHandler;
         }
 
-        public DataOwnerReport GetDataOwner(Guid dataOwnerId)
+        public string GetDataOwner(Guid dataOwnerId)
         {
             // Fetch the data owner from db
             var dbDataOwnerEntry = _dbHandler.GetDataOwnerQueryable().Where(x => x.DataOwnerId.Equals(dataOwnerId)).ToList();
@@ -66,13 +67,15 @@ namespace Web.TestData
                 }
 
                 // Create the DataOwnerReport
-                return new DataOwnerReport()
+                var dataOwnerReport = new DataOwnerReport()
                 {
                     DataOwnerId = dataOwner.DataOwnerId,
                     Longitude = dataOwner.Longitude,
                     Latitude = dataOwner.Latitude,
                     DataCollectorReports = dataCollectorReports
                 };
+
+                return JsonConvert.SerializeObject(dataOwnerReport);
             }
 
             return null;
