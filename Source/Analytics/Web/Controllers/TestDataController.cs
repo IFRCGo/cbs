@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -37,23 +36,6 @@ namespace Web.Controllers
             }
             
             return caseReports.Select(x => x.Message).ToArray();
-        }
-
-        // GET api/TestData/dataowner
-        [HttpGet("dataowner")]
-        public ActionResult<IEnumerable<string>> GenerateTestDataOwner()
-        {
-            var dataOwners = JsonConvert.DeserializeObject<DataOwners[]>(System.IO.File.ReadAllText("TestData/DataOwners.json"));
-            var mongoDbHandler = new MongoDBHandler();
-
-            foreach (var dataOwner in dataOwners)
-            {
-                var dbDataOwnerEntry = new DBDataOwnerEntry(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
-
-                mongoDbHandler.insertDataOwnerRecordToDB(dbDataOwnerEntry);
-            }
-
-            return dataOwners.Select(x => x.Name).ToArray();
         }
 
         // GET api/TestData/delete

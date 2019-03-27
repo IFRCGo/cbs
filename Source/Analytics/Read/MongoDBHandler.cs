@@ -40,7 +40,6 @@ namespace Read
             //Use the MongoClient to access the server
             IMongoDatabase database = client.GetDatabase("read_model_database");
             database.DropCollection("CaseReport");
-            database.DropCollection("DataOwners");
         }
 
         public void InsertRecordToDB(DbCaseEntry dbEntry)
@@ -53,19 +52,6 @@ namespace Read
 
             //get mongodb collection
             var collection = database.GetCollection<DbCaseEntry>("CaseReport");
-            collection.InsertOneAsync(dbEntry);
-        }
-
-        public void insertDataOwnerRecordToDB(DBDataOwnerEntry dbEntry)
-        {
-            // Create a MongoClient object by using the connection string
-            var client = new MongoClient(connectionString);
-
-            //Use the MongoClient to access the server
-            IMongoDatabase database = client.GetDatabase("read_model_database");
-
-            //get mongodb collection
-            var collection = database.GetCollection<DBDataOwnerEntry>("DataOwners");
             collection.InsertOneAsync(dbEntry);
         }
     }
