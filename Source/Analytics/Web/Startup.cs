@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Web.Controllers;
 
 namespace Web
 {
@@ -26,6 +27,9 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors();
+            services.AddSwaggerDocument();
+            services.RegisterDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,8 +45,22 @@ namespace Web
                 app.UseHsts();
             }
 
+            app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
+
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+    }
+
+    public static class DependenciesExtensions
+    {
+        public static void RegisterDependencies(this IServiceCollection service)
+        {
+            service.AddSingleton<AnalysisService>();
+            service.AddSingleton<MongoDBHandler>();
         }
     }
 }
