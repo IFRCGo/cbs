@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { render } from 'react-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/analysisactions';
+import * as actions from '../actions/kpiactions';
 
-
+const ReportedHealthRisks = ({ list }) => (
+    <>
+        {list.map((data, index) => (
+            <li key={index}>{data.numberOfReports} {data.name}</li>
+        ))}
+    </>
+);
 
 class AnalyticsBanner extends Component {
 
@@ -14,6 +20,14 @@ class AnalyticsBanner extends Component {
 
     //TODO Implement component and diagrams
     render() {
+        let test = this.props.kpi.payload || {
+            caseReports:
+            {
+                totalNumberOfReports: 0,
+                reportedHealthRisks: []
+            }
+        }
+        console.log(test);
         return (
 
             <div className="bs-example" data-example-id="thumbnails-with-custom-content">
@@ -23,11 +37,9 @@ class AnalyticsBanner extends Component {
                         <div className="thumbnail">
                             <i className="fa fa-heartbeat fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
                             <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>72 Reports</h2>
+                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>{test.caseReports.totalNumberOfReports} Reports</h2>
                                 <ul>
-                                    <li>43 Ebola</li>
-                                    <li>12 Colera</li>
-                                    <li>2 Dan's food poisoning</li>
+                                    <ReportedHealthRisks list={test.caseReports.reportedHealthRisks} />
                                 </ul>
                             </div>
                         </div>
@@ -36,7 +48,7 @@ class AnalyticsBanner extends Component {
                         <div className="thumbnail">
                             <i className="fa fa-user fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
                             <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#009f00', textAlign: 'center' }}>123 Active Data Collectors</h2>
+                                <h2 style={{ color: '#009f00', textAlign: 'center' }}>45 Active Data Collectors</h2>
                                 <ul>
                                     <li>13 Inactive</li>
                                 </ul>
@@ -47,11 +59,11 @@ class AnalyticsBanner extends Component {
                         <div className="thumbnail">
                             <i className="fa fa-exclamation-triangle fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
                             <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>6 Alerts</h2>
+                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>3 Alerts</h2>
                                 <ul>
-                                    <li>2 Ebola</li>
-                                    <li>4 Colera</li>
-                                    <li>1 Dan's food poisoning</li>
+                                    <li>7 Measels</li>
+                                    <li>14 Cholera</li>
+                                    <li>6 Acute Watery Diarrhea</li>
                                 </ul>
                             </div>
                         </div>
@@ -62,7 +74,7 @@ class AnalyticsBanner extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchPostsWithRedux("Day", ["Total"], "Day")
+        this.props.fetchPostsWithRedux()
     }
 }
 
@@ -70,7 +82,7 @@ class AnalyticsBanner extends Component {
 
 function mapStateToProps(state) {
     return {
-        options: state.epicurveByDay
+        kpi: state.kpi
     }
 }
 

@@ -45,15 +45,16 @@ namespace Web.Controllers
 
         public IEnumerable<OutbreakReport> GetOutbreaks(DateTimeOffset @from, DateTimeOffset to)
         {
+
             var groups = _dbHandler.GetQueryable<CaseReport>()
                 .Where(x => x.Timestamp >= from && x.Timestamp < to)
+                .ToList()
                 .GroupBy(x => new
                 {
                     x.Latitude,
                     x.Longitude,
                     x.HealthRisk
-                })
-                .ToList();
+                });
 
             List<OutbreakReport> list = new List<OutbreakReport>();
             foreach (var group in groups)
@@ -64,7 +65,7 @@ namespace Web.Controllers
                     x.NumberOfMalesUnder5 +
                     x.NumberOfFemalesUnder5 +
                     x.NumberOfFemalesAged5AndOlder +
-                    x.NumberOfMalesAged5AndOlder);
+                    x.NumberOfMalesAged5AndOlder) / 10;
                 report.Popup = $"Something something {group.Key.HealthRisk}";
                 report.Color = "red";
 
