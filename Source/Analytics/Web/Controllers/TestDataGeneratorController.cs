@@ -44,7 +44,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        [HttpGet(Name = "CaseReports")]
+        [HttpGet("CaseReports")]
         public ActionResult<IEnumerable<string>> CaseReports()
         {
             var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("./TestData/CaseReports.json"));
@@ -70,8 +70,8 @@ namespace Web.Controllers
             return caseReports.Select(x => x.Message).ToArray();
         }
 
-
-        [HttpGet(Name = "HealthRisks")]
+        
+        [HttpGet("HealthRisks")]
         public ActionResult<IEnumerable<string>> HealthRisks()
         {
             var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("./TestData/CaseReports.json"));
@@ -96,6 +96,7 @@ namespace Web.Controllers
 
             return caseReports.Select(x => x.Message).ToArray();
         }
+        
 
         // GET api/TestData/dataowner
         [HttpGet("DataCollectors")]
