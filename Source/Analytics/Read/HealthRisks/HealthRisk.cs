@@ -1,5 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
+using Read.CaseReports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace Read.HealthRisks
             ReportsPerDay = new Dictionary<DateTimeOffset, int>();
         }
 
-        public void ReportReceived(DateTimeOffset dateTime)
+        public void ReportReceived(CaseReport caseReport)
         {
-            if (ReportsPerDay.Keys.Contains(dateTime))
-                ReportsPerDay[dateTime] = ReportsPerDay[dateTime] + 1;
+            var totalReportedCases = caseReport.NumberOfFemalesAged5AndOlder + caseReport.NumberOfFemalesUnder5 + 
+                caseReport.NumberOfMalesAged5AndOlder + caseReport.NumberOfMalesUnder5;
+            if (ReportsPerDay.Keys.Contains(caseReport.Timestamp))
+                ReportsPerDay[caseReport.Timestamp] = ReportsPerDay[caseReport.Timestamp] + totalReportedCases;
             else
-                ReportsPerDay[dateTime] = 1;
+                ReportsPerDay[caseReport.Timestamp] = totalReportedCases;
         }
     }
 }

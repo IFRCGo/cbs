@@ -21,7 +21,7 @@ namespace Read.CaseReports
 
             if (healthRisk != null)
             {
-                healthRisk.ReportReceived(caseReport.Timestamp);
+                healthRisk.ReportReceived(caseReport);
                 _dbHandler.Update(healthRisk);
             }
         }
