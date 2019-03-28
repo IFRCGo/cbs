@@ -18,12 +18,12 @@ namespace Read.Models.KPI
 
         public List<ReportedHealthRisk> GetRecordedHealthRisks()
         {
-            return CaseReports.ReportedHealthRisks.ToList();
+            return CaseReports.ReportedHealthRisks;
         }
 
         public void SetRecordedHealthRisks(List<ReportedHealthRisk> reportedHealthRisks)
         {
-            CaseReports.ReportedHealthRisks = reportedHealthRisks.ToArray();
+            CaseReports.ReportedHealthRisks = reportedHealthRisks;
         }
     }
 }

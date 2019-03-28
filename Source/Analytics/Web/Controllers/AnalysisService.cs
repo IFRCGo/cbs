@@ -29,7 +29,7 @@ namespace Web.Controllers
                 .Where(x => x.Timestamp >= from && x.Timestamp < to)
                 .ToList();
 
-            var groups = dbCaseEntry.GroupBy(x => TimeWindowGrouping(x.Timestamp.Date, timeAggregation));
+            var groups = dbCaseEntry.OrderBy(x => x.Timestamp.Date).GroupBy(x => TimeWindowGrouping(x.Timestamp.Date, timeAggregation));
 
             var report = new AnalysisReport
             {
@@ -39,18 +39,6 @@ namespace Web.Controllers
                 Categories = groups.Select(x => x.Key).ToArray(),
                 Series = GetSeries(groups, selectedSeries),
             };
-
-            //List<string> categories = new List<string>();
-            //List<int> series = new List<int>();
-            //foreach (var group in groups)
-            //{
-            //    //report.Categories = groups.Select(x => x.Key.ToShortDateString()).ToArray();
-            //    categories.Add(group.Key.ToShortDateString());
-            //    series.Add(group.Sum(x => x.NumberOfMalesUnder5));
-            //}
-
-            //report.Categories = categories.ToArray();
-            //report.Series = new[] {new Serie() {Name = "Males under 5", Data = series.ToArray()}};
 
             return report;
         }

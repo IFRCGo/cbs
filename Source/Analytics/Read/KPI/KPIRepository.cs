@@ -23,12 +23,26 @@ namespace Read.KPI
             var healthRisks = _mongoDBHandler.GetQueryable<HealthRisk>()
                 .Where(x => x.ReportsPerDay.Count != 0).ToList();
 
-            foreach(var healthRisk in healthRisks)
+            int total = 0;
+            foreach (var healthRisk in healthRisks)
             {
                 int numReports = healthRisk.ReportsPerDay.Where(x => x.Key >= from && x.Key < to).Sum(x => x.Value);
-                reportedHealthRisks.Add(new ReportedHealthRisk { Name = healthRisk.Name, NumberOfReports = numReports });
+                if (numReports == 0)
+                    continue;
+
+                total += numReports;
+                var reportedHealthRisk = reportedHealthRisks.SingleOrDefault(x => x.Name == healthRisk.Name);
+                if (reportedHealthRisk == null)
+                    reportedHealthRisks.Add(new ReportedHealthRisk
+                    {
+                        Name = healthRisk.Name,
+                        NumberOfReports = numReports
+                    });
+                else
+                    reportedHealthRisk.AddNumberOfReports(numReports);
             }
 
+            kpi.CaseReports.TotalNumberOfReports = total;
             kpi.SetRecordedHealthRisks(reportedHealthRisks);
 
             return kpi;
