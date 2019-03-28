@@ -19,6 +19,12 @@ namespace Read.DataCollectors
         public DateTimeOffset RegisteredAt { get; }
 
         public DataCollector(
+           Guid dataCollectorId)
+        {
+            DataCollectorId = dataCollectorId;
+        }
+
+        public DataCollector(
             Guid dataCollectorId,
             string fullName,
             string displayName,

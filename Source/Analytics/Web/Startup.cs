@@ -11,6 +11,7 @@ using Autofac.Extensions.DependencyInjection;
 using System;
 using Read.KPI;
 using Read.HealthRisks;
+using Read.DataCollectors;
 
 namespace Web
 {
@@ -66,6 +67,7 @@ namespace Web
             containerBuilder.RegisterType<KPIRepository>();
             containerBuilder.RegisterType<HealthRisksEventHandler>().As<IHealthRisksEventHandler>();
             containerBuilder.RegisterType<CaseReportsEventHandler>().As<ICaseReportsEventHandler>();
+            containerBuilder.RegisterType<DataCollectorEventHandler>().As<IDataCollectorsEventHandler>();
             containerBuilder.Populate(services);
 
             var container = containerBuilder.Build();
