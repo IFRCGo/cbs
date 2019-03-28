@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Read.CaseReports;
+using Web.Models;
+using Web.Model;
 
 namespace Web.Controllers
 {

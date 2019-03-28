@@ -1,8 +1,8 @@
 using System;
+using Web.Model;
 
-namespace Web.Controllers
+namespace Web.Models
 {
-    // Todo: Move to proper place
     public class AnalysisReport
     {
         public DateTimeOffset From { get; set; }

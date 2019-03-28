@@ -1,9 +1,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Web.Controllers
+namespace Web.Models
 {
-    // Todo: Move to proper place
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TimeAggregation
     {
