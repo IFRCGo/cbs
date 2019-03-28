@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.TestData;
 using Read;
-using CaseReport = Read.CaseReport;
+using Read.CaseReports;
 
 namespace Web.Controllers
 {
@@ -17,25 +17,28 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> GenerateTestData()
         {
-            var caseReports = JsonConvert.DeserializeObject<TestData.CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
+            var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
             var mongoDbHandler = new MongoDBHandler();
 
             foreach (var caseReport in caseReports)
             {
-                var dbCaseEntry = new CaseReport(caseReport.DataCollectorId,
+                var dbCaseEntry = new CaseReport(
+                    Guid.NewGuid(),
+                    caseReport.DataCollectorId,
+                    caseReport.HealthRisk,
+                    caseReport.Origin,
+                    caseReport.Message,
+                    caseReport.NumberOfMalesUnder5,
                     caseReport.NumberOfMalesAged5AndOlder,
                     caseReport.NumberOfFemalesUnder5,
                     caseReport.NumberOfFemalesAged5AndOlder,
-                    caseReport.NumberOfMalesUnder5,
-                    DateTimeOffset.UtcNow,
-                    caseReport.HealthRiskId,
-                    caseReport.Origin,
                     caseReport.Longitude,
-                    caseReport.Latitude);
+                    caseReport.Latitude,
+                    DateTimeOffset.UtcNow);
 
                 mongoDbHandler.InsertRecordToDb(dbCaseEntry);
             }
-            
+
             return caseReports.Select(x => x.Message).ToArray();
         }
 
@@ -61,7 +64,7 @@ namespace Web.Controllers
         public string DeleteTestData()
         {
             var mongoDbHandler = new MongoDBHandler();
-           // mongoDbHandler.DeleteAllRecordsFromDB();
+            // mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
         }
 

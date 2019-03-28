@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Read.CaseReports;
 
 namespace Web.Controllers
 {
@@ -74,7 +75,7 @@ namespace Web.Controllers
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
-        private Serie[] GetSeries(IEnumerable<IGrouping<string, DbCaseEntry>> groups, SelectedSeries[] selectedSeries)
+        private Serie[] GetSeries(IEnumerable<IGrouping<string, CaseReport>> groups, SelectedSeries[] selectedSeries)
         {
             Dictionary<SelectedSeries, List<int>> serieDict = new Dictionary<SelectedSeries, List<int>>();
 
@@ -102,7 +103,7 @@ namespace Web.Controllers
             return series.ToArray();
         }
 
-        private Func<DbCaseEntry, int> Selector(SelectedSeries selectedSeries)
+        private Func<CaseReport, int> Selector(SelectedSeries selectedSeries)
         {
             switch (selectedSeries)
             {

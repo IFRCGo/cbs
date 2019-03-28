@@ -27,7 +27,7 @@ namespace Read
         public IQueryable<T> GetQueryable<T>()
         {
             var collection = this.SetupDataBase().GetCollection<T>(typeof(T).Name);
-            return collection.AsQueryable().AsQueryable();
+            return collection.AsQueryable();
         }
 
         /**

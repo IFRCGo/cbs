@@ -2,6 +2,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Read.CaseReports;
 
 namespace Read.Test
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Read;
+using Read.CaseReports;
 
 namespace Web.TestData
 {
@@ -18,7 +19,7 @@ namespace Web.TestData
         public string GetDataOwner(Guid dataOwnerId)
         {
             // Fetch the data owner from db
-            var dbDataOwnerEntry = _dbHandler.GetDataOwnerQueryable().Where(x => x.DataOwnerId.Equals(dataOwnerId)).ToList();
+            var dbDataOwnerEntry = _dbHandler.GetQueryable<DataOwner>().Where(x => x.DataOwnerId.Equals(dataOwnerId)).ToList();
 
             foreach (var dataOwner in dbDataOwnerEntry)
             {
@@ -28,7 +29,7 @@ namespace Web.TestData
                 foreach (var dataCollector in dataOwner.DataCollectors)
                 {
                     
-                    var dbCaseEntries = _dbHandler.GetQueryable().Where(x => x.DataCollectorId.Equals(dataCollector)).ToList();
+                    var dbCaseEntries = _dbHandler.GetQueryable<CaseReport>().Where(x => x.DataCollectorId.Equals(dataCollector)).ToList();
                     var dataCollectorReport = new DataCollectorReport()
                     {
                         DataCollectorId = dataCollector,
