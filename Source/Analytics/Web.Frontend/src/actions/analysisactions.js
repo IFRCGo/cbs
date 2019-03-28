@@ -15,7 +15,7 @@ export function fetchPostsWithRedux(timeWindow, selectedColumns, name) {
 function fetchPosts(timeWindow, selectedColumns) {
   let columns = selectedColumns.map(column => "selectedSeries=" + column).join("&");
 
-  const URL = "https://localhost:5000/api/Analysis/2019-01-01/2020-01-01/" + timeWindow + "?" + columns;
+  const URL = "http://localhost:5000/api/Analysis/2019-01-01/2020-01-01/" + timeWindow + "?" + columns;
   return fetch(URL, { method: 'GET' })
     .then(response => Promise.all([response, response.json()]));
 }
