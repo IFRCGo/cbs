@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/analysisactions';
 import {
-    Map, 
-    Popup, 
+    Map,
+    Popup,
     CircleMarker,
     TileLayer,
 } from 'react-leaflet'
@@ -21,8 +21,8 @@ const OutbreakMarkers = ({ outbreaks }) => (
 );
 
 var outbreakCollection = [
-    { center: [51.51, -0.12], color: 'red', radius:50, popup:'Kolera' },
-    { center: [71.51, -30.12], color: 'yellow', radius:30, popup:'Ebola' }
+    { center: [51.51, -0.12], color: 'red', radius: 50, popup: 'Kolera' },
+    { center: [71.51, -30.12], color: 'yellow', radius: 30, popup: 'Ebola' }
 ];
 
 class MapWidget extends Component {
@@ -33,11 +33,11 @@ class MapWidget extends Component {
 
     //TODO Implement component and diagrams
     render() {
-        const position = [51.505, -0.09]
+        const position = [0, 0]
 
         return (
             <div>
-                <Map center={position} zoom={8}>
+                <Map center={position} zoom={1}>
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
