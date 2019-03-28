@@ -9,6 +9,7 @@ using Read;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using System;
+using Read.KPI;
 
 namespace Web
 {
@@ -61,6 +62,7 @@ namespace Web
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<AnalysisService>();
             containerBuilder.RegisterType<MongoDBHandler>();
+            containerBuilder.RegisterType<KPIRepository>();
             containerBuilder.RegisterType<CaseReportsEventHandler>().As<ICaseReportsEventHandler>();
             containerBuilder.Populate(services);
 

@@ -1,9 +1,10 @@
 using Read;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Read.CaseReports;
+using Read.Models;
+using Read.Model;
 
 namespace Web.Controllers
 {
@@ -59,20 +60,8 @@ namespace Web.Controllers
             {
                 return date.ToShortDateString();
             }
-
-            return $"Week {GetIso8601WeekOfYear(date)}";
-        }
-
-        public static int GetIso8601WeekOfYear(DateTime time)
-        {
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-
-            // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            
+            return $"Week {date.GetWeekNumber()}";
         }
 
         private Serie[] GetSeries(IEnumerable<IGrouping<string, CaseReport>> groups, SelectedSeries[] selectedSeries)

@@ -1,6 +1,5 @@
-namespace Web.Controllers
+namespace Read.Model
 {
-    // Todo: Move to proper place
     public class Serie
     {
         public string Name { get; set; }

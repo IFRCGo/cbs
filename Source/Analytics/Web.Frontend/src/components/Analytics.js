@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Epicurvebyweek from './Epicurvebyweek.js';
 import Epicurvebyday from './Epicurvebyday.js';
 import Epicurvebyweekdodgedbyage from './Epicurvebyweekdodgedbyage.js';
+import AnalyticsBanner from './AnalyticsBanner.js';
+import Map from './Map.js'
 import EpicurvebyweekGrid from './EpicurvebyweekGrid.js';
 import EpicurvebyweekGrid2 from './EpicurvebyweekGrid2.js';
 import EpicurvebyweekGrid3 from './EpicurvebyweekGrid3.js';
@@ -17,7 +19,6 @@ class Analytics extends Component {
 
     constructor(props) {
         super(props);
-
     }
 
     //TODO Implement component and diagrams
@@ -25,9 +26,10 @@ class Analytics extends Component {
         return (
             <article id="introduction">
                 <section className="container">
-                    <h3>Epicurves</h3>
                     <div>
                         {/* <Counter /> */}
+                        <AnalyticsBanner />
+                        <Map />
                         <Epicurvebyweek />
                         <Epicurvebyday />
                         <Epicurvebyweekdodgedbyage />

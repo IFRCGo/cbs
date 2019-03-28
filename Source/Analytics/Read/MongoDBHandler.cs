@@ -1,6 +1,4 @@
-using System;
 using System.Linq;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Read
@@ -8,8 +6,8 @@ namespace Read
     //TODO: ADD ERROR HANDLING & REPORTING BACK TO CALLER
     public class MongoDBHandler
     {
-        private string connectionString = "mongodb://localhost";
-        private string databaseName = "read_model_database";
+        private readonly string connectionString = "mongodb://localhost";
+        private readonly string databaseName = "read_model_database";
         private readonly IMongoDatabase _mongoDatabase;
 
         public MongoDBHandler()
@@ -45,13 +43,13 @@ namespace Read
         /*
          * Provides ability to update a database element T with a given ObjectID
          */
-        public void Update<T>(T record, ObjectId id) where T : BaseReadModel
+        public void Update<T>(T record) where T : BaseReadModel
         {
             //Get collection associated with this object
             var collection = _mongoDatabase.GetCollection<T>(typeof(T).Name);
 
             //Create filter to get element to update
-            var filter = Builders<T>.Filter.Eq("_id", id);
+            var filter = Builders<T>.Filter.Eq("_id", record.Id);
 
             //Replace DB element with updated element
             collection.ReplaceOne(filter, record, new UpdateOptions() { IsUpsert = false });
