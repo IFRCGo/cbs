@@ -1,7 +1,7 @@
+using Read.Model;
 using System;
-using Web.Model;
 
-namespace Web.Models
+namespace Read.Models
 {
     public class AnalysisReport
     {

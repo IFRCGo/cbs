@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Web.Models
+namespace Read.Models
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TimeAggregation

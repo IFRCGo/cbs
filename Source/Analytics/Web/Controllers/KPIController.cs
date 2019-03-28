@@ -1,18 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Read.KPI;
+using Read.Models.KPI;
+using System;
 
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KPIController : Controller
+    public class KPIController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly KPIRepository _kpiRepository;
+        public KPIController(KPIRepository kpiRepository)
         {
-            return View();
+            _kpiRepository = kpiRepository;
+        }
+
+        [HttpGet("{from}/{to}", Name = "GetKPIs")]
+        public ActionResult<KPIs> GetKPIs(DateTimeOffset from, DateTimeOffset to)
+        {
+            return _kpiRepository.Get(from, to);
         }
     }
 }

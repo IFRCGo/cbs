@@ -1,4 +1,4 @@
-namespace Web.Model
+namespace Read.Model
 {
     public class Serie
     {

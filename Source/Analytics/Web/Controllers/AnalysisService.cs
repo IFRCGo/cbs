@@ -1,11 +1,10 @@
 using Read;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Read.CaseReports;
-using Web.Models;
-using Web.Model;
+using Read.Models;
+using Read.Model;
 
 namespace Web.Controllers
 {

@@ -31,10 +31,12 @@ namespace Web.Controllers
         [HttpGet("{daysToGenerate}", Name= "All")]
         public ActionResult GenerateTestData(int daysToGenerate)
         {
-            var healthRisks = new Dictionary<Guid, string>();
-            healthRisks.Add(new Guid("c8fc3010-05d7-49b6-9ad0-97d83a3bfe59"), "Cholera");
-            healthRisks.Add(new Guid("1bbe74fa-a1f4-4204-9cc4-9e8190a1184f"), "Acute Watery Diarrhea");
-            healthRisks.Add(new Guid("8eabbdad-7f01-43ff-9ed0-bba1b00df051"), "Measels");
+            var healthRisks = new Dictionary<Guid, string>
+            {
+                { new Guid("c8fc3010-05d7-49b6-9ad0-97d83a3bfe59"), "Cholera" },
+                { new Guid("1bbe74fa-a1f4-4204-9cc4-9e8190a1184f"), "Acute Watery Diarrhea" },
+                { new Guid("8eabbdad-7f01-43ff-9ed0-bba1b00df051"), "Measels" }
+            };
 
             GenerateHealthRisks(healthRisks);
             GenerateCaseReports(daysToGenerate, healthRisks);
