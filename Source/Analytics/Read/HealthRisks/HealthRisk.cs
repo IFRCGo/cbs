@@ -1,3 +1,5 @@
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace Read.HealthRisks
         public Guid HealthRiskId { get; set; }
         public string Name { get; set; }
 
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<DateTimeOffset, int> ReportsPerDay { get; set; }
 
         public HealthRisk(Guid id, string name)
