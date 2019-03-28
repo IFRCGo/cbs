@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Read
 {
-    public class DataOwner
+    public class DataOwner : BaseReadModel
     {
         public DataOwner(Guid dataOwnerId, string name, double longitude, double latitude, List<Guid> dataCollectors)
         {
@@ -18,9 +18,6 @@ namespace Read
             DataCollectors = dataCollectors;
         }
         
-        [BsonElement("_id")]
-        public ObjectId Id { get; set; }
-
         public Guid DataOwnerId { get; set; }
         
         public string Name { get; set; }

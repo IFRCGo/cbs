@@ -47,7 +47,7 @@ namespace Web.Controllers
                         rnd.Next(-90, 90),
                         DateTimeOffset.UtcNow.AddDays(-dayOffset));
 
-                    _mongoDbHandler.InsertRecordToDb(dbCaseEntry);
+                    _mongoDbHandler.Insert(dbCaseEntry);
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Web.Controllers
                     caseReport.Latitude,
                     DateTimeOffset.UtcNow);
 
-                _mongoDbHandler.InsertRecordToDb(dbCaseEntry);
+                _mongoDbHandler.Insert(dbCaseEntry);
             }
 
             return caseReports.Select(x => x.Message).ToArray();
@@ -91,7 +91,7 @@ namespace Web.Controllers
             {
                 var dbDataOwnerEntry = new DataOwner(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
-                _mongoDbHandler.InsertRecordToDb(dbDataOwnerEntry);
+                _mongoDbHandler.Insert(dbDataOwnerEntry);
             }
 
             return dataOwners.Select(x => x.Name).ToArray();
