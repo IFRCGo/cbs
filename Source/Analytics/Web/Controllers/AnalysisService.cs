@@ -2,6 +2,7 @@ using Read;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Read.CaseReports;
 using Read.Models;
 using Read.Model;
@@ -40,6 +41,58 @@ namespace Web.Controllers
             };
 
             return report;
+        }
+
+        public IEnumerable<OutbreakReport> GetOutbreaks(DateTimeOffset @from, DateTimeOffset to)
+        {
+            var groups = _dbHandler.GetQueryable<CaseReport>()
+                .Where(x => x.Timestamp >= from && x.Timestamp < to)
+                .GroupBy(x => new
+                {
+                    x.Latitude,
+                    x.Longitude,
+                    x.HealthRisk
+                })
+                .ToList();
+
+            List<OutbreakReport> list = new List<OutbreakReport>();
+            foreach (var group in groups)
+            {
+                OutbreakReport report = new OutbreakReport();
+                report.Center = new[] {group.Key.Latitude, group.Key.Longitude};
+                report.Radius = group.Sum(x =>
+                    x.NumberOfMalesUnder5 +
+                    x.NumberOfFemalesUnder5 +
+                    x.NumberOfFemalesAged5AndOlder +
+                    x.NumberOfMalesAged5AndOlder);
+                report.Popup = $"Something something {group.Key.HealthRisk}";
+                report.Color = "red";
+
+                list.Add(report);
+            }
+
+
+
+            //{
+            //    new OutbreakReport()
+            //    {
+            //        Center = new[] {40.0, 40.0}, Color = "red", Radius = 45, Popup = "45 cases of Ebola"
+            //    },
+            //    new OutbreakReport()
+            //    {
+            //        Center = new[] {50.0, 30.0}, Color = "yellow", Radius = 23, Popup = "23 cases of Cholera"
+            //    },
+            //    new OutbreakReport()
+            //    {
+            //        Center = new[] {60.0, 20.0}, Color = "orange", Radius = 11, Popup = "11 cases of Measles"
+            //    },
+            //    new OutbreakReport()
+            //    {
+            //        Center = new[] {10.0, -30.0}, Color = "blue", Radius = 70, Popup = "70 cases of Acute watery diarrhea"
+            //    }
+            //};
+
+            return list;
         }
 
         private string TimeWindowGrouping(DateTime date, TimeAggregation timeAggregation)
@@ -115,5 +168,16 @@ namespace Web.Controllers
             
 
         }
+    }
+
+    public class OutbreakReport
+    {
+        public double[] Center { get; set; }
+
+        public string Color { get; set; }
+
+        public int Radius { get; set; }
+
+        public string Popup { get; set; }
     }
 }
