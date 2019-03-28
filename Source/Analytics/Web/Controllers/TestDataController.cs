@@ -13,6 +13,44 @@ namespace Web.Controllers
     [ApiController]
     public class TestDataController : ControllerBase
     {
+        [HttpGet("{daysToGenerate}", Name="GenerateTestData")]
+        public ActionResult GenerateTestData(int daysToGenerate)
+        {
+            var mongoDbHandler = new MongoDBHandler();
+
+            var maxNumberOfReportsDaily = 10;
+            var maxNumberOfMalesUnderFive = 40;
+            var maxNumberOfMalesFiveOrAbove = 100;
+            var maxNumberOfFemalesUnderFive = 40;
+            var maxNumberOfFemalesFiveOrAbove = 100;
+
+            Random rnd = new Random();
+            for (int dayOffset = daysToGenerate; dayOffset >= 0; dayOffset--)
+            {
+                var numberOfDailyReports = rnd.Next(maxNumberOfReportsDaily);
+                for (int j = 0; j < numberOfDailyReports; j++)
+                {
+                    var dbCaseEntry = new CaseReport(
+                        Guid.NewGuid(),
+                        Guid.NewGuid(),
+                        Guid.NewGuid(),
+                        "phoneNumber",
+                        "test message",
+                        rnd.Next(maxNumberOfMalesUnderFive),
+                        rnd.Next(maxNumberOfMalesFiveOrAbove),
+                        rnd.Next(maxNumberOfFemalesUnderFive),
+                        rnd.Next(maxNumberOfFemalesFiveOrAbove),
+                        rnd.Next(-180, 180),
+                        rnd.Next(-90, 90),
+                        DateTimeOffset.UtcNow.AddDays(-dayOffset));
+
+                    mongoDbHandler.InsertRecordToDb(dbCaseEntry);
+                }
+            }
+
+            return Ok();
+        }
+
         // GET api/TestData
         [HttpGet]
         public ActionResult<IEnumerable<string>> GenerateTestData()
