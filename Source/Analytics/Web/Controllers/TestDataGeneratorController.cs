@@ -166,8 +166,8 @@ namespace Web.Controllers
                         rnd.Next(maxNumberOfMalesFiveOrAbove),
                         rnd.Next(maxNumberOfFemalesUnderFive),
                         rnd.Next(maxNumberOfFemalesFiveOrAbove),
-                        gpsLocations.ElementAt(gpsRandom).Item1,
                         gpsLocations.ElementAt(gpsRandom).Item2,
+                        gpsLocations.ElementAt(gpsRandom).Item1,
                         DateTimeOffset.UtcNow.AddDays(-dayOffset));
 
                     _caseReportsEventHandler.Handle(caseReport);
