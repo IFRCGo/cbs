@@ -14,11 +14,11 @@ class Epicurvebyweek extends Component {
 
   //TODO Implement component and diagrams
   render() {
-    console.log(this.props)
+    var options = Object.assign({}, this.props.options, {title: {text: "Epicurve by Week"}})
     return (
       <HighchartsReact
         highcharts={Highcharts}
-        options={ this.props.options }
+        options={ options }
       />
     );
   }

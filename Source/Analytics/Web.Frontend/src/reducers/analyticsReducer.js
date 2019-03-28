@@ -2,9 +2,6 @@ const baseState = {
   chart: {
     type: 'column'
   },
-  title: {
-    text: 'Epicurve by day'
-  },
   subtitle: {
     text: 'Source: CSB'
   },
