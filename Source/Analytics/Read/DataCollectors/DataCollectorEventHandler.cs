@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Read.DataCollectors
 {
     public class DataCollectorEventHandler : IDataCollectorsEventHandler
@@ -12,9 +8,9 @@ namespace Read.DataCollectors
         {
             _dbHandler = dbHandler;
         }
-        public void Handle(DataCollector @event)
+        public void Handle(DataCollector dataCollector)
         {
-            throw new NotImplementedException();
+            _dbHandler.Insert(dataCollector);
         }
     }
 }

@@ -17,10 +17,13 @@ namespace Read.CaseReports
             _dbHandler.Insert(caseReport);
 
             var healthRisks = _dbHandler.GetQueryable<HealthRisk>();
-            var healthRisk = healthRisks.First(h => h.HealthRiskId == caseReport.HealthRisk);
+            var healthRisk = healthRisks.FirstOrDefault(h => h.HealthRiskId == caseReport.HealthRisk);
 
-            healthRisk.ReportReceived(caseReport.Timestamp);
-            _dbHandler.Update(healthRisk);
+            if (healthRisk != null)
+            {
+                healthRisk.ReportReceived(caseReport.Timestamp);
+                _dbHandler.Update(healthRisk);
+            }
         }
     }
 }

@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Read.Models.KPI
 {
     public class DataCollectorKPI
     {
+        public int TotalNumberOfDataCollectors { get; set; }
+        public int ActiveDataCollectors { get; set; }
     }
 }

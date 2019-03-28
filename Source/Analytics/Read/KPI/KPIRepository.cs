@@ -1,9 +1,9 @@
+using Read.CaseReports;
+using Read.DataCollectors;
 using Read.HealthRisks;
 using Read.Models.KPI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Read.KPI
 {
@@ -18,6 +18,15 @@ namespace Read.KPI
         public KPIs Get(DateTimeOffset from, DateTimeOffset to)
         {
             var kpi = new KPIs();
+            PopulateCaseReportKPIs(kpi, from, to);
+            PopulateDataCollectorKPIs(kpi, from, to);
+
+            return kpi;
+
+        }
+
+        private void PopulateCaseReportKPIs(KPIs kpi, DateTimeOffset from, DateTimeOffset to)
+        {
             var reportedHealthRisks = kpi.GetRecordedHealthRisks();
 
             var healthRisks = _mongoDBHandler.GetQueryable<HealthRisk>()
@@ -44,9 +53,17 @@ namespace Read.KPI
 
             kpi.CaseReports.TotalNumberOfReports = total;
             kpi.SetRecordedHealthRisks(reportedHealthRisks);
+        }
 
-            return kpi;
+        private void PopulateDataCollectorKPIs(KPIs kpi, DateTimeOffset from, DateTimeOffset to)
+        {
+            kpi.DataCollectors.TotalNumberOfDataCollectors = _mongoDBHandler.GetQueryable<DataCollector>().Count();
 
+            kpi.DataCollectors.ActiveDataCollectors = _mongoDBHandler.GetQueryable<CaseReport>()
+                .Where(x => x.Timestamp >= from && x.Timestamp < to)
+                .Select(x => x.DataCollectorId)
+                .Distinct()
+                .Count();
         }
     }
 }
