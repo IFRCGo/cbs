@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { render } from 'react-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/analysisactions';
+import * as actions from '../actions/mapactions';
 import {
     Map,
     Popup,
@@ -33,28 +33,29 @@ class MapWidget extends Component {
 
     //TODO Implement component and diagrams
     render() {
-        const position = [0, 0]
-
+        const position = [48.8, 2.3]
+        let test = this.props.outbreaks.payload || []
         return (
             <div>
-                <Map center={position} zoom={1}>
+                <Map center={position} zoom={6}>
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                     />
-                    <OutbreakMarkers outbreaks={outbreakCollection} />
+                    <OutbreakMarkers outbreaks={test} />
                 </Map>
             </div>
         );
     }
 
     componentDidMount() {
+        this.props.fetchPostsWithRedux()
     }
 }
 
 function mapStateToProps(state) {
     return {
-        options: state.epicurveByDay
+        outbreaks: state.map
     }
 }
 
