@@ -11,13 +11,16 @@ namespace Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestDataController : ControllerBase
+    public class TestDataGeneratorController : ControllerBase
     {
+        private readonly MongoDBHandler _mongoDbHandler;
+        public TestDataGeneratorController(MongoDBHandler mongoDbHandler){
+            _mongoDbHandler = mongoDbHandler;
+        }
+
         [HttpGet("{daysToGenerate}", Name="GenerateTestData")]
         public ActionResult GenerateTestData(int daysToGenerate)
         {
-            var mongoDbHandler = new MongoDBHandler();
-
             var maxNumberOfReportsDaily = 10;
             var maxNumberOfMalesUnderFive = 40;
             var maxNumberOfMalesFiveOrAbove = 100;
@@ -44,7 +47,7 @@ namespace Web.Controllers
                         rnd.Next(-90, 90),
                         DateTimeOffset.UtcNow.AddDays(-dayOffset));
 
-                    mongoDbHandler.InsertRecordToDb(dbCaseEntry);
+                    _mongoDbHandler.InsertRecordToDb(dbCaseEntry);
                 }
             }
 
@@ -55,9 +58,7 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> GenerateTestData()
         {
-            var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("TestData/CaseReports.json"));
-            var mongoDbHandler = new MongoDBHandler();
-
+            var caseReports = JsonConvert.DeserializeObject<CaseReport[]>(System.IO.File.ReadAllText("./TestData/CaseReports.json"));
             foreach (var caseReport in caseReports)
             {
                 var dbCaseEntry = new CaseReport(
@@ -74,7 +75,7 @@ namespace Web.Controllers
                     caseReport.Latitude,
                     DateTimeOffset.UtcNow);
 
-                mongoDbHandler.InsertRecordToDb(dbCaseEntry);
+                _mongoDbHandler.InsertRecordToDb(dbCaseEntry);
             }
 
             return caseReports.Select(x => x.Message).ToArray();
@@ -85,13 +86,12 @@ namespace Web.Controllers
         public ActionResult<IEnumerable<string>> GenerateTestDataOwner()
         {
             var dataOwners = JsonConvert.DeserializeObject<DataOwners[]>(System.IO.File.ReadAllText("TestData/DataOwners.json"));
-            var mongoDbHandler = new MongoDBHandler();
 
             foreach (var dataOwner in dataOwners)
             {
                 var dbDataOwnerEntry = new DataOwner(dataOwner.DataOwnerId, dataOwner.Name, dataOwner.Longitude, dataOwner.Latitude, dataOwner.DataCollectors);
 
-                mongoDbHandler.InsertRecordToDb(dbDataOwnerEntry);
+                _mongoDbHandler.InsertRecordToDb(dbDataOwnerEntry);
             }
 
             return dataOwners.Select(x => x.Name).ToArray();
@@ -101,8 +101,7 @@ namespace Web.Controllers
         [HttpGet("delete")]
         public string DeleteTestData()
         {
-            var mongoDbHandler = new MongoDBHandler();
-            // mongoDbHandler.DeleteAllRecordsFromDB();
+            // _mongoDbHandler.DeleteAllRecordsFromDB();
             return "test";
         }
 
@@ -110,8 +109,7 @@ namespace Web.Controllers
         [HttpGet("guid")]
         public string FetchTestDataOwner()
         {
-            var mongoDbHandler = new MongoDBHandler();
-            var testDataService = new TestDataService(mongoDbHandler);
+            var testDataService = new TestDataService(_mongoDbHandler);
             var guid = new Guid("a987c35c-1c7a-4bd3-a449-a071ffeb71e7");
             return testDataService.GetDataOwner(guid);
         }
