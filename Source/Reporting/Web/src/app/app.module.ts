@@ -29,21 +29,11 @@ import { SharedModule} from './shared/shared.module';
 
 
 const routes: Routes = [
-    //{
-    //    path: '',
-    //    redirectTo: 'datacollectors',
-    //    pathMatch: 'full'
-    //}
     {
       path: '',
-      redirectTo: 'case-report',
+      redirectTo: 'case-reports',
       pathMatch: 'full'
-    }, 
-    {
-      path: 'reporting',
-      redirectTo: 'case-report',
-      pathMatch: 'full'
-    },
+    }
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ console.log('PRODUCTION:',environment.production);*/
 
 const routes: Routes = [
   {
-    path: 'case-report',
+    path: 'case-reports',
     children: [
       {
         path: '',
