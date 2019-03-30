@@ -56,8 +56,7 @@ namespace Core.GatewayEndpoints
             
             if (!result.Success)
             {
-                // TODO: Write more usefull information here
-                throw new Exception("Handling message from SMSEagle failed");
+                throw new ReceiveMessageFromSMSGatewayFailed(command, result);
             }
 
             return Ok();

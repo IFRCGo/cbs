@@ -7,5 +7,6 @@ namespace Domain.SMS.Gateways
     {
         public SmsGatewayId SmsGatewayId {get; set;}
         public Name Name {get; set;}
+        public ApiKey ApiKey { get; set; }
     }
 }

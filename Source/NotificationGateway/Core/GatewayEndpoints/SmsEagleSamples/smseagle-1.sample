@@ -1,0 +1,7 @@
+POST /notifications/smseagle/incoming HTTP/1.0
+Host: localhost:8080
+Connection: close
+Content-Length: 126
+Content-Type: application/x-www-form-urlencoded
+
+sender=123456789&timestamp=20190330194502&text=This+is+an+incoming+sms&msgid=431&oid=&modemno=1&apikey=ThereWillBeAnApiKeyHere
