@@ -35,7 +35,6 @@
         "navigation": "file:../../Navigation/Web.Angular",
         "ngx-bootstrap": "^2.0.0-rc.0",
         "ngx-toastr": "^6.4.1-beta.0",
-        "oidc-client": "^1.4.1",
         "rxjs": "^5.5.6",
         "zone.js": "^0.8.20"
     },

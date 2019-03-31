@@ -11,8 +11,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
-import { AuthenticationService } from 'navigation/authentication.service';
-import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 
 import { ModalModule } from 'ngx-bootstrap';
@@ -27,6 +25,7 @@ import { CaseReportModule } from './Reporting/reporting.module';
 
 import { SharedModule} from './shared/shared.module';
 
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
     {
@@ -36,10 +35,12 @@ const routes: Routes = [
     }
 ];
 
+// Note: This base URL is set due to navigation being a dependency pulled into this
+NavTopBarComponent.apiBaseUrl = environment.api;
+
 @NgModule({
   declarations: [
     AppComponent,
-    IfLoggedInComponent,
     NavTopBarComponent
   ],
   imports: [
@@ -63,7 +64,6 @@ const routes: Routes = [
     CaseReportModule
   ],
   providers: [
-    AuthenticationService,
     CommandCoordinator,
     QueryCoordinator,
     DataCollectorExportService

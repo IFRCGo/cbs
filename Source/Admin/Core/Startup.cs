@@ -40,6 +40,8 @@ namespace Core
                     c.SwaggerDoc("v2", new Info { Title = "Admin API", Version = "v2" });
                 });
             }
+
+            services.AddSecurity(_hostingEnvironment);
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -75,6 +77,7 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
+            app.UseSecurity(env);
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
