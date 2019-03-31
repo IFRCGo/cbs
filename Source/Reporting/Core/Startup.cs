@@ -64,13 +64,18 @@ namespace Core
                     c.SwaggerEndpoint("/"+_swaggerPrefix+"swagger/v3/swagger.json", "Reporting API V3");
                     c.RoutePrefix = _swaggerPrefix+"swagger";
                 });
+
+                app.UseCors(builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials());
             }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc();
-
 
             app.UseDolittle();
             app.RunAsSinglePageApplication();
