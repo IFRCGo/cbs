@@ -10,14 +10,14 @@ import { HealthRiskModule } from './HealthRisks/healthRisks.module';
 
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
-import { AuthenticationService } from 'navigation/authentication.service';
-import { IfLoggedInComponent } from 'navigation/if-logged-in.component';
 import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
+
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
     {
@@ -33,12 +33,14 @@ const routes: Routes = [
 
 ];
 
+// Note: This base URL is set due to navigation being a dependency pulled into this
+NavTopBarComponent.apiBaseUrl = environment.api;
+
 const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     declarations: [
         AppComponent,
-        IfLoggedInComponent,
         NavTopBarComponent
     ],
     imports: [
@@ -53,7 +55,6 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
         ToastrModule.forRoot()
     ],
     providers: [
-        AuthenticationService,
         CommandCoordinator,
         QueryCoordinator
     ],

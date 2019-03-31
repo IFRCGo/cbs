@@ -19,7 +19,6 @@ namespace Core
         readonly string _swaggerPrefix;
         readonly string _swaggerBasePath;
 
-
         public Startup(IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             _hostingEnvironment = hostingEnvironment;
@@ -37,11 +36,12 @@ namespace Core
                     c.SwaggerDoc("v3", new Info { Title = "Reporting API", Version = "v3" });
                 });
             }
+            
+            services.AddSecurity(_hostingEnvironment);
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
         }
-
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
@@ -53,16 +53,18 @@ namespace Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(c => {
-                    c.PreSerializeFilters.Add((doc, req) => {
-                        doc.BasePath = "/"+_swaggerBasePath;
+                app.UseSwagger(c =>
+                {
+                    c.PreSerializeFilters.Add((doc, req) =>
+                    {
+                        doc.BasePath = "/" + _swaggerBasePath;
                     });
-                    c.RouteTemplate = _swaggerPrefix+"swagger/{documentName}/swagger.json";
+                    c.RouteTemplate = _swaggerPrefix + "swagger/{documentName}/swagger.json";
                 });
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/"+_swaggerPrefix+"swagger/v3/swagger.json", "Reporting API V3");
-                    c.RoutePrefix = _swaggerPrefix+"swagger";
+                    c.SwaggerEndpoint("/" + _swaggerPrefix + "swagger/v3/swagger.json", "Reporting API V3");
+                    c.RoutePrefix = _swaggerPrefix + "swagger";
                 });
 
                 app.UseCors(builder => builder
@@ -71,6 +73,7 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
+            app.UseSecurity(env);
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
