@@ -19,15 +19,18 @@ namespace Core.GatewayEndpoints
         readonly ITenantMapper _mapper;
         readonly IExecutionContextManager _contextManager;
         readonly ICommandCoordinator _commandCoordinator;
+        readonly ILogger _logger;
 
         public SmsEagleController(
             ITenantMapper mapper,
             IExecutionContextManager contextManager,
-            ICommandCoordinator commandCoordinator)
+            ICommandCoordinator commandCoordinator,
+            ILogger logger)
         {
             _mapper = mapper;
             _contextManager = contextManager;
             _commandCoordinator = commandCoordinator;
+            _logger = logger;
         }
 
         public bool ShouldBypassSecurity(HttpContext httpContext)
@@ -38,6 +41,8 @@ namespace Core.GatewayEndpoints
         [HttpPost("incoming")]
         public IActionResult IncomingSMS([FromForm] SMS sms)
         {
+            _logger.Information($"Processing incoming SMSeagle message: '{sms.Sender}' '{sms.Text}' '{sms.ApiKey}'");
+
             var tenantId = _mapper.GetTenantFor(sms.ApiKey);
             
             if (tenantId == TenantId.Unknown)
