@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Core.Security;
 using Dolittle.Commands;
 using Dolittle.Commands.Coordination;
 using Dolittle.DependencyInversion;
@@ -7,12 +8,13 @@ using Dolittle.Execution;
 using Dolittle.Logging;
 using Dolittle.Tenancy;
 using Domain.SMS.Gateways;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core.GatewayEndpoints
 {
     [Route("/smseagle/")]
-    public class SmsEagleController : ControllerBase
+    public class SmsEagleController : ControllerBase, ICanBypassSecurity
     {
         readonly ITenantMapper _mapper;
         readonly IExecutionContextManager _contextManager;
@@ -26,6 +28,11 @@ namespace Core.GatewayEndpoints
             _mapper = mapper;
             _contextManager = contextManager;
             _commandCoordinator = commandCoordinator;
+        }
+
+        public bool ShouldBypassSecurity(HttpContext httpContext)
+        {
+            return httpContext.Request.Path.Equals("/notifications/smseagle/incoming") || httpContext.Request.Path.Equals("/smseagle/incoming");
         }
 
         [HttpPost("incoming")]

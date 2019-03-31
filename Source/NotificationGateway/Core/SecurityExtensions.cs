@@ -3,6 +3,7 @@ using System.IO;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Security;
 using Dolittle.DependencyInversion;
 using Dolittle.Security;
 using Microsoft.AspNetCore.Authentication;
@@ -94,13 +95,15 @@ namespace Core
         {
             if (!env.IsDevelopment())
             {
+                var bypassManager = app.ApplicationServices.GetService<ISecurityBypassingRequestManager>();
+
                 app.UseAuthentication();
                 app.Use(async(httpContext, next) =>
                 {
                     try
                     {
                         var authenticated = httpContext.User?.Identity?.IsAuthenticated ?? false;
-                        if (!authenticated)
+                        if (!authenticated && !bypassManager.ShouldBypassSecurity(httpContext))
                         {
                             await httpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties
                             {
