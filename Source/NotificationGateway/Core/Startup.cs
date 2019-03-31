@@ -31,6 +31,8 @@ namespace Core
                     c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
                 });
             }
+
+            services.AddSecurity(_hostingEnvironment, "/notifications");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -44,6 +46,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/notifications");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -58,6 +62,10 @@ namespace Core
                     _.AllowAnyMethod();
                     _.AllowAnyOrigin();
                 });
+            }
+            else
+            {
+                app.UsePathBase("/notifications");
             }
 
             app.UseDefaultFiles();

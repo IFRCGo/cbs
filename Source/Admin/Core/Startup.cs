@@ -41,7 +41,7 @@ namespace Core
                 });
             }
 
-            services.AddSecurity(_hostingEnvironment);
+            services.AddSecurity(_hostingEnvironment, "/admin");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -55,6 +55,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/admin");
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,7 +79,10 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
-            app.UseSecurity(env);
+            else
+            {
+                app.UsePathBase("/admin");
+            }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

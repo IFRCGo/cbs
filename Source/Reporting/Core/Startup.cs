@@ -37,7 +37,7 @@ namespace Core
                 });
             }
             
-            services.AddSecurity(_hostingEnvironment);
+            services.AddSecurity(_hostingEnvironment, "/reporting");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -50,6 +50,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/reporting");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,7 +75,10 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
-            app.UseSecurity(env);
+            else
+            {
+                app.UsePathBase("/reporting");
+            }
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

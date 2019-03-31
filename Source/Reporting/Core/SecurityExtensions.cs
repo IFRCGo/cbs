@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -42,7 +44,7 @@ namespace Core
 
     public static class SecurityExtensions
     {
-        public static void AddSecurity(this IServiceCollection services, IHostingEnvironment env)
+        public static void AddSecurity(this IServiceCollection services, IHostingEnvironment env, PathString pathBase)
         {
             if (!env.IsDevelopment())
             {
@@ -60,11 +62,14 @@ namespace Core
                     {
                         options.Cookie.HttpOnly = false;
                         options.Cookie.SameSite = SameSiteMode.None;
+                        options.DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(".cookies"));
                     })
                     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                     {
                         options.Authority = authority;
                         options.ClientId = clientId;
+                        options.CallbackPath = pathBase+"/signin-oidc";
+                        options.SignedOutCallbackPath = pathBase+"/signedout-oidc";
                         options.UseTokenLifetime = true;
                         options.TokenValidationParameters = new TokenValidationParameters { NameClaimType = "name" };
                         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -85,7 +90,7 @@ namespace Core
                     });
             }
         }
-        public static void UseSecurity(this IApplicationBuilder app, IHostingEnvironment env)
+        public static void UseSecurity(this IApplicationBuilder app, IHostingEnvironment env, PathString pathBase)
         {
             if (!env.IsDevelopment())
             {
@@ -99,7 +104,7 @@ namespace Core
                         {
                             await httpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties
                             {
-                                RedirectUri = "/"
+                                RedirectUri = pathBase+"/"
                             });
                         }
                         else
@@ -117,7 +122,7 @@ namespace Core
             }
 
             var routeBuilder = new RouteBuilder(app);
-            routeBuilder.MapGet("identity", async(httpContext) =>
+            routeBuilder.MapGet(pathBase.Value.TrimStart('/')+"/identity", async(httpContext) =>
             {
                 var user = httpContext.User?.Identity?.Name ?? "[Not Logged In]";
                 await httpContext.Response.WriteAsync(user);
