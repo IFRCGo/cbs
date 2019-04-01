@@ -43,7 +43,7 @@ namespace Policies.Reporting.Notifications
         [EventProcessor("acb536fe-38ae-46c9-b655-a8839d05abb7")]
        public void Process(TextMessageReceived notification)
        {
-            var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.NewGuid(), 1, new Dictionary<string, object>()));
+           var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.Empty, 0, new Dictionary<string, object>()));
            var parsingResult = _textMessageParser.Parse(notification);
 
            //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
