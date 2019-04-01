@@ -16,4 +16,8 @@ export class NavTopBarComponent implements OnInit {
     ngOnInit() {
         fetch(`${NavTopBarComponent.apiBaseUrl}/identity`).then(async response => this.name = await response.text());
     }
+
+    logout() {
+        window.location.href = `${NavTopBarComponent.apiBaseUrl}/signout`;
+    }
 }
