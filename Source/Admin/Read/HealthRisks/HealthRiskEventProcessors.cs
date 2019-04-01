@@ -25,6 +25,7 @@ namespace Read.HealthRisks
             {
                 Id = @event.Id,
                 Name = @event.Name,
+                HealthRiskNumber = @event.HealthRiskNumber,
                 CaseDefinition = @event.CaseDefinition
             };
             _repository.Insert(healthRisk);

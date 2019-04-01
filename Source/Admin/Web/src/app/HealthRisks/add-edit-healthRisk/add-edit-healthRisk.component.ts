@@ -44,7 +44,7 @@ export class AddEditHealthRiskComponent implements OnInit {
            var query = new HealthRiskById();
            query.healthRiskId = id;
            
-           this.queryCoordinator.handle(query)
+           this.queryCoordinator.execute(query)
            .then(response => {
                if (response.success) {
                  this.risk = response.items[0];

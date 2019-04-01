@@ -75,10 +75,8 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
-            else
-            {
-                app.UsePathBase("/reporting");
-            }
+            
+            app.UsePathBase("/reporting");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

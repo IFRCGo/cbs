@@ -23,7 +23,7 @@ namespace Read.Reporting.HealthRisks
         {
             var healthRisk = new HealthRisk(@event.Id)
             {
-                ReadableId = @event.ReadableId,
+                ReadableId = @event.HealthRiskNumber,
                 Name = @event.Name
             };
 

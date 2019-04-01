@@ -30,7 +30,7 @@ export class HealthRiskListComponent implements OnInit {
             .then(response => {
                 if (response.success) {
                     this.risks = response.items as HealthRisk[];
-                    this.sortRisks('id')
+                    this.sortRisks('healthRiskNumber')
                 } else {
                     console.error(response);
                 }

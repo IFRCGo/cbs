@@ -121,7 +121,7 @@ export class Edit implements OnInit {
         this.changePreferredLanguageCommand.preferredLanguage = this.dataCollector.preferredLanguage;
     }
     private initPhoneNumbers() {
-        this.phoneNumberString = this.dataCollector.phoneNumbers.map(number => number.value).join(', ');
+        this.phoneNumberString = this.dataCollector.phoneNumbers.join(', ');
     }
     private initVillage() {
         this.changeVillageCommand.dataCollectorId = this.dataCollector.id;
@@ -261,7 +261,7 @@ export class Edit implements OnInit {
         }
     }
     private handleAddPhoneNumbers() {
-        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.value.trim());
+        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const addednumbers = [];
         newNumbers.forEach(number => {
@@ -308,7 +308,7 @@ export class Edit implements OnInit {
     }
 
     private handleRemovePhoneNumbers() {
-        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.value.trim());
+        const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const removednumbers = [];
         prevNumbers.forEach(number => {

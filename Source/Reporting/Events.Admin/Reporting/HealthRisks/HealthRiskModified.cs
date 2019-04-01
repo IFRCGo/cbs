@@ -9,7 +9,7 @@ using Dolittle.Events;
 
 namespace Events.Admin.Reporting.HealthRisks
 {
-    [Artifact("8ba78d0d-1944-463e-bcad-11a037adf743")]
+    [Artifact("ab9f13e6-f68b-4683-96fe-13434fd34516")]
     public class HealthRiskModified : IEvent
     {
         public Guid Id { get; }

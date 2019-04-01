@@ -79,10 +79,8 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
-            else
-            {
-                app.UsePathBase("/admin");
-            }
+            
+            app.UsePathBase("/admin");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

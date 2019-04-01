@@ -25,7 +25,7 @@ namespace Read.Management.DataCollectors
         public string Region { get; set; }
         public string Village { get; set; }
 
-        public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
+        public IList<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
         public Guid DataVerifier { get; set; }
 

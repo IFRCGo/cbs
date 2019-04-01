@@ -10,7 +10,7 @@
     
     <thead>
         <tr>
-            <th (click)="sortRisks('id')"> ID
+            <th (click)="sortRisks('healthRiskNumber')"> ID
                 <span [ngClass]="!sortReverse?'fa fa-caret-down':'fa fa-caret-up'"></span>
             </th>
             <th>Health risk</th>
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let risk of risks">
-            <td>{{ risk.readableId }}</td>
+            <td>{{ risk.healthRiskNumber }}</td>
             <td>{{ risk.name }}</td>
             <td>{{ risk.caseDefinition }}</td>
             <td>

@@ -63,10 +63,8 @@ namespace Core
                     _.AllowAnyOrigin();
                 });
             }
-            else
-            {
-                app.UsePathBase("/notifications");
-            }
+            
+            app.UsePathBase("/notifications");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

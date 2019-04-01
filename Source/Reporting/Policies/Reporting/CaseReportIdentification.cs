@@ -32,6 +32,7 @@ namespace Policies.Reporting
             _dataCollectors = dataCollectors;
         }
         
+        /* FIXME: This doesn't work. It needs to set a commandcontext to apply new events. The logic is also a bit spread out and complicated, so it would be worth another pass as well.
         [EventProcessor("477d2b8e-41cb-4746-9870-e7a8b2012997")]
         public void Process(PhoneNumberAddedToDataCollector @event, EventSourceId dataCollectorId)
         {
@@ -74,5 +75,6 @@ namespace Policies.Reporting
                 caseReport.ReportFromUnknownDataCollectorIdentiefied(dataCollectorId);
             }
         }
+        */
     }
 }
