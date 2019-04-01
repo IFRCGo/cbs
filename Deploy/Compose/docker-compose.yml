@@ -17,10 +17,11 @@ services:
       - "./config/admin-event-horizons.json:/CBS/Core/.dolittle/event-horizons.json"
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - OPENID_AUTHORITY
       - OPENID_CLIENT
-    #logging:
-    #  driver: "none"
+    logging:
+      driver: "none"
     networks:
       - "cbs-network"
 
@@ -36,6 +37,7 @@ services:
       - "./config/reporting-event-horizons.json:/CBS/Core/.dolittle/event-horizons.json"
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - OPENID_AUTHORITY
       - OPENID_CLIENT
     #logging:
@@ -56,6 +58,7 @@ services:
       - "./config/apikeyToTenant.json:/CBS/Core/apikeyToTenant.json"
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - SMSEAGLE_APIKEY_TENANT_PATH=/CBS/Core/apikeyToTenant.json
       - OPENID_AUTHORITY
       - OPENID_CLIENT
