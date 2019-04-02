@@ -56,3 +56,5 @@ Thumbs.db
 Build/tools/
 .buildsettings
 .Rproj.user
+
+.cookies
