@@ -1,11 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Read.Models.KPI
 {
     public class AlertKPI
     {
+        public int TotalNumberOfAlerts { get; set; }
+        public List<AlertEscalated> AlertsPerHealthRisk { get; set; }
+
+        public AlertKPI()
+        {
+            AlertsPerHealthRisk = new List<AlertEscalated>();
+        }
     }
 }

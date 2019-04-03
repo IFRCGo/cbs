@@ -4,9 +4,16 @@ namespace Read.Alerts
 {
     public class AlertEventHandler : IAlertEventHandler
     {
-        public void Handle(Alert @event)
+        private readonly MongoDBHandler _dbHandler;
+
+        public AlertEventHandler(MongoDBHandler dbHandler)
         {
-            throw new NotImplementedException();
+            _dbHandler = dbHandler;
+        }
+
+        public void Handle(Alert alert)
+        {
+            _dbHandler.Insert(alert);
         }
     }
 }
