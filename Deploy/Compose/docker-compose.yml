@@ -6,7 +6,7 @@ volumes:
 services:
   # Bounded Contexts
   cbs-admin:
-    image: redcrossredcrescent/cbs-admin:quickfix
+    image: redcrossredcrescent/cbs-admin:latest
     build:
       context: "../../"
       dockerfile: "Source/Admin/Dockerfile"
