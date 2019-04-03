@@ -46,7 +46,7 @@ services:
       - "cbs-network"
 
   cbs-notificationgateway:
-    image: redcrossredcrescent/cbs-notificationgateway:quickfix
+    image: redcrossredcrescent/cbs-notificationgateway:latest
     build:
       context: "../../"
       dockerfile: "Source/NotificationGateway/Dockerfile"
