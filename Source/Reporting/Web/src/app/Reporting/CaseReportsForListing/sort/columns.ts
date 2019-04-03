@@ -38,6 +38,9 @@ export const CaseReportColumns: Array<Column> = [
     new SortableColumn(
         'DataCollectorDisplayName', 'Data Collector', true
     ),
+    new SortableColumn(
+        'origin', 'Phone Number', true
+    ),
     new Column(
         'region', 'Region'
     ),
