@@ -1,21 +1,18 @@
-<cbs-if-logged-in>
-   
-    <cbs-nav-top-bar></cbs-nav-top-bar>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a [routerLink]="['projects/list']">Projects</a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['healthrisk']">Health risks</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<cbs-nav-top-bar></cbs-nav-top-bar>
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        <router-outlet></router-outlet>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a [routerLink]="['projects/list']">Projects</a>
+                </li>
+                <li>
+                    <a [routerLink]="['healthrisk']">Health risks</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</cbs-if-logged-in>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

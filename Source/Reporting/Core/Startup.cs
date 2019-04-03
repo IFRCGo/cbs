@@ -19,7 +19,6 @@ namespace Core
         readonly string _swaggerPrefix;
         readonly string _swaggerBasePath;
 
-
         public Startup(IHostingEnvironment hostingEnvironment, ILoggerFactory loggerFactory)
         {
             _hostingEnvironment = hostingEnvironment;
@@ -37,11 +36,12 @@ namespace Core
                     c.SwaggerDoc("v3", new Info { Title = "Reporting API", Version = "v3" });
                 });
             }
+            
+            services.AddSecurity(_hostingEnvironment, "/reporting");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
         }
-
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
@@ -50,27 +50,38 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/reporting");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(c => {
-                    c.PreSerializeFilters.Add((doc, req) => {
-                        doc.BasePath = "/"+_swaggerBasePath;
+                app.UseSwagger(c =>
+                {
+                    c.PreSerializeFilters.Add((doc, req) =>
+                    {
+                        doc.BasePath = "/" + _swaggerBasePath;
                     });
-                    c.RouteTemplate = _swaggerPrefix+"swagger/{documentName}/swagger.json";
+                    c.RouteTemplate = _swaggerPrefix + "swagger/{documentName}/swagger.json";
                 });
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/"+_swaggerPrefix+"swagger/v3/swagger.json", "Reporting API V3");
-                    c.RoutePrefix = _swaggerPrefix+"swagger";
+                    c.SwaggerEndpoint("/" + _swaggerPrefix + "swagger/v3/swagger.json", "Reporting API V3");
+                    c.RoutePrefix = _swaggerPrefix + "swagger";
                 });
+
+                app.UseCors(builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowCredentials());
             }
+            
+            app.UsePathBase("/reporting");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc();
-
 
             app.UseDolittle();
             app.RunAsSinglePageApplication();

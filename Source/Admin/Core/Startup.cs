@@ -40,6 +40,8 @@ namespace Core
                     c.SwaggerDoc("v2", new Info { Title = "Admin API", Version = "v2" });
                 });
             }
+
+            services.AddSecurity(_hostingEnvironment, "/admin");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -53,6 +55,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/admin");
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -75,6 +79,8 @@ namespace Core
                     .AllowAnyOrigin()
                     .AllowCredentials());
             }
+            
+            app.UsePathBase("/admin");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

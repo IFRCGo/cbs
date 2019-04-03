@@ -10,6 +10,10 @@ namespace Domain.SMS.Gateways
             RuleFor(_ => _.Name)
                 .NotEmpty()
                 .WithMessage("Please specify a gateway name");
+            
+            RuleFor(_ => _.ApiKey)
+                .NotEmpty()
+                .WithMessage("ApiKey must not be empty");
         }
     }
 }

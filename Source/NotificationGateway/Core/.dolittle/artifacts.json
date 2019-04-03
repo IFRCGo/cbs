@@ -40,6 +40,10 @@
       "fae555c2-d136-45d8-a317-5375843831c2": {
         "generation": 1,
         "type": "Domain.SMS.Gateways.RegisterSmsGateway, Domain"
+      },
+      "ee8263ee-c90d-4c5d-8a62-5337cd89096f": {
+        "generation": 1,
+        "type": "Domain.SMS.Gateways.ReceiveMessageFromSMSGateway, Domain"
       }
     },
     "events": {
