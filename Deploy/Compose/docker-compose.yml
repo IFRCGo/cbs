@@ -26,7 +26,7 @@ services:
       - "cbs-network"
 
   cbs-reporting:
-    image: redcrossredcrescent/cbs-reporting:quickfix
+    image: redcrossredcrescent/cbs-reporting:latest
     build:
       context: "../../"
       dockerfile: "Source/Reporting/Dockerfile"
