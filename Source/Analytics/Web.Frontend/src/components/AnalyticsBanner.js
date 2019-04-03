@@ -1,93 +1,123 @@
-import React, { Component } from "react";
-import { render } from 'react-dom'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions/kpiactions';
-
-const ReportedHealthRisks = ({ list }) => (
-    <>
-        {list.map((data, index) => (
-            <li key={index}>{data.numberOfReports} {data.name}</li>
-        ))}
-    </>
-);
+import React, { Component, useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/kpiactions";
+import { Heading, UnorderedList, ListItem, Button } from "evergreen-ui";
+import { DatePicker } from "./DatePicker";
+import { updateRange } from "../actions/analysisactions";
 
 class AnalyticsBanner extends Component {
-
     constructor(props) {
         super(props);
+
+        this.state = { showDatePicker: false, from: null, to: null };
     }
 
-    //TODO Implement component and diagrams
     render() {
-        let test = this.props.kpi.payload || {
-            caseReports:
-            {
+        const test = this.props.kpi.payload || {
+            caseReports: {
                 totalNumberOfReports: 0,
                 reportedHealthRisks: []
             }
-        }
-        console.log(test);
+        };
         return (
+            <>
+                <div className="analytics--header">
+                    <Heading paddingBottom="20px" size={700}>
+                        Overview
+                    </Heading>
+                    <Button
+                        iconBefore="calendar"
+                        onClick={() =>
+                            this.setState({
+                                showDatePicker: !this.state.showDatePicker
+                            })
+                        }
+                    >
+                        Choose date
+                    </Button>
+                    {this.state.showDatePicker && (
+                        <DatePicker
+                            numberOfReports={2}
+                            onRangeSelected={range => {
+                                console.log(range);
+                                this.setState({
+                                    ...range,
+                                    showDatePicker: false
+                                });
 
-            <div className="bs-example" data-example-id="thumbnails-with-custom-content">
-                <h3>Overview (last 7 days)</h3>
-                <div className="row">
-                    <div className="col-sm-6 col-md-4">
-                        <div className="thumbnail">
-                            <i className="fa fa-heartbeat fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
-                            <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>{test.caseReports.totalNumberOfReports} Reports</h2>
-                                <ul>
-                                    <ReportedHealthRisks list={test.caseReports.reportedHealthRisks} />
-                                </ul>
-                            </div>
+                                this.props.updateRange("Day", range);
+                            }}
+                        />
+                    )}
+                </div>
+
+                <div className="analytics--headerPanelContainer">
+                    <div className="analytics--headerPanel">
+                        <i className=" fa fa-heartbeat fa-5x analytics--headerPanelIcon" />
+
+                        <Heading color="#9f0000" size={800} paddingTop={"20px"}>
+                            {test.caseReports.totalNumberOfReports} Reports
+                        </Heading>
+                        <div className="analytics--listContainer">
+                            <UnorderedList size={500}>
+                                {test.caseReports.reportedHealthRisks.map(
+                                    (data, index) => (
+                                        <ListItem key={index}>
+                                            {data.numberOfReports} {data.name}
+                                        </ListItem>
+                                    )
+                                )}
+                            </UnorderedList>
                         </div>
                     </div>
-                    <div className="col-sm-6 col-md-4">
-                        <div className="thumbnail">
-                            <i className="fa fa-user fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
-                            <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#009f00', textAlign: 'center' }}>45 Active Data Collectors</h2>
-                                <ul>
-                                    <li>13 Inactive</li>
-                                </ul>
-                            </div>
+                    <div className="analytics--headerPanel">
+                        <i className="analytics--headerPanelIcon fa fa-user fa-5x" />
+
+                        <Heading color="#009f00" size={800} paddingTop={"20px"}>
+                            45 Active Data Collectors
+                        </Heading>
+                        <div className="analytics--listContainer">
+                            <UnorderedList size={500}>
+                                <ListItem>13 Inactive</ListItem>
+                            </UnorderedList>
                         </div>
                     </div>
-                    <div className="col-sm-6 col-md-4">
-                        <div className="thumbnail">
-                            <i className="fa fa-exclamation-triangle fa-5x" style={{ padding: '20px', display: 'block', backgroundColor: '#eee', textAlign: 'center' }}></i>
-                            <div className="caption" style={{ height: '200px' }}>
-                                <h2 style={{ color: '#9f0000', textAlign: 'center' }}>3 Alerts</h2>
-                                <ul>
-                                    <li>7 Measels</li>
-                                    <li>14 Cholera</li>
-                                    <li>6 Acute Watery Diarrhea</li>
-                                </ul>
-                            </div>
+                    <div className="analytics--headerPanel">
+                        <i className="analytics--headerPanelIcon fa fa-exclamation-triangle fa-5x " />
+
+                        <Heading color="#9f0000" size={800} paddingTop={"20px"}>
+                            3 Alerts
+                        </Heading>
+                        <div className="analytics--listContainer">
+                            <UnorderedList size={500}>
+                                <ListItem>7 Measels</ListItem>
+                                <ListItem>14 Cholera</ListItem>
+                                <ListItem>6 Acute Watery Diarrhea</ListItem>
+                            </UnorderedList>
                         </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     componentDidMount() {
-        this.props.fetchPostsWithRedux()
+        this.props.fetchPostsWithRedux();
     }
 }
-
-
 
 function mapStateToProps(state) {
     return {
         kpi: state.kpi
-    }
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch)
+    return bindActionCreators({ ...actions, updateRange }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnalyticsBanner);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AnalyticsBanner);

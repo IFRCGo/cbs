@@ -1,43 +1,56 @@
+export function updateRange(name, range) {
+    return dispatch =>
+        dispatch({ type: "UPDATE_RANGE", payload: range, name: name });
+}
+
 export function fetchPostsWithRedux(timeWindow, selectedColumns, name) {
-  return (dispatch) => {
-    dispatch(fetchPostsRequest(name));
-    return fetchPosts(timeWindow, selectedColumns).then(([response, json]) => {
-      if (response.status === 200) {
-        dispatch(fetchPostsSuccess(json, name))
-      }
-      else {
-        dispatch(fetchPostsError(name))
-      }
-    })
-  }
+    return dispatch => {
+        dispatch(fetchPostsRequest(name));
+        return fetchPosts(timeWindow, selectedColumns).then(
+            ([response, json]) => {
+                if (response.status === 200) {
+                    dispatch(fetchPostsSuccess(json, name));
+                } else {
+                    dispatch(fetchPostsError(name));
+                }
+            }
+        );
+    };
 }
 
 function fetchPosts(timeWindow, selectedColumns) {
-  let columns = selectedColumns.map(column => "selectedSeries=" + column).join("&");
+    let columns = selectedColumns
+        .map(column => "selectedSeries=" + column)
+        .join("&");
 
-  const URL = "http://localhost:5000/api/Analysis/2019-01-01/2020-01-01/" + timeWindow + "?" + columns;
-  return fetch(URL, { method: 'GET' })
-    .then(response => Promise.all([response, response.json()]));
+    const URL =
+        "http://localhost:5000/api/Analysis/2019-01-01/2020-01-01/" +
+        timeWindow +
+        "?" +
+        columns;
+    return fetch(URL, { method: "GET" }).then(response =>
+        Promise.all([response, response.json()])
+    );
 }
 
 function fetchPostsRequest(name) {
-  return {
-    type: "FETCH_REQUEST",
-    name: name
-  }
+    return {
+        type: "FETCH_REQUEST",
+        name: name
+    };
 }
 
 function fetchPostsSuccess(payload, name) {
-  return {
-    type: "FETCH_SUCCESS",
-    payload,
-    name: name
-  }
+    return {
+        type: "FETCH_SUCCESS",
+        payload,
+        name: name
+    };
 }
 
 function fetchPostsError(name) {
-  return {
-    type: "FETCH_ERROR",
-    name: name
-  }
+    return {
+        type: "FETCH_ERROR",
+        name: name
+    };
 }
