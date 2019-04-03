@@ -394,9 +394,10 @@ class AddDataCollector extends React.Component {
                                     <Button
                                         marginLeft="20px"
                                         appearance="primary"
-                                        onClick={() =>
-                                            this.props.saveNewDataCollector()
-                                        }
+                                        onClick={() => {
+                                            this.props.saveNewDataCollector();
+                                            this.props.history.push(`/users`);
+                                        }}
                                     >
                                         Save
                                     </Button>
