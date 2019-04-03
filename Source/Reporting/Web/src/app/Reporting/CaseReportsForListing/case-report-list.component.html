@@ -81,15 +81,16 @@
 
             <ng-container *ngIf="isSuccess(caseReport.status) || isError(caseReport.status)">
                 <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
+                <td>{{caseReport.origin || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
                 <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
             </ng-container>
 
             <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
-                <td colspan="4">Origin: {{caseReport.origin || "Unknown"}}</td>
+                <td colspan="5">Origin: {{caseReport.origin || "Unknown"}}</td>
             </ng-container>
-            
+
             <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
                 <td>{{caseReport.healthRisk}}</td>
                 <td>{{caseReport.numberOfMalesUnder5}}</td>
