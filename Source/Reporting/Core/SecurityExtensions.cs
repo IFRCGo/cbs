@@ -68,19 +68,19 @@ namespace Core
                     {
                         options.Authority = authority;
                         options.ClientId = clientId;
-                        options.CallbackPath = pathBase+"/signin-oidc";
-                        options.SignedOutCallbackPath = pathBase+"/signedout-oidc";
+                        options.CallbackPath = pathBase + "/signin-oidc";
+                        options.SignedOutCallbackPath = pathBase + "/signedout-oidc";
                         options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                         options.SignedOutRedirectUri = "https://cbsrc.org/";
                         options.UseTokenLifetime = true;
                         options.TokenValidationParameters = new TokenValidationParameters { NameClaimType = "name" };
                         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                        options.Events.OnAuthorizationCodeReceived = async(context) =>
+                        options.Events.OnAuthorizationCodeReceived = async (context) =>
                         {
                             await Task.CompletedTask;
                         };
 
-                        options.Events.OnRedirectToIdentityProvider = async(context) =>
+                        options.Events.OnRedirectToIdentityProvider = async (context) =>
                         {
                             context.ProtocolMessage.Scope = OpenIdConnectScope.OpenIdProfile;
                             context.ProtocolMessage.ResponseType = OpenIdConnectResponseType.IdToken;
@@ -97,7 +97,7 @@ namespace Core
             if (!env.IsDevelopment())
             {
                 app.UseAuthentication();
-                app.Use(async(httpContext, next) =>
+                app.Use(async (httpContext, next) =>
                 {
                     try
                     {
@@ -106,7 +106,7 @@ namespace Core
                         {
                             await httpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties
                             {
-                                RedirectUri = pathBase+"/"
+                                RedirectUri = pathBase + "/"
                             });
                         }
                         else
@@ -124,19 +124,17 @@ namespace Core
             }
 
             var routeBuilder = new RouteBuilder(app);
-            var basePath = string.Empty; 
-            if( !env.IsDevelopment() ) 
-            {
-                basePath = pathBase.Value.TrimStart('/');
-                if( !basePath.EndsWith('/')) basePath = basePath+'/';
-            }
-            routeBuilder.MapGet($"{basePath}signout", async(httpContext) =>
+            var basePath = string.Empty;
+            basePath = pathBase.Value.TrimStart('/');
+            if (!basePath.EndsWith('/')) basePath = basePath + '/';
+
+            routeBuilder.MapGet($"{basePath}signout", async (httpContext) =>
             {
                 await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 await httpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
             });
 
-            routeBuilder.MapGet($"{basePath}identity", async(httpContext) =>
+            routeBuilder.MapGet($"{basePath}identity", async (httpContext) =>
             {
                 var user = httpContext.User?.Identity?.Name ?? "[Not Logged In]";
                 await httpContext.Response.WriteAsync(user);
