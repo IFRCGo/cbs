@@ -1,0 +1,85 @@
+/**
+ * Main entry Sass file
+ */
+
+$inputCompontentWidth: 280px;
+
+.userManagement--container {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+.userManagement--center {
+    width: 800px;
+}
+
+.userManagement--headerContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.comboboxWithLabel--container {
+    width: $inputCompontentWidth;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+}
+
+.coordinateInputWithLabel--container {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.phoneNumber--container {
+    width: $inputCompontentWidth;
+    display: flex;
+    flex-direction: column;
+}
+
+.phoneNumber--countryCode {
+    width: 60px;
+}
+
+.addDataCollector--center {
+    display: flex;
+    justify-content: center;
+}
+
+.addDataCollector--heading {
+    display: flex;
+}
+
+.addDataCollector--container {
+    padding: 50px;
+}
+
+.addDataCollector--grid {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addDataCollector--gridElement {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.addDataCollector--coordinate {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.mapWithLabel--container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+}
