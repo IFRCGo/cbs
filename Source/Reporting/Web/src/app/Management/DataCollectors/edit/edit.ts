@@ -93,7 +93,7 @@ export class Edit implements OnInit {
         this.handleRemovePhoneNumbers();
 
         if (this.userHasChanged) {
-            this.router.navigate(['']);
+            this.router.navigate(['/datacollectors']);
             this.toastr.info('Reload page to see changes');
         } else {
             this.toastr.warning('No changes has been made');

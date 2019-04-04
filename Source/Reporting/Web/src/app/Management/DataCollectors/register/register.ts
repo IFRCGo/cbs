@@ -56,7 +56,7 @@ export class Register {
                 if (response.success)  {
                     this.toastr.success('Successfully registered a new data collector!');
                     this.handleChangeVillage();
-                    this.router.navigate(['']);
+                    this.router.navigate(['/datacollectors']);
                 } else {
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not register a new data collector because of security issues');
