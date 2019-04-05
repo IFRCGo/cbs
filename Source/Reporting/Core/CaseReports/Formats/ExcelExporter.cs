@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Concepts.DataCollectors;
+using Concepts.HealthRisks;
 using OfficeOpenXml;
 using Read.Reporting.CaseReportsForListing;
 
@@ -49,7 +50,7 @@ namespace Core.CaseReports.Formats
             worksheet.Cells[row,  1].Value = report.Timestamp.DateTime;
             worksheet.Cells[row, 13].Value = report.Message;
 
-            if (report.DataCollectorId != null)
+            if (report.DataCollectorId != DataCollectorId.NotSet)
             {
                 worksheet.Cells[row,  3].Value = report.DataCollectorDisplayName;
                 worksheet.Cells[row,  4].Value = report.DataCollectorRegion;
@@ -61,7 +62,7 @@ namespace Core.CaseReports.Formats
                 worksheet.Cells[row,  3].Value = "Origin: "+report.Origin;
             }
 
-            if (report.HealthRiskId != null)
+            if (report.HealthRiskId != HealthRiskId.NotSet)
             {
                 worksheet.Cells[row,  2].Value = "Success";
                 worksheet.Cells[row,  7].Value = report.HealthRisk;
