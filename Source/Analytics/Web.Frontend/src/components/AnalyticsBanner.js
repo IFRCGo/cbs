@@ -17,7 +17,7 @@ class AnalyticsBanner extends Component {
             from: null,
             to: null,
             caseReports: { reportedHealthRisks: [] },
-            alerts: {},
+            alerts: { totalNumberOfAlerts: 0, alertsPerHealthRisk: [] },
             dataCollectors: {
                 activeDataCollectors: 0,
                 totalNumberOfDataCollectors: 0,
@@ -32,7 +32,7 @@ class AnalyticsBanner extends Component {
         const from = fromOrDefault(this.props.range.from);
         const to = toOrDefault(this.props.range.to);
 
-        const url = `${BASE_URL}${formatDate(from)}/${formatDate(to)}/`;
+        const url = `${BASE_URL}KPI/${formatDate(from)}/${formatDate(to)}/`;
 
         fetch(url, { method: "GET" })
             .then(response => response.json())
@@ -137,13 +137,18 @@ class AnalyticsBanner extends Component {
                         <i className="analytics--headerPanelIcon fa fa-exclamation-triangle fa-5x " />
 
                         <Heading color="#9f0000" size={800} paddingTop={"20px"}>
-                            3 Alerts
+                            {`${this.state.alerts.totalNumberOfAlerts} Alerts`}
                         </Heading>
                         <div className="analytics--listContainer">
                             <UnorderedList size={500}>
-                                <ListItem>7 Measels</ListItem>
-                                <ListItem>14 Cholera</ListItem>
-                                <ListItem>6 Acute Watery Diarrhea</ListItem>
+                                {this.state.alerts.alertsPerHealthRisk.map(
+                                    (data, index) => (
+                                        <ListItem key={index}>
+                                            {data.numberOfReports}{" "}
+                                            {data.healthRisk}
+                                        </ListItem>
+                                    )
+                                )}
                             </UnorderedList>
                         </div>
                     </div>
