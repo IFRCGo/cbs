@@ -8,6 +8,7 @@ using Read;
 using Read.CaseReports;
 using Read.HealthRisks;
 using Read.DataCollectors;
+using Read.Alerts;
 
 namespace Web.Controllers
 {
@@ -18,17 +19,20 @@ namespace Web.Controllers
         private readonly ICaseReportsEventHandler _caseReportsEventHandler;
         private readonly IHealthRisksEventHandler _healthRisksEventHandler;
         private readonly IDataCollectorsEventHandler _dataCollectorsEventHandler;
+        private readonly IAlertEventHandler _alertEventHandler;
         private readonly MongoDBHandler _mongoDbHandler;
 
         public TestDataGeneratorController(ICaseReportsEventHandler caseReportsEventHandler,
             IHealthRisksEventHandler healthRisksEventHandler,
             IDataCollectorsEventHandler dataCollectorsEventHandler,
+            IAlertEventHandler alertEventHandler,
             MongoDBHandler mongoDbHandler)
 
         {
             _caseReportsEventHandler = caseReportsEventHandler;
             _healthRisksEventHandler = healthRisksEventHandler;
             _dataCollectorsEventHandler = dataCollectorsEventHandler;
+            _alertEventHandler = alertEventHandler;
             _mongoDbHandler = mongoDbHandler;
         }
 
@@ -48,6 +52,7 @@ namespace Web.Controllers
             GenerateHealthRisks(healthRisks);
             GenerateDataCollectors(dataCollectorIds);
             GenerateCaseReports(daysToGenerate, dataCollectorIds, gpsCoordinates);
+            GenerateAlerts(healthRisks);
 
             return Ok();
         }
@@ -137,6 +142,15 @@ namespace Web.Controllers
             {
                 var healthRisk = new HealthRisk(keyValuePair.Key, keyValuePair.Value);
                 _healthRisksEventHandler.Handle(healthRisk);
+            }
+        }
+
+        private void GenerateAlerts(Dictionary<Guid, string> healthRisks)
+        {
+            foreach(var keyValuePair in healthRisks)
+            {
+                var alert = new Alert();
+                _alertEventHandler.Handle(alert);
             }
         }
 

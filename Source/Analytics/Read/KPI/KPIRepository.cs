@@ -1,3 +1,4 @@
+using Read.Alerts;
 using Read.CaseReports;
 using Read.DataCollectors;
 using Read.HealthRisks;
@@ -20,6 +21,7 @@ namespace Read.KPI
             var kpi = new KPIs();
             PopulateCaseReportKPIs(kpi, from, to);
             PopulateDataCollectorKPIs(kpi, from, to);
+            PopulateAlertKPIs(kpi, from, to);
 
             return kpi;
 
@@ -64,6 +66,16 @@ namespace Read.KPI
                 .Select(x => x.DataCollectorId)
                 .Distinct()
                 .Count();
+        }
+
+        private void PopulateAlertKPIs(KPIs kpi, DateTimeOffset from, DateTimeOffset to)
+        {
+            kpi.Alerts.TotalNumberOfAlerts = _mongoDBHandler.GetQueryable<Alert>().Count();
+
+            //TODO: When we know what the Alerts event contains, we will get this from there. 
+            for(int i = 0; i<kpi.Alerts.TotalNumberOfAlerts; i++){
+                kpi.Alerts.AlertsPerHealthRisk.Add(new AlertEscalated("SomeHealthRisk", 1));
+            }
         }
     }
 }
