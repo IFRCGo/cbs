@@ -1,7 +1,7 @@
 import React from "react";
 import DayPicker, { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import { Text, Button } from "evergreen-ui";
+import { Text } from "evergreen-ui";
 
 export class DatePicker extends React.Component {
     constructor(props) {
@@ -41,10 +41,6 @@ export class DatePicker extends React.Component {
                     <Text>
                         {!from && !to && "Please select the first day."}
                         {from && !to && "Please select the last day."}
-                        {/* {from &&
-                            to &&
-                            `Selected from ${from.toLocaleDateString()} to
-                        ${to.toLocaleDateString()}`}{" "} */}
                     </Text>
                 </div>
                 <DayPicker

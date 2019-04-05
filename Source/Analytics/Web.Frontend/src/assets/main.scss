@@ -57,6 +57,15 @@
     padding-top: 20px;
 }
 
+.analytics--twoDiagrams {
+    display: flex;
+    justify-content: space-between;
+}
+
+.analytics--insideDiagram {
+    flex: 0 0 50%;
+}
+
 // Styles for date picker
 .Selectable {
     font-size: 12px;
@@ -77,3 +86,12 @@
     border-top-right-radius: 50% !important;
     border-bottom-right-radius: 50% !important;
 }
+
+// highcharts-chart::ng-deep {
+//     .highcharts-container,
+//     .highcharts-container svg {
+//         flex: 1 1 auto;
+//         width: 100% !important;
+//         height: 100% !important;
+//     }
+// }
