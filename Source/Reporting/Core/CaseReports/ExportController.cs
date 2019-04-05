@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Collections.Generic;
 using Concepts;
-using Core.Utility;
 using Concepts.HealthRisks;
 using Concepts.DataCollectors;
 using Dolittle.Types;
