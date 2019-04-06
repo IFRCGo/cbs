@@ -66,6 +66,14 @@
     flex: 0 0 50%;
 }
 
+.analytics--loadingContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 // Styles for date picker
 .Selectable {
     font-size: 12px;

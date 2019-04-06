@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Map, Popup, CircleMarker, TileLayer } from "react-leaflet";
 import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
+import { getJson } from "../utils/request";
+import { Alert, Button } from "evergreen-ui";
 
 import { BASE_URL } from "./Analytics";
 
@@ -26,7 +28,7 @@ class MapWidget extends Component {
 
         this.state = {
             outbreaks: [],
-            isLoading: true,
+            isLoading: false,
             isError: false
         };
     }
@@ -48,12 +50,11 @@ class MapWidget extends Component {
         const from = fromOrDefault(this.props.range.from);
         const to = toOrDefault(this.props.range.to);
 
-        const url = `${BASE_URL}Analysis/Outbreaks/${formatDate(
+        this.url = `${BASE_URL}Analysis/Outbreaks/${formatDate(
             from
         )}/${formatDate(to)}/`;
 
-        fetch(url, { method: "GET" })
-            .then(response => response.json())
+        getJson(this.url)
             .then(json =>
                 this.setState({
                     outbreaks: json,
@@ -66,16 +67,36 @@ class MapWidget extends Component {
 
     render() {
         const position = [48.8, 2.3];
+        if (this.state.isError) {
+            return (
+                <div
+                    className="analytics--loadingContainer"
+                    style={{ height: "500px" }}
+                >
+                    <Alert
+                        intent="danger"
+                        title="We could not the reach the backend"
+                    >
+                        {`Url: ${this.url}`}
+                    </Alert>
+                    <Button
+                        marginTop={"20px"}
+                        iconBefore="repeat"
+                        onClick={() => this.fetchData()}
+                    >
+                        Retry
+                    </Button>
+                </div>
+            );
+        }
         return (
-            <div>
-                <Map center={position} zoom={6}>
-                    <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                    />
-                    <OutbreakMarkers outbreaks={this.state.outbreaks} />
-                </Map>
-            </div>
+            <Map center={position} zoom={6}>
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                />
+                <OutbreakMarkers outbreaks={this.state.outbreaks} />
+            </Map>
         );
     }
 }

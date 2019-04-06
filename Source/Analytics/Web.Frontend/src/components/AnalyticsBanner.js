@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Heading, UnorderedList, ListItem, Button } from "evergreen-ui";
+import {
+    Heading,
+    UnorderedList,
+    ListItem,
+    Button,
+    Spinner,
+    Alert,
+    Text
+} from "evergreen-ui";
 import { DatePicker } from "./DatePicker";
 import { updateRange } from "../actions/analysisactions";
 import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
-
 import { BASE_URL } from "./Analytics";
+import { getJson } from "../utils/request";
 
 class AnalyticsBanner extends Component {
     constructor(props) {
@@ -32,10 +40,11 @@ class AnalyticsBanner extends Component {
         const from = fromOrDefault(this.props.range.from);
         const to = toOrDefault(this.props.range.to);
 
-        const url = `${BASE_URL}KPI/${formatDate(from)}/${formatDate(to)}/`;
+        this.url = `${BASE_URL}KPI/${formatDate(from)}/${formatDate(to)}/`;
 
-        fetch(url, { method: "GET" })
-            .then(response => response.json())
+        this.setState({ isLoading: true });
+
+        getJson(this.url)
             .then(json =>
                 this.setState({
                     alerts: json.alerts,
@@ -45,7 +54,12 @@ class AnalyticsBanner extends Component {
                     isError: false
                 })
             )
-            .catch(_ => this.setState({ isLoading: false, isError: true }));
+            .catch(_ =>
+                this.setState({
+                    isLoading: false,
+                    isError: true
+                })
+            );
     }
 
     componentDidMount() {
@@ -62,45 +76,92 @@ class AnalyticsBanner extends Component {
     }
 
     render() {
-        return (
-            <>
-                <div className="analytics--header">
-                    <Heading paddingBottom="20px" size={700}>
-                        {`Overview from ${formatDate(
+        const header = (
+            <div className="analytics--header">
+                <div>
+                    <Heading paddingBottom="20px" size={600} display={"inline"}>
+                        {`Overview`}
+                    </Heading>
+                    <Text size={600} paddingLeft={"10px"}>
+                        {`from ${formatDate(
                             fromOrDefault(this.props.range.from)
                         )} to ${formatDate(toOrDefault(this.props.range.to))}`}
-                    </Heading>
-                    <Button
-                        iconBefore="calendar"
-                        onClick={() =>
-                            this.setState({
-                                showDatePicker: !this.state.showDatePicker
-                            })
-                        }
-                    >
-                        Choose date
-                    </Button>
-                    {this.state.showDatePicker && (
-                        <DatePicker
-                            numberOfReports={2}
-                            onRangeSelected={range => {
-                                console.log(range);
-                                this.setState({
-                                    ...range,
-                                    showDatePicker: false
-                                });
-
-                                this.props.updateRange("Day", range);
-                            }}
-                        />
-                    )}
+                    </Text>
                 </div>
+                <Button
+                    iconBefore="calendar"
+                    onClick={() =>
+                        this.setState({
+                            showDatePicker: !this.state.showDatePicker
+                        })
+                    }
+                >
+                    Choose date
+                </Button>
+                {this.state.showDatePicker && (
+                    <DatePicker
+                        numberOfReports={2}
+                        onRangeSelected={range => {
+                            this.setState({
+                                ...range,
+                                showDatePicker: false
+                            });
 
+                            this.props.updateRange("Day", range);
+                        }}
+                    />
+                )}
+            </div>
+        );
+
+        if (this.state.isLoading) {
+            return (
+                <>
+                    {header}
+                    <div
+                        className="analytics--loadingContainer"
+                        style={{ height: "264px" }}
+                    >
+                        <Spinner />
+                    </div>
+                </>
+            );
+        }
+
+        if (this.state.isError) {
+            return (
+                <>
+                    {header}
+                    <div
+                        className="analytics--loadingContainer"
+                        style={{ height: "264px" }}
+                    >
+                        <Alert
+                            intent="danger"
+                            title="We could not the reach the backend"
+                        >
+                            {`Url: ${this.url}`}
+                        </Alert>
+                        <Button
+                            marginTop={"20px"}
+                            iconBefore="repeat"
+                            onClick={() => this.fetchData()}
+                        >
+                            Retry
+                        </Button>
+                    </div>
+                </>
+            );
+        }
+
+        return (
+            <>
+                {header}
                 <div className="analytics--headerPanelContainer">
                     <div className="analytics--headerPanel">
                         <i className=" fa fa-heartbeat fa-5x analytics--headerPanelIcon" />
 
-                        <Heading color="#9f0000" size={800} paddingTop={"20px"}>
+                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
                             {this.state.caseReports.totalNumberOfReports}{" "}
                             Reports
                         </Heading>
@@ -119,7 +180,7 @@ class AnalyticsBanner extends Component {
                     <div className="analytics--headerPanel">
                         <i className="analytics--headerPanelIcon fa fa-user fa-5x" />
 
-                        <Heading color="#009f00" size={800} paddingTop={"20px"}>
+                        <Heading color="#009f00" size={600} paddingTop={"20px"}>
                             {`${
                                 this.state.dataCollectors.activeDataCollectors
                             } Active Data Collectors`}
@@ -136,7 +197,7 @@ class AnalyticsBanner extends Component {
                     <div className="analytics--headerPanel">
                         <i className="analytics--headerPanelIcon fa fa-exclamation-triangle fa-5x " />
 
-                        <Heading color="#9f0000" size={800} paddingTop={"20px"}>
+                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
                             {`${this.state.alerts.totalNumberOfAlerts} Alerts`}
                         </Heading>
                         <div className="analytics--listContainer">

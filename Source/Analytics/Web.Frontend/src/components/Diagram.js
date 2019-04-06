@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
-import { SegmentedControl } from "evergreen-ui";
+import { SegmentedControl, Alert, Button } from "evergreen-ui";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { getJson } from "../utils/request";
 
 import { BASE_URL } from "./Analytics";
 
@@ -61,17 +62,16 @@ class Diagram extends Component {
             .map(series => `selectedSeries=${series}`)
             .join("&");
 
-        const url = `${BASE_URL}Analysis/${formatDate(from)}/${formatDate(
-            to
-        )}/${this.state.value}?${series}`;
+        this.url = `${BASE_URL}Analysis/${formatDate(from)}/${formatDate(to)}/${
+            this.state.value
+        }?${series}`;
 
-        fetch(url, { method: "GET" })
-            .then(response => response.json())
+        getJson(this.url)
             .then(json =>
                 this.setState({
                     series: json.series,
                     xAxis: { categories: json.categories },
-                    isLoading: false,
+                    isLoading: true,
                     isError: false
                 })
             )
@@ -99,6 +99,29 @@ class Diagram extends Component {
             series: this.state.series,
             xAxis: this.state.xAxis
         };
+
+        if (this.state.isError) {
+            return (
+                <div
+                    className="analytics--loadingContainer"
+                    style={{ height: "450px" }}
+                >
+                    <Alert
+                        intent="danger"
+                        title="We could not the reach the backend"
+                    >
+                        {`Url: ${this.url}`}
+                    </Alert>
+                    <Button
+                        marginTop={"20px"}
+                        iconBefore="repeat"
+                        onClick={() => this.fetchData()}
+                    >
+                        Retry
+                    </Button>
+                </div>
+            );
+        }
 
         return (
             <>
