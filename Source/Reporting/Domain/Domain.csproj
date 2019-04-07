@@ -20,13 +20,11 @@
   <ItemGroup>
     <Content Remove="Management\DataCollectors\TestData\DataCollectors.json" />
     <Content Remove="Reporting\CaseReports\TestData\CaseReports.json" />
-    <Content Remove="Reporting\HealthRisks\TestData\HealthRisks.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Management\DataCollectors\TestData\Data\DataCollectors.json" />
     <EmbeddedResource Include="Reporting\CaseReports\TestData\Data\CaseReports.json" />
-    <EmbeddedResource Include="Reporting\HealthRisks\TestData\Data\HealthRisks.json" />
   </ItemGroup>
 
 </Project>

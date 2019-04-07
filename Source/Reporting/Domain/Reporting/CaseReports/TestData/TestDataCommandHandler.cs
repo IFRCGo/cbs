@@ -11,6 +11,7 @@ using Concepts.DataCollectors;
 using Concepts.HealthRisks;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
+using Dolittle.Serialization.Json;
 using Newtonsoft.Json;
 
 namespace Domain.Reporting.CaseReports.TestData
@@ -18,21 +19,28 @@ namespace Domain.Reporting.CaseReports.TestData
     public class TestDataCommandHandler : ICanHandleCommands
     {
         readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingAggregate;
-        public TestDataCommandHandler(IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregate)
+        readonly ISerializer _serializer;
+
+        public TestDataCommandHandler(IAggregateRootRepositoryFor<CaseReporting> caseReportingAggregate, ISerializer serializer)
         {
             _caseReportingAggregate = caseReportingAggregate;
+            _serializer = serializer;
         }
 
         T DeserializeTestData<T>(string path)
         {
             var assembly = typeof(TestDataCommandHandler).GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream(assembly.GetName().Name+"."+path))
-            using (var reader = new JsonTextReader(new StreamReader(stream)))
             {
-                var result = new JsonSerializer().Deserialize<T>(reader);
-                return result;
-            }
+                using( var reader = new StreamReader(stream) )
+                {
+                    var json = reader.ReadToEnd();
+                    var result = _serializer.FromJson<T>(json);
+                    return result;
+                }
+            }               
         }
+
         public void Handle(PopulateCaseReportTestData cmd)
         {
             var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Reporting.CaseReports.TestData.Data.CaseReports.json");

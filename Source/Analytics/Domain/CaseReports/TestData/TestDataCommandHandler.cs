@@ -18,10 +18,10 @@ namespace Domain.CaseReports.TestData
 
         {
             var dataCaseReportHelpers = JsonConvert.DeserializeObject<CaseReportHelper[]>(File.ReadAllText("../Domain/CaseReports/TestData/Data/CaseReports.json"));
+            var root = _caseReportAggregate.Get(dataCaseReportHelpers[0].DataCollectorId);
 
             foreach (var dataCaseReportHelper in dataCaseReportHelpers)
             {
-                var root = _caseReportAggregate.Get(dataCaseReportHelper.DataCollectorId);
                 root.Report(dataCaseReportHelper.DataCollectorId,
                     dataCaseReportHelper.HealthRiskId,
                     dataCaseReportHelper.Origin,

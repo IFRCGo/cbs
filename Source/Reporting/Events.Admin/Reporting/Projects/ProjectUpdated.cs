@@ -9,7 +9,7 @@ using System;
 
 namespace Events.Admin.Reporting.Projects
 {
-    [Artifact("753c49a2-8b97-4823-8e76-c5fe80a432db")]
+    [Artifact("60b0104a-9ec8-4447-9dd0-0867fcec1a35")]
     public class ProjectUpdated : IEvent
     {
         public Guid Id { get; }

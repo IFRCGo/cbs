@@ -1,0 +1,19 @@
+<div *ngIf="dataCollector">
+    <h2>{{dataCollector.fullName}}</h2>
+    <div><span>Display name: </span>{{dataCollector.displayName}}</div>
+    <div><span>Data verifier: </span>{{dataCollector.dataVerifierId}}</div>
+    <div><span>Year of birth: </span>{{dataCollector.yearOfBirth}}</div>
+    <div><span>Sex: </span><span>{{getSexString(dataCollector.sex)}}</span></div>
+    <div><span>National society: </span>{{dataCollector.nationalSociety}}</div>
+    <div><span>Preferred Language: </span>{{getLanguageString(dataCollector.preferredLanguage)}}</div>
+    <div><span>Location: </span>{{dataCollector.location.latitude}} / {{dataCollector.location.longitude}}</div>
+    <div><span>Region: </span>{{dataCollector.region}}</div>
+    <div><span>District: </span>{{dataCollector.district}}</div>
+    <div><span>Village: </span>{{dataCollector.village}}</div>
+    <div><span>Phone numbers: </span><span *ngFor="let phonenumber of dataCollector.phoneNumbers">{{phonenumber}}, </span></div>
+    <div><span>Registered date: </span>{{dataCollector.registeredAt}}</div>
+    <div><span>Last report received at: </span>{{dataCollector.lastReportRecievedAt}}</div>
+    <div><span>In training: </span>{{dataCollector.inTraining}}</div>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
+  

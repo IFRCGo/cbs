@@ -5,12 +5,7 @@
       "features": {
         "489931bc-a929-4d24-b985-881f705f276b": {
           "name": "HealthRisks",
-          "subFeatures": {
-            "c5f8a9be-a9e3-4305-a2af-cf64cf651fa1": {
-              "name": "TestData",
-              "subFeatures": {}
-            }
-          }
+          "subFeatures": {}
         },
         "2b37f877-532e-4e35-ba76-1977d56739ac": {
           "name": "CaseReports",
