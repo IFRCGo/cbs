@@ -85,20 +85,41 @@ export class Edit implements OnInit {
     }
 
     submit() {
-        this.handleChangeBaseInformation();
-        this.handleChangeLocation();
-        this.handleChangePreferredLanguage();
-        this.handleChangeVillage();
-        this.handleAddPhoneNumbers();
-        this.handleRemovePhoneNumbers();
+        // Make queue of commands
+        const queue = [];
 
-        if (this.userHasChanged) {
-            this.router.navigate(['']);
-            this.toastr.info('Reload page to see changes');
+        this.handleChangeBaseInformation(queue);
+        this.handleChangeLocation(queue);
+        this.handleChangePreferredLanguage(queue);
+        this.handleChangeVillage(queue);
+        this.handleAddPhoneNumbers(queue);
+        this.handleRemovePhoneNumbers(queue);
+
+        this.handleQueue(queue);
+    }
+
+    private handleQueue(queue) {
+        if (queue.length == 0) {
+            if (this.userHasChanged) {
+                this.toastr.info('Reload page to see changes');
+            } else {
+                this.toastr.warning('No changes has been made');
+            }
+            this.router.navigate(['datacollectors']);
         } else {
-            this.toastr.warning('No changes has been made');
+            // Handle a command and wait for the response
+            const current = queue.shift();
+            this.commandCoordinator.handle(current.command).then(response => {
+                current.then(response);
+                this.handleQueue(queue);
+            }).catch(response => {
+                current.catch(response);
+                this.handleQueue(queue);
+            });
         }
     }
+
+
     private initChangeBaseInformation() {
         this.changeBaseInformationCommand.dataCollectorId = this.dataCollector.id;
         this.changeBaseInformationCommand.displayName = this.dataCollector.displayName;
@@ -128,11 +149,12 @@ export class Edit implements OnInit {
         this.changeVillageCommand.village = this.dataCollector.village;
     }
 
-    private handleChangeBaseInformation() {
+    private handleChangeBaseInformation(queue) {
         if (this.hasChangedBaseInformation()) {
             this.userHasChanged = true;
-            this.commandCoordinator.handle(this.changeBaseInformationCommand)
-                .then(response => {
+            queue.push({
+                command: this.changeBaseInformationCommand,
+                then: response => {
                     console.log('Response from ChangeBaseInformation command')
                     console.log(response);
                     if (response.success) {
@@ -147,8 +169,8 @@ export class Edit implements OnInit {
                                 + ` base information :\n${errors}`);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log('Response from ChangeBaseInformation command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
@@ -159,15 +181,16 @@ export class Edit implements OnInit {
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
                             + ` base information:\n${errors}`);
                     }
-                    this.router.navigate(['']);
-                });
+                },
+            });
         }
     }
-    private handleChangeLocation() {
+    private handleChangeLocation(queue) {
         if (this.hasChangedLocation()) {
             this.userHasChanged = true;
-            this.commandCoordinator.handle(this.changeLocationCommand)
-                .then(response => {
+            queue.push({
+                command: this.changeLocationCommand,
+                then: response => {
                     console.log('Response from ChangeLocation command')
                     console.log(response);
                     if (response.success) {
@@ -181,8 +204,8 @@ export class Edit implements OnInit {
                             this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s location:\n${errors}`);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log('Response from ChangeLocation command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
@@ -192,14 +215,16 @@ export class Edit implements OnInit {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s location:\n${errors}`);
                     }
-                });
+                },
+            });
         }
     }
-    private handleChangePreferredLanguage() {
+    private handleChangePreferredLanguage(queue) {
         if (this.hasChangedPreferredLanguage()) {
             this.userHasChanged = true;
-            this.commandCoordinator.handle(this.changePreferredLanguageCommand)
-                .then(response => {
+            queue.push({
+                command: this.changePreferredLanguageCommand,
+                then: response => {
                     console.log('Response from ChangePreferredLanguage command')
                     console.log(response);
                     if (response.success) {
@@ -214,8 +239,8 @@ export class Edit implements OnInit {
                                 + ` preferred language:\n${errors}`);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log('Response from ChangePreferredLanguage command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
@@ -226,17 +251,18 @@ export class Edit implements OnInit {
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s`
                             + ` preferred language:\n${errors}`);
                     }
-                });
+                },
+            });
         }
     }
 
-    handleChangeVillage() {
+    handleChangeVillage(queue) {
         if (this.changeVillageCommand.village != null && this.changeVillageCommand.village !== this.dataCollector.village) {
             this.userHasChanged = true;
-
             this.changeVillageCommand.dataCollectorId = this.dataCollector.id;
-            this.commandCoordinator.handle(this.changeVillageCommand)
-                .then(response => {
+            queue.push({
+                command: this.changeVillageCommand,
+                then: response => {
                     console.log(response);
                     if (response.success) {
                         this.toastr.success('Successfully added village to data collector!');
@@ -248,8 +274,8 @@ export class Edit implements OnInit {
                             this.toastr.error('Could not change village of data collector:\n' + errors);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not change village of data collector because of security issues');
@@ -257,10 +283,11 @@ export class Edit implements OnInit {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error('Could not change village of data collector:\n' + errors);
                     }
-                });
+                },
+            });
         }
     }
-    private handleAddPhoneNumbers() {
+    private handleAddPhoneNumbers(queue) {
         const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const addednumbers = [];
@@ -274,8 +301,9 @@ export class Edit implements OnInit {
             const cmd = new AddPhoneNumberToDataCollector();
             cmd.dataCollectorId = this.dataCollector.id;
             cmd.phoneNumber = number;
-            this.commandCoordinator.handle(cmd)
-                .then(response => {
+            queue.push({
+                command: cmd,
+                then: response => {
                     console.log('Response from AddPhoneNumberToDataCollector command')
                     console.log(response);
                     if (response.success) {
@@ -291,8 +319,8 @@ export class Edit implements OnInit {
                                 + ` phone numbers:\n${errors}`);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log('Response from AddPhoneNumberToDataCollector command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
@@ -303,11 +331,12 @@ export class Edit implements OnInit {
                         this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s`
                             + ` phone numbers:\n${errors}`);
                     }
-                });
+                },
+            });
         });
     }
 
-    private handleRemovePhoneNumbers() {
+    private handleRemovePhoneNumbers(queue) {
         const prevNumbers = this.dataCollector.phoneNumbers.map(number => number.trim());
         const newNumbers = this.phoneNumberString.split(',').map(s => s.trim());
         const removednumbers = [];
@@ -321,9 +350,9 @@ export class Edit implements OnInit {
             const cmd = new RemovePhoneNumberFromDataCollector();
             cmd.dataCollectorId = this.dataCollector.id;
             cmd.phoneNumber = number;
-
-            this.commandCoordinator.handle(cmd)
-                .then(response => {
+            queue.push({
+                command: cmd,
+                then: response => {
                     console.log('Response from Remove PhoneNumberFromDataCollector command')
                     console.log(response);
                     if (response.success) {
@@ -339,8 +368,8 @@ export class Edit implements OnInit {
                                 + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
                         }
                     }
-                })
-                .catch(response => {
+                },
+                catch: response => {
                     console.log('Response from Remove PhoneNumberFromDataCollector command')
                     console.log(response);
                     if (!response.passedSecurity) { // Security error
@@ -351,7 +380,8 @@ export class Edit implements OnInit {
                         this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
                             + ` ${this.changeBaseInformationCommand.displayName}s phone numbers:\n${errors}`);
                     }
-                });
+                },
+            });
         });
     }
 
