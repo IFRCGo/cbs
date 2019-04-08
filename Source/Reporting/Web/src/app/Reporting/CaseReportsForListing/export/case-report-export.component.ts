@@ -31,7 +31,7 @@ const createExportableFieldsArray = (original: Array<Column>, columns: number = 
     styleUrls: ['./case-report-export.component.scss']
 })
 export class CaseReportExportComponent {
-    readonly exportBackendUrl: string = `${environment.api}/api/casereports/export`;
+    readonly exportBackendUrl: string = `${environment.api}/case-reports/export/download`;
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     allSortableColumns: Array<Column> =

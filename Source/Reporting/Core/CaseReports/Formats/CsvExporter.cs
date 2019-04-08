@@ -7,21 +7,17 @@ using Concepts;
 using Concepts.DataCollectors;
 using Read.Reporting.CaseReportsForListing;
 
-namespace Core.Utility
+namespace Core.CaseReports.Formats
 {
-    public class CsvExporter : IReportExporter
+    public class CsvExporter : ICanExportCaseReports
     {
-        public string GetFileExtension()
-        {
-            return ".csv";
-        }
+        public string Format => "csv";
 
-        public string GetMIMEType()
-        {
-            return "text/csv";
-        }
+        public string MIMEType => "text/csv";
 
-        public bool WriteReports(IEnumerable<CaseReportForListing> reports, string[] fields, Stream stream)
+        public string FileExtension => ".csv";
+        
+        public void WriteReportsTo(IEnumerable<CaseReportForListing> reports, Stream stream)
         {
             var writer = new StreamWriter(stream, Encoding.UTF8);
 
@@ -90,7 +86,6 @@ namespace Core.Utility
             }
 
             writer.Flush();
-            return true;
         }
     }
 }
