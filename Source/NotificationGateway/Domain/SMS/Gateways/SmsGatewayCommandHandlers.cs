@@ -17,18 +17,8 @@ namespace Domain.SMS.Gateways
 
         public void Handle(RegisterSmsGateway command)
         {
-            var apiKey = new StringBuilder();
-            using (var hash = SHA256.Create())
-            {
-                var key = Encoding.UTF8.GetBytes(System.Guid.NewGuid().ToString("N"));
-                var result = hash.ComputeHash(key);
-
-                foreach (var b in result)
-                    apiKey.Append(b.ToString("x2"));
-            }
-
             var root = _repository.Get(command.SmsGatewayId.Value);
-            root.RegisterSmsGateway(command.Name, apiKey.ToString());
+            root.RegisterSmsGateway(command.Name, command.ApiKey);
         }
 
         public void Handle(AssignPhoneNumberToSmsGateway command)

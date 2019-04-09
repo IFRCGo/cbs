@@ -12,5 +12,6 @@ export class RegisterSmsGateway extends Command
 
         this.smsGatewayId = '00000000-0000-0000-0000-000000000000';
         this.name = '';
+        this.apiKey = '';
     }
 }

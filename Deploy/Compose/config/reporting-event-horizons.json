@@ -1,0 +1,40 @@
+[
+    {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "64b3befc-2fb6-42f9-9e4b-bcb426fffffb",
+        "url": "cbs-admin:50051",
+        "events": [
+            {
+                "id": "51b2c376-ce2b-4d49-a86c-e654e50248c9",
+                "generation": 1
+            },
+            {
+                "id": "787d61d1-79bb-473a-9329-171478eff750",
+                "generation": 1
+            },
+            {
+                "id": "ab9f13e6-f68b-4683-96fe-13434fd34516",
+                "generation": 1
+            },
+            {
+                "id": "f8841be6-6da1-4571-b737-f72b283b3760",
+                "generation": 1
+            },
+            {
+                "id": "60b0104a-9ec8-4447-9dd0-0867fcec1a35",
+                "generation": 1
+            }
+        ]
+    },
+    {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "07f31e26-809d-3e14-3a9c-edc092366924",
+        "url": "cbs-notificationgateway:50060",
+        "events": [
+            {
+                "id": "191714a9-1c30-4509-8fdc-7a84a0544fc1",
+                "generation": 1
+            }
+        ]
+    }
+]

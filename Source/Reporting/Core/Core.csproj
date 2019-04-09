@@ -22,7 +22,7 @@
     <DolittleGenerateProxies>True</DolittleGenerateProxies>
     
     <!-- The relative path to put proxies if generated-->
-    <DolittleProxiesBasePath>../Web/Features</DolittleProxiesBasePath>
+    <DolittleProxiesBasePath>../Web/src/app</DolittleProxiesBasePath>
   </PropertyGroup>
   
   <ItemGroup>
@@ -49,11 +49,11 @@
     <ProjectReference Include="..\Events.NotificationGateway\Events.NotificationGateway.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Policies\Policies.csproj" />
+    <ProjectReference Include="..\Rules\Rules.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.8.1" />
+    <PackageReference Include="EPPlus" Version="4.5.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
 
     <PackageReference Include="Dolittle.AspNetCore" Version="2.*" />

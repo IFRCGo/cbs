@@ -4,7 +4,7 @@ using Dolittle.Events;
 
 namespace Events.NotificationGateway.Reporting.SMS
 {
-    [Artifact("573d4609-fa75-4c2f-8d7c-f7cf7da3de53")]
+    [Artifact("191714a9-1c30-4509-8fdc-7a84a0544fc1")]
     public class TextMessageReceived : IEvent
     {
         public TextMessageReceived(Guid id, string sender, string text, DateTimeOffset received)

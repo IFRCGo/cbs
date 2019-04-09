@@ -87,12 +87,13 @@ class Gateways extends React.Component {
 
                 <h2>Add new gateway:</h2>
                 <Formik
-                    initialValues={{ name: '' }}
+                    initialValues={{ name: '', apiKey: '' }}
 
                     onSubmit={(values, { setSubmitting }) => {
                         const command = new RegisterSmsGateway();
                         command.smsGatewayId = Guid.create();
                         command.name = values.name;
+                        command.apiKey = values.apiKey;
                         this.commandCoordinator.handle(command).then(result => {
                             if (result.success) {
                                 this.setState((state) => { return {
@@ -101,7 +102,7 @@ class Gateways extends React.Component {
                                         name: command.name,
                                         enabled: false,
                                         phoneNumber: '',
-                                        apiKey: 'Generating...'
+                                        apiKey: command.apiKey,
                                     }].concat(state.gateways)
                                 }})
                             }
@@ -112,6 +113,7 @@ class Gateways extends React.Component {
                 {({isSubmitting}) => (
                     <Form>
                         <Field name="name" placeholder="Name of gateway" disabled={isSubmitting} />
+                        <Field name="apiKey" placeholder="ApiKey" disabled={isSubmitting} />
                         <button type="submit" disabled={isSubmitting}>Register</button>
                     </Form>
                 )}

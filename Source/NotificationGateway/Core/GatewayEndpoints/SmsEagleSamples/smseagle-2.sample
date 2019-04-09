@@ -1,0 +1,7 @@
+POST /notifications/smseagle/incoming HTTP/1.0
+Host: localhost:8080
+Connection: close
+Content-Length: 118
+Content-Type: application/x-www-form-urlencoded
+
+sender=%2B4787654321&timestamp=20190330194610&text=Random+text&msgid=182&oid=&modemno=1&apikey=ThereWillBeAnApiKeyHere

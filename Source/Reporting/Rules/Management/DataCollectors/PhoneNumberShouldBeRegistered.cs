@@ -15,6 +15,6 @@ namespace Rules.Management.DataCollectors
         readonly IReadModelRepositoryFor<DataCollector> _repository;
         public PhoneNumberShouldBeRegistered(IReadModelRepositoryFor<DataCollector> repository) => _repository = repository;
 
-        public Domain.Management.DataCollectors.PhoneNumberShouldBeRegistered Rule => (number) => _repository.Query.SelectMany(_ => _.PhoneNumbers).Any(_ => _.Value == number);
+        public Domain.Management.DataCollectors.PhoneNumberShouldBeRegistered Rule => (number) => _repository.Query.SelectMany(_ => _.PhoneNumbers).Any(_ => _ == number);
     }
 }

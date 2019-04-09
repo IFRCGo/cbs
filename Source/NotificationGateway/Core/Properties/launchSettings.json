@@ -12,7 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SMSEAGLE_APIKEY_TENANT_PATH": "apikeyToTenant.json"
       }
     },
     "Development": {
@@ -20,7 +21,8 @@
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5010",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SMSEAGLE_APIKEY_TENANT_PATH": "apikeyToTenant.json"
       }
     }
   }

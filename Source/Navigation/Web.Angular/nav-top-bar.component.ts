@@ -1,7 +1,4 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
-import { UserManager, WebStorageStateStore } from 'oidc-client';
-
-import { AuthenticationService } from './authentication.service';
 
 @Component({
     selector: 'cbs-nav-top-bar',
@@ -9,22 +6,18 @@ import { AuthenticationService } from './authentication.service';
     styleUrls: ['./nav-top-bar.component.scss']
 })
 export class NavTopBarComponent implements OnInit {
-    societies: any[];
+    static apiBaseUrl: string;
     name: string;
-    loggedIn: boolean;
 
-    constructor(private authentication:AuthenticationService) {
+    constructor() {
+        this.name = 'Unknown';
     }
 
     ngOnInit() {
-        this.authentication.societies.subscribe((societies) => {
-            this.societies = societies;
-        });
-        this.authentication.name.subscribe((name) => {
-            this.name = name;
-        });
-        this.authentication.isLoggedIn.subscribe((loggedIn) => {
-            this.loggedIn = loggedIn;
-        });
+        fetch(`${NavTopBarComponent.apiBaseUrl}/identity`).then(async response => this.name = await response.text());
+    }
+
+    logout() {
+        window.location.href = `${NavTopBarComponent.apiBaseUrl}/signout`;
     }
 }

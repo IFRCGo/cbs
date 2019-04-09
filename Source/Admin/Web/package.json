@@ -4,9 +4,9 @@
     "license": "MIT",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --base-href=/ --deploy-url=/ --public-host=localhost:4201",
-        "build-test": "ng build --base-href=/ --deploy-url=/ --prod --env=test",
-        "build": "ng build --base-href=/ --deploy-url=/ --prod",
+        "start": "ng serve --base-href=/admin/ --deploy-url=/admin/ --public-host=localhost:4201",
+        "build-test": "ng build --base-href=/admin/ --deploy-url=/admin/ --prod --env=test",
+        "build": "ng build --base-href=/admin/ --deploy-url=/admin/ --prod",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
@@ -35,7 +35,6 @@
         "navigation": "file:../../Navigation/Web.Angular",
         "ngx-bootstrap": "^2.0.0-rc.0",
         "ngx-toastr": "^6.4.1-beta.0",
-        "oidc-client": "^1.4.1",
         "rxjs": "^5.5.6",
         "zone.js": "^0.8.20"
     },
