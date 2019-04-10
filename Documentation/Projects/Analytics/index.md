@@ -20,6 +20,13 @@ STATUS
 -   (2019-03-21) We have decided on which graphs/tables should be put in
     which pages. This is under the section `PAGES OF MULTIPLE GRAPHS`
 
+Reference pages
+---------------------
+
+[graphs.md highlights a number of older graphs that can be used as reference and inspiration](graphs.md)
+
+[archive.md contains non-relevant information that is kept for historical reference](archive.md)
+
 What needs to be done
 ---------------------
 
@@ -92,6 +99,8 @@ CLASSICAL DESCRIPTIVE STATISTICS
 PAGE 1 - Country overview, all health risks ("Analytics 3")
 -----------------------------------------------------------
 
+![](images/index/Scanned-Document-1.png)
+
 This page is designed to show an overview of the country **right now**.
 
 We will show:
@@ -122,6 +131,8 @@ This will be done through:
 
 PAGE 2 - Country overview, per health risk ("Analytics 4")
 ----------------------------------------------------------
+
+![](images/index/Scanned-Document-2.png)
 
 This page is designed to show an overview of the country according to a
 specific health risk.
@@ -154,6 +165,8 @@ This will be done through:
 PAGE 3 - Outbreak mode, per health risk ("Analytics 13")
 --------------------------------------------------------
 
+![](images/index/Scanned-Document-3.png)
+
 This page is designed to show weekly epicurves (according to a specific
 health risk) for:
 
@@ -176,8 +189,12 @@ Reference: `GRAPH TYPES - Epicurves/Weekly epicurve`
 INFORMATION ON DATA COLLECTORS
 ------------------------------
 
-PAGE 4 - Training/reporting ("Analytics 7")
+PAGE 4 - Training/reporting ("Analytics 7") & Location and status ("Analytics 8/9")
 -------------------------------------------
+
+NOTE: DO NOT IMPLEMENT NOW. WAITING UNTIL REPORTING IS DONE.
+
+![](images/index/Scanned-Document-4.png)
 
 In a table:
 
@@ -190,9 +207,6 @@ In a table:
     (active if case report or activity report was send by the user last
     30 days)
 -   Display the number of male/female Data collectors trained in total
-
-PAGE 5 - Location and status ("Analytics 8/9")
-----------------------------------------------
 
 Please reference the section
 `VOLUNTEER INFORMATION - Individual level information (complicated)` for
@@ -218,8 +232,6 @@ In a table, for each Data collector, display:
 -   Location (Village, but call it Community)
 -   Phone number
 -   days since last report (case or activity report)
-    ================================================
-
 -   Weekly status over the last 8 weeks. Have a color coded
     mark/indicator per week:
     -   Blue if active and reporting without errors
@@ -229,8 +241,12 @@ In a table, for each Data collector, display:
 -   Supervisors can only see Data collectors they supervise, not Data
     collectors supervised by other Supervisors. Data owner sees all
 
-PAGE 6 - Errors ("Analytics 10")
+PAGE 5 - Errors ("Analytics 10")
 --------------------------------
+
+NOTE: DO NOT IMPLEMENT NOW. WAITING UNTIL REPORTING IS DONE.
+
+![](images/index/Scanned-Document-5.png)
 
 -   Display a table with Data collectors often sending reports with
     errors: If 5 of the last 10 (?) reports from a Data collector had
@@ -244,8 +260,10 @@ PAGE 6 - Errors ("Analytics 10")
 INFORMATION ON ALERTS
 ---------------------
 
-PAGE 7 - ("Analytics 11/12")
+PAGE 6 - ("Analytics 11/12")
 ----------------------------
+
+NOTE: DO NOT IMPLEMENT NOW. WAITING UNTIL ALERTS IS DONE.
 
 -   Display how many alerts have been triggered in total, how many was
     escalated and how many were dismissed
@@ -321,463 +339,3 @@ This is definitely possible using Highcharts.
 
 ![](index_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
-**Dynamic options**
-
-Geography:
-
-Levels (this part will need to be more flexible depending on the
-circumstances, but this is a good start):
-
--   all (i.e. all the data -- national level)
--   district
--   region
--   village
-
-The 'geographical value' is stored in 'geo'. i.e. if `level=district`,
-then maybe `geo=Western Norway`. If `level=village` then maybe
-`geo=Oslo`.
-
-`Sex` is:
-
--   All
--   Male
--   Female
-
-`Age` is:
-
--   All
--   Age &lt;5
--   Age 5+
-
-GRAPH TYPES - Epicurves
-=======================
-
-Weekly epicurve
----------------
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/845>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/846>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebyweek.html`
-
-Chart in React frontend:
-`cbs/Source/Analytics/Web/src/components/Epicurvebyweek.js`
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display a weekly `epicurve` (the epidemiological term for a time
-series graph showing the number of reported cases on the y-axis and time
-on the x-axis).
-
-Important to note:
-
--   We display `year-isoweek` on the x-axis
--   Weeks with zero cases must be displayed
-
-![](index_files/figure-markdown_strict/unnamed-chunk-5-1.png)
-
-Daily epicurve
---------------
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/848>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/849>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyday.html`
-
-Chart in React frontend:
-`cbs/Source/Analytics/Web/src/components/Epicurvebyday.js`
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display a daily `epicurve`.
-
-Important to note:
-
--   Unclear the best way to display date on the x-axis
--   Days with zero cases must be displayed
-
-![](index_files/figure-markdown_strict/unnamed-chunk-6-1.png)
-
-Weekly epicurve dodged by age
------------------------------
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/850>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/851>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/Epicurvebyweekdodgedbyage.html`
-
-Chart in React frontend:
-`cbs/Source/Analytics/Web/src/components/Epicurvebyweekdodgedbyage.js`
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display a weekly `epicurve` with two columns for each week,
-showing the ages side-by-side.
-
-Important to note:
-
--   We display `year-isoweek` on the x-axis
--   Weeks with zero cases must be displayed
-
-![](index_files/figure-markdown_strict/unnamed-chunk-7-1.png)
-
-Daily epicurve dodged by age
-----------------------------
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/852>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/853>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/epicurvebydaydodgedbyage.html`
-
-Chart in React frontend: **Not generated yet**
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display a daily `epicurve` with two columns for each day,
-showing the ages side-by-side.
-
-Important to note:
-
--   Unclear the best way to display date on the x-axis
--   Days with zero cases must be displayed
-
-![](index_files/figure-markdown_strict/unnamed-chunk-8-1.png)
-
-Weekly epicurves facet\_grid by age/sex
----------------------------------------
-
-Note: The current chart in Web Template has created the graph **dodged**
-by age/sex, but we need it to be **facet\_grid** by age/sex. As
-mentioned above, this might not be possible in Highcharts and might need
-some React trickery to get it working.
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/856>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/857>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/Weeklyepicurvesbyagesex.html`
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display four weekly epicurves, one for each age/sex combination.
-
-Important to note:
-
--   We display `year-isoweek` on the x-axis
--   Weeks with zero cases must be displayed
--   Y-axis remains the same height for all panels, to allow for easy
-    comparison
-
-![](index_files/figure-markdown_strict/unnamed-chunk-9-1.png)
-
-Weekly epicurves facet\_wrap by geographical area
--------------------------------------------------
-
-Note: As mentioned above, **facet\_wrap** might not be possible in
-Highcharts and might need some React trickery to get it working.
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/858>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/859>
-
-Chart in Web Template: **NOT COMPLETED YET**
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-Included in dynamic epicurve
-(<https://github.com/IFRCGo/cbs/issues/922>): **NOT COMPLETED YET**
-
-Here we display multiple weekly epicurves, one for each geographical
-area.
-
-Important to note:
-
--   We should probably be able to choose the granularity of geographical
-    area (region/district/village)
--   We display `year-isoweek` on the x-axis
--   Weeks with zero cases must be displayed
--   Y-axis remains the same height for all panels, to allow for easy
-    comparison (this should probably be a toggle?)
--   Very important: We should also implement one version where the
-    outcome is:
-    `(number of reported cases)/(estimation population)*10000` (i.e.
-    number of reported cases per 10.000 population).
-
-![](index_files/figure-markdown_strict/unnamed-chunk-10-1.png)
-
-GRAPH TYPES - Age and sex distribution over different time frames
-=================================================================
-
-Note 1: This is not an epicurve, as the x-axis is not time.
-
-Note 2 (2019-03-21): This has been changed. We now want one barchart
-that shows the age distribution, and one barchart that shows the sex
-distribution.
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/854>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/855>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/Ageandsexdistributionoverdifferenttimeframes.html`
-(needs to be fixed according to Note 2)
-
-Chart in React frontend:
-`cbs/Source/Analytics/Web/src/components/AgeAndSexDistribution.js`
-(needs to be fixed according to Note 2)
-
-Query backend for data: **NOT COMPLETED YET**
-
--   We display the number of cases, split by age/sex on the x-axis
--   We need the ability to display different time frames (e.g. per week,
-    last week, over multiple weeks)
-
-![](index_files/figure-markdown_strict/unnamed-chunk-11-1.png)![](index_files/figure-markdown_strict/unnamed-chunk-11-2.png)
-
-GRAPH TYPES - Map by geographical area
-======================================
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/860>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/861>
-
-Chart in Web Template:
-`cbs/Documentation/Projects/Analytics/Web Mockup/Mapbygeographicalarea.html`
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-Here we display a map with categorized number of cases.
-
-Important to note:
-
--   We should probably be able to choose the granularity of geographical
-    area (region/district/village)
--   We should be able to change the time-frame
--   Not reporting regions should be highlighted
--   The graphing/outcome should be categorical NOT a continuous
-    gradient. Probably no more than 4 categories.
--   Very important: We should also implement one version where the
-    outcome is:
-    `(number of reported cases)/(estimation population)*10000` (i.e.
-    number of reported cases per 10.000 population).
-
-![](index_files/figure-markdown_strict/unnamed-chunk-12-1.png)
-
-GRAPH TYPES - Barcharts by district
-===================================
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/862>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/863>
-
-Chart in Web Template: **NOT COMPLETED YET**
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-This is very similar to the above map, but allows for a more nuanced
-view of the numbers.
-
-Important to note:
-
--   We should probably be able to choose the granularity of geographical
-    area (region/district/village)
--   We should be able to change the time-frame
--   The graphing/outcome should be CONTINUOUS
--   Very important: We should also implement one version where the
-    outcome is:
-    `(number of reported cases)/(estimation population)*10000` (i.e.
-    number of reported cases per 10.000 population).
-
-![](index_files/figure-markdown_strict/unnamed-chunk-13-1.png)
-
-VOLUNTEER INFORMATION
-=====================
-
-**THIS INFORMATION HAS BEEN SUPERSCEDED BY THE "PAGES OF MULTIPLE
-GRAPHS" SECTION AT THE TOP OF THIS PAGE.**
-
-The previous graphs have been about health risks. We also need
-information about the volunteers.
-
-Aggregate information (basic)
------------------------------
-
-**THIS INFORMATION HAS BEEN SUPERSCEDED BY THE "PAGES OF MULTIPLE
-GRAPHS" SECTION AT THE TOP OF THIS PAGE.**
-
-We require a table with each row corresponding to a particular
-geographical region (granularity of geographical level will need to be
-specified), and two columns:
-
--   How many volunteers are active
--   How many volunteers are registered
-
-So for example, if granularity is "national" then we would expect only 1
-row. If granularity is "district" then we would have 1 row per district.
-
-Individual level information (complicated)
-------------------------------------------
-
-**THIS INFORMATION HAS BEEN SUPERSCEDED BY THE "PAGES OF MULTIPLE
-GRAPHS" SECTION AT THE TOP OF THIS PAGE.**
-
-We require a table with each row corresponding to an individual
-volunteer and multiple columns:
-
--   Name
--   Location
--   How long they have been engaged
--   Number of days since last report
--   Has reported in the last 0-7 days? \[colored box, blue if yes, red
-    if no\]
--   Has reported in the last 8-14 days? \[colored box, blue if yes, red
-    if no\]
--   Has reported in the last 15-21 days? \[colored box, blue if yes, red
-    if no\]
--   Has reported in the last 22-28 days? \[colored box, blue if yes, red
-    if no\]
--   Has reported in the last 29-35 days? \[colored box, blue if yes, red
-    if no\]
--   Has reported in the last 36-42 days? \[colored box, blue if yes, red
-    if no\]
-
-Note: The 0-7, 8-14, etc numbers are for a weekly example. There will
-need to be the option to specify "daily", "weekly", or "monthly".
-
-This table will be linked to a map where the GPS coordinates of each of
-the volunteers is displayed. It will be possible to select individuals
-using the map, and these selected individuals will then be highlighted
-in the above table.
-
-![](static_images/volunteer_individ.jpg)
-
-Program statistics
-------------------
-
-Is it possible to display this information as summary program
-statistics?
-
--   Number of volunteers
--   % of Red Cross volunteers active the last 30(XX) days
--   Number of trained volunteers / total sum of volunteers
--   Number of active volunteers the last 30 days
--   Number of Red Cross volunteers trained by moths
--   Above information displayed by Age/ sex
-
-District/Person reporting funnel plot A
----------------------------------------
-
-NOTE: THIS SECTION HAS BEEN DOWNGRADED IN PRIORITY. FOR THE MOMENT, DO
-NOT IMPLEMENT.
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/869>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/870>
-
-Chart in Web Template: **NOT COMPLETED YET**
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-The idea of this funnel plot is to identify districts/people who are
-reporting worse than expected.
-
-For each month, we count the number of messages sent, and the number of
-correctly sent messages. From this, we generate an "expected proportion
-of received messages that are correct" (e.g. 80%). Then, for i = 1, ...,
-100 (or higher, as necessary) we calculate the 2.5th and 97.5th
-percentiles according to the binomial distribution. That is, (e.g. for
-i=40) what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
-distribution. These percentiles are our boundaries as displayed in the
-graph.
-
-Important to note:
-
--   We should be able to switch between district/people/other grouping
-    measure
--   We should be able to change the time-frame
--   Maybe only the people/groups who are "lower than expected" should be
-    highlighted in some way?
-
-![](index_files/figure-markdown_strict/unnamed-chunk-14-1.png)
-
-District/Person reporting funnel plot B
----------------------------------------
-
-NOTE: THIS SECTION HAS BEEN DOWNGRADED IN PRIORITY. FOR THE MOMENT, DO
-NOT IMPLEMENT.
-
-Frontend issue: <https://github.com/IFRCGo/cbs/issues/871>
-
-Backend issue: <https://github.com/IFRCGo/cbs/issues/872>
-
-Chart in Web Template: **NOT COMPLETED YET**
-
-Chart in React frontend: **NOT COMPLETED YET**
-
-Query backend for data: **NOT COMPLETED YET**
-
-The idea of this funnel plot is to identify districts/people who are
-reporting worse than expected.
-
-For each month, we count the number of messages sent, and the number of
-correctly sent messages. From this, we generate an "expected proportion
-of received messages that are correct" (e.g. 80%). Then, for each
-district/person, we calculate the 2.5th and 97.5th percentiles according
-to the binomial distribution. That is, (e.g. if Oslo sent 40 messages)
-what is the 2.5th and 97.5th percentile of a Binom(n=40, p=0.8)
-distribution. These percentiles are our boundaries as displayed in the
-graph.
-
-Important to note:
-
--   We should be able to switch between district/people/other grouping
-    measure
--   We should be able to change the time-frame
--   Maybe only the people/groups who are "lower than expected" should be
-    highlighted in some way?
-
-<!-- -->
-
-    ## Warning: Removed 6 rows containing missing values (geom_linerange).
-
-    ## Warning: Removed 6 rows containing missing values (geom_linerange).
-
-    ## Warning: Removed 6 rows containing missing values (geom_linerange).
-
-    ## Warning: Removed 6 rows containing missing values (geom_point).
-
-![](index_files/figure-markdown_strict/unnamed-chunk-15-1.png)
