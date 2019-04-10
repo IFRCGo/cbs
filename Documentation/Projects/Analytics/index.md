@@ -299,14 +299,6 @@ DEFINITIONS
 Epicurves is the epidemiological term for a time series graph showing
 the number of reported cases on the y-axis and time on the x-axis.
 
-Right now (codeathon 2019-01-19), we are hard coding each epicurve into
-its own page. However, in the future, we will make one "Epicurve" page
-that has a number of options that allows all possible/desirable
-epicurves to be generated on the same page (see:
-<https://github.com/IFRCGo/cbs/issues/922>).
-
-We now demonstrate the important definitions:
-
 **facet\_grid**
 
 Here we have a facet\_grid with `x=age` and `y=sex`. We tend to use
