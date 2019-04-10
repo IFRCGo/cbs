@@ -316,7 +316,7 @@ know how many there will be (e.g. age and sex, maybe health factor).
 This is how to do it via Highcharts:
 <https://www.highcharts.com/blog/post/why-and-how-to-split-one-chart-into-a-grid-of-charts-aka-small-multiple/>
 
-![](index_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](images/index/unnamed-chunk-2-1.png)
 
 **facet\_wrap**
 
@@ -327,7 +327,7 @@ in advance (e.g. geography is a good one).
 This is how to do it via Highcharts:
 <https://www.highcharts.com/blog/post/why-and-how-to-split-one-chart-into-a-grid-of-charts-aka-small-multiple/>
 
-![](index_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+![](images/index/unnamed-chunk-3-1.png)
 
 **dodge**
 
@@ -337,5 +337,5 @@ small amount of values to compare against.
 
 This is definitely possible using Highcharts.
 
-![](index_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](images/index/unnamed-chunk-4-1.png)
 
