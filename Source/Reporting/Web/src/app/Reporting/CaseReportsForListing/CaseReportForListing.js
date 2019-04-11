@@ -14,7 +14,7 @@ export class CaseReportForListing extends ReadModel
         };
         this.id = '00000000-0000-0000-0000-000000000000';
         this.extraElements = [];
-        this.status = {};
+        this.status = 0;
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.dataCollectorDisplayName = '';
         this.dataCollectorRegion = '';
