@@ -1,27 +1,31 @@
 STATUS
 ======
 
--   We have sketched out a number of graphs that we want implemented in
+-   (OLD) We have sketched out a number of graphs that we want implemented in
     the frontend
--   These graphs were designed by 'domain experts' and have zero UX
+-   (OLD) These graphs were designed by 'domain experts' and have zero UX
     input (leading to the next point)
--   We have created a static html pages at
+-   (OLD) We have created a static html pages at
     `cbs/Documentation/Projects/Analytics/Web Mockup` where we are
     generating the graphs using Highcharts. A couple are still missing.
     We chose to create this as the React frontend was not yet running
     and we didn't want this to slow down our progress.
--   We have moved a number of the graphs in the Web Mockup to the React
+-   (OLD) We have moved a number of the graphs in the Web Mockup to the React
     frontend.
--   We have created a way of populating MongoDB with test data, see
+-   (OLD) We have created a way of populating MongoDB with test data, see
     [documentation
     here](https://github.com/IFRCGo/cbs/tree/master/Source/Analytics#populating-the-database-with-test-data)
--   The back-end query towards MongoDB have been written for one graph
+-   (OLD) The back-end query towards MongoDB have been written for one graph
     (AgeAndSexDistributionAggregationByDateRange).
 -   (2019-03-21) We have decided on which graphs/tables should be put in
     which pages. This is under the section `PAGES OF MULTIPLE GRAPHS`
+- (2019-04-10) We have a react frontend displaying epidemiological data via charts and maps, and other indicators, but NOT according to the below specifications
+- (2019-04-10) We have a backend API for retrieving case reports (aggregated on sex, age, and specifying time frame - daily/weekly) and data collector information.
 
 Reference pages
 ---------------------
+
+[UXPin (not updated)](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap)
 
 [graphs.md highlights a number of older graphs that can be used as reference and inspiration](graphs.md)
 
@@ -32,45 +36,7 @@ What needs to be done
 
 In general/high priority:
 
--   \[HIGH PRIORITY\] Put all of the graphs in their assigned pages
-    (section `PAGES OF MULTIPLE GRAPHS`)
--   We strongly suspect that these graphs should be presented in some
-    sort of dashboard, but due to the lack of UX input/experience we
-    have not considered how they should be displayed in a holistic
-    manner. We have asked the UX team to provide us with this, and they
-    will update
-    [UXPin](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap)
-    with a design.
-
-For each of the graphs described in `PAGES OF MULTIPLE GRAPHS`:
-
--   Add the missing charts to the Web Mockup
--   Code the frontend (move the charts from the Web Mockup to the React
-    frontend)
--   Code all the backend queries to provide data to the frontend (see
-    `Source\Analytics\Read\AgeAndSexDistribution\AgeAndSexDistributionAggregationByDateRange.cs`
-    for reference)
--   Link the backend and the frontend (currently, the charts in the
-    React frontend are generated from static data in the javascript)
-
-In general/low priority:
-
--   Get 'domain experts' to provide appropriate labels for everything
-    (e.g. 'number of reported alerts' instead of 'number of cases')
--   Figure out where to get the population number (today, this does not
-    exist in CBS). The graphs do not account for this today.
--   \[DOWNGRADED, we are currently just using region/district/community
-    from the Data Collector's registration page\] Figure out where to
-    extract geographical values (district, region, village) from the GPS
-    coordinates. Currently, all the generated graphs show all the data
-    (national level).
--   \[DOWNGRADED\] Generate the graph based on user input (currently all
-    the graphs are simply displayed on the page, the user cannot specify
-    timerange, age, sex etc. to display on the graphs). A lot of the
-    epicurves are actually just variants on a single graph, so in the
-    future it would probably be smart to just make this 1 extremely
-    dynamic graph. We are calling this the **dynamic epicurve**
-    (<https://github.com/IFRCGo/cbs/issues/922>).
+- Start with a new blank page and try to create pages 1, 2, and 3 (section `PAGES OF MULTIPLE GRAPHS`), using the current frontend (that is misspecified)
 
 Suggested working order
 -----------------------
