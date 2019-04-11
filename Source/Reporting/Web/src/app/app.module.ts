@@ -64,8 +64,14 @@ NavTopBarComponent.apiBaseUrl = environment.api;
     CaseReportModule
   ],
   providers: [
-    CommandCoordinator,
-    QueryCoordinator,
+    {
+      provide: CommandCoordinator,
+      useClass: environment.commandCoordinatorType
+    },
+    {
+      provide: QueryCoordinator,
+      useClass: environment.queryCoordinatorType
+    },
     DataCollectorExportService
   ],
   bootstrap: [AppComponent]
