@@ -2,7 +2,7 @@
  *  This file is an automatically generated ReadModel Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { ReadModel } from  '@dolittle/readmodels/dist/commonjs';
+import { ReadModel } from  '@dolittle/readmodels';
 
 export class AlertRule extends ReadModel
 {

@@ -22,6 +22,7 @@ const mockRules = [
 ];
 
 function* requestRules() {
+    console.log("DAKAR");
     try {
         const query = new AllAlertRules();
         const result = yield queryCoordinator.execute(query);
