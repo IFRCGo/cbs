@@ -4,9 +4,7 @@ When they generate proxies, in the top of their files they import @dolittle/comm
 
 ---------
 
-- Go to Source/Alerts/Web do "yarn install"
-- Then "yarn build" to build
-- run "yarn start" to run the application
+See Readme.md in Web folder on how to run frontend 
 
 -----------
 
