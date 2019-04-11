@@ -4,13 +4,9 @@ When they generate proxies, in the top of their files they import @dolittle/comm
 
 ---------
 
-To get frontend to build, the following needs to be done (until build is simplified):
-NB. This needs to be done in a terminal that supports "cp" (Git Bash does so for Windows)
-- Go to Source/Navigation/Web.Commons do "npm install"
-- Go to Source/Navigation/Web.Nodejs do "npm install"
-- Go to Source/..bounded context../Web do "npm install"
-- If you get an error saying that it can find a file or directory in a foldername with the word .staging in it delete the whole package.json-lock file in Source/..bounded context../Web and rerun "npm install" in the same place
-- run "npm start"
+- Go to Source/Alerts/Web do "yarn install"
+- Then "yarn build" to build
+- run "yarn start" to run the application
 
 -----------
 
