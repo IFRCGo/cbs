@@ -21,7 +21,5 @@ RUN dotnet publish --no-restore -c Release -o out
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 COPY --from=build /CBS/Source/Analytics/Web/out /CBS/Web/
-#COPY --from=build /CBS/Source/Analytics/Web/.dolittle /CBS/Web/.dolittle
-#COPY ./Source/Analytics/bounded-context.json /CBS/bounded-context.json
 WORKDIR /CBS/Web
 ENTRYPOINT ["dotnet", "/CBS/Web/Web.dll"]

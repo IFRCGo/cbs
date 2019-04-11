@@ -19,7 +19,6 @@ WORKDIR /CBS/Source/Analytics/Web
 RUN dotnet publish --no-restore -c Release -o out
 
 FROM node:11.6-slim AS build-web
-ARG mode=build-test
 
 # Install dependencies
 COPY ./Source/Analytics/Web.Frontend/package.json /CBS/Source/Analytics/Web.Frontend/package.json
@@ -34,6 +33,6 @@ RUN yarn build
 # Build runtime image 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 COPY --from=build-core /CBS/Source/Analytics/Web/out /CBS/Web/
-COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Web/wwwroot
+COPY --from=build-web /CBS/Source/Analytics/Web.Frontend/dist /CBS/Web/wwwroot
 WORKDIR /CBS/Web
 ENTRYPOINT ["dotnet", "/CBS/Web/Web.dll"]
