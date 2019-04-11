@@ -25,7 +25,7 @@ STATUS
 Reference pages
 ---------------------
 
-[UXPin (not updated)](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/101608059/simulate/sitemap)
+[UXPin (not updated)](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109295030/simulate/no-panels?mode=hm)
 
 [graphs.md highlights a number of older graphs that can be used as reference and inspiration](graphs.md)
 
