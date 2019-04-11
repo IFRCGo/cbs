@@ -36,6 +36,8 @@ namespace Core
                     c.SwaggerDoc("v1", new Info { Title = "Alerts API", Version = "v1" });
                 });
             }
+
+            services.AddSecurity(_hostingEnvironment, "/admin");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -49,6 +51,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/alerts");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -71,6 +75,8 @@ namespace Core
                     c.AllowAnyOrigin();
                 });
             }
+
+            app.UsePathBase("/alerts");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
