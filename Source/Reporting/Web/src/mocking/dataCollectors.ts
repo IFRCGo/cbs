@@ -17,7 +17,7 @@ for(let i = 0; i < 5; i++) {
     dataCollector.district = "Default District";
     dataCollector.village = 'Default Village';
     dataCollector.registeredAt = new Date();
-    
+    dataCollector.inTraining = i % 2 === 0;
     dataCollectors.push(dataCollector);
 }
 
