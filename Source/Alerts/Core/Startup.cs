@@ -76,6 +76,8 @@ namespace Core
                 });
             }
 
+            app.UsePathBase("/alerts");
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 

@@ -19,7 +19,7 @@ const routes = [
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Route path="/" exact component={App} />
+            <Route path="/alerts/" exact component={App} />
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')
