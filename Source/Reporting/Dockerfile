@@ -20,7 +20,7 @@ COPY ./Source/Reporting/Rules.Specs/Rules.Specs.csproj /CBS/Source/Reporting/Rul
 WORKDIR /CBS/Source/Reporting
 RUN dotnet restore
 
-# Build production code
+# Build backend production code
 COPY ./Source/Reporting /CBS/Source/Reporting
 WORKDIR /CBS/Source/Reporting/Core
 RUN dotnet publish --no-restore -c Release -o out
