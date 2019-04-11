@@ -1,13 +1,16 @@
 import { Query } from '@dolittle/queries';
 import {AllAlertRules} from '../Features/AlertRules/AllAlertRules';
 import {AlertRule} from '../Features/AlertRules/AlertRule';
+import {GetDataOwner} from '../Features/DataOwners/GetDataOwner';
+import {DataOwner} from '../Features/DataOwners/DataOwner';
+
 // import {AllDataCollectors} from '../src/app/Management/DataCollectors/AllDataCollectors';
 // import {DataCollectorById} from '../src/app/Management/DataCollectors/DataCollectorById';
 // import dataCollectors from './dataCollectors';
 
 export class MockQueryCoordinator {
-    dataCollectors = [];
-    caseReports = [];
+    // dataCollectors = [];
+    // caseReports = [];
      /**
      * Execute a query
      * @param {Query} query
@@ -25,7 +28,6 @@ export class MockQueryCoordinator {
         });
     }
     handleQuery(query) {
-        console.log(query, query instanceof AllAlertRules);
         if(query instanceof AllAlertRules){
             let rule1 = new AlertRule();
             rule1.id = 'd44ee99e-fed9-4ba0-a270-b072464fa88c';
@@ -36,9 +38,18 @@ export class MockQueryCoordinator {
             rule1.thresholdTimeframeInHours = 24;
             let items = [
                 rule1                
-            ];
-            console.log(items);
+            ];            
             return new QueryResult(query, items);
+        }
+        else if(query instanceof GetDataOwner){
+           let dataOwner = new DataOwner();
+           dataOwner.id = '2db26d84-5be5-4f31-aab8-dc90181f79c8';
+           dataOwner.name = 'Data Owner';
+           dataOwner.email = 'test@test.com';
+           let items = [
+               dataOwner
+           ];
+           return new QueryResult(query, items); 
         }
         // if (query instanceof AllDataCollectors) {
         //     let items = dataCollectors;
