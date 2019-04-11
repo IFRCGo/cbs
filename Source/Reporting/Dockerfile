@@ -34,12 +34,12 @@ COPY ./Source/Reporting/Web/package.json /CBS/Source/Reporting/Web/package.json
 WORKDIR /CBS/Source/Reporting/Web
 RUN yarn install
 
-# Build production code
+# Build frontend production code
 COPY ./Source/Reporting/Web /CBS/Source/Reporting/Web
 WORKDIR /CBS/Source/Reporting/Web
 RUN npm run ${mode}
 
-# Build runtime image
+# Build runtime image for the backend
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 COPY --from=build-web /CBS/Source/Reporting/Web/dist /CBS/Core/wwwroot
 COPY ./Source/Reporting/bounded-context.json /CBS/bounded-context.json
