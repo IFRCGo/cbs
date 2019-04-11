@@ -17,7 +17,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Route path="/" exact component={Analytics} />  
+            <Route path="/analytics/" exact component={Analytics} />  
         </BrowserRouter>
     </Provider>,
     document.getElementById("app")
