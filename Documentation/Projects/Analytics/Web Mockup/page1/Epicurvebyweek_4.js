@@ -1,9 +1,9 @@
-﻿Highcharts.chart('container1', {
+﻿Highcharts.chart('container4', {
     chart: {
-      type: 'column'
+      type: 'bar'
     },
     title: {
-      text: 'Epicurve by week'
+      text: 'Epicurve by weekHELLO HOZ QRE YOU'
     },
     subtitle: {
       text: 'Source: CSB'

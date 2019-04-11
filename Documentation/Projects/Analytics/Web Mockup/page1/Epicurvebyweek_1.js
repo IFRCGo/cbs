@@ -1,6 +1,6 @@
 ﻿Highcharts.chart('container1', {
     chart: {
-      type: 'column'
+      type: 'bar'
     },
     title: {
       text: 'Epicurve by week'
@@ -46,6 +46,11 @@
       column: {
         pointPadding: 0.1,
         borderWidth: 0
+      },
+      bar: {
+        dataLabels: {
+            enabled: true
+        }
       }
     },
     series: [{

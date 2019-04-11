@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
+
 <head>
   <!-- Required meta tags-->
   <meta charset="UTF-8">
@@ -31,12 +32,13 @@
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="http://code.highcharts.com/maps/highmaps.js"></script>
 
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 </head>
 
 <!-- animsition -->
+
 <body class="">
   <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -218,12 +220,81 @@
       <div class="main-content">
         <div class="section__content section__content--p30">
           <div class="container-fluid">
-
             <div class="row">
               <div class="col-lg-12">
                 <div class="au-card recent-report">
                   <div class="au-card-inner">
+                    <div class="row">
+                      <table style="width:100%">
+                        <tr>
+                          <th>Firstname</th>
+                          <th>Lastname</th>
+                          <th>Age</th>
+                        </tr>
+                        <tr>
+                          <td>Jill</td>
+                          <td>Smith</td>
+                          <td>50</td>
+                        </tr>
+                        <tr>
+                          <td>Eve</td>
+                          <td>Jackson</td>
+                          <td>94</td>
+                        </tr>
+                        <tr>
+                          <td>John</td>
+                          <td>Doe</td>
+                          <td>80</td>
+                        </tr>
+                      </table>
+                    </div>
+                    <br>
                     <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <table style="width:100%">
+                          <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                          </tr>
+                          <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+
+                          </tr>
+                          <tr>
+                            <td>Eve</td>
+                            <td>Jackson</td>
+
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                          <table style="width:100%">
+                            <tr>
+                              <th>Firstname</th>
+                              <th>Lastname</th>
+                            </tr>
+                            <tr>
+                              <td>Jill</td>
+                              <td>Smith</td>
+  
+                            </tr>
+                            <tr>
+                              <td>Eve</td>
+                              <td>Jackson</td>
+  
+                            </tr>
+                          </table>
+                        </div>
+
+                    </div>
+
+                    <div id="gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="age" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                   </div>
                 </div>
               </div>
@@ -269,7 +340,12 @@
     <!-- Main JS-->
     <script src="js/main.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/Epicurvebyweek.js"></script>
+    <script src="page1/Epicurvebyweek_1.js"></script>
+    <script src="page1/Epicurvebyweek_2.js"></script>
+    <script src="page1/Epicurvebyweek_3.js"></script>
+    <script src="page1/Epicurvebyweek_4.js"></script>
+    <script src="page1/gender.js"></script>
+    <script src="page1/age.js"></script>
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
       window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
@@ -277,4 +353,5 @@
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
+
 </html>
