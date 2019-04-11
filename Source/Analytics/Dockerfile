@@ -31,11 +31,7 @@ COPY ./Source/Analytics/Web.Frontend /CBS/Source/Analytics/Web.Frontend
 WORKDIR /CBS/Source/Analytics/Web.Frontend
 RUN yarn build
 
-# Build runtime image
-FROM nginx:1.15-alpine
-COPY --from=build-web /CBS/Source/Analytics/Web.Frontend/nginx-default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-web /CBS/Source/Analytics/Web.Frontend/dist /usr/share/nginx/html
-# Build runtime image
+# Build runtime image 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
 COPY --from=build-core /CBS/Source/Analytics/Web/out /CBS/Web/
 COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Web/wwwroot
