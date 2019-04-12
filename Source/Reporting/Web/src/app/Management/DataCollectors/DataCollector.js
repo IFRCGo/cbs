@@ -3,7 +3,6 @@
  *
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
-import { YEAR } from 'ngx-bootstrap/chronos/units/constants';
 
 export class DataCollector extends ReadModel
 {
