@@ -14,7 +14,7 @@ export class ChangeBaseInformation extends Command
         this.fullName = '';
         this.displayName = '';
         this.yearOfBirth = 0;
-        this.sex = {};
+        this.sex = 0;
         this.region = '';
         this.district = '';
     }

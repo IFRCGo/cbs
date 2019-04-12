@@ -16,8 +16,8 @@ export class DataCollector extends ReadModel
         this.fullName = '';
         this.displayName = '';
         this.yearOfBirth = 0;
-        this.sex = {};
-        this.preferredLanguage = {};
+        this.sex = 0;
+        this.preferredLanguage = 0;
         this.location = {};
         this.district = '';
         this.region = '';

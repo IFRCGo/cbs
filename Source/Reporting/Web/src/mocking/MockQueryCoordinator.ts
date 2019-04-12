@@ -3,11 +3,14 @@ import {AllDataCollectors} from '../app/Management/DataCollectors/AllDataCollect
 import {DataCollectorById} from '../app/Management/DataCollectors/DataCollectorById';
 import {AllCaseReportsForListing} from '../app/Reporting/CaseReportsForListing/AllCaseReportsForListing';
 import {CaseReportForListingById} from '../app/Reporting/CaseReportsForListing/CaseReportForListingById';
+import {AllTrainingCaseReportsForListing} from '../app/Reporting/TrainingCaseReportsForListing/AllTrainingCaseReportsForListing';
+import {TrainingCaseReportForListingById} from '../app/Reporting/TrainingCaseReportsForListing/TrainingCaseReportForListingById';
 import dataCollectors from './dataCollectors';
 import caseReports from './caseReports';
 import dataVerifiers from './dataVerifiers';
 import { AllDataVerifiers } from '../app/Management/DataVerifiers/AllDataVerifiers';
 import { DataVerifierById } from '../app/Management/DataVerifiers/DataVerifierById';
+import trainingCaseReports from './trainingCaseReports';
 
 export class MockQueryCoordinator {
     dataCollectors = [];
@@ -39,6 +42,14 @@ export class MockQueryCoordinator {
 
         else if(query instanceof CaseReportForListingById) {
             let items = caseReports.filter(_ => _.id === query.caseReportId);
+            return new QueryResult(query, items);
+        }
+        else if (query instanceof AllTrainingCaseReportsForListing) {
+            let items = trainingCaseReports;
+            return new QueryResult(query, items);
+        }
+        else if(query instanceof TrainingCaseReportForListingById) {
+            let items = trainingCaseReports.filter(_ => _.id === query.caseReportId);
             return new QueryResult(query, items);
         }
         else if (query instanceof AllDataVerifiers) {

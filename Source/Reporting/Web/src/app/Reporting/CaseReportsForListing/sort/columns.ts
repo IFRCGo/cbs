@@ -66,3 +66,4 @@ export const CaseReportColumns: Array<Column> = [
         'NumberOfFemalesAged5AndOlder', 'Females ≥ 5', true
     )
 ];
+
