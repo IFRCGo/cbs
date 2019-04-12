@@ -15,6 +15,8 @@ import { DataCollector } from '../DataCollector';
 import { ChangeVillage } from '../ChangeVillage';
 import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
+import { BeginTraining } from '../Training/BeginTraining';
+import { EndTraining } from '../Training/EndTraining';
 
 @Component({
     templateUrl: './edit.html',
@@ -25,6 +27,7 @@ export class Edit implements OnInit {
     dataCollector: DataCollector;
     phoneNumberString = '';
 
+    inTraining: boolean;
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
     changeLocationCommand: ChangeLocation = new ChangeLocation();
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
@@ -61,11 +64,12 @@ export class Edit implements OnInit {
                 if (response.success) {
                     if (response.items.length > 0) {
                         this.dataCollector = response.items[0]
+                        this.inTraining = this.dataCollector.inTraining;
                         this.initChangeBaseInformation();
                         this.initChangeLocation();
                         this.initChangePreferredLanguage();
                         this.initPhoneNumbers();
-                        this.initVillage();                        
+                        this.initVillage();
                     } else {
                         console.error(response)
                     }
@@ -94,7 +98,7 @@ export class Edit implements OnInit {
         this.handleChangeVillage(queue);
         this.handleAddPhoneNumbers(queue);
         this.handleRemovePhoneNumbers(queue);
-
+        this.handleTraining(queue);
         this.handleQueue(queue);
     }
 
@@ -384,6 +388,75 @@ export class Edit implements OnInit {
             });
         });
     }
+    private handleTraining(queue) {
+        if (this.hasChangedTrainingStatus()) {
+            this.userHasChanged = true;
+            if (this.inTraining) {
+                let command = new BeginTraining();
+                command.dataCollectorId = this.dataCollector.id;
+
+                queue.push({
+                    command: command,
+                    then: response => {
+                        console.log('Response from BeginTraining command')
+                        console.log(response);
+                        if (response.success) {
+                            this.toastr.success(`Successfully began training`);
+                        } else {
+                            if (!response.passedSecurity) { // Security error
+                                this.toastr.error(`Could not begin training because of security issues`);
+                            } else {
+                                const errors = response.allValidationMessages.join('\n');
+                                this.toastr.error(`Could not begin training.\n${errors}`);
+                            }
+                        }
+                    },
+                    catch: response => {
+                        console.log('Response from BeginTraining command')
+                        console.log(response);
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not begin training because of security issues`);
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not begin training.\n${errors}`);
+                        }
+                    }
+                });
+                
+            }
+            else {
+                let command = new EndTraining();
+                command.dataCollectorId = this.dataCollector.id;
+                queue.push({
+                    command: command,
+                    then: response => {
+                        console.log('Response from EndTraining command')
+                        console.log(response);
+                        if (response.success) {
+                            this.toastr.success(`Successfully ended training`);
+                        } else {
+                            if (!response.passedSecurity) { // Security error
+                                this.toastr.error(`Could not end training because of security issues`);
+                            } else {
+                                const errors = response.allValidationMessages.join('\n');
+                                this.toastr.error(`Could not end training.\n${errors}`);
+                            }
+                        }
+                    },
+                    catch: response => {
+                        console.log('Response from EndTraining command')
+                        console.log(response);
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error(`Could not end training because of security issues`);
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not end training.\n${errors}`);
+                        }
+                    }
+                });
+            }
+        }
+    }
 
     private hasChangedBaseInformation() {
         return (this.changeBaseInformationCommand.displayName !== this.dataCollector.displayName
@@ -397,5 +470,8 @@ export class Edit implements OnInit {
     }
     private hasChangedPreferredLanguage() {
         return this.changePreferredLanguageCommand.preferredLanguage !== this.dataCollector.preferredLanguage;
+    }
+    private hasChangedTrainingStatus() {
+        return this.inTraining !== this.dataCollector.inTraining;
     }
 }

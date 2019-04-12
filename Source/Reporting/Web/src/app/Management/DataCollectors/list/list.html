@@ -18,6 +18,7 @@
             <th>Full Name</th>
             <th>Display Name</th>
             <th>Phone Numbers</th>
+            <th>Training Status</th>
             <th>Last Active</th>
             <th>Actions</th>
         </tr>
@@ -38,7 +39,10 @@
                 <span>{{user.phoneNumbers}}</span>
             </td>
             <td>
-                    <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
+                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+            </td>
+            <td>
+                <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
                 <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
