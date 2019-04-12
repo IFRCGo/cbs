@@ -18,7 +18,7 @@
             <th>Full Name</th>
             <th>Display Name</th>
             <th>Phone Numbers</th>
-            <th></th>
+            <th>Last Active</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -38,6 +38,7 @@
                 <span>{{user.phoneNumbers}}</span>
             </td>
             <td>
+                    <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
                 <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
