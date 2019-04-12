@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Column, SortableColumn, CaseReportColumns } from '../sort/columns';
-import caseReports from '../../../../mocking/caseReports';
-import dataCollectors from '../../../../mocking/dataCollectors';
+import {QueryCoordinator} from '@dolittle/queries';
+import { QuickFilter } from '../filtering/filter.pipe';
+import { CaseReportForListing } from '../CaseReportForListing';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AllCaseReportsForListing } from '../AllCaseReportsForListing';
 
 
 @Component({
@@ -11,92 +14,140 @@ import dataCollectors from '../../../../mocking/dataCollectors';
 })
 export class TrainingCaseReportsComponent implements OnInit {
 
-  allColumns: Array<Column> = CaseReportColumns;
-  listedReports: any[] = caseReports;
+    listedReports: Array<CaseReportForListing> = [];//TODO: Should be another, TrainingCaseReports, read model
 
-  allReports = caseReports;
+    allFilters: Array<QuickFilter> = QuickFilter.Filters;
+    currentFilter: QuickFilter = QuickFilter.All;
 
-  constructor() {
-    console.log("allReports", this.allReports[0].timestamp.getDate());
-    console.log("dataCollectors: ", dataCollectors);
-  }
+    allColumns: Array<Column> = CaseReportColumns;
+    sortDescending: boolean = true;
+    sortField: string;
+    currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
-  ngOnInit() {
-  }
+    page = {
+        isLoading: false,
+        number: 0,
+        size: 50,
+        sizes: [10, 20, 50, 100, 200, 500, 1000]
+    };
 
-  getTimeOrDay(date: Date, elt) {
+    constructor(
+        private queryCoordinator: QueryCoordinator,
+        private route: ActivatedRoute,
+        private router: Router,
+        //private logService: fromServices.LogService
+    ) { }
 
-    switch (elt) {
-      case 'date': {
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-
-        let d = day + "";
-        let m = month + "";
-        let y = year + "";
-
-        if (d.length == 1) {
-          d = "0" + day;
-        }
-        if (m.length == 1) {
-          m = "0" + month;
-        }
-        if (y.length == 1) {
-          y = "0" + year;
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        if (event.keyCode === 37) {
+            this.showPrevPage();
         }
 
-        return d + "/" + m + "/" + y;
-      }
-      case 'time': {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-
-        let h = hours + "";
-        let m = minutes + "";
-
-        if (h.length == 1) {
-          h = "0" + hours;
+        if (event.keyCode === 39) {
+            this.showNextPage();
         }
-        if (m.length == 1) {
-          m = "0" + minutes;
-        }
-
-        return h + ":" + m;
-      }
-      default: {
-        return ''
-      }
     }
-  }
 
-  getDataCollectorById(id) {
-    let collectorsList = dataCollectors;
-    let collector: any;
-
-    for (let i = 0; i < collectorsList.length; i++) {
-      if (collectorsList[i].id == id) {
-        collector = collectorsList[i];
-        break;
-      }
+    updateNavigation(filter: QuickFilter, column: SortableColumn, sortDescending: boolean) {
+      this.router.navigate(['../'+filter.name], { relativeTo: this.route, queryParams: {
+        sortBy: column.name,
+        order: sortDescending ? 'desc' : 'asc'
+      }});
     }
-    return collector;
-  }
 
-  isSuccess(status: number): boolean {
-    return status === 0;
-  }
+    clickFilter(filter: QuickFilter) {
+        this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
+    }
 
-  isError(status: number): boolean {
-    return status === 1;
-  }
+    toggleSortColum(column: Column) {
+        if (column instanceof SortableColumn) {
+            if (column !== this.currentSortColumn) {
+                this.updateNavigation(this.currentFilter, column, true);
+            } else {
+                this.updateNavigation(this.currentFilter, this.currentSortColumn, !this.sortDescending);
+            }
+        }
+    }
 
-  isSuccessUnknown(status: number): boolean {
-    return status === 2;
-  }
+    loadListData(): void {
+        const query = new AllCaseReportsForListing(); //TODO: Should be another, TrainingCaseReports, read model. Another query
+        query.pageNumber = this.page.number;
+        query.pageSize = this.page.size;
+        query.sortField = this.sortField;
+        query.sortAscending = !this.sortDescending;
+        this.page.isLoading = true;
+        this.queryCoordinator.execute(query)
+            .then(response => {
+                if (response.success) {
+                    this.listedReports = response.items as Array<CaseReportForListing>; //TODO: Should be another, TrainingCaseReports, read model
+                    this.listedReports.forEach(element => {
+                        element.timestamp = new Date(element.timestamp);
+                    });
+                } else {
+                    console.error(response);
+                }
+                this.page.isLoading = false;
+            })
+            .catch(response => {
+                console.error(response);
+                this.page.isLoading = false;
+            });
+    }
 
-  isErrorUnknown(status: number): boolean {
-    return status === 3;
-  }
+    resetPage(): void {
+        this.page.number = 0;
+        this.loadListData();
+    }
 
+    showPrevPage(): void {
+        if (this.page.number && !this.page.isLoading) {
+            this.page.number--;
+            this.loadListData();
+        }
+    }
+
+    showNextPage(): void {
+        if (!this.isLastPage() && !this.page.isLoading) {
+            this.page.number++;
+            this.loadListData();
+        }
+    }
+
+    isLastPage(): boolean {
+        return this.page.size > this.listedReports.length;
+    }
+
+    isSuccess(status: number): boolean {
+        return status === 0;
+    }
+
+    isError(status: number): boolean {
+        return status === 1;
+    }
+
+    isSuccessUnknown(status: number): boolean {
+        return status === 2;
+    }
+
+    isErrorUnknown(status: number): boolean {
+        return status === 3;
+    }
+
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.currentFilter = QuickFilter.fromName(params.filter);
+        });
+
+        this.route.queryParams.subscribe(query => {
+            this.sortDescending = query.order === 'desc';
+            this.sortField = query.sortBy;
+
+            this.currentSortColumn = this.allColumns.find(column => {
+                return column instanceof SortableColumn && column.name == query.sortBy;
+            }) as SortableColumn || this.currentSortColumn;
+
+            this.resetPage();
+        });
+    }
 }
