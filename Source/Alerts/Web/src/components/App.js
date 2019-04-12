@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AlertRuleOverview from './AlertRuleOverview';
+import Alert from './Alerts/AlertRuleList';
+import AlertForm from './Alerts/AlertForm';
 import AddAlertRule from './AddAlertRule';
 
 class App extends Component {
@@ -11,8 +12,9 @@ class App extends Component {
     render() {
         return (
             <div className="alerts">
-                <AddAlertRule />
-                <AlertRuleOverview />
+                <Alert />
+                <AlertForm/>
+
             </div>
         );
     }
