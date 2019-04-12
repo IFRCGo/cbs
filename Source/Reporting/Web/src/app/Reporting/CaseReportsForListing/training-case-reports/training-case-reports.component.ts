@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Column, SortableColumn, CaseReportColumns } from '../sort/columns';
 import caseReports from '../../../../mocking/caseReports';
 import dataCollectors from '../../../../mocking/dataCollectors';
+import { QuickFilter } from '../filtering/filter.pipe';
+import { QueryCoordinator } from '@dolittle/queries';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,15 +16,35 @@ export class TrainingCaseReportsComponent implements OnInit {
 
   allColumns: Array<Column> = CaseReportColumns;
   listedReports: any[] = caseReports;
+  sortDescending: boolean = true;
+  currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
 
-  allReports = caseReports;
+  page = {
+    isLoading: false,
+    number: 0,
+    size: 50,
+    sizes: [10, 20, 50, 100, 200, 500, 1000]
+  };
 
-  constructor() {
-    console.log("allReports", this.allReports[0].timestamp.getDate());
-    console.log("dataCollectors: ", dataCollectors);
+  constructor(private queryCoordinator: QueryCoordinator,
+    private route: ActivatedRoute,
+    private router: Router, ) {
   }
 
   ngOnInit() {
+  }
+
+  updateNavigation(filter: QuickFilter, column: SortableColumn, sortDescending: boolean) {
+    this.router.navigate(['../' + filter.name], {
+      relativeTo: this.route, queryParams: {
+        sortBy: column.name,
+        order: sortDescending ? 'desc' : 'asc'
+      }
+    });
+  }
+
+  clickFilter(filter: QuickFilter) {
+    this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
   }
 
   getTimeOrDay(date: Date, elt) {
@@ -97,6 +120,41 @@ export class TrainingCaseReportsComponent implements OnInit {
 
   isErrorUnknown(status: number): boolean {
     return status === 3;
+  }
+
+  isLastPage(): boolean {
+    return this.page.size > this.listedReports.length;
+  }
+
+  resetPage(): void {
+    this.page.number = 0;
+    this.loadListData();
+  }
+
+  loadListData(): void {
+    if (this.page.size < caseReports.length) {
+
+      this.listedReports = [];
+      let reports = [];
+      let i = 0;
+
+      caseReports.forEach(element => {
+        if (i < this.page.size) {
+          if (this.getDataCollectorById(element.dataCollectorId).inTraining == true) {
+            reports.push(element);
+            i++;
+          }
+          else{
+            return;
+          }
+        }
+      });
+
+      this.listedReports = reports;
+    }
+    else {
+      this.listedReports = caseReports;
+    }
   }
 
 }
