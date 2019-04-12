@@ -185,7 +185,12 @@
         "type": "Domain.Alerts.Alerts, Domain"
       }
     },
-    "readModels": {},
+    "readModels": {
+      "1c999658-9eb3-413c-9154-6eaad3ddac8e": {
+        "generation": 1,
+        "type": "Read.Alerts.AlertOverview, Read"
+      }
+    },
     "queries": {}
   },
   "b0f3a78b-9d49-4768-a70d-5a0cdbd9b051": {
