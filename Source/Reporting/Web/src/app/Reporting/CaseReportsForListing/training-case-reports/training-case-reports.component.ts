@@ -16,7 +16,7 @@ export class TrainingCaseReportsComponent implements OnInit {
 
     listedReports: Array<TrainingCaseReportForListing> = [];//TODO: Should be another, TrainingCaseReports, read model
 
-    allFilters: Array<QuickFilter> = QuickFilter.Filters;
+    allFilters: Array<QuickFilter> = QuickFilter.FiltersWithoutUnknownSender;
     currentFilter: QuickFilter = QuickFilter.All;
 
     allColumns: Array<Column> = CaseReportColumns;
