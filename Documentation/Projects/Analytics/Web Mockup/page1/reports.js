@@ -15,6 +15,7 @@ fetch(url_district).then(data => data.json())
     .then(response => {
         let healthDistricts = response.healthRisksPerDistrict;
         for (let i = 0; i < healthDistricts.length; i++) {
+            $('#districtsContainer').append("<div id='container"+(i+1)+"' style='min-width: 310px; height: 400px; margin: 0 auto' class='col-md-6'>");
             xtext = healthDistricts[i].name;
             for (let district of healthDistricts[i].districts) {
                 districts_names.push(district.name);
