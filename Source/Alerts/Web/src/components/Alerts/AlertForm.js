@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+
+
 import MenuAlert from './menuAlert';
+
 
 const styles = theme => ({
     container: {
@@ -15,36 +18,9 @@ const styles = theme => ({
       input: {
         display: 'none',
       },
-    textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-    },
-    dense: {
-      marginTop: 16,
-    },
-    menu: {
-      width: 200,
-    },
+    
   });
-  const healthRiskNumber = [
-    {
-      value: '1',
-      label: '1',
-    },
-    {
-      value: '2',
-      label: '2',
-    },
-    {
-      value: '3',
-      label: '3',
-    },
-    {
-      value: '4',
-      label: '4',
-    },
-  ];
-
+  
 class AlertForm extends Component {
     constructor(props) {
         super(props);
@@ -89,74 +65,81 @@ class AlertForm extends Component {
 
         return (
             <div className="">
-                    <MenuAlert/>
+                    <MenuAlert  />
                 <div style={{ textAlign:'center' }}>
                     <h1 >Alert Rule</h1>
                     <p>Here you can set rules for health risk alerts.</p>
                 </div>
-                <TextField
+                <TextField className="input"
                     id=""
                     label="Alert rule name"
                     style={{ marginLeft:'15%',width:'70%',  }}
-                    placeholder="i.e. Acute watery diarrhoea"
+                    defaultValue="i.e. Acute watery diarrhoea"
                     fullWidth
                     margin="normal"
-                    variant="filled"
-                    InputLabelProps={{  
-                        shrink: true,
-                    }}
+                    variant="outlined"
+                    
                 />
+                
                   <TextField
                     id="filled-full-width"
                     label="Health risk number"
-                    type="text"
+                    type="number"
                     name="risk_number"
                     style={{ marginLeft:'15%',width:'35%',  }}
-                    placeholder="i.e. 1"
+                    defaultValue="1"
                     fullWidth
                     margin="normal"
-                    variant="filled"
-                    InputLabelProps={{  
-                        shrink: true,
-                    }}
+                    variant="outlined"
+                    
                 />
              
                  <TextField
                     id="filled-full-width"
                     label="Alert threshold"
                     type="text"
+                    defaultValue="Write the number of cases to rise an alert"
                     name="risk_number"
                     style={{ marginLeft:'0.2%',width:'35%',  }}
                     placeholder="i.e. 2"
                     fullWidth
                     margin="normal"
-                    variant="filled"
-                    InputLabelProps={{ 
-                        shrink: true,
-                    }}
+                    variant="outlined"
+                
                 />
                 <TextField
                     id="filled-full-width"
                     label="Threshold timeframe (in hours)"
                     type="text"
                     name="risk_number"
-                    style={{ marginLeft:'15%',width:'70%',  }}
-                    placeholder="i.e. 24"
+                    style={{ marginLeft:'15%',width:'70%'}}
+                    defaultValue="Define the time from case 1 to the alert threshold is reached."
                     fullWidth
                     margin="normal"
-                    variant="filled"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
+                    variant="outlined"
+               
                 />
                 <Button
                  variant="contained"
-                 style={{ marginLeft:'15%',width:'70%'}}
+                 style={{ marginLeft:'15%',
+                 width:'5%',
+                 marginTop:'2%',
 
+                }}
                  >
-                        Create
+                    Cancel
                 </Button>
-                            
+                <Button variant="contained"
+                   style={{ 
+                     marginLeft:'2%',
+                     marginTop:'2%',
+                     width:'5%',
+                     backgroundColor:'blue'
+
+                    }} >
+                    Save  
+                </Button>
+                                        
             </div>
         );
     }

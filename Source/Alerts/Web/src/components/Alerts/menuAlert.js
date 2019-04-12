@@ -25,8 +25,8 @@ function MenuAlert(props) {
   const { classes } = props;
 
   return (
-    <div style={{ marginLeft:'30%', textDecoration:'none' }}>
-         <IconButton   >
+    <div style={{ textDecoration:'none',textAlign:'center' }}>
+         <IconButton >
             Alerts OverView
         </IconButton>
         <Link to="/alerts/ListeRules" style={{ textDecoration:'none' }}>

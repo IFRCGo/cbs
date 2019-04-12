@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityIcon from '@material-ui/icons/More';
 import AddIcon from '@material-ui/icons/Add';
 import {
     Link,  
@@ -26,12 +26,13 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '70%',
+    margin:'auto',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
   table: {
-    minWidth: 700,
+    maxWidth: 850,
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -47,11 +48,11 @@ function createData(name, calories, fat, carbs) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 4, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 3, 9.0, 37, 4.3),
-  createData('Eclair', 4, 16.0, 24, 6.0),
-  createData('Cupcake', 6, 3.7, 67, 4.3),
-  createData('Gingerbread', 7, 16.0, 49, 3.9),
+  createData('AWD #1', 'Acute Watery Diarrhea', 6.0, 'Within 6 days'),
+  createData('CH #2', 'Cholera', 9.0, 'Within 6 days'),
+  createData('YF #3', 'Measles', 16.0, 'Within 12 days'),
+  createData('ML #4', 'Acute Watery Diarrhea', 3.7, 'Within 2 days'),
+  createData('CH #2', 'Typhoid fever', 16.0, 'Within 1 days'),
 ];
 
 function CustomizedTable(props) {
@@ -62,17 +63,24 @@ function CustomizedTable(props) {
 
     <Paper className={classes.root}>
    
-    <Link to="/alerts/AddRule" style={{ textDecoration:'none' }}><Button variant="outlined" color="black" className={classes.button} >
-          <AddIcon className={classes.icon} />
-      </Button></Link>
+    <Link to="/alerts/AddRule" align="right" style={{ textDecoration:'none',color:'#1070ca' }}>
+        <Button  variant="outlined"  className={classes.button} style={{ color:'#1070ca' }} >
+          <AddIcon  className={classes.icon} />
+        </Button>
+    </Link>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
-            <CustomTableCell>Alert rule name</CustomTableCell>
-            <CustomTableCell align="right">Health risk number</CustomTableCell>
-            <CustomTableCell align="right">Alert threshold</CustomTableCell>
-            <CustomTableCell align="right">Timeframe</CustomTableCell>
-            <CustomTableCell align="right">Operations</CustomTableCell>
+          <TableRow >
+            <CustomTableCell style={{
+               backgroundColor:'#fafafa',color:'#000'}}>Alert rule name</CustomTableCell>
+            <CustomTableCell style={{
+               backgroundColor:'#fafafa',color:'#000'}}align="right">Health risk number</CustomTableCell>
+            <CustomTableCell style={{
+               backgroundColor:'#fafafa',color:'#000'}} align="right">Alert threshold</CustomTableCell>
+            <CustomTableCell style={{
+               backgroundColor:'#fafafa',color:'#000'}}  align="right">Timeframe</CustomTableCell>
+            <CustomTableCell style={{
+               backgroundColor:'#fafafa',color:'#000'}} align="right"></CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
