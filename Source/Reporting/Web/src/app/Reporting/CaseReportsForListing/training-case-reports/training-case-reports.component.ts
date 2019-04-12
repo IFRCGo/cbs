@@ -2,9 +2,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Column, SortableColumn, CaseReportColumns } from '../sort/columns';
 import {QueryCoordinator} from '@dolittle/queries';
 import { QuickFilter } from '../filtering/filter.pipe';
-import { CaseReportForListing } from '../CaseReportForListing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AllCaseReportsForListing } from '../AllCaseReportsForListing';
+import { AllTrainingCaseReportsForListing } from '../../TrainingCaseReportsForListing/AllTrainingCaseReportsForListing';
+import { TrainingCaseReportForListing } from '../../TrainingCaseReportsForListing/TrainingCaseReportForListing';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { AllCaseReportsForListing } from '../AllCaseReportsForListing';
 })
 export class TrainingCaseReportsComponent implements OnInit {
 
-    listedReports: Array<CaseReportForListing> = [];//TODO: Should be another, TrainingCaseReports, read model
+    listedReports: Array<TrainingCaseReportForListing> = [];//TODO: Should be another, TrainingCaseReports, read model
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -71,7 +71,7 @@ export class TrainingCaseReportsComponent implements OnInit {
     }
 
     loadListData(): void {
-        const query = new AllCaseReportsForListing(); //TODO: Should be another, TrainingCaseReports, read model. Another query
+        const query = new AllTrainingCaseReportsForListing(); //TODO: Should be another, TrainingCaseReports, read model. Another query
         query.pageNumber = this.page.number;
         query.pageSize = this.page.size;
         query.sortField = this.sortField;
@@ -80,7 +80,7 @@ export class TrainingCaseReportsComponent implements OnInit {
         this.queryCoordinator.execute(query)
             .then(response => {
                 if (response.success) {
-                    this.listedReports = response.items as Array<CaseReportForListing>; //TODO: Should be another, TrainingCaseReports, read model
+                    this.listedReports = response.items as Array<TrainingCaseReportForListing>; //TODO: Should be another, TrainingCaseReports, read model
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
