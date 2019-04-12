@@ -2,24 +2,22 @@ using Read;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Read.CaseReports;
 using Read.Models;
 using Read.Model;
 
 namespace Web.Controllers
 {
-    // Todo: Move to proper place
-    public class AnalysisService
+    public class EpicurveService
     {
         private readonly MongoDBHandler _dbHandler;
 
-        public AnalysisService(MongoDBHandler dbHandler)
+        public EpicurveService(MongoDBHandler dbHandler)
         {
             _dbHandler = dbHandler;
         }
 
-        public AnalysisReport GetAggregation(
+        public Epicurve GetAggregation(
             DateTimeOffset @from, 
             DateTimeOffset to, 
             TimeAggregation timeAggregation,
@@ -31,7 +29,7 @@ namespace Web.Controllers
 
             var groups = dbCaseEntry.OrderBy(x => x.Timestamp.Date).GroupBy(x => TimeWindowGrouping(x.Timestamp.Date, timeAggregation));
 
-            var report = new AnalysisReport
+            var report = new Epicurve
             {
                 From = @from,
                 To = to,

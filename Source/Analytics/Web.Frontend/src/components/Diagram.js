@@ -62,7 +62,7 @@ class Diagram extends Component {
             .map(series => `selectedSeries=${series}`)
             .join("&");
 
-        this.url = `${BASE_URL}Analysis/${formatDate(from)}/${formatDate(to)}/${
+        this.url = `${BASE_URL}Epicurve/${formatDate(from)}/${formatDate(to)}/${
             this.state.value
         }?${series}`;
 
