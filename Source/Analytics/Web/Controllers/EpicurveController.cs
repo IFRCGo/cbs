@@ -21,11 +21,5 @@ namespace Web.Controllers
         {
             return _epicurveService.GetAggregation(from, to, timeAggregation, selectedSeries);
         }
-
-        [HttpGet("Outbreaks/{from}/{to}", Name = "Outbreaks")]
-        public IEnumerable<OutbreakReport> GetOutbreaks(DateTimeOffset from, DateTimeOffset to)
-        {
-            return _epicurveService.GetOutbreaks(from, to);
-        }
     }
 }

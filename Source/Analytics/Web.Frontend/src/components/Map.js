@@ -50,7 +50,7 @@ class MapWidget extends Component {
         const from = fromOrDefault(this.props.range.from);
         const to = toOrDefault(this.props.range.to);
 
-        this.url = `${BASE_URL}Epicurve/Outbreaks/${formatDate(
+        this.url = `${BASE_URL}Map/HealthRiskCoordinates/${formatDate(
             from
         )}/${formatDate(to)}/`;
 
