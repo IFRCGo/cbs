@@ -1,6 +1,6 @@
-﻿Highcharts.chart('container1', {
+﻿Highcharts.chart('container2', {
     chart: {
-      type: 'column'
+      type: 'bar'
     },
     title: {
       text: 'Epicurve by week'
