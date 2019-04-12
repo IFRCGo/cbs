@@ -25,7 +25,6 @@ export class DataCollector extends ReadModel
         this.village = '';
         this.phoneNumbers = [];
         this.registeredAt = new Date();
-        this.lastActive = new Date();
         this.dataVerifier = '00000000-0000-0000-0000-000000000000';
         this.lastActive = new Date();
         this.inTraining = false;
