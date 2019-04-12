@@ -201,24 +201,6 @@
       </div>
     </div>
   </div>
-
-
-  <div class="form-group">
-      <label for="status">Status</label>
-      <select class="form-control" id="status"
-              required
-              [(ngModel)]="command.status"
-              name="status"
-              #status="ngModel">
-          <option value="1">In Training</option>
-          <option value="0">Active</option>
-      </select>
-
-      <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
-          <div *ngIf="status.errors?.required">
-            Status is required.
-        </div>
-      </div>
     </div>
      <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" (click)="submit()">Submit</button>
 </form>
