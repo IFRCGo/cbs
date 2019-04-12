@@ -25,7 +25,9 @@ STATUS
 Reference pages
 ---------------------
 
-[UXPin (not updated)](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109295030/simulate/no-panels?mode=hm)
+[UXPin Page 1](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109294637/simulate/sitemap)
+[UXPin Page 2](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109325305/simulate/sitemap)
+[UXPin Page 3](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109327655/simulate/sitemap)
 
 [graphs.md highlights a number of older graphs that can be used as reference and inspiration](graphs.md)
 
@@ -65,6 +67,8 @@ CLASSICAL DESCRIPTIVE STATISTICS
 PAGE 1 - Country overview, all health risks ("Analytics 3")
 -----------------------------------------------------------
 
+[UXPin Page 1](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109294637/simulate/sitemap)
+
 ![](images/index/Scanned-Document-1.png)
 
 This page is designed to show an overview of the country **right now**.
@@ -98,6 +102,8 @@ This will be done through:
 PAGE 2 - Country overview, per health risk ("Analytics 4")
 ----------------------------------------------------------
 
+[UXPin Page 2](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109325305/simulate/sitemap)
+
 ![](images/index/Scanned-Document-2.png)
 
 This page is designed to show an overview of the country according to a
@@ -130,6 +136,8 @@ This will be done through:
 
 PAGE 3 - Outbreak mode, per health risk ("Analytics 13")
 --------------------------------------------------------
+
+[UXPin Page 3](https://preview.uxpin.com/6f7c2440d8ba5f7888d63932bbc82c4138712847#/pages/109327655/simulate/sitemap)
 
 ![](images/index/Scanned-Document-3.png)
 
