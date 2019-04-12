@@ -11,7 +11,7 @@
              [(ngModel)]="command.fullName" name="full_name"
              #full_name="ngModel">
 
-    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" 
+    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)"
       class="alert alert-warning">
 
       <div *ngIf="full_name.errors?.required">
@@ -29,7 +29,7 @@
               required minlength="4"
               [(ngModel)]="command.displayName" name="display_name"
               #display_name="ngModel">
-    <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" 
+    <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)"
       class="alert alert-warning">
 
       <div *ngIf="display_name.errors?.required">
@@ -57,7 +57,7 @@
            [(ngModel)]="command.yearOfBirth" name="yearOfBirth"
            #yearOfBirth="ngModel">
 
-    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" 
+    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)"
       class="alert alert-warning">
       <div *ngIf="yearOfBirth.errors?.required">
         Year Of Birth is required.
@@ -84,18 +84,18 @@
     <label for="preferredLanguage">Preferred Language</label>
     <select class="form-control" id="preferredLanguage"
             required
-            [(ngModel)]="command.preferredLanguage" 
+            [(ngModel)]="command.preferredLanguage"
             name="preferredLanguage"
             #preferredLanguage="ngModel">
         <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
     </select>
-    
+
     <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
         <div *ngIf="preferredLanguage.errors?.required">
           Preferred Language is required.
       </div>
     </div>
-  </div>  
+  </div>
 
   <div class="form-group">
     <label>Location</label>
@@ -108,7 +108,7 @@
       <label for="latitude">Latitude</label>
       <input
         type="number"
-        class="input-mini form-control" 
+        class="input-mini form-control"
         id="latitude"
         required
         [(ngModel)]="command.gpsLocation.latitude"
@@ -117,11 +117,11 @@
 
       />
       <label for="longitude">Longitude</label>
-     <input 
+     <input
         type="number"
-        class="input-mini form-control" 
+        class="input-mini form-control"
         id="longitude"
-        
+
         required
         [(ngModel)]="command.gpsLocation.longitude"
         name="longitude"
@@ -129,7 +129,7 @@
       />
       <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
         || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
-      
+
       <div *ngIf="latitude.errors?.required">
           Location Latitude is required
       </div>
@@ -147,7 +147,7 @@
             required
             [(ngModel)]="command.region" name="region"
             #region="ngModel">
-  <div *ngIf="region.invalid && (region.dirty || region.touched)" 
+  <div *ngIf="region.invalid && (region.dirty || region.touched)"
     class="alert alert-warning">
 
     <div *ngIf="region.errors?.required">
@@ -162,7 +162,7 @@
           required
           [(ngModel)]="command.district" name="district"
           #district="ngModel">
-  <div *ngIf="district.invalid && (district.dirty || district.touched)" 
+  <div *ngIf="district.invalid && (district.dirty || district.touched)"
     class="alert alert-warning">
 
     <div *ngIf="district.errors?.required">
@@ -176,7 +176,7 @@
   <input type="text" class="form-control" id="village"
           [(ngModel)]="changeVillageCommand.village" name="village"
           #village="ngModel">
-  <div *ngIf="village.invalid && (village.dirty || village.touched)" 
+  <div *ngIf="village.invalid && (village.dirty || village.touched)"
     class="alert alert-warning">
 
     <div *ngIf="village.errors?.required">
@@ -185,10 +185,10 @@
   </div>
 </div>
 
-   <label>Phone numbers (comma seperated)</label>
   <div class="form-group">
+    <label>Phone numbers (comma seperated)</label>
     <input type="text"
-      class="input-mini form-control" 
+      class="input-mini form-control"
       id="phoneNumber"
       required
       [(ngModel)]="phoneNumberString"
@@ -201,7 +201,24 @@
       </div>
     </div>
   </div>
+
+
+  <div class="form-group">
+      <label for="status">Status</label>
+      <select class="form-control" id="status"
+              required
+              [(ngModel)]="command.status"
+              name="status"
+              #status="ngModel">
+          <option value="1">In Training</option>
+          <option value="0">Active</option>
+      </select>
+
+      <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
+          <div *ngIf="status.errors?.required">
+            Status is required.
+        </div>
+      </div>
+    </div>
      <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" (click)="submit()">Submit</button>
 </form>
-
-

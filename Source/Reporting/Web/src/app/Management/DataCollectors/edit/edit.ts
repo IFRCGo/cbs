@@ -65,7 +65,7 @@ export class Edit implements OnInit {
                         this.initChangeLocation();
                         this.initChangePreferredLanguage();
                         this.initPhoneNumbers();
-                        this.initVillage();                        
+                        this.initVillage();
                     } else {
                         console.error(response)
                     }
@@ -125,6 +125,7 @@ export class Edit implements OnInit {
         this.changeBaseInformationCommand.displayName = this.dataCollector.displayName;
         this.changeBaseInformationCommand.fullName = this.dataCollector.fullName;
         this.changeBaseInformationCommand.sex = this.dataCollector.sex;
+        this.changeBaseInformationCommand.status = this.dataCollector.inTraining ? 1 : 0;
         this.changeBaseInformationCommand.yearOfBirth = this.dataCollector.yearOfBirth;
         this.changeBaseInformationCommand.region = this.dataCollector.region;
         this.changeBaseInformationCommand.district = this.dataCollector.district;

@@ -1,6 +1,6 @@
 ﻿/*---------------------------------------------------------------------------------------------
  *  This file is an automatically generated Command Proxy
- *  
+ *
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
@@ -15,6 +15,7 @@ export class ChangeBaseInformation extends Command
         this.displayName = '';
         this.yearOfBirth = 0;
         this.sex = {};
+        this.status = 1;
         this.region = '';
         this.district = '';
     }
