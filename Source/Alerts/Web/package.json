@@ -26,6 +26,8 @@
     "@dolittle/core": "^1.0.4",
     "@dolittle/queries": "^1.0.12",
     "@dolittle/readmodels": "^1.0.2",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "evergreen-ui": "^4.9.0",
     "formik": "^1.5.1",
     "react": "^16.7.0",
