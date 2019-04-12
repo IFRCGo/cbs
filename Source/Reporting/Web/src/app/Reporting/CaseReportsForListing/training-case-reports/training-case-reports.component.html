@@ -1,0 +1,43 @@
+<h3>
+    Training Cases
+</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let column of allColumns" [column]="column" [current-sorted]="currentSortColumn"
+                [sort-descending]="sortDescending" (click)="toggleSortColum(column)"
+                [ngClass]="{'sortable': column.isSortable}"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of listedReports">
+            <ng-container *ngIf="getDataCollectorById(elt.dataCollectorId).inTraining == true">
+                <td>{{getTimeOrDay(elt.timestamp,'date')}}</td>
+                <td>{{getTimeOrDay(elt.timestamp,'time')}}</td>
+                <td>
+                        <span *ngIf="isSuccess(elt.status)" class="label label-success">
+                            Success
+                        </span>
+                        <span *ngIf="isError(elt.status) || isErrorUnknown(elt.status)" class="label label-danger">
+                            Error
+                        </span>
+                        <span *ngIf="isSuccessUnknown(elt.status)|| isErrorUnknown(elt.status)" class="label label-warning">
+                            Unknown sender
+                        </span>
+                    </td>
+            </ng-container>
+            <ng-container *ngIf="getDataCollectorById(elt.dataCollectorId).inTraining == true">
+                <td>{{elt.dataCollectorDisplayName || "Unknown"}}</td>
+                <td>{{elt.origin || "Unknown"}}</td>
+                <td>{{elt.dataCollectorRegion || "Unknown"}}</td>
+                <td>{{elt.dataCollectorDistrict || "Unknown"}}</td>
+                <td>{{elt.dataCollectorVillage || "Unknown"}}</td>
+                <td>{{elt.healthRisk}}</td>
+                <td>{{elt.numberOfMalesUnder5}}</td>
+                <td>{{elt.numberOfMalesAged5AndOlder}}</td>
+                <td>{{elt.numberOfFemalesUnder5}}</td>
+                <td>{{elt.numberOfFemalesAged5AndOlder}}</td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

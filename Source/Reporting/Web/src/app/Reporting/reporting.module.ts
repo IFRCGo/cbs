@@ -8,6 +8,7 @@ import {CaseReportListComponent} from './CaseReportsForListing/case-report-list.
 import {CaseReportExportComponent} from './CaseReportsForListing/export/case-report-export.component';
 import {SortableColumnComponent} from './CaseReportsForListing/sort/sortable-column.component';
 import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
+import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-case-reports/training-case-reports.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
     CaseReportListComponent,
     CaseReportExportComponent,
     SortableColumnComponent,
-    Filter
+    Filter,
+    TrainingCaseReportsComponent
   ],
   providers: [
     Filter

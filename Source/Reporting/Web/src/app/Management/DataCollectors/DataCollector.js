@@ -14,7 +14,7 @@ export class DataCollector extends ReadModel
         };
         this.id = '00000000-0000-0000-0000-000000000000';
         this.fullName = '';
-        this.displayName = '';
+        this.displayName = 'John W.';
         this.yearOfBirth = 0;
         this.sex = {};
         this.preferredLanguage = {};

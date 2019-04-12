@@ -28,4 +28,32 @@ for(let i = 0; i < 5; i++) {
 
 }
 
+//for status = 1
+for(let i = 0; i < 4; i++) {
+    let dataCollector = dataCollectors[i];
+    let caseReport = new CaseReportForListing();
+    caseReport.id = Guid.create();
+    caseReport.message = '1#1#1';
+    caseReport.origin = '123456789';
+    caseReport.status = 1;
+    caseReport.dataCollectorDisplayName = dataCollector.displayName;
+    caseReport.dataCollectorDistrict = dataCollector.district;
+    caseReport.dataCollectorRegion = dataCollector.region;
+    caseReport.dataCollectorVillage = dataCollector.village;
+    caseReport.healthRisk = 'Health Risk';
+    caseReport.healthRiskId = '1';
+    caseReport.numberOfFemalesAged5AndOlder = 0;
+    caseReport.numberOfFemalesUnder5 = 0;
+    caseReport.numberOfMalesAged5AndOlder = 6;
+    caseReport.numberOfMalesUnder5 = 5;
+    caseReport.parsingErrorMessage = [];
+    caseReport.timestamp = new Date();
+    caseReport.location = dataCollector.location;
+    caseReport.dataCollectorId = dataCollector.id;
+    caseReports.push(caseReport);
+
+}
+
+
+
 export default caseReports;
