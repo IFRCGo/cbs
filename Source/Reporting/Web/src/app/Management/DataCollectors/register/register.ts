@@ -5,9 +5,9 @@ import { CommandCoordinator } from '@dolittle/commands';
 import { Guid } from '@dolittle/core';
 import { Language } from '../../Language';
 import { Sex } from '../../Sex';
-import { RegisterDataCollector } from '../RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
-import { ChangeVillage } from '../ChangeVillage';
+import { ChangeVillage } from '../EditInformation/ChangeVillage';
+import { RegisterDataCollector } from '../Registration/RegisterDataCollector';
 
 @Component({
     templateUrl: './register.html',
