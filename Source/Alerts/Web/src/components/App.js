@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Alert from './Alerts/AlertRuleList';
-import AlertForm from './Alerts/AlertForm';
 import MenuAlert from './Alerts/menuAlert';
 
 class App extends Component {

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import { connect } from 'react-redux';
-
 import MenuAlert from './menuAlert';
 
 const styles = theme => ({
@@ -97,14 +95,14 @@ class AlertForm extends Component {
                     <p>Here you can set rules for health risk alerts.</p>
                 </div>
                 <TextField
-                    id="filled-full-width"
+                    id=""
                     label="Alert rule name"
-                    style={{ margin: 8 }}
+                    style={{ marginLeft:'15%',width:'70%',  }}
                     placeholder="i.e. Acute watery diarrhoea"
                     fullWidth
                     margin="normal"
                     variant="filled"
-                    InputLabelProps={{
+                    InputLabelProps={{  
                         shrink: true,
                     }}
                 />
@@ -113,12 +111,12 @@ class AlertForm extends Component {
                     label="Health risk number"
                     type="text"
                     name="risk_number"
-                    style={{ margin: 8 }}
+                    style={{ marginLeft:'15%',width:'35%',  }}
                     placeholder="i.e. 1"
                     fullWidth
                     margin="normal"
                     variant="filled"
-                    InputLabelProps={{
+                    InputLabelProps={{  
                         shrink: true,
                     }}
                 />
@@ -128,12 +126,12 @@ class AlertForm extends Component {
                     label="Alert threshold"
                     type="text"
                     name="risk_number"
-                    style={{ margin: 8 }}
+                    style={{ marginLeft:'0.2%',width:'35%',  }}
                     placeholder="i.e. 2"
                     fullWidth
                     margin="normal"
                     variant="filled"
-                    InputLabelProps={{
+                    InputLabelProps={{ 
                         shrink: true,
                     }}
                 />
@@ -142,7 +140,7 @@ class AlertForm extends Component {
                     label="Threshold timeframe (in hours)"
                     type="text"
                     name="risk_number"
-                    style={{ margin: 8 }}
+                    style={{ marginLeft:'15%',width:'70%',  }}
                     placeholder="i.e. 24"
                     fullWidth
                     margin="normal"
@@ -151,7 +149,11 @@ class AlertForm extends Component {
                         shrink: true,
                     }}
                 />
-                <Button variant="contained">
+                <Button
+                 variant="contained"
+                 style={{ marginLeft:'15%',width:'70%'}}
+
+                 >
                         Create
                 </Button>
                             

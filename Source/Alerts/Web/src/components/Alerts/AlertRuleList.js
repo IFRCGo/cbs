@@ -62,7 +62,7 @@ function CustomizedTable(props) {
 
     <Paper className={classes.root}>
    
-    <Link to="/alerts/AddRule"><Button variant="outlined" color="inherit" className={classes.button}>
+    <Link to="/alerts/AddRule" style={{ textDecoration:'none' }}><Button variant="outlined" color="black" className={classes.button} >
           <AddIcon className={classes.icon} />
       </Button></Link>
       <Table className={classes.table}>
