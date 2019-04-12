@@ -3,7 +3,7 @@ using System;
 
 namespace Read.Models
 {
-    public class AnalysisReport
+    public class Epicurve
     {
         public DateTimeOffset From { get; set; }
 

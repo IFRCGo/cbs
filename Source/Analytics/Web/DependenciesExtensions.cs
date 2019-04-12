@@ -16,7 +16,7 @@ namespace Web
         public static AutofacServiceProvider RegisterDependencies(this IServiceCollection services)
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<AnalysisService>();
+            containerBuilder.RegisterType<EpicurveService>();
             containerBuilder.RegisterType<MongoDBHandler>();
             containerBuilder.RegisterType<KPIRepository>();
             containerBuilder.RegisterType<HealthRisksEventHandler>().As<IHealthRisksEventHandler>();
