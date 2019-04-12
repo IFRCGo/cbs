@@ -6,6 +6,8 @@ import {CaseReportForListingById} from '../app/Reporting/CaseReportsForListing/C
 import dataCollectors from './dataCollectors';
 import caseReports from './caseReports';
 import dataVerifiers from './dataVerifiers';
+import { AllDataVerifiers } from '../app/Management/DataVerifiers/AllDataVerifiers';
+import { DataVerifierById } from '../app/Management/DataVerifiers/DataVerifierById';
 
 export class MockQueryCoordinator {
     dataCollectors = [];
@@ -37,6 +39,15 @@ export class MockQueryCoordinator {
 
         else if(query instanceof CaseReportForListingById) {
             let items = caseReports.filter(_ => _.id === query.caseReportId);
+            return new QueryResult(query, items);
+        }
+        else if (query instanceof AllDataVerifiers) {
+            let items = dataVerifiers;
+            return new QueryResult(query, items);
+        }
+
+        else if(query instanceof DataVerifierById) {
+            let items = dataVerifiers.filter(_ => _.id === query.dataVerifierId);
             return new QueryResult(query, items);
         }
     }
