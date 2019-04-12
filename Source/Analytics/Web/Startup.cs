@@ -1,18 +1,10 @@
+using Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Web.Controllers;
-using Read.CaseReports;
-using Read;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using System;
-using Read.KPI;
-using Read.HealthRisks;
-using Read.DataCollectors;
-using Read.Alerts;
 
 namespace Web
 {
@@ -38,9 +30,17 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSecurity(env, "/analytics");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(_ => {
+                    _.AllowAnyHeader();
+                    _.AllowAnyMethod();
+                    _.AllowAnyOrigin();
+                    _.AllowCredentials();
+                });
             }
             else
             {
@@ -48,32 +48,13 @@ namespace Web
                 app.UseHsts();
             }
 
-            app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
+            app.UsePathBase("/analytics");
 
             app.UseSwagger();
             app.UseSwaggerUi3();
 
-            app.UseHttpsRedirection();
             app.UseMvc();
-        }
-    }
-
-    public static class DependenciesExtensions
-    {
-        public static AutofacServiceProvider RegisterDependencies(this IServiceCollection services)
-        {
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<AnalysisService>();
-            containerBuilder.RegisterType<MongoDBHandler>();
-            containerBuilder.RegisterType<KPIRepository>();
-            containerBuilder.RegisterType<HealthRisksEventHandler>().As<IHealthRisksEventHandler>();
-            containerBuilder.RegisterType<CaseReportsEventHandler>().As<ICaseReportsEventHandler>();
-            containerBuilder.RegisterType<DataCollectorEventHandler>().As<IDataCollectorsEventHandler>();
-            containerBuilder.RegisterType<AlertEventHandler>().As<IAlertEventHandler>();
-            containerBuilder.Populate(services);
-
-            var container = containerBuilder.Build();
-            return new AutofacServiceProvider(container);
+            app.ServeSinglePageApplication();
         }
     }
 }
