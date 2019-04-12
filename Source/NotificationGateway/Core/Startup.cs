@@ -24,8 +24,6 @@ namespace Core
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry();
-
             if (_hostingEnvironment.IsDevelopment())
             {
                 services.AddSwaggerGen(c =>

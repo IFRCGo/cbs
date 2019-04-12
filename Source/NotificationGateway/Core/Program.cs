@@ -18,6 +18,7 @@ namespace Core
                 
                 .ConfigureServices(services => services.AddAutofac())
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseApplicationInsights()
                 .UseStartup<Startup>();
     }
 }
