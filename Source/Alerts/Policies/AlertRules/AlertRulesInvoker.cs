@@ -45,7 +45,7 @@ namespace Policies.AlertRules
                             1, 
                             new Dictionary<string, object>()));
 
-                    var alertRuleAggrRoot = _aggregateRootRepository.Get(alertId);
+                    var alertRuleAggrRoot = _aggregateRootRepository.Get(AlertsDomain.Alerts.SingletonId);
                     alertRuleAggrRoot.OpenAlert(
                         alertId,
                         result.AlertRuleId,

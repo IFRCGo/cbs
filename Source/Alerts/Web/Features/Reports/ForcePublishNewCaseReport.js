@@ -8,7 +8,7 @@ export class ForcePublishNewCaseReport extends Command
 {
     constructor() {
         super();
-        this.type = 'f7faaee0-385f-43f9-9e30-9182e955fd7c';
+        this.type = '09c250d3-75af-4b82-b569-32575b4a6eba';
 
         this.caseReportId = '00000000-0000-0000-0000-000000000000';
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
