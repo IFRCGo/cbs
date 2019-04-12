@@ -3,7 +3,7 @@
       type: 'bar'
     },
     title: {
-      text: 'Epicurve by weekHELLO HOZ QRE YOU'
+      text: 'Epicurve by week'
     },
     subtitle: {
       text: 'Source: CSB'

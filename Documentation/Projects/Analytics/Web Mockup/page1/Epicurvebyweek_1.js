@@ -1,31 +1,40 @@
-﻿Highcharts.chart('container1', {
+﻿const url_district = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/CaseReportByDistrict';
+let categories = [], cases = [];
+let title, districts_names = [], district_cases = [];
+
+
+fetch(url_district).then(data => data.json())
+  .then(response => {
+    let healthDistricts = response.healthRisksPerDistrict;
+    for(let i=0; i < healthDistricts.length; i++){
+      //console.log("Chart : "+ i);
+        title = healthDistricts[i].name; 
+       for(let district of healthDistricts[i].districts){
+          districts_names.push(district.name);
+          district_cases.push(district.numberOfCaseReports);
+       }
+       let id = 'container';
+       id= id+(i+1);
+       console.log("ID: "+id); 
+       buildChart(id, title, districts_names, district_cases);
+
+    }
+  });
+
+
+const buildChart = (i, text, names, data) => {
+  Highcharts.chart(i, {
     chart: {
       type: 'bar'
     },
     title: {
-      text: 'Epicurve by week'
+      text: text
     },
     subtitle: {
       text: 'Source: CSB'
     },
     xAxis: {
-      categories: [
-        '01.07.2018',
-        '08.07.2018',
-        '15.07.2018',
-        '22.07.2018',
-        '29.07.2018',
-        '05.08.2018',
-        '12.08.2018',      
-        '19.08.2018',
-        '26.08.2018',
-        '02.09.2018',
-        '09.09.2018',
-        '16.09.2018',
-        '23.09.2018'
-  
-  
-      ],
+      categories: names,
       crosshair: true
     },
     yAxis: {
@@ -49,18 +58,15 @@
       },
       bar: {
         dataLabels: {
-            enabled: true
+          enabled: true
         }
       }
     },
     series: [{
       name: 'Number of cases in total',
-      data: [
-      
-      49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54
-      
-      ]
-  
+      data: data
     }]
   });
-  
+
+}
+
