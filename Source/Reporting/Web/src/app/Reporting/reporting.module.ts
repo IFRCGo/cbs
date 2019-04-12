@@ -20,10 +20,10 @@ import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-c
   ],
   declarations: [
     CaseReportListComponent,
+    TrainingCaseReportsComponent,
     CaseReportExportComponent,
     SortableColumnComponent,
-    Filter,
-    TrainingCaseReportsComponent
+    Filter
   ],
   providers: [
     Filter

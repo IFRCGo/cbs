@@ -21,7 +21,7 @@ const routes: Routes = [
         component: CaseReportListComponent
       },
       {
-        path: 'training',
+        path: 'training/:filter',
         component: TrainingCaseReportsComponent
       }
     ]
