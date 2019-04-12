@@ -38,7 +38,7 @@
                 <span>{{user.phoneNumbers}}</span>
             </td>
             <td>
-              <span class="training-status" [ngClass]="user.inTraining ? 'training-status-on' : 'training-status-off'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+              <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
             </td>
             <td>
                 <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
