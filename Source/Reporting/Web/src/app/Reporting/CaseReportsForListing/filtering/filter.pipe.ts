@@ -38,6 +38,8 @@ export class QuickFilter {
     static fromName(name: string) : QuickFilter {
         return QuickFilter.Filters.find(filter => filter.name == name) || QuickFilter.All;
     }
+
+
 }
 
 @Pipe({

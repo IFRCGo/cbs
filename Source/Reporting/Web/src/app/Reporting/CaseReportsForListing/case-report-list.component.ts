@@ -38,6 +38,8 @@ export class CaseReportListComponent implements OnInit {
     sortDescending: boolean = true;
     sortField: string;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
+    dateDebut : any ;
+    dateFin : any;
 
     page = {
         isLoading: false,
@@ -73,6 +75,40 @@ export class CaseReportListComponent implements OnInit {
 
     clickFilter(filter: QuickFilter) {
         this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
+    }
+
+    sortDate( datefrom : Date , dateto : Date )
+    {
+        let dateFrom = new Date(datefrom) ;
+        let dateTo = new Date(dateto) ;
+
+        let newReports = [] ;
+
+        for( var i = 0 ; i < this.listedReports.length ; i++ )
+         {
+             var date = this.listedReports[i].timestamp ;
+             if(( date.getTime() <= dateTo.getTime() ) && ( date.getTime() >= dateFrom.getTime() )) {
+                newReports.push(this.listedReports[i]) ;
+             }
+         }
+        
+        this.listedReports = newReports ;
+
+
+        // console.log( datedebut + '' + datefin ) ;
+
+        // console.log( this.listedReports[0].timestamp ) ;
+
+
+        // let newDate = new Date(datedebut) ;
+        // console.log( 'NewDate : ' + newDate ) ;
+
+        // var dFin = datedebut ;
+        // var dDeb = datefin ;
+
+        // this.listedReports.forEach(element => {
+        //     element.timestamp = new Date(element.timestamp) ;
+        // });
     }
 
     toggleSortColum(column: Column) {

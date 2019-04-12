@@ -9,7 +9,7 @@
 </div>
 
 <div class="paging row">
-    <div class="col-md-7 paging-filters">
+    <!-- <div class="col-md-7 paging-filters">
         Quick Filters:
         <span *ngFor="let filter of allFilters">
             <button
@@ -19,6 +19,30 @@
                 {{filter.description}}
             </button>
         </span>
+    </div> -->
+    <div class="col-md-3">
+            Quick Filters:
+            <select >     
+                <option
+                    *ngFor="let filter of allFilters"
+                       class="small {{ filter.cssClass }}"
+                       [ngClass]="{'current': this.currentFilter === filter}"
+                        (click)="clickFilter(filter)"
+                       [value]="filter.description"
+                       >  
+                         {{filter.description}}
+                   </option>
+            </select>
+    </div>
+
+    <div class="col-md-10 paging-date">
+        <form>
+                Date Range :
+                <input type="date" required name="dateFrom" id="dateFrom" [(ngModel)] ="dateFrom"><i class="fa fa-calendar"></i>
+                <input type="date" required name="dateTo" id="dateTo"  [(ngModel)] ="dateTo"><i class="fa fa-calendar"></i>
+                <input type="submit" value="search" (click)="sortDate(this.dateFrom,this.dateTo)">
+        </form>
+
     </div>
     <div class="col-md-2 paging-size">
         Page size:
@@ -50,6 +74,7 @@
             next >
         </button>
     </div>
+    
 </div>
 <table class="table table-bordered table-striped">
     <thead>
