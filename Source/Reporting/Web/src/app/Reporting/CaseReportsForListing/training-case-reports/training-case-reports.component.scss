@@ -1,0 +1,53 @@
+div.actions {
+    text-align: right;
+    padding: .5rem;
+}
+
+.paging {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    margin: 3rem 0 2rem;
+    padding: 1rem 0;
+    
+
+    &-filters {
+        .current {
+            border: 1px solid black;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            margin: 0 .5rem;
+        }
+    }
+
+    &-size {
+        display: flex;
+    }
+
+    &-pages {
+        text-align: right;
+
+        &-number {
+            margin: 0 2rem;
+        }
+    }
+}
+
+button {
+    &.small {
+        font-size: 1.1rem;
+    }
+}
+
+th {
+    font-weight: 500;
+
+    &.sortable {
+        cursor: pointer;
+        font-weight: 700;
+    }
+}
+
+.label {
+    margin-right: 2px;
+}
