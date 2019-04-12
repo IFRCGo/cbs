@@ -32,14 +32,9 @@ export class Delete {
 
     deleteUser(id: string) {
         this.command.dataCollectorId = this.user.id;
-        if (!environment.production) {
-            console.log('Deleting datacollector with id = ' + this.command.dataCollectorId )
-        }
+        
         this.commandCoordinator.handle(this.command)
             .then(response => {
-                if (!environment.production) {
-                    console.log(response);
-                }
                 this.modalRef.hide();
                 this.router.navigate(['list']);
                 window.location.reload();

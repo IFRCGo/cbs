@@ -155,8 +155,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: this.changeBaseInformationCommand,
                 then: response => {
-                    console.log('Response from ChangeBaseInformation command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s base information`);
                     } else {
@@ -171,8 +169,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log('Response from ChangeBaseInformation command')
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
                             ' base information because of security issues');
@@ -191,8 +187,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: this.changeLocationCommand,
                 then: response => {
-                    console.log('Response from ChangeLocation command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s location`);
                     } else {
@@ -206,8 +200,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log('Response from ChangeLocation command')
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
                             ' location because of security issues');
@@ -225,8 +217,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: this.changePreferredLanguageCommand,
                 then: response => {
-                    console.log('Response from ChangePreferredLanguage command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s preferred language`);
                     } else {
@@ -241,8 +231,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log('Response from ChangePreferredLanguage command')
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not change ${this.changeBaseInformationCommand.displayName}s` +
                             ' preferred language because of security issues');
@@ -263,7 +251,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: this.changeVillageCommand,
                 then: response => {
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success('Successfully added village to data collector!');
                     } else {
@@ -276,7 +263,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not change village of data collector because of security issues');
                     } else {
@@ -304,8 +290,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: cmd,
                 then: response => {
-                    console.log('Response from AddPhoneNumberToDataCollector command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully added ${cmd.phoneNumber} ${this.changeBaseInformationCommand.displayName}s`
                             + ' phone numbers');
@@ -321,8 +305,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log('Response from AddPhoneNumberToDataCollector command')
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not add ${cmd.phoneNumber} to ${this.changeBaseInformationCommand.displayName}s` +
                             ' phone numbers because of security issues');
@@ -353,8 +335,6 @@ export class Edit implements OnInit {
             queue.push({
                 command: cmd,
                 then: response => {
-                    console.log('Response from Remove PhoneNumberFromDataCollector command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully removed ${cmd.phoneNumber} from`
                             + ` ${this.changeBaseInformationCommand.displayName} sphone numbers`);
@@ -370,8 +350,6 @@ export class Edit implements OnInit {
                     }
                 },
                 catch: response => {
-                    console.log('Response from Remove PhoneNumberFromDataCollector command')
-                    console.log(response);
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error(`Could not remove ${cmd.phoneNumber} from`
                             + ` ${this.changeBaseInformationCommand.displayName}s phone numbers because of security issues`);

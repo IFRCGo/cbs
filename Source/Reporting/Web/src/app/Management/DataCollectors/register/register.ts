@@ -48,11 +48,9 @@ export class Register {
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
-        this.command.dataVerifierId = Guid.create(); //TODO: THis is just temporary, dataVerifier should be bound through the form
-        console.log(this.command);
+        this.command.dataVerifierId = Guid.create();
         this.commandCoordinator.handle(this.command)
             .then(response => {
-                console.log(response);
                 if (response.success)  {
                     this.toastr.success('Successfully registered a new data collector!');
                     this.handleChangeVillage();
@@ -67,7 +65,6 @@ export class Register {
                 }
             })
             .catch(response => {
-                console.log(response);
                 if (!response.passedSecurity) { // Security error
                     this.toastr.error('Could not register a new data collector because of security issues');
                 } else {
@@ -83,7 +80,6 @@ export class Register {
 
             this.commandCoordinator.handle(this.changeVillageCommand)
             .then(response => {
-                console.log(response);
                 if (response.success)  {
                     this.toastr.success('Successfully added village to data collector!');
                 } else {
@@ -96,7 +92,6 @@ export class Register {
                 }
             })
             .catch(response => {
-                console.log(response);
                 if (!response.passedSecurity) { // Security error
                     this.toastr.error('Could not change village of data collector because of security issues');
                 } else {
