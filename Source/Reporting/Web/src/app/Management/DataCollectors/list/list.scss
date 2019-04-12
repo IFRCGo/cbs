@@ -15,3 +15,19 @@
   padding: 10px;
   margin: 10px 0;
 }
+
+.training-status {
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  padding: 3px 10px;
+  text-align: center;
+  width: 100px;
+}
+
+.training-status-on {
+  background-color: green;
+}
+.training-status-off {
+  background-color: orange;
+}

@@ -28,6 +28,7 @@ namespace Read.Management.DataCollectors
         public IList<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset RegisteredAt { get; set; }
         public Guid DataVerifier { get; set; }
+        public DateTimeOffset LastActive { get; set; } 
 
         public bool InTraining { get; set; }
     }
