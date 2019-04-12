@@ -434,5 +434,26 @@
         "type": "Read.Management.DataVerifiers.DataVerifierById, Read"
       }
     }
+  },
+  "97b64d90-635b-41a5-9557-66dff124d99e": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "f11f2e79-2e58-45a1-8bf5-2f5e9e813ae4": {
+        "generation": 1,
+        "type": "Read.Reporting.TrainingCaseReportsForListing.TrainingCaseReportForListing, Read"
+      }
+    },
+    "queries": {
+      "a1a5ba22-c063-4207-bc6e-9a7f97c3653f": {
+        "generation": 1,
+        "type": "Read.Reporting.TrainingCaseReportsForListing.TrainingAllCaseReportsForListing, Read"
+      },
+      "9e5b322e-d9cd-4a8d-a5f1-681d682d8f37": {
+        "generation": 1,
+        "type": "Read.Reporting.TrainingCaseReportsForListing.TrainingCaseReportForListingById, Read"
+      }
+    }
   }
 }
