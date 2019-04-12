@@ -1,10 +1,8 @@
 import { CaseReportForListing} from '../app/Reporting/CaseReportsForListing/CaseReportForListing';
 import {Guid} from '@dolittle/core';
 import dataCollectors from './dataCollectors';
-/**
- * @type {CaseReportForListing[]}
- */
-let caseReports = [];
+
+let caseReports : CaseReportForListing[] = [];
 for(let i = 0; i < 5; i++) {
     let dataCollector = dataCollectors[i];
     let caseReport = new CaseReportForListing();

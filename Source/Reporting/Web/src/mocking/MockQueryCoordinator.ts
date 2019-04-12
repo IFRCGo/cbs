@@ -5,6 +5,7 @@ import {AllCaseReportsForListing} from '../app/Reporting/CaseReportsForListing/A
 import {CaseReportForListingById} from '../app/Reporting/CaseReportsForListing/CaseReportForListingById';
 import dataCollectors from './dataCollectors';
 import caseReports from './caseReports';
+import dataVerifiers from './dataVerifiers';
 
 export class MockQueryCoordinator {
     dataCollectors = [];

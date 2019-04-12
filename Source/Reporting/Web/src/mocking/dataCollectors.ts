@@ -1,9 +1,9 @@
 import { DataCollector } from '../app/Management/DataCollectors/DataCollector';
 import {Guid} from '@dolittle/core';
-/**
- * @type {DataCollector[]}
- */
-let dataCollectors = [];
+
+import dataVerifiers from './dataVerifiers';
+
+let dataCollectors : DataCollector[] = [];
 for(let i = 0; i < 5; i++) {
     let dataCollector = new DataCollector();
     dataCollector.id = Guid.create();
@@ -18,6 +18,7 @@ for(let i = 0; i < 5; i++) {
     dataCollector.village = 'Default Village';
     dataCollector.registeredAt = new Date();
     dataCollector.inTraining = i % 2 === 0;
+    dataCollector.dataVerifier = dataVerifiers[i].id;
     dataCollectors.push(dataCollector);
 }
 
