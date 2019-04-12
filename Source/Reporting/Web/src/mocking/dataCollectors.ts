@@ -18,6 +18,7 @@ for(let i = 0; i < 5; i++) {
     dataCollector.village = 'Default Village';
     dataCollector.registeredAt = new Date();
     dataCollector.inTraining = i % 2 === 0;
+    dataCollector.phoneNumbers = ["123456789"];
     dataCollector.dataVerifier = dataVerifiers[i].id;
     dataCollectors.push(dataCollector);
 }
