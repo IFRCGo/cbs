@@ -4,19 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class AlertRule extends ReadModel
+export class AlertOverview extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '86714ff6-4085-4204-8ab9-9d3b9ea2f9bb',
+           id: '1c999658-9eb3-413c-9154-6eaad3ddac8e',
            generation: '1'
         };
-        this.id = '00000000-0000-0000-0000-000000000000';
-        this.alertRuleName = '';
-        this.healthRiskId = 0;
-        this.numberOfCasesThreshold = 0;
-        this.distanceBetweenCasesInMeters = 0;
-        this.thresholdTimeframeInHours = 0;
+        this.alertNumber = 0;
+        this.healthRiskNumber = 0;
+        this.healthRiskName = '';
+        this.numberOfReports = 0;
+        this.openedAt = new Date();
+        this.status = {};
     }
 }
