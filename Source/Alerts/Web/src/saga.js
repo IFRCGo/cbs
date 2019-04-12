@@ -1,12 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { CommandCoordinator } from '@dolittle/commands/dist/commonjs';
-import { QueryCoordinator } from '@dolittle/queries/dist/commonjs';
+import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
-
-CommandCoordinator.apiBaseUrl = 'http://localhost:5000';
-QueryCoordinator.apiBaseUrl = 'http://localhost:5000';
-const commandCoordinator = new CommandCoordinator();
-const queryCoordinator = new QueryCoordinator();
 
 const mockRules = [
     {
@@ -28,6 +22,7 @@ const mockRules = [
 ];
 
 function* requestRules() {
+    console.log("DAKAR");
     try {
         const query = new AllAlertRules();
         const result = yield queryCoordinator.execute(query);

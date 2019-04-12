@@ -20,6 +20,7 @@ const modified = (env, argv) => {
     base.devServer = {
         port: 4010,
         historyApiFallback: true,
+        openPage: 'alerts/',
         proxy: {
             '/api': 'http://localhost:5010'
         }
