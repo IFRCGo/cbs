@@ -37,6 +37,7 @@ export class MockQueryCoordinator {
         }
         else if (query instanceof AllCaseReportsForListing) {
             let items = caseReports;
+            console.log(items);
             return new QueryResult(query, items);
         }
 
