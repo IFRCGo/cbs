@@ -1,24 +1,48 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import { connect } from 'react-redux';
+import {
+    Link,  
+  } from 'react-router-dom'
 
-
-
-function MenuRule(props) {
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+    },
+    dense: {
+      marginTop: 16,
+    },
+    menu: {
+      width: 200,
+    },
+  });
+function MenuAlert(props) {
   const { classes } = props;
 
   return (
     <div style={{ marginLeft:'30%' }}>
-         <IconButton aria-label="Delete" className={classes.margin}>
+         <IconButton  aria-label="Delete" >
             Alerts OverView
         </IconButton>
-        <IconButton aria-label="Delete" className={classes.margin}>
+        <Link to="/alerts/ListeRules">
+         <IconButton aria-label="Delete">
            Alerts Rules
-        </IconButton>       
+         </IconButton>    
+        </Link>   
       </div>
     
 
   );
 }
+export default connect(
+    _ => ({}),
+    dispatch => ({
+        requestCreateRule: rule => dispatch({ type: 'REQUEST_CREATE_RULE', payload: rule }),
+    }))
+    (MenuAlert);
 

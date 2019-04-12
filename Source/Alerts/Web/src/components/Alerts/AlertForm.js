@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 
+import MenuAlert from './menuAlert';
 
 const styles = theme => ({
     container: {
       display: 'flex',
       flexWrap: 'wrap',
     },
+    button: {
+        margin: theme.spacing.unit,
+      },
+      input: {
+        display: 'none',
+      },
     textField: {
       marginLeft: theme.spacing.unit,
       marginRight: theme.spacing.unit,
@@ -83,9 +91,11 @@ class AlertForm extends Component {
 
         return (
             <div className="">
-                <h1>Alert Rule</h1>
-                <p>Here you can set rules for health risk alerts.</p>
-             
+                    <MenuAlert/>
+                <div style={{ textAlign:'center' }}>
+                    <h1 >Alert Rule</h1>
+                    <p>Here you can set rules for health risk alerts.</p>
+                </div>
                 <TextField
                     id="filled-full-width"
                     label="Alert rule name"
@@ -141,8 +151,10 @@ class AlertForm extends Component {
                         shrink: true,
                     }}
                 />
-
-               
+                <Button variant="contained">
+                        Create
+                </Button>
+                            
             </div>
         );
     }

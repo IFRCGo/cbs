@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import IconButton from '@material-ui/core/IconButton';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -11,7 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import AddIcon from '@material-ui/icons/Add';
-
+import {
+    Link,  
+  } from 'react-router-dom'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -61,9 +62,9 @@ function CustomizedTable(props) {
 
     <Paper className={classes.root}>
    
-      <Button variant="outlined" color="inherit" className={classes.button}>
+    <Link to="/alerts/AddRule"><Button variant="outlined" color="inherit" className={classes.button}>
           <AddIcon className={classes.icon} />
-      </Button>
+      </Button></Link>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
