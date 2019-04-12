@@ -1,16 +1,16 @@
 ﻿/*---------------------------------------------------------------------------------------------
- *  This file is an automatically generated Command Proxy
+ *  This file is an automatically generated Query Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands';
+import { Query } from  '@dolittle/queries';
 
-export class ChangeDataVerifier extends Command
+export class DataVerifierById extends Query
 {
     constructor() {
         super();
-        this.type = '79900945-6b13-4635-8715-6f4149de1bf0';
+        this.nameOfQuery = 'DataVerifierById';
+        this.generatedFrom = 'Read.Management.DataVerifiers.DataVerifierById';
 
-        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.dataVerifierId = '00000000-0000-0000-0000-000000000000';
     }
 }

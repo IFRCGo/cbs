@@ -34,6 +34,10 @@ export class QuickFilter {
     static Filters: Array<QuickFilter> = [
         QuickFilter.All, QuickFilter.Success, QuickFilter.Error, QuickFilter.UnknownSender
     ];
+    
+    static FiltersWithoutUnknownSender: Array<QuickFilter> = [
+        QuickFilter.All, QuickFilter.Success, QuickFilter.Error
+    ];
 
     static fromName(name: string) : QuickFilter {
         return QuickFilter.Filters.find(filter => filter.name == name) || QuickFilter.All;

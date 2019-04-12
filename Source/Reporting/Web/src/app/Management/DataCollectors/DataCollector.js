@@ -1,6 +1,6 @@
 ﻿/*---------------------------------------------------------------------------------------------
  *  This file is an automatically generated ReadModel Proxy
- *  
+ *
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
@@ -16,8 +16,8 @@ export class DataCollector extends ReadModel
         this.fullName = '';
         this.displayName = '';
         this.yearOfBirth = 0;
-        this.sex = {};
-        this.preferredLanguage = {};
+        this.sex = 0;
+        this.preferredLanguage = 0;
         this.location = {};
         this.district = '';
         this.region = '';
@@ -25,6 +25,7 @@ export class DataCollector extends ReadModel
         this.phoneNumbers = [];
         this.registeredAt = new Date();
         this.dataVerifier = '00000000-0000-0000-0000-000000000000';
+        this.lastActive = new Date();
         this.inTraining = false;
     }
 }

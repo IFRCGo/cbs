@@ -14,8 +14,8 @@ export class RegisterDataCollector extends Command
         this.fullName = '';
         this.displayName = '';
         this.yearOfBirth = 0;
-        this.sex = {};
-        this.preferredLanguage = {};
+        this.sex = 0;
+        this.preferredLanguage = 0;
         this.gpsLocation = {};
         this.phoneNumbers = [];
         this.region = '';
