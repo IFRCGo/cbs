@@ -43,6 +43,10 @@
         "08a93ca4-7596-4d2b-9746-053bafc124da": {
           "name": "CaseReportsForListing",
           "subFeatures": {}
+        },
+        "97b64d90-635b-41a5-9557-66dff124d99e": {
+          "name": "TrainingCaseReportsForListing",
+          "subFeatures": {}
         }
       }
     },
