@@ -10,10 +10,10 @@ using Read.Reporting.CaseReportsForListing;
 
 namespace Read.Reporting.TrainingCaseReportsForListing
 {
-    public class TrainingAllCaseReportsForListing : IQueryFor<TrainingCaseReportForListing>
+    public class AllTrainingCaseReportsForListing : IQueryFor<TrainingCaseReportForListing>
     {
         private readonly IReadModelRepositoryFor<TrainingCaseReportForListing> _collection;
-        public TrainingAllCaseReportsForListing(IReadModelRepositoryFor<TrainingCaseReportForListing> collection)
+        public AllTrainingCaseReportsForListing(IReadModelRepositoryFor<TrainingCaseReportForListing> collection)
         {
             _collection = collection;
         }
