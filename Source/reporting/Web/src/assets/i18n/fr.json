@@ -1,0 +1,43 @@
+{
+    "REGISTER" : {
+        "form_name": "Ajouter un collecteur de donnée",
+        "full_name": "Prénom et Nom",
+        "full_name_error": "Full Name is required.",
+        "full_name_error_1": "Full Name must be at least 4 characters long.",
+
+        "display_name": "Display Name",
+        "display_name_error": "Display Name is required.",
+        "display_name_error_1": "Display Name must be at least 4 characters long.",
+
+        "year_of_birth": "Year of Birth",
+        "year_of_birth_error": "Year Of Birth is required.",
+
+        "sex": "Sex",
+        "sex_error": "Sex is required.",
+
+        "preferred_lang": "Preferred Language",
+        "preferred_lang_error": "Preferred Language is required.",
+
+        "location": "Location",
+
+        "latitude": "Latitude",
+        "latitude_error": "Location Latitude is required",
+
+        "longitude": "Longitude",
+        "longitude_error": "Location Longitude is required",
+
+        "region": "Region",
+        "region_error": "Region is required.",
+        
+        "district": "District",
+        "district_error": "District is required.",
+
+        "village": "Village",
+        "village_error": "Village is required.",
+
+        "phone_number": "Phone numbers (comma seperated)",
+        "phone_number_error": "Phonenumber is required.",
+
+        "submit_name": "Submit"
+    }
+}
