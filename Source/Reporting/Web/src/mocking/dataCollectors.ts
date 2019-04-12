@@ -4,7 +4,7 @@ import {Guid} from '@dolittle/core';
 import dataVerifiers from './dataVerifiers';
 
 let dataCollectors : DataCollector[] = [];
-for(let i = 0; i < 5; i++) {
+for(let i = 0; i < 10; i++) {
     let dataCollector = new DataCollector();
     dataCollector.id = Guid.create();
     dataCollector.fullName = `DataCollector ${i}`;
