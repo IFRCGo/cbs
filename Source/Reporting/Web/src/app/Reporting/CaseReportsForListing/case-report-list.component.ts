@@ -30,6 +30,7 @@ import { CaseReportForListing } from './CaseReportForListing';
 export class CaseReportListComponent implements OnInit {
 
     listedReports: Array<CaseReportForListing> = [];
+    allReports: Array<CaseReportForListing> = [];
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -81,34 +82,15 @@ export class CaseReportListComponent implements OnInit {
     {
         let dateFrom = new Date(datefrom) ;
         let dateTo = new Date(dateto) ;
-
+        this.listedReports = this.allReports;
         let newReports = [] ;
-
-        for( var i = 0 ; i < this.listedReports.length ; i++ )
-         {
-             var date = this.listedReports[i].timestamp ;
-             if(( date.getTime() <= dateTo.getTime() ) && ( date.getTime() >= dateFrom.getTime() )) {
-                newReports.push(this.listedReports[i]) ;
-             }
-         }
         
-        this.listedReports = newReports ;
+        this.listedReports.forEach( listedReport => {
+            let date = listedReport.timestamp;
+            if (date.getTime() >= dateFrom.getTime() && date.getTime() <= dateTo.getTime()) newReports.push(listedReport);
+        });
 
-
-        // console.log( datedebut + '' + datefin ) ;
-
-        // console.log( this.listedReports[0].timestamp ) ;
-
-
-        // let newDate = new Date(datedebut) ;
-        // console.log( 'NewDate : ' + newDate ) ;
-
-        // var dFin = datedebut ;
-        // var dDeb = datefin ;
-
-        // this.listedReports.forEach(element => {
-        //     element.timestamp = new Date(element.timestamp) ;
-        // });
+        this.listedReports = newReports;
     }
 
     toggleSortColum(column: Column) {
@@ -135,6 +117,7 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
+                    this.allReports = this.listedReports;
                 } else {
                     console.error(response);
                 }
