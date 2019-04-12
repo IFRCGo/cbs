@@ -1,43 +1,43 @@
 {
     "REGISTER" : {
         "form_name": "Ajouter un collecteur de donnée",
-        "full_name": "Prénom et Nom",
-        "full_name_error": "Full Name is required.",
-        "full_name_error_1": "Full Name must be at least 4 characters long.",
+        "full_name": "Nom complet",
+        "full_name_error": "Le nom complet est requis.",
+        "full_name_error_1": "Le nom doit contenir au moins 4 caractères",
 
-        "display_name": "Display Name",
-        "display_name_error": "Display Name is required.",
-        "display_name_error_1": "Display Name must be at least 4 characters long.",
+        "display_name": "Nom à afficher",
+        "display_name_error": "Le nom à afficher est requis.",
+        "display_name_error_1": "Le nom à afficher doit contenir au moins 4 caractères.",
 
-        "year_of_birth": "Year of Birth",
-        "year_of_birth_error": "Year Of Birth is required.",
+        "year_of_birth": "Date de naissance",
+        "year_of_birth_error": "La date de naissance est requis.",
 
-        "sex": "Sex",
-        "sex_error": "Sex is required.",
+        "sex": "Sexe",
+        "sex_error": "Le sexe est requis.",
 
-        "preferred_lang": "Preferred Language",
-        "preferred_lang_error": "Preferred Language is required.",
+        "preferred_lang": "Language préferée",
+        "preferred_lang_error": "La langue préfereé est requise.",
 
-        "location": "Location",
+        "location": "Emplacement",
 
         "latitude": "Latitude",
-        "latitude_error": "Location Latitude is required",
+        "latitude_error": "La latitude est requise",
 
         "longitude": "Longitude",
-        "longitude_error": "Location Longitude is required",
+        "longitude_error": "La longitude est requise",
 
-        "region": "Region",
-        "region_error": "Region is required.",
+        "region": "Région",
+        "region_error": "La région est réquise.",
         
-        "district": "District",
-        "district_error": "District is required.",
+        "district": "Département",
+        "district_error": "Le département est requis.",
 
         "village": "Village",
-        "village_error": "Village is required.",
+        "village_error": "Le village est requis.",
 
-        "phone_number": "Phone numbers (comma seperated)",
-        "phone_number_error": "Phonenumber is required.",
+        "phone_number": "Numéro de téléphone (séparé par des virgules)",
+        "phone_number_error": "Le numéro de téléphone est requis.",
 
-        "submit_name": "Submit"
+        "submit_name": "Envoyer"
     }
 }
