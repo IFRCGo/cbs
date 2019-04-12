@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'evergreen-ui';
-import AlertRuleList from './AlertRuleList';
+import AlertRuleList from './Alerts/AlertRuleList';
 
 class AlertRuleOverview extends Component {
     render() {
