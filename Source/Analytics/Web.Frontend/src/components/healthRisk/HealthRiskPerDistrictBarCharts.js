@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { getJson } from "../utils/request";
+import { getJson } from "../../utils/request";
 import GridListTile from '@material-ui/core/GridListTile';
 import GridList from '@material-ui/core/GridList';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-import { BASE_URL } from "./Analytics";
+import { BASE_URL } from "../Analytics";
 
 const defaultOptions = {
     chart: {

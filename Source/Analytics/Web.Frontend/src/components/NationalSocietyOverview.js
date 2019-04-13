@@ -75,7 +75,7 @@ class NationalSocietyOverview extends Component {
 
      
         </GridList>
-        <HorizontalBarChart />
+        <HealthRiskPerDistrictBarCharts />
         <Map />
             </div>
         );
