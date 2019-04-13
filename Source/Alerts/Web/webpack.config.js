@@ -14,7 +14,7 @@ const modified = (env, argv) => {
     base.entry = './src/index.js';
     base.plugins.push(
         new dotenv({
-            path: './Environments/'+argv.mode+'.env'
+            path: './Environments/'+env.environment+'.env'
         })
     );
     base.devServer = {

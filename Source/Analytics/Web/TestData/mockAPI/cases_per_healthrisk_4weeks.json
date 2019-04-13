@@ -1,0 +1,130 @@
+{
+  "healthRisks": [
+    {
+      "name": "Acute Watery Diarrhea",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 21
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 23
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 21
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 23
+        }
+      ]
+    },
+    {
+      "name": "Influensa",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 26
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 21
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 8
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 6
+        }
+      ]
+    },
+    {
+      "name": "Measels",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 5
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 6
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 13
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 14
+        }
+      ]
+    },
+    {
+      "name": "Yellow Fever",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 7
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 3
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 8
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 7
+        }
+      ]
+    },
+    {
+      "name": "Plaque",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 13
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 13
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 11
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 7
+        }
+      ]
+    },
+    {
+      "name": "Ebola",
+      "timeSeries": [
+        {
+          "name": "0-6 days",
+          "numberOfCaseReports": 0
+        },
+        {
+          "name": "7-13 days",
+          "numberOfCaseReports": 1
+        },
+        {
+          "name": "14-21 days",
+          "numberOfCaseReports": 2
+        },
+        {
+          "name": "22-27 days",
+          "numberOfCaseReports": 1
+        }
+      ]
+    }
+  ]
+}

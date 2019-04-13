@@ -2,13 +2,13 @@
  *  This file is an automatically generated Command Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands/dist/commonjs';
+import { Command } from  '@dolittle/commands';
 
 export class CreateAlertRule extends Command
 {
     constructor() {
         super();
-        this.type = 'cac3f34c-90bf-4401-8683-5da16b4541b9';
+        this.type = '3cb24b12-3394-414b-af61-6ba3ee315358';
 
         this.id = '00000000-0000-0000-0000-000000000000';
         this.alertRuleName = '';
