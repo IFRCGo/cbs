@@ -8,6 +8,7 @@ import {CaseReportListComponent} from './CaseReportsForListing/case-report-list.
 import {CaseReportExportComponent} from './CaseReportsForListing/export/case-report-export.component';
 import {SortableColumnComponent} from './CaseReportsForListing/sort/sortable-column.component';
 import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
     CommonModule,
     FormsModule,
     CaseReportRouting,
-    NgxSmartModalModule.forChild()
+    NgxSmartModalModule.forChild(),
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   declarations: [
     CaseReportListComponent,

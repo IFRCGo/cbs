@@ -5,6 +5,8 @@ import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
 import { QuickFilter } from './filtering/filter.pipe';
 import { AllCaseReportsForListing } from './AllCaseReportsForListing';
 import { CaseReportForListing } from './CaseReportForListing';
+import {FormBuilder , FormGroup} from '@angular/forms' ; 
+
 
 //import * as fromServices from '../../services';
 //import * as fromModels from '../../shared/models';
@@ -28,8 +30,23 @@ import { CaseReportForListing } from './CaseReportForListing';
  *      cannot be accessed through the Report interface
  */
 export class CaseReportListComponent implements OnInit {
+    // Variable declare
+    // diasbled=false ; 
+    // ShowFilter=false ; 
+    // limitSelection = false ; 
+    // cities : any = [] ; 
+    dropdownList = [];
+    selectedItems = [] ; 
+    dropdownSettings = {} ; 
+    cmpt : number ; 
+  
+
 
     listedReports: Array<CaseReportForListing> = [];
+    location = [] ; 
+    locationlist = [] ; 
+    QuickfilterList = [] ; 
+    multiSelectRegion = [] ; 
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -51,6 +68,8 @@ export class CaseReportListComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         //private logService: fromServices.LogService
+
+
     ) { }
 
     @HostListener('window:keyup', ['$event'])
@@ -71,9 +90,77 @@ export class CaseReportListComponent implements OnInit {
       }});
     }
 
+    updateNavigation1(filterName: String, column: SortableColumn, sortDescending: boolean) {
+        this.router.navigate(['../'+filterName], { relativeTo: this.route, queryParams: {
+          sortBy: column.name,
+          order: sortDescending ? 'desc' : 'asc'
+        }});
+      }
+
     clickFilter(filter: QuickFilter) {
+        
         this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
     }
+
+    changeFilter(event) {
+       
+        this.updateNavigation1(event.target.value, this.currentSortColumn, this.sortDescending);
+        
+    }
+  
+
+    onItemSelect(item: any) {
+        let loc =[] ; 
+        let val =  item.item_text ; 
+        if (! this.multiSelectRegion.includes(val)){
+            this.multiSelectRegion.push(val ) ; 
+        } 
+        this.multiSelectRegion.forEach(region => {
+            for (let j = 0 ; j < this.locationlist.length; j++) {
+                if (this.locationlist[j].dataCollectorRegion ===  region){
+                    loc.push(this.locationlist[j] )
+                }
+    
+            }
+            
+            
+        });
+       
+        
+        this.listedReports = loc ;
+    }
+
+    
+      
+      onItemDeselect(item : any){
+          let loc = [] ;
+          let val = item.item_text ; 
+          let x = this.multiSelectRegion.indexOf(val) ; 
+          this.multiSelectRegion.splice(x , 1) ;
+
+          if (this.multiSelectRegion.length == 0) {
+            this.listedReports = this.locationlist ; 
+          }else{
+          this.multiSelectRegion.forEach(region => {
+            for (let j = 0 ; j < this.locationlist.length; j++) {
+                if (this.locationlist[j].dataCollectorRegion ===  region){
+                    loc.push(this.locationlist[j] )
+                }
+    
+            }
+            
+            
+        });
+        this.listedReports = loc ;    
+    }
+          
+      }
+      
+      onSelectAll(items: any) {
+        this.listedReports = this.locationlist ; 
+        
+      }
+     
 
     toggleSortColum(column: Column) {
         if (column instanceof SortableColumn) {
@@ -99,6 +186,35 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
+                    this.QuickfilterList = this.listedReports ; 
+                    this.locationlist = this.listedReports ; 
+                    this.location = [] ; 
+                        this.location.push(this.listedReports[0].dataCollectorRegion) ;
+                        for (let i = 0; i < this.listedReports.length; i++) {
+                           if (! this.location.includes(this.listedReports[i].dataCollectorRegion)){
+                               this.location.push((this.listedReports[i].dataCollectorRegion)) ; 
+                           } 
+                            
+                        }
+
+                        let x:number ; 
+                        let obj = {} ; 
+                        x= 1 ; 
+                        let ar = []
+                            for(let i = 0 ; i < this.location.length ; i++) {
+                                obj = {item_id:x , item_text:this.location[i]} ; 
+                                ar.push(obj) ; 
+                                x++ ; 
+                            }
+
+                            this.dropdownList = ar;
+                        
+
+                       
+                        
+                        
+
+
                 } else {
                     console.error(response);
                 }
@@ -109,7 +225,7 @@ export class CaseReportListComponent implements OnInit {
                 this.page.isLoading = false;
             });
     }
-
+ 
     resetPage(): void {
         this.page.number = 0;
         this.loadListData();
@@ -132,7 +248,17 @@ export class CaseReportListComponent implements OnInit {
     isLastPage(): boolean {
         return this.page.size > this.listedReports.length;
     }
-
+     
+    numberStatus(x : String) : number{
+        if(x === 'success'){
+            return 0 ; 
+        }else if (x === 'error'){
+            return 1 ; 
+        }else if ( x === 'unknownSender'){
+            return 2 ; 
+        }
+    }
+   
     isSuccess(status: number): boolean {
         return status === 0;
     }
@@ -148,8 +274,28 @@ export class CaseReportListComponent implements OnInit {
     isErrorUnknown(status: number): boolean {
         return status === 3;
     }
+    
+
 
     ngOnInit() {
+
+        //City List
+
+          this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'item_id',
+            textField: 'item_text',
+            selectAllText: 'Select All',
+            unSelectAllText: 'UnSelect All',
+            itemsShowLimit: 3,
+            allowSearchFilter: true
+          };
+        
+       
+
+
+
+
         this.route.params.subscribe(params => {
             this.currentFilter = QuickFilter.fromName(params.filter);
         });
@@ -165,4 +311,5 @@ export class CaseReportListComponent implements OnInit {
             this.resetPage();
         });
     }
+
 }

@@ -2,10 +2,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {CaseReportForListing} from '../CaseReportForListing';
 
 enum CaseReportStatus {
-    Success = "Success",
-    TextMessageParsingError = "TextMessageParsingError",
-    UnknownDataCollector = "UnknownDataCollector",
-    TextMessageParsingErrorAndUnknownDataCollector = "TextMessageParsingErrorAndUnknownDataCollector"
+    Success = 0,
+    TextMessageParsingError,
+    UnknownDataCollector,
+    TextMessageParsingErrorAndUnknownDataCollector
 }  
 
 export class QuickFilter {
@@ -20,15 +20,15 @@ export class QuickFilter {
         return true;
     });
     static Success: QuickFilter = new QuickFilter('success', 'Success', 'btn-success', report => {
-        return report.status as String === CaseReportStatus.Success;
+        return report.status === CaseReportStatus.Success;
     });
     static Error: QuickFilter = new QuickFilter('error', 'Error', 'btn-danger', report => {
-        return report.status as String === CaseReportStatus.TextMessageParsingError
-            || report.status as String === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
+        return report.status === CaseReportStatus.TextMessageParsingError
+            || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
     static UnknownSender: QuickFilter = new QuickFilter('unknownSender', 'Unknown sender', 'btn-warning', report => {
-        return report.status as String === CaseReportStatus.UnknownDataCollector
-            || report.status as String === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
+        return report.status === CaseReportStatus.UnknownDataCollector
+            || report.status === CaseReportStatus.TextMessageParsingErrorAndUnknownDataCollector;
     });
 
     static Filters: Array<QuickFilter> = [
