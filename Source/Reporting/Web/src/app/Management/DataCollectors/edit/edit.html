@@ -149,14 +149,14 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="status">Status</label>
+        <label for="status">Training Status</label>
         <select class="form-control" id="status"
                 required
-                [(ngModel)]="changeBaseInformationCommand.status"
+                [(ngModel)]="inTraining"
                 name="status"
                 #status="ngModel">
-            <option value="1" [selected]="status">In Training</option>
-            <option value="0" [selected]="!status">Active</option>
+            <option [ngValue]="true" [selected]="status">In Training</option>
+            <option [ngValue]="false" [selected]="!status">Active</option>
         </select>
 
         <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
