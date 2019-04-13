@@ -30,6 +30,7 @@ import { CaseReportForListing } from './CaseReportForListing';
 export class CaseReportListComponent implements OnInit {
 
     listedReports: Array<CaseReportForListing> = [];
+    allReports: Array<CaseReportForListing> = [];
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -38,6 +39,8 @@ export class CaseReportListComponent implements OnInit {
     sortDescending: boolean = true;
     sortField: string;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
+    dateDebut : any ;
+    dateFin : any;
 
     page = {
         isLoading: false,
@@ -75,6 +78,21 @@ export class CaseReportListComponent implements OnInit {
         this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
     }
 
+    sortDate( datefrom : Date , dateto : Date )
+    {
+        let dateFrom = new Date(datefrom) ;
+        let dateTo = new Date(dateto) ;
+        this.listedReports = this.allReports;
+        let newReports = [] ;
+        
+        this.listedReports.forEach( listedReport => {
+            let date = listedReport.timestamp;
+            if (date.getTime() >= dateFrom.getTime() && date.getTime() <= dateTo.getTime()) newReports.push(listedReport);
+        });
+
+        this.listedReports = newReports;
+    }
+
     toggleSortColum(column: Column) {
         if (column instanceof SortableColumn) {
             if (column !== this.currentSortColumn) {
@@ -99,6 +117,7 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
+                    this.allReports = this.listedReports;
                 } else {
                     console.error(response);
                 }

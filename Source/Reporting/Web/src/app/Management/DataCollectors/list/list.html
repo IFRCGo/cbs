@@ -19,6 +19,7 @@
             <th>{{ 'REGISTER.display_name' | translate }}</th>
             <th>{{ 'REGISTER.phone_number_list' | translate }}</th>
             <th>{{ 'REGISTER.related.status' | translate }}</th>
+            <th>{{ 'REGISTER.related.last_report_name' | translate }}</th>
             <th>{{ 'REGISTER.related.action' | translate }}</th>
         </tr>
     </thead>
@@ -38,7 +39,10 @@
                 <span>{{user.phoneNumbers}}</span>
             </td>
             <td>
-              <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+            </td>
+            <td>
+                <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
                 <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">{{ 'REGISTER.related.edit_button' | translate }}</a>

@@ -8,12 +8,10 @@
     <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">{{ 'REGISTER.related.export_button_0' | translate }}</button>
 </div>
 <div>
-        <a routerLink="../../training/all" > {{ 'REGISTER.REPORT.report_title' | translate }}</a>
-    </div>
-
-<div class="paging row">
-    <div class="col-md-7 paging-filters">
-        {{ 'REGISTER.REPORT.filter' | translate }}:
+    <a routerLink="../../training/all" >{{ 'REGISTER.REPORT.report_title' | translate }}</a>
+</div>
+<div class="row">
+    <div class="col-md-4 paging-filters">
         <span *ngFor="let filter of allFilters">
             <button
                 class="small {{ filter.cssClass }}"
@@ -23,7 +21,9 @@
             </button>
         </span>
     </div>
-    <div class="col-md-2 paging-size">
+</div>
+<div class="paging row">
+    <div class="col-md-9 paging-size">
         {{ 'REGISTER.REPORT.page_size' | translate }}:
         &nbsp;
         <select
@@ -53,7 +53,20 @@
             {{ 'REGISTER.REPORT.page_next' | translate }} >
         </button>
     </div>
+    
 </div>
+
+<div class="row">
+    <div class="col-md-8 paging-date">
+        <form>
+            {{ 'REGISTER.REPORT.date_range' | translate }} :
+            <input type="date" required name="dateFrom" id="dateFrom" [(ngModel)] ="dateFrom"><i class="fa fa-calendar"></i>
+            <input type="date" required name="dateTo" id="dateTo"  [(ngModel)] ="dateTo"><i class="fa fa-calendar"></i>
+            <input type="submit" value="search" (click)="sortDate(this.dateFrom,this.dateTo)">
+        </form>
+    </div>
+</div>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>

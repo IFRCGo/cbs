@@ -11,8 +11,8 @@
     <div><span>{{ 'REGISTER.district' | translate }}: </span>{{dataCollector.district}}</div>
     <div><span>{{ 'REGISTER.village' | translate }}: </span>{{dataCollector.village}}</div>
     <div><span>{{ 'REGISTER.phone_number' | translate }}: </span><span *ngFor="let phonenumber of dataCollector.phoneNumbers">{{phonenumber}}, </span></div>
-    <div><span>Registered date: </span>{{dataCollector.registeredAt}}</div>
-    <div><span>Last report received at: </span>{{dataCollector.lastReportRecievedAt}}</div>
+    <div><span>{{ 'REGISTER.date_register' | translate }}: </span>{{dataCollector.registeredAt}}</div>
+    <div><span>{{ 'REGISTER.last_report' | translate }}: </span>{{dataCollector.lastReportRecievedAt}}</div>
     <div><span>{{ 'REGISTER.related.status_inactive' | translate }}: </span>{{dataCollector.inTraining}}</div>
     <button class="btn btn-primary" (click)="goBack()">{{ 'REGISTER.button' | translate }}</button>
   </div>

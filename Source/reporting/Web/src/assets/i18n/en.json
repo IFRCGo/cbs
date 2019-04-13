@@ -44,6 +44,11 @@
         "submit_name": "Submit",
         
         "related": {
+            "date_register": "Registered date",
+            "last_report_name": "Last Active",
+            "last_report": "Last report received at",
+            "date_range": "Date Range",
+ 
             "collector": "Data collectors",
             "status": "Training Status",
             "status_error": "Status is required",
