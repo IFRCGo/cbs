@@ -2,168 +2,221 @@
     <a [routerLink]="['/']" class="back-button">
         <button class="btn btn-primary">Back</button>
     </a>
+  <a [routerLink]="['/reporting/datacollectors']">
+   <button class="btn btn-info"> Data Collectors </button>
+  </a>
 
     <h1>Edit Data Collector</h1>
-    <div class="form-group">
-        <label for="full_name">Full Name</label>
-        <input type="text" class="form-control" id="full_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.fullName"
-            name="full_name" #full_name="ngModel">
+    <div class="row">
 
-        <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-warning">
+            <div class="form-group col-lg-7">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" class="form-control" id="full_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.fullName"
+                        name="full_name" #full_name="ngModel">
+            
+                    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-warning">
+            
+                        <div *ngIf="full_name.errors?.required">
+                            Full Name is required.
+                        </div>
+                        <div *ngIf="full_name.errors?.minlength">
+                            Full Name must be at least 4 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-5">
+                        <label for="display_name">Display Name</label>
+                        <input type="text" class="form-control" id="display_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.displayName"
+                            name="display_name" #display_name="ngModel">
+                        <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-warning">
+                
+                            <div *ngIf="display_name.errors?.required">
+                                Display Name is required.
+                            </div>
+                            <div *ngIf="display_name.errors?.minlength">
+                                Display Name must be at least 4 characters long.
+                            </div>
+                        </div>
+                    </div>
 
-            <div *ngIf="full_name.errors?.required">
-                Full Name is required.
-            </div>
-            <div *ngIf="full_name.errors?.minlength">
-                Full Name must be at least 4 characters long.
-            </div>
-        </div>
     </div>
 
-    <div class="form-group">
-        <label for="display_name">Display Name</label>
-        <input type="text" class="form-control" id="display_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.displayName"
-            name="display_name" #display_name="ngModel">
-        <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-warning">
-
-            <div *ngIf="display_name.errors?.required">
-                Display Name is required.
+    <div class="row">
+            <div class="form-group col-lg-5">
+                    <label>Phone numbers (comma seperated)</label>
+                <input type="text" class="input-mini form-control" id="phoneNumber" required [(ngModel)]="phoneNumberString"
+                    name="phoneNumber" #phoneNumbers="ngModel">
+                <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
+                    <div *ngIf="phoneNumbers.errors?.required">
+                        Phonenumber is required.
+                    </div>
+                </div>
             </div>
-            <div *ngIf="display_name.errors?.minlength">
-                Display Name must be at least 4 characters long.
+            <div class="form-group col-lg-7">
+                    <label for="yearOfBirth">Year of Birth</label>
+                    <input type="number" class="form-control" id="yearOfBirth" ng-valid ng-valid-number ng-valid-max ng-valid-min
+                        required [(ngModel)]="changeBaseInformationCommand.yearOfBirth" name="yearOfBirth" #yearOfBirth="ngModel">
+            
+                    <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" class="alert alert-warning">
+                        <div *ngIf="yearOfBirth.errors?.required">
+                            Year Of Birth is required.
+                        </div>
+                    </div>
             </div>
-        </div>
     </div>
 
-    <div class="form-group">
-        <label for="yearOfBirth">Year of Birth</label>
-        <input type="number" class="form-control" id="yearOfBirth" ng-valid ng-valid-number ng-valid-max ng-valid-min
-            required [(ngModel)]="changeBaseInformationCommand.yearOfBirth" name="yearOfBirth" #yearOfBirth="ngModel">
 
-        <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" class="alert alert-warning">
-            <div *ngIf="yearOfBirth.errors?.required">
-                Year Of Birth is required.
-            </div>
-        </div>
+    <div class="row">
+            <div class="form-group col-lg-5">
+                    <label for="preferredLanguage">Preferred Language</label>
+                    <select class="form-control" id="preferredLanguage" required [(ngModel)]="changePreferredLanguageCommand.preferredLanguage"
+                        name="preferredLanguage" #preferredLanguage="ngModel">
+                        <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
+                    </select>
+            
+                    <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
+                        <div *ngIf="preferredLanguage.errors?.required">
+                            Preferred Language is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-3">
+                        <label for="sex">Sex</label>
+                        <select class="form-control" id="sex" required [(ngModel)]="changeBaseInformationCommand.sex" name="sex" #sex="ngModel">
+                            <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
+                        </select>
+                        <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
+                            <div *ngIf="sex.errors?.required">
+                                Sex is required.
+                            </div>
+                        </div>
+                    </div>
+                
+            
     </div>
 
-    <div class="form-group">
-        <label for="sex">Sex</label>
-        <select class="form-control" id="sex" required [(ngModel)]="changeBaseInformationCommand.sex" name="sex" #sex="ngModel">
-            <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
-        </select>
-        <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
-            <div *ngIf="sex.errors?.required">
-                Sex is required.
-            </div>
-        </div>
-    </div>
+   
+   
 
-    <div class="form-group">
-        <label for="preferredLanguage">Preferred Language</label>
-        <select class="form-control" id="preferredLanguage" required [(ngModel)]="changePreferredLanguageCommand.preferredLanguage"
-            name="preferredLanguage" #preferredLanguage="ngModel">
-            <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
-        </select>
-
-        <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
-            <div *ngIf="preferredLanguage.errors?.required">
-                Preferred Language is required.
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>Location</label>
-        <div *ngIf="dataCollector != null">
+    <div class="form-group col-lg-13">
+            <label>Location</label>
+            <div *ngIf="dataCollector != null">
             <agm-map [latitude]="dataCollector.location.latitude" [longitude]="dataCollector.location.longitude" (mapClick)="onLocationSelected($event)">
                 <agm-marker [latitude]="changeLocationCommand.location.latitude" [longitude]="changeLocationCommand.location.longitude"></agm-marker>
-            </agm-map>
-        </div>
-        <fieldset class="form-inline">
-            <label for="latitude">Latitude</label>
-            <input type="number" class="input-mini form-control" id="latitude" required [(ngModel)]="changeLocationCommand.location.latitude"
-                name="latitude" #latitude="ngModel" />
-            <label for="longitude">Longitude</label>
-            <input type="number" class="input-mini form-control" id="longitude" required [(ngModel)]="changeLocationCommand.location.longitude"
-                name="longitude" #longitude="ngModel" />
-            <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
-        || (longitude.invalid && (longitude.dirty || longitude.touched))"
-                class="alert alert-warning">
-
-                <div *ngIf="latitude.errors?.required">
-                    Location Latitude is required
-                </div>
-                <div *ngIf="longitude.errors?.required">
-                    Location Longitude is required
-                </div>
+              </agm-map>
             </div>
-        </fieldset>
-    </div>
-
-    <div class="form-group">
-        <label for="region">Region</label>
-        <input type="text" class="form-control" id="region" required [(ngModel)]="changeBaseInformationCommand.region"
-            name="region" #region="ngModel">
-        <div *ngIf="region.invalid && (region.dirty || region.touched)" class="alert alert-warning">
-
-            <div *ngIf="region.errors?.required">
-                Region is required.
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="district">District</label>
-        <input type="text" class="form-control" id="district" required [(ngModel)]="changeBaseInformationCommand.district"
-            name="district" #district="ngModel">
-        <div *ngIf="district.invalid && (district.dirty || district.touched)" class="alert alert-warning">
-
-            <div *ngIf="district.errors?.required">
-                District is required.
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="village">Village</label>
-        <input type="text" class="form-control" id="village" [(ngModel)]="changeVillageCommand.village" name="village"
-            #village="ngModel">
-        <div *ngIf="village.invalid && (village.dirty || village.touched)" class="alert alert-warning">
-
-            <div *ngIf="village.errors?.required">
-                Village is required.
-            </div>
-        </div>
-    </div>
-
-
-    <label>Phone numbers (comma seperated)</label>
-    <div class="form-group">
-        <input type="text" class="input-mini form-control" id="phoneNumber" required [(ngModel)]="phoneNumberString"
-            name="phoneNumber" #phoneNumbers="ngModel">
-        <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
-            <div *ngIf="phoneNumbers.errors?.required">
-                Phonenumber is required.
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="status">Training Status</label>
-        <select class="form-control" id="status"
-                required
-                [(ngModel)]="inTraining"
-                name="status"
-                #status="ngModel">
-            <option [ngValue]="true" [selected]="status">In Training</option>
-            <option [ngValue]="false" [selected]="!status">Active</option>
-        </select>
-
-        <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
-            <div *ngIf="status.errors?.required">
-              Status is required.
           </div>
-        </div>
-      </div>
-    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid || error" (click)="submit()">Submit</button>
+          
+          <div class="row">
+              <div class="form-group col-lg-5">
+                          <label for="latitude">Latitude</label>
+                          <input
+                            type="number"
+                            class="input-mini form-control"
+                            id="latitude"
+                            required
+                            [(ngModel)]="changeLocationCommand.location.latitude"
+                            name="latitude"
+                            #latitude="ngModel"
+                    
+                          />
+              </div>
+              <div class="form-group col-lg-5">
+                          <label for="longitude">Longitude</label>
+                         <input
+                            type="number"
+                            class="input-mini form-control"
+                            id="longitude"
+                    
+                            required
+                            [(ngModel)]="changeLocationCommand.location.latitude"
+                            name="longitude"
+                            #longitude="ngModel"
+                          /> 
+                          <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
+                            || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
+                    
+                          <div *ngIf="latitude.errors?.required">
+                              Location Latitude is required
+                          </div>
+                          <div *ngIf="longitude.errors?.required">
+                              Location Longitude is required
+                          </div>
+                        </div>
+          
+              </div>
+          </div>
+      
+
+
+    <div class="row">
+            <div class="form-group col-lg-5">
+                    <label for="region">Region</label>
+                    <input type="text" class="form-control" id="region" required [(ngModel)]="changeBaseInformationCommand.region"
+                        name="region" #region="ngModel">
+                    <div *ngIf="region.invalid && (region.dirty || region.touched)" class="alert alert-warning">
+            
+                        <div *ngIf="region.errors?.required">
+                            Region is required.
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group col-lg-5">
+                    <label for="district">District</label>
+                    <input type="text" class="form-control" id="district" required [(ngModel)]="changeBaseInformationCommand.district"
+                        name="district" #district="ngModel">
+                    <div *ngIf="district.invalid && (district.dirty || district.touched)" class="alert alert-warning">
+            
+                        <div *ngIf="district.errors?.required">
+                            District is required.
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    
+
+    <div class="row">
+            <div class="form-group col-lg-5">
+              <label for="village">Village</label>
+              <input type="text" class="form-control" id="village"
+                      [(ngModel)]="changeVillageCommand.village" name="village"
+                      #village="ngModel">
+              <div *ngIf="village.invalid && (village.dirty || village.touched)"
+                class="alert alert-warning">
+            
+                <div *ngIf="village.errors?.required">
+                  Village is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-lg-5">
+                    <label for="status">Training Status</label>
+                    <select class="form-control" id="status"
+                            required
+                            [(ngModel)]="inTraining"
+                            name="status"
+                            #status="ngModel">
+                        <option [ngValue]="true" [selected]="status">In Training</option>
+                        <option [ngValue]="false" [selected]="!status">Active</option>
+                    </select>
+            
+                    <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
+                        <div *ngIf="status.errors?.required">
+                          Status is required.
+                      </div>
+                    </div>
+                  </div>
+           </div>
+
+
+      <div class="row">
+            <div class="form-group col-lg-3">
+                <button type="submit" class="button2" [disabled]="!form.form.valid || error " (click)="submit()"> Modify </button>
+             </div>
+             <div class="form-group col-lg-3">
+               <button type="reset" class="button1" value="Cancel"> Cancel </button>
+             </div>
+         </div>
 </form>
