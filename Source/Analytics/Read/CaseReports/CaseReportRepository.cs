@@ -19,14 +19,14 @@ namespace Read.CaseReports
             var queryable = _mongoDBHandler.GetQueryable<CaseReport>()
                 .Where(x => x.Timestamp >= from && x.Timestamp < to);
 
-            caseReportTotals.Female = 
-                queryable.Where(x => x.NumberOfFemalesAged5AndOlder > 0 || x.NumberOfFemalesUnder5 > 0).Count();
-            caseReportTotals.Male =
-              queryable.Where(x => x.NumberOfMalesAged5AndOlder > 0 || x.NumberOfMalesUnder5 > 0).Count();
-            caseReportTotals.Over5 =
-             queryable.Where(x => x.NumberOfFemalesAged5AndOlder > 0 || x.NumberOfMalesAged5AndOlder > 0).Count();
-            caseReportTotals.Under5 =
-           queryable.Where(x => x.NumberOfFemalesUnder5 > 0 || x.NumberOfMalesUnder5 > 0).Count();
+            caseReportTotals.Female = queryable.Sum(x => x.NumberOfFemalesAged5AndOlder) + 
+                queryable.Sum(x => x.NumberOfFemalesUnder5);
+            caseReportTotals.Male = queryable.Sum(x => x.NumberOfMalesAged5AndOlder) +
+                queryable.Sum(x => x.NumberOfMalesUnder5);
+            caseReportTotals.Over5 = queryable.Sum(x => x.NumberOfFemalesAged5AndOlder) +
+                queryable.Sum(x => x.NumberOfMalesAged5AndOlder);
+            caseReportTotals.Under5 = queryable.Sum(x => x.NumberOfFemalesUnder5) +
+                queryable.Sum(x => x.NumberOfMalesUnder5);
 
             return caseReportTotals;
         }
