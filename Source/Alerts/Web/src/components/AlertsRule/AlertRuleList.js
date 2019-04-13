@@ -60,7 +60,11 @@ function CustomizedTable(props) {
 
   return (
     <div>
-
+     <div style={{
+        textAlign:"center",}}>
+        <h1>Alert rule overview</h1>
+         <p>Here are the alert rules you have registered</p>
+     </div>
     <Paper className={classes.root}>
    
     <Link to="/alerts/AddRule" align="right" style={{ textDecoration:'none',color:'#1070ca' }}>
@@ -68,6 +72,7 @@ function CustomizedTable(props) {
           <AddIcon  className={classes.icon} />
         </Button>
     </Link>
+    
       <Table className={classes.table}>
         <TableHead>
           <TableRow >
@@ -92,8 +97,6 @@ function CustomizedTable(props) {
               <CustomTableCell align="right">{row.calories}</CustomTableCell>
               <CustomTableCell align="right">{row.fat}</CustomTableCell>
               <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-              <CustomTableCell align="right"> <VisibilityIcon className={classes.icon} />
-            </CustomTableCell>
             </TableRow>
           ))}
         </TableBody>

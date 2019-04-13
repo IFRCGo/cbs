@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { CreateAlertRule } from '../../../Features/AlertRules/CreateAlertRule';
 
 
 import MenuAlert from './menuAlert';
-
 
 const styles = theme => ({
     container: {
@@ -32,11 +32,6 @@ class AlertForm extends Component {
             thresholdTimeframeInHours: ""
         };
     }
-    handleChange = name => event => {
-        this.setState({
-          [name]: event.target.value,
-        });
-      };
 
     addRule() {
         let request = {
@@ -66,6 +61,7 @@ class AlertForm extends Component {
         return (
             <div className="">
                     <MenuAlert  />
+               <form onSubmit={this.handleSubmit}>
                 <div style={{ textAlign:'center' }}>
                     <h1 >Alert Rule</h1>
                     <p>Here you can set rules for health risk alerts.</p>
@@ -73,55 +69,67 @@ class AlertForm extends Component {
                 <TextField className="input"
                     id=""
                     label="Alert rule name"
-                    style={{ marginLeft:'15%',width:'70%',  }}
-                    defaultValue="i.e. Acute watery diarrhoea"
+                    style={{ marginLeft:'35%',width:'35%',  }}
+                    placeholder="i.e. Acute watery diarrhoea"
                     fullWidth
                     margin="normal"
                     variant="outlined"
-                    
+                    onChange={e => this.setState({alertRuleName: e.target.value})}
+                    value={this.state.alertRuleName} 
                 />
+                <br></br>
                 
                   <TextField
                     id="filled-full-width"
                     label="Health risk number"
                     type="number"
                     name="risk_number"
-                    style={{ marginLeft:'15%',width:'35%',  }}
-                    defaultValue="1"
+                    style={{ marginLeft:'35%',width:'35%',  }}
+                    placeholder="1"
                     fullWidth
                     margin="normal"
                     variant="outlined"
+                    onChange={e => this.setState({healthRiskNumber: e.target.value})}
+                    value={this.state.healthRiskNumber}
                     
                 />
+                <br></br>
              
                  <TextField
                     id="filled-full-width"
                     label="Alert threshold"
-                    type="text"
-                    defaultValue="Write the number of cases to rise an alert"
+                    type="number"
+                    placeholder="Write the number of cases to rise an alert"
                     name="risk_number"
-                    style={{ marginLeft:'0.2%',width:'35%',  }}
+                    style={{ marginLeft:'35%',width:'35%',  }}
                     placeholder="i.e. 2"
                     fullWidth
                     margin="normal"
                     variant="outlined"
+                    onChange={e => this.setState({numberOfCasesThreshold: e.target.value})}
+                    value={this.state.numberOfCasesThreshold}
                 
                 />
+                <br></br>
                 <TextField
                     id="filled-full-width"
                     label="Threshold timeframe (in hours)"
-                    type="text"
+                    type="number"
                     name="risk_number"
-                    style={{ marginLeft:'15%',width:'70%'}}
-                    defaultValue="Define the time from case 1 to the alert threshold is reached."
+                    style={{ marginLeft:'35%',width:'35%'}}
+                    placeholder="Define the time from case 1 to the alert threshold is reached."
                     fullWidth
                     margin="normal"
                     variant="outlined"
+                    onChange={e => this.setState({thresholdTimeframeInHours: e.target.value})}
+                    value={this.state.thresholdTimeframeInHours}
                
                 />
+                <br></br>
                 <Button
                  variant="contained"
-                 style={{ marginLeft:'15%',
+                 onClick={() => this.resetState()}
+                 style={{ marginLeft:'35%',
                  width:'5%',
                  marginTop:'2%',
 
@@ -130,16 +138,20 @@ class AlertForm extends Component {
                     Cancel
                 </Button>
                 <Button variant="contained"
+                onClick={() => this.addRule()}
                    style={{ 
-                     marginLeft:'2%',
+                     marginLeft:'3%',
                      marginTop:'2%',
                      width:'5%',
                      backgroundColor:'blue'
 
-                    }} >
+                    }}
+                  
+                     >
                     Save  
                 </Button>
-                                        
+                </form>
+                       
             </div>
         );
     }
