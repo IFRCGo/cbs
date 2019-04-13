@@ -12,15 +12,15 @@
 <div class="alert-danger" *ngIf="error">
     {{errorMsg}}
 </div>
-<table class="table table-striped" *ngIf="!error">
+<table class="table" *ngIf="!error">
     <thead>
         <tr>
             <th>Full Name</th>
-            <th>Display Name</th>
             <th>Phone Numbers</th>
-            <th>Training Status</th>
+            <th>location</th>
             <th>Last Active</th>
-            <th>Actions</th>
+            <th>Training Status</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -33,20 +33,28 @@
                 </a>
             </td>
             <td>
-                {{user.displayName}}
-            </td>
-            <td>
                 <span>{{user.phoneNumbers}}</span>
             </td>
             <td>
-                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+                <span> {{user.region}}</span>
             </td>
             <td>
                 <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
-                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
-                <delete-user [user]=user></delete-user>
+                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+            </td>
+            <td>
+                    <div class="btn-group" dropdown placement="bottom right">
+                            <button dropdownToggle type="button" class="button1">
+                              ...
+                            </button>
+                            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                              <li role="menuitem"><a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active"><i class="fa fa-pencil" aria-hidden="true">&nbsp;Edit</i></a>
+                              </li>
+                              <li role="menuitem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash icontrash" aria-hidden="true">&nbsp;<delete-user [user]=user></delete-user></i></li>
+                            </ul>
+                          </div>
             </td>
         </tr>
     </tbody>

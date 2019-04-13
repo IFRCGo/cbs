@@ -31,3 +31,27 @@
 .training-status-off {
   background-color: orange;
 }
+tr:hover {
+  background-color: #d9d9d9;
+  color: #403E10;
+  font-weight: bold;
+ 
+ 
+  transition-delay: 0s;
+       transition-duration: 0.4s;
+       transition-property: all;
+  transition-timing-function: line;
+ }
+
+ .icontrash{
+   color: red ;
+ }
+ .button1
+ {
+   background-color: #fff;
+   color : #000 ;
+   border: 1px solid white;
+   border-radius: 4px;
+   font-weight: bold;
+   font-size: 20px;
+ }

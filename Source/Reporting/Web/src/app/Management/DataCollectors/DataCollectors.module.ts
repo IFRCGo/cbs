@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { SharedModule } from '../../shared/shared.module';
 import { DataCollectorsRoutes } from './DataCollectors.routes';
@@ -12,7 +13,8 @@ import { Delete } from './delete/delete';
 @NgModule({
     imports: [
         DataCollectorsRoutes,
-        SharedModule
+        SharedModule,
+        BsDropdownModule.forRoot()
     ],
     declarations: [
         List,
