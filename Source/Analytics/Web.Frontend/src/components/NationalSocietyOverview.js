@@ -6,7 +6,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
-import HorizontalBarChart from "./HorizontalBarChart";
+import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
 
 class NationalSocietyOverview extends Component {

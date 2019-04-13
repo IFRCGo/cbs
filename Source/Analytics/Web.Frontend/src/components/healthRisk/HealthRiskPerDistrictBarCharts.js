@@ -42,7 +42,7 @@ const defaultOptions = {
 ]
 };
 
-class HorizontalBarChart extends Component {
+class HealthRiskPerDistrictBarCharts extends Component {
     constructor(props) {
         super(props);
 
@@ -112,4 +112,4 @@ class HorizontalBarChart extends Component {
     }
 }
 
-export default HorizontalBarChart;
+export default HealthRiskPerDistrictBarCharts;
