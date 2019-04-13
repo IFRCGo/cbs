@@ -1,0 +1,122 @@
+[
+    {
+        "DataCollectorId": "f165a5fa-5e87-42f6-9306-56fa517797c1",
+        "HealthRiskId": "1",
+        "Origin": 1,
+        "NumberOfMalesUnder5": 50,
+        "NumberOfMalesAged5AndOlder": 1,
+        "NumberOfFemalesUnder5": 20,
+        "NumberOfFemalesAged5AndOlder": 1,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 1"
+    },
+    {
+        "DataCollectorId": "dcccbcdc-03d9-4e1e-a063-33eece310548",
+        "HealthRiskId": "14",
+        "Origin": 2,
+        "NumberOfMalesUnder5": 0,
+        "NumberOfMalesAged5AndOlder": 19,
+        "NumberOfFemalesUnder5": 1,
+        "NumberOfFemalesAged5AndOlder": 12,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 2"
+    },
+    {
+        "DataCollectorId": "dcccbcdc-03d9-4e1e-a063-33eece310548",
+        "HealthRiskId": "14",
+        "Origin": 2,
+        "NumberOfMalesUnder5": 1,
+        "NumberOfMalesAged5AndOlder": 1,
+        "NumberOfFemalesUnder5": 1,
+        "NumberOfFemalesAged5AndOlder": 1,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 2"
+    },
+    {
+        "DataCollectorId": "cab40f14-57a7-4dc7-b0f5-d0bf253ec38f",
+        "HealthRiskId": "6",
+        "Origin": 3,
+        "NumberOfMalesUnder5": 12,
+        "NumberOfMalesAged5AndOlder": 61,
+        "NumberOfFemalesUnder5": 0,
+        "NumberOfFemalesAged5AndOlder": 0,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 3"
+    },
+    {
+        "DataCollectorId": "10d6f2b0-e1a3-45e9-b71d-747113a11389",
+        "HealthRiskId": "1",
+        "Origin": 4,
+        "NumberOfMalesUnder5": 98,
+        "NumberOfMalesAged5AndOlder": 3,
+        "NumberOfFemalesUnder5": 103,
+        "NumberOfFemalesAged5AndOlder": 8,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 4"
+    },
+    {
+        "DataCollectorId": "abd79095-a26f-4532-8ef8-3d14bbbe73ee",
+        "HealthRiskId": "22",
+        "Origin": 5,
+        "NumberOfMalesUnder5": 1,
+        "NumberOfMalesAged5AndOlder": 1,
+        "NumberOfFemalesUnder5": 32,
+        "NumberOfFemalesAged5AndOlder": 76,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 5"
+    },
+    {
+        "DataCollectorId": "0a1b6194-f8b2-41b7-8120-0613f98ff679",
+        "HealthRiskId": "22",
+        "Origin": 6,
+        "NumberOfMalesUnder5": 0,
+        "NumberOfMalesAged5AndOlder": 11,
+        "NumberOfFemalesUnder5": 0,
+        "NumberOfFemalesAged5AndOlder": 2,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 6"
+    },
+    {
+        "DataCollectorId": "a391d08b-9177-4a22-a993-712fb439206d",
+        "HealthRiskId": "3",
+        "Origin": 7,
+        "NumberOfMalesUnder5": 0,
+        "NumberOfMalesAged5AndOlder": 0,
+        "NumberOfFemalesUnder5": 7,
+        "NumberOfFemalesAged5AndOlder": 5,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 7"
+    },
+    {
+        "DataCollectorId": "a391d08b-9177-4a22-a993-712fb439206d",
+        "HealthRiskId": "3",
+        "Origin": 7,
+        "NumberOfMalesUnder5": 10,
+        "NumberOfMalesAged5AndOlder": 20,
+        "NumberOfFemalesUnder5": 7,
+        "NumberOfFemalesAged5AndOlder": 5,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 7"
+    },
+    {
+        "DataCollectorId": "a391d08b-9177-4a22-a993-712fb439206d",
+        "HealthRiskId": "22",
+        "Origin": 7,
+        "NumberOfMalesUnder5": 1,
+        "NumberOfMalesAged5AndOlder": 1,
+        "NumberOfFemalesUnder5": 1,
+        "NumberOfFemalesAged5AndOlder": 1,
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Message": "Test messages 7"
+    }
+]

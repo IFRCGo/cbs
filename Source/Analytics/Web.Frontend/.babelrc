@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    "@babel/plugin-transform-async-to-generator"
+  ],
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns":"entry",
+        "loose": true,
+        "exclude": [
+          "transform-regenerator"
+        ]
+      }
+    ]
+  ]
+}
