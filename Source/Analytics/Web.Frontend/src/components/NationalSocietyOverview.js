@@ -4,14 +4,19 @@ import Typography from '@material-ui/core/Typography';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
-import TotalCard from "./healthRisk/TotalCard";
+import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
+import HorizontalBarChart from "./HorizontalBarChart";
 
 class NationalSocietyOverview extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            totalFemale: "-",
+            totalMale: "-",
+            totalUnder5: "-",
+            totalOver5: "-",
             isLoading: true,
             isError: false
         };
@@ -66,7 +71,10 @@ class NationalSocietyOverview extends Component {
         <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
         <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
         </GridListTile>
+
+     
         </GridList>
+        <HorizontalBarChart />
             </div>
         );
     }
