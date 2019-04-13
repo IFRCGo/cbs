@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 import { SharedModule } from '../../shared/shared.module';
 import { DataCollectorsRoutes } from './DataCollectors.routes';
@@ -8,11 +9,13 @@ import { Register } from './register/register';
 import { Details } from './details/details';
 import { Export } from './export/export';
 import { Delete } from './delete/delete';
+import { SendSms } from './send-sms/send-sms';
 
 @NgModule({
     imports: [
         DataCollectorsRoutes,
-        SharedModule
+        SharedModule,
+        AngularMultiSelectModule
     ],
     declarations: [
         List,
@@ -20,7 +23,8 @@ import { Delete } from './delete/delete';
         Register,
         Details,
         Export,
-        Delete
+        Delete,
+        SendSms
     ]
 })
 export class DataCollectorsModule { }

@@ -1,0 +1,37 @@
+<form #form="ngForm" ngNativeValidate>
+    <a [routerLink]="['/datacollectors']" class="back-button">
+        <button class="btn btn-primary">Back</button>
+    </a>
+
+    <h1>Send SMS</h1>
+    <div class="form-group">
+        <label for="full_name">Message</label>
+
+        <textarea #msg="ngModel" class="form-control" name="name" rows="8" cols="80" required [(ngModel)]="message"></textarea>
+
+        <div *ngIf="msg.invalid && (msg.dirty || msg.touched)" class="alert alert-warning">
+
+            <div *ngIf="msg.errors?.required">
+                Message is required.
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <label for="full_name">Recipients</label>
+      <angular2-multiselect name="recipients" [data]="itemList" [(ngModel)]="selectedItems" [settings]="settings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+        <c-badge>
+          <ng-template let-item="item">
+              <label style="margin: 0px;">{{item.fullName}}</label>
+          </ng-template>
+        </c-badge>
+        <c-item>
+          <ng-template let-item="item">
+            <label style="color: #333;min-width: 150px;">{{item.fullName +' ' + item.phoneNumbers}}</label>
+          </ng-template>
+        </c-item>
+      </angular2-multiselect>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid || error" (click)="send()">Send</button>
+</form>

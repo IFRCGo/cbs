@@ -8,6 +8,11 @@
     <a>
         <export></export>
     </a>
+    <a [routerLink]="['/datacollectors/send-sms']" routerLinkActive="active">
+      <button class="btn btn-primary">
+        Send SMS
+      </button>
+    </a>
 </div>
 <div class="alert-danger" *ngIf="error">
     {{errorMsg}}

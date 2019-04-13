@@ -4,6 +4,7 @@ import { List } from './list/list';
 import { Edit } from './edit/edit';
 import { Register } from './register/register';
 import { Details } from './details/details';
+import { SendSms } from './send-sms/send-sms';
 
 const routes: Routes = [
     {
@@ -21,9 +22,13 @@ const routes: Routes = [
                 path: 'edit/:id',
                 component: Edit
             },
-            { 
-                path: 'details/:id', 
-                component: Details 
+            {
+                path: 'details/:id',
+                component: Details
+            },
+            {
+                path: 'send-sms',
+                component: SendSms
             }
         ]
     }
