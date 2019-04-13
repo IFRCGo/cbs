@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { connect } from 'react-redux';
-import MenuAlert from './Alerts/menuAlert';
+import MenuAlert from './AlertsRule/menuAlert';
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -99,19 +99,25 @@ class RegisterDataOwner extends Component {
             onChange={this.onChangeMail.bind(this)}
             />
 
-    <Button onClick={this.addDataOwner.bind(this)}  variant="contained" color="primary">
+            <div>
+            <Button align="right"  onClick={this.addDataOwner.bind(this)}  variant="contained" color="primary">
         Send
     </Button>
+            </div>
 
         </form>
 
+        <div style={{ margin:'10px' }}>
+
+        </div>
+
         
-        <div className="list-group">
+        <div >
         <Table>
                 <TableHead>
                 <TableRow>
-                    <CustomTableCell align="right">Name</CustomTableCell>
-                    <CustomTableCell align="right">Email</CustomTableCell>
+                    <CustomTableCell >Name</CustomTableCell>
+                    <CustomTableCell >Email</CustomTableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
