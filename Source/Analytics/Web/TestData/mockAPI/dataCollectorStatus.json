@@ -1,0 +1,52 @@
+{
+  "from": "2019-04-06T00:00:00+02:00",
+  "to": "2020-01-01T00:00:00+01:00",
+    "datacollectors": [
+        {
+            "name": "James Smith",
+            "village": "Sydney",
+            "phone": "99999999",
+            "daysSinceLastReport": 8,
+            "weeklyStatus": [
+                {
+                    "w0": "InActive",
+                    "w1": "Active",
+                    "w2": "Active",
+                    "w3": "Active",
+                    "w4": "ActiveWithErrors"
+                }
+            ]
+        },
+        {
+            "name": "Sara Johnson",
+            "village": "London",
+            "phone": "55555555",
+            "daysSinceLastReport": 2,
+            "weeklyStatus": [
+                {
+                    "w0": "InActive",
+                    "w1": "InActive",
+                    "w2": "ActiveWithErrors",
+                    "w3": "Active",
+                    "w4": "Active"
+                }
+            ]
+        },
+        {
+            "name": "Mike Michel",
+            "village": "Paris",
+            "phone": "33333333",
+            "daysSinceLastReport": 20,
+            "weeklyStatus": [
+                {
+                    "w0": "InActive",
+                    "w1": "InActive",
+                    "w2": "InActive",
+                    "w3": "InActive",
+                    "w4": "Active"
+                }
+            ]
+        }
+    ]
+}
+ 

@@ -1,4 +1,5 @@
-﻿Highcharts.chart('container', {
+﻿
+Highcharts.chart('container', {
     chart: {
       type: 'column'
     },
@@ -9,6 +10,7 @@
       text: 'Source: CSB'
     },
     xAxis: {
+    
       categories: [
         '01.07.2018',
         '05.07.2018',
