@@ -7,6 +7,7 @@ import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTabl
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
 import HorizontalBarChart from "./HorizontalBarChart";
+import Map from "./Map.js";
 
 class NationalSocietyOverview extends Component {
     constructor(props) {
@@ -75,6 +76,7 @@ class NationalSocietyOverview extends Component {
      
         </GridList>
         <HorizontalBarChart />
+        <Map />
             </div>
         );
     }
