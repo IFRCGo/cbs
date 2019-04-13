@@ -53,7 +53,7 @@
             next >
         </button>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -77,6 +77,7 @@
                   (click)="toggleSortColum(column)"
                   [ngClass]="{'sortable': column.isSortable}"
             ></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody *ngIf="!page.isLoading">
@@ -120,9 +121,19 @@
                     {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
+            <td><button (click)="convertToTrainingCase(caseReport)" type="button" name="button" class="btn btn-warning">Convert to Training case</button> </td>
         </tr>
     </tbody>
 </table>
 <div *ngIf="page.isLoading">
     <p class="text-center">Loading data...</p>
 </div>
+
+<ngx-smart-modal #modalExportDataCollectors identifier="modalExportDataCollectors" [backdrop]="false">
+    <h4>Are you sure to convert this case report into training case ?</h4>
+    <br><br>
+    <div class="actions">
+        <button class="btn btn-default" (click)="modalExportDataCollectors.close()">Cancel</button>
+        <button (click)="convert()"  class="btn btn-primary" type="submit">Convert</button>
+    </div>
+</ngx-smart-modal>

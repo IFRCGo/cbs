@@ -5,7 +5,7 @@ import { QuickFilter } from '../filtering/filter.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllTrainingCaseReportsForListing } from '../../TrainingCaseReportsForListing/AllTrainingCaseReportsForListing';
 import { TrainingCaseReportForListing } from '../../TrainingCaseReportsForListing/TrainingCaseReportForListing';
-
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'cbs-training-case-reports',
@@ -31,10 +31,13 @@ export class TrainingCaseReportsComponent implements OnInit {
         sizes: [10, 20, 50, 100, 200, 500, 1000]
     };
 
+    selectedCase;
+
     constructor(
         private queryCoordinator: QueryCoordinator,
         private route: ActivatedRoute,
         private router: Router,
+        private modal: NgxSmartModalService
         //private logService: fromServices.LogService
     ) { }
 
@@ -149,5 +152,14 @@ export class TrainingCaseReportsComponent implements OnInit {
 
             this.resetPage();
         });
+    }
+
+    convertToLiveCase(caseReport): void {
+      this.selectedCase = caseReport;
+      this.modal.getModal('modalExportDataCollectors').open();
+    }
+
+    convert() {
+      console.log(this.selectedCase);
     }
 }

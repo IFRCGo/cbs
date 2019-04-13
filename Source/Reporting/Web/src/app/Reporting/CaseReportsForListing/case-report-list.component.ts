@@ -6,6 +6,8 @@ import { QuickFilter } from './filtering/filter.pipe';
 import { AllCaseReportsForListing } from './AllCaseReportsForListing';
 import { CaseReportForListing } from './CaseReportForListing';
 
+import { NgxSmartModalService } from 'ngx-smart-modal';
+
 //import * as fromServices from '../../services';
 //import * as fromModels from '../../shared/models';
 
@@ -49,10 +51,13 @@ export class CaseReportListComponent implements OnInit {
         sizes: [10, 20, 50, 100, 200, 500, 1000]
     };
 
+    selectedCase;
+
     constructor(
         private queryCoordinator: QueryCoordinator,
         private route: ActivatedRoute,
         private router: Router,
+        private modal: NgxSmartModalService
         //private logService: fromServices.LogService
     ) { }
 
@@ -84,7 +89,7 @@ export class CaseReportListComponent implements OnInit {
         let dateTo = new Date(dateto) ;
         this.listedReports = this.allReports;
         let newReports = [] ;
-        
+
         this.listedReports.forEach( listedReport => {
             let date = listedReport.timestamp;
             if (date.getTime() >= dateFrom.getTime() && date.getTime() <= dateTo.getTime()) newReports.push(listedReport);
@@ -183,5 +188,14 @@ export class CaseReportListComponent implements OnInit {
 
             this.resetPage();
         });
+    }
+
+    convertToTrainingCase(caseReport): void {
+      this.selectedCase = caseReport;
+      this.modal.getModal('modalExportDataCollectors').open();
+    }
+
+    convert() {
+      console.log(this.selectedCase);
     }
 }
