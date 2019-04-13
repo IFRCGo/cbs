@@ -5,7 +5,6 @@ import {QueryCoordinator} from '@dolittle/queries'
 
 let _commandCoordinator;
 let _queryCoordinator
-//TODO: Mocks should be used when we are in "mock mode", not just in development. For Dakar codeathon it was sufficent with just development
 if ( process.env.MOCK_COORDINATORS == 'true') {
     console.log("Using mock");
     _commandCoordinator = new MockCommandCoordinator();
