@@ -2,9 +2,9 @@ using Dolittle.Concepts;
 
 namespace Concepts.Alerts
 {
-    public class AlertNumber : ConceptAs<int>
+    public class AlertNumber : ConceptAs<uint>
     {
-        public static implicit operator AlertNumber(int value)
+        public static implicit operator AlertNumber(uint value)
         {
             return new AlertNumber { Value = value };
         }
