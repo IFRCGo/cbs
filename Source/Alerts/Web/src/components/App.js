@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Alert from './Alerts/AlertRuleList';
-import MenuAlert from './Alerts/menuAlert';
+import Alert from './AlertsRule/AlertRuleList';
+import MenuAlert from './AlertsRule/menuAlert';
 
 class App extends Component {
     componentWillMount() {
@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <div className="alerts">
                 <MenuAlert/>
-                <Alert />
+                <Alert/>
 
             </div>
         );
