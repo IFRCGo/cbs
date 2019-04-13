@@ -49,7 +49,7 @@ function createData(name, calories, fat, carbs) {
 
 const rows = [
   createData('AWD #1', 'Acute Watery Diarrhea', 6.0, 'Within 6 days'),
-  createData('CH #2', 'Cholera', 9.0, 'Within 6 days'),
+  createData('CH #2', 'Cholera', 9.0, 'Within 10 days'),
   createData('YF #3', 'Measles', 16.0, 'Within 12 days'),
   createData('ML #4', 'Acute Watery Diarrhea', 3.7, 'Within 2 days'),
   createData('CH #2', 'Typhoid fever', 16.0, 'Within 1 days'),

@@ -27,7 +27,7 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: '70%',
+    width: '90%',
     margin:'auto',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
@@ -65,13 +65,15 @@ function CustomizedTable(props) {
     
     <Paper className={classes.root}>
     <div>
-      <Button variant="outlined" size="small" color="primary" className={classes.margin}>
+      <Button variant="contained" size="small" color="default" className={classes.margin}>
           Opened
         </Button>
-        <Button variant="outlined" size="small" color="primary" className={classes.margin}>
+
+        <Button variant="contained" size="small" color="primary" className={classes.margin}>
           Escalated
         </Button>
-        <Button variant="outlined" size="small" color="primary" className={classes.margin}>
+
+        <Button variant="contained" size="small" color="secondary" className={classes.margin}>
           Closed
         </Button>
      
