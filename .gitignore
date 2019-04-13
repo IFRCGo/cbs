@@ -40,7 +40,7 @@ Source/**/Web.Frontend/es
 Source/**/Web.Frontend/dist
 Source/**/Web.Frontend/.cache
 Source/**/Web.Frontend/tests_output
-
+Source/**/.vs
 
 # OS generated files #
 ######################

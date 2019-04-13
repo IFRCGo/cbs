@@ -2,7 +2,7 @@
  *  This file is an automatically generated Command Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Command } from  '@dolittle/commands/dist/commonjs';
+import { Command } from  '@dolittle/commands';
 
 export class UpdateAlertRule extends Command
 {
