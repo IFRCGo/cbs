@@ -1,8 +1,8 @@
 <div class="header">
-    <h2>Data collectors</h2>
+    <h2>{{ 'REGISTER.related.collector' | translate }}</h2>
     <a [routerLink]="['/datacollectors/register']" routerLinkActive="active">
         <button class="btn btn-primary">
-            Add Data Collector
+            {{ 'REGISTER.form_name' | translate }}
         </button>
     </a>
     <a>
@@ -15,11 +15,11 @@
 <table class="table table-striped" *ngIf="!error">
     <thead>
         <tr>
-            <th>Full Name</th>
-            <th>Display Name</th>
-            <th>Phone Numbers</th>
-            <th>Training Status</th>
-            <th>Actions</th>
+            <th>{{ 'REGISTER.full_name' | translate }}</th>
+            <th>{{ 'REGISTER.display_name' | translate }}</th>
+            <th>{{ 'REGISTER.phone_number_list' | translate }}</th>
+            <th>{{ 'REGISTER.related.status' | translate }}</th>
+            <th>{{ 'REGISTER.related.action' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -41,7 +41,7 @@
               <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
             </td>
             <td>
-                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
+                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">{{ 'REGISTER.related.edit_button' | translate }}</a>
                 <delete-user [user]=user></delete-user>
             </td>
         </tr>

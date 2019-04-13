@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AgmCoreModule } from '@agm/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { AgmCoreModule } from '@agm/core';
         ReactiveFormsModule,
         HttpClientModule,
         AgmCoreModule,
-        NgxSmartModalModule
+        NgxSmartModalModule,
+        TranslateModule
     ]
 })
 export class SharedModule {
