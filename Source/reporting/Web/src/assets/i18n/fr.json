@@ -1,5 +1,7 @@
 {
     "REGISTER" : {
+        "button": "Retour",
+
         "form_name": "Ajouter un collecteur de donnée",
         "full_name": "Nom complet",
         "full_name_error": "Le nom complet est requis.",
@@ -38,6 +40,66 @@
         "phone_number": "Numéro de téléphone (séparé par des virgules)",
         "phone_number_error": "Le numéro de téléphone est requis.",
 
-        "submit_name": "Envoyer"
+        "submit_name": "Envoyer",
+
+        "related": {
+            "collector": "Collecteur de données",
+            "status": "Etat d'activité",
+            "status_error": "L'etat est requis",
+            "status_active": "Actif",
+            "status_inactive": "En activité",
+            "action": "Actions",
+
+            "export_title": "Exporter les collecteurs de données",
+            "export_case_title": "Exporter les reports de cas",
+            "export_format": "Format",
+            "export_type_0": "Excel",
+            "export_type_1": "CSV",
+            "export_button_0": "Exporter",
+            "export_button_1": "Annuler",
+
+
+            "edit_title": "Modifier le collecteur de données",
+            "edit_button": "Modifier",
+
+            "verifier": "Vérificateur de donnée",
+
+            "delete": "Supprimer utilisateur",
+            "delete_text": "Êtes-vous sûr de vouloir supprimer"
+
+        },
+    
+    "REPORT": {
+         "report_name": "Report de cas",
+         "report_title": "Report de cas en cours",
+         
+         "filter": "Trier rapide",
+         
+         "page": "Page",
+         "page_size": "Nombre de page",
+         "page_prev": "précédent",
+         "page_next": "suivant",
+
+         "case_success": "Succés",
+         "case_error": "Echec",
+         "case_uknown": "Envoyeur inconnu",
+         "case_origin": "Envoyeur",
+         
+         "parse_error": "Erreurs constatées",
+
+         "loader": "Chargement des données..."
+
+    },
+
+    "NAVBAR": {
+         "link_1": "Gestion de projet",
+         "link_2": "Gestion des utilisateurs",
+         "link_3": "Report des volontaires",
+         "link_4": "Alertes",
+         "link_5": "Analyse",
+         "link_6": "Connecté",
+
+         "sub_link": "Se déconnecter"
+        }
     }
 }
