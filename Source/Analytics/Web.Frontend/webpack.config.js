@@ -1,89 +1,127 @@
-const path = require("path");
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
+const { ProvidePlugin, WatchIgnorePlugin } = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-  entry: path.join(__dirname,'src','index.js'),
+const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
+const when = (condition, config, negativeConfig) => condition ? ensureArray(config) : ensureArray(negativeConfig);
 
-  output: {
+const title = process.env.TITLE || '';
+const rootDir = process.env.WEBPACK_ROOT || process.cwd();
+const outDir = process.env.WEBPACK_OUT || path.resolve('./dist');
+const baseUrl = process.env.WEBPACK_BASE_URL || '/analytics/';
 
-    path: path.join(__dirname,'build'),
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
-    filename: 'index.bundle.js'
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
 
-  },
+module.exports = (env, argv) => {
+    const production = argv.mode == 'production';
 
-  mode: process.env.NODE_ENV || 'development',
+    return {
+        resolve: {
+            extensions: ['.js'],
+            modules: [path.resolve('src'), 'node_modules'],
+            mainFields: ['main', 'module']
+        },
 
-  resolve: {
+        entry: path.resolve('src/index.js'),
 
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+        mode: production ? 'production' : 'development',
+        devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
 
-  },
+        devServer: {
+            historyApiFallback: true,
+            port: 4010,
+            openPage: 'analytics/',
+            proxy: {
+                '/api': 'http://localhost:5010'
+            },
+            hot: true
+        },
+        output: {
+            path: outDir,
+            publicPath: baseUrl,
+            filename: '[name].[hash].bundle.js',
+            sourceMapFilename: '[name].[hash].bundle.map',
+            chunkFilename: '[name].[hash].chunk.js'
+        },
+        performance: { hints: false },
 
-  devServer: {
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader'],
+                    issuer: /\.[tj]s$/i
+                },
+                {
+                    test: /\.css$/,
+                    use: ['css-loader'],
+                    issuer: /\.html?$/i
+                },            
+                {
+                    test: /\.scss$/,
+                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    issuer: /\.[tj]s$/i
+                },
+                {
+                    test: /\.scss$/,
+                    use: ['css-loader', 'sass-loader'],
+                    issuer: /\.html?$/i
+                },
+                { test: /\.html$/i, loader: 'html-loader' },
+                {
+                    test: /\.js$/i, 
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel-loader'
+                },
+                // use Bluebird as the global Promise implementation:
+                { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
+                // embed small images and fonts as Data Urls and larger ones as files:
+                { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
+                { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
+                { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
+                // load these fonts normally, as files:
+                { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' }
+            ]
+        },
 
-    contentBase: path.join(__dirname,'src')
-
-  },
-
-  module: {
-
-    rules: [
-
-      {
-
-        // this is so that we can compile any React,
-
-        // ES6 and above into normal ES5 syntax
-
-        test: /\.(js|jsx)$/,
-
-        // we do not want anything from node_modules to be compiled
-
-        exclude: /node_modules/,
-
-        use: ['babel-loader']
-
-      },
-
-      {
-
-        test: /\.(css|scss)$/,
-
-        use: [
-
-          "style-loader", // creates style nodes from JS strings
-
-          "css-loader", // translates CSS into CommonJS
-
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
-
+        plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            new CleanWebpackPlugin([`${outDir}/**/*.*`], {  root: rootDir }),
+            new WatchIgnorePlugin([
+                '**/for_*/*.js',
+                '**/when_*/*.js',
+                '**/specs/*.js'
+            ]),
+            new ProvidePlugin({
+                'Promise': 'bluebird'
+            }),
+            new dotenv({
+                path: './Environments/'+argv.mode+'.env'
+            }),
+            new HtmlWebpackPlugin({
+                template: fs.existsSync('index.ejs')? 
+                    path.join('index.ejs')
+                    : path.join(featureDir, 'index.html'),
+                minify: production ? {
+                    removeComments: true,
+                    collapseWhitespace: true
+                } : undefined,
+                metadata: {
+                    // available in index.ejs //
+                    title, baseUrl
+                }
+            }),
         ]
-
-      },
-
-      {
-
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-
-        loaders: ['file-loader']
-
-      }
-
-    ]
-
-  },
-
-  plugins: [
-
-    new HtmlWebpackPlugin({
-
-      template: path.join(__dirname,'src','index.html')
-
-    })
-
-  ]
-
+    }
 };

@@ -16,6 +16,13 @@ const reducer = (state = initialState, action) => {
             return state;
         }
 
+        case 'RECEIVE_DATA_OWNER': {
+            return {
+                ...state,
+                dataowner: action.payload.dataowner,
+            };
+        }
+
         default: {
             return state;
         }
