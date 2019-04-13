@@ -1,37 +1,31 @@
-﻿
-Highcharts.chart('container', {
+﻿//url="http://5cb05d0af7850e0014629bce.mockapi.io/api/Analysis";
+//alert(ok);
+
+
+Highcharts.chart('container_byweek', {
     chart: {
       type: 'column'
     },
     title: {
-      text: 'Epicurve by day'
+      text: 'Epicurve by week'
     },
     subtitle: {
       text: 'Source: CSB'
     },
     xAxis: {
-    
       categories: [
         '01.07.2018',
-        '05.07.2018',
         '08.07.2018',
-        '10.07.2018',
         '15.07.2018',
-        '17.07.2018',
-        '18.07.2018',
         '22.07.2018',
         '29.07.2018',
-        '01.08.2018',
         '05.08.2018',
-        '12.08.2018',     
-        '14.08.2018',
+        '12.08.2018',      
         '19.08.2018',
         '26.08.2018',
         '02.09.2018',
-        '05.09.2018',
         '09.09.2018',
         '16.09.2018',
-        '19.09.2018',
         '23.09.2018'
   
   
@@ -58,20 +52,15 @@ Highcharts.chart('container', {
         borderWidth: 0
       }
     },
-    
-    options: {
-    barPercentage: 1.0,
-    categoryPercentage: 1.0
-  },
-    
     series: [{
       name: 'Number of cases in total',
       data: [
       
-      4, 31, 50, 50, 56,  69, 70,  87, 78, 90, 86, 135, 148, 99, 116, 100, 94,  85, 70, 54, 30
+      49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54
       
       ]
   
     }]
   });
-  
+ 
+        
