@@ -1,0 +1,23 @@
+[
+    {
+        "DataOwnerId": "ec28278d-9055-4751-ad26-bc9892fc84d8",
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Name": "Test name 1",
+        "DataCollectors": [ "f165a5fa-5e87-42f6-9306-56fa517797c1", "abd79095-a26f-4532-8ef8-3d14bbbe73ee" ] 
+    },
+    {
+        "DataOwnerId": "a987c35c-1c7a-4bd3-a449-a071ffeb71e7",
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Name": "Test name 2",
+        "DataCollectors": [ "dcccbcdc-03d9-4e1e-a063-33eece310548", "cab40f14-57a7-4dc7-b0f5-d0bf253ec38f", "10d6f2b0-e1a3-45e9-b71d-747113a11389" ]
+    },
+    {
+        "DataOwnerId": "a1c6e376-db94-4a17-9b7a-e89cad1fd7d9",
+        "Longitude": 1,
+        "Latitude": "1.",
+        "Name": "Test name 3",
+        "DataCollectors": [ "0a1b6194-f8b2-41b7-8120-0613f98ff679", "a391d08b-9177-4a22-a993-712fb439206d" ]
+    }
+]
