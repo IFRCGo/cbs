@@ -2,7 +2,7 @@
  *  This file is an automatically generated Query Proxy
  *  
  *--------------------------------------------------------------------------------------------*/
-import { Query } from  '@dolittle/queries/dist/commonjs';
+import { Query } from  '@dolittle/queries';
 
 export class DataCollectorById extends Query
 {

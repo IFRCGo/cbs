@@ -10,7 +10,7 @@ class AddAlertRule extends Component {
         this.state = {
             alertRuleName: "",
             healthRiskNumber: "",
-            numberOfCasesThreshold: "",
+            numberOfCasesThreshold: "", 
             thresholdTimeframeInHours: ""
         };
     }
