@@ -30,7 +30,7 @@ class NationalSocietyOverview extends Component {
 
         let oneWeekBack = new Date();
         oneWeekBack.setDate(oneWeekBack.getDate()-6);
-        this.url = `${BASE_URL}CaseReport/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
+        this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
 
         this.setState({ isLoading: true });
 

@@ -1,3 +1,4 @@
+using Read.HealthRisks;
 using Read.Models.CaseReports;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,29 @@ namespace Read.CaseReports
                 queryable.Sum(x => x.NumberOfMalesUnder5);
 
             return caseReportTotals;
+        }
+
+        public List<CaseReportTotalsPerHealthRisk> GetCaseReportTotalsPerHealthRisk(int numberOfWeeks)
+        {
+            var today = DateTimeOffset.Now;
+            var days = numberOfWeeks * 7;
+            var healthRisks = _mongoDBHandler.GetQueryable<HealthRisk>().ToList();
+            var totalsList = new List<CaseReportTotalsPerHealthRisk>();
+
+            foreach (var healthRisk in healthRisks)
+            {
+                var total = new CaseReportTotalsPerHealthRisk(healthRisk.Name);
+
+                for (int i = 0; i < numberOfWeeks; i++){
+                    var endDate = today.AddDays(i*-7);
+                    var startDate = endDate.AddDays(-6);
+                    var numberOfReportsThisWeek = healthRisk.ReportsPerDay.Where(x => x.Key >= startDate && x.Key <= endDate).Sum(x => x.Value);
+
+                    total.ReportsPerWeek.Add(new ReportsPerWeek { Week = i, NumberOfReports = numberOfReportsThisWeek });
+                }
+                totalsList.Add(total);
+            }
+            return totalsList;
         }
     }
 }
