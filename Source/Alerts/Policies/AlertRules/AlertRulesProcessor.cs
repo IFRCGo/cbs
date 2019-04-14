@@ -40,7 +40,7 @@ namespace Policies.AlertRules
             _alertRuleRepository = alertRuleRepository;
         }
 
-        [EventProcessor("780c53e3-6989-4f47-a523-b55eb31957cd")]
+        [EventProcessor("1df8a07e-74b9-43fd-aa01-68ec4ae7130d")]
         public void Process(ReportRegistered @event)
         {
             var transaction = _commandContextManager.EstablishForCommand(
