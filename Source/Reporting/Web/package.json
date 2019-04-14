@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --base-href=/reporting/ --deploy-url=/reporting/ --public-host=localhost:4202",
-    "build-test": "ng build --base-href=/reporting/ --deploy-url=/reporting/ --prod --env=test",
+    "start": "ng serve --env=local-api --base-href=/reporting/ --deploy-url=/reporting/ --public-host=localhost:4202",
+    "start-mock-api": "ng serve --env=mock-api --base-href=/reporting/ --deploy-url=/reporting/ --public-host=localhost:4202",
+    "start-demo-api": "ng serve --env=demo-api --base-href=/reporting/ --deploy-url=/reporting/ --public-host=localhost:4202",
     "build": "ng build --base-href=/reporting/ --deploy-url=/reporting/ --prod",
     "test": "ng test",
     "lint": "ng lint",
