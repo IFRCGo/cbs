@@ -28,11 +28,16 @@ namespace Policies.AlertRules
         public AlertRulesProcessor(
 
             ICommandContextManager commandContextManager,
-            IAggregateRootRepositoryFor<Domain.Alerts.Alerts> caseReportAggregateRootRepository
+            IAggregateRootRepositoryFor<Domain.Alerts.Alerts> alertsAggregateRootRepository,
+            IReadModelRepositoryFor<Read.Reports.Report> reportRepository,
+            IReadModelRepositoryFor<Read.AlertRules.AlertRule> alertRuleRepository
+            
             )
         {
             _commandContextManager = commandContextManager;
-            _alertsAggregateRootRepository = caseReportAggregateRootRepository;
+            _alertsAggregateRootRepository = alertsAggregateRootRepository;
+            _reportRepository = reportRepository;
+            _alertRuleRepository = alertRuleRepository;
         }
 
         [EventProcessor("780c53e3-6989-4f47-a523-b55eb31957cd")]
