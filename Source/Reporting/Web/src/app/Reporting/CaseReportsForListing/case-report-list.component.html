@@ -17,7 +17,7 @@
                 class="small {{ filter.cssClass }}"
                 [ngClass]="{'current': this.currentFilter === filter}"
                 (click)="clickFilter(filter)">
-                {{filter.description}}
+                {{filter.description}} <!-- Translate-->
             </button>
         </span>
     </div>
@@ -41,7 +41,7 @@
             class="small"
             (click)="showPrevPage()"
             [disabled]="!page.number">
-            < {{ 'REGISTER.REPORT.page_prev' | translate }}
+            {{ 'REGISTER.REPORT.page_prev' | translate }}
         </button>
         <span class="paging-pages-number">
             {{ 'REGISTER.REPORT.page' | translate }}: <strong>{{ page.number + 1 }}</strong>
@@ -59,7 +59,7 @@
 <div class="row">
     <div class="col-md-8 paging-date">
         <form>
-            {{ 'REGISTER.REPORT.date_range' | translate }} :
+            {{ 'REGISTER.related.date_range' | translate }} :
             <input type="date" required name="dateFrom" id="dateFrom" [(ngModel)] ="dateFrom"><i class="fa fa-calendar"></i>
             <input type="date" required name="dateTo" id="dateTo"  [(ngModel)] ="dateTo"><i class="fa fa-calendar"></i>
             <input type="submit" value="search" (click)="sortDate(this.dateFrom,this.dateTo)">
@@ -69,7 +69,7 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
+        <tr><!-- Translate these columns as well-->
             <th *ngFor="let column of allColumns"
                   [column]="column"
                   [current-sorted]="currentSortColumn"

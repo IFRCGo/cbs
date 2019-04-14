@@ -38,6 +38,7 @@
         "village_error": "Le village est requis.",
 
         "phone_number": "Numéro de téléphone (séparé par des virgules)",
+        "phone_number_list": "Numéro de téléphone",
         "phone_number_error": "Le numéro de téléphone est requis.",
 
         "submit_name": "Envoyer",
@@ -45,6 +46,7 @@
         "related": {
             "date_register": "Date d'enregistrement",
             "last_report": "Dernier rapport reçu à",
+            "last_report_name": "Dernier actif",
             "date_range": "Intervalle de date",
 
             "collector": "Collecteur de données",
