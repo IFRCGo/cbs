@@ -18,9 +18,9 @@ namespace Read.Test
 
             someGenericClass.Id = ObjectId.Parse("5c9a0d8afe28b239e7da280d");
 
-            MongoDbHandler.InsertRecordToDb(someGenericClass);
+            MongoDbHandler.Insert(someGenericClass);
 
-            var queryable = MongoDbHandler.GetQueryable<CaseReport>().Where(x => x.Id == ObjectId.Parse("5c9a0d8afe28b239e7da280d")).ToList(); ;
+            var queryable = MongoDbHandler.GetQueryable<SomeGenericClass>().Where(x => x.Id == ObjectId.Parse("5c9a0d8afe28b239e7da280d")).ToList(); ;
 
             Assert.AreEqual(queryable.Count, 1);
         }
@@ -31,7 +31,7 @@ namespace Read.Test
             var key = "war";
             SomeGenericClass y = new SomeGenericClass(key, "huh");
 
-            MongoDbHandler.InsertRecordToDb(y);
+            MongoDbHandler.Insert(y);
 
             var queryable = MongoDbHandler.GetQueryable<SomeGenericClass>().Where(x => x.key == "war").ToList(); ;
 
@@ -53,7 +53,7 @@ namespace Read.Test
         {
             SomeGenericClass genericClass = new SomeGenericClass("war", "huh");
 
-            MongoDbHandler.InsertRecordToDb(genericClass);
+            MongoDbHandler.Insert(genericClass);
 
             var queryable = MongoDbHandler.GetQueryable<SomeGenericClass>().Where(x => x.key == "war").ToList();
 
@@ -62,7 +62,7 @@ namespace Read.Test
             element.key = "newKey";
             element.value = "newValue";
 
-            MongoDbHandler.UpdateRecordInDb(element, element.Id);
+            MongoDbHandler.Update(element);
 
             queryable = MongoDbHandler.GetQueryable<SomeGenericClass>().Where(x => x.key == "newKey").ToList();
 
@@ -79,16 +79,13 @@ namespace Read.Test
         }
     }
 
-    public class SomeGenericClass
+    public class SomeGenericClass : BaseReadModel
     {
         public SomeGenericClass(string key, string value)
         {
             this.key = key;
             this.value = value;
         }
-
-        [BsonElement("_id")]
-        public ObjectId Id { get; set; }
 
         public string key { get; set; }
 
