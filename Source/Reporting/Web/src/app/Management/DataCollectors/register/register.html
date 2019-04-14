@@ -1,11 +1,11 @@
 <form #form="ngForm" ngNativeValidate>
-  <a [routerLink]="['/datacollectors']" class="back-button">
-      <button class="btn btn-primary">Back</button>
+  <a [routerLink]="['/']" class="back-button">
+      <button class="btn btn-primary">{{ 'REGISTER.button' | translate }}</button>
   </a>
 
-  <h1>Add Data Collector</h1>
+  <h1>{{ 'REGISTER.form_name' | translate }}</h1>
   <div class="form-group">
-      <label for="full_name">Full Name</label>
+      <label for="full_name">{{ 'REGISTER.full_name' | translate }}</label>
       <input type="text" class="form-control" id="full_name"
              required minlength="4"
              [(ngModel)]="command.fullName" name="full_name"
@@ -15,16 +15,16 @@
       class="alert alert-warning">
 
       <div *ngIf="full_name.errors?.required">
-        Full Name is required.
+        {{ 'REGISTER.full_name_error' | translate }}
       </div>
       <div *ngIf="full_name.errors?.minlength">
-        Full Name must be at least 4 characters long.
+        {{ 'REGISTER.full_name_error_1' | translate }}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-      <label for="display_name">Display Name</label>
+      <label for="display_name">{{ 'REGISTER.display_name' | translate }}</label>
       <input type="text" class="form-control" id="display_name"
               required minlength="4"
               [(ngModel)]="command.displayName" name="display_name"
@@ -33,10 +33,10 @@
       class="alert alert-warning">
 
       <div *ngIf="display_name.errors?.required">
-        Display Name is required.
+        {{ 'REGISTER.display_name_error' | translate }}
       </div>
       <div *ngIf="display_name.errors?.minlength">
-        Display Name must be at least 4 characters long.
+        {{ 'REGISTER.display_name_error_1' | translate }}
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
   </div>
   -->
   <div class="form-group">
-    <label for="yearOfBirth">Year of Birth</label>
+    <label for="yearOfBirth">{{ 'REGISTER.year_of_birth' | translate }}</label>
     <input type="number" class="form-control" id="yearOfBirth"
           ng-valid ng-valid-number ng-valid-max ng-valid-min
            required
@@ -60,13 +60,13 @@
     <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)"
       class="alert alert-warning">
       <div *ngIf="yearOfBirth.errors?.required">
-        Year Of Birth is required.
+        {{ 'REGISTER.year_of_birth_error' | translate }}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="sex">Sex</label>
+    <label for="sex">{{ 'REGISTER.sex' | translate }}</label>
     <select class="form-control" id="sex"
             required
             [(ngModel)]="command.sex" name="sex"
@@ -75,13 +75,13 @@
     </select>
     <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
         <div *ngIf="sex.errors?.required">
-          Sex is required.
+          {{ 'REGISTER.sex_error' | translate }}
         </div>
       </div>
   </div>
 
 <div class="form-group">
-    <label for="preferredLanguage">Preferred Language</label>
+    <label for="preferredLanguage">{{ 'REGISTER.preferred_lang' | translate }}</label>
     <select class="form-control" id="preferredLanguage"
             required
             [(ngModel)]="command.preferredLanguage"
@@ -92,20 +92,20 @@
 
     <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
         <div *ngIf="preferredLanguage.errors?.required">
-          Preferred Language is required.
+          {{ 'REGISTER.preferred_lang_error' | translate }}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label>Location</label>
+    <label>{{ 'REGISTER.location' | translate }}</label>
     <div>
     <agm-map [latitude]="defaultLat" [longitude]="defaultLng" (mapClick)="onLocationSelected($event)">
         <agm-marker [latitude]="selectedLat" [longitude]="selectedLng" *ngIf="locationSelected"></agm-marker>
       </agm-map>
     </div>
     <fieldset class="form-inline">
-      <label for="latitude">Latitude</label>
+      <label for="latitude">{{ 'REGISTER.latitude' | translate }}</label>
       <input
         type="number"
         class="input-mini form-control"
@@ -116,7 +116,7 @@
         #latitude="ngModel"
 
       />
-      <label for="longitude">Longitude</label>
+      <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
      <input
         type="number"
         class="input-mini form-control"
@@ -131,10 +131,10 @@
         || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
 
       <div *ngIf="latitude.errors?.required">
-          Location Latitude is required
+        {{ 'REGISTER.latitude_error' | translate }}
       </div>
       <div *ngIf="longitude.errors?.required">
-          Location Longitude is required
+        {{ 'REGISTER.longitude_error' | translate }}
       </div>
     </div>
     </fieldset>
@@ -142,7 +142,7 @@
 
 
   <div class="form-group">
-    <label for="region">Region</label>
+    <label for="region">{{ 'REGISTER.region' | translate }}</label>
     <input type="text" class="form-control" id="region"
             required
             [(ngModel)]="command.region" name="region"
@@ -151,13 +151,13 @@
     class="alert alert-warning">
 
     <div *ngIf="region.errors?.required">
-      Region is required.
+      {{ 'REGISTER.region_error' | translate }}
     </div>
   </div>
 </div>
 
 <div class="form-group">
-  <label for="district">District</label>
+  <label for="district">{{ 'REGISTER.district' | translate }}</label>
   <input type="text" class="form-control" id="district"
           required
           [(ngModel)]="command.district" name="district"
@@ -166,13 +166,13 @@
     class="alert alert-warning">
 
     <div *ngIf="district.errors?.required">
-      District is required.
+      {{ 'REGISTER.district_error' | translate }}
     </div>
   </div>
 </div>
 
 <div class="form-group">
-  <label for="village">Village</label>
+  <label for="village">{{ 'REGISTER.village' | translate }}</label>
   <input type="text" class="form-control" id="village"
           [(ngModel)]="changeVillageCommand.village" name="village"
           #village="ngModel">
@@ -180,13 +180,13 @@
     class="alert alert-warning">
 
     <div *ngIf="village.errors?.required">
-      Village is required.
+      {{ 'REGISTER.village_error' | translate }}
     </div>
   </div>
 </div>
 
   <div class="form-group">
-    <label>Phone numbers (comma seperated)</label>
+    <label>{{ 'REGISTER.phone_number' | translate }}</label>
     <input type="text"
       class="input-mini form-control"
       id="phoneNumber"
@@ -197,9 +197,9 @@
         >
     <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
         <div *ngIf="phoneNumbers.errors?.required">
-          Phonenumber is required.
+          {{ 'REGISTER.phone_number_error' | translate }}
       </div>
     </div>
   </div>
-     <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" (click)="submit()">Submit</button>
+     <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
 </form>
