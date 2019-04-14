@@ -5,8 +5,9 @@ import { getJson } from "../../utils/request";
 import GridListTile from '@material-ui/core/GridListTile';
 import GridList from '@material-ui/core/GridList';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import { formatDate } from "../../utils/dateUtils";
 
-import { BASE_URL } from "../Analytics";
+import { BASE_URL } from "../NationalSocietyOverview";
 
 const defaultOptions = {
     chart: {
@@ -55,29 +56,29 @@ class HealthRiskPerDistrictBarCharts extends Component {
     }
 
     fetchData() {
-        this.url = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/CaseReportByDistrict';
-        // this.url = `${BASE_URL}Epicurve/${formatDate(from)}/${formatDate(to)}/${
-        //     this.state.value
-        // }?${series}`;
+        //this.url = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/CaseReportByDistrict';
+        let oneWeekBack = new Date();
+        oneWeekBack.setDate(oneWeekBack.getDate()-6);
+        this.url = `${BASE_URL}CaseReport/TotalsPerRegion/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
 
         getJson(this.url)
             .then(json =>
 {
                 let healthRisks = [];
-                let healthRiskPerDistrict = json.healthRisksPerDistrict;
+                let healthRiskPerRegion = json.healthRisks;
 
-                for (let i = 0; i < healthRiskPerDistrict.length; i++) {
-                    let healthRisk = { name:healthRiskPerDistrict[i].name, options:{}};
-                    let districts_names = [], district_cases = [];
-                    for (let district of healthRiskPerDistrict[i].districts) {
-                        districts_names.push(district.name);
-                        district_cases.push(district.numberOfCaseReports);
+                for (let i = 0; i < healthRiskPerRegion.length; i++) {
+                    let healthRisk = { name:healthRiskPerRegion[i].name, options:{}};
+                    let regions_names = [], regions_cases = [];
+                    for (let region of healthRiskPerRegion[i].regions) {
+                        regions_names.push(region.name);
+                        regions_cases.push(region.numberOfCaseReports);
                      }
 
                     healthRisk.options = JSON.parse(JSON.stringify(defaultOptions));
                     healthRisk.options.title.text = healthRisk.name; 
-                    healthRisk.options.xAxis.categories = districts_names;
-                    healthRisk.options.series[0].data = district_cases;
+                    healthRisk.options.xAxis.categories = regions_names;
+                    healthRisk.options.series[0].data = regions_cases;
 
                     healthRisks.push(healthRisk);
                 }
@@ -100,7 +101,7 @@ class HealthRiskPerDistrictBarCharts extends Component {
         return (
             <GridList cols={4}>
                <GridListTile key="CaseReportBarCharts" cols={4} style={{ height: 'auto' }}>
-        <ListSubheader component="div">No. of case reports per health risk per district in the last 7 days</ListSubheader>
+        <ListSubheader component="div">No. of case reports per health risk per region in the last 7 days</ListSubheader>
         </GridListTile>
             {this.state.healthRisks.map((healthRisk) => (
                <GridListTile key={'Grid'+healthRisk.name} cols={2} style={{ height: 'auto' }}>

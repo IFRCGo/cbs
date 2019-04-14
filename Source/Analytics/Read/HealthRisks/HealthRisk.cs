@@ -27,7 +27,7 @@ namespace Read.HealthRisks
             var totalReportedCases = caseReport.NumberOfFemalesAged5AndOlder + caseReport.NumberOfFemalesUnder5 + 
                 caseReport.NumberOfMalesAged5AndOlder + caseReport.NumberOfMalesUnder5;
             if (ReportsPerDay.Keys.Contains(caseReport.Timestamp))
-                ReportsPerDay[caseReport.Timestamp] = ReportsPerDay[caseReport.Timestamp] + totalReportedCases;
+                ReportsPerDay[caseReport.Timestamp] += totalReportedCases;
             else
                 ReportsPerDay[caseReport.Timestamp] = totalReportedCases;
         }

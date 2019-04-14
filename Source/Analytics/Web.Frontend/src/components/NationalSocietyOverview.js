@@ -6,8 +6,11 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
+import { formatDate } from "../utils/dateUtils";
 import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
+
+export const BASE_URL = process.env.API_BASE_URL;
 
 class NationalSocietyOverview extends Component {
     constructor(props) {
@@ -24,8 +27,10 @@ class NationalSocietyOverview extends Component {
     }
     
     fetchData() {
-        this.url = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/HealthRiskPerGender';
-        //this.url = `${BASE_URL}KPI/${formatDate(from)}/${formatDate(to)}/`;
+
+        let oneWeekBack = new Date();
+        oneWeekBack.setDate(oneWeekBack.getDate()-6);
+        this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
 
         this.setState({ isLoading: true });
 
