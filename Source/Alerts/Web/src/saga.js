@@ -1,12 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { CommandCoordinator } from '@dolittle/commands/dist/commonjs';
-import { QueryCoordinator } from '@dolittle/queries/dist/commonjs';
+import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
-
-CommandCoordinator.apiBaseUrl = 'http://localhost:5000';
-QueryCoordinator.apiBaseUrl = 'http://localhost:5000';
-const commandCoordinator = new CommandCoordinator();
-const queryCoordinator = new QueryCoordinator();
+import { GetDataOwner } from '../Features/DataOwners/GetDataOwner';
 
 const mockRules = [
     {
@@ -28,12 +23,26 @@ const mockRules = [
 ];
 
 function* requestRules() {
+    console.log("DAKAR");
     try {
         const query = new AllAlertRules();
         const result = yield queryCoordinator.execute(query);
         yield put({ type: 'RECEIVE_RULES', payload: { rules: result.items } });
     } catch (error) {
         yield put({ type: 'REJECT_RULES', payload: { error: error.message } });
+    }
+}
+
+//get data owner
+function* requestGetDataOwner() {
+    console.log("DAKAR");
+    try {
+        const query = new GetDataOwner();
+        const result = yield queryCoordinator.execute(query);
+        console.log(result);
+        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowner: result.items } });
+    } catch (error) {
+        yield put({ type: 'REJECT_DATAOWNER', payload: { error: error.message } });
     }
 }
 
@@ -50,6 +59,7 @@ function* requestCreateRule(rule) {
 function* saga() {
     yield takeEvery('REQUEST_RULES', requestRules);
     yield takeEvery('REQUEST_CREATE_RULE', requestCreateRule);
+    yield takeEvery('RECEIVE_DATAOWNER', requestGetDataOwner);
 }
 
 export default saga;
