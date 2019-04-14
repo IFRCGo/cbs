@@ -3,7 +3,7 @@ import {QueryCoordinator} from '@dolittle/queries';
 
 export const environment = {
   production: false,
-  api: '/reporting',
+  api: 'http://demo.cbsrc.org',
   commandCoordinatorType: CommandCoordinator,
   queryCoordinatorType: QueryCoordinator
 };
