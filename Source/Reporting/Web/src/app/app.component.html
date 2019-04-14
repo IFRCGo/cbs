@@ -1,14 +1,7 @@
 <cbs-nav-top-bar></cbs-nav-top-bar>
-<select (click)="changeLang($event)">
-        <option value="">Language</option>
-        <option value="en">English</option>
-        <option value="fr">French</option>
+<select id="selectLanguage" (change)="changeLang($event)">
+    <option *ngFor="let lang of language" [selected]="lang.selected == true" [value]="lang.value">{{lang.value}}</option>
 </select>
-<!-- <select>
-    <span  *ngFor="let item of language" (click)="changeLang(item.value)">
-        <option value="{{item.value}}">{{item.text}} {{item.value}}</option>
-    </span>
-</select> -->
 <div class="container">
     <router-outlet></router-outlet>
 </div>
