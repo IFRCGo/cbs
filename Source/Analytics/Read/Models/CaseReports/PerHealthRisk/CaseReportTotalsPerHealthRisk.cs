@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Read.Models.CaseReports
+namespace Read.Models.CaseReports.PerHealthRisk
 {
     public class CaseReportTotalsPerHealthRisk
     {

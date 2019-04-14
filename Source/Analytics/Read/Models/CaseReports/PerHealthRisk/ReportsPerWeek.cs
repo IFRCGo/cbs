@@ -1,4 +1,4 @@
-namespace Read.Models.CaseReports
+namespace Read.Models.CaseReports.PerHealthRisk
 {
     public class ReportsPerWeek
     {
