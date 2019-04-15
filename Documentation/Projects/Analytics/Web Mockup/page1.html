@@ -1,0 +1,221 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title Page-->
+  <title>Home</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Fontfaces CSS-->
+  <link href="css/font-face.css" rel="stylesheet" media="all">
+  <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+  <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+  <!-- Vendor CSS-->
+  <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+  <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+  <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+  <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+  <!-- Main CSS-->
+  <link href="css/theme.css" rel="stylesheet" media="all">
+  <link href="css/Epicurvebyweek.css" rel="stylesheet" media="all">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/maps/highmaps.js"></script>
+
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+</head>
+
+<!-- animsition -->
+
+<body class="">
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <div class="page-wrapper">
+    <!-- PUT YOUR CHART INSIDE HERE! -->
+    <!-- PAGE CONTAINER-->
+    <div>
+      <!-- HEADER DESKTOP-->
+      <header class="header-desktop" style="background: #fff; left: 0px;">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <div class="header-wrap">
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- HEADER DESKTOP-->
+      <!-- MAIN CONTENT-->
+      <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <h2>Senegal Overview</h2> <br>
+            <div class="row">
+              <div class="col-md-6">
+                <br>
+                <p>No. of cas reports per health per time period</p>
+                <br>
+                <table class="table" id="tablePeriod">
+                  <thead class="thead-light">
+                    <tr id="header-period">
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <span>Map</span>
+                <div id="map" style="max-width: 1000px"></div>
+              </div>
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="au-card recent-report">
+                  <div class="au-card-inner">
+                    <div class="row">
+                      <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto" class="col-md-6">
+                      </div>
+                      <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto" class="col-md-6">
+                      </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                      <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto" class="col-md-6">
+                      </div>
+                      <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto" class="col-md-6">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="au-card recent-report">
+                  <div class="au-card-inner">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <p>No. Of CaseReports per Gender</p>
+                        <br>
+                        <table style="width:100%" class="table table-bordered" id="tableGender">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Gender</th>
+                              <th>No. cases reports</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Female</td>
+                              <td><span id="femaleNo"></span></td>
+                            </tr>
+                            <tr>
+                              <td>Male</td>
+                              <td><span id="maleNo"></span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-md-4">
+                        <p>No. Of CaseReports per Age</p>
+                        <br>
+                        <table style="width:100%" class="table table-bordered">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Age</th>
+                              <th>No. cases reports</th>
+                            </tr>
+                          </thead>
+                          <tr>
+                            <td> < 5 </td> 
+                            <td><span id="under5"></span></td>
+                          </tr>
+                          <tr>
+                            <td> > 5</td>
+                            <td><span id="over5"></span></td>
+
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div id="gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                      </div>
+                      <div class="col-md-4">
+                          <div id="age" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="copyright">
+                  <p>Copyright © 2019 Røde Kors</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END MAIN CONTENT-->
+      <!-- END PAGE CONTAINER-->
+    </div>
+
+
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="page1/reports.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>

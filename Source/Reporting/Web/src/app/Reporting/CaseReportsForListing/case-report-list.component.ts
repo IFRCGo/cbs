@@ -43,10 +43,14 @@ export class CaseReportListComponent implements OnInit {
 
 
     listedReports: Array<CaseReportForListing> = [];
+
     location = [] ; 
     locationlist = [] ; 
     QuickfilterList = [] ; 
     multiSelectRegion = [] ; 
+
+    allReports: Array<CaseReportForListing> = [];
+
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -55,6 +59,8 @@ export class CaseReportListComponent implements OnInit {
     sortDescending: boolean = true;
     sortField: string;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
+    dateDebut : any ;
+    dateFin : any;
 
     page = {
         isLoading: false,
@@ -101,6 +107,7 @@ export class CaseReportListComponent implements OnInit {
         
         this.updateNavigation(filter, this.currentSortColumn, this.sortDescending);
     }
+
 
     changeFilter(event) {
        
@@ -162,6 +169,21 @@ export class CaseReportListComponent implements OnInit {
       }
      
 
+    sortDate( datefrom : Date , dateto : Date )
+    {
+        let dateFrom = new Date(datefrom) ;
+        let dateTo = new Date(dateto) ;
+        this.listedReports = this.allReports;
+        let newReports = [] ;
+        
+        this.listedReports.forEach( listedReport => {
+            let date = listedReport.timestamp;
+            if (date.getTime() >= dateFrom.getTime() && date.getTime() <= dateTo.getTime()) newReports.push(listedReport);
+        });
+
+        this.listedReports = newReports;
+    }
+
     toggleSortColum(column: Column) {
         if (column instanceof SortableColumn) {
             if (column !== this.currentSortColumn) {
@@ -186,12 +208,13 @@ export class CaseReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
+
                     this.QuickfilterList = this.listedReports ; 
                     this.locationlist = this.listedReports ; 
                     this.location = [] ; 
                         this.location.push(this.listedReports[0].dataCollectorRegion) ;
                         for (let i = 0; i < this.listedReports.length; i++) {
-                           if (! this.location.includes(this.listedReports[i].dataCollectorRegion)){
+                           if ((! this.location.includes(this.listedReports[i].dataCollectorRegion) ) && ( this.listedReports[i].dataCollectorRegion != '') ) {
                                this.location.push((this.listedReports[i].dataCollectorRegion)) ; 
                            } 
                             
@@ -215,6 +238,9 @@ export class CaseReportListComponent implements OnInit {
                         
 
 
+
+                    this.allReports = this.listedReports;
+ 
                 } else {
                     console.error(response);
                 }

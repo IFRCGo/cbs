@@ -7,8 +7,10 @@ import {CaseReportRouting} from './reporting-routing.module';
 import {CaseReportListComponent} from './CaseReportsForListing/case-report-list.component';
 import {CaseReportExportComponent} from './CaseReportsForListing/export/case-report-export.component';
 import {SortableColumnComponent} from './CaseReportsForListing/sort/sortable-column.component';
-import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
+import {Filter} from './CaseReportsForListing/filtering/filter.pipe'
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-case-reports/training-case-reports.component';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   ],
   declarations: [
     CaseReportListComponent,
+    TrainingCaseReportsComponent,
     CaseReportExportComponent,
     SortableColumnComponent,
     Filter

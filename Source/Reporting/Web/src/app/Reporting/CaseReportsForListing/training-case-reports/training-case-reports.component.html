@@ -1,0 +1,115 @@
+<h3>
+    {{ 'REGISTER.REPORT.report_title' | translate }}
+</h3>
+
+<cbs-case-report-export #exporter></cbs-case-report-export>
+
+<div class="actions">
+    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
+</div>
+<div>
+        <a routerLink="../../list/all" > {{ 'REGISTER.REPORT.report_name' | translate }}</a>
+    </div>
+
+<div class="paging row">
+    <div class="col-md-7 paging-filters">
+        {{ 'REGISTER.REPORT.filter' | translate }}:
+        <span *ngFor="let filter of allFilters">
+            <button
+                class="small {{ filter.cssClass }}"
+                [ngClass]="{'current': this.currentFilter === filter}"
+                (click)="clickFilter(filter)">
+                {{filter.description}}
+            </button>
+        </span>
+    </div>
+    <div class="col-md-2 paging-size">
+        {{ 'REGISTER.REPORT.page_size' | translate }}:
+        &nbsp;
+        <select
+            [(ngModel)]="page.size"
+            (change)="resetPage()">
+            <option
+                *ngFor="let size of page.sizes"
+                [ngValue]="size">
+                {{ size }}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-4 paging-pages">
+        <button
+            class="small"
+            (click)="showPrevPage()"
+            [disabled]="!page.number">
+            < {{ 'REGISTER.REPORT.page_prev' | translate }}
+        </button>
+        <span class="paging-pages-number">
+            {{ 'REGISTER.REPORT.page' | translate }}: <strong>{{ page.number + 1 }}</strong>
+        </span>
+        <button
+            class="small"
+            (click)="showNextPage()"
+            [disabled]="page.isLoading || isLastPage()">
+            {{ 'REGISTER.REPORT.page_next' | translate }} >
+        </button>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let column of allColumns"
+                  [column]="column"
+                  [current-sorted]="currentSortColumn"
+                  [sort-descending]="sortDescending"
+                  (click)="toggleSortColum(column)"
+                  [ngClass]="{'sortable': column.isSortable}"
+            ></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="!page.isLoading">
+        <tr *ngFor="let caseReport of listedReports | filter:currentFilter">
+            <td>{{caseReport.timestamp | date: 'dd.MM.yyyy'}}</td>
+            <td>{{caseReport.timestamp | date:'shortTime'}}</td>
+            <td>
+                <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
+                    {{ 'REGISTER.REPORT.case_success' | translate }}
+                </span>
+                <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
+                    {{ 'REGISTER.REPORT.case_error' | translate }}
+                </span>
+                <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
+                    {{ 'REGISTER.REPORT.case_uknown' | translate }}
+                </span>
+            </td>
+
+            <ng-container *ngIf="isSuccess(caseReport.status) || isError(caseReport.status)">
+                <td>{{caseReport.dataCollectorDisplayName || "Unknown"}}</td>
+                <td>{{caseReport.origin || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorRegion || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorDistrict || "Unknown"}}</td>
+                <td>{{caseReport.dataCollectorVillage || "Unknown"}}</td>
+            </ng-container>
+
+            <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
+                <td colspan="5">{{ 'REGISTER.REPORT.case_origin' | translate }}: {{caseReport.origin || "Unknown"}}</td>
+            </ng-container>
+
+            <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
+                <td>{{caseReport.healthRisk}}</td>
+                <td>{{caseReport.numberOfMalesUnder5}}</td>
+                <td>{{caseReport.numberOfMalesAged5AndOlder}}</td>
+                <td>{{caseReport.numberOfFemalesUnder5}}</td>
+                <td>{{caseReport.numberOfFemalesAged5AndOlder}}</td>
+            </ng-container>
+
+            <ng-container *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)">
+                <td colspan="5">
+                    {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="page.isLoading">
+    <p class="text-center">{{ 'REGISTER.REPORT.loader' | translate }}</p>
+</div>

@@ -1,11 +1,11 @@
 <ngx-smart-modal #modalExportCaseReports identifier="modalExportCaseReports" [backdrop]="false">
-    <h2>Export case reports</h2>
+    <h2>{{ 'REGISTER.related.export_case_title' | translate }}</h2>
     <form ngNoForm *ngIf="modalExportCaseReports.hasData()" [action]="exportBackendUrl" method="get">
-        <h3>Format:</h3>
+        <h3>{{ 'REGISTER.related.export_format' | translate }}:</h3>
         <div class="format-options">
             <label for="formatExcel">
                 <input type="radio" id="formatExcel" name="format" value="excel" checked>
-                Excel
+                {{ 'REGISTER.related.export_type_0' | translate }}
             </label>
             <!--
             <label for="formatPDF">
@@ -15,12 +15,12 @@
             -->
             <label for="formatCSV">
                 <input type="radio" id="formatCSV" name="format" value="csv">
-                CSV
+                {{ 'REGISTER.related.export_type_1' | translate }}
             </label>
         </div>
         <div class="actions">
-            <button (click)="modalExportCaseReports.close()">Cancel</button>
-            <button type="submit">Export</button>
+            <button (click)="modalExportCaseReports.close()">{{ 'REGISTER.related.export_button_1' | translate }}</button>
+            <button type="submit">{{ 'REGISTER.related.export_button_0' | translate }}</button>
         </div>
     </form>
 </ngx-smart-modal>
