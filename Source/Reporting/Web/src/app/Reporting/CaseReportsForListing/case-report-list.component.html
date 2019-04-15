@@ -1,56 +1,88 @@
 <h3>
-    {{ 'REGISTER.REPORT.report_name' | translate }}
+    Case Reports
 </h3>
 
 <cbs-case-report-export #exporter></cbs-case-report-export>
 
 <div class="actions">
-    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">{{ 'REGISTER.related.export_button_0' | translate }}</button>
+    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
 </div>
-<div>
-    <a routerLink="../../training/all" >{{ 'REGISTER.REPORT.report_title' | translate }}</a>
-</div>
-<div class="row">
-    <div class="col-md-4 paging-filters">
-        <span *ngFor="let filter of allFilters">
-            <button
-                class="small {{ filter.cssClass }}"
-                [ngClass]="{'current': this.currentFilter === filter}"
-                (click)="clickFilter(filter)">
-                {{filter.description}} <!-- Translate-->
-            </button>
-        </span>
-    </div>
-</div>
-<div class="paging row">
-    <div class="col-md-9 paging-size">
-        {{ 'REGISTER.REPORT.page_size' | translate }}:
-        &nbsp;
-        <select
-            [(ngModel)]="page.size"
-            (change)="resetPage()">
-            <option
-                *ngFor="let size of page.sizes"
-                [ngValue]="size">
-                {{ size }}
+
+
+
+    <!-- <div class="col-md-7 paging-filters">
+        Quick Filters:
+        <select (change)="changeFilter($event)" >
+            
+            <option *ngFor="let filter of allFilters" [value]="filter.name" class="small {{filter.cssClass}}">
+                {{filter.description}} 
             </option>
         </select>
-    </div>
-    <div class="col-md-4 paging-pages">
+    </div> -->
+
+
+
+        
+   
+
+    <!-- <div class="col-md-2 paging-size"> -->
+
+<div>
+    <a routerLink="../../training/all" > Training Case Reports</a>
+</div>
+<div class="row">
+
+
+
+
+
+</div>
+<div class="paging row">
+        
+    
+        <div class="col-md-7 paging-filters">
+                Quick Filters:
+                
+                <span *ngFor="let filter of allFilters">
+                     <button
+                        class="small {{ filter.cssClass }}"
+                        [ngClass]="{'current': this.currentFilter === filter}"
+                        (click)="clickFilter(filter)">
+                        {{filter.description}}
+                    </button>
+                </span>
+            </div>
+
+            <div class="col-md-7 paging-location">
+                    <ng-multiselect-dropdown
+                    [placeholder]="'Select Region'"
+                    [data]="dropdownList"
+                    [(ngModel)]="selectedItems"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                    (onDeSelect)="onItemDeselect($event)" 
+                    (onSelectAll)="onSelectAll($event)"></ng-multiselect-dropdown>
+                </div>
+
+  
+
+ 
+
+    <div class="col-md-7 paging-pages">
         <button
             class="small"
             (click)="showPrevPage()"
             [disabled]="!page.number">
-            {{ 'REGISTER.REPORT.page_prev' | translate }}
+            < previous
         </button>
         <span class="paging-pages-number">
-            {{ 'REGISTER.REPORT.page' | translate }}: <strong>{{ page.number + 1 }}</strong>
+            Page: <strong>{{ page.number + 1 }}</strong>
         </span>
         <button
             class="small"
             (click)="showNextPage()"
             [disabled]="page.isLoading || isLastPage()">
-            {{ 'REGISTER.REPORT.page_next' | translate }} >
+            next >
         </button>
     </div>
     
@@ -59,17 +91,32 @@
 <div class="row">
     <div class="col-md-8 paging-date">
         <form>
-            {{ 'REGISTER.related.date_range' | translate }} :
+            Date Range :
             <input type="date" required name="dateFrom" id="dateFrom" [(ngModel)] ="dateFrom"><i class="fa fa-calendar"></i>
             <input type="date" required name="dateTo" id="dateTo"  [(ngModel)] ="dateTo"><i class="fa fa-calendar"></i>
             <input type="submit" value="search" (click)="sortDate(this.dateFrom,this.dateTo)">
         </form>
     </div>
+
+    <div class="col-md-4 paging-size">
+            Page size:
+            &nbsp;
+            <select
+                [(ngModel)]="page.size"
+                (change)="resetPage()">
+                <option
+                    *ngFor="let size of page.sizes"
+                    [ngValue]="size">
+                    {{ size }}
+                </option>
+            </select>
+        </div>
 </div>
+<br>
 
 <table class="table table-bordered table-striped">
     <thead>
-        <tr><!-- Translate these columns as well-->
+        <tr>
             <th *ngFor="let column of allColumns"
                   [column]="column"
                   [current-sorted]="currentSortColumn"
@@ -85,13 +132,13 @@
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
                 <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
-                    {{ 'REGISTER.REPORT.case_success' | translate }}
+                    Success
                 </span>
                 <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
-                    {{ 'REGISTER.REPORT.case_error' | translate }}
+                    Error
                 </span>
                 <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
-                    {{ 'REGISTER.REPORT.case_uknown' | translate }}
+                    Unknown sender
                 </span>
             </td>
 
@@ -104,7 +151,7 @@
             </ng-container>
 
             <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
-                <td colspan="5">{{ 'REGISTER.REPORT.case_origin' | translate }}: {{caseReport.origin || "Unknown"}}</td>
+                <td colspan="5">Origin: {{caseReport.origin || "Unknown"}}</td>
             </ng-container>
 
             <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
@@ -117,12 +164,12 @@
 
             <ng-container *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)">
                 <td colspan="5">
-                    {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
+                    {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
         </tr>
     </tbody>
 </table>
 <div *ngIf="page.isLoading">
-    <p class="text-center">{{ 'REGISTER.REPORT.loader' | translate }}</p>
+    <p class="text-center">Loading data...</p>
 </div>
