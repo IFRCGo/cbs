@@ -9,7 +9,7 @@ export class AlertOverview extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: '1c999658-9eb3-413c-9154-6eaad3ddac8e',
+           id: 'c0d41bba-a379-4c8a-9c41-4d563fdeb5f3',
            generation: '1'
         };
         this.alertNumber = 0;

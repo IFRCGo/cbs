@@ -6,6 +6,7 @@ namespace Concepts.Alerts
     {
         Open = 0,
         Escalated = 1,
-        Closed = 2
+        Closed = 2,
+        Dismissed = 3
     }
 }

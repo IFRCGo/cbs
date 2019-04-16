@@ -5,8 +5,10 @@
   "main": "karma.conf.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production --config webpack.config.prod.js",
-    "start": "webpack-dev-server --mode development --open --watch --progress --hot",
+    "build": "webpack --mode production --env.environment=production --config webpack.config.prod.js",
+    "start": "webpack-dev-server --mode development --env.environment=mock_api --open --watch --progress --hot",
+    "start-with-local-api": "webpack-dev-server --mode development --env.environment=local_api --open --watch --progress --hot",
+    "start-with-demo-api": "webpack-dev-server --mode development --env.environment=demo_api --open --watch --progress --hot",
     "run": "cd .. && dolittle run"
   },
   "author": "",
@@ -26,6 +28,8 @@
     "@dolittle/core": "^1.0.4",
     "@dolittle/queries": "^1.0.12",
     "@dolittle/readmodels": "^1.0.2",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "evergreen-ui": "^4.9.0",
     "formik": "^1.5.1",
     "react": "^16.7.0",

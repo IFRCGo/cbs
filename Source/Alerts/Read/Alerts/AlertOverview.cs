@@ -11,7 +11,7 @@ namespace Read.Alerts
         public HealthRiskNumber HealthRiskNumber { get; set; }
         public string HealthRiskName { get; set; }
         public int NumberOfReports { get; set; }
-        public DateTime OpenedAt { get; set; }
+        public DateTimeOffset OpenedAt { get; set; }
         public AlertStatus Status { get; set; }
     }
 }

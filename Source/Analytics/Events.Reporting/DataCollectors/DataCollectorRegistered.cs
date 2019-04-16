@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Dolittle.Events;
 
 namespace Events.Reporting.DataCollectors
 {
-    public class DataCollectorReceived : IEvent
+    public class DataCollectorRegistered : IEvent
     {
         public Guid DataCollectorId { get; }
         public string FullName { get; }
@@ -20,7 +18,7 @@ namespace Events.Reporting.DataCollectors
         public string District { get; }
         public DateTimeOffset RegisteredAt { get; }
 
-        public DataCollectorReceived(
+        public DataCollectorRegistered(
             Guid dataCollectorId,
             string fullName,
             string displayName,
