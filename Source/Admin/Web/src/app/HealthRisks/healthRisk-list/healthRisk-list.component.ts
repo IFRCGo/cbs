@@ -5,6 +5,7 @@ import { DeleteHealthRisk } from '../DeleteHealthRisk';
 import { AllHealthRisks } from '../AllHealthRisks';
 import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
+import { AppInsightsService } from '../../services/app-insights-service';
 
 @Component({
     selector: 'cbs-healthRisk-list',
@@ -22,7 +23,8 @@ export class HealthRiskListComponent implements OnInit {
     constructor(
         private queryCoordinator: QueryCoordinator,
         private commandCoordinator: CommandCoordinator,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private appInsightsService: AppInsightsService
     ) { }
 
     ngOnInit() {
@@ -38,6 +40,7 @@ export class HealthRiskListComponent implements OnInit {
             .catch(response => {
                 console.error(response);
             });
+        this.appInsightsService.trackPageView('Health Risks');
     }
 
     sortRisks(property) {

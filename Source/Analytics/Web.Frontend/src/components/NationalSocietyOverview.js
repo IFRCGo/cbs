@@ -3,11 +3,21 @@ import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import {ApplicationInsights} from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
 import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
+
+const appInsights = new ApplicationInsights({
+    config: {
+        instrumentationKey: process.env.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY,
+        maxBatchInterval: 0,
+        disableFetchTracking: false
+    }
+});
+appInsights.loadAppInsights();
 
 class NationalSocietyOverview extends Component {
     constructor(props) {
@@ -50,6 +60,7 @@ class NationalSocietyOverview extends Component {
 
     componentDidMount() {
         this.fetchData();
+        appInsights.trackPageView({ name: 'National society overview'});
     }
 
 
