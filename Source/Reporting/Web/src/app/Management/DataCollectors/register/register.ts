@@ -8,6 +8,7 @@ import { Sex } from '../../Sex';
 import { RegisterDataCollector } from '../RegisterDataCollector';
 import { ToastrService } from 'ngx-toastr';
 import { ChangeVillage } from '../ChangeVillage';
+import { AppInsightsService } from '../../../services/app-insights-service';
 
 @Component({
     templateUrl: './register.html',
@@ -32,9 +33,14 @@ export class Register {
     constructor(
         private router: Router,
         private commandCoordinator: CommandCoordinator,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private appInsightsService: AppInsightsService
     ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
+    }
+
+    ngOnInit() {
+        this.appInsightsService.trackPageView('RegisterDataCollector');
     }
 
     onLocationSelected(event){
