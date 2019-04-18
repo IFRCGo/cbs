@@ -19,6 +19,7 @@ namespace Web
             containerBuilder.RegisterType<EpicurveService>();
             containerBuilder.RegisterType<MongoDBHandler>();
             containerBuilder.RegisterType<KPIRepository>();
+            containerBuilder.RegisterType<CaseReportRepository>();
             containerBuilder.RegisterType<HealthRisksEventHandler>().As<IHealthRisksEventHandler>();
             containerBuilder.RegisterType<CaseReportsEventHandler>().As<ICaseReportsEventHandler>();
             containerBuilder.RegisterType<DataCollectorEventHandler>().As<IDataCollectorsEventHandler>();

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:5001'
+  api: 'http://localhost:5001',
+  appInsightsInstrumentationKey: '36bdf7e0-884f-4391-8f08-11ebd48b9023'
 };

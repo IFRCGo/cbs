@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataCollector } from '../DataCollector';
 import { QueryCoordinator } from '@dolittle/queries';
 import { AllDataCollectors } from '../AllDataCollectors';
+import { AppInsightsService } from '../../../services/app-insights-service';
 
 @Component({
   templateUrl: './list.html',
@@ -16,7 +17,8 @@ export class List implements OnInit {
   selectedUser: DataCollector;
 
   constructor(
-    private queryCoordinator: QueryCoordinator
+    private queryCoordinator: QueryCoordinator,
+    private appInsightsService: AppInsightsService
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,8 @@ export class List implements OnInit {
       .catch(response => {
         console.error(response);
       });
+
+      this.appInsightsService.trackPageView('Data Collector List');
   }
 
   onSelect(dataCollector: DataCollector): void {
