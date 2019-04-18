@@ -21,6 +21,15 @@
             </button>
         </span>
     </div>
+    <div class="col-md-7 paging-location">
+        <angular2-multiselect
+        [data]="dropDownList"
+        [(ngModel)]="selectedItems"
+        [settings]="dropDownSettings"
+        (onSelect)="onItemSelect($event)"
+        (onDeSelect)="OnItemDeSelect($event)" 
+        (onSelectAll)="onSelectAll($event)"></angular2-multiselect>
+    </div>
 </div>
 <div class="paging row">
     <div class="col-md-9 paging-size">
