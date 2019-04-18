@@ -7,10 +7,9 @@ import {CaseReportRouting} from './reporting-routing.module';
 import {CaseReportListComponent} from './CaseReportsForListing/case-report-list.component';
 import {CaseReportExportComponent} from './CaseReportsForListing/export/case-report-export.component';
 import {SortableColumnComponent} from './CaseReportsForListing/sort/sortable-column.component';
-import {Filter} from './CaseReportsForListing/filtering/filter.pipe'
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
 import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-case-reports/training-case-reports.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,8 +17,8 @@ import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-c
     CommonModule,
     FormsModule,
     CaseReportRouting,
-    NgxSmartModalModule.forChild(),
-    NgMultiSelectDropDownModule.forRoot(),
+    TranslateModule,
+    NgxSmartModalModule.forChild()
   ],
   declarations: [
     CaseReportListComponent,
