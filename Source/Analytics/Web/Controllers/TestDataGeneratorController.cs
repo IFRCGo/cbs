@@ -191,9 +191,15 @@ namespace Web.Controllers
 
         private void GenerateDataCollectors(List<Guid> dataCollectorIds)
         {
+            Random rnd = new Random();
+            var regions = new List<string> { "St. Louis", "Saly", "Touba", "Thies", "Dakar", "Kaolak" }; 
             foreach (var dataCollectorId in dataCollectorIds)
             {
-                _dataCollectorsEventHandler.Handle(new DataCollector(dataCollectorId));
+                var dataCollector = new DataCollector(dataCollectorId)
+                {
+                    Region = regions.ElementAt(rnd.Next(0, regions.Count - 1))
+                };
+                _dataCollectorsEventHandler.Handle(dataCollector);
             }
         }
 

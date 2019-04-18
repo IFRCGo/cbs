@@ -7,6 +7,9 @@ using Dolittle.Events.Processing;
 using Dolittle.Domain;
 using Domain.Reports;
 using Events.Reporting.CaseReports;
+using Dolittle.Runtime.Commands.Coordination;
+using System;
+using System.Collections.Generic;
 
 namespace Policies.CaseReports
 {
@@ -16,15 +19,26 @@ namespace Policies.CaseReports
     public class CaseReportsProcessor : ICanProcessEvents
     {
         private readonly IAggregateRootRepositoryFor<CaseReport> _caseReportAggregateRootRepository;
+        private readonly ICommandContextManager _commandContextManager;
+        public CaseReportsProcessor(
 
-        public CaseReportsProcessor(IAggregateRootRepositoryFor<CaseReport> caseReportAggregateRootRepository)
+            ICommandContextManager commandContextManager,
+            IAggregateRootRepositoryFor<CaseReport> caseReportAggregateRootRepository
+            )
         {
+            _commandContextManager = commandContextManager;
             _caseReportAggregateRootRepository = caseReportAggregateRootRepository;
         }
 
         [EventProcessor("780c53e3-6989-4f47-a523-b55eb31957cd")]
         public void Process(CaseReportReceived @event)
         {
+             var transaction = _commandContextManager.EstablishForCommand(
+                new Dolittle.Runtime.Commands.CommandRequest(
+                    Guid.NewGuid(), 
+                    Guid.NewGuid(), 
+                    1, 
+                    new Dictionary<string, object>()));
             var root = _caseReportAggregateRootRepository.Get(@event.CaseReportId);
             var data = new CaseReportData
             {
@@ -43,6 +57,7 @@ namespace Policies.CaseReports
             };
 
             root.ProcessReport(data);
+            transaction.Commit();
         }
     }
 }

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AgmCoreModule } from '@agm/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { AppInsightsService } from '../services/app-insights-service';
 
 @NgModule({
     imports: [
@@ -30,7 +31,7 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: []
+            providers: [AppInsightsService]
         }
     }
 }

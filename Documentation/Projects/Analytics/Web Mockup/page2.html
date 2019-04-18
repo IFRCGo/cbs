@@ -29,11 +29,9 @@
   <link href="css/theme.css" rel="stylesheet" media="all">
   <link href="css/Epicurvebyday.css" rel="stylesheet" media="all">
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="http://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
-	<script src="http://code.highcharts.com/highcharts.js"></script>
 
 </head>
 
@@ -219,33 +217,79 @@
       <div class="main-content">
         <div class="section__content section__content--p30">
           <div class="container-fluid">
-
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="au-card recent-report">
+                
+                
+            <div class="row au-card recent-report">
+                    
+              <div class="col-lg-6">
+                
                   <div class="au-card-inner">
                   
-                    <div id="container_byday" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="container_selectedSeries" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="au-card recent-report">
-                  <div class="au-card-inner">
                   
-                    <div id="container_byweek" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-
-                  </div>
                 </div>
               </div>
-
+          
+              <div class="col-lg-6">
+                    
+                      <div class="au-card-inner">
+                            <table class="table">
+                                    <thead class="thead-light">
+                                            <tr><th>SEX</th>
+                                            <th>NO CASE REPORTS</th></tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr><td>FEMALE</td><td id="male"></td></tr>
+                                            <tr><td>MALE</td><td  id="female"></td></tr>
+                                    </tbody>
+                                  </table>
+                         
+                        <div id="container_HealthRiskPerGender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    
+                      </div>
+                    
+                  </div>
+                  <div class="col-lg-6">
+                       
+                          <div class="au-card-inner">
+                          
+                            <div id="container_selectedSeries_week" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        
+        
+                          </div>
+                       
+                      </div>
+                      <div class="col-lg-6">
+                            <table class="table " width="30%">
+                                    <thead class="thead-light">
+                                            <tr><th>AGE</th>
+                                            <th>NO CASE REPORTS</th></tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr><td>>5</td><td id="under5"></td></tr>
+                                            <tr><td> &lt;5 </td><td id="over5"></td></tr>
+                                    </tbody>
+                                  </table>
+                                  <div></div>
+                                <div class="au-card-inner">
+                                
+                                  <div id="container_HealthRiskPerAgeGroupr" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+              
+              
+                                </div>
+                             
+                            </div>
             </div>
+        
+                  
+                        
+                            
+              
+                      
+                         
+                          
             <div class="row">
               <div class="col-md-12">
                 <div class="copyright">
@@ -259,6 +303,7 @@
       <!-- END MAIN CONTENT-->
       <!-- END PAGE CONTAINER-->
     </div>
+  </div>
 
 
 
@@ -285,13 +330,65 @@
     <!-- Main JS-->
     <script src="js/main.js"></script>
     <script src="js/custom.js"></script>
-     <script src="js/page2/Epicurvebyday.js"></script>
-      <!--<script src="js/page2/Epicurvebyweek.js"></script>
+     <script src="js/graph1/Epicurvebyday.js"></script>
+     <script src="js/graph2/Epicurvebyday.js"></script>
+     <script src="js/graph3/Epicurvebyday.js"></script>
+     <script src="js/graph4/Epicurvebyday.js"></script>
+     <script src="js/graph5/Epicurvebyday.js"></script>
+     
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
       window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
       ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <script type="text/javascript">
+    $(function () {
+
+  var under;
+  var over;
+  $.getJSON('http://5cb05d0af7850e0014629bce.mockapi.io/api/HealthRiskPerAgeGroup', function(data) {
+    //console.log(data);
+   
+    under = data.under5;
+    over = data.over5;
+    $('#under5').html(under);
+    $('#over5').html(over);
+   
+     
+});
+});
+$(function () {
+                 
+                var male;
+                var female;
+                $.getJSON('http://5cb05d0af7850e0014629bce.mockapi.io/api/HealthRiskPerGender', function(data) {
+                  //console.log(data);
+                
+                  male = data.male;
+                  female = data.female;
+                  $('#male').html(male);
+                 $('#female').html(female);
+                });
+});
+
+    </script>
+    <script type="text/javascript">
+       
+    $(function () {
+                     
+                    var male;
+                    var female;
+                    $.getJSON('http://5cb05d0af7850e0014629bce.mockapi.io/api/HealthRiskPerGender', function(data) {
+                      //console.log(data);
+                    
+                      male = data.male;
+                      female = data.female;
+                      $('#male').html(male);
+                     $('#female').html(female);
+                    });
+    });
+    
+        </script>
 </body>
 </html>

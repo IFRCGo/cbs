@@ -10,5 +10,6 @@ export const environment = {
   production: false,
   api: 'http://localhost:5003',
   commandCoordinatorType: CommandCoordinator,
-  queryCoordinatorType: QueryCoordinator
+  queryCoordinatorType: QueryCoordinator,
+  appInsightsInstrumentationKey: '36bdf7e0-884f-4391-8f08-11ebd48b9023'
 };

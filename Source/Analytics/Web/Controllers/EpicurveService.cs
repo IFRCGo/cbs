@@ -57,15 +57,17 @@ namespace Web.Controllers
             List<OutbreakReport> list = new List<OutbreakReport>();
             foreach (var group in groups)
             {
-                OutbreakReport report = new OutbreakReport();
-                report.Center = new[] {group.Key.Latitude, group.Key.Longitude};
-                report.Radius = group.Sum(x =>
-                    x.NumberOfMalesUnder5 +
-                    x.NumberOfFemalesUnder5 +
-                    x.NumberOfFemalesAged5AndOlder +
-                    x.NumberOfMalesAged5AndOlder) / 10;
-                report.Popup = $"Something something {group.Key.HealthRisk}";
-                report.Color = "red";
+                OutbreakReport report = new OutbreakReport
+                {
+                    Center = new[] { group.Key.Latitude, group.Key.Longitude },
+                    Radius = group.Sum(x =>
+                        x.NumberOfMalesUnder5 +
+                        x.NumberOfFemalesUnder5 +
+                        x.NumberOfFemalesAged5AndOlder +
+                        x.NumberOfMalesAged5AndOlder) / 10,
+                    Popup = $"Something something {group.Key.HealthRisk}",
+                    Color = "red"
+                };
 
                 list.Add(report);
             }

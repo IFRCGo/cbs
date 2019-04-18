@@ -17,7 +17,7 @@ namespace Read.Dolittle.DataCollectors
         }
         
         [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
-        public void Process(DataCollectorReceived @event)
+        public void Process(DataCollectorRegistered @event)
         {
             var dataCollector = new Read.DataCollectors.DataCollector(
                 @event.DataCollectorId, @event.FullName, @event.DisplayName, @event.YearOfBirth, @event.Sex,
