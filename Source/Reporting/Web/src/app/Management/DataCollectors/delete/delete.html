@@ -2,13 +2,13 @@
 
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete user</h4>
+        <h4 class="modal-title pull-left">{{ 'REGISTER.related.delete' | translate }}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p>Are you sure you want to delete {{user.fullName}}?</p>
+        <p>{{ 'REGISTER.related.delete_text' | translate }} {{user.fullName}}?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-lg btn-outline-primary" (click)="deleteUser(user.id)">Delete</button>

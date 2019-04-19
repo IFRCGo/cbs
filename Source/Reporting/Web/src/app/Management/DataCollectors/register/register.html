@@ -1,59 +1,54 @@
 <form #form="ngForm" ngNativeValidate>
   <a [routerLink]="['/']" class="back-button">
-      <button class="btn btn-primary"> Case Reports </button>
-  </a>
-  <a [routerLink]="['/datacollectors']">
-   <button class="btn btn-info"> Data Collectors </button>
+      <button class="btn btn-primary">{{ 'REGISTER.button' | translate }}</button>
   </a>
 
-  <h1>Add Data Collector</h1>
+  <h1>{{ 'REGISTER.form_name' | translate }}</h1>
 
-   <div class="row">
+  <div class="row">
     <div class="form-group col-lg-7">
-      <label for="full_name">Full Name</label>
-      <input type="text" placeholder="Full Name" class="form-control" id="full_name"
-             required minlength="4"
-             [(ngModel)]="command.fullName" name="full_name"
-             #full_name="ngModel">
+      <label for="full_name">{{ 'REGISTER.full_name' | translate }}</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="full_name"
+        required minlength="4"
+        [(ngModel)]="command.fullName" name="full_name"
+        #full_name="ngModel">
 
-    <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)"
-      class="alert alert-warning">
-
-      <div *ngIf="full_name.errors?.required">
-        Full Name is required.
+      <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)"
+        class="alert alert-warning">
+        <div *ngIf="full_name.errors?.required">
+          {{ 'REGISTER.full_name_error' | translate }}
+        </div>
+        <div *ngIf="full_name.errors?.minlength">
+          {{ 'REGISTER.full_name_error_1' | translate }}
+        </div>
       </div>
-      <div *ngIf="full_name.errors?.minlength">
-        Full Name must be at least 4 characters long.
-      </div>
     </div>
-  </div>
-  <div class="form-group col-lg-5">
-    <label for="display_name">Display Name</label>
-    <input type="text" placeholder="Display Name" class="form-control" id="display_name"
-            required minlength="4"
-            [(ngModel)]="command.displayName" name="display_name"
-            #display_name="ngModel">
-  <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)"
-    class="alert alert-warning">
-
-    <div *ngIf="display_name.errors?.required">
-      Display Name is required.
-    </div>
-    <div *ngIf="display_name.errors?.minlength">
-      Display Name must be at least 4 characters long.
-    </div>
-  </div>
-</div>
-
-   </div>
-
-
-   <div class="row">
-
     <div class="form-group col-lg-5">
-      <label>Phone numbers (comma seperated)</label>
+      <label for="display_name">{{ 'REGISTER.display_name' | translate }}</label>
+      <input type="text" class="form-control" id="display_name"
+              required minlength="4"
+              [(ngModel)]="command.displayName" name="display_name"
+              #display_name="ngModel">
+      <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)"
+        class="alert alert-warning">
+
+        <div *ngIf="display_name.errors?.required">
+          {{ 'REGISTER.display_name_error' | translate }}
+        </div>
+        <div *ngIf="display_name.errors?.minlength">
+          {{ 'REGISTER.display_name_error_1' | translate }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <label>{{ 'REGISTER.phone_number' | translate }}</label>
       <input type="text"
-        placeholder="202-102-365-000"
         class="input-mini form-control"
         id="phoneNumber"
         required
@@ -62,14 +57,14 @@
         #phoneNumbers="ngModel"
           >
       <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
-          <div *ngIf="phoneNumbers.errors?.required">
-            Phonenumber is required.
+        <div *ngIf="phoneNumbers.errors?.required">
+            {{ 'REGISTER.phone_number_error' | translate }}
         </div>
       </div>
     </div>
 
     <div class="form-group col-lg-7">
-      <label for="yearOfBirth">Year of Birth</label>
+      <label for="yearOfBirth">{{ 'REGISTER.year_of_birth' | translate }}</label>
       <input type="number" class="form-control" id="yearOfBirth"
             ng-valid ng-valid-number ng-valid-max ng-valid-min
              required
@@ -79,16 +74,15 @@
       <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)"
         class="alert alert-warning">
         <div *ngIf="yearOfBirth.errors?.required">
-          Year Of Birth is required.
+          {{ 'REGISTER.year_of_birth_error' | translate }}
         </div>
       </div>
     </div>
 
    </div>
-
    <div class="row">
     <div class="form-group col-lg-5">
-      <label for="preferredLanguage">Preferred Language</label>
+      <label for="preferredLanguage">{{ 'REGISTER.preferred_lang' | translate }}</label>
       <select class="form-control" id="preferredLanguage"
               required
               [(ngModel)]="command.preferredLanguage"
@@ -99,12 +93,12 @@
   
       <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
           <div *ngIf="preferredLanguage.errors?.required">
-            Preferred Language is required.
+            {{ 'REGISTER.preferred_lang_error' | translate }}
         </div>
       </div>
     </div>
     <div class="form-group col-lg-3">
-      <label for="sex">Sex</label>
+      <label for="sex">{{ 'REGISTER.sex' | translate }}</label>
       <select class="form-control" id="sex"
               required
               [(ngModel)]="command.sex" name="sex"
@@ -113,7 +107,7 @@
       </select>
       <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
           <div *ngIf="sex.errors?.required">
-            Sex is required.
+            {{ 'REGISTER.sex_error' | translate }}
           </div>
         </div>
     </div>
@@ -121,7 +115,7 @@
 
 
     <div class="form-group col-lg-13">
-      <label>Location</label>
+      <label>{{ 'REGISTER.location' | translate }}</label>
       <div>
       <agm-map [latitude]="defaultLat" [longitude]="defaultLng" (mapClick)="onLocationSelected($event)">
           <agm-marker [latitude]="selectedLat" [longitude]="selectedLng" *ngIf="locationSelected"></agm-marker>
@@ -131,7 +125,7 @@
     
     <div class="row">
         <div class="form-group col-lg-5">
-                    <label for="latitude">Latitude</label>
+                    <label for="latitude">{{ 'REGISTER.latitude' | translate }}</label>
                     <input
                       type="number"
                       class="input-mini form-control"
@@ -144,7 +138,7 @@
                     />
         </div>
         <div class="form-group col-lg-5">
-                    <label for="longitude">Longitude</label>
+                    <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
                    <input
                       type="number"
                       class="input-mini form-control"
@@ -159,23 +153,19 @@
                       || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
               
                     <div *ngIf="latitude.errors?.required">
-                        Location Latitude is required
+                      {{ 'REGISTER.latitude_error' | translate }}
                     </div>
                     <div *ngIf="longitude.errors?.required">
-                        Location Longitude is required
+                      {{ 'REGISTER.longitude_error' | translate }}
                     </div>
                   </div>
     
         </div>
     </div>
 
-    
-  
-
-
    <div class="row">
     <div class="form-group col-lg-5">
-      <label for="region">Region</label>
+      <label for="region">{{ 'REGISTER.region' | translate }}</label>
       <input type="text" class="form-control" id="region" placeholder="Region"
               required
               [(ngModel)]="command.region" name="region"
@@ -184,13 +174,13 @@
       class="alert alert-warning">
   
       <div *ngIf="region.errors?.required">
-        Region is required.
+        {{ 'REGISTER.region_error' | translate }}
       </div>
     </div>
-  </div>
+    </div>
   
   <div class="form-group col-lg-5">
-    <label for="district">District</label>
+    <label for="district">{{ 'REGISTER.district' | translate }}</label>
     <input type="text" class="form-control" id="district"
             required placeholder="District"
             [(ngModel)]="command.district" name="district"
@@ -199,15 +189,15 @@
       class="alert alert-warning">
   
       <div *ngIf="district.errors?.required">
-        District is required.
+        {{ 'REGISTER.district_error' | translate }}
       </div>
     </div>
   </div>
   
-   </div>
+  </div>
    <div class="row">
     <div class="form-group col-lg-5">
-      <label for="village">Village</label>
+      <label for="village">{{ 'REGISTER.village' | translate }}</label>
       <input type="text" class="form-control" id="village" placeholder="Village"
               [(ngModel)]="changeVillageCommand.village" name="village"
               #village="ngModel">
@@ -215,7 +205,7 @@
         class="alert alert-warning">
     
         <div *ngIf="village.errors?.required">
-          Village is required.
+          {{ 'REGISTER.village_error' | translate }}
         </div>
       </div>
     </div>
@@ -223,22 +213,10 @@
 
    <div class="row">
          <div class="form-group col-lg-3">
-        <button type="submit" class="button2" [disabled]="!form.form.valid" (click)="submit()"> Add </button>
+        <button type="submit" class="button2" [disabled]="!form.form.valid" (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
      </div>
      <div class="form-group col-lg-3">
        <button type="reset" class="button1" value="Cancel"> Cancel </button>
      </div>
    </div>
-
-     
-  
-
-  <!--
-  <div class="form-group">
-    <label for="data_verifier_id">Data verifier id</label>
-    <input type="text" class="form-control" id="data_verifier_id"
-            [(ngModel)]="command.dataVerifierId" name="data_verifier_id"
-            #data_verifier_id="ngModel">
-  </div>
-  -->
 </form>

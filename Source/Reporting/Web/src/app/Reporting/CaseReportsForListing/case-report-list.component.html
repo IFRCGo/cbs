@@ -1,14 +1,14 @@
 <h3>
-    Case Reports
+    {{ 'REGISTER.REPORT.report_name' | translate }}
 </h3>
 
 <cbs-case-report-export #exporter></cbs-case-report-export>
 
 <div class="actions">
-    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">Export</button>
+    <button (click)="exporter.open(currentFilter, currentSortColumn, sortDescending)">{{ 'REGISTER.related.export_button_0' | translate }}</button>
 </div>
 <div>
-    <a routerLink="../../training/all" > Training Case Reports</a>
+    <a routerLink="../../training/all" >{{ 'REGISTER.REPORT.report_title' | translate }}</a>
 </div>
 <div class="row">
     <div class="col-md-4 paging-filters">
@@ -17,14 +17,14 @@
                 class="small {{ filter.cssClass }}"
                 [ngClass]="{'current': this.currentFilter === filter}"
                 (click)="clickFilter(filter)">
-                {{filter.description}}
+                {{filter.description}} <!-- Translate-->
             </button>
         </span>
     </div>
 </div>
 <div class="paging row">
     <div class="col-md-9 paging-size">
-        Page size:
+        {{ 'REGISTER.REPORT.page_size' | translate }}:
         &nbsp;
         <select
             [(ngModel)]="page.size"
@@ -41,16 +41,16 @@
             class="small"
             (click)="showPrevPage()"
             [disabled]="!page.number">
-            < previous
+            {{ 'REGISTER.REPORT.page_prev' | translate }}
         </button>
         <span class="paging-pages-number">
-            Page: <strong>{{ page.number + 1 }}</strong>
+            {{ 'REGISTER.REPORT.page' | translate }}: <strong>{{ page.number + 1 }}</strong>
         </span>
         <button
             class="small"
             (click)="showNextPage()"
             [disabled]="page.isLoading || isLastPage()">
-            next >
+            {{ 'REGISTER.REPORT.page_next' | translate }} >
         </button>
     </div>
     
@@ -59,7 +59,7 @@
 <div class="row">
     <div class="col-md-8 paging-date">
         <form>
-            Date Range :
+            {{ 'REGISTER.related.date_range' | translate }} :
             <input type="date" required name="dateFrom" id="dateFrom" [(ngModel)] ="dateFrom"><i class="fa fa-calendar"></i>
             <input type="date" required name="dateTo" id="dateTo"  [(ngModel)] ="dateTo"><i class="fa fa-calendar"></i>
             <input type="submit" value="search" (click)="sortDate(this.dateFrom,this.dateTo)">
@@ -69,7 +69,7 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
+        <tr><!-- Translate these columns as well-->
             <th *ngFor="let column of allColumns"
                   [column]="column"
                   [current-sorted]="currentSortColumn"
@@ -85,13 +85,13 @@
             <td>{{caseReport.timestamp | date:'shortTime'}}</td>
             <td>
                 <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
-                    Success
+                    {{ 'REGISTER.REPORT.case_success' | translate }}
                 </span>
                 <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
-                    Error
+                    {{ 'REGISTER.REPORT.case_error' | translate }}
                 </span>
                 <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
-                    Unknown sender
+                    {{ 'REGISTER.REPORT.case_uknown' | translate }}
                 </span>
             </td>
 
@@ -104,7 +104,7 @@
             </ng-container>
 
             <ng-container *ngIf="isSuccessUnknown(caseReport.status) || isErrorUnknown(caseReport.status)">
-                <td colspan="5">Origin: {{caseReport.origin || "Unknown"}}</td>
+                <td colspan="5">{{ 'REGISTER.REPORT.case_origin' | translate }}: {{caseReport.origin || "Unknown"}}</td>
             </ng-container>
 
             <ng-container *ngIf="isSuccess(caseReport.status) || isSuccessUnknown(caseReport.status)">
@@ -117,12 +117,12 @@
 
             <ng-container *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)">
                 <td colspan="5">
-                    {{caseReport.message}} Parsing errors: {{caseReport.parsingErrorMessage}}
+                    {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
         </tr>
     </tbody>
 </table>
 <div *ngIf="page.isLoading">
-    <p class="text-center">Loading data...</p>
+    <p class="text-center">{{ 'REGISTER.REPORT.loader' | translate }}</p>
 </div>

@@ -1,9 +1,10 @@
-import { MockCommandCoordinator } from "../mocking/MockCommandCoordinator";
-import { MockQueryCoordinator } from "../mocking/MockQueryCoordinator";
+import {CommandCoordinator} from '@dolittle/commands';
+import {QueryCoordinator} from '@dolittle/queries';
 
 export const environment = {
   production: false,
   api: '/reporting',
-  commandCoordinatorType: MockCommandCoordinator,
-  queryCoordinatorType: MockQueryCoordinator
+  commandCoordinatorType: CommandCoordinator,
+  queryCoordinatorType: QueryCoordinator,
+  appInsightsInstrumentationKey: '36bdf7e0-884f-4391-8f08-11ebd48b9023'
 };

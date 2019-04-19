@@ -9,6 +9,7 @@ import {CaseReportExportComponent} from './CaseReportsForListing/export/case-rep
 import {SortableColumnComponent} from './CaseReportsForListing/sort/sortable-column.component';
 import {Filter} from './CaseReportsForListing/filtering/filter.pipe';
 import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-case-reports/training-case-reports.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { TrainingCaseReportsComponent } from './CaseReportsForListing/training-c
     CommonModule,
     FormsModule,
     CaseReportRouting,
+    TranslateModule,
     NgxSmartModalModule.forChild()
   ],
   declarations: [
