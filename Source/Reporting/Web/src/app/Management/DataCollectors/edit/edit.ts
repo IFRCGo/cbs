@@ -24,6 +24,8 @@ import { AppInsightsService } from '../../../services/app-insights-service';
     styleUrls: ['./edit.scss']
 })
 export class Edit implements OnInit {
+    // THIS REALLY NEEDS A SIMPLIFICATION!
+    //TODO: In backend, have one CRUDy ChangeDataCollectorInformation command, or something, that does all this
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
