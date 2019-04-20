@@ -11,7 +11,7 @@ for (let i = 0; i < 10; i++) {
     dataCollector.displayName = `DataCollector ${i}`;
     dataCollector.yearOfBirth = 1980;
     dataCollector.sex = i % 2 ===0? 1 : 2;
-    dataCollector.preferredLanguage = 1;
+    dataCollector.preferredLanguage = i % 2 ===0? 1 : 2;
     dataCollector.location = {latitude: 1, longitude: 1};
     dataCollector.region = 'Default Region';
     dataCollector.district = 'Default District';
