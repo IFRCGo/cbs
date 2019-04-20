@@ -107,6 +107,15 @@ export class Edit implements OnInit {
         this.handleTraining(queue);
         this.handleQueue(queue);
     }
+    resetForm() {
+        console.log('reset')
+        this.inTraining = this.dataCollector.inTraining;
+        this.initChangeBaseInformation();
+        this.initChangeLocation();
+        this.initChangePreferredLanguage();
+        this.initPhoneNumbers();
+        this.initVillage();
+    }
 
     private handleQueue(queue) {
         if (queue.length == 0) {

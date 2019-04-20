@@ -1,5 +1,5 @@
 <form #form="ngForm" ngNativeValidate>
-    <a [routerLink]="['../']" class="back-button">
+    <a [routerLink]="['../../']" class="back-button">
         <button class="btn btn-primary">{{ 'REGISTER.button' | translate }}</button>
     </a>
     <h1>{{ 'REGISTER.related.edit_title' | translate }}</h1>
@@ -190,7 +190,7 @@
     </div>
     <div class="row">
         <div class="form-group col-lg-3">
-            <button type="reset" class="button1" value="Reset"> Reset </button>
+            <button type="button" class="button1" (click)="resetForm()"> Reset </button>
         </div>
         <div class="form-group col-lg-3">
             <button type="submit" class="button2" [disabled]="!form.form.valid || error " (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
