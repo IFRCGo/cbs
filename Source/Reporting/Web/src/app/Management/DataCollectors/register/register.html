@@ -177,16 +177,13 @@
       </div>
     </div>
   </div>
-
+  
   <div class="row">
     <div class="form-group col-lg-3">
-      <button type="submit" class="button2" [disabled]="!form.form.valid"
-        (click)="submit()">
-        {{ 'REGISTER.submit_name' | translate }}
-      </button>
+        <button type="reset" class="button1" value="Reset"> Reset </button>
     </div>
     <div class="form-group col-lg-3">
-      <button type="reset" class="button1" value="Cancel"> Cancel </button>
+        <button type="submit" class="button2" [disabled]="!form.form.valid || error " (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
     </div>
   </div>
 </form>

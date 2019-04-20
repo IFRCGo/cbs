@@ -7,9 +7,10 @@
     <div class="row">
         <div class="form-group col-lg-7">
             <label for="full_name">{{ 'REGISTER.full_name' | translate }}</label>
-            <input type="text" class="form-control" id="full_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.fullName"
+            <input type="text" class="form-control" id="full_name" 
+                required minlength="4" 
+                [(ngModel)]="changeBaseInformationCommand.fullName"
                 name="full_name" #full_name="ngModel">
-
             <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-warning">
                 <div *ngIf="full_name.errors?.required">
                     {{ 'REGISTER.full_name_error' | translate }}
@@ -21,9 +22,10 @@
         </div>
         <div class="form-group col-lg-5">
             <label for="display_name">{{ 'REGISTER.display_name' | translate }}</label>
-            <input type="text" class="form-control" id="display_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.displayName"
+            <input type="text" class="form-control" id="display_name" 
+                required minlength="4" 
+                [(ngModel)]="changeBaseInformationCommand.displayName"
                 name="display_name" #display_name="ngModel">
-            
             <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-warning">
                 <div *ngIf="display_name.errors?.required">
                     {{ 'REGISTER.display_name_error' | translate }}
@@ -38,7 +40,9 @@
     <div class="row">
         <div class="form-group col-lg-5">
             <label>{{ 'REGISTER.phone_number' | translate }}</label>
-            <input type="text" class="input-mini form-control" id="phoneNumber" required [(ngModel)]="phoneNumberString"
+            <input type="text" class="input-mini form-control" id="phoneNumber" 
+                required
+                [(ngModel)]="phoneNumberString"
                 name="phoneNumber" #phoneNumbers="ngModel">
             <div *ngIf="phoneNumbers.invalid && (phoneNumbers.dirty || phoneNumbers.touched)" class="alert alert-warning">
                 <div *ngIf="phoneNumbers.errors?.required">    
@@ -48,9 +52,10 @@
         </div>
         <div class="form-group col-lg-7">
             <label for="yearOfBirth">{{ 'REGISTER.year_of_birth' | translate }}</label>
-            <input type="number" class="form-control" id="yearOfBirth" ng-valid ng-valid-number ng-valid-max ng-valid-min
-                required [(ngModel)]="changeBaseInformationCommand.yearOfBirth" name="yearOfBirth" #yearOfBirth="ngModel">
-    
+            <input type="number" class="form-control" id="yearOfBirth"
+                required ng-valid ng-valid-number ng-valid-max ng-valid-min
+                [(ngModel)]="changeBaseInformationCommand.yearOfBirth"
+                name="yearOfBirth" #yearOfBirth="ngModel">
             <div *ngIf="yearOfBirth.invalid && (yearOfBirth.dirty || yearOfBirth.touched)" class="alert alert-warning">
                 <div *ngIf="yearOfBirth.errors?.required">
                     {{ 'REGISTER.year_of_birth_error' | translate }}
@@ -62,7 +67,9 @@
     <div class="row">
         <div class="form-group col-lg-5">
             <label for="preferredLanguage">{{ 'REGISTER.preferred_lang' | translate }}</label>
-            <select class="form-control" id="preferredLanguage" required [(ngModel)]="changePreferredLanguageCommand.preferredLanguage"
+            <select class="form-control" id="preferredLanguage" 
+                required 
+                [(ngModel)]="changePreferredLanguageCommand.preferredLanguage"
                 name="preferredLanguage" #preferredLanguage="ngModel">
                 <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
             </select>
@@ -75,7 +82,10 @@
         </div>
             <div class="form-group col-lg-3">
                 <label for="sex">{{ 'REGISTER.sex' | translate }}</label>
-                <select class="form-control" id="sex" required [(ngModel)]="changeBaseInformationCommand.sex" name="sex" #sex="ngModel">
+                <select class="form-control" id="sex" 
+                    required
+                    [(ngModel)]="changeBaseInformationCommand.sex"
+                    name="sex" #sex="ngModel">
                     <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
                 </select>
                 <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
@@ -97,29 +107,19 @@
     <div class="row">
         <div class="form-group col-lg-5">
             <label for="latitude">{{ 'REGISTER.latitude' | translate }}</label>
-            <input
-                type="number"
-                class="input-mini form-control"
-                id="latitude"
+            <input type="number" class="input-mini form-control" id="latitude"
                 required
                 [(ngModel)]="changeLocationCommand.location.latitude"
-                name="latitude"
-                #latitude="ngModel"/>
+                name="latitude" #latitude="ngModel"/>
         </div>
         <div class="form-group col-lg-5">
             <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
-            <input
-                type="number"
-                class="input-mini form-control"
-                id="longitude"
-        
+            <input type="number" class="input-mini form-control" id="longitude"
                 required
                 [(ngModel)]="changeLocationCommand.location.latitude"
-                name="longitude"
-                #longitude="ngModel"/> 
+                name="longitude" #longitude="ngModel"/> 
             <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
                 || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
-    
                 <div *ngIf="latitude.errors?.required">
                     {{ 'REGISTER.latitude_error' | translate }}
                 </div>
@@ -132,7 +132,9 @@
     <div class="row">
         <div class="form-group col-lg-5">
             <label for="region">{{ 'REGISTER.region' | translate }}</label>
-            <input type="text" class="form-control" id="region" required [(ngModel)]="changeBaseInformationCommand.region"
+            <input type="text" class="form-control" id="region" 
+                required 
+                [(ngModel)]="changeBaseInformationCommand.region"
                 name="region" #region="ngModel">
             <div *ngIf="region.invalid && (region.dirty || region.touched)" class="alert alert-warning">
                 <div *ngIf="region.errors?.required">
@@ -143,7 +145,9 @@
         
         <div class="form-group col-lg-5">
             <label for="district">{{ 'REGISTER.district' | translate }}</label>
-            <input type="text" class="form-control" id="district" required [(ngModel)]="changeBaseInformationCommand.district"
+            <input type="text" class="form-control" id="district"
+                required 
+                [(ngModel)]="changeBaseInformationCommand.district"
                 name="district" #district="ngModel">
             <div *ngIf="district.invalid && (district.dirty || district.touched)" class="alert alert-warning">
                 <div *ngIf="district.errors?.required">
@@ -157,11 +161,10 @@
         <div class="form-group col-lg-5">
             <label for="village">{{ 'REGISTER.village' | translate }}</label>
             <input type="text" class="form-control" id="village"
-                    [(ngModel)]="changeVillageCommand.village" name="village"
-                    #village="ngModel">
+                    [(ngModel)]="changeVillageCommand.village"
+                    name="village" #village="ngModel">
             <div *ngIf="village.invalid && (village.dirty || village.touched)"
                 class="alert alert-warning">
-        
                 <div *ngIf="village.errors?.required">
                     {{ 'REGISTER.village_error' | translate }}
                 </div>
@@ -187,10 +190,10 @@
     </div>
     <div class="row">
         <div class="form-group col-lg-3">
-            <button type="submit" class="button2" [disabled]="!form.form.valid || error " (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
+            <button type="reset" class="button1" value="Reset"> Reset </button>
         </div>
         <div class="form-group col-lg-3">
-            <button type="reset" class="button1" value="Cancel"> Cancel </button>
+            <button type="submit" class="button2" [disabled]="!form.form.valid || error " (click)="submit()">{{ 'REGISTER.submit_name' | translate }}</button>
         </div>
     </div>
 </form>
