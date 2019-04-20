@@ -1,6 +1,9 @@
 agm-map {
     height: 300px;
 }
+input.ng-dirty.ng-invalid {
+    color: red
+}
 .button1 {
     border-radius: 4px ;
     padding: 10px ;

@@ -1,7 +1,9 @@
 agm-map {
     height: 300px;
 }
-
+input.ng-dirty.ng-invalid {
+    color: red
+}
 .form-group input {
     background-color: #fafafa;
     border: 1px solid #363534;
