@@ -24,6 +24,8 @@ import { AppInsightsService } from '../../../services/app-insights-service';
     styleUrls: ['./edit.scss']
 })
 export class Edit implements OnInit {
+    // THIS REALLY NEEDS A SIMPLIFICATION!
+    //TODO: In backend, have one CRUDy ChangeDataCollectorInformation command, or something, that does all this
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
@@ -104,6 +106,15 @@ export class Edit implements OnInit {
         this.handleRemovePhoneNumbers(queue);
         this.handleTraining(queue);
         this.handleQueue(queue);
+    }
+    resetForm() {
+        console.log('reset')
+        this.inTraining = this.dataCollector.inTraining;
+        this.initChangeBaseInformation();
+        this.initChangeLocation();
+        this.initChangePreferredLanguage();
+        this.initPhoneNumbers();
+        this.initVillage();
     }
 
     private handleQueue(queue) {

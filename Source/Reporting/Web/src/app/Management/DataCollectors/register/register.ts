@@ -18,8 +18,6 @@ export class Register {
     locationSelected = false;
     defaultLat: number = 9.216515;
     defaultLng: number = 45.523637;
-    selectedLat: number = this.defaultLat;
-    selectedLng: number = this.defaultLng;
 
     phoneNumberString = '';
     command: RegisterDataCollector = new RegisterDataCollector();
@@ -41,16 +39,15 @@ export class Register {
 
     ngOnInit() {
         this.appInsightsService.trackPageView('RegisterDataCollector');
+        this.command.gpsLocation.latitude = this.defaultLat;
+        this.command.gpsLocation.longitude = this.defaultLng;
     }
 
     onLocationSelected(event){
         this.locationSelected = true;
-        this.selectedLat = event.coords.lat;
-        this.selectedLng = event.coords.lng;
-        this.command.gpsLocation.latitude = this.selectedLat;
-        this.command.gpsLocation.longitude = this.selectedLng;
+        this.command.gpsLocation.latitude = event.coords.lat;
+        this.command.gpsLocation.longitude = event.coords.lng;
     }
-
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
