@@ -197,5 +197,6 @@ export class CaseReportListComponent implements OnInit {
 
     convert() {
       console.log(this.selectedCase);
+      this.modal.getModal('modalExportDataCollectors').close();
     }
 }
