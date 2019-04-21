@@ -50,6 +50,12 @@ export class Register {
         this.command.gpsLocation.latitude = this.selectedLat;
         this.command.gpsLocation.longitude = this.selectedLng;
     }
+    gpsLatitudeChange() {
+        this.selectedLat = this.command.gpsLocation.latitude;
+    }
+    gpsLongitudeChange() {
+        this.selectedLng = this.command.gpsLocation.longitude;
+    }
 
     submit() {
         this.command.dataCollectorId = Guid.create();

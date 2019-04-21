@@ -6,7 +6,7 @@
   <h1>{{ 'REGISTER.form_name' | translate }}</h1>
 
   <div class="row">
-    <div class="form-group col-lg-7">
+    <div class="form-group col-lg-6">
       <label for="full_name">{{ 'REGISTER.full_name' | translate }}</label>
       <input type="text" class="form-control" id="full_name" 
         required minlength="4" 
@@ -21,7 +21,9 @@
         </div>
       </div>
     </div>
-    <div class="form-group col-lg-5">
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-6">
       <label for="display_name">{{ 'REGISTER.display_name' | translate }}</label>
       <input type="text" class="form-control" id="display_name" 
         required minlength="4" 
@@ -36,7 +38,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <div class="row">
     <div class="form-group col-lg-5">
@@ -52,7 +53,7 @@
       </div>
     </div>
 
-    <div class="form-group col-lg-7">
+    <div class="form-group col-lg-2">
       <label for="yearOfBirth">{{ 'REGISTER.year_of_birth' | translate }}</label>
       <input type="number" class="form-control" id="yearOfBirth" 
         required ng-valid ng-valid-number ng-valid-max ng-valid-min
@@ -83,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group col-lg-3">
+    <div class="form-group col-lg-2">
       <label for="sex">{{ 'REGISTER.sex' | translate }}</label>
       <select class="form-control" id="sex" 
         required 
@@ -114,14 +115,16 @@
       <input type="number" class="input-mini form-control" id="latitude"
         required
         [(ngModel)]="command.gpsLocation.latitude" 
-        name="latitude" #latitude="ngModel" />
+        name="latitude" #latitude="ngModel"
+        (change)="gpsLatitudeChange()" />
     </div>
     <div class="form-group col-lg-5">
       <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
       <input type="number" class="input-mini form-control" id="longitude" 
         required
         [(ngModel)]="command.gpsLocation.longitude" 
-        name="longitude" #longitude="ngModel" />
+        name="longitude" #longitude="ngModel"
+        (change)="gpsLongitudeChange()" />
       <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
                       || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
 
