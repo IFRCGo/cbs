@@ -121,7 +121,7 @@
                     {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
-            <td><button (click)="convertToTrainingCase(caseReport)" type="button" name="button" class="btn btn-warning">Convert to Training case</button> </td>
+            <td><button (click)="convertToTrainingCase(caseReport)" type="button" name="button" class="btn btn-warning">{{ 'REGISTER.REPORT.convert_to_training' | translate }}</button> </td>
         </tr>
     </tbody>
 </table>
@@ -130,7 +130,7 @@
 </div>
 
 <ngx-smart-modal #modalExportDataCollectors identifier="modalExportDataCollectors" [backdrop]="false">
-    <h4>Are you sure to convert this case report into training case ?</h4>
+    <h4>{{ 'REGISTER.REPORT.convert_to_training_message' | translate }}</h4>
     <br><br>
     <div class="actions">
         <button class="btn btn-default" (click)="modalExportDataCollectors.close()">Cancel</button>

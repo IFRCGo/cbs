@@ -41,7 +41,7 @@
             class="small"
             (click)="showPrevPage()"
             [disabled]="!page.number">
-            < {{ 'REGISTER.REPORT.page_prev' | translate }}
+            {{ 'REGISTER.REPORT.page_prev' | translate }}
         </button>
         <span class="paging-pages-number">
             {{ 'REGISTER.REPORT.page' | translate }}: <strong>{{ page.number + 1 }}</strong>
@@ -50,7 +50,7 @@
             class="small"
             (click)="showNextPage()"
             [disabled]="page.isLoading || isLastPage()">
-            {{ 'REGISTER.REPORT.page_next' | translate }} >
+            {{ 'REGISTER.REPORT.page_next' | translate }}
         </button>
     </div>
 </div>
@@ -108,7 +108,7 @@
                     {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
-            <td><button (click)="convertToLiveCase(caseReport)" type="button" name="button" class="btn btn-warning">Convert to Live case</button> </td>
+            <td><button (click)="convertToLiveCase(caseReport)" type="button" name="button" class="btn btn-warning">{{ 'REGISTER.REPORT.convert_to_live' | translate }}</button> </td>
         </tr>
     </tbody>
 </table>
@@ -117,7 +117,7 @@
 </div>
 
 <ngx-smart-modal #modalExportDataCollectors identifier="modalExportDataCollectors" [backdrop]="false">
-    <h4>Are you sure to convert this case report into live case ?</h4>
+    <h4>{{ 'REGISTER.REPORT.convert_to_live_message' | translate }}</h4>
     <br><br>
     <div class="actions">
         <button class="btn btn-default" (click)="modalExportDataCollectors.close()">Cancel</button>
