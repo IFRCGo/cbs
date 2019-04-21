@@ -118,7 +118,7 @@
             <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
             <input type="number" class="input-mini form-control" id="longitude"
                 required
-                [(ngModel)]="changeLocationCommand.location.latitude"
+                [(ngModel)]="changeLocationCommand.location.longitude"
                 name="longitude" #longitude="ngModel"/> 
             <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
                 || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
