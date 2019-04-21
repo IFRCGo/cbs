@@ -101,7 +101,7 @@
     <div class="form-group col-lg-13">
         <label>{{ 'REGISTER.location' | translate }}</label>
         <div *ngIf="dataCollector != null">
-            <agm-map [latitude]="dataCollector.location.latitude" [longitude]="dataCollector.location.longitude" (mapClick)="onLocationSelected($event)">
+            <agm-map [latitude]="changeLocationCommand.location.latitude" [longitude]="changeLocationCommand.location.longitude" (mapClick)="onLocationSelected($event)">
                 <agm-marker [latitude]="changeLocationCommand.location.latitude" [longitude]="changeLocationCommand.location.longitude"></agm-marker>
             </agm-map>
         </div>

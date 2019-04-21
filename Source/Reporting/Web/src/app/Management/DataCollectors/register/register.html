@@ -103,8 +103,8 @@
   <div class="form-group col-lg-13">
     <label>{{ 'REGISTER.location' | translate }}</label>
     <div>
-      <agm-map [latitude]="defaultLat" [longitude]="defaultLng" (mapClick)="onLocationSelected($event)">
-        <agm-marker [latitude]="selectedLat" [longitude]="selectedLng" *ngIf="locationSelected"></agm-marker>
+      <agm-map [latitude]="command.gpsLocation.latitude" [longitude]="command.gpsLocation.longitude" (mapClick)="onLocationSelected($event)">
+        <agm-marker [latitude]="command.gpsLocation.latitude" [longitude]="command.gpsLocation.longitude" *ngIf="locationSelected"></agm-marker>
       </agm-map>
     </div>
   </div>
@@ -115,16 +115,14 @@
       <input type="number" class="input-mini form-control" id="latitude"
         required
         [(ngModel)]="command.gpsLocation.latitude" 
-        name="latitude" #latitude="ngModel"
-        (change)="gpsLatitudeChange()" />
+        name="latitude" #latitude="ngModel"/>
     </div>
     <div class="form-group col-lg-5">
       <label for="longitude">{{ 'REGISTER.longitude' | translate }}</label>
       <input type="number" class="input-mini form-control" id="longitude" 
         required
         [(ngModel)]="command.gpsLocation.longitude" 
-        name="longitude" #longitude="ngModel"
-        (change)="gpsLongitudeChange()" />
+        name="longitude" #longitude="ngModel"/>
       <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
                       || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
 
