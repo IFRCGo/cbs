@@ -189,7 +189,7 @@ export class CaseReportListComponent implements OnInit {
             this.resetPage();
         });
     }
-
+    
     convertToTrainingCase(caseReport): void {
       this.selectedCase = caseReport;
       this.modal.getModal('modalExportDataCollectors').open();
