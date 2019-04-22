@@ -10,7 +10,10 @@
     margin: 8px 4px;
   }
 }
-
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
+}
 .alert-danger {
   padding: 10px;
   margin: 10px 0;
