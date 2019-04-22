@@ -161,7 +161,8 @@ export class TrainingCaseReportsComponent implements OnInit {
     }
 
     convertToLiveCase(caseReport): void {
-      this.selectedCase = caseReport;
+        this.convertToLiveReportCommand = new ConvertToLiveReport();
+        this.convertToLiveReportCommand.caseReportId = caseReport.id;
       this.modal.getModal('modalExportDataCollectors').open();
     }
 
