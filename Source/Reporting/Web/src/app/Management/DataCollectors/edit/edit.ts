@@ -48,7 +48,7 @@ export class Edit implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>,
+        private queryCoordinator: QueryCoordinator,
         private appInsightsService: AppInsightsService
     ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
