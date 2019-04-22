@@ -42,7 +42,8 @@
                 <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
-                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'REGISTER.related.status_inactive' | translate : 'REGISTER.related.status_active'}}</span>
+                <span class="training-status" *ngIf="user.inTraining" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{'REGISTER.related.status_inactive' | translate}}</span>
+                <span class="training-status" *ngIf="!user.inTraining" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{'REGISTER.related.status_active' | translate}}</span>
             </td>
             <td>
                 <div class="btn-group" dropdown placement="bottom right">
