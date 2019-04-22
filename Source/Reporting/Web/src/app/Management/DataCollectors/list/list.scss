@@ -10,7 +10,10 @@
     margin: 8px 4px;
   }
 }
-
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
+}
 .alert-danger {
   padding: 10px;
   margin: 10px 0;
@@ -31,3 +34,25 @@
 .training-status-off {
   background-color: orange;
 }
+tr:hover {
+  background-color: #f9f9f9;
+  color: #403E10;
+ 
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: line;
+ }
+
+ .icontrash{
+   color: red ;
+ }
+ .button1
+ {
+   background-color: #fff;
+   color : #000 ;
+   border: 1px solid white;
+   border-radius: 4px;
+   font-weight: bold;
+   font-size: 20px;
+ }
