@@ -163,7 +163,7 @@ export class TrainingCaseReportsComponent implements OnInit {
     convertToLiveCase(caseReport): void {
         this.convertToLiveReportCommand = new ConvertToLiveReport();
         this.convertToLiveReportCommand.caseReportId = caseReport.id;
-      this.modal.getModal('modalExportDataCollectors').open();
+        this.modal.getModal('modalExportDataCollectors').open();
     }
 
     convert() { 
