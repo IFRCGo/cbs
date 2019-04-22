@@ -21,6 +21,7 @@ namespace Web.Controllers
         [HttpGet("Totals/{from}/{to}", Name = "GetCaseReportTotals")]
         public ActionResult<CaseReportTotals> GetCaseReportTotals(DateTimeOffset from, DateTimeOffset to)
         {
+            to = SetCurrentTimeStamp(to);
             return _caseReportRepository.GetCaseReportTotals(from, to);
         }
 
@@ -33,7 +34,16 @@ namespace Web.Controllers
         [HttpGet("TotalsPerRegion/{from}/{to}", Name = "GetCaseReportTotalsPerRegion")]
         public ActionResult<CaseReportTotalsByRegion> GetCaseReportTotalsPerRegion(DateTimeOffset from, DateTimeOffset to)
         {
+            to = SetCurrentTimeStamp(to);
             return _caseReportRepository.GetCaseReportTotalsPerRegion(from, to);
+        }
+
+        private DateTimeOffset SetCurrentTimeStamp(DateTimeOffset dateTimeOffset)
+        {
+            var now = DateTimeOffset.Now;
+            if (dateTimeOffset.Date == now.Date) // If today is passed in, we need to ensure the timestamp is not 00:00 as that will exclude all reports that have come in after midnight. 
+                return now;
+            return dateTimeOffset;
         }
     }
 }

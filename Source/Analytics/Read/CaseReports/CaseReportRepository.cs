@@ -36,7 +36,7 @@ namespace Read.CaseReports
 
         public List<CaseReportTotalsPerHealthRisk> GetCaseReportTotalsPerHealthRisk(int numberOfWeeks)
         {
-            var today = DateTimeOffset.Now.Date;
+            var today = DateTimeOffset.Now;
             var days = numberOfWeeks * 7;
             var healthRisks = _mongoDBHandler.GetQueryable<HealthRisks.HealthRisk>().ToList();
             var totalsList = new List<CaseReportTotalsPerHealthRisk>();
@@ -48,7 +48,7 @@ namespace Read.CaseReports
                 for (int i = 0; i < numberOfWeeks; i++)
                 {
                     var endDate = today.AddDays(i * -7);
-                    var startDate = endDate.AddDays(-6);
+                    var startDate = endDate.AddDays(-6).Date;
                     var numberOfReportsThisWeek = healthRisk.ReportsPerDay.Where(x => x.Key >= startDate && x.Key <= endDate).Sum(x => x.Value);
 
                     total.ReportsPerWeek.Add(new ReportsPerWeek { Week = i, NumberOfReports = numberOfReportsThisWeek });
