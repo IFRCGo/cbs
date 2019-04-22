@@ -32,14 +32,12 @@
   background-color: orange;
 }
 tr:hover {
-  background-color: #d9d9d9;
+  background-color: #f9f9f9;
   color: #403E10;
-  font-weight: bold;
- 
  
   transition-delay: 0s;
-       transition-duration: 0.4s;
-       transition-property: all;
+  transition-duration: 0.4s;
+  transition-property: all;
   transition-timing-function: line;
  }
 
