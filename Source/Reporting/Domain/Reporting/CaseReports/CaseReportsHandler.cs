@@ -16,12 +16,12 @@ namespace Domain.Reporting.CaseReports
 
         public void Handle(ConvertToLiveReport cmd)
         {
-            
+            _aggregateRootRepoForCaseReporting.Get(cmd.CaseReportId.Value).ConvertToLiveReport();
         }
         
         public void Handle(ConvertToTrainingReport cmd)
         {
-
+            _aggregateRootRepoForCaseReporting.Get(cmd.CaseReportId.Value).ConvertToTrainingReport();
         }
         
     }
