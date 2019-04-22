@@ -1,8 +1,8 @@
 <div class="header">
-    <h2>Data collectors</h2>
+    <h2>{{ 'REGISTER.related.collector' | translate }}</h2>
     <a [routerLink]="['/datacollectors/register']" routerLinkActive="active">
         <button class="btn btn-primary">
-            Add Data Collector
+            {{ 'REGISTER.form_name' | translate }}
         </button>
     </a>
     <a>
@@ -15,11 +15,11 @@
 <table class="table" *ngIf="!error">
     <thead>
         <tr>
-            <th>Full Name</th>
-            <th>Phone Numbers</th>
-            <th>location</th>
-            <th>Last Active</th>
-            <th>Training Status</th>
+            <th>{{ 'REGISTER.full_name' | translate }}</th>
+            <th>{{ 'REGISTER.phone_number_list' | translate }}</th>
+            <th>{{ 'REGISTER.region' | translate }}</th>
+            <th>{{ 'REGISTER.related.last_report_name' | translate }}</th>
+            <th>{{ 'REGISTER.related.status' | translate }}</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
@@ -42,19 +42,27 @@
                 <span>{{user.lastActive | date:'dd.MM.yy    hh:mm'}}</span>
             </td>
             <td>
-                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'In Training' : 'Active'}}</span>
+                <span class="training-status" [ngClass]="user.inTraining ? 'training-status-off' : 'training-status-on'">{{user.inTraining ? 'REGISTER.related.status_inactive' | translate : 'REGISTER.related.status_active'}}</span>
             </td>
             <td>
-                    <div class="btn-group" dropdown placement="bottom right">
-                            <button dropdownToggle type="button" class="button1">
-                              ...
-                            </button>
-                            <ul *dropdownMenu class="dropdown-menu" role="menu">
-                              <li role="menuitem"><a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active"><i class="fa fa-pencil" aria-hidden="true">&nbsp;Edit</i></a>
-                              </li>
-                              <li role="menuitem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash icontrash" aria-hidden="true">&nbsp;<delete-user [user]=user></delete-user></i></li>
-                            </ul>
-                          </div>
+                <div class="btn-group" dropdown placement="bottom right">
+                    <button dropdownToggle type="button" class="button1">
+                        ...
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem">
+                            <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">
+                                <i class="fa fa-pencil" aria-hidden="true">&nbsp;Edit</i>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-trash icontrash" aria-hidden="true">
+                                &nbsp;<delete-user [user]=user></delete-user>
+                            </i
+                        ></li>
+                    </ul>
+                </div>
             </td>
         </tr>
     </tbody>

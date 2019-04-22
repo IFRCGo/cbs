@@ -6,6 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { getJson } from "../../utils/request";
+import { BASE_URL } from "../NationalSocietyOverview";
 
 class CaseReportByHealthRiskTable extends Component {
     constructor(props) {
@@ -19,15 +20,14 @@ class CaseReportByHealthRiskTable extends Component {
     }
 
     fetchData() {
-        this.url = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/HealthRisksLast4Weeks';
-        //this.url = `${BASE_URL}KPI/${formatDate(from)}/${formatDate(to)}/`;
+        this.url = `${BASE_URL}CaseReport/TotalsPerHealthRisk/4/`;
 
         this.setState({ isLoading: true });
 
         getJson(this.url)
             .then(json =>
                 this.setState({
-                    healthRisks: json.healthRisks,
+                    healthRisks: json,
                     isLoading: false,
                     isError: false
                 })
@@ -63,8 +63,8 @@ class CaseReportByHealthRiskTable extends Component {
                           <TableCell component="th" scope="row">
                             {healthRisk.name}
                           </TableCell>
-                          {healthRisk.timeSeries.map(time => (
-                              <TableCell key={time.name} align="right">{time.numberOfCaseReports}</TableCell>
+                          {healthRisk.reportsPerWeek.map(reports => (
+                              <TableCell key={reports.week} align="right">{reports.numberOfReports}</TableCell>
                           ))}
                         </TableRow>
                       ))}

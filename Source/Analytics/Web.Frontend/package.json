@@ -33,7 +33,8 @@
         "redux": "^4.0.1",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.3.0",
-        "webpack-bundle-analyzer": "^3.3.2"
+        "webpack-bundle-analyzer": "^3.3.2",
+        "@microsoft/applicationinsights-web": "^2.0.0-rc3"
     },
     "devDependencies": {
         "@babel/cli": "^7.2.3",

@@ -9,20 +9,20 @@
         </svg>
     </figure>
     <nav>
-        <a href="/admin/">Project administration</a>
-        <a href="/reporting/datacollectors/">User management</a>
-        <a href="/reporting/case-reports/">Volunteer reporting</a>
-        <a href="/alerts/">Alerts</a>
-        <a href="/analytics/">Analytics</a>
+        <a href="/admin/">{{ 'REGISTER.NAVBAR.link_1' | translate }}</a>
+        <a href="/reporting/datacollectors/">{{ 'REGISTER.NAVBAR.link_2' | translate }}</a>
+        <a href="/reporting/case-reports/">{{ 'REGISTER.NAVBAR.link_3' | translate }}</a>
+        <a href="/alerts/">{{ 'REGISTER.NAVBAR.link_4' | translate }}</a>
+        <a href="/analytics/">{{ 'REGISTER.NAVBAR.link_5' | translate }}</a>
     </nav>
 
     <div class="login-status">
         <div class="logged-in">
             <p>
-                Logged in as:
+                {{ 'REGISTER.NAVBAR.link_6' | translate }}:
             </p>
             <p>{{name}}</p>
-            <button (click)="logout()">Logout</button>
+            <button (click)="logout()">{{ 'REGISTER.NAVBAR.sub_link' | translate }}</button>
         </div>
     </div>
 </header>

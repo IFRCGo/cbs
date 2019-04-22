@@ -1,10 +1,15 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QueryCoordinator } from '@dolittle/queries';
+import { CommandCoordinator } from '@dolittle/commands';
 import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
 import { QuickFilter } from './filtering/filter.pipe';
 import { AllCaseReportsForListing } from './AllCaseReportsForListing';
 import { CaseReportForListing } from './CaseReportForListing';
+
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ConvertToTrainingReport } from '../CaseReports/ConvertToTrainingReport';
+import { ToastrService } from 'ngx-toastr';
 
 //import * as fromServices from '../../services';
 //import * as fromModels from '../../shared/models';
@@ -49,10 +54,14 @@ export class CaseReportListComponent implements OnInit {
         sizes: [10, 20, 50, 100, 200, 500, 1000]
     };
 
+    convertToTrainingReportCommand: ConvertToTrainingReport;
     constructor(
+        private toastr: ToastrService,
         private queryCoordinator: QueryCoordinator,
+        private commandCoordinator: CommandCoordinator,
         private route: ActivatedRoute,
         private router: Router,
+        private modal: NgxSmartModalService
         //private logService: fromServices.LogService
     ) { }
 
@@ -84,7 +93,7 @@ export class CaseReportListComponent implements OnInit {
         let dateTo = new Date(dateto) ;
         this.listedReports = this.allReports;
         let newReports = [] ;
-        
+
         this.listedReports.forEach( listedReport => {
             let date = listedReport.timestamp;
             if (date.getTime() >= dateFrom.getTime() && date.getTime() <= dateTo.getTime()) newReports.push(listedReport);
@@ -183,5 +192,37 @@ export class CaseReportListComponent implements OnInit {
 
             this.resetPage();
         });
+    }
+
+    convertToTrainingCase(caseReport: CaseReportForListing): void {
+        this.convertToTrainingReportCommand = new ConvertToTrainingReport();
+        this.convertToTrainingReportCommand.caseReportId = caseReport.id;
+        this.modal.getModal('modalExportDataCollectors').open();
+    }
+
+    convert() {
+        console.log(this.convertToTrainingReportCommand);
+        this.commandCoordinator.handle(this.convertToTrainingReportCommand)
+            .then(response => {
+                if (response.success)  {
+                    this.toastr.success('Successfully converted case report');
+                } else {
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error('Could not convert case report because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error('Could not convert case report:\n' + errors);
+                    }
+                }
+            })
+            .catch(response => {
+                if (!response.passedSecurity) { // Security error
+                    this.toastr.error('Could not convert case report because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    this.toastr.error('Could not convert case report:\n' + errors);
+                }
+            });
+        this.modal.getModal('modalExportDataCollectors').close();
     }
 }

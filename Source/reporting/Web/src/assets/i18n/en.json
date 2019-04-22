@@ -1,0 +1,116 @@
+{
+    "REGISTER" : {
+        "button": "Back",
+
+        "form_name": "Add Data Collector",
+        "full_name": "Full Name",
+        "full_name_error": "Full Name is required.",
+        "full_name_error_1": "Full Name must be at least 4 characters long.",
+
+        "display_name": "Display Name",
+        "display_name_error": "Display Name is required.",
+        "display_name_error_1": "Display Name must be at least 4 characters long.",
+
+        "year_of_birth": "Year of Birth",
+        "year_of_birth_error": "Year Of Birth is required.",
+
+        "sex": "Sex",
+        "sex_error": "Sex is required.",
+
+        "preferred_lang": "Preferred Language",
+        "preferred_lang_error": "Preferred Language is required.",
+
+        "location": "Location",
+
+        "latitude": "Latitude",
+        "latitude_error": "Location Latitude is required",
+
+        "longitude": "Longitude",
+        "longitude_error": "Location Longitude is required",
+
+        "region": "Region",
+        "region_error": "Region is required.",
+        
+        "district": "District",
+        "district_error": "District is required.",
+
+        "village": "Village",
+        "village_error": "Village is required.",
+
+        "phone_number": "Phone numbers (comma seperated)",
+        "phone_number_list": "Phone number",
+        "phone_number_error": "Phonenumber is required.",
+
+        "submit_name": "Submit",
+        
+        "related": {
+            "date_register": "Registered date",
+            "last_report_name": "Last Active",
+            "last_report": "Last report received at",
+            "date_range": "Date Range",
+ 
+            "collector": "Data collectors",
+            "status": "Training Status",
+            "status_error": "Status is required",
+            "status_active": "Active",
+            "status_inactive": "In Training",
+            "action": "Actions",
+
+            "export_title": "Export Data Collectors",
+            "export_case_title": "Export case reports",
+            "export_format": "Format",
+            "export_type_0": "Excel",
+            "export_type_1": "CSV",
+            "export_button_0": "Export",
+            "export_button_1": "Cancel",
+
+
+            "edit_title": "Edit Data Collector",
+            "edit_button": "Edit",
+
+            "verifier": "Data verifier",
+
+            "delete": "Delete user",
+            "delete_text": "Are you sure you want to delete"
+
+        },
+    
+    "REPORT": {
+         "report_name": "Case Reports",
+         "report_title": "Training Case Reports",
+         
+         "filter": "Quick Filters",
+         
+         "page": "Page",
+         "page_size": "Page size",
+         "page_prev": "previous",
+         "page_next": "next",
+
+         "case_success": "Success",
+         "case_error": "Error",
+         "case_uknown": "UnKnown sender",
+         "case_origin": "Origin",
+        
+         "convert_to_training": "Convert to Training Case",
+         "convert_to_live": "Convert to Live Case",
+         "convert_to_training_message": "Are you sure to convert this case report into a training case?",
+         "convert_to_live_message": "Are you sure to convert this case report into a live case?",
+
+         "parse_error": "Parsing errors",
+
+         "loader": "Loading data..."
+
+    },
+
+    "NAVBAR": {
+         "link_1": "Project administration",
+         "link_2": "User management",
+         "link_3": "Volunteer reporting",
+         "link_4": "Alerts",
+         "link_5": "Analytics",
+         "link_6": "Logged in as",
+
+         "sub_link": "Logout"
+        }
+    }
+}

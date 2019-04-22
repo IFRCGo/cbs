@@ -77,5 +77,13 @@ namespace Domain.Reporting.CaseReports
         {
             Apply(new CaseReportIdentified(dataCollectorId));
         }
+        public void ConvertToTrainingReport()
+        {
+            Apply(new LiveReportConvertedToTraining());
+        }
+        public void ConvertToLiveReport()
+        {
+            Apply(new TrainingReportConvertedToLive());
+        }
     }
 }

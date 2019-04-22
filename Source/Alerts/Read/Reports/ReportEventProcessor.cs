@@ -10,15 +10,12 @@ namespace Read.Reports
     public partial class ReportEventProcessor : ICanProcessEvents
     {
         private readonly IReadModelRepositoryFor<Report> _repositoryForCase;
-        private readonly IInstancesOf<IReportNotificationService> _services;
 
         public ReportEventProcessor(
-            IReadModelRepositoryFor<Report> repositoryForCase,
-            IInstancesOf<IReportNotificationService> services
+            IReadModelRepositoryFor<Report> repositoryForCase
         )
         {
             _repositoryForCase = repositoryForCase;
-            _services = services;
         }
         
         [EventProcessor("d6fd94bf-8d64-4403-bc51-0601e9b80dd6")]
@@ -37,9 +34,7 @@ namespace Read.Reports
                 Longitude = @event.Longitude,
                 Timestamp = @event.Timestamp
             };
-
             _repositoryForCase.Insert(item);
-            _services.ForEach(s => s.Changed(item));
         }
     }
 }

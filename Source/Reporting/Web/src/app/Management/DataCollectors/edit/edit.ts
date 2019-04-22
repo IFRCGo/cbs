@@ -17,12 +17,15 @@ import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 import { BeginTraining } from '../Training/BeginTraining';
 import { EndTraining } from '../Training/EndTraining';
+import { AppInsightsService } from '../../../services/app-insights-service';
 
 @Component({
     templateUrl: './edit.html',
     styleUrls: ['./edit.scss']
 })
 export class Edit implements OnInit {
+    // THIS REALLY NEEDS A SIMPLIFICATION!
+    //TODO: In backend, have one CRUDy ChangeDataCollectorInformation command, or something, that does all this
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
@@ -45,7 +48,8 @@ export class Edit implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>
+        private queryCoordinator: QueryCoordinator,
+        private appInsightsService: AppInsightsService
     ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
@@ -53,6 +57,8 @@ export class Edit implements OnInit {
         this.route.params.subscribe(params => {
             this.getDataCollector();
         });
+
+        this.appInsightsService.trackPageView('Edit Data Collector');
     }
 
     getDataCollector(): void {
@@ -100,6 +106,15 @@ export class Edit implements OnInit {
         this.handleRemovePhoneNumbers(queue);
         this.handleTraining(queue);
         this.handleQueue(queue);
+    }
+    resetForm() {
+        console.log('reset')
+        this.inTraining = this.dataCollector.inTraining;
+        this.initChangeBaseInformation();
+        this.initChangeLocation();
+        this.initChangePreferredLanguage();
+        this.initPhoneNumbers();
+        this.initVillage();
     }
 
     private handleQueue(queue) {

@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { QueryCoordinator } from '@dolittle/queries';
 import { AllProjects } from '../AllProjects';
 import { Project } from '../Project';
+import { AppInsightsService } from '../../services/app-insights-service';
 
 @Component({
     selector: 'cbs-project-list',
@@ -13,7 +14,8 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
 
     constructor(
-        private queryCoordinator: QueryCoordinator
+        private queryCoordinator: QueryCoordinator,
+        private appInsightsService: AppInsightsService
     ) { 
 
         this.queryCoordinator = new QueryCoordinator();
@@ -21,6 +23,7 @@ export class ProjectListComponent implements OnInit {
 
     ngOnInit() {
         this.allProjects();
+        this.appInsightsService.trackPageView('Projects');
     }
 
     allProjects = () => {

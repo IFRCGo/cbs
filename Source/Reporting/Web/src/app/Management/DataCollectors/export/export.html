@@ -1,25 +1,25 @@
 <button class="btn btn-primary" (click)="open()">
-    Export Data Collectors
+    {{ 'REGISTER.related.export_title' | translate }}
 </button>
 <ngx-smart-modal #modalExportDataCollectors identifier="modalExportDataCollectors" [backdrop]="false">
-    <h2>Export Data Collectors</h2>
+    <h2>{{ 'REGISTER.related.export_title' | translate }}</h2>
     <!--<form ngNoForm *ngIf="modalExportDataCollectors.hasData()" [action]="exportBackendUrl" method="get">!-->
         <form ngNoForm [action]="exportBackendUrl" method="get">
         <table>
             <tr>
-                <td>Format:</td>
+                <td>{{ 'REGISTER.related.export_format' | translate }}</td>
                 <td>
                     <input type="radio" id="formatExcel" name="format" value="excel" checked>
-                    <label for="formatExcel">Excel</label>
+                    <label for="formatExcel">{{ 'REGISTER.related.export_type_0' | translate }}</label>
 
                     <input type="radio" id="formatCSV" name="format" value="csv">
-                    <label for="formatCSV">CSV</label>
+                    <label for="formatCSV">{{ 'REGISTER.related.export_type_1' | translate }}</label>
                 </td>
             </tr>
         </table>
         <div class="actions">
-            <button (click)="modalExportDataCollectors.close()">Cancel</button>
-            <button type="submit">Export</button>
+            <button (click)="modalExportDataCollectors.close()">{{ 'REGISTER.related.export_button_1' | translate }}</button>
+            <button type="submit">{{ 'REGISTER.related.export_button_0' | translate }}</button>
         </div>
     </form>
 </ngx-smart-modal>
