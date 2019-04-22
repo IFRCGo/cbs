@@ -53,7 +53,7 @@
             {{ 'REGISTER.REPORT.page_next' | translate }} >
         </button>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -77,6 +77,7 @@
                   (click)="toggleSortColum(column)"
                   [ngClass]="{'sortable': column.isSortable}"
             ></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody *ngIf="!page.isLoading">
@@ -120,9 +121,19 @@
                     {{caseReport.message}} {{ 'REGISTER.REPORT.parse_error' | translate }}: {{caseReport.parsingErrorMessage}}
                 </td>
             </ng-container>
+            <td><button (click)="convertToTrainingCase(caseReport)" type="button" name="button" class="btn btn-warning">{{ 'REGISTER.REPORT.convert_to_training' | translate }}</button> </td>
         </tr>
     </tbody>
 </table>
 <div *ngIf="page.isLoading">
     <p class="text-center">{{ 'REGISTER.REPORT.loader' | translate }}</p>
 </div>
+
+<ngx-smart-modal #modalExportDataCollectors identifier="modalExportDataCollectors" [backdrop]="false">
+    <h4>{{ 'REGISTER.REPORT.convert_to_training_message' | translate }}</h4>
+    <br><br>
+    <div class="actions">
+        <button class="btn btn-default" (click)="modalExportDataCollectors.close()">Cancel</button>
+        <button (click)="convert()"  class="btn btn-primary" type="submit">Convert</button>
+    </div>
+</ngx-smart-modal>

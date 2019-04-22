@@ -90,7 +90,12 @@
          "case_error": "Error",
          "case_uknown": "UnKnown sender",
          "case_origin": "Origin",
-         
+        
+         "convert_to_training": "Convert to Training Case",
+         "convert_to_live": "Convert to Live Case",
+         "convert_to_training_message": "Are you sure to convert this case report into a training case?",
+         "convert_to_live_message": "Are you sure to convert this case report into a live case?",
+
          "parse_error": "Parsing errors",
 
          "loader": "Loading data..."

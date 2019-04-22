@@ -1,11 +1,14 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Column, SortableColumn, CaseReportColumns } from '../sort/columns';
 import {QueryCoordinator} from '@dolittle/queries';
+import {CommandCoordinator} from '@dolittle/commands';
 import { QuickFilter } from '../filtering/filter.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllTrainingCaseReportsForListing } from '../../TrainingCaseReportsForListing/AllTrainingCaseReportsForListing';
 import { TrainingCaseReportForListing } from '../../TrainingCaseReportsForListing/TrainingCaseReportForListing';
-
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ConvertToLiveReport } from '../../CaseReports/ConvertToLiveReport';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'cbs-training-case-reports',
@@ -14,7 +17,8 @@ import { TrainingCaseReportForListing } from '../../TrainingCaseReportsForListin
 })
 export class TrainingCaseReportsComponent implements OnInit {
 
-    listedReports: Array<TrainingCaseReportForListing> = [];//TODO: Should be another, TrainingCaseReports, read model
+    convertToLiveReportCommand: ConvertToLiveReport;
+    listedReports: Array<TrainingCaseReportForListing> = []; //TODO: Should be another, TrainingCaseReports, read model
 
     allFilters: Array<QuickFilter> = QuickFilter.FiltersWithoutUnknownSender;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -31,10 +35,15 @@ export class TrainingCaseReportsComponent implements OnInit {
         sizes: [10, 20, 50, 100, 200, 500, 1000]
     };
 
+    selectedCase;
+
     constructor(
         private queryCoordinator: QueryCoordinator,
+        private commandCoordinator: CommandCoordinator,
+        private toastr: ToastrService,
         private route: ActivatedRoute,
         private router: Router,
+        private modal: NgxSmartModalService
         //private logService: fromServices.LogService
     ) { }
 
@@ -149,5 +158,37 @@ export class TrainingCaseReportsComponent implements OnInit {
 
             this.resetPage();
         });
+    }
+
+    convertToLiveCase(caseReport): void {
+        this.convertToLiveReportCommand = new ConvertToLiveReport();
+        this.convertToLiveReportCommand.caseReportId = caseReport.id;
+      this.modal.getModal('modalExportDataCollectors').open();
+    }
+
+    convert() { 
+        console.log(this.convertToLiveReportCommand);
+        this.commandCoordinator.handle(this.convertToLiveReportCommand)
+            .then(response => {
+                if (response.success)  {
+                    this.toastr.success('Successfully converted case report');
+                } else {
+                    if (!response.passedSecurity) { // Security error
+                        this.toastr.error('Could not convert case report because of security issues');
+                    } else {
+                        const errors = response.allValidationMessages.join('\n');
+                        this.toastr.error('Could not convert case report:\n' + errors);
+                    }
+                }
+            })
+            .catch(response => {
+                if (!response.passedSecurity) { // Security error
+                    this.toastr.error('Could not convert case report because of security issues');
+                } else {
+                    const errors = response.allValidationMessages.join('\n');
+                    this.toastr.error('Could not convert case report:\n' + errors);
+                }
+            });
+        this.modal.getModal('modalExportDataCollectors').close();
     }
 }

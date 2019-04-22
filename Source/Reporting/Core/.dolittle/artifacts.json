@@ -194,7 +194,16 @@
     "queries": {}
   },
   "2b37f877-532e-4e35-ba76-1977d56739ac": {
-    "commands": {},
+    "commands": {
+      "5cb02e26-a5fb-4c71-ab0a-97ffa68d653d": {
+        "generation": 1,
+        "type": "Domain.Reporting.CaseReports.ConvertToLiveReport, Domain"
+      },
+      "d1322c24-1d73-4d21-ac08-62b36e5e0307": {
+        "generation": 1,
+        "type": "Domain.Reporting.CaseReports.ConvertToTrainingReport, Domain"
+      }
+    },
     "events": {
       "525ec773-014e-44dd-a215-20af627bfde6": {
         "generation": 1,
@@ -215,6 +224,14 @@
       "02feb265-8444-4d97-9b18-a066172c6d47": {
         "generation": 1,
         "type": "Events.Reporting.CaseReports.InvalidReportReceived, Events"
+      },
+      "18d13c55-fc67-4439-ad86-58231453a9e1": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.LiveReportConvertedToTraining, Events"
+      },
+      "7302a848-e262-4424-96b1-60d1077fae58": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.TrainingReportConvertedToLive, Events"
       }
     },
     "eventSources": {

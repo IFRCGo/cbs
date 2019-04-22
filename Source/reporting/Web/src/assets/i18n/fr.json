@@ -90,7 +90,12 @@
          "case_error": "Echec",
          "case_uknown": "Envoyeur inconnu",
          "case_origin": "Envoyeur",
-         
+
+         "convert_to_training": "Convertir en cas de formation",
+         "convert_to_live": "Convertir en cas de formation",
+         "convert_to_training_message": "Êtes-vous certain de convertir ce rapport de cas en dossier de formation?",
+         "convert_to_live_message": "Êtes-vous sûr de convertir ce rapport de cas en cas réel?",
+
          "parse_error": "Erreurs constatées",
 
          "loader": "Chargement des données..."
