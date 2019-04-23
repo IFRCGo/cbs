@@ -136,5 +136,10 @@ namespace Read.Reporting.TrainingCaseReportsForListing
             };
             _caseReports.Insert(caseReport);
         }
+        [EventProcessor("717251e0-b982-4ca8-a129-44f97e661796")]
+        public void Process(TrainingReportConvertedToLive @event, EventSourceId caseReportId) 
+        {
+            _caseReports.Delete(_caseReports.GetById(caseReportId.Value));
+        }
     }
 }

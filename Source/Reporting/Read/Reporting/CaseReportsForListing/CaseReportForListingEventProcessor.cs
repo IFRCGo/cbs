@@ -143,5 +143,11 @@ namespace Read.Reporting.CaseReportsForListing
 
             _caseReports.Delete(caseReport);
         }
+
+        [EventProcessor("e8e7db10-0262-4b1a-9fe1-01b321aa8f51")]
+        public void Process(LiveReportConvertedToTraining @event, EventSourceId caseReportId) 
+        {
+            _caseReports.Delete(_caseReports.GetById(caseReportId.Value));
+        }
     }
 }

@@ -68,5 +68,10 @@ namespace Read.Reporting.CaseReports
             var caseReport = _caseReportsFromUnknownDataCollectors.GetById(caseReportId.Value);
             _caseReportsFromUnknownDataCollectors.Delete(caseReport);            
         }
+        [EventProcessor("4f889c99-eac3-4bf9-b161-5315eb8c6056")]
+        public void Process(LiveReportConvertedToTraining @event, EventSourceId caseReportId) 
+        {
+            _caseReports.Delete(_caseReports.GetById(caseReportId.Value));
+        }
     }
 }
