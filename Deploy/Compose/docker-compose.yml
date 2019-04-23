@@ -18,6 +18,7 @@ services:
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
     logging:
@@ -38,6 +39,7 @@ services:
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
     logging:
@@ -58,6 +60,7 @@ services:
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
     #logging:
@@ -79,6 +82,7 @@ services:
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - SMSEAGLE_APIKEY_TENANT_PATH=/CBS/Core/apikeyToTenant.json
       - OPENID_AUTHORITY
       - OPENID_CLIENT
@@ -100,6 +104,7 @@ services:
       - "cbs-cookie-volume:/CBS/Core/.cookies/"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
     logging:
