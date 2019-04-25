@@ -111,6 +111,7 @@ export class AddEditHealthRiskComponent implements OnInit {
         this.modifyCmd.id = this.risk.id;
         this.modifyCmd.caseDefinition = this.risk.caseDefinition;
         this.modifyCmd.name = this.risk.name;
+        this.modifyCmd.readableId = this.risk.healthRiskNumber;
 
         console.log(this.modifyCmd);
 

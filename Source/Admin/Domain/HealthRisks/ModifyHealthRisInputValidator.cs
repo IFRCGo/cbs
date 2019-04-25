@@ -19,8 +19,8 @@ namespace Domain.HealthRisks
             RuleFor(_ => _.ReadableId)
                 .NotEmpty().WithMessage("Health risk readable id is required");
 
-            RuleFor(_ => _.KeyMessage)
-                .NotEmpty().WithMessage("Health risk key message is required");
+            // RuleFor(_ => _.KeyMessage)
+            //     .NotEmpty().WithMessage("Health risk key message is required");
             RuleFor(_ => _.CaseDefinition)
                 .NotEmpty().WithMessage("Health risk case definition is required");
         }
