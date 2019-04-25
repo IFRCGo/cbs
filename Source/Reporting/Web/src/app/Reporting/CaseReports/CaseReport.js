@@ -1,6 +1,6 @@
 ﻿/*---------------------------------------------------------------------------------------------
  *  This file is an automatically generated ReadModel Proxy
- *
+ *  
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
@@ -14,7 +14,6 @@ export class CaseReport extends ReadModel
         };
         this.id = '00000000-0000-0000-0000-000000000000';
         this.message = '';
-        this.origin = '';
         this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
         this.healthRiskId = '00000000-0000-0000-0000-000000000000';
         this.numberOfFemalesAged5AndOlder = 0;

@@ -10,17 +10,20 @@ using Dolittle.Events;
 namespace Events.Admin.Reporting.HealthRisks
 {
     [Artifact("ab9f13e6-f68b-4683-96fe-13434fd34516")]
-    public class HealthRiskModified : IEvent
+    public class HealthRiskModified : IEvent 
     {
         public Guid Id { get; }
         public string Name { get; }
-        public int ReadableId { get; }
+        public string CaseDefinition { get; }
+        public int HealthRiskNumber { get; }
 
-        public HealthRiskModified(Guid id, string name, int readableId) 
+
+        public HealthRiskModified (Guid id, string name, string caseDefinition, int healthRiskNumber) 
         {
             Id = id;
             Name = name;
-            ReadableId = readableId;               
+            CaseDefinition = caseDefinition;
+            HealthRiskNumber = healthRiskNumber;
         }
     }
 }

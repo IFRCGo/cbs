@@ -22,6 +22,15 @@ namespace Domain.HealthRisks
         {
             Apply(new HealthRiskCreated(EventSourceId, name, caseDefinition, healthRiskNumber));
         }
+
+        public void ModifyHealthRisk(
+            HealthRiskName name,
+            CaseDefinition caseDefinition,
+            HealthRiskNumber healthRiskNumber
+        )
+        {
+            Apply(new HealthRiskModified(EventSourceId, name, caseDefinition, healthRiskNumber));
+        }
         public void SetName(string name)
         {
             Apply(new HealthRiskNameSet(name));

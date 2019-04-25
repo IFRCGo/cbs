@@ -12,7 +12,7 @@
             <div *ngIf="health_risk_number.invalid && (health_risk_number.dirty || health_risk_number.touched)" 
                 class="alert alert-warning">
 
-                <div *ngIf="readable_id.errors?.required">
+                <div *ngIf="health_risk_number.errors?.required">
                     Health risk number is required and must be a number.
                 </div>
             </div>

@@ -23,6 +23,12 @@ namespace Domain.HealthRisks
             root.CreateHealthRisk(cmd.Name, cmd.CaseDefinition, cmd.Number);
         }
 
+        public void Handle(ModifyHealthRisk cmd)
+        {
+            var root = _aggregate.Get(cmd.Id);
+            root.ModifyHealthRisk(cmd.Name, cmd.CaseDefinition, cmd.ReadableId);
+        }
+
         public void Handle(AddThresholdToHealthRisk cmd)
         {
             var root = _aggregate.Get(cmd.HealthRiskId);
