@@ -38,9 +38,9 @@ RUN yarn build
 
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY --from=build-web /CBS/Source/NotificationGateway/Web/dist /CBS/Core/wwwroot
 COPY ./Source/NotificationGateway/bounded-context.json /CBS/bounded-context.json
 COPY --from=build-core /CBS/Source/NotificationGateway/Core/out /CBS/Core/
 COPY --from=build-core /CBS/Source/NotificationGateway/Core/.dolittle /CBS/Core/.dolittle
-COPY --from=build-web /CBS/Source/NotificationGateway/Web/dist /CBS/Core/wwwroot
 WORKDIR /CBS/Core
 ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]
