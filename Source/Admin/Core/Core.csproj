@@ -57,6 +57,8 @@
         <PackageReference Include="Dolittle.SDK" Version="3.*" />
 
         <PackageReference Include="Dolittle.Build" Version="3.*" />
+        <PackageReference Include="Dolittle.SDK.Build" Version="3.*" />
+        <PackageReference Include="Dolittle.Build.MSBuild" Version="3.*" />
 
         <!-- Dolittle extensions -->
         <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="3.*" />
