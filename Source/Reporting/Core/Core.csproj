@@ -57,15 +57,15 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0-beta3"/>
 
-    <PackageReference Include="Dolittle.AspNetCore" Version="2.*" />
-    <PackageReference Include="Dolittle.SDK" Version="2.*" />
+    <PackageReference Include="Dolittle.AspNetCore" Version="3.*" />
+    <PackageReference Include="Dolittle.SDK" Version="3.*" />
 
-    <PackageReference Include="Dolittle.Build" Version="2.*" />   
+    <PackageReference Include="Dolittle.Build" Version="3.*" />   
 
     <!-- Dolittle extensions -->
-    <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.*" />
-    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.*" />
-    <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="2.*" />   
+    <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="3.*" />
+    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="3.*" />
+    <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="3.*" />   
 
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.0.0" />
