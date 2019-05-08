@@ -34,9 +34,8 @@ namespace Read.Reporting.HealthRisks
         public void Process(HealthRiskModified @event)
         {
             var healthRisk = _healthRisks.GetById(@event.Id);
-            healthRisk.ReadableId = @event.ReadableId;
+            healthRisk.ReadableId = @event.HealthRiskNumber;
             healthRisk.Name = @event.Name;
-
             _healthRisks.Update(healthRisk);
         }
 

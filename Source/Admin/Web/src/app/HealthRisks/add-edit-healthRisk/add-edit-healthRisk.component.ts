@@ -77,8 +77,8 @@ export class AddEditHealthRiskComponent implements OnInit {
         this.createCmd.id = this.risk.id;
         this.createCmd.caseDefinition = this.risk.caseDefinition;
         this.createCmd.name = this.risk.name;
+        this.createCmd.number = this.risk.healthRiskNumber;
 
-        console.log(this.createCmd);
         this.commandCoordinator.handle(this.createCmd)
             .then(response => {
                 console.log(response);
@@ -111,6 +111,7 @@ export class AddEditHealthRiskComponent implements OnInit {
         this.modifyCmd.id = this.risk.id;
         this.modifyCmd.caseDefinition = this.risk.caseDefinition;
         this.modifyCmd.name = this.risk.name;
+        this.modifyCmd.readableId = this.risk.healthRiskNumber;
 
         console.log(this.modifyCmd);
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 
 namespace Core
@@ -16,7 +18,7 @@ namespace Core
         static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
-                .UseApplicationInsights()                
+                .ConfigureApplicationInsightsLogging()          
                 .ConfigureServices(services => services.AddAutofac())
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>();

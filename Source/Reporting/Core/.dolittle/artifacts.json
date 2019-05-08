@@ -250,11 +250,11 @@
   "de853448-04f0-4437-abef-927eb41b3fb5": {
     "commands": {},
     "events": {
-      "8c120f9a-1f56-43b4-a12a-2bfa5699bc21": {
+      "f8841be6-6da1-4571-b737-f72b283b3760": {
         "generation": 1,
         "type": "Events.Admin.Reporting.Projects.ProjectCreated, Events.Admin"
       },
-      "753c49a2-8b97-4823-8e76-c5fe80a432db": {
+      "60b0104a-9ec8-4447-9dd0-0867fcec1a35": {
         "generation": 1,
         "type": "Events.Admin.Reporting.Projects.ProjectUpdated, Events.Admin"
       }
@@ -271,15 +271,15 @@
   "489931bc-a929-4d24-b985-881f705f276b": {
     "commands": {},
     "events": {
-      "43c5c245-40ff-426d-a6f7-226427c142bb": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
         "generation": 1,
         "type": "Events.Admin.Reporting.HealthRisks.HealthRiskCreated, Events.Admin"
       },
-      "52a974ab-383c-4750-b788-528f43b7ebf8": {
+      "787d61d1-79bb-473a-9329-171478eff750": {
         "generation": 1,
         "type": "Events.Admin.Reporting.HealthRisks.HealthRiskDeleted, Events.Admin"
       },
-      "8ba78d0d-1944-463e-bcad-11a037adf743": {
+      "ab9f13e6-f68b-4683-96fe-13434fd34516": {
         "generation": 1,
         "type": "Events.Admin.Reporting.HealthRisks.HealthRiskModified, Events.Admin"
       }
@@ -321,7 +321,7 @@
   "94e7e50b-0ae4-486a-b59d-5958c153d7cd": {
     "commands": {},
     "events": {
-      "573d4609-fa75-4c2f-8d7c-f7cf7da3de53": {
+      "191714a9-1c30-4509-8fdc-7a84a0544fc1": {
         "generation": 1,
         "type": "Events.NotificationGateway.Reporting.SMS.TextMessageReceived, Events.NotificationGateway"
       }
