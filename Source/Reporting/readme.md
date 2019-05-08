@@ -29,7 +29,7 @@ If you want to persist the data created, add a volume to the container:
 
 ### Step 2: Building and running the .NET Core backend on your local machine
 
-(Active path: `cbs\source\VolunteerReporting`)
+(Active path: `cbs\source\Reporting`)
 
 Download nuget dependencies
 > `dotnet restore`
@@ -38,18 +38,18 @@ Build
 > `dotnet build`   
 
 Open the Web folder
-> `cd Web` 
+> `cd Core` 
 
-(Active path: `cbs\source\VolunteerReporting\Web`) 
+(Active path: `cbs\source\Reporting\Core`) 
 
 Run locally
 > `dotnet run`
 
-Open browser at address http://localhost:5001/swagger to access Swagger.
+Open browser at address http://localhost:5003/swagger/ to access Swagger.
 
 ### Step 3: Building and running the Node.js/Angular.js frontend on your local machine
 
-(Active path: `cbs/Source/VolunteerReporting/Web.Angular`)
+(Active path: `cbs/Source/Reporting/Web`)
 
 Restore dependencies
 > `npm install`
@@ -57,11 +57,11 @@ Restore dependencies
 Build and host locally
 > `npm start`
 
-Open http://localhost:4200/ in your browser to access the UI. 
+Open http://localhost:4202/ in your browser to access the UI. 
 
 ## Populating the database with test data
 
-To populate the database with test data, go to http://localhost:5003/swagger and use the POST /api/Dolittle/Commands API. This will retrieve test data from the /Domain/Tests\Data folder and add it to the database. 
+To populate the database with test data, go to http://localhost:5003/swagger and use the POST /api/Dolittle/Commands API with the "Try it out"-button. This will retrieve test data from the /Domain/Tests/Data folder and add it to the database. 
 
 Create DataCollector testdata: 
 ```
