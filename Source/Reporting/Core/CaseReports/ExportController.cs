@@ -58,7 +58,7 @@ namespace Core.CaseReports
                 var filtered = reports.Where(parameters.FilterPredicate);
                 var ordered = parameters.OrderDescending ? filtered.OrderByDescending(parameters.GetOrderByPredicate) : filtered.OrderBy(parameters.GetOrderByPredicate);
 
-                var fileName = "case-reports-" + DateTimeOffset.UtcNow.ToString("yyyy-MMMM-dd") + exporter.FileExtension;
+                var fileName = "CaseReports-" + DateTimeOffset.UtcNow.ToString("yyyy-MM-dd") + exporter.FileExtension;
 
                 var stream = new MemoryStream();
                 exporter.WriteReportsTo(ordered, stream);
