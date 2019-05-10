@@ -37,7 +37,7 @@ Download nuget dependencies
 Build
 > `dotnet build`   
 
-Open the Web folder
+Open the Core folder
 > `cd Core` 
 
 (Active path: `cbs\source\Reporting\Core`) 
