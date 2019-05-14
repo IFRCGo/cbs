@@ -11,7 +11,7 @@ using Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_format
 namespace Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_formated_aggregated_case_report_sms.separated_by_hash
 {
     [Subject("Notification")]
-    public class when_report_has_a_negative_health_risk : text_message_received_events_containing_aggregated_case_report_separated_by_hash
+    public class when_report_has_a_negative_health_risk : text_message_received_events_containing_aggregated_case_report
     {        
         static readonly NotificationParser parser = new NotificationParser();
         static TextMessageReceived received_text_message;

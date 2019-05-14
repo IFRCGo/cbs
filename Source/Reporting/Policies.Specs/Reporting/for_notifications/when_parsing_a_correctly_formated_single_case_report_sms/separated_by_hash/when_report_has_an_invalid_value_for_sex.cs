@@ -11,7 +11,7 @@ using Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_format
 namespace Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_formated_single_case_report_sms.separated_by_hash
 {
     [Subject("Notification")]
-    public class and_parsing_a_report_with_an_invalid_sex : a_text_message_received_builder_for_single_case_report_separated_by_hash
+    public class and_parsing_a_report_with_an_invalid_sex : a_text_message_received_builder_for_single_case_report
     {
         static readonly NotificationParser parser = new NotificationParser();
         static TextMessageReceived received_text_message;

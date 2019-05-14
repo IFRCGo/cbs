@@ -11,7 +11,7 @@ using Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_format
 namespace Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_formated_aggregated_case_report_sms.separated_by_star
 {
     [Subject("Notification")]
-    public class when_it_is_a_valid_report : text_message_received_events_containing_aggregated_case_report_separated_by_star
+    public class when_it_is_a_valid_report : text_message_received_events_containing_aggregated_case_report
     {
         static readonly int cases_of_male_under_5 = 0;
         static readonly int cases_of_male_over_5 = 1;

@@ -11,7 +11,7 @@ using Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_format
 namespace Policies.Specs.Reporting.for_notifications.when_parsing_a_correctly_formated_single_case_report_sms.separated_by_star_and_hash
 {
     [Subject("Notification")]
-    public class when_report_is_of_a_woman_under_5 : a_text_message_received_builder_for_single_case_report_separated_by_star_and_hash
+    public class when_report_is_of_a_woman_under_5 : a_text_message_received_builder_for_single_case_report
     {
         static readonly bool is_female = true;
         static readonly bool age_is_under_5 = true;
