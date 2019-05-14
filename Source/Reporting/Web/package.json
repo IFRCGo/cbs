@@ -28,6 +28,7 @@
     "@dolittle/queries": "1.0.12",
     "@dolittle/readmodels": "1.0.0",
     "@types/node": "^11.13.4",
+    "@microsoft/applicationinsights-web": "^2.0.0-rc3",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.5.3",
     "navigation": "file:../../Navigation/Web.Angular",

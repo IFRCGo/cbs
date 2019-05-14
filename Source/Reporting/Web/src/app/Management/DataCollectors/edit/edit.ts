@@ -15,6 +15,7 @@ import { DataCollector } from '../DataCollector';
 import { ChangeVillage } from '../ChangeVillage';
 import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
+import { AppInsightsService } from '../../../services/app-insights-service';
 
 @Component({
     templateUrl: './edit.html',
@@ -42,7 +43,8 @@ export class Edit implements OnInit {
         private route: ActivatedRoute,
         private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>
+        private queryCoordinator: QueryCoordinator<DataCollector>,
+        private appInsightsService: AppInsightsService
     ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
@@ -50,6 +52,8 @@ export class Edit implements OnInit {
         this.route.params.subscribe(params => {
             this.getDataCollector();
         });
+
+        this.appInsightsService.trackPageView('Edit Data Collector');
     }
 
     getDataCollector(): void {

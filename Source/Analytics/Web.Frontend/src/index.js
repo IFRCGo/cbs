@@ -11,13 +11,17 @@ import thunk from "redux-thunk";
 import "./assets/react-leaflet.scss";
 import "./assets/main.scss";
 import Analytics from './components/Analytics';
+import NationalSocietyOverview from './components/NationalSocietyOverview';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Route path="/" exact component={Analytics} />  
+            <div>
+                {/* <Route path="/analytics/" exact component={Analytics} />  */}
+                <Route path="/analytics/" exact component={NationalSocietyOverview} />
+            </div>
         </BrowserRouter>
     </Provider>,
     document.getElementById("app")

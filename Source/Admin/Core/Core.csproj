@@ -51,6 +51,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0-beta3"/>
 
         <PackageReference Include="Dolittle.AspNetCore" Version="2.*" />
         <PackageReference Include="Dolittle.SDK" Version="2.*" />

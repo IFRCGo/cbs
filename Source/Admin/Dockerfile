@@ -34,9 +34,9 @@ RUN npm run ${mode}
 
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY --from=build-web /CBS/Source/Admin/Web/dist /CBS/Core/wwwroot
 COPY ./Source/Admin/bounded-context.json /CBS/bounded-context.json
 COPY --from=build-core /CBS/Source/Admin/Core/out /CBS/Core/
 COPY --from=build-core /CBS/Source/Admin/Core/.dolittle /CBS/Core/.dolittle
-COPY --from=build-web /CBS/Source/Admin/Web/dist /CBS/Core/wwwroot
 WORKDIR /CBS/Core
 ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]

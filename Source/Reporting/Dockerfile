@@ -20,7 +20,7 @@ COPY ./Source/Reporting/Rules.Specs/Rules.Specs.csproj /CBS/Source/Reporting/Rul
 WORKDIR /CBS/Source/Reporting
 RUN dotnet restore
 
-# Build production code
+# Build backend production code
 COPY ./Source/Reporting /CBS/Source/Reporting
 WORKDIR /CBS/Source/Reporting/Core
 RUN dotnet publish --no-restore -c Release -o out
@@ -34,16 +34,16 @@ COPY ./Source/Reporting/Web/package.json /CBS/Source/Reporting/Web/package.json
 WORKDIR /CBS/Source/Reporting/Web
 RUN yarn install
 
-# Build production code
+# Build frontend production code
 COPY ./Source/Reporting/Web /CBS/Source/Reporting/Web
 WORKDIR /CBS/Source/Reporting/Web
 RUN npm run ${mode}
 
-# Build runtime image
+# Build runtime image for the backend
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY --from=build-web /CBS/Source/Reporting/Web/dist /CBS/Core/wwwroot
 COPY ./Source/Reporting/bounded-context.json /CBS/bounded-context.json
 COPY --from=build-core /CBS/Source/Reporting/Core/out /CBS/Core/
 COPY --from=build-core /CBS/Source/Reporting/Core/.dolittle /CBS/Core/.dolittle
-COPY --from=build-web /CBS/Source/Reporting/Web/dist /CBS/Core/wwwroot
 WORKDIR /CBS/Core
 ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]

@@ -3,7 +3,7 @@ import AnalyticsBanner from "./AnalyticsBanner.js";
 import Map from "./Map.js";
 import Diagram from "./Diagram.js";
 
-export const BASE_URL = "http://localhost:5000/api/";
+export const BASE_URL = process.env.API_BASE_URL;
 
 class Analytics extends Component {
     constructor(props) {
