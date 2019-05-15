@@ -13,7 +13,8 @@ import AddIcon from '@material-ui/icons/Add';
 import MenuAlert from '../AlertsRule/menuAlert';
 import {
     Link,  
-  } from 'react-router-dom'
+  } from 'react-router-dom';
+import CBSNavigation from '../Navigation/CBSNavigation';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -61,6 +62,7 @@ function CustomizedTable(props) {
 
   return (
     <div>
+      <CBSNavigation />
          <MenuAlert/>
     
     <Paper className={classes.root}>
