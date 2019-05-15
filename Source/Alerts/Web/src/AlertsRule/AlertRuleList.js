@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,8 +8,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import MenuAlert from '../AlertsRule/menuAlert';
-import CBSNavigation from '../Navigation/CBSNavigation';
+import VisibilityIcon from '@material-ui/icons/More';
+import AddIcon from '@material-ui/icons/Add';
+import {
+    Link,  
+  } from 'react-router-dom'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -23,7 +26,7 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    width: '70%',
     margin:'auto',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
@@ -39,17 +42,17 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs,Opened,status) {
+function createData(name, calories, fat, carbs) {
   id += 1;
-  return { id, name, calories, fat, carbs,Opened ,status};
+  return { id, name, calories, fat, carbs };
 }
 
 const rows = [
-  createData('1', 'Acute Watery Diarrhea', 6, 'Dakar','17-03-2019- 12:15','Open'),
-  createData('2', 'Cholera', 9, 'Thies','18-05-2019- 12:15','Open'),
-  createData('3', 'Measles', 16, 'Dakar','18-05-2019- 12:15','Open'),
-  createData('4', 'Acute Watery Diarrhea', 3, 'Dakar','18-05-2019- 12:15','Open'),
-  createData('4', 'Typhoid fever', 16, 'Matam','18-05-2019- 12:15','Open'),
+  createData('AWD #1', 'Acute Watery Diarrhea', 6.0, 'Within 6 days'),
+  createData('CH #2', 'Cholera', 9.0, 'Within 10 days'),
+  createData('YF #3', 'Measles', 16.0, 'Within 12 days'),
+  createData('ML #4', 'Acute Watery Diarrhea', 3.7, 'Within 2 days'),
+  createData('CH #2', 'Typhoid fever', 16.0, 'Within 1 days'),
 ];
 
 function CustomizedTable(props) {
@@ -57,40 +60,32 @@ function CustomizedTable(props) {
 
   return (
     <div>
-      <CBSNavigation />
-         <MenuAlert/>
-    
+     <div style={{
+        textAlign:"center",}}>
+        <h1>Alert rule overview</h1>
+         <p>Here are the alert rules you have registered</p>
+     </div>
     <Paper className={classes.root}>
-    <div>
-      <Button variant="contained" size="small" color="default" className={classes.margin}>
-          Opened
+   
+    <Link to="/alerts/AddRule" align="right" style={{ textDecoration:'none',color:'#1070ca' }}>
+        <Button  variant="outlined"  className={classes.button} style={{ color:'#1070ca' }} >
+          <AddIcon  className={classes.icon} />
         </Button>
-
-        <Button variant="contained" size="small" color="primary" className={classes.margin}>
-          Escalated
-        </Button>
-
-        <Button variant="contained" size="small" color="secondary" className={classes.margin}>
-          Closed
-        </Button>
-     
-      </div>
-      <Table className={classes.table} >
+    </Link>
+    
+      <Table className={classes.table}>
         <TableHead>
           <TableRow >
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}>Alert number</CustomTableCell>
+               backgroundColor:'#fafafa',color:'#000'}}>Alert rule name</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}align="right">Health risk</CustomTableCell>
+               backgroundColor:'#fafafa',color:'#000'}}align="right">Health risk number</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">No. of reports</CustomTableCell>
+               backgroundColor:'#fafafa',color:'#000'}} align="right">Alert threshold</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}  align="right">Last report from</CustomTableCell>
+               backgroundColor:'#fafafa',color:'#000'}}  align="right">Timeframe</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">Opened at</CustomTableCell>
-           <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">Status</CustomTableCell>
-          
+               backgroundColor:'#fafafa',color:'#000'}} align="right"></CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -102,8 +97,6 @@ function CustomizedTable(props) {
               <CustomTableCell align="right">{row.calories}</CustomTableCell>
               <CustomTableCell align="right">{row.fat}</CustomTableCell>
               <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-              <CustomTableCell align="right">{row.Opened}</CustomTableCell>
-              <CustomTableCell align="right">{row.status}</CustomTableCell>
             </TableRow>
           ))}
         </TableBody>
