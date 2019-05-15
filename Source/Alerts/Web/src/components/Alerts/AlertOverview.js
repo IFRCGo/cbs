@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,12 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import VisibilityIcon from '@material-ui/icons/More';
-import AddIcon from '@material-ui/icons/Add';
 import MenuAlert from '../AlertsRule/menuAlert';
-import {
-    Link,  
-  } from 'react-router-dom';
 import CBSNavigation from '../Navigation/CBSNavigation';
 
 const CustomTableCell = withStyles(theme => ({
