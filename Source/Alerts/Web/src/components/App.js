@@ -15,7 +15,6 @@ class App extends Component {
                 <CBSNavigation />
                 <MenuAlert/>
                 <Alert/>
-
             </div>
         );
     }
