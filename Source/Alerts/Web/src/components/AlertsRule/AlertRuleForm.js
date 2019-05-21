@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { CreateAlertRule } from '../../../Features/AlertRules/CreateAlertRule';
 
 
-import MenuAlert from '../menuAlert';
+import AlertMenu from '../AlertMenu';
 
 const styles = theme => ({
     container: {
@@ -60,7 +60,7 @@ class AlertForm extends Component {
 
         return (
             <div className="">
-                    <MenuAlert  />
+                    <AlertMenu  />
                <form onSubmit={this.handleSubmit}>
                 <div style={{ textAlign:'center' }}>
                     <h1 >Alert Rule</h1>

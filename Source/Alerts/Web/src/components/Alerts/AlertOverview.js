@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import MenuAlert from '../menuAlert';
+import AlertMenu from '../AlertMenu';
 import CBSNavigation from '../Navigation/CBSNavigation';
 
 const CustomTableCell = withStyles(theme => ({
@@ -58,7 +58,7 @@ function CustomizedTable(props) {
   return (
     <div>
       <CBSNavigation />
-         <MenuAlert/>
+         <AlertMenu/>
     
     <Paper className={classes.root}>
     <div>

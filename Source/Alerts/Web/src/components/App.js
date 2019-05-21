@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Alert from './AlertsRule/AlertRuleList';
-import MenuAlert from './menuAlert';
+import AlertMenu from './AlertMenu';
 import CBSNavigation from './Navigation/CBSNavigation';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
         return (
             <div className="alerts">
                 <CBSNavigation />
-                <MenuAlert/>
+                <AlertMenu/>
                 <Alert/>
             </div>
         );
