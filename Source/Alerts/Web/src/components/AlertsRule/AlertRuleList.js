@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -6,18 +6,14 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import VisibilityIcon from '@material-ui/icons/More';
 import AddIcon from '@material-ui/icons/Add';
-import {
-    Link,  
-  } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: '#FAFAFA',
+    color: '#000000',
   },
   body: {
     fontSize: 14,
@@ -33,12 +29,7 @@ const styles = theme => ({
   },
   table: {
     maxWidth: 850,
-  },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
+  }
 });
 
 let id = 0;
@@ -60,14 +51,11 @@ function CustomizedTable(props) {
 
   return (
     <div>
-     <div style={{
-        textAlign:"center",}}>
+     <div>
         <h1>Alert rule overview</h1>
          <p>Here are the alert rules you have registered</p>
      </div>
-    <Paper className={classes.root}>
-   
-    <Link to="/alerts/AddRule" align="right" style={{ textDecoration:'none',color:'#1070ca' }}>
+    <Link to="/alerts/AddRule" align="right">
         <Button  variant="outlined"  className={classes.button} style={{ color:'#1070ca' }} >
           <AddIcon  className={classes.icon} />
         </Button>
@@ -76,16 +64,11 @@ function CustomizedTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow >
-            <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}>Alert rule name</CustomTableCell>
-            <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}align="right">Health risk number</CustomTableCell>
-            <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">Alert threshold</CustomTableCell>
-            <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}  align="right">Timeframe</CustomTableCell>
-            <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right"></CustomTableCell>
+            <CustomTableCell>Alert rule name</CustomTableCell>
+            <CustomTableCell align="right">Health risk number</CustomTableCell>
+            <CustomTableCell align="right">Alert threshold</CustomTableCell>
+            <CustomTableCell align="right">Timeframe</CustomTableCell>
+            <CustomTableCell align="right"></CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -101,7 +84,6 @@ function CustomizedTable(props) {
           ))}
         </TableBody>
       </Table>
-    </Paper>
     </div>
 
   );
