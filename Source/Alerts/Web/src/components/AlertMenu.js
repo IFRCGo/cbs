@@ -1,45 +1,29 @@
-import React, { Component } from 'react';
-import IconButton from '@material-ui/core/IconButton';
+import React from 'react';
 import { connect } from 'react-redux';
-import {
-    Link,  
-  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function AlertMenu(props) {
   const { classes } = props;
 
   return (
-    <div>
-      <div >
-      
-    </div>
-      <div style={{ textDecoration:'none',textAlign:'center' }}>
-       <Link to="/alerts" style={{ textDecoration:'none' }}>
-         <IconButton >
-            Alerts OverView
-        </IconButton>
-        </Link>   
-        <Link to="/alerts/ListeRules" style={{ textDecoration:'none' }}>
-         <IconButton >
-           Alerts Rules
-         </IconButton>    
+    <div className='alert-menu'>
+      <Link to="/alerts" className='menu-button'>
+        Alerts OverView
         </Link>
-        <Link to="/alerts/RegisterDataOwner" style={{ textDecoration:'none' }}>
-         <IconButton >
-           Register Data Owner
-         </IconButton>    
-        </Link>     
-      </div>
-      </div>
-    
-
+      <Link to="/alerts/ListeRules" className='menu-button'>
+        Alerts Rules
+        </Link>
+      <Link to="/alerts/RegisterDataOwner" className='menu-button'>
+        Register Data Owner
+        </Link>
+    </div>
   );
 }
 export default connect(
-    _ => ({}),
-    dispatch => ({
-        requestCreateRule: rule => dispatch({ type: 'REQUEST_CREATE_RULE', payload: rule }),
-    }))
-    (AlertMenu);
+  _ => ({}),
+  dispatch => ({
+    requestCreateRule: rule => dispatch({ type: 'REQUEST_CREATE_RULE', payload: rule }),
+  }))
+  (AlertMenu);
 

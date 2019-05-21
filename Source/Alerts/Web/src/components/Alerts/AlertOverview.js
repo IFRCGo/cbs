@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: '#FAFAFA',
+    color: '#000000',
   },
   body: {
     fontSize: 14,
@@ -62,24 +62,12 @@ function CustomizedTable(props) {
       <Table className={classes.table} >
         <TableHead>
           <TableRow >
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }}>Alert number</CustomTableCell>
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }} align="right">Health risk</CustomTableCell>
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }} align="right">No. of reports</CustomTableCell>
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }} align="right">Last report from</CustomTableCell>
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }} align="right">Opened at</CustomTableCell>
-            <CustomTableCell style={{
-              backgroundColor: '#fafafa', color: '#000'
-            }} align="right">Status</CustomTableCell>
+            <CustomTableCell>Alert number</CustomTableCell>
+            <CustomTableCell align="right">Health risk</CustomTableCell>
+            <CustomTableCell align="right">No. of reports</CustomTableCell>
+            <CustomTableCell align="right">Last report from</CustomTableCell>
+            <CustomTableCell align="right">Opened at</CustomTableCell>
+            <CustomTableCell align="right">Status</CustomTableCell>
 
           </TableRow>
         </TableHead>

@@ -12,15 +12,15 @@ import { connect } from 'react-redux';
 
 const CustomTableCell = withStyles(theme => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+        backgroundColor: '#FAFAFA',
+        color: '#000000',
     },
     body: {
-      fontSize: 14,
+        fontSize: 14,
     },
-  }))(TableCell);
+}))(TableCell);
 
-  
+
 class RegisterDataOwner extends Component {
     constructor() {
         super();
@@ -46,87 +46,76 @@ class RegisterDataOwner extends Component {
         });
     }
 
-    addDataOwner(event){
+    addDataOwner(event) {
         event.preventDefault();
         this.setState({
-            dataOwner: [...this.state.dataOwner, ...[{name:this.state.name, email:this.state.email}]],
+            dataOwner: [...this.state.dataOwner, ...[{ name: this.state.name, email: this.state.email }]],
             name: '',
-            email: '',  
+            email: '',
         });
     }
 
-
-    // 
     renderDataOwners() {
-        
-        return this.state.dataOwner.map((item,index) => {
+        return this.state.dataOwner.map((item, index) => {
             return (
-                <TableRow  key={index}>
-                <CustomTableCell >{item.name}</CustomTableCell>
-                <CustomTableCell >{item.email}</CustomTableCell>
-                </TableRow> 
+                <TableRow key={index}>
+                    <CustomTableCell >{item.name}</CustomTableCell>
+                    <CustomTableCell >{item.email}</CustomTableCell>
+                </TableRow>
             );
         });
     }
 
-  
+
     render() {
         const { classes } = this.props;
 
         return (
-
-        <div>
-            <form onSubmit={this.addDataOwner} >
-        <TextField
-          id="outlined-uncontrolled"
-          label="name"
-          value={this.state.name} 
-          margin="normal"
-          variant="outlined"
-          onChange={this.onChangeName.bind(this)}
-          
-        />
-
-        <TextField
-            id="outlined-uncontrolled"
-            label="email"
-            value={this.state.email} 
-            margin="normal"
-            variant="outlined"
-            type="email"
-            onChange={this.onChangeMail.bind(this)}
-            />
-
             <div>
-            <Button align="right"  onClick={this.addDataOwner.bind(this)}  variant="contained" color="primary">
-        Send
-    </Button>
+                <form onSubmit={this.addDataOwner} >
+                    <TextField
+                        id="outlined-uncontrolled"
+                        label="name"
+                        value={this.state.name}
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.onChangeName.bind(this)}
+
+                    />
+
+                    <TextField
+                        id="outlined-uncontrolled"
+                        label="email"
+                        value={this.state.email}
+                        margin="normal"
+                        variant="outlined"
+                        type="email"
+                        onChange={this.onChangeMail.bind(this)}
+                    />
+
+                    <div>
+                        <Button align="right" onClick={this.addDataOwner.bind(this)} variant="contained" color="primary">
+                            Send
+                        </Button>
+                    </div>
+
+                </form>
+
+
+                <div >
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <CustomTableCell >Name</CustomTableCell>
+                                <CustomTableCell >Email</CustomTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.renderDataOwners()}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
-
-        </form>
-
-        <div style={{ margin:'10px' }}>
-
-        </div>
-
-        
-        <div >
-        <Table>
-                <TableHead>
-                <TableRow>
-                    <CustomTableCell >Name</CustomTableCell>
-                    <CustomTableCell >Email</CustomTableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                    {this.renderDataOwners()}
-                </TableBody>
-                </Table>
-        </div>
-        </div>
-            
-        
-
         );
     }
 }
