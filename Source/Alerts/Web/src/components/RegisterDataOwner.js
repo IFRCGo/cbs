@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { connect } from 'react-redux';
-import MenuAlert from './AlertsRule/menuAlert';
+import MenuAlert from './menuAlert';
 
 
 const CustomTableCell = withStyles(theme => ({

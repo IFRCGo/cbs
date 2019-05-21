@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { CreateAlertRule } from '../../../Features/AlertRules/CreateAlertRule';
 
 
-import MenuAlert from './menuAlert';
+import MenuAlert from '../menuAlert';
 
 const styles = theme => ({
     container: {
