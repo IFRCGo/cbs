@@ -31,11 +31,11 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 
 | Projects  | Azure DevOps build status  |
 | --------- | -------------------------- |
-| Admin | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Admin%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=4) |
-| Alerts | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Alerts%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=5) |
-| Analytics | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Analytics%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=7) |
-| Notification Gateway | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/NotificationGateway%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=6) |
-| Reporting | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Reporting%20CI)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=8)
+| Admin | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Admin%20CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=11) |
+| Alerts | [![Build Status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Alerts%20CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=12) |
+| Analytics | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Analytics%20CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=13) |
+| Notification Gateway | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/NotificationGateway%20CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=14) |
+| Reporting | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Reporting-CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=10)
 
 ## Quick links
 [Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
