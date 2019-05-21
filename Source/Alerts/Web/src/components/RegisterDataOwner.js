@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { connect } from 'react-redux';
-import AlertMenu from './AlertMenu';
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -77,7 +76,6 @@ class RegisterDataOwner extends Component {
         return (
 
         <div>
-            <AlertMenu/>
             <form onSubmit={this.addDataOwner} >
         <TextField
           id="outlined-uncontrolled"

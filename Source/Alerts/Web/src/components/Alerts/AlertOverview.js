@@ -6,10 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import AlertMenu from '../AlertMenu';
-import CBSNavigation from '../Navigation/CBSNavigation';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -23,33 +20,24 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: '90%',
-    margin:'auto',
+    margin: 'auto',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-  },
-  table: {
-    maxWidth: 850,
-  },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
+  }
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs,Opened,status) {
+function createData(name, calories, fat, carbs, Opened, status) {
   id += 1;
-  return { id, name, calories, fat, carbs,Opened ,status};
+  return { id, name, calories, fat, carbs, Opened, status };
 }
 
 const rows = [
-  createData('1', 'Acute Watery Diarrhea', 6, 'Dakar','17-03-2019- 12:15','Open'),
-  createData('2', 'Cholera', 9, 'Thies','18-05-2019- 12:15','Open'),
-  createData('3', 'Measles', 16, 'Dakar','18-05-2019- 12:15','Open'),
-  createData('4', 'Acute Watery Diarrhea', 3, 'Dakar','18-05-2019- 12:15','Open'),
-  createData('4', 'Typhoid fever', 16, 'Matam','18-05-2019- 12:15','Open'),
+  createData('1', 'Acute Watery Diarrhea', 6, 'Dakar', '17-03-2019- 12:15', 'Open'),
+  createData('2', 'Cholera', 9, 'Thies', '18-05-2019- 12:15', 'Open'),
+  createData('3', 'Measles', 16, 'Dakar', '18-05-2019- 12:15', 'Open'),
+  createData('4', 'Acute Watery Diarrhea', 3, 'Dakar', '18-05-2019- 12:15', 'Open'),
+  createData('4', 'Typhoid fever', 16, 'Matam', '18-05-2019- 12:15', 'Open'),
 ];
 
 function CustomizedTable(props) {
@@ -57,40 +45,42 @@ function CustomizedTable(props) {
 
   return (
     <div>
-      <CBSNavigation />
-         <AlertMenu/>
-    
-    <Paper className={classes.root}>
-    <div>
-      <Button variant="contained" size="small" color="default" className={classes.margin}>
+      <div>
+        <Button size="small" className={classes.margin}>
           Opened
         </Button>
 
-        <Button variant="contained" size="small" color="primary" className={classes.margin}>
+        <Button size="small" className={classes.margin}>
           Escalated
         </Button>
 
-        <Button variant="contained" size="small" color="secondary" className={classes.margin}>
+        <Button size="small" className={classes.margin}>
           Closed
         </Button>
-     
+
       </div>
       <Table className={classes.table} >
         <TableHead>
           <TableRow >
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}>Alert number</CustomTableCell>
+              backgroundColor: '#fafafa', color: '#000'
+            }}>Alert number</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}align="right">Health risk</CustomTableCell>
+              backgroundColor: '#fafafa', color: '#000'
+            }} align="right">Health risk</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">No. of reports</CustomTableCell>
+              backgroundColor: '#fafafa', color: '#000'
+            }} align="right">No. of reports</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}}  align="right">Last report from</CustomTableCell>
+              backgroundColor: '#fafafa', color: '#000'
+            }} align="right">Last report from</CustomTableCell>
             <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">Opened at</CustomTableCell>
-           <CustomTableCell style={{
-               backgroundColor:'#fafafa',color:'#000'}} align="right">Status</CustomTableCell>
-          
+              backgroundColor: '#fafafa', color: '#000'
+            }} align="right">Opened at</CustomTableCell>
+            <CustomTableCell style={{
+              backgroundColor: '#fafafa', color: '#000'
+            }} align="right">Status</CustomTableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -108,7 +98,6 @@ function CustomizedTable(props) {
           ))}
         </TableBody>
       </Table>
-    </Paper>
     </div>
 
   );
