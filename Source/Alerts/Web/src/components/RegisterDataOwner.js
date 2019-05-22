@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { connect } from 'react-redux';
+import { RegisterDataOwner } from '../../Features/DataOwners/RegisterDataOwner';
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -20,43 +21,47 @@ const CustomTableCell = withStyles(theme => ({
     },
 }))(TableCell);
 
+const registerDataOwner = new RegisterDataOwner();
 
-class RegisterDataOwner extends Component {
-    constructor() {
-        super();
 
-        this.state = {
-            name: "",
-            email: "",
-            dataOwner: []
-        };
+class RegisterDataOwnerComponent extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.getDataOwners();
     }
 
     onChangeName(event) {
         //console.log(event.target.value);
-        this.setState({
-            name: event.target.value
-        });
+        // this.setState({
+        //     name: event.target.value
+        // });
+        registerDataOwner.name = event.target.value;
     }
 
     onChangeMail(event) {
         //console.log(event.target.value);
-        this.setState({
-            email: event.target.value
-        });
+        // this.setState({
+        //     email: event.target.value
+        // });
+        registerDataOwner.email = event.target.value;
     }
 
-    addDataOwner(event) {
+    registerDataOwner() {
         event.preventDefault();
-        this.setState({
-            dataOwner: [...this.state.dataOwner, ...[{ name: this.state.name, email: this.state.email }]],
-            name: '',
-            email: '',
-        });
+        // this.setState({
+        //     dataOwner: [...this.state.dataOwner, ...[{ name: this.state.name, email: this.state.email }]],
+        //     name: '',
+        //     email: '',
+        // });
+        this.props.registerDataOwner(registerDataOwner);
     }
 
     renderDataOwners() {
-        return this.state.dataOwner.map((item, index) => {
+        const { dataOwners = []} = this.props;
+        return dataOwners.map((item, index) => {
             return (
                 <TableRow key={index}>
                     <CustomTableCell >{item.name}</CustomTableCell>
@@ -72,11 +77,11 @@ class RegisterDataOwner extends Component {
 
         return (
             <div>
-                <form onSubmit={this.addDataOwner} >
+                <form onSubmit={this.registerDataOwner.bind(this)} >
                     <TextField
                         id="outlined-uncontrolled"
                         label="name"
-                        value={this.state.name}
+                        value={this.props.name}
                         margin="normal"
                         variant="outlined"
                         onChange={this.onChangeName.bind(this)}
@@ -86,7 +91,7 @@ class RegisterDataOwner extends Component {
                     <TextField
                         id="outlined-uncontrolled"
                         label="email"
-                        value={this.state.email}
+                        value={this.props.email}
                         margin="normal"
                         variant="outlined"
                         type="email"
@@ -94,7 +99,7 @@ class RegisterDataOwner extends Component {
                     />
 
                     <div>
-                        <Button align="right" onClick={this.addDataOwner.bind(this)} variant="contained" color="primary">
+                        <Button align="right" type="submit" variant="contained" color="primary">
                             Send
                         </Button>
                     </div>
@@ -120,5 +125,12 @@ class RegisterDataOwner extends Component {
     }
 }
 
-export default connect()
-    (RegisterDataOwner);
+export default connect(
+    state => ({
+        dataOwners: state.root.dataowner
+    }),
+    dispatch => ({
+        getDataOwners: () => dispatch({ type: 'REQUEST_DATAOWNER'}),
+        registerDataOwner: dataowner => dispatch({ type: 'REQUEST_REGISTER_DATAOWNER', dataowner: dataowner})
+    })
+)(RegisterDataOwnerComponent);

@@ -22,7 +22,14 @@ const reducer = (state = initialState, action) => {
             return state;
         }
 
-        case 'RECEIVE_DATA_OWNER': {
+        case 'RECEIVE_DATAOWNER': {
+            return {
+                ...state,
+                dataowner: action.payload.dataowner,
+            };
+        }
+
+        case 'RECEIVE_REGISTER_DATAOWNER': {
             return {
                 ...state,
                 dataowner: action.payload.dataowner,
