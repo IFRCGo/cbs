@@ -11,6 +11,13 @@ const reducer = (state = initialState, action) => {
             };
         }
 
+        case 'RECEIVE_ALERT_OVERVIEW': {
+            return {
+                ...state,
+                overview: action.payload.overview,
+            };
+        }
+
         case 'RECEIVE_CREATE_RULE': {
             return state;
         }

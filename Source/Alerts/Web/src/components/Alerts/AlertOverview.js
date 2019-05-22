@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -18,48 +19,31 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const styles = theme => ({
-  root: {
-    margin: 'auto',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+class AlertOverview extends Component {
+  componentWillMount() {
+    this.props.getAlertOverview();
   }
-});
 
-let id = 0;
-function createData(name, calories, fat, carbs, Opened, status) {
-  id += 1;
-  return { id, name, calories, fat, carbs, Opened, status };
-}
+  render() {
+    const { alerts = []} = this.props;
 
-const rows = [
-  createData('1', 'Acute Watery Diarrhea', 6, 'Dakar', '17-03-2019- 12:15', 'Open'),
-  createData('2', 'Cholera', 9, 'Thies', '18-05-2019- 12:15', 'Open'),
-  createData('3', 'Measles', 16, 'Dakar', '18-05-2019- 12:15', 'Open'),
-  createData('4', 'Acute Watery Diarrhea', 3, 'Dakar', '18-05-2019- 12:15', 'Open'),
-  createData('4', 'Typhoid fever', 16, 'Matam', '18-05-2019- 12:15', 'Open'),
-];
-
-function CustomizedTable(props) {
-  const { classes } = props;
-
-  return (
+    return (
     <div>
       <div>
-        <Button size="small" className={classes.margin}>
+        <Button size="small">
           Opened
         </Button>
 
-        <Button size="small" className={classes.margin}>
+        <Button size="small">
           Escalated
         </Button>
 
-        <Button size="small" className={classes.margin}>
+        <Button size="small">
           Closed
         </Button>
 
       </div>
-      <Table className={classes.table} >
+      <Table >
         <TableHead>
           <TableRow >
             <CustomTableCell>Alert number</CustomTableCell>
@@ -72,27 +56,28 @@ function CustomizedTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow className={classes.row} key={row.id}>
-              <CustomTableCell component="th" scope="row">
-                {row.name}
-              </CustomTableCell>
-              <CustomTableCell align="right">{row.calories}</CustomTableCell>
-              <CustomTableCell align="right">{row.fat}</CustomTableCell>
+          {alerts.map(row => (
+            <TableRow key={row.id}>
+              <CustomTableCell scope="row">{row.alertNumber}</CustomTableCell>
+              <CustomTableCell align="right">{row.healthRiskName}</CustomTableCell>
+              <CustomTableCell align="right">{row.numberOfReports}</CustomTableCell>
               <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-              <CustomTableCell align="right">{row.Opened}</CustomTableCell>
+              <CustomTableCell align="right">{new Date(row.openedAt).toString()}</CustomTableCell>
               <CustomTableCell align="right">{row.status}</CustomTableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </div>
-
-  );
+    );
+  }
 }
 
-CustomizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedTable);
+export default connect(
+  state => ({
+    alerts: state.root.overview
+  }),
+  dispatch => ({
+    getAlertOverview: () => dispatch({ type: 'REQUEST_ALERT_OVERVIEW'})
+  })
+)(AlertOverview);

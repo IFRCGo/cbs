@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
+import { AllAlertOverviews } from '../Features/Alerts/AllAlertOverviews';
 import { GetDataOwner } from '../Features/DataOwners/GetDataOwner';
 
 function* requestRules() {
@@ -10,6 +11,16 @@ function* requestRules() {
         yield put({ type: 'RECEIVE_RULES', payload: { rules: result.items } });
     } catch (error) {
         yield put({ type: 'REJECT_RULES', payload: { error: error.message } });
+    }
+}
+
+function* requestAlertOverview() {
+    try {
+        const query = new AllAlertOverviews();
+        const result = yield queryCoordinator.execute(query);
+        yield put({ type: 'RECEIVE_ALERT_OVERVIEW', payload: { overview: result.items } });
+    } catch (error) {
+        yield put({ type: 'REJECT_ALERT_OVERVIEW', payload: { error: error.message } });
     }
 }
 
@@ -37,6 +48,7 @@ function* requestCreateRule(rule) {
 
 function* saga() {
     yield takeEvery('REQUEST_RULES', requestRules);
+    yield takeEvery('REQUEST_ALERT_OVERVIEW', requestAlertOverview);
     yield takeEvery('REQUEST_CREATE_RULE', requestCreateRule);
     yield takeEvery('RECEIVE_DATAOWNER', requestGetDataOwner);
 }
