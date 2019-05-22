@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Alert from './AlertsRule/AlertRuleList';
+import AlertRules from './AlertsRule/AlertRuleList';
 
 class App extends Component {
     componentWillMount() {
-        this.props.requestRules();
+        // this.props.requestRules();
     }
 
     render() {
         return (
             <div className="alerts">
-                <Alert/>
+                <AlertRules/>
             </div>
         );
     }
 }
-
-export default connect(
-    state => ({
-        baseUrl: state.root.baseUrl,
-    }),
-    dispatch => ({
-        requestRules: () => {
-            dispatch({ type: 'REQUEST_RULES' });
-        },
-    })
-)(App);
+export default App;
+// export default connect(
+//     state => ({
+//         baseUrl: state.root.baseUrl,
+//     }),
+//     dispatch => ({
+//         requestRules: () => {
+//             dispatch({ type: 'REQUEST_RULES' });
+//         },
+//     })
+// )(App);

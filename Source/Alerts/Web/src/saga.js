@@ -3,27 +3,7 @@ import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
 import { GetDataOwner } from '../Features/DataOwners/GetDataOwner';
 
-const mockRules = [
-    {
-        Id: 1,
-        Name: 'Ebola',
-        HealthRiskId: '1',
-        Threshold: '1',
-        TimeFrame: '24 hours',
-        DistanceBetweenCases: '2 km',
-    },
-    {
-        Id: 2,
-        Name: 'Steavun',
-        HealthRiskId: '1',
-        Threshold: '1',
-        TimeFrame: '12 hours',
-        DistanceBetweenCases: '5 km',
-    },
-];
-
 function* requestRules() {
-    console.log("DAKAR");
     try {
         const query = new AllAlertRules();
         const result = yield queryCoordinator.execute(query);
@@ -35,7 +15,6 @@ function* requestRules() {
 
 //get data owner
 function* requestGetDataOwner() {
-    console.log("DAKAR");
     try {
         const query = new GetDataOwner();
         const result = yield queryCoordinator.execute(query);

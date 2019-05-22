@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -20,48 +21,34 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const styles = theme => ({
-  root: {
-    width: '70%',
-    margin:'auto',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-  },
-  table: {
-    maxWidth: 850,
+
+class AlertRules extends Component {
+  constructor(props) { 
+    super(props);
+    this.state = {
+      rules: []
+    }
   }
-});
 
-let id = 0;
-function createData(name, calories, fat, carbs) {
-  id += 1;
-  return { id, name, calories, fat, carbs };
-}
+  componentWillMount() {
+    this.props.dispatch({ type: 'REQUEST_RULES' });
+  }
 
-const rows = [
-  createData('AWD #1', 'Acute Watery Diarrhea', 6.0, 'Within 6 days'),
-  createData('CH #2', 'Cholera', 9.0, 'Within 10 days'),
-  createData('YF #3', 'Measles', 16.0, 'Within 12 days'),
-  createData('ML #4', 'Acute Watery Diarrhea', 3.7, 'Within 2 days'),
-  createData('CH #2', 'Typhoid fever', 16.0, 'Within 1 days'),
-];
-
-function CustomizedTable(props) {
-  const { classes } = props;
-
-  return (
+  render() {
+    const { rules = []} = this.props;
+    return (
     <div>
      <div>
         <h1>Alert rule overview</h1>
          <p>Here are the alert rules you have registered</p>
      </div>
     <Link to="/alerts/AddRule" align="right">
-        <Button  variant="outlined"  className={classes.button} style={{ color:'#1070ca' }} >
-          <AddIcon  className={classes.icon} />
+        <Button  variant="outlined" >
+          <AddIcon />
         </Button>
     </Link>
     
-      <Table className={classes.table}>
+      <Table>
         <TableHead>
           <TableRow >
             <CustomTableCell>Alert rule name</CustomTableCell>
@@ -72,25 +59,27 @@ function CustomizedTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow className={classes.row} key={row.id}>
+          {rules.map(rule => (
+            <TableRow key={rule.id}>
               <CustomTableCell component="th" scope="row">
-                {row.name}
+                {rule.alertRuleName}
               </CustomTableCell>
-              <CustomTableCell align="right">{row.calories}</CustomTableCell>
-              <CustomTableCell align="right">{row.fat}</CustomTableCell>
-              <CustomTableCell align="right">{row.carbs}</CustomTableCell>
+              <CustomTableCell align="right">{rule.healthRiskId}</CustomTableCell>
+              <CustomTableCell align="right">{rule.numberOfCasesThreshold}</CustomTableCell>
+              <CustomTableCell align="right">{rule.thresholdTimeframeInHours}</CustomTableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </div>
-
-  );
+    );
+  }
 }
 
-CustomizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+const mapState = (state) => {
+  return {
+    rules: state.root.rules
+  };
+}
 
-export default withStyles(styles)(CustomizedTable);
+export default connect(mapState)(AlertRules);

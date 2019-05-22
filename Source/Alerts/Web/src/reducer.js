@@ -1,6 +1,5 @@
 const initialState = {
     baseUrl: process.env.API_URL,
-    rules: [],
 };
 
 const reducer = (state = initialState, action) => {

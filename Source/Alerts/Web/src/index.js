@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './components/App';
-import RuleForm from './components/AlertsRule/AlertRuleForm';
 import AlertOverview from './components/Alerts/AlertOverview';
 import RegisterDataOwner from './components/RegisterDataOwner';
 import AlertMenu from './components/AlertMenu';
