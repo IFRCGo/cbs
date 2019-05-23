@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
         case 'RECEIVE_DATAOWNER': {
             return {
                 ...state,
-                dataowner: action.payload.dataowner,
+                dataowners: action.payload.dataowners,
             };
         }
 

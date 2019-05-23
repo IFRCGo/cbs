@@ -29,7 +29,7 @@ function* requestGetDataOwner() {
     try {
         const query = new GetDataOwner();
         const result = yield queryCoordinator.execute(query);
-        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowner: result.items } });
+        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowners: result.items } });
     } catch (error) {
         yield put({ type: 'REJECT_DATAOWNER', payload: { error: error.message } });
     }
@@ -39,6 +39,7 @@ function* requestRegisterDataOwner(dataOwner) {
     try {
         yield commandCoordinator.handle(dataOwner.payload);
         yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowner: dataOwner.payload } });
+        yield put({ type: 'REQUEST_DATAOWNER' });
     } catch (error) {
         yield put({ type: 'REJECT_DATAOWNER', payload: { error: error.message } });
     }

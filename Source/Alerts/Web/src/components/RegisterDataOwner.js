@@ -21,12 +21,13 @@ const CustomTableCell = withStyles(theme => ({
     },
 }))(TableCell);
 
-const registerDataOwner = new RegisterDataOwner();
-
-
 class RegisterDataOwnerComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            name: '',
+            email: ''
+        }
     }
 
     componentDidMount() {
@@ -35,28 +36,28 @@ class RegisterDataOwnerComponent extends Component {
 
     onChangeName(event) {
         //console.log(event.target.value);
-        // this.setState({
-        //     name: event.target.value
-        // });
-        registerDataOwner.name = event.target.value;
+        this.setState({
+            name: event.target.value
+        });
+        // registerDataOwner.name = event.target.value;
     }
 
     onChangeMail(event) {
         //console.log(event.target.value);
-        // this.setState({
-        //     email: event.target.value
-        // });
-        registerDataOwner.email = event.target.value;
+        this.setState({
+            email: event.target.value
+        });
+        // registerDataOwner.email = event.target.value;
     }
 
     registerDataOwner() {
         event.preventDefault();
-        // this.setState({
-        //     dataOwner: [...this.state.dataOwner, ...[{ name: this.state.name, email: this.state.email }]],
-        //     name: '',
-        //     email: '',
-        // });
-        this.props.registerDataOwner(registerDataOwner);
+        let dataOwner = {
+            ...new RegisterDataOwner(),
+            name: this.state.name,
+            email: this.state.email
+        }
+        this.props.registerDataOwner(dataOwner);
     }
 
     renderDataOwners() {
@@ -127,10 +128,10 @@ class RegisterDataOwnerComponent extends Component {
 
 export default connect(
     state => ({
-        dataOwners: state.root.dataowner
+        dataOwners: state.root.dataowners
     }),
     dispatch => ({
         getDataOwners: () => dispatch({ type: 'REQUEST_DATAOWNER'}),
-        registerDataOwner: dataowner => dispatch({ type: 'REQUEST_REGISTER_DATAOWNER', dataowner: dataowner})
+        registerDataOwner: dataowner => dispatch({ type: 'REQUEST_REGISTER_DATAOWNER', payload: dataowner})
     })
 )(RegisterDataOwnerComponent);
