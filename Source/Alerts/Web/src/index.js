@@ -12,6 +12,7 @@ import AddAlertRule from './components/AddAlertRule';
 import store from './store';
 
 import './assets/main.scss';
+import AlertRuleOverview from './components/AlertRuleOverview';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -19,10 +20,10 @@ ReactDOM.render(
             <CBSNavigation />
             <AlertMenu />
 
-            <Route path="/alerts/ListeRules" exact component={App} />
-            <Route path="/alerts/AddRule" exact component={AddAlertRule} />
+            <Route path="/alerts/rules" exact component={AlertRuleOverview} />
+            <Route path="/alerts/addrule" exact component={AddAlertRule} />
             <Route path="/alerts" exact component={AlertOverview} />
-            <Route path="/alerts/RegisterDataOwner" exact component={RegisterDataOwner} />
+            <Route path="/alerts/registerdataowner" exact component={RegisterDataOwner} />
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

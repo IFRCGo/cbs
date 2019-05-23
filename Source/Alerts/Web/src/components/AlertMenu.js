@@ -9,12 +9,12 @@ function AlertMenu(props) {
   return (
     <div className='alert-menu'>
       <Link to="/alerts" className='menu-button'>
-        Alerts OverView
+        Alert OverView
         </Link>
-      <Link to="/alerts/ListeRules" className='menu-button'>
-        Alerts Rules
+      <Link to="/alerts/rules" className='menu-button'>
+        Alert Rules
         </Link>
-      <Link to="/alerts/RegisterDataOwner" className='menu-button'>
+      <Link to="/alerts/registerdataowner" className='menu-button'>
         Register Data Owner
         </Link>
     </div>
