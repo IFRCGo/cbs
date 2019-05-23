@@ -10,6 +10,7 @@ import { getJson } from "../utils/request";
 import { formatDate } from "../utils/dateUtils";
 import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
+import CBSNavigation from './Navigation/CBSNavigation';
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -71,6 +72,7 @@ class NationalSocietyOverview extends Component {
     render() {
         return (
             <div className="analytics--container">
+            <CBSNavigation />
             <Typography component="h2" variant="headline" gutterBottom>
           Overview
         </Typography>
