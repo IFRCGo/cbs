@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Table, TableHead } from 'evergreen-ui';
-import AlertOverview from './Alerts/AlertOverview';
 import { Link } from 'react-router-dom';
 import AlertRule from './AlertRule';
 
@@ -34,11 +33,10 @@ class AlertRuleOverview extends Component {
                     </TableHead>
                     <Table.Body>
                         {rules.map(rule => (
-                            <AlertRule rule={rule} />
+                            <AlertRule rule={rule} key={rule.id} />
                         ))}
                     </Table.Body>
                 </Table>
-                {/* <AlertOverview /> */}
             </div>
         );
     }
