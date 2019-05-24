@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Alert from './AlertsRule/AlertRuleList';
-import MenuAlert from './AlertsRule/menuAlert';
+import { BrowserRouter, Route } from 'react-router-dom';
 import CBSNavigation from './Navigation/CBSNavigation';
+import AlertMenu from './AlertMenu';
+import AlertRuleOverview from './AlertRuleOverview';
+import AddAlertRule from './AddAlertRule';
+import AlertOverview from './AlertOverview';
+import RegisterDataOwner from './RegisterDataOwner';
+
 
 class App extends Component {
-    componentWillMount() {
-        this.props.requestRules();
-    }
 
     render() {
         return (
-            <div className="alerts">
+            <BrowserRouter>
                 <CBSNavigation />
-                <MenuAlert/>
-                <Alert/>
-            </div>
+                <AlertMenu />
+
+                <Route path="/alerts/rules" exact component={AlertRuleOverview} />
+                <Route path="/alerts/addrule" exact component={AddAlertRule} />
+                <Route path="/alerts" exact component={AlertOverview} />
+                <Route path="/alerts/registerdataowner" exact component={RegisterDataOwner} />
+            </BrowserRouter>
         );
     }
 }
-
-export default connect(
-    state => ({
-        baseUrl: state.root.baseUrl,
-    }),
-    dispatch => ({
-        requestRules: () => {
-            dispatch({ type: 'REQUEST_RULES' });
-        },
-    })
-)(App);
+export default App;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { TextInputField, Button } from 'evergreen-ui';
 import { CreateAlertRule } from '../../Features/AlertRules/CreateAlertRule';
@@ -66,7 +67,7 @@ class AddAlertRule extends Component {
                     value={this.state.thresholdTimeframeInHours} />
 
                 <Button appearance="primary" onClick={() => this.addRule()}>Create</Button>
-                <Button appearance="default" onClick={() => this.resetState()}>Cancel</Button>
+                <Button appearance="default" is={Link} to="/alerts/rules">Cancel</Button>
             </div>
         );
     }

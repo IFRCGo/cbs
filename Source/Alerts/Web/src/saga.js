@@ -1,29 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
+import { AllAlertOverviews } from '../Features/Alerts/AllAlertOverviews';
 import { GetDataOwner } from '../Features/DataOwners/GetDataOwner';
 
-const mockRules = [
-    {
-        Id: 1,
-        Name: 'Ebola',
-        HealthRiskId: '1',
-        Threshold: '1',
-        TimeFrame: '24 hours',
-        DistanceBetweenCases: '2 km',
-    },
-    {
-        Id: 2,
-        Name: 'Steavun',
-        HealthRiskId: '1',
-        Threshold: '1',
-        TimeFrame: '12 hours',
-        DistanceBetweenCases: '5 km',
-    },
-];
-
 function* requestRules() {
-    console.log("DAKAR");
     try {
         const query = new AllAlertRules();
         const result = yield queryCoordinator.execute(query);
@@ -33,14 +14,32 @@ function* requestRules() {
     }
 }
 
+function* requestAlertOverview() {
+    try {
+        const query = new AllAlertOverviews();
+        const result = yield queryCoordinator.execute(query);
+        yield put({ type: 'RECEIVE_ALERT_OVERVIEW', payload: { overview: result.items } });
+    } catch (error) {
+        yield put({ type: 'REJECT_ALERT_OVERVIEW', payload: { error: error.message } });
+    }
+}
+
 //get data owner
 function* requestGetDataOwner() {
-    console.log("DAKAR");
     try {
         const query = new GetDataOwner();
         const result = yield queryCoordinator.execute(query);
-        console.log(result);
-        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowner: result.items } });
+        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowners: result.items } });
+    } catch (error) {
+        yield put({ type: 'REJECT_DATAOWNER', payload: { error: error.message } });
+    }
+}
+
+function* requestRegisterDataOwner(dataOwner) {
+    try {
+        yield commandCoordinator.handle(dataOwner.payload);
+        yield put({ type: 'RECEIVE_DATAOWNER', payload: { dataowner: dataOwner.payload } });
+        yield put({ type: 'REQUEST_DATAOWNER' });
     } catch (error) {
         yield put({ type: 'REJECT_DATAOWNER', payload: { error: error.message } });
     }
@@ -58,8 +57,10 @@ function* requestCreateRule(rule) {
 
 function* saga() {
     yield takeEvery('REQUEST_RULES', requestRules);
+    yield takeEvery('REQUEST_ALERT_OVERVIEW', requestAlertOverview);
     yield takeEvery('REQUEST_CREATE_RULE', requestCreateRule);
-    yield takeEvery('RECEIVE_DATAOWNER', requestGetDataOwner);
+    yield takeEvery('REQUEST_DATAOWNER', requestGetDataOwner);
+    yield takeEvery('REQUEST_REGISTER_DATAOWNER', requestRegisterDataOwner);
 }
 
 export default saga;

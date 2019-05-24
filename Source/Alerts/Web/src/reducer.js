@@ -1,6 +1,5 @@
 const initialState = {
     baseUrl: process.env.API_URL,
-    rules: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,11 +11,25 @@ const reducer = (state = initialState, action) => {
             };
         }
 
+        case 'RECEIVE_ALERT_OVERVIEW': {
+            return {
+                ...state,
+                overview: action.payload.overview,
+            };
+        }
+
         case 'RECEIVE_CREATE_RULE': {
             return state;
         }
 
-        case 'RECEIVE_DATA_OWNER': {
+        case 'RECEIVE_DATAOWNER': {
+            return {
+                ...state,
+                dataowners: action.payload.dataowners,
+            };
+        }
+
+        case 'RECEIVE_REGISTER_DATAOWNER': {
             return {
                 ...state,
                 dataowner: action.payload.dataowner,
