@@ -14,8 +14,8 @@ export class Report extends ReadModel
         };
         this.id = '00000000-0000-0000-0000-000000000000';
         this.caseReportId = '00000000-0000-0000-0000-000000000000';
-        this.ageGroup = {};
-        this.sex = {};
+        this.ageGroup = 0;
+        this.sex = 0;
         this.latitude = 0;
         this.longitude = 0;
         this.timestamp = new Date();

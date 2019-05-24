@@ -17,6 +17,6 @@ export class AlertOverview extends ReadModel
         this.healthRiskName = '';
         this.numberOfReports = 0;
         this.openedAt = new Date();
-        this.status = {};
+        this.status = 0;
     }
 }

@@ -14,7 +14,7 @@ export class AutomaticReply extends ReadModel
         };
         this.id = '00000000-0000-0000-0000-000000000000';
         this.projectId = '00000000-0000-0000-0000-000000000000';
-        this.type = {};
+        this.type = 0;
         this.message = '';
         this.language = '';
     }

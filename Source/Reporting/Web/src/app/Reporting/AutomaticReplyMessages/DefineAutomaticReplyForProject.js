@@ -11,7 +11,7 @@ export class DefineAutomaticReplyForProject extends Command
         this.type = '3758f43d-e6c5-4909-a633-0b782fa2c352';
 
         this.projectId = '00000000-0000-0000-0000-000000000000';
-        this.type = {};
+        this.type = 0;
         this.language = '';
         this.message = '';
     }
