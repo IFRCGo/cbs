@@ -9,5 +9,18 @@
         margin-right: 20px;
     }
 }
-
-
+.alert-menu {
+    display: flex;
+    width: 50%;
+    margin-top: 28px;
+    margin-left: 166px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+}
+.menu-button {
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    color: #234361;
+    flex: 1;
+}
