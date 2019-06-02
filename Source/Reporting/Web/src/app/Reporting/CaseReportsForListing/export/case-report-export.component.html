@@ -19,7 +19,7 @@
             </label>
         </div>
         <div class="actions">
-            <button (click)="modalExportCaseReports.close()">Cancel</button>
+            <button (click)="[$event.preventDefault(), modalExportCaseReports.close()]">Cancel</button>
             <button type="submit">Export</button>
         </div>
     </form>
