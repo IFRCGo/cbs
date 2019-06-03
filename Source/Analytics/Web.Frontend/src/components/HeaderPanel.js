@@ -4,8 +4,12 @@ import { Heading, UnorderedList, ListItem } from "evergreen-ui";
 export class HeaderPanel extends React.Component {
 
     render() {
+        let panelStyle = {
+            marginRight: 20
+        };
+
         return (
-            <div className="analytics--headerPanel">
+            <div className="analytics--headerPanel" style={panelStyle}>
                 <i className={`${this.props.icon} fa fa-5x analytics--headerPanelIcon`} />
 
                 <Heading color={this.props.color} size={600} paddingTop={"20px"}>

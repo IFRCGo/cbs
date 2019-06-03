@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     Heading,
-    UnorderedList,
-    ListItem,
     Button,
     Spinner,
     Alert,
@@ -155,11 +153,19 @@ class AnalyticsBanner extends Component {
             );
         }
 
+        let headerPanelContainerStyle = {
+            display: 'flex',
+            flexWrap: 'wrap',
+            marginTop: 10,
+            marginBottom: 10
+        };
         
         return (
             <>
                 {header}
-                <div className="analytics--headerPanelContainer">
+                <Heading size={800} marginTop={20}>Project Presence</Heading>
+
+                <div className="analytics--headerPanelContainer" style={headerPanelContainerStyle}>
                     <HeaderPanel 
                         headline={`${this.state.caseReports.totalNumberOfReports} Reports`}
                         list={this.state.caseReports.reportedHealthRisks}
