@@ -11,6 +11,7 @@ import {
     Text
 } from "evergreen-ui";
 import { DatePicker } from "./DatePicker";
+import { HeaderPanel } from "./HeaderPanel";
 import { updateRange } from "../actions/analysisactions";
 import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
 import { BASE_URL } from "./Analytics";
@@ -154,65 +155,30 @@ class AnalyticsBanner extends Component {
             );
         }
 
+        
         return (
             <>
                 {header}
                 <div className="analytics--headerPanelContainer">
-                    <div className="analytics--headerPanel">
-                        <i className=" fa fa-heartbeat fa-5x analytics--headerPanelIcon" />
+                    <HeaderPanel 
+                        headline={`${this.state.caseReports.totalNumberOfReports} Reports`}
+                        list={this.state.caseReports.reportedHealthRisks}
+                        color="#9f0000"
+                        icon="fa-heartbeat"
+                    />
+                    <HeaderPanel 
+                        headline={`${this.state.dataCollectors.activeDataCollectors} Active Data Collectors`}
+                        list={[{inactiveDataCollectors: this.state.dataCollectors.inactiveDataCollectors, name:"Inactive Data Collectors"}]}
+                        color="#009f00"
+                        icon="fa-user"
+                    />
 
-                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
-                            {this.state.caseReports.totalNumberOfReports}{" "}
-                            Reports
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                {this.state.caseReports.reportedHealthRisks.map(
-                                    (data, index) => (
-                                        <ListItem key={index}>
-                                            {data.numberOfReports} {data.name}
-                                        </ListItem>
-                                    )
-                                )}
-                            </UnorderedList>
-                        </div>
-                    </div>
-                    <div className="analytics--headerPanel">
-                        <i className="analytics--headerPanelIcon fa fa-user fa-5x" />
-
-                        <Heading color="#009f00" size={600} paddingTop={"20px"}>
-                            {`${
-                                this.state.dataCollectors.activeDataCollectors
-                            } Active Data Collectors`}
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                <ListItem>{`${
-                                    this.state.dataCollectors
-                                        .inactiveDataCollectors
-                                } Inactive`}</ListItem>
-                            </UnorderedList>
-                        </div>
-                    </div>
-                    <div className="analytics--headerPanel">
-                        <i className="analytics--headerPanelIcon fa fa-exclamation-triangle fa-5x " />
-
-                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
-                            {`${this.state.alerts.totalNumberOfAlerts} Alerts`}
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                {this.state.alerts.alertsPerHealthRisk.map(
-                                    (data, index) => (
-                                        <ListItem key={index}>
-                                            {data.numberOfReports}{" "}
-                                            {data.healthRisk}
-                                        </ListItem>
-                                    )
-                                )}
-                            </UnorderedList>
-                        </div>
-                    </div>
+                    <HeaderPanel
+                        headline={`${this.state.alerts.totalNumberOfAlerts} Alerts`}
+                        list={this.state.alerts.alertsPerHealthRisk}
+                        color="#9f0000"
+                        icon="fa-exclamation-triangle"
+                    />
                 </div>
             </>
         );
