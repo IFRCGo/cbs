@@ -4,6 +4,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { getJson } from "../../utils/request";
 import { BASE_URL } from "../NationalSocietyOverview";
@@ -46,6 +47,8 @@ class CaseReportByHealthRiskTable extends Component {
 
     render() {
         return (
+                <div style={{marginBottom: 20}}>
+                <Typography variant="h5">No. of case reports per health risk per time period.</Typography>
                 <Paper>
                   <Table>
                     <TableHead>
@@ -64,13 +67,16 @@ class CaseReportByHealthRiskTable extends Component {
                             {healthRisk.name}
                           </TableCell>
                           {healthRisk.reportsPerWeek.map(reports => (
-                              <TableCell key={reports.week} align="right">{reports.numberOfReports}</TableCell>
+                              <TableCell key={reports.week} align="right">
+                                {reports.numberOfReports === 0 && <div style={{color: "#B5B5B5"}}>{reports.numberOfReports}</div> || reports.numberOfReports}
+                              </TableCell>
                           ))}
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </Paper>
+                </div>
         );
     }
 }
