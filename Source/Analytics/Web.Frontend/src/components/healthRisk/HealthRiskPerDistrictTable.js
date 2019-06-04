@@ -30,8 +30,21 @@ class HealthRiskPerDistrictTable extends Component {
         getJson(this.url)
             .then(json => {
                 console.log(json);
+
+                let region_names = [];
+
+                for (let i = 0; i < json.healthRisks.length; i++) {
+                    for (let region of json.healthRisks[i].regions){
+                        if (!(region_names.includes(region.name))){
+                            region_names.push(region.name)
+                        }
+                    }
+                }
+                region_names.sort(); //This is useful later as it helps us detect when some health risk has 0 occurences in a region
+
                 this.setState({
                     healthRisks: json.healthRisks,
+                    allRegionNames: region_names,
                     isLoading: false,
                     isError: false
                 })
@@ -41,8 +54,7 @@ class HealthRiskPerDistrictTable extends Component {
                     isLoading: false,
                     isError: true
                 })
-            );
-            
+            );    
                 
     }
 
