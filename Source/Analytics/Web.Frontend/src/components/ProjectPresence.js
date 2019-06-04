@@ -15,7 +15,7 @@ import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
 import { BASE_URL } from "./Analytics";
 import { getJson } from "../utils/request";
 
-class AnalyticsBanner extends Component {
+class ProjectPresence extends Component {
     constructor(props) {
         super(props);
 
@@ -179,12 +179,14 @@ class AnalyticsBanner extends Component {
                         icon="fa-user"
                     />
 
+                    {/*
                     <HeaderPanel
                         headline={`${this.state.alerts.totalNumberOfAlerts} Alerts`}
                         list={this.state.alerts.alertsPerHealthRisk}
                         color="#9f0000"
                         icon="fa-exclamation-triangle"
                     />
+                    */}
                 </div>
             </>
         );
@@ -204,4 +206,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AnalyticsBanner);
+)(ProjectPresence);
