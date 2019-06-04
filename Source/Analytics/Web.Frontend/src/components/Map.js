@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Map, Popup, CircleMarker, TileLayer } from "react-leaflet";
 import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
 import { getJson } from "../utils/request";
-import { Alert, Button } from "evergreen-ui";
+import { Alert, Button, Text } from "evergreen-ui";
 
 import { BASE_URL } from "./Analytics";
 
@@ -90,13 +90,15 @@ class MapWidget extends Component {
             );
         }
         return (
-            <Map center={position} zoom={6}>
+            <Map center={position} zoom={5} style={{height: 210, width: 210}}>
+                {/* TODO: Auto zoom and center based on set of markers */}
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
                 <OutbreakMarkers outbreaks={this.state.outbreaks} />
             </Map>
+            
         );
     }
 }

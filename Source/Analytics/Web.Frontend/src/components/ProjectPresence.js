@@ -10,6 +10,7 @@ import {
 } from "evergreen-ui";
 import { DatePicker } from "./DatePicker";
 import { HeaderPanel } from "./HeaderPanel";
+import Map from "./Map.js";
 import { updateRange } from "../actions/analysisactions";
 import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
 import { BASE_URL } from "./Analytics";
@@ -172,13 +173,20 @@ class ProjectPresence extends Component {
                         color="#9f0000"
                         icon="fa-heartbeat"
                     />
+                    
                     <HeaderPanel 
                         headline={`${this.state.dataCollectors.activeDataCollectors} Active Data Collectors`}
                         list={[{inactiveDataCollectors: this.state.dataCollectors.inactiveDataCollectors, name:"Inactive Data Collectors"}]}
                         color="#009f00"
                         icon="fa-user"
                     />
-
+                    
+                    <div>
+                        {/*<Heading size={600} color={"#9f0000"}>Reports</Heading>*/}
+                        <Map />
+                    </div>
+                    
+                    
                     {/*
                     <HeaderPanel
                         headline={`${this.state.alerts.totalNumberOfAlerts} Alerts`}

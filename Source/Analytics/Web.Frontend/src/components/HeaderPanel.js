@@ -5,7 +5,7 @@ export class HeaderPanel extends React.Component {
 
     render() {
         let panelStyle = {
-            marginRight: 20
+            marginRight: 30
         };
 
         return (

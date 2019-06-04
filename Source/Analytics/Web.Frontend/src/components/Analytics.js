@@ -13,7 +13,7 @@ class Analytics extends Component {
         return (
             <div className="analytics--container">
                 <ProjectPresence />
-                <Map />
+
                 <Diagram
                     selectedSeries={["Total"]}
                     hasDatePicker
