@@ -10,7 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
-import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { NavTopBarComponent } from './navigation/nav-top-bar.component';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
