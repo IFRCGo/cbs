@@ -71,10 +71,10 @@ class HealthRiskPerDistrictTable extends Component {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell align="right">Thies</TableCell>
-                        <TableCell align="right">Saly</TableCell>
                         <TableCell align="right">Dakar</TableCell>
+                        <TableCell align="right">Saly</TableCell>
                         <TableCell align="right">St. Louis</TableCell>
+                        <TableCell align="right">Thies</TableCell>
                         <TableCell align="right">Touba</TableCell>
                       </TableRow>
                     </TableHead>
@@ -84,7 +84,7 @@ class HealthRiskPerDistrictTable extends Component {
                           <TableCell component="th" scope="row">
                             {healthRisk.name}
                           </TableCell>
-                          {healthRisk.regions.map(region => (
+                          {healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1).map(region => (
                               <TableCell key={region.name} align="right">
                                 {region.numberOfCaseReports}
                               </TableCell>
@@ -100,22 +100,3 @@ class HealthRiskPerDistrictTable extends Component {
 }
 
 export default HealthRiskPerDistrictTable;
-
-
-{/* <TableRow key={healthRisk.name}>
-                          <TableCell component="th" scope="row">
-                            {healthRisk.name}
-                          </TableCell>
-                            {healthRisk.reportsPerWeek.map(reports => (
-                              <TableCell key={reports.week} align="right">
-                                {reports.numberOfReports === 0 && <div style={{color: "#B5B5B5"}}>{reports.numberOfReports}</div> || reports.numberOfReports}
-                              </TableCell>
-                          ))}
-
-                            {this.state.healthRisks.map((healthRisk) => (
-                                <GridListTile key={'Grid'+healthRisk.name} cols={2} style={{ height: 'auto' }}>
-                                    <HighchartsReact key={healthRisk.name} highcharts={Highcharts} options={healthRisk.options} />
-                                </GridListTile>
-                            ))}
-
-                        </TableRow>*/}
