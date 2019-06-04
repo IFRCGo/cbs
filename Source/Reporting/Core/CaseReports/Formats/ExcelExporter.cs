@@ -107,7 +107,7 @@ namespace Core.CaseReports.Formats
             worksheet.Cells["M1"].Value = "Total 5 or older";   // 13
             worksheet.Cells["N1"].Value = "Total females";      // 14
             worksheet.Cells["O1"].Value = "Total males";        // 15
-            worksheet.Cells["P1"].Value = "Total people";       // 16
+            worksheet.Cells["P1"].Value = "Total";              // 16
             worksheet.Cells["Q1"].Value = "Location";           // 17
             worksheet.Cells["R1"].Value = "Message";            // 18
             worksheet.Cells["S1"].Value = "Errors";             // 19
