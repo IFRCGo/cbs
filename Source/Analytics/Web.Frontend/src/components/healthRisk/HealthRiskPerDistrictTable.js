@@ -15,6 +15,7 @@ class HealthRiskPerDistrictTable extends Component {
         super(props);
 
         this.state = {
+            allRegionNames: [],
             healthRisks: [],
             isLoading: true,
             isError: false
@@ -99,11 +100,7 @@ class HealthRiskPerDistrictTable extends Component {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell align="right">Dakar</TableCell>
-                        <TableCell align="right">Saly</TableCell>
-                        <TableCell align="right">St. Louis</TableCell>
-                        <TableCell align="right">Thies</TableCell>
-                        <TableCell align="right">Touba</TableCell>
+                        {this.state.allRegionNames.map(name => (<TableCell key={name} align="right">{name}</TableCell>))}
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -120,6 +117,7 @@ class HealthRiskPerDistrictTable extends Component {
                         ))}
                         </TableRow>
                           ))} 
+                    
                     </TableBody>
                   </Table>
                 </Paper>
