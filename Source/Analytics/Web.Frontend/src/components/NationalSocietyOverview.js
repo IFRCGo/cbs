@@ -74,8 +74,6 @@ class NationalSocietyOverview extends Component {
         return (
             <div className="analytics--container">
 
-            <HealthRiskPerDistrictTable />
-
             <CBSNavigation />
             <Typography component="h2" variant="headline" gutterBottom>
           Overview
@@ -85,9 +83,11 @@ class NationalSocietyOverview extends Component {
 
             <GridList cols={4}>
         <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
-        <ListSubheader component="div">No. of case reports per health risk per time period.</ListSubheader>
+
         <CaseReportByHealthRiskTable />
         </GridListTile>
+        <HealthRiskPerDistrictTable />
+
         <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
         <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
         <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />

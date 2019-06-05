@@ -63,7 +63,7 @@ class HealthRiskPerDistrictTable extends Component {
         this.fetchData();
     }
 
-    generateTableData(healthRisks){
+    generateHealthRiskTableData(healthRisks){
         healthRisks.map(healthRisk => {
                         
             let sorted_regions = healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1);
@@ -93,18 +93,20 @@ class HealthRiskPerDistrictTable extends Component {
 
     render() {
         return (
-                <div style={{marginBottom: 20}}>
+                <div style={{marginBottom: 20, maxWidth: "60%"}}>
                 <Typography variant="h5">No. of cases per health risk and district for last 7 days</Typography>
                 <Paper>
                   <Table>
+
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
                         {this.state.allRegionNames.map(name => (<TableCell key={name} align="right">{name}</TableCell>))}
                       </TableRow>
                     </TableHead>
+
                     <TableBody>
-                    {this.generateTableData(this.state.healthRisks).map(healthRisk => (
+                    {this.generateHealthRiskTableData(this.state.healthRisks).map(healthRisk => (
                         <TableRow key={healthRisk.name}>
                             <TableCell component="th" scope="row">
                                 {healthRisk.name}
@@ -112,13 +114,13 @@ class HealthRiskPerDistrictTable extends Component {
 
                         {healthRisk.regions.map(region => (
                             <TableCell key={region.name} align="right">
-                            {region.numberOfCaseReports}
+                                {region.numberOfCaseReports === 0 && <div style={{color: "#B5B5B5"}}>{region.numberOfCaseReports}</div> || region.numberOfCaseReports}
                             </TableCell> 
                         ))}
                         </TableRow>
-                          ))} 
-                    
+                    ))} 
                     </TableBody>
+
                   </Table>
                 </Paper>
                 </div>
@@ -126,53 +128,4 @@ class HealthRiskPerDistrictTable extends Component {
     }
 }
 
-{/* TO DO: Insert 0 when a HealthRisk has no reports for a district */ }
-
 export default HealthRiskPerDistrictTable;
-
-{/*
-{this.state.healthRisks.map(healthRisk => (
-                        <TableRow key={healthRisk.name}>
-                          <TableCell component="th" scope="row">
-                            {healthRisk.name}
-                          </TableCell>
-                          
-                        </TableRow>
-                          ))} 
-
-
-
-
-                          for (let i; i < this.state.allRegionNames.length; i++){
-                            if (sorted_regions[i].name !== this.state.allRegionNames[i]){
-                                sorted_regions[i-1].push({name: this.state.allRegionNames[i], numberOfCaseReports: 0});
-                            }
-                        }
-                        */}
-
-
-
-{/* 
-{this.state.healthRisks.map(healthRisk => {
-                        
-                        let sorted_regions = healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1);
-
-                        if (sorted_regions.length !== this.state.allRegionNames.length){
-                            let sorted_regions_all = [];
-
-                            this.state.allRegionNames.map(regionName => {
-                                let existed = false;
-                                sorted_regions.map(caseRegion => {
-                                    if (regionName == caseRegion.name){
-                                        sorted_regions_all.push(caseRegion);
-                                        existed = true;
-                                    } 
-                                })
-                                if (!existed){
-                                    sorted_regions_all.push({name: regionName, numberOfCaseReports: 0});
-                                } 
-                            })
-                        }
-                        
-                    })}
-*/}
