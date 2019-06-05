@@ -86,7 +86,6 @@ class NationalSocietyOverview extends Component {
 
         <CaseReportByHealthRiskTable />
         </GridListTile>
-        <HealthRiskPerDistrictTable />
 
         <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
         <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
