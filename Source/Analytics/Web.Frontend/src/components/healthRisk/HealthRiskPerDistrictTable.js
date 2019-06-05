@@ -62,6 +62,34 @@ class HealthRiskPerDistrictTable extends Component {
         this.fetchData();
     }
 
+    generateTableData(healthRisks){
+        healthRisks.map(healthRisk => {
+                        
+            let sorted_regions = healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1);
+
+            if (sorted_regions.length !== this.state.allRegionNames.length){
+                let sorted_regions_all = [];
+
+                this.state.allRegionNames.map(regionName => {
+                    let existed = false;
+                    sorted_regions.map(caseRegion => {
+                        if (regionName == caseRegion.name){
+                            sorted_regions_all.push(caseRegion);
+                            existed = true;
+                        } 
+                    })
+                    if (!existed){
+                        sorted_regions_all.push({name: regionName, numberOfCaseReports: 0});
+                    } 
+                })
+                healthRisk.regions = sorted_regions_all;
+            }
+            
+            
+        })
+        return healthRisks;
+    }
+
     render() {
         return (
                 <div style={{marginBottom: 20}}>
@@ -79,18 +107,19 @@ class HealthRiskPerDistrictTable extends Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.state.healthRisks.map(healthRisk => (
+                    {this.generateTableData(this.state.healthRisks).map(healthRisk => (
                         <TableRow key={healthRisk.name}>
-                          <TableCell component="th" scope="row">
-                            {healthRisk.name}
-                          </TableCell>
-                          {healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1).map(region => (
-                              <TableCell key={region.name} align="right">
-                                {region.numberOfCaseReports}
-                              </TableCell>
-                          ))}
+                            <TableCell component="th" scope="row">
+                                {healthRisk.name}
+                            </TableCell>
+
+                        {healthRisk.regions.map(region => (
+                            <TableCell key={region.name} align="right">
+                            {region.numberOfCaseReports}
+                            </TableCell> 
+                        ))}
                         </TableRow>
-                      ))}
+                          ))} 
                     </TableBody>
                   </Table>
                 </Paper>
@@ -99,4 +128,53 @@ class HealthRiskPerDistrictTable extends Component {
     }
 }
 
+{/* TO DO: Insert 0 when a HealthRisk has no reports for a district */ }
+
 export default HealthRiskPerDistrictTable;
+
+{/*
+{this.state.healthRisks.map(healthRisk => (
+                        <TableRow key={healthRisk.name}>
+                          <TableCell component="th" scope="row">
+                            {healthRisk.name}
+                          </TableCell>
+                          
+                        </TableRow>
+                          ))} 
+
+
+
+
+                          for (let i; i < this.state.allRegionNames.length; i++){
+                            if (sorted_regions[i].name !== this.state.allRegionNames[i]){
+                                sorted_regions[i-1].push({name: this.state.allRegionNames[i], numberOfCaseReports: 0});
+                            }
+                        }
+                        */}
+
+
+
+{/* 
+{this.state.healthRisks.map(healthRisk => {
+                        
+                        let sorted_regions = healthRisk.regions.sort((a,b) => (a.name > b.name) ? 1 : -1);
+
+                        if (sorted_regions.length !== this.state.allRegionNames.length){
+                            let sorted_regions_all = [];
+
+                            this.state.allRegionNames.map(regionName => {
+                                let existed = false;
+                                sorted_regions.map(caseRegion => {
+                                    if (regionName == caseRegion.name){
+                                        sorted_regions_all.push(caseRegion);
+                                        existed = true;
+                                    } 
+                                })
+                                if (!existed){
+                                    sorted_regions_all.push({name: regionName, numberOfCaseReports: 0});
+                                } 
+                            })
+                        }
+                        
+                    })}
+*/}
