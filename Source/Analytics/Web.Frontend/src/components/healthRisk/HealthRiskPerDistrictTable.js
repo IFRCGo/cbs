@@ -91,6 +91,47 @@ class HealthRiskPerDistrictTable extends Component {
         return healthRisks;
     }
 
+    createRows() {
+        console.log(this.state.healthRisks)
+        const numHealthRisks = this.state.healthRisks.length
+        const rows = []
+        this.state.allRegionNames.map(regionName => {
+            
+            let row = new Array(1+numHealthRisks).fill(0);
+            row[0] = regionName;
+            
+
+            for (let i=0; i<this.state.healthRisks.length; i++){
+
+                let num = this.state.healthRisks[i].regions.find(region => region.name === regionName);
+                //console.log("NUM: " + (num ? num.numberOfCaseReports : 0));
+                console.log("Occurences of " + this.state.healthRisks[i].name + " in " + regionName + "\: " + (num ? num.numberOfCaseReports : 0));
+                
+                row[i+1] = num ? num.numberOfCaseReports : 0;
+            }
+            
+            rows.push(row)
+            
+            
+        })
+            
+        
+
+        console.log("ROWS: " + rows)
+        
+        {/* 
+            for each region: create a row 
+                for each health risk: find numCaseReports for the region
+                    if num: append num to row
+                    else: append 0
+            return region row
+        */} 
+
+        {/* healthRiskName: "Measels", regions: [ {name: "Dakar", numberOfCaseReports: 15. }, ... ] */}
+
+        return rows
+    }
+
     render() {
         return (
                 <div style={{marginBottom: 20, maxWidth: "60%"}}>
@@ -101,24 +142,19 @@ class HealthRiskPerDistrictTable extends Component {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        {this.state.allRegionNames.map(name => (<TableCell key={name} align="right">{name}</TableCell>))}
+                        {this.state.healthRisks.map(healthRisk => (<TableCell key={healthRisk.name} align="right">{healthRisk.name}</TableCell>))}
                       </TableRow>
                     </TableHead>
-
+                        
                     <TableBody>
-                    {this.generateHealthRiskTableData(this.state.healthRisks).map(healthRisk => (
-                        <TableRow key={healthRisk.name}>
-                            <TableCell component="th" scope="row">
-                                {healthRisk.name}
-                            </TableCell>
-
-                        {healthRisk.regions.map(region => (
-                            <TableCell key={region.name} align="right">
-                                {region.numberOfCaseReports === 0 && <div style={{color: "#B5B5B5"}}>{region.numberOfCaseReports}</div> || region.numberOfCaseReports}
-                            </TableCell> 
+                        {this.createRows().map(row => (
+                            <TableRow key={row.name}>
+                                {row.map(x => (
+                                    <TableCell align="right">{x}</TableCell>
+                                ))}
+                                
+                            </TableRow>
                         ))}
-                        </TableRow>
-                    ))} 
                     </TableBody>
 
                   </Table>
@@ -129,3 +165,14 @@ class HealthRiskPerDistrictTable extends Component {
 }
 
 export default HealthRiskPerDistrictTable;
+
+{/* healthRiskName: "Measels", regions: [ {name: "Dakar", numberOfCaseReports: 15. }, ... ] 
+
+
+{this.state.healthRisks.map(healthRisk => (
+    healthRisk.regions.map(region => (
+        <TableCell key={healthRisk.name} align="right">{region.numberOfCaseReports}</TableCell>
+    ))
+))}
+}
+*/}
