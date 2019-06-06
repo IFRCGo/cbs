@@ -9,7 +9,7 @@ import {
     Text
 } from "evergreen-ui";
 import { DatePicker } from "./DatePicker";
-import { HeaderPanel } from "./HeaderPanel";
+import { PresenceIndicator } from "./PresenceIndicator";
 import Map from "./Map.js";
 import { updateRange } from "../actions/analysisactions";
 import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
@@ -167,34 +167,24 @@ class ProjectPresence extends Component {
                 <Heading size={800} marginTop={20}>Project Presence</Heading>
 
                 <div className="analytics--headerPanelContainer" style={headerPanelContainerStyle}>
-                    <HeaderPanel 
+                    <PresenceIndicator 
                         headline={`${this.state.caseReports.totalNumberOfReports} Reports`}
                         list={this.state.caseReports.reportedHealthRisks}
                         color="#9f0000"
                         icon="fa-heartbeat"
                     />
                     
-                    <HeaderPanel 
+                    <PresenceIndicator 
                         headline={`${this.state.dataCollectors.activeDataCollectors} Active Data Collectors`}
-                        list={[{inactiveDataCollectors: this.state.dataCollectors.inactiveDataCollectors, name:"Inactive Data Collectors"}]}
+                        list={[{name:"Inactive Data Collectors", inactiveDataCollectors: this.state.dataCollectors.inactiveDataCollectors}]}
                         color="#009f00"
                         icon="fa-user"
                     />
                     
                     <div>
-                        {/*<Heading size={600} color={"#9f0000"}>Reports</Heading>*/}
                         <Map />
                     </div>
-                    
-                    
-                    {/*
-                    <HeaderPanel
-                        headline={`${this.state.alerts.totalNumberOfAlerts} Alerts`}
-                        list={this.state.alerts.alertsPerHealthRisk}
-                        color="#9f0000"
-                        icon="fa-exclamation-triangle"
-                    />
-                    */}
+
                 </div>
             </>
         );

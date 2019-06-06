@@ -91,7 +91,6 @@ class MapWidget extends Component {
         }
         return (
             <Map center={position} zoom={5} style={{height: 210, width: 210}}>
-                {/* TODO: Auto zoom and center based on set of markers */}
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
