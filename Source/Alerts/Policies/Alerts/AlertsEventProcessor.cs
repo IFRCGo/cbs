@@ -44,6 +44,5 @@ namespace Policies.Alerts
                 _mailSender.Send(owner.Email, $"CBS Alert opened", message);
             }
         }
-
     }
 }

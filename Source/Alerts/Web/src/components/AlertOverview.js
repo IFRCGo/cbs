@@ -16,6 +16,7 @@ class AlertOverview extends Component {
   }
   componentWillMount() {
     this.props.getAlertOverview();
+    this.props.requestCloseAlert(1);
   }
 
   render() {
@@ -65,6 +66,7 @@ export default connect(
     alerts: state.root.overview
   }),
   dispatch => ({
-    getAlertOverview: () => dispatch({ type: 'REQUEST_ALERT_OVERVIEW'})
+    getAlertOverview: () => dispatch({ type: 'REQUEST_ALERT_OVERVIEW'}),
+    requestCloseAlert: (alertNumber) => dispatch({ type: 'REQUEST_CLOSE_ALERT', payload: alertNumber })
   })
 )(AlertOverview);

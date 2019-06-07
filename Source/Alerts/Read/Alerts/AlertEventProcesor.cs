@@ -35,5 +35,13 @@ namespace Read.Alerts
             };
             _items.Insert(item);
         }
+
+        [EventProcessor("09d774ef-e301-4a79-9e75-c64643df471a")]
+        public void Process(AlertClosed @event)
+        {
+            var alert = _items.GetById(@event.AlertNumber);
+            alert.Status = AlertStatus.Closed;
+            _items.Update(alert);
+        }
     }
 }

@@ -172,11 +172,20 @@
     "queries": {}
   },
   "c2778e6d-ba03-4e8e-9d5d-dce46b34eed9": {
-    "commands": {},
+    "commands": {
+      "fd844bf3-5a55-47b8-b0ae-da3b64aed1ac": {
+        "generation": 1,
+        "type": "Domain.Alerts.CloseAlert, Domain"
+      }
+    },
     "events": {
       "0c6aadaa-e2a3-474d-a630-8a2b2bca2f19": {
         "generation": 1,
         "type": "Events.Alerts.AlertOpened, Events"
+      },
+      "cf5a540a-e5b0-4a97-9f9a-7da159411067": {
+        "generation": 1,
+        "type": "Events.Alerts.AlertClosed, Events"
       }
     },
     "eventSources": {
