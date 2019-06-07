@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AnalyticsBanner from "./AnalyticsBanner.js";
 import Map from "./Map.js";
 import Diagram from "./Diagram.js";
+import ProjectPresence from "./ProjectPresence.js";
 
 export const BASE_URL = process.env.API_BASE_URL;
 
@@ -12,8 +12,8 @@ class Analytics extends Component {
     render() {
         return (
             <div className="analytics--container">
-                <AnalyticsBanner />
-                <Map />
+                <ProjectPresence />
+
                 <Diagram
                     selectedSeries={["Total"]}
                     hasDatePicker
