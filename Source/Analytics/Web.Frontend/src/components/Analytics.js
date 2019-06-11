@@ -17,7 +17,6 @@ class Analytics extends Component {
             <div className="analytics--container">
                 <HealthRiskPerDistrictTable />
                 <CaseReportByHealthRiskTable />
-                
                 <AnalyticsBanner />
                 <Map />
                 <Diagram

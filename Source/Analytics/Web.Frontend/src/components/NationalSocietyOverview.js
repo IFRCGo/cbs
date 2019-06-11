@@ -73,34 +73,28 @@ class NationalSocietyOverview extends Component {
     render() {
         return (
             <div className="analytics--container">
+                <CBSNavigation />
+                <Typography component="h2" variant="headline" gutterBottom>
+                    Overview
+                </Typography>
 
-            <CBSNavigation />
-            <Typography component="h2" variant="headline" gutterBottom>
-          Overview
-        </Typography>
+                <GridList cols={4}>
+                    <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
+                        <CaseReportByHealthRiskTable />
+                    </GridListTile>
 
-        
+                    <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
+                        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
+                        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
+                    </GridListTile>
+                    <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
+                        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
+                        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
+                    </GridListTile>
 
-            <GridList cols={4}>
-        <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
-
-        <CaseReportByHealthRiskTable />
-        </GridListTile>
-
-        <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
-        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-        </GridListTile>
-        <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
-        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
-        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
-        </GridListTile>
-
-     
-        </GridList>
-        <HealthRiskPerDistrictBarCharts />
-
-        <Map />
+                </GridList>
+                <HealthRiskPerDistrictBarCharts />
+                <Map />
             </div>
         );
     }
