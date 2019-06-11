@@ -99,7 +99,7 @@ class HealthRiskPerDistrictTable extends Component {
                         <TableRow key={row.name}>
                             <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column */}
                             {row.map(numCases => (
-                                <TableCell align="right">{numCases == 0 && <div style={{color: "#B5B5B5"}}>{numCases}</div> || numCases}</TableCell>
+                                <TableCell align="right" style={numCases === 0 ? {color: "#B5B5B5"} : {}}>{ numCases}</TableCell>
                             ))}     
                         </TableRow>
                     ))}

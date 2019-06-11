@@ -47,36 +47,36 @@ class CaseReportByHealthRiskTable extends Component {
 
     render() {
         return (
-                <div style={{marginBottom: 20}}>
-                <Typography variant="h5">No. of case reports per health risk per time period.</Typography>
-                <Paper>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell align="right">0-6 days</TableCell>
-                        <TableCell align="right">7-13 days</TableCell>
-                        <TableCell align="right">14-21 days</TableCell>
-                        <TableCell align="right">22-27 days</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {this.state.healthRisks.map(healthRisk => (
-                        <TableRow key={healthRisk.name}>
-                          <TableCell component="th" scope="row">
-                            {healthRisk.name}
+          <div style={{marginBottom: 20}}>
+            <Typography variant="h5">No. of case reports per health risk per time period.</Typography>
+            <Paper>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell align="right">0-6 days</TableCell>
+                    <TableCell align="right">7-13 days</TableCell>
+                    <TableCell align="right">14-21 days</TableCell>
+                    <TableCell align="right">22-27 days</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.state.healthRisks.map(healthRisk => (
+                    <TableRow key={healthRisk.name}>
+                      <TableCell component="th" scope="row">
+                        {healthRisk.name}
+                      </TableCell>
+                      {healthRisk.reportsPerWeek.map(reports => (
+                          <TableCell key={reports.week} align="right" style={reports.numberOfReports === 0 ? {color: "#B5B5B5"} : {}}>
+                            {reports.numberOfReports}
                           </TableCell>
-                          {healthRisk.reportsPerWeek.map(reports => (
-                              <TableCell key={reports.week} align="right">
-                                {reports.numberOfReports === 0 && <div style={{color: "#B5B5B5"}}>{reports.numberOfReports}</div> || reports.numberOfReports}
-                              </TableCell>
-                          ))}
-                        </TableRow>
                       ))}
-                    </TableBody>
-                  </Table>
-                </Paper>
-                </div>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
         );
     }
 }
