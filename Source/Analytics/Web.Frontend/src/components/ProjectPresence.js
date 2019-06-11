@@ -3,20 +3,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     Heading,
-    UnorderedList,
-    ListItem,
     Button,
     Spinner,
     Alert,
     Text
 } from "evergreen-ui";
 import { DatePicker } from "./DatePicker";
+import { PresenceIndicator } from "./PresenceIndicator";
+import Map from "./Map.js";
 import { updateRange } from "../actions/analysisactions";
 import { formatDate, fromOrDefault, toOrDefault } from "../utils/dateUtils";
 import { BASE_URL } from "./Analytics";
 import { getJson } from "../utils/request";
 
-class AnalyticsBanner extends Component {
+class ProjectPresence extends Component {
     constructor(props) {
         super(props);
 
@@ -154,65 +154,37 @@ class AnalyticsBanner extends Component {
             );
         }
 
+        let headerPanelContainerStyle = {
+            display: 'flex',
+            flexWrap: 'wrap',
+            marginTop: 10,
+            marginBottom: 10
+        };
+        
         return (
             <>
                 {header}
-                <div className="analytics--headerPanelContainer">
-                    <div className="analytics--headerPanel">
-                        <i className=" fa fa-heartbeat fa-5x analytics--headerPanelIcon" />
+                <Heading size={800} marginTop={20}>Project Presence</Heading>
 
-                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
-                            {this.state.caseReports.totalNumberOfReports}{" "}
-                            Reports
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                {this.state.caseReports.reportedHealthRisks.map(
-                                    (data, index) => (
-                                        <ListItem key={index}>
-                                            {data.numberOfReports} {data.name}
-                                        </ListItem>
-                                    )
-                                )}
-                            </UnorderedList>
-                        </div>
+                <div className="analytics--headerPanelContainer" style={headerPanelContainerStyle}>
+                    <PresenceIndicator 
+                        headline={`${this.state.caseReports.totalNumberOfReports} Reports`}
+                        list={this.state.caseReports.reportedHealthRisks}
+                        color="#9f0000"
+                        icon="fa-heartbeat"
+                    />
+                    
+                    <PresenceIndicator 
+                        headline={`${this.state.dataCollectors.activeDataCollectors} Active Data Collectors`}
+                        list={[{name:"Inactive Data Collectors", inactiveDataCollectors: this.state.dataCollectors.inactiveDataCollectors}]}
+                        color="#009f00"
+                        icon="fa-user"
+                    />
+                    
+                    <div>
+                        <Map />
                     </div>
-                    <div className="analytics--headerPanel">
-                        <i className="analytics--headerPanelIcon fa fa-user fa-5x" />
 
-                        <Heading color="#009f00" size={600} paddingTop={"20px"}>
-                            {`${
-                                this.state.dataCollectors.activeDataCollectors
-                            } Active Data Collectors`}
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                <ListItem>{`${
-                                    this.state.dataCollectors
-                                        .inactiveDataCollectors
-                                } Inactive`}</ListItem>
-                            </UnorderedList>
-                        </div>
-                    </div>
-                    <div className="analytics--headerPanel">
-                        <i className="analytics--headerPanelIcon fa fa-exclamation-triangle fa-5x " />
-
-                        <Heading color="#9f0000" size={600} paddingTop={"20px"}>
-                            {`${this.state.alerts.totalNumberOfAlerts} Alerts`}
-                        </Heading>
-                        <div className="analytics--listContainer">
-                            <UnorderedList size={500}>
-                                {this.state.alerts.alertsPerHealthRisk.map(
-                                    (data, index) => (
-                                        <ListItem key={index}>
-                                            {data.numberOfReports}{" "}
-                                            {data.healthRisk}
-                                        </ListItem>
-                                    )
-                                )}
-                            </UnorderedList>
-                        </div>
-                    </div>
                 </div>
             </>
         );
@@ -232,4 +204,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AnalyticsBanner);
+)(ProjectPresence);

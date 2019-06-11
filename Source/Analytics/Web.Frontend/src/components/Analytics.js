@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import AnalyticsBanner from "./AnalyticsBanner.js";
 import Map from "./Map.js";
 import Diagram from "./Diagram.js";
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable.js";
-
+import ProjectPresence from "./ProjectPresence.js";
 
 export const BASE_URL = process.env.API_BASE_URL;
 
@@ -19,6 +18,8 @@ class Analytics extends Component {
                 <CaseReportByHealthRiskTable />
                 <AnalyticsBanner />
                 <Map />
+                <ProjectPresence />
+
                 <Diagram
                     selectedSeries={["Total"]}
                     hasDatePicker

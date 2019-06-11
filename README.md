@@ -38,4 +38,4 @@ Got questions? Send an email to rebecca.madeleine.bushby@redcross.no
 | Reporting | [![Build status](https://cbsrc.visualstudio.com/cbs/_apis/build/status/Reporting-CI-CD)](https://cbsrc.visualstudio.com/cbs/_build/latest?definitionId=10)
 
 ## Quick links
-[Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20and%20technology%20blueprint-2.pdf)
+[Functional requirements](https://github.com/IFRCGo/cbs/blob/master/Documentation/Requirements/CBS%20Functional%20requirements%20specification.pdf)
