@@ -5,6 +5,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import {ApplicationInsights} from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
+import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
 import { formatDate } from "../utils/dateUtils";
@@ -72,28 +73,28 @@ class NationalSocietyOverview extends Component {
     render() {
         return (
             <div className="analytics--container">
-            <CBSNavigation />
-            <Typography component="h2" variant="headline" gutterBottom>
-          Overview
-        </Typography>
-            <GridList cols={4}>
-        <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
-        <ListSubheader component="div">No. of case reports per health risk per time period.</ListSubheader>
-        <CaseReportByHealthRiskTable />
-        </GridListTile>
-        <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
-        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-        </GridListTile>
-        <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
-        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
-        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
-        </GridListTile>
+                <CBSNavigation />
+                <Typography component="h2" variant="headline" gutterBottom>
+                    Overview
+                </Typography>
 
-     
-        </GridList>
-        <HealthRiskPerDistrictBarCharts />
-        <Map />
+                <GridList cols={4}>
+                    <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
+                        <CaseReportByHealthRiskTable />
+                    </GridListTile>
+
+                    <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
+                        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
+                        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
+                    </GridListTile>
+                    <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
+                        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
+                        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
+                    </GridListTile>
+
+                </GridList>
+                <HealthRiskPerDistrictBarCharts />
+                <Map />
             </div>
         );
     }

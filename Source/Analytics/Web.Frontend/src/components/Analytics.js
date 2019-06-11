@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Map from "./Map.js";
 import Diagram from "./Diagram.js";
+import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
+import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable.js";
 import ProjectPresence from "./ProjectPresence.js";
 
 export const BASE_URL = process.env.API_BASE_URL;
@@ -12,6 +14,10 @@ class Analytics extends Component {
     render() {
         return (
             <div className="analytics--container">
+                <HealthRiskPerDistrictTable />
+                <CaseReportByHealthRiskTable />
+                <AnalyticsBanner />
+                <Map />
                 <ProjectPresence />
 
                 <Diagram
@@ -20,6 +26,7 @@ class Analytics extends Component {
                     defaultRange={"Day"}
                     title={range => `Epicurve by ${range}`}
                 />
+                {/*
                 <Diagram
                     selectedSeries={["AgeUnderFive", "AgeFiveOrAbove"]}
                     hasDatePicker
@@ -62,6 +69,7 @@ class Analytics extends Component {
                         />
                     </div>
                 </div>
+                */}
             </div>
         );
     }
