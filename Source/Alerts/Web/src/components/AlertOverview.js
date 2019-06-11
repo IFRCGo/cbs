@@ -16,7 +16,6 @@ class AlertOverview extends Component {
   }
   componentWillMount() {
     this.props.getAlertOverview();
-    this.props.requestCloseAlert(1);
   }
 
   render() {

@@ -58,8 +58,10 @@ function* requestCreateRule(rule) {
 
 function* requestCloseAlert(alertNumber) {
     try {
-        const closeAlert = new CloseAlert();
-        closeAlert.alertNumber = 0;
+        const closeAlert = {
+            ...new CloseAlert(),
+            alertNumber: alertNumber
+        }
         yield commandCoordinator.handle(closeAlert);
         yield put({ type: 'RECEIVE_CLOSE_ALERT', payload: { alert: closeAlert.payload } });
         yield put({ type: 'REQUEST_ALERT_OVERVIEW' });
