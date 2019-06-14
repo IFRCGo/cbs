@@ -4,7 +4,7 @@
     "events": {
       "d615a603-d87d-4d04-9b87-2f03bbfb2c8b": {
         "generation": 1,
-        "type": "Events.VolunteerReporting.CaseReports.CaseReportReceived, Events.VolunteerReporting"
+        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
       }
     },
     "eventSources": {},
@@ -53,6 +53,18 @@
       }
     },
     "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
+    "commands": {},
+    "events": {
+      "c7bc7fb5-07b7-4c94-aac5-8b645c183c4b": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
+      }
+    },
     "eventSources": {},
     "readModels": {},
     "queries": {}

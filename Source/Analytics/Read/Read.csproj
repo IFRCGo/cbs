@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Events\Events.csproj" />
-    <ProjectReference Include="..\Events.VolunteerReporting\Events.VolunteerReporting.csproj" />
+    <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dolittle.SDK" Version="2.*" />
+    <PackageReference Include="Dolittle.SDK" Version="3.*" />
   </ItemGroup>
 
 

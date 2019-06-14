@@ -1,7 +1,7 @@
 using System;
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
-using Events.VolunteerReporting.CaseReports;
+using Events.Reporting.CaseReports;
 
 namespace Domain.CaseReports
 {

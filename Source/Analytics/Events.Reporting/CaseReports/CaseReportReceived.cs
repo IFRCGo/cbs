@@ -5,7 +5,7 @@
 using System;
 using Dolittle.Events;
 
-namespace Events.VolunteerReporting.CaseReports {
+namespace Events.Reporting.CaseReports {
     public class CaseReportReceived : IEvent {
         public CaseReportReceived (Guid caseReportId, Guid dataCollectorId, Guid healthRiskId,
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,

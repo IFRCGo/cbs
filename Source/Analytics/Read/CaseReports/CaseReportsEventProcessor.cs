@@ -2,7 +2,7 @@ using Dolittle.Collections;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Types;
-using Events.VolunteerReporting.CaseReports;
+using Events.Reporting.CaseReports;
 
 namespace Read.CaseReports
 {
