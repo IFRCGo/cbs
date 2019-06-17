@@ -1,3 +1,4 @@
+using System;
 using Autofac;
 using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.Booting;
@@ -31,6 +32,7 @@ namespace Core
                     c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
                 });
             }
+            // services.AddSecurity(_hostingEnvironment, "/analytics");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -44,6 +46,8 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // app.UseSecurity(env, "/analytics");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,11 +58,12 @@ namespace Core
                 });
             }
 
+            app.UsePathBase("/analytics");
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc();
-
 
             app.UseDolittle();
             app.RunAsSinglePageApplication();

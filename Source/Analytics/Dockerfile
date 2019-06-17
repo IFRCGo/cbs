@@ -4,6 +4,9 @@ FROM microsoft/dotnet:2.2-sdk-bionic AS build-core
 COPY ./NuGet.Config /CBS/Source/NuGet.Config
 COPY ./Source/Analytics/Analytics.sln /CBS/Source/Analytics/Analytics.sln
 COPY ./Source/Analytics/Core/Core.csproj /CBS/Source/Analytics/Core/Core.csproj
+COPY ./Source/Analytics/Concepts/Concepts.csproj /CBS/Source/Analytics/Concepts/Concepts.csproj
+COPY ./Source/Analytics/Domain/Domain.csproj /CBS/Source/Analytics/Domain/Domain.csproj
+COPY ./Source/Analytics/Policies/Policies.csproj /CBS/Source/Analytics/Policies/Policies.csproj
 COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events.csproj
 COPY ./Source/Analytics/Events.Admin/Events.Admin.csproj /CBS/Source/Analytics/Events.Admin/Events.Admin.csproj
 COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
@@ -31,7 +34,7 @@ RUN yarn build
 
 # Build runtime image 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
-COPY --from=build-core /CBS/Source/Analytics/Core/out /CBS/Web/
+COPY --from=build-core /CBS/Source/Analytics/Core/out /CBS/Core/
 COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Web/wwwroot
-WORKDIR /CBS/Web
-ENTRYPOINT ["dotnet", "/CBS/Web/Web.dll"]
+WORKDIR /CBS/Core
+ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]

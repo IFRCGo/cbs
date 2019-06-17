@@ -1,16 +1,4 @@
 {
-  "8a88cfed-e2d5-4170-bba5-932d8daa7a4b": {
-    "commands": {},
-    "events": {
-      "d615a603-d87d-4d04-9b87-2f03bbfb2c8b": {
-        "generation": 1,
-        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
-      }
-    },
-    "eventSources": {},
-    "readModels": {},
-    "queries": {}
-  },
   "082b543a-e61b-4dea-b261-1396475b40b7": {
     "commands": {},
     "events": {},

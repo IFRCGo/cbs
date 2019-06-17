@@ -1,0 +1,16 @@
+# Ignore Node modules
+**/node_modules/
+
+# Ignore web binaries
+**/Web/dist/
+
+# Ignore C# binaries
+**/bin/
+**/obj/
+.dockerignore
+.env
+.git
+.gitignore
+**/.vs
+.vscode
+**/.toolstarget

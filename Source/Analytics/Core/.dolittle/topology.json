@@ -1,15 +1,6 @@
 {
   "modules": {},
   "features": {
-    "cf2940a4-8873-4402-8a65-c11185ed75a7": {
-      "name": "VolunteerReporting",
-      "subFeatures": {
-        "8a88cfed-e2d5-4170-bba5-932d8daa7a4b": {
-          "name": "CaseReports",
-          "subFeatures": {}
-        }
-      }
-    },
     "082b543a-e61b-4dea-b261-1396475b40b7": {
       "name": "CaseReports",
       "subFeatures": {
