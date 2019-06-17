@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{0D1DA767-D45D-46FF-84B8-953A69C2FFDB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events.Reporting", "Events.Reporting\Events.Reporting.csproj", "{18D0A1FA-3E53-4AC6-9AED-88AEE941261C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events", "Events\Events.csproj", "{67BCDBE9-1AD8-4D42-9DF9-C0D8A5C4FEF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Read", "Read\Read.csproj", "{D91A3E14-7B97-4413-910D-7BDC8CAB52A7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Read.Dolittle", "Read.Dolittle\Read.Dolittle.csproj", "{5E13CB3B-F82E-4C06-B7E2-5D5D3503217D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Admin", "Events.Admin\Events.Admin.csproj", "{1C23F379-FFA6-4D5A-8C9B-80CCBA61953E}"
 EndProject

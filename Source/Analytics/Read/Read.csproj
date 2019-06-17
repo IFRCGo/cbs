@@ -4,10 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2-beta1" />
+ <ItemGroup>
+    <PackageReference Include="Dolittle.SDK" Version="3.*" />
   </ItemGroup>
 
+ <ItemGroup>
+   <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
+   <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
+ </ItemGroup>
 
 </Project>
