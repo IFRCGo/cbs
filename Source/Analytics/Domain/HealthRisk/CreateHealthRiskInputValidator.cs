@@ -1,4 +1,5 @@
 using Dolittle.Commands.Validation;
+using FluentValidation;
 
 namespace Domain.HealthRisk
 {
@@ -10,7 +11,7 @@ namespace Domain.HealthRisk
                 .NotEmpty()
                 .WithMessage("Health risk must have a name");
 
-            RuleFor(cmd => cmd.HealthRiskId)
+            RuleFor(cmd => cmd.HealthRiskGuid)
                 .NotEmpty()
                 .WithMessage("Health risk must have an id");
         }

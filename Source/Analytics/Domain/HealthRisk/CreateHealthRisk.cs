@@ -1,4 +1,6 @@
 using Dolittle.Commands;
+using Concepts;
+
 
 namespace Domain.HealthRisk
 {

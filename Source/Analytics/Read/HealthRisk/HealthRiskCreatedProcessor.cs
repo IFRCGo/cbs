@@ -1,5 +1,6 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
+using Concepts;
 using Events;
 
 namespace Read.HealthRisk
@@ -26,7 +27,7 @@ namespace Read.HealthRisk
                     Id = @event.HealthRiskId,
                     AllHealthRisks = new []
                     {
-                        new HealthRisk
+                        new Concepts.HealthRisk.HealthRisk
                         {
                             HealthRiskName = @event.HealthRiskName
                         }
@@ -36,7 +37,7 @@ namespace Read.HealthRisk
             }
             else 
             {
-                healthRisks.AllHealthRisks.Add(new HealthRisk
+                healthRisks.AllHealthRisks.Add(new Concepts.HealthRisk.HealthRisk
                 {
                     HealthRiskName = @event.HealthRiskName
                 });

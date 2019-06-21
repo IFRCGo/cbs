@@ -1,16 +1,17 @@
+using System;
 using Dolittle.Events;
 
 namespace Events
 {
     public class HealthRiskCreated : IEvent
     {
-        public HealthRiskCreated(Guid eventSourceId, string healthRiskName)
+        public HealthRiskCreated(Guid healthRiskId, string healthRiskName)
         {
-            HealthRiskId = eventSourceId;
+            HealthRiskId = healthRiskId;
             HealthRiskName = healthRiskName;
         }
 
-        public EventSourceId HealthRiskId { get; }
+        public Guid HealthRiskId { get; }
         public string HealthRiskName { get; }
 
     }
