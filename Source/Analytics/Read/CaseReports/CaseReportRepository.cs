@@ -5,11 +5,13 @@ using Read.Models.CaseReports.PerRegion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Concepts.HealthRisk;
 
 namespace Read.CaseReports
 {
     public class CaseReportRepository
     {
+        /* 
         private readonly MongoDBHandler _mongoDBHandler;
         public CaseReportRepository(MongoDBHandler mongoDBHandler)
         {
@@ -90,7 +92,7 @@ namespace Read.CaseReports
                 string healthRiskName = grouped.Key.Name;
                 if (caseReportTotals.GetHealthRisk(healthRiskName) == null)
                 {
-                    caseReportTotals.HealthRisks.Add(new HealthRisk(healthRiskName));
+                    caseReportTotals.HealthRisks.Add(new Concepts.HealthRisk.HealthRisk(healthRiskName));
                 }
 
                 var count = grouped.Sum(x =>
@@ -103,5 +105,6 @@ namespace Read.CaseReports
 
             return caseReportTotals;
         }
+        */
     }
 }

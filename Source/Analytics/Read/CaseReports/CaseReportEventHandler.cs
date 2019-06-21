@@ -1,10 +1,11 @@
-using Read.HealthRisks;
 using System.Linq;
+using Concepts.HealthRisk;
 
 namespace Read.CaseReports
 {
-    public class CaseReportsEventHandler : ICaseReportsEventHandler
+    public class CaseReportsEventHandler // : ICaseReportsEventHandler
     {
+        /* 
         private readonly MongoDBHandler _dbHandler;
 
         public CaseReportsEventHandler(MongoDBHandler dbHandler)
@@ -25,5 +26,6 @@ namespace Read.CaseReports
                 _dbHandler.Update(healthRisk);
             }
         }
+        */
     }
 }

@@ -27,20 +27,14 @@ namespace Read.HealthRisk
                     Id = @event.HealthRiskId,
                     AllHealthRisks = new []
                     {
-                        new Concepts.HealthRisk.HealthRisk
-                        {
-                            HealthRiskName = @event.HealthRiskName
-                        }
+                        new Concepts.HealthRisk.HealthRisk(@event.HealthRiskName)
                     }
                 };
                 _repositoryForHealthRisks.Insert(healthRisks);
             }
             else 
             {
-                healthRisks.AllHealthRisks.Add(new Concepts.HealthRisk.HealthRisk
-                {
-                    HealthRiskName = @event.HealthRiskName
-                });
+                healthRisks.AllHealthRisks.Add(new Concepts.HealthRisk.HealthRisk(@event.HealthRiskName));
 
                 _repositoryForHealthRisks.Update(healthRisks);
             }
