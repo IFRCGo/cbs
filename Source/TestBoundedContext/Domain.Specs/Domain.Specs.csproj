@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Machine.Specifications.Runner.VisualStudio" Version="2.2.2" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+      <PackageReference Include="Machine.Specifications" Version="0.12.0" />
+      <PackageReference Include="Machine.Specifications.Should" Version="0.11.0" />
+      <PackageReference Include="moq" Version="4.7.*" />
+    </ItemGroup>
+
+</Project>

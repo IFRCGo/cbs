@@ -1,0 +1,19 @@
+{
+  "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+  "boundedContext": "539cb622-8ec5-c825-96ab-d9e767758dd6",
+  "boundedContextName": "Analytics",
+  "resources": {
+    "readModels": {
+      "production": "MongoDB",
+      "development": "MongoDB"
+    },
+    "eventStore": {
+      "production": "MongoDB",
+      "development": "MongoDB"
+    }
+  },
+  "core": {
+    "language": "csharp"
+  },
+  "interaction": []
+}

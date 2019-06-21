@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="2.*" />
   </ItemGroup>
-
 
 </Project>

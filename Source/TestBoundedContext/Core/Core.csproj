@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <DefaultItemExcludes>gulp\**\*;node_modules\**\*;jspm_packages\**\*;bower_components\**\*;wwwroot\**\*;bin\**\*;obj\**\*</DefaultItemExcludes>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <!-- The relative path from this .csproj file to the bounded-context.json configuration file -->
+    <DolittleBoundedContextConfigPath>../bounded-context.json</DolittleBoundedContextConfigPath>
+    
+    <!-- Whether or not to use modules or not when genreating bounded context topology structure -->
+    <DolittleUseModules>False</DolittleUseModules>
+    
+    <!--  A | separated Key/Value pair map of namespace segments to strip -->
+    <DolittleNamespaceSegmentsToStrip></DolittleNamespaceSegmentsToStrip>
+    
+    <!-- Whether or not the build tool should generate proxies -->
+    <DolittleGenerateProxies>True</DolittleGenerateProxies>
+    
+    <!-- The relative path to put proxies if generated-->
+    <DolittleProxiesBasePath>../Web/Features</DolittleProxiesBasePath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Include=".dolittle\**\*" CopyToPublishDirectory="Always"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Remove="node_modules\**\*" />
+    <Content Remove="jspm_packages\**\*" />
+    <Content Remove="bower_components\**\*" />
+    <Content Remove="bin\**\*" />
+    <Content Remove="obj\**\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Policies\Policies.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+
+    <PackageReference Include="Dolittle.AspNetCore" Version="2.*" />
+    <PackageReference Include="Dolittle.SDK" Version="2.*" />
+
+    <PackageReference Include="Dolittle.Build" Version="2.*" />   
+
+    <!-- Dolittle extensions -->
+    <PackageReference Include="Dolittle.DependencyInversion.Autofac" Version="2.*" />
+    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.*" />
+    <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="2.*" />   
+    
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.0.0" />
+
+  </ItemGroup>
+
+</Project>
