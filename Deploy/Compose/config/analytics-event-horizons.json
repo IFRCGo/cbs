@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "da2a4710-06fa-8660-bf95-81dd95606f63",
+        "url": "cbs-reporting:50053",
+        "events": [
+            {
+                "id": "58a3dbf3-bcd0-4722-b21b-65d06558df53",
+                "generation": 1
+            }
+        ]
+    }
+]

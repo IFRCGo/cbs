@@ -9,12 +9,11 @@ namespace Events.Reporting.CaseReports
 {
     public class CaseReportReceived : IEvent
     {
-        public CaseReportReceived(Guid caseReportId, Guid dataCollectorId, Guid healthRiskId,
+        public CaseReportReceived(Guid dataCollectorId, Guid healthRiskId,
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, double longitude,
             double latitude, DateTimeOffset timestamp)
         {
-            this.CaseReportId = caseReportId;
             this.DataCollectorId = dataCollectorId;
             this.HealthRiskId = healthRiskId;
             this.Origin = origin;
@@ -27,7 +26,6 @@ namespace Events.Reporting.CaseReports
             this.Latitude = latitude;
             this.Timestamp = timestamp;
         }
-        public Guid CaseReportId { get; }
         public Guid DataCollectorId { get; }
         public Guid HealthRiskId { get; }
         public string Origin { get; }

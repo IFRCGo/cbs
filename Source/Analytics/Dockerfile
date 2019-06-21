@@ -34,7 +34,9 @@ RUN yarn build
 
 # Build runtime image 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY ./Source/Analytics/bounded-context.json /CBS/bounded-context.json
 COPY --from=build-core /CBS/Source/Analytics/Core/out /CBS/Core/
+COPY --from=build-core /CBS/Source/Analytics/Core/.dolittle /CBS/Core/.dolittle
 COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Web/wwwroot
 WORKDIR /CBS/Core
 ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]
