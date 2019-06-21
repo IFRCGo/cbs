@@ -1,11 +1,9 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using Dolittle.ReadModels.MongoDB;
 
 namespace Read
 {
     public class BaseReadModel
     {
-       [BsonElement("_id")]
-       public ObjectId Id { get; set; }
+       public string Id { get; set; }
     }
 }
