@@ -9,7 +9,12 @@
         "type": "Read.CaseReports.CaseReport, Read"
       }
     },
-    "queries": {}
+    "queries": {
+      "70347653-3d3b-4ce5-b502-1aeef0d1690a": {
+        "generation": 1,
+        "type": "Read.CaseReports.AllCaseReports, Read"
+      }
+    }
   },
   "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
     "commands": {},

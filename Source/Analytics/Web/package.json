@@ -9,6 +9,10 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
+        "@dolittle/commands": "^1.0.13",
+        "@dolittle/core": "^1.0.5",
+        "@dolittle/queries": "^1.0.14",
+        "@dolittle/readmodels": "^1.0.2",
         "@babel/plugin-proposal-class-properties": "^7.4.0",
         "@babel/plugin-proposal-private-methods": "^7.4.3",
         "@babel/runtime": "^7.2.0",
