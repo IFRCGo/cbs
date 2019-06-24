@@ -10,7 +10,6 @@ namespace Domain.HealthRisk
             RuleFor(cmd => cmd.HealthRiskName)
                 .NotEmpty()
                 .WithMessage("Health risk must have a name");
-
             RuleFor(cmd => cmd.HealthRiskId)
                 .NotEmpty()
                 .WithMessage("Health risk must have an id");

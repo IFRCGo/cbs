@@ -5,7 +5,7 @@ namespace Events.HealthRisk
 {
     public class HealthRiskCreated : IEvent
     {
-        public HealthRiskCreated(Guid healthRiskId, string healthRiskName, int healthRiskNumber)
+        public HealthRiskCreated(string healthRiskName, Guid healthRiskId, int healthRiskNumber)
         {
             HealthRiskId = healthRiskId;
             HealthRiskName = healthRiskName;

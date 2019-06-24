@@ -6,8 +6,8 @@ namespace Domain.HealthRisk
 {
     public class CreateHealthRisk : ICommand
     {
+        public HealthRiskId HealthRiskId = new HealthRiskId();
         public HealthRiskName HealthRiskName { get; set; }
-        public HealthRiskId HealthRiskId { get; set; } 
         public HealthRiskNumber HealthRiskNumber { get; set; }
     }
 }

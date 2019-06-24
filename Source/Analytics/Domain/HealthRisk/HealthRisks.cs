@@ -12,11 +12,11 @@ namespace Domain.HealthRisk
             
         }
 
-        public void Add(HealthRiskName name, HealthRiskNumber number)
+        public void Add(HealthRiskName name, HealthRiskId id, HealthRiskNumber number)
         {
             var createdEvent = new HealthRiskCreated(
-                EventSourceId,
                 name,
+                id,
                 number
             );
 

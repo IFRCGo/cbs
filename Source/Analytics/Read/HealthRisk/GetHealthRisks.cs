@@ -21,12 +21,7 @@ namespace Read.HealthRisk
         {
             get
             {
-                return new [] 
-                    {
-                        _repositoryForHealthRisks
-                        .Query
-                        .FirstOrDefault()
-                    }.AsQueryable();
+                return _repositoryForHealthRisks.Query;
             }
         }
     }
