@@ -9,5 +9,16 @@
                 "generation": 1
             }
         ]
+    },
+    {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "64b3befc-2fb6-42f9-9e4b-bcb426fffffb",
+        "url": "localhost:50052",
+        "events": [
+            {
+                "id": "bb5762fb-ae90-4082-a347-8f6fa268bb48",
+                "generation": 1
+            }
+        ]
     }
 ]

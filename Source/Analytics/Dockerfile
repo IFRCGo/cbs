@@ -6,9 +6,9 @@ COPY ./Source/Analytics/Analytics.sln /CBS/Source/Analytics/Analytics.sln
 COPY ./Source/Analytics/Core/Core.csproj /CBS/Source/Analytics/Core/Core.csproj
 COPY ./Source/Analytics/Concepts/Concepts.csproj /CBS/Source/Analytics/Concepts/Concepts.csproj
 COPY ./Source/Analytics/Domain/Domain.csproj /CBS/Source/Analytics/Domain/Domain.csproj
+COPY ./Source/Analytics/Domain.Specs/Domain.Specs.csproj /CBS/Source/Analytics/Domain.Specs/Domain.Specs.csproj
 COPY ./Source/Analytics/Policies/Policies.csproj /CBS/Source/Analytics/Policies/Policies.csproj
 COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events.csproj
-COPY ./Source/Analytics/Events.Admin/Events.Admin.csproj /CBS/Source/Analytics/Events.Admin/Events.Admin.csproj
 COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
 COPY ./Source/Analytics/Read/Read.csproj /CBS/Source/Analytics/Read/Read.csproj
 
@@ -18,7 +18,7 @@ RUN dotnet restore
 # Build production code
 COPY ./Source/Analytics /CBS/Source/Analytics
 WORKDIR /CBS/Source/Analytics/Core
-RUN dotnet publish --no-restore -c Release -o out
+RUN dotnet publish -c Release -o out
 
 FROM node:11.6-slim AS build-web
 
