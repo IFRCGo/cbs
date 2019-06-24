@@ -11,7 +11,7 @@ namespace Domain.HealthRisk
                 .NotEmpty()
                 .WithMessage("Health risk must have a name");
 
-            RuleFor(cmd => cmd.HealthRiskGuid)
+            RuleFor(cmd => cmd.HealthRiskId)
                 .NotEmpty()
                 .WithMessage("Health risk must have an id");
         }

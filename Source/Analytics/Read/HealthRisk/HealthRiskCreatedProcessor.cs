@@ -1,16 +1,15 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
-using Concepts;
 using Events.HealthRisk;
 
 namespace Read.HealthRisk
 {
     public class HealthRiskCreatedProcessor : ICanProcessEvents
     {
-        readonly IReadModelRepositoryFor<HealthRisks> _repositoryForHealthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _repositoryForHealthRisks;
 
         public HealthRiskCreatedProcessor(
-            IReadModelRepositoryFor<HealthRisks> repositoryForHealthRisks            
+            IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks            
         )
         {
             _repositoryForHealthRisks = repositoryForHealthRisks;
@@ -19,24 +18,24 @@ namespace Read.HealthRisk
         [EventProcessor("c5450b8a-f487-656e-1d0d-ea07073abc1d")]
         public void Process(HealthRiskCreated @event)
         { 
-            var healthRisks = _repositoryForHealthRisks.GetById(@event.HealthRiskId);
-            if(healthRisks == null)
+            var healthRisk = _repositoryForHealthRisks.GetById(@event.HealthRiskId); //currently only one list for HealthRisks
+            if(healthRisk == null)
             {
-                healthRisks = new HealthRisks
+                healthRisk = new HealthRisk
                 {
                     Id = @event.HealthRiskId,
-                    AllHealthRisks = new []
-                    {
-                        new Concepts.HealthRisk.HealthRisk(@event.HealthRiskName)
-                    }
+                    HealthRiskName = @event.HealthRiskName,
+                    HealthRiskNumber = @event.HealthRiskNumber
+                    
                 };
-                _repositoryForHealthRisks.Insert(healthRisks);
+                _repositoryForHealthRisks.Insert(healthRisk);
             }
             else 
             {
-                healthRisks.AllHealthRisks.Add(new Concepts.HealthRisk.HealthRisk(@event.HealthRiskName));
+                healthRisk.HealthRiskName = @event.HealthRiskName;
+                healthRisk.HealthRiskNumber = @event.HealthRiskNumber;
 
-                _repositoryForHealthRisks.Update(healthRisks);
+                _repositoryForHealthRisks.Update(healthRisk);
             }
 
         }

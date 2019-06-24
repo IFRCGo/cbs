@@ -16,8 +16,8 @@ namespace Domain.HealthRisk
 
         public void Handle(CreateHealthRisk cmd)
         {
-            var healthRisk = _aggregateRootRepoForHealthRisks.Get(cmd.HealthRiskGuid.Value);
-            healthRisk.Add(cmd.HealthRiskName);
+            var healthRisks = _aggregateRootRepoForHealthRisks.Get(cmd.HealthRiskId.Value);
+            healthRisks.Add(cmd.HealthRiskName, cmd.HealthRiskNumber);
         }
         
     }

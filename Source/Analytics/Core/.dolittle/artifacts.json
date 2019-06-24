@@ -74,7 +74,7 @@
     "readModels": {
       "99683fe5-feb4-4155-abe7-9bcc9c495fae": {
         "generation": 1,
-        "type": "Read.HealthRisk.HealthRisks, Read"
+        "type": "Read.HealthRisk.HealthRisk, Read"
       }
     },
     "queries": {

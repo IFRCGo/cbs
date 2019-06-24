@@ -6,28 +6,26 @@ using Concepts.HealthRisk;
 
 namespace Read.HealthRisk
 {
-    public class GetHealthRisks: IQueryFor<HealthRisks>
+    public class GetHealthRisks: IQueryFor<HealthRisk>
     {
-        readonly IReadModelRepositoryFor<HealthRisks> _repositoryForHealthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _repositoryForHealthRisks;
 
         public ListId Id { get; set; } = ListId.None;
 
-        public GetHealthRisks(IReadModelRepositoryFor<HealthRisks> repositoryForHealthRisks)
+        public GetHealthRisks(IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks)
         {
             _repositoryForHealthRisks = repositoryForHealthRisks;
         }
 
-        public IQueryable<HealthRisks> Query
+        public IQueryable<HealthRisk> Query
         {
             get
             {
-                return Id == ListId.None
-                    ? new HealthRisks[0].AsQueryable()
-                    : new [] 
+                return new [] 
                     {
                         _repositoryForHealthRisks
                         .Query
-                        .FirstOrDefault(readModel => readModel.Id == Id)
+                        .FirstOrDefault()
                     }.AsQueryable();
             }
         }
