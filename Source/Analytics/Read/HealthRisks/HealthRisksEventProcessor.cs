@@ -1,5 +1,5 @@
 using Dolittle.Events.Processing;
-using Events.Admin.HealthRisks;
+//using Events.HealthRisks;
 
 namespace Read.HealthRisks
 {

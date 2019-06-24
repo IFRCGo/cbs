@@ -1,7 +1,6 @@
-using Read.Alerts;
 using Read.CaseReports;
 using Read.DataCollectors;
-using Read.HealthRisks;
+using Concepts;
 using Read.Models.KPI;
 using System;
 using System.Linq;
@@ -10,6 +9,7 @@ namespace Read.KPI
 {
     public class KPIRepository
     {
+        /* 
         private readonly MongoDBHandler _mongoDBHandler;
         public KPIRepository(MongoDBHandler mongoDBHandler)
         {
@@ -21,7 +21,6 @@ namespace Read.KPI
             var kpi = new KPIs();
             PopulateCaseReportKPIs(kpi, from, to);
             PopulateDataCollectorKPIs(kpi, from, to);
-            PopulateAlertKPIs(kpi, from, to);
 
             return kpi;
 
@@ -31,7 +30,7 @@ namespace Read.KPI
         {
             var reportedHealthRisks = kpi.GetRecordedHealthRisks();
 
-            var healthRisks = _mongoDBHandler.GetQueryable<HealthRisk>()
+            var healthRisks = _mongoDBHandler.GetQueryable<Concepts.HealthRisk.HealthRisk>()
                 .Where(x => x.ReportsPerDay.Count != 0).ToList();
 
             int total = 0;
@@ -67,15 +66,6 @@ namespace Read.KPI
                 .Distinct()
                 .Count();
         }
-
-        private void PopulateAlertKPIs(KPIs kpi, DateTimeOffset from, DateTimeOffset to)
-        {
-            kpi.Alerts.TotalNumberOfAlerts = _mongoDBHandler.GetQueryable<Alert>().Count();
-
-            //TODO: When we know what the Alerts event contains, we will get this from there. 
-            for(int i = 0; i<kpi.Alerts.TotalNumberOfAlerts; i++){
-                kpi.Alerts.AlertsPerHealthRisk.Add(new AlertEscalated("SomeHealthRisk", 1));
-            }
-        }
+    */
     }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%- htmlWebpackPlugin.options.metadata.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="${require('./assets/icons/16x16_favicon_darkblue.png')}" sizes="16x16">
+    <link rel="icon" type="image/png" href="${require('./assets/icons/32x32_favicon_darkblue.png')}" sizes="32x32">
+    <link rel="icon" type="image/png" href="${require('./assets/icons/96x96_favicon_darkblue.png')}" sizes="96x96">
+    <link rel="apple-touch-icon" href="${require('./assets/icons/120x120_favicon_darkblue.png')}">
+    <link rel="apple-touch-icon" sizes="152x152" href="${require('./assets/icons/152x152_favicon_darkblue.png')}">
+    <link rel="apple-touch-icon" sizes="167x167" href="${require('./assets/icons/167x167_favicon_darkblue.png')}">
+    <link rel="apple-touch-icon" sizes="180x180" href="${require('./assets/icons/180x180_favicon_darkblue.png')}">
+
+    <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
+    <!-- imported CSS are concatenated and added automatically -->
+  </head>
+  <body aurelia-app="main">
+    <% if (htmlWebpackPlugin.options.metadata.server) { %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+    <% } %>
+  </body>
+</html>

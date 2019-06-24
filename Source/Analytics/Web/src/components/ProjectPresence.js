@@ -25,7 +25,6 @@ class ProjectPresence extends Component {
             from: null,
             to: null,
             caseReports: { reportedHealthRisks: [] },
-            alerts: { totalNumberOfAlerts: 0, alertsPerHealthRisk: [] },
             dataCollectors: {
                 activeDataCollectors: 0,
                 totalNumberOfDataCollectors: 0,
@@ -47,7 +46,6 @@ class ProjectPresence extends Component {
         getJson(this.url)
             .then(json =>
                 this.setState({
-                    alerts: json.alerts,
                     dataCollectors: json.dataCollectors,
                     caseReports: json.caseReports,
                     isLoading: false,

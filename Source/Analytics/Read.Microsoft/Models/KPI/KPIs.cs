@@ -7,13 +7,11 @@ namespace Read.Models.KPI
     {
         public CaseReportKPI CaseReports { get; }
         public DataCollectorKPI DataCollectors { get; }
-        public AlertKPI Alerts { get; }
 
         public KPIs()
         {
             CaseReports = new CaseReportKPI();
             DataCollectors = new DataCollectorKPI();
-            Alerts = new AlertKPI();
         }
 
         public List<ReportedHealthRisk> GetRecordedHealthRisks()

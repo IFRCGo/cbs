@@ -33,7 +33,7 @@
     "events": {
       "bb5762fb-ae90-4082-a347-8f6fa268bb48": {
         "generation": 1,
-        "type": "Events.Admin.HealthRisks.HealthRiskCreated, Events.Admin"
+        "type": "Events.HealthRisk.HealthRiskCreated, Events"
       }
     },
     "eventSources": {},
@@ -51,5 +51,37 @@
     "eventSources": {},
     "readModels": {},
     "queries": {}
+  },
+  "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
+    "commands": {
+      "66fcecee-e5fa-4a9b-837e-fd437df1b3cc": {
+        "generation": 1,
+        "type": "Domain.HealthRisk.CreateHealthRisk, Domain"
+      }
+    },
+    "events": {
+      "32d95b06-16bd-4069-b500-8d3de4712262": {
+        "generation": 1,
+        "type": "Events.HealthRisk.HealthRiskCreated, Events"
+      }
+    },
+    "eventSources": {
+      "d4c95b3c-aa91-4d0a-8930-6987a9baee6b": {
+        "generation": 1,
+        "type": "Domain.HealthRisk.HealthRisks, Domain"
+      }
+    },
+    "readModels": {
+      "99683fe5-feb4-4155-abe7-9bcc9c495fae": {
+        "generation": 1,
+        "type": "Read.HealthRisk.HealthRisks, Read"
+      }
+    },
+    "queries": {
+      "ee79bd67-adcf-4f85-b80d-61bea3a2c788": {
+        "generation": 1,
+        "type": "Read.HealthRisk.GetHealthRisks, Read"
+      }
+    }
   }
 }

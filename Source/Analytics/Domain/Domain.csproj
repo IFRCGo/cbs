@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="3.*" />
   </ItemGroup>
 
