@@ -1,7 +1,7 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Concepts;
-using Events;
+using Events.HealthRisk;
 
 namespace Read.HealthRisk
 {

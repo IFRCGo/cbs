@@ -1,7 +1,7 @@
 using System;
 using Dolittle.Events;
 
-namespace Events
+namespace Events.HealthRisk
 {
     public class HealthRiskCreated : IEvent
     {

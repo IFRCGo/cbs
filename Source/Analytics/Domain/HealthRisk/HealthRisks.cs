@@ -1,7 +1,7 @@
 using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Concepts;
-using Events;
+using Events.HealthRisk;
 
 namespace Domain.HealthRisk
 {

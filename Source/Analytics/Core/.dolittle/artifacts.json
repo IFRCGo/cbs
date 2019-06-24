@@ -1,2 +1,34 @@
 {
+  "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
+    "commands": {
+      "1c9171bf-fa58-45dd-aca4-29906c9cc56d": {
+        "generation": 1,
+        "type": "Domain.HealthRisk.CreateHealthRisk, Domain"
+      }
+    },
+    "events": {
+      "a024e987-1f0a-4c38-a315-cf65694891f2": {
+        "generation": 1,
+        "type": "Events.HealthRisk.HealthRiskCreated, Events"
+      }
+    },
+    "eventSources": {
+      "06a5bbc8-007f-4678-89b0-6af96dcc9b41": {
+        "generation": 1,
+        "type": "Domain.HealthRisk.HealthRisks, Domain"
+      }
+    },
+    "readModels": {
+      "bc6e0842-0907-4a72-9953-d620ea6b0030": {
+        "generation": 1,
+        "type": "Read.HealthRisk.HealthRisks, Read"
+      }
+    },
+    "queries": {
+      "b5b5083a-85ab-483e-bfae-5cc458d6af5c": {
+        "generation": 1,
+        "type": "Read.HealthRisk.GetHealthRisks, Read"
+      }
+    }
+  }
 }

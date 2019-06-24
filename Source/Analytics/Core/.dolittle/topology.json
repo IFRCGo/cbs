@@ -1,4 +1,9 @@
 {
-    "modules": {},
-    "features": {}
+  "modules": {},
+  "features": {
+    "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
+      "name": "HealthRisk",
+      "subFeatures": {}
+    }
+  }
 }
