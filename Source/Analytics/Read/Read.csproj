@@ -2,12 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2-beta1" />
+    <ProjectReference Include="..\Events\Events.csproj" />
+    <ProjectReference Include="..\Concepts\Concepts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dolittle.SDK" Version="3.*" />
+    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.1.0" />
+  </ItemGroup>
+
+ <ItemGroup>
+   <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
+ </ItemGroup>
 
 </Project>
