@@ -53,24 +53,14 @@
     "queries": {}
   },
   "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
-    "commands": {
-      "66fcecee-e5fa-4a9b-837e-fd437df1b3cc": {
-        "generation": 1,
-        "type": "Domain.HealthRisk.CreateHealthRisk, Domain"
-      }
-    },
+    "commands": {},
     "events": {
       "32d95b06-16bd-4069-b500-8d3de4712262": {
         "generation": 1,
         "type": "Events.HealthRisk.HealthRiskCreated, Events"
       }
     },
-    "eventSources": {
-      "d4c95b3c-aa91-4d0a-8930-6987a9baee6b": {
-        "generation": 1,
-        "type": "Domain.HealthRisk.HealthRisks, Domain"
-      }
-    },
+    "eventSources": {},
     "readModels": {
       "99683fe5-feb4-4155-abe7-9bcc9c495fae": {
         "generation": 1,
