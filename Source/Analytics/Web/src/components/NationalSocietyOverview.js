@@ -87,7 +87,7 @@ class NationalSocietyOverview extends Component {
 
     componentDidMount() {
         this.fetchData();
-        this.fetchHealthRisks();
+        //this.fetchHealthRisks();
         
         appInsights.trackPageView({ name: 'National society overview'});
     }
@@ -101,7 +101,6 @@ class NationalSocietyOverview extends Component {
                     Overview
                 </Typography>
 
-                {/*
                 <GridList cols={4}>
                     <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
                         <CaseReportByHealthRiskTable />
@@ -119,7 +118,6 @@ class NationalSocietyOverview extends Component {
                 </GridList>
                 <HealthRiskPerDistrictBarCharts />
                 <Map />
-                */}
             </div>
         );
     }
