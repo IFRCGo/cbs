@@ -70,7 +70,7 @@
     "queries": {
       "ee79bd67-adcf-4f85-b80d-61bea3a2c788": {
         "generation": 1,
-        "type": "Read.HealthRisk.GetHealthRisks, Read"
+        "type": "Read.HealthRisk.AllHealthRisks, Read"
       }
     }
   }

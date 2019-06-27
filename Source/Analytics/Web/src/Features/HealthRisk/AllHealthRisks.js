@@ -4,13 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Query } from  '@dolittle/queries';
 
-export class GetHealthRisks extends Query
+export class AllHealthRisks extends Query
 {
     constructor() {
         super();
-        this.nameOfQuery = 'GetHealthRisks';
-        this.generatedFrom = 'Read.HealthRisk.GetHealthRisks';
+        this.nameOfQuery = 'AllHealthRisks';
+        this.generatedFrom = 'Read.HealthRisk.AllHealthRisks';
 
-        this.id = '00000000-0000-0000-0000-000000000000';
     }
 }
