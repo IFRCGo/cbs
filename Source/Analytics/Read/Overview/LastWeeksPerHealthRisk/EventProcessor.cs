@@ -76,19 +76,19 @@ namespace Read.Overview.LastWeeksPerHealthRisk
                 _caseReportsLastWeeksPerHealthRisk.Insert(aggregatedReports);
             }
 
-            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHelthRisk[id];
-            if (aggregatedReportsForHealthRisk == null)
+            if (!aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(id))
             {
-                aggregatedReportsForHealthRisk = new CaseReportsLastWeeksForHealthRisk
+                aggregatedReports.CaseReportsPerHelthRisk[id] = new CaseReportsLastWeeksForHealthRisk
                 {
                     Days0to6 = 0,
                     Days7to13 = 0,
                     Days14to20 = 0,
                     Days21to27 = 0
                 };
-                aggregatedReports.CaseReportsPerHelthRisk[id] = aggregatedReportsForHealthRisk;
             }
 
+            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHelthRisk[id];
+            
             update(aggregatedReportsForHealthRisk);
 
             _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
