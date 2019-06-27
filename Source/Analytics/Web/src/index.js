@@ -7,11 +7,14 @@ import { routes } from "./utils/routes";
 import rootReducer from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import {QueryCoordinator} from '@dolittle/queries';
 
 import "./assets/react-leaflet.scss";
 import "./assets/main.scss";
 import Analytics from './components/Analytics';
 import NationalSocietyOverview from './components/NationalSocietyOverview';
+
+QueryCoordinator.apiBaseUrl = process.env.API_BASE_URL;
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
