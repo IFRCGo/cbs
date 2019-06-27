@@ -22,7 +22,7 @@
     <DolittleGenerateProxies>True</DolittleGenerateProxies>
     
     <!-- The relative path to put proxies if generated-->
-    <DolittleProxiesBasePath>../Web/Features</DolittleProxiesBasePath>
+    <DolittleProxiesBasePath>../Web/src/Features</DolittleProxiesBasePath>
   </PropertyGroup>
   
   <ItemGroup>

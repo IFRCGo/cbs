@@ -12,7 +12,7 @@ import { formatDate } from "../utils/dateUtils";
 import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
-import { GetHealthRisks } from "../../Features/HealthRisk/GetHealthRisks";
+import { AllHealthRisks } from "../Features/HealthRisk/AllHealthRisks";
 import { QueryCoordinator } from "@dolittle/queries";
 
 const appInsights = new ApplicationInsights({
@@ -43,7 +43,7 @@ class NationalSocietyOverview extends Component {
 
     fetchHealthRisks() {
         this.queryCoordinator = new QueryCoordinator();
-        let healthRisks = new GetHealthRisks();
+        let healthRisks = new AllHealthRisks();
 
         this.queryCoordinator.execute(healthRisks).then(queryResult => {
             if(queryResult.success){
@@ -87,7 +87,7 @@ class NationalSocietyOverview extends Component {
 
     componentDidMount() {
         this.fetchData();
-        //this.fetchHealthRisks();
+        this.fetchHealthRisks();
         
         appInsights.trackPageView({ name: 'National society overview'});
     }

@@ -4,10 +4,10 @@ using Dolittle.ReadModels;
 
 namespace Read.HealthRisk
 {
-    public class GetHealthRisks: IQueryFor<HealthRisk>
+    public class AllHealthRisks: IQueryFor<HealthRisk>
     {
         readonly IReadModelRepositoryFor<HealthRisk> _repositoryForHealthRisks;
-        public GetHealthRisks(IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks)
+        public AllHealthRisks(IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks)
         {
             _repositoryForHealthRisks = repositoryForHealthRisks;
         }
