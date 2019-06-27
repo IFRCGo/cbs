@@ -7,12 +7,20 @@
       "893b09bd-5d69-4a05-bc2a-420ba95cd169": {
         "generation": 1,
         "type": "Read.CaseReports.CaseReport, Read"
+      },
+      "5468ba83-01ff-4768-8c36-ea00d69a11a1": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportTotals, Read"
       }
     },
     "queries": {
       "70347653-3d3b-4ce5-b502-1aeef0d1690a": {
         "generation": 1,
         "type": "Read.CaseReports.AllCaseReports, Read"
+      },
+      "e7502ef6-e3a9-46dc-bcca-a159c4a6e824": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportTotalsQuery, Read"
       }
     }
   },
@@ -50,6 +58,18 @@
     },
     "eventSources": {},
     "readModels": {},
+    "queries": {}
+  },
+  "4555d18b-9ac8-4343-b742-3bfbd45de3b8": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "0a8fe8b1-3957-418a-b863-03dfc1ab9417": {
+        "generation": 1,
+        "type": "Read.HealthRisks.HealthRisk, Read"
+      }
+    },
     "queries": {}
   }
 }

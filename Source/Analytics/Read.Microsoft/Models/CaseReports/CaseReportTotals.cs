@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Read.Models.CaseReports
+namespace Read.CaseReports
 {
-    public class CaseReportTotals
+    public class CaseReportTotals : IReadModel
     {
         public int Female { get; set; }
         public int Male { get; set; }
