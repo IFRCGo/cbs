@@ -1,13 +1,13 @@
 using Dolittle.Concepts;
 using System;
 
-namespace Concepts.HealthRisk
+namespace Concepts.HealthRisks
 {
     public class HealthRiskId : ConceptAs<Guid>
     {
         public static implicit operator HealthRiskId(Guid value)
         {
-            return new HealthRiskId {Value = Guid.NewGuid()};
+            return new HealthRiskId {Value = value};
         }
 
     }

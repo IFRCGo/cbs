@@ -1,6 +1,6 @@
 using Dolittle.Concepts;
 
-namespace Concepts.HealthRisk
+namespace Concepts.HealthRisks
 {
     public class HealthRiskName : ConceptAs<string>
     {
