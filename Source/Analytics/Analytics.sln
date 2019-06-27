@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events.Reporting", "Events.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{BCB881B8-91CC-48AA-92F7-CF9CE8630573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Admin", "Events.Admin\Events.Admin.csproj", "{1C23F379-FFA6-4D5A-8C9B-80CCBA61953E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F3558294-3C38-489D-8C4C-61BCFE961412}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concepts.csproj", "{97B283F1-92B7-4C7D-85DF-9C2EF6E75ACB}"
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read", "Read\Read.csproj", "{5B762123-777F-41CA-9CC9-5CF04DE04FE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read.Specs", "Read.Specs\Read.Specs.csproj", "{84C32554-1E49-41EF-9BD1-A02180FF3CF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Admin", "Events.Admin\Events.Admin.csproj", "{E038517A-DEAA-4DBD-83B8-7CF564BAA135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,5 +162,17 @@ Global
 		{84C32554-1E49-41EF-9BD1-A02180FF3CF5}.Release|x64.Build.0 = Release|Any CPU
 		{84C32554-1E49-41EF-9BD1-A02180FF3CF5}.Release|x86.ActiveCfg = Release|Any CPU
 		{84C32554-1E49-41EF-9BD1-A02180FF3CF5}.Release|x86.Build.0 = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|x64.Build.0 = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Debug|x86.Build.0 = Debug|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|x64.ActiveCfg = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|x64.Build.0 = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|x86.ActiveCfg = Release|Any CPU
+		{E038517A-DEAA-4DBD-83B8-7CF564BAA135}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
