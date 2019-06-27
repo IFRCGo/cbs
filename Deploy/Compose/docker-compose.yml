@@ -42,8 +42,8 @@ services:
       - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
-    logging:
-      driver: "none"
+    # logging:
+    #   driver: "none"
     networks:
       - "cbs-network"
 
@@ -63,8 +63,8 @@ services:
       - ASPNETCORE_APPINSIGHTS_INSTRUMENTATIONKEY
       - OPENID_AUTHORITY
       - OPENID_CLIENT
-    #logging:
-    #  driver: "none"
+    logging:
+     driver: "none"
     networks:
       - "cbs-network"
 

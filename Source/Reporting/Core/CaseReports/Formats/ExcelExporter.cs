@@ -48,45 +48,46 @@ namespace Core.CaseReports.Formats
 
         void WriteRow(ExcelWorksheet worksheet, int row, CaseReportForListing report)
         {
-            worksheet.Cells[row, 1].Value = report.Timestamp.DateTime;
-            worksheet.Cells[row, 18].Value = report.Message;
+            worksheet.Cells[row, 1].Value = report.Timestamp.DateTime.ToString("dd/MM/yyyy");
+            worksheet.Cells[row, 2].Value = report.Timestamp.DateTime.ToString("HH:mm");
+            worksheet.Cells[row, 19].Value = report.Message;
 
             if (report.DataCollectorId != DataCollectorId.NotSet)
             {
-                worksheet.Cells[row, 3].Value = report.DataCollectorDisplayName;
-                worksheet.Cells[row, 4].Value = report.DataCollectorRegion;
-                worksheet.Cells[row, 5].Value = report.DataCollectorDistrict;
-                worksheet.Cells[row, 6].Value = report.DataCollectorVillage;
+                worksheet.Cells[row, 4].Value = report.DataCollectorDisplayName;
+                worksheet.Cells[row, 5].Value = report.DataCollectorRegion;
+                worksheet.Cells[row, 6].Value = report.DataCollectorDistrict;
+                worksheet.Cells[row, 7].Value = report.DataCollectorVillage;
             }
             else
             {
-                worksheet.Cells[row, 3].Value = "Origin: " + report.Origin;
+                worksheet.Cells[row, 4].Value = "Origin: " + report.Origin;
             }
 
             if (report.HealthRiskId != HealthRiskId.NotSet)
             {
-                worksheet.Cells[row, 2].Value = "Success";
-                worksheet.Cells[row, 7].Value = report.HealthRisk;
-                worksheet.Cells[row, 8].Value = report.NumberOfMalesUnder5;
-                worksheet.Cells[row, 9].Value = report.NumberOfMalesAged5AndOlder;
-                worksheet.Cells[row, 10].Value = report.NumberOfFemalesUnder5;
-                worksheet.Cells[row, 11].Value = report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 3].Value = "Success";
+                worksheet.Cells[row, 8].Value = report.HealthRisk;
+                worksheet.Cells[row, 9].Value = report.NumberOfMalesUnder5;
+                worksheet.Cells[row, 10].Value = report.NumberOfMalesAged5AndOlder;
+                worksheet.Cells[row, 11].Value = report.NumberOfFemalesUnder5;
+                worksheet.Cells[row, 12].Value = report.NumberOfFemalesAged5AndOlder;
                 
-                worksheet.Cells[row, 12].Value = report.NumberOfMalesUnder5 + report.NumberOfFemalesUnder5;
-                worksheet.Cells[row, 13].Value = report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesAged5AndOlder;
-                worksheet.Cells[row, 14].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder;
-                worksheet.Cells[row, 15].Value = report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
-                worksheet.Cells[row, 16].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 13].Value = report.NumberOfMalesUnder5 + report.NumberOfFemalesUnder5;
+                worksheet.Cells[row, 14].Value = report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 15].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder;
+                worksheet.Cells[row, 16].Value = report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 17].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
             }
             else
             {
-                worksheet.Cells[row, 2].Value = "Error";
-                worksheet.Cells[row, 19].Value = string.Join(", ", report.ParsingErrorMessage);
+                worksheet.Cells[row, 3].Value = "Error";
+                worksheet.Cells[row, 20].Value = string.Join(", ", report.ParsingErrorMessage);
             }
 
             if (report.Location != Location.NotSet)
             {
-                worksheet.Cells[row, 17].Value = $"{report.Location.Latitude.ToString("F4")}/{report.Location.Longitude.ToString("F4")}";
+                worksheet.Cells[row, 18].Value = $"{report.Location.Latitude.ToString("F4")}/{report.Location.Longitude.ToString("F4")}";
             }
         }
 
