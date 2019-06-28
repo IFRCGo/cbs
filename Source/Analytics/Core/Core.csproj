@@ -61,8 +61,7 @@
     <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="3.*" />
     <PackageReference Include="Dolittle.Runtime.Events.MongoDB" Version="3.*" />   
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
-    
-    <PackageReference Include="Dolittle.AspNetCore.Swagger.Debugging" Version="2.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
