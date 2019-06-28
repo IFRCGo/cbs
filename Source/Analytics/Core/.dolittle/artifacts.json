@@ -55,12 +55,7 @@
     "commands": {},
     "events": {},
     "eventSources": {},
-    "readModels": {
-      "0a8fe8b1-3957-418a-b863-03dfc1ab9417": {
-        "generation": 1,
-        "type": "Read.HealthRisks.HealthRisk, Read"
-      }
-    },
+    "readModels": {},
     "queries": {}
   }
 }
