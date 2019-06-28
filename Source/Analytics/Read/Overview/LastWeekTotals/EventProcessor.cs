@@ -22,7 +22,7 @@ namespace Read.Overview.LastWeekTotals
         {
             var today = Day.Of(@event.Timestamp);
 
-            for (var day = today; day <= today + 7; day++)
+            for (var day = today; day < today + 7; day++)
             {
                 var totals = _caseReportTotalsRepository.GetById(day);
                 if (totals != null)
@@ -31,6 +31,8 @@ namespace Read.Overview.LastWeekTotals
                     totals.Male += @event.NumberOfMalesAged5AndOlder + @event.NumberOfMalesUnder5;
                     totals.Over5 += @event.NumberOfMalesAged5AndOlder + @event.NumberOfFemalesAged5AndOlder;
                     totals.Under5 += @event.NumberOfMalesUnder5 + @event.NumberOfFemalesUnder5;
+
+                    _caseReportTotalsRepository.Update(totals);
                 }
                 else
                 {
@@ -42,9 +44,9 @@ namespace Read.Overview.LastWeekTotals
                         Under5 = @event.NumberOfMalesUnder5 + @event.NumberOfFemalesUnder5,
                         Over5 = @event.NumberOfMalesAged5AndOlder + @event.NumberOfFemalesAged5AndOlder
                     };
-                }
 
-                _caseReportTotalsRepository.Insert(totals);
+                    _caseReportTotalsRepository.Insert(totals);
+                }
             }
         }
     }
