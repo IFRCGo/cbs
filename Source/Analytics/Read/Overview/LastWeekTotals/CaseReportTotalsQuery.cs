@@ -3,7 +3,7 @@ using System.Linq;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
 
-namespace Read.CaseReports
+namespace Read.Overview.LastWeekTotals
 {
     public class CaseReportTotalsQuery : IQueryFor<CaseReportTotals>
     {
