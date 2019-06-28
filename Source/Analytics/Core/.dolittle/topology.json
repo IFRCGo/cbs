@@ -29,6 +29,10 @@
         "e6f1af39-6694-4c50-8809-cdd3fdd03494": {
           "name": "LastWeeksPerHealthRisk",
           "subFeatures": {}
+        },
+        "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
+          "name": "LastWeekTotals",
+          "subFeatures": {}
         }
       }
     },

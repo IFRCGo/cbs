@@ -57,5 +57,22 @@
     "eventSources": {},
     "readModels": {},
     "queries": {}
+  },
+  "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "426e9a47-99a9-4bcc-ac36-da726e797e55": {
+        "generation": 1,
+        "type": "Read.Overview.LastWeekTotals.CaseReportTotals, Read"
+      }
+    },
+    "queries": {
+      "f0ea0cca-c787-4c37-9959-f34aaf00338b": {
+        "generation": 1,
+        "type": "Read.Overview.LastWeekTotals.CaseReportTotalsQuery, Read"
+      }
+    }
   }
 }
