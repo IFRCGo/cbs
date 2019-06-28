@@ -15,11 +15,12 @@ import { AppInsightsService } from '../../../services/app-insights-service';
     styleUrls: ['./register.scss']
 })
 export class Register {
+    // https://www.google.com/maps/@-0.2737178,21.7762443,4.04z
     locationSelected = false;
-    defaultLat: number = 9.216515;
-    defaultLng: number = 45.523637;
-    selectedLat: number = this.defaultLat;
-    selectedLng: number = this.defaultLng;
+    defaultLat: number = 21.7762443;
+    defaultLng: number = 0.2737178;
+    selectedLat: number; 
+    selectedLng: number;    
 
     phoneNumberString = '';
     command: RegisterDataCollector = new RegisterDataCollector();
@@ -40,7 +41,27 @@ export class Register {
     }
 
     ngOnInit() {
+        // Check the current location or take the default location values
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+             this.showPosition(position);
+           });
+           } else {
+         this.selectedLng = this.defaultLng;
+         this.selectedLat = this.defaultLat;
+        }
         this.appInsightsService.trackPageView('RegisterDataCollector');
+    }
+
+showPosition(position) {
+        // update longitude and latitude with current location data
+         this.selectedLng = position.coords.longitude;
+         this.selectedLat = position.coords.latitude;
+         // update the map
+                this.command.gpsLocation.latitude = this.selectedLat;
+                this.command.gpsLocation.longitude = this.selectedLng;
+        console.log(`longitude: ${ position.coords.longitude} | latitude: ${ position.coords.latitude }`);
+        console.log(`selectedLng: ${ this.selectedLng} | selectedLat: ${ this.selectedLat }`);
     }
 
     onLocationSelected(event){
