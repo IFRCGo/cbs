@@ -1,17 +1,14 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
+using Dolittle.Concepts;
 using System;
-using Dolittle.Runtime.Events;
 
 namespace Concepts.HealthRisks
 {
-    public class HealthRiskId : EventSourceId
+    public class HealthRiskId : ConceptAs<Guid>
     {
-        public static implicit operator HealthRiskId(Guid id) => new HealthRiskId { Value = id };
-        public static implicit operator HealthRiskId(string id) => new HealthRiskId { Value = new Guid(id) };
+        public static implicit operator HealthRiskId(Guid value)
+        {
+            return new HealthRiskId {Value = value};
+        }
 
     }
 }

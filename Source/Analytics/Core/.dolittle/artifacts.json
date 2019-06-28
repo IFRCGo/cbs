@@ -1,29 +1,4 @@
 {
-  "082b543a-e61b-4dea-b261-1396475b40b7": {
-    "commands": {},
-    "events": {},
-    "eventSources": {},
-    "readModels": {
-      "893b09bd-5d69-4a05-bc2a-420ba95cd169": {
-        "generation": 1,
-        "type": "Read.CaseReports.CaseReport, Read"
-      },
-      "5468ba83-01ff-4768-8c36-ea00d69a11a1": {
-        "generation": 1,
-        "type": "Read.CaseReports.CaseReportTotals, Read"
-      }
-    },
-    "queries": {
-      "70347653-3d3b-4ce5-b502-1aeef0d1690a": {
-        "generation": 1,
-        "type": "Read.CaseReports.AllCaseReports, Read"
-      },
-      "e7502ef6-e3a9-46dc-bcca-a159c4a6e824": {
-        "generation": 1,
-        "type": "Read.CaseReports.CaseReportTotalsQuery, Read"
-      }
-    }
-  },
   "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
     "commands": {},
     "events": {
@@ -39,25 +14,41 @@
   "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
     "commands": {},
     "events": {
-      "bb5762fb-ae90-4082-a347-8f6fa268bb48": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
         "generation": 1,
         "type": "Events.Admin.HealthRisks.HealthRiskCreated, Events.Admin"
+      },
+      "ab9f13e6-f68b-4683-96fe-13434fd34516": {
+        "generation": 1,
+        "type": "Events.Admin.HealthRisks.HealthRiskModified, Events.Admin"
       }
     },
     "eventSources": {},
     "readModels": {},
     "queries": {}
   },
-  "ae0b5c75-8064-40bf-be98-42ab3ee096a7": {
+  "e6f1af39-6694-4c50-8809-cdd3fdd03494": {
     "commands": {},
-    "events": {
-      "37c3170f-5f0b-4eb7-9daf-1047ff20373e": {
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "e3e5a1f7-d56a-4d1f-b840-33b41d91f327": {
         "generation": 1,
-        "type": "Events.Reporting.DataCollectors.DataCollectorRegistered, Events.Reporting"
+        "type": "Read.Overview.LastWeeksPerHealthRisk.CaseReportsLastWeeksPerHealthRisk, Read"
       }
     },
+    "queries": {}
+  },
+  "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {
+    "commands": {},
+    "events": {},
     "eventSources": {},
-    "readModels": {},
+    "readModels": {
+      "111ed52f-9a13-4c41-ba02-cbf8087d59df": {
+        "generation": 1,
+        "type": "Read.HealthRisks.HealthRiskName, Read"
+      }
+    },
     "queries": {}
   },
   "4555d18b-9ac8-4343-b742-3bfbd45de3b8": {

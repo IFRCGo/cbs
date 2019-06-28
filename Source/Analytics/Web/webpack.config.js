@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
             port: 4010,
             openPage: 'analytics/',
             proxy: {
-                '/api': 'http://localhost:5010'
+                '/api': 'http://localhost:5000'
             },
             hot: true
         },

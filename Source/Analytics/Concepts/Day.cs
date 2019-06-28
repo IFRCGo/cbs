@@ -4,7 +4,7 @@ using Dolittle.Concepts;
 namespace Concepts
 {
     /// <summary>
-    /// Represents a specific day in terms of the number of days since Unix Epoch
+    /// Represents a specific date as number of days since Unix Epoch.
     /// </summary>
     public class Day : ConceptAs<int>
     {
@@ -13,11 +13,17 @@ namespace Concepts
             return new Day {Value = value};
         }
 
-        public static Day For(DateTimeOffset timestamp)
+        public static Day Of(DateTimeOffset timestamp)
         {
+            var daysSinceEpoch = (timestamp - DateTimeOffset.FromUnixTimeSeconds(0)).TotalDays;
             return new Day {
-                Value = (int)Math.Floor((timestamp - DateTimeOffset.FromUnixTimeSeconds(0)).TotalDays)
+                Value = (int)Math.Floor(daysSinceEpoch)
             };
+        }
+
+        public static Day Today
+        {
+            get => Day.Of(DateTimeOffset.Now);
         }
     }
 }

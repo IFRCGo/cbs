@@ -12,6 +12,8 @@ import { formatDate } from "../utils/dateUtils";
 import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
+import { AllHealthRisks } from "../Features/HealthRisk/AllHealthRisks";
+import { QueryCoordinator } from "@dolittle/queries";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -23,6 +25,7 @@ const appInsights = new ApplicationInsights({
 appInsights.loadAppInsights();
 export const BASE_URL = process.env.API_BASE_URL;
 
+
 class NationalSocietyOverview extends Component {
     constructor(props) {
         super(props);
@@ -33,9 +36,27 @@ class NationalSocietyOverview extends Component {
             totalUnder5: "-",
             totalOver5: "-",
             isLoading: true,
-            isError: false
+            isError: false,
+            healthRisks: []
         };
     }
+
+    fetchHealthRisks() {
+        this.queryCoordinator = new QueryCoordinator();
+        let healthRisks = new AllHealthRisks();
+
+        this.queryCoordinator.execute(healthRisks).then(queryResult => {
+            if(queryResult.success){
+                this.setState({ healthRisks: queryResult.items})
+            }
+        }).catch(_ => 
+            this.setState({
+                isLoading: false,
+                isError: true
+            })
+        );
+    }
+    
     
     fetchData() {
 
@@ -66,6 +87,8 @@ class NationalSocietyOverview extends Component {
 
     componentDidMount() {
         this.fetchData();
+        this.fetchHealthRisks();
+        
         appInsights.trackPageView({ name: 'National society overview'});
     }
 

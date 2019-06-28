@@ -82,3 +82,4 @@ You can try:
 
 1. remove the `.cache` folder (this is where Parcel keeps its data for faster processing)
 2. restart `npm run dev` process.    
+> __Note__: There are currently some issues with dependencies while using `npm`. So for the time being, please use `yarn` instead [see here](https://yarnpkg.com/en/).
