@@ -21,14 +21,14 @@ class CaseReportByHealthRiskTable extends Component {
     }
 
     fetchData() {
-        this.url = `${BASE_URL}CaseReport/TotalsPerHealthRisk/4/`;
+        this.url = `${BASE_URL}CaseReport/TotalsPerHealthRisk/`;
 
         this.setState({ isLoading: true });
 
         getJson(this.url)
-            .then(json =>
+            .then(json => 
                 this.setState({
-                    healthRisks: json,
+                    healthRisks: Object.values(json.caseReportsPerHelthRisk),
                     isLoading: false,
                     isError: false
                 })
@@ -62,15 +62,22 @@ class CaseReportByHealthRiskTable extends Component {
                 </TableHead>
                 <TableBody>
                   {this.state.healthRisks.map(healthRisk => (
-                    <TableRow key={healthRisk.name}>
+                    <TableRow key={healthRisk.healthRiskName.value}>
                       <TableCell component="th" scope="row">
-                        {healthRisk.name}
+                        {healthRisk.healthRiskName.value}
                       </TableCell>
-                      {healthRisk.reportsPerWeek.map(reports => (
-                          <TableCell key={reports.week} align="right" style={reports.numberOfReports === 0 ? {color: "#B5B5B5"} : {}}>
-                            {reports.numberOfReports}
-                          </TableCell>
-                      ))}
+                      <TableCell align="right" style={healthRisk.days0to6.value === 0 ? {color: "#B5B5B5"} : {}}>
+                        {healthRisk.days0to6.value}
+                      </TableCell>
+                      <TableCell align="right" style={healthRisk.days7to13.value === 0 ? {color: "#B5B5B5"} : {}}>
+                        {healthRisk.days7to13.value}
+                      </TableCell>
+                      <TableCell align="right" style={healthRisk.days14to20.value === 0 ? {color: "#B5B5B5"} : {}}>
+                        {healthRisk.days14to20.value}
+                      </TableCell>
+                      <TableCell align="right" style={healthRisk.days21to27.value === 0 ? {color: "#B5B5B5"} : {}}>
+                        {healthRisk.days21to27.value}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
