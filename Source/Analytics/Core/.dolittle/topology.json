@@ -7,6 +7,10 @@
         "5d5abc2c-2149-4bca-bcf1-56df2014eadc": {
           "name": "TestData",
           "subFeatures": {}
+        },
+        "1de920e7-c301-4183-acc7-25a06f93e02e": {
+          "name": "PerRegion",
+          "subFeatures": {}
         }
       }
     },
