@@ -4,6 +4,7 @@ using Read.CaseReports;
 using Dolittle.ReadModels;
 using Dolittle.Logging;
 using Concepts;
+using Read.HealthRisk;
 
 
 namespace Read.CaseReports
@@ -13,10 +14,17 @@ namespace Read.CaseReports
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionRepository;
 
-        public CaseReportsEventProcessor(IReadModelRepositoryFor<CaseReport> caseReportRepository, IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository)
+        readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
+
+        public CaseReportsEventProcessor(
+            IReadModelRepositoryFor<CaseReport> caseReportRepository, 
+            IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository, 
+            IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> healthRisks
+            )
         {
             _caseReportRepository = caseReportRepository;
             _caseReportsPerRegionRepository = repository;
+            _healthRisks = healthRisks;
         }
 
        [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
@@ -29,6 +37,8 @@ namespace Read.CaseReports
             @event.Timestamp, @event.Region);
             
             _caseReportRepository.Insert(caseReport);
+
+            var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
             // Insert regionwise
             var today = Day.Of(@event.Timestamp);
