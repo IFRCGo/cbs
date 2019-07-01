@@ -13,7 +13,7 @@ namespace Read.CaseReports
     public class CaseReportsEventProcessor : ICanProcessEvents
     {
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
-        readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionRepository;
+        readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
 
         readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
 
@@ -24,7 +24,7 @@ namespace Read.CaseReports
             )
         {
             _caseReportRepository = caseReportRepository;
-            _caseReportsPerRegionRepository = repository;
+            _caseReportsPerRegionLast7DaysRepository = repository;
             _healthRisks = healthRisks;
         }
 
@@ -46,7 +46,7 @@ namespace Read.CaseReports
 
             for (var day = today; day < today + 7; day++)
             {
-                var dayReport = _caseReportsPerRegionRepository.GetById(day);
+                var dayReport = _caseReportsPerRegionLast7DaysRepository.GetById(day);
                 if (dayReport != null)
                 {
                     for (var i=0; i<dayReport.HealthRisks.Count; i++)
@@ -69,7 +69,7 @@ namespace Read.CaseReports
                         }
                     }
                     
-                    _caseReportsPerRegionRepository.Update(dayReport);
+                    _caseReportsPerRegionLast7DaysRepository.Update(dayReport);
                 }
                 else 
                 {
@@ -98,7 +98,7 @@ namespace Read.CaseReports
                         }
                     };
                 }
-                _caseReportsPerRegionRepository.Insert(dayReport);
+                _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
             };
         }
     }

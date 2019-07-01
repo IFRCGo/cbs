@@ -66,7 +66,7 @@ class HealthRiskPerDistrictBarCharts extends Component {
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
             if(queryResult.success){
                 this.setState({
-                    healthRisksPerRegion: queryResult.items[0].caseReportsPerRegion,
+                    healthRisksPerRegion: queryResult.items[0].HealthRisks,
                     isLoading: true,
                     isError: false
                 })

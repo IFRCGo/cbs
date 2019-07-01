@@ -31,9 +31,9 @@ class HealthRiskPerDistrictTable extends Component {
 
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
             if(queryResult.success){
-                console.log(queryResult.items[0].caseReportsPerRegion[0].region);
+                console.log(queryResult.items[0].HealthRisks[0].region);
                 this.setState({
-                    healthRisksPerRegion: queryResult.items[0].caseReportsPerRegion,
+                    healthRisksPerRegion: queryResult.items[0].HealthRisks,
                     isLoading: true,
                     isError: false
                 })

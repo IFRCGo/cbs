@@ -4,15 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class CaseReportsPerRegionLast7Days extends ReadModel
+export class RegionWithHealthRisk extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '01499494-3a94-4333-9e63-f5c63d10c59f',
+           id: '1613bdd9-d11c-4efe-b6eb-b60e94d6e23e',
            generation: '1'
         };
-        this.id = 0;
-        this.healthRisks = [];
     }
 }

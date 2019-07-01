@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
