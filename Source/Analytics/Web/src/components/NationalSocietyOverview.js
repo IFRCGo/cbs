@@ -14,7 +14,6 @@ import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
 import { AllHealthRisks } from "../Features/HealthRisk/AllHealthRisks";
 import { QueryCoordinator } from "@dolittle/queries";
-import { GetCaseReportsPerRegionLast7Days } from "../Features/CaseReports/GetCaseReportsPerRegionLast7Days";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -58,20 +57,6 @@ class NationalSocietyOverview extends Component {
         );
     }
 
-    fetchHealthRisksPerRegionLast7Days() {
-        this.queryCoordinator = new QueryCoordinator();
-        let healthRisksPerRegion = new GetCaseReportsPerRegionLast7Days();
-
-        this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
-            if(queryResult.success){
-                this.setState({ healthRisksPerRegion: queryResult.items});
-                console.log(queryResult);
-            }
-            else{
-                console.log(queryResult)
-            }
-        });
-    }
     
     
     fetchData() {
@@ -104,7 +89,7 @@ class NationalSocietyOverview extends Component {
     componentDidMount() {
         this.fetchData();
         //this.fetchHealthRisks();
-        this.fetchHealthRisksPerRegionLast7Days();
+        //this.fetchHealthRisksPerRegionLast7Days();
         
         appInsights.trackPageView({ name: 'National society overview'});
     }
@@ -133,7 +118,7 @@ class NationalSocietyOverview extends Component {
                     </GridListTile>
 
                 </GridList>
-                <HealthRiskPerDistrictBarCharts />
+                <HealthRiskPerDistrictTable />
                 <Map />
             </div>
         );

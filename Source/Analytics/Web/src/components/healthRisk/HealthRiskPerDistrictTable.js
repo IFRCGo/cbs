@@ -9,59 +9,49 @@ import Paper from '@material-ui/core/Paper';
 import { getJson } from "../../utils/request";
 import { BASE_URL } from "../NationalSocietyOverview";
 import { formatDate } from "../../utils/dateUtils";
+import { QueryCoordinator } from "@dolittle/queries";
+
+import { GetCaseReportsPerRegionLast7Days } from "../../Features/CaseReports/GetCaseReportsPerRegionLast7Days";
+
 
 class HealthRiskPerDistrictTable extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            allRegionNames: [],
-            healthRisks: [],
+            healthRisksPerRegion: [],
             isLoading: true,
             isError: false
         };
     }
 
-    fetchData() {
-        //this.url = 'http://5cb05d0af7850e0014629bce.mockapi.io/api/CaseReportByDistrict';
-        let oneWeekBack = new Date();
-        oneWeekBack.setDate(oneWeekBack.getDate()-6);
-        this.url = `${BASE_URL}CaseReport/TotalsPerRegion/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
+    fetchData() { 
+        this.queryCoordinator = new QueryCoordinator();
+        let healthRisksPerRegion = new GetCaseReportsPerRegionLast7Days();
 
-        getJson(this.url)
-            .then(json => {
-                let region_names = [];
-
-                for (let i = 0; i < json.healthRisks.length; i++) {
-                    for (let region of json.healthRisks[i].regions){
-                        if (!(region_names.includes(region.name))){
-                            region_names.push(region.name)
-                        }
-                    }
-                }
-                region_names.sort(); //This is useful later as it helps us detect when some health risk has 0 occurences in a region
-
+        this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
+            if(queryResult.success){
+                console.log(queryResult.items[0].caseReportsPerRegion[0].region);
                 this.setState({
-                    healthRisks: json.healthRisks,
-                    allRegionNames: region_names,
-                    isLoading: false,
+                    healthRisksPerRegion: queryResult.items[0].caseReportsPerRegion,
+                    isLoading: true,
                     isError: false
                 })
-            })
-            .catch(_ =>
-                this.setState({
-                    isLoading: false,
-                    isError: true
-                })
-            );         
+                
+            }
+            else{
+                this.setState({ isLoading: false, isError: true })
+            }
+        });
     }
 
     componentDidMount() {
         this.fetchData();
+        console.log(this.state.healthRisksPerRegion);
     }
 
     createRows(healthRisks) {
-        const numHealthRisks = healthRisks.length;
+        const numHealthRisks = healthRisksPerRegion.length;
         let rows = [];
 
         this.state.allRegionNames.map(regionName => {    
@@ -78,7 +68,8 @@ class HealthRiskPerDistrictTable extends Component {
         return rows
     }
 
-    render() {
+    render() { return ( <div>{this.state.healthRisksPerRegion.map(risk => risk.region)}</div>);
+        /*
         return (
             <div style={{marginBottom: 20}}>
                 <Typography variant="h5">No. of cases per health risk and district for last 7 days</Typography>
@@ -93,7 +84,7 @@ class HealthRiskPerDistrictTable extends Component {
                     <TableBody>
                         {this.createRows(this.state.healthRisks).map(row => (
                             <TableRow key={row.name}>
-                                <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column */}
+                                <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column }
                                 {row.map(numCases => (
                                     <TableCell align="right" style={numCases === 0 ? {color: "#B5B5B5"} : {}}>{ numCases}</TableCell>
                                 ))}     
@@ -104,6 +95,7 @@ class HealthRiskPerDistrictTable extends Component {
                 </Paper>
             </div>
         );
+        */
     }
 }
 
