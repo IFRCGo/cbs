@@ -21,6 +21,10 @@
       "70347653-3d3b-4ce5-b502-1aeef0d1690a": {
         "generation": 1,
         "type": "Read.CaseReports.AllCaseReports, Read"
+      },
+      "15822f97-c898-4697-997b-1a4eebf7abd9": {
+        "generation": 1,
+        "type": "Read.CaseReports.GetCaseReportsPerRegionLast7Days, Read"
       }
     }
   },

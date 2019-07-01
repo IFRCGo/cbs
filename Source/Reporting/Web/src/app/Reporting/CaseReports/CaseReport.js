@@ -22,5 +22,6 @@ export class CaseReport extends ReadModel
         this.numberOfMalesUnder5 = 0;
         this.timestamp = new Date();
         this.location = {};
+        this.region = '';
     }
 }

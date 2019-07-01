@@ -8,7 +8,7 @@ namespace Read.CaseReports
         public CaseReport(Guid dataCollectorId, Guid healthRiskId,
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, double longitude,
-            double latitude, DateTimeOffset timestamp)
+            double latitude, DateTimeOffset timestamp, string region)
         {
             this.DataCollectorId = dataCollectorId;
             this.HealthRiskId = healthRiskId;
@@ -21,6 +21,7 @@ namespace Read.CaseReports
             this.Longitude = longitude;
             this.Latitude = latitude;
             this.Timestamp = timestamp;
+            this.Region = region;
         }
         public Guid DataCollectorId { get; }
         public Guid HealthRiskId { get; }
@@ -33,5 +34,6 @@ namespace Read.CaseReports
         public double Longitude { get; }
         public double Latitude { get; }
         public DateTimeOffset Timestamp { get; }
+        public string Region { get; }
     }
 }

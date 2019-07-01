@@ -26,7 +26,7 @@ namespace Read.CaseReports
             var caseReport = new CaseReport(@event.DataCollectorId, 
             @event.HealthRiskId, @event.Origin, @event.Message, @event.NumberOfMalesUnder5, @event.NumberOfMalesAged5AndOlder, 
             @event.NumberOfFemalesUnder5, @event.NumberOfFemalesAged5AndOlder, @event.Longitude, @event.Latitude,
-            @event.Timestamp);
+            @event.Timestamp, @event.Region);
             
             _caseReportRepository.Insert(caseReport);
 

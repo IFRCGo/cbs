@@ -59,7 +59,8 @@ namespace Domain.Reporting.CaseReports.TestData
                     dataCaseReportHelper.Longitude,
                     dataCaseReportHelper.Latitude,
                     DateTimeOffset.UtcNow,
-                    dataCaseReportHelper.Message);
+                    dataCaseReportHelper.Message,
+                    dataCaseReportHelper.Region);
             }
         }
         // TODO: move class to a seperate file.cs
@@ -75,6 +76,7 @@ namespace Domain.Reporting.CaseReports.TestData
             public double Longitude { get; set; }
             public double Latitude { get; set; }
             public string Message { get; set; }
+            public string Region { get; set; }
         }
     }
 }
