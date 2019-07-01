@@ -2,7 +2,7 @@ using Concepts;
 using Dolittle.ReadModels;
 using System.Collections.Generic;
 
-namespace Read.Overview.LastWeekTotals
+namespace Read.CaseReports
 {
     public class CaseReportsPerRegionLast7Days : IReadModel
     {
