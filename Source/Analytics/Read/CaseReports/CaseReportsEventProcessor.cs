@@ -5,6 +5,7 @@ using Dolittle.ReadModels;
 using Dolittle.Logging;
 using Concepts;
 using Read.HealthRisk;
+using System.Collections.Generic;
 
 
 namespace Read.CaseReports
@@ -40,48 +41,65 @@ namespace Read.CaseReports
 
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            // Insert regionwise
+            // Insert by health risk and region
             var today = Day.Of(@event.Timestamp);
 
             for (var day = today; day < today + 7; day++)
             {
-                var reportsPerRegion = _caseReportsPerRegionRepository.GetById(day);
-                if (reportsPerRegion != null)
+                var dayReport = _caseReportsPerRegionRepository.GetById(day);
+                if (dayReport != null)
                 {
-                    for (var i=0; i<reportsPerRegion.CaseReportsPerRegion.Count; i++)
+                    for (var i=0; i<dayReport.HealthRisks.Count; i++)
                     {
-                        var region = reportsPerRegion.CaseReportsPerRegion[i];
-                        if (region.Region == @event.Region) {
-                            region.NumberOfCaseReports 
-                                +=@event.NumberOfMalesUnder5
-                                +@event.NumberOfMalesAged5AndOlder
-                                +@event.NumberOfFemalesUnder5
-                                +@event.NumberOfFemalesAged5AndOlder;
+                        var healthRiskByRegions = dayReport.HealthRisks[i];
+                        if (healthRiskByRegions.Id == @event.HealthRiskId)
+                        {
+                            for (var j=0; j<healthRiskByRegions.Regions.Count; j++)
+                            {
+                                var regionsWithHealthRisk = healthRiskByRegions.Regions[j];
+                                if (regionsWithHealthRisk.Id == @event.Region)
+                                {
+                                    regionsWithHealthRisk.NumCases
+                                        +=@event.NumberOfMalesUnder5
+                                        +@event.NumberOfMalesAged5AndOlder
+                                        +@event.NumberOfFemalesUnder5
+                                        +@event.NumberOfFemalesAged5AndOlder;
+                                }
+                            }
                         }
                     }
-                    _caseReportsPerRegionRepository.Update(reportsPerRegion);
+                    
+                    _caseReportsPerRegionRepository.Update(dayReport);
                 }
                 else 
                 {
-                    reportsPerRegion = new CaseReportsPerRegionLast7Days()
+                    dayReport = new CaseReportsPerRegionLast7Days()
                     {
                         Id = day,
-                        CaseReportsPerRegion = new [] {
-                            new CaseReportsInRegionLast7Days(){
-                                Id = day,
-                                Region = @event.Region,
-                                NumberOfCaseReports = 
-                                    @event.NumberOfMalesUnder5
-                                    +@event.NumberOfMalesAged5AndOlder
-                                    +@event.NumberOfFemalesUnder5
-                                    +@event.NumberOfFemalesAged5AndOlder
+                        HealthRisks = new [] 
+                        {
+                            new HealthRisksInRegionsLast7Days()
+                            {
+                                Id = @event.HealthRiskId,
+                                HealthRiskName = healthRisk.HealthRiskName,
+                                Regions = new [] 
+                                {
+                                    new RegionWithHealthRisk() 
+                                    {
+                                        Id = @event.Region,
+                                        NumCases = 
+                                            @event.NumberOfMalesUnder5
+                                            +@event.NumberOfMalesAged5AndOlder
+                                            +@event.NumberOfFemalesUnder5
+                                            +@event.NumberOfFemalesAged5AndOlder
+                                    }
+                                }
                             }
                         }
                     };
-
-                    _caseReportsPerRegionRepository.Insert(reportsPerRegion);
                 }
-            }
+                _caseReportsPerRegionRepository.Insert(dayReport);
+            };
         }
     }
 }
