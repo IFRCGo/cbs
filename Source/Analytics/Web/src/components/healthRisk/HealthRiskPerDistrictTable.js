@@ -31,9 +31,9 @@ class HealthRiskPerDistrictTable extends Component {
 
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
             if(queryResult.success){
-                console.log(queryResult.items[0].HealthRisks[0].region);
+                console.log(queryResult.items[0].healthRisks[0].healthRiskName);
                 this.setState({
-                    healthRisksPerRegion: queryResult.items[0].HealthRisks,
+                    healthRisksPerRegion: queryResult.items[0].healthRisks,
                     isLoading: true,
                     isError: false
                 })
@@ -51,9 +51,10 @@ class HealthRiskPerDistrictTable extends Component {
     }
 
     createRows(healthRisks) {
-        const numHealthRisks = healthRisksPerRegion.length;
+        const numHealthRisks = healthRisks.length;
         let rows = [];
 
+        /*
         this.state.allRegionNames.map(regionName => {    
             let row = new Array(1+numHealthRisks).fill(0);
             row[0] = regionName;
@@ -65,11 +66,25 @@ class HealthRiskPerDistrictTable extends Component {
 
             rows.push(row); 
         })
+        */
+
+        healthRisks.map(risk => {
+            let row = new Array(1+numHealthRisks).fill(0); // 1 is the region name column
+            row[0] = risk.healthRiskName;
+
+            for (let i=0; i<numHealthRisks; i++){
+                let num = healthRisks[i].regions.find(region => region.id === "Oslo");              
+                row[i+1] = num ? num.numCases : 0;
+            }
+
+            console.log(row);
+            rows.push(row);
+        });
         return rows
     }
 
-    render() { return ( <div>{this.state.healthRisksPerRegion.map(risk => risk.region)}</div>);
-        /*
+    render() { 
+        /* return ( <div>{this.state.healthRisksPerRegion.map(risk => risk.healthRiskName)}</div>); */
         return (
             <div style={{marginBottom: 20}}>
                 <Typography variant="h5">No. of cases per health risk and district for last 7 days</Typography>
@@ -77,14 +92,14 @@ class HealthRiskPerDistrictTable extends Component {
                     <Table>
                     <TableHead>
                         <TableRow>
-                        <TableCell></TableCell>
-                        {this.state.healthRisks.map(healthRisk => (<TableCell key={healthRisk.name} align="right">{healthRisk.name}</TableCell>))}
+                        <TableCell>HealthRiskName -></TableCell>
+                        {this.state.healthRisksPerRegion.map(healthRisk => (<TableCell key={healthRisk.healthRiskName} align="right">{healthRisk.healthRiskName}</TableCell>))}
                         </TableRow>
                     </TableHead> 
                     <TableBody>
-                        {this.createRows(this.state.healthRisks).map(row => (
+                        {this.createRows(this.state.healthRisksPerRegion).map(row => (
                             <TableRow key={row.name}>
-                                <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column }
+                                <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column */}
                                 {row.map(numCases => (
                                     <TableCell align="right" style={numCases === 0 ? {color: "#B5B5B5"} : {}}>{ numCases}</TableCell>
                                 ))}     
@@ -95,7 +110,7 @@ class HealthRiskPerDistrictTable extends Component {
                 </Paper>
             </div>
         );
-        */
+        
     }
 }
 
