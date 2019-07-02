@@ -6,6 +6,7 @@ using Dolittle.Logging;
 using Concepts;
 using Read.HealthRisk;
 using System.Collections.Generic;
+using System;
 
 
 namespace Read.CaseReports
@@ -14,7 +15,6 @@ namespace Read.CaseReports
     {
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
-
         readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
 
         public CaseReportsEventProcessor(
@@ -39,10 +39,19 @@ namespace Read.CaseReports
             
             _caseReportRepository.Insert(caseReport);
 
-            var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
+            var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
+            if(healthRisk == null) 
+            {
+                healthRisk.HealthRiskName = "Unknown health risk";
+            };
 
             // Insert by health risk and region
             var today = Day.Of(@event.Timestamp);
+            var totalCases = caseReport.NumberOfMalesUnder5
+                                +caseReport.NumberOfMalesAged5AndOlder
+                                +caseReport.NumberOfFemalesUnder5
+                                +caseReport.NumberOfFemalesAged5AndOlder;
+            Region region = caseReport.Region;
 
             for (var day = today; day < today + 7; day++)
             {
@@ -52,18 +61,14 @@ namespace Read.CaseReports
                     for (var i=0; i<dayReport.HealthRisks.Count; i++)
                     {
                         var healthRiskByRegions = dayReport.HealthRisks[i];
-                        if (healthRiskByRegions.Id == @event.HealthRiskId)
+                        if (healthRiskByRegions.Id == caseReport.HealthRiskId)
                         {
                             for (var j=0; j<healthRiskByRegions.Regions.Count; j++)
                             {
                                 var regionsWithHealthRisk = healthRiskByRegions.Regions[j];
-                                if (regionsWithHealthRisk.Id == @event.Region)
+                                if (regionsWithHealthRisk.Id == region)
                                 {
-                                    regionsWithHealthRisk.NumCases
-                                        +=@event.NumberOfMalesUnder5
-                                        +@event.NumberOfMalesAged5AndOlder
-                                        +@event.NumberOfFemalesUnder5
-                                        +@event.NumberOfFemalesAged5AndOlder;
+                                    regionsWithHealthRisk.NumCases += totalCases;
                                 }
                             }
                         }
@@ -73,32 +78,34 @@ namespace Read.CaseReports
                 }
                 else 
                 {
+                    var RegionWithHealthRisk = new RegionWithHealthRisk() 
+                                    {
+                                        Id = region,
+                                        NumCases = totalCases
+                                    };
+
+                    var HealthRisksInRegionsLast7Days = new HealthRisksInRegionsLast7Days()
+                            {
+                                Id = caseReport.HealthRiskId,
+                                HealthRiskName = healthRisk.HealthRiskName,
+                                Regions = null
+                            };
+
+                    HealthRisksInRegionsLast7Days.Regions = new [] 
+                                {
+                                    RegionWithHealthRisk
+                                };
+
                     dayReport = new CaseReportsPerRegionLast7Days()
                     {
                         Id = day,
                         HealthRisks = new [] 
                         {
-                            new HealthRisksInRegionsLast7Days()
-                            {
-                                Id = @event.HealthRiskId,
-                                HealthRiskName = healthRisk.HealthRiskName,
-                                Regions = new [] 
-                                {
-                                    new RegionWithHealthRisk() 
-                                    {
-                                        Id = @event.Region,
-                                        NumCases = 
-                                            @event.NumberOfMalesUnder5
-                                            +@event.NumberOfMalesAged5AndOlder
-                                            +@event.NumberOfFemalesUnder5
-                                            +@event.NumberOfFemalesAged5AndOlder
-                                    }
-                                }
-                            }
+                            HealthRisksInRegionsLast7Days
                         }
                     };
+                    _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
                 }
-                _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
             };
         }
     }
