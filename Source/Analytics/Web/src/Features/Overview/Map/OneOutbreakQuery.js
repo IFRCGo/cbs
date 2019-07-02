@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Query } from  '@dolittle/queries';
 
-export class OutbreakQuery extends Query
+export class OneOutbreakQuery extends Query
 {
     constructor() {
         super();
-        this.nameOfQuery = 'OutbreakQuery';
-        this.generatedFrom = 'Read.Overview.Map.OutbreakQuery';
+        this.nameOfQuery = 'OneOutbreakQuery';
+        this.generatedFrom = 'Read.Overview.Map.OneOutbreakQuery';
 
     }
 }

@@ -4,15 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class Outbreak extends ReadModel
+export class OneOutbreak extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '9656c624-948d-47fa-b9b1-75fd613b79f6',
+           id: 'a8c2bbd1-a244-4057-a6c4-641d2b18769c',
            generation: '1'
         };
         this.id = 0;
-        this.outbreaks = [];
+        this.region = '';
+        this.location = {};
     }
 }
