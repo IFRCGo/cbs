@@ -40,10 +40,6 @@ namespace Read.CaseReports
             _caseReportRepository.Insert(caseReport);
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-            if(healthRisk == null) 
-            {
-                healthRisk.HealthRiskName = "Unknown health risk";
-            };
 
             // Insert by health risk and region
             var today = Day.Of(@event.Timestamp);
@@ -87,7 +83,7 @@ namespace Read.CaseReports
                     var HealthRisksInRegionsLast7Days = new HealthRisksInRegionsLast7Days()
                             {
                                 Id = caseReport.HealthRiskId,
-                                HealthRiskName = healthRisk.HealthRiskName,
+                                HealthRiskName = "Jeg er en health risk",
                                 Regions = null
                             };
 

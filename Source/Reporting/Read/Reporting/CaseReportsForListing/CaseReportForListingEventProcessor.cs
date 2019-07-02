@@ -38,24 +38,25 @@ namespace Read.Reporting.CaseReportsForListing
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.Success,
-                Message = @event.Message,
-                DataCollectorId = dataCollector.Id,
-                DataCollectorDisplayName = dataCollector.DisplayName,
-                DataCollectorDistrict = dataCollector.District,
-                DataCollectorRegion = dataCollector.Region,
-                DataCollectorVillage = dataCollector.Village,
-                Location = dataCollector.Location,
-                Origin = @event.Origin,
-
-                HealthRiskId = healthRisk.Id,
-                HealthRisk = healthRisk.Name,
-
-                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                Timestamp = @event.Timestamp
+                
             };
+                caseReport.Message = @event.Message;
+                caseReport.DataCollectorId = dataCollector.Id;
+                caseReport.DataCollectorDisplayName = dataCollector.DisplayName;
+                caseReport.DataCollectorDistrict = dataCollector.District;
+                caseReport.DataCollectorRegion = dataCollector.Region;
+                caseReport.DataCollectorVillage = dataCollector.Village;
+                caseReport.Location = dataCollector.Location;
+                caseReport.Origin = @event.Origin;
+
+                caseReport.HealthRiskId = @event.HealthRiskId;
+                caseReport.HealthRisk = "Ich bin healthrisk";
+
+                caseReport.NumberOfMalesUnder5 = @event.NumberOfMalesUnder5;
+                caseReport.NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder;
+                caseReport.NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5;
+                caseReport.NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder;
+                caseReport.Timestamp = @event.Timestamp;
             _caseReports.Insert(caseReport);
         }
 
