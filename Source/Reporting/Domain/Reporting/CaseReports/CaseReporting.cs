@@ -42,23 +42,19 @@ namespace Domain.Reporting.CaseReports
         public void Report(
             Guid dataCollectorId,
             Guid healthRiskId,
-            string healthRiskName,
             string origin,
             int numberOfMalesUnder5,
             int numberOfMalesAged5AndOlder,
             int numberOfFemalesUnder5,
             int numberOfFemalesAged5AndOlder,
-            string region,
-            string district,
-            string village,
             double longitude,
             double latitude,
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, healthRiskName, origin, message, 
+            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
-                region, district, village, longitude, latitude, timestamp));
+                longitude, latitude, timestamp));
         }        
 
         public void ReportFromUnknownDataCollector(
