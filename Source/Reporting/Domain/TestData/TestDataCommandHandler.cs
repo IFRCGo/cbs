@@ -65,7 +65,6 @@ namespace Domain.TestData
         {
             var provider = CultureInfo.InvariantCulture;
 
-
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
