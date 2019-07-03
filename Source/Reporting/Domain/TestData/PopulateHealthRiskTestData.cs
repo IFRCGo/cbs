@@ -4,5 +4,6 @@ namespace Domain.TestData
 {
     public class PopulateHealthRiskTestData : ICommand
     {
+
     }
 }
