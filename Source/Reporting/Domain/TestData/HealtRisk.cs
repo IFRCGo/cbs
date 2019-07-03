@@ -3,7 +3,7 @@ using Dolittle.Domain;
 using Dolittle.Runtime.Events;
 using Events.Admin.Reporting.HealthRisks;
 
-namespace Domain.Management.HealthRisks
+namespace Domain.TestData
 {
     public class HealtRisk : AggregateRoot
     {

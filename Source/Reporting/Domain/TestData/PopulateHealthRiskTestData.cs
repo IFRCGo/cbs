@@ -1,6 +1,6 @@
 using Dolittle.Commands;
 
-namespace Domain.Management.HealthRisks.TestData
+namespace Domain.TestData
 {
     public class PopulateHealthRiskTestData : ICommand
     {

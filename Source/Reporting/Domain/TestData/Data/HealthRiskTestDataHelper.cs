@@ -1,6 +1,6 @@
 using Concepts.HealthRisks;
 
-namespace Domain.Management.HealthRisks.TestData.Data
+namespace Domain.TestData.Data
 {
     public class HealthRiskTestDataHelper
     {

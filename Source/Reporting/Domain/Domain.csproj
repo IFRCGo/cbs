@@ -16,21 +16,10 @@
     <PackageReference Include="Dolittle.SDK" Version="3.*" />
   </ItemGroup>
 
-
   <ItemGroup>
-    <Content Remove="Management\DataCollectors\TestData\DataCollectors.json" />
-    <Content Remove="Reporting\CaseReports\TestData\CaseReports.json" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <None Remove="Management\HealthRisks\TestData\Data\HealthRisks.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Management\DataCollectors\TestData\Data\DataCollectors.json" />
-    <EmbeddedResource Include="Management\HealthRisks\TestData\Data\HealthRisks.json" />
-    <EmbeddedResource Include="Reporting\CaseReports\TestData\Data\CaseReports.json" />
+    <EmbeddedResource Include="TestData\Data\DataCollectors.json" />
+    <EmbeddedResource Include="TestData\Data\HealthRisks.json" />
+    <EmbeddedResource Include="TestData\Data\CaseReports.json" />
   </ItemGroup>
 
 </Project>

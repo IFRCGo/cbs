@@ -1,9 +1,8 @@
-using System;
 using Concepts.CaseReports;
 using Concepts.DataCollectors;
 using Concepts.HealthRisks;
 
-namespace Domain.Reporting.CaseReports.TestData.Data
+namespace Domain.TestData.Data
 {
     public class CaseReportTestDataHelper
     {
