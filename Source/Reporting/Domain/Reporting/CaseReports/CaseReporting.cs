@@ -56,9 +56,9 @@ namespace Domain.Reporting.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message, 
+            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, healthRiskName, origin, message, 
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
-                longitude, latitude, timestamp));
+                region, district, village, longitude, latitude, timestamp));
         }        
 
         public void ReportFromUnknownDataCollector(
