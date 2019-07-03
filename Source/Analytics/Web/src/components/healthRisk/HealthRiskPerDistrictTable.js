@@ -31,7 +31,6 @@ class HealthRiskPerDistrictTable extends Component {
 
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
             if(queryResult.success){
-                console.log(queryResult.items[0].healthRisks[0].healthRiskName);
                 this.setState({
                     healthRisksPerRegion: queryResult.items[0].healthRisks,
                     isLoading: true,
@@ -47,7 +46,6 @@ class HealthRiskPerDistrictTable extends Component {
 
     componentDidMount() {
         this.fetchData();
-        console.log(this.state.healthRisksPerRegion);
     }
 
     createRows(healthRisks) {
@@ -72,12 +70,10 @@ class HealthRiskPerDistrictTable extends Component {
             }
             rows.push(row);
         });
-
         return rows
     }
 
     render() { 
-        /* return ( <div>{this.state.healthRisksPerRegion.map(risk => risk.healthRiskName)}</div>); */
         return (
             <div style={{marginBottom: 20}}>
                 <Typography variant="h5">No. of cases per health risk and district for last 7 days</Typography>
