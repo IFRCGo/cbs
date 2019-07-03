@@ -9,12 +9,7 @@
         },
         "2b37f877-532e-4e35-ba76-1977d56739ac": {
           "name": "CaseReports",
-          "subFeatures": {
-            "ff5478ae-99b7-486f-b7fa-480e34736bba": {
-              "name": "TestData",
-              "subFeatures": {}
-            }
-          }
+          "subFeatures": {}
         },
         "f27726b8-19e6-4efd-bf33-8fe71ea28b15": {
           "name": "AutomaticReplyMessages",
@@ -56,10 +51,6 @@
               "name": "Training",
               "subFeatures": {}
             },
-            "4ad30706-6d6c-4dda-9c82-60b9e10bf9e8": {
-              "name": "TestData",
-              "subFeatures": {}
-            },
             "a9c9c5a6-d18b-46ce-b14e-f5203ed5e543": {
               "name": "Registration",
               "subFeatures": {}
@@ -76,6 +67,23 @@
         },
         "a9eac352-abea-4bf7-b1e9-266b6e63bc78": {
           "name": "DataVerifiers",
+          "subFeatures": {}
+        },
+        "d0816494-98e9-4848-a3c4-51edac33a66e": {
+          "name": "HealthRisks",
+          "subFeatures": {}
+        }
+      }
+    },
+    "d8084be0-10eb-480e-8625-21576ff1749d": {
+      "name": "TestData",
+      "features": {
+        "40cd66d3-d1ff-48d2-876e-616272971afb": {
+          "name": "HealthRisks",
+          "subFeatures": {}
+        },
+        "26aef839-23a3-4db5-b3f4-75437c6229e9": {
+          "name": "CaseReports",
           "subFeatures": {}
         }
       }

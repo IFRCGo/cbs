@@ -41,8 +41,7 @@ namespace Read.Reporting.CaseReports
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 Location = new Location(@event.Latitude, @event.Longitude),
                 Timestamp = @event.Timestamp,
-                Message = @event.Message,
-                Region = @event.Region
+                Message = @event.Message
             };
 
             _caseReports.Insert(caseReport);

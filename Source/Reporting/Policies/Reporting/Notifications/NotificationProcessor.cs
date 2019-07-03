@@ -84,8 +84,8 @@ namespace Policies.Reporting.Notifications
            }
 
            var healthRiskReadableId = parsingResult.HealthRiskReadableId;
-           var healthRiskId = _healthRisks.Query.Where(i => i.ReadableId == healthRiskReadableId).FirstOrDefault()?.Id;
-           if (healthRiskId == null || healthRiskId == HealthRiskId.NotSet)
+           var healthRisk = _healthRisks.Query.Where(i => i.ReadableId == healthRiskReadableId).FirstOrDefault();
+           if (healthRisk == null || healthRisk.Id == HealthRiskId.NotSet)
            {
                var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
                if (unknownDataCollector)
@@ -115,7 +115,7 @@ namespace Policies.Reporting.Notifications
            {
                 caseReporting.ReportFromUnknownDataCollector(
                     notification.Sender,
-                    healthRiskId.Value,
+                    healthRisk.Id.Value,
                     parsingResult.MalesUnder5,
                     parsingResult.MalesAged5AndOlder,
                     parsingResult.FemalesUnder5,
@@ -129,17 +129,20 @@ namespace Policies.Reporting.Notifications
 
             caseReporting.Report(
                 dataCollector.Id,
-                healthRiskId.Value,
+                healthRisk.Id.Value,
+                healthRisk.Name,
                 notification.Sender,
                 parsingResult.MalesUnder5,
                 parsingResult.MalesAged5AndOlder,
                 parsingResult.FemalesUnder5,
                 parsingResult.FemalesAged5AndOlder,
+                dataCollector.Region,
+                dataCollector.District,
+                dataCollector.Village,
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
                 notification.Received,
-                notification.Text,
-                dataCollector.Region
+                notification.Text
             );
             transaction.Commit();
        }
