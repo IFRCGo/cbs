@@ -6,11 +6,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import { getJson } from "../../utils/request";
-import { BASE_URL } from "../NationalSocietyOverview";
-import { formatDate } from "../../utils/dateUtils";
-import { QueryCoordinator } from "@dolittle/queries";
 
+import { QueryCoordinator } from "@dolittle/queries";
 import { GetCaseReportsPerRegionLast7Days } from "../../Features/CaseReports/GetCaseReportsPerRegionLast7Days";
 
 
@@ -33,10 +30,9 @@ class HealthRiskPerDistrictTable extends Component {
             if(queryResult.success){
                 this.setState({
                     healthRisksPerRegion: queryResult.items[0].healthRisks,
-                    isLoading: true,
+                    isLoading: false,
                     isError: false
                 })
-                
             }
             else{
                 this.setState({ isLoading: false, isError: true })
@@ -54,11 +50,11 @@ class HealthRiskPerDistrictTable extends Component {
 
         let allRegions = [];
         healthRisks.map(risk => {
-                risk.regions.map(region => {
-                    if (!allRegions.includes(region.id)){
-                        allRegions.push(region.id);
-                    }
-                })
+            risk.regions.map(region => {
+                if (!allRegions.includes(region.id)){
+                    allRegions.push(region.id);
+                }
+            })
         });
         
         allRegions.map(regionName => {
@@ -73,33 +69,39 @@ class HealthRiskPerDistrictTable extends Component {
         return rows
     }
 
-    render() { 
+    render() {
         return (
             <div style={{marginBottom: 20}}>
                 <Typography variant="h5">No. of cases per health risk and district for last 7 days</Typography>
                 <Paper>
                     <Table>
-                    <TableHead>
-                        <TableRow>
-                        <TableCell></TableCell>
-                        {this.state.healthRisksPerRegion.map(healthRisk => (<TableCell key={healthRisk.healthRiskName} align="right">{healthRisk.healthRiskName}</TableCell>))}
-                        </TableRow>
-                    </TableHead> 
-                    <TableBody>
-                        {this.createRows(this.state.healthRisksPerRegion).map(row => (
-                            <TableRow key={row.name}>
-                                <TableCell align="left">{row.shift()}</TableCell> {/* Special treatment of region name column */}
-                                {row.map(numCases => (
-                                    <TableCell align="right" style={numCases === 0 ? {color: "#B5B5B5"} : {}}>{ numCases}</TableCell>
-                                ))}     
+                        <TableHead key="table">
+                            <TableRow>
+                            <TableCell></TableCell>
+                            {this.state.healthRisksPerRegion.map(healthRisk => (<TableCell key={healthRisk.healthRiskName} align="right">{healthRisk.healthRiskName}</TableCell>))}
                             </TableRow>
-                        ))}
-                    </TableBody>
+                        </TableHead> 
+                        <TableBody>
+                            {
+                                this.createRows(this.state.healthRisksPerRegion).map(row => {
+                                let rowName = row.shift();
+                                return (
+                                    <TableRow key={rowName}>
+                                        <TableCell key="rowName" align="left">{rowName}</TableCell> {/* Special treatment of region name column */}
+                                        {row.map(numCases => (
+                                            <TableCell align="right" style={numCases === 0 ? {color: "#B5B5B5"} : {}}>
+                                                {numCases}
+                                            </TableCell>
+                                        ))}     
+                                    </TableRow>
+                                    )
+                                })
+                            }
+                        </TableBody>
                     </Table>
                 </Paper>
             </div>
         );
-        
     }
 }
 

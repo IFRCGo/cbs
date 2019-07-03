@@ -9,7 +9,6 @@ import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable"
 import TotalCard from "./TotalCard";
 import { getJson } from "../utils/request";
 import { formatDate } from "../utils/dateUtils";
-import HealthRiskPerDistrictBarCharts from "./healthRisk/HealthRiskPerDistrictBarCharts";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
 import { AllHealthRisks } from "../Features/HealthRisk/AllHealthRisks";
@@ -60,7 +59,6 @@ class NationalSocietyOverview extends Component {
     
     
     fetchData() {
-
         let oneWeekBack = new Date();
         oneWeekBack.setDate(oneWeekBack.getDate()-6);
         this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
@@ -87,10 +85,7 @@ class NationalSocietyOverview extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
-        //this.fetchHealthRisks();
-        //this.fetchHealthRisksPerRegionLast7Days();
-        
+        this.fetchData();        
         appInsights.trackPageView({ name: 'National society overview'});
     }
 

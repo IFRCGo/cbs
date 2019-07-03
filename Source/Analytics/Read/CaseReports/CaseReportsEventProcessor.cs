@@ -74,30 +74,24 @@ namespace Read.CaseReports
                 }
                 else 
                 {
-                    var RegionWithHealthRisk = new RegionWithHealthRisk() 
-                                    {
-                                        Id = region,
-                                        NumCases = totalCases
-                                    };
-
-                    var HealthRisksInRegionsLast7Days = new HealthRisksInRegionsLast7Days()
-                            {
-                                Id = caseReport.HealthRiskId,
-                                HealthRiskName = "Jeg er en health risk",
-                                Regions = null
-                            };
-
-                    HealthRisksInRegionsLast7Days.Regions = new [] 
-                                {
-                                    RegionWithHealthRisk
-                                };
-
                     dayReport = new CaseReportsPerRegionLast7Days()
                     {
                         Id = day,
                         HealthRisks = new [] 
                         {
-                            HealthRisksInRegionsLast7Days
+                            new HealthRisksInRegionsLast7Days()
+                            {
+                                Id = caseReport.HealthRiskId,
+                                HealthRiskName = "Data is missing HealthRiskName",
+                                Regions = new []
+                                {
+                                    new RegionWithHealthRisk() 
+                                    {
+                                        Id = region,
+                                        NumCases = totalCases
+                                    }
+                                }
+                            }
                         }
                     };
                     _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
