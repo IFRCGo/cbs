@@ -22,8 +22,14 @@
     <Content Remove="Reporting\CaseReports\TestData\CaseReports.json" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Remove="Management\HealthRisks\TestData\Data\HealthRisks.json" />
+  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Management\DataCollectors\TestData\Data\DataCollectors.json" />
+    <EmbeddedResource Include="Management\HealthRisks\TestData\Data\HealthRisks.json" />
     <EmbeddedResource Include="Reporting\CaseReports\TestData\Data\CaseReports.json" />
   </ItemGroup>
 

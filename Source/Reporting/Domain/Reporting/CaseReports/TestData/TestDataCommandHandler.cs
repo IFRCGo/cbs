@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using Concepts.DataCollectors;
@@ -12,6 +13,7 @@ using Concepts.HealthRisks;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Dolittle.Serialization.Json;
+using Domain.Reporting.CaseReports.TestData.Data;
 using Newtonsoft.Json;
 
 namespace Domain.Reporting.CaseReports.TestData
@@ -41,13 +43,15 @@ namespace Domain.Reporting.CaseReports.TestData
             }               
         }
 
+
         public void Handle(PopulateCaseReportTestData cmd)
         {
-            var dataCaseReportHelpers = DeserializeTestData<CaseReportHelper[]>("Reporting.CaseReports.TestData.Data.CaseReports.json");
+            var dataCaseReportHelpers = DeserializeTestData<CaseReportTestDataHelper[]>("Reporting.CaseReports.TestData.Data.CaseReports.json");
+            var provider = CultureInfo.InvariantCulture;
 
             foreach (var dataCaseReportHelper in dataCaseReportHelpers)
             {
-                var root = _caseReportingAggregate.Get(dataCaseReportHelper.DataCollectorId.Value);
+                var root = _caseReportingAggregate.Get(Guid.NewGuid());
 
                 root.Report(dataCaseReportHelper.DataCollectorId,
                     dataCaseReportHelper.HealthRiskId,
@@ -56,25 +60,11 @@ namespace Domain.Reporting.CaseReports.TestData
                     dataCaseReportHelper.NumberOfMalesAged5AndOlder,
                     dataCaseReportHelper.NumberOfFemalesUnder5,
                     dataCaseReportHelper.NumberOfFemalesAged5AndOlder,
-                    dataCaseReportHelper.Longitude,
-                    dataCaseReportHelper.Latitude,
-                    DateTimeOffset.UtcNow,
+                    0.0,
+                    0.0,
+                    DateTimeOffset.ParseExact(dataCaseReportHelper.Timestamp, "dd/MM/yyyy HH:mm:ss zzz", provider, DateTimeStyles.AdjustToUniversal),
                     dataCaseReportHelper.Message);
             }
-        }
-        // TODO: move class to a seperate file.cs
-        public class CaseReportHelper
-        {
-            public DataCollectorId DataCollectorId { get; set; }
-            public HealthRiskId HealthRiskId { get; set; }
-            public string Origin { get; set; }
-            public int NumberOfMalesUnder5 { get; set; }
-            public int NumberOfMalesAged5AndOlder { get; set; }
-            public int NumberOfFemalesUnder5 { get; set; }
-            public int NumberOfFemalesAged5AndOlder { get; set; }
-            public double Longitude { get; set; }
-            public double Latitude { get; set; }
-            public string Message { get; set; }
         }
     }
 }

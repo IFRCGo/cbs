@@ -77,6 +77,15 @@
         "a9eac352-abea-4bf7-b1e9-266b6e63bc78": {
           "name": "DataVerifiers",
           "subFeatures": {}
+        },
+        "d0816494-98e9-4848-a3c4-51edac33a66e": {
+          "name": "HealthRisks",
+          "subFeatures": {
+            "6ef2193a-8708-4ddc-8233-56546c00bd3e": {
+              "name": "TestData",
+              "subFeatures": {}
+            }
+          }
         }
       }
     }

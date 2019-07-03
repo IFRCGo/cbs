@@ -25,7 +25,7 @@ namespace Events.Reporting.CaseReports
         public CaseReportReceived(Guid dataCollectorId, Guid healthRiskId, 
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, double longitude, 
-            double latitude, DateTimeOffset timestamp) 
+            double latitude, DateTimeOffset timestamp)
         {
             DataCollectorId = dataCollectorId;
             HealthRiskId = healthRiskId;

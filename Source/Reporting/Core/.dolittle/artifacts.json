@@ -425,5 +425,29 @@
       }
     },
     "queries": {}
+  },
+  "6ef2193a-8708-4ddc-8233-56546c00bd3e": {
+    "commands": {
+      "1a9d5261-e601-48a7-9590-fd36e2a47396": {
+        "generation": 1,
+        "type": "Domain.Management.HealthRisks.TestData.PopulateHealthRiskTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "d0816494-98e9-4848-a3c4-51edac33a66e": {
+    "commands": {},
+    "events": {},
+    "eventSources": {
+      "1edd8150-7a30-4aab-bf9d-26a0158418b7": {
+        "generation": 1,
+        "type": "Domain.Management.HealthRisks.HealtRisk, Domain"
+      }
+    },
+    "readModels": {},
+    "queries": {}
   }
 }

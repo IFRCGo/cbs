@@ -60,6 +60,5 @@ namespace Domain.Management.DataCollectors.TestData
                     , dataCollector.PhoneNumbers, DateTimeOffset.UtcNow, dataCollector.Region, dataCollector.District, Guid.NewGuid());
             }
         }
-
     }
 }
