@@ -54,32 +54,25 @@ class HealthRiskPerDistrictTable extends Component {
         const numHealthRisks = healthRisks.length;
         let rows = [];
 
-        /*
-        this.state.allRegionNames.map(regionName => {    
+        let allRegions = [];
+        healthRisks.map(risk => {
+                risk.regions.map(region => {
+                    if (!allRegions.includes(region.id)){
+                        allRegions.push(region.id);
+                    }
+                })
+        });
+        
+        allRegions.map(regionName => {
             let row = new Array(1+numHealthRisks).fill(0);
             row[0] = regionName;
-
             for (let i=0; i<numHealthRisks; i++){
-                let num = healthRisks[i].regions.find(region => region.name === regionName);              
-                row[i+1] = num ? num.numberOfCaseReports : 0;
-            }
-
-            rows.push(row); 
-        })
-        */
-
-        healthRisks.map(risk => {
-            let row = new Array(1+numHealthRisks).fill(0); // 1 is the region name column
-            row[0] = risk.healthRiskName;
-
-            for (let i=0; i<numHealthRisks; i++){
-                let num = healthRisks[i].regions.find(region => region.id === "Oslo");              
+                let num = healthRisks[i].regions.find(region => region.id === regionName);
                 row[i+1] = num ? num.numCases : 0;
             }
-
-            console.log(row);
             rows.push(row);
         });
+
         return rows
     }
 
@@ -92,7 +85,7 @@ class HealthRiskPerDistrictTable extends Component {
                     <Table>
                     <TableHead>
                         <TableRow>
-                        <TableCell>HealthRiskName -></TableCell>
+                        <TableCell></TableCell>
                         {this.state.healthRisksPerRegion.map(healthRisk => (<TableCell key={healthRisk.healthRiskName} align="right">{healthRisk.healthRiskName}</TableCell>))}
                         </TableRow>
                     </TableHead> 
