@@ -22,4 +22,9 @@
     <EmbeddedResource Include="TestData\Data\CaseReports.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestData\CaseReports\" />
+    <Folder Include="TestData\HealthRisks\" />
+  </ItemGroup>
+
 </Project>

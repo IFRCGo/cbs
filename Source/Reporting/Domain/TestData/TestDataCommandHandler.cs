@@ -11,7 +11,9 @@ using Dolittle.Serialization.Json;
 using Domain.Management.DataCollectors;
 using Domain.Management.DataCollectors.Registration;
 using Domain.Reporting.CaseReports;
+using Domain.TestData.CaseReports;
 using Domain.TestData.Data;
+using Domain.TestData.HealthRisks;
 
 namespace Domain.TestData
 {
@@ -47,7 +49,7 @@ namespace Domain.TestData
             }
         }
 
-        public void Handle(PopulateHealthRiskTestData cmd)
+        public void Handle(PopulateCaseReportTestData cmd)
         {
             var healthRisks = DeserializeTestData<HealthRiskTestDataHelper[]>("TestData.Data.HealthRisks.json");
             var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("TestData.Data.DataCollectors.json");
@@ -61,7 +63,6 @@ namespace Domain.TestData
         private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors,
             HealthRiskTestDataHelper[] healthRisks)
         {
-            //var caseReports = DeserializeTestData<CaseReportTestDataHelper[]>("TestData.Data.CaseReports.json");
             var provider = CultureInfo.InvariantCulture;
 
 
@@ -91,8 +92,6 @@ namespace Domain.TestData
 
         private void CreateDataCollectors(RegisterDataCollector[] dataCollectors)
         {
-            //var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("TestData.Data.DataCollectors.json");
-
             foreach (var dataCollector in dataCollectors)
             {
                 var root = _dataCollectorAggregate.Get(dataCollector.DataCollectorId.Value);
@@ -111,8 +110,6 @@ namespace Domain.TestData
 
         private void CreateHealthRisks(HealthRiskTestDataHelper[] healthRisks)
         {
-            //var healthRisks = DeserializeTestData<HealthRiskTestDataHelper[]>("TestData.Data.HealthRisks.json");
-
             foreach (var healthRisk in healthRisks)
             {
                 var root = _healthRiskAggregate.Get(healthRisk.Id.Value);

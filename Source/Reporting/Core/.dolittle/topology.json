@@ -74,6 +74,19 @@
           "subFeatures": {}
         }
       }
+    },
+    "d8084be0-10eb-480e-8625-21576ff1749d": {
+      "name": "TestData",
+      "features": {
+        "40cd66d3-d1ff-48d2-876e-616272971afb": {
+          "name": "HealthRisks",
+          "subFeatures": {}
+        },
+        "26aef839-23a3-4db5-b3f4-75437c6229e9": {
+          "name": "CaseReports",
+          "subFeatures": {}
+        }
+      }
     }
   },
   "features": {}

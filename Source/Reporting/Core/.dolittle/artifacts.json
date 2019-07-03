@@ -402,15 +402,27 @@
     },
     "queries": {}
   },
-  "d0816494-98e9-4848-a3c4-51edac33a66e": {
+  "40cd66d3-d1ff-48d2-876e-616272971afb": {
     "commands": {},
     "events": {},
     "eventSources": {
-      "1edd8150-7a30-4aab-bf9d-26a0158418b7": {
+      "15331073-ecc5-4af7-844d-7175932395f0": {
         "generation": 1,
-        "type": "Domain.Management.HealthRisks.HealtRisk, Domain"
+        "type": "Domain.TestData.HealthRisks.HealtRisk, Domain"
       }
     },
+    "readModels": {},
+    "queries": {}
+  },
+  "26aef839-23a3-4db5-b3f4-75437c6229e9": {
+    "commands": {
+      "79c674e6-6f04-476a-8608-1ddfcde8f702": {
+        "generation": 1,
+        "type": "Domain.TestData.CaseReports.PopulateCaseReportTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
     "readModels": {},
     "queries": {}
   }
