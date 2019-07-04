@@ -39,19 +39,14 @@ namespace Read.CaseReports
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if(dataCollector == null)
-            {
-                _dataCollectors.Insert(new DataCollector(){Id = @event.DataCollectorId});
-            }
 
             // Insert by health risk and region
-            
             var today = Day.Of(@event.Timestamp);
             var totalCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
                                 +caseReport.NumberOfFemalesAged5AndOlder;
-            Region region = @event.Region; //should be DataCollector.Region
+            Region region = dataCollector.Region;
 
             for (var day = today; day < today + 7; day++)
             {
