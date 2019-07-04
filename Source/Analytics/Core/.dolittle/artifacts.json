@@ -71,7 +71,7 @@
   "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
     "commands": {},
     "events": {
-      "32d95b06-16bd-4069-b500-8d3de4712262": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
         "generation": 1,
         "type": "Events.HealthRisk.HealthRiskCreated, Events"
       }

@@ -13,7 +13,7 @@ export class HealthRisk extends ReadModel
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
-        this.healthRiskName = '';
+        this.name = '';
         this.healthRiskNumber = 0;
     }
 }

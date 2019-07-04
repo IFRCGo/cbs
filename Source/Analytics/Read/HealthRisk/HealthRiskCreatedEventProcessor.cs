@@ -4,26 +4,26 @@ using Events.HealthRisk;
 
 namespace Read.HealthRisk
 {
-    public class HealthRiskCreatedProcessor : ICanProcessEvents
+    public class HealthRiskCreatedEventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<HealthRisk> _repositoryForHealthRisks;
 
-        public HealthRiskCreatedProcessor(
-            IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks            
+        public HealthRiskCreatedEventProcessor(
+            IReadModelRepositoryFor<HealthRisk> repositoryForHealthRisks      
         )
         {
             _repositoryForHealthRisks = repositoryForHealthRisks;
         }
         
-        [EventProcessor("c5450b8a-f487-656e-1d0d-ea07073abc1d")]
+        [EventProcessor("9c62046d-eb9a-ab1d-8d56-af179f20cfc2")]
         public void Process(HealthRiskCreated @event)
         { 
-            var healthRisk = _repositoryForHealthRisks.GetById(@event.HealthRiskId);
+            var healthRisk = _repositoryForHealthRisks.GetById(@event.Id);
 
                 healthRisk = new HealthRisk
                 {
-                    Id = @event.HealthRiskId,
-                    HealthRiskName = @event.HealthRiskName,
+                    Id = @event.Id,
+                    Name = @event.Name,
                     HealthRiskNumber = @event.HealthRiskNumber
                 };
                 _repositoryForHealthRisks.Insert(healthRisk);
