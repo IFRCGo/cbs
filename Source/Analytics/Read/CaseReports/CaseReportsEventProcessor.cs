@@ -53,20 +53,51 @@ namespace Read.CaseReports
                 var dayReport = _caseReportsPerRegionLast7DaysRepository.GetById(day);
                 if (dayReport != null)
                 {
+                    var healthRiskExists = false;
                     for (var i=0; i<dayReport.HealthRisks.Count; i++)
                     {
+                        
                         var healthRiskByRegions = dayReport.HealthRisks[i];
                         if (healthRiskByRegions.Id == caseReport.HealthRiskId)
                         {
+                            healthRiskExists = true;
+
+                            var foundRegion = false;
                             for (var j=0; j<healthRiskByRegions.Regions.Count; j++)
                             {
                                 var regionsWithHealthRisk = healthRiskByRegions.Regions[j];
                                 if (regionsWithHealthRisk.Id == region)
                                 {
+                                    foundRegion = true;
                                     regionsWithHealthRisk.NumCases += totalCases;
                                 }
                             }
+                            if (!foundRegion)
+                            {
+                                healthRiskByRegions.Regions.Add(new RegionWithHealthRisk() 
+                                    {
+                                        Id = region,
+                                        NumCases = totalCases
+                                    }
+                                );
+                            }
                         }
+                    }
+                    if(!healthRiskExists)
+                    {
+                        dayReport.HealthRisks.Add(new HealthRisksInRegionsLast7Days()
+                        {
+                            Id = caseReport.HealthRiskId,
+                            HealthRiskName = healthRisk.Name,
+                            Regions = new [] 
+                            {
+                                new RegionWithHealthRisk() 
+                                    {
+                                        Id = region,
+                                        NumCases = totalCases
+                                    }
+                            }
+                        });
                     }
                     
                     _caseReportsPerRegionLast7DaysRepository.Update(dayReport);

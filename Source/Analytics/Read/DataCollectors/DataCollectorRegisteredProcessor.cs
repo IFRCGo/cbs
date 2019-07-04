@@ -17,12 +17,12 @@ namespace Read.DataCollectors
             _repositoryForDataCollector = repositoryForDataCollector;
         }
         
-        [EventProcessor("836314c2-20e2-174e-b629-00da4a2c8159")] // Reporting: e5772c2d-2891-4abe-ac62-1adadc353f9b
+        [EventProcessor("836314c2-20e2-174e-b629-00da4a2c8159")]
         public void Process(DataCollectorRegistered @event, EventSourceId dataCollectorId)
         { 
             var dataCollector = _repositoryForDataCollector.GetById(dataCollectorId.Value); //why do we do this?
 
-            dataCollector = new DataCollector() //dataCollectorId is hopefully the EventSourceId
+            dataCollector = new DataCollector()
                 {
                     Id = dataCollectorId.Value,
                     DisplayName = @event.DisplayName,
