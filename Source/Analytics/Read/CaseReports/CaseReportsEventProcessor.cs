@@ -26,6 +26,17 @@ namespace Read.CaseReports
             _dataCollectors = dataCollectors;
         }
 
+        public RegionWithHealthRisk addRegionWithCases(Region region, NumberOfPeople numCases)
+        {
+            return new RegionWithHealthRisk()
+            {
+                Id = region,
+                NumCases = numCases
+            };
+        }
+
+        
+        
        [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
         public void Process(CaseReportReceived @event)
         {
@@ -38,10 +49,10 @@ namespace Read.CaseReports
             _caseReportRepository.Insert(caseReport);
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
 
             // Insert by health risk and region
-            var today = Day.Of(@event.Timestamp);
+            var today = Day.Of(caseReport.Timestamp);
             var totalCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
@@ -74,12 +85,7 @@ namespace Read.CaseReports
                             }
                             if (!foundRegion)
                             {
-                                healthRiskByRegions.Regions.Add(new RegionWithHealthRisk() 
-                                    {
-                                        Id = region,
-                                        NumCases = totalCases
-                                    }
-                                );
+                                healthRiskByRegions.Regions.Add(addRegionWithCases(region, totalCases));
                             }
                         }
                     }
@@ -89,14 +95,7 @@ namespace Read.CaseReports
                         {
                             Id = caseReport.HealthRiskId,
                             HealthRiskName = healthRisk.Name,
-                            Regions = new [] 
-                            {
-                                new RegionWithHealthRisk() 
-                                    {
-                                        Id = region,
-                                        NumCases = totalCases
-                                    }
-                            }
+                            Regions = new [] { addRegionWithCases(region, totalCases) }
                         });
                     }
                     
@@ -113,20 +112,13 @@ namespace Read.CaseReports
                             {
                                 Id = caseReport.HealthRiskId,
                                 HealthRiskName = healthRisk.Name,
-                                Regions = new []
-                                {
-                                    new RegionWithHealthRisk() 
-                                    {
-                                        Id = region,
-                                        NumCases = totalCases
-                                    }
-                                }
+                                Regions = new []{ addRegionWithCases(region, totalCases) }
                             }
                         }
                     };
                     _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
                 }
             };
-        }
+        }        
     }
 }
