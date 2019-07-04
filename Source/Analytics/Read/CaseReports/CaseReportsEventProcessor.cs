@@ -82,7 +82,7 @@ namespace Read.CaseReports
                             new HealthRisksInRegionsLast7Days()
                             {
                                 Id = caseReport.HealthRiskId,
-                                HealthRiskName = "Data is missing HealthRiskName",
+                                HealthRiskName = healthRisk.Name,
                                 Regions = new []
                                 {
                                     new RegionWithHealthRisk() 

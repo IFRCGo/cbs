@@ -7,7 +7,7 @@ namespace Concepts.HealthRisk
     {
         public static implicit operator HealthRiskId(Guid value)
         {
-            return new HealthRiskId {Value = Guid.NewGuid()};
+            return new HealthRiskId {Value = value};
         }
 
     }
