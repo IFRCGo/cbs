@@ -43,6 +43,10 @@
     "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
       "name": "HealthRisk",
       "subFeatures": {}
+    },
+    "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
+      "name": "DataCollectors",
+      "subFeatures": {}
     }
   }
 }

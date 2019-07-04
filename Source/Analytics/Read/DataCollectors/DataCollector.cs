@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 using Concepts;
 using Concepts.DataCollectors;
 using Dolittle.ReadModels;
@@ -13,14 +12,8 @@ namespace Read.DataCollectors
 {
     public class DataCollector : IReadModel
     { 
-        public DataCollector(DataCollectorId id)
-        {
-            Id = id;
-        }
         public DataCollectorId Id { get; set; }
-
         public string DisplayName { get; set; }
-        
         public Location Location { get; set; }
         public string District { get; set; }
         public string Region { get; set; }

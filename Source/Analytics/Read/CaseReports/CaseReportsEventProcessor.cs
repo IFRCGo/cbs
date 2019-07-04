@@ -1,14 +1,8 @@
 using Dolittle.Events.Processing;
 using Events.Reporting.CaseReports;
-using Read.CaseReports;
 using Dolittle.ReadModels;
-using Dolittle.Logging;
 using Concepts;
-using Read.HealthRisk;
 using Read.DataCollectors;
-using System.Collections.Generic;
-using System;
-
 
 namespace Read.CaseReports
 {
@@ -44,15 +38,20 @@ namespace Read.CaseReports
             _caseReportRepository.Insert(caseReport);
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-            var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            if(dataCollector == null)
+            {
+                _dataCollectors.Insert(new DataCollector(){Id = @event.DataCollectorId});
+            }
 
             // Insert by health risk and region
+            
             var today = Day.Of(@event.Timestamp);
             var totalCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
                                 +caseReport.NumberOfFemalesAged5AndOlder;
-            Region region = dataCollector.Region;
+            Region region = @event.Region; //should be DataCollector.Region
 
             for (var day = today; day < today + 7; day++)
             {
