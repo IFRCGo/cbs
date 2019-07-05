@@ -39,25 +39,8 @@ class NationalSocietyOverview extends Component {
             healthRisks: []
         };
     }
-
-    // remove this?
-    fetchHealthRisks() {
-        this.queryCoordinator = new QueryCoordinator();
-        let healthRisks = new AllHealthRisks();
-
-        this.queryCoordinator.execute(healthRisks).then(queryResult => {
-            if(queryResult.success){
-                this.setState({ healthRisks: queryResult.items})
-            }
-        }).catch(_ => 
-            this.setState({
-                isLoading: false,
-                isError: true
-            })
-        );
-    }
     
-    fetchData() {
+    fetchLastWeekTotals() {
         this.queryCoordinator = new QueryCoordinator();
         let caseReportTotals = new CaseReportTotalsQuery();
 
@@ -83,7 +66,7 @@ class NationalSocietyOverview extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.fetchLastWeekTotals();
         
         appInsights.trackPageView({ name: 'National society overview'});
     }
