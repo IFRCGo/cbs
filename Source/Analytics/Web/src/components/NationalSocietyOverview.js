@@ -11,6 +11,8 @@ import { getJson } from "../utils/request";
 import { formatDate } from "../utils/dateUtils";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
+import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
+import { QueryCoordinator } from "@dolittle/queries";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -55,30 +57,29 @@ class NationalSocietyOverview extends Component {
         );
     }
     
-    fetchData() {       
-        this.url = `${BASE_URL}/api/CaseReport/Totals/LastWeek/`;
+    fetchData() {
+        this.queryCoordinator = new QueryCoordinator();
+        let caseReportTotals = new CaseReportTotalsQuery();
 
-        this.setState({ isLoading: true });
-
-        getJson(this.url)
-            .then(json => {
+        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
+            if(queryResult.success){
+                let json = queryResult.items[0]; //We get many items here – how to display "LastWeek"?
                 this.setState({
-                    totalFemale: json.female.value,
-                    totalMale: json.male.value,
-                    totalUnder5: json.under5.value,
-                    totalOver5: json.over5.value,
+                    totalFemale: json.female,
+                    totalMale: json.male,
+                    totalUnder5: json.under5,
+                    totalOver5: json.over5,
                     isLoading: false,
                     isError: false
                 });
             }
-
-            )
-            .catch(_ =>
-                this.setState({
-                    isLoading: false,
-                    isError: true
-                })
-            );
+        }).catch(_ => {
+            this.setState({
+                isLoading: false,
+                isError: true
+            })
+        }
+        )
     }
 
     componentDidMount() {
