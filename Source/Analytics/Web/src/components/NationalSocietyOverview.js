@@ -55,12 +55,8 @@ class NationalSocietyOverview extends Component {
         );
     }
     
-    fetchData() {
-        //let oneWeekBack = new Date();
-        //oneWeekBack.setDate(oneWeekBack.getDate()-6);
-        //this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
-    
-        this.url = `${BASE_URL}CaseReport/Totals/LastWeek/`;
+    fetchData() {       
+        this.url = `${BASE_URL}/api/CaseReport/Totals/LastWeek/`;
 
         this.setState({ isLoading: true });
 
