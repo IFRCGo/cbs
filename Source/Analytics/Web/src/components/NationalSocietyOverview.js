@@ -35,8 +35,7 @@ class NationalSocietyOverview extends Component {
             totalUnder5: "-",
             totalOver5: "-",
             isLoading: true,
-            isError: false,
-            healthRisks: []
+            isError: false
         };
     }
     
@@ -86,12 +85,18 @@ class NationalSocietyOverview extends Component {
                     </GridListTile>
 
                     <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
+                        <Typography component="h2" variant="headline">
+                            No. of cases by gender
+                        </Typography>
                         <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
                         <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
                     </GridListTile>
                     <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
-                        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
-                        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
+                        <Typography component="h2" variant="headline">
+                            No. of cases by age
+                        </Typography>
+                        <TotalCard className={"fa fa-child"} subTitle={"Under 5"} total={this.state.totalUnder5}  />
+                        <TotalCard className={"fa fa-user"} subTitle={"Over 5"} total={this.state.totalOver5}  />
                     </GridListTile>
 
                 </GridList>
