@@ -27,12 +27,11 @@ class CaseReportByHealthRiskTable extends Component {
 
       this.queryCoordinator.execute(lastWeeksPerHealthRisk).then(queryResult => {
           if(queryResult.success){
-              console.log(queryResult.items[0]);
               this.setState({
-                  healthRisks: queryResult.items[0].caseReportsPerHelthRisk,
+                  healthRisks: queryResult.items[0].caseReportsPerHealthRisk,
                   isLoading: false,
                   isError: false
-              })
+              });
           }
           else{
               this.setState({ isLoading: false, isError: true })

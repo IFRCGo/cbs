@@ -13,6 +13,6 @@ export class CaseReportsLastWeeksPerHealthRisk extends ReadModel
            generation: '1'
         };
         this.id = 0;
-        this.caseReportsPerHelthRisk = [];
+        this.caseReportsPerHealthRisk = [];
     }
 }

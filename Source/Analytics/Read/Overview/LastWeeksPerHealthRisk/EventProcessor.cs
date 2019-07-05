@@ -71,14 +71,14 @@ namespace Read.Overview.LastWeeksPerHealthRisk
                 aggregatedReports = new CaseReportsLastWeeksPerHealthRisk
                 {
                     Id = day,
-                    CaseReportsPerHelthRisk = new Dictionary<HealthRiskId, CaseReportsLastWeeksForHealthRisk>()
+                    CaseReportsPerHealthRisk = new Dictionary<HealthRiskId, CaseReportsLastWeeksForHealthRisk>()
                 };
                 _caseReportsLastWeeksPerHealthRisk.Insert(aggregatedReports);
             }
 
-            if (!aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(id))
+            if (!aggregatedReports.CaseReportsPerHealthRisk.ContainsKey(id))
             {
-                aggregatedReports.CaseReportsPerHelthRisk[id] = new CaseReportsLastWeeksForHealthRisk
+                aggregatedReports.CaseReportsPerHealthRisk[id] = new CaseReportsLastWeeksForHealthRisk
                 {
                     Days0to6 = 0,
                     Days7to13 = 0,
@@ -87,7 +87,7 @@ namespace Read.Overview.LastWeeksPerHealthRisk
                 };
             }
 
-            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHelthRisk[id];
+            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHealthRisk[id];
             
             update(aggregatedReportsForHealthRisk);
 
@@ -100,9 +100,9 @@ namespace Read.Overview.LastWeeksPerHealthRisk
             var alreadyAggregatedReports = _caseReportsLastWeeksPerHealthRisk.Query.Where(_ => _.Id >= Day.Today).ToList();
             foreach (var aggregatedReports in alreadyAggregatedReports)
             {
-                if (aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(@event.Id))
+                if (aggregatedReports.CaseReportsPerHealthRisk.ContainsKey(@event.Id))
                 {
-                    aggregatedReports.CaseReportsPerHelthRisk[@event.Id].HealthRiskName = @event.Name;
+                    aggregatedReports.CaseReportsPerHealthRisk[@event.Id].HealthRiskName = @event.Name;
                     _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
                 }
             }
