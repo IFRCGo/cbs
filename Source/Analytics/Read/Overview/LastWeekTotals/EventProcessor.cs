@@ -17,7 +17,7 @@ namespace Read.Overview.LastWeekTotals
         }
 
 
-        [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
+        [EventProcessor("c09b9902-8240-ae58-36ba-84e954b674e3")]
         public void Process(CaseReportReceived @event)
         {
             var today = Day.Of(@event.Timestamp);

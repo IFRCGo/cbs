@@ -17,7 +17,7 @@ namespace Read.DataCollectors
             _repositoryForDataCollector = repositoryForDataCollector;
         }
         
-        [EventProcessor("836314c2-20e2-174e-b629-00da4a2c8159")]
+        [EventProcessor("899f24ac-860d-4dae-ae90-938ac12e5226")]
         public void Process(DataCollectorRegistered @event, EventSourceId dataCollectorId)
         { 
             var dataCollector = _repositoryForDataCollector.GetById(dataCollectorId.Value); //why do we do this?

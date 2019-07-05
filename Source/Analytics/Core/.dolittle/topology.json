@@ -24,6 +24,10 @@
         "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
           "name": "CaseReports",
           "subFeatures": {}
+        },
+        "cd542897-da73-4f6f-a8fb-4d83c7ad9182": {
+          "name": "DataCollectors",
+          "subFeatures": {}
         }
       }
     },
