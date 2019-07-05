@@ -44,37 +44,67 @@
     "readModels": {},
     "queries": {}
   },
-  "ae0b5c75-8064-40bf-be98-42ab3ee096a7": {
+  "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
     "commands": {},
     "events": {
-      "899f24ac-860d-4dae-ae90-938ac12e5226": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
         "generation": 1,
-        "type": "Events.Reporting.DataCollectors.DataCollectorRegistered, Events.Reporting"
+        "type": "Events.Admin.HealthRisks.HealthRiskCreated, Events.Admin"
+      },
+      "ab9f13e6-f68b-4683-96fe-13434fd34516": {
+        "generation": 1,
+        "type": "Events.Admin.HealthRisks.HealthRiskModified, Events.Admin"
       }
     },
     "eventSources": {},
     "readModels": {},
     "queries": {}
   },
-  "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
+  "e6f1af39-6694-4c50-8809-cdd3fdd03494": {
     "commands": {},
-    "events": {
-      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
-        "generation": 1,
-        "type": "Events.HealthRisk.HealthRiskCreated, Events"
-      }
-    },
+    "events": {},
     "eventSources": {},
     "readModels": {
-      "99683fe5-feb4-4155-abe7-9bcc9c495fae": {
+      "e3e5a1f7-d56a-4d1f-b840-33b41d91f327": {
         "generation": 1,
-        "type": "Read.HealthRisk.HealthRisk, Read"
+        "type": "Read.Overview.LastWeeksPerHealthRisk.CaseReportsLastWeeksPerHealthRisk, Read"
+      }
+    },
+    "queries": {}
+  },
+  "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "111ed52f-9a13-4c41-ba02-cbf8087d59df": {
+        "generation": 1,
+        "type": "Read.HealthRisks.HealthRiskName, Read"
+      }
+    },
+    "queries": {}
+  },
+  "4555d18b-9ac8-4343-b742-3bfbd45de3b8": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "426e9a47-99a9-4bcc-ac36-da726e797e55": {
+        "generation": 1,
+        "type": "Read.Overview.LastWeekTotals.CaseReportTotals, Read"
       }
     },
     "queries": {
-      "ee79bd67-adcf-4f85-b80d-61bea3a2c788": {
+      "f0ea0cca-c787-4c37-9959-f34aaf00338b": {
         "generation": 1,
-        "type": "Read.HealthRisk.AllHealthRisks, Read"
+        "type": "Read.Overview.LastWeekTotals.CaseReportTotalsQuery, Read"
       }
     }
   },

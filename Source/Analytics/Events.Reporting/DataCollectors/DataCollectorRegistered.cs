@@ -43,15 +43,9 @@ namespace Events.Reporting.DataCollectors
         public int PreferredLanguage { get; }
         public double LocationLongitude { get; }
         public double LocationLatitude { get; }
-
         public string Region { get; }
         public string District { get; }
-        
         public Guid DataVerifierId {get; } 
         public DateTimeOffset RegisteredAt { get; }
-
-        
-
-        
     }
 }

@@ -11,8 +11,6 @@ import { getJson } from "../utils/request";
 import { formatDate } from "../utils/dateUtils";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
-import { AllHealthRisks } from "../Features/HealthRisk/AllHealthRisks";
-import { QueryCoordinator } from "@dolittle/queries";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -40,6 +38,7 @@ class NationalSocietyOverview extends Component {
         };
     }
 
+    // remove this?
     fetchHealthRisks() {
         this.queryCoordinator = new QueryCoordinator();
         let healthRisks = new AllHealthRisks();
@@ -55,26 +54,28 @@ class NationalSocietyOverview extends Component {
             })
         );
     }
-
-    
     
     fetchData() {
-        let oneWeekBack = new Date();
-        oneWeekBack.setDate(oneWeekBack.getDate()-6);
-        this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
+        //let oneWeekBack = new Date();
+        //oneWeekBack.setDate(oneWeekBack.getDate()-6);
+        //this.url = `${BASE_URL}CaseReport/Totals/${formatDate(oneWeekBack)}/${formatDate(new Date())}/`;
+    
+        this.url = `${BASE_URL}CaseReport/Totals/LastWeek/`;
 
         this.setState({ isLoading: true });
 
         getJson(this.url)
-            .then(json =>
+            .then(json => {
                 this.setState({
-                    totalFemale: json.female,
-                    totalMale: json.male,
-                    totalUnder5: json.under5,
-                    totalOver5: json.over5,
+                    totalFemale: json.female.value,
+                    totalMale: json.male.value,
+                    totalUnder5: json.under5.value,
+                    totalOver5: json.over5.value,
                     isLoading: false,
                     isError: false
-                })
+                });
+            }
+
             )
             .catch(_ =>
                 this.setState({
@@ -85,7 +86,8 @@ class NationalSocietyOverview extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();        
+        this.fetchData();
+        
         appInsights.trackPageView({ name: 'National society overview'});
     }
 

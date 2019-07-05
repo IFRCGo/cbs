@@ -3,6 +3,7 @@ using Events.Reporting.CaseReports;
 using Dolittle.ReadModels;
 using Concepts;
 using Read.DataCollectors;
+using Read.HealthRisks;
 
 namespace Read.CaseReports
 {
@@ -10,13 +11,13 @@ namespace Read.CaseReports
     {
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
-        readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> _healthRisks;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportsEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository, 
             IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository, 
-            IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> healthRisks,
+            IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> healthRisks,
             IReadModelRepositoryFor<DataCollector> dataCollectors
             )
         {
@@ -44,7 +45,7 @@ namespace Read.CaseReports
             var caseReport = new CaseReport(@event.DataCollectorId, 
             @event.HealthRiskId, @event.Origin, @event.Message, @event.NumberOfMalesUnder5, @event.NumberOfMalesAged5AndOlder, 
             @event.NumberOfFemalesUnder5, @event.NumberOfFemalesAged5AndOlder, @event.Longitude, @event.Latitude,
-            @event.Timestamp, @event.Region);
+            @event.Timestamp);
             
             _caseReportRepository.Insert(caseReport);
 

@@ -4,14 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Concepts;
+using System;
 
-namespace Concepts
+namespace Concepts.HealthRisks
 {
-    public class NumberOfPeople : ConceptAs<int>
+    public class HealthRiskId : ConceptAs<Guid>
     {
-        public static implicit operator NumberOfPeople(int value)
+        public static implicit operator HealthRiskId(Guid value)
         {
-            return new NumberOfPeople {Value = value};
+            return new HealthRiskId {Value = value};
         }
+
     }
 }
