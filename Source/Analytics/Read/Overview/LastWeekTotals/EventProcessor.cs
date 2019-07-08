@@ -15,7 +15,6 @@ namespace Read.Overview.LastWeekTotals
             _caseReportTotalsRepository = caseReportTotalsRepository;
         }
 
-
         [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
         public void Process(CaseReportReceived @event)
         {
