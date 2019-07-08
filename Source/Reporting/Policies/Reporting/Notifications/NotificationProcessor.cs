@@ -138,7 +138,8 @@ namespace Policies.Reporting.Notifications
                 dataCollector.Location.Longitude,
                 dataCollector.Location.Latitude,
                 notification.Received,
-                notification.Text
+                notification.Text, 
+                ""
             );
             transaction.Commit();
        }

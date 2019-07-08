@@ -5,12 +5,13 @@
 
 using Dolittle.Concepts;
 
-namespace Concepts.HealthRisks
+namespace Concepts
 {
-    public class HealthRiskNumber : ConceptAs<int>
+    public class Village : ConceptAs<string>
     {
-        public static implicit operator HealthRiskNumber(int number) => new HealthRiskNumber { Value = number };
-        public static implicit operator HealthRiskNumber(string number) => new HealthRiskNumberf { Value = int.Parse(number) };
-
+        public static implicit operator Village(string value)
+        {
+            return new Village {Value = value};
+        }
     }
 }

@@ -3,14 +3,19 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+using System;
 using Dolittle.Concepts;
 
-namespace Concepts.HealthRisks
+namespace Concepts
 {
-    public class HealthRiskNumber : ConceptAs<int>
+    /// <summary>
+    /// Represents a specific date as number of days since Unix Epoch.
+    /// </summary>
+    public class CaseReportId : ConceptAs<Guid>
     {
-        public static implicit operator HealthRiskNumber(int number) => new HealthRiskNumber { Value = number };
-        public static implicit operator HealthRiskNumber(string number) => new HealthRiskNumberf { Value = int.Parse(number) };
-
+        public static implicit operator CaseReportId(Guid value)
+        {
+            return new CaseReportId {Value = value};
+        }
     }
 }

@@ -13,6 +13,5 @@ export class Outbreak extends ReadModel
            generation: '1'
         };
         this.id = 0;
-        this.outbreaks = [];
     }
 }
