@@ -31,12 +31,7 @@
     "commands": {},
     "events": {},
     "eventSources": {},
-    "readModels": {
-      "e3e5a1f7-d56a-4d1f-b840-33b41d91f327": {
-        "generation": 1,
-        "type": "Read.Overview.LastWeeksPerHealthRisk.CaseReportsLastWeeksPerHealthRisk, Read"
-      }
-    },
+    "readModels": {},
     "queries": {}
   },
   "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {

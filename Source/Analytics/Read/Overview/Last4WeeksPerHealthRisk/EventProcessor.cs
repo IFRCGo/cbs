@@ -15,20 +15,20 @@ using Events.Reporting.CaseReports;
 using Read.HealthRisks;
 using HealthRiskName = Read.HealthRisks.HealthRiskName;
 
-namespace Read.Overview.LastWeeksPerHealthRisk
+namespace Read.Overview.Last4WeeksPerHealthRisk
 {
     public class EventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<HealthRiskName> _healthRiskNames;
-        readonly IReadModelRepositoryFor<CaseReportsLastWeeksPerHealthRisk> _caseReportsLastWeeksPerHealthRisk;
+        readonly IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> _CaseReportsLast4WeeksPerHealthRisk;
 
         public EventProcessor(
             IReadModelRepositoryFor<HealthRiskName> healthRiskNames,
-            IReadModelRepositoryFor<CaseReportsLastWeeksPerHealthRisk> caseReportsLastWeeksPerHealthRisk            
+            IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> CaseReportsLast4WeeksPerHealthRisk            
         )
         {
             _healthRiskNames = healthRiskNames;
-            _caseReportsLastWeeksPerHealthRisk = caseReportsLastWeeksPerHealthRisk;
+            _CaseReportsLast4WeeksPerHealthRisk = CaseReportsLast4WeeksPerHealthRisk;
         }
         
         [EventProcessor("f2f78ff9-2d3a-a32d-cf9b-37f73451da6c")]
@@ -68,22 +68,22 @@ namespace Read.Overview.LastWeeksPerHealthRisk
             }
         }
 
-        void CreateOrUpdateCaseReports(Day day, HealthRiskId id, Action<CaseReportsLastWeeksForHealthRisk> update)
+        void CreateOrUpdateCaseReports(Day day, HealthRiskId id, Action<CaseReportsLast4WeeksForHealthRisk> update)
         {
-            var aggregatedReports = _caseReportsLastWeeksPerHealthRisk.GetById(day);
+            var aggregatedReports = _CaseReportsLast4WeeksPerHealthRisk.GetById(day);
             if (aggregatedReports == null)
             {
-                aggregatedReports = new CaseReportsLastWeeksPerHealthRisk
+                aggregatedReports = new CaseReportsLast4WeeksPerHealthRisk
                 {
                     Id = day,
-                    CaseReportsPerHelthRisk = new Dictionary<HealthRiskId, CaseReportsLastWeeksForHealthRisk>()
+                    CaseReportsPerHelthRisk = new Dictionary<HealthRiskId, CaseReportsLast4WeeksForHealthRisk>()
                 };
-                _caseReportsLastWeeksPerHealthRisk.Insert(aggregatedReports);
+                _CaseReportsLast4WeeksPerHealthRisk.Insert(aggregatedReports);
             }
 
             if (!aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(id))
             {
-                aggregatedReports.CaseReportsPerHelthRisk[id] = new CaseReportsLastWeeksForHealthRisk
+                aggregatedReports.CaseReportsPerHelthRisk[id] = new CaseReportsLast4WeeksForHealthRisk
                 {
                     Days0to6 = 0,
                     Days7to13 = 0,
@@ -96,19 +96,19 @@ namespace Read.Overview.LastWeeksPerHealthRisk
             
             update(aggregatedReportsForHealthRisk);
 
-            _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
+            _CaseReportsLast4WeeksPerHealthRisk.Update(aggregatedReports);
         }
 
         [EventProcessor("2fa9f18d-8e35-72ad-d7e2-1bab517172fa")]
         public void Process(HealthRiskModified @event)
         {
-            var alreadyAggregatedReports = _caseReportsLastWeeksPerHealthRisk.Query.Where(_ => _.Id >= Day.Today).ToList();
+            var alreadyAggregatedReports = _CaseReportsLast4WeeksPerHealthRisk.Query.Where(_ => _.Id >= Day.Today).ToList();
             foreach (var aggregatedReports in alreadyAggregatedReports)
             {
                 if (aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(@event.Id))
                 {
                     aggregatedReports.CaseReportsPerHelthRisk[@event.Id].HealthRiskName = @event.Name;
-                    _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
+                    _CaseReportsLast4WeeksPerHealthRisk.Update(aggregatedReports);
                 }
             }
         }

@@ -6,9 +6,9 @@
 using Concepts;
 using Concepts.HealthRisks;
 
-namespace Read.Overview.LastWeeksPerHealthRisk
+namespace Read.Overview.Last4WeeksPerHealthRisk
 {
-    public class CaseReportsLastWeeksForHealthRisk
+    public class CaseReportsLast4WeeksForHealthRisk
     {
         public HealthRiskName HealthRiskName { get; set; }
         public NumberOfPeople Days0to6 { get; set; }

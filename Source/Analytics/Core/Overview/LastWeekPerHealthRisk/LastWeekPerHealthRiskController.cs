@@ -12,7 +12,7 @@ using Dolittle.ReadModels;
 using Dolittle.Security;
 using Dolittle.Tenancy;
 using Microsoft.AspNetCore.Mvc;
-using Read.Overview.LastWeeksPerHealthRisk;
+using Read.Overview.Last4WeeksPerHealthRisk;
 using Read.Overview.LastWeekTotals;
 
 namespace Core.Overview.LastWeekTotals
@@ -22,12 +22,12 @@ namespace Core.Overview.LastWeekTotals
     {
         readonly IExecutionContextConfigurator _executionContextConfigurator;
         readonly ITenantResolver _tenantResolver;
-        readonly FactoryFor<IReadModelRepositoryFor<CaseReportsLastWeeksPerHealthRisk>> _lastWeekPerHealthRisk;
+        readonly FactoryFor<IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk>> _lastWeekPerHealthRisk;
 
         public LastWeekPerHealthRiskController(
             IExecutionContextConfigurator executionContextConfigurator,
             ITenantResolver tenantResolver,
-            FactoryFor<IReadModelRepositoryFor<CaseReportsLastWeeksPerHealthRisk>> lastWeekTotals)
+            FactoryFor<IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk>> lastWeekTotals)
         {
             _executionContextConfigurator = executionContextConfigurator;
             _tenantResolver = tenantResolver;

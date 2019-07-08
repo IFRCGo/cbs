@@ -10,12 +10,12 @@ using Dolittle.ReadModels;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 
-namespace Read.Overview.LastWeeksPerHealthRisk
+namespace Read.Overview.Last4WeeksPerHealthRisk
 {
-    public class CaseReportsLastWeeksPerHealthRisk : IReadModel
+    public class CaseReportsLast4WeeksPerHealthRisk : IReadModel
     {
         public Day Id { get; set; }
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
-        public IDictionary<HealthRiskId,CaseReportsLastWeeksForHealthRisk> CaseReportsPerHelthRisk { get; set; }
+        public IDictionary<HealthRiskId,CaseReportsLast4WeeksForHealthRisk> CaseReportsPerHelthRisk { get; set; }
     }
 }

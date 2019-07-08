@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class CaseReportsLastWeeksPerHealthRisk extends ReadModel
+export class CaseReportsLast4WeeksPerHealthRisk extends ReadModel
 {
     constructor() {
         super();
