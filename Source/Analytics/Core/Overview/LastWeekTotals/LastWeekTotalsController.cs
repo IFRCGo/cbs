@@ -33,7 +33,6 @@ namespace Core.Overview.LastWeekTotals
             _lastWeekTotals = lastWeekTotals;
         }
 
-
         [HttpGet("LastWeek")]
         public IActionResult LastWeek() 
         {
