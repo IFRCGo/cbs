@@ -57,18 +57,16 @@ namespace Domain.TestData
 
             CreateHealthRisks(healthRisks);
             CreateDataCollectors(dataCollectors);
-            CreateCaseReports(caseReports, dataCollectors, healthRisks);
+            CreateCaseReports(caseReports, dataCollectors);
         }
 
-        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors,
-            HealthRiskTestDataHelper[] healthRisks)
+        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors)
         {
             var provider = CultureInfo.InvariantCulture;
 
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
-                var healthRisk = healthRisks.FirstOrDefault(h => h.Id == caseReport.HealthRiskId);
                 var dataCollector = dataCollectors.FirstOrDefault(d => d.DataCollectorId == caseReport.DataCollectorId);
 
                 root.Report(caseReport.DataCollectorId,
