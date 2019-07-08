@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { Command } from  '@dolittle/commands';
 
-export class PopulateDataCollectorTestData extends Command
+export class PopulateCaseReportTestData extends Command
 {
     constructor() {
         super();
-        this.type = 'c8862422-ec59-40c5-b02e-21022d76069e';
+        this.type = '79c674e6-6f04-476a-8608-1ddfcde8f702';
 
     }
 }

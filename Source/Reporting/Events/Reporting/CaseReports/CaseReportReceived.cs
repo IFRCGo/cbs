@@ -22,12 +22,19 @@ namespace Events.Reporting.CaseReports
         public double Latitude { get; }
         public DateTimeOffset Timestamp { get; }
 
+<<<<<<< HEAD
         public string Region  { get; }
 
         public CaseReportReceived(Guid dataCollectorId, Guid healthRiskId, 
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, double longitude, 
             double latitude, DateTimeOffset timestamp, string region) 
+=======
+        public CaseReportReceived(Guid dataCollectorId, Guid healthRiskId,
+            string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
+            int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder,
+            double longitude, double latitude, DateTimeOffset timestamp)
+>>>>>>> test2/updateTestData
         {
             DataCollectorId = dataCollectorId;
             HealthRiskId = healthRiskId;

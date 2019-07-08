@@ -53,7 +53,7 @@ namespace Domain.Reporting.CaseReports
             string message,
             string region)
         {
-            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message, 
+            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
                 longitude, latitude, timestamp, region));
         }        

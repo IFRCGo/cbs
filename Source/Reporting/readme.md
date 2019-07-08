@@ -63,29 +63,11 @@ Open http://localhost:4202/ in your browser to access the UI.
 
 To populate the database with test data, go to http://localhost:5003/swagger and use the POST /api/Dolittle/Commands API with the "Try it out"-button. This will retrieve test data from the /Domain/Tests/Data folder and add it to the database. 
 
-Create DataCollector testdata: 
+Create a data set consisting of Health Risks, Data Collectors and Case reports: 
 ```
 {
-  "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4", 
-   "type": "c8862422-ec59-40c5-b02e-21022d76069e",
-   "content": {}
-}
-```
-
-Create HealthRisk testdata: 
-```
-{
-   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
-   "type": "3c864450-f713-4a77-b816-233d76942533",
-   "content": {}
-}
-```   
-   
-Create CaseReport testdata: 
-```
-{
-   "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe4",
-   "type": "e2426d26-5715-48ec-97cf-2d64fac66643",
+  "correlationId": "510ef709-01ce-4255-9459-a70a274bcbe3", 
+   "type": "79c674e6-6f04-476a-8608-1ddfcde8f702",
    "content": {}
 }
 ```
