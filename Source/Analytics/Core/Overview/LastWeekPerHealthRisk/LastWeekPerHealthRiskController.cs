@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+*  Licensed under the MIT License. See LICENSE in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
 
 using System.Security.Claims;
 using Concepts;
@@ -29,7 +33,6 @@ namespace Core.Overview.LastWeekTotals
             _tenantResolver = tenantResolver;
             _lastWeekPerHealthRisk = lastWeekTotals;
         }
-
 
         [HttpGet("")]
         public IActionResult LastWeek() 
