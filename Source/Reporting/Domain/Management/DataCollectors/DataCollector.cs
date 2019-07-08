@@ -56,6 +56,11 @@ namespace Domain.Management.DataCollectors
             Apply(new DataCollectorLocationChanged(location.Latitude, location.Longitude));
         }
 
+        public void ChangeVillage(Village village)
+        {
+            Apply(new DataCollectorVillageChanged(village.Value));
+        }
+
         public void ChangePreferredLanguage(Language language)
         {
             Apply(new DataCollectorPreferredLanguageChanged((int)language));
