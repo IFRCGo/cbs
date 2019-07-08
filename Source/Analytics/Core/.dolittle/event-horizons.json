@@ -1,26 +1,4 @@
 [
-    {
-        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
-        "boundedContext": "da2a4710-06fa-8660-bf95-81dd95606f63",
-        "url": "localhost:50053",
-        "events": [
-            {
-                "id": "58a3dbf3-bcd0-4722-b21b-65d06558df53",
-                "generation": 1
-            }
-        ]
-    },
-    {
-        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
-        "boundedContext": "64b3befc-2fb6-42f9-9e4b-bcb426fffffb",
-        "url": "localhost:50052",
-        "events": [
-            {
-                "id": "51b2c376-ce2b-4d49-a86c-e654e50248c9",
-                "generation": 1
-            }
-        ]
-    }
 ]
 
 

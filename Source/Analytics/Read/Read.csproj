@@ -17,7 +17,9 @@
   </ItemGroup>
 
  <ItemGroup>
+   <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
    <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
+   <ProjectReference Include="..\Concepts\Concepts.csproj" />
  </ItemGroup>
 
 </Project>
