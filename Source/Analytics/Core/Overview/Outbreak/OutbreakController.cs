@@ -18,12 +18,12 @@ namespace Core.Overview.OutbreakController
     {
         readonly IExecutionContextConfigurator _executionContextConfigurator;
         readonly ITenantResolver _tenantResolver;
-        readonly FactoryFor<IReadModelRepositoryFor<Outbreak>> _Outbreaks;
+        readonly FactoryFor<IReadModelRepositoryFor<CaseReportsBeforeDay>> _Outbreaks;
 
         public OutbreakController(
             IExecutionContextConfigurator executionContextConfigurator,
             ITenantResolver tenantResolver,
-            FactoryFor<IReadModelRepositoryFor<Outbreak>> Outbreaks)
+            FactoryFor<IReadModelRepositoryFor<CaseReportsBeforeDay>> Outbreaks)
         {
             _executionContextConfigurator = executionContextConfigurator;
             _tenantResolver = tenantResolver;
@@ -36,7 +36,7 @@ namespace Core.Overview.OutbreakController
         {
             _executionContextConfigurator.ConfigureFor(_tenantResolver.Resolve(HttpContext.Request), CorrelationId.New(), ClaimsPrincipal.Current.ToClaims());
             
-            return Ok(_Outbreaks().GetById(Day.Today)); 
+            return Ok(_Outbreaks()); 
         }
     }
 }

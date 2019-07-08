@@ -13,6 +13,7 @@ using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 using Dolittle.Serialization.Json;
 using Newtonsoft.Json;
+using Domain.TestData.CaseReports;
 
 namespace Domain.Reporting.CaseReports.TestData
 {
@@ -59,8 +60,7 @@ namespace Domain.Reporting.CaseReports.TestData
                     dataCaseReportHelper.Longitude,
                     dataCaseReportHelper.Latitude,
                     DateTimeOffset.UtcNow,
-                    dataCaseReportHelper.Message, 
-                    dataCaseReportHelper.Region);
+                    dataCaseReportHelper.Message);
             }
         }
         // TODO: move class to a seperate file.cs
@@ -76,7 +76,6 @@ namespace Domain.Reporting.CaseReports.TestData
             public double Longitude { get; set; }
             public double Latitude { get; set; }
             public string Message { get; set; }
-            public string Region {get; set;}
         }
     }
 }

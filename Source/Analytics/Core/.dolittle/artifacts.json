@@ -76,6 +76,10 @@
       "9656c624-948d-47fa-b9b1-75fd613b79f6": {
         "generation": 1,
         "type": "Read.Overview.Map.Outbreak, Read"
+      },
+      "aecba0f7-55e3-49f1-a468-fbb894441765": {
+        "generation": 1,
+        "type": "Read.Overview.Map.CaseReportsBeforeDay, Read"
       }
     },
     "queries": {

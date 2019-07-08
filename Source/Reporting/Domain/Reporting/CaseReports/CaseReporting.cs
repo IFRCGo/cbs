@@ -50,12 +50,11 @@ namespace Domain.Reporting.CaseReports
             double longitude,
             double latitude,
             DateTimeOffset timestamp,
-            string message,
-            string region)
+            string message)
         {
             Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
-                longitude, latitude, timestamp, region));
+                longitude, latitude, timestamp));
         }        
 
         public void ReportFromUnknownDataCollector(

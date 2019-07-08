@@ -23,7 +23,6 @@ namespace Read.Overview.Map
             var today = Day.Today;
             var origin = @event.Origin;
             var totalCases = @event.NumberOfFemalesAged5AndOlder + @event.NumberOfFemalesUnder5 + @event.NumberOfMalesAged5AndOlder + @event.NumberOfMalesUnder5;
-            var region  = @event.Region;
             var LocationForCaseReport = new Location(@event.Latitude, @event.Longitude);
             var healthRiskId = @event.HealthRiskId;
 
@@ -50,16 +49,14 @@ namespace Read.Overview.Map
                                 new CaseReport(){
                                 CaseReportsId = Guid.NewGuid(),
                                 NumberOfPeople = totalCases,
-                                Location = LocationForCaseReport,
-                                Region = region
+                                Location = LocationForCaseReport
                     }  },
                         CaseReportsLast30Days = 
                             new List<CaseReport>{
                                 new CaseReport(){
                                 CaseReportsId = Guid.NewGuid(),
                                 NumberOfPeople = totalCases,
-                                Location = LocationForCaseReport,
-                                Region = region
+                                Location = LocationForCaseReport
                     }}
                     };
 
@@ -67,8 +64,8 @@ namespace Read.Overview.Map
                 }
                 else{
                     if(casesBeforeDay.CasesPerHealthRisk.ContainsKey(healthRiskId)){
-                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport, Region = region });
-                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport, Region = region });
+                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport });
+                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport});
                     }else{
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){  
                             Id = Guid.NewGuid(),
@@ -76,8 +73,7 @@ namespace Read.Overview.Map
                                 new CaseReport(){
                                     CaseReportsId = Guid.NewGuid(),
                                     NumberOfPeople = totalCases,
-                                    Location = LocationForCaseReport,
-                                    Region = region
+                                    Location = LocationForCaseReport
                                 }
                             },
                             CaseReportsLast30Days = 
@@ -85,8 +81,7 @@ namespace Read.Overview.Map
                                 new CaseReport(){
                                     CaseReportsId = Guid.NewGuid(),
                                     NumberOfPeople = totalCases,
-                                    Location = LocationForCaseReport,
-                                    Region = region
+                                    Location = LocationForCaseReport
                                 }
                             } 
                         };
@@ -112,8 +107,7 @@ namespace Read.Overview.Map
                                 new CaseReport(){
                                 CaseReportsId = Guid.NewGuid(),
                                 NumberOfPeople = totalCases,
-                                Location = LocationForCaseReport,
-                                Region = region
+                                Location = LocationForCaseReport
                     }}
                     };
 
@@ -121,7 +115,7 @@ namespace Read.Overview.Map
                 }
                 else{
                     if(casesBeforeDay.CasesPerHealthRisk.ContainsKey(healthRiskId)){
-                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport, Region = region });
+                        casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(new CaseReport(){ CaseReportsId = Guid.NewGuid(), NumberOfPeople = totalCases, Location = LocationForCaseReport });
                     }else{
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){  
                             Id = Guid.NewGuid(),
@@ -131,8 +125,7 @@ namespace Read.Overview.Map
                                 new CaseReport(){
                                     CaseReportsId = Guid.NewGuid(),
                                     NumberOfPeople = totalCases,
-                                    Location = LocationForCaseReport,
-                                    Region = region
+                                    Location = LocationForCaseReport
                                 }
                             } 
                         };

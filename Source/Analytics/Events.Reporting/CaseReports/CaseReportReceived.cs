@@ -23,12 +23,11 @@ namespace Events.Reporting.CaseReports
         public double Longitude { get; }
         public double Latitude { get; }
         public DateTimeOffset Timestamp { get; }
-        public string Region {get;}
 
         public CaseReportReceived(Guid dataCollectorId, Guid healthRiskId, 
             string origin, string message, int numberOfMalesUnder5, int numberOfMalesAged5AndOlder, 
             int numberOfFemalesUnder5, int numberOfFemalesAged5AndOlder, double longitude, 
-            double latitude, DateTimeOffset timestamp, string region) 
+            double latitude, DateTimeOffset timestamp) 
         {
             DataCollectorId = dataCollectorId;
             HealthRiskId = healthRiskId;
@@ -40,8 +39,7 @@ namespace Events.Reporting.CaseReports
             NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder;
             Longitude = longitude;
             Latitude = latitude;
-            Timestamp = timestamp;     
-            Region = region;          
+            Timestamp = timestamp;           
         }
     }
 }
