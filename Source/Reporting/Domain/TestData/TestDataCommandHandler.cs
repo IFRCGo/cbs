@@ -100,6 +100,10 @@ namespace Domain.TestData
                 root.RegisterDataCollector(dataCollector.FullName, dataCollector.DisplayName, dataCollector.YearOfBirth,
                     dataCollector.Sex, dataCollector.PreferredLanguage, dataCollector.GpsLocation
                     , dataCollector.PhoneNumbers, DateTimeOffset.UtcNow, dataCollector.Region, dataCollector.District, Guid.NewGuid());
+
+                root.ChangeLocation(dataCollector.GpsLocation);
+
+                root.ChangeVillage(dataCollector.Village);
             }
         }
 
