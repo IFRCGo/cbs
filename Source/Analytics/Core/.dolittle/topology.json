@@ -33,6 +33,10 @@
         "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
           "name": "LastWeekTotals",
           "subFeatures": {}
+        },
+        "fdd4047a-f854-4c9b-ac4c-c758a841919b": {
+          "name": "Map",
+          "subFeatures": {}
         }
       }
     },

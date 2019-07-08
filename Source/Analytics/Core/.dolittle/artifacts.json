@@ -51,13 +51,6 @@
     },
     "queries": {}
   },
-  "4555d18b-9ac8-4343-b742-3bfbd45de3b8": {
-    "commands": {},
-    "events": {},
-    "eventSources": {},
-    "readModels": {},
-    "queries": {}
-  },
   "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
     "commands": {},
     "events": {},
@@ -72,6 +65,23 @@
       "f0ea0cca-c787-4c37-9959-f34aaf00338b": {
         "generation": 1,
         "type": "Read.Overview.LastWeekTotals.CaseReportTotalsQuery, Read"
+      }
+    }
+  },
+  "fdd4047a-f854-4c9b-ac4c-c758a841919b": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "9656c624-948d-47fa-b9b1-75fd613b79f6": {
+        "generation": 1,
+        "type": "Read.Overview.Map.Outbreak, Read"
+      }
+    },
+    "queries": {
+      "0fcac988-0a8f-4033-9d3c-8c9053790738": {
+        "generation": 1,
+        "type": "Read.Overview.Map.OneOutbreakQuery, Read"
       }
     }
   }
