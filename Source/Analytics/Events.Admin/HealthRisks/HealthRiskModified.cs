@@ -17,7 +17,6 @@ namespace Events.Admin.HealthRisks
         public string CaseDefinition { get; }
         public int HealthRiskNumber { get; }
 
-
         public HealthRiskModified (Guid id, string name, string caseDefinition, int healthRiskNumber) 
         {
             Id = id;
