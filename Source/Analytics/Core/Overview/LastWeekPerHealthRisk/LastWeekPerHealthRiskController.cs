@@ -34,7 +34,6 @@ namespace Core.Overview.LastWeekTotals
             _lastWeekPerHealthRisk = lastWeekTotals;
         }
 
-
         [HttpGet("")]
         public IActionResult LastWeek() 
         {
