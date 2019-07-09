@@ -44,8 +44,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Events\Events.csproj" />
     <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
+    <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
     <ProjectReference Include="..\Policies\Policies.csproj" />
   </ItemGroup>

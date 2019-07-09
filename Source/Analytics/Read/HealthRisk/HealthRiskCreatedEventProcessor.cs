@@ -1,6 +1,6 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
-using Events.HealthRisk;
+using Events.Admin.HealthRisk;
 
 namespace Read.HealthRisk
 {

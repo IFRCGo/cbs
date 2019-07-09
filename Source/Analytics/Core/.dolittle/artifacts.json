@@ -58,12 +58,7 @@
   },
   "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
     "commands": {},
-    "events": {
-      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
-        "generation": 1,
-        "type": "Events.HealthRisk.HealthRiskCreated, Events"
-      }
-    },
+    "events": {},
     "eventSources": {},
     "readModels": {
       "99683fe5-feb4-4155-abe7-9bcc9c495fae": {
@@ -88,6 +83,18 @@
         "type": "Read.DataCollectors.DataCollector, Read"
       }
     },
+    "queries": {}
+  },
+  "d94019a9-f7a6-4562-97f3-7689c8076821": {
+    "commands": {},
+    "events": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
+        "generation": 1,
+        "type": "Events.Admin.HealthRisk.HealthRiskCreated, Events.Admin"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
     "queries": {}
   }
 }
