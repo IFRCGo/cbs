@@ -24,7 +24,6 @@ namespace Domain.Management.DataCollectors.Registration
 
         public Region Region { get; set; }
         public District District { get; set; }
-        public Village Village { get; set; }
         public DataVerifierId DataVerifierId { get; set; }
     }
 }
