@@ -57,18 +57,16 @@ namespace Domain.TestData
 
             CreateHealthRisks(healthRisks);
             CreateDataCollectors(dataCollectors);
-            CreateCaseReports(caseReports, dataCollectors, healthRisks);
+            CreateCaseReports(caseReports, dataCollectors);
         }
 
-        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors,
-            HealthRiskTestDataHelper[] healthRisks)
+        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors)
         {
             var provider = CultureInfo.InvariantCulture;
 
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
-                var healthRisk = healthRisks.FirstOrDefault(h => h.Id == caseReport.HealthRiskId);
                 var dataCollector = dataCollectors.FirstOrDefault(d => d.DataCollectorId == caseReport.DataCollectorId);
 
                 root.Report(caseReport.DataCollectorId,
@@ -100,6 +98,10 @@ namespace Domain.TestData
                 root.RegisterDataCollector(dataCollector.FullName, dataCollector.DisplayName, dataCollector.YearOfBirth,
                     dataCollector.Sex, dataCollector.PreferredLanguage, dataCollector.GpsLocation
                     , dataCollector.PhoneNumbers, DateTimeOffset.UtcNow, dataCollector.Region, dataCollector.District, Guid.NewGuid());
+
+                root.ChangeLocation(dataCollector.GpsLocation);
+
+                root.ChangeVillage(dataCollector.Village);
             }
         }
 
