@@ -12,13 +12,13 @@ namespace Read.CaseReports
     {
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
-        readonly IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportsEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository, 
             IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository, 
-            IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> healthRisks,
+            IReadModelRepositoryFor<HealthRisk> healthRisks,
             IReadModelRepositoryFor<DataCollector> dataCollectors
             )
         {
@@ -28,7 +28,7 @@ namespace Read.CaseReports
             _dataCollectors = dataCollectors;
         }
 
-        public RegionWithHealthRisk addRegionWithCases(Region region, NumberOfPeople numCases)
+        public RegionWithHealthRisk AddRegionWithCases(Region region, NumberOfPeople numCases)
         {
             return new RegionWithHealthRisk()
             {
@@ -54,7 +54,7 @@ namespace Read.CaseReports
             var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
 
             // Insert by health risk and region
-            var today = Day.Of(caseReport.Timestamp);
+            var today = Day.From(caseReport.Timestamp);
             var totalCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
@@ -75,7 +75,7 @@ namespace Read.CaseReports
                             regionForHealthRisk.NumCases += totalCases;
                         } else
                         {
-                            healthRiskForDay.Regions.Add(addRegionWithCases(region, totalCases));
+                            healthRiskForDay.Regions.Add(AddRegionWithCases(region, totalCases));
                         }
                     } else 
                     {
@@ -83,7 +83,7 @@ namespace Read.CaseReports
                         {
                             Id = caseReport.HealthRiskId,
                             HealthRiskName = healthRisk.Name,
-                            Regions = new [] { addRegionWithCases(region, totalCases) }
+                            Regions = new [] { AddRegionWithCases(region, totalCases) }
                         });
                     }
                     _caseReportsPerRegionLast7DaysRepository.Update(dayReport);
@@ -99,7 +99,7 @@ namespace Read.CaseReports
                             {
                                 Id = caseReport.HealthRiskId,
                                 HealthRiskName = healthRisk.Name,
-                                Regions = new []{ addRegionWithCases(region, totalCases) }
+                                Regions = new []{ AddRegionWithCases(region, totalCases) }
                             }
                         }
                     };

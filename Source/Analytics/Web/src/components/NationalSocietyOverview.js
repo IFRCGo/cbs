@@ -7,8 +7,6 @@ import {ApplicationInsights} from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
 import TotalCard from "./TotalCard";
-import { getJson } from "../utils/request";
-import { formatDate } from "../utils/dateUtils";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
 import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";

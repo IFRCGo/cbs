@@ -34,7 +34,7 @@ class HealthRiskPerDistrictTable extends Component {
                     isError: false
                 })
             }
-            else{
+            else {
                 this.setState({ isLoading: false, isError: true })
             }
         });

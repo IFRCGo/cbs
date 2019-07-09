@@ -17,6 +17,6 @@ namespace Read.CaseReports
         public IQueryable<CaseReportsPerRegionLast7Days> Query => 
             _repositoryForCaseReportsPerRegionLast7Days
                 .Query
-                .Where(report => report.Id == 17925); //Testing purposes. Not using Day.Today because we have no fresh data in the database
+                .Where(report => report.Id == Day.Today); //Current testing data is static and not timestamped with today. To populate database for testing purposes, you can use a Day such as 17925.
     }
 }

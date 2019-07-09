@@ -100,8 +100,6 @@ namespace Domain.TestData
                     , dataCollector.PhoneNumbers, DateTimeOffset.UtcNow, dataCollector.Region, dataCollector.District, Guid.NewGuid());
 
                 root.ChangeLocation(dataCollector.GpsLocation);
-
-                root.ChangeVillage(dataCollector.Village);
             }
         }
 

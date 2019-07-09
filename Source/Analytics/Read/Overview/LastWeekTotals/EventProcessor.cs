@@ -20,7 +20,7 @@ namespace Read.Overview.LastWeekTotals
         [EventProcessor("c09b9902-8240-ae58-36ba-84e954b674e3")]
         public void Process(CaseReportReceived @event)
         {
-            var today = Day.Of(@event.Timestamp);
+            var today = Day.From(@event.Timestamp);
 
             for (var day = today; day < today + 7; day++)
             {

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Concepts\Concepts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="3.*" />
     <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.1.0" />
   </ItemGroup>
