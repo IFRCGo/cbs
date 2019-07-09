@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Map, Popup, CircleMarker, TileLayer, Markercluster } from "react-leaflet";
-//import MarkerClusterGroup from "react-leaflet-markercluster";
+import {Map, Popup, CircleMarker, TileLayer, Markercluster,Marker } from "react-leaflet";
+import {MarkerClusterGroup} from "react-leaflet";
 
 import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
 import { getJson } from "../utils/request";
@@ -11,16 +11,21 @@ import { BASE_URL } from "./Analytics";
  
 //require('react-leaflet-markercluster/dist/styles.min.css'); // inside .js file
 
+var firefoxIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
+    iconSize: [10, 10], // size of the icon
+    });
+
+
+
 function OutbreakMarkers({outbreakesLastWeek}){
-    var i = 0;
-    console.log("hej");
-    console.log(outbreakesLastWeek);
-     return outbreakesLastWeek.map(function(item){
-           return <CircleMarker
-                    center={[item.location.longitude + i++, item.location.latitude + i++ ]}
-            ></CircleMarker>
-        });
-}
+    return outbreakesLastWeek.map(function(item){
+            return <Marker
+                    position={[item.location.longitude, item.location.latitude]} icon={firefoxIcon}
+            ></Marker>
+    });
+};
+
 
 class MapWidget extends Component {
     constructor(props) {
@@ -107,14 +112,16 @@ class MapWidget extends Component {
         }
         console.log(this.state.outbreakesLastWeek);
         return (
-            <Map center={position} zoom={5} style={{height: 210, width: 210}}>
+            <Map center={position} zoom={5} style={{height: 800, width: 800}}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
+                
                 <OutbreakMarkers 
-                    outbreakesLastWeek={this.state.outbreakesLastWeek}
-                />
+                    outbreakesLastWeek={this.state.outbreakesLastWeek}>
+                </OutbreakMarkers>
+                
             </Map>
         );
         
