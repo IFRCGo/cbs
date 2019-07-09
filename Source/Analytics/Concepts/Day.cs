@@ -13,7 +13,7 @@ namespace Concepts
             return new Day {Value = value};
         }
 
-        public static Day Of(DateTimeOffset timestamp)
+        public static Day From(DateTimeOffset timestamp)
         {
             var daysSinceEpoch = (timestamp - DateTimeOffset.FromUnixTimeSeconds(0)).TotalDays;
             return new Day {
@@ -23,7 +23,7 @@ namespace Concepts
 
         public static Day Today
         {
-            get => Day.Of(DateTimeOffset.Now);
+            get => Day.From(DateTimeOffset.Now);
         }
     }
 }

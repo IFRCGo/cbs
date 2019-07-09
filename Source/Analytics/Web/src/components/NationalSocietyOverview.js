@@ -56,8 +56,6 @@ class NationalSocietyOverview extends Component {
         );
     }
 
-    
-    
     fetchData() {
         let oneWeekBack = new Date();
         oneWeekBack.setDate(oneWeekBack.getDate()-6);
@@ -88,7 +86,6 @@ class NationalSocietyOverview extends Component {
         this.fetchData();        
         appInsights.trackPageView({ name: 'National society overview'});
     }
-
 
     render() {
         return (

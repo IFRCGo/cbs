@@ -39,7 +39,7 @@ namespace Events.Reporting.DataCollectors
         public string FullName { get; }
         public string DisplayName { get; }
         public int YearOfBirth { get; }
-        public int Sex { get;}
+        public int Sex { get; }
         public int PreferredLanguage { get; }
         public double LocationLongitude { get; }
         public double LocationLatitude { get; }
@@ -47,7 +47,7 @@ namespace Events.Reporting.DataCollectors
         public string Region { get; }
         public string District { get; }
         
-        public Guid DataVerifierId {get; } 
+        public Guid DataVerifierId { get; } 
         public DateTimeOffset RegisteredAt { get; }
 
         
