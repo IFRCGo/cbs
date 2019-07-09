@@ -8,7 +8,7 @@ COPY ./Source/Analytics/Concepts/Concepts.csproj /CBS/Source/Analytics/Concepts/
 COPY ./Source/Analytics/Domain/Domain.csproj /CBS/Source/Analytics/Domain/Domain.csproj
 COPY ./Source/Analytics/Domain.Specs/Domain.Specs.csproj /CBS/Source/Analytics/Domain.Specs/Domain.Specs.csproj
 COPY ./Source/Analytics/Policies/Policies.csproj /CBS/Source/Analytics/Policies/Policies.csproj
-COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events.csproj
+COPY ./Source/Analytics/Events.Admin/Events.Admin.csproj /CBS/Source/Analytics/Events.Admin/Events.Admin.csproj
 COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
 COPY ./Source/Analytics/Read/Read.csproj /CBS/Source/Analytics/Read/Read.csproj
 
