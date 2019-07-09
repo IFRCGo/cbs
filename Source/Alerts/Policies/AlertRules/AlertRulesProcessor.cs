@@ -13,6 +13,7 @@ using Read.Reports;
 using Events.Reports;
 using Dolittle.ReadModels;
 using System.Linq;
+using Read.Reports.AvailableForRules;
 
 namespace Policies.AlertRules
 {
@@ -22,22 +23,24 @@ namespace Policies.AlertRules
     public class AlertRulesProcessor : ICanProcessEvents
     {
         private readonly IAggregateRootRepositoryFor<Domain.Alerts.Alerts> _alertsAggregateRootRepository;
-        private readonly IReadModelRepositoryFor<Read.Reports.Report> _reportRepository;
+        private readonly IReadModelRepositoryFor<Read.Reports.AvailableForRules.AvailableReport> _reportRepository;
         private readonly IReadModelRepositoryFor<Read.AlertRules.AlertRule> _alertRuleRepository;
+        private readonly IReadModelRepositoryFor<Read.Alerts.Open.OpenAlert> _openAlertsRepository;
         private readonly ICommandContextManager _commandContextManager;
         public AlertRulesProcessor(
 
             ICommandContextManager commandContextManager,
             IAggregateRootRepositoryFor<Domain.Alerts.Alerts> alertsAggregateRootRepository,
-            IReadModelRepositoryFor<Read.Reports.Report> reportRepository,
-            IReadModelRepositoryFor<Read.AlertRules.AlertRule> alertRuleRepository
-            
+            IReadModelRepositoryFor<Read.Reports.AvailableForRules.AvailableReport> reportRepository,
+            IReadModelRepositoryFor<Read.AlertRules.AlertRule> alertRuleRepository,
+            IReadModelRepositoryFor<Read.Alerts.Open.OpenAlert> openAlertsRepository            
             )
         {
             _commandContextManager = commandContextManager;
             _alertsAggregateRootRepository = alertsAggregateRootRepository;
             _reportRepository = reportRepository;
             _alertRuleRepository = alertRuleRepository;
+            _openAlertsRepository = openAlertsRepository;
         }
 
         [EventProcessor("1df8a07e-74b9-43fd-aa01-68ec4ae7130d")]
@@ -55,7 +58,7 @@ namespace Policies.AlertRules
 
             foreach (var alertRule in relevantAlertRules)
             {
-                TriggerAlerts(alertRule, root);
+                TriggerAlerts(alertRule, root, item);
             }
            
             transaction.Commit();
@@ -63,8 +66,18 @@ namespace Policies.AlertRules
         IEnumerable<Read.AlertRules.AlertRule> GetRelevantAlertRules(int healthRiskNumber) => 
             _alertRuleRepository.Query.Where(r => r.HealthRiskId == healthRiskNumber);
         
-        void TriggerAlerts(Read.AlertRules.AlertRule alertRule, Domain.Alerts.Alerts root) 
+        void TriggerAlerts(
+            Read.AlertRules.AlertRule alertRule,
+            Domain.Alerts.Alerts root,
+            AvailableReport incommingReport) 
         {
+            var openAlert = _openAlertsRepository.GetById(alertRule.HealthRiskId);
+            if(openAlert != null)
+            {
+                root.AddReportToAlert(incommingReport.Id, openAlert.AlertId);
+                return;
+            }
+
             int casesThreshold = alertRule.NumberOfCasesThreshold;
             int healthRiskNumber = alertRule.HealthRiskId;
             TimeSpan alertRuleInterval = new TimeSpan(alertRule.ThresholdTimeframeInHours, 0, 0);
@@ -72,7 +85,7 @@ namespace Policies.AlertRules
             DateTimeOffset horizon = DateTimeOffset.UtcNow - alertRuleInterval;
             var reportIds = _reportRepository.Query.Where(
                 c => c.Timestamp >= horizon && c.HealthRiskNumber == healthRiskNumber)
-                .Select(_ => _.Id).ToList();
+                .Select(_ => _.Id.Value).ToList();
 
             if(reportIds.Count() >= casesThreshold)
             {

@@ -6,8 +6,10 @@
         "YearOfBirth": 1980,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.28793,
-        "LocationLatitude": 9.04448,
+        "GpsLocation": {
+            "Latitude": 9.04448,
+            "Longitude": 45.28703
+        },
         "Region": "Togda",
         "District": "Daka",
         "Village": "Unawatuna",
@@ -20,8 +22,10 @@
         "YearOfBirth": 1981,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.619861,
-        "LocationLatitude": 4.683914,
+        "GpsLocation": {
+            "Latitude": 4.683914,
+            "Longitude": 46.619861
+        },
         "Region": "Togda",
         "District": "Kilimani",
         "Village": "Boodhley",
@@ -34,8 +38,10 @@
         "YearOfBirth": 1982,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.61935,
-        "LocationLatitude": 9.446095,
+        "GpsLocation": {
+            "Latitude": 9.446095,
+            "Longitude": 46.61935
+        },
         "Region": "Togda",
         "District": "Rogaland",
         "Village": "Moss",
@@ -48,8 +54,10 @@
         "YearOfBirth": 1983,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.163455,
-        "LocationLatitude": 8.930046,
+        "GpsLocation": {
+            "Latitude": 8.930046,
+            "Longitude": 46.163455
+        },
         "Region": "Jaman",
         "District": "Ainabo",
         "Village": "Fadhiyar",
@@ -62,8 +70,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.299386,
-        "LocationLatitude": 9.446059,
+        "GpsLocation": {
+            "Latitude": 9.446059,
+            "Longitude": 45.29938
+        },
         "Region": "Togda",
         "District": "Hedmark",
         "Village": "Son",
@@ -76,8 +86,10 @@
         "YearOfBirth": 1984,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.293386,
-        "LocationLatitude": 9.446059,
+        "GpsLocation": {
+            "Latitude": 9.446059,
+            "Longitude": 45.293386
+        },
         "Region": "Basal",
         "District": "Mara",
         "Village": "Fadhiyar",
@@ -90,8 +102,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.26753,
-        "LocationLatitude": 8.92448,
+        "GpsLocation": {
+            "Latitude": 8.92448,
+            "Longitude": 46.26753
+        },
         "Region": "Basal",
         "District": "Daka",
         "Village": "Bali",
@@ -104,8 +118,10 @@
         "YearOfBirth": 1983,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.779414,
-        "LocationLatitude": 9.018774,
+        "GpsLocation": {
+            "Latitude": 9.018774,
+            "Longitude": 46.779414
+        },
         "Region": "Basal",
         "District": "Mara",
         "Village": "Wau",
@@ -118,8 +134,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 44.82275,
-        "LocationLatitude": 8.72995,
+        "GpsLocation": {
+            "Latitude": 8.72995,
+            "Longitude": 44.82275
+        },
         "Region": "Togda",
         "District": "Rio",
         "Village": "Oppsal",
@@ -132,8 +150,10 @@
         "YearOfBirth": 1985,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.534065,
-        "LocationLatitude": 9.534862,
+        "GpsLocation": {
+            "Latitude": 9.534862,
+            "Longitude": 45.534065
+        },
         "Region": "Basal",
         "District": "Tofo",
         "Village": "Molde",
@@ -146,8 +166,10 @@
         "YearOfBirth": 1987,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.533727,
-        "LocationLatitude": 9.55772,
+        "GpsLocation": {
+            "Latitude": 9.55772,
+            "Longitude": 45.533727
+        },
         "Region": "Basal",
         "District": "Daka",
         "Village": "Unawatuna",
@@ -160,8 +182,10 @@
         "YearOfBirth": 1973,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.305299,
-        "LocationLatitude": 8.91518,
+        "GpsLocation": {
+            "Latitude": 8.91518,
+            "Longitude": 45.305299
+        },
         "Region": "Jaman",
         "District": "Mara",
         "Village": "Os",
@@ -174,8 +198,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.082954,
-        "LocationLatitude": 8.594785,
+        "GpsLocation": {
+            "Latitude": 8.594785,
+            "Longitude": 46.082954
+        },
         "Region": "Basal",
         "District": "Mara",
         "Village": "Wau",
@@ -188,8 +214,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.147891,
-        "LocationLatitude": 8.621061,
+        "GpsLocation": {
+            "Latitude": 8.621061,
+            "Longitude": 45.147891
+        },
         "Region": "Jaman",
         "District": "Tofo",
         "Village": "Beira",
@@ -202,8 +230,10 @@
         "YearOfBirth": 1983,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.199616,
-        "LocationLatitude": 5.152149,
+        "GpsLocation": {
+            "Latitude": 5.152149,
+            "Longitude": 46.199616
+        },
         "Region": "Beira",
         "District": "Odweyne",
         "Village": "Odweyne",
@@ -216,8 +246,10 @@
         "YearOfBirth": 1983,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.533115,
-        "LocationLatitude": 9.503833,
+        "GpsLocation": {
+            "Latitude": 9.503833,
+            "Longitude": 45.533115
+        },
         "Region": "Togda",
         "District": "Hedmark",
         "Village": "Son",
@@ -230,8 +262,10 @@
         "YearOfBirth": 1985,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.082954,
-        "LocationLatitude": 8.594785,
+        "GpsLocation": {
+            "Latitude": 8.594785,
+            "Longitude": 46.082954
+        },
         "Region": "Basal",
         "District": "Buskerud",
         "Village": "Stranda",
@@ -244,8 +278,10 @@
         "YearOfBirth": 1986,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.779414,
-        "LocationLatitude": 9.018774,
+        "GpsLocation": {
+            "Latitude": 9.018774,
+            "Longitude": 46.779414
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Fadhiyar",
@@ -258,8 +294,10 @@
         "YearOfBirth": 1990,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.01852,
-        "LocationLatitude": 8.66414,
+        "GpsLocation": {
+            "Latitude": 8.66414,
+            "Longitude": 45.01852
+        },
         "Region": "Togda",
         "District": "Kilimani",
         "Village": "Mandawi",
@@ -272,8 +310,10 @@
         "YearOfBirth": 1980,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.412179,
-        "LocationLatitude": 9.066287,
+        "GpsLocation": {
+            "Latitude": 9.066287,
+            "Longitude": 46.412179
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Doro",
@@ -286,8 +326,10 @@
         "YearOfBirth": 1982,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.25271,
-        "LocationLatitude": 9.28339,
+        "GpsLocation": {
+            "Latitude": 9.28339,
+            "Longitude": 46.25271
+        },
         "Region": "Jaman",
         "District": "Mara",
         "Village": "Oppsal",
@@ -300,8 +342,10 @@
         "YearOfBirth": 1981,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.305299,
-        "LocationLatitude": 8.91518,
+        "GpsLocation": {
+            "Latitude": 8.91518,
+            "Longitude": 45.305299
+        },
         "Region": "Basal",
         "District": "Odweyne",
         "Village": "Bali",
@@ -314,8 +358,10 @@
         "YearOfBirth": 1991,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.30918,
-        "LocationLatitude": 8.79153,
+        "GpsLocation": {
+            "Latitude": 8.79153,
+            "Longitude": 45.30918
+        },
         "Region": "Jaman",
         "District": "Troms",
         "Village": "Dalen",
@@ -328,8 +374,10 @@
         "YearOfBirth": 1986,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.293386,
-        "LocationLatitude": 9.446059,
+        "GpsLocation": {
+            "Latitude": 9.446059,
+            "Longitude": 45.293386
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Doro",
@@ -342,8 +390,10 @@
         "YearOfBirth": 1988,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.111737,
-        "LocationLatitude": 8.309062,
+        "GpsLocation": {
+            "Latitude": 8.309062,
+            "Longitude": 46.111737
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Kirir",
@@ -356,8 +406,10 @@
         "YearOfBirth": 1985,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.111737,
-        "LocationLatitude": 8.309062,
+        "GpsLocation": {
+            "Latitude": 8.309062,
+            "Longitude": 46.111737
+        },
         "Region": "Jaman",
         "District": "Tofo",
         "Village": "Balaadhis",
@@ -370,8 +422,10 @@
         "YearOfBirth": 1985,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.111737,
-        "LocationLatitude": 8.309062,
+        "GpsLocation": {
+            "Latitude": 8.309062,
+            "Longitude": 46.111737
+        },
         "Region": "Jaman",
         "District": "Tofo",
         "Village": "Balaadhis",
@@ -384,8 +438,10 @@
         "YearOfBirth": 1983,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.100737,
-        "LocationLatitude": 8.30062,
+        "GpsLocation": {
+            "Latitude": 8.30062,
+            "Longitude": 46.100737
+        },
         "Region": "Jaman",
         "District": "Troms",
         "Village": "Dalen",
@@ -398,8 +454,10 @@
         "YearOfBirth": 1980,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.082954,
-        "LocationLatitude": 8.594785,
+        "GpsLocation": {
+            "Latitude": 8.594785,
+            "Longitude": 46.082954
+        },
         "Region": "Basal",
         "District": "Buskerud",
         "Village": "Rykkinn",
@@ -412,8 +470,10 @@
         "YearOfBirth": 1989,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.293386,
-        "LocationLatitude": 9.446059,
+        "GpsLocation": {
+            "Latitude": 9.446059,
+            "Longitude": 45.293386
+        },
         "Region": "Basal",
         "District": "Mara",
         "Village": "Doro",
@@ -426,8 +486,10 @@
         "YearOfBirth": 1989,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.293386,
-        "LocationLatitude": 9.446059,
+        "GpsLocation": {
+            "Latitude": 9.446059,
+            "Longitude": 45.293386
+        },
         "Region": "Basal",
         "District": "Mara",
         "Village": "Doro",
@@ -440,8 +502,10 @@
         "YearOfBirth": 1979,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.412179,
-        "LocationLatitude": 9.066287,
+        "GpsLocation": {
+            "Latitude": 9.066287,
+            "Longitude": 46.412179
+        },
         "Region": "Togda",
         "District": "Rogaland",
         "Village": "Vestby",
@@ -454,8 +518,10 @@
         "YearOfBirth": 1982,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.30918,
-        "LocationLatitude": 8.79153,
+        "GpsLocation": {
+            "Latitude": 8.79153,
+            "Longitude": 45.30918
+        },
         "Region": "Jaman",
         "District": "Tofo",
         "Village": "Molde",
@@ -468,8 +534,10 @@
         "YearOfBirth": 1980,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.26753,
-        "LocationLatitude": 8.92448,
+        "GpsLocation": {
+            "Latitude": 8.92448,
+            "Longitude": 46.26753
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Fadhiyar",
@@ -482,8 +550,10 @@
         "YearOfBirth": 1981,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.18691,
-        "LocationLatitude": 9.46481,
+        "GpsLocation": {
+            "Latitude": 9.46481,
+            "Longitude": 46.18691
+        },
         "Region": "Togda",
         "District": "Ainabo",
         "Village": "Doro",
@@ -496,8 +566,10 @@
         "YearOfBirth": 1982,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.26753,
-        "LocationLatitude": 8.92448,
+        "GpsLocation": {
+            "Latitude": 8.92448,
+            "Longitude": 46.26753
+        },
         "Region": "Togda",
         "District": "Bura",
         "Village": "Santa Teresa",
@@ -510,8 +582,10 @@
         "YearOfBirth": 1985,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.014898,
-        "LocationLatitude": 9.092598,
+        "GpsLocation": {
+            "Latitude": 9.092598,
+            "Longitude": 45.014898
+        },
         "Region": "Basal",
         "District": "Odweyne",
         "Village": "Juma",
@@ -524,8 +598,10 @@
         "YearOfBirth": 1981,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.111737,
-        "LocationLatitude": 8.309062,
+        "GpsLocation": {
+            "Latitude": 8.309062,
+            "Longitude": 46.111737
+        },
         "Region": "Basal",
         "District": "Odweyne",
         "Village": "Juma",
@@ -538,8 +614,10 @@
         "YearOfBirth": 1980,
         "Sex": 2,
         "PreferredLanguage": 0,
-        "LocationLongitude": 46.18691,
-        "LocationLatitude": 9.46481,
+        "GpsLocation": {
+            "Latitude": 9.46481,
+            "Longitude": 46.18691
+        },
         "Region": "Jaman",
         "District": "Ainabo",
         "Village": "Fadhiyar",
@@ -552,8 +630,10 @@
         "YearOfBirth": 1980,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 44.99545,
-        "LocationLatitude": 8.81457,
+        "GpsLocation": {
+            "Latitude": 8.81457,
+            "Longitude": 44.99545
+        },
         "Region": "Jaman",
         "District": "Rio",
         "Village": "Skagen",
@@ -566,8 +646,10 @@
         "YearOfBirth": 1981,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 44.99545,
-        "LocationLatitude": 8.81457,
+        "GpsLocation": {
+            "Latitude": 8.81457,
+            "Longitude": 44.99545
+        },
         "Region": "Basal",
         "District": "Rogaland",
         "Village": "Beira",
@@ -580,8 +662,10 @@
         "YearOfBirth": 1981,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.28793,
-        "LocationLatitude": 9.04448,
+        "GpsLocation": {
+            "Latitude": 9.04448,
+            "Longitude": 45.28793
+        },
         "Region": "Jaman",
         "District": "Rio",
         "Village": "Mali",
@@ -594,8 +678,10 @@
         "YearOfBirth": 1982,
         "Sex": 1,
         "PreferredLanguage": 0,
-        "LocationLongitude": 45.519592,
-        "LocationLatitude": 9.507754,
+        "GpsLocation": {
+            "Latitude": 9.507754,
+            "Longitude": 45.519592
+        },
         "Region": "Yusuf",
         "District": "Basal",
         "Village": "Daka",
