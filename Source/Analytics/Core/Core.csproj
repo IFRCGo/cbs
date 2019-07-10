@@ -46,6 +46,7 @@
     <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
+    <ProjectReference Include="..\Read.Specs\Read.Specs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

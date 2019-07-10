@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
 import GridListTile from '@material-ui/core/GridListTile';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import {ApplicationInsights} from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
 import TotalCard from "./TotalCard";
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
+
 import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
@@ -43,7 +43,7 @@ class NationalSocietyOverview extends Component {
 
         this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
             if(queryResult.success){
-                let json = queryResult.items[0]; //We get many items here – how to display "LastWeek"?
+                let json = queryResult.items[0];
                 this.setState({
                     totalFemale: json.female,
                     totalMale: json.male,
