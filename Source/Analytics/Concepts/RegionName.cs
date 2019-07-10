@@ -7,11 +7,11 @@ using Dolittle.Concepts;
 
 namespace Concepts
 {
-    public class Region : ConceptAs<string>
+    public class RegionName : ConceptAs<string>
     {
-        public static implicit operator Region(string value)
+        public static implicit operator RegionName(string value)
         {
-            return new Region {Value = value};
+            return new RegionName {Value = value};
         }
     }
 }
