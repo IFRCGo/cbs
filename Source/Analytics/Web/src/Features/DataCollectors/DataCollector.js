@@ -4,24 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class CaseReport extends ReadModel
+export class DataCollector extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: 'c416cbb9-ec8f-4acf-ba18-bd1559f9da8f',
+           id: 'b388b07a-2c43-424b-a09e-df0ed85acba1',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
-        this.message = '';
-        this.dataCollectorId = '00000000-0000-0000-0000-000000000000';
-        this.healthRiskId = '00000000-0000-0000-0000-000000000000';
-        this.numberOfFemalesAged5AndOlder = 0;
-        this.numberOfFemalesUnder5 = 0;
-        this.numberOfMalesAged5AndOlder = 0;
-        this.numberOfMalesUnder5 = 0;
-        this.timestamp = new Date();
+        this.displayName = '';
         this.location = {};
+        this.district = '';
         this.region = '';
+        this.village = '';
     }
 }

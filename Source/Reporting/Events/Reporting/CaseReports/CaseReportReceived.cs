@@ -37,7 +37,7 @@ namespace Events.Reporting.CaseReports
             NumberOfFemalesAged5AndOlder = numberOfFemalesAged5AndOlder;
             Longitude = longitude;
             Latitude = latitude;
-            Timestamp = timestamp;               
+            Timestamp = timestamp;            
         }
     }
 }

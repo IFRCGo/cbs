@@ -12,6 +12,6 @@ namespace Events.SMS.Gateways
         }
 
         public Guid Id { get; }
-        public bool Enabled { get;}
+        public bool Enabled { get; }
     }
 }

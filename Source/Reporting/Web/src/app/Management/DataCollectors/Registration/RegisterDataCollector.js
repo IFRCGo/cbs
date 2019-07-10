@@ -20,7 +20,6 @@ export class RegisterDataCollector extends Command
         this.phoneNumbers = [];
         this.region = '';
         this.district = '';
-        this.village = '';
         this.dataVerifierId = '00000000-0000-0000-0000-000000000000';
     }
 }
