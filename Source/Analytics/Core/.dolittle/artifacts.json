@@ -24,7 +24,7 @@
     "queries": {
       "15822f97-c898-4697-997b-1a4eebf7abd9": {
         "generation": 1,
-        "type": "Read.CaseReports.GetCaseReportsPerRegionLast7Days, Read"
+        "type": "Read.CaseReports.CaseReportsPerRegionLast7DaysQuery, Read"
       }
     }
   },

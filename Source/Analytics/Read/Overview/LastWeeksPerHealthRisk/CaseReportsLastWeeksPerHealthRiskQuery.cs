@@ -1,7 +1,7 @@
-using System;
 using System.Linq;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
+using Concepts;
 
 namespace Read.Overview.LastWeeksPerHealthRisk
 {
@@ -14,6 +14,9 @@ namespace Read.Overview.LastWeeksPerHealthRisk
             _repositoryForCaseReportsLastWeeksPerHealthRisk = repositoryForCaseReportsLastWeeksPerHealthRisk;
         }
 
-        public IQueryable<CaseReportsLastWeeksPerHealthRisk> Query => _repositoryForCaseReportsLastWeeksPerHealthRisk.Query;
+        public IQueryable<CaseReportsLastWeeksPerHealthRisk> Query => 
+            _repositoryForCaseReportsLastWeeksPerHealthRisk
+                .Query
+                .Where(report => report.Id == Day.Today);
     }
 }
