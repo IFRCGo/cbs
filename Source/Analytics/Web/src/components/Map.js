@@ -1,28 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Map, Popup, CircleMarker, TileLayer, Markercluster,Marker } from "react-leaflet";
-import {MarkerClusterGroup} from "react-leaflet";
+import {Map, Popup, CircleMarker, TileLayer, Markercluster, Marker } from "react-leaflet";
+
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import "../assets/map.css";
+
+
 
 import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
 import { getJson } from "../utils/request";
 import { Alert, Button, Text } from "evergreen-ui";
 
 import { BASE_URL } from "./Analytics";
- 
-//require('react-leaflet-markercluster/dist/styles.min.css'); // inside .js file
+
 
 var firefoxIcon = L.icon({
     iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
     iconSize: [10, 10], // size of the icon
     });
 
+var div = document.createElement("div");
+div.id = "map";
 
 
 function OutbreakMarkers({outbreakesLastWeek}){
+    outbreakesLastWeek.forEach(outbreak => {
+        outbreak.vals = new Array(outbreak.numberOfPeople.value);
+        outbreak.vals.fill(1);
+    });
     return outbreakesLastWeek.map(function(item){
-            return <Marker
-                    position={[item.location.longitude, item.location.latitude]} icon={firefoxIcon}
-            ></Marker>
+               return item.vals.map(function(val){     
+                    return <Marker
+                        position={[item.location.longitude, item.location.latitude]} icon={firefoxIcon}
+                    ></Marker>
+            });
+                
     });
 };
 
@@ -110,19 +122,32 @@ class MapWidget extends Component {
         } else if (this.state.isLoading) {
             return <div>Loading...</div>
         }
-        console.log(this.state.outbreakesLastWeek);
+
         return (
-            <Map center={position} zoom={5} style={{height: 800, width: 800}}>
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                />
-                
-                <OutbreakMarkers 
-                    outbreakesLastWeek={this.state.outbreakesLastWeek}>
-                </OutbreakMarkers>
-                
+            // <Map center={position} zoom={5} style={{height: 800, width: 800}} maxZoom={100}>
+            //     <TileLayer
+            //         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            //         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            //     />
+            // <MarkerClusterGroup>
+            //     
+            // </MarkerClusterGroup>
+            // </Map>
+
+            <Map className="markercluster" center={[5100.0, 19.0]} zoom={4} maxZoom={18}>
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
+
+            <MarkerClusterGroup>
+                <OutbreakMarkers outbreakesLastWeek={this.state.outbreakesLastWeek}></OutbreakMarkers>
+            </MarkerClusterGroup>
+
             </Map>
+                
+        
+
         );
         
     }
