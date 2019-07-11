@@ -19,9 +19,9 @@ namespace Read.Map
 
         [EventProcessor("f52d714c-ca1a-460f-abff-f585d7f98df8")]
         public void Process(CaseReportReceived @event){
+
             // Each day contains a health risk dictionary
             // Each health risk in the health risk dictionary contains two collections of casereports from 7 and 30 days 
-
             var today = Day.Today;
             var origin = @event.Origin;
             var totalCases = @event.NumberOfFemalesAged5AndOlder + @event.NumberOfFemalesUnder5 + @event.NumberOfMalesAged5AndOlder + @event.NumberOfMalesUnder5;
@@ -43,17 +43,14 @@ namespace Read.Map
                         CasesPerHealthRisk = new Dictionary<HealthRiskId, CaseReportsRetrieved>()
                     };
                     casesBeforeDay.CasesPerHealthRisk[healthRiskId] =   new CaseReportsRetrieved(){
-                                                                            Id = Guid.NewGuid(),
                                                                             CaseReportsLast7Days  = new List<CaseReportForMap>{ 
                                                                                                         new CaseReportForMap(){
-                                                                                                            CaseReportsId = Guid.NewGuid(),
                                                                                                             NumberOfPeople = totalCases,
                                                                                                             Location = LocationForCaseReport 
                                                                                                         }  
                                                                                                     },
                                                                             CaseReportsLast30Days = new List<CaseReportForMap>{
                                                                                                         new CaseReportForMap(){
-                                                                                                            CaseReportsId = Guid.NewGuid(),
                                                                                                             NumberOfPeople = totalCases,
                                                                                                             Location = LocationForCaseReport
                                                                                                         }
@@ -65,22 +62,18 @@ namespace Read.Map
                     if(casesBeforeDay.CasesPerHealthRisk.ContainsKey(healthRiskId)){
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(
                                                                                             new CaseReportForMap(){ 
-                                                                                                CaseReportsId = Guid.NewGuid(),
                                                                                                  NumberOfPeople = totalCases, 
                                                                                                  Location = LocationForCaseReport 
                                                                                             });
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(
                                                                                             new CaseReportForMap(){ 
-                                                                                                CaseReportsId = Guid.NewGuid(), 
                                                                                                 NumberOfPeople = totalCases, 
                                                                                                 Location = LocationForCaseReport
                                                                                             });
                     }else{
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId]  =  new CaseReportsRetrieved(){  
-                                                                                Id = Guid.NewGuid(),
                                                                                 CaseReportsLast7Days = new List<CaseReportForMap>{
                                                                                     new CaseReportForMap(){
-                                                                                        CaseReportsId = Guid.NewGuid(),
                                                                                         NumberOfPeople = totalCases,
                                                                                         Location = LocationForCaseReport
                                                                                     }
@@ -88,7 +81,6 @@ namespace Read.Map
                                                                                 CaseReportsLast30Days = 
                                                                                     new List<CaseReportForMap>{
                                                                                     new CaseReportForMap(){
-                                                                                        CaseReportsId = Guid.NewGuid(),
                                                                                         NumberOfPeople = totalCases,
                                                                                         Location = LocationForCaseReport
                                                                                     }
@@ -110,15 +102,13 @@ namespace Read.Map
                         CasesPerHealthRisk = new Dictionary<HealthRiskId, CaseReportsRetrieved>()
                     };
                     casesBeforeDay.CasesPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){
-                        Id = Guid.NewGuid(),
-                        CaseReportsLast7Days = new List<CaseReportForMap>(){},
-                        CaseReportsLast30Days = new List<CaseReportForMap>{ 
-                                                    new CaseReportForMap(){
-                                                            CaseReportsId = Guid.NewGuid(),
-                                                            NumberOfPeople = totalCases,
-                                                            Location = LocationForCaseReport
-                                                    }
-                                                }
+                                                                            CaseReportsLast7Days = new List<CaseReportForMap>(){},
+                                                                            CaseReportsLast30Days = new List<CaseReportForMap>{ 
+                                                                                                        new CaseReportForMap(){
+                                                                                                                NumberOfPeople = totalCases,
+                                                                                                                Location = LocationForCaseReport
+                                                                                                        }
+                                                                                                    }
                     };
 
                     _caseReportRepository.Insert(casesBeforeDay);
@@ -127,17 +117,14 @@ namespace Read.Map
                     if(casesBeforeDay.CasesPerHealthRisk.ContainsKey(healthRiskId)){
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(
                                                                                         new CaseReportForMap(){ 
-                                                                                            CaseReportsId = Guid.NewGuid(), 
                                                                                             NumberOfPeople = totalCases, 
                                                                                             Location = LocationForCaseReport 
                                                                                         });
                     }else{
                         casesBeforeDay.CasesPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){  
-                                                                                Id = Guid.NewGuid(),
                                                                                 CaseReportsLast7Days  = new List<CaseReportForMap>{},
                                                                                 CaseReportsLast30Days = new List<CaseReportForMap>{
                                                                                         new CaseReportForMap(){
-                                                                                            CaseReportsId = Guid.NewGuid(),
                                                                                             NumberOfPeople = totalCases,
                                                                                             Location = LocationForCaseReport
                                                                                         }
