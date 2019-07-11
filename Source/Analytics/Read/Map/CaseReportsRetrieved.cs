@@ -7,7 +7,7 @@ using Concepts.Map;
 using Concepts.HealthRisk;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
-namespace Read.Overview.Map
+namespace Read.Map
 {
     public class CaseReportsRetrieved
     {
