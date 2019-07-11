@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import GridListTile from '@material-ui/core/GridListTile';
 import {ApplicationInsights} from '@microsoft/applicationinsights-web';
+
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
-import TotalCard from "./TotalCard";
+import LastWeekTotals from './LastWeekTotals.js';
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
 
-import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
-import { QueryCoordinator } from "@dolittle/queries";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -28,43 +26,12 @@ class NationalSocietyOverview extends Component {
         super(props);
 
         this.state = {
-            totalFemale: "-",
-            totalMale: "-",
-            totalUnder5: "-",
-            totalOver5: "-",
             isLoading: true,
             isError: false
         };
     }
     
-    fetchLastWeekTotals() {
-        this.queryCoordinator = new QueryCoordinator();
-        let caseReportTotals = new CaseReportTotalsQuery();
-
-        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
-            if(queryResult.success){
-                let json = queryResult.items[0];
-                this.setState({
-                    totalFemale: json.female,
-                    totalMale: json.male,
-                    totalUnder5: json.under5,
-                    totalOver5: json.over5,
-                    isLoading: false,
-                    isError: false
-                });
-            }
-        }).catch(_ => {
-            this.setState({
-                isLoading: false,
-                isError: true
-            })
-        }
-        )
-    }
-
-    componentDidMount() {
-        this.fetchLastWeekTotals();
-        
+    componentDidMount() {        
         appInsights.trackPageView({ name: 'National society overview'});
     }
 
@@ -77,27 +44,14 @@ class NationalSocietyOverview extends Component {
                     Overview
                 </Typography>
 
-                <GridList cols={4}>
-                    <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
+                <Grid container spacing={8}>
+                    <Grid item xs={6} key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
                         <CaseReportByHealthRiskTable />
-                    </GridListTile>
+                    </Grid>
 
-                    <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
-                        <Typography component="h2" variant="headline">
-                            No. of cases by gender
-                        </Typography>
-                        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-                        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-                    </GridListTile>
-                    <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
-                        <Typography component="h2" variant="headline">
-                            No. of cases by age
-                        </Typography>
-                        <TotalCard className={"fa fa-child"} subTitle={"Under 5"} total={this.state.totalUnder5}  />
-                        <TotalCard className={"fa fa-user"} subTitle={"Over 5"} total={this.state.totalOver5}  />
-                    </GridListTile>
+                    <LastWeekTotals />
 
-                </GridList>
+                </Grid>
                 <HealthRiskPerDistrictTable />
                 <Map />
             </div>
