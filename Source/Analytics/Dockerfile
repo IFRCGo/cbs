@@ -9,7 +9,6 @@ COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events
 COPY ./Source/Analytics/Events.Admin/Events.Admin.csproj /CBS/Source/Analytics/Events.Admin/Events.Admin.csproj
 COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
 COPY ./Source/Analytics/Read/Read.csproj /CBS/Source/Analytics/Read/Read.csproj
-COPY ./Source/Analytics/Read.Specs/Read.Specs.csproj /CBS/Source/Analytics/Read.Specs/Read.Specs.csproj
 
 WORKDIR /CBS/Source/Analytics
 RUN dotnet restore
