@@ -18,40 +18,25 @@ const appInsights = new ApplicationInsights({
     }
 });
 appInsights.loadAppInsights();
-export const BASE_URL = process.env.API_BASE_URL;
-
 
 class NationalSocietyOverview extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isLoading: true,
-            isError: false
-        };
-    }
-    
     componentDidMount() {        
         appInsights.trackPageView({ name: 'National society overview'});
     }
-
 
     render() {
         return (
             <div className="analytics--container">
                 <CBSNavigation />
-                <Typography component="h2" variant="headline" gutterBottom>
-                    Overview
-                </Typography>
+                <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
                 <Grid container spacing={8}>
-                    <Grid item xs={6} key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
+                    <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
                         <CaseReportByHealthRiskTable />
                     </Grid>
-
                     <LastWeekTotals />
-
                 </Grid>
+
                 <HealthRiskPerDistrictTable />
                 <Map />
             </div>

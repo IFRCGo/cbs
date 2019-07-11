@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import GridListTile from '@material-ui/core/GridListTile';
 import Grid from '@material-ui/core/Grid';
-
-
 import Typography from '@material-ui/core/Typography';
+
 import TotalCard from "./TotalCard";
 
 import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
@@ -56,20 +54,20 @@ export default class LastWeekTotals extends Component {
     render () {
         return (
             <>
-            <Grid item xs={3} key="TotalSex" style={{ height: 'auto' }}>
-                <Typography component="h2" variant="headline">
-                    No. of cases by gender
-                </Typography>
-                <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-                <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-            </Grid>
-            <Grid item xs={3} key="TotalAge" style={{ height: 'auto' }}>
-                <Typography component="h2" variant="headline">
-                    No. of cases by age
-                </Typography>
-                <TotalCard className={"fa fa-child"} subTitle={"Under 5"} total={this.state.totalUnder5}  />
-                <TotalCard className={"fa fa-user"} subTitle={"Over 5"} total={this.state.totalOver5}  />
-            </Grid>
+                <Grid item xs={3} key="TotalSex" style={{ height: 'auto' }}>
+                    <Typography component="h2" variant="headline">
+                        No. of cases by gender
+                    </Typography>
+                    <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
+                    <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
+                </Grid>
+                <Grid item xs={3} key="TotalAge" style={{ height: 'auto' }}>
+                    <Typography component="h2" variant="headline">
+                        No. of cases by age
+                    </Typography>
+                    <TotalCard className={"fa fa-child"} subTitle={"Under 5"} total={this.state.totalUnder5}  />
+                    <TotalCard className={"fa fa-user"} subTitle={"Over 5"} total={this.state.totalOver5}  />
+                </Grid>
             </>
         );
     }
