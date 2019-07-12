@@ -20,7 +20,7 @@ function CaseMarkers({casesLastWeekAndMonth}){
         cases.vals.fill(1);
         return cases.vals.map(function(val){     
             return <Marker
-                position={[cases.location.longitude, cases.location.latitude]} icon={firefoxIcon}
+                position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
             ></Marker>
         });
     });   
@@ -69,6 +69,7 @@ class MapWidget extends Component {
                 isError: true
             })
         );
+
     }
 
     render() {

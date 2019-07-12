@@ -13,6 +13,6 @@ namespace Read.Map
         {
             _repositoryForCaseReportsBeforeDay = repositoryForCaseReportsBeforeDay;
         }
-        public IQueryable<CaseReportsBeforeDay> Query => _repositoryForCaseReportsBeforeDay.Query.Where(caseReports => caseReports.Id == Day.Today);
+        public IQueryable<CaseReportsBeforeDay> Query => _repositoryForCaseReportsBeforeDay.Query.Where(caseReports => caseReports.Id == Day.SomeDay);
     }
 }
