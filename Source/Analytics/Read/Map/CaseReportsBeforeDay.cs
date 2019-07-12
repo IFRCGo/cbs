@@ -13,9 +13,6 @@ namespace Read.Map
         public Day Id {get; set;}
         
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
-        public IDictionary<HealthRiskId, CaseReportsRetrieved> CasesPerHealthRisk { get; set; } 
-
+        public IDictionary<HealthRiskId, CaseReportsRetrieved> CaseReportsPerHealthRisk { get; set; } 
     }
-
-
 }
