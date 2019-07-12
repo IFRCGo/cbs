@@ -15,77 +15,60 @@ $screen-sm-max: ($screen-md-min - 1);
 body {
   margin: 0;
 }
-
-nav {
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    @media (min-width: $screen-sm-min) {
-      display: flex;
-    }
-  
-    a {
-      color: $brand-primary;
-      padding: 1rem;
-      margin: 0 0.7rem;
-      text-decoration: none;
-      &:hover {
-        background-color: $gray-lighter;
-        text-decoration: none;
-      }
-      @media (min-width: $screen-sm-min) {
-        border-radius: .3rem;
-        font-size: 1.4rem;
-        line-height: 2rem;
-        text-decoration: none;
-      }
-      @media (min-width: $screen-md-min) {
-        font-size: 1rem;
-      }
-    }
-  }
   
   .navigation-header {
-    padding: 0;
     @media (min-width: $screen-sm-min) {
-      border-bottom: .18rem solid $link-color;
+      border-bottom: .15rem solid $link-color;
       display: flex;
       align-items: center;
     }
+
     .logo {
       padding: 0;
-      margin: 1.1rem 0.9rem 0.7rem 0.7rem;
+      margin: 1rem 0.9rem 0.7rem 0.7rem;
     }
-    svg {
+    
+    nav {
+      font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      display: flex;
+  
       @media (max-width: $screen-xs-max) {
-        display: none;
+        flex-direction: column;
+      }
+    
+      a {
+        font-size: 0.9rem;
+        color: $brand-primary;
+        padding: 1rem;
+        text-decoration: none;
+        border-radius: .3rem;
+        &:hover {
+          background-color: $gray-lighter;
+        }
       }
     }
+
     .login-status {
       font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: $brand-primary;
       font-size: 0.8rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
+
       @media (max-width: $screen-xs-max) {
-        border-top: solid .0625rem $pre-border-color;
-        padding-top: 0;
-        margin-top: 0;
+        border-top: .18rem solid $link-color;
+        padding-top: 0.5rem;
+        margin-top: 1rem;
       }
       @media (min-width: $screen-sm-min) {
-        justify-content: flex-end;
         margin-left: auto;
       }
     }
     .logged-in {
       padding: 0 1rem;
-      @media (min-width: $screen-sm-min) {
-        text-align: right;
-      }
-  
+      text-align: right;
+      
       p {
-        margin-bottom: 0;
-        margin-top: 0;
+        margin: 0;
       }
     }
   }
+
