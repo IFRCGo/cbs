@@ -47,14 +47,14 @@ namespace Read.Reporting.CaseReportsForListing
                 Location = dataCollector.Location,
                 Origin = @event.Origin,
 
-                HealthRiskId = healthRisk.Id,
-                HealthRisk = healthRisk.Name,
+                HealthRiskId = @event.HealthRiskId,
+                HealthRisk = "Data currently not supporting finding healthRiskNames",
 
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
                 NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
                 NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                Timestamp = @event.Timestamp
+                Timestamp = @event.Timestamp,
             };
             _caseReports.Insert(caseReport);
         }

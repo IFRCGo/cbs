@@ -20,6 +20,10 @@
         "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
           "name": "HealthRisks",
           "subFeatures": {}
+        },
+        "d94019a9-f7a6-4562-97f3-7689c8076821": {
+          "name": "HealthRisk",
+          "subFeatures": {}
         }
       }
     },
@@ -38,6 +42,10 @@
     },
     "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {
       "name": "HealthRisks",
+      "subFeatures": {}
+    },
+    "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
+      "name": "DataCollectors",
       "subFeatures": {}
     }
   }

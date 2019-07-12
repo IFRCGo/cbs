@@ -1,16 +1,4 @@
 {
-  "ff5478ae-99b7-486f-b7fa-480e34736bba": {
-    "commands": {
-      "e2426d26-5715-48ec-97cf-2d64fac66643": {
-        "generation": 1,
-        "type": "Domain.Reporting.CaseReports.TestData.PopulateCaseReportTestData, Domain"
-      }
-    },
-    "events": {},
-    "eventSources": {},
-    "readModels": {},
-    "queries": {}
-  },
   "f27726b8-19e6-4efd-bf33-8fe71ea28b15": {
     "commands": {
       "3758f43d-e6c5-4909-a633-0b782fa2c352": {
@@ -87,18 +75,6 @@
         "type": "Events.Management.DataCollectors.Training.DataCollectorCompletedTraining, Events"
       }
     },
-    "eventSources": {},
-    "readModels": {},
-    "queries": {}
-  },
-  "4ad30706-6d6c-4dda-9c82-60b9e10bf9e8": {
-    "commands": {
-      "c8862422-ec59-40c5-b02e-21022d76069e": {
-        "generation": 1,
-        "type": "Domain.Management.DataCollectors.TestData.PopulateDataCollectorTestData, Domain"
-      }
-    },
-    "events": {},
     "eventSources": {},
     "readModels": {},
     "queries": {}
@@ -424,6 +400,30 @@
         "type": "Read.Management.DataVerifiers.DataVerifier, Read"
       }
     },
+    "queries": {}
+  },
+  "40cd66d3-d1ff-48d2-876e-616272971afb": {
+    "commands": {},
+    "events": {},
+    "eventSources": {
+      "15331073-ecc5-4af7-844d-7175932395f0": {
+        "generation": 1,
+        "type": "Domain.TestData.HealthRisks.HealtRisk, Domain"
+      }
+    },
+    "readModels": {},
+    "queries": {}
+  },
+  "26aef839-23a3-4db5-b3f4-75437c6229e9": {
+    "commands": {
+      "79c674e6-6f04-476a-8608-1ddfcde8f702": {
+        "generation": 1,
+        "type": "Domain.TestData.CaseReports.PopulateCaseReportTestData, Domain"
+      }
+    },
+    "events": {},
+    "eventSources": {},
+    "readModels": {},
     "queries": {}
   }
 }

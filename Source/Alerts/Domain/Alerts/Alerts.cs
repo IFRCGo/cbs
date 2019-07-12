@@ -22,6 +22,11 @@ namespace Domain.Alerts
             Apply(new AlertOpened(alertId, alertRuleId, numberOfAlertsOpened+1, cases.ToArray()));
         }
 
+        public void AddReportToAlert(Guid reportId, Guid alertId)
+        {
+            Apply(new ReportAddedToAlert(reportId, alertId));
+        }
+
         private void On(AlertOpened @event)
         {
             numberOfAlertsOpened++;

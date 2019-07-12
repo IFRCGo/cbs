@@ -69,5 +69,29 @@
         "type": "Read.Overview.LastWeekTotals.CaseReportTotalsQuery, Read"
       }
     }
+  },
+  "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "b388b07a-2c43-424b-a09e-df0ed85acba1": {
+        "generation": 1,
+        "type": "Read.DataCollectors.DataCollector, Read"
+      }
+    },
+    "queries": {}
+  },
+  "d94019a9-f7a6-4562-97f3-7689c8076821": {
+    "commands": {},
+    "events": {
+      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
+        "generation": 1,
+        "type": "Events.Admin.HealthRisk.HealthRiskCreated, Events.Admin"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
   }
 }

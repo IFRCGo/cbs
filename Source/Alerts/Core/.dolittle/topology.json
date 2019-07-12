@@ -3,7 +3,12 @@
   "features": {
     "fa2dc64d-8d1c-4910-ab62-43a5473c39ac": {
       "name": "Reports",
-      "subFeatures": {}
+      "subFeatures": {
+        "c2222e81-43db-4184-b0dd-296de083c97c": {
+          "name": "AvailableForRules",
+          "subFeatures": {}
+        }
+      }
     },
     "d2f10faf-7f8e-424a-bbc4-2e74f5ce3bac": {
       "name": "DataOwners",
@@ -11,7 +16,12 @@
     },
     "c2778e6d-ba03-4e8e-9d5d-dce46b34eed9": {
       "name": "Alerts",
-      "subFeatures": {}
+      "subFeatures": {
+        "1f0f878b-a603-4e40-b72e-d02cc25c162c": {
+          "name": "Open",
+          "subFeatures": {}
+        }
+      }
     },
     "60f798cf-54c4-48b5-bf04-c535c805d419": {
       "name": "AlertRules",

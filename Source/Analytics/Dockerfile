@@ -16,7 +16,7 @@ RUN dotnet restore
 # Build production code
 COPY ./Source/Analytics /CBS/Source/Analytics
 WORKDIR /CBS/Source/Analytics/Core
-RUN dotnet publish -c Release -o out
+RUN dotnet publish --no-restore -c Release -o out
 
 FROM node:11.6-slim AS build-web
 
@@ -32,9 +32,9 @@ RUN yarn build
 
 # Build runtime image 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-bionic
+COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Core/wwwroot
 COPY ./Source/Analytics/bounded-context.json /CBS/bounded-context.json
 COPY --from=build-core /CBS/Source/Analytics/Core/out /CBS/Core/
 COPY --from=build-core /CBS/Source/Analytics/Core/.dolittle /CBS/Core/.dolittle
-COPY --from=build-web /CBS/Source/Analytics/Web/dist /CBS/Core/wwwroot
 WORKDIR /CBS/Core
 ENTRYPOINT ["dotnet", "/CBS/Core/Core.dll"]
