@@ -7,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
-import { QueryCoordinator } from "@dolittle/Queries";
+import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsLastWeeksPerHealthRiskQuery } from "../../Features/Overview/LastWeeksPerHealthRisk/CaseReportsLastWeeksPerHealthRiskQuery";
 
 class CaseReportByHealthRiskTable extends Component {
@@ -49,7 +49,7 @@ class CaseReportByHealthRiskTable extends Component {
         };
         return (
           <div style={styles}>
-            <Typography variant="h5">No. of case reports per health risk per time period</Typography>
+            <Typography variant="h5">No. of reports per health risk per time period</Typography>
             <Paper>
               <Table>
                 <TableHead>
