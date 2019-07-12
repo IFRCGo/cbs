@@ -8,18 +8,16 @@ import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsBeforeDayQuery } from "../Features/Map/CaseReportsBeforeDayQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-var firefoxIcon = L.icon({
+var redCrossIcon = L.icon({
     iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
     iconSize: [10, 10], // size of the icon
     });
 
 
 function CaseMarkers({casesLastWeekAndMonth}){
-    console.log(casesLastWeekAndMonth);
     return casesLastWeekAndMonth.map(cases => {
         cases.vals = new Array(cases.numberOfPeople);
         cases.vals.fill(1);
-
         return cases.vals.map(function(val){     
             return <Marker
                 position={[cases.location.longitude, cases.location.latitude]} icon={firefoxIcon}
@@ -57,14 +55,13 @@ class MapWidget extends Component {
         let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
 
         this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
-            console.log(queryResult);
             if(queryResult.success){
+                let id = (Object.keys(queryResult.items[0].caseReportsPerHealthRisk)[0]);
                 this.setState({ 
-                    casesLastWeekAndMonth: queryResult.items[0].casesPerHealthRisk["9cd3c7b5-6973-45c3-a8d3-58d9eb38824c"].caseReportsLast7Days,
+                    casesLastWeekAndMonth: queryResult.items[0].caseReportsPerHealthRisk[id].caseReportsLast7Days,
                     isError: false,
                     isLoading: false 
                 })
-
             }
         }).catch(_ => 
             this.setState({
@@ -72,7 +69,6 @@ class MapWidget extends Component {
                 isError: true
             })
         );
-
     }
 
     render() {
@@ -101,7 +97,6 @@ class MapWidget extends Component {
         } else if(this.state.isLoading) {
             return (<div>Loading...</div>);
         }
-        console.log(this.state.casesLastWeekAndMonth);
         return (
             <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={10}>
                 <TileLayer
