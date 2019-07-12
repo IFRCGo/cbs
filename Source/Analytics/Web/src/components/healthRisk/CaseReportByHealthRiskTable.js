@@ -21,7 +21,7 @@ class CaseReportByHealthRiskTable extends Component {
     }
 
     fetchData() {
-        this.url = `${BASE_URL}CaseReport/TotalsPerHealthRisk/`;
+        this.url = `${BASE_URL}/api/CaseReport/TotalsPerHealthRisk/`;
 
         this.setState({ isLoading: true });
 

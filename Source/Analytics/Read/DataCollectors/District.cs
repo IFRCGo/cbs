@@ -10,6 +10,5 @@ namespace Read.DataCollectors
         public DistrictName Id { get; set; }
         public RegionName RegionName { get; set; }
         public DistrictName Name { get; set; }
-        public List<Guid> DataCollectors { get; set; }
     }
 }

@@ -3,31 +3,38 @@ using Events.Reporting.CaseReports;
 using Dolittle.ReadModels;
 using Concepts;
 using Read.DataCollectors;
+using Read.HealthRisks;
 using System.Linq;
 
 namespace Read.CaseReports
 {
     public class CaseReportsEventProcessor : ICanProcessEvents
     {
-        private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
+        readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
-        readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<Region> _regions;
+        readonly IReadModelRepositoryFor<District> _districts;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportsEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository, 
-            IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository, 
-            IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> healthRisks,
-            IReadModelRepositoryFor<DataCollector> dataCollectors
+            IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
+            IReadModelRepositoryFor<HealthRisk> healthRisks,
+            IReadModelRepositoryFor<Region> regions,
+            IReadModelRepositoryFor<District> districts
             )
         {
             _caseReportRepository = caseReportRepository;
             _caseReportsPerRegionLast7DaysRepository = repository;
             _healthRisks = healthRisks;
+            _regions = regions;
+            _districts = districts;
             _dataCollectors = dataCollectors;
         }
 
-        public RegionWithHealthRisk AddRegionWithCases(Region region, NumberOfPeople numCases)
+        public RegionWithHealthRisk AddRegionWithCases(RegionName region, NumberOfPeople numCases)
         {
             return new RegionWithHealthRisk()
             {
@@ -38,7 +45,7 @@ namespace Read.CaseReports
 
         
         
-       [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
+       [EventProcessor("db27c06b-d33c-4788-8e9d-2a1bbba13be3")]
         public void Process(CaseReportReceived @event)
         {
             // Insert CaseReports
@@ -50,15 +57,28 @@ namespace Read.CaseReports
             _caseReportRepository.Insert(caseReport);
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-            var dataCollector = _dataCollectors.GetById(caseReport.DataCollectorId);
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            var district = _districts.GetById(dataCollector.District);
 
+            InsertPerHealthRiskAndRegionForComingWeek(caseReport, healthRisk, district);
+            UpdateDataCollectorLastActive(dataCollector, caseReport);
+        }
+
+        public void UpdateDataCollectorLastActive(DataCollector dataCollector, CaseReport caseReport)
+        {
+            dataCollector.LastActive = caseReport.Timestamp;
+            _dataCollectors.Update(dataCollector);
+        }
+
+        public void InsertPerHealthRiskAndRegionForComingWeek(CaseReport caseReport, HealthRisk healthRisk, District district)
+        {
             // Insert by health risk and region
             var today = Day.From(caseReport.Timestamp);
             var totalCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
                                 +caseReport.NumberOfFemalesAged5AndOlder;
-            Region region = dataCollector.Region;
+            RegionName region = district.RegionName;
 
             for (var day = today; day < today + 7; day++)
             {
@@ -105,6 +125,6 @@ namespace Read.CaseReports
                     _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
                 }
             };
-        }        
+        }
     }
 }

@@ -1,6 +1,5 @@
 using Dolittle.ReadModels;
 using System;
-using Concepts;
 
 namespace Read.CaseReports
 {

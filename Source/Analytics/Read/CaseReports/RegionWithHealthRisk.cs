@@ -5,7 +5,7 @@ namespace Read.CaseReports
 {
     public class RegionWithHealthRisk : IReadModel
     {
-        public Region Id;
+        public RegionName Id;
 
         public NumberOfPeople NumCases;
     }

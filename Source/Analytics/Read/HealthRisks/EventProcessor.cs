@@ -11,9 +11,9 @@ namespace Read.HealthRisks
 {
     public class EventProcessor : ICanProcessEvents
     {
-        readonly IReadModelRepositoryFor<HealthRiskName> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
-        public EventProcessor(IReadModelRepositoryFor<HealthRiskName> healthRisks)
+        public EventProcessor(IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _healthRisks = healthRisks;
         }
@@ -21,7 +21,7 @@ namespace Read.HealthRisks
         [EventProcessor("15143c92-10c5-5f79-4148-fcc6060fab4a")]
         public void Process(HealthRiskCreated @event)
         {
-            _healthRisks.Insert(new HealthRiskName {
+            _healthRisks.Insert(new HealthRisk {
                 Id = @event.Id,
                 Name = @event.Name
             });
@@ -30,7 +30,7 @@ namespace Read.HealthRisks
         [EventProcessor("d2a2762d-aa9e-48dd-6667-629e2d64f16a")]
         public void Process(HealthRiskModified @event)
         { 
-            _healthRisks.Update(new HealthRiskName {
+            _healthRisks.Update(new HealthRisk {
                 Id = @event.Id,
                 Name = @event.Name
             });

@@ -13,7 +13,6 @@ using Dolittle.Security;
 using Dolittle.Tenancy;
 using Microsoft.AspNetCore.Mvc;
 using Read.Overview.Last4WeeksPerHealthRisk;
-using Read.Overview.LastWeekTotals;
 
 namespace Core.Overview.LastWeekTotals
 {

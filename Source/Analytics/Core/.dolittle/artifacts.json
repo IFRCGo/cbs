@@ -1,15 +1,32 @@
 {
-  "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
+  "082b543a-e61b-4dea-b261-1396475b40b7": {
     "commands": {},
-    "events": {
-      "58a3dbf3-bcd0-4722-b21b-65d06558df53": {
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "893b09bd-5d69-4a05-bc2a-420ba95cd169": {
         "generation": 1,
-        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
+        "type": "Read.CaseReports.CaseReport, Read"
+      },
+      "2045add7-bc9d-4abb-85d1-c2b23e20d920": {
+        "generation": 1,
+        "type": "Read.CaseReports.HealthRisksInRegionsLast7Days, Read"
+      },
+      "01499494-3a94-4333-9e63-f5c63d10c59f": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportsPerRegionLast7Days, Read"
+      },
+      "1613bdd9-d11c-4efe-b6eb-b60e94d6e23e": {
+        "generation": 1,
+        "type": "Read.CaseReports.RegionWithHealthRisk, Read"
       }
     },
-    "eventSources": {},
-    "readModels": {},
-    "queries": {}
+    "queries": {
+      "15822f97-c898-4697-997b-1a4eebf7abd9": {
+        "generation": 1,
+        "type": "Read.CaseReports.GetCaseReportsPerRegionLast7Days, Read"
+      }
+    }
   },
   "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
     "commands": {},
@@ -39,18 +56,11 @@
     "events": {},
     "eventSources": {},
     "readModels": {
-      "111ed52f-9a13-4c41-ba02-cbf8087d59df": {
+      "6f5deda4-7199-4b10-8f06-6d88cfc938f1": {
         "generation": 1,
-        "type": "Read.HealthRisks.HealthRiskName, Read"
+        "type": "Read.HealthRisks.HealthRisk, Read"
       }
     },
-    "queries": {}
-  },
-  "4555d18b-9ac8-4343-b742-3bfbd45de3b8": {
-    "commands": {},
-    "events": {},
-    "eventSources": {},
-    "readModels": {},
     "queries": {}
   },
   "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
@@ -70,28 +80,64 @@
       }
     }
   },
-  "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
-    "commands": {},
-    "events": {},
-    "eventSources": {},
-    "readModels": {
-      "b388b07a-2c43-424b-a09e-df0ed85acba1": {
-        "generation": 1,
-        "type": "Read.DataCollectors.DataCollector, Read"
-      }
-    },
-    "queries": {}
-  },
-  "d94019a9-f7a6-4562-97f3-7689c8076821": {
+  "05f2b697-80c0-41c0-b1ea-2d90440498b5": {
     "commands": {},
     "events": {
-      "51b2c376-ce2b-4d49-a86c-e654e50248c9": {
+      "899f24ac-860d-4dae-ae90-938ac12e5226": {
         "generation": 1,
-        "type": "Events.Admin.HealthRisk.HealthRiskCreated, Events.Admin"
+        "type": "Events.Reporting.DataCollectors.DataCollectorRegistered, Events.Reporting"
+      },
+      "5764eae6-fc2e-4c46-a6d7-fd6c978499fc": {
+        "generation": 1,
+        "type": "Events.Reporting.DataCollectors.DataCollectorVillageChanged, Events.Reporting"
       }
     },
     "eventSources": {},
     "readModels": {},
+    "queries": {}
+  },
+  "bee96dcd-ad75-414d-9d61-650b3a92fb76": {
+    "commands": {},
+    "events": {
+      "58a3dbf3-bcd0-4722-b21b-65d06558df53": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.CaseReportReceived, Events.Reporting"
+      }
+    },
+    "eventSources": {},
+    "readModels": {},
+    "queries": {}
+  },
+  "33a65b4a-6452-43a9-aa6c-19979df11b6f": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "4a394881-b078-401f-bc7b-c2a197d32be2": {
+        "generation": 1,
+        "type": "Read.Overview.Last4WeeksPerHealthRisk.CaseReportsLast4WeeksPerHealthRisk, Read"
+      }
+    },
+    "queries": {}
+  },
+  "11b95f11-c23f-4c0c-8f20-e01e630fc5a0": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "fe03813c-9131-41e1-a289-dd8eba7afde3": {
+        "generation": 1,
+        "type": "Read.DataCollectors.District, Read"
+      },
+      "2f9a7b63-c492-4685-b05b-7e9111ca062f": {
+        "generation": 1,
+        "type": "Read.DataCollectors.Region, Read"
+      },
+      "2c26ade8-5b5a-4ef1-a9b2-ad528fc7a1a3": {
+        "generation": 1,
+        "type": "Read.DataCollectors.Village, Read"
+      }
+    },
     "queries": {}
   }
 }

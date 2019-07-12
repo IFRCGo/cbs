@@ -1,7 +1,6 @@
-using Concepts.HealthRisk;
 using Dolittle.ReadModels;
 using System.Collections.Generic;
-using Read.HealthRisk;
+using Concepts.HealthRisks;
 
 namespace Read.CaseReports
 {

@@ -8,8 +8,12 @@
     "4fc04c04-8e47-43b3-8f36-e736f7a49666": {
       "name": "Reporting",
       "subFeatures": {
-        "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
+        "bee96dcd-ad75-414d-9d61-650b3a92fb76": {
           "name": "CaseReports",
+          "subFeatures": {}
+        },
+        "05f2b697-80c0-41c0-b1ea-2d90440498b5": {
+          "name": "DataCollectors",
           "subFeatures": {}
         }
       }
@@ -19,10 +23,6 @@
       "subFeatures": {
         "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
           "name": "HealthRisks",
-          "subFeatures": {}
-        },
-        "d94019a9-f7a6-4562-97f3-7689c8076821": {
-          "name": "HealthRisk",
           "subFeatures": {}
         }
       }
@@ -37,6 +37,10 @@
         "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
           "name": "LastWeekTotals",
           "subFeatures": {}
+        },
+        "33a65b4a-6452-43a9-aa6c-19979df11b6f": {
+          "name": "Last4WeeksPerHealthRisk",
+          "subFeatures": {}
         }
       }
     },
@@ -44,7 +48,11 @@
       "name": "HealthRisks",
       "subFeatures": {}
     },
-    "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
+    "082b543a-e61b-4dea-b261-1396475b40b7": {
+      "name": "CaseReports",
+      "subFeatures": {}
+    },
+    "11b95f11-c23f-4c0c-8f20-e01e630fc5a0": {
       "name": "DataCollectors",
       "subFeatures": {}
     }
