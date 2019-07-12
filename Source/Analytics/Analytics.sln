@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concepts", "Concepts\Concep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read", "Read\Read.csproj", "{5B762123-777F-41CA-9CC9-5CF04DE04FE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read.Specs", "Read.Specs\Read.Specs.csproj", "{84C32554-1E49-41EF-9BD1-A02180FF3CF5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Admin", "Events.Admin\Events.Admin.csproj", "{E038517A-DEAA-4DBD-83B8-7CF564BAA135}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{7D30EF65-F2B3-47F6-A977-B7DA5B855E26}"
