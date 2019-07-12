@@ -18,7 +18,7 @@ using Dolittle.DependencyInversion;
 namespace Core.CaseReports
 {
     [Route("case-reports/export")]
-    public class CaseReportsController : Controller
+    public class CaseReportsController : ControllerBase
     {
         readonly IExecutionContextConfigurator _executionContextConfigurator;
         readonly ITenantResolver _tenantResolver;

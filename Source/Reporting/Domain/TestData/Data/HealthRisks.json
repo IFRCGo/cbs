@@ -1,0 +1,22 @@
+[
+    {
+        "Id": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "ReadableId": "1",
+        "Name": "AWD"
+    },
+    {
+        "Id": "E2A1AE23-F9D6-42B0-81FC-0FF15917C83B",
+        "ReadableId": "2",
+        "Name": "Measels"
+    },
+    {
+        "Id": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
+        "ReadableId": "3",
+        "Name": "Bloody diarrhea"
+    },
+    {
+        "Id": "B98231C8-2209-4472-87A6-46F927E6225F",
+        "ReadableId": "4",
+        "Name": "Ebola"
+    }
+]

@@ -52,7 +52,7 @@ namespace Domain.Reporting.CaseReports
             DateTimeOffset timestamp,
             string message)
         {
-            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message, 
+            Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
                 longitude, latitude, timestamp));
         }        
