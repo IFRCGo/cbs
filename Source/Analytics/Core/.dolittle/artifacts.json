@@ -122,8 +122,17 @@
       "e2bf08e1-ce67-4668-a01a-f985d63c4823": {
         "generation": 1,
         "type": "Read.HealthRisks.HealthRisk, Read"
+      },
+      "7bd7e2b4-8be2-4f73-bd2a-4a5a02ee67a2": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsBeforeDay, Read"
       }
     },
-    "queries": {}
+    "queries": {
+      "71aa18b5-dbff-45dd-9523-0709f2ad5959": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsBeforeDayQuery, Read"
+      }
+    }
   }
 }

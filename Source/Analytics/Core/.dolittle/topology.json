@@ -64,6 +64,10 @@
     "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
       "name": "DataCollectors",
       "subFeatures": {}
+    },
+    "ba7b04e7-2d61-49f2-a9e1-9c8812645628": {
+      "name": "Map",
+      "subFeatures": {}
     }
   }
 }
