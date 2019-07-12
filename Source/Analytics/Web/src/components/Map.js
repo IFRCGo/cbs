@@ -15,7 +15,6 @@ var firefoxIcon = L.icon({
 
 
 function CaseMarkers({casesLastWeekAndMonth}){
-    console.log(casesLastWeekAndMonth);
     return casesLastWeekAndMonth.map(cases => {
         cases.vals = new Array(cases.numberOfPeople);
         cases.vals.fill(1);
@@ -57,22 +56,21 @@ class MapWidget extends Component {
         let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
 
         this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
-            console.log(queryResult);
             if(queryResult.success){
+                let id = (Object.keys(queryResult.items[0].caseReportsPerHealthRisk)[0]);
                 this.setState({ 
-                    casesLastWeekAndMonth: queryResult.items[0].casesPerHealthRisk["9cd3c7b5-6973-45c3-a8d3-58d9eb38824c"].caseReportsLast7Days,
+                    casesLastWeekAndMonth: queryResult.items[0].caseReportsPerHealthRisk[id].caseReportsLast7Days,
                     isError: false,
                     isLoading: false 
                 })
-
             }
-        }).catch(_ => 
+        }).catch(_ => {
             this.setState({
                 isLoading: false,
                 isError: true
             })
+        }
         );
-
     }
 
     render() {
@@ -92,16 +90,16 @@ class MapWidget extends Component {
                     <Button
                         marginTop={"20px"}
                         iconBefore="repeat"
-                        onClick={() => this.fetchData()}
+                        onClick={() => this.fetchCaseReportsBeforeDay()}
                     >
                         Retry
                     </Button>
                 </div>
             );
-        } else if(this.state.isLoading) {
+        }
+        if(this.state.isLoading) {
             return (<div>Loading...</div>);
         }
-        console.log(this.state.casesLastWeekAndMonth);
         return (
             <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={10}>
                 <TileLayer

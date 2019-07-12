@@ -122,14 +122,22 @@
       "e2bf08e1-ce67-4668-a01a-f985d63c4823": {
         "generation": 1,
         "type": "Read.HealthRisks.HealthRisk, Read"
-      },
-      "7bd7e2b4-8be2-4f73-bd2a-4a5a02ee67a2": {
+      }
+    },
+    "queries": {}
+  },
+  "ba7b04e7-2d61-49f2-a9e1-9c8812645628": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "181acb4e-5068-4a2d-be22-ba4e653ebe38": {
         "generation": 1,
         "type": "Read.Map.CaseReportsBeforeDay, Read"
       }
     },
     "queries": {
-      "71aa18b5-dbff-45dd-9523-0709f2ad5959": {
+      "a3fe8851-4f12-4800-b0b7-e145f76e3860": {
         "generation": 1,
         "type": "Read.Map.CaseReportsBeforeDayQuery, Read"
       }
