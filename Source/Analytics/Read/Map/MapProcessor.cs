@@ -28,7 +28,7 @@ namespace Read.Map
 
             var dayOfCaseReport = Day.From(@event.Timestamp);
             var timeLimit30Days = dayOfCaseReport + 30;  
-            var timeLimit7Days  = dayOfCaseReport + 7 - 1;
+            var timeLimit7Days  = dayOfCaseReport + 7;
 
             // Insert or update casereport depending on if it is in the list of not             
             for(Day i = dayOfCaseReport; i < timeLimit30Days; i++){
@@ -73,8 +73,11 @@ namespace Read.Map
             else{
                 if(casesBeforeDay.CaseReportsPerHealthRisk.ContainsKey(healthRiskId)){
                     casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(caseReportMap);
-
-                    casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(caseReportMap);
+                    
+                    // Check if the case report is within a week
+                    if(day < dayOfCaseReport + 7){
+                        casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(caseReportMap);
+                    }
                 }else{
                     casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){  
                                                                             CaseReportsLast7Days  = caseReportsLast7Days,
