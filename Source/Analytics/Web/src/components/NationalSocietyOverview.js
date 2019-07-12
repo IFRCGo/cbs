@@ -25,9 +25,14 @@ class NationalSocietyOverview extends Component {
     }
 
     render() {
+        let body = {
+            margin: 10,
+        }
         return (
-            <div className="analytics--container">
-                <CBSNavigation />
+            <>
+            <CBSNavigation />
+
+            <div className="analytics--container" style={body}>
                 <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
                 <Grid container spacing={8}>
@@ -40,6 +45,7 @@ class NationalSocietyOverview extends Component {
                 <HealthRiskPerDistrictTable />
                 <Map />
             </div>
+            </>
         );
     }
 }
