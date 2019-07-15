@@ -136,6 +136,10 @@
       "2c26ade8-5b5a-4ef1-a9b2-ad528fc7a1a3": {
         "generation": 1,
         "type": "Read.DataCollectors.Village, Read"
+      },
+      "e454d02f-ce75-44d6-a5fa-b3c8616d8610": {
+        "generation": 1,
+        "type": "Read.DataCollectors.DataCollector, Read"
       }
     },
     "queries": {}
