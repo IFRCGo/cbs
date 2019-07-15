@@ -32,5 +32,24 @@
                 "generation": 1
             }
         ]
+    },
+    {
+        "application": "fcb9885f-8b19-192e-be61-f966ee1c1640",
+        "boundedContext": "c5e3a9d7-fa1f-f106-7532-5584112f70e2",
+        "url": "cbs-alerts:50052",
+        "events": [
+            {
+                "id": "233b9cd3-af01-4686-b8d0-d98d3fdd7b6e",
+                "generation": 1
+            },
+            {
+                "id": "6f1c66a2-6712-4a78-82f0-a26185889d2b",
+                "generation": 1
+            },
+            {
+                "id": "0c6aadaa-e2a3-474d-a630-8a2b2bca2f19",
+                "generation": 1
+            }
+        ]
     }
 ]
