@@ -54,16 +54,16 @@ namespace Domain.TestData
             var healthRisks = DeserializeTestData<HealthRiskTestDataHelper[]>("TestData.Data.HealthRisks.json");
             var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("TestData.Data.DataCollectors.json");
             var caseReports = DeserializeTestData<CaseReportTestDataHelper[]>("TestData.Data.CaseReports.json");
+            var lastDayTestData = DateTimeOffset.ParseExact("14/02/2019 08:00:00 +00:00", "dd/MM/yyyy hh:mm:ss zzz",
+                CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
 
             CreateHealthRisks(healthRisks);
             CreateDataCollectors(dataCollectors);
-            CreateCaseReports(caseReports, dataCollectors);
+            CreateCaseReports(caseReports, dataCollectors, lastDayTestData);
         }
 
-        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors)
+        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors, DateTimeOffset lastDayTestData)
         {
-            var provider = CultureInfo.InvariantCulture;
-
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
@@ -78,7 +78,7 @@ namespace Domain.TestData
                     caseReport.NumberOfFemalesAged5AndOlder,
                     dataCollector.GpsLocation.Longitude,
                     dataCollector.GpsLocation.Latitude,
-                    DateTimeOffset.ParseExact(caseReport.Timestamp, "dd/MM/yyyy HH:mm:ss zzz", provider, DateTimeStyles.AdjustToUniversal),
+                    AlterReportDatesToBePinnedToToday(caseReport.Timestamp, lastDayTestData),
                     caseReport.Message);
             }
         }
@@ -116,6 +116,20 @@ namespace Domain.TestData
                     healthRisk.ReadableId
                 );
             }
+        }
+
+        private DateTimeOffset AlterReportDatesToBePinnedToToday(string timestamp, DateTimeOffset lastDateTestData)
+        {
+            var parseOk = DateTimeOffset.TryParseExact(timestamp,"dd/MM/yyyy HH:mm:ss zzz",
+                CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var dateTimeOffset);
+
+            if(parseOk)
+            {
+                var diff = lastDateTestData - DateTimeOffset.UtcNow;
+                return dateTimeOffset - diff;
+            }
+
+            return new DateTimeOffset(DateTime.Now);
         }
     }
 }
