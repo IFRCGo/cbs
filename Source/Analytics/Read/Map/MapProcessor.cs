@@ -10,12 +10,16 @@ namespace Read.Map
 {
     public class MapProcessor : ICanProcessEvents
     {
-        readonly IReadModelRepositoryFor<CaseReportsBeforeDay> _caseReportRepository;
+        readonly IReadModelRepositoryFor<CaseReportsLast7Days> _caseReportRepositoryLast7Days;
+        readonly IReadModelRepositoryFor<CaseReportsLast30Days> _caseReportRepositoryLast30Days;
+
         readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
 
-        public MapProcessor(IReadModelRepositoryFor<CaseReportsBeforeDay> caseReportRepository,
+        public MapProcessor(IReadModelRepositoryFor<CaseReportsLast7Days> caseReportRepositoryLast7Days,
+                            IReadModelRepositoryFor<CaseReportsLast30Days> caseReportRepositoryLast30Days,
                             IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> healthRisk){
-            _caseReportRepository = caseReportRepository;
+            _caseReportRepositoryLast7Days  = caseReportRepositoryLast7Days;
+            _caseReportRepositoryLast30Days = caseReportRepositoryLast30Days;
             _healthRisks = healthRisk;
         }
 
@@ -35,63 +39,69 @@ namespace Read.Map
             var timeLimit7Days  = dayOfCaseReport + 7;
 
             // Insert or update casereport depending on if it is in the list of not             
-            for(Day i = dayOfCaseReport; i < timeLimit30Days; i++){
-                var casesBeforeDay = _caseReportRepository.GetById(i);
-                
-                var caseReportForMap     = new CaseReportForMap(){
+            for(Day day = dayOfCaseReport; day < timeLimit30Days; day++){
+                var currentCaseReportsLast30Days = _caseReportRepositoryLast30Days.GetById(day);
+
+                var caseReport = new CaseReportForMap(){
                     NumberOfPeople = totalCases,
                     Location = locationForCaseReport
                 };
 
-                var caseReportsLast7Days = new List<CaseReportForMap>{};
-                if(i < timeLimit7Days){
-                    caseReportsLast7Days.Add(caseReportForMap);
+                if(day < timeLimit7Days){
+                    var currentCaseReportsLast7Days  = _caseReportRepositoryLast7Days.GetById(day);
+                    updateCaseReportLast7Days(currentCaseReportsLast7Days, caseReport, day, healthRiskName);
                 }
+                updateCaseReportLast30Days(currentCaseReportsLast30Days, caseReport, day, healthRiskName);
+
+
+                //updateCasesBeforeDay(currentCaseReportsLast7Days, currentCaseReportsLast30Days, caseReport, caseReportsLast7DaysPerHealthRisk, caseReportsLast30DaysPerHealthRisk, i, dayOfCaseReport, healthRiskName);
                 
-                var caseReportsLast30Days = new List<CaseReportForMap>{ caseReportForMap };
-                
-                updateCasesBeforeDay(casesBeforeDay, caseReportForMap, caseReportsLast7Days, caseReportsLast30Days, healthRiskId, i, dayOfCaseReport, healthRiskName);
             }
 
         }
-        void updateCasesBeforeDay(CaseReportsBeforeDay casesBeforeDay, 
-                                                 CaseReportForMap caseReportMap,
-                                                 List<CaseReportForMap> caseReportsLast7Days, 
-                                                 List<CaseReportForMap> caseReportsLast30Days,
-                                                 HealthRiskId healthRiskId, 
-                                                 Day day,
-                                                 Day dayOfCaseReport,
-                                                 HealthRiskName healthRiskName)
+        void updateCaseReportLast7Days( CaseReportsLast7Days caseReportsLast7Days, 
+                                        CaseReportForMap caseReportMap,
+                                        Day day,
+                                        HealthRiskName healthRiskName)
         {
-            if(casesBeforeDay == null){
-                casesBeforeDay = new CaseReportsBeforeDay () {
+            if(caseReportsLast7Days == null){
+                caseReportsLast7Days = new CaseReportsLast7Days () {
                     Id = day,
-                    CaseReportsPerHealthRisk = new Dictionary<HealthRiskId, CaseReportsRetrieved>()
+                    CaseReportsPerHealthRisk = new Dictionary<HealthRiskName, IList<CaseReportForMap>> {}
                 };
-                casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){
-                                                                        HealthRiskName        = healthRiskName,
-                                                                        CaseReportsLast7Days  = caseReportsLast7Days,
-                                                                        CaseReportsLast30Days = caseReportsLast30Days
-                };
-                _caseReportRepository.Insert(casesBeforeDay);
-            }
-            else{
-                if(casesBeforeDay.CaseReportsPerHealthRisk.ContainsKey(healthRiskId)){
-                    casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId].CaseReportsLast30Days.Add(caseReportMap);
-
-                    // Check if the case report is within a week
-                    if(day < dayOfCaseReport + 7){
-                        casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId].CaseReportsLast7Days.Add(caseReportMap);
-                    }
-                }else{
-                    casesBeforeDay.CaseReportsPerHealthRisk[healthRiskId] = new CaseReportsRetrieved(){  
-                                                                            HealthRiskName        = healthRiskName,
-                                                                            CaseReportsLast7Days  = caseReportsLast7Days,
-                                                                            CaseReportsLast30Days = caseReportsLast30Days
-                    };
-                }
-                _caseReportRepository.Update(casesBeforeDay);
+                caseReportsLast7Days.CaseReportsPerHealthRisk[healthRiskName] = new List<CaseReportForMap>{caseReportMap};
+                _caseReportRepositoryLast7Days.Insert(caseReportsLast7Days);
+            }else{
+                update(caseReportsLast7Days.CaseReportsPerHealthRisk, caseReportMap, healthRiskName);
+                _caseReportRepositoryLast7Days.Update(caseReportsLast7Days);  
             }
         }
+
+        void updateCaseReportLast30Days( CaseReportsLast30Days caseReportsLast30Days, 
+                                        CaseReportForMap caseReportMap,
+                                        Day day,
+                                        HealthRiskName healthRiskName)
+        {
+            if(caseReportsLast30Days == null){
+                caseReportsLast30Days = new CaseReportsLast30Days () {
+                    Id = day,
+                    CaseReportsPerHealthRisk = new Dictionary<HealthRiskName, IList<CaseReportForMap>> {}
+                };
+                caseReportsLast30Days.CaseReportsPerHealthRisk[healthRiskName] = new List<CaseReportForMap>{caseReportMap};
+                _caseReportRepositoryLast30Days.Insert(caseReportsLast30Days);
+            }else{
+                update(caseReportsLast30Days.CaseReportsPerHealthRisk, caseReportMap, healthRiskName);
+                _caseReportRepositoryLast30Days.Update(caseReportsLast30Days);  
+            }
+        }
+        
+        void update(IDictionary<HealthRiskName, IList<CaseReportForMap>> caseReportsPerHealthRisk, CaseReportForMap caseReportForMap, HealthRiskName healthRiskName){
+            if(caseReportsPerHealthRisk.ContainsKey(healthRiskName)){
+                caseReportsPerHealthRisk[healthRiskName].Add(caseReportForMap);
+            }else{
+                caseReportsPerHealthRisk[healthRiskName] = new List<CaseReportForMap>{caseReportForMap};
+            }
+        }
+
     }
 }

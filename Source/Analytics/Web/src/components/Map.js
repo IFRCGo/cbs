@@ -11,14 +11,22 @@ import { QueryCoordinator } from "@dolittle/queries";
 var redCrossIcon = L.icon({
     iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
     iconSize: [10, 10], // size of the icon
-    });
+});
 
 
 function CaseMarkers({casesLastWeekAndMonth}){
-    return casesLastWeekAndMonth.map(cases => {
+    let id = (Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk)[0]);
+    var casesForOneHealthRisk = casesLastWeekAndMonth.caseReportsPerHealthRisk[id];
+    console.log(casesForOneHealthRisk.healthRiskName);
+
+    Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).forEach(function(key) {
+        console.log(casesLastWeekAndMonth.caseReportsPerHealthRisk[key].caseReportsLast7Days[0]);
+     });
+
+    return casesForOneHealthRisk.caseReportsLast7Days.map(cases => {
         cases.vals = new Array(cases.numberOfPeople);
         cases.vals.fill(1);
-        return cases.vals.map(function(val){     
+        return cases.vals.map(function(val){  
             return <Marker
                 position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
             ></Marker>
@@ -56,9 +64,9 @@ class MapWidget extends Component {
 
         this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
             if(queryResult.success){
-                let id = (Object.keys(queryResult.items[0].caseReportsPerHealthRisk)[0]);
+               
                 this.setState({ 
-                    casesLastWeekAndMonth: queryResult.items[0].caseReportsPerHealthRisk[id].caseReportsLast7Days,
+                    casesLastWeekAndMonth: queryResult.items[0],
                     isError: false,
                     isLoading: false 
                 })
