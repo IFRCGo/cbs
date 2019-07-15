@@ -102,15 +102,23 @@
     "events": {},
     "eventSources": {},
     "readModels": {
-      "7bd7e2b4-8be2-4f73-bd2a-4a5a02ee67a2": {
+      "d5cea4ac-3894-4147-87d2-e65f6958af1e": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsBeforeDay, Read"
+        "type": "Read.Map.CaseReportsLast30Days, Read"
+      },
+      "4ca93dd1-f168-42fa-90e2-47c6b9de7060": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast7Days, Read"
       }
     },
     "queries": {
-      "71aa18b5-dbff-45dd-9523-0709f2ad5959": {
+      "1882f08f-87ba-466a-a3bf-4e6bcda7cea5": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsBeforeDayQuery, Read"
+        "type": "Read.Map.CaseReportsLast30DaysQuery, Read"
+      },
+      "22ab53e7-d8da-45d3-9fad-d172ce5297bf": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast7DaysQuery, Read"
       }
     }
   }
