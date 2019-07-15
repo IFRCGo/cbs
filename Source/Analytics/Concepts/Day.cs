@@ -25,10 +25,5 @@ namespace Concepts
         {
             get => Day.From(DateTimeOffset.Now);
         }
-
-        public static Day SomeDay
-        {
-            get => 17925;
-        }
     }
 }
