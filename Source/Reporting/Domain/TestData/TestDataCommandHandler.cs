@@ -53,21 +53,21 @@ namespace Domain.TestData
         {
             var healthRisks = DeserializeTestData<HealthRiskTestDataHelper[]>("TestData.Data.HealthRisks.json");
             var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("TestData.Data.DataCollectors.json");
-            var caseReports = DeserializeTestData<CaseReportTestDataHelper[]>("TestData.Data.CaseReports.json");
-            var lastDayTestData = DateTimeOffset.ParseExact("14/02/2019 08:00:00 +00:00", "dd/MM/yyyy hh:mm:ss zzz",
-                CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
+            var caseReportsTestData = DeserializeTestData<CaseReportTestDataHelper>("TestData.Data.CaseReports.json");
 
             CreateHealthRisks(healthRisks);
             CreateDataCollectors(dataCollectors);
-            CreateCaseReports(caseReports, dataCollectors, lastDayTestData);
+            CreateCaseReports(caseReportsTestData.CaseReports, dataCollectors, caseReportsTestData.DateLatestTestData);
         }
 
-        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors, DateTimeOffset lastDayTestData)
+        private void CreateCaseReports(CaseReportTestData[] caseReports, RegisterDataCollector[] dataCollectors, string lastDayTestDataString)
         {
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
                 var dataCollector = dataCollectors.FirstOrDefault(d => d.DataCollectorId == caseReport.DataCollectorId);
+                var lastDayTestData = DateTimeOffset.ParseExact(lastDayTestDataString, "dd/MM/yyyy HH:mm:ss zzz",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
 
                 root.Report(caseReport.DataCollectorId,
                     caseReport.HealthRiskId,

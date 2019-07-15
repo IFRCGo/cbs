@@ -6,6 +6,12 @@ namespace Domain.TestData.Data
 {
     public class CaseReportTestDataHelper
     {
+        public string DateLatestTestData { get; set; }
+        public CaseReportTestData[] CaseReports { get; set; }
+    }
+
+    public class CaseReportTestData
+    {
         public CaseReportId Id { get; set; }
         public DataCollectorId DataCollectorId { get; set; }
         public HealthRiskId HealthRiskId { get; set; }
