@@ -1,40 +1,52 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Map, Popup, CircleMarker, TileLayer } from "react-leaflet";
-import { formatDate, toOrDefault, fromOrDefault } from "../utils/dateUtils";
-import { getJson } from "../utils/request";
+import { Map, Popup, CircleMarker, TileLayer, Marker} from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import "../assets/map.css";
+
 import { Alert, Button, Text } from "evergreen-ui";
+import { CaseReportsBeforeDayQuery } from "../Features/Map/CaseReportsBeforeDayQuery";
+import { QueryCoordinator } from "@dolittle/queries";
 
-import { BASE_URL } from "./Analytics";
+var redCrossIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
+    iconSize: [10, 10], // size of the icon
+});
 
-const OutbreakMarkers = ({ outbreaks }) => (
-    <>
-        {outbreaks.map((data, index) => (
-            <CircleMarker
-                key={index}
-                center={data.center}
-                color={data.color}
-                radius={data.radius}
-            >
-                <Popup>{data.popup}</Popup>
-            </CircleMarker>
-        ))}
-    </>
-);
+
+function CaseMarkers({casesLastWeekAndMonth}){
+    let id = (Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk)[0]);
+    var casesForOneHealthRisk = casesLastWeekAndMonth.caseReportsPerHealthRisk[id];
+    console.log(casesForOneHealthRisk.healthRiskName);
+
+    Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).forEach(function(key) {
+        console.log(casesLastWeekAndMonth.caseReportsPerHealthRisk[key].caseReportsLast7Days[0]);
+     });
+
+    return casesForOneHealthRisk.caseReportsLast7Days.map(cases => {
+        cases.vals = new Array(cases.numberOfPeople);
+        cases.vals.fill(1);
+        return cases.vals.map(function(val){  
+            return <Marker
+                position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
+            ></Marker>
+        });
+    });   
+};
 
 class MapWidget extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            outbreaks: [],
-            isLoading: false,
+            casesLastWeekAndMonth: [],
+            isLoading: true,
             isError: false
         };
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.fetchCaseReportsBeforeDay();
     }
 
     componentDidUpdate(prevProps) {
@@ -42,27 +54,30 @@ class MapWidget extends Component {
             prevProps.range.from !== this.props.range.from ||
             prevProps.range.to !== this.props.range.to
         ) {
-            this.fetchData();
+            this.fetchCaseReportsBeforeDay();
         }
     }
 
-    fetchData() {
-        const from = fromOrDefault(this.props.range.from);
-        const to = toOrDefault(this.props.range.to);
+    fetchCaseReportsBeforeDay() {
+        this.queryCoordinator = new QueryCoordinator();
+        let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
 
-        this.url = `${BASE_URL}Map/HealthRiskCoordinates/${formatDate(
-            from
-        )}/${formatDate(to)}/`;
-
-        getJson(this.url)
-            .then(json =>
-                this.setState({
-                    outbreaks: json,
-                    isLoading: false,
-                    isError: false
+        this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
+            if(queryResult.success){
+               
+                this.setState({ 
+                    casesLastWeekAndMonth: queryResult.items[0],
+                    isError: false,
+                    isLoading: false 
                 })
-            )
-            .catch(_ => this.setState({ isLoading: false, isError: true }));
+            }
+        }).catch(_ => 
+            this.setState({
+                isLoading: false,
+                isError: true
+            })
+        );
+
     }
 
     render() {
@@ -88,16 +103,20 @@ class MapWidget extends Component {
                     </Button>
                 </div>
             );
+        } else if(this.state.isLoading) {
+            return (<div>Loading...</div>);
         }
         return (
-            <Map center={position} zoom={5} style={{height: 210, width: 210}}>
+            <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={10}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
-                <OutbreakMarkers outbreaks={this.state.outbreaks} />
-            </Map>
-            
+                <MarkerClusterGroup>
+                    <CaseMarkers casesLastWeekAndMonth={this.state.casesLastWeekAndMonth}></CaseMarkers>
+                </MarkerClusterGroup>
+             </Map>
+
         );
     }
 }
