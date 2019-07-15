@@ -53,21 +53,21 @@ namespace Domain.TestData
         {
             var healthRisks = DeserializeTestData<HealthRiskTestDataHelper[]>("TestData.Data.HealthRisks.json");
             var dataCollectors = DeserializeTestData<RegisterDataCollector[]>("TestData.Data.DataCollectors.json");
-            var caseReports = DeserializeTestData<CaseReportTestDataHelper[]>("TestData.Data.CaseReports.json");
+            var caseReportsTestData = DeserializeTestData<CaseReportTestDataHelper>("TestData.Data.CaseReports.json");
 
             CreateHealthRisks(healthRisks);
             CreateDataCollectors(dataCollectors);
-            CreateCaseReports(caseReports, dataCollectors);
+            CreateCaseReports(caseReportsTestData.CaseReports, dataCollectors, caseReportsTestData.DateLatestTestData);
         }
 
-        private void CreateCaseReports(CaseReportTestDataHelper[] caseReports, RegisterDataCollector[] dataCollectors)
+        private void CreateCaseReports(CaseReportTestData[] caseReports, RegisterDataCollector[] dataCollectors, string lastDayTestDataString)
         {
-            var provider = CultureInfo.InvariantCulture;
-
             foreach (var caseReport in caseReports)
             {
                 var root = _caseReportingAggregate.Get(Guid.NewGuid());
                 var dataCollector = dataCollectors.FirstOrDefault(d => d.DataCollectorId == caseReport.DataCollectorId);
+                var lastDayTestData = DateTimeOffset.ParseExact(lastDayTestDataString, "dd/MM/yyyy HH:mm:ss zzz",
+                    CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
 
                 root.Report(caseReport.DataCollectorId,
                     caseReport.HealthRiskId,
@@ -78,7 +78,7 @@ namespace Domain.TestData
                     caseReport.NumberOfFemalesAged5AndOlder,
                     dataCollector.GpsLocation.Longitude,
                     dataCollector.GpsLocation.Latitude,
-                    DateTimeOffset.ParseExact(caseReport.Timestamp, "dd/MM/yyyy HH:mm:ss zzz", provider, DateTimeStyles.AdjustToUniversal),
+                    AlterReportDatesToBePinnedToToday(caseReport.Timestamp, lastDayTestData),
                     caseReport.Message);
             }
         }
@@ -116,6 +116,20 @@ namespace Domain.TestData
                     healthRisk.ReadableId
                 );
             }
+        }
+
+        private DateTimeOffset AlterReportDatesToBePinnedToToday(string timestamp, DateTimeOffset lastDateTestData)
+        {
+            var parseOk = DateTimeOffset.TryParseExact(timestamp,"dd/MM/yyyy HH:mm:ss zzz",
+                CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var dateTimeOffset);
+
+            if(parseOk)
+            {
+                var diff = lastDateTestData - DateTimeOffset.UtcNow;
+                return dateTimeOffset - diff;
+            }
+
+            return new DateTimeOffset(DateTime.Now);
         }
     }
 }
