@@ -14,7 +14,7 @@ namespace Events.DataCollectors.Registration
         public string FullName { get; }
         public string DisplayName { get; }
         public int YearOfBirth { get; }
-        public int Sex { get;}
+        public int Sex { get; }
         public int PreferredLanguage { get; }
         public double LocationLongitude { get; }
         public double LocationLatitude { get; }

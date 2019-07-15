@@ -24,6 +24,7 @@ namespace Read.Reporting.CaseReports
         public int NumberOfMalesUnder5 { get; set; }
         public DateTimeOffset Timestamp { get; set; }
         public Location Location { get; set; }
+        public string Region { get; set; }
 
         public CaseReport(CaseReportId id)
         {

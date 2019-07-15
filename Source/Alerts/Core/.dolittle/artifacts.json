@@ -177,6 +177,10 @@
       "0c6aadaa-e2a3-474d-a630-8a2b2bca2f19": {
         "generation": 1,
         "type": "Events.Alerts.AlertOpened, Events"
+      },
+      "3589246b-e858-4082-b23f-2847859b5bed": {
+        "generation": 1,
+        "type": "Events.Alerts.ReportAddedToAlert, Events"
       }
     },
     "eventSources": {
@@ -230,5 +234,29 @@
         "type": "Read.DataCollectors.DataCollectorById, Read"
       }
     }
+  },
+  "1f0f878b-a603-4e40-b72e-d02cc25c162c": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "95669302-2eeb-4817-918b-4e6e1ea434bb": {
+        "generation": 1,
+        "type": "Read.Alerts.Open.OpenAlert, Read"
+      }
+    },
+    "queries": {}
+  },
+  "c2222e81-43db-4184-b0dd-296de083c97c": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "047f8af1-10a6-4964-bd34-6853a21cd852": {
+        "generation": 1,
+        "type": "Read.Reports.AvailableForRules.AvailableReport, Read"
+      }
+    },
+    "queries": {}
   }
 }
