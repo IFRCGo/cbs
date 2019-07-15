@@ -18,7 +18,6 @@ namespace Read.CaseReports
         readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
-        readonly IReadModelRepositoryFor<Region> _regions;
         readonly IReadModelRepositoryFor<District> _districts;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
@@ -27,14 +26,12 @@ namespace Read.CaseReports
             IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository,
             IReadModelRepositoryFor<DataCollector> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks,
-            IReadModelRepositoryFor<Region> regions,
             IReadModelRepositoryFor<District> districts
             )
         {
             _caseReportRepository = caseReportRepository;
             _caseReportsPerRegionLast7DaysRepository = repository;
             _healthRisks = healthRisks;
-            _regions = regions;
             _districts = districts;
             _dataCollectors = dataCollectors;
         }
