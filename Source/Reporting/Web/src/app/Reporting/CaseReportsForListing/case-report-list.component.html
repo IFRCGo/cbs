@@ -1,5 +1,5 @@
 <h3>
-    Case Reports
+    Reports
 </h3>
 
 <cbs-case-report-export #exporter></cbs-case-report-export>
@@ -12,9 +12,7 @@
     <div class="col-md-7 paging-filters">
         Quick Filters:
         <span *ngFor="let filter of allFilters">
-            <button
-                class="small {{ filter.cssClass }}"
-                [ngClass]="{'current': this.currentFilter === filter}"
+            <button class="small {{ filter.cssClass }}" [ngClass]="{'current': this.currentFilter === filter}"
                 (click)="clickFilter(filter)">
                 {{filter.description}}
             </button>
@@ -23,44 +21,28 @@
     <div class="col-md-2 paging-size">
         Page size:
         &nbsp;
-        <select
-            [(ngModel)]="page.size"
-            (change)="resetPage()">
-            <option
-                *ngFor="let size of page.sizes"
-                [ngValue]="size">
+        <select [(ngModel)]="page.size" (change)="resetPage()">
+            <option *ngFor="let size of page.sizes" [ngValue]="size">
                 {{ size }}
             </option>
         </select>
     </div>
     <div class="col-md-4 paging-pages">
-        <button
-            class="small"
-            (click)="showPrevPage()"
-            [disabled]="!page.number">
-            < previous
-        </button>
-        <span class="paging-pages-number">
-            Page: <strong>{{ page.number + 1 }}</strong>
-        </span>
-        <button
-            class="small"
-            (click)="showNextPage()"
-            [disabled]="page.isLoading || isLastPage()">
-            next >
-        </button>
+        <button class="small" (click)="showPrevPage()" [disabled]="!page.number">
+            < previous </button> <span class="paging-pages-number">
+                Page: <strong>{{ page.number + 1 }}</strong>
+                </span>
+                <button class="small" (click)="showNextPage()" [disabled]="page.isLoading || isLastPage()">
+                    next >
+                </button>
     </div>
 </div>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th *ngFor="let column of allColumns"
-                  [column]="column"
-                  [current-sorted]="currentSortColumn"
-                  [sort-descending]="sortDescending"
-                  (click)="toggleSortColum(column)"
-                  [ngClass]="{'sortable': column.isSortable}"
-            ></th>
+            <th *ngFor="let column of allColumns" [column]="column" [current-sorted]="currentSortColumn"
+                [sort-descending]="sortDescending" (click)="toggleSortColum(column)"
+                [ngClass]="{'sortable': column.isSortable}"></th>
         </tr>
     </thead>
     <tbody *ngIf="!page.isLoading">
@@ -71,10 +53,12 @@
                 <span *ngIf="isSuccess(caseReport.status)" class="label label-success">
                     Success
                 </span>
-                <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)" class="label label-danger">
+                <span *ngIf="isError(caseReport.status) || isErrorUnknown(caseReport.status)"
+                    class="label label-danger">
                     Error
                 </span>
-                <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)" class="label label-warning">
+                <span *ngIf="isSuccessUnknown(caseReport.status)|| isErrorUnknown(caseReport.status)"
+                    class="label label-warning">
                     Unknown sender
                 </span>
             </td>

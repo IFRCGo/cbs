@@ -9,7 +9,6 @@ using Events.Admin.HealthRisks;
 using Events.Reporting.CaseReports;
 using Read.HealthRisks;
 
-
 namespace Read.Overview.LastWeeksPerHealthRisk
 {
     public class EventProcessor : ICanProcessEvents

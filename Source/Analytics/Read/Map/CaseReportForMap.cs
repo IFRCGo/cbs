@@ -1,6 +1,5 @@
 using Concepts;
 
-
 namespace Read.Map
 {
     public class CaseReportForMap 

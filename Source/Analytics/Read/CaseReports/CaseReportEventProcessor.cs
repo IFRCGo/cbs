@@ -4,6 +4,7 @@ using Dolittle.ReadModels;
 using Concepts;
 using Read.DataCollectors;
 using System.Linq;
+using Read.HealthRisks;
 
 namespace Read.CaseReports
 {
@@ -11,13 +12,13 @@ namespace Read.CaseReports
     {
         private readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
-        readonly IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportsEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository, 
             IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository, 
-            IReadModelRepositoryFor<Read.HealthRisks.HealthRisk> healthRisks,
+            IReadModelRepositoryFor<HealthRisk> healthRisks,
             IReadModelRepositoryFor<DataCollector> dataCollectors
             )
         {

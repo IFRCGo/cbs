@@ -9,12 +9,10 @@ namespace Read.Overview.LastWeekTotals
     {
         readonly IReadModelRepositoryFor<CaseReportTotals> _caseReportTotalsRepository;
 
-
         public EventProcessor(IReadModelRepositoryFor<CaseReportTotals> caseReportTotalsRepository)
         {
             _caseReportTotalsRepository = caseReportTotalsRepository;
         }
-
 
         [EventProcessor("c09b9902-8240-ae58-36ba-84e954b674e3")]
         public void Process(CaseReportReceived @event)
