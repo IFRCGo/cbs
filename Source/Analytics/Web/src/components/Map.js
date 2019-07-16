@@ -18,9 +18,12 @@ var colorForHealthRisks = {
 var healthRisks = []
 var iconsVals = []
 
+function MarkerPopupContent(props){
+    return <div>{props.healthRisk}</div>
+}
+
 function CaseMarkers({caseReportsLastWeek}){
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
-
     return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
         var htmlString = "<i style= 'color: " + colorForHealthRisks[key] + "' class='fa fa-plus-square awesome'> "
         var icon = L.divIcon({
@@ -33,9 +36,12 @@ function CaseMarkers({caseReportsLastWeek}){
             cases.vals = new Array(cases.numberOfPeople);
             cases.vals.fill(1);
             return cases.vals.map(function(val){
+                var hl = healthRisks[healthRisks.length - 1]
                 return <Marker
                     position={[cases.location.longitude, cases.location.latitude]} icon={icon}
-                ></Marker>
+                >
+                    <Popup><MarkerPopupContent healthRisk={hl}></MarkerPopupContent></Popup>
+                </Marker>
             });
         });
     });
