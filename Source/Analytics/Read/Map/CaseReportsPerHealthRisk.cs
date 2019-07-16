@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Concepts.HealthRisk;
+using Concepts.HealthRisks;
 
 namespace Read.Map
 {

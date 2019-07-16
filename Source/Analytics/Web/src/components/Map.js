@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Map, Popup, CircleMarker, TileLayer, Marker} from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 
@@ -14,24 +14,16 @@ var redCrossIcon = L.icon({
 });
 
 
-function CaseMarkers({casesLastWeekAndMonth}){
-    let id = (Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk)[0]);
-    var casesForOneHealthRisk = casesLastWeekAndMonth.caseReportsPerHealthRisk[id];
-    console.log(casesForOneHealthRisk.healthRiskName);
-
-    Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).forEach(function(key) {
-        console.log(casesLastWeekAndMonth.caseReportsPerHealthRisk[key].caseReportsLast7Days[0]);
-     });
-
-    return casesForOneHealthRisk.caseReportsLast7Days.map(cases => {
+function CaseMarkers({ casesLastWeekAndMonth }) {
+    return casesLastWeekAndMonth.map(cases => {
         cases.vals = new Array(cases.numberOfPeople);
         cases.vals.fill(1);
-        return cases.vals.map(function(val){  
+        return cases.vals.map(function (val) {
             return <Marker
                 position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
             ></Marker>
         });
-    });   
+    });
 };
 
 class MapWidget extends Component {
@@ -63,21 +55,21 @@ class MapWidget extends Component {
         let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
 
         this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
-            if(queryResult.success){
-               
-                this.setState({ 
+            if (queryResult.success) {
+
+                this.setState({
                     casesLastWeekAndMonth: queryResult.items[0],
                     isError: false,
-                    isLoading: false 
+                    isLoading: false
                 })
             }
-        }).catch(_ => 
+        }).catch(_ => {
             this.setState({
                 isLoading: false,
                 isError: true
             })
+        }
         );
-
     }
 
     render() {
@@ -97,13 +89,14 @@ class MapWidget extends Component {
                     <Button
                         marginTop={"20px"}
                         iconBefore="repeat"
-                        onClick={() => this.fetchData()}
+                        onClick={() => this.fetchCaseReportsBeforeDay()}
                     >
                         Retry
                     </Button>
                 </div>
             );
-        } else if(this.state.isLoading) {
+        }
+        if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
         return (
@@ -115,7 +108,7 @@ class MapWidget extends Component {
                 <MarkerClusterGroup>
                     <CaseMarkers casesLastWeekAndMonth={this.state.casesLastWeekAndMonth}></CaseMarkers>
                 </MarkerClusterGroup>
-             </Map>
+            </Map>
 
         );
     }

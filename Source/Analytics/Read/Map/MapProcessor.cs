@@ -1,7 +1,7 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
-using Concepts.HealthRisk;
+using Concepts.HealthRisks;
 using Concepts;
 using System.Collections.Generic;
 
@@ -11,11 +11,11 @@ namespace Read.Map
     {
         readonly IReadModelRepositoryFor<CaseReportsLast7Days> _caseReportRepositoryLast7Days;
         readonly IReadModelRepositoryFor<CaseReportsLast30Days> _caseReportRepositoryLast30Days;
-        readonly IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisks.HealthRisk> _healthRisks;
 
         public MapProcessor(IReadModelRepositoryFor<CaseReportsLast7Days> caseReportRepositoryLast7Days,
                             IReadModelRepositoryFor<CaseReportsLast30Days> caseReportRepositoryLast30Days,
-                            IReadModelRepositoryFor<Read.HealthRisk.HealthRisk> healthRisk){
+                            IReadModelRepositoryFor<HealthRisks.HealthRisk> healthRisk){
             _caseReportRepositoryLast7Days  = caseReportRepositoryLast7Days;
             _caseReportRepositoryLast30Days = caseReportRepositoryLast30Days;
             _healthRisks = healthRisk;
