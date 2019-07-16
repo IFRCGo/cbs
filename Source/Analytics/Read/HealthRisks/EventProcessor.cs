@@ -30,7 +30,6 @@ namespace Read.HealthRisks
                     HealthRiskNumber = @event.HealthRiskNumber
                 };
                 _healthRisks.Insert(healthRisk);
-
         }
         
         [EventProcessor("d2a2762d-aa9e-48dd-6667-629e2d64f16a")]

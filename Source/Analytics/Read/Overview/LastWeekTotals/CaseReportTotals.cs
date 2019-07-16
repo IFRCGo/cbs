@@ -5,7 +5,6 @@
 
 using Concepts;
 using Dolittle.ReadModels;
-using System;
 
 namespace Read.Overview.LastWeekTotals
 {
