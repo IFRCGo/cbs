@@ -6,7 +6,6 @@
 using Dolittle.Events.Processing;
 using Events.Reporting.CaseReports;
 using Dolittle.ReadModels;
-using Dolittle.Logging;
 using Concepts;
 
 namespace Read.Overview.LastWeekTotals

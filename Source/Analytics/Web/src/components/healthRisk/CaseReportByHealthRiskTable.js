@@ -6,8 +6,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import { getJson } from "../../utils/request";
-import { BASE_URL } from "../NationalSocietyOverview";
+
+import { QueryCoordinator } from "@dolittle/queries";
+import { CaseReportsLast4WeeksPerHealthRiskQuery } from "../../Features/Overview/Last4WeeksPerHealthRisk/CaseReportsLast4WeeksPerHealthRiskQuery";
 
 class CaseReportByHealthRiskTable extends Component {
     constructor(props) {
@@ -20,25 +21,22 @@ class CaseReportByHealthRiskTable extends Component {
         };
     }
 
-    fetchData() {
-        this.url = `${BASE_URL}/api/CaseReport/TotalsPerHealthRisk/`;
+    fetchData() { 
+      this.queryCoordinator = new QueryCoordinator();
+      let lastWeeksPerHealthRisk = new CaseReportsLast4WeeksPerHealthRiskQuery();
 
-        this.setState({ isLoading: true });
-
-        getJson(this.url)
-            .then(json => 
-                this.setState({
-                    healthRisks: Object.values(json.caseReportsPerHelthRisk),
-                    isLoading: false,
-                    isError: false
-                })
-            )
-            .catch(_ =>
-                this.setState({
-                    isLoading: false,
-                    isError: true
-                })
-            );
+      this.queryCoordinator.execute(lastWeeksPerHealthRisk).then(queryResult => {
+          if(queryResult.success){
+              this.setState({
+                  healthRisks: queryResult.items[0].caseReportsPerHealthRisk,
+                  isLoading: false,
+                  isError: false
+              });
+          }
+          else{
+              this.setState({ isLoading: false, isError: true })
+          }
+      });
     }
 
     componentDidMount() {
@@ -46,9 +44,14 @@ class CaseReportByHealthRiskTable extends Component {
     }
 
     render() {
+        let styles={
+          marginBottom: 20,
+          marginLeft: 6,
+          marginRight: 6
+        };
         return (
-          <div style={{marginBottom: 20}}>
-            <Typography variant="h5">No. of case reports per health risk per time period.</Typography>
+          <div style={styles}>
+            <Typography variant="h5">No. of case reports per health risk per time period</Typography>
             <Paper>
               <Table>
                 <TableHead>
@@ -61,22 +64,22 @@ class CaseReportByHealthRiskTable extends Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.state.healthRisks.map(healthRisk => (
-                    <TableRow key={healthRisk.healthRiskName.value}>
+                  {Object.keys(this.state.healthRisks).map(key => (
+                    <TableRow key={this.state.healthRisks[key].healthRiskName}>
                       <TableCell component="th" scope="row">
-                        {healthRisk.healthRiskName.value}
+                        {this.state.healthRisks[key].healthRiskName}
                       </TableCell>
-                      <TableCell align="right" style={healthRisk.days0to6.value === 0 ? {color: "#B5B5B5"} : {}}>
-                        {healthRisk.days0to6.value}
+                      <TableCell align="right" style={this.state.healthRisks[key].days0to6 === 0 ? {color: "#B5B5B5"} : {}}>
+                        {this.state.healthRisks[key].days0to6}
                       </TableCell>
-                      <TableCell align="right" style={healthRisk.days7to13.value === 0 ? {color: "#B5B5B5"} : {}}>
-                        {healthRisk.days7to13.value}
+                      <TableCell align="right" style={this.state.healthRisks[key].days7to13 === 0 ? {color: "#B5B5B5"} : {}}>
+                        {this.state.healthRisks[key].days7to13}
                       </TableCell>
-                      <TableCell align="right" style={healthRisk.days14to20.value === 0 ? {color: "#B5B5B5"} : {}}>
-                        {healthRisk.days14to20.value}
+                      <TableCell align="right" style={this.state.healthRisks[key].days14to20 === 0 ? {color: "#B5B5B5"} : {}}>
+                        {this.state.healthRisks[key].days14to20}
                       </TableCell>
-                      <TableCell align="right" style={healthRisk.days21to27.value === 0 ? {color: "#B5B5B5"} : {}}>
-                        {healthRisk.days21to27.value}
+                      <TableCell align="right" style={this.state.healthRisks[key].days21to27 === 0 ? {color: "#B5B5B5"} : {}}>
+                        {this.state.healthRisks[key].days21to27}
                       </TableCell>
                     </TableRow>
                   ))}

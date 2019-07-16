@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import GridListTile from '@material-ui/core/GridListTile';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import {ApplicationInsights} from '@microsoft/applicationinsights-web';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
-import TotalCard from "./TotalCard";
-import { getJson } from "../utils/request";
-import { formatDate } from "../utils/dateUtils";
+import LastWeekTotals from './LastWeekTotals.js';
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
 
@@ -20,99 +17,34 @@ const appInsights = new ApplicationInsights({
     }
 });
 appInsights.loadAppInsights();
-export const BASE_URL = process.env.API_BASE_URL;
-
 
 class NationalSocietyOverview extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            totalFemale: "-",
-            totalMale: "-",
-            totalUnder5: "-",
-            totalOver5: "-",
-            isLoading: true,
-            isError: false,
-            healthRisks: []
-        };
-    }
-
-    fetchHealthRisks() {
-        this.queryCoordinator = new QueryCoordinator();
-        let healthRisks = new AllHealthRisks();
-
-        this.queryCoordinator.execute(healthRisks).then(queryResult => {
-            if(queryResult.success){
-                this.setState({ healthRisks: queryResult.items})
-            }
-        }).catch(_ => 
-            this.setState({
-                isLoading: false,
-                isError: true
-            })
-        );
-    }
-
-    fetchData() {
-        let oneWeekBack = new Date();
-        oneWeekBack.setDate(oneWeekBack.getDate()-6);
-        this.url = `${BASE_URL}/api/CaseReport/Totals/LastWeek/`;
-
-        this.setState({ isLoading: true });
-
-        getJson(this.url)
-            .then(json => {
-                this.setState({
-                    totalFemale: json.female.value,
-                    totalMale: json.male.value,
-                    totalUnder5: json.under5.value,
-                    totalOver5: json.over5.value,
-                    isLoading: false,
-                    isError: false
-                });
-            }
-
-            )
-            .catch(_ =>
-                this.setState({
-                    isLoading: false,
-                    isError: true
-                })
-            );
-    }
-
     componentDidMount() {
-        this.fetchData();        
-        appInsights.trackPageView({ name: 'National society overview'});
+        appInsights.trackPageView({ name: 'National society overview' });
     }
 
     render() {
+        let body = {
+            margin: 10,
+        }
         return (
-            <div className="analytics--container">
+            <>
                 <CBSNavigation />
-                <Typography component="h2" variant="headline" gutterBottom>
-                    Overview
-                </Typography>
 
-                <GridList cols={4}>
-                    <GridListTile key="CaseReportByHealthRiskTable" cols={2} style={{ height: 'auto' }}>
-                        <CaseReportByHealthRiskTable />
-                    </GridListTile>
+                <div className="analytics--container" style={body}>
+                    <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
-                    <GridListTile cols={1} key="TotalSex" style={{ height: 'auto' }}>
-                        <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-                        <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-                    </GridListTile>
-                    <GridListTile cols={1} key="TotalAge" style={{ height: 'auto' }}>
-                        <TotalCard subTitle={"Under 5"} total={this.state.totalUnder5}  />
-                        <TotalCard subTitle={"Over 5"} total={this.state.totalOver5}  />
-                    </GridListTile>
+                    <Grid container spacing={8}>
+                        <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
+                            <CaseReportByHealthRiskTable />
+                        </Grid>
+                        <LastWeekTotals />
+                    </Grid>
 
-                </GridList>
-                <HealthRiskPerDistrictTable />
-                <Map />
-            </div>
+                    <HealthRiskPerDistrictTable />
+                    <Map />
+                </div>
+            </>
         );
     }
 }

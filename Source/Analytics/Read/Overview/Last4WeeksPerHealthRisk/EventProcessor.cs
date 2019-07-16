@@ -19,15 +19,15 @@ namespace Read.Overview.Last4WeeksPerHealthRisk
     public class EventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
-        readonly IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> _CaseReportsLast4WeeksPerHealthRisk;
+        readonly IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> _caseReportsLastWeeksPerHealthRisk;
 
         public EventProcessor(
             IReadModelRepositoryFor<HealthRisk> healthRisks,
-            IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> CaseReportsLast4WeeksPerHealthRisk            
+            IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> caseReportsLastWeeksPerHealthRisk            
         )
         {
             _healthRisks = healthRisks;
-            _CaseReportsLast4WeeksPerHealthRisk = CaseReportsLast4WeeksPerHealthRisk;
+            _caseReportsLastWeeksPerHealthRisk = caseReportsLastWeeksPerHealthRisk;
         }
         
         [EventProcessor("f2f78ff9-2d3a-a32d-cf9b-37f73451da6c")]
@@ -69,20 +69,20 @@ namespace Read.Overview.Last4WeeksPerHealthRisk
 
         void CreateOrUpdateCaseReports(Day day, HealthRiskId id, Action<CaseReportsLast4WeeksForHealthRisk> update)
         {
-            var aggregatedReports = _CaseReportsLast4WeeksPerHealthRisk.GetById(day);
+            var aggregatedReports = _caseReportsLastWeeksPerHealthRisk.GetById(day);
             if (aggregatedReports == null)
             {
                 aggregatedReports = new CaseReportsLast4WeeksPerHealthRisk
                 {
                     Id = day,
-                    CaseReportsPerHelthRisk = new Dictionary<HealthRiskId, CaseReportsLast4WeeksForHealthRisk>()
+                    CaseReportsPerHealthRisk = new Dictionary<HealthRiskId, CaseReportsLast4WeeksForHealthRisk>()
                 };
-                _CaseReportsLast4WeeksPerHealthRisk.Insert(aggregatedReports);
+                _caseReportsLastWeeksPerHealthRisk.Insert(aggregatedReports);
             }
 
-            if (!aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(id))
+            if (!aggregatedReports.CaseReportsPerHealthRisk.ContainsKey(id))
             {
-                aggregatedReports.CaseReportsPerHelthRisk[id] = new CaseReportsLast4WeeksForHealthRisk
+                aggregatedReports.CaseReportsPerHealthRisk[id] = new CaseReportsLast4WeeksForHealthRisk
                 {
                     Days0to6 = 0,
                     Days7to13 = 0,
@@ -91,23 +91,23 @@ namespace Read.Overview.Last4WeeksPerHealthRisk
                 };
             }
 
-            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHelthRisk[id];
+            var aggregatedReportsForHealthRisk = aggregatedReports.CaseReportsPerHealthRisk[id];
             
             update(aggregatedReportsForHealthRisk);
 
-            _CaseReportsLast4WeeksPerHealthRisk.Update(aggregatedReports);
+            _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
         }
 
         [EventProcessor("2fa9f18d-8e35-72ad-d7e2-1bab517172fa")]
         public void Process(HealthRiskModified @event)
         {
-            var alreadyAggregatedReports = _CaseReportsLast4WeeksPerHealthRisk.Query.Where(_ => _.Id >= Day.Today).ToList();
+            var alreadyAggregatedReports = _caseReportsLastWeeksPerHealthRisk.Query.Where(_ => _.Id >= Day.Today).ToList();
             foreach (var aggregatedReports in alreadyAggregatedReports)
             {
-                if (aggregatedReports.CaseReportsPerHelthRisk.ContainsKey(@event.Id))
+                if (aggregatedReports.CaseReportsPerHealthRisk.ContainsKey(@event.Id))
                 {
-                    aggregatedReports.CaseReportsPerHelthRisk[@event.Id].HealthRiskName = @event.Name;
-                    _CaseReportsLast4WeeksPerHealthRisk.Update(aggregatedReports);
+                    aggregatedReports.CaseReportsPerHealthRisk[@event.Id].HealthRiskName = @event.Name;
+                    _caseReportsLastWeeksPerHealthRisk.Update(aggregatedReports);
                 }
             }
         }

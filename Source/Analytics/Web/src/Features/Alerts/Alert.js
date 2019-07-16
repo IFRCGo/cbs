@@ -4,15 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import { ReadModel } from  '@dolittle/readmodels';
 
-export class CaseReportsBeforeDay extends ReadModel
+export class Alert extends ReadModel
 {
     constructor() {
         super();
         this.artifact = {
-           id: '7bd7e2b4-8be2-4f73-bd2a-4a5a02ee67a2',
+           id: '9ba6dee1-975c-496d-bc09-cb722ed27b1b',
            generation: '1'
         };
-        this.id = 0;
-        this.caseReportsPerHealthRisk = [];
+        this.id = '00000000-0000-0000-0000-000000000000';
+        this.alertRuleId = '00000000-0000-0000-0000-000000000000';
+        this.healthRiskName = '';
+        this.alertNumber = 0;
     }
 }

@@ -1,8 +1,7 @@
-using System;
 using Dolittle.ReadModels;
 using Concepts;
-using Concepts.HealthRisks;
 using System.Collections.Generic;
+using Concepts.HealthRisks;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 

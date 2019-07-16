@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Read.CaseReports
 {
-    public class CaseReportsEventProcessor : ICanProcessEvents
+    public class CaseReportEventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
@@ -21,7 +21,7 @@ namespace Read.CaseReports
         readonly IReadModelRepositoryFor<District> _districts;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
-        public CaseReportsEventProcessor(
+        public CaseReportEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository, 
             IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository,
             IReadModelRepositoryFor<DataCollector> dataCollectors,

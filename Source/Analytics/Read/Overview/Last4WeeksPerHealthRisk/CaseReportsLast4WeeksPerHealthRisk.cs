@@ -16,6 +16,6 @@ namespace Read.Overview.Last4WeeksPerHealthRisk
     {
         public Day Id { get; set; }
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
-        public IDictionary<HealthRiskId,CaseReportsLast4WeeksForHealthRisk> CaseReportsPerHelthRisk { get; set; }
+        public IDictionary<HealthRiskId,CaseReportsLast4WeeksForHealthRisk> CaseReportsPerHealthRisk { get; set; }
     }
 }
