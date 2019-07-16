@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Query } from  '@dolittle/queries';
 
-export class GetCaseReportsPerRegionLast7Days extends Query
+export class CaseReportsPerRegionLast7DaysQuery extends Query
 {
     constructor() {
         super();
-        this.nameOfQuery = 'GetCaseReportsPerRegionLast7Days';
-        this.generatedFrom = 'Read.CaseReports.GetCaseReportsPerRegionLast7Days';
+        this.nameOfQuery = 'CaseReportsPerRegionLast7DaysQuery';
+        this.generatedFrom = 'Read.CaseReports.CaseReportsPerRegionLast7DaysQuery';
 
     }
 }
