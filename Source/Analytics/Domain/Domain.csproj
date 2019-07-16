@@ -12,14 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Dolittle.SDK" Version="3.*" />
-    <PackageReference Include="Dolittle.ReadModels.MongoDB" Version="2.1.0" />
   </ItemGroup>
-
- <ItemGroup>
-   <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
-   <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
-   <ProjectReference Include="..\Concepts\Concepts.csproj" />
-   <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
- </ItemGroup>
 
 </Project>

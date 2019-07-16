@@ -37,6 +37,10 @@
         "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
           "name": "HealthRisks",
           "subFeatures": {}
+        },
+        "d94019a9-f7a6-4562-97f3-7689c8076821": {
+          "name": "HealthRisk",
+          "subFeatures": {}
         }
       }
     },
@@ -59,6 +63,10 @@
     },
     "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
       "name": "DataCollectors",
+      "subFeatures": {}
+    },
+    "ba7b04e7-2d61-49f2-a9e1-9c8812645628": {
+      "name": "Map",
       "subFeatures": {}
     }
   }

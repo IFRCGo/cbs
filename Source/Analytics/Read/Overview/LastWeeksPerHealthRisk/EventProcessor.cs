@@ -30,7 +30,7 @@ namespace Read.Overview.LastWeeksPerHealthRisk
         public void Process(CaseReportReceived @event)
         {
             var healthRiskName = _healthRisks.GetById(@event.HealthRiskId)?.Name ?? "Unknown";
-            var recieved = Day.Of(@event.Timestamp);
+            var recieved = Day.From(@event.Timestamp);
             var numberOfCaseReports = @event.NumberOfFemalesUnder5+@event.NumberOfFemalesAged5AndOlder+@event.NumberOfMalesUnder5+@event.NumberOfMalesAged5AndOlder;
 
             for (var days = 0; days < 7; days++)
