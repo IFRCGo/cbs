@@ -31,5 +31,10 @@ namespace Domain.Alerts
         {
             numberOfAlertsOpened++;
         }
+
+        public void CloseAlert(int alertNumber) 
+        {
+            Apply(new AlertClosed(alertNumber));
+        }
     }
 }

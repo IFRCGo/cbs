@@ -1,4 +1,3 @@
-using System;
 using Dolittle.ReadModels;
 using Concepts;
 using Concepts.HealthRisks;
@@ -8,11 +7,10 @@ using MongoDB.Bson.Serialization.Options;
 
 namespace Read.Map
 {
-    public class CaseReportsBeforeDay : IReadModel
+    public class CaseReportsLast7Days : IReadModel 
     {
-        public Day Id {get; set;}
-        
+        public Day Id { get; set; }
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
-        public IDictionary<HealthRiskId, CaseReportsRetrieved> CaseReportsPerHealthRisk { get; set; } 
+        public IDictionary<HealthRiskName, IList<CaseReportForMap>> CaseReportsPerHealthRisk{ get; set; } 
     }
 }

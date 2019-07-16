@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Map, TileLayer, Marker} from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 
@@ -8,23 +8,22 @@ import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsBeforeDayQuery } from "../Features/Map/CaseReportsBeforeDayQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-var firefoxIcon = L.icon({
+var redCrossIcon = L.icon({
     iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
     iconSize: [10, 10], // size of the icon
-    });
+});
 
 
-function CaseMarkers({casesLastWeekAndMonth}){
+function CaseMarkers({ casesLastWeekAndMonth }) {
     return casesLastWeekAndMonth.map(cases => {
         cases.vals = new Array(cases.numberOfPeople);
         cases.vals.fill(1);
-
-        return cases.vals.map(function(val){     
+        return cases.vals.map(function (val) {
             return <Marker
-                position={[cases.location.longitude, cases.location.latitude]} icon={firefoxIcon}
+                position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
             ></Marker>
         });
-    });   
+    });
 };
 
 class MapWidget extends Component {
@@ -56,12 +55,12 @@ class MapWidget extends Component {
         let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
 
         this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
-            if(queryResult.success){
-                let id = (Object.keys(queryResult.items[0].caseReportsPerHealthRisk)[0]);
-                this.setState({ 
-                    casesLastWeekAndMonth: queryResult.items[0].caseReportsPerHealthRisk[id].caseReportsLast7Days,
+            if (queryResult.success) {
+
+                this.setState({
+                    casesLastWeekAndMonth: queryResult.items[0],
                     isError: false,
-                    isLoading: false 
+                    isLoading: false
                 })
             }
         }).catch(_ => {
@@ -97,7 +96,7 @@ class MapWidget extends Component {
                 </div>
             );
         }
-        if(this.state.isLoading) {
+        if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
         return (
@@ -109,7 +108,7 @@ class MapWidget extends Component {
                 <MarkerClusterGroup>
                     <CaseMarkers casesLastWeekAndMonth={this.state.casesLastWeekAndMonth}></CaseMarkers>
                 </MarkerClusterGroup>
-             </Map>
+            </Map>
 
         );
     }

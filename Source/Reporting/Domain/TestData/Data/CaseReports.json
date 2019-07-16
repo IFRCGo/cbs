@@ -1,5 +1,7 @@
-[
-    {
+{
+    "DateLatestTestData": "14/02/2019 08:00:00 +00:00",
+    "Casereports":
+    [{
         "DataCollectorId": "9459498b-c76b-4f0d-8f3d-ada18da8642d",
         "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
         "Origin": 1,
@@ -1494,8 +1496,8 @@
         "NumberOfFemalesAged5AndOlder": 0,
         "Message": "",
         "Timestamp": "08/01/2019 15:54:45 +00:00"
-    }
-]
+    }]
+}
 //AWD = 9cd3c7b5-6973-45c3-a8d3-58d9eb38824c
 //Measels = E2A1AE23-F9D6-42B0-81FC-0FF15917C83B
 //Bloody diarrhea = 82DCD6AF-49A5-4D50-AC93-A85229021EB7
