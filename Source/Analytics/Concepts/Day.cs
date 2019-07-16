@@ -28,8 +28,7 @@ namespace Concepts
 
         public static Day Today
         {
-            //get => Day.From(DateTimeOffset.Now);
-            get => 17925; //Current testing data is static and not timestamped with today. To populate database for testing purposes, you can use a Day such as 17925.
+            get => Day.From(DateTimeOffset.Now);
         }
     }
 }
