@@ -5,33 +5,35 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 
 import { Alert, Button, Text } from "evergreen-ui";
-import { CaseReportsBeforeDayQuery } from "../Features/Map/CaseReportsBeforeDayQuery";
+import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-var redCrossIcon = L.icon({
-    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_the_Red_Cross.svg/250px-Flag_of_the_Red_Cross.svg.png',
-    iconSize: [10, 10], // size of the icon
-});
+var colorForHealthRisks = {
+    "AWD": "red",
+    "Measels": "blue",
+    "Bloody diarrhea": "green",
+    "Ebola": "white"
+};
 
+function CaseMarkers({caseReportsLastWeek}){
+    // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
 
-function CaseMarkers({casesLastWeekAndMonth}){
-    let id = (Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk)[0]);
-    var casesForOneHealthRisk = casesLastWeekAndMonth.caseReportsPerHealthRisk[id];
-    console.log(casesForOneHealthRisk.healthRiskName);
-
-    Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).forEach(function(key) {
-        console.log(casesLastWeekAndMonth.caseReportsPerHealthRisk[key].caseReportsLast7Days[0]);
-     });
-
-    return casesForOneHealthRisk.caseReportsLast7Days.map(cases => {
-        cases.vals = new Array(cases.numberOfPeople);
-        cases.vals.fill(1);
-        return cases.vals.map(function(val){  
-            return <Marker
-                position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
-            ></Marker>
+    return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
+        var htmlString = "<i style= 'color: " + colorForHealthRisks[key] + "' class='fa fa-plus-square awesome'>"
+        var icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: htmlString
         });
-    });   
+        return caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
+            cases.vals = new Array(cases.numberOfPeople);
+            cases.vals.fill(1);
+            return cases.vals.map(function(val){
+                return <Marker
+                    position={[cases.location.longitude, cases.location.latitude]} icon={icon}
+                ></Marker>
+            });
+        });
+    });
 };
 
 class MapWidget extends Component {
@@ -39,7 +41,7 @@ class MapWidget extends Component {
         super(props);
 
         this.state = {
-            casesLastWeekAndMonth: [],
+            caseReportsLastWeek: [],
             isLoading: true,
             isError: false
         };
@@ -60,13 +62,12 @@ class MapWidget extends Component {
 
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
+        let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
 
-        this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
+        this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
             if(queryResult.success){
-               
                 this.setState({ 
-                    casesLastWeekAndMonth: queryResult.items[0],
+                    caseReportsLastWeek: queryResult.items[0],
                     isError: false,
                     isLoading: false 
                 })
@@ -113,8 +114,8 @@ class MapWidget extends Component {
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
                 <MarkerClusterGroup>
-                    <CaseMarkers casesLastWeekAndMonth={this.state.casesLastWeekAndMonth}></CaseMarkers>
-                </MarkerClusterGroup>
+                    <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
+                </MarkerClusterGroup> 
              </Map>
 
         );
