@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Map, Popup, CircleMarker, TileLayer, Marker} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
-
+import MapOverview from "./MapOverview";
 import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
@@ -15,15 +15,20 @@ var colorForHealthRisks = {
     "Ebola": "white"
 };
 
+var healthRisks = []
+var iconsVals = []
+
 function CaseMarkers({caseReportsLastWeek}){
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
 
     return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
-        var htmlString = "<i style= 'color: " + colorForHealthRisks[key] + "' class='fa fa-plus-square awesome'>"
+        var htmlString = "<i style= 'color: " + colorForHealthRisks[key] + "' class='fa fa-plus-square awesome'> "
         var icon = L.divIcon({
             className: 'custom-div-icon',
             html: htmlString
         });
+        healthRisks.push(key);
+        iconsVals.push({color: colorForHealthRisks[key], class: "fa fa-plus-square awesome"}); 
         return caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
             cases.vals = new Array(cases.numberOfPeople);
             cases.vals.fill(1);
@@ -116,6 +121,8 @@ class MapWidget extends Component {
                 <MarkerClusterGroup>
                     <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
                 </MarkerClusterGroup> 
+
+                <MapOverview healthRisks={healthRisks} icons={iconsVals}></MapOverview>
              </Map>
 
         );

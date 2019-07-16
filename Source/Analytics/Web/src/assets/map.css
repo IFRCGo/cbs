@@ -1,1 +1,23 @@
 @import url('~react-leaflet-markercluster/dist/styles.min.css');
+
+.custom-div-icon {
+    margin: 12px auto;
+    font-size: 20px;
+    height: 100px;
+    width: 100px;
+ }
+
+.healthRiskList {
+    font-size: 20px;
+    position: absolute;
+    right: 0;
+    list-style-type: none;
+    width: 100px;
+    top: 0;
+    z-index: 999;
+    background-color: white;
+    width: 22%;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
