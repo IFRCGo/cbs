@@ -142,5 +142,30 @@
         "type": "Read.Map.CaseReportsLast7DaysQuery, Read"
       }
     }
+  },
+  "ba7b04e7-2d61-49f2-a9e1-9c8812645628": {
+    "commands": {},
+    "events": {},
+    "eventSources": {},
+    "readModels": {
+      "8116f701-0faa-4b6c-85db-a7e48dee02ca": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast30Days, Read"
+      },
+      "2792d722-550e-44ba-83fa-082bbe95f2e9": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast7Days, Read"
+      }
+    },
+    "queries": {
+      "9352af95-2c50-4988-81f3-5196b1d45e40": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast30DaysQuery, Read"
+      },
+      "137b774d-8970-4683-953c-731ee40b30e1": {
+        "generation": 1,
+        "type": "Read.Map.CaseReportsLast7DaysQuery, Read"
+      }
+    }
   }
 }
