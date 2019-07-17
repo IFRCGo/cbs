@@ -16,13 +16,20 @@ namespace Read.DataCollectors
         public DateTimeOffset LastActive { get; set; }
         public RegionName Region { get; set; }
         public DistrictName District { get; set; }
+        public Location Location { get; set; }
 
-        public DataCollector(DataCollectorId id, DateTimeOffset lastActive, RegionName region, DistrictName district)
+        public DataCollector(
+            DataCollectorId id,
+            DateTimeOffset lastActive,
+            RegionName region,
+            DistrictName district,
+            Location location)
         {
             Id = id;
             LastActive = lastActive;
             Region = region;
             District = district;
+            Location = location;
         }
     }
 }

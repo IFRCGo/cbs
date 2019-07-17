@@ -3,6 +3,7 @@
 *  Licensed under the MIT License. See LICENSE in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
+using Concepts;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
@@ -33,7 +34,12 @@ namespace Read.DataCollectors
         [EventProcessor("882ec5be-6ad0-8d65-9e14-6b0c9ddf5922")]
         public void Process(DataCollectorRegistered @event, EventSourceId dataCollectorId)
         {
-            InsertDataCollector(new DataCollector(dataCollectorId.Value, @event.RegisteredAt, @event.Region, @event.District));
+            InsertDataCollector(new DataCollector(
+                dataCollectorId.Value,
+                @event.RegisteredAt,
+                @event.Region,
+                @event.District,
+                new Location(@event.LocationLatitude, @event.LocationLongitude)));
 
             var region = _repositoryForRegion.GetById(@event.Region);
             var district = _repositoryForDistrict.GetById(@event.District);
