@@ -40,7 +40,7 @@ namespace Read.CaseReports
         {
             return new RegionWithHealthRisk()
             {
-                Id = region,
+                Name = region,
                 NumCases = numCases
             };
         }
@@ -60,7 +60,7 @@ namespace Read.CaseReports
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            var district = _districts.GetById(dataCollector.District);
+            var district = _districts.Query.First(_ => _.Name == dataCollector.District);
 
             InsertPerHealthRiskAndRegionForComingWeek(caseReport, healthRisk, district);
             UpdateDataCollectorLastActive(dataCollector, caseReport);
@@ -90,7 +90,7 @@ namespace Read.CaseReports
                     var healthRiskForDay = dayReport.HealthRisks.FirstOrDefault(d => d.Id == caseReport.HealthRiskId);
                     if (healthRiskForDay != null)
                     {   
-                        var regionForHealthRisk = healthRiskForDay.Regions.FirstOrDefault(r => r.Id == region);
+                        var regionForHealthRisk = healthRiskForDay.Regions.FirstOrDefault(r => r.Name == region);
                         if (regionForHealthRisk != null)
                         {
                             regionForHealthRisk.NumCases += totalCases;
