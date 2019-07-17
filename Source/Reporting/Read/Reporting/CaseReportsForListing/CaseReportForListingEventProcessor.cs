@@ -47,8 +47,8 @@ namespace Read.Reporting.CaseReportsForListing
                 Location = dataCollector.Location,
                 Origin = @event.Origin,
 
-                HealthRiskId = @event.HealthRiskId,
-                HealthRisk = "Data currently not supporting finding healthRiskNames",
+                HealthRiskId = healthRisk.Id,
+                HealthRisk = healthRisk.Name,
 
                 NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
                 NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
