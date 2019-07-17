@@ -68,17 +68,15 @@ class CBSNavigation extends Component {
                     </svg>
                 </figure>
                 <nav>
-                    <a href="/analytics/">Analytics</a>
+                    <a href="/admin/">Project administration</a>
                     <a href="/reporting/datacollectors/">Data Collectors</a>
                     <a href="/reporting/case-reports/">Reports</a>
-                    <a href="/admin/">Project administration</a>
+                    <a href="/analytics/">Analytics</a>
                 </nav>
 
                 <div className="login-status">
                     <div className="logged-in">
-                        <p>
-                            Logged in as:
-            </p>
+                        <p>Logged in as:</p>
                         <p>{this.state.username}</p>
                         <button>Logout</button>
                     </div>

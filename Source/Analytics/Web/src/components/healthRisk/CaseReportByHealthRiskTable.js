@@ -45,13 +45,11 @@ class CaseReportByHealthRiskTable extends Component {
 
     render() {
         let styles={
-          marginBottom: 20,
-          marginLeft: 6,
-          marginRight: 6
+          marginBottom: 20
         };
         return (
           <div style={styles}>
-            <Typography variant="h5">No. of case reports per health risk per time period</Typography>
+            <Typography variant="h5">No. of reports per health risk per time period</Typography>
             <Paper>
               <Table>
                 <TableHead>

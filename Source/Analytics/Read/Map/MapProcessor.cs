@@ -1,9 +1,9 @@
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
+using Concepts.HealthRisks;
 using Concepts;
 using System.Collections.Generic;
-using Concepts.HealthRisks;
 using Read.HealthRisks;
 
 namespace Read.Map
