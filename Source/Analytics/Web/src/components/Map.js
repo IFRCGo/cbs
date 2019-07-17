@@ -5,7 +5,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 
 import { Alert, Button, Text } from "evergreen-ui";
-import { CaseReportsBeforeDayQuery } from "../Features/Map/CaseReportsBeforeDayQuery";
+import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
 var redCrossIcon = L.icon({
@@ -52,9 +52,9 @@ class MapWidget extends Component {
 
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportsBeforeDayQuery = new CaseReportsBeforeDayQuery();
+        let caseReportsLast7Days = new CaseReportsLast7DaysQuery();
 
-        this.queryCoordinator.execute(caseReportsBeforeDayQuery).then(queryResult => {
+        this.queryCoordinator.execute(caseReportsLast7Days).then(queryResult => {
             if (queryResult.success) {
 
                 this.setState({

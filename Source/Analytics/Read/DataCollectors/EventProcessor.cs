@@ -3,6 +3,8 @@
 *  Licensed under the MIT License. See LICENSE in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
+using System;
+using System.Linq;
 using Concepts;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
@@ -41,14 +43,14 @@ namespace Read.DataCollectors
                 @event.District,
                 new Location(@event.LocationLatitude, @event.LocationLongitude)));
 
-            var region = _repositoryForRegion.GetById(@event.Region);
-            var district = _repositoryForDistrict.GetById(@event.District);
+            var region = _repositoryForRegion.Query.FirstOrDefault(_ => _.Name == @event.Region);
+            var district = _repositoryForDistrict.Query.FirstOrDefault(_ => _.Name == @event.District);
 
             if (region == null)
             {
                 InsertRegion(new Region()
                 {
-                    Id = @event.Region,
+                    Id = Guid.NewGuid(),
                     Name = @event.Region
                 });
             }
@@ -57,7 +59,7 @@ namespace Read.DataCollectors
             {
                 InsertDistrict(new District()
                 {
-                    Id = @event.District,
+                    Id = Guid.NewGuid(),
                     Name = @event.District,
                     RegionName = @event.Region
                 });
@@ -67,15 +69,15 @@ namespace Read.DataCollectors
         [EventProcessor("9edadfb3-b772-09e0-1e0d-346f2b374976")]
         public void Process(DataCollectorVillageChanged @event, EventSourceId dataCollectorId)
         {
-            var village = _repositoryForVillage.GetById(@event.Village);
+            var village = _repositoryForVillage.Query.FirstOrDefault(_ => _.Name == @event.Village);
             if (village == null)
             {
                 var dataCollector = _dataCollectors.GetById(dataCollectorId);
-                var district = _repositoryForDistrict.GetById(dataCollector.District);
                 _repositoryForVillage.Insert(new Village()
                 {
-                    Id = @event.Village,
-                    District = district.Name
+                    Id = Guid.NewGuid(),
+                    Name = @event.Village,
+                    District = dataCollector.District
                 });
             }
         }

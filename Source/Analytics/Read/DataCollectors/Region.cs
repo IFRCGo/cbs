@@ -10,7 +10,7 @@ namespace Read.DataCollectors
 {
     public class Region : IReadModel
     {
-        public RegionName Id { get; set; }
+        public RegionId Id { get; set; }
         public RegionName Name { get; set; }
     }
 }
