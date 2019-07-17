@@ -32,7 +32,7 @@ function CaseMarkers({caseReportsLastWeek}){
         });
         healthRisks.push(key);
         iconsVals.push({color: colorForHealthRisks[key], class: "fa fa-plus-square awesome"}); 
-        return caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
+        var cs = caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
             cases.vals = new Array(cases.numberOfPeople);
             cases.vals.fill(1);
             return cases.vals.map(function(val){
@@ -44,6 +44,7 @@ function CaseMarkers({caseReportsLastWeek}){
                 </Marker>
             });
         });
+        return <MarkerClusterGroup>{cs}</MarkerClusterGroup>
     });
 };
 
@@ -124,9 +125,8 @@ class MapWidget extends Component {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
-                <MarkerClusterGroup>
-                    <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
-                </MarkerClusterGroup> 
+
+                <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
 
                 <MapOverview healthRisks={healthRisks} icons={iconsVals}></MapOverview>
              </Map>
