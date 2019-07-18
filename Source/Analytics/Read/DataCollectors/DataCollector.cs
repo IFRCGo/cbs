@@ -17,19 +17,22 @@ namespace Read.DataCollectors
         public RegionName Region { get; set; }
         public DistrictName District { get; set; }
         public Location Location { get; set; }
+        public Sex Sex { get; set; }
 
         public DataCollector(
             DataCollectorId id,
             DateTimeOffset lastActive,
             RegionName region,
             DistrictName district,
-            Location location)
+            Location location,
+            Sex sex)
         {
             Id = id;
             LastActive = lastActive;
             Region = region;
             District = district;
             Location = location;
+            Sex = sex;
         }
     }
 }

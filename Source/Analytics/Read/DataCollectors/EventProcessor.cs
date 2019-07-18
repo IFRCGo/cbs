@@ -6,6 +6,7 @@
 using System;
 using System.Linq;
 using Concepts;
+using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
@@ -42,7 +43,8 @@ namespace Read.DataCollectors
                 @event.RegisteredAt,
                 @event.Region,
                 @event.District,
-                new Location(@event.LocationLatitude, @event.LocationLongitude));
+                new Location(@event.LocationLatitude, @event.LocationLongitude),
+                (Sex)@event.Sex);
             _dataCollectors.Insert(dataCollector);
 
             var region = _repositoryForRegion.Query.FirstOrDefault(_ => _.Name == @event.Region);
