@@ -36,33 +36,39 @@ namespace Read.DataCollectors
         [EventProcessor("882ec5be-6ad0-8d65-9e14-6b0c9ddf5922")]
         public void Process(DataCollectorRegistered @event, EventSourceId dataCollectorId)
         {
-            InsertDataCollector(new DataCollector(
+            // insert data collector
+            var dataCollector = new DataCollector(
                 dataCollectorId.Value,
                 @event.RegisteredAt,
                 @event.Region,
                 @event.District,
-                new Location(@event.LocationLatitude, @event.LocationLongitude)));
+                new Location(@event.LocationLatitude, @event.LocationLongitude));
+            _dataCollectors.Insert(dataCollector);
 
             var region = _repositoryForRegion.Query.FirstOrDefault(_ => _.Name == @event.Region);
             var district = _repositoryForDistrict.Query.FirstOrDefault(_ => _.Name == @event.District);
 
             if (region == null)
             {
-                InsertRegion(new Region()
+                // if region doesn't exist, create it
+                region = new Region()
                 {
                     Id = Guid.NewGuid(),
                     Name = @event.Region
-                });
+                };
+                _repositoryForRegion.Insert(region);
             }
 
             if (district == null)
             {
-                InsertDistrict(new District()
+                // create if doesn't exist
+                district = new District()
                 {
                     Id = Guid.NewGuid(),
                     Name = @event.District,
-                    RegionName = @event.Region
-                });
+                    RegionId = region.Id
+                };
+                _repositoryForDistrict.Insert(district);
             }
         }
 
@@ -73,28 +79,14 @@ namespace Read.DataCollectors
             if (village == null)
             {
                 var dataCollector = _dataCollectors.GetById(dataCollectorId);
+                var district = _repositoryForDistrict.Query.FirstOrDefault(_ => _.Name == dataCollector.District);
                 _repositoryForVillage.Insert(new Village()
                 {
                     Id = Guid.NewGuid(),
                     Name = @event.Village,
-                    District = dataCollector.District
+                    DistrictId = district.Id
                 });
             }
-        }
-
-        public void InsertDataCollector(DataCollector dataCollector)
-        {
-            _dataCollectors.Insert(dataCollector);
-        }
-
-        public void InsertRegion(Region region)
-        {
-            _repositoryForRegion.Insert(region);
-        }
-
-        public void InsertDistrict(District district)
-        {
-            _repositoryForDistrict.Insert(district);
         }
     }
 }

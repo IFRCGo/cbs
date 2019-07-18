@@ -12,6 +12,6 @@ namespace Read.DataCollectors
     {
         public VillageId Id { get; set; }
         public VillageName Name { get; set; }
-        public DistrictName District { get; set; }
+        public DistrictId DistrictId { get; set; }
     }
 }

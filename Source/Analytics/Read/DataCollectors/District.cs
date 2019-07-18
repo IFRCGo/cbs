@@ -11,7 +11,7 @@ namespace Read.DataCollectors
     public class District : IReadModel
     {
         public DistrictId Id { get; set; }
-        public RegionName RegionName { get; set; }
+        public RegionId RegionId { get; set; }
         public DistrictName Name { get; set; }
     }
 }
