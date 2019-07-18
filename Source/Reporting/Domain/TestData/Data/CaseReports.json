@@ -740,7 +740,7 @@
     },
     {
         "DataCollectorId": "EBFB78A3-1350-41EC-8624-452BA59AD2E7",
-        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
+        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 1,
@@ -762,7 +762,7 @@
     },
     {
         "DataCollectorId": "EBFB78A3-1350-41EC-8624-452BA59AD2E7",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 1,
@@ -784,7 +784,7 @@
     },
     {
         "DataCollectorId": "3F751938-1553-4F2E-A2EF-8604F10CCBE8",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -806,7 +806,7 @@
     },
     {
         "DataCollectorId": "3F751938-1553-4F2E-A2EF-8604F10CCBE8",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -828,7 +828,7 @@
     },
     {
         "DataCollectorId": "3F751938-1553-4F2E-A2EF-8604F10CCBE8",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -850,7 +850,7 @@
     },
     {
         "DataCollectorId": "3F751938-1553-4F2E-A2EF-8604F10CCBE8",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 1,
@@ -883,7 +883,7 @@
     },
     {
         "DataCollectorId": "80DF57EA-4767-4D69-BF0D-A68F3608CF4C",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -905,7 +905,7 @@
     },
     {
         "DataCollectorId": "E8A8B5B6-7294-4E05-B30B-9824F1AF4EA0",
-        "HealthRiskId": "B98231C8-2209-4472-87A6-46F927E6225F",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 1,
@@ -938,7 +938,7 @@
     },
     {
         "DataCollectorId": "C4B4FC93-5BCB-4011-B2EA-59A4CE0E509E",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 4,
@@ -960,7 +960,7 @@
     },
     {
         "DataCollectorId": "C4B4FC93-5BCB-4011-B2EA-59A4CE0E509E",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -993,7 +993,7 @@
     },
     {
         "DataCollectorId": "C4B4FC93-5BCB-4011-B2EA-59A4CE0E509E",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1015,7 +1015,7 @@
     },
     {
         "DataCollectorId": "D177EF3B-9C72-45C0-9793-D36D82DF2EC8",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1037,7 +1037,7 @@
     },
     {
         "DataCollectorId": "512754EA-ACB6-441C-86C7-7224552986DD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1059,7 +1059,7 @@
     },
     {
         "DataCollectorId": "512754EA-ACB6-441C-86C7-7224552986DD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 1,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1070,7 +1070,7 @@
     },
     {
         "DataCollectorId": "512754EA-ACB6-441C-86C7-7224552986DD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1092,7 +1092,7 @@
     },
     {
         "DataCollectorId": "512754EA-ACB6-441C-86C7-7224552986DD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1103,7 +1103,7 @@
     },
     {
         "DataCollectorId": "512754EA-ACB6-441C-86C7-7224552986DD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 1,
@@ -1114,7 +1114,7 @@
     },
     {
         "DataCollectorId": "E5A08A25-78C4-4F5E-9B22-03F88EE4F452",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 1,
         "NumberOfMalesAged5AndOlder": 4,
@@ -1136,7 +1136,7 @@
     },
     {
         "DataCollectorId": "E5A08A25-78C4-4F5E-9B22-03F88EE4F452",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 1,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1169,7 +1169,7 @@
     },
     {
         "DataCollectorId": "E5A08A25-78C4-4F5E-9B22-03F88EE4F452",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 0,
         "NumberOfMalesAged5AndOlder": 0,
@@ -1202,7 +1202,7 @@
     },
     {
         "DataCollectorId": "2BEC5404-434D-4739-ABD0-C4C4F9152398",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 9,
         "NumberOfMalesAged5AndOlder": 7,
@@ -1257,7 +1257,7 @@
     },
     {
         "DataCollectorId": "38E8E6E8-2E59-4363-A726-2D05DFF9BFE1",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
+        "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
         "Origin": 1,
         "NumberOfMalesUnder5": 1,
         "NumberOfMalesAged5AndOlder": 0,

@@ -8,15 +8,48 @@ import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-var colorForHealthRisks = {
-    "AWD": "red",
-    "Measels": "blue",
-    "Bloody diarrhea": "green",
-    "Ebola": "white"
+var clusterSize = {
+    large: 40,
+    medium: 30,
+    small: 20
 };
 
-var healthRisks = []
-var iconsVals = []
+var currentCluster; 
+var index = 0
+var clusters     = []
+var createClusterCustomIcon = function(cluster) {
+    var markersInCluster  = cluster.getChildCount();
+    var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
+    var healthRiskNbr = getClusterNbr[getClusterNbr.length - 1]
+    var markerClusterSize
+
+    if(markersInCluster <= 5){
+        markerClusterSize = clusterSize.small
+    }
+    else if(markersInCluster < 20){
+        markerClusterSize = clusterSize.medium
+    }
+    else{
+        markerClusterSize = clusterSize.large
+    }
+
+    var icon = new L.divIcon({
+      html: `${cluster.getChildCount()}`,
+      className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom",
+      iconSize: L.point(markerClusterSize, markerClusterSize, true )
+    });
+    if(index < clusters.length - 1){
+        index++
+    }else{
+        index=0
+    }
+    return icon
+
+  }
+
+
+var healthRisks  = []
+var iconsClasses = []
 
 function MarkerPopupContent(props){
     return <div>{props.healthRisk}</div>
@@ -25,13 +58,19 @@ function MarkerPopupContent(props){
 function CaseMarkers({caseReportsLastWeek}){
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
     return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
-        var htmlString = "<i style= 'color: " + colorForHealthRisks[key] + "' class='fa fa-plus-square awesome'> "
+        var healthRiskName   = caseReportsLastWeek.caseReportsPerHealthRisk[key][0].healthRiskName
+        var healthRiskNumber = key
+        var marker = "marker-" + healthRiskNumber.toString()
+        var markerClass = marker + " fa fa-plus-square"
+        var clusterClass = marker + "-cluster" + " marker-cluster-custom cluster-label"
+        var htmlString = "<i class='marker-" + healthRiskNumber.toString() + " fa fa-plus-square'>"
         var icon = L.divIcon({
-            className: 'custom-div-icon',
-            html: htmlString
+            className: 'custom-div-icon ' + markerClass,
+            html: "<i></i>"
         });
-        healthRisks.push(key);
-        iconsVals.push({color: colorForHealthRisks[key], class: "fa fa-plus-square awesome"}); 
+        healthRisks.push(healthRiskName)
+        iconsClasses.push(markerClass)
+
         var cs = caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
             cases.vals = new Array(cases.numberOfPeople);
             cases.vals.fill(1);
@@ -44,7 +83,8 @@ function CaseMarkers({caseReportsLastWeek}){
                 </Marker>
             });
         });
-        return <MarkerClusterGroup>{cs}</MarkerClusterGroup>
+        clusters.push(clusterClass)
+        return <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>{cs}</MarkerClusterGroup>
     });
 };
 
@@ -120,15 +160,14 @@ class MapWidget extends Component {
             return (<div>Loading...</div>);
         }
         return (
-            <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={10}>
+            <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
 
                 <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
-
-                <MapOverview healthRisks={healthRisks} icons={iconsVals}></MapOverview>
+                <MapOverview clusters={clusters} healthRisks={healthRisks} icons={iconsClasses}></MapOverview>
              </Map>
 
         );
