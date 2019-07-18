@@ -5,7 +5,7 @@ COPY ./NuGet.Config /CBS/Source/NuGet.Config
 COPY ./Source/Analytics/Analytics.sln /CBS/Source/Analytics/Analytics.sln
 COPY ./Source/Analytics/Core/Core.csproj /CBS/Source/Analytics/Core/Core.csproj
 COPY ./Source/Analytics/Concepts/Concepts.csproj /CBS/Source/Analytics/Concepts/Concepts.csproj
-COPY ./Source/Analytics/Events/Events.csproj /CBS/Source/Analytics/Events/Events.csproj
+COPY ./Source/Analytics/Events.Alerts/Events.Alerts.csproj /CBS/Source/Analytics/Events.Alerts/Events.Alerts.csproj
 COPY ./Source/Analytics/Events.Admin/Events.Admin.csproj /CBS/Source/Analytics/Events.Admin/Events.Admin.csproj
 COPY ./Source/Analytics/Events.Reporting/Events.Reporting.csproj /CBS/Source/Analytics/Events.Reporting/Events.Reporting.csproj
 COPY ./Source/Analytics/Read/Read.csproj /CBS/Source/Analytics/Read/Read.csproj
