@@ -14,12 +14,14 @@ var clusterSize = {
     small: 20
 };
 
-var currentCluster; 
-var index = 0
 var clusters     = []
 var createClusterCustomIcon = function(cluster) {
     var markersInCluster  = cluster.getChildCount();
+
+    // Get css class from markers
     var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
+
+    // Get healthRiskNumber from css class 
     var healthRiskNbr = getClusterNbr[getClusterNbr.length - 1]
     var markerClusterSize
 
@@ -33,18 +35,11 @@ var createClusterCustomIcon = function(cluster) {
         markerClusterSize = clusterSize.large
     }
 
-    var icon = new L.divIcon({
+    return new L.divIcon({
       html: `${cluster.getChildCount()}`,
       className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom",
       iconSize: L.point(markerClusterSize, markerClusterSize, true )
     });
-    if(index < clusters.length - 1){
-        index++
-    }else{
-        index=0
-    }
-    return icon
-
   }
 
 
@@ -63,13 +58,15 @@ function CaseMarkers({caseReportsLastWeek}){
         var marker = "marker-" + healthRiskNumber.toString()
         var markerClass = marker + " fa fa-plus-square"
         var clusterClass = marker + "-cluster" + " marker-cluster-custom cluster-label"
-        var htmlString = "<i class='marker-" + healthRiskNumber.toString() + " fa fa-plus-square'>"
+
         var icon = L.divIcon({
             className: 'custom-div-icon ' + markerClass,
             html: "<i></i>"
         });
+
         healthRisks.push(healthRiskName)
         iconsClasses.push(markerClass)
+        clusters.push(clusterClass)
 
         var cs = caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
             cases.vals = new Array(cases.numberOfPeople);
@@ -83,7 +80,7 @@ function CaseMarkers({caseReportsLastWeek}){
                 </Marker>
             });
         });
-        clusters.push(clusterClass)
+
         return <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>{cs}</MarkerClusterGroup>
     });
 };
