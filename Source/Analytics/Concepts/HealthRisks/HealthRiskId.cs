@@ -14,6 +14,5 @@ namespace Concepts.HealthRisks
         {
             return new HealthRiskId {Value = value};
         }
-
     }
 }

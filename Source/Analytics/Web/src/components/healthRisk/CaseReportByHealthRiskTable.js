@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 import { QueryCoordinator } from "@dolittle/queries";
-import { CaseReportsLastWeeksPerHealthRiskQuery } from "../../Features/Overview/LastWeeksPerHealthRisk/CaseReportsLastWeeksPerHealthRiskQuery";
+import { CaseReportsLast4WeeksPerHealthRiskQuery } from "../../Features/Overview/Last4WeeksPerHealthRisk/CaseReportsLast4WeeksPerHealthRiskQuery";
 
 class CaseReportByHealthRiskTable extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class CaseReportByHealthRiskTable extends Component {
 
     fetchData() { 
       this.queryCoordinator = new QueryCoordinator();
-      let lastWeeksPerHealthRisk = new CaseReportsLastWeeksPerHealthRiskQuery();
+      let lastWeeksPerHealthRisk = new CaseReportsLast4WeeksPerHealthRiskQuery();
 
       this.queryCoordinator.execute(lastWeeksPerHealthRisk).then(queryResult => {
           if(queryResult.success){

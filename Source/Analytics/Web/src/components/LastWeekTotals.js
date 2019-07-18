@@ -72,5 +72,3 @@ export default class LastWeekTotals extends Component {
         );
     }
 }
-
-

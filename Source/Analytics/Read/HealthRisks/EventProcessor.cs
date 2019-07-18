@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+*  Licensed under the MIT License. See LICENSE in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Admin.HealthRisks;
@@ -25,7 +30,6 @@ namespace Read.HealthRisks
                     HealthRiskNumber = @event.HealthRiskNumber
                 };
                 _healthRisks.Insert(healthRisk);
-
         }
         
         [EventProcessor("d2a2762d-aa9e-48dd-6667-629e2d64f16a")]

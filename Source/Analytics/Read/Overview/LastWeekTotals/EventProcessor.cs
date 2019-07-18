@@ -1,7 +1,11 @@
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) The International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+*  Licensed under the MIT License. See LICENSE in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
 using Dolittle.Events.Processing;
 using Events.Reporting.CaseReports;
 using Dolittle.ReadModels;
-using Dolittle.Logging;
 using Concepts;
 
 namespace Read.Overview.LastWeekTotals
@@ -10,14 +14,12 @@ namespace Read.Overview.LastWeekTotals
     {
         readonly IReadModelRepositoryFor<CaseReportTotals> _caseReportTotalsRepository;
 
-
         public EventProcessor(IReadModelRepositoryFor<CaseReportTotals> caseReportTotalsRepository)
         {
             _caseReportTotalsRepository = caseReportTotalsRepository;
         }
 
-
-        [EventProcessor("c09b9902-8240-ae58-36ba-84e954b674e3")]
+        [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
         public void Process(CaseReportReceived @event)
         {
             var today = Day.From(@event.Timestamp);

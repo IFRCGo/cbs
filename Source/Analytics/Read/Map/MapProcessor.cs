@@ -4,6 +4,7 @@ using Events.Reporting.CaseReports;
 using Concepts.HealthRisks;
 using Concepts;
 using System.Collections.Generic;
+using Read.HealthRisks;
 
 namespace Read.Map
 {
@@ -11,11 +12,11 @@ namespace Read.Map
     {
         readonly IReadModelRepositoryFor<CaseReportsLast7Days> _caseReportRepositoryLast7Days;
         readonly IReadModelRepositoryFor<CaseReportsLast30Days> _caseReportRepositoryLast30Days;
-        readonly IReadModelRepositoryFor<HealthRisks.HealthRisk> _healthRisks;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public MapProcessor(IReadModelRepositoryFor<CaseReportsLast7Days> caseReportRepositoryLast7Days,
                             IReadModelRepositoryFor<CaseReportsLast30Days> caseReportRepositoryLast30Days,
-                            IReadModelRepositoryFor<HealthRisks.HealthRisk> healthRisk){
+                            IReadModelRepositoryFor<HealthRisk> healthRisk){
             _caseReportRepositoryLast7Days  = caseReportRepositoryLast7Days;
             _caseReportRepositoryLast30Days = caseReportRepositoryLast30Days;
             _healthRisks = healthRisk;

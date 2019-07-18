@@ -3,10 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
+using Dolittle.Artifacts;
 using Dolittle.Events;
 
 namespace Events.Reporting.DataCollectors
 {
+    [Artifact("899f24ac-860d-4dae-ae90-938ac12e5226", 1)]
     public class DataCollectorRegistered : IEvent
     {
         public DataCollectorRegistered (
@@ -23,17 +25,17 @@ namespace Events.Reporting.DataCollectors
                 Guid dataVerifierId
             )
         {
-            this.FullName = fullName;
-            this.DisplayName = displayName;
-            this.YearOfBirth = yearOfBirth;
-            this.Sex = sex;
-            this.PreferredLanguage = preferredLanguage;
-            this.LocationLongitude = locationLongitude;
-            this.LocationLatitude = locationLatitude;
-            this.RegisteredAt = registeredAt;
-            this.Region = region;
-            this.District = district;
-            this.DataVerifierId = dataVerifierId;
+            FullName = fullName;
+            DisplayName = displayName;
+            YearOfBirth = yearOfBirth;
+            Sex = sex;
+            PreferredLanguage = preferredLanguage;
+            LocationLongitude = locationLongitude;
+            LocationLatitude = locationLatitude;
+            RegisteredAt = registeredAt;
+            Region = region;
+            District = district;
+            DataVerifierId = dataVerifierId;
         }
     
         public string FullName { get; }

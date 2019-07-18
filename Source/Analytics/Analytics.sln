@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events.Admin", "Events.Admi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{7D30EF65-F2B3-47F6-A977-B7DA5B855E26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Alerts", "Events.Alerts\Events.Alerts.csproj", "{94A183F6-89A2-464E-95FE-6FE24A039192}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{7D30EF65-F2B3-47F6-A977-B7DA5B855E26}.Release|x64.Build.0 = Release|Any CPU
 		{7D30EF65-F2B3-47F6-A977-B7DA5B855E26}.Release|x86.ActiveCfg = Release|Any CPU
 		{7D30EF65-F2B3-47F6-A977-B7DA5B855E26}.Release|x86.Build.0 = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|x64.Build.0 = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Debug|x86.Build.0 = Debug|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|x64.ActiveCfg = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|x64.Build.0 = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|x86.ActiveCfg = Release|Any CPU
+		{94A183F6-89A2-464E-95FE-6FE24A039192}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

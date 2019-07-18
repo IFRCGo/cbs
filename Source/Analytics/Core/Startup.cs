@@ -1,6 +1,4 @@
-using System;
 using Autofac;
-using Dolittle.AspNetCore.Bootstrap;
 using Dolittle.Booting;
 using Dolittle.DependencyInversion.Autofac;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +30,7 @@ namespace Core
                     c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
                 });
             }
-            // services.AddSecurity(_hostingEnvironment, "/analytics");
+            services.AddSecurity(_hostingEnvironment, "/analytics");
             services.AddMvc();
 
             _bootResult = services.AddDolittle(_loggerFactory);
@@ -46,7 +44,7 @@ namespace Core
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // app.UseSecurity(env, "/analytics");
+            app.UseSecurity(env, "/analytics");
 
             if (env.IsDevelopment())
             {

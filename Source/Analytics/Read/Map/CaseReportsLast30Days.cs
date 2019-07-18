@@ -1,4 +1,3 @@
-using System;
 using Dolittle.ReadModels;
 using Concepts;
 using Concepts.HealthRisks;
