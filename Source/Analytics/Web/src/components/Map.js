@@ -21,6 +21,19 @@ var createClusterCustomIcon = function(cluster) {
     // Get css class from markers
     var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
 
+    var markers = cluster.getAllChildMarkers();
+
+    var markersSet = {}
+
+    for(var i=0; i<markers.length; i++){
+        var tmp_mark = markers[i].options.icon.options.className.split(" ")[1]
+        if(!(tmp_mark in markersSet)){
+            markersSet[tmp_mark] = 0
+        }else{
+            markersSet[tmp_mark]++
+        }
+    }
+
     // Get healthRiskNumber from css class 
     var healthRiskNbr = getClusterNbr[getClusterNbr.length - 1]
     var markerClusterSize
@@ -35,12 +48,18 @@ var createClusterCustomIcon = function(cluster) {
         markerClusterSize = clusterSize.large
     }
 
+
+    if(Object.keys(markersSet).length > 1){
+        healthRiskNbr = 5
+    }
     return new L.divIcon({
-      html: `${cluster.getChildCount()}`,
-      className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom",
-      iconSize: L.point(markerClusterSize, markerClusterSize, true )
-    });
+        html: `${cluster.getChildCount()}`,
+        className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom",
+        iconSize: L.point(markerClusterSize, markerClusterSize, true )
+        });
+
   }
+
 
 
 var healthRisks  = []
@@ -81,7 +100,7 @@ function CaseMarkers({caseReportsLastWeek}){
             });
         });
 
-        return <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>{cs}</MarkerClusterGroup>
+        return cs
     });
 };
 
@@ -162,8 +181,9 @@ class MapWidget extends Component {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
-
-                <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
+                <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+                    <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
+                </MarkerClusterGroup>
                 <MapOverview clusters={clusters} healthRisks={healthRisks} icons={iconsClasses}></MapOverview>
              </Map>
 
