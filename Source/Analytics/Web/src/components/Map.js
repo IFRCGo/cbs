@@ -7,6 +7,8 @@ import MapOverview from "./MapOverview";
 import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
+import MapPieChart from "./MapPieChart" 
+import ReactDOMServer from 'react-dom/server';
 
 var clusterSize = {
     large: 40,
@@ -14,23 +16,27 @@ var clusterSize = {
     small: 20
 };
 
-var clusters     = []
 var createClusterCustomIcon = function(cluster) {
-    var markersInCluster  = cluster.getChildCount();
+    var markersInCluster  = cluster.getChildCount()
 
     // Get css class from markers
     var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
+    
+
+    var tmp = document.getElementsByClassName(getClusterNbr)[0];
 
     var markers = cluster.getAllChildMarkers();
 
     var markersSet = {}
 
     for(var i=0; i<markers.length; i++){
-        var tmp_mark = markers[i].options.icon.options.className.split(" ")[1]
-        if(!(tmp_mark in markersSet)){
-            markersSet[tmp_mark] = 0
+        var markerClass = markers[i].options.icon.options.className.split(" ")[1]
+        var markerElement = document.getElementsByClassName(markerClass);
+        var healthRiskId  = markerElement[markerElement.length - 1].id
+        if(!(markerClass in markersSet)){
+            markersSet[markerClass] = [1, healthRiskId]
         }else{
-            markersSet[tmp_mark]++
+            markersSet[markerClass][0]++
         }
     }
 
@@ -48,28 +54,47 @@ var createClusterCustomIcon = function(cluster) {
         markerClusterSize = clusterSize.large
     }
 
+    var casesPerHealthRisk = []
 
-    if(Object.keys(markersSet).length > 1){
-        healthRiskNbr = 5
+        for(var key in markersSet){
+            var elem = document.getElementsByClassName(key)[0];
+            var color = window.getComputedStyle(elem)['color']
+            var healthRiskCases = markersSet[key]
+            casesPerHealthRisk.push([healthRiskCases, color])
+
+        }
+        markerClusterSize*=2
+        if(Object.keys(markersSet).length > 1){
+            return new L.divIcon({
+                html: ReactDOMServer.renderToString(<MapPieChart size={markerClusterSize} numberOfCases={markersInCluster} casesPerHealthRisk={casesPerHealthRisk}>${markersInCluster}</MapPieChart>)
+            });
+    
+    }else{
+        console.log(casesPerHealthRisk)
+        var tmp =  ReactDOMServer.renderToString(<div className="box-parent"><div>{markersInCluster}</div><div className="box-overview-single">
+                <h6 style={{textAlign: "center", marginTop:"3px", marginBottom: "3px", fontSize:"10px"}} > Total cases: {markersInCluster}</h6>
+                <ul style={{paddingLeft: "2px", fontSize: "8px", fontWeight:"2px"}}> 
+                    <li> <div style={{backgroundColor: casesPerHealthRisk[0][1], height: "10px", width: "10px", display:"inline-block"}}></div> {casesPerHealthRisk[0][0][1]} : {casesPerHealthRisk[0][0][0]}</li>
+                </ul>
+         </div>
+        </div>)
+        return new L.divIcon({
+            html: ` ${tmp}`,
+            className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom" ,
+            iconSize: L.point(markerClusterSize, markerClusterSize, true )
+            });
     }
-    return new L.divIcon({
-        html: `${cluster.getChildCount()}`,
-        className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom",
-        iconSize: L.point(markerClusterSize, markerClusterSize, true )
-        });
-
-  }
-
-
-
-var healthRisks  = []
-var iconsClasses = []
-
+}
 function MarkerPopupContent(props){
     return <div>{props.healthRisk}</div>
 }
 
+var healthRisks  = []
+var iconsClasses = []
+var clusters     = []
+
 function CaseMarkers({caseReportsLastWeek}){
+
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
     return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
         var healthRiskName   = caseReportsLastWeek.caseReportsPerHealthRisk[key][0].healthRiskName
@@ -77,7 +102,7 @@ function CaseMarkers({caseReportsLastWeek}){
         var marker = "marker-" + healthRiskNumber.toString()
         var markerClass = marker + " fa fa-plus-square"
         var clusterClass = marker + "-cluster" + " marker-cluster-custom cluster-label"
-
+        
         var icon = L.divIcon({
             className: 'custom-div-icon ' + markerClass,
             html: "<i></i>"
@@ -146,7 +171,6 @@ class MapWidget extends Component {
                 isError: true
             })
         );
-
     }
 
     render() {
@@ -172,16 +196,18 @@ class MapWidget extends Component {
                     </Button>
                 </div>
             );
-        } else if(this.state.isLoading) {
+        } 
+        else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
+
         return (
             <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
-                <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+                <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={createClusterCustomIcon}>
                     <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
                 </MarkerClusterGroup>
                 <MapOverview clusters={clusters} healthRisks={healthRisks} icons={iconsClasses}></MapOverview>

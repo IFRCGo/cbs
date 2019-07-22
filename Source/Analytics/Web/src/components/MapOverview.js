@@ -5,7 +5,7 @@ function ListOfHealthRisks({clusters,healthRisks, icons}){
     var listItem = healthRisks.map(function(healthRisk, i){
         var cl = icons[i];
         var clo = clusters[i];
-        return <li className="map-overview-list-item"><div className={clo}></div> <i class={cl} ></i> : {healthRisk}</li>
+        return <li className="map-overview-list-item"><div className={clo}></div> <i class={cl} id={healthRisk} ></i> : {healthRisk}</li>
     });
     return listItem
 }
@@ -30,6 +30,5 @@ class MapOverview extends Component {
         );
     }
 }
-
 
 export default MapOverview;

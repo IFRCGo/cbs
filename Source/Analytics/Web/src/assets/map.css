@@ -8,7 +8,7 @@
  }
 
 .healthRiskList {
-font-size: 16px;
+    font-size: 16px;
     position: absolute;
     right: 0;
     list-style-type: none;
@@ -155,6 +155,7 @@ font-size: 16px;
   color: #666;
   text-align: center;
   font: 20px Arial, sans-serif;
+
   }
 
   .cluster-label{
@@ -162,6 +163,64 @@ font-size: 16px;
     height: 8px;
     display: inline-block;
     padding: inherit;
+
   }
 
-  
+.pie {
+  border-radius: 50%;
+  border: 2px solid #666;
+  background: transparent;
+  position: relative;
+}
+
+.pie circle {
+  fill: none;
+  stroke: gold;
+  stroke-width: 32;
+  animation: rotate 1.5s ease-in;
+  background: transparent;
+}
+
+.box-parent{
+    height: 100%;
+    width: 100%;
+}
+
+.box-parent:hover .box-overview{
+    display: block;
+}
+
+.box-overview{
+    /* visibility: hidden; */
+    background-color: white;
+    display: none; 
+    position: absolute;
+    height: 1000%;
+    width: 1000%;
+    margin-left: 250%;
+    margin-top: 250%;
+    border-radius: 10px;
+    border: red;
+    border-style: dotted;
+}
+.box-overview-single{
+    background-color: white;
+    display: none; 
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    width: 150%;
+    margin-left: 60%;
+    margin-top: 60%;
+    border-radius: 10px;
+    border: red;
+    border-style: dotted;
+}
+
+.box-parent:hover .box-overview-single{
+    display: block;
+}
+.box-overview-list{
+    list-style-type: none;
+}
+
