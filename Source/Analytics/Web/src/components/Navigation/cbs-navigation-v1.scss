@@ -64,6 +64,10 @@ body {
     background-color: $rc-red;
     display: block;
     position: absolute;
+    @media (max-width: $screen-xs-max) {
+      position: relative;
+      padding-left: 1rem;
+    }
   }
 
   .dropdown-item {

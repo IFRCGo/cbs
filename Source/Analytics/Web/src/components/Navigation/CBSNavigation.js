@@ -106,11 +106,11 @@ class CBSNavigation extends Component {
 
                     <div className="dropdown" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
 
-                        <a href="/analytics/">Analytics  <i className="fa fa-caret-down" /></a>
+                        <a href="/analytics/">Analytics <i className="fa fa-caret-down" /></a>
                         {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
 
                     </div>
-                    <a href="/admin/">Project administration</a>
+                    <a href="/admin/">Project Administration</a>
                     <a href="/reporting/datacollectors/">Data Collectors</a>
                     <a href="/reporting/case-reports/">Reports</a>
                 </nav>
