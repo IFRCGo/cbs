@@ -55,18 +55,28 @@ class CBSNavigation extends Component {
         this.fetchData();
     }
 
+    rcLogo(color) {
+        var backgroundColor = (color == "red" ? "#c00" : "#fff");
+        var mainColor = (color == "red" ? "#fff" : "#c00");
+
+        return(
+            <figure className={`logo logo-${color}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
+                    <rect width="175" height="100" fill={mainColor} />
+                    <path d="M20,50h66m-33,-33v66" fill="none" stroke={backgroundColor} strokeWidth="20" />
+                    <circle cx="132" cy="50" r="34" fill={backgroundColor} />
+                    <circle cx="142" cy="50" r="28" fill={mainColor} />
+                    <path d="M7,7H168V93H7z" fill="none" stroke={backgroundColor} strokeWidth="3" />
+                </svg>
+            </figure>
+        )
+    }
+
     render() {
         return (
             <header className="navigation-header">
-                <figure className="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
-                        <rect width="175" height="100" fill="#fff" />
-                        <path d="M20,50h66m-33,-33v66" fill="none" stroke="#c00" strokeWidth="20" />
-                        <circle cx="132" cy="50" r="34" fill="#c00" />
-                        <circle cx="142" cy="50" r="28" fill="#fff" />
-                        <path d="M7,7H168V93H7z" fill="none" stroke="#c00" strokeWidth="3" />
-                    </svg>
-                </figure>
+                {this.rcLogo("white")}
+                {this.rcLogo("red")}
                 <nav>
                     <a href="/admin/">Project administration</a>
                     <a href="/reporting/datacollectors/">Data Collectors</a>

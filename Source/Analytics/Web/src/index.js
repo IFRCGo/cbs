@@ -12,7 +12,7 @@ import {QueryCoordinator} from '@dolittle/queries';
 import "./assets/react-leaflet.scss";
 import "./assets/main.scss";
 import Analytics from './components/Analytics';
-import CountryOverview from './components/CountryOverview';
+import CountryOverview from './components/CountryOverview/CountryOverview';
 
 QueryCoordinator.apiBaseUrl = process.env.API_BASE_URL;
 
