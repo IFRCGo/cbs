@@ -17,7 +17,7 @@ const appInsights = new ApplicationInsights({
 });
 appInsights.loadAppInsights();
 
-class NationalSocietyOverview extends Component {
+class CountryOverview extends Component {
     componentDidMount() {
         appInsights.trackPageView({ name: 'National society overview' });
     }
@@ -48,4 +48,4 @@ class NationalSocietyOverview extends Component {
     }
 }
 
-export default NationalSocietyOverview;
+export default CountryOverview;

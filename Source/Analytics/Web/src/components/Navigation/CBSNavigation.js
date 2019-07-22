@@ -59,7 +59,7 @@ class CBSNavigation extends Component {
         return (
             <header className="navigation-header">
                 <figure className="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 175 100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
                         <rect width="175" height="100" fill="#fff" />
                         <path d="M20,50h66m-33,-33v66" fill="none" stroke="#c00" strokeWidth="20" />
                         <circle cx="132" cy="50" r="34" fill="#c00" />
