@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Map, Popup, CircleMarker, TileLayer, Marker} from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 import MapOverview from "./MapOverview";
@@ -162,14 +162,15 @@ class MapWidget extends Component {
                 this.setState({ 
                     caseReportsLastWeek: queryResult.items[0],
                     isError: false,
-                    isLoading: false 
+                    isLoading: false
                 })
             }
-        }).catch(_ => 
+        }).catch(_ => {
             this.setState({
                 isLoading: false,
                 isError: true
             })
+        }
         );
     }
 
@@ -190,7 +191,7 @@ class MapWidget extends Component {
                     <Button
                         marginTop={"20px"}
                         iconBefore="repeat"
-                        onClick={() => this.fetchData()}
+                        onClick={() => this.fetchCaseReportsBeforeDay()}
                     >
                         Retry
                     </Button>

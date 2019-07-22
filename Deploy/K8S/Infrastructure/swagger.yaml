@@ -27,8 +27,8 @@ spec:
             value: |
               [
                 { url: "/swagger/admin/swagger/v2/swagger.json", name: "Admin" },
-                { url: "/swagger/reporting/swagger/v2/swagger.json", name: "Volunteer Reporting" },
-                { url: "/swagger/usermanagement/swagger/v2/swagger.json", name: "User Management" },
+                { url: "/swagger/reporting/swagger/v2/swagger.json", name: "Reports" },
+                { url: "/swagger/usermanagement/swagger/v2/swagger.json", name: "Data Collectors" },
               ]
           - name: VALIDATOR_URL
             value: null

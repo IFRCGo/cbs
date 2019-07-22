@@ -3,6 +3,7 @@ import { commandCoordinator, queryCoordinator } from './coordinators';
 import { AllAlertRules } from '../Features/AlertRules/AllAlertRules';
 import { AllAlertOverviews } from '../Features/Alerts/AllAlertOverviews';
 import { GetDataOwner } from '../Features/DataOwners/GetDataOwner';
+import { CloseAlert } from '../Features/Alerts/CloseAlert';
 
 function* requestRules() {
     try {
@@ -55,12 +56,27 @@ function* requestCreateRule(rule) {
     }
 }
 
+function* requestCloseAlert(alertNumber) {
+    try {
+        const closeAlert = {
+            ...new CloseAlert(),
+            alertNumber: alertNumber
+        }
+        yield commandCoordinator.handle(closeAlert);
+        yield put({ type: 'RECEIVE_CLOSE_ALERT', payload: { alert: closeAlert.payload } });
+        yield put({ type: 'REQUEST_ALERT_OVERVIEW' });
+    } catch (error) {
+        yield put({ type: 'REJECT_CLOSE_ALERT', payload: { error: error.message } });
+    }
+}
+
 function* saga() {
     yield takeEvery('REQUEST_RULES', requestRules);
     yield takeEvery('REQUEST_ALERT_OVERVIEW', requestAlertOverview);
     yield takeEvery('REQUEST_CREATE_RULE', requestCreateRule);
     yield takeEvery('REQUEST_DATAOWNER', requestGetDataOwner);
     yield takeEvery('REQUEST_REGISTER_DATAOWNER', requestRegisterDataOwner);
+    yield takeEvery('REQUEST_CLOSE_ALERT', requestCloseAlert);
 }
 
 export default saga;

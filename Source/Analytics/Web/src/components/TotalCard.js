@@ -8,9 +8,15 @@ class TotalCard extends Component {
         super(props);
     }
 
+    
     render() {
+        var styles={
+          marginBottom: 6,
+          marginRight: 6
+        };
+  
         return (
-            <Card>
+            <Card style={styles}>
             <div>
               <CardContent>
               {this.props.className && (

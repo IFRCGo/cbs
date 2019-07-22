@@ -1,31 +1,14 @@
 {
   "modules": {},
   "features": {
-    "082b543a-e61b-4dea-b261-1396475b40b7": {
-      "name": "CaseReports",
-      "subFeatures": {
-        "5d5abc2c-2149-4bca-bcf1-56df2014eadc": {
-          "name": "TestData",
-          "subFeatures": {}
-        },
-        "1de920e7-c301-4183-acc7-25a06f93e02e": {
-          "name": "PerRegion",
-          "subFeatures": {}
-        }
-      }
-    },
-    "7d227a67-619e-4e5f-a23f-5484e491ae00": {
-      "name": "AgeAndSexDistribution",
-      "subFeatures": {}
-    },
     "4fc04c04-8e47-43b3-8f36-e736f7a49666": {
       "name": "Reporting",
       "subFeatures": {
-        "a2e90e05-4967-49e9-94e2-7eabaf411ca8": {
+        "bee96dcd-ad75-414d-9d61-650b3a92fb76": {
           "name": "CaseReports",
           "subFeatures": {}
         },
-        "ae0b5c75-8064-40bf-be98-42ab3ee096a7": {
+        "cd542897-da73-4f6f-a8fb-4d83c7ad9182": {
           "name": "DataCollectors",
           "subFeatures": {}
         }
@@ -37,23 +20,40 @@
         "8d70e0c0-3b4b-42fb-b41e-5d842540a617": {
           "name": "HealthRisks",
           "subFeatures": {}
+        }
+      }
+    },
+    "511dd00f-0cde-4fcd-8672-679df0d4d4f1": {
+      "name": "Overview",
+      "subFeatures": {
+        "89efeec2-cf75-4d9f-94ed-5ae11e56dd43": {
+          "name": "LastWeekTotals",
+          "subFeatures": {}
         },
-        "d94019a9-f7a6-4562-97f3-7689c8076821": {
-          "name": "HealthRisk",
+        "33a65b4a-6452-43a9-aa6c-19979df11b6f": {
+          "name": "Last4WeeksPerHealthRisk",
           "subFeatures": {}
         }
       }
     },
-    "38f3cc13-8f20-4d85-8a91-ec804c7c0050": {
-      "name": "HealthRisk",
+    "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {
+      "name": "HealthRisks",
       "subFeatures": {}
     },
-    "d6878b29-f1fe-45bc-93ee-2ea89e650df8": {
+    "082b543a-e61b-4dea-b261-1396475b40b7": {
+      "name": "CaseReports",
+      "subFeatures": {}
+    },
+    "11b95f11-c23f-4c0c-8f20-e01e630fc5a0": {
       "name": "DataCollectors",
       "subFeatures": {}
     },
     "ba7b04e7-2d61-49f2-a9e1-9c8812645628": {
       "name": "Map",
+      "subFeatures": {}
+    },
+    "306df3f7-c901-4914-b677-43802a30dbe7": {
+      "name": "Alerts",
       "subFeatures": {}
     }
   }

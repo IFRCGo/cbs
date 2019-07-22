@@ -26,7 +26,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include=".dolittle\**\*" CopyToPublishDirectory="Always"/>
+    <Content Include=".dolittle\**\*" CopyToPublishDirectory="Always" />
   </ItemGroup>
   
   <ItemGroup>
@@ -43,16 +43,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Concepts\Concepts.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Events.Alerts\Events.Alerts.csproj" />
     <ProjectReference Include="..\Events.Reporting\Events.Reporting.csproj" />
     <ProjectReference Include="..\Events.Admin\Events.Admin.csproj" />
     <ProjectReference Include="..\Read\Read.csproj" />
-    <ProjectReference Include="..\Policies\Policies.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Dolittle.AspNetCore" Version="3.*" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0-beta3" />
     <PackageReference Include="Dolittle.SDK" Version="3.*" />
     <PackageReference Include="Dolittle.Build" Version="3.*" />
     <PackageReference Include="Dolittle.Build.MSBuild" Version="3.*" />

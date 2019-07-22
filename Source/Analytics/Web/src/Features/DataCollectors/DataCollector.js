@@ -9,14 +9,12 @@ export class DataCollector extends ReadModel
     constructor() {
         super();
         this.artifact = {
-           id: 'b388b07a-2c43-424b-a09e-df0ed85acba1',
+           id: 'e454d02f-ce75-44d6-a5fa-b3c8616d8610',
            generation: '1'
         };
         this.id = '00000000-0000-0000-0000-000000000000';
-        this.displayName = '';
-        this.location = {};
-        this.district = '';
+        this.lastActive = new Date();
         this.region = '';
-        this.village = '';
+        this.district = '';
     }
 }
