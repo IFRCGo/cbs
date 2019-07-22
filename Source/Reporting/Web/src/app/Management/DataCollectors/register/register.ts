@@ -15,6 +15,7 @@ import { AppInsightsService } from '../../../services/app-insights-service';
     styleUrls: ['./register.scss']
 })
 export class Register {
+    commandCoordinator: CommandCoordinator;
     locationSelected = false;
     defaultLat: number = 9.216515;
     defaultLng: number = 45.523637;
@@ -32,7 +33,6 @@ export class Register {
 
     constructor(
         private router: Router,
-        private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
         private appInsightsService: AppInsightsService
     ) {
@@ -41,6 +41,7 @@ export class Register {
 
     ngOnInit() {
         this.appInsightsService.trackPageView('RegisterDataCollector');
+        this.commandCoordinator = new CommandCoordinator();
     }
 
     onLocationSelected(event){
@@ -55,7 +56,6 @@ export class Register {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
         this.command.dataVerifierId = Guid.create(); //TODO: THis is just temporary, dataVerifier should be bound through the form
-        console.log(this.command);
         this.commandCoordinator.handle(this.command)
             .then(response => {
                 console.log(response);

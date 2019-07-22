@@ -20,7 +20,6 @@ export class Delete {
     modalRef: BsModalRef;
 
     constructor(
-        private commandCoordinator: CommandCoordinator,
         private modalService: BsModalService,
         private router: Router
     ) {
@@ -35,7 +34,9 @@ export class Delete {
         if (!environment.production) {
             console.log('Deleting datacollector with id = ' + this.command.dataCollectorId )
         }
-        this.commandCoordinator.handle(this.command)
+
+        const commandCoordinator = new CommandCoordinator();
+        commandCoordinator.handle(this.command)
             .then(response => {
                 if (!environment.production) {
                     console.log(response);
