@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './cbs-navigation-v1.scss';
+import { throws } from 'assert';
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -8,11 +9,22 @@ class CBSNavigation extends Component {
 
     constructor(props) {
         super(props);
+        this.onMouseOver = this.onMouseOver.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
 
         this.state = {
-            username: "Unknown"
+            username: "Unknown", 
+            showAnalyticsDropdown: false
         };
     }
+
+    onMouseOver() {
+        this.setState({showAnalyticsDropdown: true});
+      }
+    
+      onMouseLeave() {
+        this.setState({showAnalyticsDropdown: false});
+      }
 
     fetchData() {
         if (process.env.environment !== 'production') {
@@ -29,7 +41,6 @@ class CBSNavigation extends Component {
                         isError: true
                     })
                 );
-
         }
         else {
             this.url = `${BASE_URL}/identity`;
@@ -47,7 +58,6 @@ class CBSNavigation extends Component {
                 );
 
         }
-
         this.setState({ isLoading: true });
     }
 
@@ -72,24 +82,42 @@ class CBSNavigation extends Component {
         )
     }
 
+    analyticsDropdown (){
+        return (
+            <div>
+                <div className="dropdown-content">
+                    <a href="/analytics/" className="dropdown-item">Health risks</a>
+                    <a href="/analytics/" className="dropdown-item">Regions</a>
+                    <a href="/analytics/" className="dropdown-item">Light area overview</a>
+                    <a href="/analytics/" className="dropdown-item">Volunteer performance</a>
+                </div>
+            </div>
+        )
+    }
+
     render() {
+        
         return (
             <header className="navigation-header">
                 {this.rcLogo("white")}
                 {this.rcLogo("red")}
                 <nav>
+                    <a href="/analytics/">Country Overview</a>
+
+                    <div className="dropdown" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
+
+                        <a href="/analytics/">Analytics  <i className="fa fa-caret-down" /></a>
+                        {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
+
+                    </div>
                     <a href="/admin/">Project administration</a>
                     <a href="/reporting/datacollectors/">Data Collectors</a>
                     <a href="/reporting/case-reports/">Reports</a>
-                    <a href="/alerts/">Alerts</a>
-                    <a href="/analytics/">Analytics</a>
                 </nav>
 
                 <div className="login-status">
                     <div className="logged-in">
-                        <p>
-                            Logged in as:
-            </p>
+                        <p>Logged in as:</p>
                         <p>{this.state.username}</p>
                         <button>Logout</button>
                     </div>
