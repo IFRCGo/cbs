@@ -116,6 +116,10 @@ body {
   .logged-in {
     padding: 0 1rem;
     text-align: right;
+    @media (max-width: $screen-xs-max) {
+      color: white;
+      padding-bottom: 1rem;
+    }
     
     p {
       margin: 0;
