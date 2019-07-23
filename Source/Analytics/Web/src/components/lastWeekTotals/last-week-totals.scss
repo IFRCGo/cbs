@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+$rc-red: #ca0000;
+$light-grey: #f0f0f0;
+
+.tableContainer {
+    font-family: "Lato", "Helvetica Neue", sans-serif;
+}
+
+.headline {
+    font-size: 1rem;
+}
+
+.tableHead {
+    background-color: $light-grey;
+}
+
+.headerText {
+    color: black !important;
+}
