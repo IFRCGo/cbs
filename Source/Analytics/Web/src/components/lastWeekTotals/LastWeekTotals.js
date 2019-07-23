@@ -18,10 +18,10 @@ export default class LastWeekTotals extends Component {
         super(props);
 
         this.state = {
-            femalesUnder5: "5",
-            malesUnder5: "7",
-            femalesOver5: "12",
-            malesOver5: "3",
+            femalesUnder5: "-",
+            malesUnder5: "-",
+            femalesOver5: "-",
+            malesOver5: "-",
             isLoading: true,
             isError: false
         };
