@@ -2,13 +2,20 @@
 
 $rc-red: #ca0000;
 $light-grey: #f0f0f0;
+$medium-grey: #cfcdcc;
 
 .tableContainer {
     font-family: "Lato", "Helvetica Neue", sans-serif;
+    margin-left: 1rem;
+}
+
+.table {
+    border: 1px solid $medium-grey;
 }
 
 .headline {
     font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
 .tableHead {
