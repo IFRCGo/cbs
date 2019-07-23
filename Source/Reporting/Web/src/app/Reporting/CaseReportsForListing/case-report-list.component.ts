@@ -47,10 +47,8 @@ export class CaseReportListComponent implements OnInit {
     };
 
     constructor(
-        private queryCoordinator: QueryCoordinator,
         private route: ActivatedRoute,
-        private router: Router,
-        //private logService: fromServices.LogService
+        private router: Router
     ) { }
 
     @HostListener('window:keyup', ['$event'])
@@ -86,13 +84,14 @@ export class CaseReportListComponent implements OnInit {
     }
 
     loadListData(): void {
+        const queryCoordinator = new QueryCoordinator();
         const query = new AllCaseReportsForListing();
         query.pageNumber = this.page.number;
         query.pageSize = this.page.size;
         query.sortField = this.sortField;
         query.sortAscending = !this.sortDescending;
         this.page.isLoading = true;
-        this.queryCoordinator.execute(query)
+        queryCoordinator.execute(query)
             .then(response => {
                 if (response.success) {
                     this.listedReports = response.items as Array<CaseReportForListing>;
