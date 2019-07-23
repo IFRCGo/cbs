@@ -6,7 +6,7 @@ import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTab
 import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
 import LastWeekTotals from '../LastWeekTotals.js';
 import Map from "../Map.js";
-import CBSNavigation from '../Navigation/CBSNavigation';
+import CBSNavigation from '../../../../../Navigation/Web.React/CBSNavigation';
 
 const appInsights = new ApplicationInsights({
     config: {

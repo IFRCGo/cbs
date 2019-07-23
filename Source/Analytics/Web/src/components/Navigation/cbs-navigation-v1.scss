@@ -23,7 +23,7 @@ body {
 .navigation-header {
   padding: 0;
   @media (min-width: $screen-sm-min) {
-    border-bottom: .1rem solid $brand-primary;
+    border-bottom: 1px solid $brand-primary;
     display: flex;
     align-items: center;
   }
