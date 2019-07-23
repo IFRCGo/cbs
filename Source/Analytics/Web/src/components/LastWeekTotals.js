@@ -21,10 +21,10 @@ export default class LastWeekTotals extends Component {
         super(props);
 
         this.state = {
-            totalFemale: "5",
-            totalMale: "6",
-            totalUnder5: "7",
-            totalOver5: "8",
+            femalesUnder5: "5",
+            malesUnder5: "6",
+            femalesOver5: "7",
+            malesOver5: "8",
             isLoading: true,
             isError: false
         };
@@ -38,10 +38,10 @@ export default class LastWeekTotals extends Component {
             if(queryResult.success){
                 let json = queryResult.items[0];
                 this.setState({
-                    totalFemale: json.female,
-                    totalMale: json.male,
-                    totalUnder5: json.under5,
-                    totalOver5: json.over5,
+                    femalesUnder5: json.femalesUnder5,
+                    malesUnder5: json.malesUnder5,
+                    femalesOver5: json.femalesOver5,
+                    malesOver5: json.malesOver5,
                     isLoading: false,
                     isError: false
                 });
@@ -59,19 +59,12 @@ export default class LastWeekTotals extends Component {
         this.fetchLastWeekTotals();
     }
 
-    /*
-    Table
-    TableBody
-    TableCell
-    TableHead
-    TableRow
-    Typography
-    Paper
-    */
     render () {
-        var femalesUnder5 = parseInt(this.state.totalFemale) + parseInt(this.state.totalMale) - parseInt(this.state.totalOver5); //wrong logic!
-        var malesUnder5 = parseInt(this.state.totalFemale) + parseInt(this.state.totalMale) - parseInt(this.state.totalOver5);
-
+        var totalUnder5 = parseInt(this.state.femalesUnder5) + parseInt(this.state.malesUnder5);
+        var totalOver5 = parseInt(this.state.femalesOver5) + parseInt(this.state.malesOver5);
+        var totalFemale = parseInt(this.state.femalesUnder5) + parseInt(this.state.femalesOver5);
+        var totalMale = parseInt(this.state.malesUnder5) + parseInt(this.state.malesOver5);
+        
         return (
             <Paper>
                 <Table>
@@ -84,43 +77,24 @@ export default class LastWeekTotals extends Component {
                     </TableRow>
                     <TableRow>
                         <TableCell>Under 5</TableCell>
-                        <TableCell>{femalesUnder5}</TableCell>
-                        <TableCell>{malesUnder5}</TableCell>
-                        <TableCell>{this.state.totalUnder5}</TableCell>
+                        <TableCell>{this.state.femalesUnder5}</TableCell>
+                        <TableCell>{this.state.malesUnder5}</TableCell>
+                        <TableCell>{totalUnder5}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>5 and above</TableCell>
-                        <TableCell>{femalesUnder5}</TableCell>
-                        <TableCell>{malesUnder5}</TableCell>
-                        <TableCell>{this.state.totalUnder5}</TableCell>
+                        <TableCell>{this.state.femalesOver5}</TableCell>
+                        <TableCell>{this.state.malesOver5}</TableCell>
+                        <TableCell>{totalOver5}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Total</TableCell>
-                        <TableCell>{this.state.totalFemale}</TableCell>
-                        <TableCell>{this.state.totalMale}</TableCell>
-                        <TableCell>{parseInt(this.state.totalFemale)+parseInt(this.state.totalMale)}</TableCell>
+                        <TableCell>{totalFemale}</TableCell>
+                        <TableCell>{totalMale}</TableCell>
+                        <TableCell>{totalFemale + totalMale}</TableCell>
                     </TableRow>
                 </Table>
             </Paper>
         );
     }
 }
-/*
-<>
-                <Grid item xs={3} key="TotalSex" style={{ height: 'auto' }}>
-                    <Typography component="h2" variant="headline">
-                        No. of cases by gender
-                    </Typography>
-                    <TotalCard className={"fa fa-female"} subTitle={"Female"} total={this.state.totalFemale}  />
-                    <TotalCard className={"fa fa-male"} subTitle={"Male"} total={this.state.totalMale}  />
-                </Grid>
-                <Grid item xs={3} key="TotalAge" style={{ height: 'auto' }}>
-                    <Typography component="h2" variant="headline">
-                        No. of cases by age
-                    </Typography>
-                    <TotalCard className={"fa fa-child"} subTitle={"Under 5"} total={this.state.totalUnder5}  />
-                    <TotalCard className={"fa fa-user"} subTitle={"Over 5"} total={this.state.totalOver5}  />
-                </Grid>
-            </>
-
-            */
