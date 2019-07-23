@@ -12,9 +12,22 @@
     crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script>
+    //var menu = import("../../Navigation/Web.React/lib/index.js");
+  </script>
+  <script type="text/javascript" src="../../../Navigation/Web.React/lib/index.js"></script>
 </head>
 
 <body>
+  <div id="test">Halo</div>
+  <script>
+    const domContainer = document.querySelector('#test');    
+    ReactDOM.render(CBSNavigation, domContainer);  
+    //ReactDOM.render(React.createElement("div", null, "Jeg er laget i React"), domContainer);  
+  </script>
+
   <cbs-root>
   </cbs-root>
 </body>

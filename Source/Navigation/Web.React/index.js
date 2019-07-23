@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './cbs-navigation-v1.scss';
 
-const BASE_URL = process.env.API_BASE_URL;
+//const BASE_URL = process.env.API_BASE_URL;
 
 class CBSNavigation extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class CBSNavigation extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        //this.fetchData();
     }
 
     rcLogo(color) {
