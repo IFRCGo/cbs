@@ -11,6 +11,7 @@ $medium-grey: #cfcdcc;
 
 .table {
     border: 1px solid $medium-grey;
+    font-family: "Lato", "Helvetica Neue", sans-serif;
 }
 
 .headline {
@@ -24,4 +25,9 @@ $medium-grey: #cfcdcc;
 
 .headerText {
     color: black !important;
+    font-family: "Lato", "Helvetica Neue", sans-serif;
+}
+
+.cell {
+    font-family: "Lato", "Helvetica Neue", sans-serif;
 }

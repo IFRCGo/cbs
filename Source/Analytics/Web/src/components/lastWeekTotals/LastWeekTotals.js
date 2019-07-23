@@ -76,22 +76,22 @@ export default class LastWeekTotals extends Component {
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell>Under 5</TableCell>
-                            <TableCell>{this.state.femalesUnder5}</TableCell>
-                            <TableCell>{this.state.malesUnder5}</TableCell>
-                            <TableCell>{totalUnder5 ? totalUnder5 : "-"}</TableCell>
+                            <TableCell className="cell">Under 5</TableCell>
+                            <TableCell className="cell">{this.state.femalesUnder5}</TableCell>
+                            <TableCell className="cell">{this.state.malesUnder5}</TableCell>
+                            <TableCell className="cell">{totalUnder5 ? totalUnder5 : "-"}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>5 and above</TableCell>
-                            <TableCell>{this.state.femalesOver5}</TableCell>
-                            <TableCell>{this.state.malesOver5}</TableCell>
-                            <TableCell>{totalOver5 ? totalOver5 : "-"}</TableCell>
+                            <TableCell className="cell">5 and above</TableCell>
+                            <TableCell className="cell">{this.state.femalesOver5}</TableCell>
+                            <TableCell className="cell">{this.state.malesOver5}</TableCell>
+                            <TableCell className="cell">{totalOver5 ? totalOver5 : "-"}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total</TableCell>
-                            <TableCell>{totalFemale ? totalFemale : "-"}</TableCell>
-                            <TableCell>{totalMale ? totalMale : "-"}</TableCell>
-                            <TableCell>{totalFemale + totalMale ? totalFemale + totalMale : "-"}</TableCell>
+                            <TableCell className="cell">Total</TableCell>
+                            <TableCell className="cell">{totalFemale ? totalFemale : "-"}</TableCell>
+                            <TableCell className="cell">{totalMale ? totalMale : "-"}</TableCell>
+                            <TableCell className="cell">{totalFemale + totalMale ? totalFemale + totalMale : "-"}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
