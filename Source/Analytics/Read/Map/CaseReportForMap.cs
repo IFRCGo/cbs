@@ -1,8 +1,5 @@
 using Concepts;
-<<<<<<< HEAD
-using Concepts.HealthRisk;
-=======
->>>>>>> 3891d379b0764a004bf57c48d267f8508171c0b6
+using Concepts.HealthRisks;
 
 namespace Read.Map
 {
