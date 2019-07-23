@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Map, TileLayer, Marker } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../assets/map.css";
 import MapOverview from "./MapOverview";
@@ -21,12 +21,8 @@ var createClusterCustomIcon = function(cluster) {
 
     // Get css class from markers
     var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
-    
-
     var tmp = document.getElementsByClassName(getClusterNbr)[0];
-
     var markers = cluster.getAllChildMarkers();
-
     var markersSet = {}
 
     for(var i=0; i<markers.length; i++){
@@ -47,7 +43,7 @@ var createClusterCustomIcon = function(cluster) {
     if(markersInCluster <= 5){
         markerClusterSize = clusterSize.small
     }
-    else if(markersInCluster < 20){
+    else if(markersInCluster < 15){
         markerClusterSize = clusterSize.medium
     }
     else{
@@ -66,22 +62,25 @@ var createClusterCustomIcon = function(cluster) {
         markerClusterSize*=2
         if(Object.keys(markersSet).length > 1){
             return new L.divIcon({
-                html: ReactDOMServer.renderToString(<MapPieChart size={markerClusterSize} numberOfCases={markersInCluster} casesPerHealthRisk={casesPerHealthRisk}>${markersInCluster}</MapPieChart>)
+                html: ReactDOMServer.renderToString(<MapPieChart size={markerClusterSize} numberOfCases={markersInCluster} casesPerHealthRisk={casesPerHealthRisk}>{markersInCluster}</MapPieChart>),
+                iconSize: L.point(markerClusterSize, markerClusterSize, true ),
+                className: "cluster-icon"
             });
     
     }else{
-        console.log(casesPerHealthRisk)
-        var tmp =  ReactDOMServer.renderToString(<div className="box-parent"><div>{markersInCluster}</div><div className="box-overview-single">
-                <h6 style={{textAlign: "center", marginTop:"3px", marginBottom: "3px", fontSize:"10px"}} > Total cases: {markersInCluster}</h6>
-                <ul style={{paddingLeft: "2px", fontSize: "8px", fontWeight:"2px"}}> 
-                    <li> <div style={{backgroundColor: casesPerHealthRisk[0][1], height: "10px", width: "10px", display:"inline-block"}}></div> {casesPerHealthRisk[0][0][1]} : {casesPerHealthRisk[0][0][0]}</li>
+        var tmp =  ReactDOMServer.renderToString(<div className="box-parent"><div style={{position:"absolute", zIndex:100000, backgroundColor: "white", borderRadius: "20%", padding:"2px"}}>{markersInCluster}</div><div className="box-overview">
+                <h6 style={{textAlign: "center", margin: "auto"}} > Total cases: {markersInCluster}</h6>
+                <ul style={{padding: "inherit", marginBottom: "auto", marginTop: "auto"}}> 
+                    <li style={{fontSize: "10px"}}> 
+                        <div style={{backgroundColor: casesPerHealthRisk[0][1], height: "10px", width: "10px", display:"inline-block"}}></div> {casesPerHealthRisk[0][0][1]} : {casesPerHealthRisk[0][0][0]}
+                    </li>
                 </ul>
          </div>
         </div>)
         return new L.divIcon({
-            html: ` ${tmp}`,
-            className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom" ,
-            iconSize: L.point(markerClusterSize, markerClusterSize, true )
+                html: ` ${tmp}`,
+                className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom" ,
+                iconSize: L.point(markerClusterSize - 14, markerClusterSize - 14, true )
             });
     }
 }
@@ -120,7 +119,7 @@ function CaseMarkers({caseReportsLastWeek}){
                 return <Marker
                     position={[cases.location.longitude, cases.location.latitude]} icon={icon}
                 >
-                    <Popup><MarkerPopupContent healthRisk={hl}></MarkerPopupContent></Popup>
+                    <Popup closeButton="true" autoClose="true"><MarkerPopupContent healthRisk={hl}></MarkerPopupContent></Popup>
                 </Marker>
             });
         });

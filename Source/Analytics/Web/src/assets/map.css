@@ -8,7 +8,7 @@
  }
 
 .healthRiskList {
-    font-size: 16px;
+    font-size: 12px;
     position: absolute;
     right: 0;
     list-style-type: none;
@@ -22,6 +22,10 @@
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 10px;
+}
+
+.healthrisk-list-item{
+    margin-top: 2px;
 }
 
 .marker-1 {
@@ -38,7 +42,6 @@
 .marker-2-cluster{
     background-color: #e6194B;
 }
-
 .marker-3 {
     color: #FFBF00;
 }
@@ -59,7 +62,6 @@
 .marker-5-cluster{
     background-color: #964B00;
 }
-
 .marker-6 {
     color: #f032e6;
 }
@@ -69,47 +71,92 @@
 .marker-7 {
     color: #aaffc3;
 }
+.marker-7-cluster{
+    background-color: #aaffc3;
+}
 .marker-8 {
     color: #800000;
+}
+.marker-8-cluster{
+    background-color: #800000;
 }
 .marker-9 {
     color: #42d4f4;
 }
+.marker-9-cluster{
+    background-color: #42d4f4;
+}
 .marker-10 {
     color: #bfef45;
+}
+.marker-10-cluster{
+    background-color: #bfef45;
 }
 .marker-11 {
     color: #000075;
 }
+.marker-11-cluster{
+    background-color: #000075;
+}
 .marker-12 {
     color: #a9a9a9;
+}
+.marker-12-cluster{
+    background-color: #a9a9a9;
 }
 .marker-13 {
     color: #808000;
 }
+.marker-13-cluster{
+    background-color: #808000;
+}
 .marker-14 {
     color: #aaffc3;
+}
+.marker-14-cluster{
+    background-color: #aaffc3;
 }
 .marker-15 {
     color: aquamarine;
 }
+.marker-15-cluster{
+    background-color: aquamarine;
+}
 .marker-16 {
     color: seashell;
+}
+.marker-16-cluster{
+    background-color: seashell;
 }
 .marker-17 {
     color: black;
 }
+.marker-17-cluster{
+    background-color: black;
+}
 .marker-18{
     color: #f58231;
+}
+.marker-18-cluster{
+    background-color: #f58231;
 }
 .marker-19 {
     color: skyblue;
 }
+.marker-19-cluster{
+    background-color: skyblue;
+}
 .marker-20 {
     color: #fabebe;
 }
+.marker-20-cluster{
+    background-color: #fabebe;
+}
 .marker-21 {
     color: #fa9907;
+}
+.marker-21-cluster{
+    background-color: #fa9907;
 }
 .marker-22 {
     color: teal;
@@ -148,19 +195,11 @@
     color: lightcoral
 }
 
-.marker-cluster-custom {
-  border-radius: 50%;
-  padding: 8px;
-  border: 2px solid #666;
-  color: #666;
-  text-align: center;
-  font: 20px Arial, sans-serif;
 
-  }
 
   .cluster-label{
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
     display: inline-block;
     padding: inherit;
 
@@ -191,36 +230,68 @@
 }
 
 .box-overview{
-    /* visibility: hidden; */
     background-color: white;
     display: none; 
     position: absolute;
-    height: 1000%;
-    width: 1000%;
-    margin-left: 250%;
-    margin-top: 250%;
+    z-index: 100;
+    /*height: 100%; */
+    width: 200%;
+    margin-top: 100%; 
     border-radius: 10px;
     border: red;
     border-style: dotted;
+    width: max-content;
+    padding: 2px;
+    text-align: left;
 }
 .box-overview-single{
     background-color: white;
     display: none; 
     position: absolute;
     z-index: 100;
-    height: 100%;
-    width: 150%;
-    margin-left: 60%;
-    margin-top: 60%;
+    /* height: 100%; */
+    width: 200%;
+    margin-top: 120%;
     border-radius: 10px;
     border: red;
     border-style: dotted;
+
+}
+
+.box-parent{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 .box-parent:hover .box-overview-single{
     display: block;
 }
+
 .box-overview-list{
     list-style-type: none;
+    text-align: left;
 }
 
+.cluster-icon{
+    top: 0px;
+    bottom: 0px;
+    border-radius: 50%;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+}
+
+
+.marker-cluster-custom {
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+  }
+
+.leaflet-popup-close-button{
+    display: none;
+}
