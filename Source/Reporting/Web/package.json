@@ -29,7 +29,7 @@
     "@microsoft/applicationinsights-web": "^2.0.0-rc3",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.5.3",
-    "navigation": "file:../../Navigation/Web.Angular",
+    "navigation": "file:../../Navigation/Web.React",
     "ngx-bootstrap": "^2.0.0-rc.0",
     "ngx-smart-modal": "^7.1.1",
     "ngx-toastr": "^10.0.4",

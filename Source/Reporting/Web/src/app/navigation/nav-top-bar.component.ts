@@ -1,9 +1,9 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
+import CBSNavigation from '../../../../../Navigation/Web.React/lib/index.js';
 
 @Component({
     selector: 'cbs-nav-top-bar',
-    templateUrl: `./nav-top-bar.component.html`,
-    styleUrls: ['./nav-top-bar.component.scss']
+    templateUrl: `../../../../../Navigation/Web.React/lib/index.js`,
 })
 export class NavTopBarComponent implements OnInit {
     static apiBaseUrl: string;
@@ -15,6 +15,7 @@ export class NavTopBarComponent implements OnInit {
 
     ngOnInit() {
         fetch(`${NavTopBarComponent.apiBaseUrl}/identity`).then(async response => this.name = await response.text());
+        CBSNavigation.render();
     }
 
     logout() {
