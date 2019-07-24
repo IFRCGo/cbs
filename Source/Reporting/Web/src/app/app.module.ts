@@ -11,6 +11,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavTopBarComponent } from './navigation/nav-top-bar.component';
+import { NavbarHostComponent } from './navigation/navbar-host.component';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
@@ -40,7 +41,8 @@ NavTopBarComponent.apiBaseUrl = environment.api;
 @NgModule({
   declarations: [
     AppComponent,
-    NavTopBarComponent
+    NavTopBarComponent,
+    NavbarHostComponent,
   ],
   imports: [
     BrowserModule,

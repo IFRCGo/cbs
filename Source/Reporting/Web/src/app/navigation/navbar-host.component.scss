@@ -1,0 +1,129 @@
+$link-color: rgb(206, 23, 30);
+$gray-lighter: lighten(#000, 93.5%);
+$brand-primary: #234361;
+$pre-border-color: rgb(204, 204, 204);
+$rc-red: #ca0000;
+$rc-red-darker: #ab0900;
+
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body {
+  margin: 0;
+}
+  
+.navigation-header {
+  padding: 0;
+  @media (min-width: $screen-sm-min) {
+    border-bottom: 1px solid $brand-primary;
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: $screen-xs-max) {
+    background-color: $rc-red;
+  }
+
+  .logo {
+    margin: 0 0.9rem 0 0.7rem;
+  }
+  
+  .logo-white {
+    padding-top: 1rem;
+    @media (min-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+  
+  .logo-red {
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      background-color: $rc-red;
+      a {
+        color: white;
+      }
+    }
+  }
+  
+  .dropdown-content {
+    background-color: $rc-red;
+    display: block;
+    position: absolute;
+    @media (max-width: $screen-xs-max) {
+      position: relative;
+      padding-left: 1rem;
+    }
+  }
+
+  .dropdown-item {
+    display: block;
+    color: white;
+    &:hover {
+      background-color: $rc-red-darker;
+    }
+  }
+  
+  nav {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+
+    @media (max-width: $screen-xs-max) {
+      flex-direction: column;
+    }
+  
+    a {
+      font-size: 0.9rem;
+      color: $brand-primary;
+      padding: 1.6rem 2rem;
+      text-decoration: none;
+      &:hover {
+        background-color: $rc-red;
+        color: white;
+      }
+      @media (max-width: $screen-xs-max) {
+        color: white;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .login-status {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+
+    @media (max-width: $screen-xs-max) {
+      margin-top: 1rem;
+    }
+    @media (min-width: $screen-sm-min) {
+      margin-left: auto;
+    }
+  }
+  .logged-in {
+    padding: 0 1rem;
+    text-align: right;
+    @media (max-width: $screen-xs-max) {
+      color: white;
+      padding-bottom: 1rem;
+    }
+    
+    p {
+      margin: 0;
+    }
+  }
+}
+
