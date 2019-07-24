@@ -19,7 +19,6 @@ export class DeleteHealthRiskComponent {
     modalRef: BsModalRef;
 
     constructor(
-        private commandCoordinator: CommandCoordinator,
         private modalService: BsModalService,
         private router: Router,
         private toastr: ToastrService
@@ -33,7 +32,8 @@ export class DeleteHealthRiskComponent {
     deleteHealthrisk(id: string) {
         this.cmd.healthRiskId = this.risk.id;
         
-        this.commandCoordinator.handle(this.cmd)
+        const commandCoordinator = new CommandCoordinator();
+        commandCoordinator.handle(this.cmd)
             .then(response => {
                 this.modalRef.hide();
                 this.router.navigate(['healthrisk']); //TODO: Route back

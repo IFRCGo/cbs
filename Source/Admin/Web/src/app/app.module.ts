@@ -10,7 +10,7 @@ import { HealthRiskModule } from './HealthRisks/healthRisks.module';
 
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
-import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { NavTopBarComponent } from './Navigation/nav-top-bar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
