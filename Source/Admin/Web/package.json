@@ -33,9 +33,9 @@
         "bootstrap-sass": "^3.3.7",
         "core-js": "^2.5.3",
         "navigation": "file:../../Navigation/Web.Angular",
-        "ngx-bootstrap": "^2.0.0-rc.0",
-        "ngx-toastr": "^6.4.1-beta.0",
-        "rxjs": "^5.5.6",
+        "ngx-bootstrap": "^5.1.0",
+        "ngx-toastr": "^10.0.4",
+        "rxjs": "^6.5.2",
         "tslib": "^1.9.0",
         "zone.js": "~0.9.1"
     },
