@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --base-href=/admin/ --deploy-url=/admin/ --public-host=localhost:4201",
-    "build-test": "ng build --base-href=/admin/ --deploy-url=/admin/ --prod --env=test",
+    "build-test": "ng build --base-href=/admin/ --deploy-url=/admin/ --prod --configuration=test",
     "build": "ng build --base-href=/admin/ --deploy-url=/admin/ --prod",
     "test": "ng test",
     "lint": "ng lint",
