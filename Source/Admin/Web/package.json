@@ -22,7 +22,6 @@
         "@angular/compiler": "^4.4.4",
         "@angular/core": "^4.4.4",
         "@angular/forms": "^4.4.4",
-        "@angular/http": "^4.4.4",
         "@angular/platform-browser": "^4.4.4",
         "@angular/platform-browser-dynamic": "^4.4.4",
         "@angular/router": "^4.4.4",
@@ -37,13 +36,15 @@
         "ngx-bootstrap": "^2.0.0-rc.0",
         "ngx-toastr": "^6.4.1-beta.0",
         "rxjs": "^5.5.6",
-        "zone.js": "^0.8.20"
+        "tslib": "^1.9.0",
+        "zone.js": "~0.9.1"
     },
     "devDependencies": {
+        "@angular-devkit/build-angular": "~0.801.2",
         "@angular/cli": "^8.1.2",
         "@angular/compiler-cli": "^8.1.2",
         "@angular/language-service": "^8.1.2",
-        "codelyzer": "~3.0.1",
+        "codelyzer": "^5.0.1",
         "tslint": "~5.3.2",
         "typescript": "~2.5.3"
     }
