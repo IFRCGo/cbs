@@ -93,7 +93,6 @@ var iconsClasses = []
 var clusters     = []
 
 function CaseMarkers({caseReportsLastWeek}){
-
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
     return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
         var healthRiskName   = caseReportsLastWeek.caseReportsPerHealthRisk[key][0].healthRiskName
@@ -155,8 +154,10 @@ class MapWidget extends Component {
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
+        
 
-        this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
+        this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {    
+            console.log(queryResult)   
             if(queryResult.success){
                 this.setState({ 
                     caseReportsLastWeek: queryResult.items[0],
