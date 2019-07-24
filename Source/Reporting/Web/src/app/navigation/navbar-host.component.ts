@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import {Component, AfterContentInit, ViewEncapsulation} from '@angular/core';
-import CBSNavigation from './test';
+import CBSNavigation from '../../../node_modules/navigation/';
 
 @Component({
   selector: 'navbar-host',
   templateUrl:'./navbar-host.component.html',
-  styleUrls: ['./navbar-host.component.scss'],
+  styleUrls: ['../../../node_modules/navigation/lib/cbs-navigation-v1.scss'],
   encapsulation: ViewEncapsulation.None
 })
 

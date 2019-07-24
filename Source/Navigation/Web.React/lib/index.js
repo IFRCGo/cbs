@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './cbs-navigation-v1.scss';
+
 //const BASE_URL = process.env.API_BASE_URL;
+
 
 class CBSNavigation extends Component {
   constructor(props) {
@@ -25,36 +26,12 @@ class CBSNavigation extends Component {
     });
   }
 
-  fetchData() {
-    if (process.env.environment !== 'production') {
-      this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
-      fetch(this.url, {
-        method: "GET"
-      }).then(response => response.json()).then(json => this.setState({
-        username: json.name
-      })).catch(_ => this.setState({
-        isLoading: false,
-        isError: true
-      }));
-    } else {
-      this.url = `${BASE_URL}/identity`;
-      fetch(this.url, {
-        method: "GET"
-      }).then(response => response.text()).then(text => this.setState({
-        username: text
-      })).catch(_ => this.setState({
-        isLoading: false,
-        isError: true
-      }));
+  componentWillMount(){
+
     }
 
-    this.setState({
-      isLoading: true
-    });
-  }
-
   componentDidMount() {
-    this.fetchData();
+
   }
 
   rcLogo(color) {
