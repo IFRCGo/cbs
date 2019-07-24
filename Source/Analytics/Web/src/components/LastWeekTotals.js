@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import TotalCard from "./TotalCard";
 
-import { CaseReportTotalsQuery } from "../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
+import { CaseReportTotalQuery } from "../Features/CaseReports/CaseReportTotalQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
 
@@ -13,27 +13,26 @@ export default class LastWeekTotals extends Component {
         super(props);
 
         this.state = {
-            totalFemale: "-",
-            totalMale: "-",
-            totalUnder5: "-",
-            totalOver5: "-",
+            total: 0,
             isLoading: true,
             isError: false
         };
     }
 
     fetchLastWeekTotals() {
+        
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportTotals = new CaseReportTotalsQuery();
+        let caseReportTotals = new CaseReportTotalQuery();
+
+        console.log(caseReportTotals);
 
         this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
+            console.log(json)
             if(queryResult.success){
+
                 let json = queryResult.items[0];
                 this.setState({
-                    totalFemale: json.female,
-                    totalMale: json.male,
-                    totalUnder5: json.under5,
-                    totalOver5: json.over5,
+                    totalCaseReports: 0,
                     isLoading: false,
                     isError: false
                 });

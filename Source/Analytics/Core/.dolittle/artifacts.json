@@ -25,6 +25,10 @@
       "15822f97-c898-4697-997b-1a4eebf7abd9": {
         "generation": 1,
         "type": "Read.CaseReports.CaseReportsPerRegionLast7DaysQuery, Read"
+      },
+      "69fb20e1-a04e-4e4d-a3bc-be0151d67528": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportTotalQuery, Read"
       }
     }
   },
@@ -103,15 +107,15 @@
     "events": {
       "0c6aadaa-e2a3-474d-a630-8a2b2bca2f19": {
         "generation": 1,
-        "type": "Events.Alerts.AlertOpened, Events"
+        "type": "Events.Alerts.AlertOpened, Events.Alerts"
       },
       "233b9cd3-af01-4686-b8d0-d98d3fdd7b6e": {
         "generation": 1,
-        "type": "Events.Alerts.AlertRuleCreated, Events"
+        "type": "Events.Alerts.AlertRuleCreated, Events.Alerts"
       },
       "6f1c66a2-6712-4a78-82f0-a26185889d2b": {
         "generation": 1,
-        "type": "Events.Alerts.AlertRuleUpdated, Events"
+        "type": "Events.Alerts.AlertRuleUpdated, Events.Alerts"
       }
     },
     "eventSources": {},
