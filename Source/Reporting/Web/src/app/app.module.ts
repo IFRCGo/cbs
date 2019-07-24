@@ -10,7 +10,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
-import { NavTopBarComponent } from './navigation/nav-top-bar.component';
 import { NavbarHostComponent } from './navigation/navbar-host.component';
 
 import { ModalModule } from 'ngx-bootstrap';
@@ -36,12 +35,11 @@ const routes: Routes = [
 ];
 
 // Note: This base URL is set due to navigation being a dependency pulled into this
-NavTopBarComponent.apiBaseUrl = environment.api;
+//NavTopBarComponent.apiBaseUrl = environment.api;
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavTopBarComponent,
     NavbarHostComponent,
   ],
   imports: [
