@@ -26,8 +26,11 @@ var createClusterCustomIcon = function(cluster) {
     var markersSet = {}
 
     for(var i=0; i<markers.length; i++){
+        console.log(markers[i]);
         var markerClass = markers[i].options.icon.options.className.split(" ")[1]
-        var markerElement = document.getElementsByClassName(markerClass);
+        console.log(markerClass)
+        var markerElement = document.getElementsByClassName(markerClass);   
+        console.log(markerElement)
         var healthRiskId  = markerElement[markerElement.length - 1].id
         if(!(markerClass in markersSet)){
             markersSet[markerClass] = [1, healthRiskId]
@@ -103,6 +106,7 @@ function CaseMarkers({caseReportsLastWeek}){
         
         var icon = L.divIcon({
             className: 'custom-div-icon ' + markerClass,
+            id: healthRiskName,
             html: "<i></i>"
         });
 
@@ -201,6 +205,8 @@ class MapWidget extends Component {
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
+
+        console.log("healthrisks:" + healthRisks)
 
         return (
             <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>

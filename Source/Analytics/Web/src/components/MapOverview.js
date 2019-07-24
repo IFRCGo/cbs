@@ -3,10 +3,9 @@ import React, { Component } from "react";
 function ListOfHealthRisks({clusters,healthRisks, icons}){
     
     var listItem = healthRisks.map(function(healthRisk, i){
-        var cl = icons[i];
-        var clo = clusters[i];
-        console.log(clo)
-        return <li className="healthrisk-list-item"><div className={clo} style={{ height: "1px", width: "1px"}}></div> <i class={cl}  id={healthRisk} ></i> : {healthRisk}</li>
+        var classForIcon = icons[i];
+        var cluster = clusters[i];
+        return <li className="healthrisk-list-item"><div className={cluster}></div> <i class={classForIcon} style={{display: "none"}}  id={healthRisk} ></i>{healthRisk}</li>
     });
     return listItem
 }

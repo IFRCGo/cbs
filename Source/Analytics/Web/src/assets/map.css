@@ -10,22 +10,93 @@
 .healthRiskList {
     font-size: 12px;
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     list-style-type: none;
-    width: 100px;
-    top: 0;
     z-index: 999;
     background-color: white;
-    width: 22%;
-    margin-right: 20px;
-    margin-top: 20px;
+    width: 22%;     
     border-radius: 4px;
-    padding-inline-start: 10px;
-    padding-inline-end: 10px;
+    padding: 5px 10px;
 }
 
 .healthrisk-list-item{
     margin-top: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.cluster-label{
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    padding: inherit;
+}
+
+.pie {
+  border-radius: 50%;
+  border: 2px solid #666;
+  background: transparent;
+  position: relative;
+}
+
+.pie circle {
+  fill: none;
+  stroke: gold;
+  stroke-width: 32;
+  animation: rotate 1.5s ease-in;
+  background: transparent;
+}
+
+.box-parent{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.box-parent:hover .box-overview{
+    display: block;
+}
+
+.box-overview{
+    background-color: white;
+    display: none; 
+    position: absolute;
+    top: 105%;
+    top: calc(100% + 5px);
+    z-index: 100;
+    width: 200%;
+    border-radius: 5px;
+    width: max-content;
+    padding: 4px;
+    text-align: left;
+}
+
+.box-overview-list{
+    list-style-type: none;
+    text-align: left;
+}
+
+.cluster-icon{
+    border-radius: 50%;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+}
+
+.marker-cluster-custom {
+    border-radius: 50%;
+    padding: 5px;
+    margin-right: 7px;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+}
+
+.leaflet-popup-close-button{
+    display: none;
 }
 
 .marker-1 {
@@ -193,105 +264,4 @@
 }
 .marker-99 {
     color: lightcoral
-}
-
-
-
-  .cluster-label{
-    width: 4px;
-    height: 4px;
-    display: inline-block;
-    padding: inherit;
-
-  }
-
-.pie {
-  border-radius: 50%;
-  border: 2px solid #666;
-  background: transparent;
-  position: relative;
-}
-
-.pie circle {
-  fill: none;
-  stroke: gold;
-  stroke-width: 32;
-  animation: rotate 1.5s ease-in;
-  background: transparent;
-}
-
-.box-parent{
-    height: 100%;
-    width: 100%;
-}
-
-.box-parent:hover .box-overview{
-    display: block;
-}
-
-.box-overview{
-    background-color: white;
-    display: none; 
-    position: absolute;
-    z-index: 100;
-    /*height: 100%; */
-    width: 200%;
-    margin-top: 100%; 
-    border-radius: 10px;
-    border: red;
-    border-style: dotted;
-    width: max-content;
-    padding: 2px;
-    text-align: left;
-}
-.box-overview-single{
-    background-color: white;
-    display: none; 
-    position: absolute;
-    z-index: 100;
-    /* height: 100%; */
-    width: 200%;
-    margin-top: 120%;
-    border-radius: 10px;
-    border: red;
-    border-style: dotted;
-
-}
-
-.box-parent{
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-}
-
-.box-parent:hover .box-overview-single{
-    display: block;
-}
-
-.box-overview-list{
-    list-style-type: none;
-    text-align: left;
-}
-
-.cluster-icon{
-    top: 0px;
-    bottom: 0px;
-    border-radius: 50%;
-    color: #666;
-    text-align: center;
-    font: 15px Arial, sans-serif;
-}
-
-
-.marker-cluster-custom {
-    border-radius: 50%;
-    padding: 5px;
-    border: 2px solid #666;
-    color: #666;
-    text-align: center;
-    font: 15px Arial, sans-serif;
-  }
-
-.leaflet-popup-close-button{
-    display: none;
 }
