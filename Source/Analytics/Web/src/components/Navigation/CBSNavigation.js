@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './cbs-navigation-v1.scss';
-import { throws } from 'assert';
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -14,7 +13,7 @@ class CBSNavigation extends Component {
 
         this.state = {
             username: "Unknown", 
-            showAnalyticsDropdown: false
+            showAnalyticsDropdown: false,
         };
     }
 
@@ -95,6 +94,17 @@ class CBSNavigation extends Component {
         )
     }
 
+    createMenuItem(url, text) {
+        var active = this.props.activeMenuItem;
+        
+        return <a 
+                    href={`/{url}/`} 
+                    className={`menu-item ${url == active ? `active` : ``}`}>
+                        {text} {url=="analytics-new" &&  <i className="fa fa-caret-down"/>}
+                </a>
+        
+    }
+
     render() {
         
         return (
@@ -102,17 +112,18 @@ class CBSNavigation extends Component {
                 {this.rcLogo("white")}
                 {this.rcLogo("red")}
                 <nav>
-                    <a href="/analytics/">Country Overview</a>
+                    {this.createMenuItem("analytics", "Country Overview")}
 
                     <div className="dropdown" onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
 
-                        <a href="/analytics/">Analytics <i className="fa fa-caret-down" /></a>
+                        {this.createMenuItem("analytics-new", `Analytics`)}
+
                         {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
 
                     </div>
-                    <a href="/admin/">Project Administration</a>
-                    <a href="/reporting/datacollectors/">Data Collectors</a>
-                    <a href="/reporting/case-reports/">Reports</a>
+                    {this.createMenuItem("admin", "Project Administration")}
+                    {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
+                    {this.createMenuItem("reporting/case-reports", "Reports")}
                 </nav>
 
                 <div className="login-status">
