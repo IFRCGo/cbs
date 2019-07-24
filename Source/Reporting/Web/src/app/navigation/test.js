@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './navbar-host.component.scss';
-//const BASE_URL = process.env.API_BASE_URL;
 
 class CBSNavigation extends Component {
   constructor(props) {

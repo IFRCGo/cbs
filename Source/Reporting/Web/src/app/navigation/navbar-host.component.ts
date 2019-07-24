@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {Component, ViewChild,ElementRef,AfterContentInit, ViewEncapsulation} from '@angular/core';
+import {Component, AfterContentInit, ViewEncapsulation} from '@angular/core';
 import CBSNavigation from './test';
 
 @Component({
@@ -11,17 +11,7 @@ import CBSNavigation from './test';
 })
 
 export class NavbarHostComponent implements AfterContentInit{
-
-    @ViewChild('testing', {static: false}) CBSNavigation: ElementRef;
-
-    ngOnInit(){
-       ReactDOM.render(React.createElement(CBSNavigation), document.getElementById("testing"));
-       //CBSNavigation.initialize(this.CBSNavigation.nativeElement);
-    }
-
     ngAfterContentInit(){
-        ReactDOM.render(React.createElement(CBSNavigation), document.getElementById("testing"));
-        //ReactDOM.render(CBSNavigation, document.getElementById("testing"));
-        //CBSNavigation.initialize(this.CBSNavigation.nativeElement);
+        ReactDOM.render(React.createElement(CBSNavigation), document.getElementById("navbar"));
     }
 }
