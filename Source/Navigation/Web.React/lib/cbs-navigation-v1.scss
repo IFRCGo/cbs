@@ -51,6 +51,7 @@ body {
   .dropdown {
     display: flex;
     flex-direction: column;
+    z-index: 2;
 
     &:hover {
       background-color: $rc-red;
