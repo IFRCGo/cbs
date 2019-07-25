@@ -10,7 +10,7 @@ import { HealthRiskModule } from './HealthRisks/healthRisks.module';
 
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
-import { NavTopBarComponent } from 'navigation/nav-top-bar.component';
+import { NavbarHostComponent } from './navigation/navbar-host.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,14 +34,14 @@ const routes: Routes = [
 ];
 
 // Note: This base URL is set due to navigation being a dependency pulled into this
-NavTopBarComponent.apiBaseUrl = environment.api;
+NavbarHostComponent.apiBaseUrl = environment.api;
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavTopBarComponent
+        NavbarHostComponent
     ],
     imports: [
         BrowserModule,

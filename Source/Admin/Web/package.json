@@ -33,9 +33,11 @@
         "@microsoft/applicationinsights-web": "^2.0.0-rc3",
         "bootstrap-sass": "^3.3.7",
         "core-js": "^2.5.3",
-        "navigation": "file:../../Navigation/Web.Angular",
+        "navigation": "file:../../Navigation/Web.React",
         "ngx-bootstrap": "^2.0.0-rc.0",
         "ngx-toastr": "^6.4.1-beta.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
         "rxjs": "^5.5.6",
         "zone.js": "^0.8.20"
     },
