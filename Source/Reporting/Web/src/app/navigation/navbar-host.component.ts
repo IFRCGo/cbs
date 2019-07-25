@@ -12,6 +12,6 @@ import CBSNavigation from '../../../node_modules/navigation/';
 
 export class NavbarHostComponent implements AfterContentInit{
     ngAfterContentInit(){
-        ReactDOM.render(React.createElement(CBSNavigation), document.getElementById("navbar"));
+        ReactDOM.render(React.createElement(CBSNavigation, {activeMenuItem: 'reporting/case-reports'}), document.getElementById("navbar"));
     }
 }

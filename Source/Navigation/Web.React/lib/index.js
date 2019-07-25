@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import './cbs-navigation-v1.scss';
 
-//const BASE_URL = process.env.API_BASE_URL;
-
-
 class CBSNavigation extends Component {
   constructor(props) {
     super(props);
-    this.onMouseOver = this.onMouseOver.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
     this.state = {
       username: "Unknown",
@@ -15,10 +12,10 @@ class CBSNavigation extends Component {
     };
   }
 
-  onMouseOver() {
-    this.setState({
-      showAnalyticsDropdown: true
-    });
+  onClick() {
+    this.setState(prevState => ({
+      showAnalyticsDropdown: !prevState.showAnalyticsDropdown
+    }));
   }
 
   onMouseLeave() {
@@ -27,20 +24,43 @@ class CBSNavigation extends Component {
     });
   }
 
-  componentWillMount(){
-
+  fetchData() {
+    if (process.env.environment !== 'production') {
+      this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
+      fetch(this.url, {
+        method: "GET"
+      }).then(response => response.json()).then(json => this.setState({
+        username: json.name
+      })).catch(_ => this.setState({
+        isLoading: false,
+        isError: true
+      }));
+    } else {
+      this.url = `${BASE_URL}/identity`;
+      fetch(this.url, {
+        method: "GET"
+      }).then(response => response.text()).then(text => this.setState({
+        username: text
+      })).catch(_ => this.setState({
+        isLoading: false,
+        isError: true
+      }));
     }
 
-  componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+  }
 
+  componentDidMount() {
   }
 
   rcLogo(color) {
     var backgroundColor = color == "red" ? "#c00" : "#fff";
     var mainColor = color == "red" ? "#fff" : "#c00";
-    return React.createElement("figure", {
+    return React.createElement("div", {
       className: `logo logo-${color}`
-    }, React.createElement("svg", {
+    }, React.createElement("figure", null, React.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "70",
       height: "40",
@@ -69,7 +89,9 @@ class CBSNavigation extends Component {
       fill: "none",
       stroke: backgroundColor,
       strokeWidth: "3"
-    })));
+    }))), React.createElement("div", {
+      className: "logo-text"
+    }, "CBS"));
   }
 
   analyticsDropdown() {
@@ -78,44 +100,54 @@ class CBSNavigation extends Component {
     }, React.createElement("a", {
       href: "/analytics/",
       className: "dropdown-item"
-    }, "Health risks"), React.createElement("a", {
+    }, React.createElement("div", {
+      className: "d-i-text"
+    }, "Health risks")), React.createElement("a", {
       href: "/analytics/",
       className: "dropdown-item"
-    }, "Regions"), React.createElement("a", {
+    }, React.createElement("div", {
+      className: "d-i-text"
+    }, "Regions")), React.createElement("a", {
       href: "/analytics/",
       className: "dropdown-item"
-    }, "Light area overview"), React.createElement("a", {
+    }, React.createElement("div", {
+      className: "d-i-text"
+    }, "Light area overview")), React.createElement("a", {
       href: "/analytics/",
       className: "dropdown-item"
-    }, "Volunteer performance")));
+    }, React.createElement("div", {
+      className: "d-i-text"
+    }, "Volunteer performance"))));
+  }
+
+  createMenuItem(url, text) {
+    var active = this.props.activeMenuItem;
+    return React.createElement("a", {
+      href: `/${url}/`,
+      className: `menu-item ${url == active ? `active` : ``}`
+    }, text, " ", url == "analytics/#" && React.createElement("i", {
+      className: `fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`
+    }));
   }
 
   render() {
     return React.createElement("header", {
       className: "navigation-header"
-    }, this.rcLogo("white"), this.rcLogo("red"), React.createElement("nav", null, React.createElement("a", {
-      href: "/analytics/"
-    }, "Country Overview"), React.createElement("div", {
+    }, this.rcLogo("white"), this.rcLogo("red"), React.createElement("nav", null, this.createMenuItem("analytics", "Country Overview"), React.createElement("div", {
       className: "dropdown",
-      onMouseOver: this.onMouseOver,
+      onClick: this.onClick,
       onMouseLeave: this.onMouseLeave
-    }, React.createElement("a", {
-      href: "/analytics/"
-    }, "Analytics ", React.createElement("i", {
-      className: "fa fa-caret-down"
-    })), this.state.showAnalyticsDropdown && this.analyticsDropdown()), React.createElement("a", {
-      href: "/admin/"
-    }, "Project Administration"), React.createElement("a", {
-      href: "/reporting/datacollectors/"
-    }, "Data Collectors"), React.createElement("a", {
-      href: "/reporting/case-reports/"
-    }, "Reports")), React.createElement("div", {
+    }, this.createMenuItem("analytics/#", `Analytics`), this.state.showAnalyticsDropdown && this.analyticsDropdown()), this.createMenuItem("admin", "Project Administration"), this.createMenuItem("reporting/datacollectors", "Data Collectors"), this.createMenuItem("reporting/case-reports", "Reports")), React.createElement("div", {
       className: "login-status"
     }, React.createElement("div", {
       className: "logged-in"
-    }, React.createElement("p", null, "Logged in as:"), React.createElement("p", null, this.state.username), React.createElement("button", null, "Logout"))));
+    }, React.createElement("p", null, "Logged in as: ", this.state.username), React.createElement("a", {
+      className: "logout",
+      href: "#"
+    }, React.createElement("i", {
+      className: "fa fa-sign-out"
+    }), " Log out"))));
   }
 
 }
-
 export default CBSNavigation;
