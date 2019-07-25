@@ -121,11 +121,13 @@ class CBSNavigation extends Component {
   }
 
   createMenuItem(url, text) {
-    var active = this.props.activeMenuItem;
+    var active = this.props.activeMenuItem == url;
+    var url = url ? "/" + url + "/" : "javascript:void(0)"; //Do nothing if no url is provided
+
     return React.createElement("a", {
-      href: `/${url}/`,
-      className: `menu-item ${url == active ? `active` : ``}`
-    }, text, " ", url == "analytics/#" && React.createElement("i", {
+      href: url,
+      className: `menu-item ${active ? `active` : ``}`
+    }, text, " ", text=="Analytics" && React.createElement("i", {
       className: `fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`
     }));
   }
@@ -137,7 +139,7 @@ class CBSNavigation extends Component {
       className: "dropdown",
       onClick: this.onClick,
       onMouseLeave: this.onMouseLeave
-    }, this.createMenuItem("analytics/#", `Analytics`), this.state.showAnalyticsDropdown && this.analyticsDropdown()), this.createMenuItem("admin", "Project Administration"), this.createMenuItem("reporting/datacollectors", "Data Collectors"), this.createMenuItem("reporting/case-reports", "Reports")), React.createElement("div", {
+    }, this.createMenuItem(null, `Analytics`), this.state.showAnalyticsDropdown && this.analyticsDropdown()), this.createMenuItem("admin", "Project Administration"), this.createMenuItem("reporting/datacollectors", "Data Collectors"), this.createMenuItem("reporting/case-reports", "Reports")), React.createElement("div", {
       className: "login-status"
     }, React.createElement("div", {
       className: "logged-in"

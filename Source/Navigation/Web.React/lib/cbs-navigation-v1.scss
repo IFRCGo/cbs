@@ -85,6 +85,7 @@ body {
     background-color: $rc-red;
     display: block;
     position: absolute;
+    z-index: 2;
 
     @media (max-width: $screen-xs-max) {
       position: relative;
@@ -104,6 +105,7 @@ body {
 
         .d-i-text {
           margin-left: 3rem;
+          flex-wrap: nowrap;
         }
 
       }
@@ -158,11 +160,11 @@ body {
   .login-status {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.8rem;
-
+    display: flex;
+    justify-content: center;
     
     @media (max-width: $screen-xs-max) {
       margin-top: 1rem;
-      display: flex;
       justify-content: flex-start;
       padding-left: 1rem;
     }
