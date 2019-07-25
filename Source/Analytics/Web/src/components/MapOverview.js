@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 
-function ListOfHealthRisks({ clusters, healthRisks, icons }) {
+function ListOfHealthRisks({ healthRisks }) {
 
-    var listItem = healthRisks.map(function (healthRisk, i) {
-        var classForIcon = icons[i];
-        var cluster = clusters[i];
-        return <li className="healthrisk-list-item"><div className={cluster}></div> <i class={classForIcon} style={{ display: "none" }} id={healthRisk} ></i>{healthRisk}</li>
-    });
+    var listItem = Object.keys(healthRisks).map(function (key) {
+        return <li key={key} className="healthrisk-list-item">
+            <span className="marker-cluster-custom" style={{ backgroundColor: healthRisks[key].color }}></span>
+            {healthRisks[key].name}
+        </li>
+    })
+
     return listItem
 }
 
@@ -15,8 +17,6 @@ class MapOverview extends Component {
         super(props);
         this.state = {
             healthRisks: props.healthRisks,
-            iconClasses: props.icons,
-            clusters: props.clusters,
             isLoading: true,
             isError: false
         };
@@ -25,7 +25,7 @@ class MapOverview extends Component {
     render() {
         return (
             <ul className="healthRiskList">
-                <ListOfHealthRisks clusters={this.state.clusters} healthRisks={this.state.healthRisks} icons={this.state.iconClasses}></ListOfHealthRisks>
+                <ListOfHealthRisks healthRisks={this.state.healthRisks}></ListOfHealthRisks>
             </ul>
         );
     }

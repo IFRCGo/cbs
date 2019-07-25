@@ -9,7 +9,6 @@ function Circles({ size, numberOfCases, casesPerHealthRisk }) {
     var listItems = []
 
     for (var key in casesPerHealthRisk) {
-        console.log(casesPerHealthRisk[key])
         var strokeDasharray = areaPerColor + ' 100'
         var strokeDashoffset = nextOffset
         nextOffset -= areaPerColor

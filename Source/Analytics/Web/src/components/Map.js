@@ -9,12 +9,11 @@ import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQ
 import { QueryCoordinator } from "@dolittle/queries";
 import MapPieChart from "./MapPieChart"
 import ReactDOMServer from 'react-dom/server';
-import { red, blue } from "@material-ui/core/colors";
 
 var clusterSize = {
-    large: 80,
-    medium: 60,
-    small: 40
+    large: 60,
+    medium: 40,
+    small: 30
 };
 
 var colors = {
@@ -26,10 +25,7 @@ var colors = {
     6: "seashell"
 }
 
-var healthRisks = []
-var iconsClasses = []
-var clusters = []
-var hr = {}
+var healthRisks = {}
 
 var createClusterCustomIcon = function (cluster) {
     var markers = cluster.getAllChildMarkers();
@@ -37,16 +33,16 @@ var createClusterCustomIcon = function (cluster) {
     var casesPerHealthRisk = {}
 
     for (var i = 0; i < markersInCluster; i++) {
-        var hrid = markers[i].options.icon.options.html.slice(11, -5) //todo: improve
+        var healthRiskId = markers[i].options.icon.options.html.dataset.healthriskid
 
-        if (!(hrid in casesPerHealthRisk)) {
-            casesPerHealthRisk[hrid] = {
-                "name": hr[hrid],
+        if (!(healthRiskId in casesPerHealthRisk)) {
+            casesPerHealthRisk[healthRiskId] = {
+                "name": healthRisks[healthRiskId].name,
                 "count": 1,
-                "color": colors[hrid]
+                "color": colors[healthRiskId]
             }
         } else {
-            casesPerHealthRisk[hrid].count++;
+            casesPerHealthRisk[healthRiskId].count++;
         }
     }
 
@@ -76,36 +72,39 @@ function MarkerPopupContent(props) {
 
 function CaseMarkers({ caseReportsLastWeek }) {
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
-    return Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function (healthRiskNumber) {
+    return Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function (healthRiskId) {
+        var allCasesReportsForHealthRisk = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskId]
+        var healthRiskName = allCasesReportsForHealthRisk[0].healthRiskName
+        var healthRiskColor = colors[healthRiskId]
 
-        var healthRiskName = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskNumber][0].healthRiskName
-        var marker = "marker-" + healthRiskNumber.toString()
-        var markerClass = marker + " fa fa-plus-square"
-        var clusterClass = marker + "-cluster" + " marker-cluster-custom cluster-label"
+        healthRisks[healthRiskId] = {
+            "name": healthRiskName,
+            "color": healthRiskColor
+        }
 
-        var icon = L.divIcon({
-            className: 'custom-div-icon ' + markerClass,
-            html: "<i data-hr=" + healthRiskNumber + "></i>",
-        });
+        return allCasesReportsForHealthRisk.map(grouping => {
+            var markers = []
 
-        healthRisks.push(healthRiskName)
-        iconsClasses.push(markerClass)
-        clusters.push(clusterClass)
-        hr[healthRiskNumber] = healthRiskName
+            var htmlElement = document.createElement("i")
+            htmlElement.className = "fa fa-plus-square"
+            htmlElement.setAttribute("data-healthriskid", healthRiskId)
+            htmlElement.style.color = healthRiskColor
 
-        var cs = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskNumber].map(cases => {
-            cases.vals = new Array(cases.numberOfPeople);
-            cases.vals.fill(1);
-            return cases.vals.map(function (val) {
-                return <Marker position={[cases.location.longitude, cases.location.latitude]} icon={icon}>
-                    <Popup closeButton="true" autoClose="true">
-                        <MarkerPopupContent healthRisk={healthRiskName + cases.location.longitude + cases.location.latitude}></MarkerPopupContent>
-                    </Popup>
-                </Marker>
+            var icon = L.divIcon({
+                className: "custom-div-icon",
+                html: htmlElement
             });
-        });
 
-        return cs
+            for (var i = 0; i < grouping.numberOfPeople; i++) {
+                markers.push(<Marker position={[grouping.location.longitude, grouping.location.latitude]} icon={icon}>
+                    <Popup closeButton="true" autoClose="true">
+                        <MarkerPopupContent healthRisk={healthRiskName}></MarkerPopupContent>
+                    </Popup>
+                </Marker>)
+            }
+
+            return markers;
+        });
     });
 };
 
@@ -183,8 +182,6 @@ class MapWidget extends Component {
             return (<div>Loading...</div>);
         }
 
-        console.log("healthrisks:" + healthRisks)
-
         return (
             <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
@@ -194,7 +191,7 @@ class MapWidget extends Component {
                 <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={createClusterCustomIcon}>
                     <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
                 </MarkerClusterGroup>
-                <MapOverview clusters={clusters} healthRisks={healthRisks} icons={iconsClasses}></MapOverview>
+                <MapOverview healthRisks={healthRisks}></MapOverview>
             </Map>
 
         );
