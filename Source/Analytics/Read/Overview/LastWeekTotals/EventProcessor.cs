@@ -29,10 +29,10 @@ namespace Read.Overview.LastWeekTotals
                 var totals = _caseReportTotalsRepository.GetById(day);
                 if (totals != null)
                 {
-                    totals.Female += @event.NumberOfFemalesAged5AndOlder + @event.NumberOfFemalesUnder5;
-                    totals.Male += @event.NumberOfMalesAged5AndOlder + @event.NumberOfMalesUnder5;
-                    totals.Over5 += @event.NumberOfMalesAged5AndOlder + @event.NumberOfFemalesAged5AndOlder;
-                    totals.Under5 += @event.NumberOfMalesUnder5 + @event.NumberOfFemalesUnder5;
+                    totals.FemalesUnder5 += @event.NumberOfFemalesUnder5;
+                    totals.MalesUnder5 += @event.NumberOfMalesUnder5;
+                    totals.FemalesOver5 += @event.NumberOfFemalesAged5AndOlder;
+                    totals.MalesOver5 += @event.NumberOfMalesAged5AndOlder;
 
                     _caseReportTotalsRepository.Update(totals);
                 }
@@ -41,10 +41,10 @@ namespace Read.Overview.LastWeekTotals
                     totals = new CaseReportTotals()
                     {
                         Id = day,
-                        Female = @event.NumberOfFemalesAged5AndOlder + @event.NumberOfFemalesUnder5,
-                        Male = @event.NumberOfMalesAged5AndOlder + @event.NumberOfMalesUnder5,
-                        Under5 = @event.NumberOfMalesUnder5 + @event.NumberOfFemalesUnder5,
-                        Over5 = @event.NumberOfMalesAged5AndOlder + @event.NumberOfFemalesAged5AndOlder
+                        FemalesUnder5 = @event.NumberOfFemalesUnder5,
+                        MalesUnder5 = @event.NumberOfMalesUnder5,
+                        FemalesOver5 = @event.NumberOfFemalesAged5AndOlder,
+                        MalesOver5 = @event.NumberOfMalesAged5AndOlder
                     };
 
                     _caseReportTotalsRepository.Insert(totals);
