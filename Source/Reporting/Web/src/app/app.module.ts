@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 
 // Note: This base URL is set due to navigation being a dependency pulled into this
-//NavTopBarComponent.apiBaseUrl = environment.api;
+NavbarHostComponent.apiBaseUrl = environment.api;
 
 @NgModule({
   declarations: [
