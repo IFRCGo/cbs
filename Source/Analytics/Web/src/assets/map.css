@@ -35,7 +35,7 @@
 
 .pie {
   border-radius: 50%;
-  border: 2px solid #666;
+  border: 1px solid black;
   background: transparent;
   position: relative;
 }
@@ -79,6 +79,12 @@
     text-align: left;
 }
 
+.overview-healthrisk-label{
+    height: 10px;
+    width: 10px;
+    display: inline-block; 
+}
+
 .cluster-icon{
     border-radius: 50%;
     color: #666;
@@ -106,7 +112,6 @@
     background-color: blue;
     color: white;
 }
-
 .marker-2{
     color: #e6194B;
 }

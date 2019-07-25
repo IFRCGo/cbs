@@ -18,11 +18,11 @@ var clusterSize = {
 
 var colors = {
     1: "#FFBF00",
-    2: "#e6194B",
-    3: "#f032e6",
-    4: "#aaffc3",
-    5: "#42d4f4",
-    6: "seashell"
+    2: "#537B35",
+    3: "#ED1B2E",
+    4: "#56A0D3",
+    5: "#7F181B",
+    6: "#6D6E70",
 }
 
 var healthRisks = {}
@@ -85,17 +85,19 @@ function CaseMarkers({ caseReportsLastWeek }) {
         return allCasesReportsForHealthRisk.map(grouping => {
             var markers = []
 
-            var htmlElement = document.createElement("i")
-            htmlElement.className = "fa fa-plus-square"
-            htmlElement.setAttribute("data-healthriskid", healthRiskId)
-            htmlElement.style.color = healthRiskColor
 
-            var icon = L.divIcon({
-                className: "custom-div-icon",
-                html: htmlElement
-            });
 
             for (var i = 0; i < grouping.numberOfPeople; i++) {
+                var htmlElement = document.createElement("i")
+                htmlElement.className = "fa fa-circle"
+                htmlElement.setAttribute("data-healthriskid", healthRiskId)
+                htmlElement.style.color = healthRiskColor
+
+                var icon = L.divIcon({
+                    className: "custom-div-icon",
+                    html: htmlElement
+                });
+
                 markers.push(<Marker position={[grouping.location.longitude, grouping.location.latitude]} icon={icon}>
                     <Popup closeButton="true" autoClose="true">
                         <MarkerPopupContent healthRisk={healthRiskName}></MarkerPopupContent>
