@@ -4,9 +4,21 @@ $rc-red: #ca0000;
 $light-grey: #f0f0f0;
 $medium-grey: #cfcdcc;
 
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+
 .tableContainer {
     font-family: "Lato", "Helvetica Neue", sans-serif;
-    margin-left: 1rem;
+    margin-left: 0;
+    @media (min-width: $screen-xs-max) {
+        margin-left: 1em;
+    }
 }
 
 .table {
@@ -24,9 +36,14 @@ $medium-grey: #cfcdcc;
 }
 
 .headerText {
-    color: black !important;
+    color: black !important; //these are marked as !important to override Google's MuiTable styling
     font-family: "Lato", "Helvetica Neue", sans-serif;
+    
+    &.center{
+        text-align: center !important;
+   }
 }
+
 
 .cell {
     font-family: "Lato", "Helvetica Neue", sans-serif;
