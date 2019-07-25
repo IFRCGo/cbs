@@ -5,8 +5,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 
 import { CaseReportTotalsQuery } from "../../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
 import { QueryCoordinator } from "@dolittle/queries";
@@ -35,10 +33,10 @@ export default class LastWeekTotals extends Component {
             if(queryResult.success){
                 let json = queryResult.items[0];
                 this.setState({
-                    femalesUnder5: json.femalesUnder5,
-                    malesUnder5: json.malesUnder5,
-                    femalesOver5: json.femalesOver5,
-                    malesOver5: json.malesOver5,
+                    femalesUnder5: parseInt(json.femalesUnder5),
+                    malesUnder5: parseInt(json.malesUnder5),
+                    femalesOver5: parseInt(json.femalesOver5),
+                    malesOver5: parseInt(json.malesOver5),
                     isLoading: false,
                     isError: false
                 });
@@ -48,8 +46,7 @@ export default class LastWeekTotals extends Component {
                 isLoading: false,
                 isError: true
             })
-        }
-        )
+        })
     }
 
     componentDidMount() {
@@ -57,41 +54,41 @@ export default class LastWeekTotals extends Component {
     }
 
     render () {
-        var totalUnder5 = parseInt(this.state.femalesUnder5) + parseInt(this.state.malesUnder5);
-        var totalOver5 = parseInt(this.state.femalesOver5) + parseInt(this.state.malesOver5);
-        var totalFemale = parseInt(this.state.femalesUnder5) + parseInt(this.state.femalesOver5);
-        var totalMale = parseInt(this.state.malesUnder5) + parseInt(this.state.malesOver5);
+        var totalUnder5 = this.state.femalesUnder5 + this.state.malesUnder5;
+        var totalOver5 = this.state.femalesOver5 + this.state.malesOver5;
+        var totalFemale = this.state.femalesUnder5 + this.state.femalesOver5;
+        var totalMale = this.state.malesUnder5 + this.state.malesOver5;
 
         return (
-            <div class="tableContainer">
-            <h2 className="headline">Reports per sex and age (last 7 days)</h2>
+            <div className="tableContainer">
+                <h2 className="headline">Reports per sex and age (last 7 days)</h2>
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
                             <TableCell className="headerText">Age</TableCell>
-                            <TableCell className="headerText"> <i class="fa fa-venus"> </i> Female</TableCell>
-                            <TableCell className="headerText"> <i class="fa fa-mars"></i> Male</TableCell>
+                            <TableCell className="headerText"> <i className="fa fa-venus"> </i> Female</TableCell>
+                            <TableCell className="headerText"> <i className="fa fa-mars"></i> Male</TableCell>
                             <TableCell className="headerText">Total</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
                             <TableCell className="cell">Under 5</TableCell>
-                            <TableCell className="cell">{this.state.femalesUnder5}</TableCell>
-                            <TableCell className="cell">{this.state.malesUnder5}</TableCell>
-                            <TableCell className="cell">{totalUnder5 ? totalUnder5 : "-"}</TableCell>
+                            <TableCell className="cell center">{this.state.femalesUnder5}</TableCell>
+                            <TableCell className="cell center">{this.state.malesUnder5}</TableCell>
+                            <TableCell className="cell center">{isNaN(totalUnder5) ? "-" : totalUnder5}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell className="cell">5 and above</TableCell>
-                            <TableCell className="cell">{this.state.femalesOver5}</TableCell>
-                            <TableCell className="cell">{this.state.malesOver5}</TableCell>
-                            <TableCell className="cell">{totalOver5 ? totalOver5 : "-"}</TableCell>
+                            <TableCell className="cell center">{this.state.femalesOver5}</TableCell>
+                            <TableCell className="cell center">{this.state.malesOver5}</TableCell>
+                            <TableCell className="cell center">{isNaN(totalOver5) ? "-" : totalOver5}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell className="cell">Total</TableCell>
-                            <TableCell className="cell">{totalFemale ? totalFemale : "-"}</TableCell>
-                            <TableCell className="cell">{totalMale ? totalMale : "-"}</TableCell>
-                            <TableCell className="cell">{totalFemale + totalMale ? totalFemale + totalMale : "-"}</TableCell>
+                            <TableCell className="cell center">{isNaN(totalFemale) ? "-" : totalFemale}</TableCell>
+                            <TableCell className="cell center">{isNaN(totalMale) ? "-" : totalMale}</TableCell>
+                            <TableCell className="cell center">{isNaN(totalFemale + totalMale) ? "-" : totalFemale + totalMale}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

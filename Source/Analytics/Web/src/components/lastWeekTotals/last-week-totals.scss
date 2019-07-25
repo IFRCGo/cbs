@@ -30,4 +30,8 @@ $medium-grey: #cfcdcc;
 
 .cell {
     font-family: "Lato", "Helvetica Neue", sans-serif;
+
+    &.center {
+        text-align: center;
+    }
 }
