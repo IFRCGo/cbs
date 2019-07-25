@@ -25,34 +25,19 @@ class CBSNavigation extends Component {
   }
 
   fetchData() {
-    if (process.env.environment !== 'production') {
-      this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
-      fetch(this.url, {
-        method: "GET"
-      }).then(response => response.json()).then(json => this.setState({
-        username: json.name
-      })).catch(_ => this.setState({
-        isLoading: false,
-        isError: true
-      }));
-    } else {
-      this.url = `${BASE_URL}/identity`;
-      fetch(this.url, {
-        method: "GET"
-      }).then(response => response.text()).then(text => this.setState({
-        username: text
-      })).catch(_ => this.setState({
-        isLoading: false,
-        isError: true
-      }));
-    }
-
-    this.setState({
-      isLoading: true
-    });
+    this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
+    fetch(this.url, {
+      method: "GET"
+    }).then(response => response.json()).then(json => this.setState({
+      username: json.name
+    })).catch(_ => this.setState({
+      isLoading: false,
+      isError: true
+    }));
   }
 
   componentDidMount() {
+    this.fetchData();
   }
 
   rcLogo(color) {
