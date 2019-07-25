@@ -10,9 +10,9 @@ import CBSNavigation from 'navigation/lib/index.js';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NavbarHostComponent implements AfterContentInit {
+export class NavbarHostComponent implements AfterContentInit, OnInit {
   static apiBaseUrl: string;
-    /*
+    
     username: string;  
 
     constructor() {
@@ -21,7 +21,7 @@ export class NavbarHostComponent implements AfterContentInit {
 
     ngOnInit(){
       fetch(`${NavbarHostComponent.apiBaseUrl}/identity`).then(async response => this.username = await response.text());
-    }*/
+    }
 
     ngAfterContentInit(){
         render(createElement(CBSNavigation, {activeMenuItem: 'admin'}), document.getElementById("top-navbar"));
