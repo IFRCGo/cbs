@@ -22,6 +22,9 @@ import { AppInsightsService } from '../../../services/app-insights-service';
     styleUrls: ['./edit.scss']
 })
 export class Edit implements OnInit {
+    queryCoordinator: QueryCoordinator;
+    commandCoordinator: CommandCoordinator;
+
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
@@ -41,9 +44,7 @@ export class Edit implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
-        private queryCoordinator: QueryCoordinator<DataCollector>,
         private appInsightsService: AppInsightsService
     ) {
         toastr.toastrConfig.positionClass = 'toast-top-center';
@@ -54,6 +55,9 @@ export class Edit implements OnInit {
         });
 
         this.appInsightsService.trackPageView('Edit Data Collector');
+
+        this.queryCoordinator = new QueryCoordinator();
+        this.commandCoordinator = new CommandCoordinator();
     }
 
     getDataCollector(): void {
