@@ -24,6 +24,6 @@ export class NavbarHostComponent implements AfterContentInit {
     }*/
 
     ngAfterContentInit(){
-        render(createElement(CBSNavigation, {activeMenuItem: 'admin'}), document.getElementById("navbar"));
+        render(createElement(CBSNavigation, {activeMenuItem: 'admin'}), document.getElementById("top-navbar"));
     }
 }
