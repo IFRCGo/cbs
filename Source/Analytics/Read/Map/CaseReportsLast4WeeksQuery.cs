@@ -1,19 +1,18 @@
-using System;
 using System.Linq;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
 
 namespace Read.Map
 {
-    public class CaseReportsLast30DaysQuery : IQueryFor<CaseReportsLast30Days>
+    public class CaseReportsLast4WeeksQuery : IQueryFor<CaseReportsLast4Weeks>
     {
-        readonly IReadModelRepositoryFor<CaseReportsLast30Days> _repositoryForCaseReportsLast30Days;
+        readonly IReadModelRepositoryFor<CaseReportsLast4Weeks> _repositoryForCaseReportsLast4Weeks;
 
-        public CaseReportsLast30DaysQuery(IReadModelRepositoryFor<CaseReportsLast30Days> repositoryForCaseReportsLast30Days)
+        public CaseReportsLast4WeeksQuery(IReadModelRepositoryFor<CaseReportsLast4Weeks> repositoryForCaseReportsLast4Weeks)
         {
-            _repositoryForCaseReportsLast30Days = repositoryForCaseReportsLast30Days;
+            _repositoryForCaseReportsLast4Weeks = repositoryForCaseReportsLast4Weeks;
         }
 
-        public IQueryable<CaseReportsLast30Days> Query => _repositoryForCaseReportsLast30Days.Query;
+        public IQueryable<CaseReportsLast4Weeks> Query => _repositoryForCaseReportsLast4Weeks.Query;
     }
 }

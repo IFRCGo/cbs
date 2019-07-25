@@ -419,17 +419,17 @@
         "Message": "",
         "Timestamp": "09/02/2019 08:33:28 +00:00"
     },
-    {
-        "DataCollectorId": "CA6DAA84-3423-49F0-88D8-D9CC676DCFBD",
-        "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",
-        "Origin": 1,
-        "NumberOfMalesUnder5": 0,
-        "NumberOfMalesAged5AndOlder": 0,
-        "NumberOfFemalesUnder5": 1,
-        "NumberOfFemalesAged5AndOlder": 0,
-        "Message": "",
-        "Timestamp": "08/02/2019 17:02:41 +00:00"
-    },
+        {
+            "DataCollectorId": "CA6DAA84-3423-49F0-88D8-D9CC676DCFBD",
+            "HealthRiskId": "82DCD6AF-49A5-4D50-AC93-A85229021EB7",
+            "Origin": 1,
+            "NumberOfMalesUnder5": 0,
+            "NumberOfMalesAged5AndOlder": 0,
+            "NumberOfFemalesUnder5": 1,
+            "NumberOfFemalesAged5AndOlder": 0,
+            "Message": "",
+            "Timestamp": "08/02/2019 17:02:41 +00:00"
+        },
     {
         "DataCollectorId": "CA6DAA84-3423-49F0-88D8-D9CC676DCFBD",
         "HealthRiskId": "9cd3c7b5-6973-45c3-a8d3-58d9eb38824c",

@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Options;
 
 namespace Read.Map
 {
-    public class CaseReportsLast30Days : IReadModel
+    public class CaseReportsLast4Weeks : IReadModel
     {
         public Day Id { get; set; }
         

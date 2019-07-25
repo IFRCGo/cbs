@@ -7,122 +7,100 @@ import MapOverview from "./MapOverview";
 import { Alert, Button, Text } from "evergreen-ui";
 import { CaseReportsLast7DaysQuery } from "../Features/Map/CaseReportsLast7DaysQuery";
 import { QueryCoordinator } from "@dolittle/queries";
-import MapPieChart from "./MapPieChart" 
+import MapPieChart from "./MapPieChart"
 import ReactDOMServer from 'react-dom/server';
+import { red, blue } from "@material-ui/core/colors";
 
 var clusterSize = {
-    large: 40,
-    medium: 30,
-    small: 20
+    large: 80,
+    medium: 60,
+    small: 40
 };
 
-var createClusterCustomIcon = function(cluster) {
-    var markersInCluster  = cluster.getChildCount()
+var colors = {
+    1: "#FFBF00",
+    2: "#e6194B",
+    3: "#f032e6",
+    4: "#aaffc3",
+    5: "#42d4f4",
+    6: "seashell"
+}
 
-    // Get css class from markers
-    var getClusterNbr = cluster.getAllChildMarkers()[0].options.icon.options.className.split(" ")[1]
-    var tmp = document.getElementsByClassName(getClusterNbr)[0];
+var healthRisks = []
+var iconsClasses = []
+var clusters = []
+var hr = {}
+
+var createClusterCustomIcon = function (cluster) {
     var markers = cluster.getAllChildMarkers();
-    var markersSet = {}
+    var markersInCluster = markers.length;
+    var casesPerHealthRisk = {}
 
-    for(var i=0; i<markers.length; i++){
-        console.log(markers[i]);
-        var markerClass = markers[i].options.icon.options.className.split(" ")[1]
-        console.log(markerClass)
-        var markerElement = document.getElementsByClassName(markerClass);   
-        console.log(markerElement)
-        var healthRiskId  = markerElement[markerElement.length - 1].id
-        if(!(markerClass in markersSet)){
-            markersSet[markerClass] = [1, healthRiskId]
-        }else{
-            markersSet[markerClass][0]++
+    for (var i = 0; i < markersInCluster; i++) {
+        var hrid = markers[i].options.icon.options.html.slice(11, -5) //todo: improve
+
+        if (!(hrid in casesPerHealthRisk)) {
+            casesPerHealthRisk[hrid] = {
+                "name": hr[hrid],
+                "count": 1,
+                "color": colors[hrid]
+            }
+        } else {
+            casesPerHealthRisk[hrid].count++;
         }
     }
 
-    // Get healthRiskNumber from css class 
-    var healthRiskNbr = getClusterNbr[getClusterNbr.length - 1]
+    //Set cluster size
     var markerClusterSize
 
-    if(markersInCluster <= 5){
+    if (markersInCluster <= 5) {
         markerClusterSize = clusterSize.small
     }
-    else if(markersInCluster < 15){
+    else if (markersInCluster < 15) {
         markerClusterSize = clusterSize.medium
     }
-    else{
+    else {
         markerClusterSize = clusterSize.large
     }
 
-    var casesPerHealthRisk = []
-
-        for(var key in markersSet){
-            var elem = document.getElementsByClassName(key)[0];
-            var color = window.getComputedStyle(elem)['color']
-            var healthRiskCases = markersSet[key]
-            casesPerHealthRisk.push([healthRiskCases, color])
-
-        }
-        markerClusterSize*=2
-        if(Object.keys(markersSet).length > 1){
-            return new L.divIcon({
-                html: ReactDOMServer.renderToString(<MapPieChart size={markerClusterSize} numberOfCases={markersInCluster} casesPerHealthRisk={casesPerHealthRisk}>{markersInCluster}</MapPieChart>),
-                iconSize: L.point(markerClusterSize, markerClusterSize, true ),
-                className: "cluster-icon"
-            });
-    
-    }else{
-        var tmp =  ReactDOMServer.renderToString(<div className="box-parent"><div style={{position:"absolute", zIndex:100000, backgroundColor: "white", borderRadius: "20%", padding:"2px"}}>{markersInCluster}</div><div className="box-overview">
-                <h6 style={{textAlign: "center", margin: "auto"}} > Total cases: {markersInCluster}</h6>
-                <ul style={{padding: "inherit", marginBottom: "auto", marginTop: "auto"}}> 
-                    <li style={{fontSize: "10px"}}> 
-                        <div style={{backgroundColor: casesPerHealthRisk[0][1], height: "10px", width: "10px", display:"inline-block"}}></div> {casesPerHealthRisk[0][0][1]} : {casesPerHealthRisk[0][0][0]}
-                    </li>
-                </ul>
-         </div>
-        </div>)
-        return new L.divIcon({
-                html: ` ${tmp}`,
-                className: "marker-" + healthRiskNbr + "-cluster marker-cluster-custom" ,
-                iconSize: L.point(markerClusterSize - 14, markerClusterSize - 14, true )
-            });
-    }
+    return new L.divIcon({
+        html: ReactDOMServer.renderToString(<MapPieChart size={markerClusterSize} numberOfCases={markersInCluster} casesPerHealthRisk={casesPerHealthRisk}>{markersInCluster}</MapPieChart>),
+        iconSize: L.point(markerClusterSize, markerClusterSize, true),
+        className: "cluster-icon"
+    });
 }
-function MarkerPopupContent(props){
+
+function MarkerPopupContent(props) {
     return <div>{props.healthRisk}</div>
 }
 
-var healthRisks  = []
-var iconsClasses = []
-var clusters     = []
-
-function CaseMarkers({caseReportsLastWeek}){
+function CaseMarkers({ caseReportsLastWeek }) {
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
-    return  Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function(key) {
-        var healthRiskName   = caseReportsLastWeek.caseReportsPerHealthRisk[key][0].healthRiskName
-        var healthRiskNumber = key
+    return Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function (healthRiskNumber) {
+
+        var healthRiskName = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskNumber][0].healthRiskName
         var marker = "marker-" + healthRiskNumber.toString()
         var markerClass = marker + " fa fa-plus-square"
         var clusterClass = marker + "-cluster" + " marker-cluster-custom cluster-label"
-        
+
         var icon = L.divIcon({
             className: 'custom-div-icon ' + markerClass,
-            id: healthRiskName,
-            html: "<i></i>"
+            html: "<i data-hr=" + healthRiskNumber + "></i>",
         });
 
         healthRisks.push(healthRiskName)
         iconsClasses.push(markerClass)
         clusters.push(clusterClass)
+        hr[healthRiskNumber] = healthRiskName
 
-        var cs = caseReportsLastWeek.caseReportsPerHealthRisk[key].map(cases => {
+        var cs = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskNumber].map(cases => {
             cases.vals = new Array(cases.numberOfPeople);
             cases.vals.fill(1);
-            return cases.vals.map(function(val){
-                var hl = healthRisks[healthRisks.length - 1]
-                return <Marker
-                    position={[cases.location.longitude, cases.location.latitude]} icon={icon}
-                >
-                    <Popup closeButton="true" autoClose="true"><MarkerPopupContent healthRisk={hl}></MarkerPopupContent></Popup>
+            return cases.vals.map(function (val) {
+                return <Marker position={[cases.location.longitude, cases.location.latitude]} icon={icon}>
+                    <Popup closeButton="true" autoClose="true">
+                        <MarkerPopupContent healthRisk={healthRiskName + cases.location.longitude + cases.location.latitude}></MarkerPopupContent>
+                    </Popup>
                 </Marker>
             });
         });
@@ -158,12 +136,11 @@ class MapWidget extends Component {
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
-        
 
-        this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {    
-            console.log(queryResult)   
-            if(queryResult.success){
-                this.setState({ 
+
+        this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
+            if (queryResult.success) {
+                this.setState({
                     caseReportsLastWeek: queryResult.items[0],
                     isError: false,
                     isLoading: false
@@ -201,7 +178,7 @@ class MapWidget extends Component {
                     </Button>
                 </div>
             );
-        } 
+        }
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
@@ -218,7 +195,7 @@ class MapWidget extends Component {
                     <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
                 </MarkerClusterGroup>
                 <MapOverview clusters={clusters} healthRisks={healthRisks} icons={iconsClasses}></MapOverview>
-             </Map>
+            </Map>
 
         );
     }

@@ -11,14 +11,14 @@ namespace Read.Map
     public class MapProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<CaseReportsLast7Days> _caseReportRepositoryLast7Days;
-        readonly IReadModelRepositoryFor<CaseReportsLast30Days> _caseReportRepositoryLast30Days;
+        readonly IReadModelRepositoryFor<CaseReportsLast4Weeks> _caseReportRepositoryLast4Weeks;
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public MapProcessor(IReadModelRepositoryFor<CaseReportsLast7Days> caseReportRepositoryLast7Days,
-                            IReadModelRepositoryFor<CaseReportsLast4Weeks> caseReportRepositoryLast30Days,
+                            IReadModelRepositoryFor<CaseReportsLast4Weeks> caseReportRepositoryLast4Weeks,
                             IReadModelRepositoryFor<HealthRisk> healthRisk){
             _caseReportRepositoryLast7Days  = caseReportRepositoryLast7Days;
-            _caseReportRepositoryLast30Days = caseReportRepositoryLast30Days;
+            _caseReportRepositoryLast4Weeks = caseReportRepositoryLast4Weeks;
             _healthRisks = healthRisk;
         }
 
@@ -70,7 +70,7 @@ namespace Read.Map
         }
 
         private void UpdateCaseReportLast4Weeks(CaseReportForMap caseReportMap, Day day, HealthRiskNumber healthRiskNumber){
-            var caseReportsLast4Weeks = _caseReportRepositoryLast30Days.GetById(day);
+            var caseReportsLast4Weeks = _caseReportRepositoryLast4Weeks.GetById(day);
             
             if(caseReportsLast4Weeks == null)
             {
@@ -79,11 +79,11 @@ namespace Read.Map
                     CaseReportsPerHealthRisk = new Dictionary<HealthRiskNumber, IList<CaseReportForMap>> {}
                 };
                 caseReportsLast4Weeks.CaseReportsPerHealthRisk[healthRiskNumber] = new List<CaseReportForMap>{caseReportMap};
-                _caseReportRepositoryLast30Days.Insert(caseReportsLast4Weeks);
+                _caseReportRepositoryLast4Weeks.Insert(caseReportsLast4Weeks);
             } else 
             {
                 UpdateCaseReportsPerHealthRisk(caseReportsLast4Weeks.CaseReportsPerHealthRisk, caseReportMap, healthRiskNumber);
-                _caseReportRepositoryLast30Days.Update(caseReportsLast4Weeks);  
+                _caseReportRepositoryLast4Weeks.Update(caseReportsLast4Weeks);  
             }
         }
         
