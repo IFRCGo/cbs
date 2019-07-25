@@ -28,7 +28,7 @@ class CountryOverview extends Component {
         }
         return (
             <>
-                <CBSNavigation />
+                <CBSNavigation activeMenuItem="analytics"/>
 
                 <div className="analytics--container" style={body}>
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
