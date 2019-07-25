@@ -9,6 +9,7 @@ class CBSNavigation extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
 
         this.state = {
             username: "Unknown", 
@@ -19,6 +20,10 @@ class CBSNavigation extends Component {
     onClick() {
         this.setState(prevState => ({showAnalyticsDropdown: !prevState.showAnalyticsDropdown}));
       }
+
+    onMouseLeave() {
+        this.setState({showAnalyticsDropdown: false});
+    }
     
     fetchData() {
         if (process.env.environment !== 'production') {
@@ -113,7 +118,7 @@ class CBSNavigation extends Component {
                 <nav>
                     {this.createMenuItem("analytics", "Country Overview")}
 
-                    <div className="dropdown" onClick={this.onClick}>
+                    <div className="dropdown" onClick={this.onClick} onMouseLeave={this.onMouseLeave}>
                         {this.createMenuItem("analytics/#", `Analytics`)}
                         {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                     </div>
