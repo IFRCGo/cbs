@@ -32,6 +32,14 @@
     display: inline-block;
     padding: inherit;
 }
+.number-of-cases-in-cluster{
+    position: absolute; 
+    z-index: 100000; 
+    background-color: white; 
+    padding: 2px; 
+    border-radius: 20%;
+    color: black; 
+}
 
 .pie {
   border-radius: 50%;
@@ -46,6 +54,8 @@
   stroke-width: 32;
   animation: rotate 1.5s ease-in;
   background: transparent;
+  border-style: solid; 
+  border-color: green;
 }
 
 .box-parent{
@@ -103,170 +113,4 @@
 
 .leaflet-popup-close-button{
     display: none;
-}
-
-.marker-1 {
-    color: blue;
-}
-.marker-1-cluster{
-    background-color: blue;
-    color: white;
-}
-.marker-2{
-    color: #e6194B;
-}
-.marker-2-cluster{
-    background-color: #e6194B;
-}
-.marker-3 {
-    color: #FFBF00;
-}
-.marker-3-cluster{
-    background-color: #FFBF00;
-}
-
-.marker-4 {
-    color: #800020;
-}
-.marker-4-cluster{
-    background-color: #800020;
-}
-
-.marker-5 {
-    color: #964B00;
-}
-.marker-5-cluster{
-    background-color: #964B00;
-}
-.marker-6 {
-    color: #f032e6;
-}
-.marker-6-cluster{
-    background-color: #f032e6;
-}
-.marker-7 {
-    color: #aaffc3;
-}
-.marker-7-cluster{
-    background-color: #aaffc3;
-}
-.marker-8 {
-    color: #800000;
-}
-.marker-8-cluster{
-    background-color: #800000;
-}
-.marker-9 {
-    color: #42d4f4;
-}
-.marker-9-cluster{
-    background-color: #42d4f4;
-}
-.marker-10 {
-    color: #bfef45;
-}
-.marker-10-cluster{
-    background-color: #bfef45;
-}
-.marker-11 {
-    color: #000075;
-}
-.marker-11-cluster{
-    background-color: #000075;
-}
-.marker-12 {
-    color: #a9a9a9;
-}
-.marker-12-cluster{
-    background-color: #a9a9a9;
-}
-.marker-13 {
-    color: #808000;
-}
-.marker-13-cluster{
-    background-color: #808000;
-}
-.marker-14 {
-    color: #aaffc3;
-}
-.marker-14-cluster{
-    background-color: #aaffc3;
-}
-.marker-15 {
-    color: aquamarine;
-}
-.marker-15-cluster{
-    background-color: aquamarine;
-}
-.marker-16 {
-    color: seashell;
-}
-.marker-16-cluster{
-    background-color: seashell;
-}
-.marker-17 {
-    color: black;
-}
-.marker-17-cluster{
-    background-color: black;
-}
-.marker-18{
-    color: #f58231;
-}
-.marker-18-cluster{
-    background-color: #f58231;
-}
-.marker-19 {
-    color: skyblue;
-}
-.marker-19-cluster{
-    background-color: skyblue;
-}
-.marker-20 {
-    color: #fabebe;
-}
-.marker-20-cluster{
-    background-color: #fabebe;
-}
-.marker-21 {
-    color: #fa9907;
-}
-.marker-21-cluster{
-    background-color: #fa9907;
-}
-.marker-22 {
-    color: teal;
-}
-.marker-23 {
-    color: rebeccapurple;
-}
-.marker-24 {
-    color: tomato;
-}
-.marker-25 {
-    color: aquamarine;
-}
-.marker-26 {
-    color: yellow;
-}
-.marker-27 {
-    color: violet;
-}
-.marker-28 {
-    color: #fa9907;
-}
-.marker-29 {
-    color: peachpuff;
-}
-.marker-30 {
-    color: white;
-}
-.marker-31 {
-    color: silver;
-}
-.marker-32 {
-    color: wheat;
-}
-.marker-99 {
-    color: lightcoral
 }
