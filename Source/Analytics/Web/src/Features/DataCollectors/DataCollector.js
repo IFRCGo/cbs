@@ -16,5 +16,7 @@ export class DataCollector extends ReadModel
         this.lastActive = new Date();
         this.region = '';
         this.district = '';
+        this.location = {};
+        this.sex = 0;
     }
 }
