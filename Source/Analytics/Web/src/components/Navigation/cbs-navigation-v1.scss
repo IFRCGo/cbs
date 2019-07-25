@@ -14,7 +14,7 @@ $screen-md-min: $screen-md;
 $screen-xs-max: ($screen-sm-min - 1);
 $screen-sm-max: ($screen-md-min - 1);
 
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
 
 body {
   margin: 0;
@@ -24,7 +24,7 @@ body {
   padding: 0;
 
   @media (min-width: $screen-sm-min) {
-    border-bottom: .1rem solid $brand-primary;
+    border-bottom: 1px solid $brand-primary;
     display: flex;
     align-items: center;
   }
@@ -34,11 +34,29 @@ body {
   }
 
   .logo {
-    margin: 0 0.9rem 0 0.7rem;
+    padding: 0 1rem;
+    margin: 0 0 -4px 0;
+    display: flex;
+    
+    figure {
+      margin: 0;
+    }
+    
+    .logo-text {
+      font-family: "Lato", sans-serif;
+      font-size: 2rem;
+      font-weight: 300;
+      margin-left: 0.5rem;
+
+      @media (max-width: $screen-xs-max) {
+        color: white;
+      }
+    }
   }
   
   .logo-white {
-    padding-top: 1rem;
+    padding: 1rem 0;
+    justify-content: center;
 
     @media (min-width: $screen-xs-max) {
       display: none;
@@ -62,8 +80,6 @@ body {
       }
     }
   }
-
- 
   
   .dropdown-content {
     background-color: $rc-red;
@@ -79,9 +95,18 @@ body {
   .dropdown-item {
     display: block;
     color: white;
+    font-size: 0.8rem;
 
     &:hover {
       background-color: $rc-red-darker;
+      @media (max-width: $screen-xs-max) {
+        margin-left: -3rem;
+
+        .d-i-text {
+          margin-left: 3rem;
+        }
+
+      }
     }
   }
   
@@ -102,11 +127,21 @@ body {
       &:hover {
         background-color: $rc-red;
         color: white;
+
+        @media (max-width: $screen-xs-max) {
+          background-color: $rc-red-darker;
+        }
       }
 
       &.active {
         background-color: $rc-red;
         color: white;
+
+        &:hover {
+          @media (max-width: $screen-xs-max) {
+            background-color: $rc-red-darker;
+          }
+        }
       }
 
       @media (max-width: $screen-xs-max) {
@@ -114,6 +149,10 @@ body {
         font-size: 1rem;
       }
     }
+  }
+
+  .fa-chevron-down .fa-chevron-up {
+    margin-left: 3px;
   }
 
   .login-status {
