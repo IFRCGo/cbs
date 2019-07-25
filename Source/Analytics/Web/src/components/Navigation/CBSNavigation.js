@@ -130,9 +130,8 @@ class CBSNavigation extends Component {
 
                 <div className="login-status">
                     <div className="logged-in">
-                        <p>Logged in as:</p>
-                        <p>{this.state.username}</p>
-                        <button>Logout</button>
+                        <p>Logged in as: {this.state.username}</p>
+                        <a className="logout" href="#"><i className='fa fa-sign-out'/> Log out</a>
                     </div>
                 </div>
             </header>

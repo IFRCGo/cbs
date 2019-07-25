@@ -159,8 +159,12 @@ body {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.8rem;
 
+    
     @media (max-width: $screen-xs-max) {
       margin-top: 1rem;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 1rem;
     }
     @media (min-width: $screen-sm-min) {
       margin-left: auto;
@@ -173,10 +177,17 @@ body {
     @media (max-width: $screen-xs-max) {
       color: white;
       padding-bottom: 1rem;
+      text-align: left;
     }
     
     p {
-      margin: 0;
+      margin-bottom: 5px;
+    }
+
+    .logout {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: inherit;
     }
   }
 }
