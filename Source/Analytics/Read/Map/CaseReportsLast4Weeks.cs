@@ -7,11 +7,11 @@ using MongoDB.Bson.Serialization.Options;
 
 namespace Read.Map
 {
-    public class CaseReportsLast30Days : IReadModel
+    public class CaseReportsLast4Weeks : IReadModel
     {
         public Day Id { get; set; }
         
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
-        public IDictionary<HealthRiskName, IList<CaseReportForMap>> CaseReportsPerHealthRisk { get; set; } 
+        public IDictionary<HealthRiskNumber, IList<CaseReportForMap>> CaseReportsPerHealthRisk { get; set; } 
     }
 }
