@@ -97,6 +97,8 @@ function MarkerPopupContent(props) {
 }
 
 function CaseMarkers({ caseReportsLastWeek }) {
+    if (caseReportsLastWeek == null) return null;
+    
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
     return Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function (healthRiskId) {
         var allCasesReportsForHealthRisk = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskId]
