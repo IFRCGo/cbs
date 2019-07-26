@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CaseReportsPerHealthRiskPerDayQuery } from "../../Features/CaseReports/CaseReportsPerHealthRiskPerDayQuery";
+import { AllRegions } from '../../Features/DataCollectors/AllRegions';
 import { QueryCoordinator } from "@dolittle/queries";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,6 +17,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
 
         this.state = {
             reportsPerHealthRisk: [],
+            regions: [],
             healthRisks: [''],
             selectedHealthRisk: '',
             isLoading: true,
@@ -23,8 +25,23 @@ export default class ReportsPerHealthRiskPerDay extends Component {
         };
     }
 
+    fetchAllRegions() {
+        const allRegionsQuery = new AllRegions();
+        this.queryCoordinator.execute(allRegionsQuery).then(result => {
+            if (result.success) {
+                this.setState({
+                    regions: result.items
+                });
+            }
+        }).catch(_ => {
+            this.setState({
+                isLoading: false,
+                isError: true
+            });
+        });
+    }
+
     fetchReportsPerHealthRiskLastWeek() {
-        this.queryCoordinator = new QueryCoordinator();
         const reportsPerHealthRisk = new CaseReportsPerHealthRiskPerDayQuery();
         reportsPerHealthRisk.numberOfDays = 7;
 
@@ -63,6 +80,8 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     }
 
     componentDidMount() {
+        this.queryCoordinator = new QueryCoordinator();
+        this.fetchAllRegions();
         this.fetchReportsPerHealthRiskLastWeek();
     }
 
@@ -72,21 +91,27 @@ export default class ReportsPerHealthRiskPerDay extends Component {
         });
     }
 
-    renderReports() {
+    renderReports(region) {
         if (this.state.reportsPerHealthRisk.length > 0) {
-            this.state.reportsPerHealthRisk.map(report => {
+            return this.state.reportsPerHealthRisk.map(report => {
                 const reports = report.reportsPerHealthRisk[this.state.selectedHealthRisk];
-                const keys = Object.keys(reports);
-                return keys.map(key => {
-                    return (
-                        <TableRow key={key}>
-                            <TableCell>{key}</TableCell>
-                            <TableCell>{reports[key]}</TableCell>
-                        </TableRow>
-                    );
-                });
+                const reportsInRegion = reports[region];
+                if (reportsInRegion != null)
+                    return <TableCell>{reportsInRegion}</TableCell>;
+                else
+                    return <TableCell>-</TableCell>;
             });
         }
+    }
+
+    renderRegions() {
+        return this.state.regions.map(region => {
+            return (
+            <TableRow key={region.name}>
+                <TableCell>{region.name}</TableCell>
+                {this.renderReports(region.name)}
+            </TableRow>)
+        });
     }
 
     renderOptions() {
@@ -116,7 +141,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.renderReports()}
+                        {this.renderRegions()}
                     </TableBody>
                 </Table>
             </div>
