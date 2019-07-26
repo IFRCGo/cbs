@@ -34,13 +34,18 @@ class NationalSocietyOverview extends Component {
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
                     <Grid container spacing={8}>
-                        <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
+                        <Grid item md={12} lg={6} key="CaseReportByHealthRiskTable">
                             <CaseReportByHealthRiskTable />
                         </Grid>
-                        <LastWeekTotals />
+                        <Grid item md={12} lg={6} key="CaseReportByHealthRiskTable">
+                            <LastWeekTotals />
+                        </Grid>
+
+                        <Grid item xs={12} key="HealthRiskPerDistrictTable">
+                            <HealthRiskPerDistrictTable />
+                        </Grid>
                     </Grid>
 
-                    <HealthRiskPerDistrictTable />
                     {/*<Map />*/}
                 </div>
             </>
