@@ -17,12 +17,12 @@ export class List implements OnInit {
   selectedUser: DataCollector;
 
   constructor(
-    private queryCoordinator: QueryCoordinator,
     private appInsightsService: AppInsightsService
   ) { }
 
   ngOnInit() {
-    this.queryCoordinator.execute(new AllDataCollectors())
+    const queryCoordinator = new QueryCoordinator();
+    queryCoordinator.execute(new AllDataCollectors())
       .then(response => {
           if (response.success) {
             this.users = response.items;

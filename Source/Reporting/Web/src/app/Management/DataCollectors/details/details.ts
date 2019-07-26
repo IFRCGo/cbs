@@ -13,10 +13,11 @@ import { DataCollectorById } from '../DataCollectorById';
 })
 export class Details implements OnInit {
 
+    queryCoordinator: QueryCoordinator;
+
     dataCollector: DataCollector;
 
     constructor(
-        private queryCoordinator: QueryCoordinator<DataCollector>,
         private route: ActivatedRoute,
         private location: Location
     ) {
@@ -24,6 +25,7 @@ export class Details implements OnInit {
 
     ngOnInit(): void {
         this.getDataCollector();
+        this.queryCoordinator = new QueryCoordinator();
     }
 
     getDataCollector(): void {

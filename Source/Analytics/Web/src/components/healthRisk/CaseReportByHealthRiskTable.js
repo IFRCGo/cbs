@@ -26,7 +26,7 @@ class CaseReportByHealthRiskTable extends Component {
       let lastWeeksPerHealthRisk = new CaseReportsLast4WeeksPerHealthRiskQuery();
 
       this.queryCoordinator.execute(lastWeeksPerHealthRisk).then(queryResult => {
-          if(queryResult.success){
+          if(queryResult.success && queryResult.items.length > 0){
               this.setState({
                   healthRisks: queryResult.items[0].caseReportsPerHealthRisk,
                   isLoading: false,

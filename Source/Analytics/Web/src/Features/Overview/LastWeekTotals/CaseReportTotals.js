@@ -13,9 +13,9 @@ export class CaseReportTotals extends ReadModel
            generation: '1'
         };
         this.id = 0;
-        this.female = 0;
-        this.male = 0;
-        this.over5 = 0;
-        this.under5 = 0;
+        this.femalesUnder5 = 0;
+        this.malesUnder5 = 0;
+        this.femalesOver5 = 0;
+        this.malesOver5 = 0;
     }
 }
