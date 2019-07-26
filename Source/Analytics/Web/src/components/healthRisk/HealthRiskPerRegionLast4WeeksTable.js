@@ -4,7 +4,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsPerRegionLast7DaysQuery } from "../../Features/CaseReports/CaseReportsPerRegionLast7DaysQuery";
@@ -17,6 +19,7 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
 
         this.state = {
             regionsForHealthRisk: [],
+            selectedHealthRisk: '',
             isLoading: true,
             isError: false
         };
@@ -24,12 +27,13 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
 
     fetchData() { 
         this.queryCoordinator = new QueryCoordinator();
-        let healthRisksPerRegion = new CaseReportsPerRegionLast7DaysQuery();
+        let regionsForHealthRisk = new CaseReportsPerRegionLast7DaysQuery();
 
-        this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
+        this.queryCoordinator.execute(regionsForHealthRisk).then(queryResult => {
             if(queryResult.success){
                 this.setState({
-                    regionsForHealthRisk: queryResult.items[0].healthRisks[0],
+                    regionsForHealthRisk: queryResult.items[0].healthRisks,
+                    selectedHealthRisk: queryResult.items[0].healthRisks[0].healthRiskName,
                     isLoading: false,
                     isError: false
                 })
@@ -42,6 +46,16 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
 
     componentDidMount() {
         this.fetchData();
+    }
+
+    saveSelectedValue(event) {
+        this.setState({
+            selectedHealthRisk: event.target.value
+        });
+    }
+
+    renderOptions() {
+        return this.state.regionsForHealthRisk.map(healthRisk => <MenuItem key={healthRisk.healthRiskName} value={healthRisk.healthRiskName}>{healthRisk.healthRiskName}</MenuItem>);
     }
 
     createRows(regions) {
@@ -60,9 +74,19 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
         if (this.state.isLoading) {
             return <div>Loading...</div>;
         }
+        let currentHealthRisk = this.state.regionsForHealthRisk.find(r => r.healthRiskName == this.state.selectedHealthRisk);
+
         return (
             <div className="tableContainer">
-                <h2 className="headline">No. of reports for AWD last 28 days</h2>
+                <h2 className="headline">Report for the last 4 weeks</h2>
+                <Select className="headline-select"
+                         value={this.state.selectedHealthRisk}
+                         onChange={this.saveSelectedValue.bind(this)}
+                     >
+                         {this.renderOptions()}
+                </Select>
+                
+                
                 <Table className="table">
                     <TableHead className="tableHead" key="table">
                         <TableRow>
@@ -76,7 +100,7 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
                     </TableHead> 
                     <TableBody>
                         {
-                            this.createRows(this.state.regionsForHealthRisk.regions).map(row => {
+                            this.createRows(currentHealthRisk.regions).map(row => {
                             let rowName = row.shift();
                             return (
                                 <TableRow key={rowName}>
