@@ -19,20 +19,8 @@ $screen-sm-max: ($screen-md-min - 1);
 body {
   margin: 0;
 }
-  
-.navigation-header {
-  padding: 0;
 
-  @media (min-width: $screen-sm-min) {
-    border-bottom: 1px solid $brand-primary;
-    display: flex;
-    align-items: center;
-  }
-
-  @media (max-width: $screen-xs-max) {
-    background-color: $rc-red;
-  }
-
+.header {
   .logo {
     padding: 0 1rem;
     margin: 0 0 -4px 0;
@@ -53,14 +41,48 @@ body {
       }
     }
   }
-  
-  .logo-white {
-    padding: 1rem 0;
-    justify-content: center;
+}
 
-    @media (min-width: $screen-xs-max) {
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $screen-xs-max) {
+    background-color: $rc-red;
+  }
+  
+  @media (min-width: $screen-xs-max) {
       display: none;
     }
+
+  .logo-white {
+  padding: 1rem 0;
+  justify-content: center;
+  }
+
+  .menu-toggler {
+    color: white;
+    position: absolute;
+    right: 2em;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+}
+  
+.desktop-header {
+  padding: 0;
+
+  @media (max-width: $screen-xs-max) {
+    &.hidden {
+      display: none;
+    }
+  }
+  
+  @media (min-width: $screen-sm-min) {
+    border-bottom: 1px solid $brand-primary;
+    display: flex;
+    align-items: center;
   }
   
   .logo-red {
@@ -73,7 +95,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    &:hover {
+    &:hover, &.active{
       background-color: $rc-red;
       a {
         color: white;
@@ -146,14 +168,16 @@ body {
 
       @media (max-width: $screen-xs-max) {
         color: white;
+        background-color: $rc-red;
         font-size: 1rem;
+      }
+
+      i {
+        margin-left: 5px;
       }
     }
   }
 
-  .fa-chevron-down .fa-chevron-up {
-    margin-left: 3px;
-  }
 
   .login-status {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -161,11 +185,12 @@ body {
 
     
     @media (max-width: $screen-xs-max) {
-      margin-top: 1rem;
       display: flex;
       justify-content: flex-start;
       padding-left: 1rem;
+      background-color: $rc-red;
     }
+
     @media (min-width: $screen-sm-min) {
       margin-left: auto;
     }

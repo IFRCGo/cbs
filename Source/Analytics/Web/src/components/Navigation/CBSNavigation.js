@@ -9,11 +9,12 @@ class CBSNavigation extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
-        this.onMouseLeave = this.onMouseLeave.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
 
         this.state = {
             username: "Unknown", 
             showAnalyticsDropdown: false,
+            collapseMenu: false
         };
     }
 
@@ -21,8 +22,8 @@ class CBSNavigation extends Component {
         this.setState(prevState => ({showAnalyticsDropdown: !prevState.showAnalyticsDropdown}));
       }
 
-    onMouseLeave() {
-        this.setState({showAnalyticsDropdown: false});
+    onMenuClick() {
+        this.setState(prevState => ({collapseMenu: !prevState.collapseMenu}));
     }
     
     fetchData() {
@@ -112,29 +113,37 @@ class CBSNavigation extends Component {
 
     render() {
         return (
-            <header className="navigation-header">
-                {this.rcLogo("white")}
-                {this.rcLogo("red")}
-                <nav>
-                    {this.createMenuItem("analytics", "Country Overview")}
-
-                    <div className="dropdown" onClick={this.onClick} onMouseLeave={this.onMouseLeave}>
-                        {this.createMenuItem("analytics/#", `Analytics`)}
-                        {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
+            <>
+                <header className={`header mobile-header`}>
+                    {this.rcLogo("white")}
+                    <div onClick={this.onMenuClick} className="menu-toggler">
+                        <i className={`fa ${this.state.collapseMenu ? `fa-bars`:`fa-times`}`}/>
                     </div>
+                </header>
+                    
+                <header className={`header desktop-header ${this.state.collapseMenu ? `hidden`: ``}`}>
+                    {this.rcLogo("red")}
+                    <nav>
+                        {this.createMenuItem("analytics", "Country Overview")}
 
-                    {this.createMenuItem("admin", "Project Administration")}
-                    {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
-                    {this.createMenuItem("reporting/case-reports", "Reports")}
-                </nav>
+                        <div className={`dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`} onClick={this.onClick}>
+                            {this.createMenuItem("analytics/#", `Analytics`)}
+                            {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
+                        </div>
 
-                <div className="login-status">
-                    <div className="logged-in">
-                        <p>Logged in as: {this.state.username}</p>
-                        <a className="logout" href="#"><i className='fa fa-sign-out'/> Log out</a>
+                        {this.createMenuItem("admin", "Project Administration")}
+                        {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
+                        {this.createMenuItem("reporting/case-reports", "Reports")}
+                    </nav>
+
+                    <div className="login-status">
+                        <div className="logged-in">
+                            <p>Logged in as: {this.state.username}</p>
+                            <a className="logout" href="#"><i className='fa fa-sign-out'/> Log out</a>
+                        </div>
                     </div>
-                </div>
-            </header>
+                </header>
+            </>
         );
     }
 }
