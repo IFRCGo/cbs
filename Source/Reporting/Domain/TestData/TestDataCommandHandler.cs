@@ -78,7 +78,7 @@ namespace Domain.TestData
                     caseReport.NumberOfFemalesAged5AndOlder,
                     dataCollector.GpsLocation.Longitude,
                     dataCollector.GpsLocation.Latitude,
-                    AlterReportDatesToBePinnedToToday(caseReport.Timestamp, lastDayTestData),
+                    AlterReportDatesToBePinnedToLastWeek(caseReport.Timestamp, lastDayTestData),
                     caseReport.Message);
             }
         }
@@ -118,15 +118,16 @@ namespace Domain.TestData
             }
         }
 
-        private DateTimeOffset AlterReportDatesToBePinnedToToday(string timestamp, DateTimeOffset lastDateTestData)
+        private DateTimeOffset AlterReportDatesToBePinnedToLastWeek(string timestamp, DateTimeOffset lastDateTestData)
         {
             var parseOk = DateTimeOffset.TryParseExact(timestamp,"dd/MM/yyyy HH:mm:ss zzz",
                 CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var dateTimeOffset);
+            var rand = new Random();
 
             if(parseOk)
             {
                 var diff = lastDateTestData - DateTimeOffset.UtcNow;
-                return dateTimeOffset - diff;
+                return (dateTimeOffset - diff).AddDays(rand.Next(-7, 0));
             }
 
             return new DateTimeOffset(DateTime.Now);

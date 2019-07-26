@@ -72,7 +72,7 @@ namespace Read.CaseReports
 
             InsertPerHealthRiskAndRegionForComingWeek(caseReport, healthRisk, district);
             UpdateDataCollectorLastActive(dataCollector, caseReport);
-            InsertPerHealthRiskAndRegionForToday(caseReport, healthRisk, district);
+            InsertPerHealthRiskAndRegionForDay(caseReport, healthRisk, district);
         }
 
         public void UpdateDataCollectorLastActive(DataCollector dataCollector, CaseReport caseReport)
@@ -81,22 +81,22 @@ namespace Read.CaseReports
             _dataCollectors.Update(dataCollector);
         }
 
-        public void InsertPerHealthRiskAndRegionForToday(CaseReport report, HealthRisk healthRisk, District district)
+        public void InsertPerHealthRiskAndRegionForDay(CaseReport report, HealthRisk healthRisk, District district)
         {
             var numberOfReports = report.NumberOfFemalesAged5AndOlder
                                 + report.NumberOfFemalesUnder5
                                 + report.NumberOfMalesAged5AndOlder
                                 + report.NumberOfMalesUnder5;
             var region = _regions.GetById(district.RegionId);
-            var today = Day.Today;
+            var day = Day.From(report.Timestamp);
 
-            var reportsPerHealthRisk = _caseReportsPerHealthRiskPerDay.GetById(today);
+            var reportsPerHealthRisk = _caseReportsPerHealthRiskPerDay.GetById(day);
 
             if (reportsPerHealthRisk == null)
             {
                 reportsPerHealthRisk = new CaseReportsPerHealthRiskPerDay()
                 {
-                    Id = Day.Today,
+                    Id = day,
                     ReportsPerHealthRisk = new Dictionary<HealthRiskName, Dictionary<RegionName, int>>()
                     {
                         { healthRisk.Name, new Dictionary<RegionName, int>()

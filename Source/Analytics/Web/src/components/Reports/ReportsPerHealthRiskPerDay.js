@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { CaseReportsPerHealthRiskPerDayQuery } from "../../Features/CaseReports/CaseReportsPerHealthRiskPerDayQuery";
 import { QueryCoordinator } from "@dolittle/queries";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 export default class ReportsPerHealthRiskPerDay extends Component {
@@ -8,7 +15,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
         super(props);
 
         this.state = {
-            reportsPerHealthRisk: {},
+            reportsPerHealthRisk: [],
             healthRisks: [''],
             selectedHealthRisk: '',
             isLoading: true,
@@ -23,8 +30,8 @@ export default class ReportsPerHealthRiskPerDay extends Component {
 
         this.queryCoordinator.execute(reportsPerHealthRisk).then(queryResult => {
             if (queryResult.success && queryResult.items.length > 0) {
-                const json = queryResult.items[0];
-                var healthRisks = Object.keys(json.reportsPerHealthRisk);
+                const json = queryResult.items;
+                var healthRisks = this.getAllHealthRisksFromReports(json);
                 this.setState({
                     reportsPerHealthRisk: json,
                     healthRisks: healthRisks,
@@ -42,53 +49,76 @@ export default class ReportsPerHealthRiskPerDay extends Component {
         );
     }
 
+    getAllHealthRisksFromReports(reports) {
+        const healthRisks = [];
+        reports.forEach(report => {
+            var risks = Object.keys(report.reportsPerHealthRisk);
+            risks.forEach(risk => {
+                if (healthRisks.indexOf(risk) < 0) {
+                    healthRisks.push(risk);
+                }
+            })
+        });
+        return healthRisks;
+    }
+
     componentDidMount() {
         this.fetchReportsPerHealthRiskLastWeek();
     }
 
-    saveSelectedValue(healthRisk) {
+    saveSelectedValue(event) {
         this.setState({
-            selectedHealthRisk: healthRisk
+            selectedHealthRisk: event.target.value
         });
     }
 
     renderReports() {
-        if (this.state.reportsPerHealthRisk.reportsPerHealthRisk != null) {
-            const reports = this.state.reportsPerHealthRisk.reportsPerHealthRisk[this.state.selectedHealthRisk];
-            const keys = Object.keys(reports);
-            return keys.map(key => {
-                return (
-                    <tr key={key}>
-                        <td>{key}</td>
-                        <td>{reports[key]}</td>
-                    </tr>
-                );
+        if (this.state.reportsPerHealthRisk.length > 0) {
+            this.state.reportsPerHealthRisk.map(report => {
+                const reports = report.reportsPerHealthRisk[this.state.selectedHealthRisk];
+                const keys = Object.keys(reports);
+                return keys.map(key => {
+                    return (
+                        <TableRow key={key}>
+                            <TableCell>{key}</TableCell>
+                            <TableCell>{reports[key]}</TableCell>
+                        </TableRow>
+                    );
+                });
             });
         }
+    }
+
+    renderOptions() {
+        return this.state.healthRisks.map(healthRisk => <MenuItem key={healthRisk} value={healthRisk}>{healthRisk}</MenuItem>);
+    }
+
+    renderDays() {
+        return this.state.reportsPerHealthRisk.map(report => <TableCell key={report.id}>{report.id}</TableCell>);
     }
 
     render() {
         return (
             <div>
                 <h3>Reports for </h3>
-                <select
+                <Select
                     value={this.state.selectedHealthRisk}
-                    onChange={(e) => this.saveSelectedValue(e.target.value)}
+                    onChange={this.saveSelectedValue.bind(this)}
                 >
-                    {this.state.healthRisks.map(x => {
-                        return <option key={x} value={x}>{x}</option>
-                    })}
-                </select>
+                    {this.renderOptions()}
+                </Select>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Region</th>
-                            <th>{this.state.reportsPerHealthRisk.id}</th>
-                        </tr>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Region</TableCell>
+                            {this.renderDays()}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {this.renderReports()}
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </div>
         );
     }
