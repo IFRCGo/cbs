@@ -11,7 +11,7 @@ import { CaseReportsPerRegionLast7DaysQuery } from "../../Features/CaseReports/C
 
 import '../lastWeekTotals/last-week-totals.scss';
 
-class HealthRiskPerDistrictTable extends Component {
+class HealthRiskPerRegionLastWeekTable extends Component {
     constructor(props) {
         super(props);
 
@@ -92,7 +92,7 @@ class HealthRiskPerDistrictTable extends Component {
                                         key="rowName" 
                                         align="left">{rowName}
                                     </TableCell> {/* Special treatment of region name column */}
-                                    
+
                                     {row.map(numCases => (
                                         <TableCell 
                                             className="cell" 
@@ -112,4 +112,4 @@ class HealthRiskPerDistrictTable extends Component {
     }
 }
 
-export default HealthRiskPerDistrictTable;
+export default HealthRiskPerRegionLastWeekTable;
