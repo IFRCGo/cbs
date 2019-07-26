@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import './ReportsPerHealthRiskPerDay.scss';
 
 
 export default class ReportsPerHealthRiskPerDay extends Component {
@@ -97,9 +98,9 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                 const reports = report.reportsPerHealthRisk[this.state.selectedHealthRisk];
                 const reportsInRegion = reports[region];
                 if (reportsInRegion != null)
-                    return <TableCell key={i}>{reportsInRegion}</TableCell>;
+                    return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
                 else
-                    return <TableCell key={i}>-</TableCell>;
+                    return <TableCell className="cell" key={i}>-</TableCell>;
             });
         }
     }
@@ -107,10 +108,10 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     renderRegions() {
         return this.state.regions.map(region => {
             return (
-            <TableRow key={region.name}>
-                <TableCell>{region.name}</TableCell>
-                {this.renderReports(region.name)}
-            </TableRow>)
+                <TableRow key={region.name}>
+                    <TableCell className="headerText" className="cell">{region.name}</TableCell>
+                    {this.renderReports(region.name)}
+                </TableRow>)
         });
     }
 
@@ -119,24 +120,24 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     }
 
     renderDays() {
-        return this.state.reportsPerHealthRisk.map(report => <TableCell key={report.id}>{report.id}</TableCell>);
+        return this.state.reportsPerHealthRisk.map(report => <TableCell className="headerText" key={report.id}>{report.id}</TableCell>);
     }
 
     render() {
         return (
-            <div>
-                <h3>Reports for </h3>
-                <Select
-                    value={this.state.selectedHealthRisk}
-                    onChange={this.saveSelectedValue.bind(this)}
-                >
-                    {this.renderOptions()}
-                </Select>
-
-                <Table>
-                    <TableHead>
+            <div className="tableContainer">
+                <h2 className="headline">Reports for
+                <Select className="headline-select"
+                        value={this.state.selectedHealthRisk}
+                        onChange={this.saveSelectedValue.bind(this)}
+                    >
+                        {this.renderOptions()}
+                    </Select>
+                </h2>
+                <Table className="table">
+                    <TableHead className="tableHead">
                         <TableRow>
-                            <TableCell>Region</TableCell>
+                            <TableCell className="headerText">Region</TableCell>
                             {this.renderDays()}
                         </TableRow>
                     </TableHead>
