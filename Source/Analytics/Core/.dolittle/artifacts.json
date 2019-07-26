@@ -147,7 +147,7 @@
     "readModels": {
       "c5bf257a-44a1-4bcf-a2c8-5129b43e1fc6": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsLast30Days, Read"
+        "type": "Read.Map.CaseReportsLast4Weeks, Read"
       },
       "25687077-9ffe-42db-a371-a7f2490e4a07": {
         "generation": 1,
@@ -157,7 +157,7 @@
     "queries": {
       "068de995-0ad7-4824-9352-ee46f67618f6": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsLast30DaysQuery, Read"
+        "type": "Read.Map.CaseReportsLast4WeeksQuery, Read"
       },
       "2e36a7cc-432b-4f04-bfe6-bcc4cb47e72f": {
         "generation": 1,

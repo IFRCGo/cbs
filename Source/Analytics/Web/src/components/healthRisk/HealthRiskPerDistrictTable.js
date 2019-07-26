@@ -27,7 +27,7 @@ class HealthRiskPerDistrictTable extends Component {
         let healthRisksPerRegion = new CaseReportsPerRegionLast7DaysQuery();
 
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
-            if(queryResult.success){
+            if(queryResult.success && queryResult.items.length > 0){
                 this.setState({
                     healthRisksPerRegion: queryResult.items[0].healthRisks,
                     isLoading: false,
