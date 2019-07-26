@@ -10,7 +10,7 @@ using Concepts;
 using Read.DataCollectors;
 using Read.HealthRisks;
 using System.Linq;
-
+using Dolittle.Runtime.Events;
 namespace Read.CaseReports
 {
     public class CaseReportEventProcessor : ICanProcessEvents
@@ -51,10 +51,10 @@ namespace Read.CaseReports
         
         
        [EventProcessor("db27c06b-d33c-4788-8e9d-2a1bbba13be3")]
-        public void Process(CaseReportReceived @event)
+        public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             // Insert CaseReports
-            var caseReport = new CaseReport(@event.DataCollectorId, 
+            var caseReport = new CaseReport(caseReportId.Value, @event.DataCollectorId, 
             @event.HealthRiskId, @event.Origin, @event.Message, @event.NumberOfMalesUnder5, @event.NumberOfMalesAged5AndOlder, 
             @event.NumberOfFemalesUnder5, @event.NumberOfFemalesAged5AndOlder, @event.Longitude, @event.Latitude,
             @event.Timestamp);

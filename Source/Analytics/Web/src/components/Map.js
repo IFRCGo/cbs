@@ -15,16 +15,22 @@ var redCrossIcon = L.icon({
 
 
 function CaseMarkers({ casesLastWeekAndMonth }) {
-    return casesLastWeekAndMonth.map(cases => {
-        cases.vals = new Array(cases.numberOfPeople);
-        cases.vals.fill(1);
-        return cases.vals.map(function (val) {
-            return <Marker
-                position={[cases.location.longitude, cases.location.latitude]} icon={redCrossIcon}
-            ></Marker>
-        });
-    });
-};
+
+    return Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).map(cases => {
+        var arr = []
+        for(var i = 0; i < casesLastWeekAndMonth.caseReportsPerHealthRisk[cases].length; i++){
+            var nbr =  casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].numberOfPeople
+            var ca = new Array(nbr);
+            ca.fill(1);
+            arr.push(ca.map(function (val) {
+                return <Marker
+                    position={[casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].location.longitude, casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].location.latitude]} icon={redCrossIcon}
+                ></Marker>
+            }));
+        }
+        return arr;
+    }
+)};
 
 class MapWidget extends Component {
     constructor(props) {
