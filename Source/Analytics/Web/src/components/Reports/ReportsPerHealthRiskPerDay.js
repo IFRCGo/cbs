@@ -19,7 +19,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
         this.state = {
             reportsPerHealthRisk: [],
             regions: [],
-            healthRisks: [''],
+            healthRisks: [],
             selectedHealthRisk: '',
             isLoading: true,
             isError: false
@@ -106,13 +106,12 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     }
 
     renderRegions() {
-        return this.state.regions.map(region => {
-            return (
+        return this.state.regions.map(region => (
                 <TableRow key={region.name}>
                     <TableCell className="headerText" className="cell">{region.name}</TableCell>
                     {this.renderReports(region.name)}
                 </TableRow>)
-        });
+        );
     }
 
     renderOptions() {

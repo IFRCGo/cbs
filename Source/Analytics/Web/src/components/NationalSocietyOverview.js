@@ -42,8 +42,8 @@ class NationalSocietyOverview extends Component {
                     </Grid>
 
                     <HealthRiskPerDistrictTable />
-                    {/* <Map /> */}
-                    <ReportsPerHealthRiskPerDay></ReportsPerHealthRiskPerDay>
+                    <Map />
+                    <ReportsPerHealthRiskPerDay />
                 </div>
             </>
         );
