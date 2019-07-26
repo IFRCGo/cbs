@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerRegionLastWeekTable from "./healthRisk/HealthRiskPerRegionLastWeekTable";
+import HealthRiskPerRegionLast4WeeksTable from "./healthRisk/HealthRiskPerRegionLast4WeeksTable";
 import LastWeekTotals from './lastWeekTotals/LastWeekTotals.js';
 import Map from "./Map.js";
 import CBSNavigation from './Navigation/CBSNavigation';
@@ -42,7 +42,7 @@ class NationalSocietyOverview extends Component {
                         </Grid>
 
                         <Grid item xs={12} key="HealthRiskPerRegionLastWeekTable">
-                            <HealthRiskPerRegionLastWeekTable />
+                            <HealthRiskPerRegionLast4WeeksTable />
                         </Grid>
                     </Grid>
 

@@ -39,12 +39,15 @@ namespace Read.CaseReports
             _dataCollectors = dataCollectors;
         }
 
-        public RegionWithHealthRisk AddRegionWithCases(RegionName region, NumberOfPeople numCases)
+        public RegionWithHealthRisk AddRegionWithCases(RegionName region, int day, NumberOfPeople numCases)
         {
             return new RegionWithHealthRisk()
             {
                 Name = region,
-                NumCases = numCases
+                Days0to6 = 0,
+                Days7to13 = 0,
+                Days14to20 = 0,
+                Days21to27 = 0
             };
         }
 
@@ -65,7 +68,7 @@ namespace Read.CaseReports
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var district = _districts.Query.FirstOrDefault(_ => _.Name == dataCollector.District);
 
-            InsertPerHealthRiskAndRegionForComingWeek(caseReport, healthRisk, district);
+            InsertPerHealthRiskAndRegionForComing4Weeks(caseReport, healthRisk, district);
             UpdateDataCollectorLastActive(dataCollector, caseReport);
         }
 
@@ -75,19 +78,36 @@ namespace Read.CaseReports
             _dataCollectors.Update(dataCollector);
         }
 
-        public void InsertPerHealthRiskAndRegionForComingWeek(CaseReport caseReport, HealthRisk healthRisk, District district)
+        public void InsertNumCases(RegionWithHealthRisk region, int day, NumberOfPeople numCases)
+        {
+            if (day < 7)
+            {
+                region.Days0to6 += numCases;
+            } else if (day < 14)
+            {
+                region.Days7to13 += numCases;
+            } else if (day < 21)
+            {
+                region.Days14to20 += numCases;
+            } else 
+            {
+                region.Days21to27 += numCases;
+            }
+        }
+
+        public void InsertPerHealthRiskAndRegionForComing4Weeks(CaseReport caseReport, HealthRisk healthRisk, District district)
         {
             // Insert by health risk and region
             var today = Day.From(caseReport.Timestamp);
             var region = _regions.GetById(district.RegionId);
-            var totalCases = caseReport.NumberOfMalesUnder5
+            var numCases = caseReport.NumberOfMalesUnder5
                                 +caseReport.NumberOfMalesAged5AndOlder
                                 +caseReport.NumberOfFemalesUnder5
                                 +caseReport.NumberOfFemalesAged5AndOlder;
 
-            for (var day = today; day < today + 7; day++)
-            {
-                var dayReport = _caseReportsPerRegionLast7DaysRepository.GetById(day);
+            for (var day = 0; day < 28; day++)
+            {            
+                var dayReport = _caseReportsPerRegionLast7DaysRepository.GetById(day + today);
                 if (dayReport != null)
                 {
                     var healthRiskForDay = dayReport.HealthRisks.FirstOrDefault(d => d.Id == caseReport.HealthRiskId);
@@ -96,10 +116,10 @@ namespace Read.CaseReports
                         var regionForHealthRisk = healthRiskForDay.Regions.FirstOrDefault(r => r.Name == region.Name);
                         if (regionForHealthRisk != null)
                         {
-                            regionForHealthRisk.NumCases += totalCases;
+                            InsertNumCases(regionForHealthRisk, day, numCases);
                         } else
                         {
-                            healthRiskForDay.Regions.Add(AddRegionWithCases(region.Name, totalCases));
+                            healthRiskForDay.Regions.Add(AddRegionWithCases(region.Name, day, numCases));
                         }
                     }
                     else 
@@ -108,7 +128,7 @@ namespace Read.CaseReports
                         {
                             Id = caseReport.HealthRiskId,
                             HealthRiskName = healthRisk.Name,
-                            Regions = new [] { AddRegionWithCases(region.Name, totalCases) }
+                            Regions = new [] { AddRegionWithCases(region.Name, day, numCases) }
                         });
                     }
                     _caseReportsPerRegionLast7DaysRepository.Update(dayReport);
@@ -117,14 +137,14 @@ namespace Read.CaseReports
                 {
                     dayReport = new CaseReportsPerRegionLast7Days()
                     {
-                        Id = day,
+                        Id = day + today,
                         HealthRisks = new [] 
                         {
                             new HealthRisksInRegionsLast7Days()
                             {
                                 Id = caseReport.HealthRiskId,
                                 HealthRiskName = healthRisk.Name,
-                                Regions = new []{ AddRegionWithCases(region.Name, totalCases) }
+                                Regions = new []{ AddRegionWithCases(region.Name, day, numCases) }
                             }
                         }
                     };

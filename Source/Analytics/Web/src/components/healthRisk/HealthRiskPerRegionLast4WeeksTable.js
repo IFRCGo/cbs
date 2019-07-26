@@ -11,12 +11,12 @@ import { CaseReportsPerRegionLast7DaysQuery } from "../../Features/CaseReports/C
 
 import '../lastWeekTotals/last-week-totals.scss';
 
-class HealthRiskPerRegionLastWeekTable extends Component {
+class HealthRiskPerRegionLast4WeeksTable extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            healthRisksPerRegion: [],
+            regionsForHealthRisk: [],
             isLoading: true,
             isError: false
         };
@@ -29,7 +29,7 @@ class HealthRiskPerRegionLastWeekTable extends Component {
         this.queryCoordinator.execute(healthRisksPerRegion).then(queryResult => {
             if(queryResult.success){
                 this.setState({
-                    healthRisksPerRegion: queryResult.items[0].healthRisks,
+                    regionsForHealthRisk: queryResult.items[0].healthRisks[0],
                     isLoading: false,
                     isError: false
                 })
@@ -44,52 +44,45 @@ class HealthRiskPerRegionLastWeekTable extends Component {
         this.fetchData();
     }
 
-    createRows(healthRisks) {
-        const numHealthRisks = healthRisks.length;
-        let rows = [];
-
-        let allRegions = [];
-        healthRisks.map(risk => {
-            risk.regions.map(region => {
-                if (!allRegions.includes(region.name)){
-                    allRegions.push(region.name);
-                }
-            })
-        });
-        allRegions.map(regionName => {
-            let row = new Array(1+numHealthRisks).fill(0);
-            row[0] = regionName;
-            for (let i=0; i<numHealthRisks; i++){
-                let num = healthRisks[i].regions.find(region => region.name === regionName);
-                row[i+1] = num ? num.numCases : 0;
-            }
+    createRows(regions) {
+        let rows = [];  
+        regions.map(region => {
+            let row = Object.keys(region).map(key => (region[key] ? region[key] : 0));
+            let totalReports = region.days0to6 + region.days7to13 + region.days14to20 + region.days21to27;
+            row.push(totalReports);
+            
             rows.push(row);
         });
         return rows
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <div>Loading...</div>;
+        }
         return (
             <div className="tableContainer">
-                <h2 className="headline">No. of cases per health risk and district for last 7 days</h2>
+                <h2 className="headline">No. of reports for AWD last 28 days</h2>
                 <Table className="table">
                     <TableHead className="tableHead" key="table">
                         <TableRow>
                             <TableCell className="headerText">Region</TableCell>
-                            {this.state.healthRisksPerRegion.map(healthRisk => 
-                                (<TableCell className="headerText" key={healthRisk.healthRiskName} align="right">{healthRisk.healthRiskName}</TableCell>))
-                            }
+                            <TableCell className="headerText" align="right">Last week</TableCell>
+                            <TableCell className="headerText" align="right">2 weeks ago</TableCell>
+                            <TableCell className="headerText" align="right">3 weeks ago</TableCell>
+                            <TableCell className="headerText" align="right">4 weeks ago</TableCell>
+                            <TableCell className="headerText" align="right">Total</TableCell>
                         </TableRow>
                     </TableHead> 
                     <TableBody>
                         {
-                            this.createRows(this.state.healthRisksPerRegion).map(row => {
+                            this.createRows(this.state.regionsForHealthRisk.regions).map(row => {
                             let rowName = row.shift();
                             return (
                                 <TableRow key={rowName}>
                                     <TableCell 
                                         className="cell" 
-                                        key="rowName" 
+                                        key={rowName} 
                                         align="left">{rowName}
                                     </TableCell> {/* Special treatment of region name column */}
 
@@ -112,4 +105,4 @@ class HealthRiskPerRegionLastWeekTable extends Component {
     }
 }
 
-export default HealthRiskPerRegionLastWeekTable;
+export default HealthRiskPerRegionLast4WeeksTable;
