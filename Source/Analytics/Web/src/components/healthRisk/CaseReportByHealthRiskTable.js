@@ -7,6 +7,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
+import '../lastWeekTotals/last-week-totals.scss';
+
 import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsLast4WeeksPerHealthRiskQuery } from "../../Features/Overview/Last4WeeksPerHealthRisk/CaseReportsLast4WeeksPerHealthRiskQuery";
 
@@ -44,46 +46,41 @@ class CaseReportByHealthRiskTable extends Component {
     }
 
     render() {
-        let styles={
-          marginBottom: 20
-        };
         return (
-          <div style={styles}>
-            <Typography variant="h5">No. of reports per health risk per time period</Typography>
-            <Paper>
-              <Table>
-                <TableHead>
+          <div className="tableContainer">
+            <h2 className="headline">Reports for the last 4 weeks</h2>
+              <Table className="table">
+                <TableHead className="tableHead">
                   <TableRow>
                     <TableCell></TableCell>
-                    <TableCell align="right">0-6 days</TableCell>
-                    <TableCell align="right">7-13 days</TableCell>
-                    <TableCell align="right">14-21 days</TableCell>
-                    <TableCell align="right">22-27 days</TableCell>
+                    <TableCell className="headerText">0-6 days</TableCell>
+                    <TableCell className="headerText">7-13 days</TableCell>
+                    <TableCell className="headerText">14-21 days</TableCell>
+                    <TableCell className="headerText">22-27 days</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {Object.keys(this.state.healthRisks).map(key => (
                     <TableRow key={this.state.healthRisks[key].healthRiskName}>
-                      <TableCell component="th" scope="row">
+                      <TableCell className="cell">
                         {this.state.healthRisks[key].healthRiskName}
                       </TableCell>
-                      <TableCell align="right" style={this.state.healthRisks[key].days0to6 === 0 ? {color: "#B5B5B5"} : {}}>
+                      <TableCell className="cell" style={this.state.healthRisks[key].days0to6 === 0 ? {color: "#B5B5B5"} : {}}>
                         {this.state.healthRisks[key].days0to6}
                       </TableCell>
-                      <TableCell align="right" style={this.state.healthRisks[key].days7to13 === 0 ? {color: "#B5B5B5"} : {}}>
+                      <TableCell className="cell" style={this.state.healthRisks[key].days7to13 === 0 ? {color: "#B5B5B5"} : {}}>
                         {this.state.healthRisks[key].days7to13}
                       </TableCell>
-                      <TableCell align="right" style={this.state.healthRisks[key].days14to20 === 0 ? {color: "#B5B5B5"} : {}}>
+                      <TableCell className="cell" style={this.state.healthRisks[key].days14to20 === 0 ? {color: "#B5B5B5"} : {}}>
                         {this.state.healthRisks[key].days14to20}
                       </TableCell>
-                      <TableCell align="right" style={this.state.healthRisks[key].days21to27 === 0 ? {color: "#B5B5B5"} : {}}>
+                      <TableCell className="cell" style={this.state.healthRisks[key].days21to27 === 0 ? {color: "#B5B5B5"} : {}}>
                         {this.state.healthRisks[key].days21to27}
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-            </Paper>
           </div>
         );
     }
