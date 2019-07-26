@@ -120,7 +120,10 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     }
 
     renderDays() {
-        return this.state.reportsPerHealthRisk.map(report => <TableCell className="headerText" key={report.id}>{report.id}</TableCell>);
+        return this.state.reportsPerHealthRisk.map(report => {
+            const day = new Date(report.timestamp).toDateString();
+            return <TableCell className="headerText" key={report.id}>{day}</TableCell>
+        });
     }
 
     render() {

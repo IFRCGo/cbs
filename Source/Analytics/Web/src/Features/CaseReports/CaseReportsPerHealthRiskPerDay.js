@@ -13,6 +13,7 @@ export class CaseReportsPerHealthRiskPerDay extends ReadModel
            generation: '1'
         };
         this.id = 0;
+        this.timestamp = new Date();
         this.reportsPerHealthRisk = [];
     }
 }

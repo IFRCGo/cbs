@@ -97,6 +97,7 @@ namespace Read.CaseReports
                 reportsPerHealthRisk = new CaseReportsPerHealthRiskPerDay()
                 {
                     Id = day,
+                    Timestamp = report.Timestamp,
                     ReportsPerHealthRisk = new Dictionary<HealthRiskName, Dictionary<RegionName, int>>()
                     {
                         { healthRisk.Name, new Dictionary<RegionName, int>()
