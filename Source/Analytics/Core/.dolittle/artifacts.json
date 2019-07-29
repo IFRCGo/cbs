@@ -88,7 +88,12 @@
         "type": "Read.DataCollectors.DataCollector, Read"
       }
     },
-    "queries": {}
+    "queries": {
+      "12ff1b4d-6bad-47a6-b140-5f14dd2706a0": {
+        "generation": 1,
+        "type": "Read.DataCollectors.DataCollectorsQuery, Read"
+      }
+    }
   },
   "e77ceef7-67b6-4995-8dcd-c965c6289c0b": {
     "commands": {},

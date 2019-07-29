@@ -14,6 +14,6 @@ namespace Read.CaseReports
             _repositoryForCaseReport = repositoryForCaseReport;
         }
 
-        public IQueryable<CaseReport> Query => _repositoryForCaseReport.Query;
+        public IQueryable Query => _repositoryForCaseReport.Query;
     }
 }
