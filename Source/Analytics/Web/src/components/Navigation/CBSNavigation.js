@@ -105,11 +105,11 @@ class CBSNavigation extends Component {
     createMenuItem(url, text) {
         var active = this.props.activeMenuItem;
         
-        return <a 
-                    href={`/${url}/`} 
+        return <Link
+                    to={`/${url}/`} 
                     className={`menu-item ${url == active ? `active` : ``}`}>
                     {text} {url=="analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`}/>}
-                </a>
+                </Link>
     }
 
     render() {
