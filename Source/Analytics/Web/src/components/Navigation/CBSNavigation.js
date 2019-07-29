@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './cbs-navigation-v1.scss';
 
 const BASE_URL = process.env.API_BASE_URL;
@@ -92,10 +93,10 @@ class CBSNavigation extends Component {
         return (
             <div>
                 <div className="dropdown-content">
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Health risks</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Regions</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Light area overview</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Volunteer performance</div></a>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Health risks</div></Link>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Regions</div></Link>
+                    <Link to="/analytics/lite" className="dropdown-item"><div className="d-i-text">Light area overview</div></Link>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Volunteer performance</div></Link>
                 </div>
             </div>
         )
