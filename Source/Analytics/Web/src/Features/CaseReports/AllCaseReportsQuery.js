@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import { Query } from  '@dolittle/queries';
 
-export class CaseReportTotalQuery extends Query
+export class AllCaseReportsQuery extends Query
 {
     constructor() {
         super();
-        this.nameOfQuery = 'CaseReportTotalQuery';
-        this.generatedFrom = 'Read.CaseReports.CaseReportTotalQuery';
+        this.nameOfQuery = 'AllCaseReportsQuery';
+        this.generatedFrom = 'Read.CaseReports.AllCaseReportsQuery';
 
     }
 }

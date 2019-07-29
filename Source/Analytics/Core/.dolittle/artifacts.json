@@ -32,7 +32,7 @@
       },
       "69fb20e1-a04e-4e4d-a3bc-be0151d67528": {
         "generation": 1,
-        "type": "Read.CaseReports.CaseReportTotalQuery, Read"
+        "type": "Read.CaseReports.AllCaseReportsQuery, Read"
       },
       "ef6a3bc6-bf0e-4392-a3ab-818341df1d22": {
         "generation": 1,
