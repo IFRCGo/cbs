@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Card from "./Card";
+import Card from "../Card";
+import './overview-top.scss';
 
 //import TotalCard from "./TotalCard";
 
-import { CaseReportTotalQuery } from "../Features/Casereports/CaseReportTotalQuery";
-import { DataCollectorsQuery } from "../Features/DataCollectors/DataCollectorsQuery"
+import { CaseReportTotalQuery } from "../../Features/Casereports/CaseReportTotalQuery";
+import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
 
-class LastWeekTotals extends Component {
+class OverviewTop extends Component {
     constructor(props) {
         super(props);
 
@@ -70,13 +71,13 @@ class LastWeekTotals extends Component {
 
     render () {
         return (
-            <div style={{display: "flex", justifyContent: "space-around", fontFamily: "'Lato', 'Helvetica Neue', 'sans-serif1'", fontWeight: "300"}}>
-                <div style={{textAlign: "center", width: "20%"}}>
-                    <i className="fa fa-heart" style={{textAlign:"center" ,transform: "scale(3)", color:"#D3D3D3"}}></i>
+            <div className="overview-top">
+                <div className="card">
+                    <i className="fa fa-heart icon"></i>
                     <p>All reports since project start:  {this.state.total} </p>
                 </div>
-                <div style={{textAlign: "center", width: "20%"}}>
-                    <i className="fa fa-user" style={{textAlign:"center" ,transform: "scale(3)", color:"#D3D3D3"}}></i>
+                <div className="card">
+                    <i className="fa fa-user icon"></i>
                     <p>All data collectors: <br/>
                         Active: {this.state.activeDataCollectors} <br/>
                         Inactive: {this.state.inactiveDataCollectors}
@@ -86,4 +87,4 @@ class LastWeekTotals extends Component {
         );
     }
 }
-export default LastWeekTotals;
+export default OverviewTop;

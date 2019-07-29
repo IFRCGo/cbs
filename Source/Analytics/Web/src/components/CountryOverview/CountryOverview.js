@@ -4,7 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
-import LastWeekTotals from '../LastWeekTotals.js';
+import OverviewTop from '../OverviewTop/OverviewTop.js';
+import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 
@@ -30,7 +31,8 @@ class CountryOverview extends Component {
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-
+                <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
+                <OverviewTop />
                 <div className="analytics--container" style={body}>
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
@@ -41,9 +43,9 @@ class CountryOverview extends Component {
                     </Grid>
 
                     <HealthRiskPerDistrictTable />
-                    <LastWeekTotals />
-                    <Map />
                     <CaseReportByHealthRiskTable />
+                    <Map />
+                    
                 </div>
             </>
         );
