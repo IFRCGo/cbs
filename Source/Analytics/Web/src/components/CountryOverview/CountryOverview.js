@@ -7,6 +7,7 @@ import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable
 import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
+import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -28,7 +29,7 @@ class CountryOverview extends Component {
         }
         return (
             <>
-                <CBSNavigation activeMenuItem="analytics"/>
+                <CBSNavigation activeMenuItem="analytics" />
 
                 <div className="analytics--container" style={body}>
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
@@ -42,6 +43,7 @@ class CountryOverview extends Component {
 
                     <HealthRiskPerDistrictTable />
                     <Map />
+                    <ReportsPerHealthRiskPerDay />
                 </div>
             </>
         );
