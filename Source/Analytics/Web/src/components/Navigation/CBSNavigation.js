@@ -13,20 +13,21 @@ class CBSNavigation extends Component {
         this.onMenuClick = this.onMenuClick.bind(this);
 
         this.state = {
-            username: "Unknown", 
+            username: "Unknown",
             showAnalyticsDropdown: false,
             collapseMenu: false
         };
     }
 
-    onClick() {
-        this.setState(prevState => ({showAnalyticsDropdown: !prevState.showAnalyticsDropdown}));
-      }
+    onClick(event) {
+        event.preventDefault();
+        this.setState(prevState => ({ showAnalyticsDropdown: !prevState.showAnalyticsDropdown }));
+    }
 
     onMenuClick() {
-        this.setState(prevState => ({collapseMenu: !prevState.collapseMenu}));
+        this.setState(prevState => ({ collapseMenu: !prevState.collapseMenu }));
     }
-    
+
     fetchData() {
         if (process.env.environment !== 'production') {
             this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
@@ -70,7 +71,7 @@ class CBSNavigation extends Component {
         var backgroundColor = (color == "red" ? "#c00" : "#fff");
         var mainColor = (color == "red" ? "#fff" : "#c00");
 
-        return(
+        return (
             <div className={`logo logo-${color}`}>
                 <figure>
                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
@@ -89,7 +90,7 @@ class CBSNavigation extends Component {
         )
     }
 
-    analyticsDropdown (){
+    analyticsDropdown() {
         return (
             <div>
                 <div className="dropdown-content">
@@ -104,12 +105,21 @@ class CBSNavigation extends Component {
 
     createMenuItem(url, text) {
         var active = this.props.activeMenuItem;
-        
+
+        if (text == 'Analytics') {
+            return <Link
+                onClick={this.onClick}
+                to={`/${url}/`}
+                className={`menu-item ${url == active ? `active` : ``}`}>
+                {text} <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`} />
+            </Link>
+        }
+
         return <Link
-                    to={`/${url}/`} 
-                    className={`menu-item ${url == active ? `active` : ``}`}>
-                    {text} {url=="analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`}/>}
-                </Link>
+            to={`/${url}/`}
+            className={`menu-item ${url == active ? `active` : ``}`}>
+            {text} {url == "analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`} />}
+        </Link>
     }
 
     render() {
@@ -118,16 +128,16 @@ class CBSNavigation extends Component {
                 <header className={`header mobile-header`}>
                     {this.rcLogo("white")}
                     <div onClick={this.onMenuClick} className="menu-toggler">
-                        <i className={`fa ${this.state.collapseMenu ? `fa-bars`:`fa-times`}`}/>
+                        <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
                     </div>
                 </header>
-                    
-                <header className={`header desktop-header ${this.state.collapseMenu ? `hidden`: ``}`}>
+
+                <header className={`header desktop-header ${this.state.collapseMenu ? `hidden` : ``}`}>
                     {this.rcLogo("red")}
                     <nav>
                         {this.createMenuItem("analytics", "Country Overview")}
 
-                        <div className={`dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`} onClick={this.onClick}>
+                        <div className={`dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
                             {this.createMenuItem("analytics/#", `Analytics`)}
                             {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                         </div>
@@ -140,7 +150,7 @@ class CBSNavigation extends Component {
                     <div className="login-status">
                         <div className="logged-in">
                             <p>Logged in as: {this.state.username}</p>
-                            <a className="logout" href="#"><i className='fa fa-sign-out'/> Log out</a>
+                            <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
                         </div>
                     </div>
                 </header>
