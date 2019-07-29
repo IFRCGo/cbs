@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from "../Card";
 import './overview-top.scss';
 
-import { CaseReportTotalQuery } from "../../Features/Casereports/CaseReportTotalQuery";
+import { CaseReportTotalQuery } from "../../Features/CaseReports/CaseReportTotalQuery";
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
 
@@ -21,11 +18,9 @@ class OverviewTop extends Component {
 
     fetchDataCollectors() {
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportTotals  = new CaseReportTotalQuery();
         let dataCollectorsQuery = new DataCollectorsQuery();
 
         this.queryCoordinator.execute(dataCollectorsQuery).then(queryResult => {
-        console.log(queryResult.items[1])
         if(queryResult.success){
             
             this.setState({
@@ -46,7 +41,6 @@ class OverviewTop extends Component {
     fetchTotalCaseReports(){
         this.queryCoordinator = new QueryCoordinator();
         let caseReportTotals  = new CaseReportTotalQuery();
-        let dataCollectorsQuery = new DataCollectorsQuery();
         this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
             if(queryResult.success){
                 var item = queryResult.totalItems
