@@ -12,7 +12,7 @@ import {QueryCoordinator} from '@dolittle/queries';
 import "./assets/react-leaflet.scss";
 import "./assets/main.scss";
 import Analytics from './components/Analytics';
-import NationalSocietyOverview from './components/NationalSocietyOverview';
+import CountryOverview from './components/CountryOverview/CountryOverview';
 
 QueryCoordinator.apiBaseUrl = process.env.API_BASE_URL;
 
@@ -23,7 +23,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 {/* <Route path="/analytics/" exact component={Analytics} />  */}
-                <Route path="/analytics/" exact component={NationalSocietyOverview} />
+                <Route path="/analytics/" exact component={CountryOverview} />
             </div>
         </BrowserRouter>
     </Provider>,

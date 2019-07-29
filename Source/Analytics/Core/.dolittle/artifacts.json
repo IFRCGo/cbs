@@ -19,6 +19,10 @@
       "1613bdd9-d11c-4efe-b6eb-b60e94d6e23e": {
         "generation": 1,
         "type": "Read.CaseReports.RegionWithHealthRisk, Read"
+      },
+      "db453d7a-e3f0-461f-9b68-c83fda1f29a0": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportsPerHealthRiskPerDay, Read"
       }
     },
     "queries": {
@@ -26,9 +30,15 @@
         "generation": 1,
         "type": "Read.CaseReports.CaseReportsPerRegionLast7DaysQuery, Read"
       },
+<<<<<<< HEAD
       "69fb20e1-a04e-4e4d-a3bc-be0151d67528": {
         "generation": 1,
         "type": "Read.CaseReports.CaseReportTotalQuery, Read"
+=======
+      "ef6a3bc6-bf0e-4392-a3ab-818341df1d22": {
+        "generation": 1,
+        "type": "Read.CaseReports.CaseReportsPerHealthRiskPerDayQuery, Read"
+>>>>>>> 71d16bfff5b32f5f1e044dfc0ec9ee6c8f1ae3c0
       }
     }
   },
@@ -89,9 +99,15 @@
       }
     },
     "queries": {
+<<<<<<< HEAD
       "12ff1b4d-6bad-47a6-b140-5f14dd2706a0": {
         "generation": 1,
         "type": "Read.DataCollectors.DataCollectorsQuery, Read"
+=======
+      "ad5fe701-d092-4d84-8451-88f339ad91de": {
+        "generation": 1,
+        "type": "Read.DataCollectors.AllRegions, Read"
+>>>>>>> 71d16bfff5b32f5f1e044dfc0ec9ee6c8f1ae3c0
       }
     }
   },
@@ -143,7 +159,7 @@
     "readModels": {
       "c5bf257a-44a1-4bcf-a2c8-5129b43e1fc6": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsLast30Days, Read"
+        "type": "Read.Map.CaseReportsLast4Weeks, Read"
       },
       "25687077-9ffe-42db-a371-a7f2490e4a07": {
         "generation": 1,
@@ -153,7 +169,7 @@
     "queries": {
       "068de995-0ad7-4824-9352-ee46f67618f6": {
         "generation": 1,
-        "type": "Read.Map.CaseReportsLast30DaysQuery, Read"
+        "type": "Read.Map.CaseReportsLast4WeeksQuery, Read"
       },
       "2e36a7cc-432b-4f04-bfe6-bcc4cb47e72f": {
         "generation": 1,
