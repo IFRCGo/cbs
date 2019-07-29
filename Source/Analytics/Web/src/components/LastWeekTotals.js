@@ -70,22 +70,18 @@ class LastWeekTotals extends Component {
 
     render () {
         return (
-            <div style={{display: "flex", justifyContent: "space-around"}}>
-            <div style={{textAlign: "center", width: "20%"}}>
-                <i className="fa fa-heart" style={{textAlign:"center" ,transform: "scale(3)", color:"gray"}}></i>
-                <h4>Total number of reports <br/> since project start</h4>
-                <div>
-                    {this.state.total}
+            <div style={{display: "flex", justifyContent: "space-around", fontFamily: "'Lato', 'Helvetica Neue', 'sans-serif1'", fontWeight: "300"}}>
+                <div style={{textAlign: "center", width: "20%"}}>
+                    <i className="fa fa-heart" style={{textAlign:"center" ,transform: "scale(3)", color:"#D3D3D3"}}></i>
+                    <p>All reports since project start:  {this.state.total} </p>
                 </div>
-            </div>
-            <div style={{textAlign: "center", width: "20%"}}>
-                <i className="fa fa-user" style={{textAlign:"center" ,transform: "scale(3)", color:"gray"}}></i>
-                <h4>All data collectors</h4>
-                <p style={{fontStyle: ""}}>
-                    Active: {this.state.activeDataCollectors} <br/>
-                    Inactive: {this.state.inactiveDataCollectors}
-                </p>
-            </div>
+                <div style={{textAlign: "center", width: "20%"}}>
+                    <i className="fa fa-user" style={{textAlign:"center" ,transform: "scale(3)", color:"#D3D3D3"}}></i>
+                    <p>All data collectors: <br/>
+                        Active: {this.state.activeDataCollectors} <br/>
+                        Inactive: {this.state.inactiveDataCollectors}
+                    </p>
+                </div>
             </div>
         );
     }
