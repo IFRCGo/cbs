@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './cbs-navigation-v1.scss';
 
 const BASE_URL = process.env.API_BASE_URL;
@@ -92,10 +93,10 @@ class CBSNavigation extends Component {
         return (
             <div>
                 <div className="dropdown-content">
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Health risks</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Regions</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Light area overview</div></a>
-                    <a href="/analytics/" className="dropdown-item"><div className="d-i-text">Volunteer performance</div></a>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Health risks</div></Link>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Regions</div></Link>
+                    <Link to="/analytics/light" className="dropdown-item"><div className="d-i-text">Light area overview</div></Link>
+                    <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Volunteer performance</div></Link>
                 </div>
             </div>
         )
@@ -104,11 +105,11 @@ class CBSNavigation extends Component {
     createMenuItem(url, text) {
         var active = this.props.activeMenuItem;
         
-        return <a 
-                    href={`/${url}/`} 
+        return <Link
+                    to={`/${url}/`} 
                     className={`menu-item ${url == active ? `active` : ``}`}>
                     {text} {url=="analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`}/>}
-                </a>
+                </Link>
     }
 
     render() {
