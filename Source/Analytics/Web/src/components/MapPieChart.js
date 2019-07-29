@@ -13,7 +13,6 @@ function Circles({ size, numberOfCases, casesPerHealthRisk }) {
         var strokeDashoffset = nextOffset
         nextOffset -= areaPerColor
         var listItem = <li style={{ fontSize: "10px" }}>  <div className="overview-healthrisk-label" style={{backgroundColor: casesPerHealthRisk[key].color}}></div> {casesPerHealthRisk[key].name} : {casesPerHealthRisk[key].count}  </li>
-        console.log(listItem)
         var stroke = casesPerHealthRisk[key].color
         var circle = <circle cx={"50%"} cy={"50%"} r={"24.9%"} style={{strokeDasharray: strokeDasharray, strokeDashoffset: strokeDashoffset, stroke: stroke }}></circle>
         listItems.push(listItem)

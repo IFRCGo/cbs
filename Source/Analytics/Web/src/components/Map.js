@@ -144,9 +144,12 @@ class MapWidget extends Component {
 
         this.state = {
             caseReportsLastWeek: [],
+            wheelZoom: false,
             isLoading: true,
             isError: false
         };
+        this.enableZoom = this.enableZoom.bind(this);
+        this.disableZoom = this.disableZoom.bind(this);
     }
 
     componentDidMount() {
@@ -166,11 +169,11 @@ class MapWidget extends Component {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
 
-
         this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
             if (queryResult.success) {
                 this.setState({
                     caseReportsLastWeek: queryResult.items[0],
+                    wheelZoom: false,
                     isError: false,
                     isLoading: false
                 })
@@ -182,6 +185,13 @@ class MapWidget extends Component {
             })
         }
         );
+    }
+
+    enableZoom(event){
+        event.target.scrollWheelZoom.enable();
+    }
+    disableZoom(event){
+        event.target.scrollWheelZoom.disable()
     }
 
     render() {
@@ -211,9 +221,9 @@ class MapWidget extends Component {
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
-
+        console.log(this.state.wheelZoom)
         return (
-            <Map className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
+            <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"

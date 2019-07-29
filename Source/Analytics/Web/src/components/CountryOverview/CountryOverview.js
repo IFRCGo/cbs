@@ -43,7 +43,7 @@ class CountryOverview extends Component {
 
                     <HealthRiskPerDistrictTable />
                     <Map />
-                    <ReportsPerHealthRiskPerDay />
+                    {/* <ReportsPerHealthRiskPerDay /> */}
                 </div>
             </>
         );
