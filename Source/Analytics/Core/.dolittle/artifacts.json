@@ -109,7 +109,12 @@
         "type": "Read.HealthRisks.HealthRisk, Read"
       }
     },
-    "queries": {}
+    "queries": {
+      "93a84264-7a91-476f-bc8f-30e92ecca36e": {
+        "generation": 1,
+        "type": "Read.HealthRisks.AllHealthRisks, Read"
+      }
+    }
   },
   "306df3f7-c901-4914-b677-43802a30dbe7": {
     "commands": {},
