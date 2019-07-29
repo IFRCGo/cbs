@@ -21,7 +21,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Route path="/analytics/" exact component={CountryOverview} />
-                <Route path="/analytics/lite/" exact component={LightweightAreaOverview} />
+                <Route path="/analytics/light/" exact component={LightweightAreaOverview} />
             </div>
         </BrowserRouter>
     </Provider>,

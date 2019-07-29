@@ -166,7 +166,6 @@ class MapWidget extends Component {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
 
-
         this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
             if (queryResult.success) {
                 this.setState({
