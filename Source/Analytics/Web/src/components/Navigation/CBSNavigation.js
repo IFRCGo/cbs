@@ -95,7 +95,7 @@ class CBSNavigation extends Component {
                 <div className="dropdown-content">
                     <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Health risks</div></Link>
                     <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Regions</div></Link>
-                    <Link to="/analytics/lite" className="dropdown-item"><div className="d-i-text">Light area overview</div></Link>
+                    <Link to="/analytics/light" className="dropdown-item"><div className="d-i-text">Light area overview</div></Link>
                     <Link to="/analytics/" className="dropdown-item"><div className="d-i-text">Volunteer performance</div></Link>
                 </div>
             </div>
