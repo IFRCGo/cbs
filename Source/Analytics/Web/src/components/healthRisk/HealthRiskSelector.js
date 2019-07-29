@@ -25,7 +25,7 @@ export default class HealthRiskSelector extends Component {
             if (res.items[0] != null) {
                 this.setState({ healthRisks: res.items, selected: res.items[0].name });
             } else {
-                this.setState({ healthRisks: res.items, selected: res.items[0] });
+                this.setState({ healthRisks: res.items, selected: null });
             }
         });
     }
@@ -37,24 +37,30 @@ export default class HealthRiskSelector extends Component {
     }
 
     renderOptions() {
-        return this.state.healthRisks.map(healthRisk => <MenuItem key={healthRisk.healthRiskNumber} value={healthRisk.name}>{healthRisk.name}</MenuItem>);
+        return this.state.healthRisks.map(
+            healthRisk => (
+                <MenuItem
+                    key={healthRisk.healthRiskNumber}
+                    value={healthRisk.name}
+                >{healthRisk.name}</MenuItem>)
+        );
     }
 
     render() {
         return (
-        <div className="tableContainer">
-            <h2 className="headline">Reports for
+            <div className="tableContainer">
+                <h2 className="headline">Reports for
                 <Select className="headline-select"
-                    value={this.state.selected}
-                    onChange={this.saveSelectedValue.bind(this)}
-                >
-                    {this.renderOptions()}
-                </Select>
-            </h2>
+                        value={this.state.selected}
+                        onChange={this.saveSelectedValue.bind(this)}
+                    >
+                        {this.renderOptions()}
+                    </Select>
+                </h2>
 
-            <h5>Reports the last 7 days</h5>
-            <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
-        </div>
+                <h5>Reports the last 7 days</h5>
+                <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
+            </div>
         );
     }
 }
