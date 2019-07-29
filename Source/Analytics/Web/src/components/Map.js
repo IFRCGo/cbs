@@ -58,25 +58,6 @@ var createClusterCustomIcon = function (cluster) {
     var markersInCluster = markers.length;
     var casesPerHealthRisk = {}
 
-<<<<<<< HEAD
-function CaseMarkers({ casesLastWeekAndMonth }) {
-
-    return Object.keys(casesLastWeekAndMonth.caseReportsPerHealthRisk).map(cases => {
-        var arr = []
-        for(var i = 0; i < casesLastWeekAndMonth.caseReportsPerHealthRisk[cases].length; i++){
-            var nbr =  casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].numberOfPeople
-            var ca = new Array(nbr);
-            ca.fill(1);
-            arr.push(ca.map(function (val) {
-                return <Marker
-                    position={[casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].location.longitude, casesLastWeekAndMonth.caseReportsPerHealthRisk[cases][i].location.latitude]} icon={redCrossIcon}
-                ></Marker>
-            }));
-        }
-        return arr;
-    }
-)};
-=======
     for (var i = 0; i < markersInCluster; i++) {
         var healthRiskId = markers[i].options.icon.options.html.dataset.healthriskid
 
@@ -156,7 +137,6 @@ function CaseMarkers({ caseReportsLastWeek }) {
         });
     });
 };
->>>>>>> 71d16bfff5b32f5f1e044dfc0ec9ee6c8f1ae3c0
 
 class MapWidget extends Component {
     constructor(props) {
@@ -185,15 +165,6 @@ class MapWidget extends Component {
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
-
-<<<<<<< HEAD
-        console.log(caseReportsLast7Days)
-
-        this.queryCoordinator.execute(caseReportsLast7Days).then(queryResult => {
-                    console.log(queryResult)
-            if (queryResult.success) {
-=======
->>>>>>> 71d16bfff5b32f5f1e044dfc0ec9ee6c8f1ae3c0
 
         this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
             if (queryResult.success) {
