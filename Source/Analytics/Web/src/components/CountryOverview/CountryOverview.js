@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerDistrictTable from "./healthRisk/HealthRiskPerDistrictTable";
-import LastWeekTotals from './lastWeekTotals/LastWeekTotals.js';
-import Map from "./Map.js";
-import CBSNavigation from './Navigation/CBSNavigation';
-import ReportsPerHealthRiskPerDay from './Reports/ReportsPerHealthRiskPerDay';
+import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
+import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
+import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
+import Map from "../Map.js";
+import CBSNavigation from '../Navigation/CBSNavigation';
+import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -18,7 +18,7 @@ const appInsights = new ApplicationInsights({
 });
 appInsights.loadAppInsights();
 
-class NationalSocietyOverview extends Component {
+class CountryOverview extends Component {
     componentDidMount() {
         appInsights.trackPageView({ name: 'National society overview' });
     }
@@ -29,7 +29,7 @@ class NationalSocietyOverview extends Component {
         }
         return (
             <>
-                <CBSNavigation />
+                <CBSNavigation activeMenuItem="analytics" />
 
                 <div className="analytics--container" style={body}>
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
@@ -50,4 +50,4 @@ class NationalSocietyOverview extends Component {
     }
 }
 
-export default NationalSocietyOverview;
+export default CountryOverview;
