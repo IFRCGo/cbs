@@ -4,8 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Card from "../Card";
 import './overview-top.scss';
 
-//import TotalCard from "./TotalCard";
-
 import { CaseReportTotalQuery } from "../../Features/Casereports/CaseReportTotalQuery";
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
@@ -21,12 +19,10 @@ class OverviewTop extends Component {
         };
     }
 
-    fetchLastWeekTotals() {
-        
+    fetchDataCollectors() {
         this.queryCoordinator = new QueryCoordinator();
         let caseReportTotals  = new CaseReportTotalQuery();
         let dataCollectorsQuery = new DataCollectorsQuery();
-
 
         this.queryCoordinator.execute(dataCollectorsQuery).then(queryResult => {
         console.log(queryResult.items[1])
@@ -45,28 +41,32 @@ class OverviewTop extends Component {
                 isError: true
             });
         });
-
-        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
-        console.log(queryResult)
-        if(queryResult.success){
-            var item = queryResult.totalItems
-            this.setState({
-                total: item,
-                isLoading: false,
-                isError: false,
-            });
-        }
-    }).catch(_ => {
-            this.setState({
-                isLoading: false,
-                isError: true
-            });
-        });
     }
 
+    fetchTotalCaseReports(){
+        this.queryCoordinator = new QueryCoordinator();
+        let caseReportTotals  = new CaseReportTotalQuery();
+        let dataCollectorsQuery = new DataCollectorsQuery();
+        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
+            if(queryResult.success){
+                var item = queryResult.totalItems
+                this.setState({
+                    total: item,
+                    isLoading: false,
+                    isError: false,
+                });
+            }
+            }).catch(_ => {
+                this.setState({
+                    isLoading: false,
+                    isError: true
+                });
+            });
+    }
 
     componentWillMount() {
-        this.fetchLastWeekTotals();
+        this.fetchDataCollectors();
+        this.fetchTotalCaseReports();
     }
 
     render () {

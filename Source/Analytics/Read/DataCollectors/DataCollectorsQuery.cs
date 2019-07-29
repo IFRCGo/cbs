@@ -21,10 +21,9 @@ namespace Read.DataCollectors
             get
             {
                 var deadlineDay = DateTimeOffset.Now.AddDays(-28);
-                // var result = new List<int> {(from c in _repositoryForDataCollectors.Query select c).Count(c => c.Region == "Togda")};
-                //    var inactiveDataCollectors = new List<int>(){_repositoryForDataCollectors};
-                 var activeDataCollectors   = _repositoryForDataCollectors.Query.Where(time => (time.LastActive >= deadlineDay)).Count();
-                 var inactiveDataCollectors = _repositoryForDataCollectors.Query.Where(time => (time.LastActive < deadlineDay)).Count();
+                
+                var activeDataCollectors   = _repositoryForDataCollectors.Query.Where(time => (time.LastActive >= deadlineDay)).Count();
+                var inactiveDataCollectors = _repositoryForDataCollectors.Query.Where(time => (time.LastActive < deadlineDay)).Count();
 
                 IDictionary<string, int> totalDataCollectors = new Dictionary<string, int>();
                 totalDataCollectors.Add(new KeyValuePair<string, int>("inactive", inactiveDataCollectors));

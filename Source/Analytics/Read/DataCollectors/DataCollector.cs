@@ -7,17 +7,12 @@ using System;
 using Concepts;
 using Concepts.DataCollectors;
 using Dolittle.ReadModels;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson.Serialization.Options;
-using MongoDB.Bson;
 
 namespace Read.DataCollectors
 {
     public class DataCollector : IReadModel
     {
         public DataCollectorId Id { get; set; }
-
-        [BsonRepresentation(BsonType.String)]
         public DateTimeOffset LastActive { get; set; }
         public RegionName Region { get; set; }
         public DistrictName District { get; set; }
