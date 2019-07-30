@@ -221,7 +221,6 @@ class MapWidget extends Component {
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
-        console.log(this.state.wheelZoom)
         return (
             <Map style={{height:"500px", width:"500px"}} onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[30.0, 2.0]} zoom={3} maxZoom={50}>
                 <TileLayer
