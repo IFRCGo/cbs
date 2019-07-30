@@ -12,7 +12,7 @@ export default class LightweightAreaOverview extends Component {
     render() {
         return (
             <div>
-                <CBSNavigation activeMenuItem="analytics/" />
+                <CBSNavigation activeMenuItem="analytics/#" />
                 <div className="lightweight">
                     <h2 className="header">Light Area Overview</h2>
                     <p className="description">This is the light version of the country overview page. If you want the normal version click <Link to="/analytics">here</Link></p>
