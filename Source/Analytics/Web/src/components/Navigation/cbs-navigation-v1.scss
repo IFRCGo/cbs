@@ -1,7 +1,9 @@
 $link-color: rgb(206, 23, 30);
 $gray-lighter: lighten(#000, 93.5%);
-$brand-primary: #363534;
+$brand-primary: #234361;
 $pre-border-color: rgb(204, 204, 204);
+$rc-red: #ca0000;
+$rc-red-darker: #ab0900;
 
 $screen-xs: 480px;
 $screen-xs-min: $screen-xs;
@@ -12,63 +14,206 @@ $screen-md-min: $screen-md;
 $screen-xs-max: ($screen-sm-min - 1);
 $screen-sm-max: ($screen-md-min - 1);
 
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
 body {
   margin: 0;
 }
-  
-  .navigation-header {
-    @media (min-width: $screen-sm-min) {
-      border-bottom: .15rem solid $link-color;
-      display: flex;
-      align-items: center;
-    }
 
-    .logo {
-      padding: 0;
-      margin: 1rem 0.9rem 0.7rem 0.7rem;
+.header {
+  .logo {
+    padding: 0 1rem;
+    margin: 0 0 -4px 0;
+    display: flex;
+    
+    figure {
+      margin: 0;
     }
     
-    nav {
-      font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      display: flex;
-  
-      @media (max-width: $screen-xs-max) {
-        flex-direction: column;
-      }
-    
-      a {
-        font-size: 0.9rem;
-        color: $brand-primary;
-        padding: 1rem;
-        text-decoration: none;
-        border-radius: .3rem;
-        &:hover {
-          background-color: $gray-lighter;
-        }
-      }
-    }
-
-    .login-status {
-      font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color: $brand-primary;
-      font-size: 0.8rem;
+    .logo-text {
+      font-family: "Lato", sans-serif;
+      font-size: 2rem;
+      font-weight: 300;
+      margin-left: 0.5rem;
 
       @media (max-width: $screen-xs-max) {
-        border-top: .18rem solid $link-color;
-        padding-top: 0.5rem;
-        margin-top: 1rem;
-      }
-      @media (min-width: $screen-sm-min) {
-        margin-left: auto;
-      }
-    }
-    .logged-in {
-      padding: 0 1rem;
-      text-align: right;
-      
-      p {
-        margin: 0;
+        color: white;
       }
     }
   }
+}
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $screen-xs-max) {
+    background-color: $rc-red;
+  }
+  
+  @media (min-width: $screen-xs-max) {
+      display: none;
+    }
+
+  .logo-white {
+  padding: 1rem 0;
+  justify-content: center;
+  }
+
+  .menu-toggler {
+    color: white;
+    position: absolute;
+    right: 2em;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+}
+  
+.desktop-header {
+  padding: 0;
+
+  @media (max-width: $screen-xs-max) {
+    &.hidden {
+      display: none;
+    }
+  }
+  
+  @media (min-width: $screen-sm-min) {
+    border-bottom: 1px solid $brand-primary;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-red {
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+
+    &:hover, &.active{
+      background-color: $rc-red;
+      a {
+        color: white;
+      }
+    }
+  }
+  
+  .dropdown-content {
+    background-color: $rc-red;
+    display: block;
+    position: absolute;
+
+    @media (max-width: $screen-xs-max) {
+      position: relative;
+      padding-left: 1rem;
+    }
+  }
+
+  .dropdown-item {
+    display: block;
+    color: white;
+    font-size: 0.8rem;
+
+    &:hover {
+      background-color: $rc-red-darker;
+      @media (max-width: $screen-xs-max) {
+        margin-left: -3rem;
+
+        .d-i-text {
+          margin-left: 3rem;
+        }
+
+      }
+    }
+  }
+  
+  nav {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+
+    @media (max-width: $screen-xs-max) {
+      flex-direction: column;
+    }
+  
+    a {
+      font-size: 0.9rem;
+      color: $brand-primary;
+      padding: 1.6rem 2rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $rc-red;
+        color: white;
+
+        @media (max-width: $screen-xs-max) {
+          background-color: $rc-red-darker;
+        }
+      }
+
+      &.active {
+        background-color: $rc-red;
+        color: white;
+
+        &:hover {
+          @media (max-width: $screen-xs-max) {
+            background-color: $rc-red-darker;
+          }
+        }
+      }
+
+      @media (max-width: $screen-xs-max) {
+        color: white;
+        background-color: $rc-red;
+        font-size: 1rem;
+      }
+
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+
+
+  .login-status {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+
+    
+    @media (max-width: $screen-xs-max) {
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 1rem;
+      background-color: $rc-red;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      margin-left: auto;
+    }
+  }
+  .logged-in {
+    padding: 0 1rem;
+    text-align: right;
+
+    @media (max-width: $screen-xs-max) {
+      color: white;
+      padding-bottom: 1rem;
+      text-align: left;
+    }
+    
+    p {
+      margin-bottom: 5px;
+    }
+
+    .logout {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
 

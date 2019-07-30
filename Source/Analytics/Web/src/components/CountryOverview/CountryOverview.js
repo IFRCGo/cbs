@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import CaseReportByHealthRiskTable from "./healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerRegionLast4WeeksTable from "./healthRisk/HealthRiskPerRegionLast4WeeksTable";
-import LastWeekTotals from './lastWeekTotals/LastWeekTotals.js';
-import Map from "./Map.js";
-import CBSNavigation from './Navigation/CBSNavigation';
-import ReportsPerHealthRiskPerDay from './Reports/ReportsPerHealthRiskPerDay';
+import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
+import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
+import OverviewTop from '../OverviewTop/OverviewTop.js';
+import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
+import Map from "../Map.js";
+import CBSNavigation from '../Navigation/CBSNavigation';
+import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -18,7 +19,7 @@ const appInsights = new ApplicationInsights({
 });
 appInsights.loadAppInsights();
 
-class NationalSocietyOverview extends Component {
+class CountryOverview extends Component {
     componentDidMount() {
         appInsights.trackPageView({ name: 'National society overview' });
     }
@@ -29,8 +30,9 @@ class NationalSocietyOverview extends Component {
         }
         return (
             <>
-                <CBSNavigation />
-
+                <CBSNavigation activeMenuItem="analytics" />
+                <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
+                <OverviewTop />
                 <div className="analytics--container" style={body}>
                     <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
@@ -38,21 +40,16 @@ class NationalSocietyOverview extends Component {
                         <Grid item md={12} lg={6} key="CaseReportByHealthRiskTable">
                             <CaseReportByHealthRiskTable />
                         </Grid>
-                        <Grid item md={12} lg={6} key="LastWeekTotals">
-                            <LastWeekTotals />
-                        </Grid>
-
-                        <Grid item xs={12} key="HealthRiskPerRegionLastWeekTable">
-                            <HealthRiskPerRegionLast4WeeksTable />
-                        </Grid>
                     </Grid>
 
-                    {/* <Map /> */}
-                    <ReportsPerHealthRiskPerDay></ReportsPerHealthRiskPerDay>
+                    <HealthRiskPerDistrictTable />
+                    <CaseReportByHealthRiskTable />
+                    <Map />
+                    <HealthRiskSelector />
                 </div>
             </>
         );
     }
 }
 
-export default NationalSocietyOverview;
+export default CountryOverview;
