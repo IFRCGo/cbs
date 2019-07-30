@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './cbs-navigation-v1.scss';
+import './cbs-navigation.scss';
 
 const BASE_URL = process.env.API_BASE_URL;
 
 class CBSNavigation extends Component {
-
 
     constructor(props) {
         super(props);
@@ -15,7 +14,7 @@ class CBSNavigation extends Component {
         this.state = {
             username: "Unknown",
             showAnalyticsDropdown: false,
-            collapseMenu: false
+            collapseMenu: true
         };
     }
 
@@ -67,26 +66,22 @@ class CBSNavigation extends Component {
         this.fetchData();
     }
 
-    rcLogo(color) {
-        var backgroundColor = (color == "red" ? "#c00" : "#fff");
-        var mainColor = (color == "red" ? "#fff" : "#c00");
-
+    rcLogo() {
         return (
-            <div className={`logo logo-${color}`}>
+            <div className={`rc-logo`}>
                 <figure>
                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
-                        <rect width="175" height="100" fill={mainColor} />
-                        <path d="M20,50h66m-33,-33v66" fill="none" stroke={backgroundColor} strokeWidth="20" />
-                        <circle cx="132" cy="50" r="34" fill={backgroundColor} />
-                        <circle cx="142" cy="50" r="28" fill={mainColor} />
-                        <path d="M7,7H168V93H7z" fill="none" stroke={backgroundColor} strokeWidth="3" />
+                        <rect class="mainColorFill" width="175" height="100" />
+                        <path class="backgroundColorStroke" d="M20,50h66m-33,-33v66" fill="none" strokeWidth="20" />
+                        <circle class="backgroundColorFill" cx="132" cy="50" r="34" />
+                        <circle class="mainColorFill" cx="142" cy="50" r="28" />
+                        <path class="backgroundColorStroke" d="M7,7H168V93H7z" fill="none" strokeWidth="3" />
                     </svg>
                 </figure>
                 <div className="logo-text">
                     CBS
                 </div>
             </div>
-
         )
     }
 
@@ -103,10 +98,10 @@ class CBSNavigation extends Component {
         )
     }
 
-    createMenuItem(url, text) {
+    createMenuItem(url, text, hasDropdown) {
         var active = this.props.activeMenuItem;
 
-        if (text == 'Analytics') {
+        if (hasDropdown) {
             return <Link
                 onClick={this.onClick}
                 to={`/${url}/`}
@@ -115,30 +110,24 @@ class CBSNavigation extends Component {
             </Link>
         }
 
-        return <Link
-            to={`/${url}/`}
-            className={`menu-item ${url == active ? `active` : ``}`}>
-            {text} {url == "analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`} />}
+        return <Link to={`/${url}/`} className={`menu-item ${url == active ? `active` : ``}`}>
+            {text}
         </Link>
     }
 
     render() {
         return (
-            <>
-                <header className={`header mobile-header`}>
-                    {this.rcLogo("white")}
-                    <div onClick={this.onMenuClick} className="menu-toggler">
-                        <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
-                    </div>
-                </header>
-
-                <header className={`header desktop-header ${this.state.collapseMenu ? `hidden` : ``}`}>
-                    {this.rcLogo("red")}
-                    <nav>
+            <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
+                {this.rcLogo()}
+                <div onClick={this.onMenuClick} className="menu-toggler">
+                    <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
+                </div>
+                <div className="menu-wrapper">
+                    <nav className="header-menu">
                         {this.createMenuItem("analytics", "Country Overview")}
 
-                        <div className={`dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
-                            {this.createMenuItem("analytics/#", `Analytics`)}
+                        <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
+                            {this.createMenuItem("analytics/#", `Analytics`, true)}
                             {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                         </div>
 
@@ -146,15 +135,12 @@ class CBSNavigation extends Component {
                         {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
                         {this.createMenuItem("reporting/case-reports", "Reports")}
                     </nav>
-
                     <div className="login-status">
-                        <div className="logged-in">
-                            <p>Logged in as: {this.state.username}</p>
-                            <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
-                        </div>
+                        <span><i className="fa fa-user" /> {this.state.username}</span>
+                        <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
                     </div>
-                </header>
-            </>
+                </div>
+            </header>
         );
     }
 }

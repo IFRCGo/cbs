@@ -5,6 +5,10 @@ html {
     font-family: "Lato", "Helvetica Neue", sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
 $rc-red: #ca0000;
 $light-grey: #f0f0f0;
 $medium-grey: #cfcdcc;
@@ -70,25 +74,25 @@ $screen-sm-max: ($screen-md-min - 1);
     }
 }
 
-.overview-top{
+.overview-top {
     display: flex;
     justify-content: space-around;
     font-family: Lato, "Helvetica Neue", sans-serif1;
     font-weight: 300;
-    /* margin-top: 30px; */
-    /* margin-left: 10%; */
     margin: 60px 25%;
+  
+    .icon {
+      text-align: center;
+      transform: scale(5);
+      transform-style: flat;
+      color: rgb(211, 211, 211);
+      margin-bottom: 25px;
+    }
+  
+    .card {
+      text-align: center;
+      width: 33%;
+      margin-top: 25px;
+    }
 }
 
-.icon{
-    text-align: center;
-    transform: scale(5);
-    color: rgb(211, 211, 211);
-    margin-bottom: 25px;
-}
-
-.card{
-    text-align: center;
-    width: 33%;
-    margin-top: 25px;
-}
