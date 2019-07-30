@@ -104,7 +104,7 @@ namespace Read.CaseReports
             }
         }
 
-        public void InsertPerHealthRiskAndRegionForComing4Weeks(CaseReport report, HealthRisk healthRisk, District district)
+        public void InsertPerHealthRiskAndRegionForDay(CaseReport report, HealthRisk healthRisk, District district)
         {
             var numberOfReports = report.NumberOfFemalesAged5AndOlder
                                 + report.NumberOfFemalesUnder5
@@ -158,7 +158,7 @@ namespace Read.CaseReports
             }
         }
 
-        public void InsertPerHealthRiskAndRegionForComingWeek(CaseReport caseReport, HealthRisk healthRisk, District district)
+        public void InsertPerHealthRiskAndRegionForComing4Weeks(CaseReport caseReport, HealthRisk healthRisk, District district)
         {
             // Insert by health risk and region
             var today = Day.From(caseReport.Timestamp);
