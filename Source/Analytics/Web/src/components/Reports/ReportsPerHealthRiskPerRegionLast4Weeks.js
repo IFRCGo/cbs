@@ -9,7 +9,7 @@ import { CaseReportsPerRegionLast7DaysQuery } from "../../Features/CaseReports/C
 
 import '../lastWeekTotals/last-week-totals.scss';
 
-class HealthRiskPerRegionLast4WeeksTable extends Component {
+class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
     constructor(props) {
         super(props);
 
@@ -106,4 +106,4 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
     }
 }
 
-export default HealthRiskPerRegionLast4WeeksTable;
+export default ReportsPerHealthRiskPerRegionLast4Weeks;
