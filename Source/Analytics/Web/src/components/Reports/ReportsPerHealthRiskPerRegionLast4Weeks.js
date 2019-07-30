@@ -44,39 +44,39 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
         this.fetchData();
     }
 
-    createRows(regions) {
-        let rows = [];
-        regions.map(region => {
-            let row = Object.keys(region).map(key => (region[key] ? region[key] : 0));
-            let totalReports = region.days0to6 + region.days7to13 + region.days14to20 + region.days21to27;
-            row.push(totalReports);
-
-            rows.push(row);
-        });
-        return rows
+    renderTableCell(numCases, key) {
+        return <TableCell key={key}
+            className="cell"
+            align="right"
+            style={numCases === 0 ? { color: "#B5B5B5" } : {}}>
+            {numCases === 0 ? '-' : numCases}
+        </TableCell>
     }
 
     renderRows() {
         const currentHealthRisk = this.state.regionsForHealthRisk.find(r => r.healthRiskName == this.props.healthRisk);
+
         if (currentHealthRisk != null) {
-            const rows = this.createRows(currentHealthRisk.regions);
-            return rows.map(row => {
-                const rowName = row.shift();
+            return currentHealthRisk.regions.map(region => {
+                const totalReports = Object.values(region).reduce(function (acc, val) {
+                    if (!isNaN(val))
+                        return acc + val;
+                    return acc
+                }, 0);
+
                 return (
-                    <TableRow key={rowName}>
-                        <TableCell
+                    <TableRow key={region.name}>
+                        <TableCell key={0}
                             className="cell"
-                            align="left">{rowName}
-                        </TableCell>{/* Special treatment of region name column */}
-                        {row.map((numCases, i) => (
-                            <TableCell key={i}
-                                className="cell"
-                                align="right"
-                                style={numCases === 0 ? { color: "#B5B5B5" } : {}}>
-                                {numCases === 0 ? '-' : numCases}
-                            </TableCell>
-                        ))}</TableRow>
-                );
+                            align="left">{region.name}
+                        </TableCell>
+                        {this.renderTableCell(region.days0to6, 1)}
+                        {this.renderTableCell(region.days7to13, 2)}
+                        {this.renderTableCell(region.days14to20, 3)}
+                        {this.renderTableCell(region.days21to27, 4)}
+                        {this.renderTableCell(totalReports, 5)}
+                    </TableRow>
+                )
             });
         }
     }
