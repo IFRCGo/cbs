@@ -33,7 +33,7 @@ namespace Read.Map
 
             var dayOfCaseReport = Day.From(@event.Timestamp);
             var timeLimit4Weeks = dayOfCaseReport + 28;  
-            var timeLimit7Days  = dayOfCaseReport + 7;
+            var timeLimit7Days  = dayOfCaseReport + 6;
 
             // Insert or update casereport depending on if it is in the list of not             
             for(Day day = dayOfCaseReport; day < timeLimit4Weeks; day++){
@@ -47,7 +47,7 @@ namespace Read.Map
                 {
                     UpdateCaseReportLast7Days(caseReport, day, healthRisk.HealthRiskNumber);
                 }
-                UpdateCaseReportLast4Weeks(caseReport, day, healthRisk.HealthRiskNumber);                
+                UpdateCaseReportLast4Weeks(caseReport, day, healthRisk.HealthRiskNumber);
             }
         }
 

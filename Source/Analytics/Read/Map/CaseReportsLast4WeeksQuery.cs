@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
+using Concepts;
 
 namespace Read.Map
 {
@@ -13,6 +15,6 @@ namespace Read.Map
             _repositoryForCaseReportsLast4Weeks = repositoryForCaseReportsLast4Weeks;
         }
 
-        public IQueryable<CaseReportsLast4Weeks> Query => _repositoryForCaseReportsLast4Weeks.Query;
+        public IQueryable<CaseReportsLast4Weeks> Query => _repositoryForCaseReportsLast4Weeks.Query.Where(caseReports => caseReports.Id == Day.Today);
     }
 }
