@@ -20,6 +20,10 @@
     padding: 5px 10px;
 }
 
+.css-2b097c-container{
+    z-index: 99999999;
+}
+
 .healthrisk-list-item{
     margin-top: 2px;
     display: flex;

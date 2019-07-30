@@ -37,13 +37,16 @@ export default class HealthRiskSelector extends Component {
     }
 
     renderOptions() {
-        return this.state.healthRisks.map(
+
+        var i = this.state.healthRisks.map(
             healthRisk => (
                 <MenuItem
                     key={healthRisk.healthRiskNumber}
                     value={healthRisk.name}
                 >{healthRisk.name}</MenuItem>)
         );
+        console.log(i)
+        return i;
     }
 
     render() {
