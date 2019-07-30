@@ -9,6 +9,8 @@ import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 
+import './CountryOverview.scss';
+
 const appInsights = new ApplicationInsights({
     config: {
         instrumentationKey: process.env.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY,
@@ -30,10 +32,9 @@ class CountryOverview extends Component {
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-                <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
+                <h1 className="header-text title">Country overview</h1>
                 <OverviewTop />
                 <div className="analytics--container" style={body}>
-                    <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
 
                     <Grid container spacing={8}>
                         <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
@@ -43,6 +44,8 @@ class CountryOverview extends Component {
 
                     <HealthRiskPerDistrictTable />
                     <CaseReportByHealthRiskTable />
+
+                    <h2 className="header-text">Geopraphic overview of reports</h2>
                     <Map />
                     <HealthRiskSelector />
                 </div>
