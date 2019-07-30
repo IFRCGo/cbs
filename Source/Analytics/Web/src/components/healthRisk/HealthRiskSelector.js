@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
 
 import './HealthRiskSelector.scss';
+import HealthRiskPerRegionLast4WeeksTable from './HealthRiskPerRegionLast4WeeksTable';
 
 export default class HealthRiskSelector extends Component {
     constructor(props) {
@@ -60,6 +61,8 @@ export default class HealthRiskSelector extends Component {
 
                 <h5>Reports the last 7 days</h5>
                 <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
+                <h5>Reports the last 4 weeks</h5>
+                <HealthRiskPerRegionLast4WeeksTable healthRisk={this.state.selected} />
             </div>
         );
     }

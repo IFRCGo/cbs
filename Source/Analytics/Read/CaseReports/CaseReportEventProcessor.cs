@@ -20,7 +20,7 @@ namespace Read.CaseReports
     public class CaseReportEventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<CaseReport> _caseReportRepository;
-        readonly IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> _caseReportsPerRegionLast7DaysRepository;
+        readonly IReadModelRepositoryFor<CaseReportsPerRegionLast4Weeks> _caseReportsPerRegionLast4Weeks;
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
         readonly IReadModelRepositoryFor<District> _districts;
         readonly IReadModelRepositoryFor<Region> _regions;
@@ -29,7 +29,7 @@ namespace Read.CaseReports
 
         public CaseReportEventProcessor(
             IReadModelRepositoryFor<CaseReport> caseReportRepository,
-            IReadModelRepositoryFor<CaseReportsPerRegionLast7Days> repository,
+            IReadModelRepositoryFor<CaseReportsPerRegionLast4Weeks> caseReportsPerRegionLast4Weeks,
             IReadModelRepositoryFor<DataCollector> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks,
             IReadModelRepositoryFor<District> districts,
@@ -38,7 +38,7 @@ namespace Read.CaseReports
             )
         {
             _caseReportRepository = caseReportRepository;
-            _caseReportsPerRegionLast7DaysRepository = repository;
+            _caseReportsPerRegionLast4Weeks = caseReportsPerRegionLast4Weeks;
             _healthRisks = healthRisks;
             _districts = districts;
             _regions = regions;
@@ -170,7 +170,7 @@ namespace Read.CaseReports
 
             for (var day = 0; day < 28; day++)
             {            
-                var dayReport = _caseReportsPerRegionLast7DaysRepository.GetById(day + today);
+                var dayReport = _caseReportsPerRegionLast4Weeks.GetById(day + today);
                 if (dayReport != null)
                 {
                     var healthRiskForDay = dayReport.HealthRisks.FirstOrDefault(d => d.Id == caseReport.HealthRiskId);
@@ -187,23 +187,23 @@ namespace Read.CaseReports
                     }
                     else
                     {
-                        dayReport.HealthRisks.Add(new HealthRisksInRegionsLast7Days()
+                        dayReport.HealthRisks.Add(new HealthRisksInRegionsLast4Weeks()
                         {
                             Id = caseReport.HealthRiskId,
                             HealthRiskName = healthRisk.Name,
                             Regions = new[] { AddRegionWithCases(region.Name, day, numCases) }
                         });
                     }
-                    _caseReportsPerRegionLast7DaysRepository.Update(dayReport);
+                    _caseReportsPerRegionLast4Weeks.Update(dayReport);
                 }
                 else
                 {
-                    dayReport = new CaseReportsPerRegionLast7Days()
+                    dayReport = new CaseReportsPerRegionLast4Weeks()
                     {
                         Id = day + today,
                         HealthRisks = new[] 
                         {
-                            new HealthRisksInRegionsLast7Days()
+                            new HealthRisksInRegionsLast4Weeks()
                             {
                                 Id = caseReport.HealthRiskId,
                                 HealthRiskName = healthRisk.Name,
@@ -211,7 +211,7 @@ namespace Read.CaseReports
                             }
                         }
                     };
-                    _caseReportsPerRegionLast7DaysRepository.Insert(dayReport);
+                    _caseReportsPerRegionLast4Weeks.Insert(dayReport);
                 }
             };
         }

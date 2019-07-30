@@ -75,9 +75,9 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                     if (reportsInRegion != null)
                         return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
                     else
-                        return <TableCell className="cell" key={i}>-</TableCell>;
+                        return <TableCell className="cell nodata" key={i}>-</TableCell>;
                 } else {
-                    return <TableCell className="cell" key={i}>-</TableCell>;
+                    return <TableCell className="cell nodata" key={i}>-</TableCell>;
                 }
             });
         }

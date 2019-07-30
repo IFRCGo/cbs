@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
 import OverviewTop from '../OverviewTop/OverviewTop.js';
 import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
 import Map from "../Map.js";
@@ -34,16 +33,6 @@ class CountryOverview extends Component {
                 <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
                 <OverviewTop />
                 <div className="analytics--container" style={body}>
-                    <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
-
-                    <Grid container spacing={8}>
-                        <Grid item md={12} lg={6} key="CaseReportByHealthRiskTable">
-                            <CaseReportByHealthRiskTable />
-                        </Grid>
-                    </Grid>
-
-                    <HealthRiskPerDistrictTable />
-                    <CaseReportByHealthRiskTable />
                     <Map />
                     <HealthRiskSelector />
                 </div>
