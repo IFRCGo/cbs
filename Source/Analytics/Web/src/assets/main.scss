@@ -2,4 +2,70 @@
 
 html {
     font-size: 16px;
+    font-family: "Lato", "Helvetica Neue", sans-serif;
+}
+
+$rc-red: #ca0000;
+$light-grey: #f0f0f0;
+$medium-grey: #cfcdcc;
+
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+
+.tableContainer {
+    margin-left: 0;
+}
+
+.table {
+    border: 1px solid $medium-grey;
+}
+
+.tableHead {
+    background-color: $light-grey;
+}
+
+.headerText {
+    color: black !important; //these are marked as !important to override Google's MuiTable styling
+    font-weight: 200;
+    
+    &.center{
+        text-align: center !important;
+   }
+}
+
+.headerSelect {
+    margin-left: 5px;
+}
+
+
+.cell {
+    &.center {
+        text-align: center;
+    }
+
+    &.nodata {
+        color: #B5B5B5;
+    }
+}
+
+.lightweightContainer {
+    margin: 1rem;
+}
+
+.lightweight {
+    text-align: center;
+
+    &.header {
+        font-size: 28px;
+    }
+
+    &.description {
+        font-size: 18px;
+    }
 }

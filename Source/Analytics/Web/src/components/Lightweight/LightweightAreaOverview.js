@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import HealthRiskSelector from '../healthRisk/HealthRiskSelector';
 import CBSNavigation from '../Navigation/CBSNavigation';
-import './LightweightAreaOverview.scss';
 
 export default class LightweightAreaOverview extends Component {
     constructor(props) {
@@ -11,7 +10,7 @@ export default class LightweightAreaOverview extends Component {
 
     render() {
         return (
-            <div>
+            <div className="lightweightContainer">
                 <CBSNavigation activeMenuItem="analytics/" />
                 <div className="lightweight">
                     <h2 className="header">Light Area Overview</h2>

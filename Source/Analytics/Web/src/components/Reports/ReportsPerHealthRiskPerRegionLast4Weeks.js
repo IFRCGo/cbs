@@ -7,8 +7,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsPerRegionLast7DaysQuery } from "../../Features/CaseReports/CaseReportsPerRegionLast7DaysQuery";
 
-import '../lastWeekTotals/last-week-totals.scss';
-
 class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
     constructor(props) {
         super(props);

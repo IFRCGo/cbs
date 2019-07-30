@@ -5,8 +5,6 @@ import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 
-import './CountryOverview.scss';
-
 const appInsights = new ApplicationInsights({
     config: {
         instrumentationKey: process.env.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY,
@@ -28,10 +26,11 @@ class CountryOverview extends Component {
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-                <h1 className="header-text title">Country overview</h1>
-                <OverviewTop />
+
                 <div className="analytics--container" style={body}>
-                    <h2 className="header-text">Geopraphic overview of reports</h2>
+                    <h1 className="headerText center">Country overview</h1>
+                    <OverviewTop />
+                    <h2 className="headerText">Geopraphic overview of reports</h2>
                     <Map />
                     <HealthRiskSelector />
                 </div>

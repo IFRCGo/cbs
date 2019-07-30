@@ -4,8 +4,6 @@ import { QueryCoordinator } from '@dolittle/queries/dist/commonjs/QueryCoordinat
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
-
-import './HealthRiskSelector.scss';
 import ReportsPerHealthRiskPerRegionLast4Weeks from '../Reports/ReportsPerHealthRiskPerRegionLast4Weeks';
 
 export default class HealthRiskSelector extends Component {
@@ -49,21 +47,22 @@ export default class HealthRiskSelector extends Component {
 
     render() {
         return (
-            <div className="tableContainer">
-                <h2 className="headline">Reports for
-                <Select className="headline-select"
+            <>
+                <h2 className="headerText">Reports for
+                <Select className="headerSelect"
                         value={this.state.selected}
                         onChange={this.saveSelectedValue.bind(this)}
                     >
                         {this.renderOptions()}
                     </Select>
                 </h2>
-
-                <h5>Reports for the last 7 days</h5>
-                <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
-                <h5>Reports for the last 4 weeks</h5>
-                <ReportsPerHealthRiskPerRegionLast4Weeks healthRisk={this.state.selected} />
-            </div>
+                <div className="tableContainer">
+                    <h5>Reports for the last 7 days</h5>
+                    <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
+                    <h5>Reports for the last 4 weeks</h5>
+                    <ReportsPerHealthRiskPerRegionLast4Weeks healthRisk={this.state.selected} />
+                </div>
+            </>
         );
     }
 }

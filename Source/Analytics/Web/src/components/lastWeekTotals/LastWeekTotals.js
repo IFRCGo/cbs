@@ -9,8 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { CaseReportTotalsQuery } from "../../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-import './last-week-totals.scss';
-
 export default class LastWeekTotals extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +59,7 @@ export default class LastWeekTotals extends Component {
 
         return (
             <div className="tableContainer">
-                <h2 className="headline">Reports per sex and age (last 7 days)</h2>
+                <h2>Reports per sex and age (last 7 days)</h2>
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
