@@ -33,4 +33,8 @@ $screen-sm-max: ($screen-md-min - 1);
     &.center {
         text-align: center;
     }
+
+    &.nodata {
+        color: #B5B5B5;
+    }
 }
