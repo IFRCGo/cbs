@@ -45,7 +45,11 @@ class CountryOverview extends Component {
                     <HealthRiskPerDistrictTable />
                     <CaseReportByHealthRiskTable />
                     <Map />
-                    <LastWeekTotals />
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <LastWeekTotals />
+                        </Grid>
+                    </Grid>
                     <HealthRiskSelector />
                 </div>
             </>
