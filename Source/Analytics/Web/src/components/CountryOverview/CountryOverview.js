@@ -5,7 +5,6 @@ import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
 import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
 import OverviewTop from '../OverviewTop/OverviewTop.js';
-import LastWeekTotals from '../lastWeekTotals/LastWeekTotals.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
