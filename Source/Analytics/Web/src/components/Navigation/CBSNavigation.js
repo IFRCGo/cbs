@@ -98,10 +98,10 @@ class CBSNavigation extends Component {
         )
     }
 
-    createMenuItem(url, text) {
+    createMenuItem(url, text, hasDropdown) {
         var active = this.props.activeMenuItem;
 
-        if (text == 'Analytics') {
+        if (hasDropdown) {
             return <Link
                 onClick={this.onClick}
                 to={`/${url}/`}
@@ -110,10 +110,8 @@ class CBSNavigation extends Component {
             </Link>
         }
 
-        return <Link
-            to={`/${url}/`}
-            className={`menu-item ${url == active ? `active` : ``}`}>
-            {text} {url == "analytics/#" && <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`} />}
+        return <Link to={`/${url}/`} className={`menu-item ${url == active ? `active` : ``}`}>
+            {text}
         </Link>
     }
 
@@ -128,8 +126,8 @@ class CBSNavigation extends Component {
                     <nav className="header-menu">
                         {this.createMenuItem("analytics", "Country Overview")}
 
-                        <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`} onClick={this.onClick}>
-                            {this.createMenuItem("analytics/#", `Analytics`)}
+                        <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
+                            {this.createMenuItem("analytics/#", `Analytics`, true)}
                             {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                         </div>
 
