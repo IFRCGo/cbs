@@ -13,24 +13,24 @@ $screen-md-min: $screen-md;
 $screen-xs-max: ($screen-sm-min - 1);
 $screen-sm-max: ($screen-md-min - 1);
 
-.tableHead {
-    background-color: $light-grey;
-}
-
-.headerText {
-    color: black !important; //these are marked as !important to override Google's MuiTable styling
+.tableContainer {
     font-family: "Lato", "Helvetica Neue", sans-serif;
-    
-    &.center{
-        text-align: center !important;
-   }
-}
-
-
-.cell {
-    font-family: "Lato", "Helvetica Neue", sans-serif;
-
-    &.center {
-        text-align: center;
+    margin-left: 0;
+    @media (min-width: $screen-xs-max) {
+        margin-left: 1em;
     }
+}
+
+.table {
+    border: 1px solid $medium-grey;
+    font-family: "Lato", "Helvetica Neue", sans-serif;
+}
+
+.headline {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.headline-select {
+    margin-left: 4px;
 }
