@@ -223,7 +223,7 @@ class MapWidget extends Component {
         }
         console.log(this.state.wheelZoom)
         return (
-            <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
+            <Map style={{height:"500px", width:"500px"}} onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[30.0, 2.0]} zoom={3} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
