@@ -30,11 +30,13 @@ class HealthRiskPerRegionLast4WeeksTable extends Component {
                     regionsForHealthRisk: queryResult.items.length > 0 ? queryResult.items[0].healthRisks : [],
                     isLoading: false,
                     isError: false
-                })
+                });
             }
             else {
-                this.setState({ isLoading: false, isError: true })
+                this.setState({ isLoading: false, isError: true });
             }
+        }).catch(_ => {
+            this.setState({ isLoading: false, isError: true });
         });
     }
 
