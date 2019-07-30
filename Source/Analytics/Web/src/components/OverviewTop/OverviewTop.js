@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import './overview-top.scss';
-
 import { AllCaseReportsQuery } from "../../Features/CaseReports/AllCaseReportsQuery";
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
