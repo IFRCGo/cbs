@@ -7,8 +7,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsPerRegionLast4WeeksQuery } from "../../Features/CaseReports/CaseReportsPerRegionLast4WeeksQuery";
 
-import '../lastWeekTotals/last-week-totals.scss';
-
 class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +44,7 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
 
     renderTableCell(numCases, key) {
         return <TableCell key={key}
-            className={numCases === 0 ? 'cell nodata' : 'cell'}
+            className={numCases === 0 ? 'cell--empty' : 'cell'}
             align="right">
             {numCases === 0 ? '-' : numCases}
         </TableCell>

@@ -7,8 +7,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import './ReportsPerHealthRiskPerDay.scss';
-
 
 export default class ReportsPerHealthRiskPerDay extends Component {
     constructor(props) {
@@ -75,9 +73,9 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                     if (reportsInRegion != null)
                         return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
                     else
-                        return <TableCell className="cell nodata" key={i}>-</TableCell>;
+                        return <TableCell className="cell--empty" key={i}>-</TableCell>;
                 } else {
-                    return <TableCell className="cell nodata" key={i}>-</TableCell>;
+                    return <TableCell className="cell--empty" key={i}>-</TableCell>;
                 }
             });
         }

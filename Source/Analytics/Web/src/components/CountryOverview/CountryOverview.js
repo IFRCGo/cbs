@@ -28,12 +28,14 @@ class CountryOverview extends Component {
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-                <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
-                <OverviewTop />
+
                 <div className="analytics--container" style={body}>
+                    <h1 className="headerText center">Country overview</h1>
+                    <OverviewTop />
+                    <h2 className="headerText">Geopraphic overview of reports</h2>
                     <Map />
                     <Grid container spacing={0}>
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid item xs={12} sm={6} md={6}>
                             <LastWeekTotals />
                         </Grid>
                     </Grid>
