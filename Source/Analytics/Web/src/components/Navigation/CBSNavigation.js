@@ -107,9 +107,9 @@ class CBSNavigation extends Component {
             </Link>
         }
 
-        return <Link to={`/${url}/`} className={`menu-item ${url == active ? `active` : ``}`}>
+        return <a href={`/${url}/`} className={`menu-item ${url == active ? `active` : ``}`}>
             {text}
-        </Link>
+        </a>
     }
 
     render() {
