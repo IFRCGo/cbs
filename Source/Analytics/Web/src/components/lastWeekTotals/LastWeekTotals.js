@@ -68,7 +68,7 @@ export default class LastWeekTotals extends Component {
                             <TableCell className="headerText">Age</TableCell>
                             <TableCell className="headerText center"> <i className="fa fa-venus"> </i> Female</TableCell>
                             <TableCell className="headerText center"> <i className="fa fa-mars"></i> Male</TableCell>
-                            <TableCell className="headerText">Total</TableCell>
+                            <TableCell className="headerText center">Total</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

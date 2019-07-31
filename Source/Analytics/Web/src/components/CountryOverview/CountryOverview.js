@@ -8,6 +8,7 @@ import OverviewTop from '../OverviewTop/OverviewTop.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
+import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -44,6 +45,11 @@ class CountryOverview extends Component {
                     <HealthRiskPerDistrictTable />
                     <CaseReportByHealthRiskTable />
                     <Map />
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <LastWeekTotals />
+                        </Grid>
+                    </Grid>
                     <HealthRiskSelector />
                 </div>
             </>
