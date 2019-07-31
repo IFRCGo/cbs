@@ -33,7 +33,7 @@ body {
   }
 }
 
-.headerSelect {
+.headline-select {
   margin-left: 5px;
 }
 
@@ -74,7 +74,10 @@ h1 {
 
 h2 {
     font-family: "Lato", sans-serif;
-    font-weight: 300;
+    
+    &.headline {
+        font-weight: 300;
+    }
 }
 
 h3 {

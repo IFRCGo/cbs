@@ -224,7 +224,7 @@ class MapWidget extends Component {
 
         return (
             <>
-            <h2>Geographic overview of reports</h2>
+            <h2 className="headline">Geographic overview of reports</h2>
             <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
