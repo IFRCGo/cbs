@@ -22,23 +22,36 @@ class CountryOverview extends Component {
     }
 
     render() {
-        let body = {
-            margin: 10,
-        }
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-                <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
-                <OverviewTop />
-                <div className="analytics--container" style={body}>
-                    <Map />
-                    <Grid container spacing={0}>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <LastWeekTotals />
+                
+                <Grid container justify="center">
+
+                    <Grid container item xs={10} spacing={0}>
+                        <Grid item xs={12}>
+                            <h1 style={{textAlign: "center", fontFamily: "Lato"}}>Country Overview</h1>
+                        </Grid>
+                    
+                        <Grid item xs={12}>
+                            <OverviewTop />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Map />
+                        </Grid>
+
+                        <Grid item container xs={12}>
+                            <Grid item xs={4}>
+                                <LastWeekTotals />
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <HealthRiskSelector />
                         </Grid>
                     </Grid>
-                    <HealthRiskSelector />
-                </div>
+                </Grid>
             </>
         );
     }
