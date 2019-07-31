@@ -5,7 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { QueryCoordinator } from "@dolittle/queries";
-import { CaseReportsPerRegionsLast4WeeksQuery } from "../../Features/CaseReports/CaseReportsPerRegionLast4WeeksQuery";
+import { CaseReportsPerRegionLast4WeeksQuery } from "../../Features/CaseReports/CaseReportsPerRegionLast4WeeksQuery";
 
 import '../lastWeekTotals/last-week-totals.scss';
 
@@ -22,7 +22,7 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
 
     fetchData() {
         this.queryCoordinator = new QueryCoordinator();
-        let regionsForHealthRisk = new CaseReportsPerRegionsLast4WeeksQuery();
+        let regionsForHealthRisk = new CaseReportsPerRegionLast4WeeksQuery();
 
         this.queryCoordinator.execute(regionsForHealthRisk).then(queryResult => {
             if (queryResult.success) {
