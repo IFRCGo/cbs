@@ -59,13 +59,13 @@ export default class LastWeekTotals extends Component {
 
         return (
             <div className="tableContainer">
-                <h2 className="headerText">Reports per sex and age (last 7 days)</h2>
+                <h2 className="headline">Reports per sex and age (last 7 days)</h2>
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
                             <TableCell className="headerText">Age</TableCell>
-                            <TableCell className="headerText center"> <i className="fa fa-venus"> </i> Female</TableCell>
-                            <TableCell className="headerText center"> <i className="fa fa-mars"></i> Male</TableCell>
+                            <TableCell className="headerText center"> <i className="fa fa-female" style={{fontSize: 16}}> </i> Female</TableCell>
+                            <TableCell className="headerText center"> <i className="fa fa-male" style={{fontSize: 16}}></i> Male</TableCell>
                             <TableCell className="headerText center">Total</TableCell>
                         </TableRow>
                     </TableHead>

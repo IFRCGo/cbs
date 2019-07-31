@@ -22,25 +22,34 @@ class CountryOverview extends Component {
     }
 
     render() {
-        let body = {
-            margin: 10,
-        }
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
+                <Grid container justify="center">
+                    <Grid container item xs={10} spacing={0}>
+                        <Grid item xs={12}>
+                            <h1 className="jumbotron">Country Overview</h1>
+                        </Grid>
+                    
+                        <Grid item xs={12}>
+                            <OverviewTop />
+                        </Grid>
 
-                <div className="analytics--container" style={body}>
-                    <h1 className="headerText center">Country overview</h1>
-                    <OverviewTop />
-                    <h2 className="headerText">Geopraphic overview of reports</h2>
-                    <Map />
-                    <Grid container spacing={0}>
-                        <Grid item xs={12} sm={6} md={6}>
-                            <LastWeekTotals />
+                        <Grid item xs={12}>
+                            <Map />
+                        </Grid>
+
+                        <Grid item container xs={12}>
+                            <Grid item xs={4}>
+                                <LastWeekTotals />
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <HealthRiskSelector />
                         </Grid>
                     </Grid>
-                    <HealthRiskSelector />
-                </div>
+                </Grid>
             </>
         );
     }
