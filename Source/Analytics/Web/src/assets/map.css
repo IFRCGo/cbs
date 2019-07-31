@@ -1,5 +1,9 @@
 @import url('~react-leaflet-markercluster/dist/styles.min.css');
 
+.markercluster {
+    margin-bottom: 50px;
+}
+
 .custom-div-icon {
     margin: 12px auto;
     font-size: 20px;

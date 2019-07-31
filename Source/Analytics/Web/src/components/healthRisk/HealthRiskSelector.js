@@ -4,7 +4,6 @@ import { QueryCoordinator } from '@dolittle/queries/dist/commonjs/QueryCoordinat
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
-import './HealthRiskSelector.scss';
 import ReportsPerHealthRiskPerRegionLast4Weeks from '../Reports/ReportsPerHealthRiskPerRegionLast4Weeks';
 
 export default class HealthRiskSelector extends Component {

@@ -9,8 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { CaseReportTotalsQuery } from "../../Features/Overview/LastWeekTotals/CaseReportTotalsQuery";
 import { QueryCoordinator } from "@dolittle/queries";
 
-import './last-week-totals.scss';
-
 export default class LastWeekTotals extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +28,7 @@ export default class LastWeekTotals extends Component {
         let caseReportTotals = new CaseReportTotalsQuery();
 
         this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
-            if(queryResult.success){
+            if (queryResult.success) {
                 let json = queryResult.items[0];
                 this.setState({
                     femalesUnder5: parseInt(json.femalesUnder5),
@@ -53,7 +51,7 @@ export default class LastWeekTotals extends Component {
         this.fetchLastWeekTotals();
     }
 
-    render () {
+    render() {
         var totalUnder5 = this.state.femalesUnder5 + this.state.malesUnder5;
         var totalOver5 = this.state.femalesOver5 + this.state.malesOver5;
         var totalFemale = this.state.femalesUnder5 + this.state.femalesOver5;

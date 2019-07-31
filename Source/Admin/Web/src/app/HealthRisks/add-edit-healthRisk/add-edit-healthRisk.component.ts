@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Query } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
@@ -17,6 +17,8 @@ import { HealthRiskById } from '../HealthRiskById';
 })
 
 export class AddEditHealthRiskComponent implements OnInit {
+    commandCoordinator: CommandCoordinator;
+    queryCoordinator: QueryCoordinator;
     risk: HealthRisk;
 
     createCmd: CreateHealthRisk = new CreateHealthRisk();
@@ -26,13 +28,13 @@ export class AddEditHealthRiskComponent implements OnInit {
     isAdd: boolean;
 
     constructor(
-        private queryCoordinator: QueryCoordinator<HealthRisk>,
         private router: Router,
-        private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService
     ) { }
 
     ngOnInit() {
+        this.commandCoordinator = new CommandCoordinator();
+        this.queryCoordinator = new QueryCoordinator();
         this.risk = new HealthRisk();
 
        var pathSections = this.router.url.split("/");
@@ -43,7 +45,6 @@ export class AddEditHealthRiskComponent implements OnInit {
            const id = pathSections[2];
            var query = new HealthRiskById();
            query.healthRiskId = id;
-           
            this.queryCoordinator.execute(query)
            .then(response => {
                if (response.success) {

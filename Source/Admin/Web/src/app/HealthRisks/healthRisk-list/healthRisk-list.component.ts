@@ -1,9 +1,8 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HealthRisk } from '../HealthRisk';
 import { DeleteHealthRisk } from '../DeleteHealthRisk';
 import { AllHealthRisks } from '../AllHealthRisks';
-import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
 import { AppInsightsService } from '../../services/app-insights-service';
 
@@ -21,14 +20,13 @@ export class HealthRiskListComponent implements OnInit {
 
     deleteHealthRiskCmd: DeleteHealthRisk = new DeleteHealthRisk();
     constructor(
-        private queryCoordinator: QueryCoordinator,
-        private commandCoordinator: CommandCoordinator,
         private toastr: ToastrService,
         private appInsightsService: AppInsightsService
     ) { }
 
     ngOnInit() {
-        this.queryCoordinator.execute(new AllHealthRisks())
+        const queryCoordinator = new QueryCoordinator();
+        queryCoordinator.execute(new AllHealthRisks())
             .then(response => {
                 if (response.success) {
                     this.risks = response.items as HealthRisk[];
@@ -59,5 +57,4 @@ export class HealthRiskListComponent implements OnInit {
             return result * sortRisk;
         }
     }
-
 }

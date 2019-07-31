@@ -1,7 +1,64 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+@import "colors.scss";
+@import "country-overview.scss";
 
 html {
-    font-size: 16px;
+  font-size: 16px;
+  font-family: "Lato", "Helvetica Neue", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.tableContainer {
+  margin-left: 0;
+}
+
+.table {
+  border: 1px solid $medium-grey;
+  margin-bottom: 50px;
+}
+
+.tableHead {
+  background-color: $light-grey;
+}
+
+.headerText {
+  color: black !important; //these are marked as !important to override Google's MuiTable styling
+  font-weight: 200;
+
+  &.center {
+    text-align: center !important;
+  }
+}
+
+.headerSelect {
+  margin-left: 5px;
+}
+
+.cell {
+  &.center {
+    text-align: center;
+  }
+}
+
+.cell--empty {
+  color: #b5b5b5 !important;
+}
+
+.lightweightContainer {
+  margin: 1rem;
+}
+
+.lightweight-header {
+  text-align: center;
+  font-size: 28px;
+}
+
+.lightweight-description {
+  text-align: center;
+  font-size: 18px;
 }
 
 body {
