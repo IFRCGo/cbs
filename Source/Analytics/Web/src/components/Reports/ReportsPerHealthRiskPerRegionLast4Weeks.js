@@ -68,9 +68,8 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
                         </TableCell>{/* Special treatment of region name column */}
                         {row.map((numCases, i) => (
                             <TableCell key={i}
-                                className="cell"
-                                align="right"
-                                style={numCases === 0 ? { color: "#B5B5B5" } : {}}>
+                                className={numCases === 0 ? 'cell--empty' : 'cell'}
+                                align="right">
                                 {numCases === 0 ? '-' : numCases}
                             </TableCell>
                         ))}</TableRow>

@@ -4,11 +4,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-
 import '../lastWeekTotals/last-week-totals.scss';
-
 import { QueryCoordinator } from "@dolittle/queries";
 import { CaseReportsLast4WeeksPerHealthRiskQuery } from "../../Features/Overview/Last4WeeksPerHealthRisk/CaseReportsLast4WeeksPerHealthRiskQuery";
 
@@ -72,28 +68,23 @@ class CaseReportByHealthRiskTable extends Component {
                         {this.state.healthRisks[key].healthRiskName}
                       </TableCell>
                       <TableCell 
-                        className="cell"
-                        style={this.state.healthRisks[key].days0to6 === 0 ? {color: "#B5B5B5"} : {}}>
+                        className={this.state.healthRisks[key].days0to6 === 0 ? 'cell--empty' : 'cell'}>
                         {this.state.healthRisks[key].days0to6}
                       </TableCell>
                       <TableCell 
-                        className="cell" 
-                        style={this.state.healthRisks[key].days7to13 === 0 ? {color: "#B5B5B5"} : {}}>
+                        className={this.state.healthRisks[key].days7to13 === 0 ? 'cell--empty' : 'cell'}>
                         {this.state.healthRisks[key].days7to13}
                       </TableCell>
                       <TableCell 
-                        className="cell" 
-                        style={this.state.healthRisks[key].days14to20 === 0 ? {color: "#B5B5B5"} : {}}>
+                        className={this.state.healthRisks[key].days14to20 === 0 ? 'cell--empty' : 'cell'}>
                         {this.state.healthRisks[key].days14to20}
                       </TableCell>
                       <TableCell 
-                        className="cell" 
-                        style={this.state.healthRisks[key].days21to27 === 0 ? {color: "#B5B5B5"} : {}}>
+                        className={this.state.healthRisks[key].days21to27 === 0 ? 'cell--empty' : 'cell'}>
                         {this.state.healthRisks[key].days21to27}
                       </TableCell>
                       <TableCell 
-                        className="cell" 
-                        style={total === 0 ? {color: "#B5B5B5"} : {}}>
+                        className={total === 0 ? 'cell--empty' : 'cell'}>
                         {total}
                       </TableCell>
                     </TableRow>

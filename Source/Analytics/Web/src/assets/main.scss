@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+@import 'colors.scss';
+@import 'country-overview.scss';
 
 html {
     font-size: 16px;
@@ -8,19 +10,6 @@ html {
 body {
     margin: 0;
 }
-
-$rc-red: #ca0000;
-$light-grey: #f0f0f0;
-$medium-grey: #cfcdcc;
-
-$screen-xs: 480px;
-$screen-xs-min: $screen-xs;
-$screen-sm: 768px;
-$screen-sm-min: $screen-sm;
-$screen-md: 992px;
-$screen-md-min: $screen-md;
-$screen-xs-max: ($screen-sm-min - 1);
-$screen-sm-max: ($screen-md-min - 1);
 
 .tableContainer {
     margin-left: 0;
@@ -52,47 +41,22 @@ $screen-sm-max: ($screen-md-min - 1);
     &.center {
         text-align: center;
     }
+}
 
-    &.nodata {
-        color: #B5B5B5;
-    }
+.cell--empty {
+    color: #B5B5B5 !important;
 }
 
 .lightweightContainer {
     margin: 1rem;
 }
 
-.lightweight {
+.lightweight-header {
     text-align: center;
-
-    &.header {
-        font-size: 28px;
-    }
-
-    &.description {
-        font-size: 18px;
-    }
+    font-size: 28px;
 }
 
-.overview-top {
-    display: flex;
-    justify-content: space-around;
-    font-family: Lato, "Helvetica Neue", sans-serif1;
-    font-weight: 300;
-    margin: 60px 25%;
-  
-    .icon {
-      text-align: center;
-      transform: scale(5);
-      transform-style: flat;
-      color: rgb(211, 211, 211);
-      margin-bottom: 25px;
-    }
-  
-    .card {
-      text-align: center;
-      width: 33%;
-      margin-top: 25px;
-    }
+.lightweight-description {
+    text-align: center;
+    font-size: 18px;
 }
-
