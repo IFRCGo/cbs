@@ -53,7 +53,7 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
     }
 
     renderRows() {
-        const currentHealthRisk = this.state.regionsForHealthRisk.find(r => r.healthRiskName == this.props.healthRisk);
+        const currentHealthRisk = this.state.regionsForHealthRisk.find(r => r.healthRiskName == this.props.selectedHealthRisk);
 
         if (currentHealthRisk != null) {
             return currentHealthRisk.regions.map(region => {
