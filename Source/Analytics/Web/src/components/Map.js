@@ -221,8 +221,10 @@ class MapWidget extends Component {
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
-        console.log(this.state.wheelZoom)
+
         return (
+            <>
+            <h2>Geographic overview of reports</h2>
             <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -233,7 +235,7 @@ class MapWidget extends Component {
                 </MarkerClusterGroup>
                 <MapOverview healthRisks={healthRisks}></MapOverview>
             </Map>
-
+            </>
         );
     }
 }

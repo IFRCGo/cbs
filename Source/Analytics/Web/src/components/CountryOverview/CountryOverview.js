@@ -30,7 +30,7 @@ class CountryOverview extends Component {
 
                     <Grid container item xs={10} spacing={0}>
                         <Grid item xs={12}>
-                            <h1 style={{textAlign: "center", fontFamily: "Lato"}}>Country Overview</h1>
+                            <h1>Country Overview</h1>
                         </Grid>
                     
                         <Grid item xs={12}>

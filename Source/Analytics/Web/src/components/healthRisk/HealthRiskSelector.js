@@ -49,7 +49,7 @@ export default class HealthRiskSelector extends Component {
     render() {
         return (
             <div className="tableContainer">
-                <h2 className="headline">Reports for
+                <h2>Reports for
                 <Select className="headline-select"
                         value={this.state.selected}
                         onChange={this.saveSelectedValue.bind(this)}
@@ -58,9 +58,9 @@ export default class HealthRiskSelector extends Component {
                     </Select>
                 </h2>
 
-                <h5>Reports the last 7 days</h5>
+                <h3>Reports the last 7 days</h3>
                 <ReportsPerHealthRiskPerDay selectedHealthRisk={this.state.selected} />
-                <h5>Reports the last 4 weeks</h5>
+                <h3>Reports the last 4 weeks</h3>
                 <ReportsPerHealthRiskPerRegionLast4Weeks selectedHealthRisk={this.state.selected} />
             </div>
         );

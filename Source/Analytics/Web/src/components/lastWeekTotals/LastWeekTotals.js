@@ -61,7 +61,7 @@ export default class LastWeekTotals extends Component {
 
         return (
             <div className="tableContainer">
-                <h2 className="headline">Reports per sex and age (last 7 days)</h2>
+                <h2>Reports per sex and age (last 7 days)</h2>
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
