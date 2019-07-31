@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 function Circles({ size, numberOfCases, casesPerHealthRisk }) {
     var nbrOfHealthRisks = Object.keys(casesPerHealthRisk).length
-    var areaPerColor = Math.ceil(100.0 / nbrOfHealthRisks);
+    var areaPerColor = 100.0 / nbrOfHealthRisks;
     var nextOffset = 0
     var circles = []
     var listItems = []
