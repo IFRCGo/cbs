@@ -66,10 +66,13 @@ body {
 }
 
 h1 {
-    text-align: center;
     font-family: "Lato", sans-serif;
-    font-weight: 300;
-    margin-top: 5rem;
+    
+    &.jumbotron {
+        text-align: center;
+        font-weight: 300;
+        margin-top: 5rem;
+    }
 }
 
 h2 {

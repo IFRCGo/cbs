@@ -25,12 +25,10 @@ class CountryOverview extends Component {
         return (
             <>
                 <CBSNavigation activeMenuItem="analytics" />
-                
                 <Grid container justify="center">
-
                     <Grid container item xs={10} spacing={0}>
                         <Grid item xs={12}>
-                            <h1>Country Overview</h1>
+                            <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
                     
                         <Grid item xs={12}>
