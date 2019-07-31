@@ -53,6 +53,9 @@
   position: relative;
 }
 
+.markercluster{ 
+    opacity: 5;
+}
 .pie circle {
   fill: none;
   stroke: gold;

@@ -10,6 +10,7 @@ import { CaseReportsLast4WeeksQuery } from "../Features/Map/CaseReportsLast4Week
 import { QueryCoordinator } from "@dolittle/queries";
 import MapPieChart from "./MapPieChart"
 import ReactDOMServer from 'react-dom/server';
+import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -60,23 +61,17 @@ var vals = [
     {label: "4 weeks", value: 28}
 ]
 
-
-
 function MarkerPopupContent(props) {
     return <div>{props.healthRisk}</div>
 }
 
 function CaseMarkers({ caseReportsLastWeek, healthRisks }) {
-    console.log(healthRisks)
-
-    console.log(Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk))
 
     for(var key in Object.keys(healthRisks)){
         if(!(key in Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk))){
             delete healthRisks[key]
         }
     }
-    console.log(healthRisks)
     
     if (caseReportsLastWeek == null) return null;
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
@@ -178,10 +173,11 @@ class MapWidget extends Component {
     }
 
     enableZoom(event){
-        event.target.scrollWheelZoom.enable();
+        ReactDOM.findDOMNode(this.refs.map).focus();
+        event.target.style.display = "none";
     }
     disableZoom(event){
-        event.target.scrollWheelZoom.disable()
+        var thisDocument = ReactDOM.findDOMNode(this.refs.mapCover);
     }
     saveSelectedValue(event){
         this.setState({ currentVal: event})
@@ -258,17 +254,21 @@ class MapWidget extends Component {
         }
         return (
             <div>
-            <Select style={{zIndex: "10000"}} value={this.state.currentVal} onChange={this.saveSelectedValue} options={vals} ></Select>
-            <Map style={{height:"500px", width:"500px"}} onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[30.0, 2.0]} zoom={3} maxZoom={50}>
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                />
-                <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={this.createClusterCustomIcon}>
-                    <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek} healthRisks={this.state.healthRisks}></CaseMarkers>
-                </MarkerClusterGroup>
-                <MapOverview healthRisks={this.state.healthRisks}></MapOverview>
-            </Map>
+            
+            <div style={{position: "relative"}}>
+                <Select onClick={this.keepFocus} style={{zIndex: "10000"}} value={this.state.currentVal} onChange={this.saveSelectedValue} options={vals} ></Select>
+                <div ref='mapCover' onClick={this.enableZoom} onBlur={this.disableZoom} style={{backgroundColor: "black", height:"500px", width:"500px", zIndex:"100000000000000000", position: "absolute", background:"rgb(0,0,0, 0.6)", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", color:"white", fontFamily:"lato"}}> Click anywhere in the map to start </div>
+                    <Map ref='map' onFocusIn={this.clicked} onBlur={this.disableZoom} scrollWheelZoom={true} className="markercluster" center={[30.0, 2.0]} zoom={3} maxZoom={50}>
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                        />
+                        <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={this.createClusterCustomIcon}>
+                            <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek} healthRisks={this.state.healthRisks}></CaseMarkers>
+                        </MarkerClusterGroup>
+                        <MapOverview healthRisks={this.state.healthRisks}></MapOverview>
+                    </Map>
+            </div>
             </div>
 
         );
