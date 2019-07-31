@@ -28,7 +28,7 @@ export default class LastWeekTotals extends Component {
         let caseReportTotals = new CaseReportTotalsQuery();
 
         this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
-            if(queryResult.success){
+            if (queryResult.success) {
                 let json = queryResult.items[0];
                 this.setState({
                     femalesUnder5: parseInt(json.femalesUnder5),
@@ -51,7 +51,7 @@ export default class LastWeekTotals extends Component {
         this.fetchLastWeekTotals();
     }
 
-    render () {
+    render() {
         var totalUnder5 = this.state.femalesUnder5 + this.state.malesUnder5;
         var totalOver5 = this.state.femalesOver5 + this.state.malesOver5;
         var totalFemale = this.state.femalesUnder5 + this.state.femalesOver5;
@@ -59,14 +59,14 @@ export default class LastWeekTotals extends Component {
 
         return (
             <div className="tableContainer">
-                <h2>Reports per sex and age (last 7 days)</h2>
+                <h2 className="headerText">Reports per sex and age (last 7 days)</h2>
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
                             <TableCell className="headerText">Age</TableCell>
                             <TableCell className="headerText center"> <i className="fa fa-venus"> </i> Female</TableCell>
                             <TableCell className="headerText center"> <i className="fa fa-mars"></i> Male</TableCell>
-                            <TableCell className="headerText">Total</TableCell>
+                            <TableCell className="headerText center">Total</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
