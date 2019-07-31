@@ -46,9 +46,8 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
 
     renderTableCell(numCases, key) {
         return <TableCell key={key}
-            className="cell"
-            align="right"
-            style={numCases === 0 ? { color: "#B5B5B5" } : {}}>
+            className={numCases === 0 ? 'cell nodata' : 'cell'}
+            align="right">
             {numCases === 0 ? '-' : numCases}
         </TableCell>
     }
