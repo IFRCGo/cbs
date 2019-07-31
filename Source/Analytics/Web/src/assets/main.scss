@@ -10,7 +10,7 @@ body {
 
 h1 {
     text-align: center;
-    font-family: "Lato";
+    font-family: "Lato", sans-serif;
     font-weight: 300;
     margin-top: 5rem;
 }
@@ -21,5 +21,10 @@ h2 {
 }
 
 h3 {
+    font-family: "Lato", sans-serif;
     font-size: 0.9rem;
+}
+
+p {
+    font-family: "Lato", sans-serif;
 }
