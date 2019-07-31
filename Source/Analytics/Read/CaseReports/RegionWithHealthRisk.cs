@@ -12,6 +12,9 @@ namespace Read.CaseReports
     {
         public RegionName Name;
 
-        public NumberOfPeople NumCases;
+        public NumberOfPeople Days0to6 { get; set; }
+        public NumberOfPeople Days7to13 { get; set; }
+        public NumberOfPeople Days14to20 { get; set; }
+        public NumberOfPeople Days21to27 { get; set; }
     }
 }

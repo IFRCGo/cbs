@@ -69,15 +69,15 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     renderReports(region) {
         if (this.state.reportsPerHealthRisk.length > 0) {
             return this.state.reportsPerHealthRisk.map((report, i) => {
-                const reports = report.reportsPerHealthRisk[this.props.healthRisk];
+                const reports = report.reportsPerHealthRisk[this.props.selectedHealthRisk];
                 if (reports != null) {
                     const reportsInRegion = reports[region];
                     if (reportsInRegion != null)
                         return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
                     else
-                        return <TableCell className="cell" key={i}>-</TableCell>;
+                        return <TableCell className="cell nodata" key={i}>-</TableCell>;
                 } else {
-                    return <TableCell className="cell" key={i}>-</TableCell>;
+                    return <TableCell className="cell nodata" key={i}>-</TableCell>;
                 }
             });
         }

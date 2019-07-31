@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
 import OverviewTop from '../OverviewTop/OverviewTop.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
@@ -21,7 +18,7 @@ appInsights.loadAppInsights();
 
 class CountryOverview extends Component {
     componentDidMount() {
-        appInsights.trackPageView({ name: 'National society overview' });
+        appInsights.trackPageView({ name: 'Country Overview' });
     }
 
     render() {
@@ -34,16 +31,6 @@ class CountryOverview extends Component {
                 <h1 style={{textAlign: "center", fontFamily: "Lato"}}>CountryOverview</h1>
                 <OverviewTop />
                 <div className="analytics--container" style={body}>
-                    <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
-
-                    <Grid container spacing={8}>
-                        <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
-                            <CaseReportByHealthRiskTable />
-                        </Grid>
-                    </Grid>
-
-                    <HealthRiskPerDistrictTable />
-                    <CaseReportByHealthRiskTable />
                     <Map />
                     <Grid container spacing={0}>
                         <Grid item xs={12} sm={6} md={4}>

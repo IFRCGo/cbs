@@ -71,11 +71,11 @@ class CBSNavigation extends Component {
             <div className={`rc-logo`}>
                 <figure>
                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 175 100">
-                        <rect class="mainColorFill" width="175" height="100" />
-                        <path class="backgroundColorStroke" d="M20,50h66m-33,-33v66" fill="none" strokeWidth="20" />
-                        <circle class="backgroundColorFill" cx="132" cy="50" r="34" />
-                        <circle class="mainColorFill" cx="142" cy="50" r="28" />
-                        <path class="backgroundColorStroke" d="M7,7H168V93H7z" fill="none" strokeWidth="3" />
+                        <rect className="mainColorFill" width="175" height="100" />
+                        <path className="backgroundColorStroke" d="M20,50h66m-33,-33v66" fill="none" strokeWidth="20" />
+                        <circle className="backgroundColorFill" cx="132" cy="50" r="34" />
+                        <circle className="mainColorFill" cx="142" cy="50" r="28" />
+                        <path className="backgroundColorStroke" d="M7,7H168V93H7z" fill="none" strokeWidth="3" />
                     </svg>
                 </figure>
                 <div className="logo-text">

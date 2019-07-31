@@ -3,15 +3,16 @@
 *  Licensed under the MIT License. See LICENSE in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-using Concepts;
 using Dolittle.ReadModels;
 using System.Collections.Generic;
+using Concepts.HealthRisks;
 
 namespace Read.CaseReports
 {
-    public class CaseReportsPerRegionLast7Days : IReadModel
+    public class HealthRisksInRegionsLast4Weeks : IReadModel
     {
-        public Day Id { get; set; }
-        public IList<HealthRisksInRegionsLast7Days> HealthRisks { get; set; }
+        public HealthRiskId Id { get; set; }
+        public HealthRiskName HealthRiskName { get; set; }
+        public IList<RegionWithHealthRisk> Regions { get; set; }
     }
 }

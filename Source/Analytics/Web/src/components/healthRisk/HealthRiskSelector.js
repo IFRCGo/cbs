@@ -4,8 +4,8 @@ import { QueryCoordinator } from '@dolittle/queries/dist/commonjs/QueryCoordinat
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReportsPerHealthRiskPerDay from '../Reports/ReportsPerHealthRiskPerDay';
-
 import './HealthRiskSelector.scss';
+import ReportsPerHealthRiskPerRegionLast4Weeks from '../Reports/ReportsPerHealthRiskPerRegionLast4Weeks';
 
 export default class HealthRiskSelector extends Component {
     constructor(props) {
@@ -59,7 +59,9 @@ export default class HealthRiskSelector extends Component {
                 </h2>
 
                 <h5>Reports the last 7 days</h5>
-                <ReportsPerHealthRiskPerDay healthRisk={this.state.selected} />
+                <ReportsPerHealthRiskPerDay selectedHealthRisk={this.state.selected} />
+                <h5>Reports the last 4 weeks</h5>
+                <ReportsPerHealthRiskPerRegionLast4Weeks selectedHealthRisk={this.state.selected} />
             </div>
         );
     }
