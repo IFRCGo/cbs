@@ -34,9 +34,9 @@
         "generation": 1,
         "type": "Read.CaseReports.CaseReportsPerHealthRiskPerDayQuery, Read"
       },
-      "c649151c-10c3-4b19-ab7c-0af4df8cd68c": {
+      "7f76e4a9-9a8c-4388-89a6-3bf4d583c422": {
         "generation": 1,
-        "type": "Read.CaseReports.CaseReportsPerRegionLast7DaysQuery, Read"
+        "type": "Read.CaseReports.CaseReportsPerRegionLast4WeeksQuery, Read"
       }
     }
   },

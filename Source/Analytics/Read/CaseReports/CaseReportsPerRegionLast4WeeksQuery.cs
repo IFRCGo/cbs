@@ -5,11 +5,11 @@ using Concepts;
 
 namespace Read.CaseReports
 {
-    public class CaseReportsPerRegionLast7DaysQuery : IQueryFor<CaseReportsPerRegionLast4Weeks>
+    public class CaseReportsPerRegionLast4WeeksQuery : IQueryFor<CaseReportsPerRegionLast4Weeks>
     {
         readonly IReadModelRepositoryFor<CaseReportsPerRegionLast4Weeks> _repositoryForCaseReportsPerRegionLast7Days;
 
-        public CaseReportsPerRegionLast7DaysQuery(IReadModelRepositoryFor<CaseReportsPerRegionLast4Weeks> repositoryForCaseReportsPerRegionLast7Days)
+        public CaseReportsPerRegionLast4WeeksQuery(IReadModelRepositoryFor<CaseReportsPerRegionLast4Weeks> repositoryForCaseReportsPerRegionLast7Days)
         {
             _repositoryForCaseReportsPerRegionLast7Days = repositoryForCaseReportsPerRegionLast7Days;
         }
