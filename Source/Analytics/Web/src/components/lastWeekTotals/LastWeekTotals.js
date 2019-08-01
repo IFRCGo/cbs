@@ -63,30 +63,30 @@ export default class LastWeekTotals extends Component {
                 <Table className="table">
                     <TableHead className="tableHead">
                         <TableRow>
-                            <TableCell className="headerText">Age</TableCell>
-                            <TableCell className="headerText center"> <i className="fa fa-female" style={{fontSize: 16}}> </i> Female</TableCell>
-                            <TableCell className="headerText center"> <i className="fa fa-male" style={{fontSize: 16}}></i> Male</TableCell>
-                            <TableCell className="headerText center">Total</TableCell>
+                            <TableCell className="headerText" align="center">Age</TableCell>
+                            <TableCell className="headerText" align="center"> <i className="fa fa-female" style={{fontSize: 16}}> </i> Female</TableCell>
+                            <TableCell className="headerText" align="center"> <i className="fa fa-male" style={{fontSize: 16}}></i> Male</TableCell>
+                            <TableCell className="headerText" align="center">Total</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell className="cell">Under 5</TableCell>
-                            <TableCell className="cell center">{this.state.femalesUnder5}</TableCell>
-                            <TableCell className="cell center">{this.state.malesUnder5}</TableCell>
-                            <TableCell className="cell center">{isNaN(totalUnder5) ? "-" : totalUnder5}</TableCell>
+                            <TableCell className="cell" align="center">Under 5</TableCell>
+                            <TableCell className="cell" align="center">{this.state.femalesUnder5}</TableCell>
+                            <TableCell className="cell" align="center">{this.state.malesUnder5}</TableCell>
+                            <TableCell className="cell" align="center">{isNaN(totalUnder5) ? "-" : totalUnder5}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell className="cell">5 and above</TableCell>
-                            <TableCell className="cell center">{this.state.femalesOver5}</TableCell>
-                            <TableCell className="cell center">{this.state.malesOver5}</TableCell>
-                            <TableCell className="cell center">{isNaN(totalOver5) ? "-" : totalOver5}</TableCell>
+                            <TableCell className="cell" align="center">5 and above</TableCell>
+                            <TableCell className="cell" align="center">{this.state.femalesOver5}</TableCell>
+                            <TableCell className="cell" align="center">{this.state.malesOver5}</TableCell>
+                            <TableCell className="cell" align="center">{isNaN(totalOver5) ? "-" : totalOver5}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell className="cell">Total</TableCell>
-                            <TableCell className="cell center">{isNaN(totalFemale) ? "-" : totalFemale}</TableCell>
-                            <TableCell className="cell center">{isNaN(totalMale) ? "-" : totalMale}</TableCell>
-                            <TableCell className="cell center">{isNaN(totalFemale + totalMale) ? "-" : totalFemale + totalMale}</TableCell>
+                            <TableCell className="cell" align="center">Total</TableCell>
+                            <TableCell className="cell" align="center">{isNaN(totalFemale) ? "-" : totalFemale}</TableCell>
+                            <TableCell className="cell" align="center">{isNaN(totalMale) ? "-" : totalMale}</TableCell>
+                            <TableCell className="cell" align="center">{isNaN(totalFemale + totalMale) ? "-" : totalFemale + totalMale}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

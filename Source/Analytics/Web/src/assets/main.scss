@@ -26,22 +26,19 @@ body {
 }
 
 .headerText {
+  font-family: "Lato", sans-serif;
   color: black !important; //these are marked as !important to override Google's MuiTable styling
-
-  &.date {
-    white-space: nowrap;
-    padding: 0.5rem;
-  }
+  padding: 0.3rem !important;
 }
 
 .headline-select {
-  margin-left: 5px;
+  margin-left: 0.6rem;
+  margin-bottom: 2rem;
 }
 
 .cell {
-  &.center {
-    text-align: center;
-  }
+  font-family: "Lato", sans-serif;
+  padding: 0 1rem !important;
 }
 
 .lightweightContainer {

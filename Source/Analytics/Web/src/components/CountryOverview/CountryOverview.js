@@ -44,12 +44,12 @@ class CountryOverview extends Component {
                         </Grid>
 
                         <Grid item container xs={12}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <LastWeekTotals />
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={10}>
+                        <Grid item xs={12}>
                             <HealthRiskSelector />
                         </Grid>
                     </Grid>

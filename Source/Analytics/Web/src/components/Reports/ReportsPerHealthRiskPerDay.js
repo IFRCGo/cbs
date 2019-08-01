@@ -117,7 +117,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
             <Table className="table">
                 <TableHead className="tableHead">
                     <TableRow>
-                        <TableCell className="headerText">Region</TableCell>
+                        <TableCell className="headerText" align="center">Region</TableCell>
                         {this.renderDays()}
                     </TableRow>
                 </TableHead>

@@ -65,7 +65,7 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
                     <TableRow key={region.name}>
                         <TableCell key={0}
                             className="cell"
-                            align="left">{region.name}
+                            align="center">{region.name}
                         </TableCell>
                         {this.renderTableCell(region.days0to6, 1)}
                         {this.renderTableCell(region.days7to13, 2)}
@@ -87,7 +87,7 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
             <Table className="table">
                 <TableHead className="tableHead" key="table">
                     <TableRow>
-                        <TableCell className="headerText">Region</TableCell>
+                        <TableCell className="headerText" align="center">Region</TableCell>
                         <TableCell className="headerText" align="center">Last week</TableCell>
                         <TableCell className="headerText" align="center">2 weeks ago</TableCell>
                         <TableCell className="headerText" align="center">3 weeks ago</TableCell>
