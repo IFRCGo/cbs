@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import HealthRiskSelector from '../healthRisk/HealthRiskSelector';
-import CBSNavigation from '../Navigation/CBSNavigation';
+import CBSNavigation from '../../../node_modules/navigation/lib/index.js';
 import '../../assets/main.scss';
 
 export default class LightweightAreaOverview extends Component {
