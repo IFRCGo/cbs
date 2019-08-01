@@ -56,7 +56,7 @@ var colors = {
 }
 
 
-var vals = [
+var timePeriod = [
     {label: "7 days", value: 7},
     {label: "4 weeks", value: 28}
 ]
@@ -118,7 +118,7 @@ class MapWidget extends Component {
 
         this.state = {
             caseReportsLastWeek: [],
-            currentVal: vals[0],
+            currentVal: timePeriod[0],
             healthRisks: {},
             wheelZoom: false,
             isLoading: true,
@@ -191,7 +191,6 @@ class MapWidget extends Component {
         for (var i = 0; i < markersInCluster; i++) {
             var healthRiskId = markers[i].options.icon.options.html.dataset.healthriskid
 
-
             if (!(healthRiskId in casesPerHealthRisk)) {
                 if(this.state.healthRisks[healthRiskId]){
                 casesPerHealthRisk[healthRiskId] = {
@@ -256,8 +255,8 @@ class MapWidget extends Component {
             <div>
             
             <div style={{position: "relative"}}>
-                <Select onClick={this.keepFocus} style={{zIndex: "10000"}} value={this.state.currentVal} onChange={this.saveSelectedValue} options={vals} ></Select>
-                <div ref='mapCover' onClick={this.enableZoom} onBlur={this.disableZoom} style={{backgroundColor: "black", height:"500px", width:"500px", zIndex:"100000000000000000", position: "absolute", background:"rgb(0,0,0, 0.6)", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", color:"white", fontFamily:"lato"}}> Click anywhere in the map to start </div>
+                <Select onClick={this.keepFocus} style={{zIndex: "10000"}} value={this.state.currentVal} onChange={this.saveSelectedValue} options={timePeriod} ></Select>
+                <div ref='mapCover' className="map-cover" onClick={this.enableZoom} onBlur={this.disableZoom}> Click anywhere in the map to start </div>
                     <Map ref='map' onFocusIn={this.clicked} onBlur={this.disableZoom} scrollWheelZoom={true} className="markercluster" center={[30.0, 2.0]} zoom={3} maxZoom={50}>
                         <TileLayer
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
