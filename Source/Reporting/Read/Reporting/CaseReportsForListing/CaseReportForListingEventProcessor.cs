@@ -8,7 +8,7 @@ using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
-using Read.Reporting.DataCollectors;
+using Read.Management.DataCollectors;
 using Read.Reporting.HealthRisks;
 
 namespace Read.Reporting.CaseReportsForListing
@@ -16,12 +16,12 @@ namespace Read.Reporting.CaseReportsForListing
     public class CaseReportForListingEventProcessor : ICanProcessEvents
     {
         private readonly IReadModelRepositoryFor<CaseReportForListing> _caseReports;
-        private readonly IReadModelRepositoryFor<ListedDataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
         private readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public CaseReportForListingEventProcessor(
             IReadModelRepositoryFor<CaseReportForListing> caseReports,
-            IReadModelRepositoryFor<ListedDataCollector> dataCollectors,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _caseReports = caseReports;
@@ -33,6 +33,7 @@ namespace Read.Reporting.CaseReportsForListing
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            if (dataCollector.InTraining) return; // don't store report for listing if training mode is active
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
