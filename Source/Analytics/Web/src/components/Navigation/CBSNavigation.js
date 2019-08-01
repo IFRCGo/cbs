@@ -116,7 +116,7 @@ class CBSNavigation extends Component {
     render() {
         return (
             <Grid container spacing={0} justify="center" className="header-container">
-                <Grid item xs={10}>
+                <Grid item xs={12} sm={10}>
                     <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
                         {this.rcLogo()}
                         <div onClick={this.onMenuClick} className="menu-toggler">

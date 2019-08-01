@@ -5,7 +5,7 @@ import OverviewTop from '../OverviewTop/OverviewTop.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
-import LastWeekTotals from "../LastWeekTotals/LastWeekTotals";
+import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -30,7 +30,7 @@ class CountryOverview extends Component {
                         <CBSNavigation activeMenuItem="analytics" />
                     </Grid>
                 
-                    <Grid container item xs={10} spacing={0}>
+                    <Grid container item xs={11} sm={10} spacing={0}>
                         <Grid item xs={12}>
                             <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
