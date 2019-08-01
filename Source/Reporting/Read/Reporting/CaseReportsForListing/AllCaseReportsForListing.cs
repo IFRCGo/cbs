@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System.Linq;
+using System.Text.RegularExpressions;
 using Dolittle.Queries;
 using Dolittle.ReadModels;
 
@@ -26,7 +27,7 @@ namespace Read.Reporting.CaseReportsForListing
         {
             get
             {
-                IQueryable<CaseReportForListing> query = _collection.Query;
+                IQueryable<CaseReportForListing> query = _collection.Query.Where(_ => _.Origin.Length > 5 && !Regex.IsMatch(_.Origin, "[a-zA-Z]"));
                 if (string.IsNullOrWhiteSpace(SortField))
                     query = SortAscending ? query.OrderBy(x => x.Timestamp) : query.OrderByDescending(x => x.Timestamp);
                 else

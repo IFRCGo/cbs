@@ -1,1 +1,120 @@
 @import url('~react-leaflet-markercluster/dist/styles.min.css');
+
+.markercluster {
+    margin-bottom: 50px;
+}
+
+.custom-div-icon {
+    margin: 12px auto;
+    font-size: 20px;
+    height: 100px;
+    width: 100px;
+ }
+
+.healthRiskList {
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    list-style-type: none;
+    z-index: 999;
+    background-color: white;
+    width: 22%;     
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+.healthrisk-list-item{
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.cluster-label{
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    padding: inherit;
+}
+.number-of-cases-in-cluster{
+    position: absolute; 
+    z-index: 100000; 
+    background-color: white; 
+    padding: 2px; 
+    border-radius: 20%;
+    color: black; 
+}
+
+.pie {
+  border-radius: 50%;
+  border: 1px solid black;
+  background: transparent;
+  position: relative;
+}
+
+.pie circle {
+  fill: none;
+  stroke: gold;
+  stroke-width: 32;
+  animation: rotate 1.5s ease-in;
+  background: transparent;
+  border-style: solid; 
+  border-color: green;
+}
+
+.box-parent{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.box-parent:hover .box-overview{
+    display: block;
+}
+
+.box-overview{
+    background-color: white;
+    display: none; 
+    position: absolute;
+    top: 105%;
+    top: calc(100% + 5px);
+    z-index: 100;
+    width: 200%;
+    border-radius: 5px;
+    width: max-content;
+    padding: 4px;
+    text-align: left;
+}
+
+.box-overview-list{
+    list-style-type: none;
+    text-align: left;
+}
+
+.overview-healthrisk-label{
+    height: 10px;
+    width: 10px;
+    display: inline-block; 
+}
+
+.cluster-icon{
+    border-radius: 50%;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+}
+
+.marker-cluster-custom {
+    border-radius: 50%;
+    padding: 5px;
+    margin-right: 7px;
+    color: #666;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+}
+
+.leaflet-popup-close-button{
+    display: none;
+}

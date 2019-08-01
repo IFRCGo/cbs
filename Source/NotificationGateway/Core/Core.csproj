@@ -35,7 +35,7 @@
     <ProjectReference Include="..\Rules\Rules.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5"/>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9"/>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0-beta3"/>
     <PackageReference Include="Dolittle.AspNetCore" Version="3.*"/>
     <PackageReference Include="Dolittle.SDK" Version="3.*"/>

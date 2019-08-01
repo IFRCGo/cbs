@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QueryCoordinator } from '@dolittle/queries';
 import { AllProjects } from '../AllProjects';
 import { Project } from '../Project';
@@ -14,12 +14,8 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
 
     constructor(
-        private queryCoordinator: QueryCoordinator,
         private appInsightsService: AppInsightsService
-    ) { 
-
-        this.queryCoordinator = new QueryCoordinator();
-    }
+    ) { }
 
     ngOnInit() {
         this.allProjects();
@@ -29,7 +25,8 @@ export class ProjectListComponent implements OnInit {
     allProjects = () => {
         console.log("AllProjects");
         let query = new AllProjects();
-        this.queryCoordinator.execute(query).then(result => {
+        const queryCoordinator = new QueryCoordinator();
+        queryCoordinator.execute(query).then(result => {
             if (result.success) {
                 console.log("AllProjects", result);
                 const sortItems = result.items;

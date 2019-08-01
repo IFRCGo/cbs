@@ -11,19 +11,19 @@ class CBSNavigation extends Component {
       showAnalyticsDropdown: false
     };
   }
-  
+
   onClick() {
     this.setState(prevState => ({
       showAnalyticsDropdown: !prevState.showAnalyticsDropdown
     }));
   }
-  
+
   onMouseLeave() {
     this.setState({
       showAnalyticsDropdown: false
     });
   }
-  
+
   fetchData() {
     this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
     fetch(this.url, {
@@ -35,10 +35,13 @@ class CBSNavigation extends Component {
       isError: true
     }));
   }
-  
+
   componentDidMount() {
-    if (this.props.username){ //the Angular bounded contexts passes username as props
-      this.setState({username: this.props.username});
+    if (this.props.username) {
+      //the Angular bounded contexts passes username as props
+      this.setState({
+        username: this.props.username
+      });
     } else {
       this.fetchData(); //the React bounded contexts fetch here 
     }
@@ -116,7 +119,7 @@ class CBSNavigation extends Component {
     return React.createElement("a", {
       href: url,
       className: `menu-item ${active ? `active` : ``}`
-    }, text, " ", text=="Analytics" && React.createElement("i", {
+    }, text, " ", text == "Analytics" && React.createElement("i", {
       className: `fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`
     }));
   }
@@ -141,4 +144,5 @@ class CBSNavigation extends Component {
   }
 
 }
+
 export default CBSNavigation;

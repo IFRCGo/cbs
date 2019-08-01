@@ -29,12 +29,14 @@ export class AddProjectComponent implements OnInit {
     isFormSubmitted: boolean = false;
     formData: FormData;
 
-    constructor(
-        private commandCoordinator: CommandCoordinator,
-        private queryCoordinator: QueryCoordinator
-    ) {}
+    queryCoordinator: QueryCoordinator;
+    commandCoordinator: CommandCoordinator;
+
+    constructor() {}
 
     ngOnInit() {
+        this.queryCoordinator = new QueryCoordinator();
+        this.commandCoordinator = new CommandCoordinator();
         this.resetForm();
 
         this.allNationalSocieties();

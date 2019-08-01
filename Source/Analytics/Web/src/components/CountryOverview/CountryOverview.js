@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import CaseReportByHealthRiskTable from "../healthRisk/CaseReportByHealthRiskTable";
-import HealthRiskPerDistrictTable from "../healthRisk/HealthRiskPerDistrictTable";
-import LastWeekTotals from '../LastWeekTotals.js';
+import OverviewTop from '../OverviewTop/OverviewTop.js';
 import Map from "../Map.js";
 import CBSNavigation from '../../../../../Navigation/Web.React/lib/index.js';
+import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
+import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
 const appInsights = new ApplicationInsights({
     config: {
@@ -19,30 +18,38 @@ appInsights.loadAppInsights();
 
 class CountryOverview extends Component {
     componentDidMount() {
-        appInsights.trackPageView({ name: 'National society overview' });
+        appInsights.trackPageView({ name: 'Country Overview' });
     }
 
     render() {
-        let body = {
-            margin: 10,
-        }
         return (
             <>
-                <CBSNavigation activeMenuItem="analytics"/>
-
-                <div className="analytics--container" style={body}>
-                    <Typography component="h2" variant="headline" gutterBottom> Overview </Typography>
-
-                    <Grid container spacing={8}>
-                        <Grid item xs={6} key="CaseReportByHealthRiskTable" style={{ height: 'auto' }}>
-                            <CaseReportByHealthRiskTable />
+                <CBSNavigation activeMenuItem="analytics" />
+                <Grid container justify="center">
+                    <Grid container item xs={10} spacing={0}>
+                        <Grid item xs={12}>
+                            <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
-                        <LastWeekTotals />
-                    </Grid>
+                    
+                        <Grid item xs={12}>
+                            <OverviewTop />
+                        </Grid>
 
-                    <HealthRiskPerDistrictTable />
-                    <Map />
-                </div>
+                        <Grid item xs={12}>
+                            <Map />
+                        </Grid>
+
+                        <Grid item container xs={12}>
+                            <Grid item xs={4}>
+                                <LastWeekTotals />
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <HealthRiskSelector />
+                        </Grid>
+                    </Grid>
+                </Grid>
             </>
         );
     }

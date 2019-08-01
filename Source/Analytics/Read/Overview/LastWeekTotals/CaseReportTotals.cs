@@ -11,9 +11,9 @@ namespace Read.Overview.LastWeekTotals
     public class CaseReportTotals : IReadModel
     {
         public Day Id { get; set; }
-        public NumberOfPeople Female { get; set; }
-        public NumberOfPeople Male { get; set; }
-        public NumberOfPeople Over5 { get; set; }
-        public NumberOfPeople Under5 { get; set; }
+        public NumberOfPeople FemalesUnder5 { get; set; }
+        public NumberOfPeople MalesUnder5 { get; set; }
+        public NumberOfPeople FemalesOver5 { get; set; }
+        public NumberOfPeople MalesOver5 { get; set; }
     }
 }
