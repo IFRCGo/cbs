@@ -9,7 +9,6 @@ using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
 using Dolittle.Runtime.Events;
 using Read.Management.DataCollectors;
-using Read.Reporting.DataCollectors;
 using Read.Reporting.CaseReportsForListing;
 using Read.Reporting.HealthRisks;
 
@@ -22,7 +21,6 @@ namespace Read.Reporting.CaseReports
         readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
         readonly IReadModelRepositoryFor<TrainingReport> _trainingReports;
         readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
-        readonly IReadModelRepositoryFor<ListedDataCollector> _listedDataCollectors;
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public EventProcessor(
@@ -31,14 +29,14 @@ namespace Read.Reporting.CaseReports
             IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> caseReportsFromUnknownDataCollectors,
             IReadModelRepositoryFor<TrainingReport> trainingReports,
             IReadModelRepositoryFor<DataCollector> dataCollectors,
-            IReadModelRepositoryFor<ListedDataCollector> listedDataCollector)
+            IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _logger = logger;
             _caseReports = caseReports;
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
             _trainingReports = trainingReports;
             _dataCollectors = dataCollectors;
-            _listedDataCollectors = listedDataCollector;
+            _healthRisks = healthRisks;
         }
         [EventProcessor("5d3c679a-bd2e-4bd3-92f9-903fcdbda064")]
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
@@ -46,18 +44,17 @@ namespace Read.Reporting.CaseReports
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             if (dataCollector.InTraining)
             {
-                var listedDataCollector = _listedDataCollectors.GetById(dataCollector.Id);
                 var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
                 var caseReport = new TrainingReport(caseReportId.Value)
                 {
                     Status = CaseReportStatus.Success,
                     Message = @event.Message,
-                    DataCollectorId = listedDataCollector.Id,
-                    DataCollectorDisplayName = listedDataCollector.DisplayName,
-                    DataCollectorDistrict = listedDataCollector.District,
-                    DataCollectorRegion = listedDataCollector.Region,
-                    DataCollectorVillage = listedDataCollector.Village,
-                    Location = listedDataCollector.Location,
+                    DataCollectorId = dataCollector.Id,
+                    DataCollectorDisplayName = dataCollector.DisplayName,
+                    DataCollectorDistrict = dataCollector.District,
+                    DataCollectorRegion = dataCollector.Region,
+                    DataCollectorVillage = dataCollector.Village,
+                    Location = dataCollector.Location,
                     Origin = @event.Origin,
 
                     HealthRiskId = healthRisk.Id,
