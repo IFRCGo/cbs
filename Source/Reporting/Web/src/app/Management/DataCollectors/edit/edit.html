@@ -74,6 +74,18 @@
     </div>
 
     <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" required [(ngModel)]="isInTraining" name="status" #status="ngModel">
+            <option *ngFor="let opt of trainingOptions" [ngValue]="opt.value">{{opt.status}}</option>
+        </select>
+        <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-warning">
+            <div *ngIf="status.errors?.required">
+                Status is required.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label>Location</label>
         <div *ngIf="dataCollector != null">
             <agm-map [latitude]="dataCollector.location.latitude" [longitude]="dataCollector.location.longitude" (mapClick)="onLocationSelected($event)">
