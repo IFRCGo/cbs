@@ -16,7 +16,6 @@ namespace Read.Reporting.CaseReports
 {
     public class EventProcessor : ICanProcessEvents
     {
-        readonly ILogger _logger;
         readonly IReadModelRepositoryFor<CaseReport> _caseReports;
         readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
         readonly IReadModelRepositoryFor<TrainingReport> _trainingReports;
@@ -24,14 +23,12 @@ namespace Read.Reporting.CaseReports
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public EventProcessor(
-            ILogger logger,
             IReadModelRepositoryFor<CaseReport> caseReports,
             IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> caseReportsFromUnknownDataCollectors,
             IReadModelRepositoryFor<TrainingReport> trainingReports,
             IReadModelRepositoryFor<DataCollector> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
-            _logger = logger;
             _caseReports = caseReports;
             _caseReportsFromUnknownDataCollectors = caseReportsFromUnknownDataCollectors;
             _trainingReports = trainingReports;
