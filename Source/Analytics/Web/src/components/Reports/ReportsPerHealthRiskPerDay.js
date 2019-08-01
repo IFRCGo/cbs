@@ -71,11 +71,11 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                 if (reports != null) {
                     const reportsInRegion = reports[region];
                     if (reportsInRegion != null)
-                        return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
+                        return <TableCell className="cell" align="center" key={i}>{reportsInRegion}</TableCell>;
                     else
-                        return <TableCell className="cell--empty" key={i}>-</TableCell>;
+                        return <TableCell className="cell" align="center" key={i}>-</TableCell>;
                 } else {
-                    return <TableCell className="cell--empty" key={i}>-</TableCell>;
+                    return <TableCell className="cell" align="center" key={i}>-</TableCell>;
                 }
             });
         }
@@ -84,7 +84,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     renderRegions() {
         return this.state.regions.map(region => (
             <TableRow key={region.name}>
-                <TableCell className="headerText" className="cell">{region.name}</TableCell>
+                <TableCell className="headerText" className="cell" align="center">{region.name}</TableCell>
                 {this.renderReports(region.name)}
             </TableRow>)
         );
@@ -93,7 +93,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     renderDays() {
         return this.state.reportsPerHealthRisk.map(report => {
             const day = new Date(report.timestamp).toDateString();
-            return <TableCell className="headerText" key={report.id}>{day}</TableCell>
+            return <TableCell className="headerText" align="center" key={report.id}>{day}</TableCell>
         });
     }
 

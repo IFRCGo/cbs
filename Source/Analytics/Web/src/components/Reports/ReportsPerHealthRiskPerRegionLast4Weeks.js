@@ -44,8 +44,8 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
 
     renderTableCell(numCases, key) {
         return <TableCell key={key}
-            className={numCases === 0 ? 'cell--empty' : 'cell'}
-            align="right">
+            className="cell"
+            align="center">
             {numCases === 0 ? '-' : numCases}
         </TableCell>
     }
@@ -88,11 +88,11 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
                 <TableHead className="tableHead" key="table">
                     <TableRow>
                         <TableCell className="headerText">Region</TableCell>
-                        <TableCell className="headerText" align="right">Last week</TableCell>
-                        <TableCell className="headerText" align="right">2 weeks ago</TableCell>
-                        <TableCell className="headerText" align="right">3 weeks ago</TableCell>
-                        <TableCell className="headerText" align="right">4 weeks ago</TableCell>
-                        <TableCell className="headerText" align="right">Total</TableCell>
+                        <TableCell className="headerText" align="center">Last week</TableCell>
+                        <TableCell className="headerText" align="center">2 weeks ago</TableCell>
+                        <TableCell className="headerText" align="center">3 weeks ago</TableCell>
+                        <TableCell className="headerText" align="center">4 weeks ago</TableCell>
+                        <TableCell className="headerText" align="center">Total</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

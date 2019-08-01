@@ -26,7 +26,6 @@ body {
 
 .headerText {
   color: black !important; //these are marked as !important to override Google's MuiTable styling
-  font-weight: 200;
 
   &.center {
     text-align: center !important;
@@ -41,10 +40,6 @@ body {
   &.center {
     text-align: center;
   }
-}
-
-.cell--empty {
-  color: #b5b5b5 !important;
 }
 
 .lightweightContainer {
@@ -70,8 +65,7 @@ h1 {
     
     &.jumbotron {
         text-align: center;
-        font-weight: 300;
-        margin-top: 5rem;
+        margin-top: 8rem;
     }
 }
 
@@ -85,7 +79,7 @@ h2 {
 
 h3 {
     font-family: "Lato", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 p {
