@@ -122,3 +122,18 @@
 .leaflet-popup-close-button{
     display: none;
 }
+
+.map-cover{
+    background-color: black;
+    height: 500px;
+    width: 100%; 
+    z-index: 10000;
+    position: absolute;
+    background: rgb(0,0,0, 0.6);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; 
+    font-family: lato;
+}
