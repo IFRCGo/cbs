@@ -26,7 +26,7 @@ class CountryOverview extends Component {
             <>
                 <Grid container justify="center">
                 
-                    <Grid item md={10} sm={12} xs={12}>
+                    <Grid item xs={12}>
                         <CBSNavigation activeMenuItem="analytics" />
                     </Grid>
                 

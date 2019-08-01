@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 import './cbs-navigation.scss';
 
 const BASE_URL = process.env.API_BASE_URL;
@@ -114,30 +115,34 @@ class CBSNavigation extends Component {
 
     render() {
         return (
-            <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
-                {this.rcLogo()}
-                <div onClick={this.onMenuClick} className="menu-toggler">
-                    <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
-                </div>
-                <div className="menu-wrapper">
-                    <nav className="header-menu">
-                        {this.createMenuItem("analytics", "Country Overview")}
-
-                        <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
-                            {this.createMenuItem("analytics/#", `Analytics`, true)}
-                            {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
+            <Grid container spacing={0} justify="center" className="header-container">
+                <Grid item xs={10}>
+                    <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
+                        {this.rcLogo()}
+                        <div onClick={this.onMenuClick} className="menu-toggler">
+                            <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
                         </div>
+                        <div className="menu-wrapper">
+                            <nav className="header-menu">
+                                {this.createMenuItem("analytics", "Country Overview")}
 
-                        {this.createMenuItem("admin", "Project Administration")}
-                        {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
-                        {this.createMenuItem("reporting/case-reports", "Reports")}
-                    </nav>
-                    <div className="login-status">
-                        <span><i className="fa fa-user" /> {this.state.username}</span>
-                        <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
-                    </div>
-                </div>
-            </header>
+                                <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
+                                    {this.createMenuItem("analytics/#", `Analytics`, true)}
+                                    {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
+                                </div>
+
+                                {this.createMenuItem("admin", "Project Administration")}
+                                {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
+                                {this.createMenuItem("reporting/case-reports", "Reports")}
+                            </nav>
+                            <div className="login-status">
+                                <span><i className="fa fa-user" /> {this.state.username}</span>
+                                <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
+                            </div>
+                        </div>
+                    </header>
+                </Grid>
+            </Grid>
         );
     }
 }
