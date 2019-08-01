@@ -78,7 +78,7 @@ class CBSNavigation extends Component {
 
     render() {
         return (
-            <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
+            <header className={`header ${this.state.collapseMenu ? `collapsed` : ``}`}>
                 {this.rcLogo()}
                 <div onClick={this.onMenuClick} className="menu-toggler">
                     <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />

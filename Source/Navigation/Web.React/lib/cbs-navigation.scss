@@ -61,7 +61,7 @@ $screen-md-max: 1100px;
       display: block;
     }
 
-    &.hidden .menu-wrapper {
+    &.collapsed .menu-wrapper {
       display: none;
     }
 

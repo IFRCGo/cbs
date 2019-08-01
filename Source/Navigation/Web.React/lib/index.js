@@ -103,7 +103,7 @@ class CBSNavigation extends Component {
 
   render() {
     return React.createElement("header", {
-      className: `header ${this.state.collapseMenu ? `hidden` : ``}`
+      className: `header ${this.state.collapseMenu ? `collapsed` : ``}`
     }, this.rcLogo(), React.createElement("div", {
       onClick: this.onMenuClick,
       className: "menu-toggler"
