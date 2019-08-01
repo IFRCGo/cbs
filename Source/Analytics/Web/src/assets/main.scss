@@ -28,8 +28,9 @@ body {
 .headerText {
   color: black !important; //these are marked as !important to override Google's MuiTable styling
 
-  &.center {
-    text-align: center !important;
+  &.date {
+    white-space: nowrap;
+    padding: 0.5rem;
   }
 }
 

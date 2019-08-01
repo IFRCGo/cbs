@@ -92,9 +92,24 @@ export default class ReportsPerHealthRiskPerDay extends Component {
 
     renderDays() {
         return this.state.reportsPerHealthRisk.map(report => {
-            const day = new Date(report.timestamp).toDateString();
-            return <TableCell className="headerText" align="center" key={report.id}>{day}</TableCell>
+            const day = new Date(report.timestamp);
+            return <TableCell className="headerText date" align="center" key={report.id}>
+                <div>Reports</div>
+                <div>{this.formatDate(day)}</div>
+            </TableCell>
         });
+    }
+
+    formatDate(date) {
+        const today = new Date();
+        if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()){
+            return "today";
+        }
+
+        const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        const month = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + (date.getMonth()+1); //months are 0-indexed
+        const year = date.getFullYear()-2000; //use 2 digits only
+        return day + '.' + month + '.' + year;
     }
 
     render() {
