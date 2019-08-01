@@ -57,9 +57,9 @@ export default class HealthRiskSelector extends Component {
                         {this.renderOptions()}
                     </Select>
 
-                <h3>Reports the last 7 days</h3>
+                <h3>Reports for the last 7 days</h3>
                 <ReportsPerHealthRiskPerDay selectedHealthRisk={this.state.selected} />
-                <h3>Reports the last 4 weeks</h3>
+                <h3>Reports for the last 4 weeks</h3>
                 <ReportsPerHealthRiskPerRegionLast4Weeks selectedHealthRisk={this.state.selected} />
             </div>
         );

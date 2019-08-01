@@ -64,8 +64,8 @@ export default class LastWeekTotals extends Component {
                     <TableHead className="tableHead">
                         <TableRow>
                             <TableCell className="headerText" align="center">Age</TableCell>
-                            <TableCell className="headerText" align="center"> <i className="fa fa-female" style={{fontSize: 16}}> </i> Female</TableCell>
-                            <TableCell className="headerText" align="center"> <i className="fa fa-male" style={{fontSize: 16}}></i> Male</TableCell>
+                            <TableCell className="headerText" align="center"> <i className="fa fa-female" style={{fontSize: 14, color:"#666565"}}> </i> Female</TableCell>
+                            <TableCell className="headerText" align="center"> <i className="fa fa-male" style={{fontSize: 14, color:"#666565"}}></i> Male</TableCell>
                             <TableCell className="headerText" align="center">Total</TableCell>
                         </TableRow>
                     </TableHead>
