@@ -60,7 +60,11 @@ class CBSNavigation extends Component {
     }
 
     createMenuItem(url, text, hasDropdown) {
-        var active = this.props.activeMenuItem;
+        const arr = window.location.pathname.split('/');
+        var active = arr[1];
+        if (active == 'reporting'){ //Reporting has more tabs within one bounded context, so we look at the next step
+            active += '/' + arr[2];
+        }
 
         if (hasDropdown) {
             return <a
