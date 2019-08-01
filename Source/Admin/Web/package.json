@@ -35,6 +35,8 @@
     "navigation": "file:../../Navigation/Web.React",
     "ngx-bootstrap": "^5.1.0",
     "ngx-toastr": "^10.0.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
