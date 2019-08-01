@@ -40,7 +40,7 @@ namespace Read.Reporting.CaseReports
             _dataCollectors = dataCollectors;
             _listedDataCollectors = listedDataCollector;
         }
-        [EventProcessor("7f3b6037-6b2f-448b-8f14-0735330a50e0")]
+        [EventProcessor("5d3c679a-bd2e-4bd3-92f9-903fcdbda064")]
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
