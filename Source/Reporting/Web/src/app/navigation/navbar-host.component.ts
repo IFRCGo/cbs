@@ -6,7 +6,7 @@ import CBSNavigation from '../../../node_modules/navigation/';
 @Component({
   selector: 'navbar-host',
   templateUrl:'./navbar-host.component.html',
-  styleUrls: ['../../../node_modules/navigation/lib/cbs-navigation-v1.scss'],
+  styleUrls: ['../../../node_modules/navigation/lib/cbs-navigation.scss'],
   encapsulation: ViewEncapsulation.None
 })
 
