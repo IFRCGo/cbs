@@ -64,6 +64,8 @@ class CBSNavigation extends Component {
         var active = arr[1];
         if (active == 'reporting'){ //Reporting has more tabs within one bounded context, so we look at the next step
             active += '/' + arr[2];
+        } else if (active == 'analytics' && arr[2] != ""){
+            active += '/' + arr[2]; //For analytics/light
         }
 
         if (hasDropdown) {

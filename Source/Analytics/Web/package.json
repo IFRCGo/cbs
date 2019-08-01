@@ -30,6 +30,7 @@
         "highcharts-react-official": "^2.0.0",
         "leaflet": "^1.4.0",
         "leaflet.markercluster": "^1.4.1",
+        "navigation": "file:../../Navigation/Web.React",
         "path": "^0.12.7",
         "prop-types": "^15.6.2",
         "react": "^16.8.6",
