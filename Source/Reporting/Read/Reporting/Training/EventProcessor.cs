@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using Dolittle.Events.Processing;
-using Dolittle.Logging;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
 using Dolittle.Runtime.Events;
