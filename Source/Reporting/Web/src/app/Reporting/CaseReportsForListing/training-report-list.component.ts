@@ -3,36 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QueryCoordinator } from '@dolittle/queries';
 import { Column, SortableColumn, CaseReportColumns } from './sort/columns';
 import { QuickFilter } from './filtering/filter.pipe';
-import { AllCaseReportsForListing } from './AllCaseReportsForListing';
-import { CaseReportForListing } from './CaseReportForListing';
 import { TrainingReport } from '../CaseReports/TrainingReport';
 import { AllTrainingReports } from '../CaseReports/AllTrainingReports';
 
-//import * as fromServices from '../../services';
-//import * as fromModels from '../../shared/models';
-
 @Component({
-    selector: 'cbs-case-report-list',
-    templateUrl: './case-report-list.component.html',
+    selector: 'cbs-training-report-list',
+    templateUrl: './training-report-list.component.html',
     styleUrls: ['./case-report-list.component.scss']
 })
-/**
- * maxReports: number
- *      The number of reports that can be shown on a page
- * listedReports: Array<any>
- *      The list of reports that is actually shown. Can hold any object so that the data
- *      that the actual object, CaseReport, holds can be accessed. Since when reports
- *      are referenced using the interface Report we can only access the id, success and timeStamp values.
- * reports: Array<Report>
- *      The list of reports fetched from the DB, objects referenced with the Report interface.
- * reports_detailed: Array<any>
- *      The same as reports, the objects are just any object. Not typesafe, but we can access fields that
- *      cannot be accessed through the Report interface
- */
-export class CaseReportListComponent implements OnInit {
+export class TrainingReportListComponent implements OnInit {
 
-    listedReports: Array<CaseReportForListing> = [];
-    trainingReports: Array<TrainingReport> = [];
+    listedReports: Array<TrainingReport> = [];
 
     allFilters: Array<QuickFilter> = QuickFilter.Filters;
     currentFilter: QuickFilter = QuickFilter.All;
@@ -41,9 +22,6 @@ export class CaseReportListComponent implements OnInit {
     sortDescending: boolean = true;
     sortField: string;
     currentSortColumn: SortableColumn = CaseReportColumns[0] as SortableColumn; // Timestamp
-
-    trainingMode: boolean = false;
-    toggleButtonText = 'Training reports';
 
     page = {
         isLoading: false,
@@ -68,16 +46,6 @@ export class CaseReportListComponent implements OnInit {
         }
     }
 
-    toggleData() {
-        this.trainingMode = !this.trainingMode;
-        if (this.trainingMode) {
-            this.toggleButtonText = 'Live reports';
-        } else {
-            this.toggleButtonText = 'Training reports';
-        }
-        this.loadListData();
-    }
-
     updateNavigation(filter: QuickFilter, column: SortableColumn, sortDescending: boolean) {
       this.router.navigate(['../'+filter.name], { relativeTo: this.route, queryParams: {
         sortBy: column.name,
@@ -99,7 +67,7 @@ export class CaseReportListComponent implements OnInit {
         }
     }
 
-    loadTrainingData() {
+    loadListData(): void {
         const queryCoordinator = new QueryCoordinator();
         const query = new AllTrainingReports();
         query.pageNumber = this.page.number;
@@ -110,36 +78,11 @@ export class CaseReportListComponent implements OnInit {
         queryCoordinator.execute(query)
             .then(response => {
                 if (response.success) {
-                    this.trainingReports = response.items as Array<TrainingReport>;
-                    this.trainingReports.forEach(element => {
-                        element.timestamp = new Date(element.timestamp);
-                    });
-                } else {
-                    console.error(response);
-                }
-                this.page.isLoading = false;
-            })
-            .catch(response => {
-                console.error(response);
-                this.page.isLoading = false;
-            });
-    }
-
-    loadRealData() {
-        const queryCoordinator = new QueryCoordinator();
-        const query = new AllCaseReportsForListing();
-        query.pageNumber = this.page.number;
-        query.pageSize = this.page.size;
-        query.sortField = this.sortField;
-        query.sortAscending = !this.sortDescending;
-        this.page.isLoading = true;
-        queryCoordinator.execute(query)
-            .then(response => {
-                if (response.success) {
-                    this.listedReports = response.items as Array<CaseReportForListing>;
+                    this.listedReports = response.items as Array<TrainingReport>;
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
+                    console.log(this.listedReports);
                 } else {
                     console.error(response);
                 }
@@ -149,11 +92,6 @@ export class CaseReportListComponent implements OnInit {
                 console.error(response);
                 this.page.isLoading = false;
             });
-    }
-
-    loadListData(): void {
-        if (this.trainingMode) this.loadTrainingData();
-        else this.loadRealData();
     }
 
     resetPage(): void {
