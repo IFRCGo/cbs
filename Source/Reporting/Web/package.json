@@ -29,13 +29,8 @@
     "@microsoft/applicationinsights-web": "^2.0.0-rc3",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.5.3",
-<<<<<<< HEAD
     "navigation": "file:../../Navigation/Web.React",
-    "ngx-bootstrap": "^2.0.0-rc.0",
-=======
-    "navigation": "file:../../Navigation/Web.Angular",
     "ngx-bootstrap": "^5.1.0",
->>>>>>> ae8be8baeee6463d60b006ca91ae197ca1aa1060
     "ngx-smart-modal": "^7.1.1",
     "ngx-toastr": "^10.0.4",
     "react": "^16.8.6",
