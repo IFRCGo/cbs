@@ -60,18 +60,13 @@ var timePeriod = [
     {label: "7 days", value: 7},
     {label: "4 weeks", value: 28}
 ]
-
+var health
 function MarkerPopupContent(props) {
     return <div>{props.healthRisk}</div>
 }
 
 function CaseMarkers({ caseReportsLastWeek, healthRisks }) {
 
-    for(var key in Object.keys(healthRisks)){
-        if(!(key in Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk))){
-            delete healthRisks[key]
-        }
-    }
     
     if (caseReportsLastWeek == null) return null;
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
@@ -118,8 +113,10 @@ class MapWidget extends Component {
 
         this.state = {
             caseReportsLastWeek: [],
+            caseReportsLastMonth: [], 
             currentVal: timePeriod[0],
-            healthRisks: {},
+            healthRisksMonth: {},
+            healthRisksWeek: {},
             wheelZoom: false,
             isLoading: true,
             isError: false
@@ -147,17 +144,15 @@ class MapWidget extends Component {
     fetchCaseReportsBeforeDay() {
         this.queryCoordinator = new QueryCoordinator();
         let CaseReportsLast7Days;
-        if(this.state.currentVal.value == 7){
-            CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
-        }else{
-            CaseReportsLast7Days = new CaseReportsLast4WeeksQuery();
-        }
+        let CaseReportsLast28Days;
+        CaseReportsLast7Days = new CaseReportsLast7DaysQuery();
+        CaseReportsLast28Days = new CaseReportsLast4WeeksQuery();
+        
 
         this.queryCoordinator.execute(CaseReportsLast7Days).then(queryResult => {
             if (queryResult.success) {
                 this.setState({
                     caseReportsLastWeek: queryResult.items[0],
-                    healthRisks: this.state.healthRisks,
                     wheelZoom: false,
                     isError: false,
                     isLoading: false
@@ -170,6 +165,24 @@ class MapWidget extends Component {
             })
         }
         );
+
+        this.queryCoordinator.execute(CaseReportsLast28Days).then(queryResult => {
+            if (queryResult.success) {
+                this.setState({
+                    caseReportsLastMonth: queryResult.items[0],
+                    wheelZoom: false,
+                    isError: false,
+                    isLoading: false
+                })
+            }
+        }).catch(_ => {
+            this.setState({
+                isLoading: false,
+                isError: true
+            })
+        }
+        );
+
     }
 
     enableZoom(event){
@@ -190,11 +203,17 @@ class MapWidget extends Component {
 
         for (var i = 0; i < markersInCluster; i++) {
             var healthRiskId = markers[i].options.icon.options.html.dataset.healthriskid
+            var healthR;
+            if(this.state.currentVal.value == 7){
+                healthR = this.state.healthRisksWeek
+            }else if(this.state.currentVal.value == 28){
+                healthR = this.state.healthRisksMonth
+            }
 
             if (!(healthRiskId in casesPerHealthRisk)) {
-                if(this.state.healthRisks[healthRiskId]){
+                if(healthR[healthRiskId]){
                 casesPerHealthRisk[healthRiskId] = {
-                    "name": this.state.healthRisks[healthRiskId].name,
+                    "name": healthR[healthRiskId].name,
                     "count": 1,
                     "color": colors[healthRiskId]
                 }
@@ -251,6 +270,19 @@ class MapWidget extends Component {
         else if (this.state.isLoading) {
             return (<div>Loading...</div>);
         }
+        var caseReports;
+
+        if(this.state.currentVal.value == 7){
+            health = this.state.healthRisksWeek
+            caseReports = this.state.caseReportsLastWeek
+
+        }else if(this.state.currentVal.value == 28){
+                health = this.state.healthRisksMonth
+
+            caseReports = this.state.caseReportsLastMonth
+        }else{
+            return (<div>Loading...</div>);
+        }
         return (
             <div>
             
@@ -263,9 +295,9 @@ class MapWidget extends Component {
                             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                         />
                         <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={this.createClusterCustomIcon}>
-                            <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek} healthRisks={this.state.healthRisks}></CaseMarkers>
+                            <CaseMarkers caseReportsLastWeek={caseReports} healthRisks={health}></CaseMarkers>
                         </MarkerClusterGroup>
-                        <MapOverview healthRisks={this.state.healthRisks}></MapOverview>
+                        <MapOverview healthRisks={health}></MapOverview>
                     </Map>
             </div>
             </div>

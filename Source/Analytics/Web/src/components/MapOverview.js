@@ -22,6 +22,7 @@ class MapOverview extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <ul className="healthRiskList">
                 <ListOfHealthRisks healthRisks={this.state.healthRisks}></ListOfHealthRisks>
