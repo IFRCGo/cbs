@@ -82,7 +82,6 @@ export class TrainingReportListComponent implements OnInit {
                     this.listedReports.forEach(element => {
                         element.timestamp = new Date(element.timestamp);
                     });
-                    console.log(this.listedReports);
                 } else {
                     console.error(response);
                 }
