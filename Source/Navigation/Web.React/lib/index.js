@@ -9,7 +9,7 @@ class CBSNavigation extends Component {
     this.state = {
       username: "Unknown",
       showAnalyticsDropdown: false,
-      collapseMenu: false
+      collapseMenu: true
     };
   }
 
@@ -83,14 +83,14 @@ class CBSNavigation extends Component {
   }
 
   createMenuItem(url, text, hasDropdown) {
-    const arr = window.location.pathname.split('/');
-    var active = arr[1];
+    const pathNames = window.location.pathname.split('/');
+    var active = pathNames[1];
 
     if (active == 'reporting') {
       //Reporting has more tabs within one bounded context, so we look at the next step
-      active += '/' + arr[2];
-    } else if (active == 'analytics' && arr[2] != "") {
-      active += '/' + arr[2]; //For analytics/light
+      active += '/' + pathNames[2];
+    } else if (active == 'analytics' && pathNames[2] != "") {
+      active += '/' + pathNames[2]; //For analytics/light
     }
 
     if (hasDropdown) {
