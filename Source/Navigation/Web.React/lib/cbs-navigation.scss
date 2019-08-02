@@ -9,12 +9,15 @@ $screen-md-max: 1100px;
 
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 
+.header-container {
+  border-bottom: 1px solid $gray-lighter;
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0;
-  border-bottom: 1px solid $gray-lighter;
 
   .menu-toggler {
     display: none;
