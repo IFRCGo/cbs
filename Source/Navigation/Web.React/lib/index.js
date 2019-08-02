@@ -90,7 +90,8 @@ class CBSNavigation extends Component {
       //Reporting has more tabs within one bounded context, so we look at the next step
       active += '/' + pathNames[2];
     } else if (active == 'analytics' && pathNames[2] != "") {
-      active += '/' + pathNames[2]; //For analytics/light
+      active += '/#'; // to mark analytics when the active page is one of the dropdowns
+      // TODO: mark the dropdown elements as well as the main one
     }
 
     if (hasDropdown) {

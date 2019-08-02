@@ -20,7 +20,7 @@ export default class LightweightAreaOverview extends Component {
                 <Grid container item xs={10} justify="center">
                     <div className="lightweight">
                         <h1 className="jumbotron">Light Area Overview</h1>
-                        <p>This is the light version of the country overview page. If you want the normal version click <Link to="/analytics">here</Link></p>
+                        <p>This is the light version of the country overview page. If you want the normal version click <Link to="/analytics/">here</Link></p>
                     </div>
                 </Grid>
                 <Grid item xs={10}>
