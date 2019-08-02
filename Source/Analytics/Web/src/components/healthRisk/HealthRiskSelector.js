@@ -38,7 +38,7 @@ export default class HealthRiskSelector extends Component {
     renderOptions() {
         return this.state.healthRisks.map(
             healthRisk => (
-                <option value={healthRisk.name}> {healthRisk.name} </option>)
+                <option key={healthRisk.name} value={healthRisk.name}> {healthRisk.name} </option>)
         );
     }
 
