@@ -71,11 +71,11 @@ export default class ReportsPerHealthRiskPerDay extends Component {
                 if (reports != null) {
                     const reportsInRegion = reports[region];
                     if (reportsInRegion != null)
-                        return <TableCell className="cell" key={i}>{reportsInRegion}</TableCell>;
+                        return <TableCell className="cell" align="center" key={i}>{reportsInRegion}</TableCell>;
                     else
-                        return <TableCell className="cell--empty" key={i}>-</TableCell>;
+                        return <TableCell className="cell" align="center" key={i}>-</TableCell>;
                 } else {
-                    return <TableCell className="cell--empty" key={i}>-</TableCell>;
+                    return <TableCell className="cell" align="center" key={i}>-</TableCell>;
                 }
             });
         }
@@ -84,7 +84,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
     renderRegions() {
         return this.state.regions.map(region => (
             <TableRow key={region.name}>
-                <TableCell className="headerText" className="cell">{region.name}</TableCell>
+                <TableCell className="headerText" className="cell" align="center">{region.name}</TableCell>
                 {this.renderReports(region.name)}
             </TableRow>)
         );
@@ -92,9 +92,20 @@ export default class ReportsPerHealthRiskPerDay extends Component {
 
     renderDays() {
         return this.state.reportsPerHealthRisk.map(report => {
-            const day = new Date(report.timestamp).toDateString();
-            return <TableCell className="headerText" key={report.id}>{day}</TableCell>
+            const day = new Date(report.timestamp);
+            return <TableCell className="headerText date" align="center" key={report.id}>
+                <div>{this.formatDate(day)}</div>
+            </TableCell>
         });
+    }
+
+    formatDate(date) {
+        const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        const month = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + (date.getMonth()+1); //months are 0-indexed
+        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+        const weekday = weekdays[date.getDay()];
+        
+        return weekday + ' ' + day + '.' + month;
     }
 
     render() {
@@ -102,7 +113,7 @@ export default class ReportsPerHealthRiskPerDay extends Component {
             <Table className="table">
                 <TableHead className="tableHead">
                     <TableRow>
-                        <TableCell className="headerText">Region</TableCell>
+                        <TableCell className="headerText" align="center">Region</TableCell>
                         {this.renderDays()}
                     </TableRow>
                 </TableHead>
