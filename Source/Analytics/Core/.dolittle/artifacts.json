@@ -204,6 +204,14 @@
       "5764eae6-fc2e-4c46-a6d7-fd6c978499fc": {
         "generation": 1,
         "type": "Events.Reporting.DataCollectors.DataCollectorVillageChanged, Events.Reporting"
+      },
+      "a73348f5-45ab-4913-8a6f-5947b44d6944": {
+        "generation": 1,
+        "type": "Events.Reporting.DataCollectors.DataCollectorBeganTraining, Events.Reporting"
+      },
+      "950cef1b-5e9f-44e3-b410-67749573eda7": {
+        "generation": 1,
+        "type": "Events.Reporting.DataCollectors.DataCollectorCompletedTraining, Events.Reporting"
       }
     },
     "eventSources": {},
