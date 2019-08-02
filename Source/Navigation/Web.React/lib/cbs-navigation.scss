@@ -59,6 +59,7 @@ $screen-md-max: 1100px;
 @media (max-width: $screen-md-max) {
   .header {
     height: 70px;
+    border-bottom: 1px solid $gray-lighter;
 
     .menu-toggler {
       display: block;
