@@ -21,6 +21,7 @@ RUN dotnet publish --no-restore -c Release -o out
 FROM node:11.6-slim AS build-web
 
 # Install dependencies
+COPY ./Source/Navigation /CBS/Source/Navigation
 COPY ./Source/Analytics/Web/package.json /CBS/Source/Analytics/Web/package.json
 WORKDIR /CBS/Source/Analytics/Web
 RUN yarn install

@@ -69,7 +69,7 @@ class OverviewTop extends Component {
                     <p>All reports since project start:  {this.state.total} </p>
                 </div>
                 <div className="card">
-                    <i className="fa fa-user icon"></i>
+                    <i className="fa fa-male icon"></i>
                     <p>All data collectors: <br />
                         Active: {this.state.activeDataCollectors} <br />
                         Inactive: {this.state.inactiveDataCollectors}

@@ -12,9 +12,9 @@ function Circles({ size, numberOfCases, casesPerHealthRisk }) {
         var strokeDasharray = areaPerColor + ' 100'
         var strokeDashoffset = nextOffset
         nextOffset -= areaPerColor
-        var listItem = <li style={{ fontSize: "10px" }}>  <div className="overview-healthrisk-label" style={{backgroundColor: casesPerHealthRisk[key].color}}></div> {casesPerHealthRisk[key].name} : {casesPerHealthRisk[key].count}  </li>
+        var listItem = <li key={key} style={{ fontSize: "10px" }}><div className="overview-healthrisk-label" style={{ backgroundColor: casesPerHealthRisk[key].color }}></div> {casesPerHealthRisk[key].name} : {casesPerHealthRisk[key].count}  </li>
         var stroke = casesPerHealthRisk[key].color
-        var circle = <circle cx={"50%"} cy={"50%"} r={"24.9%"} style={{strokeDasharray: strokeDasharray, strokeDashoffset: strokeDashoffset, stroke: stroke }}></circle>
+        var circle = <circle key={key} cx={"50%"} cy={"50%"} r={"24.9%"} style={{ strokeDasharray: strokeDasharray, strokeDashoffset: strokeDashoffset, stroke: stroke }}></circle>
         listItems.push(listItem)
         circles.push(circle)
     }
@@ -29,7 +29,6 @@ function Circles({ size, numberOfCases, casesPerHealthRisk }) {
     </div>
         <svg viewBox="0 0 64 64" className="pie" width={sizePx} height={sizePx}>{circles}</svg>
         <div className="number-of-cases-in-cluster">{numberOfCases}</div>
-
     </div>
     );
 }

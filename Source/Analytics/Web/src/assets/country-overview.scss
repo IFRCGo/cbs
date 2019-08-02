@@ -1,16 +1,15 @@
+@import "colors.scss";
+
 .overview-top {
     display: flex;
     justify-content: space-around;
-    font-family: Lato, "Helvetica Neue", sans-serif1;
-    font-weight: 300;
+    font-family: "Lato", "Helvetica Neue", sans-serif;
+    font-weight: 400;
     margin: 60px 25%;
   
     .icon {
-      text-align: center;
-      transform: scale(5);
-      transform-style: flat;
-      color: rgb(211, 211, 211);
-      margin-bottom: 25px;
+      font-size: 5rem;
+      color: $rc-red;
     }
   
     .card {

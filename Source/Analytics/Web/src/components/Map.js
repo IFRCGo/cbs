@@ -23,32 +23,32 @@ var colors = {
     4: "#56A0D3",
     5: "#7F181B",
     6: "#6D6E70",
-    7:"#aaffc3",
-    8:"#800000",
-    9:"#42d4f4",
-    10:"#bfef45",
-    11:"#000075",
-    12:"#a9a9a9",
-    13:"#808000",
-    14:"#aaffc3",
-    15:"aquamarine",
-    16:"seashell",
-    17:"black",
-    18:"#f58231",
-    19:"skyblue",
-    20:"#fabebe",
-    21:"fa9907",
-    23:"teal",
-    24:"tomato",
-    25:"gray",
-    26:"#7F181B",
-    27:"violet",
-    28:"#fa9907",
-    29:"peachpuff",
-    30:"white",
-    31:"silver",
-    32:"wheat",
-    99:"lightcoral"
+    7: "#aaffc3",
+    8: "#800000",
+    9: "#42d4f4",
+    10: "#bfef45",
+    11: "#000075",
+    12: "#a9a9a9",
+    13: "#808000",
+    14: "#aaffc3",
+    15: "aquamarine",
+    16: "seashell",
+    17: "black",
+    18: "#f58231",
+    19: "skyblue",
+    20: "#fabebe",
+    21: "fa9907",
+    23: "teal",
+    24: "tomato",
+    25: "gray",
+    26: "#7F181B",
+    27: "violet",
+    28: "#fa9907",
+    29: "peachpuff",
+    30: "white",
+    31: "silver",
+    32: "wheat",
+    99: "lightcoral"
 }
 
 var healthRisks = {}
@@ -98,7 +98,7 @@ function MarkerPopupContent(props) {
 
 function CaseMarkers({ caseReportsLastWeek }) {
     if (caseReportsLastWeek == null) return null;
-    
+
     // Returns one Marker for each case in a case-report and sets an unique color for each specific health risk
     return Object.keys(caseReportsLastWeek.caseReportsPerHealthRisk).map(function (healthRiskId) {
         var allCasesReportsForHealthRisk = caseReportsLastWeek.caseReportsPerHealthRisk[healthRiskId]
@@ -126,7 +126,7 @@ function CaseMarkers({ caseReportsLastWeek }) {
                     html: htmlElement
                 });
 
-                markers.push(<Marker position={[grouping.location.longitude, grouping.location.latitude]} icon={icon}>
+                markers.push(<Marker key={i} position={[grouping.location.longitude, grouping.location.latitude]} icon={icon}>
                     <Popup closeButton="true" autoClose="true">
                         <MarkerPopupContent healthRisk={healthRiskName}></MarkerPopupContent>
                     </Popup>
@@ -187,10 +187,10 @@ class MapWidget extends Component {
         );
     }
 
-    enableZoom(event){
+    enableZoom(event) {
         event.target.scrollWheelZoom.enable();
     }
-    disableZoom(event){
+    disableZoom(event) {
         event.target.scrollWheelZoom.disable()
     }
 
@@ -224,17 +224,17 @@ class MapWidget extends Component {
 
         return (
             <>
-            <h2 className="headline">Geographic overview of reports</h2>
-            <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                />
-                <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={createClusterCustomIcon}>
-                    <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
-                </MarkerClusterGroup>
-                <MapOverview healthRisks={healthRisks}></MapOverview>
-            </Map>
+                <h2 className="headline">Geographic overview of reports</h2>
+                <Map onFocusIn={this.clicked} onBlur={this.disableZoom} onFocus={this.enableZoom} scrollWheelZoom={false} className="markercluster" center={[1.0, 1.0]} zoom={1} maxZoom={50}>
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                    />
+                    <MarkerClusterGroup onClusterClick={this.test} iconCreateFunction={createClusterCustomIcon}>
+                        <CaseMarkers caseReportsLastWeek={this.state.caseReportsLastWeek}></CaseMarkers>
+                    </MarkerClusterGroup>
+                    <MapOverview healthRisks={healthRisks}></MapOverview>
+                </Map>
             </>
         );
     }

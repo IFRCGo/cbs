@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "target": "es2015",
     "allowJs": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
     ],

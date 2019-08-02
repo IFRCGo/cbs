@@ -38,28 +38,28 @@ export default class HealthRiskSelector extends Component {
     renderOptions() {
         return this.state.healthRisks.map(
             healthRisk => (
-                <MenuItem
-                    key={healthRisk.healthRiskNumber}
-                    value={healthRisk.name}
-                >{healthRisk.name}</MenuItem>)
+                <option key={healthRisk.name} value={healthRisk.name}> {healthRisk.name} </option>)
         );
     }
 
     render() {
         return (
             <div className="tableContainer">
-                <h2 className="headline">Reports for
-                <Select className="headline-select"
+                <h2 className="headline">Reports for one health risk </h2>
+
+                Select health risk: 
+                    <Select 
+                        native
+                        className="headline-select"
                         value={this.state.selected}
                         onChange={this.saveSelectedValue.bind(this)}
                     >
                         {this.renderOptions()}
                     </Select>
-                </h2>
 
-                <h3>Reports the last 7 days</h3>
+                <h3>Reports for the last 7 days</h3>
                 <ReportsPerHealthRiskPerDay selectedHealthRisk={this.state.selected} />
-                <h3>Reports the last 4 weeks</h3>
+                <h3>Reports for the last 4 weeks</h3>
                 <ReportsPerHealthRiskPerRegionLast4Weeks selectedHealthRisk={this.state.selected} />
             </div>
         );

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import OverviewTop from '../OverviewTop/OverviewTop.js';
 import Map from "../Map.js";
-import CBSNavigation from '../Navigation/CBSNavigation';
+import CBSNavigation from '../../../node_modules/navigation/lib/index.js';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
@@ -24,9 +24,13 @@ class CountryOverview extends Component {
     render() {
         return (
             <>
-                <CBSNavigation activeMenuItem="analytics" />
                 <Grid container justify="center">
-                    <Grid container item xs={10} spacing={0}>
+                
+                    <Grid item xs={12}>
+                        <CBSNavigation activeMenuItem="analytics" />
+                    </Grid>
+                
+                    <Grid container item xs={11} sm={10} spacing={0}>
                         <Grid item xs={12}>
                             <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
@@ -40,7 +44,7 @@ class CountryOverview extends Component {
                         </Grid>
 
                         <Grid item container xs={12}>
-                            <Grid item xs={4}>
+                            <Grid item md={6} xs={12}>
                                 <LastWeekTotals />
                             </Grid>
                         </Grid>
