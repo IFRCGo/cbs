@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import HealthRiskSelector from '../healthRisk/HealthRiskSelector';
 import CBSNavigation from '../Navigation/CBSNavigation';
-import '../../assets/main.scss';
 
 export default class LightweightAreaOverview extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class LightweightAreaOverview extends Component {
                 <Grid item xs={12}>
                     <CBSNavigation activeMenuItem="analytics/#" />
                 </Grid>
-                
+
                 <Grid container item xs={10} justify="center">
                     <div className="lightweight">
                         <h1 className="jumbotron">Light Area Overview</h1>

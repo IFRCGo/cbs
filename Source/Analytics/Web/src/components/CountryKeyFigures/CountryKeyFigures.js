@@ -3,7 +3,7 @@ import { AllCaseReportsQuery } from "../../Features/CaseReports/AllCaseReportsQu
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
 
-class OverviewTop extends Component {
+class CountryKeyFigures extends Component {
     constructor(props) {
         super(props);
 
@@ -63,20 +63,29 @@ class OverviewTop extends Component {
 
     render() {
         return (
-            <div className="overview-top">
-                <div className="card">
+            <div className="country-key-figures">
+                <div className="key-figure">
                     <i className="fa fa-heart icon"></i>
-                    <p>All reports since project start:  {this.state.total} </p>
+                    <p className="key-figure-text">
+                        <span>All reports since project start: </span>
+                        <span className="key-figure-number">{this.state.total}</span>
+                    </p>
                 </div>
-                <div className="card">
+                <div className="key-figure">
                     <i className="fa fa-male icon"></i>
-                    <p>All data collectors: <br />
-                        Active: {this.state.activeDataCollectors} <br />
-                        Inactive: {this.state.inactiveDataCollectors}
+                    <p>All data collectors:
+                        <span className="key-figure-text key-figure-text--subcategory">
+                            <span>Active: </span>
+                            <span className="key-figure-number">{this.state.activeDataCollectors}</span>
+                        </span>
+                        <span className="key-figure-text key-figure-text--subcategory">
+                            <span>Inactive: </span>
+                            <span className="key-figure-number">{this.state.inactiveDataCollectors}</span>
+                        </span>
                     </p>
                 </div>
             </div>
         );
     }
 }
-export default OverviewTop;
+export default CountryKeyFigures;

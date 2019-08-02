@@ -1,6 +1,8 @@
+@import "inclusions.scss";
+
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 @import "colors.scss";
-@import "country-overview.scss";
+@import "vars.scss";
 
 html {
   font-size: 16px;
@@ -8,27 +10,27 @@ html {
 }
 
 body {
-  margin: 0;
-  margin-bottom: 6rem;
+  margin: 0 0 6rem 0;
 }
 
-.tableContainer {
-  margin-left: 0;
+h1 {
+  font-size: 2.5rem;
+
+  &.jumbotron {
+    font-weight: 300;
+    text-align: center;
+    margin-top: 8rem;
+  }
 }
 
-.table {
-  border: 1px solid $medium-grey;
-  margin-bottom: 50px;
+h2 {
+  &.headline {
+    font-weight: 300;
+  }
 }
 
-.tableHead {
-  background-color: $light-grey;
-}
-
-.headerText {
-  font-family: "Lato", sans-serif;
-  color: black !important; //these are marked as !important to override Google's MuiTable styling
-  padding: 0.3rem !important;
+h3 {
+  font-size: 1rem;
 }
 
 .headline-select {
@@ -36,53 +38,9 @@ body {
   margin-bottom: 2rem;
 }
 
-.cell {
-  font-family: "Lato", sans-serif;
-  padding: 0 1rem !important;
-}
-
-.lightweightContainer {
-  margin: 1rem;
-}
-
-.lightweight-header {
-  text-align: center;
-  font-size: 28px;
-}
-
-.lightweight-description {
-  text-align: center;
-  font-size: 18px;
-}
-
-body {
-    margin: 0;
-}
-
-h1 {
-    font-family: "Lato", sans-serif;
-    font-size: 2.5rem;
-    
-    &.jumbotron {
-        font-weight: 300;
-        text-align: center;
-        margin-top: 8rem;
-    }
-}
-
-h2 {
-    font-family: "Lato", sans-serif;
-    
-    &.headline {
-        font-weight: 300;
-    }
-}
-
-h3 {
-    font-family: "Lato", sans-serif;
-    font-size: 1rem;
-}
-
-p {
-    font-family: "Lato", sans-serif;
+@media (max-width: $screen-sm-max) {
+  h1.jumbotron {
+    margin: 25px 0 25px 0;
+    @include fontSize(20);
+  }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import OverviewTop from '../OverviewTop/OverviewTop.js';
+import CountryKeyFigures from '../CountryKeyFigures/CountryKeyFigures.js';
 import Map from "../Map.js";
 import CBSNavigation from '../Navigation/CBSNavigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
@@ -25,18 +25,18 @@ class CountryOverview extends Component {
         return (
             <>
                 <Grid container justify="center">
-                
+
                     <Grid item xs={12}>
                         <CBSNavigation activeMenuItem="analytics" />
                     </Grid>
-                
+
                     <Grid container item xs={11} sm={10} spacing={0}>
                         <Grid item xs={12}>
                             <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
-                    
+
                         <Grid item xs={12}>
-                            <OverviewTop />
+                            <CountryKeyFigures />
                         </Grid>
 
                         <Grid item xs={12}>

@@ -1,16 +1,9 @@
-$link-color: rgb(206, 23, 30);
-$gray-lighter: lighten(#000, 50%);
-$brand-primary: #234361;
-$rc-red: #ca0000;
-$rc-red-darker: #ab0900;
-
-$screen-sm-max: 480px;
-$screen-md-max: 1100px;
-
+@import "../../assets/colors.scss";
+@import "../../assets/vars.scss";
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 
 .header-container {
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px solid $grey;
 }
 
 .header {
@@ -56,7 +49,7 @@ $screen-md-max: 1100px;
   }
 }
 
-@media (max-width: $screen-md-max) {
+@media (max-width: $screen-lg-max) {
   .header {
     height: 70px;
 
@@ -75,8 +68,8 @@ $screen-md-max: 1100px;
       right: 0;
       width: 100%;
       max-width: 280px;
-      border-left: 1px solid $gray-lighter;
-      border-bottom: 1px solid $gray-lighter;
+      border-left: 1px solid $grey;
+      border-bottom: 1px solid $grey;
 
       .header-menu {
         flex-direction: column;
@@ -175,7 +168,7 @@ $screen-md-max: 1100px;
   }
 }
 
-@media (max-width: $screen-md-max) {
+@media (max-width: $screen-lg-max) {
   .menu-dropdown {
     &.active .menu-item:hover {
       background-color: $rc-red-darker;
