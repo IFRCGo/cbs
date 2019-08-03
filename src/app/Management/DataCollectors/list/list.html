@@ -1,0 +1,48 @@
+<div class="header">
+    <h2>Data Collectors</h2>
+    <a [routerLink]="['/datacollectors/register']" routerLinkActive="active">
+        <button class="btn btn-primary">
+            Add Data Collector
+        </button>
+    </a>
+    <a>
+        <export></export>
+    </a>
+</div>
+<div class="alert-danger" *ngIf="error">
+    {{errorMsg}}
+</div>
+<table class="table table-striped" *ngIf="!error">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Display Name</th>
+            <th>Phone Numbers</th>
+            <th></th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>
+                <a routerLink="/datacollectors/details/{{user.id}}">
+                    <span>
+                        {{user.fullName}}
+                    </span>
+                </a>
+            </td>
+            <td>
+                {{user.displayName}}
+            </td>
+            <td>
+                <span>{{user.phoneNumbers}}</span>
+            </td>
+            <td>
+            </td>
+            <td>
+                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
+                <delete-user [user]=user></delete-user>
+            </td>
+        </tr>
+    </tbody>
+</table>
