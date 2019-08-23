@@ -1,0 +1,23 @@
+.tableContainer {
+  margin-left: 0;
+}
+
+.table {
+  border: 1px solid $medium-grey;
+  margin-bottom: 50px;
+}
+
+.tableHead {
+  background-color: $light-grey;
+}
+
+.headerText {
+  font-family: "Lato", sans-serif;
+  color: black !important; //these are marked as !important to override Google's MuiTable styling
+  padding: 0.3rem !important;
+}
+
+.cell {
+  font-family: "Lato", sans-serif;
+  padding: 0 1rem !important;
+}
