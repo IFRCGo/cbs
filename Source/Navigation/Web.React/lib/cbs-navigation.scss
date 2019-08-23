@@ -57,7 +57,7 @@
       display: block;
     }
 
-    &.hidden .menu-wrapper {
+    &.collapsed .menu-wrapper {
       display: none;
     }
 
@@ -112,7 +112,7 @@
   font-size: 0.9rem;
   color: $brand-primary;
   padding: 1.6rem 2rem;
-  text-decoration: none;
+  text-decoration: none !important; //override bootstrap styling
 
   &:not(.active):hover {
     background-color: $rc-red;
@@ -122,7 +122,7 @@
   &.active {
     background-color: $rc-red;
     color: white;
-    cursor: default;
+    cursor: pointer;
   }
 
   i {

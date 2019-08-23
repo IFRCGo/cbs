@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
 import './cbs-navigation.scss';
-
-const BASE_URL = process.env.API_BASE_URL;
 
 class CBSNavigation extends Component {
 
@@ -28,43 +24,10 @@ class CBSNavigation extends Component {
         this.setState(prevState => ({ collapseMenu: !prevState.collapseMenu }));
     }
 
-    fetchData() {
-        if (process.env.environment !== 'production') {
-            this.url = `http://www.mocky.io/v2/5cdc46d52d00003b12f5a6da`;
-            fetch(this.url, { method: "GET" }).then(response => response.json())
-                .then(json =>
-                    this.setState({
-                        username: json.name
-                    })
-                )
-                .catch(_ =>
-                    this.setState({
-                        isLoading: false,
-                        isError: true
-                    })
-                );
-        }
-        else {
-            this.url = `${BASE_URL}/identity`;
-            fetch(this.url, { method: "GET" }).then(response => response.text())
-                .then(text =>
-                    this.setState({
-                        username: text
-                    })
-                )
-                .catch(_ =>
-                    this.setState({
-                        isLoading: false,
-                        isError: true
-                    })
-                );
-
-        }
-        this.setState({ isLoading: true });
-    }
-
     componentDidMount() {
-        this.fetchData();
+        if (this.props.username !== undefined){
+            this.setState({username: this.props.username});
+        }
     }
 
     rcLogo() {
@@ -90,22 +53,29 @@ class CBSNavigation extends Component {
         return (
             <div>
                 <div className="dropdown-content">
-                    <Link to="/analytics/light" className="dropdown-item"><div className="d-i-text">Light area overview</div></Link>
+                    <a href="/analytics/light" className="dropdown-item"><div className="d-i-text">Light area overview</div></a>
                 </div>
             </div>
         )
     }
 
     createMenuItem(url, text, hasDropdown) {
-        var active = this.props.activeMenuItem;
+        const pathNames = window.location.pathname.split('/');
+        var active = pathNames[1];
+        if (active == 'reporting'){ //Reporting has more tabs within one bounded context, so we look at the next step
+            active += '/' + pathNames[2];
+        } else if (active == 'analytics' && pathNames[2] != ""){
+            active += '/#'; // to mark analytics when the active page is one of the dropdowns
+            // TODO: mark the dropdown elements as well as the main one
+        }
 
         if (hasDropdown) {
-            return <Link
+            return <a
                 onClick={this.onClick}
-                to={`/${url}/`}
+                href={`/${url}/`}
                 className={`menu-item ${url == active ? `active` : ``}`}>
                 {text} <i className={`fa ${this.state.showAnalyticsDropdown ? `fa-chevron-up` : `fa-chevron-down`}`} />
-            </Link>
+            </a>
         }
 
         return <a href={`/${url}/`} className={`menu-item ${url == active ? `active` : ``}`}>
@@ -115,12 +85,18 @@ class CBSNavigation extends Component {
 
     render() {
         return (
-            <Grid container spacing={0} justify="center" className="header-container">
-                <Grid item xs={12} sm={10}>
-                    <header className={`header ${this.state.collapseMenu ? `hidden` : ``}`}>
-                        {this.rcLogo()}
-                        <div onClick={this.onMenuClick} className="menu-toggler">
-                            <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
+            <header className={`header ${this.state.collapseMenu ? `collapsed` : ``}`}>
+                {this.rcLogo()}
+                <div onClick={this.onMenuClick} className="menu-toggler">
+                    <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
+                </div>
+                <div className="menu-wrapper">
+                    <nav className="header-menu">
+                        {this.createMenuItem("analytics", "Country Overview")}
+
+                        <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
+                            {this.createMenuItem("analytics/#", `Analytics`, true)}
+                            {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                         </div>
                         <div className="menu-wrapper">
                             <nav className="header-menu">
