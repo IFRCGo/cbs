@@ -75,8 +75,8 @@ namespace Core.CaseReports.Formats
                 
                 worksheet.Cells[row, 13].Value = report.NumberOfMalesUnder5 + report.NumberOfFemalesUnder5;
                 worksheet.Cells[row, 14].Value = report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesAged5AndOlder;
-                worksheet.Cells[row, 15].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder;
-                worksheet.Cells[row, 16].Value = report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 15].Value = report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
+                worksheet.Cells[row, 16].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder;
                 worksheet.Cells[row, 17].Value = report.NumberOfMalesUnder5 + report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
             }
             else
