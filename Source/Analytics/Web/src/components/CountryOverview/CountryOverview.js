@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import CountryKeyFigures from '../CountryKeyFigures/CountryKeyFigures.js';
 import Map from "../Map.js";
-import CBSNavigation from '../../../node_modules/navigation/lib/index.js';
+import CBSNavigation from 'navigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
