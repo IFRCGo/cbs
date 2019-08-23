@@ -50,14 +50,14 @@ export class Edit implements OnInit {
         toastr.toastrConfig.positionClass = 'toast-top-center';
     }
     ngOnInit(): void {
+        this.queryCoordinator = new QueryCoordinator();
+        this.commandCoordinator = new CommandCoordinator();
+        
         this.route.params.subscribe(params => {
             this.getDataCollector();
         });
 
         this.appInsightsService.trackPageView('Edit Data Collector');
-
-        this.queryCoordinator = new QueryCoordinator();
-        this.commandCoordinator = new CommandCoordinator();
     }
 
     getDataCollector(): void {
