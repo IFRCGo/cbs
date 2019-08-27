@@ -25,8 +25,8 @@ class CBSNavigation extends Component {
     }
 
     componentDidMount() {
-        if (this.props.username !== undefined){
-            this.setState({username: this.props.username});
+        if (this.props.username !== undefined) {
+            this.setState({ username: this.props.username });
         }
     }
 
@@ -62,9 +62,9 @@ class CBSNavigation extends Component {
     createMenuItem(url, text, hasDropdown) {
         const pathNames = window.location.pathname.split('/');
         var active = pathNames[1];
-        if (active == 'reporting'){ //Reporting has more tabs within one bounded context, so we look at the next step
+        if (active == 'reporting') { //Reporting has more tabs within one bounded context, so we look at the next step
             active += '/' + pathNames[2];
-        } else if (active == 'analytics' && pathNames[2] != ""){
+        } else if (active == 'analytics' && pathNames[2] != "") {
             active += '/#'; // to mark analytics when the active page is one of the dropdowns
             // TODO: mark the dropdown elements as well as the main one
         }
@@ -90,6 +90,7 @@ class CBSNavigation extends Component {
                 <div onClick={this.onMenuClick} className="menu-toggler">
                     <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
                 </div>
+
                 <div className="menu-wrapper">
                     <nav className="header-menu">
                         {this.createMenuItem("analytics", "Country Overview")}
@@ -98,27 +99,17 @@ class CBSNavigation extends Component {
                             {this.createMenuItem("analytics/#", `Analytics`, true)}
                             {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
                         </div>
-                        <div className="menu-wrapper">
-                            <nav className="header-menu">
-                                {this.createMenuItem("analytics", "Country Overview")}
 
-                                <div className={`menu-dropdown ${this.state.showAnalyticsDropdown ? `active` : ``}`}>
-                                    {this.createMenuItem("analytics/#", `Analytics`, true)}
-                                    {this.state.showAnalyticsDropdown && this.analyticsDropdown()}
-                                </div>
-
-                                {this.createMenuItem("admin", "Project Administration")}
-                                {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
-                                {this.createMenuItem("reporting/case-reports", "Reports")}
-                            </nav>
-                            <div className="login-status">
-                                <span><i className="fa fa-user" /> {this.state.username}</span>
-                                <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
-                            </div>
-                        </div>
-                    </header>
-                </Grid>
-            </Grid>
+                        {this.createMenuItem("admin", "Project Administration")}
+                        {this.createMenuItem("reporting/datacollectors", "Data Collectors")}
+                        {this.createMenuItem("reporting/case-reports", "Reports")}
+                    </nav>
+                    <div className="login-status">
+                        <span><i className="fa fa-user" /> {this.state.username}</span>
+                        <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
+                    </div>
+                </div>
+            </header>
         );
     }
 }
