@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import {Component, OnInit, AfterContentInit, ViewEncapsulation} from '@angular/core';
-import CBSNavigation from '../../../node_modules/navigation/';
+import CBSNavigation from 'navigation/';
 
 @Component({
   selector: 'navbar-host',

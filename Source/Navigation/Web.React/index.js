@@ -69,6 +69,11 @@ class CBSNavigation extends Component {
             // TODO: mark the dropdown elements as well as the main one
         }
 
+        if (active == '') {
+            // to mark admin as active when using the base URL
+            active = 'admin';
+        }
+
         if (hasDropdown) {
             return <a
                 onClick={this.onClick}

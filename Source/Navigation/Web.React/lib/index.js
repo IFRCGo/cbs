@@ -94,6 +94,9 @@ class CBSNavigation extends Component {
       // TODO: mark the dropdown elements as well as the main one
     }
 
+    if (active == '') {// admin case
+    }
+
     if (hasDropdown) {
       return React.createElement("a", {
         onClick: this.onClick,
