@@ -47,6 +47,11 @@
     "@angular/language-service": "^8.0.0",
     "codelyzer": "^5.0.1",
     "tslint": "~5.3.2",
-    "typescript": "~3.4.5"
+    "typescript": "~3.4.5",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0"
   }
 }
