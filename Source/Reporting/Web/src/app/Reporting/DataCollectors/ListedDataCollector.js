@@ -18,6 +18,5 @@ export class ListedDataCollector extends ReadModel
         this.district = '';
         this.region = '';
         this.village = '';
-        this.lastActive = new Date();
     }
 }

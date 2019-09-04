@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
@@ -36,8 +35,6 @@ namespace Read.Reporting.CaseReportsForListing
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
-
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.Success,
@@ -65,7 +62,7 @@ namespace Read.Reporting.CaseReportsForListing
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
         [EventProcessor("9b505b35-54e3-4e35-bccd-79d330de9c54")]
         public void Process(CaseReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
-        {
+        {            
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
@@ -93,7 +90,6 @@ namespace Read.Reporting.CaseReportsForListing
         public void Process(InvalidReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
@@ -146,13 +142,6 @@ namespace Read.Reporting.CaseReportsForListing
             var caseReport = _caseReports.GetById(caseReportId.Value);
 
             _caseReports.Delete(caseReport);
-        }
-
-        public void UpdateDataCollectorLastActive(Guid dataCollectorId, DateTimeOffset timestamp)
-        {
-            var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            dataCollector.LastActive = timestamp;
-            _dataCollectors.Update(dataCollector);
         }
     }
 }

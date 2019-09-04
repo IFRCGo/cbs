@@ -25,6 +25,5 @@ namespace Read.Reporting.DataCollectors
         public string District { get; set; }
         public string Region { get; set; }
         public string Village { get; set; }
-        public DateTimeOffset LastActive { get; set; }
     }
 }
