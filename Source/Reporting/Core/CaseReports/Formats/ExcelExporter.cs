@@ -52,6 +52,12 @@ namespace Core.CaseReports.Formats
             worksheet.Cells[row, 2].Value = report.Timestamp.DateTime.ToString("HH:mm");
             worksheet.Cells[row, 19].Value = report.Message;
 
+            var isoyear = GetIsoYear(report.Timestamp.DateTime);
+            var isoweek = GetIsoWeek(report.Timestamp.DateTime);
+            worksheet.Cells[row, 21].Value = isoyear;
+            worksheet.Cells[row, 22].Value = isoweek;
+            worksheet.Cells[row, 23].Value = isoyear + "-" + isoweek;
+
             if (report.DataCollectorId != DataCollectorId.NotSet)
             {
                 worksheet.Cells[row, 4].Value = report.DataCollectorDisplayName;
@@ -72,7 +78,7 @@ namespace Core.CaseReports.Formats
                 worksheet.Cells[row, 10].Value = report.NumberOfMalesAged5AndOlder;
                 worksheet.Cells[row, 11].Value = report.NumberOfFemalesUnder5;
                 worksheet.Cells[row, 12].Value = report.NumberOfFemalesAged5AndOlder;
-                
+
                 worksheet.Cells[row, 13].Value = report.NumberOfMalesUnder5 + report.NumberOfFemalesUnder5;
                 worksheet.Cells[row, 14].Value = report.NumberOfMalesAged5AndOlder + report.NumberOfFemalesAged5AndOlder;
                 worksheet.Cells[row, 15].Value = report.NumberOfFemalesUnder5 + report.NumberOfFemalesAged5AndOlder;
@@ -113,6 +119,9 @@ namespace Core.CaseReports.Formats
             worksheet.Cells["R1"].Value = "Location";           // 18
             worksheet.Cells["S1"].Value = "Message";            // 19
             worksheet.Cells["T1"].Value = "Errors";             // 20
+            worksheet.Cells["U1"].Value = "ISOyear";            // 21
+            worksheet.Cells["V1"].Value = "ISOweek";            // 22
+            worksheet.Cells["W1"].Value = "ISOyear-ISOweek";    // 23
 
             worksheet.Row(1).Style.Font.Bold = true;
             worksheet.Cells["A1:P1"].AutoFilter = true;
@@ -121,13 +130,16 @@ namespace Core.CaseReports.Formats
 
         void SetColumnStyles(ExcelWorksheet worksheet)
         {
-            for(int i = 1; i<=7;i++) {
+            for (int i = 1; i <= 7; i++)
+            {
                 worksheet.Column(i).Width = 25;
             }
-            for(int i = 8; i<=16;i++) {
+            for (int i = 8; i <= 16; i++)
+            {
                 worksheet.Column(i).Width = 18;
             }
-            for(int i = 17; i<=19;i++) {
+            for (int i = 17; i <= 19; i++)
+            {
                 worksheet.Column(i).Width = 25;
             }
 
