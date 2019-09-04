@@ -1,20 +1,22 @@
-import { Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { CommandCoordinator } from '@dolittle/commands';
 import { Guid } from '@dolittle/core';
+import * as L from 'leaflet';
+import { ToastrService } from 'ngx-toastr';
+import { AppInsightsService } from '../../../services/app-insights-service';
 import { Language } from '../../Language';
 import { Sex } from '../../Sex';
-import { RegisterDataCollector } from '../RegisterDataCollector';
-import { ToastrService } from 'ngx-toastr';
 import { ChangeVillage } from '../ChangeVillage';
-import { AppInsightsService } from '../../../services/app-insights-service';
+import { RegisterDataCollector } from '../RegisterDataCollector';
+
 
 @Component({
     templateUrl: './register.html',
     styleUrls: ['./register.scss']
 })
-export class Register {
+export class Register implements OnInit, AfterViewInit {
+  
     commandCoordinator: CommandCoordinator;
     locationSelected = false;
     defaultLat: number = 9.216515;
@@ -30,7 +32,8 @@ export class Register {
                         {desc: Language[Language.French], id: Language.French}];
     sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male },
                  { desc: Sex[Sex.Female], id: Sex.Female }];
-
+    map: L.Map;
+    marker: L.Marker;
     constructor(
         private router: Router,
         private toastr: ToastrService,
@@ -43,11 +46,25 @@ export class Register {
         this.appInsightsService.trackPageView('RegisterDataCollector');
         this.commandCoordinator = new CommandCoordinator();
     }
-
+    ngAfterViewInit(): void {
+        this.map = L.map("mapid").setView([this.defaultLat, this.defaultLng], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(this.map)
+        this.map.on('click', (e) => {
+            this.onLocationSelected(e);
+        });
+    }
+    
     onLocationSelected(event){
         this.locationSelected = true;
-        this.selectedLat = event.coords.lat;
-        this.selectedLng = event.coords.lng;
+        this.selectedLat = event.latlng.lat;
+        this.selectedLng = event.latlng.lng;
+        if (this.marker) {
+            this.map.removeLayer(this.marker);
+        }
+        this.marker = L.marker([event.latlng.lat, event.latlng.lng]).addTo(this.map);
+
         this.command.gpsLocation.latitude = this.selectedLat;
         this.command.gpsLocation.longitude = this.selectedLng;
     }

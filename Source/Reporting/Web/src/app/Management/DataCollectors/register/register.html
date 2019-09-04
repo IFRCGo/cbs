@@ -99,13 +99,11 @@
 
   <div class="form-group">
     <label>Location</label>
-    <div>
-    <agm-map [latitude]="defaultLat" [longitude]="defaultLng" (mapClick)="onLocationSelected($event)">
-        <agm-marker [latitude]="selectedLat" [longitude]="selectedLng" *ngIf="locationSelected"></agm-marker>
-      </agm-map>
+    <div class="map-container">
+        <div id="mapid"></div>
     </div>
     <fieldset class="form-inline">
-      <label for="latitude">Latitude</label>
+      <label class="lat" for="latitude">Latitude</label>
       <input
         type="number"
         class="input-mini form-control" 
@@ -116,7 +114,7 @@
         #latitude="ngModel"
 
       />
-      <label for="longitude">Longitude</label>
+      <label class="lng" for="longitude">Longitude</label>
      <input 
         type="number"
         class="input-mini form-control" 
