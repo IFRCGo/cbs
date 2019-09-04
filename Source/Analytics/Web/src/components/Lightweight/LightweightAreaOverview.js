@@ -7,13 +7,23 @@ import CBSNavigation from 'navigation';
 export default class LightweightAreaOverview extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            username: 'Unknown'
+        };
+    }
+
+    componentDidMount() {
+        fetch(`${process.env.API_BASE_URL}/identity`).then(async response => this.setState({
+            username: await response.text()
+        }));
     }
 
     render() {
         return (
             <Grid container justify="center">
                 <Grid item xs={12}>
-                    <CBSNavigation activeMenuItem="analytics/#" />
+                    <CBSNavigation activeMenuItem="analytics/#" username={this.state.username} baseUrl={process.env.API_BASE_URL} />
                 </Grid>
 
                 <Grid container item xs={10} justify="center">
