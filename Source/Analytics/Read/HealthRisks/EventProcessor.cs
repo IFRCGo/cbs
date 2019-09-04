@@ -37,5 +37,11 @@ namespace Read.HealthRisks
             _healthRisks.Update(healthRisk);
         }
 
+        [EventProcessor("9978d974-582f-4692-b106-a85b8488158a")]
+        public void Process(HealthRiskDeleted @event)
+        {
+            var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
+            _healthRisks.Delete(healthRisk);
+        }
     }
 }
