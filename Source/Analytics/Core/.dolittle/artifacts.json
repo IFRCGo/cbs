@@ -188,6 +188,10 @@
       "ab9f13e6-f68b-4683-96fe-13434fd34516": {
         "generation": 1,
         "type": "Events.Admin.HealthRisks.HealthRiskModified, Events.Admin"
+      },
+      "787d61d1-79bb-473a-9329-171478eff750": {
+        "generation": 1,
+        "type": "Events.Admin.HealthRisks.HealthRiskDeleted, Events.Admin"
       }
     },
     "eventSources": {},
