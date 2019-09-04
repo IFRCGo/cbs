@@ -17,29 +17,25 @@ namespace Read.HealthRisks
         {
             _healthRisks = healthRisks;
         }
-        
+
         [EventProcessor("9c62046d-eb9a-ab1d-8d56-af179f20cfc2")]
         public void Process(HealthRiskCreated @event)
-        { 
-            var healthRisk = _healthRisks.GetById(@event.Id);
-
-                healthRisk = new HealthRisk
-                {
-                    Id = @event.Id,
-                    Name = @event.Name,
-                    HealthRiskNumber = @event.HealthRiskNumber
-                };
-                _healthRisks.Insert(healthRisk);
-        }
-        
-        [EventProcessor("d2a2762d-aa9e-48dd-6667-629e2d64f16a")]
-        public void Process(HealthRiskModified @event)
-        { 
-            _healthRisks.Update(new HealthRisk {
+        {
+            _healthRisks.Insert(new HealthRisk
+            {
                 Id = @event.Id,
-                Name = @event.Name
+                Name = @event.Name,
+                HealthRiskNumber = @event.HealthRiskNumber
             });
         }
-        
+
+        [EventProcessor("d2a2762d-aa9e-48dd-6667-629e2d64f16a")]
+        public void Process(HealthRiskModified @event)
+        {
+            var healthRisk = _healthRisks.GetById(@event.Id);
+            healthRisk.Name = @event.Name;
+            _healthRisks.Update(healthRisk);
+        }
+
     }
 }
