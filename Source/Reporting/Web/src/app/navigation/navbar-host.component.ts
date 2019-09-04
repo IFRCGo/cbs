@@ -22,8 +22,6 @@ export class NavbarHostComponent implements OnInit {
       fetch(`${NavbarHostComponent.apiBaseUrl}/identity`).then(async response => {
         this.username = await response.text();
         this.renderMenu();
-      }).catch(err => {
-        this.renderMenu();
       });
     }
 

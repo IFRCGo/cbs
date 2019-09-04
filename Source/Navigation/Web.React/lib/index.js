@@ -7,6 +7,7 @@ class CBSNavigation extends Component {
     this.onClick = this.onClick.bind(this);
     this.onMenuClick = this.onMenuClick.bind(this);
     this.state = {
+      username: "Unknown",
       showAnalyticsDropdown: false,
       collapseMenu: true
     };
@@ -23,6 +24,14 @@ class CBSNavigation extends Component {
     this.setState(prevState => ({
       collapseMenu: !prevState.collapseMenu
     }));
+  }
+
+  componentDidMount() {
+    if (this.props.username !== undefined) {
+      this.setState({
+        username: this.props.username
+      });
+    }
   }
 
   rcLogo() {
@@ -124,9 +133,9 @@ class CBSNavigation extends Component {
       className: "login-status"
     }, React.createElement("span", null, React.createElement("i", {
       className: "fa fa-user"
-    }), " ", this.props.username), React.createElement("a", {
+    }), " ", this.state.username), React.createElement("a", {
       className: "logout",
-      href: this.props.baseUrl + '/signout'
+      href: "#"
     }, React.createElement("i", {
       className: "fa fa-sign-out"
     }), " Log out"))));
