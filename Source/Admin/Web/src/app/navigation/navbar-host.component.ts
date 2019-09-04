@@ -1,6 +1,6 @@
 import React, { createElement } from 'react';
 import ReactDOM, { render } from 'react-dom';
-import {Component, OnInit, AfterContentInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import CBSNavigation from 'navigation';
 
 @Component({
@@ -10,7 +10,7 @@ import CBSNavigation from 'navigation';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NavbarHostComponent implements AfterContentInit, OnInit {
+export class NavbarHostComponent implements OnInit {
   static apiBaseUrl: string;
     
     username: string;  
@@ -20,10 +20,13 @@ export class NavbarHostComponent implements AfterContentInit, OnInit {
     }
 
     ngOnInit(){
-      fetch(`${NavbarHostComponent.apiBaseUrl}/identity`).then(async response => this.username = await response.text());
+      fetch(`${NavbarHostComponent.apiBaseUrl}/identity`).then(async response => {
+        this.username = await response.text();
+        this.renderNavigationComponent();
+      });
     }
 
-    ngAfterContentInit(){
-        render(createElement(CBSNavigation, {activeMenuItem: 'admin'}), document.getElementById("top-navbar"));
+    renderNavigationComponent() {
+      render(createElement(CBSNavigation, {activeMenuItem: 'admin', username: this.username, baseUrl: NavbarHostComponent.apiBaseUrl }), document.getElementById("top-navbar"));
     }
 }

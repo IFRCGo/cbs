@@ -17,8 +17,19 @@ const appInsights = new ApplicationInsights({
 appInsights.loadAppInsights();
 
 class CountryOverview extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username: 'Unknown'
+        };
+    }
+
     componentDidMount() {
         appInsights.trackPageView({ name: 'Country Overview' });
+        fetch(`${process.env.API_BASE_URL}/identity`).then(async response => this.setState({
+            username: await response.text()
+        }));
     }
 
     render() {
@@ -27,7 +38,7 @@ class CountryOverview extends Component {
                 <Grid container justify="center">
 
                     <Grid item xs={12}>
-                        <CBSNavigation activeMenuItem="analytics" />
+                        <CBSNavigation activeMenuItem="analytics" username={this.state.username} baseUrl={process.env.API_BASE_URL} />
                     </Grid>
 
                     <Grid container item xs={11} sm={10} spacing={0}>
