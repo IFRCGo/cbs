@@ -154,7 +154,7 @@ export class CaseReportListComponent implements OnInit {
         });
 
         this.route.queryParams.subscribe(query => {
-            this.sortDescending = query.order === 'desc';
+            this.sortDescending = query.order == null ? true : query.order === 'desc';
             this.sortField = query.sortBy;
 
             this.currentSortColumn = this.allColumns.find(column => {

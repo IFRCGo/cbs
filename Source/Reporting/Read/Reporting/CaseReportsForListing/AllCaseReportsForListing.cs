@@ -29,7 +29,7 @@ namespace Read.Reporting.CaseReportsForListing
             {
                 IQueryable<CaseReportForListing> query = _collection.Query.Where(_ => _.Origin.Length > 5 && !Regex.IsMatch(_.Origin, "[a-zA-Z]"));
                 if (string.IsNullOrWhiteSpace(SortField))
-                    query = SortAscending ? query.OrderBy(x => x.Timestamp) : query.OrderByDescending(x => x.Timestamp);
+                    query = query.OrderByDescending(x => x.Timestamp);
                 else
                     query = query.OrderByFieldName(SortField, SortAscending);
 
