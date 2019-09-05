@@ -89,7 +89,7 @@ export class Edit implements OnInit {
             })
     }
     renderMap(): void {
-        this.map = L.map("mapid").setView([this.dataCollector.location.latitude, this.dataCollector.location.longitude], 7);
+        this.map = L.map("dataCollectorLocation").setView([this.dataCollector.location.latitude, this.dataCollector.location.longitude], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(this.map)
