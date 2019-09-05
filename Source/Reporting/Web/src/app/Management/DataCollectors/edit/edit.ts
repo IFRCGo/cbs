@@ -22,7 +22,7 @@ import * as L from 'leaflet';
     templateUrl: './edit.html',
     styleUrls: ['./edit.scss']
 })
-export class Edit implements OnInit, AfterViewInit {
+export class Edit implements OnInit {
     queryCoordinator: QueryCoordinator;
     commandCoordinator: CommandCoordinator;
 
@@ -75,7 +75,8 @@ export class Edit implements OnInit, AfterViewInit {
                         this.initChangeLocation();
                         this.initChangePreferredLanguage();
                         this.initPhoneNumbers();
-                        this.initVillage();                        
+                        this.initVillage(); 
+                        this.renderMap();
                     } else {
                         console.error(response)
                     }
@@ -87,7 +88,7 @@ export class Edit implements OnInit, AfterViewInit {
                 console.error(response);
             })
     }
-    ngAfterViewInit(): void {
+    renderMap(): void {
         this.map = L.map("mapid").setView([this.dataCollector.location.latitude, this.dataCollector.location.longitude], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
