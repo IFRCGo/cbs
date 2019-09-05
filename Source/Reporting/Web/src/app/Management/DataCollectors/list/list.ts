@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataCollector } from '../DataCollector';
 import { QueryCoordinator } from '@dolittle/queries';
-import { AllListedDataCollectors } from '../../../Reporting/DataCollectors/AllListedDataCollectors';
+import { AllDataCollectors } from '../AllDataCollectors';
 import { AppInsightsService } from '../../../services/app-insights-service';
 
 @Component({
@@ -22,7 +22,7 @@ export class List implements OnInit {
 
   ngOnInit() {
     const queryCoordinator = new QueryCoordinator();
-    queryCoordinator.execute(new AllListedDataCollectors())
+    queryCoordinator.execute(new AllDataCollectors())
       .then(response => {
           if (response.success) {
             this.users = response.items;
