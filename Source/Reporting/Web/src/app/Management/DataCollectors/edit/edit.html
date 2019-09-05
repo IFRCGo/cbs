@@ -6,8 +6,8 @@
     <h1>Edit Data Collector</h1>
     <div class="form-group">
         <label for="full_name">Full Name</label>
-        <input type="text" class="form-control" id="full_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.fullName"
-            name="full_name" #full_name="ngModel">
+        <input type="text" class="form-control" id="full_name" required minlength="4"
+            [(ngModel)]="changeBaseInformationCommand.fullName" name="full_name" #full_name="ngModel">
 
         <div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)" class="alert alert-warning">
 
@@ -22,8 +22,8 @@
 
     <div class="form-group">
         <label for="display_name">Display Name</label>
-        <input type="text" class="form-control" id="display_name" required minlength="4" [(ngModel)]="changeBaseInformationCommand.displayName"
-            name="display_name" #display_name="ngModel">
+        <input type="text" class="form-control" id="display_name" required minlength="4"
+            [(ngModel)]="changeBaseInformationCommand.displayName" name="display_name" #display_name="ngModel">
         <div *ngIf="display_name.invalid && (display_name.dirty || display_name.touched)" class="alert alert-warning">
 
             <div *ngIf="display_name.errors?.required">
@@ -49,7 +49,8 @@
 
     <div class="form-group">
         <label for="sex">Sex</label>
-        <select class="form-control" id="sex" required [(ngModel)]="changeBaseInformationCommand.sex" name="sex" #sex="ngModel">
+        <select class="form-control" id="sex" required [(ngModel)]="changeBaseInformationCommand.sex" name="sex"
+            #sex="ngModel">
             <option *ngFor="let s of sexOptions" [value]="s.id">{{s.desc}}</option>
         </select>
         <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert alert-warning">
@@ -61,12 +62,15 @@
 
     <div class="form-group">
         <label for="preferredLanguage">Preferred Language</label>
-        <select class="form-control" id="preferredLanguage" required [(ngModel)]="changePreferredLanguageCommand.preferredLanguage"
-            name="preferredLanguage" #preferredLanguage="ngModel">
-            <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">{{preferredLanguage.desc}}</option>
+        <select class="form-control" id="preferredLanguage" required
+            [(ngModel)]="changePreferredLanguageCommand.preferredLanguage" name="preferredLanguage"
+            #preferredLanguage="ngModel">
+            <option *ngFor="let preferredLanguage of languageOptions" [value]="preferredLanguage.id">
+                {{preferredLanguage.desc}}</option>
         </select>
 
-        <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)" class="alert alert-warning">
+        <div *ngIf="preferredLanguage.invalid && (preferredLanguage.dirty || preferredLanguage.touched)"
+            class="alert alert-warning">
             <div *ngIf="preferredLanguage.errors?.required">
                 Preferred Language is required.
             </div>
@@ -75,21 +79,17 @@
 
     <div class="form-group">
         <label>Location</label>
-        <div *ngIf="dataCollector != null">
-            <agm-map [latitude]="dataCollector.location.latitude" [longitude]="dataCollector.location.longitude" (mapClick)="onLocationSelected($event)">
-                <agm-marker [latitude]="changeLocationCommand.location.latitude" [longitude]="changeLocationCommand.location.longitude"></agm-marker>
-            </agm-map>
-        </div>
+        <div id="dataCollectorLocation"></div>
+        
         <fieldset class="form-inline">
             <label for="latitude">Latitude</label>
-            <input type="number" class="input-mini form-control" id="latitude" required [(ngModel)]="changeLocationCommand.location.latitude"
-                name="latitude" #latitude="ngModel" />
+            <input type="number" class="input-mini form-control" id="latitude" required
+                [(ngModel)]="changeLocationCommand.location.latitude" name="latitude" #latitude="ngModel" />
             <label for="longitude">Longitude</label>
-            <input type="number" class="input-mini form-control" id="longitude" required [(ngModel)]="changeLocationCommand.location.longitude"
-                name="longitude" #longitude="ngModel" />
+            <input type="number" class="input-mini form-control" id="longitude" required
+                [(ngModel)]="changeLocationCommand.location.longitude" name="longitude" #longitude="ngModel" />
             <div *ngIf="(latitude.invalid && (latitude.dirty || latitude.touched))
-        || (longitude.invalid && (longitude.dirty || longitude.touched))"
-                class="alert alert-warning">
+        || (longitude.invalid && (longitude.dirty || longitude.touched))" class="alert alert-warning">
 
                 <div *ngIf="latitude.errors?.required">
                     Location Latitude is required
@@ -115,8 +115,8 @@
 
     <div class="form-group">
         <label for="district">District</label>
-        <input type="text" class="form-control" id="district" required [(ngModel)]="changeBaseInformationCommand.district"
-            name="district" #district="ngModel">
+        <input type="text" class="form-control" id="district" required
+            [(ngModel)]="changeBaseInformationCommand.district" name="district" #district="ngModel">
         <div *ngIf="district.invalid && (district.dirty || district.touched)" class="alert alert-warning">
 
             <div *ngIf="district.errors?.required">
@@ -148,5 +148,6 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid || error" (click)="submit()">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid || error"
+        (click)="submit()">Submit</button>
 </form>

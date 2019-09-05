@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,6 +16,7 @@ import { ChangeVillage } from '../ChangeVillage';
 import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 import { AppInsightsService } from '../../../services/app-insights-service';
+import * as L from 'leaflet';
 
 @Component({
     templateUrl: './edit.html',
@@ -40,7 +41,8 @@ export class Edit implements OnInit {
     { desc: Sex[Sex.Female], id: Sex.Female as number }];
 
     private userHasChanged = false;
-
+    map: L.Map;
+    marker: L.Marker;
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -73,7 +75,8 @@ export class Edit implements OnInit {
                         this.initChangeLocation();
                         this.initChangePreferredLanguage();
                         this.initPhoneNumbers();
-                        this.initVillage();                        
+                        this.initVillage(); 
+                        this.renderMap();
                     } else {
                         console.error(response)
                     }
@@ -85,11 +88,23 @@ export class Edit implements OnInit {
                 console.error(response);
             })
     }
-
+    renderMap(): void {
+        this.map = L.map("dataCollectorLocation").setView([this.dataCollector.location.latitude, this.dataCollector.location.longitude], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(this.map)
+        this.map.on('click', (e) => {
+            this.onLocationSelected(e);
+        });
+    }
 
     onLocationSelected(event) {
-        this.changeLocationCommand.location.latitude = event.coords.lat;
-        this.changeLocationCommand.location.longitude = event.coords.lng;
+        this.changeLocationCommand.location.latitude = event.latlng.lat;
+        this.changeLocationCommand.location.longitude = event.latlng.lng;
+        if (this.marker) {
+            this.map.removeLayer(this.marker);
+        }
+        this.marker = L.marker([event.latlng.lat, event.latlng.lng]).addTo(this.map);
     }
 
     submit() {
