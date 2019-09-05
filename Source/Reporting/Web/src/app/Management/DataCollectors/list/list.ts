@@ -40,4 +40,15 @@ export class List implements OnInit {
   onSelect(dataCollector: DataCollector): void {
     this.selectedUser = dataCollector;
   }
+
+  formatDate(rawDate) {
+    var date = new Date(rawDate);
+    var month = date.getMonth() + 1; // getMonth() is zero-based
+    var day = date.getDate();
+  
+    return [date.getFullYear() + '-',
+            (month>9 ? '' : '0') + month + '-',
+            (day>9 ? '' : '0') + day
+           ].join('');
+  }
 }

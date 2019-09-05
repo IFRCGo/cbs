@@ -10,6 +10,8 @@ using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
 using Events.NotificationGateway.Reporting.SMS;
 using Dolittle.Runtime.Events;
+using Read.Management.DataCollectors;
+using System;
 
 namespace Read.Reporting.CaseReports
 {
@@ -18,6 +20,7 @@ namespace Read.Reporting.CaseReports
         readonly ILogger _logger;
         readonly IReadModelRepositoryFor<CaseReport> _caseReports;
         readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportEventProcessor(
             ILogger logger,
@@ -66,7 +69,7 @@ namespace Read.Reporting.CaseReports
         public void Process(CaseReportIdentified @event, EventSourceId caseReportId)
         {
             var caseReport = _caseReportsFromUnknownDataCollectors.GetById(caseReportId.Value);
-            _caseReportsFromUnknownDataCollectors.Delete(caseReport);            
+            _caseReportsFromUnknownDataCollectors.Delete(caseReport);
         }
     }
 }
