@@ -9,6 +9,7 @@ using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
+using Read.Management.DataCollectors;
 using Read.Reporting.DataCollectors;
 using Read.Reporting.HealthRisks;
 
@@ -17,12 +18,12 @@ namespace Read.Reporting.CaseReportsForListing
     public class CaseReportForListingEventProcessor : ICanProcessEvents
     {
         private readonly IReadModelRepositoryFor<CaseReportForListing> _caseReports;
-        private readonly IReadModelRepositoryFor<ListedDataCollector> _dataCollectors;
+        private readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
         private readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
 
         public CaseReportForListingEventProcessor(
             IReadModelRepositoryFor<CaseReportForListing> caseReports,
-            IReadModelRepositoryFor<ListedDataCollector> dataCollectors,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
             IReadModelRepositoryFor<HealthRisk> healthRisks)
         {
             _caseReports = caseReports;
