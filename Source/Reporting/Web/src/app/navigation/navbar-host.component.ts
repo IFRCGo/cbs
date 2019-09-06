@@ -28,6 +28,6 @@ export class NavbarHostComponent implements OnInit {
     }
 
     renderMenu(){
-        ReactDOM.render(React.createElement(CBSNavigation, {activeMenuItem: 'reporting/case-reports', username: this.username}), document.getElementById("navbar"));
+        ReactDOM.render(React.createElement(CBSNavigation, {activeMenuItem: 'reporting/case-reports', username: this.username, baseUrl: NavbarHostComponent.apiBaseUrl}), document.getElementById("navbar"));
     }
 }
