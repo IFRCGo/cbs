@@ -24,8 +24,8 @@ export class Details implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getDataCollector();
         this.queryCoordinator = new QueryCoordinator();
+        this.getDataCollector();
     }
 
     getDataCollector(): void {
