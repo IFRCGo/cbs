@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AllCaseReportsQuery } from "../../Features/CaseReports/AllCaseReportsQuery";
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
+import { TotalReportsQuery } from "../../Features/CaseReports/TotalReportsQuery";
 
 class CountryKeyFigures extends Component {
     constructor(props) {
@@ -38,12 +39,11 @@ class CountryKeyFigures extends Component {
 
     fetchTotalCaseReports() {
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportTotals = new AllCaseReportsQuery();
-        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
+        const totalReports = new TotalReportsQuery();
+        this.queryCoordinator.execute(totalReports).then(queryResult => {
             if (queryResult.success) {
-                var item = queryResult.totalItems
                 this.setState({
-                    total: item,
+                    total: queryResult.items[0].reports,
                     isLoading: false,
                     isError: false,
                 });
