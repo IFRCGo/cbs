@@ -2,12 +2,12 @@
     "445f8ea8-1a6f-40d7-b2fc-796dba92dc44": {
         "readModels": {
             "host": "mongodb://cbs-mongo:27017",
-            "database": "admin_read_models_dev",
+            "database": "cbs_admin_read_models",
             "useSSL": false
         },
         "eventStore": {
             "host": "mongodb://cbs-mongo:27017",
-            "database": "admin_event_store_dev",
+            "database": "cbs_admin_event_store",
             "useSSL": false
         }
     },
