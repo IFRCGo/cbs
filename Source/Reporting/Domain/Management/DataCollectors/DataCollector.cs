@@ -49,6 +49,12 @@ namespace Domain.Management.DataCollectors
                 AddPhoneNumber(phoneNumber);
             }
             BeginTraining();
+            UpdateLastActive(registeredAt);
+        }
+
+        public void UpdateLastActive(DateTimeOffset timestamp)
+        {
+            Apply(new LastActiveUpdated(timestamp));
         }
 
         public void ChangeLocation(Location location)

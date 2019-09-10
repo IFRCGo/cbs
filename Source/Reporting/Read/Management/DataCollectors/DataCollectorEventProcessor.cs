@@ -41,8 +41,16 @@ namespace Read.Management.DataCollectors
                 PhoneNumbers = new List<PhoneNumber>(),
                 District = @event.District,
                 Region = @event.Region,
-                DataVerifier = @event.DataVerifierId
+                DataVerifier = @event.DataVerifierId,
+                LastActive = @event.RegisteredAt
             });
+        }
+        [EventProcessor("495b7ee2-993a-45d5-9a29-93f4292a5a0f")]
+        public void Process(LastActiveUpdated @event, EventSourceId dataCollectorId)
+        {
+            var dataCollector = _dataCollectors.GetById(dataCollectorId);
+            dataCollector.LastActive = @event.LastActive;
+            _dataCollectors.Update(dataCollector);
         }
         [EventProcessor("50631704-fa1e-44d6-b35c-d71fb750d2f8")]
         public void Process(DataCollectorUserInformationChanged @event, EventSourceId dataCollectorId)
