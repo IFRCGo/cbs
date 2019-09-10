@@ -163,6 +163,10 @@
       "a2238720-e134-462b-89aa-824066bb8000": {
         "generation": 1,
         "type": "Events.Management.DataCollectors.EditInformation.PhoneNumberRemovedFromDataCollector, Events"
+      },
+      "d55c4484-cf1c-4c66-92c7-0f953cb2344d": {
+        "generation": 1,
+        "type": "Events.Management.DataCollectors.EditInformation.LastActiveUpdated, Events"
       }
     },
     "eventSources": {},
