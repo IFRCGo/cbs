@@ -15,104 +15,114 @@ using Dolittle.ReadModels;
 using Domain.Reporting.CaseReports;
 using Events.NotificationGateway.Reporting.SMS;
 using Dolittle.Runtime.Commands.Coordination;
+using Dolittle.Runtime.Events;
 
 namespace Policies.Reporting.Notifications
 {
-   public class NotificationProcessor : ICanProcessEvents
-   {
-       readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
-       readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
-       readonly INotificationParser _textMessageParser;
-       readonly ICommandContextManager _commandContextManager;
-       readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
+    public class NotificationProcessor : ICanProcessEvents
+    {
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
+        readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
+        readonly INotificationParser _textMessageParser;
+        readonly ICommandContextManager _commandContextManager;
+        readonly IAggregateRootRepositoryFor<CaseReporting> _caseReportingRepository;
+        readonly IAggregateRootRepositoryFor<Domain.Management.DataCollectors.DataCollector> _dataCollectorRepository;
 
-       public NotificationProcessor(
-           ICommandContextManager commandContextManager,
-           IReadModelRepositoryFor<DataCollector> dataCollectors,
-           IReadModelRepositoryFor<HealthRisk> healthRisks,
-           INotificationParser textMessageParser,
-           IAggregateRootRepositoryFor<CaseReporting> caseReportingRepository)
-       {
-           _commandContextManager = commandContextManager;
-           _dataCollectors = dataCollectors;
-           _healthRisks = healthRisks;
-           _textMessageParser = textMessageParser;
-           _caseReportingRepository = caseReportingRepository;
-       }
+        public NotificationProcessor(
+            ICommandContextManager commandContextManager,
+            IReadModelRepositoryFor<DataCollector> dataCollectors,
+            IReadModelRepositoryFor<HealthRisk> healthRisks,
+            INotificationParser textMessageParser,
+            IAggregateRootRepositoryFor<CaseReporting> caseReportingRepository,
+            IAggregateRootRepositoryFor<Domain.Management.DataCollectors.DataCollector> dataCollectorRepository)
+        {
+            _commandContextManager = commandContextManager;
+            _dataCollectors = dataCollectors;
+            _healthRisks = healthRisks;
+            _textMessageParser = textMessageParser;
+            _caseReportingRepository = caseReportingRepository;
+            _dataCollectorRepository = dataCollectorRepository;
+        }
 
         [EventProcessor("acb536fe-38ae-46c9-b655-a8839d05abb7")]
-       public void Process(TextMessageReceived notification)
-       {
-           var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.Empty, 0, new Dictionary<string, object>()));
-           var parsingResult = _textMessageParser.Parse(notification);
+        public void Process(TextMessageReceived notification)
+        {
+            var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.Empty, 0, new Dictionary<string, object>()));
+            var parsingResult = _textMessageParser.Parse(notification);
 
-           //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
-           var isTextMessageFormatValid = parsingResult.IsValid;
+            //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
+            var isTextMessageFormatValid = parsingResult.IsValid;
 
-           var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber(){Value = notification.Sender})).FirstOrDefault();
+            var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber() { Value = notification.Sender })).FirstOrDefault();
 
-           var unknownDataCollector = dataCollector == null;
+            var unknownDataCollector = dataCollector == null;
 
-           var caseReportId = Guid.NewGuid();
-           var caseReporting = _caseReportingRepository.Get(caseReportId);
+            var caseReportId = Guid.NewGuid();
+            var caseReporting = _caseReportingRepository.Get(caseReportId);
+            var dataCollecting = _dataCollectorRepository.Get(dataCollector.Id.Value);
 
-           if (!isTextMessageFormatValid && unknownDataCollector)
-           {
-               caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                   notification.Sender,
-                   notification.Text,
-                   parsingResult.ErrorMessages,
-                   notification.Received);
-
-                    transaction.Commit();
-               return;
-           }
-
-           if (!isTextMessageFormatValid && !unknownDataCollector)
-           {
-               caseReporting.ReportInvalidReport(
-                    dataCollector.Id,
+            if (!isTextMessageFormatValid && unknownDataCollector)
+            {
+                caseReporting.ReportInvalidReportFromUnknownDataCollector(
                     notification.Sender,
                     notification.Text,
-                    dataCollector.Location.Longitude,
-                    dataCollector.Location.Latitude,
                     parsingResult.ErrorMessages,
                     notification.Received);
 
                 transaction.Commit();
                 return;
-           }
+            }
 
-           var healthRiskReadableId = parsingResult.HealthRiskReadableId;
-           var healthRisk = _healthRisks.Query.Where(i => i.ReadableId == healthRiskReadableId).FirstOrDefault();
-           if (healthRisk == null || healthRisk.Id == HealthRiskId.NotSet)
-           {
-               var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
-               if (unknownDataCollector)
-               {
-                   caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                        notification.Sender,
-                        notification.Text,
-                        errorMessages,
-                        notification.Received);
-                    transaction.Commit();
-                    return;
-               }
+            if (!isTextMessageFormatValid && !unknownDataCollector)
+            {
+                caseReporting.ReportInvalidReport(
+                     dataCollector.Id,
+                     notification.Sender,
+                     notification.Text,
+                     dataCollector.Location.Longitude,
+                     dataCollector.Location.Latitude,
+                     parsingResult.ErrorMessages,
+                     notification.Received);
 
-               caseReporting.ReportInvalidReport(
-                    dataCollector.Id,
-                    notification.Sender,
-                    notification.Text,
-                    dataCollector.Location.Longitude,
-                    dataCollector.Location.Latitude,
-                    errorMessages,
-                    notification.Received);
+                dataCollecting.UpdateLastActive(notification.Received);
+
                 transaction.Commit();
                 return;
-           }
+            }
 
-           if (unknownDataCollector)
-           {
+            var healthRiskReadableId = parsingResult.HealthRiskReadableId;
+            var healthRisk = _healthRisks.Query.Where(i => i.ReadableId == healthRiskReadableId).FirstOrDefault();
+            if (healthRisk == null || healthRisk.Id == HealthRiskId.NotSet)
+            {
+                var errorMessages = new List<string> { $"Unable to find health risk, since there are no health risks with a readable id of {healthRiskReadableId}" };
+                if (unknownDataCollector)
+                {
+                    caseReporting.ReportInvalidReportFromUnknownDataCollector(
+                         notification.Sender,
+                         notification.Text,
+                         errorMessages,
+                         notification.Received);
+                    transaction.Commit();
+                    return;
+                }
+
+                caseReporting.ReportInvalidReport(
+                     dataCollector.Id,
+                     notification.Sender,
+                     notification.Text,
+                     dataCollector.Location.Longitude,
+                     dataCollector.Location.Latitude,
+                     errorMessages,
+                     notification.Received);
+
+                dataCollecting.UpdateLastActive(notification.Received);
+
+                transaction.Commit();
+                return;
+            }
+
+            if (unknownDataCollector)
+            {
                 caseReporting.ReportFromUnknownDataCollector(
                     notification.Sender,
                     healthRisk.Id.Value,
@@ -125,7 +135,7 @@ namespace Policies.Reporting.Notifications
                );
                 transaction.Commit();
                 return;
-           }
+            }
 
             caseReporting.Report(
                 dataCollector.Id,
@@ -140,7 +150,9 @@ namespace Policies.Reporting.Notifications
                 notification.Received,
                 notification.Text
             );
+            dataCollecting.UpdateLastActive(notification.Received);
+
             transaction.Commit();
-       }
-   }
+        }
+    }
 }

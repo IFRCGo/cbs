@@ -37,8 +37,6 @@ namespace Read.Reporting.CaseReportsForListing
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
-
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
                 Status = CaseReportStatus.Success,
@@ -94,7 +92,6 @@ namespace Read.Reporting.CaseReportsForListing
         public void Process(InvalidReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
@@ -147,13 +144,6 @@ namespace Read.Reporting.CaseReportsForListing
             var caseReport = _caseReports.GetById(caseReportId.Value);
 
             _caseReports.Delete(caseReport);
-        }
-
-        public void UpdateDataCollectorLastActive(Guid dataCollectorId, DateTimeOffset timestamp)
-        {
-            var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            dataCollector.LastActive = timestamp;
-            _dataCollectors.Update(dataCollector);
         }
     }
 }

@@ -90,5 +90,13 @@ namespace Read.DataCollectors
                 });
             }
         }
+
+        [EventProcessor("761fa827-92f8-4596-aff7-8ee9ba43531c")]
+        public void Process(LastActiveUpdated @event, EventSourceId dataCollectorId)
+        {
+            var dataCollector = _dataCollectors.GetById(dataCollectorId);
+            dataCollector.LastActive = @event.LastActive;
+            _dataCollectors.Update(dataCollector);
+        }
     }
 }

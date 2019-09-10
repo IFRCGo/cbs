@@ -80,15 +80,8 @@ namespace Read.CaseReports
             var district = _districts.Query.FirstOrDefault(_ => _.Name == dataCollector.District);
 
             InsertPerHealthRiskAndRegionForComing4Weeks(caseReport, healthRisk, district);
-            UpdateDataCollectorLastActive(dataCollector, caseReport);
             InsertPerHealthRiskAndRegionForDay(caseReport, healthRisk, district);
             UpdateTotalReports();
-        }
-
-        public void UpdateDataCollectorLastActive(DataCollector dataCollector, CaseReport caseReport)
-        {
-            dataCollector.LastActive = caseReport.Timestamp;
-            _dataCollectors.Update(dataCollector);
         }
 
         public void UpdateTotalReports()
