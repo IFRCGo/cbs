@@ -23,6 +23,10 @@
       "73617dac-5e93-48f6-a8d2-6320961a81fd": {
         "generation": 1,
         "type": "Read.CaseReports.HealthRisksInRegionsLast4Weeks, Read"
+      },
+      "e6422c48-7a02-4fdd-a8b3-45e56b533ca1": {
+        "generation": 1,
+        "type": "Read.CaseReports.TotalReports, Read"
       }
     },
     "queries": {
@@ -37,6 +41,10 @@
       "7f76e4a9-9a8c-4388-89a6-3bf4d583c422": {
         "generation": 1,
         "type": "Read.CaseReports.CaseReportsPerRegionLast4WeeksQuery, Read"
+      },
+      "8a59771c-ef28-4649-a74b-74b89fd8ecc1": {
+        "generation": 1,
+        "type": "Read.CaseReports.TotalReportsQuery, Read"
       }
     }
   },
