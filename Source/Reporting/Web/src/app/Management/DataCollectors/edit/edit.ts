@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,13 +22,15 @@ import * as L from 'leaflet';
     templateUrl: './edit.html',
     styleUrls: ['./edit.scss']
 })
-export class Edit implements OnInit {
+export class Edit implements OnInit, AfterViewInit {
     queryCoordinator: QueryCoordinator;
     commandCoordinator: CommandCoordinator;
 
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
+    lat = 9;
+    lng = 44;
 
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
     changeLocationCommand: ChangeLocation = new ChangeLocation();
@@ -54,7 +56,7 @@ export class Edit implements OnInit {
     ngOnInit(): void {
         this.queryCoordinator = new QueryCoordinator();
         this.commandCoordinator = new CommandCoordinator();
-        
+
         this.route.params.subscribe(params => {
             this.getDataCollector();
         });
@@ -75,8 +77,9 @@ export class Edit implements OnInit {
                         this.initChangeLocation();
                         this.initChangePreferredLanguage();
                         this.initPhoneNumbers();
-                        this.initVillage(); 
-                        this.renderMap();
+                        this.initVillage();
+                        this.lat = this.dataCollector.location.latitude;
+                        this.lng = this.dataCollector.location.longitude;
                     } else {
                         console.error(response)
                     }
@@ -88,11 +91,12 @@ export class Edit implements OnInit {
                 console.error(response);
             })
     }
-    renderMap(): void {
-        this.map = L.map("dataCollectorLocation").setView([this.dataCollector.location.latitude, this.dataCollector.location.longitude], 7);
+    ngAfterViewInit(): void {
+        this.map = L.map('dataCollectorLocation').setView([this.lat, this.lng], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(this.map)
+        }).addTo(this.map);
+        this.marker = L.marker([this.lat, this.lng]).addTo(this.map);
         this.map.on('click', (e) => {
             this.onLocationSelected(e);
         });
