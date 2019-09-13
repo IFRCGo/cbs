@@ -8,7 +8,6 @@ using Dolittle.Events.Processing;
 using Dolittle.Logging;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
-using Events.NotificationGateway.Reporting.SMS;
 using Dolittle.Runtime.Events;
 using Read.Management.DataCollectors;
 using System;

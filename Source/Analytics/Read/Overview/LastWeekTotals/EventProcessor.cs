@@ -7,21 +7,29 @@ using Dolittle.Events.Processing;
 using Events.Reporting.CaseReports;
 using Dolittle.ReadModels;
 using Concepts;
+using Read.DataCollectors;
 
 namespace Read.Overview.LastWeekTotals
 {
     public class EventProcessor : ICanProcessEvents
     {
         readonly IReadModelRepositoryFor<CaseReportTotals> _caseReportTotalsRepository;
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
-        public EventProcessor(IReadModelRepositoryFor<CaseReportTotals> caseReportTotalsRepository)
+        public EventProcessor(
+            IReadModelRepositoryFor<CaseReportTotals> caseReportTotalsRepository,
+            IReadModelRepositoryFor<DataCollector> dataCollectors)
         {
             _caseReportTotalsRepository = caseReportTotalsRepository;
+            _dataCollectors = dataCollectors;
         }
 
         [EventProcessor("cb01aaaf-7998-4692-81ef-1ceb5ab38e12")]
         public void Process(CaseReportReceived @event)
         {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            if (dataCollector.InTraining) return; // don't inlcude training data
+            
             var today = Day.From(@event.Timestamp);
 
             for (var day = today; day < today + 7; day++)

@@ -41,8 +41,9 @@
                 {{ formatDate(user.lastActive) }}
             </td>
             <td>
-                <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
-                <delete-user [user]=user></delete-user>
+                <a class="action-cell" [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
+                <delete-user class="action-cell" [user]=user></delete-user>
+                <a class="action-cell" (click)="toggleTraining(user)">{{ user.inTraining ? 'End training' : 'Begin training'}}</a>
             </td>
         </tr>
     </tbody>

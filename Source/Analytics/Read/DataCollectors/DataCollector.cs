@@ -18,6 +18,7 @@ namespace Read.DataCollectors
         public DistrictName District { get; set; }
         public Location Location { get; set; }
         public Sex Sex { get; set; }
+        public bool InTraining { get; set; }
 
         public DataCollector(
             DataCollectorId id,

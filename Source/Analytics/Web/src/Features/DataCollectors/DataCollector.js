@@ -18,5 +18,6 @@ export class DataCollector extends ReadModel
         this.district = '';
         this.location = {};
         this.sex = 0;
+        this.inTraining = false;
     }
 }
