@@ -55,7 +55,7 @@ namespace Domain.Reporting.CaseReports
             Apply(new CaseReportReceived(dataCollectorId, healthRiskId, origin, message,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
                 longitude, latitude, timestamp));
-        }        
+        }
 
         public void ReportFromUnknownDataCollector(
             string origin,
@@ -69,13 +69,32 @@ namespace Domain.Reporting.CaseReports
         {
             Apply(new CaseReportFromUnknownDataCollectorReceived(healthRiskId, origin, message, timestamp,
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder));
-        }      
-        
+        }
+
         public void ReportFromUnknownDataCollectorIdentiefied(
             Guid dataCollectorId
         )
         {
             Apply(new CaseReportIdentified(dataCollectorId));
+        }
+
+        public void ReportTrainingReport(
+            Guid dataCollectorId,
+            Guid healthRiskId,
+            string origin,
+            int numberOfMalesUnder5,
+            int numberOfMalesAged5AndOlder,
+            int numberOfFemalesUnder5,
+            int numberOfFemalesAged5AndOlder,
+            double longitude,
+            double latitude,
+            DateTimeOffset timestamp,
+            string message
+        )
+        {
+            Apply(new TrainingReportReceived(dataCollectorId, healthRiskId, origin, message,
+                numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
+                longitude, latitude, timestamp));
         }
     }
 }

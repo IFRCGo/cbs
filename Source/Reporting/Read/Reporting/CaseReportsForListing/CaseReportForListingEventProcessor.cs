@@ -3,14 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
 using Read.Management.DataCollectors;
-using Read.Reporting.DataCollectors;
 using Read.Reporting.HealthRisks;
 
 namespace Read.Reporting.CaseReportsForListing
@@ -36,8 +34,6 @@ namespace Read.Reporting.CaseReportsForListing
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
@@ -94,7 +90,6 @@ namespace Read.Reporting.CaseReportsForListing
         public void Process(InvalidReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            UpdateDataCollectorLastActive(dataCollector.Id, @event.Timestamp);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
             {
@@ -147,13 +142,6 @@ namespace Read.Reporting.CaseReportsForListing
             var caseReport = _caseReports.GetById(caseReportId.Value);
 
             _caseReports.Delete(caseReport);
-        }
-
-        public void UpdateDataCollectorLastActive(Guid dataCollectorId, DateTimeOffset timestamp)
-        {
-            var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            dataCollector.LastActive = timestamp;
-            _dataCollectors.Update(dataCollector);
         }
     }
 }

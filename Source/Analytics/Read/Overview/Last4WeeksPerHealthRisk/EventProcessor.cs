@@ -12,6 +12,7 @@ using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Events.Admin.HealthRisks;
 using Events.Reporting.CaseReports;
+using Read.DataCollectors;
 using Read.HealthRisks;
 
 namespace Read.Overview.Last4WeeksPerHealthRisk
@@ -20,19 +21,26 @@ namespace Read.Overview.Last4WeeksPerHealthRisk
     {
         readonly IReadModelRepositoryFor<HealthRisk> _healthRisks;
         readonly IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> _caseReportsLastWeeksPerHealthRisk;
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public EventProcessor(
             IReadModelRepositoryFor<HealthRisk> healthRisks,
-            IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> caseReportsLastWeeksPerHealthRisk            
+            IReadModelRepositoryFor<CaseReportsLast4WeeksPerHealthRisk> caseReportsLastWeeksPerHealthRisk,
+            IReadModelRepositoryFor<DataCollector> dataCollectors
+                      
         )
         {
             _healthRisks = healthRisks;
             _caseReportsLastWeeksPerHealthRisk = caseReportsLastWeeksPerHealthRisk;
+            _dataCollectors = dataCollectors;
         }
         
         [EventProcessor("f2f78ff9-2d3a-a32d-cf9b-37f73451da6c")]
         public void Process(CaseReportReceived @event)
         {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+            if (dataCollector.InTraining) return; // don't include training data
+            
             var healthRiskName = _healthRisks.GetById(@event.HealthRiskId)?.Name ?? "Unknown";
             var recieved = Day.From(@event.Timestamp);
             var numberOfCaseReports = @event.NumberOfFemalesUnder5+@event.NumberOfFemalesAged5AndOlder+@event.NumberOfMalesUnder5+@event.NumberOfMalesAged5AndOlder;

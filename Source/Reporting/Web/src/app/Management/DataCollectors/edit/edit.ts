@@ -16,6 +16,8 @@ import { ChangeVillage } from '../ChangeVillage';
 import { QueryCoordinator } from '@dolittle/queries';
 import { DataCollectorById } from '../DataCollectorById';
 import { AppInsightsService } from '../../../services/app-insights-service';
+import { EndTraining } from '../Training/EndTraining';
+import { BeginTraining } from '../Training/BeginTraining';
 import * as L from 'leaflet';
 
 @Component({
@@ -34,11 +36,15 @@ export class Edit implements OnInit {
     changeLocationCommand: ChangeLocation = new ChangeLocation();
     changePreferredLanguageCommand: ChangePreferredLanguage = new ChangePreferredLanguage();
     changeVillageCommand: ChangeVillage = new ChangeVillage();
+    endTrainingCommand: EndTraining = new EndTraining();
+    beginTrainingCommand: BeginTraining = new BeginTraining();
 
     languageOptions = [{ desc: Language[Language.English], id: Language.English as number },
     { desc: Language[Language.French], id: Language.French as number }];
     sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male as number },
     { desc: Sex[Sex.Female], id: Sex.Female as number }];
+    trainingOptions = [{ status: 'In training', value: true },{ status: 'Active', value: false }];
+    isInTraining: boolean = true;
 
     private userHasChanged = false;
     map: L.Map;
@@ -117,6 +123,7 @@ export class Edit implements OnInit {
         this.handleChangeVillage(queue);
         this.handleAddPhoneNumbers(queue);
         this.handleRemovePhoneNumbers(queue);
+        this.handleChangeStatus(queue);
 
         this.handleQueue(queue);
     }
@@ -171,6 +178,73 @@ export class Edit implements OnInit {
         this.changeVillageCommand.dataCollectorId = this.dataCollector.id;
         this.changeVillageCommand.village = this.dataCollector.village;
     }
+    private initTrainingMode() {
+        this.endTrainingCommand.dataCollectorId = this.dataCollector.id;
+        this.beginTrainingCommand.dataCollectorId = this.dataCollector.id;
+        this.isInTraining = this.dataCollector.inTraining;
+    }
+
+    private handleChangeStatus(queue) {
+        if (this.isInTraining) {
+            if (!this.dataCollector.inTraining) {
+                this.userHasChanged = true;
+                queue.push({
+                    command: this.beginTrainingCommand,
+                    then: response => {
+                        if (!response.success) {
+                            if (!response.passedSecurity) {
+                                this.toastr.error(`Could not change ${this.beginTrainingCommand.dataCollectorId}s` +
+                                ' base information because of security issues');
+                            } else {
+                                const errors = response.allValidationMessages.join('\n');
+                                this.toastr.error(`Could not change ${this.beginTrainingCommand.dataCollectorId}s`
+                                    + ` base information :\n${errors}`);
+                            }
+                        }
+                    },
+                    catch: response => {
+                        if (!response.passedSecurity) {
+                            this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s` +
+                            ' base information because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s`
+                                + ` base information :\n${errors}`);
+                        }
+                    }
+                });
+            }
+        } else {
+            if (this.dataCollector.inTraining) {
+                this.userHasChanged = true;
+                queue.push({
+                    command: this.endTrainingCommand,
+                    then: response => {
+                        if (!response.success) {
+                            if (!response.passedSecurity) {
+                                this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s` +
+                                ' base information because of security issues');
+                            } else {
+                                const errors = response.allValidationMessages.join('\n');
+                                this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s`
+                                    + ` base information :\n${errors}`);
+                            }
+                        }
+                    },
+                    catch: response => {
+                        if (!response.passedSecurity) {
+                            this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s` +
+                            ' base information because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error(`Could not change ${this.endTrainingCommand.dataCollectorId}s`
+                                + ` base information :\n${errors}`);
+                        }
+                    }
+                });
+            }
+        }
+    }
 
     private handleChangeBaseInformation(queue) {
         if (this.hasChangedBaseInformation()) {
@@ -179,7 +253,6 @@ export class Edit implements OnInit {
                 command: this.changeBaseInformationCommand,
                 then: response => {
                     console.log('Response from ChangeBaseInformation command')
-                    console.log(response);
                     if (response.success) {
                         this.toastr.success(`Successfully changed ${this.changeBaseInformationCommand.displayName}s base information`);
                     } else {

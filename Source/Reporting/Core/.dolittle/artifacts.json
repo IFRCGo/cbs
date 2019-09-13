@@ -163,6 +163,10 @@
       "a2238720-e134-462b-89aa-824066bb8000": {
         "generation": 1,
         "type": "Events.Management.DataCollectors.EditInformation.PhoneNumberRemovedFromDataCollector, Events"
+      },
+      "d55c4484-cf1c-4c66-92c7-0f953cb2344d": {
+        "generation": 1,
+        "type": "Events.Management.DataCollectors.EditInformation.LastActiveUpdated, Events"
       }
     },
     "eventSources": {},
@@ -191,6 +195,10 @@
       "02feb265-8444-4d97-9b18-a066172c6d47": {
         "generation": 1,
         "type": "Events.Reporting.CaseReports.InvalidReportReceived, Events"
+      },
+      "08ba2dff-69fe-4053-87b6-7e9f3d7faf23": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.TrainingReportReceived, Events"
       }
     },
     "eventSources": {
@@ -207,9 +215,18 @@
       "34b0dcca-cfca-4c7a-8b7e-9334af2a3091": {
         "generation": 1,
         "type": "Read.Reporting.CaseReports.CaseReportFromUnknownDataCollector, Read"
+      },
+      "a9cb35d5-0756-4073-bc85-94aa13d40250": {
+        "generation": 1,
+        "type": "Read.Reporting.CaseReports.TrainingReport, Read"
       }
     },
-    "queries": {}
+    "queries": {
+      "4bfcc326-ba40-46a8-9ac6-29d61e126a70": {
+        "generation": 1,
+        "type": "Read.Reporting.CaseReports.AllTrainingReports, Read"
+      }
+    }
   },
   "96c4f3b8-9655-483e-bf94-0a2542383049": {
     "commands": {},
