@@ -42,7 +42,7 @@
             </td>
             <td>
                 <a [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
-                <delete-user [user]=user></delete-user>
+                <delete-user [user]=user (onDelete)="fetchDataCollectors()"></delete-user>
             </td>
         </tr>
     </tbody>

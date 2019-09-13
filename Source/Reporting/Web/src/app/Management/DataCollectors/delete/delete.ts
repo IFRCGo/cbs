@@ -1,11 +1,8 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-
 import { DataCollector } from '../DataCollector';
 import { DeleteDataCollector } from '../DeleteDataCollector';
-import { environment } from '../../../../environments/environment';
-import { Router } from '@angular/router';
 
 import { CommandCoordinator } from '@dolittle/commands';
 
@@ -17,11 +14,11 @@ export class Delete {
     command: DeleteDataCollector = new DeleteDataCollector();
 
     @Input() user: DataCollector;
+    @Output() onDelete: EventEmitter<boolean> = new EventEmitter<boolean>();
     modalRef: BsModalRef;
 
     constructor(
-        private modalService: BsModalService,
-        private router: Router
+        private modalService: BsModalService
     ) {
     }
 
@@ -29,28 +26,17 @@ export class Delete {
         this.modalRef = this.modalService.show(template)
     }
 
-    deleteUser(id: string) {
+    deleteUser() {
         this.command.dataCollectorId = this.user.id;
-        if (!environment.production) {
-            console.log('Deleting datacollector with id = ' + this.command.dataCollectorId )
-        }
-
         const commandCoordinator = new CommandCoordinator();
         commandCoordinator.handle(this.command)
             .then(response => {
-                if (!environment.production) {
-                    console.log(response);
-                }
+                this.onDelete.emit(true);
                 this.modalRef.hide();
-                this.router.navigate(['list']);
-                window.location.reload();
 
             })
             .catch(response => {
-                if (!environment.production) {
-                    console.error(response);
-                }
-                this.router.navigate(['list']);
+                this.modalRef.hide();
             });
     }
 }

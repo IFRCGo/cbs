@@ -21,6 +21,11 @@ export class List implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.fetchDataCollectors();
+    this.appInsightsService.trackPageView('Data Collector List');
+  }
+
+  fetchDataCollectors() {
     const queryCoordinator = new QueryCoordinator();
     queryCoordinator.execute(new AllDataCollectors())
       .then(response => {
@@ -33,8 +38,6 @@ export class List implements OnInit {
       .catch(response => {
         console.error(response);
       });
-
-      this.appInsightsService.trackPageView('Data Collector List');
   }
 
   onSelect(dataCollector: DataCollector): void {
