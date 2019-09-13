@@ -33,7 +33,6 @@ namespace Read.Reporting.CaseReportsForListing
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if (dataCollector.InTraining) return; // don't store report for listing if training mode is active
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)
@@ -63,7 +62,7 @@ namespace Read.Reporting.CaseReportsForListing
         //QUESTION: Should we also listen to datacollector and health risk changes to update names? Or is there a better way to do this?
         [EventProcessor("9b505b35-54e3-4e35-bccd-79d330de9c54")]
         public void Process(CaseReportFromUnknownDataCollectorReceived @event, EventSourceId caseReportId)
-        {            
+        {
             var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
 
             var caseReport = new CaseReportForListing(caseReportId.Value)

@@ -127,6 +127,11 @@ namespace Policies.Reporting.Notifications
                 return;
            }
 
+           if (dataCollector.InTraining) {
+
+               return;
+           }
+
             caseReporting.Report(
                 dataCollector.Id,
                 healthRisk.Id.Value,

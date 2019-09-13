@@ -34,37 +34,34 @@ namespace Read.Reporting.CaseReports
             _dataCollectors = dataCollectors;
             _healthRisks = healthRisks;
         }
-        [EventProcessor("5d3c679a-bd2e-4bd3-92f9-903fcdbda064")]
-        public void Process(CaseReportReceived @event, EventSourceId caseReportId)
+        [EventProcessor("3a8fbc62-d9d4-49d0-b61f-abe420bf412f")]
+        public void Process(TrainingReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if (dataCollector.InTraining)
+            var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
+
+            var report = new TrainingReport(caseReportId.Value)
             {
-                var healthRisk = _healthRisks.GetById(@event.HealthRiskId);
-                var caseReport = new TrainingReport(caseReportId.Value)
-                {
-                    Status = CaseReportStatus.Success,
-                    Message = @event.Message,
-                    DataCollectorId = dataCollector.Id,
-                    DataCollectorDisplayName = dataCollector.DisplayName,
-                    DataCollectorDistrict = dataCollector.District,
-                    DataCollectorRegion = dataCollector.Region,
-                    DataCollectorVillage = dataCollector.Village,
-                    Location = dataCollector.Location,
-                    Origin = @event.Origin,
+                Status = CaseReportStatus.Success,
+                Message = @event.Message,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorVillage = dataCollector.Village,
+                Location = dataCollector.Location,
+                Origin = @event.Origin,
 
-                    HealthRiskId = healthRisk.Id,
-                    HealthRisk = healthRisk.Name,
+                HealthRiskId = healthRisk.Id,
+                HealthRisk = healthRisk.Name,
 
-                    NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
-                    NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
-                    NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
-                    NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
-                    Timestamp = @event.Timestamp,
-                };
-
-                _trainingReports.Insert(caseReport);
-            }
+                NumberOfMalesUnder5 = @event.NumberOfMalesUnder5,
+                NumberOfMalesAged5AndOlder = @event.NumberOfMalesAged5AndOlder,
+                NumberOfFemalesUnder5 = @event.NumberOfFemalesUnder5,
+                NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
+                Timestamp = @event.Timestamp,
+            };
+            _trainingReports.Insert(report);
         }
     }
 }
