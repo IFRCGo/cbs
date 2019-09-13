@@ -64,7 +64,6 @@ namespace Read.CaseReports
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
             var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
-            if (dataCollector.InTraining) return; // don't store case reports from data collectors in trainig mode
             // Insert CaseReports
             var caseReport = new CaseReport(caseReportId.Value, @event.DataCollectorId, 
             @event.HealthRiskId, @event.Origin, @event.Message, @event.NumberOfMalesUnder5, @event.NumberOfMalesAged5AndOlder, 
