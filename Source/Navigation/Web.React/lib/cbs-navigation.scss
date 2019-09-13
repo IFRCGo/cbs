@@ -52,6 +52,7 @@
 @media (max-width: $screen-lg-max) {
   .header {
     height: 70px;
+    border-bottom: 1px solid $gray-lighter;
 
     .menu-toggler {
       display: block;

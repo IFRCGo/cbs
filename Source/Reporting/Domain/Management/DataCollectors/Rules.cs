@@ -13,4 +13,7 @@ namespace Domain.Management.DataCollectors
     public delegate bool MustBeAllowedToChangeDisplayName(DataCollectorId dataCollector, string displayName);
     public delegate bool DisplayNameMustBeUnique(string displayName);
     public delegate bool CantExist(DataCollectorId dataCollector);
+    public delegate bool RegionMustBeReal(Region location);
+    public delegate bool VillageMustBeReal(Village location);
+    public delegate bool DistrictMustBeReal(District location);
 }

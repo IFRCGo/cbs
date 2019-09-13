@@ -3,14 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-using System;
 using Concepts.DataCollectors;
 using Dolittle.Events.Processing;
 using Dolittle.ReadModels;
 using Dolittle.Runtime.Events;
 using Events.Reporting.CaseReports;
 using Read.Management.DataCollectors;
-using Read.Reporting.DataCollectors;
 using Read.Reporting.HealthRisks;
 
 namespace Read.Reporting.CaseReportsForListing

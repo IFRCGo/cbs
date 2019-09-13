@@ -66,6 +66,7 @@ namespace Read.CaseReports
         [EventProcessor("db27c06b-d33c-4788-8e9d-2a1bbba13be3")]
         public void Process(CaseReportReceived @event, EventSourceId caseReportId)
         {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             // Insert CaseReports
             var caseReport = new CaseReport(caseReportId.Value, @event.DataCollectorId,
             @event.HealthRiskId, @event.Origin, @event.Message, @event.NumberOfMalesUnder5, @event.NumberOfMalesAged5AndOlder,
@@ -76,7 +77,6 @@ namespace Read.CaseReports
             _caseReportRepository.Insert(caseReport);
 
             var healthRisk = _healthRisks.GetById(caseReport.HealthRiskId);
-            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
             var district = _districts.Query.FirstOrDefault(_ => _.Name == dataCollector.District);
 
             InsertPerHealthRiskAndRegionForComing4Weeks(caseReport, healthRisk, district);
