@@ -137,10 +137,25 @@ namespace Policies.Reporting.Notifications
                 return;
             }
 
-           if (dataCollector.InTraining) {
-
-               return;
-           }
+            if (dataCollector.InTraining)
+            {
+                caseReporting.ReportTrainingReport(
+                    dataCollector.Id,
+                    healthRisk.Id.Value,
+                    notification.Sender,
+                    parsingResult.MalesUnder5,
+                    parsingResult.MalesAged5AndOlder,
+                    parsingResult.FemalesUnder5,
+                    parsingResult.FemalesAged5AndOlder,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
+                    notification.Received,
+                    notification.Text
+                );
+                dataCollecting.UpdateLastActive(notification.Received);
+                transaction.Commit();
+                return;
+            }
 
             caseReporting.Report(
                 dataCollector.Id,
