@@ -11,14 +11,16 @@ namespace Domain.Management.DataCollectors.EditInformation
 {
     public class ChangeVillageInputValidator : CommandInputValidatorFor<ChangeVillage>
     {
-        public ChangeVillageInputValidator()
+        public ChangeVillageInputValidator(VillageMustBeReal villageMustBeReal)
         {
             RuleFor(_ => _.DataCollectorId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("DataCollector Id is required")
                 .SetValidator(new DataCollectorIdValidator());
             RuleFor(_ => _.Village)
-                .NotEmpty().WithMessage("Village is required");
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Village is required")
+                .Must(_ => villageMustBeReal(_)).WithMessage(_ => $"{_.Village} is not a real location");
         }
     }
 }

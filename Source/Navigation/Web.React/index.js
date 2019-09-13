@@ -9,7 +9,6 @@ class CBSNavigation extends Component {
         this.onMenuClick = this.onMenuClick.bind(this);
 
         this.state = {
-            username: "Unknown",
             showAnalyticsDropdown: false,
             collapseMenu: true
         };
@@ -22,12 +21,6 @@ class CBSNavigation extends Component {
 
     onMenuClick() {
         this.setState(prevState => ({ collapseMenu: !prevState.collapseMenu }));
-    }
-
-    componentDidMount() {
-        if (this.props.username !== undefined) {
-            this.setState({ username: this.props.username });
-        }
     }
 
     rcLogo() {
@@ -69,6 +62,11 @@ class CBSNavigation extends Component {
             // TODO: mark the dropdown elements as well as the main one
         }
 
+        if (active == '') {
+            // to mark admin as active when using the base URL
+            active = 'admin';
+        }
+
         if (hasDropdown) {
             return <a
                 onClick={this.onClick}
@@ -90,6 +88,7 @@ class CBSNavigation extends Component {
                 <div onClick={this.onMenuClick} className="menu-toggler">
                     <i className={`fa ${this.state.collapseMenu ? `fa-bars` : `fa-times`}`} />
                 </div>
+
                 <div className="menu-wrapper">
                     <nav className="header-menu">
                         {this.createMenuItem("analytics", "Country Overview")}
@@ -104,8 +103,8 @@ class CBSNavigation extends Component {
                         {this.createMenuItem("reporting/case-reports", "Reports")}
                     </nav>
                     <div className="login-status">
-                        <span><i className="fa fa-user" /> {this.state.username}</span>
-                        <a className="logout" href="#"><i className='fa fa-sign-out' /> Log out</a>
+                        <span><i className="fa fa-user" /> {this.props.username}</span>
+                        <a className="logout" href={this.props.baseUrl + '/signout'}><i className='fa fa-sign-out' /> Log out</a>
                     </div>
                 </div>
             </header>

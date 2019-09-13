@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import OverviewTop from '../OverviewTop/OverviewTop.js';
+import CountryKeyFigures from '../CountryKeyFigures/CountryKeyFigures.js';
 import Map from "../Map.js";
-import CBSNavigation from '../../../node_modules/navigation/lib/index.js';
+import CBSNavigation from 'navigation';
 import HealthRiskSelector from "../healthRisk/HealthRiskSelector";
 import LastWeekTotals from "../lastWeekTotals/LastWeekTotals";
 
@@ -17,26 +17,37 @@ const appInsights = new ApplicationInsights({
 appInsights.loadAppInsights();
 
 class CountryOverview extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username: 'Unknown'
+        };
+    }
+
     componentDidMount() {
         appInsights.trackPageView({ name: 'Country Overview' });
+        fetch(`${process.env.API_BASE_URL}/identity`).then(async response => this.setState({
+            username: await response.text()
+        }));
     }
 
     render() {
         return (
             <>
                 <Grid container justify="center">
-                
+
                     <Grid item xs={12}>
-                        <CBSNavigation activeMenuItem="analytics" />
+                        <CBSNavigation activeMenuItem="analytics" username={this.state.username} baseUrl={process.env.API_BASE_URL} />
                     </Grid>
-                
+
                     <Grid container item xs={11} sm={10} spacing={0}>
                         <Grid item xs={12}>
                             <h1 className="jumbotron">Country Overview</h1>
                         </Grid>
-                    
+
                         <Grid item xs={12}>
-                            <OverviewTop />
+                            <CountryKeyFigures />
                         </Grid>
 
                         <Grid item xs={12}>

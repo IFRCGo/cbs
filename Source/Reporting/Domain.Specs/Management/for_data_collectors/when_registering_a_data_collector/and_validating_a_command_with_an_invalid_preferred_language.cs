@@ -16,10 +16,12 @@ namespace Domain.Specs.Management.for_data_collectors.when_registering_a_data_co
         static RegisterDataCollector cmd;
         static RegisterDataCollectorInputValidator validator;
         static ValidationResult validation_results;
+        static Domain.Management.DataCollectors.RegionMustBeReal regionMustBeReal;
+        static Domain.Management.DataCollectors.DistrictMustBeReal districtMustBeReal;
 
         Machine.Specifications.Establish context = () => 
         {
-            validator = new RegisterDataCollectorInputValidator();
+            validator = new RegisterDataCollectorInputValidator(regionMustBeReal, districtMustBeReal);
 
             cmd = given.a_command_builder.get_invalid_command((cmd) => cmd.PreferredLanguage = (Language)(-1));
         };

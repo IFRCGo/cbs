@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { AllCaseReportsQuery } from "../../Features/CaseReports/AllCaseReportsQuery";
 import { DataCollectorsQuery } from "../../Features/DataCollectors/DataCollectorsQuery"
 import { QueryCoordinator } from "@dolittle/queries";
+import { TotalReportsQuery } from "../../Features/CaseReports/TotalReportsQuery";
 
-class OverviewTop extends Component {
+class CountryKeyFigures extends Component {
     constructor(props) {
         super(props);
 
@@ -38,12 +39,11 @@ class OverviewTop extends Component {
 
     fetchTotalCaseReports() {
         this.queryCoordinator = new QueryCoordinator();
-        let caseReportTotals = new AllCaseReportsQuery();
-        this.queryCoordinator.execute(caseReportTotals).then(queryResult => {
+        const totalReports = new TotalReportsQuery();
+        this.queryCoordinator.execute(totalReports).then(queryResult => {
             if (queryResult.success) {
-                var item = queryResult.totalItems
                 this.setState({
-                    total: item,
+                    total: queryResult.items[0].reports,
                     isLoading: false,
                     isError: false,
                 });
@@ -63,20 +63,29 @@ class OverviewTop extends Component {
 
     render() {
         return (
-            <div className="overview-top">
-                <div className="card">
+            <div className="country-key-figures">
+                <div className="key-figure">
                     <i className="fa fa-heart icon"></i>
-                    <p>All reports since project start:  {this.state.total} </p>
+                    <p className="key-figure-text">
+                        <span>All reports since project start: </span>
+                        <span className="key-figure-number">{this.state.total}</span>
+                    </p>
                 </div>
-                <div className="card">
+                <div className="key-figure">
                     <i className="fa fa-male icon"></i>
-                    <p>All data collectors: <br />
-                        Active: {this.state.activeDataCollectors} <br />
-                        Inactive: {this.state.inactiveDataCollectors}
+                    <p>All data collectors:
+                        <span className="key-figure-text key-figure-text--subcategory">
+                            <span>Active: </span>
+                            <span className="key-figure-number">{this.state.activeDataCollectors}</span>
+                        </span>
+                        <span className="key-figure-text key-figure-text--subcategory">
+                            <span>Inactive: </span>
+                            <span className="key-figure-number">{this.state.inactiveDataCollectors}</span>
+                        </span>
                     </p>
                 </div>
             </div>
         );
     }
 }
-export default OverviewTop;
+export default CountryKeyFigures;

@@ -9,6 +9,8 @@ using Dolittle.Logging;
 using Dolittle.ReadModels;
 using Events.Reporting.CaseReports;
 using Dolittle.Runtime.Events;
+using Read.Management.DataCollectors;
+using System;
 
 namespace Read.Reporting.CaseReports
 {
@@ -17,6 +19,7 @@ namespace Read.Reporting.CaseReports
         readonly ILogger _logger;
         readonly IReadModelRepositoryFor<CaseReport> _caseReports;
         readonly IReadModelRepositoryFor<CaseReportFromUnknownDataCollector> _caseReportsFromUnknownDataCollectors;
+        readonly IReadModelRepositoryFor<DataCollector> _dataCollectors;
 
         public CaseReportEventProcessor(
             ILogger logger,

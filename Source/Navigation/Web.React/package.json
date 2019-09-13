@@ -4,7 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.js --out-file lib/index.js",
+    "preinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -14,9 +15,11 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

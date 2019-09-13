@@ -91,19 +91,11 @@ namespace Read.DataCollectors
             }
         }
 
-        [EventProcessor("a8a2b393-f2f2-4f40-9ef9-80465b1badba")]
-        public void Process(DataCollectorBeganTraining @event, EventSourceId dataCollectorId)
+        [EventProcessor("761fa827-92f8-4596-aff7-8ee9ba43531c")]
+        public void Process(LastActiveUpdated @event, EventSourceId dataCollectorId)
         {
             var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            dataCollector.InTraining = true;
-            _dataCollectors.Update(dataCollector);
-        }
-
-        [EventProcessor("62761a72-a1ab-4821-8ecf-246e719f7518")]
-        public void Process(DataCollectorCompletedTraining @event, EventSourceId dataCollectorId)
-        {
-            var dataCollector = _dataCollectors.GetById(dataCollectorId);
-            dataCollector.InTraining = false;
+            dataCollector.LastActive = @event.LastActive;
             _dataCollectors.Update(dataCollector);
         }
     }

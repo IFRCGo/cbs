@@ -7,7 +7,6 @@ class CBSNavigation extends Component {
     this.onClick = this.onClick.bind(this);
     this.onMenuClick = this.onMenuClick.bind(this);
     this.state = {
-      username: "Unknown",
       showAnalyticsDropdown: false,
       collapseMenu: true
     };
@@ -24,14 +23,6 @@ class CBSNavigation extends Component {
     this.setState(prevState => ({
       collapseMenu: !prevState.collapseMenu
     }));
-  }
-
-  componentDidMount() {
-    if (this.props.username !== undefined) {
-      this.setState({
-        username: this.props.username
-      });
-    }
   }
 
   rcLogo() {
@@ -94,6 +85,11 @@ class CBSNavigation extends Component {
       // TODO: mark the dropdown elements as well as the main one
     }
 
+    if (active == '') {
+      // to mark admin as active when using the base URL
+      active = 'admin';
+    }
+
     if (hasDropdown) {
       return React.createElement("a", {
         onClick: this.onClick,
@@ -128,9 +124,9 @@ class CBSNavigation extends Component {
       className: "login-status"
     }, React.createElement("span", null, React.createElement("i", {
       className: "fa fa-user"
-    }), " ", this.state.username), React.createElement("a", {
+    }), " ", this.props.username), React.createElement("a", {
       className: "logout",
-      href: "#"
+      href: this.props.baseUrl + '/signout'
     }, React.createElement("i", {
       className: "fa fa-sign-out"
     }), " Log out"))));
@@ -139,4 +135,3 @@ class CBSNavigation extends Component {
 }
 
 export default CBSNavigation;
-
