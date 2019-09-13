@@ -152,7 +152,6 @@ namespace Policies.Reporting.Notifications
                     notification.Received,
                     notification.Text
                 );
-                dataCollecting.UpdateLastActive(notification.Received);
                 transaction.Commit();
                 return;
             }
