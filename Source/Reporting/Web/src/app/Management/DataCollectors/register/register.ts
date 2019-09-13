@@ -1,26 +1,27 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommandCoordinator } from '@dolittle/commands';
-import { Guid } from '@dolittle/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {CommandCoordinator} from '@dolittle/commands';
+import {Guid} from '@dolittle/core';
 import * as L from 'leaflet';
-import { ToastrService } from 'ngx-toastr';
-import { AppInsightsService } from '../../../services/app-insights-service';
-import { Language } from '../../Language';
-import { Sex } from '../../Sex';
-import { ChangeVillage } from '../ChangeVillage';
-import { RegisterDataCollector } from '../RegisterDataCollector';
+import {ToastrService} from 'ngx-toastr';
+import {AppInsightsService} from '../../../services/app-insights-service';
+import {Language} from '../../Language';
+import {Sex} from '../../Sex';
+import {ChangeVillage} from '../ChangeVillage';
+import {RegisterDataCollector} from '../RegisterDataCollector';
+import 'leaflet-control-geocoder';
 
 
 @Component({
     templateUrl: './register.html',
     styleUrls: ['./register.scss']
 })
-export class Register implements OnInit, AfterViewInit {
-  
+export class RegisterComponent implements OnInit, AfterViewInit {
+
     commandCoordinator: CommandCoordinator;
     locationSelected = false;
-    defaultLat: number = 9.216515;
-    defaultLng: number = 45.523637;
+    defaultLat = 9.216515;
+    defaultLng = 45.523637;
     selectedLat: number = this.defaultLat;
     selectedLng: number = this.defaultLng;
 
@@ -29,11 +30,13 @@ export class Register implements OnInit, AfterViewInit {
     changeVillageCommand: ChangeVillage = new ChangeVillage();
 
     languageOptions = [{desc: Language[Language.English], id: Language.English},
-                        {desc: Language[Language.French], id: Language.French}];
-    sexOptions = [{ desc: Sex[Sex.Male], id: Sex.Male },
-                 { desc: Sex[Sex.Female], id: Sex.Female }];
+        {desc: Language[Language.French], id: Language.French}];
+    sexOptions = [{desc: Sex[Sex.Male], id: Sex.Male},
+        {desc: Sex[Sex.Female], id: Sex.Female}];
     map: L.Map;
     marker: L.Marker;
+    private geocoder: any;
+
     constructor(
         private router: Router,
         private toastr: ToastrService,
@@ -46,17 +49,26 @@ export class Register implements OnInit, AfterViewInit {
         this.appInsightsService.trackPageView('RegisterDataCollector');
         this.commandCoordinator = new CommandCoordinator();
     }
+
     ngAfterViewInit(): void {
-        this.map = L.map("mapid").setView([this.defaultLat, this.defaultLng], 7);
+        this.map = L.map('mapid').setView([this.defaultLat, this.defaultLng], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-          }).addTo(this.map)
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.map)
         this.map.on('click', (e) => {
             this.onLocationSelected(e);
         });
+        // @ts-ignore
+        this.geocoder = L.Control.Geocoder.nominatim()
     }
-    
-    onLocationSelected(event){
+
+    onLocationSelected(event) {
+        this.geocoder.reverse(event.latlng, this.map.options.crs.scale(this.map.getZoom()), results => {
+            const location = results[0].properties.address;
+            this.changeVillageCommand.village = location.village ? location.village : '[No village found]';
+            this.command.region = location.state ? location.state : '[No region found]';
+            this.command.district = location.state_district ? location.state_district : '[No district found]';
+        });
         this.locationSelected = true;
         this.selectedLat = event.latlng.lat;
         this.selectedLng = event.latlng.lng;
@@ -72,11 +84,10 @@ export class Register implements OnInit, AfterViewInit {
     submit() {
         this.command.dataCollectorId = Guid.create();
         this.command.phoneNumbers = this.phoneNumberString.split(',').map(number => number.trim());
-        this.command.dataVerifierId = Guid.create(); //TODO: THis is just temporary, dataVerifier should be bound through the form
+        this.command.dataVerifierId = Guid.create(); // TODO: THis is just temporary, dataVerifier should be bound through the form
         this.commandCoordinator.handle(this.command)
             .then(response => {
-                console.log(response);
-                if (response.success)  {
+                if (response.success) {
                     this.toastr.success('Successfully registered a new data collector!');
                     this.handleChangeVillage();
                     this.router.navigate(['/datacollectors']);
@@ -90,7 +101,6 @@ export class Register implements OnInit, AfterViewInit {
                 }
             })
             .catch(response => {
-                console.log(response);
                 if (!response.passedSecurity) { // Security error
                     this.toastr.error('Could not register a new data collector because of security issues');
                 } else {
@@ -105,28 +115,26 @@ export class Register implements OnInit, AfterViewInit {
             this.changeVillageCommand.dataCollectorId = this.command.dataCollectorId;
 
             this.commandCoordinator.handle(this.changeVillageCommand)
-            .then(response => {
-                console.log(response);
-                if (response.success)  {
-                    this.toastr.success('Successfully added village to data collector!');
-                } else {
+                .then(response => {
+                    if (response.success) {
+                        this.toastr.success('Successfully added village to data collector!');
+                    } else {
+                        if (!response.passedSecurity) { // Security error
+                            this.toastr.error('Could not change village of data collector because of security issues');
+                        } else {
+                            const errors = response.allValidationMessages.join('\n');
+                            this.toastr.error('Could not change village of data collector:\n' + errors);
+                        }
+                    }
+                })
+                .catch(response => {
                     if (!response.passedSecurity) { // Security error
                         this.toastr.error('Could not change village of data collector because of security issues');
                     } else {
                         const errors = response.allValidationMessages.join('\n');
                         this.toastr.error('Could not change village of data collector:\n' + errors);
                     }
-                }
-            })
-            .catch(response => {
-                console.log(response);
-                if (!response.passedSecurity) { // Security error
-                    this.toastr.error('Could not change village of data collector because of security issues');
-                } else {
-                    const errors = response.allValidationMessages.join('\n');
-                    this.toastr.error('Could not change village of data collector:\n' + errors);
-                }
-            });
+                });
         }
     }
 }

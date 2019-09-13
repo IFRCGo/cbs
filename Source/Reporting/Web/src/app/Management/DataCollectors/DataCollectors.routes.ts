@@ -1,9 +1,9 @@
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 
-import { List } from './list/list';
-import { Edit } from './edit/edit';
-import { Register } from './register/register';
-import { Details } from './details/details';
+import {List} from './list/list';
+import {Edit} from './edit/edit';
+import {RegisterComponent} from './register/register';
+import {Details} from './details/details';
 
 const routes: Routes = [
     {
@@ -15,15 +15,15 @@ const routes: Routes = [
             },
             {
                 path: 'register',
-                component: Register
+                component: RegisterComponent
             },
             {
                 path: 'edit/:id',
                 component: Edit
             },
-            { 
-                path: 'details/:id', 
-                component: Details 
+            {
+                path: 'details/:id',
+                component: Details
             }
         ]
     }

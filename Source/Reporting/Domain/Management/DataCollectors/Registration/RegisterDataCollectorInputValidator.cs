@@ -14,7 +14,9 @@ namespace Domain.Management.DataCollectors.Registration
 {
     public class RegisterDataCollectorInputValidator : CommandInputValidatorFor<RegisterDataCollector>
     {
-        public RegisterDataCollectorInputValidator()
+        public RegisterDataCollectorInputValidator(
+            RegionMustBeReal regionMustBeReal,
+            DistrictMustBeReal districtMustBeReal)
         {
             RuleFor(_ => _.DataCollectorId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
@@ -63,11 +65,13 @@ namespace Domain.Management.DataCollectors.Registration
             RuleFor(_ => _.District)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("District is required")
+                .Must(_ => districtMustBeReal(_)).WithMessage(_ => $"{_.District} is not a real location")
                 .SetValidator(new DistrictValidator());
 
             RuleFor(_ => _.Region)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Region is required")
+                .Must(_ => regionMustBeReal(_)).WithMessage(_ => $"{_.Region} is not a real location")
                 .SetValidator(new RegionValidator());
 
             RuleFor(_ => _.DataVerifierId)
