@@ -63,5 +63,29 @@ namespace Read.Reporting.CaseReports
             };
             _trainingReports.Insert(report);
         }
+
+        [EventProcessor("a7202162-c745-486c-9cd2-b1f7f26b6162")]
+        public void Process(InvalidTrainingReportReceived @event, EventSourceId caseReportId)
+        {
+            var dataCollector = _dataCollectors.GetById(@event.DataCollectorId);
+
+            var report = new TrainingReport(caseReportId.Value)
+            {
+                Status = CaseReportStatus.TextMessageParsingError,
+                Message = @event.Message,
+                DataCollectorId = dataCollector.Id,
+                DataCollectorDisplayName = dataCollector.DisplayName,
+                DataCollectorDistrict = dataCollector.District,
+                DataCollectorRegion = dataCollector.Region,
+                DataCollectorVillage = dataCollector.Village,
+                Location = dataCollector.Location,
+                Origin = @event.Origin,
+
+                HealthRiskId = null,
+                HealthRisk = "Unknown",
+                Timestamp = @event.Timestamp,
+            };
+            _trainingReports.Insert(report);
+        }
     }
 }
