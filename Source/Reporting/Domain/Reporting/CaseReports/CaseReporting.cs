@@ -96,5 +96,17 @@ namespace Domain.Reporting.CaseReports
                 numberOfMalesUnder5, numberOfMalesAged5AndOlder, numberOfFemalesUnder5, numberOfFemalesAged5AndOlder,
                 longitude, latitude, timestamp));
         }
+
+        public void ReportInvalidTrainingReport(
+            Guid collector,
+            string origin,
+            string originalMessage,
+            double longitude,
+            double latitude,
+            IEnumerable<string> errorMessages,
+            DateTimeOffset timestamp)
+        {
+            Apply(new InvalidTrainingReportReceived(collector, origin, originalMessage, longitude, latitude, errorMessages, timestamp));
+        }
     }
 }

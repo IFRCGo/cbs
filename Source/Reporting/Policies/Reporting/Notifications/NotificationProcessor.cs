@@ -75,7 +75,9 @@ namespace Policies.Reporting.Notifications
 
             if (!isTextMessageFormatValid && !unknownDataCollector)
             {
-                caseReporting.ReportInvalidReport(
+                if (dataCollector.InTraining)
+                {
+                    caseReporting.ReportInvalidTrainingReport(
                      dataCollector.Id,
                      notification.Sender,
                      notification.Text,
@@ -83,8 +85,20 @@ namespace Policies.Reporting.Notifications
                      dataCollector.Location.Latitude,
                      parsingResult.ErrorMessages,
                      notification.Received);
+                }
+                else
+                {
+                    caseReporting.ReportInvalidReport(
+                         dataCollector.Id,
+                         notification.Sender,
+                         notification.Text,
+                         dataCollector.Location.Longitude,
+                         dataCollector.Location.Latitude,
+                         parsingResult.ErrorMessages,
+                         notification.Received);
 
-                dataCollecting.UpdateLastActive(notification.Received);
+                    dataCollecting.UpdateLastActive(notification.Received);
+                }
 
                 transaction.Commit();
                 return;
