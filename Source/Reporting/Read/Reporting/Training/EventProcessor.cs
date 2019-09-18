@@ -61,6 +61,7 @@ namespace Read.Reporting.CaseReports
                 NumberOfFemalesAged5AndOlder = @event.NumberOfFemalesAged5AndOlder,
                 Timestamp = @event.Timestamp,
             };
+            
             _trainingReports.Insert(report);
         }
 
@@ -85,6 +86,7 @@ namespace Read.Reporting.CaseReports
                 HealthRisk = "Unknown",
                 Timestamp = @event.Timestamp,
             };
+
             _trainingReports.Insert(report);
         }
     }

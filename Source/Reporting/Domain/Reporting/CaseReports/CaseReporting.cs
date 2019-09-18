@@ -106,7 +106,8 @@ namespace Domain.Reporting.CaseReports
             IEnumerable<string> errorMessages,
             DateTimeOffset timestamp)
         {
-            Apply(new InvalidTrainingReportReceived(collector, origin, originalMessage, longitude, latitude, errorMessages, timestamp));
+            Apply(new InvalidTrainingReportReceived(collector, origin, originalMessage,
+                longitude, latitude, errorMessages, timestamp));
         }
     }
 }
