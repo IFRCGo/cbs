@@ -59,7 +59,7 @@ namespace Policies.Reporting.Notifications
 
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
-            var dataCollecting = _dataCollectorRepository.Get(dataCollector.Id.Value);
+            var dataCollecting = unknownDataCollector ? null : _dataCollectorRepository.Get(dataCollector.Id.Value);
 
             if (!isTextMessageFormatValid && unknownDataCollector)
             {
