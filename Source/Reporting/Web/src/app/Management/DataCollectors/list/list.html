@@ -42,7 +42,7 @@
             </td>
             <td>
                 <a class="action-cell" [routerLink]="['/datacollectors/edit/',user.id]" routerLinkActive="active">Edit</a>
-                <delete-user class="action-cell" [user]=user></delete-user>
+                <delete-user [user]=user (onDelete)="fetchDataCollectors()"></delete-user>
                 <a class="action-cell" (click)="toggleTraining(user)">{{ user.inTraining ? 'End training' : 'Begin training'}}</a>
             </td>
         </tr>
