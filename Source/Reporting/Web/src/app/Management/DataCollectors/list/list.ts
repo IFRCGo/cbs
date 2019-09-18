@@ -25,7 +25,6 @@ export class List implements OnInit {
 
   ngOnInit() {
     this.fetchDataCollectors();
-
     this.appInsightsService.trackPageView('Data Collector List');
   }
 
