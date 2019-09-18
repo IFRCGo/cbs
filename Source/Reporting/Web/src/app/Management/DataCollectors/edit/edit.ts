@@ -29,8 +29,8 @@ export class Edit implements OnInit, AfterViewInit {
     error = false;
     dataCollector: DataCollector;
     phoneNumberString = '';
-    lat = 9;
-    lng = 44;
+    private lat = 9;
+    private lng = 44;
 
     changeBaseInformationCommand: ChangeBaseInformation = new ChangeBaseInformation();
     changeLocationCommand: ChangeLocation = new ChangeLocation();
