@@ -15,7 +15,6 @@ using Dolittle.ReadModels;
 using Domain.Reporting.CaseReports;
 using Events.NotificationGateway.Reporting.SMS;
 using Dolittle.Runtime.Commands.Coordination;
-using Dolittle.Runtime.Events;
 
 namespace Policies.Reporting.Notifications
 {
@@ -75,16 +74,30 @@ namespace Policies.Reporting.Notifications
 
             if (!isTextMessageFormatValid && !unknownDataCollector)
             {
-                caseReporting.ReportInvalidReport(
-                     dataCollector.Id,
-                     notification.Sender,
-                     notification.Text,
-                     dataCollector.Location.Longitude,
-                     dataCollector.Location.Latitude,
-                     parsingResult.ErrorMessages,
-                     notification.Received);
+                if (dataCollector.InTraining)
+                {
+                    caseReporting.ReportInvalidTrainingReport(
+                        dataCollector.Id,
+                        notification.Sender,
+                        notification.Text,
+                        dataCollector.Location.Longitude,
+                        dataCollector.Location.Latitude,
+                        parsingResult.ErrorMessages,
+                        notification.Received);
+                }
+                else
+                {
+                    caseReporting.ReportInvalidReport(
+                        dataCollector.Id,
+                        notification.Sender,
+                        notification.Text,
+                        dataCollector.Location.Longitude,
+                        dataCollector.Location.Latitude,
+                        parsingResult.ErrorMessages,
+                        notification.Received);
 
-                dataCollecting.UpdateLastActive(notification.Received);
+                    dataCollecting.UpdateLastActive(notification.Received);
+                }
 
                 transaction.Commit();
                 return;
@@ -98,22 +111,23 @@ namespace Policies.Reporting.Notifications
                 if (unknownDataCollector)
                 {
                     caseReporting.ReportInvalidReportFromUnknownDataCollector(
-                         notification.Sender,
-                         notification.Text,
-                         errorMessages,
-                         notification.Received);
+                        notification.Sender,
+                        notification.Text,
+                        errorMessages,
+                        notification.Received);
+
                     transaction.Commit();
                     return;
                 }
 
                 caseReporting.ReportInvalidReport(
-                     dataCollector.Id,
-                     notification.Sender,
-                     notification.Text,
-                     dataCollector.Location.Longitude,
-                     dataCollector.Location.Latitude,
-                     errorMessages,
-                     notification.Received);
+                    dataCollector.Id,
+                    notification.Sender,
+                    notification.Text,
+                    dataCollector.Location.Longitude,
+                    dataCollector.Location.Latitude,
+                    errorMessages,
+                    notification.Received);
 
                 dataCollecting.UpdateLastActive(notification.Received);
 
@@ -132,7 +146,8 @@ namespace Policies.Reporting.Notifications
                     parsingResult.FemalesAged5AndOlder,
                     notification.Received,
                     notification.Text
-               );
+                );
+
                 transaction.Commit();
                 return;
             }
@@ -152,6 +167,7 @@ namespace Policies.Reporting.Notifications
                     notification.Received,
                     notification.Text
                 );
+
                 transaction.Commit();
                 return;
             }
