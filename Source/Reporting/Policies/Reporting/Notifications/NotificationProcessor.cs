@@ -59,7 +59,11 @@ namespace Policies.Reporting.Notifications
 
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
-            var dataCollecting = unknownDataCollector ? null : _dataCollectorRepository.Get(dataCollector.Id.Value);
+
+            if (!unknownDataCollector && !dataCollector.InTraining)
+            {
+                UpdateLastActive(dataCollector, notification.Received);
+            }
 
             if (!isTextMessageFormatValid && unknownDataCollector)
             {
@@ -83,8 +87,6 @@ namespace Policies.Reporting.Notifications
                      dataCollector.Location.Latitude,
                      parsingResult.ErrorMessages,
                      notification.Received);
-
-                dataCollecting.UpdateLastActive(notification.Received);
 
                 transaction.Commit();
                 return;
@@ -114,8 +116,6 @@ namespace Policies.Reporting.Notifications
                      dataCollector.Location.Latitude,
                      errorMessages,
                      notification.Received);
-
-                dataCollecting.UpdateLastActive(notification.Received);
 
                 transaction.Commit();
                 return;
@@ -169,9 +169,14 @@ namespace Policies.Reporting.Notifications
                 notification.Received,
                 notification.Text
             );
-            dataCollecting.UpdateLastActive(notification.Received);
 
             transaction.Commit();
+        }
+
+        public void UpdateLastActive(DataCollector dataCollector, DateTimeOffset timestamp)
+        {
+            var dataCollecting = _dataCollectorRepository.Get(dataCollector.Id.Value);
+            dataCollecting.UpdateLastActive(timestamp);
         }
     }
 }
