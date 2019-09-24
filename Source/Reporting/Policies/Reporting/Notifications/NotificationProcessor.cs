@@ -49,7 +49,6 @@ namespace Policies.Reporting.Notifications
             var transaction = _commandContextManager.EstablishForCommand(new Dolittle.Runtime.Commands.CommandRequest(Guid.NewGuid(), Guid.Empty, 0, new Dictionary<string, object>()));
             var parsingResult = _textMessageParser.Parse(notification);
 
-            //        var filter = Builders<DataCollector>.Filter.AnyEq(c => c.PhoneNumbers, (PhoneNumber)phoneNumber);
             var isTextMessageFormatValid = parsingResult.IsValid;
 
             var dataCollector = _dataCollectors.Query.Where(_ => _.PhoneNumbers.Contains(new Concepts.DataCollectors.PhoneNumber() { Value = notification.Sender })).FirstOrDefault();
@@ -58,7 +57,11 @@ namespace Policies.Reporting.Notifications
 
             var caseReportId = Guid.NewGuid();
             var caseReporting = _caseReportingRepository.Get(caseReportId);
-            var dataCollecting = _dataCollectorRepository.Get(dataCollector.Id.Value);
+
+            if (!unknownDataCollector && !dataCollector.InTraining)
+            {
+                UpdateLastActive(dataCollector, notification.Received);
+            }
 
             if (!isTextMessageFormatValid && unknownDataCollector)
             {
@@ -95,8 +98,6 @@ namespace Policies.Reporting.Notifications
                         dataCollector.Location.Latitude,
                         parsingResult.ErrorMessages,
                         notification.Received);
-
-                    dataCollecting.UpdateLastActive(notification.Received);
                 }
 
                 transaction.Commit();
@@ -128,8 +129,6 @@ namespace Policies.Reporting.Notifications
                     dataCollector.Location.Latitude,
                     errorMessages,
                     notification.Received);
-
-                dataCollecting.UpdateLastActive(notification.Received);
 
                 transaction.Commit();
                 return;
@@ -185,9 +184,14 @@ namespace Policies.Reporting.Notifications
                 notification.Received,
                 notification.Text
             );
-            dataCollecting.UpdateLastActive(notification.Received);
 
             transaction.Commit();
+        }
+
+        public void UpdateLastActive(DataCollector dataCollector, DateTimeOffset timestamp)
+        {
+            var dataCollecting = _dataCollectorRepository.Get(dataCollector.Id.Value);
+            dataCollecting.UpdateLastActive(timestamp);
         }
     }
 }
