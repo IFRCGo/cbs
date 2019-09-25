@@ -103,7 +103,7 @@ namespace Read.CaseReports
             }
         }
 
-        public void InsertNumCases(RegionWithHealthRisk region, int day, NumberOfPeople numCases)
+        public RegionWithHealthRisk InsertNumCases(RegionWithHealthRisk region, int day, NumberOfPeople numCases)
         {
             if (day < 7)
             {
@@ -121,6 +121,8 @@ namespace Read.CaseReports
             {
                 region.Days21to27 += numCases;
             }
+
+            return region;
         }
 
         public void InsertPerHealthRiskAndRegionForDay(CaseReport report, HealthRisk healthRisk, District district)
@@ -194,48 +196,53 @@ namespace Read.CaseReports
                 var dayReport = _caseReportsPerRegionLast4Weeks.GetById(day + today);
                 if (dayReport != null)
                 {
-                    var healthRiskForDay = dayReport.HealthRisks.FirstOrDefault(d => d.Id == caseReport.HealthRiskId);
-                    if (healthRiskForDay != null)
+                    if (dayReport.HealthRisks.TryGetValue(healthRisk.Name, out HealthRisksInRegionsLast4Weeks healthRiskForDay))
                     {
-                        var regionForHealthRisk = healthRiskForDay.Regions.FirstOrDefault(r => r.Name == region.Name);
-                        if (regionForHealthRisk != null)
+                        if (healthRiskForDay.Regions.TryGetValue(region.Name, out RegionWithHealthRisk regionWithHealthRisk))
                         {
-                            InsertNumCases(regionForHealthRisk, day, numCases);
+                            regionWithHealthRisk = InsertNumCases(regionWithHealthRisk, day, numCases);
+                            healthRiskForDay.Regions[region.Name] = regionWithHealthRisk;
                         }
                         else
                         {
-                            healthRiskForDay.Regions.Add(AddRegionWithCases(region.Name, day, numCases));
+                            healthRiskForDay.Regions.Add(region.Name, AddRegionWithCases(region.Name, day, numCases));
                         }
+
+                        dayReport.HealthRisks[healthRisk.Name] = healthRiskForDay;
                     }
                     else
                     {
-                        dayReport.HealthRisks.Add(new HealthRisksInRegionsLast4Weeks()
+                        var healthRisksInRegion = new HealthRisksInRegionsLast4Weeks();
+                        healthRisksInRegion.Regions = new Dictionary<RegionName, RegionWithHealthRisk>
                         {
-                            Id = caseReport.HealthRiskId,
-                            HealthRiskName = healthRisk.Name,
-                            Regions = new[] { AddRegionWithCases(region.Name, day, numCases) }
-                        });
+                            { region.Name, AddRegionWithCases(region.Name, day, numCases) }
+                        };
+
+                        dayReport.HealthRisks.Add(healthRisk.Name, healthRisksInRegion);
                     }
+
                     _caseReportsPerRegionLast4Weeks.Update(dayReport);
                 }
                 else
                 {
+                    var healthRisksInRegion = new HealthRisksInRegionsLast4Weeks();
+                    healthRisksInRegion.Regions = new Dictionary<RegionName, RegionWithHealthRisk>()
+                    {
+                        { region.Name, AddRegionWithCases(region.Name, day, numCases) }
+                    };
+
                     dayReport = new CaseReportsPerRegionLast4Weeks()
                     {
                         Id = day + today,
-                        HealthRisks = new[]
+                        HealthRisks = new Dictionary<HealthRiskName, HealthRisksInRegionsLast4Weeks>()
                         {
-                            new HealthRisksInRegionsLast4Weeks()
-                            {
-                                Id = caseReport.HealthRiskId,
-                                HealthRiskName = healthRisk.Name,
-                                Regions = new []{ AddRegionWithCases(region.Name, day, numCases) }
-                            }
+                            { healthRisk.Name, healthRisksInRegion }
                         }
                     };
+
                     _caseReportsPerRegionLast4Weeks.Insert(dayReport);
                 }
-            };
+            }
         }
     }
 }
