@@ -199,6 +199,10 @@
       "08ba2dff-69fe-4053-87b6-7e9f3d7faf23": {
         "generation": 1,
         "type": "Events.Reporting.CaseReports.TrainingReportReceived, Events"
+      },
+      "048b5f0f-cc5b-4fda-a0db-aa83cebbc418": {
+        "generation": 1,
+        "type": "Events.Reporting.CaseReports.InvalidTrainingReportReceived, Events"
       }
     },
     "eventSources": {
