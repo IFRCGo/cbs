@@ -159,11 +159,13 @@ namespace Read.CaseReports
                     if (reportsPerRegion.TryGetValue(region.Name, out int totalReports))
                     {
                         totalReports += numberOfReports;
+                        reportsPerRegion[region.Name] = totalReports;
                     }
                     else
                     {
                         reportsPerRegion.Add(region.Name, numberOfReports);
                     }
+                    reportsPerHealthRisk.ReportsPerHealthRisk[healthRisk.Name] = reportsPerRegion;
                 }
                 else
                 {
