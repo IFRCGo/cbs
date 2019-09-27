@@ -48,8 +48,8 @@ namespace Core.CaseReports.Formats
 
         void WriteRow(ExcelWorksheet worksheet, int row, CaseReportForListing report)
         {
-            worksheet.Cells[row, 1].Value = report.Timestamp.DateTime.ToString("dd/MM/yyyy");
-            worksheet.Cells[row, 2].Value = report.Timestamp.DateTime.ToString("HH:mm");
+            worksheet.Cells[row, 1].Value = report.Timestamp.DateTime;
+            worksheet.Cells[row, 2].Value = report.Timestamp.DateTime;
             worksheet.Cells[row, 19].Value = report.Message;
 
             var isoyear = GetIsoYear(report.Timestamp.DateTime);
@@ -143,7 +143,8 @@ namespace Core.CaseReports.Formats
                 worksheet.Column(i).Width = 25;
             }
 
-            worksheet.Column(1).Style.Numberformat.Format = "yyyy-MM-dd hh:mm";
+            worksheet.Column(1).Style.Numberformat.Format = "dd/MM/yyyy";
+            worksheet.Column(2).Style.Numberformat.Format = "HH:mm";
         }
 
         public static int GetEpiWeek(DateTime time)
