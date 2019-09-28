@@ -220,6 +220,14 @@
       "d55c4484-cf1c-4c66-92c7-0f953cb2344d": {
         "generation": 1,
         "type": "Events.Reporting.DataCollectors.LastActiveUpdated, Events.Reporting"
+      },
+      "a73348f5-45ab-4913-8a6f-5947b44d6944": {
+        "generation": 1,
+        "type": "Events.Reporting.DataCollectors.DataCollectorBeganTraining, Events.Reporting"
+      },
+      "950cef1b-5e9f-44e3-b410-67749573eda7": {
+        "generation": 1,
+        "type": "Events.Reporting.DataCollectors.DataCollectorCompletedTraining, Events.Reporting"
       }
     },
     "eventSources": {},

@@ -50,16 +50,18 @@ class ReportsPerHealthRiskPerRegionLast4Weeks extends Component {
         </TableCell>
     }
 
+    getTotalReports(region) {
+        return region.days0to6 + region.days14to20 + region.days21to27 + region.days7to13;
+    }
+
     renderRows() {
-        const currentHealthRisk = this.state.regionsForHealthRisk.find(r => r.healthRiskName == this.props.selectedHealthRisk);
+        const currentHealthRisk = this.state.regionsForHealthRisk[this.props.selectedHealthRisk];
 
         if (currentHealthRisk != null) {
-            return currentHealthRisk.regions.map(region => {
-                const totalReports = Object.values(region).reduce(function (acc, val) {
-                    if (!isNaN(val))
-                        return acc + val;
-                    return acc
-                }, 0);
+            const regions = Object.keys(currentHealthRisk.regions);
+            return regions.map(regionName => {
+                const region = currentHealthRisk.regions[regionName];
+                const totalReports = this.getTotalReports(region);
 
                 return (
                     <TableRow key={region.name}>

@@ -4,6 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 
 using Concepts;
+using Concepts.HealthRisks;
 using Dolittle.ReadModels;
 using System.Collections.Generic;
 
@@ -12,6 +13,6 @@ namespace Read.CaseReports
     public class CaseReportsPerRegionLast4Weeks : IReadModel
     {
         public Day Id { get; set; }
-        public IList<HealthRisksInRegionsLast4Weeks> HealthRisks { get; set; }
+        public Dictionary<HealthRiskName, HealthRisksInRegionsLast4Weeks> HealthRisks { get; set; }
     }
 }
