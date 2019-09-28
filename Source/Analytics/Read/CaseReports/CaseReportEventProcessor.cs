@@ -160,8 +160,7 @@ namespace Read.CaseReports
                 {
                     if (reportsPerRegion.TryGetValue(region.Name, out int totalReports))
                     {
-                        totalReports += numberOfReports;
-                        reportsPerRegion[region.Name] = totalReports;
+                        reportsPerRegion[region.Name] = totalReports + numberOfReports;
                     }
                     else
                     {
