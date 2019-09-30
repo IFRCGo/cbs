@@ -12,8 +12,7 @@ import { AppInsightsService } from '../services/app-insights-service';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AgmCoreModule,
-        NgxSmartModalModule
+        AgmCoreModule
     ],
     declarations: [],
     exports: [
