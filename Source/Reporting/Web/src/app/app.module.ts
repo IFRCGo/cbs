@@ -15,6 +15,8 @@ import { NavbarHostComponent } from './navigation/navbar-host.component';
 import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
 
+import { ModalModule } from 'ngx-bootstrap';
+
 import { DataCollectorExportService } from './Management/DataCollectors/DataCollectorExportService';
 import { DataCollectorsModule } from './Management/DataCollectors/DataCollectors.module';
 import { CaseReportModule } from './Reporting/reporting.module';
@@ -52,6 +54,7 @@ NavbarHostComponent.apiBaseUrl = environment.api;
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule.forRoot(),
     RouterModule.forRoot(routes),
     DataCollectorsModule,
     CaseReportModule
