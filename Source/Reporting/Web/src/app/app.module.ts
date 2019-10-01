@@ -12,9 +12,6 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { NavbarHostComponent } from './navigation/navbar-host.component';
 
-import { ModalModule } from 'ngx-bootstrap';
-import { NgxSmartModalModule } from 'ngx-smart-modal';
-
 import { CommandCoordinator } from '@dolittle/commands';
 import { QueryCoordinator } from '@dolittle/queries';
 
@@ -54,8 +51,6 @@ NavbarHostComponent.apiBaseUrl = environment.api;
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxSmartModalModule.forRoot(),
-    ModalModule.forRoot(),
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
     DataCollectorsModule,
