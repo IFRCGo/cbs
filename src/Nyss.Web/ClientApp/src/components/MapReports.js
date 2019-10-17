@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 
-const Map = () => {
+const MapReports = () => {
   // create map
   const mapRef = useRef(null);
   useEffect(() => {
@@ -20,4 +20,4 @@ const Map = () => {
   return <div id="map"></div>
 }
 
-export default Map;
+export default MapReports;
