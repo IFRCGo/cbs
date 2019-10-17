@@ -25,5 +25,3 @@ ReactDOM.render(
     </ConnectedRouter>
   </Provider>,
   rootElement);
-
-registerServiceWorker();
