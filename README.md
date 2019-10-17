@@ -35,5 +35,8 @@ There are several ways to start contributing:
 3. This will start the application and open a browser tab to show you the UI when it's ready. __Note:__ the first time takes a while to start as it is building and installing dependencies for both the back-end and front-end code.
 4. Start coding to save some lives!
 
+## Known issues
+* On Mac and Visual Studio Code: If you struggle to run the code through `Start Debugging`, try to build and run the code with `dotnet restore`, `dotnet build` and `dotnet run`(to do this command you have to be in the Nyss.Web folder)
+
 ### Contributing code
 To commit code to this repository, you need to be given write acces. Ask `nikolairiedel` or `gardnk` to add you - or if you are @ a Codeathon ask someone in a blue t-shirt.
