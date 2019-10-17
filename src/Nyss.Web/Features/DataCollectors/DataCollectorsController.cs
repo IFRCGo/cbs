@@ -13,7 +13,8 @@ namespace Nyss.Web.Features.DataCollectors
             _dataCollectorService = dataCollectorService;
         }
 
-        public IActionResult GetAll()
+        [HttpGet]
+        public IActionResult Get()
         {
             return Ok(_dataCollectorService.All());
         }
