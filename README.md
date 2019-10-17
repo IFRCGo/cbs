@@ -6,7 +6,8 @@ We are going to work  repository for the new CBS solution, called *NYSS*!
 Nyss is a norwegian word and means to "get the wind of something". And the first norwegian computer was called [Nusse](https://no.wikipedia.org/wiki/Nusse).
 
 ## Getting started
-1. Clone this repository, and open it in the editor of your choice. We have tested it to work with _Visual Studio 2019_ and _Visual Studio Code_.
+1. Clone this repository, and open it in the editor of your choice. We have tested it to work with _Visual Studio 2019_ and _Visual Studio Code_. Nyss has quite a lot of history, so it would take a while to download all of it to your computer. To speed it up you can make a shallow clone with the command.
+`git clone --depth 1 https://github.com/cbs-brussels-2019/Nyss.git`
 2. Start the application:
    * For _Visual Studio 2019_ users: run the `Nyss.Web` Project - or hit `F5`.
    * For _Visual Studio Code_ users: run the `Start Debugging` command - or hit `F5`.
