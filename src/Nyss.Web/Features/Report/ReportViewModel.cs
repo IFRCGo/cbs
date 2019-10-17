@@ -1,4 +1,4 @@
-using System;
+
 namespace Nyss.Web.Features.Report
 {
     public class ReportViewModel
@@ -11,21 +11,20 @@ namespace Nyss.Web.Features.Report
         public string District { get; set; }
         public string Village { get; set; }
         public string HealthRisk { get; set; }
-        public int MalesUnder5 { get; set; }
-        public int Males5OrOlder { get; set; }
-        public int FemalesUnder5 { get; set; }
-        public int Females5OrOlder { get; set; }
-        public int TotalUnder5 { get; set; }
-        public int Total5OrOlder { get; set; }
-        public int TotalFemales { get; set; }
-        public int TotalMales { get; set; }
-        public int Total { get; set; }
+        public string MalesUnder5 { get; set; }
+        public string Males5OrOlder { get; set; }
+        public string FemalesUnder5 { get; set; }
+        public string Females5OrOlder { get; set; }
+        public string TotalUnder5 { get; set; }
+        public string Total5OrOlder { get; set; }
+        public string TotalFemales { get; set; }
+        public string TotalMales { get; set; }
+        public string Total { get; set; }
         public string Location { get; set; }
         public string Message { get; set; }
         public string Errors { get; set; }
         public string IsoYear { get; set; }
         public string IsoWeek { get; set; }
         public string IsoYearIsoWeek { get; set; }
-
     }
 }
