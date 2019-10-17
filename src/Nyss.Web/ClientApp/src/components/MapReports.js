@@ -5,14 +5,15 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 const MapReports = () => {
   return (
     <div className={"leaflet-map-container"}>
+      <p>{"hello"}</p>
       <Map
         id={"leaflet-map"}
         center={[0, 0]}
-        zoom={15}
+        zoom={2}
         maxZoom={19}
         style={{
-          height: "100%",
-          width: "100%"
+          height: "300px",
+          width: "500px"
         }}
         attributionControl={false}
       >
