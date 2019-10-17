@@ -28,7 +28,7 @@ There are several ways to start contributing:
 * .Net Core SDK 2.2 
 
 ## Getting started coding
-1. Clone this repository: `git clone --depth 1 https://github.com/cbs-brussels-2019/Nyss.git`, and open it in the editor of your choice. We have tested it to work with _Visual Studio 2019_ and _Visual Studio Code_. Nyss has quite a lot of history, so it would take a while to download all of it to your computer - so setting depth to a low number (making a shallow clone) speeds it up.
+1. Clone this repository: `git clone --depth 1 https://github.com/nyss-platform-norcross/Nyss.git`, and open it in the editor of your choice. We have tested it to work with _Visual Studio 2019_ and _Visual Studio Code_. Nyss has quite a lot of history, so it would take a while to download all of it to your computer - so setting depth to a low number (making a shallow clone) speeds it up.
 2. Start the application:
    * For _Visual Studio 2019_ users: run the `Nyss.Web` Project - or hit `F5`.
    * For _Visual Studio Code_ users: run the `Start Debugging` command - or hit `F5`.
