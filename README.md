@@ -22,6 +22,11 @@ There are several ways to start contributing:
 * Sign up for one of our coding [events](https://cbsrc.org/contribute/events/).
 * Join the discussion on [Slack](https://cbsv2.slack.com/)
 
+## You need to have installed
+* Visual Studio Code (with C# extension) or Visual Studio 2019
+* NodeJS (works at least with v10)
+* .Net Core SDK 2.2 
+
 ## Getting started coding
 1. Clone this repository: `git clone --depth 1 https://github.com/cbs-brussels-2019/Nyss.git`, and open it in the editor of your choice. We have tested it to work with _Visual Studio 2019_ and _Visual Studio Code_. Nyss has quite a lot of history, so it would take a while to download all of it to your computer - so setting depth to a low number (making a shallow clone) speeds it up.
 2. Start the application:
