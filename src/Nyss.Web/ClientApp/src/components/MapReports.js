@@ -5,7 +5,7 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 const MapReports = () => {
   return (
     <div className={"leaflet-map-container"}>
-      <p>{"hello"}</p>
+      <p>{"hello world"}</p>
       <Map
         id={"leaflet-map"}
         center={[0, 0]}
