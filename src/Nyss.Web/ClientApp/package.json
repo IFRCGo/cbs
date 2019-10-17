@@ -13,8 +13,7 @@
     "react-scripts": "^1.1.5",
     "reactstrap": "^6.3.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "rimraf": "^2.6.2"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "ajv": "^6.0.0",
@@ -25,7 +24,8 @@
     "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "rimraf": "^2.7.1"
   },
   "eslintConfig": {
     "extends": "react-app"
