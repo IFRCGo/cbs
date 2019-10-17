@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nyss.Web.Features.DataCollectors;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Nyss
 {
@@ -21,6 +23,13 @@ namespace Nyss
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Nyss API", Version = "v1" });
+            });
+
+            services.AddScoped<IDataCollectorsService, DataCollectorsService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -43,6 +52,12 @@ namespace Nyss
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nyss API");
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -54,6 +69,8 @@ namespace Nyss
                     template: "{controller}/{action=Index}/{id?}");
             });
 
+            
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -63,6 +80,8 @@ namespace Nyss
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            
+           
         }
     }
 }
