@@ -1,23 +1,33 @@
-import React, { useEffect, useRef } from 'react';
-import L from 'leaflet';
+import React, { useEffect, useRef } from "react";
+//import L from "leaflet";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 
 const MapReports = () => {
-  // create map
-  const mapRef = useRef(null);
-  useEffect(() => {
-    mapRef.current = L.map('map', {
-      center: [49.8419, 24.0315],
-      zoom: 16,
-      layers: [
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-          attribution:
+  return (
+    <div className={"leaflet-map-container"}>
+      <Map
+        id={"leaflet-map"}
+        center={[0, 0]}
+        zoom={15}
+        maxZoom={19}
+        style={{
+          height: "100%",
+          width: "100%"
+        }}
+        attributionControl={false}
+      >
+        <TileLayer
+          attribution={
             '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }),
-      ]
-    });
-  }, []);
-
-  return <div id="map"></div>
-}
+          }
+          url={"https://{s}.tile.osm.org/{z}/{x}/{y}.png"}
+        />
+        <Marker position={[0, 0]}>
+          <Popup>{`Hello world`}</Popup>
+        </Marker>
+      </Map>
+    </div>
+  );
+};
 
 export default MapReports;
