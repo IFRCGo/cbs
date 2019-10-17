@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.Data", "src\Nyss.Data\Nyss.Data.csproj", "{52FECAAF-FF38-4EA7-BEF0-07AF563307BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.Web", "src\Nyss.Web\Nyss.Web.csproj", "{DE58257A-5719-42FF-9629-1E8229DBD379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52FECAAF-FF38-4EA7-BEF0-07AF563307BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52FECAAF-FF38-4EA7-BEF0-07AF563307BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52FECAAF-FF38-4EA7-BEF0-07AF563307BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52FECAAF-FF38-4EA7-BEF0-07AF563307BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE58257A-5719-42FF-9629-1E8229DBD379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE58257A-5719-42FF-9629-1E8229DBD379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE58257A-5719-42FF-9629-1E8229DBD379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE58257A-5719-42FF-9629-1E8229DBD379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BACB5235-0AC6-4E84-B719-50E48B33A718}
+	EndGlobalSection
+EndGlobal
