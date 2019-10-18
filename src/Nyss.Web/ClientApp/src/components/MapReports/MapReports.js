@@ -20,12 +20,31 @@ require("react-leaflet-markercluster/dist/styles.min.css");
 const MapReports = () => {
   const caseReports = getCaseReports();
   const dataCollectors = getDataCollectors();
+  const healthRisk = getHealthRisks();
   //filter function
 
   // IF ShowingReports === [] => show all caseReports
   // IF ShowingReports !== null => only show reports with id in thois array
   const [ShowingReports, setShowingReports] = useState([]);
   const [tempCaseReports, setTempCaseReports] = useState(caseReports);
+  const healthRiskColor = [
+    {
+      Id: 2,
+      Color: "03A9F4"
+    },
+    {
+      Id: 3,
+      Color: "C0CA33"
+    },
+    {
+      Id: 6,
+      Color: "FF8F00"
+    },
+    {
+      Id: 4,
+      Color: "d32f2f"
+    }
+  ];
 
   useEffect(() => {
     setTempCaseReports(
@@ -37,21 +56,21 @@ const MapReports = () => {
   const createClusterCustomIcon = function(cluster) {
     return L.divIcon({
       html: `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls-1{fill:#${color.orange};}.cls-2{fill:#${color.black};}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="88.5"/><path class="cls-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
+      <span>${cluster.getChildCount()}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls-1{fill:#${
+        groupColor.orange
+      };}.cls-2{fill:#${
+        groupColor.black
+      };}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="88.5"/><path class="cls-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
       // <span>${cluster.getChildCount()}</span>
       className: "marker-cluster-custom",
       iconSize: L.point(40, 40, true)
     });
   };
-const color = {
-  orange : "e67e22",
-  black : "2c3e50"};
-  const greenMarker = L.divIcon({
-    html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls-1{fill:#a3d300;}.cls-2{fill:#fff;}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="99.5"/><path class="cls-2" d="M100,1A99,99,0,1,1,1,100,99.11,99.11,0,0,1,100,1m0-1A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    className: "leaflet-marker-icon"
-  });
+  const groupColor = {
+    orange: "e67e22",
+    black: "2c3e50"
+  };
 
 
   return (
@@ -77,15 +96,22 @@ const color = {
         />
         {/* CLUSTER GROUP */}
         <MarkerClusterGroup
-          showCoverageOnHover={false}
+          showCoverageOnHover={true}
           spiderfyDistanceMultiplier={2}
           iconCreateFunction={createClusterCustomIcon}
-          animate={true}
+            singleMarkerMode={false}
+          
         >
           {tempCaseReports.map((el, i) => {
             const collectorObject = dataCollectors.filter(
               elData => elData.Id === el.DataCollectorId
             )[0];
+            const color = healthRiskColor.filter(shade => {
+              return shade.Id === el.HealthRiskId;
+            })[0].Color;
+            console.log(color, el);
+            
+
             return (
               <Marker
                 key={i}
@@ -93,9 +119,20 @@ const color = {
                   collectorObject.Location.Latitude,
                   collectorObject.Location.Longitude
                 ]}
-                icon={greenMarker}
+                icon={L.divIcon({
+                  html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls${color}-1{fill:#${color};}.cls${color}-2{fill:#${color};}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls${color}-1" cx="100" cy="100" r="99.5"/><path class="cls${color}-2" d="M100,1A99,99,0,1,1,1,100,99.11,99.11,0,0,1,100,1m0-1A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
+                  iconSize: [40, 40],
+                  iconAnchor: [20, 20],
+                  className: "leaflet-marker-icon"
+                })}
               >
-                <Popup>{`Hello world`}</Popup>
+                <Popup>{`
+                  ${(() => {
+                    return healthRisk.filter(desease => {
+                      return desease.Id === el.HealthRiskId;
+                    })[0].Name;
+                  })()}
+                `}</Popup>
               </Marker>
             );
           })}

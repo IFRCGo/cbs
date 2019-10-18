@@ -1,18 +1,18 @@
 [
     {
-        "Id": "2",
+        "Id": 2,
         "Name": "AWD"
     },
     {
-        "Id": "3",
+        "Id": 3,
         "Name": "Measels"
     },
     {
-        "Id": "6",
+        "Id": 6,
         "Name": "Bloody diarrhea"
     },
     {
-        "Id": "4",
+        "Id": 4,
         "Name": "Ebola"
     }
 ]
