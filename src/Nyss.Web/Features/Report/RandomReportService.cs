@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RandomNameGeneratorLibrary;
 
 namespace Nyss.Web.Features.Report
@@ -109,6 +110,16 @@ namespace Nyss.Web.Features.Report
         public IEnumerable<ReportViewModel> All()
         {
             return GenerateMultipleRandomReports();
+        }
+
+        public Task InsertReportAsync(Data.Models.Report report)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
