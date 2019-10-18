@@ -5,8 +5,12 @@
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "leaflet": "^1.5.1",
+    "leaflet.markercluster": "^1.4.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-leaflet": "^2.4.0",
+    "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-redux": "^5.0.6",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",

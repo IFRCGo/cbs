@@ -32,6 +32,7 @@ export default class NavMenu extends React.Component {
             </Link>
             <Link to='/activity-history'>History Activity</Link>
           </Container>
+          <Link to='/map'>MAP</Link>
         </Navbar>
       </header>
     )

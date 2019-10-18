@@ -5,5 +5,6 @@ namespace Nyss.Web.Features.DataCollectors
     public interface IDataCollectorsService
     {
         IEnumerable<DataCollectorViewModel> All();
+        DataCollectorViewModel ByPhoneNumber(string phoneNumber);
     }
 }
