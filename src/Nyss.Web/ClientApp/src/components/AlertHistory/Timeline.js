@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import { List } from './List'
-import { LocationDisplay } from './LocationDisplay'
+import { List } from './List';
+import { LocationDisplay } from './LocationDisplay';
 
 export const Timeline = ({ data }) => {
   return (
-    <div class='d-flex flex-row'>
+    <div class="d-flex flex-row">
       <LocationDisplay data={data} />
-      <List />
+      <List data={data} />
     </div>
   )
 }
