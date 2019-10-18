@@ -92,7 +92,7 @@ namespace Nyss.Web.Features.SmsGateway.Logic
             return parsedCase;
         }
 
-        private bool IsDefined<TEnum>(int value) where TEnum : struct, IConvertible
+        private static bool IsDefined<TEnum>(int value) where TEnum : struct, IConvertible
         {
             if (!typeof(TEnum).IsEnum)
             {
