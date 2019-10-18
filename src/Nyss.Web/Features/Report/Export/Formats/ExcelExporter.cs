@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using Microsoft.CodeAnalysis;
-using Nyss.Web.Features.Report;
 using OfficeOpenXml;
 
-namespace Core.CaseReports.Formats
+namespace Nyss.Web.Features.Report.Export.Formats
 {
     public class ExcelExporter : ICanExportCaseReports
     {

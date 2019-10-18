@@ -1,14 +1,11 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
-using Core.CaseReports;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Nyss.Web.Features.Report.Export
 {
-    [Route("report/export")]
+    [Route("/api/report/export")]
     public class ReportExportController : ControllerBase
     {
         private readonly IReportService _reportService;
@@ -36,7 +33,7 @@ namespace Nyss.Web.Features.Report.Export
         {
             if (_exporter.Format != parameters.Format)
             {
-                return NotFound();
+                return NotFound("Unknown format, use \"excel\"");
             }
 
             var reports = _reportService.All();
@@ -60,12 +57,9 @@ namespace Nyss.Web.Features.Report.Export
             public string SortBy { get; set; }
             public string Order { get; set; }
 
-            public bool OrderDescending
-            {
-                get => !Order?.ToLower()?.Equals("asc") ?? false;
-            }
+            internal bool OrderDescending => !Order?.ToLower().Equals("asc") ?? false;
 
-            public Func<ReportViewModel, bool> FilterPredicate
+            internal Func<ReportViewModel, bool> FilterPredicate
             {
                 get
                 {
@@ -83,7 +77,8 @@ namespace Nyss.Web.Features.Report.Export
                     }
                 }
             }
-            public Func<ReportViewModel, IComparable> GetOrderByPredicate
+
+            internal Func<ReportViewModel, IComparable> GetOrderByPredicate
             {
                 get
                 {

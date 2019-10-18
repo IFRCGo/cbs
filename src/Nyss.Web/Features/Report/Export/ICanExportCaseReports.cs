@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Nyss.Web.Features.Report;
 
-namespace Core.CaseReports
+namespace Nyss.Web.Features.Report.Export
 {
     public interface ICanExportCaseReports
     {
