@@ -47,7 +47,7 @@ namespace Nyss.Web.Features.DataCollectors
             }
 
             var latitude = rand.NextDouble() * 180 - 90;
-            var longtitude = rand.NextDouble() * 360 - 180;
+            var longitude = rand.NextDouble() * 360 - 180;
             var phonenumber = "0";
             for(int x = 0; x < 10; x++){
                 phonenumber += rand.Next(0,10);
@@ -61,7 +61,7 @@ namespace Nyss.Web.Features.DataCollectors
                 Sex = s,
                 Language = l,
                 Latitude = latitude,
-                Longtitude = longtitude,
+                Longitude = longitude,
                 Region = personGenerator.GenerateRandomFirstName(),
                 District = personGenerator.GenerateRandomLastName(),
                 Village = personGenerator.GenerateRandomFirstAndLastName(),
