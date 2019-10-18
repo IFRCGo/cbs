@@ -18,9 +18,9 @@ namespace Nyss.Web.Features.AlertHistory
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery]int numberOfWeeks = 52)
         {
-            var result = alertHistoryService.Get();
+            var result = alertHistoryService.GenerateAlerts(numberOfWeeks);
             return Ok(result);
         }
     }
