@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import { getHealthRisks } from "./functions/fetchHealthData";
+import convertDate from "./functions/convertDate";
 
 import "./Filters.css";
 
@@ -18,14 +19,6 @@ const Filters = props => {
   const handleHealthRisk = event => setRisk(event.target.value);
   const handleStartDate = event => setStartDate(event.target.value);
   const handleEndDate = event => setEndDate(event.target.value);
-
-  const convertDate = str => {
-    str = str.split(" ")[0];
-    str = str.split("/");
-    // Tricks because i have a lot of "Invalid Date"
-    const date = new Date(`${str[2]}-${str[1]}-${str[0]}`);
-    return date.getTime();
-  };
 
   useEffect(() => {
     let idToShow = [...props.reports];

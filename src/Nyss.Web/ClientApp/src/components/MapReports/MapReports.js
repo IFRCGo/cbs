@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Filters from "./Filters";
+import MapPopup from "./Popup";
 
 //data import
 import {
@@ -20,7 +21,6 @@ require("react-leaflet-markercluster/dist/styles.min.css");
 const MapReports = () => {
   const caseReports = getCaseReports();
   const dataCollectors = getDataCollectors();
-  //filter function
 
   // IF ShowingReports === [] => show all caseReports
   // IF ShowingReports !== null => only show reports with id in thois array
@@ -34,6 +34,7 @@ const MapReports = () => {
       })
     );
   }, [ShowingReports]);
+
   const createClusterCustomIcon = function(cluster) {
     return L.divIcon({
       html: `
@@ -43,16 +44,18 @@ const MapReports = () => {
       iconSize: L.point(40, 40, true)
     });
   };
-const color = {
-  orange : "e67e22",
-  black : "2c3e50"};
+
+  const color = {
+    orange: "e67e22",
+    black: "2c3e50"
+  };
+
   const greenMarker = L.divIcon({
     html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls-1{fill:#a3d300;}.cls-2{fill:#fff;}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="99.5"/><path class="cls-2" d="M100,1A99,99,0,1,1,1,100,99.11,99.11,0,0,1,100,1m0-1A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
     iconSize: [40, 40],
     iconAnchor: [20, 20],
     className: "leaflet-marker-icon"
   });
-
 
   return (
     <div className={"leaflet-map-container"}>
@@ -86,6 +89,7 @@ const color = {
             const collectorObject = dataCollectors.filter(
               elData => elData.Id === el.DataCollectorId
             )[0];
+
             return (
               <Marker
                 key={i}
@@ -95,15 +99,13 @@ const color = {
                 ]}
                 icon={greenMarker}
               >
-                <Popup>{`Hello world`}</Popup>
+                <Popup>
+                  <MapPopup collector={collectorObject} report={el} />
+                </Popup>
               </Marker>
             );
           })}
         </MarkerClusterGroup>
-         
-        {/* <Marker position={[0, 0]}>
-          <Popup>{`Hello world`}</Popup>
-        </Marker> */}
       </Map>
     </div>
   );

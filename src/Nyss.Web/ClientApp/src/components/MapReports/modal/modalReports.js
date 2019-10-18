@@ -1,4 +1,20 @@
-import React from "react-dom";
-import ReactDOM from "react-dom";
+import React from "react";
 
-function Modal(reports) {}
+import "./modal.css";
+
+const Modal = props => {
+  const handleClose = () => {
+    props.toClose(false);
+  };
+
+  return (
+    <React.Fragment>
+      <button type="button" onClick={handleClose}>
+        Close
+      </button>
+      <h1>COUCOU</h1>
+    </React.Fragment>
+  );
+};
+
+export default Modal;
