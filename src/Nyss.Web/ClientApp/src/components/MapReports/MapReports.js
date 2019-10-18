@@ -18,8 +18,7 @@ require("react-leaflet-markercluster/dist/styles.min.css");
 
 const MapReports = () => {
   const casesReports = getCaseReports();
-  console.log(getHealthRisks());
-  console.log(getDataCollectors());
+  const dataCollectors = getDataCollectors();
   //filter function
 
   const createClusterCustomIcon = function(cluster) {
@@ -63,12 +62,19 @@ const MapReports = () => {
           spiderfyDistanceMultiplier={2}
           iconCreateFunction={createClusterCustomIcon}
         >
-          {casesReports.map(el => {
-            console.log(el.DataCollectorId);
-            const lat = 0;
-            const long = 0;
+          {casesReports.map((el, i) => {
+            const collectorObject = dataCollectors.filter(
+              elData => elData.Id === el.DataCollectorId
+            )[0];
+            console.log(collectorObject);
             return (
-              <Marker key={el._id} position={[lat, long]}>
+              <Marker
+                key={i}
+                position={[
+                  collectorObject.Location.Latitude,
+                  collectorObject.Location.Longitude
+                ]}
+              >
                 <Popup>{`Hello world`}</Popup>
               </Marker>
             );
