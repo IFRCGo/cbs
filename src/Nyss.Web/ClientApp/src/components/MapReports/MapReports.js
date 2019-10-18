@@ -18,8 +18,7 @@ require("react-leaflet-markercluster/dist/styles.min.css");
 
 const MapReports = () => {
   const casesReports = getCaseReports();
-  console.log(getHealthRisks());
-  console.log(getDataCollectors());
+  const dataCollectors = getDataCollectors();
   //filter function
 
   const createClusterCustomIcon = function(cluster) {
@@ -28,6 +27,13 @@ const MapReports = () => {
       className: "marker-cluster-custom",
       iconSize: L.point(40, 40, true)
     });
+  };
+  const markers = () => {
+    return L.markerClusterGroup(
+      <Marker position={[0, 0]}>
+        <Popup>{`Hello world`}</Popup>
+      </Marker>
+    );
   };
 
   return (
@@ -50,26 +56,31 @@ const MapReports = () => {
           }
           url={"https://{s}.tile.osm.org/{z}/{x}/{y}.png"}
         />
-
         {/* CLUSTER GROUP */}
         <MarkerClusterGroup
           showCoverageOnHover={false}
           spiderfyDistanceMultiplier={2}
           iconCreateFunction={createClusterCustomIcon}
         >
-          <Marker position={[49.8397, 24.0297]} />
-          <Marker position={[50.4501, 30.5234]} />
-          <Marker position={[52.2297, 21.0122]} />
-          <Marker position={[50.0647, 19.945]} />
-          <Marker position={[48.9226, 24.7111]} />
-          <Marker position={[48.7164, 21.2611]} />
-          <Marker position={[51.5, -0.09]}>
-            <Popup>{"plop"}</Popup>
-          </Marker>
-          <Marker position={[51.5, -0.09]} />
-          <Marker position={[51.5, -0.09]} />
+          {casesReports.map((el, i) => {
+            const collectorObject = dataCollectors.filter(
+              elData => elData.Id === el.DataCollectorId
+            )[0];
+            console.log(collectorObject);
+            return (
+              <Marker
+                key={i}
+                position={[
+                  collectorObject.Location.Latitude,
+                  collectorObject.Location.Longitude
+                ]}
+              >
+                <Popup>{`Hello world`}</Popup>
+              </Marker>
+            );
+          })}
         </MarkerClusterGroup>
-
+         
         {/* <Marker position={[0, 0]}>
           <Popup>{`Hello world`}</Popup>
         </Marker> */}
