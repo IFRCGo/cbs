@@ -9,7 +9,7 @@ export const List = ({ villages }) => {
       {villages.map((currentVillage, index) => (
         <VillageRow
           key={currentVillage.village + index}
-          weeks={currentVillage.week}
+          weeks={currentVillage.weeks}
           villageName={currentVillage.village}
         />
       ))}
