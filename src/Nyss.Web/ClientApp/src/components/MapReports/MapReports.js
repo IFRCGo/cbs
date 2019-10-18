@@ -3,6 +3,7 @@ import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Filters from "./Filters";
 
+
 //data import
 import {
   getCaseReports,
@@ -16,6 +17,7 @@ import {
 //leaflet marker cluster group import
 import MarkerClusterGroup from "react-leaflet-markercluster";
 require("react-leaflet-markercluster/dist/styles.min.css");
+require("./mapReports.css");
 
 const MapReports = () => {
   const caseReports = getCaseReports();
@@ -46,6 +48,8 @@ const MapReports = () => {
     }
   ];
 
+
+
   useEffect(() => {
     setTempCaseReports(
       caseReports.filter(el => {
@@ -54,17 +58,37 @@ const MapReports = () => {
     );
   }, [ShowingReports]);
   const createClusterCustomIcon = function(cluster) {
+    const count = cluster.getChildCount();
+    let size = 'medium';
+    let markerSizeXL = 40;
+  
+    if (count < 10) {
+      size = 'Small';
+      markerSizeXL = 30;
+    }
+    else if (count >= 10 && count < 100) {
+      size = 'Medium';
+      markerSizeXL = 60;
+    }
+    else if (count >= 100 && count < 500) {
+      size = 'Large';
+      markerSizeXL = 90;
+    }
+    const options = {
+      cluster: `markerCluster${size}`,
+    };
+    
     return L.divIcon({
       html: `
-      <span>${cluster.getChildCount()}</span>
+      <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size:15px; color:black; z-index:250">${cluster.getChildCount()}</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls-1{fill:#${
         groupColor.orange
       };}.cls-2{fill:#${
         groupColor.black
-      };}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="88.5"/><path class="cls-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>`,
-      // <span>${cluster.getChildCount()}</span>
-      className: "marker-cluster-custom",
-      iconSize: L.point(40, 40, true)
+      };}</style></defs><title>Fichier 1</title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls-1" cx="100" cy="100" r="88.5"/><path class="cls-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>
+      `,
+      className: `${options.cluster}`,
+       iconSize: L.point(markerSizeXL, markerSizeXL, true)
     });
   };
   const groupColor = {
@@ -74,6 +98,7 @@ const MapReports = () => {
 
 
   return (
+    
     <div className={"leaflet-map-container"}>
       <h2>{"Reports"}</h2>
       <Filters reports={caseReports} showing={setShowingReports} />
@@ -100,7 +125,6 @@ const MapReports = () => {
           spiderfyDistanceMultiplier={2}
           iconCreateFunction={createClusterCustomIcon}
             singleMarkerMode={false}
-          
         >
           {tempCaseReports.map((el, i) => {
             const collectorObject = dataCollectors.filter(
@@ -109,7 +133,6 @@ const MapReports = () => {
             const color = healthRiskColor.filter(shade => {
               return shade.Id === el.HealthRiskId;
             })[0].Color;
-            console.log(color, el);
             
 
             return (
@@ -138,9 +161,6 @@ const MapReports = () => {
           })}
         </MarkerClusterGroup>
          
-        {/* <Marker position={[0, 0]}>
-          <Popup>{`Hello world`}</Popup>
-        </Marker> */}
       </Map>
     </div>
   );
