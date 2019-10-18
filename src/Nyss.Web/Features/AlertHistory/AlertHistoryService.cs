@@ -11,19 +11,23 @@ namespace Nyss.Web.Features.AlertHistory
 {
     public interface IAlertHistoryService
     {
-        IEnumerable<AlertHistoryViewModel> GenerateAlerts(int numberOfWeeks);
+        IEnumerable<AlertHistoryViewModel> GetAlertsHistory(int numberOfWeeks, bool includeNoAlerts);
     }
 
     public class AlertHistoryService : IAlertHistoryService
     {
-        public IEnumerable<AlertHistoryViewModel> GenerateAlerts(int numberOfWeeks)
+        public IEnumerable<AlertHistoryViewModel> GetAlertsHistory(int numberOfWeeks, bool includeNoAlerts)
+        {
+            return GenerageMockAlerts(numberOfWeeks, includeNoAlerts);
+        }
+        private IEnumerable<AlertHistoryViewModel> GenerageMockAlerts(int numberOfWeeks, bool includeNoAlerts = true)
         {
             DateTime to = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
             DateTime from = DateTime.Now.AddDays(-7 * numberOfWeeks);
 
-            var statuses = Statuses();
-            List<AlertHistoryViewModel> villages = Builder<AlertHistoryViewModel>.CreateListOfSize(10).Build().ToList();
-            villages = villages.Select(village =>
+            List<AlertStatus> statuses = Statuses();
+            List<AlertHistoryViewModel> alertsHistory = GenerateAlertHistory();
+            alertsHistory = alertsHistory.Select(alertHistory =>
             {
                 DateTime firstDayOfWeek = from;
                 while (firstDayOfWeek <= to)
@@ -33,17 +37,47 @@ namespace Nyss.Web.Features.AlertHistory
                         Date = firstDayOfWeek.ToString("d"),
                         Status = GetEnumDescription(Pick<AlertStatus>.RandomItemFrom(statuses))
                     };
-                    village.Week.Add(week);
+                    alertHistory.Weeks.Add(week);
                     firstDayOfWeek = firstDayOfWeek.AddDays(7);
                 }
-                return village;
+                return alertHistory;
             }).ToList();
-           
-            return villages;
+
+            var list =  alertsHistory
+                .Where(alertHistory => includeNoAlerts == true || alertHistory.Weeks.Any(week => week.Status != GetEnumDescription(AlertStatus.NoAlerts)))
+                .OrderBy(alertHistory => alertHistory.Region)
+                .ThenBy(alertHistory => alertHistory.District)
+                .ThenBy(alertHistory => alertHistory.Village)
+                .ToList();
+            return list;
+        }
+        private List<AlertHistoryViewModel> GenerateAlertHistory()
+        {
+            var alertsHistory = Builder<AlertHistoryViewModel>.CreateListOfSize(100)
+                .TheFirst(10)
+                .With(alertHistory => alertHistory.Region = "Dakar")
+                .With(alertHistory => alertHistory.District = "Almadies")
+                .TheNext(20)
+                .With(alertHistory => alertHistory.Region = "Dakar")
+                .With(alertHistory => alertHistory.District = "Dakar Plateau")
+                .TheNext(20)
+                .With(alertHistory => alertHistory.Region = "Thiès")
+                .With(alertHistory => alertHistory.District = "M'bour")
+                .TheNext(20)
+                .With(alertHistory => alertHistory.Region = "Thiès")
+                .With(alertHistory => alertHistory.District = "Saly")
+                .TheNext(15)
+                .With(alertHistory => alertHistory.Region = " Ziguinchor")
+                .With(alertHistory => alertHistory.District = "Bignona")
+                .TheRest()
+                .With(alertHistory => alertHistory.Region = " Ziguinchor")
+                .With(alertHistory => alertHistory.District = "Ziguinchor")
+                .Build().ToList();
+            return alertsHistory;
         }
         private List<AlertStatus> Statuses()
         {
-            return Enum.GetValues(typeof(AlertStatus)).Cast<AlertStatus>().ToList(); 
+            return Enum.GetValues(typeof(AlertStatus)).Cast<AlertStatus>().ToList();
         }
         private static string GetEnumDescription(Enum value)
         {
