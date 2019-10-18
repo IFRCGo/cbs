@@ -1,3 +1,8 @@
+/**
+ * Created by Aloisio Alessandro
+ * https://aloisio.work
+ */
+
 import React, { useState, useEffect } from "react";
 import { getHealthRisks } from "./functions/fetchHealthData";
 
@@ -14,6 +19,14 @@ const Filters = props => {
   const handleStartDate = event => setStartDate(event.target.value);
   const handleEndDate = event => setEndDate(event.target.value);
 
+  const convertDate = str => {
+    str = str.split(" ")[0];
+    str = str.split("/");
+    // Tricks because i have a lot of "Invalid Date"
+    const date = new Date(`${str[2]}-${str[1]}-${str[0]}`);
+    return date.getTime();
+  };
+
   useEffect(() => {
     let idToShow = [...props.reports];
 
@@ -24,11 +37,19 @@ const Filters = props => {
       );
 
     // Start Date
-    if (startDate !== null) console.log(startDate);
-    if (endDate !== null) console.log(endDate);
+    if (startDate !== null)
+      idToShow = idToShow.filter(
+        report => convertDate(report.Timestamp) >= new Date(startDate).getTime()
+      );
+
+    // End Date
+    if (endDate !== null)
+      idToShow = idToShow.filter(
+        report => convertDate(report.Timestamp) <= new Date(endDate).getTime()
+      );
 
     // SEND TO UPDATE MAPS COMPONENTS
-    props.showing(idToShow);
+    props.showing(idToShow.map(report => report.Id));
   }, [risk, startDate, endDate]);
 
   return (
