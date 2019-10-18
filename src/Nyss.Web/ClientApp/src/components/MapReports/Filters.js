@@ -1,24 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { getHealthRisks } from "./functions/fetchHealthData";
 
 import "./Filters.css";
 
 const Filters = props => {
-  // get health risk
   const risks = getHealthRisks();
 
-  const handleHealthRisk = event => {
-    console.log("clicked : ", event.target.value);
-    console.log(props.reports);
-  };
+  const [risk, setRisk] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const handleStartDate = event => {
-    console.log("start date : ", event.target.value);
-  };
+  const handleHealthRisk = event => setRisk(event.target.value);
+  const handleStartDate = event => setStartDate(event.target.value);
+  const handleEndDate = event => setEndDate(event.target.value);
 
-  const handleEndDate = event => {
-    console.log("end date : ", event.target.value);
-  };
+  useEffect(() => {
+    let idToShow = [...props.reports];
+
+    // RISK
+    if (risk !== null && risk !== "all")
+      idToShow = idToShow.filter(
+        report => report.HealthRiskId === parseInt(risk)
+      );
+
+    // Start Date
+    if (startDate !== null) console.log(startDate);
+    if (endDate !== null) console.log(endDate);
+
+    // SEND TO UPDATE MAPS COMPONENTS
+    props.showing(idToShow);
+  }, [risk, startDate, endDate]);
 
   return (
     <div className="Filters">

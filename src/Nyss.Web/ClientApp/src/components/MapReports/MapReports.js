@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 //import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Filters from "./Filters";
@@ -6,13 +6,17 @@ import { getCaseReports, getDataCollectors } from "./functions/fetchHealthData";
 
 const MapReports = () => {
   const caseReports = getCaseReports();
+  // console.log(getDataCollectors());
 
-  console.log(getDataCollectors());
+  // IF ShowingReports === [] => show all caseReports
+  // IF ShowingReports !== null => only show reports with id in thois array
+  const [ShowingReports, setShowingReports] = useState([]);
 
   return (
     <div className={"leaflet-map-container"}>
       <h2>{"Reports"}</h2>
-      <Filters reports={caseReports} />
+      <Filters reports={caseReports} showing={setShowingReports} />
+      {console.log(ShowingReports)}
       <Map
         id={"leaflet-map"}
         center={[0, 0]}
