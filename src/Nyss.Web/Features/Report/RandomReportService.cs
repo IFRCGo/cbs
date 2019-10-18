@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using RandomNameGeneratorLibrary;
 
 namespace Nyss.Web.Features.Report
@@ -28,7 +29,7 @@ namespace Nyss.Web.Features.Report
             report.Date = dt.ToString("dd/MM/yyyy");
             report.Time = dt.ToString("hh:mm");
             report.IsoYear = dt.ToString("yyyy");
-            report.IsoWeek = (dt.DayOfYear / 7).ToString("00");
+            report.IsoWeek = GetEpiWeek(dt).ToString();
             report.IsoYearIsoWeek = $"{report.IsoYear}-{report.IsoWeek}";
 
             var personGenerator = new PersonNameGenerator();
@@ -109,6 +110,20 @@ namespace Nyss.Web.Features.Report
         public IEnumerable<ReportViewModel> All()
         {
             return GenerateMultipleRandomReports();
+        }
+
+        public static int GetEpiWeek(DateTime time)
+        {
+            if (time.Month == 12 && time.Day > 28)
+            {
+                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+                if (day >= DayOfWeek.Sunday && day <= DayOfWeek.Tuesday)
+                {
+                    time = time.AddDays(3);
+                }
+            }
+
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
         }
     }
 }
