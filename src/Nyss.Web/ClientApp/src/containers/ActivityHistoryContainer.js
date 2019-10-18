@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Timeline from '../components/Timeline'
+import React, { Component } from 'react';
+
+import { Timeline } from '../components/AlertHistory/Timeline';
 
 const data = [
   {
@@ -7,20 +8,20 @@ const data = [
       {
         weeks: [
           {
-            date: '10-02-1996',
-            status: 'pending',
+            date: "10-02-1996",
+            status: "pending"
           },
           {
-            date: '16-02-1996',
-            status: 'pending',
-          },
+            date: "16-02-1996",
+            status: "pending"
+          }
         ],
-        region: 'Thies',
-        district: 'Thies',
-        village: "M'Bour",
-      },
-    ],
-  },
+        region: "Thies",
+        district: "Thies",
+        village: "M'Bour"
+      }
+    ]
+  }
 ]
 
 export class ActivityHistoryContainer extends Component {
