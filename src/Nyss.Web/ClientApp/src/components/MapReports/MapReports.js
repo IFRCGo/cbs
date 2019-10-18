@@ -17,7 +17,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 require("react-leaflet-markercluster/dist/styles.min.css");
 
 const MapReports = () => {
-  console.log(getCaseReports());
+  const casesReports = getCaseReports();
   console.log(getHealthRisks());
   console.log(getDataCollectors());
   //filter function
