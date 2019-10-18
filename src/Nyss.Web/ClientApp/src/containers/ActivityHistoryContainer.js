@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-
-export class MainContainer extends Component {
+export class ActivityHistoryContainer extends Component {
   render() {
     return (
       <div>
-        <p>Hello from ActivityHistory</p>
+        <p>Hello from Activity History</p>
       </div>
     )
   }
