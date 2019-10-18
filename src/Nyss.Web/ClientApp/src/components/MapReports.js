@@ -12,8 +12,8 @@ const MapReports = () => {
         zoom={2}
         maxZoom={19}
         style={{
-          height: "300px",
-          width: "500px"
+          height: "545px",
+          width: "100%"
         }}
         attributionControl={false}
       >
