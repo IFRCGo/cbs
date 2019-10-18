@@ -1,12 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router';
-import Layout from './components/Layout';
+import { Route, Switch } from 'react-router';
+
+import { MainContainer } from './components/AlertHistory/MainContainer';
 import Home from './components/Home';
 import MapReports from './components/MapReports/MapReports';
 
 export default () => (
   <Layout>
-    <Route exact path='/' component={Home} />
-    <Route exact path='/map' component={MapReports} />
+    <Switch>
+      <Route path="/activity-history" component={MainContainer} />
+      <Route exact path="/" component={Home} />
+      <Route exact path='/map' component={MapReports} />
+    </Switch>
   </Layout>
-);
+)
