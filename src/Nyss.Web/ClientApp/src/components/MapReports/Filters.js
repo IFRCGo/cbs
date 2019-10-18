@@ -1,30 +1,22 @@
 import React from "react";
+import { getHealthRisks } from "./functions/fetchHealthData";
 
 import "./Filters.css";
 
 const Filters = props => {
   // get health risk
-  const risks = [
-    {
-      Id: "2",
-      Name: "AWD"
-    },
-    {
-      Id: "3",
-      Name: "Measels"
-    },
-    {
-      Id: "6",
-      Name: "Bloody diarrhea"
-    },
-    {
-      Id: "4",
-      Name: "Ebola"
-    }
-  ];
+  const risks = getHealthRisks();
 
   const handleHealthRisk = event => {
     console.log("clicked : ", event.target.value);
+  };
+
+  const handleStartDate = event => {
+    console.log("start date : ", event.target.value);
+  };
+
+  const handleEndDate = event => {
+    console.log("end date : ", event.target.value);
   };
 
   return (
@@ -51,14 +43,22 @@ const Filters = props => {
       <div className="filter">
         <span className="label">Start date</span>
         <div className="inputFilter">
-          <input type="date" name="startDate"></input>
+          <input
+            type="date"
+            name="startDate"
+            onChange={e => handleStartDate(e)}
+          ></input>
         </div>
       </div>
 
       <div className="filter">
         <span className="label">End date</span>
         <div className="inputFilter">
-          <input type="date" name="endDate"></input>
+          <input
+            type="date"
+            name="endDate"
+            onChange={e => handleEndDate(e)}
+          ></input>
         </div>
       </div>
     </div>
