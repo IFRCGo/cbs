@@ -2,21 +2,17 @@ import React, { useEffect, useRef } from "react";
 //import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Filters from "./Filters";
-import {
-  getCaseReports,
-  getHealthRisks,
-  getDataCollectors
-} from "./functions/fetchHealthData";
+import { getCaseReports, getDataCollectors } from "./functions/fetchHealthData";
 
 const MapReports = () => {
-  console.log(getCaseReports());
-  console.log(getHealthRisks());
+  const caseReports = getCaseReports();
+
   console.log(getDataCollectors());
 
   return (
     <div className={"leaflet-map-container"}>
       <h2>{"Reports"}</h2>
-      <Filters />
+      <Filters reports={caseReports} />
       <Map
         id={"leaflet-map"}
         center={[0, 0]}

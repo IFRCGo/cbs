@@ -9,6 +9,7 @@ const Filters = props => {
 
   const handleHealthRisk = event => {
     console.log("clicked : ", event.target.value);
+    console.log(props.reports);
   };
 
   const handleStartDate = event => {
