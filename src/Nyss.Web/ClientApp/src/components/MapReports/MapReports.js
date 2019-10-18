@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import Filters from "./Filters";
 
 //data import
 import {
@@ -17,28 +18,27 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 require("react-leaflet-markercluster/dist/styles.min.css");
 
 const MapReports = () => {
-  const casesReports = getCaseReports();
+  const caseReports = getCaseReports();
   const dataCollectors = getDataCollectors();
   //filter function
 
-  const createClusterCustomIcon = function(cluster) {
-    return L.divIcon({
-      html: `<span>${cluster.getChildCount()}</span>`,
-      className: "marker-cluster-custom",
-      iconSize: L.point(40, 40, true)
-    });
-  };
-  const markers = () => {
-    return L.markerClusterGroup(
-      <Marker position={[0, 0]}>
-        <Popup>{`Hello world`}</Popup>
-      </Marker>
+  // IF ShowingReports === [] => show all caseReports
+  // IF ShowingReports !== null => only show reports with id in thois array
+  const [ShowingReports, setShowingReports] = useState([]);
+  const [tempCaseReports, setTempCaseReports] = useState(caseReports);
+
+  useEffect(() => {
+    setTempCaseReports(
+      caseReports.filter(el => {
+        return ShowingReports.includes(el.Id);
+      })
     );
-  };
+  }, [ShowingReports]);
 
   return (
     <div className={"leaflet-map-container"}>
-      <p>{"hello world"}</p>
+      <h2>{"Reports"}</h2>
+      <Filters reports={caseReports} showing={setShowingReports} />
       <Map
         id={"leaflet-map"}
         center={[0, 0]}
@@ -60,13 +60,11 @@ const MapReports = () => {
         <MarkerClusterGroup
           showCoverageOnHover={false}
           spiderfyDistanceMultiplier={2}
-          iconCreateFunction={createClusterCustomIcon}
         >
-          {casesReports.map((el, i) => {
+          {tempCaseReports.map((el, i) => {
             const collectorObject = dataCollectors.filter(
               elData => elData.Id === el.DataCollectorId
             )[0];
-            console.log(collectorObject);
             return (
               <Marker
                 key={i}
