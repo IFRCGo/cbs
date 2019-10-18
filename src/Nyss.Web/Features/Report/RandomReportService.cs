@@ -111,15 +111,5 @@ namespace Nyss.Web.Features.Report
         {
             return GenerateMultipleRandomReports();
         }
-
-        public Task InsertReportAsync(Data.Models.Report report)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

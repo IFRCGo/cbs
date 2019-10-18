@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Nyss.Data;
-using Nyss.Web.Features.DataCollectors;
-using Nyss.Web.Features.Report;
+using Nyss.Data.Concepts;
+using Nyss.Web.Features.Report.Data;
 using Nyss.Web.Features.SmsGateway.Logic.Models;
 
 namespace Nyss.Web.Features.SmsGateway.Logic
 {
     public class SmsGatewayService : ISmsGatewayService
     {
-        private readonly IReportService _reportService;
-        private readonly IDataCollectorsService _dataCollectorsService;
+        private readonly IReportRepository _reportRepository;
 
-        public SmsGatewayService(IReportService reportService,
-            IDataCollectorsService dataCollectorsService)
+        public SmsGatewayService(IReportRepository reportRepository)
         {
-            _reportService = reportService;
-            _dataCollectorsService = dataCollectorsService;
+            _reportRepository = reportRepository;
         }
 
         public async Task<ValidationResult> SaveReportAsync(Sms sms)
@@ -34,13 +30,15 @@ namespace Nyss.Web.Features.SmsGateway.Logic
                     CreatedAt = DateTime.Now,
                     //DataCollector = dataCollector,
                     Location = sms.Location,
-                    //ReceivedAt = sms.ReceivedAt,
-                    
+                    ReceivedAt = sms.ReceivedAt,
+                    IsTraining = false,
+                    RawContent = sms.Text,
+                    Status = ReportStatus.Pending,
                     // TODO  
                 };
 
-                await _reportService.InsertReportAsync(report);
-                await _reportService.SaveChangesAsync();
+                await _reportRepository.InsertReportAsync(report);
+                await _reportRepository.SaveChangesAsync();
             }
 
             return result;

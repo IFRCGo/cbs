@@ -13,7 +13,7 @@ namespace Nyss.Web.Features.SmsGateway.Logic.Models
         public string Sender { get; set; }
         public string Timestamp { get; set; }
 
-        internal DateTime TimestampDateTime =>
+        internal DateTime ReceivedAt =>
             DateTime.ParseExact(Timestamp, TimestampFormat, Thread.CurrentThread.CurrentCulture);
 
         public string Text { get; set; }
