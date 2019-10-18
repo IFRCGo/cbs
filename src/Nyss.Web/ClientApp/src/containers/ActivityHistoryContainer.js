@@ -1,46 +1,22 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import { Timeline } from '../components/AlertHistory/Timeline'
 
-const data = [
-  {
-    weeks: [
-      {
-        date: '10-02-1996',
-        status: 'pending',
-      },
-      {
-        date: '16-02-1996',
-        status: 'pending',
-      },
-    ],
-    region: 'Thies',
-    district: 'Thies',
-    village: "M'Bour",
-  },
-  {
-    weeks: [
-      {
-        date: '20-02-1996',
-        status: 'penwding',
-      },
-      {
-        date: '26-02-1996',
-        status: 'penqwding',
-      },
-    ],
-    region: 'Thiews',
-    district: 'Thiwqees',
-    village: "M'wqeeqour",
-  },
-]
-
 export class ActivityHistoryContainer extends Component {
+  state = {
+    data: [],
+  }
+
+  componentDidMount = async () => {
+    const { data } = await axios.get('http://localhost:5000/api/AlertHistory')
+    this.setState({ data: data })
+  }
+
   render() {
     return (
       <div>
         <p>Hello from Activity History</p>
-        <Timeline data={data} />
+        <Timeline data={this.state.data} />
       </div>
     )
   }
