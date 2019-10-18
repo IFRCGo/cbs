@@ -1,10 +1,13 @@
 
+using System;
+
 namespace Nyss.Web.Features.Report
 {
     public class ReportViewModel
     {
-        public string Date { get; set; }
-        public string Time { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string Date => Timestamp.ToString("dd/MM/yyyy");
+        public string Time => Timestamp.ToString("HH:mm");
         public string Status { get; set; }
         public string DataCollector { get; set; }
         public string Region { get; set; }

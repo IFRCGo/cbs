@@ -26,8 +26,7 @@ namespace Nyss.Web.Features.Report
 
             var dt = DateTime.Now;
 
-            report.Date = dt.ToString("dd/MM/yyyy");
-            report.Time = dt.ToString("hh:mm");
+            report.Timestamp = dt;
             report.IsoYear = dt.ToString("yyyy");
             report.IsoWeek = GetEpiWeek(dt).ToString();
             report.IsoYearIsoWeek = $"{report.IsoYear}-{report.IsoWeek}";
