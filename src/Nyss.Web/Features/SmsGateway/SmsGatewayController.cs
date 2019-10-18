@@ -25,7 +25,13 @@ namespace Nyss.Web.Features.SmsGateway
             if (!smsProcessResult.IsRequestValid)
                 return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok(smsProcessResult.ResponseMessage);
+            var response = new SmsResponseDto
+            {
+                PhoneNumber = smsProcessResult.PhoneNumber,
+                FeedbackMessage = smsProcessResult.FeedbackMessage
+            };
+
+            return Ok(response);
         }
 
         // POST: api/SmsGateway
@@ -38,7 +44,13 @@ namespace Nyss.Web.Features.SmsGateway
             if (!smsProcessResult.IsRequestValid)
                 return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok(smsProcessResult.ResponseMessage);
+            var response = new SmsResponseDto
+            {
+                PhoneNumber = smsProcessResult.PhoneNumber,
+                FeedbackMessage = smsProcessResult.FeedbackMessage
+            };
+
+            return Ok(response);
         }
     }
 }

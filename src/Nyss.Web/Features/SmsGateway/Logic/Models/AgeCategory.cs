@@ -2,7 +2,7 @@
 {
     public enum AgeCategory
     {
-        BelowFive = 0,
-        AtLeastFive = 1
+        BelowFive = 1,
+        AtLeastFive = 2
     }
 }

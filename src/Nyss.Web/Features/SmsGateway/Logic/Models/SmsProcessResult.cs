@@ -8,7 +8,8 @@ namespace Nyss.Web.Features.SmsGateway.Logic.Models
         public bool IsRequestValid => !RequestErrors.Any();
         public List<string> RequestErrors { get; set; }
 
-        public string ResponseMessage { get; set; }
+        public string FeedbackMessage { get; set; }
+        public string PhoneNumber { get; set; }
 
         public SmsProcessResult()
         {

@@ -20,6 +20,7 @@ namespace Nyss.Web.Features.SmsGateway.Logic
             if (sms == null) throw new ArgumentNullException(nameof(sms), "Sms informations are required.");
 
             var result = sms.Validate();
+            result.PhoneNumber = sms.Sender;
 
             if (result.IsRequestValid)
             {
@@ -33,11 +34,11 @@ namespace Nyss.Web.Features.SmsGateway.Logic
 
                 if (parsedCase.IsValid)
                 {
-                    result.ResponseMessage = "Yay ! Thank you bro";
+                    result.FeedbackMessage = "Yay ! Thank you bro";
                 }
                 else
                 {
-                    result.ResponseMessage = "Sorry bro, I do not understand.";
+                    result.FeedbackMessage = "Sorry bro, I do not understand.";
                 }
             }
             
