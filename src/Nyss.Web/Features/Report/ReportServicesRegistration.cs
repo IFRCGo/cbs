@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Nyss.Web.Features.SmsGateway.Logic;
+using Nyss.Web.Features.Report.Data;
 
 namespace Nyss.Web.Features.Report
 {
@@ -7,7 +7,8 @@ namespace Nyss.Web.Features.Report
     {
         public static void RegisterReportFeature(this IServiceCollection services)
         {
-            services.AddScoped<ISmsGatewayService, InFileSmsGatewayService>();
+            services.AddScoped<IReportService, RandomReportService>();
+            services.AddScoped<IReportRepository, InMemoryReportRepository>();
         }
     }
 }

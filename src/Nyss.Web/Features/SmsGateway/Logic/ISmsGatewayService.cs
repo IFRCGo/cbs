@@ -5,6 +5,6 @@ namespace Nyss.Web.Features.SmsGateway.Logic
 {
     public interface ISmsGatewayService
     {
-        Task<ValidationResult> SaveReportAsync(Sms sms);
+        Task<SmsProcessResult> SaveReportAsync(Sms sms);
     }
 }

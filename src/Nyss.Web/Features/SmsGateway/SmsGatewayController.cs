@@ -20,12 +20,12 @@ namespace Nyss.Web.Features.SmsGateway
         public async Task<IActionResult> Get(SmsDto smsDto)
         {
             var sms = smsDto.ToLogicModel();
-            var validationResult = await _smsGatewayService.SaveReportAsync(sms);
+            var smsProcessResult = await _smsGatewayService.SaveReportAsync(sms);
 
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors);
+            if (!smsProcessResult.IsRequestValid)
+                return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok();
+            return Ok(smsProcessResult.ResponseMessage);
         }
 
         // POST: api/SmsGateway
@@ -33,12 +33,12 @@ namespace Nyss.Web.Features.SmsGateway
         public async Task<IActionResult> Post(SmsDto smsDto)
         {
             var sms = smsDto.ToLogicModel();
-            var validationResult = await _smsGatewayService.SaveReportAsync(sms);
+            var smsProcessResult = await _smsGatewayService.SaveReportAsync(sms);
 
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors);
+            if (!smsProcessResult.IsRequestValid)
+                return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok();
+            return Ok(smsProcessResult.ResponseMessage);
         }
     }
 }
