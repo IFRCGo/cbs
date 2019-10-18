@@ -40,9 +40,7 @@ export class ActivityHistoryContainer extends Component {
     return (
       <div>
         <p>Hello from Activity History</p>
-        {data.map(item => (
-          <Timeline data={item} />
-        ))}
+        <Timeline data={data} />
       </div>
     )
   }
