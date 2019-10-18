@@ -23,13 +23,15 @@ export default class NavMenu extends React.Component {
       <header>
         <Navbar className='border-bottom box-shadow' light>
           <Container>
-            <img
-              src='https://upload.wikimedia.org/wikipedia/commons/c/c9/IFRC_Logo.png'
-              alt='Red Cross logo'
-              width='80px'
-            />
+            <Link to='/'>
+              <img
+                src='https://upload.wikimedia.org/wikipedia/commons/c/c9/IFRC_Logo.png'
+                alt='Red Cross logo'
+                width='80px'
+              />
+            </Link>
+            <Link to='/activity-history'>History Activity</Link>
           </Container>
-          <Link to='/activity-history'>History Activity</Link>
         </Navbar>
       </header>
     )
