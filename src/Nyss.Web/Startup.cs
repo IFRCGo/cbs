@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nyss.Web.Features.DataCollectors;
 using Nyss.Web.Features.Report;
+using Nyss.Web.Features.SmsGateway.Logic;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Nyss
@@ -31,6 +32,8 @@ namespace Nyss
             });
 
             services.AddScoped<IDataCollectorsService, DataCollectorsService>();
+
+            services.RegisterSmsGateway();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
