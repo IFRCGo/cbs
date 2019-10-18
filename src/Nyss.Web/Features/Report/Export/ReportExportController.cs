@@ -2,11 +2,12 @@ using System;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Nyss.Web.Utils;
 
 namespace Nyss.Web.Features.Report.Export
 {
     [Route("/api/report/export")]
-    public class ReportExportController : ControllerBase
+    public class ReportExportController : BaseController
     {
         private readonly IReportService _reportService;
         private readonly ICanExportCaseReports _exporter;
@@ -29,11 +30,11 @@ namespace Nyss.Web.Features.Report.Export
         //}
 
         [HttpPost("download")]
-        public IActionResult Export([FromBody] DownloadParameters parameters)
+        public IActionResult Export([FromBody] ReportsDownloadParameters parameters)
         {
             if (_exporter.Format != parameters.Format)
             {
-                return NotFound("Unknown format, use \"excel\"");
+                return NotFound($"Unknown format, use \"{_exporter.Format}\"");
             }
 
             var reports = _reportService.All();
@@ -50,14 +51,14 @@ namespace Nyss.Web.Features.Report.Export
             return File(stream, _exporter.MIMEType, fileName);
         }
 
-        public class DownloadParameters
+        public class ReportsDownloadParameters
         {
             public string Format { get; set; }
             public string Filter { get; set; }
             public string SortBy { get; set; }
             public string Order { get; set; }
 
-            internal bool OrderDescending => !Order?.ToLower().Equals("asc") ?? false;
+            internal bool OrderDescending => Order?.ToLower().Equals("desc") ?? false;
 
             internal Func<ReportViewModel, bool> FilterPredicate
             {
@@ -100,7 +101,7 @@ namespace Nyss.Web.Features.Report.Export
                             return _ => _.Males5OrOlder;
                         case "time":
                         default:
-                            return _ => _.Date + _.Time;
+                            return _ => _.Timestamp;
                     }
                 }
             }

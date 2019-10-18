@@ -31,9 +31,11 @@ namespace Nyss.Web.Features.DataCollectors
                 else{
                     l = "French";
                 }
+
+                var supervisor = rand.Next(0, 2) == 0 ? "John Doe" : "Jane Dae";
     
                 var latitude = rand.NextDouble() * 180 - 90;
-                var longtitude = rand.NextDouble() * 360 - 180;
+                var longitude = rand.NextDouble() * 360 - 180;
                 var phonenumber = "0";
                 for(int x = 0; x < 10; x++){
                     phonenumber += rand.Next(0,10);
@@ -47,13 +49,14 @@ namespace Nyss.Web.Features.DataCollectors
                     Sex = s,
                     Language = l,
                     Latitude = latitude,
-                    Longtitude = longtitude,
+                    Longitude = longitude,
                     Region = personGenerator.GenerateRandomFirstName(),
                     District = personGenerator.GenerateRandomLastName(),
                     Village = personGenerator.GenerateRandomFirstAndLastName(),
-                    PhoneNumbers = new List<string> { phonenumber}
-
-                });
+                    Zone = personGenerator.GenerateRandomFirstAndLastName(),
+                    PhoneNumbers = new List<string> { phonenumber },
+                    Supervisor = supervisor,
+                }) ;
             }
             return dataCollectors;
         }

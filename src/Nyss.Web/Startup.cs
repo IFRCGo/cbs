@@ -33,7 +33,7 @@ namespace Nyss
                 c.SwaggerDoc("v1", new Info { Title = "Nyss API", Version = "v1" });
             });
 
-            services.RegisterDatacollectorsFeature();
+            services.RegisterDataCollectorsFeature();
             services.RegisterHealthRiskFeature();
             services.RegisterReportFeature();
             services.RegisterSmsGatewayFeature();
