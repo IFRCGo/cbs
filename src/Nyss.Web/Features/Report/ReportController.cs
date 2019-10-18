@@ -1,4 +1,5 @@
-﻿using Nyss.Web.Utils;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nyss.Web.Utils;
 
 namespace Nyss.Web.Features.Report
 {
@@ -11,6 +12,10 @@ namespace Nyss.Web.Features.Report
             _reportService = reportService;
         }
 
-        //TODO: Action that return list of reports
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_reportService.All());
+        }
     }
 }

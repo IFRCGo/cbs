@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nyss.Web.Features.AlertHistory;
 using Nyss.Web.Features.DataCollectors;
+using Nyss.Web.Features.Report;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Nyss
@@ -37,6 +38,8 @@ namespace Nyss
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<IReportService, RandomReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,8 +84,6 @@ namespace Nyss
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            
-           
         }
     }
 }
