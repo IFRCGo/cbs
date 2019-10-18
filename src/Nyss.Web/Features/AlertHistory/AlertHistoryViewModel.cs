@@ -9,12 +9,12 @@ namespace Nyss.Web.Features.AlertHistory
     public class AlertHistoryViewModel
     {
         public AlertHistoryViewModel() {
-            Week = new HashSet<WeekData>();
+            Weeks = new HashSet<WeekData>();
         }
         public string Village { get; set; }
         public string District { get; set; }
         public string Region { get; set; }
-        public ICollection<WeekData> Week { get; set; }
+        public ICollection<WeekData> Weeks { get; set; }
 
     }
     public class WeekData
@@ -25,13 +25,15 @@ namespace Nyss.Web.Features.AlertHistory
 
     public enum AlertStatus
     {
-        [Description("Pending")]
-        Pending,
+        [Description("Open")]
+        Open,
         [Description("Dismissed")]
         Dismissed,
         [Description("Escalated")]
         Escalated,
         [Description("Closed")]
-        Closed
+        Closed,
+        [Description("No alerts")]
+        NoAlerts
     }
 }
