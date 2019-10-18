@@ -31,9 +31,9 @@ namespace Nyss.Web.Features.SmsGateway.Logic.Models
         internal Coordinate Coordinate => new Coordinate(Latitude, Longitude);
         internal Point Location => Geometry.DefaultFactory.CreatePoint(Coordinate);
 
-        public SmsProcessResult Validate()
+        public SmsProcessResult Validate(SmsProcessResult result = null)
         {
-            var result = new SmsProcessResult();
+            result = result ?? new SmsProcessResult();
             
             if(string.IsNullOrWhiteSpace(Sender))
                 result.RequestErrors.Add("Sender is required.");
