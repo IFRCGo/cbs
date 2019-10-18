@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 //import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const MapReports = () => {
   return (
