@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Nyss.SmsGateway.Logic;
+using Nyss.Web.Features.SmsGateway.Logic;
 
 namespace Nyss.Web.Features.SmsGateway
 {

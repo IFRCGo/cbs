@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nyss.SmsGateway.Logic;
 using Nyss.Web.Features.DataCollectors;
+using Nyss.Web.Features.SmsGateway.Logic;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Nyss

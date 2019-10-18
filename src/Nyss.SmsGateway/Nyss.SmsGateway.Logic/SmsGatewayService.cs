@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Nyss.Data.Models;
 using Nyss.SmsGateway.Data;
@@ -9,11 +8,11 @@ namespace Nyss.SmsGateway.Logic
 {
     public class SmsGatewayService : ISmsGatewayService
     {
-        private readonly IReportRepository _reportRepository;
+        private readonly ISmsGatewayRepository _smsGatewayRepository;
 
-        public SmsGatewayService(IReportRepository reportRepository)
+        public SmsGatewayService(ISmsGatewayRepository smsGatewayRepository)
         {
-            _reportRepository = reportRepository;
+            _smsGatewayRepository = smsGatewayRepository;
         }
 
         public async Task<ValidationResult> SaveReportAsync(Sms sms)
@@ -24,14 +23,21 @@ namespace Nyss.SmsGateway.Logic
 
             if (result.IsValid)
             {
+                var dataCollector = await _smsGatewayRepository.GetDataCollectorFromPhoneNumberAsync(sms.Sender);
+
                 var report = new Report
                 {
-                    CreatedAt = sms.TimestampDateTime,
+                    CreatedAt = DateTime.Now,
+                    DataCollector = dataCollector,
+                    Location = sms.Location,
+                    ReceivedAt = sms.ReceivedAt,
+                    IsTraining = false,
+                    
                     // TODO  
                 };
 
-                await _reportRepository.InsertAsync(report);
-                await _reportRepository.SaveChangesAsync();
+                await _smsGatewayRepository.InsertReportAsync(report);
+                await _smsGatewayRepository.SaveChangesAsync();
             }
 
             return result;

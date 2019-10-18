@@ -3,8 +3,7 @@ using System.Globalization;
 using System.Threading;
 using NetTopologySuite.Geometries;
 
-
-namespace Nyss.SmsGateway.Logic.Models
+namespace Nyss.Web.Features.SmsGateway.Logic.Models
 {
     public class Sms
     {
@@ -14,7 +13,7 @@ namespace Nyss.SmsGateway.Logic.Models
         public string Sender { get; set; }
         public string Timestamp { get; set; }
 
-        internal DateTime ReceivedAt =>
+        internal DateTime TimestampDateTime =>
             DateTime.ParseExact(Timestamp, TimestampFormat, Thread.CurrentThread.CurrentCulture);
 
         public string Text { get; set; }

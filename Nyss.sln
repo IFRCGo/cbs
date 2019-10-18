@@ -7,12 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.Data", "src\Nyss.Data\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.Web", "src\Nyss.Web\Nyss.Web.csproj", "{DE58257A-5719-42FF-9629-1E8229DBD379}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.SmsGateway.Logic", "src\Nyss.SmsGateway\Nyss.SmsGateway.Logic\Nyss.SmsGateway.Logic.csproj", "{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nyss.SmsGateway", "Nyss.SmsGateway", "{597C0AF2-6A8C-48F6-8D51-426C82446407}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyss.SmsGateway.Data", "src\Nyss.SmsGateway\Nyss.SmsGateway.Data\Nyss.SmsGateway.Data.csproj", "{2505A44A-6337-458D-B1F4-B22DE2944518}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,21 +21,9 @@ Global
 		{DE58257A-5719-42FF-9629-1E8229DBD379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE58257A-5719-42FF-9629-1E8229DBD379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE58257A-5719-42FF-9629-1E8229DBD379}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2505A44A-6337-458D-B1F4-B22DE2944518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2505A44A-6337-458D-B1F4-B22DE2944518}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2505A44A-6337-458D-B1F4-B22DE2944518}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2505A44A-6337-458D-B1F4-B22DE2944518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2BD53F19-7D77-4D01-ACC5-9B9EECD75F8E} = {597C0AF2-6A8C-48F6-8D51-426C82446407}
-		{2505A44A-6337-458D-B1F4-B22DE2944518} = {597C0AF2-6A8C-48F6-8D51-426C82446407}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BACB5235-0AC6-4E84-B719-50E48B33A718}

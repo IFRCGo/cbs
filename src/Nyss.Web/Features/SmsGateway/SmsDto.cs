@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Nyss.SmsGateway.Logic.Models;
+using Nyss.Web.Features.SmsGateway.Logic.Models;
 
 namespace Nyss.Web.Features.SmsGateway
 {
@@ -35,10 +35,10 @@ namespace Nyss.Web.Features.SmsGateway
         public string OidIdentifier { get; set; }
 
         [JsonProperty("latitude")]
-        public string Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [JsonProperty("longitude")]
-        public string Longitude { get; set; }
+        public double Longitude { get; set; }
     }
 
     public static class SmsDtoExtensions
