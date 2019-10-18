@@ -8,22 +8,41 @@ namespace Nyss.Web.Features.SmsGateway.Logic
 {
     public class InFileSmsGatewayService : ISmsGatewayService
     {
-        public async Task<ValidationResult> SaveReportAsync(Sms sms)
+        private readonly ISmsParser _smsParser;
+
+        public InFileSmsGatewayService(ISmsParser smsParser)
+        {
+            _smsParser = smsParser;
+        }
+        
+        public async Task<SmsProcessResult> SaveReportAsync(Sms sms)
         {
             if (sms == null) throw new ArgumentNullException(nameof(sms), "Sms informations are required.");
 
             var result = sms.Validate();
+            result.PhoneNumber = sms.Sender;
 
-            if (result.IsValid)
+            if (result.IsRequestValid)
             {
                 using (var file = new StreamWriter(@"C:\temp\Nyss-sms.txt", true))
                 {
                     var json = JsonConvert.SerializeObject(sms);
                     await file.WriteLineAsync(json);
                 }
-            }
+                
+                var parsedCase = _smsParser.ParseSmsToCase(sms.Text);
 
-            return result;
+                if (parsedCase.IsValid)
+                {
+                    result.FeedbackMessage = "Yay ! Thank you bro";
+                }
+                else
+                {
+                    result.FeedbackMessage = "Sorry bro, I do not understand.";
+                }
+            }
+            
+            return await Task.FromResult(result);
         }
     }
 }

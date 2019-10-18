@@ -1,47 +1,40 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Nyss.Data.Concepts;
-using Nyss.Web.Features.Report.Data;
 using Nyss.Web.Features.SmsGateway.Logic.Models;
 
 namespace Nyss.Web.Features.SmsGateway.Logic
 {
     public class SmsGatewayService : ISmsGatewayService
     {
-        private readonly IReportRepository _reportRepository;
+        private readonly ISmsParser _smsParser;
 
-        public SmsGatewayService(IReportRepository reportRepository)
+        public SmsGatewayService(ISmsParser smsParser)
         {
-            _reportRepository = reportRepository;
+            _smsParser = smsParser;
         }
 
-        public async Task<ValidationResult> SaveReportAsync(Sms sms)
+        public async Task<SmsProcessResult> SaveReportAsync(Sms sms)
         {
             if (sms == null) throw new ArgumentNullException(nameof(sms), "Sms informations are required.");
 
             var result = sms.Validate();
+            result.PhoneNumber = sms.Sender;
 
-            if (result.IsValid)
+            if (result.IsRequestValid)
             {
-                //var dataCollector = await _dataCollectorsService.GetDataCollectorFromPhoneNumberAsync(sms.Sender);
+                var parsedCase = _smsParser.ParseSmsToCase(sms.Text);
 
-                var report = new Data.Models.Report
+                if (parsedCase.IsValid)
                 {
-                    CreatedAt = DateTime.Now,
-                    //DataCollector = dataCollector,
-                    Location = sms.Location,
-                    ReceivedAt = sms.ReceivedAt,
-                    IsTraining = false,
-                    RawContent = sms.Text,
-                    Status = ReportStatus.Pending,
-                    // TODO  
-                };
-
-                await _reportRepository.InsertReportAsync(report);
-                await _reportRepository.SaveChangesAsync();
+                    result.FeedbackMessage = "Thank you";
+                }
+                else
+                {
+                    result.FeedbackMessage = "Sorry, I do not understand.";
+                }
             }
-
-            return result;
+            
+            return await Task.FromResult(result);
         }
     }
 }

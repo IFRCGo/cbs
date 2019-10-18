@@ -20,12 +20,18 @@ namespace Nyss.Web.Features.SmsGateway
         public async Task<IActionResult> Get(SmsDto smsDto)
         {
             var sms = smsDto.ToLogicModel();
-            var validationResult = await _smsGatewayService.SaveReportAsync(sms);
+            var smsProcessResult = await _smsGatewayService.SaveReportAsync(sms);
 
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors);
+            if (!smsProcessResult.IsRequestValid)
+                return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok();
+            var response = new SmsResponseDto
+            {
+                PhoneNumber = smsProcessResult.PhoneNumber,
+                FeedbackMessage = smsProcessResult.FeedbackMessage
+            };
+
+            return Ok(response);
         }
 
         // POST: api/SmsGateway
@@ -33,12 +39,18 @@ namespace Nyss.Web.Features.SmsGateway
         public async Task<IActionResult> Post(SmsDto smsDto)
         {
             var sms = smsDto.ToLogicModel();
-            var validationResult = await _smsGatewayService.SaveReportAsync(sms);
+            var smsProcessResult = await _smsGatewayService.SaveReportAsync(sms);
 
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors);
+            if (!smsProcessResult.IsRequestValid)
+                return BadRequest(smsProcessResult.RequestErrors);
 
-            return Ok();
+            var response = new SmsResponseDto
+            {
+                PhoneNumber = smsProcessResult.PhoneNumber,
+                FeedbackMessage = smsProcessResult.FeedbackMessage
+            };
+
+            return Ok(response);
         }
     }
 }

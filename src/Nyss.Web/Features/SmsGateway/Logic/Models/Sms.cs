@@ -31,25 +31,25 @@ namespace Nyss.Web.Features.SmsGateway.Logic.Models
         internal Coordinate Coordinate => new Coordinate(Latitude, Longitude);
         internal Point Location => Geometry.DefaultFactory.CreatePoint(Coordinate);
 
-        public ValidationResult Validate()
+        public SmsProcessResult Validate()
         {
-            var result = new ValidationResult();
+            var result = new SmsProcessResult();
             
             if(string.IsNullOrWhiteSpace(Sender))
-                result.Errors.Add("Sender is required.");
+                result.RequestErrors.Add("Sender is required.");
 
             if (string.IsNullOrWhiteSpace(Timestamp))
-                result.Errors.Add("Timestamp is required.");
+                result.RequestErrors.Add("Timestamp is required.");
 
             if(!DateTime.TryParseExact(Timestamp, TimestampFormat, Thread.CurrentThread.CurrentCulture, DateTimeStyles.None, out var dump))
-                result.Errors.Add($"Timestamp must be in format {TimestampFormat}.");
+                result.RequestErrors.Add($"Timestamp must be in format {TimestampFormat}.");
 
             if(string.IsNullOrWhiteSpace(Text))
-                result.Errors.Add("Text is required.");
+                result.RequestErrors.Add("Text is required.");
             if(string.IsNullOrWhiteSpace(MsgId))
-                result.Errors.Add("Message ID is required.");
+                result.RequestErrors.Add("Message ID is required.");
             if(string.IsNullOrWhiteSpace(ApiKey))
-                result.Errors.Add("ApiKey is required.");
+                result.RequestErrors.Add("ApiKey is required.");
 
             return result;
         }
