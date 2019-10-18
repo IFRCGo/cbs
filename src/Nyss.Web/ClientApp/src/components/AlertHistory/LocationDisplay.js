@@ -1,13 +1,16 @@
-import React, { Component, Fragment } from 'react';
-
+import React, { Component } from 'react'
 
 export class LocationDisplay extends Component {
   render() {
     const { data } = this.props
     return (
-      <Fragment>
-        <span>{`${data.region} ${data.district} ${data.village}`}</span>
-      </Fragment>
+      <div>
+        {data.map((item, index) => (
+          <div key={index}>
+            {`${item.region} ${item.district} ${item.village}`}
+          </div>
+        ))}
+      </div>
     )
   }
 }
