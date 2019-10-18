@@ -34,10 +34,6 @@
     <Folder Include="Features\HealthRisks\Logic\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Report\Export\" />
-  </ItemGroup>
-
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

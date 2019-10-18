@@ -128,44 +128,5 @@ namespace Nyss.Web.Features.Report.Export.Formats
             worksheet.Column(2).Style.Numberformat.Format = "HH:mm";
         }
 
-        public static int GetEpiWeek(DateTime time)
-        {
-            if (time.Month == 12 && time.Day > 28)
-            {
-                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-                if (day >= DayOfWeek.Sunday && day <= DayOfWeek.Tuesday)
-                {
-                    time = time.AddDays(3);
-                }
-            }
-
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
-        }
-
-        public static int GetIsoWeek(DateTime time)
-        {
-            var cal = CultureInfo.InvariantCulture.Calendar;
-            DayOfWeek day = cal.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-
-            // Return the week of our adjusted day
-            return cal.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        }
-
-        public static int GetIsoYear(DateTime time)
-        {
-            if (time.Month == 12 && time.Day > 28)
-            {
-                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-                if (day >= DayOfWeek.Sunday && day <= DayOfWeek.Tuesday)
-                {
-                    time = time.AddDays(3);
-                }
-            }
-            return CultureInfo.InvariantCulture.Calendar.GetYear(time);
-        }
     }
 }

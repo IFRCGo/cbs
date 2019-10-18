@@ -10,11 +10,13 @@ namespace Nyss.Web.Features.DataCollectors
         public string Sex { get; set; }
         public string Language { get; set; }
         public double Latitude { get; set; }
-        public double Longtitude { get; set; }
+        public double Longitude { get; set; }
         public string Region { get; set; }
         public string District { get; set; }
         public string Village { get; set; }
+        public string Zone { get; set; }
         public IEnumerable<string> PhoneNumbers {get; set;}
     
+        public string Supervisor { get; set; }
     }
 }
