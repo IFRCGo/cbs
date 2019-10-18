@@ -6,12 +6,13 @@ import {
   getHealthRisks,
   getDataCollectors
 } from "./functions/fetchHealthData";
+import Modal from "./modal/modalReports";
 
 const MapReports = () => {
   console.log(getCaseReports());
   console.log(getHealthRisks());
   console.log(getDataCollectors());
-
+  //fonction de filter
   return (
     <div className={"leaflet-map-container"}>
       <p>{"hello world"}</p>
