@@ -1,0 +1,151 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CBS Reports</title>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+</head>
+<body>
+    <div>
+        <table id="reports-table" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Datacollector</th>
+                    <th>Region</th>
+                    <th>District</th>
+                    <th>Village</th>
+                    <th>Health risk</th>
+                    <th>Males under 5</th>
+                    <th>Males 5 or older</th>
+                    <th>Females under 5</th>
+                    <th>Females 5 or older</th>
+                    <th>Total under 5</th>
+                    <th>Total 5 or older</th>
+                    <th>Total females</th>
+                    <th>Total males</th>
+                    <th>Total</th>
+                    <th>Location</th>
+                    <th>Message</th>
+                    <th>Errors</th>
+                    <th>ISOyear</th>
+                    <th>ISOweek</th>
+                    <th>ISOyear-ISOweek</th>
+                </tr>
+                <tr>
+                    <th><input type="text" placeholder="Date" /></th>
+                    <th><input type="text" placeholder="Time" /></th>
+                    <th><input type="text" placeholder="Status" /></th>
+                    <th><input type="text" placeholder="Datacollector" /></th>
+                    <th><input type="text" placeholder="Region" /></th>
+                    <th><input type="text" placeholder="District" /></th>
+                    <th><input type="text" placeholder="Village" /></th>
+                    <th><input type="text" placeholder="Health risk" /></th>
+                    <th><input type="text" placeholder="Males under 5" /></th>
+                    <th><input type="text" placeholder="Males 5 or older" /></th>
+                    <th><input type="text" placeholder="Females under 5" /></th>
+                    <th><input type="text" placeholder="Females 5 or older" /></th>
+                    <th><input type="text" placeholder="Total under 5" /></th>
+                    <th><input type="text" placeholder="Total 5 or older" /></th>
+                    <th><input type="text" placeholder="Total females" /></th>
+                    <th><input type="text" placeholder="Total males" /></th>
+                    <th><input type="text" placeholder="Total" /></th>
+                    <th><input type="text" placeholder="Location" /></th>
+                    <th><input type="text" placeholder="Message" /></th>
+                    <th><input type="text" placeholder="Errors" /></th>
+                    <th><input type="text" placeholder="ISOyear" /></th>
+                    <th><input type="text" placeholder="ISOweek" /></th>
+                    <th><input type="text" placeholder="ISOyear-ISOweek" /></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" crossorigin="anonymous"></script>
+
+    <script language="javascript">
+
+    $(document).ready(function () {
+        const tableSelector = '#reports-table';
+
+        var table = $(tableSelector)
+            .on("error.dt", function (e, settings, techNote, message) {
+                console.log(message);
+            })
+            .on("init.dt", function () {
+                var columns = Array.from(table.columns().eq(0));
+
+                columns.forEach(function (column, index) {
+
+                    var cell = $(tableSelector + " thead tr:eq(1) th")[index];
+                    var input = $("input", cell)[0];
+
+                    if (input) {
+                        $(input).on("keyup change",
+                            function () {
+                                if (table.column(index).search() !== this.value) {
+                                    table
+                                        .column(index)
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                    }
+                });
+
+                $('#reports-table_filter').hide();
+            })
+            .DataTable({
+                processing: true,
+                serverSide: true,
+                pageLength: 50,
+                searching: true,
+                orderCellsTop: true,
+                ajax: {
+                    url: '@Url.Action("GetReports")',
+                    method: "POST",
+                    contentType: 'application/json',
+                    data: function (d) {
+                        return JSON.stringify(d);
+                    }
+                },
+                columns: [
+                    { data: "date" },
+                    { data: "time" },
+                    { data: "status" },
+                    { data: "dataCollector" },
+                    { data: "region" },
+                    { data: "district" },
+                    { data: "village" },
+                    { data: "healthRisk" },
+                    { data: "malesUnder5" },
+                    { data: "males5OrOlder" },
+                    { data: "femalesUnder5" },
+                    { data: "females5OrOlder" },
+                    { data: "totalUnder5" },
+                    { data: "total5OrOlder" },
+                    { data: "totalFemales" },
+                    { data: "totalMales" },
+                    { data: "total" },
+                    { data: "location" },
+                    { data: "message" },
+                    { data: "errors" },
+                    { data: "isoYear" },
+                    { data: "isoWeek" },
+                    { data: "isoYearIsoWeek" },
+                ],
+            });
+    });
+    </script>
+</body>
+</html>
