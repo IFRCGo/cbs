@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from "react";
 //import L from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import Filters from "./Filters";
 
 const MapReports = () => {
   return (
     <div className={"leaflet-map-container"}>
-      <p>{"hello world"}</p>
+      <h2>{"Reports"}</h2>
+      <Filters />
       <Map
         id={"leaflet-map"}
         center={[0, 0]}
