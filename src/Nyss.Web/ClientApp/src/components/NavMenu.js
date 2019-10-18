@@ -24,6 +24,7 @@ export default class NavMenu extends React.Component {
             <Container>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/IFRC_Logo.png" alt="Red Cross logo" width="80px"/>
           </Container>
+          <Link to='/map'>MAP</Link>
         </Navbar>
       </header>
     );
