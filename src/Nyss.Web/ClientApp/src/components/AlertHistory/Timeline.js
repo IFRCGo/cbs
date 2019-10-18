@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react'
 
-import { List } from './List';
-import { LocationDisplay } from './LocationDisplay';
+import { List } from './List'
+import { LocationDisplay } from './LocationDisplay'
 
 export const Timeline = ({ data }) => {
   return (
-    <Fragment>
+    <div class='d-flex flex-row'>
       <LocationDisplay data={data} />
       <List />
-    </Fragment>
+    </div>
   )
 }

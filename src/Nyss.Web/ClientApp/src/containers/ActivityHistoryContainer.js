@@ -1,27 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Timeline } from '../components/AlertHistory/Timeline';
+import { Timeline } from '../components/AlertHistory/Timeline'
 
 const data = [
   {
-    data: [
+    weeks: [
       {
-        weeks: [
-          {
-            date: "10-02-1996",
-            status: "pending"
-          },
-          {
-            date: "16-02-1996",
-            status: "pending"
-          }
-        ],
-        region: "Thies",
-        district: "Thies",
-        village: "M'Bour"
-      }
-    ]
-  }
+        date: '10-02-1996',
+        status: 'pending',
+      },
+      {
+        date: '16-02-1996',
+        status: 'pending',
+      },
+    ],
+    region: 'Thies',
+    district: 'Thies',
+    village: "M'Bour",
+  },
+  {
+    weeks: [
+      {
+        date: '20-02-1996',
+        status: 'penwding',
+      },
+      {
+        date: '26-02-1996',
+        status: 'penqwding',
+      },
+    ],
+    region: 'Thiews',
+    district: 'Thiwqees',
+    village: "M'wqeeqour",
+  },
 ]
 
 export class ActivityHistoryContainer extends Component {
@@ -29,7 +40,9 @@ export class ActivityHistoryContainer extends Component {
     return (
       <div>
         <p>Hello from Activity History</p>
-        <Timeline data={data[0].data[0]} />
+        {data.map(item => (
+          <Timeline data={item} />
+        ))}
       </div>
     )
   }
