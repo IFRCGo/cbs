@@ -1,0 +1,11 @@
+.alert-history-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.alert-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
