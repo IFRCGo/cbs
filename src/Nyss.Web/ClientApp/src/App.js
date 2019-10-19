@@ -12,11 +12,15 @@ export default props => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path='/map' component={MapReports} />
-      <Route path="/alert-history" component={ AlertHistoryView } />
       <Route
         path='/activity-history'
         url={props.url}
         component={ActivityHistoryContainer}
+      />
+      <Route
+        path='/alert-history'
+        url={props.url}
+        component={AlertHistoryView}
       />
     </Switch>
   </Layout>
