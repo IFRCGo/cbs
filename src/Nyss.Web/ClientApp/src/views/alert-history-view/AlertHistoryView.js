@@ -12,7 +12,7 @@ class AlertHistoryView extends React.Component {
   }
 
   componentDidMount = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/AlertHistory?numberOfWeeks=52&includeNoAlerts=true")
+    const { data } = await axios.get(`${this.props.url}/api/AlertHistory?numberOfWeeks=52&includeNoAlerts=true`)
 
     this.setState({
       groups: [ ...data.villages.map(item => {

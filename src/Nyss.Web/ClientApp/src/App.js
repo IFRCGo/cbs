@@ -14,7 +14,7 @@ export default props => (
       <Route
         path='/alert-history'
         url={props.url}
-        component={AlertHistoryView}
+        component={() => <AlertHistoryView url={props.url}/>}
       />
     </Switch>
   </Layout>
