@@ -1,35 +1,27 @@
 .markerClusterSmall {
   border-radius: 20px;
-  font-size: 0.6vw;
+  font: 900 0.6vw Open sans-serif;
   color: #fff;
-  font-weight: 900;
-  font-family: Open sans-serif;
   text-transform: uppercase;
   width: 50px;
 }
 .markerClusterMedium {
   border-radius: 40px;
-  font-size: 1vw;
+  font: 900 1vw Open sans-serif;
   color: #fff;
-  font-weight: 900;
-  font-family: Open sans-serif;
   text-transform: uppercase;
   width: 100px;
 }
 .markerClusterLarge {
   border-radius: 70px;
-  font-size: 1.3vw;
+  font: 900 1.3vw Open sans-serif;
   color: #fff;
-  font-weight: 900;
-  font-family: Open sans-serif;
   text-transform: uppercase;
 }
 .markerClusterLargeXL {
   border-radius: 70px;
-  font-size: 1.6vw;
+  font: 900 1.6vw Open sans-serif;
   color: #fff;
-  font-weight: 900;
-  font-family: Open sans-serif;
   text-transform: uppercase;
 }
 .markerClusterLabel {

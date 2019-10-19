@@ -5,8 +5,6 @@ function ColorsLegend(props) {
     <div className={"ColorsLegend"}>
       {props.healthRisk.map((el, i) => {
         const color = props.healthRiskColor.filter(elColor => {
-          console.log(elColor.Id, "Healthrisk", el.Id);
-
           return elColor.Id === el.Id;
         })[0].Color;
         let styleCircle = {
