@@ -18,7 +18,7 @@ const Filters = props => {
   const dateFormat = "MMM dd, yyyy";
 
   const [risk, setRisk] = useState(null);
-  const [startDate, setStartDate] = useState(new Date("1-1-2019"));
+  const [startDate, setStartDate] = useState(new Date("2019-01-01"));
   const [endDate, setEndDate] = useState(new Date());
 
   const handleHealthRisk = event => setRisk(event.target.value);
