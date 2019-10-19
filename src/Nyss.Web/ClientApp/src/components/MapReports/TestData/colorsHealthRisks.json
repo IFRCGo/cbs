@@ -1,18 +1,18 @@
 [
-    {
-        "Id": 2,
-        "Color": "03A9F4"
-    },
-    {
-        "Id": 3,
-        "Color": "C0CA33"
-    },
-    {
-        "Id": 6,
-        "Color": "FF8F00"
-    },
-    {
-        "Id": 4,
-        "Color": "d32f2f"
-    }
+  {
+    "Id": 2,
+    "Color": "FFD200"
+  },
+  {
+    "Id": 3,
+    "Color": "8CD200"
+  },
+  {
+    "Id": 6,
+    "Color": "00A0DC"
+  },
+  {
+    "Id": 4,
+    "Color": "FF5014"
+  }
 ]
