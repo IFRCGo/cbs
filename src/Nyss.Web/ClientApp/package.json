@@ -7,6 +7,7 @@
     "leaflet": "^1.5.1",
     "leaflet.markercluster": "^1.4.1",
     "react": "^16.0.0",
+    "react-datepicker": "^2.9.6",
     "react-dom": "^16.0.0",
     "react-leaflet": "^2.4.0",
     "react-leaflet-markercluster": "^2.0.0-rc3",

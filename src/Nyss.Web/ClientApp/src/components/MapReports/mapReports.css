@@ -1,3 +1,6 @@
+#leaflet-map {
+  z-index: 2;
+}
 .markerClusterSmall {
   border-radius: 20px;
   font: 900 0.6vw Open sans-serif;
