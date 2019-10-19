@@ -18,7 +18,7 @@ class AlertHistoryView extends React.Component {
       groups: [ ...data.villages.map(item => {
         return {
           id: item.id,
-          title: item.village
+          title: item.villageName
         }
       }) ],
       items: [ ...data.alerts.map((item, index) => {
