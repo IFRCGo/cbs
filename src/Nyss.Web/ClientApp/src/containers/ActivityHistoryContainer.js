@@ -1,15 +1,17 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import axios from 'axios'
+import React, { Component } from 'react'
 
-import { Timeline } from '../components/AlertHistory/Timeline';
+import { Timeline } from '../components/AlertHistory/Timeline'
 
 export class ActivityHistoryContainer extends Component {
-  state = {
-    data: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: []
+    }
   }
-
   componentDidMount = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/AlertHistory")
+    const { data } = await axios.get(`${this.props.url}/api/AlertHistory`)
     this.setState({ data: data })
   }
 
