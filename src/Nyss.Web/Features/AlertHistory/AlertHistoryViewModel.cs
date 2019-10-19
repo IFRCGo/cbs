@@ -8,23 +8,24 @@ namespace Nyss.Web.Features.AlertHistory
 {
     public class AlertHistoryViewModel
     {
-        public string From { get; set; }
-        public string To { get; set; }
-       public List<VillageHistory> Villages { get; set; }
-    }
-    public class VillageHistory
-    {
-        public VillageHistory()
+        public AlertHistoryViewModel()
         {
-            Alerts = new HashSet<Alert>();
+            Villages = new List<Village>();
+            Alerts = new List<Alert>();
         }
-        public string Village { get; set; }
+        public List<Village> Villages { get; set; }
+        public List<Alert> Alerts { get; set; }
+    }
+    public class Village
+    {
+        public int Id { get; set; }
+        public string VillageName { get; set; }
         public string District { get; set; }
         public string Region { get; set; }
-        public ICollection<Alert> Alerts { get; set; }
     }
     public class Alert
     {
+        public int VillageId { get; set; }
         public AlertData Metadata { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
