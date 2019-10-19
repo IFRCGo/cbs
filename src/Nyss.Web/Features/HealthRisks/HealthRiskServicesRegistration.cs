@@ -6,6 +6,7 @@ namespace Nyss.Web.Features.HealthRisks
     {
         public static void RegisterHealthRiskFeature(this IServiceCollection services)
         {
+            services.AddScoped<IHealthRisksService, HealthRisksService>();
         }
     }
 }
