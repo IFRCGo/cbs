@@ -11,21 +11,21 @@ namespace Nyss.Web.Features.AlertHistory
 {
     public interface IAlertHistoryService
     {
-        AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts);
+        AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts, string baseURL);
     }
 
     public class AlertHistoryService : IAlertHistoryService
     {
         private readonly Random Random = new Random();
-        public AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts)
+        public AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts, string baseURL)
         {
             if (!DateTime.TryParse(startDate, CultureInfo.CurrentUICulture, DateTimeStyles.None, out DateTime startDateFormatted))
             {
                 startDateFormatted = DateTime.Now;
             }
-            return GenerageMockAlerts(numberOfWeeks, startDateFormatted, includeNoAlerts);
+            return GenerageMockAlerts(numberOfWeeks, startDateFormatted, baseURL, includeNoAlerts);
         }
-        private AlertHistoryViewModel GenerageMockAlerts(int numberOfWeeks, DateTime startDate, bool includeNoAlerts = true)
+        private AlertHistoryViewModel GenerageMockAlerts(int numberOfWeeks, DateTime startDate, string baseURL, bool includeNoAlerts = true)
         {
 
             DateTime to = startDate;
@@ -39,7 +39,7 @@ namespace Nyss.Web.Features.AlertHistory
             };
             alertsHistory.Villages = alertsHistory.Villages.Select((village, index) =>
             {
-                village.Alerts = GenerateAlerts(from, to, index + 1);
+                village.Alerts = GenerateAlerts(from, to, index + 1, baseURL);
                 return village;
             }).ToList();
             alertsHistory.Villages = alertsHistory.Villages.Where(alertHistory => includeNoAlerts == true || alertHistory.Alerts.Any())
@@ -49,7 +49,7 @@ namespace Nyss.Web.Features.AlertHistory
                 .ToList();
             return alertsHistory;
         }
-        private List<Alert> GenerateAlerts(DateTime from, DateTime to, int index)
+        private List<Alert> GenerateAlerts(DateTime from, DateTime to, int index, string baseURL)
         {
             List<Alert> alerts = new List<Alert>();
             bool generateNoAlertsPeriod = Random.Next(100) <= 10;
@@ -57,28 +57,25 @@ namespace Nyss.Web.Features.AlertHistory
             {
                 DateTime startDate = from.AddDays(Random.Next(-10, 4));
                 DateTime endAlertDate = to.AddDays(Random.Next(-3, 3));
-                DateTime endDate = startDate.AddDays(Random.Next(20));
-                if (endDate > endAlertDate)
-                {
-                    endDate = endAlertDate;
-                }
+                DateTime endDate = startDate;
+
                 int alertId = 1;
-                while (endDate <= endAlertDate)
+                while (endDate <= endAlertDate && startDate <= to)
                 {
+                    endDate = startDate.AddDays(Random.Next(100));
                     var alert = new Alert
                     {
                         StartDate = startDate.ToString("s"),
-                        EndDate = endDate == endAlertDate ? null : endDate.ToString("s"),
+                        EndDate = endDate >= endAlertDate ? null : endDate.ToString("s"),
                         Metadata = new AlertData
                         {
                             Id = alertId * index,
-                            Url = "https://localhost:44365/Alerts/"
+                            Url = baseURL
                         }
                     };
                     alerts.Add(alert);
                     alertId++;
                     startDate = endDate.AddDays(Random.Next(100));
-                    endDate = startDate.AddDays(Random.Next(100));
                 }
             }
             return alerts;
