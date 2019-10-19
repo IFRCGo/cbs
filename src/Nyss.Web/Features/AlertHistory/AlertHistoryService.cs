@@ -33,23 +33,16 @@ namespace Nyss.Web.Features.AlertHistory
 
             AlertHistoryViewModel alertsHistory = new AlertHistoryViewModel
             {
-                From = from.ToString("s"),
-                To = to.ToString("s"),
-                Villages = GenerateVillages()
+                Villages = GenerateVillages(),
+                Alerts = new List<Alert>()
             };
-            alertsHistory.Villages = alertsHistory.Villages.Select((village, index) =>
+            foreach (var village in alertsHistory.Villages)
             {
-                village.Alerts = GenerateAlerts(from, to, index + 1, baseURL);
-                return village;
-            }).ToList();
-            alertsHistory.Villages = alertsHistory.Villages.Where(alertHistory => includeNoAlerts == true || alertHistory.Alerts.Any())
-                .OrderBy(alertHistory => alertHistory.Region)
-                .ThenBy(alertHistory => alertHistory.District)
-                .ThenBy(alertHistory => alertHistory.Village)
-                .ToList();
+                alertsHistory.Alerts.AddRange(GenerateAlerts(from, to, village.Id, baseURL));
+            }
             return alertsHistory;
         }
-        private List<Alert> GenerateAlerts(DateTime from, DateTime to, int index, string baseURL)
+        private List<Alert> GenerateAlerts(DateTime from, DateTime to, int villageId, string baseURL)
         {
             List<Alert> alerts = new List<Alert>();
             bool generateNoAlertsPeriod = Random.Next(100) <= 10;
@@ -66,10 +59,11 @@ namespace Nyss.Web.Features.AlertHistory
                     var alert = new Alert
                     {
                         StartDate = startDate.ToString("s"),
+                        VillageId = villageId,
                         EndDate = endDate >= endAlertDate ? null : endDate.ToString("s"),
                         Metadata = new AlertData
                         {
-                            Id = alertId * index,
+                            Id = alertId * villageId,
                             Url = baseURL
                         }
                     };
@@ -80,9 +74,9 @@ namespace Nyss.Web.Features.AlertHistory
             }
             return alerts;
         }
-        private List<VillageHistory> GenerateVillages()
+        private List<Village> GenerateVillages()
         {
-            var alertsHistory = Builder<VillageHistory>.CreateListOfSize(50)
+            var villages = Builder<Village>.CreateListOfSize(50)
                 .TheFirst(5)
                 .With(alertHistory => alertHistory.Region = "Dakar")
                 .With(alertHistory => alertHistory.District = "Almadies")
@@ -103,7 +97,15 @@ namespace Nyss.Web.Features.AlertHistory
                 .With(alertHistory => alertHistory.District = "Ziguinchor")
                 .Build()
                 .ToList();
-            return alertsHistory;
+            foreach (var villate in villages)
+            {
+
+            }
+            return villages.Select((village, index) =>
+            {
+                village.Id = index + 1;
+                return village;
+            }).ToList();
         }
     }
     public static class DateTimeExtensions
