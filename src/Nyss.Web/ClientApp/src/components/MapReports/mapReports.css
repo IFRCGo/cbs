@@ -46,3 +46,17 @@
   align-items: center;
   padding: 1vw;
 }
+.chart-text {
+  font: 16px/1.4em Arial, sans-serif;
+  fill: #000;
+  -moz-transform: translateY(0.25em);
+  -ms-transform: translateY(0.25em);
+  -webkit-transform: translateY(0.25em);
+  transform: translateY(0.25em);
+}
+
+.chart-number {
+  font-size: 1em;
+  line-height: 1;
+  text-anchor: middle;
+}
