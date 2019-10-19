@@ -4,7 +4,6 @@
  */
 
 import React, { useState, useEffect } from "react";
-
 import DatePicker from "react-datepicker";
 
 import { getHealthRisks } from "./functions/fetchHealthData";
@@ -18,7 +17,7 @@ const Filters = props => {
   const dateFormat = "MMM dd, yyyy";
 
   const [risk, setRisk] = useState(null);
-  const [startDate, setStartDate] = useState(new Date("2019-01-01"));
+  const [startDate, setStartDate] = useState(new Date(new Date().getFullYear(), 0, 1));
   const [endDate, setEndDate] = useState(new Date());
 
   const handleHealthRisk = event => setRisk(event.target.value);

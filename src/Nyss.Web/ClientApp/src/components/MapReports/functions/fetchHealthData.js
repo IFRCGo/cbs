@@ -12,3 +12,8 @@ export const getHealthRisks = () => {
   const data = require("../TestData/healthRisks.json");
   return data;
 };
+
+export const getColorsHealthRIsks = () => {
+  const data = require("../TestData/colorsHealthRisks.json");
+  return data
+}

@@ -9,7 +9,8 @@ import ColorsLegend from "./ColorsLegend";
 import {
   getCaseReports,
   getHealthRisks,
-  getDataCollectors
+  getDataCollectors,
+  getColorsHealthRIsks
 } from "./functions/fetchHealthData";
 
 //leaflet marker cluster group import
@@ -21,29 +22,11 @@ const MapReports = () => {
   const caseReports = getCaseReports();
   const dataCollectors = getDataCollectors();
   const healthRisk = getHealthRisks();
-
+  const healthRiskColor = getColorsHealthRIsks();
   // IF ShowingReports === [] => show all caseReports
   // IF ShowingReports !== null => only show reports with id in thois array
   const [ShowingReports, setShowingReports] = useState([]);
   const [tempCaseReports, setTempCaseReports] = useState(caseReports);
-  const healthRiskColor = [
-    {
-      Id: 2,
-      Color: "03A9F4"
-    },
-    {
-      Id: 3,
-      Color: "C0CA33"
-    },
-    {
-      Id: 6,
-      Color: "FF8F00"
-    },
-    {
-      Id: 4,
-      Color: "d32f2f"
-    }
-  ];
 
   useEffect(() => {
     setTempCaseReports(
@@ -55,6 +38,27 @@ const MapReports = () => {
 
   const createClusterCustomIcon = function(cluster) {
     const count = cluster.getChildCount();
+    const clusterDetail = cluster.getAllChildMarkers();
+    //scoreboard
+    let tabHealRisk = {};
+    for (let i = 0; i < clusterDetail.length; i++) {
+      const healthRiskID =
+        clusterDetail[i]._popup.options.children.props.report.HealthRiskId;
+
+      if (tabHealRisk.hasOwnProperty(healthRiskID)) {
+        tabHealRisk[healthRiskID]++;
+      } else {
+        tabHealRisk[healthRiskID] = 1;
+      }
+    }
+    //most id reported
+    let mostIdReported = { id: 0, value: -1 };
+    Object.getOwnPropertyNames(tabHealRisk).forEach(el => {
+      if (tabHealRisk[el] > mostIdReported.value) {
+        mostIdReported.id = el;
+        mostIdReported.value = tabHealRisk[el];
+      }
+    });
     let size = "medium";
     let markerSizeXL = 40;
 
@@ -72,6 +76,13 @@ const MapReports = () => {
       cluster: `markerCluster${size}`
     };
 
+    const groupColor = {
+      middle: healthRiskColor.filter(shade => {
+        return shade.Id === parseInt(mostIdReported.id);
+      })[0].Color,
+      border: "E32219"
+    };
+
     return L.divIcon({
       html: `
       <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size:15px; color:black; z-index:250">${cluster.getChildCount()}</span>
@@ -84,10 +95,6 @@ const MapReports = () => {
       className: `${options.cluster}`,
       iconSize: L.point(markerSizeXL, markerSizeXL, true)
     });
-  };
-  const groupColor = {
-    white: "FFF",
-    black: "2c3e50"
   };
 
   return (
