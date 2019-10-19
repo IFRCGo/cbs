@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import { getHealthRisks } from "./functions/fetchHealthData";
-import convertDate from "./functions/convertDate";
+import formatDate from "./functions/formatDate";
+import sexAndAge from "./functions/sexAndAge";
 
 import Modal from "./modal/Modal";
 import ModalReports from "./modal/modalReports";
@@ -10,26 +11,6 @@ const Popup = props => {
   const risk = getHealthRisks();
 
   const [ShowModal, setShowModal] = useState(false);
-
-  const formatDate = () => {
-    let date = convertDate(props.report.Timestamp);
-    date = new Date(date);
-    date = date.toLocaleString("default", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-    return date;
-  };
-
-  const sexAndAge = () => {
-    if (props.report.NumberOfMalesUnder5 > 0) return `Male/Below 5`;
-    if (props.report.NumberOfMalesAged5AndOlder > 0) return `Male/5 or more`;
-    if (props.report.NumberOfFemalesUnder5 > 0) return `Female/Below 5`;
-    if (props.report.NumberOfFemalesAged5AndOlder > 0)
-      return `Female/5 or more`;
-  };
 
   const handleModal = e => {
     e.preventDefault();
@@ -42,7 +23,7 @@ const Popup = props => {
         Report from: <strong>{props.collector.Name}</strong>
       </p>
       <p>
-        Time sent: <strong>{formatDate()}</strong>
+        Time sent: <strong>{formatDate(props.report)}</strong>
       </p>
       <p>
         Health risk:{" "}
@@ -54,7 +35,7 @@ const Popup = props => {
         </strong>
       </p>
       <p>
-        Sex/age: <strong>{sexAndAge()}</strong>
+        Sex/age: <strong>{sexAndAge(props.report)}</strong>
       </p>
       <a href="#" onClick={e => handleModal(e)}>
         REPORT
