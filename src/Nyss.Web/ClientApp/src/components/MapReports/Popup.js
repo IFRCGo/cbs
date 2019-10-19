@@ -7,6 +7,8 @@ import sexAndAge from "./functions/sexAndAge";
 import Modal from "./modal/Modal";
 import ModalReports from "./modal/modalReports";
 
+import "./Popup.css";
+
 const Popup = props => {
   const risk = getHealthRisks();
   const [ShowModal, setShowModal] = useState(false);
@@ -16,19 +18,37 @@ const Popup = props => {
   };
 
   return (
-    <div>
-      <p>Report from: <strong>{props.collector.Name}</strong></p>
-      <p>Time sent: <strong>{formatDate(props.report)}</strong></p>
-      <p>Health risk:{" "}
-        <strong>
-          {
-            risk.filter(r => parseInt(r.Id) === props.report.HealthRiskId)[0]
-              .Name
-          }
-        </strong>
-      </p>
-      <p>Sex/age: <strong>{sexAndAge(props.report)}</strong></p>
-      <a href="#" onClick={e => handleModal(e)}>REPORT</a>
+    <React.Fragment>
+      <div className="popup-content">
+        <div className="info">
+          <p className="label">Report from:</p>
+          <p className="bold">{props.collector.Name}</p>
+        </div>
+
+        <div className="info">
+          <p className="label">Time sent:</p>
+          <p className="bold">{formatDate(props.report)}</p>
+        </div>
+
+        <div className="info">
+          <p className="label">Health risk:</p>
+          <p className="bold">
+            {
+              risk.filter(r => parseInt(r.Id) === props.report.HealthRiskId)[0]
+                .Name
+            }
+          </p>
+        </div>
+
+        <div className="info">
+          <p className="label">Sex/age:</p>
+          <p className="bold">{sexAndAge(props.report)}</p>
+        </div>
+      </div>
+
+      <a href="#" onClick={e => handleModal(e)}>
+        REPORT
+      </a>
 
       <Modal show={ShowModal}>
         <ModalReports
@@ -37,7 +57,7 @@ const Popup = props => {
           toClose={setShowModal}
         />
       </Modal>
-    </div>
+    </React.Fragment>
   );
 };
 
