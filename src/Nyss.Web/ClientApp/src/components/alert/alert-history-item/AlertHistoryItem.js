@@ -9,7 +9,7 @@ class AlertHistoryItem extends React.Component {
     }
     return (
       <li className={className}>
-        ite
+        {this.props.status ? 'O' : '/'}
       </li>
     )
   }
