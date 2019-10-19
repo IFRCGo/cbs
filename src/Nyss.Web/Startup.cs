@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nyss.Web.Features.AlertHistory;
 using Nyss.Web.Features.DataCollectors;
+using Nyss.Web.Features.HealthRisks;
 using Nyss.Web.Features.Report;
+using Nyss.Web.Features.Report.Data;
+using Nyss.Web.Features.SmsGateway.Logic;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Nyss
@@ -31,7 +34,11 @@ namespace Nyss
                 c.SwaggerDoc("v1", new Info { Title = "Nyss API", Version = "v1" });
             });
 
-            services.AddScoped<IDataCollectorsService, DataCollectorsService>();
+            services.RegisterDataCollectorsFeature();
+            services.RegisterHealthRiskFeature();
+            services.RegisterReportFeature();
+            services.RegisterSmsGatewayFeature();
+
             services.AddScoped<IAlertHistoryService, AlertHistoryService>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -39,7 +46,6 @@ namespace Nyss
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddScoped<IReportService, RandomReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,8 +78,6 @@ namespace Nyss
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
-            
 
             app.UseSpa(spa =>
             {

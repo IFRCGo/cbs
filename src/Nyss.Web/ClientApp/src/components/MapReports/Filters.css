@@ -2,10 +2,23 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 1.5em;
+  margin-top: 2em;
 }
 
 .Filters .filter {
   width: 31%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Filters .filter .label {
+  font-weight: bold;
+  margin-bottom: 0.6em;
+  width: 100%;
+}
+
+.Filters .filter .inputFilter {
+  width: 100%;
 }
 
 .Filters .filter input,
