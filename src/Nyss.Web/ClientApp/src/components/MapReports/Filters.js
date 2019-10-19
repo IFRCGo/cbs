@@ -18,7 +18,7 @@ const Filters = props => {
   const dateFormat = "MMM dd, yyyy";
 
   const [risk, setRisk] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date("1-1-2019"));
   const [endDate, setEndDate] = useState(new Date());
 
   const handleHealthRisk = event => setRisk(event.target.value);
@@ -71,7 +71,7 @@ const Filters = props => {
 
       <div className="filter">
         <span className="label">Start date</span>
-        <div className="inputFilter">
+        <div className="inputFilter datepicker">
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
@@ -82,7 +82,7 @@ const Filters = props => {
 
       <div className="filter">
         <span className="label">End date</span>
-        <div className="inputFilter">
+        <div className="inputFilter datepicker">
           <DatePicker
             selected={endDate}
             onChange={date => setEndDate(date)}

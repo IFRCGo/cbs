@@ -11,6 +11,9 @@
   flex-wrap: wrap;
 }
 
+.Filters .filter .datepicker {
+  z-index: 3;
+}
 .Filters .filter .react-datepicker-wrapper {
   display: block;
 }
