@@ -11,6 +11,14 @@
   flex-wrap: wrap;
 }
 
+.Filters .filter .datepicker {
+  z-index: 3;
+}
+
+.Filters .filter .react-datepicker-wrapper {
+  display: block;
+}
+
 .Filters .filter .label {
   font-weight: bold;
   margin-bottom: 0.6em;
@@ -29,4 +37,5 @@
   background-color: #fff;
   height: 3.5em;
   padding: 0 1em;
+  -webkit-appearance: none;
 }
