@@ -5,17 +5,23 @@ import Home from './components/Home'
 import Layout from './components/Layout'
 import { ActivityHistoryContainer } from './containers/ActivityHistoryContainer'
 import MapReports from './components/MapReports/MapReports'
+import AlertHistoryView from './views/alert-history-view/AlertHistoryView'
 
 export default props => (
   <Layout>
     <Switch>
+      <Route exact path='/' url={props.url} component={Home} />
+      <Route exact path='/map' url={props.url} component={MapReports} />
       <Route
         path='/activity-history'
         url={props.url}
         component={ActivityHistoryContainer}
       />
-      <Route exact path='/' url={props.url} component={Home} />
-      <Route exact path='/map' url={props.url} component={MapReports} />
+      <Route
+        path='/alert-history'
+        url={props.url}
+        component={AlertHistoryView}
+      />
     </Switch>
   </Layout>
 )

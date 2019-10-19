@@ -11,86 +11,102 @@ namespace Nyss.Web.Features.AlertHistory
 {
     public interface IAlertHistoryService
     {
-        IEnumerable<AlertHistoryViewModel> GetAlertsHistory(int numberOfWeeks, bool includeNoAlerts);
+        AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts);
     }
 
     public class AlertHistoryService : IAlertHistoryService
     {
-        public IEnumerable<AlertHistoryViewModel> GetAlertsHistory(int numberOfWeeks, bool includeNoAlerts)
+        private readonly Random Random = new Random();
+        public AlertHistoryViewModel GetAlertsHistory(int numberOfWeeks, string startDate, bool includeNoAlerts)
         {
-            return GenerageMockAlerts(numberOfWeeks, includeNoAlerts);
-        }
-        private IEnumerable<AlertHistoryViewModel> GenerageMockAlerts(int numberOfWeeks, bool includeNoAlerts = true)
-        {
-            DateTime to = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
-            DateTime from = DateTime.Now.AddDays(-7 * numberOfWeeks);
-
-            List<AlertStatus> statuses = Statuses();
-            List<AlertHistoryViewModel> alertsHistory = GenerateAlertHistory();
-            alertsHistory = alertsHistory.Select(alertHistory =>
+            if (!DateTime.TryParse(startDate, CultureInfo.CurrentUICulture, DateTimeStyles.None, out DateTime startDateFormatted))
             {
-                DateTime firstDayOfWeek = from;
-                while (firstDayOfWeek <= to)
-                {
-                    var week = new WeekData
-                    {
-                        Date = firstDayOfWeek.ToString("d"),
-                        Status = GetEnumDescription(Pick<AlertStatus>.RandomItemFrom(statuses))
-                    };
-                    alertHistory.Weeks.Add(week);
-                    firstDayOfWeek = firstDayOfWeek.AddDays(7);
-                }
-                return alertHistory;
-            }).ToList();
+                startDateFormatted = DateTime.Now;
+            }
+            return GenerageMockAlerts(numberOfWeeks, startDateFormatted, includeNoAlerts);
+        }
+        private AlertHistoryViewModel GenerageMockAlerts(int numberOfWeeks, DateTime startDate, bool includeNoAlerts = true)
+        {
 
-            var list =  alertsHistory
-                .Where(alertHistory => includeNoAlerts == true || alertHistory.Weeks.Any(week => week.Status != GetEnumDescription(AlertStatus.NoAlerts)))
+            DateTime to = startDate;
+            DateTime from = to.AddDays(-7 * numberOfWeeks);
+
+            AlertHistoryViewModel alertsHistory = new AlertHistoryViewModel
+            {
+                From = from.ToString("s"),
+                To = to.ToString("s"),
+                Villages = GenerateVillages()
+            };
+            alertsHistory.Villages = alertsHistory.Villages.Select((village, index) =>
+            {
+                village.Alerts = GenerateAlerts(from, to, index + 1);
+                return village;
+            }).ToList();
+            alertsHistory.Villages = alertsHistory.Villages.Where(alertHistory => includeNoAlerts == true || alertHistory.Alerts.Any())
                 .OrderBy(alertHistory => alertHistory.Region)
                 .ThenBy(alertHistory => alertHistory.District)
                 .ThenBy(alertHistory => alertHistory.Village)
                 .ToList();
-            return list;
-        }
-        private List<AlertHistoryViewModel> GenerateAlertHistory()
-        {
-            var alertsHistory = Builder<AlertHistoryViewModel>.CreateListOfSize(100)
-                .TheFirst(10)
-                .With(alertHistory => alertHistory.Region = "Dakar")
-                .With(alertHistory => alertHistory.District = "Almadies")
-                .TheNext(20)
-                .With(alertHistory => alertHistory.Region = "Dakar")
-                .With(alertHistory => alertHistory.District = "Dakar Plateau")
-                .TheNext(20)
-                .With(alertHistory => alertHistory.Region = "Thiès")
-                .With(alertHistory => alertHistory.District = "M'bour")
-                .TheNext(20)
-                .With(alertHistory => alertHistory.Region = "Thiès")
-                .With(alertHistory => alertHistory.District = "Saly")
-                .TheNext(15)
-                .With(alertHistory => alertHistory.Region = " Ziguinchor")
-                .With(alertHistory => alertHistory.District = "Bignona")
-                .TheRest()
-                .With(alertHistory => alertHistory.Region = " Ziguinchor")
-                .With(alertHistory => alertHistory.District = "Ziguinchor")
-                .Build().ToList();
             return alertsHistory;
         }
-        private List<AlertStatus> Statuses()
+        private List<Alert> GenerateAlerts(DateTime from, DateTime to, int index)
         {
-            return Enum.GetValues(typeof(AlertStatus)).Cast<AlertStatus>().ToList();
-        }
-        private static string GetEnumDescription(Enum value)
-        {
-            FieldInfo fi = value.GetType().GetField(value.ToString());
-
-            DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
-
-            if (attributes != null && attributes.Any())
+            List<Alert> alerts = new List<Alert>();
+            bool generateNoAlertsPeriod = Random.Next(100) <= 10;
+            if (!generateNoAlertsPeriod)
             {
-                return attributes.First().Description;
+                DateTime startDate = from.AddDays(Random.Next(-10, 4));
+                DateTime endAlertDate = to.AddDays(Random.Next(-3, 3));
+                DateTime endDate = startDate.AddDays(Random.Next(20));
+                if (endDate > endAlertDate)
+                {
+                    endDate = endAlertDate;
+                }
+                int alertId = 1;
+                while (endDate <= endAlertDate)
+                {
+                    var alert = new Alert
+                    {
+                        StartDate = startDate.ToString("s"),
+                        EndDate = endDate == endAlertDate ? null : endDate.ToString("s"),
+                        Metadata = new AlertData
+                        {
+                            Id = alertId * index,
+                            Url = "https://localhost:44365/Alerts/"
+                        }
+                    };
+                    alerts.Add(alert);
+                    alertId++;
+                    startDate = endDate.AddDays(Random.Next(100));
+                    endDate = startDate.AddDays(Random.Next(100));
+                }
             }
-
-            return value.ToString();
+            return alerts;
+        }
+        private List<VillageHistory> GenerateVillages()
+        {
+            var alertsHistory = Builder<VillageHistory>.CreateListOfSize(50)
+                .TheFirst(5)
+                .With(alertHistory => alertHistory.Region = "Dakar")
+                .With(alertHistory => alertHistory.District = "Almadies")
+                .TheNext(7)
+                .With(alertHistory => alertHistory.Region = "Dakar")
+                .With(alertHistory => alertHistory.District = "Dakar Plateau")
+                .TheNext(13)
+                .With(alertHistory => alertHistory.Region = "Thiès")
+                .With(alertHistory => alertHistory.District = "M'bour")
+                .TheNext(4)
+                .With(alertHistory => alertHistory.Region = "Thiès")
+                .With(alertHistory => alertHistory.District = "Saly")
+                .TheNext(16)
+                .With(alertHistory => alertHistory.Region = "Ziguinchor")
+                .With(alertHistory => alertHistory.District = "Bignona")
+                .TheRest()
+                .With(alertHistory => alertHistory.Region = "Ziguinchor")
+                .With(alertHistory => alertHistory.District = "Ziguinchor")
+                .Build()
+                .ToList();
+            return alertsHistory;
         }
     }
     public static class DateTimeExtensions
