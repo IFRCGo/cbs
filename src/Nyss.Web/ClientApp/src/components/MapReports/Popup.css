@@ -1,0 +1,37 @@
+.leaflet-popup-content-wrapper {
+  border: 2px solid #e32219;
+  border-radius: 1px;
+  box-shadow: 0 0 4px rgba(89, 13.3, 9.8, 0.9);
+}
+
+.leaflet-popup-content {
+  width: 230px;
+}
+.leaflet-popup-content p {
+  margin: 0;
+}
+
+.leaflet-popup-tip {
+  display: none;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.popup-content .bold {
+  font-weight: bold;
+}
+
+.popup-content .bold,
+.popup-content .label {
+  width: 50%;
+  font-size: 1.2em;
+}
+
+.popup-content .info {
+  display: flex;
+  margin-bottom: 1.7em;
+}
