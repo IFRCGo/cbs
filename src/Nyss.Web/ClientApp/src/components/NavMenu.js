@@ -30,7 +30,6 @@ export default class NavMenu extends React.Component {
                 width='80px'
               />
             </Link>
-            <Link to='/activity-history'>History Activity</Link>
             <Link to='/alert-history'>Alert Activity</Link>
           </Container>
           <Link to='/map'>MAP</Link>
