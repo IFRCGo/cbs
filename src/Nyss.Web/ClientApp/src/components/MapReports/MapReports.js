@@ -9,7 +9,8 @@ import ColorsLegend from "./ColorsLegend";
 import {
   getCaseReports,
   getHealthRisks,
-  getDataCollectors
+  getDataCollectors,
+  getColorsHealthRIsks
 } from "./functions/fetchHealthData";
 
 //leaflet marker cluster group import
@@ -21,29 +22,12 @@ const MapReports = () => {
   const caseReports = getCaseReports();
   const dataCollectors = getDataCollectors();
   const healthRisk = getHealthRisks();
-
+  const healthRiskColor = getColorsHealthRIsks();
   // IF ShowingReports === [] => show all caseReports
   // IF ShowingReports !== null => only show reports with id in thois array
   const [ShowingReports, setShowingReports] = useState([]);
   const [tempCaseReports, setTempCaseReports] = useState(caseReports);
-  const healthRiskColor = [
-    {
-      Id: 2,
-      Color: "03A9F4"
-    },
-    {
-      Id: 3,
-      Color: "C0CA33"
-    },
-    {
-      Id: 6,
-      Color: "FF8F00"
-    },
-    {
-      Id: 4,
-      Color: "d32f2f"
-    }
-  ];
+
 
   useEffect(() => {
     setTempCaseReports(
@@ -53,11 +37,11 @@ const MapReports = () => {
     );
   }, [ShowingReports]);
 
-  const createClusterCustomIcon = function(cluster) {
+  const createClusterCustomIcon = function (cluster) {
     const count = cluster.getChildCount();
     const clusterDetail = cluster.getAllChildMarkers();
-    let tabHealRisk = {};
     //scoreboard
+    let tabHealRisk = {};
     for (let i = 0; i < clusterDetail.length; i++) {
       const healthRiskID =
         clusterDetail[i]._popup.options.children.props.report.HealthRiskId;
@@ -105,13 +89,13 @@ const MapReports = () => {
       <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size:15px; color:black; z-index:250">${cluster.getChildCount()}</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><style>.cls${
         groupColor.middle
-      }-1{fill:#${groupColor.middle};}.cls${groupColor.middle}-2{fill:#${
+        }-1{fill:#${groupColor.middle};}.cls${groupColor.middle}-2{fill:#${
         groupColor.border
-      };}</style></defs><title></title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls${
+        };}</style></defs><title></title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls${
         groupColor.middle
-      }-1" cx="100" cy="100" r="88.5"/><path class="cls${
+        }-1" cx="100" cy="100" r="88.5"/><path class="cls${
         groupColor.middle
-      }-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>
+        }-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>
       `,
       className: `${options.cluster}`,
       iconSize: L.point(markerSizeXL, markerSizeXL, true)
