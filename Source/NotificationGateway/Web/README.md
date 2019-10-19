@@ -1,1 +1,0 @@
-> __Note__: There are currently some issues with dependencies while using `npm`. So for the time being, please use `yarn` instead [see here](https://yarnpkg.com/en/).
