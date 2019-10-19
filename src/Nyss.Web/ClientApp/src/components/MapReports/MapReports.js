@@ -38,27 +38,7 @@ const MapReports = () => {
 
   const createClusterCustomIcon = function(cluster) {
     const count = cluster.getChildCount();
-    const clusterDetail = cluster.getAllChildMarkers();
-    //scoreboard
-    let tabHealRisk = {};
-    for (let i = 0; i < clusterDetail.length; i++) {
-      const healthRiskID =
-        clusterDetail[i]._popup.options.children.props.report.HealthRiskId;
 
-      if (tabHealRisk.hasOwnProperty(healthRiskID)) {
-        tabHealRisk[healthRiskID]++;
-      } else {
-        tabHealRisk[healthRiskID] = 1;
-      }
-    }
-    //most id reported
-    let mostIdReported = { id: 0, value: -1 };
-    Object.getOwnPropertyNames(tabHealRisk).forEach(el => {
-      if (tabHealRisk[el] > mostIdReported.value) {
-        mostIdReported.id = el;
-        mostIdReported.value = tabHealRisk[el];
-      }
-    });
     let size = "medium";
     let markerSizeXL = 40;
 
@@ -77,9 +57,7 @@ const MapReports = () => {
     };
 
     const groupColor = {
-      middle: healthRiskColor.filter(shade => {
-        return shade.Id === parseInt(mostIdReported.id);
-      })[0].Color,
+      middle: "FFF",
       border: "E32219"
     };
 
@@ -90,11 +68,11 @@ const MapReports = () => {
         groupColor.middle
       }-1{fill:#${groupColor.middle};}.cls${groupColor.middle}-2{fill:#${
         groupColor.border
-      };}</style></defs><title></title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><circle class="cls${
+      };}</style></defs><title></title><g id="Calque_2" data-name="Calque 2"><g id="Calque_2-2" data-name="Calque 2"><path class="cls${
         groupColor.middle
-      }-1" cx="100" cy="100" r="88.5"/><path class="cls${
+      }-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/><circle class="cls${
         groupColor.middle
-      }-2" d="M100,23a77,77,0,1,1-77,77,77.08,77.08,0,0,1,77-77m0-23A100,100,0,1,0,200,100,100,100,0,0,0,100,0Z"/></g></g></svg>
+      }-1" cx="100" cy="100" r="88.5"/></g></g></svg>
       `,
       className: `${options.cluster}`,
       iconSize: L.point(markerSizeXL, markerSizeXL, true)
