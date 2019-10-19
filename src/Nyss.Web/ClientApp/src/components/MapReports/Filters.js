@@ -52,7 +52,7 @@ const Filters = props => {
         <div className="inputFilter">
           <select onChange={e => handleHealthRisk(e)}>
             <option key="all" value="all">
-              ALL
+              All
             </option>
 
             {risks.map(risk => {
