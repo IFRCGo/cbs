@@ -3,9 +3,13 @@ import './AlertHistoryItem.css'
 
 class AlertHistoryItem extends React.Component {
   render() {
+    let className = 'alert-item';
+    if (this.props.status) {
+      className += ' active';
+    }
     return (
-      <li className="alert-item">
-        item
+      <li className={className}>
+        ite
       </li>
     )
   }
