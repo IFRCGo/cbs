@@ -25,15 +25,15 @@ namespace Nyss.Web.Features.AlertHistory
 
     public enum AlertStatus
     {
-        [Description("Open")]
-        Open,
-        [Description("Dismissed")]
-        Dismissed,
-        [Description("Escalated")]
-        Escalated,
-        [Description("Closed")]
-        Closed,
         [Description("No alerts")]
-        NoAlerts
+        NoAlerts = 0,
+        [Description("Open")]
+        Open = 1,
+        [Description("Dismissed")]
+        Dismissed = 2,
+        [Description("Escalated")]
+        Escalated = 3,
+        [Description("Closed")]
+        Closed = 4
     }
 }
