@@ -4,21 +4,24 @@
  */
 
 import React, { useState, useEffect } from "react";
+
+import DatePicker from "react-datepicker";
+
 import { getHealthRisks } from "./functions/fetchHealthData";
 import convertDate from "./functions/convertDate";
 
 import "./Filters.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Filters = props => {
   const risks = getHealthRisks();
+  const dateFormat = "MMM dd, yyyy";
 
   const [risk, setRisk] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleHealthRisk = event => setRisk(event.target.value);
-  const handleStartDate = event => setStartDate(event.target.value);
-  const handleEndDate = event => setEndDate(event.target.value);
 
   useEffect(() => {
     let idToShow = [...props.reports];
@@ -69,22 +72,22 @@ const Filters = props => {
       <div className="filter">
         <span className="label">Start date</span>
         <div className="inputFilter">
-          <input
-            type="date"
-            name="startDate"
-            onChange={e => handleStartDate(e)}
-          ></input>
+          <DatePicker
+            selected={startDate}
+            onChange={date => setStartDate(date)}
+            dateFormat={dateFormat}
+          />
         </div>
       </div>
 
       <div className="filter">
         <span className="label">End date</span>
         <div className="inputFilter">
-          <input
-            type="date"
-            name="endDate"
-            onChange={e => handleEndDate(e)}
-          ></input>
+          <DatePicker
+            selected={endDate}
+            onChange={date => setEndDate(date)}
+            dateFormat={dateFormat}
+          />
         </div>
       </div>
     </div>

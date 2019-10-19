@@ -11,6 +11,10 @@
   flex-wrap: wrap;
 }
 
+.Filters .filter .react-datepicker-wrapper {
+  display: block;
+}
+
 .Filters .filter .label {
   font-weight: bold;
   margin-bottom: 1em;
