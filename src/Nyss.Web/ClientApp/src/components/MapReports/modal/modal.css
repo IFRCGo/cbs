@@ -53,13 +53,17 @@
 #modal-root .btn {
   font-weight: bold;
   padding: 0.5em;
-  border-radius: 10px;
+  border-radius: 2px;
+}
+
+#modal-root .btn:focus {
+  outline: none !important;
 }
 
 #modal-root .btn-close {
-  background-color: #d63d27;
-  border: 1px solid #c0372c;
-  color: #fff;
+  background-color: #fff;
+  border: 1px solid #a32d2c;
+  color: #a32d2c;
 }
 #modal-root .btn-alert {
   background-color: var(--blue);
