@@ -19,7 +19,8 @@
     "react-scripts": "^1.1.5",
     "reactstrap": "^6.3.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "ajv": "^6.0.0",
