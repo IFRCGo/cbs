@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Layout from './components/Layout';
 import { ActivityHistoryContainer } from './containers/ActivityHistoryContainer';
 import MapReports from './components/MapReports/MapReports';
-import AlertHistoryView from './views/AlertHistoryView'
+import AlertHistoryView from './views/alert-history-view/AlertHistoryView'
 
 export default () => (
   <Layout>
