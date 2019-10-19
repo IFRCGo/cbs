@@ -27,7 +27,6 @@ namespace Nyss.Web.Features.AlertHistory
         }
         private AlertHistoryViewModel GenerageMockAlerts(int numberOfWeeks, DateTime startDate, string baseURL, bool includeNoAlerts = true)
         {
-
             DateTime to = startDate;
             DateTime from = to.AddDays(-7 * numberOfWeeks);
 
