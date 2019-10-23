@@ -8,8 +8,8 @@ function ColorsLegend(props) {
           return elColor.Id === el.Id;
         })[0].Color;
         let styleCircle = {
-          width: "3vw",
-          height: "3vw",
+          width: "2.5vw",
+          height: "2.5vw",
           backgroundColor: `#${color}`
         };
 
