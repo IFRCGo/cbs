@@ -10,6 +10,7 @@
     "leaflet.markercluster": "^1.4.1",
     "moment": "^2.24.0",
     "react": "^16.0.0",
+    "react-calendar-timeline": "^0.26.5",
     "react-datepicker": "^2.9.6",
     "react-calendar-timeline": "^0.26.5",
     "react-dom": "^16.0.0",
