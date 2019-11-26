@@ -12,7 +12,6 @@
     "react": "^16.0.0",
     "react-calendar-timeline": "^0.26.5",
     "react-datepicker": "^2.9.6",
-    "react-calendar-timeline": "^0.26.5",
     "react-dom": "^16.0.0",
     "react-leaflet": "^2.4.0",
     "react-leaflet-markercluster": "^2.0.0-rc3",
