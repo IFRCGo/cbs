@@ -1,3 +1,5 @@
+This repository is no longer actively maintained. The development of this turned into the CBS system [Nyss](https://cbs.ifrc.org/what-nyss). The Nyss repository can be found [here](https://github.com/nyss-platform-norcross/nyss).
+
 # Red Cross: Community Based Surveillance (CBS)
 
 Join the world’s largest humanitarian organisation and code for the greater good!
